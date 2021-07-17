@@ -15,7 +15,9 @@
 </script>
 
 <div class="flex flex-col min-h-screen">
-  <div class="mx-auto flex flex-col flex-grow w-full max-w-4xl">
+  <div
+    class="mx-auto flex flex-col flex-grow w-full max-w-2xl"
+  >
     <div class="flex h-16 px-4 py-2 justify-between items-center">
       <h1
         class="text-lg sm:text-2xl font-bold text-gray-800 dark:text-white"
