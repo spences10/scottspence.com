@@ -2,7 +2,7 @@
 date: 2016-11-13
 title: freeCodeCamp
 tags: ['freecodecamp', 'learning']
-isisisPrivate: false
+isPrivate: false
 ---
 
 Ok, I have recently discovered and started doing freeCodeCamp(🔥)

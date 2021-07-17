@@ -2,7 +2,7 @@
 date: 2017-06-30
 title: Git ` — allow-unrelated-histories`
 tags: ['learning', 'guide']
-isisPrivate: false
+isPrivate: false
 ---
 
 How to combine two separate unrelated Git repositories into one with
