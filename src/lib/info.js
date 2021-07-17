@@ -1,3 +1,3 @@
-export const name = 'your name'
+export const name = 'Scott Spence'
 
-export const website = 'https://yourdomain.com'
+export const website = 'https://scottspence.com'

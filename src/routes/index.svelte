@@ -8,7 +8,13 @@
       // get post metadata
       .map(([, post]) => post.metadata)
       // sort by date
-      .sort((a, b) => (a.date < b.date ? 1 : -1))
+      .sort((b, a) => {
+        const da = new Date(a.date).getTime()
+        const db = new Date(b.date).getTime()
+        if (da < db) return -1
+        if (da === db) return 0
+        if (da > db) return 1
+      })
 
     return {
       props: {
@@ -35,22 +41,24 @@
     class="flex-grow divide-y divide-gray-300 dark:divide-gray-700"
   >
     {#each posts as post}
-      <div class="py-8 first:pt-0">
-        <div>
-          <h1 class="!mt-0 !mb-1">
-            <a href={`/posts/${post.slug}`}>{post.title}</a>
-          </h1>
-          <time>{format(new Date(post.date), 'MMMM d, yyyy')}</time>
-          •
-          <span>{post.readingTime.text}</span>
+      {#if !post.isPrivate}
+        <div class="py-8 first:pt-0">
+          <div>
+            <h1 class="!mt-0 !mb-1">
+              <a href={`/posts/${post.slug}`}>{post.title}</a>
+            </h1>
+            <time>{format(new Date(post.date), 'MMMM d, yyyy')}</time>
+            •
+            <span>{post.readingTime.text}</span>
+          </div>
+          <div>{@html post.previewHtml}</div>
+          <div class="flex justify-end w-full">
+            <ButtonLink href={`/posts/${post.slug}`}
+              >Read More</ButtonLink
+            >
+          </div>
         </div>
-        <div>{@html post.previewHtml}</div>
-        <div class="flex justify-end w-full">
-          <ButtonLink href={`/posts/${post.slug}`}
-            >Read More</ButtonLink
-          >
-        </div>
-      </div>
+      {/if}
     {/each}
   </div>
 </div>
