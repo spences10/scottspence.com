@@ -1,6 +1,12 @@
 {
-	"name": "sveltekit-blog-template",
+	"name": "scottspence.com",
+	"author": {
+		"name": "Scott Spence",
+		"email": "yo@scottspence.dev",
+		"url": "https://scottspence.com"
+	},
 	"version": "0.0.1",
+	"type": "module",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -9,7 +15,7 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-static": "next",
+		"@sveltejs/adapter-vercel": "^1.0.0-next.24",
 		"@sveltejs/kit": "next",
 		"@tailwindcss/typography": "^0.4.1",
 		"autoprefixer": "^10.2.6",
@@ -33,7 +39,6 @@
 		"tailwindcss": "^2.2.4",
 		"unist-util-visit": "^3.1.0"
 	},
-	"type": "module",
 	"dependencies": {
 		"@mattjennings/heroicons-svelte": "^0.0.6",
 		"clsx": "^1.1.1",
