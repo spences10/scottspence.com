@@ -20,8 +20,8 @@
 
 <script>
   import ButtonLink from '$lib/components/ButtonLink.svelte'
-  import { format } from 'date-fns'
   import { name } from '$lib/info.js'
+  import { format } from 'date-fns'
 
   export let posts
 </script>

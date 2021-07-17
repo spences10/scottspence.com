@@ -1,13 +1,13 @@
 <script>
-  import '../app.css'
-  import '../prism.css'
-  import 'focus-visible'
+  import { browser } from '$app/env'
+  import { name } from '$lib/info'
   import {
     MoonIcon,
     SunIcon,
   } from '@mattjennings/heroicons-svelte/solid'
-  import { browser } from '$app/env'
-  import { name } from '$lib/info'
+  import 'focus-visible'
+  import '../app.css'
+  import '../prism.css'
 
   let prefersLight = browser
     ? Boolean(JSON.parse(localStorage.getItem('prefersLight')))

@@ -37,9 +37,9 @@
 </script>
 
 <script>
-  import { format } from 'date-fns'
-  import ButtonLink from '$lib/components/ButtonLink.svelte'
-  import { name, website } from '$lib/info'
+  import ButtonLink from '$lib/components/ButtonLink.svelte';
+  import { name,website } from '$lib/info';
+  import { format } from 'date-fns';
 
   export let component
 
