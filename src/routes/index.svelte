@@ -33,10 +33,6 @@
   $: results = fuse.search(query)
 </script>
 
-<svelte:head>
-  <title>{name}</title>
-</svelte:head>
-
 <Head
   title={`Welcome! · ${name}`}
   description="My own little space on the internet, where I write about what I've learned as a web devloper."
