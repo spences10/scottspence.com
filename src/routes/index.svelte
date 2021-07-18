@@ -1,20 +1,15 @@
 <script context="module">
   export const prerender = true
 
+  import Head from '$lib/components/head.svelte'
+  import PostCard from '$lib/components/post-card.svelte'
+  import { getPosts } from '$lib/get-posts'
+  import { name } from '$lib/info.js'
+  import { ogImageUrl } from '$lib/og-image-url-build'
+  import Fuse from 'fuse.js'
+
   export const load = async () => {
-    const posts = Object.entries(
-      import.meta.globEager('/posts/**/*.md')
-    )
-      // get post metadata
-      .map(([, post]) => post.metadata)
-      // sort by date
-      .sort((b, a) => {
-        const da = new Date(a.date).getTime()
-        const db = new Date(b.date).getTime()
-        if (da < db) return -1
-        if (da === db) return 0
-        if (da > db) return 1
-      })
+    const posts = await getPosts()
 
     return {
       props: {
@@ -25,12 +20,6 @@
 </script>
 
 <script>
-  import Head from '$lib/components/head.svelte'
-  import PostCard from '$lib/components/post-card.svelte'
-  import { name } from '$lib/info.js'
-  import { ogImageUrl } from '$lib/og-image-url-build'
-  import Fuse from 'fuse.js'
-
   export let posts
 
   let options = {
@@ -50,12 +39,8 @@
 
 <Head
   title={`Welcome! · ${name}`}
-  description="Everyday commands, config, hints and tips used for modern web development."
-  image={ogImageUrl(
-    'Scott Spence',
-    'scottspence.com',
-    'Scott Spence'
-  )}
+  description="My own little space on the internet, where I write about what I've learned as a web devloper."
+  image={ogImageUrl({ name }, 'scottspence.com', { name })}
 />
 
 <div class="flex flex-col flex-grow">
