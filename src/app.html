@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1"
     />
-    <link rel="icon" href="/favicon.png" />
+    <link rel="icon" href="/favicon.ico" />
     %svelte.head%
     <script>
       const storageValue = JSON.parse(
@@ -23,7 +23,12 @@
     </script>
   </head>
   <body
-    class="transition-colors duration-100 bg-gray-100 dark:bg-gray-900"
+    class="
+      transition-colors
+      duration-100
+      bg-gray-100
+      dark:bg-gray-900
+    "
   >
     <div id="svelte">%svelte.body%</div>
 
