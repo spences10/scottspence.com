@@ -130,10 +130,10 @@ Then add the `<!--more-->` tag after the first paragraph on your post,
 then I added a class to float the image on the top of the post and
 flow around the image, the CSS is this:
 
-```
-// see image in content preview
-// only adjust width OR height so aspect ration is maintained
-.floated{
+```css
+/* see image in content preview */
+/* only adjust width OR height so aspect ration is maintained */
+.floated {
   float: right;
   display: block;
   width: 33vw;
