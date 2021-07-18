@@ -8,7 +8,7 @@ isPrivate: false
 I'm a published developer! [sort of] Well that was a bit painful, well
 not actually I mean from the documentation I feel I was a bit mislead.
 
-![market-place-image](./visual-studio-marketplace.png)
+![vscode vba market-place]
 
 So for those of you that know what I do for a living I'm primarily an
 Analyst Developer with a skill set of VBA and SQL which has put me in
@@ -103,3 +103,5 @@ hope it comes in handy for you one day!
   https://code.visualstudio.com/docs/extensions/testing-extensions
 
 <!-- Images -->
+
+[vscode vba market-place]: ./visual-studio-marketplace.png

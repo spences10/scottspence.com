@@ -47,7 +47,7 @@ upgrade statement is to default the answer to yes for any prompts that
 are displayed in the terminal. You might not want to do this, as there
 may be some programs you don't want to update but I do.
 
-![upgrade image](./upgrade-yes.png)
+![upgrade]
 
 You wont have these messages 👆
 
@@ -223,3 +223,7 @@ global npm packages you want for development now.
 [rsync]:
   https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/
 [n-install]: https://github.com/mklement0/n-install
+
+<!-- Images -->
+
+[upgrade]: ./upgrade-yes.png

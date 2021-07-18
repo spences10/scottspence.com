@@ -238,7 +238,7 @@ https://image-og.now.sh/og.jpg
 Getting `&amp;` instead of `&` so if you copy paste this link into a
 browser you get this sort of image:
 
-![undefined og image]
+![undefined og
 
 I still get this now if I go inspect the source of a page on the site
 and opening one of the URLs give the same error.
@@ -269,4 +269,4 @@ implementing it [into this site].
 
 [no tsc config error]: ./no-tsc-config.png
 [page source image url]: ./page-source-image-url.png
-[undefined og image]: ./undefined-og-image.jpg
+[undefined og]: ./undefined-og-image.jpg
