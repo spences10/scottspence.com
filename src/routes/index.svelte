@@ -25,8 +25,10 @@
 </script>
 
 <script>
+  import Head from '$lib/components/head.svelte'
   import PostCard from '$lib/components/post-card.svelte'
   import { name } from '$lib/info.js'
+  import { ogImageUrl } from '$lib/og-image-url-build'
   import Fuse from 'fuse.js'
 
   export let posts
@@ -45,6 +47,16 @@
 <svelte:head>
   <title>{name}</title>
 </svelte:head>
+
+<Head
+  title={`Welcome! · ${name}`}
+  description="Everyday commands, config, hints and tips used for modern web development."
+  image={ogImageUrl(
+    'Scott Spence',
+    'scottspence.com',
+    'Scott Spence'
+  )}
+/>
 
 <div class="flex flex-col flex-grow">
   <div
