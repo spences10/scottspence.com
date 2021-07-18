@@ -15,9 +15,7 @@
 </script>
 
 <div class="flex flex-col min-h-screen">
-  <div
-    class="mx-auto flex flex-col flex-grow w-full max-w-2xl"
-  >
+  <div class="mx-auto flex flex-col flex-grow w-full max-w-2xl">
     <div class="flex h-16 px-4 py-2 justify-between items-center">
       <h1
         class="text-lg sm:text-2xl font-bold text-gray-800 dark:text-white"
@@ -54,7 +52,7 @@
       {/if}
     </div>
     <main
-      class="flex flex-col w-full flex-grow prose prose-sm sm:prose lg:prose-lg dark:prose-dark py-4 px-4"
+      class="flex flex-col w-full flex-grow prose prose-lg lg:prose-xl dark:prose-dark py-4 px-4"
     >
       <slot />
     </main>

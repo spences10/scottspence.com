@@ -1,10 +1,10 @@
+import relativeImages from 'mdsvex-relative-images'
 import path from 'path'
-import { visit } from 'unist-util-visit'
 import autolinkHeadings from 'rehype-autolink-headings'
 import slugPlugin from 'rehype-slug'
-import relativeImages from 'mdsvex-relative-images'
+import preview, { htmlFormatter, textFormatter } from 'remark-preview'
 import readingTime from 'remark-reading-time'
-import preview, { textFormatter, htmlFormatter } from 'remark-preview'
+import { visit } from 'unist-util-visit'
 
 export default {
   extensions: ['.svx', '.md'],
@@ -16,13 +16,13 @@ export default {
     readingTime(),
 
     // Add a text preview snippet (no formatting) so we can use it in the meta description tag
-    preview(textFormatter({ length: 300, maxBlocks: 1 })),
+    preview(textFormatter({ length: 300, maxBlocks: 2 })),
 
     // Add an HTML preview snippet (formatted) so we can use it when displaying all posts
     preview(
       htmlFormatter({
         length: 300,
-        maxBlocks: 1,
+        maxBlocks: 2,
       }),
       {
         attribute: 'previewHtml',

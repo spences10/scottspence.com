@@ -25,11 +25,21 @@
 </script>
 
 <script>
-  import ButtonLink from '$lib/components/ButtonLink.svelte'
+  import PostCard from '$lib/components/post-card.svelte'
   import { name } from '$lib/info.js'
-  import { format } from 'date-fns'
+  import Fuse from 'fuse.js'
 
   export let posts
+
+  let options = {
+    keys: ['title', 'tags', 'preview', 'previewHtml'],
+    includeScore: true,
+    includeMatches: true,
+    threshold: 0.2,
+  }
+  let fuse = new Fuse(posts, options)
+  let query = ''
+  $: results = fuse.search(query)
 </script>
 
 <svelte:head>
@@ -40,25 +50,20 @@
   <div
     class="flex-grow divide-y divide-gray-300 dark:divide-gray-700"
   >
-    {#each posts as post}
-      {#if !post.isPrivate}
-        <div class="py-8 first:pt-0">
-          <div>
-            <h1 class="!mt-0 !mb-1">
-              <a href={`/posts/${post.slug}`}>{post.title}</a>
-            </h1>
-            <time>{format(new Date(post.date), 'MMMM d, yyyy')}</time>
-            •
-            <span>{post.readingTime.text}</span>
-          </div>
-          <div>{@html post.previewHtml}</div>
-          <div class="flex justify-end w-full">
-            <ButtonLink href={`/posts/${post.slug}`}
-              >Read More</ButtonLink
-            >
-          </div>
-        </div>
-      {/if}
-    {/each}
+    <input type="text" bind:value={query} class="border" />
+
+    {#if results.length === 0}
+      {#each posts as post}
+        {#if !post.isPrivate}
+          <PostCard {post} />
+        {/if}
+      {/each}
+    {:else}
+      {#each results as { item }}
+        {#if !item.isPrivate}
+          <PostCard post={item} />
+        {/if}
+      {/each}
+    {/if}
   </div>
 </div>

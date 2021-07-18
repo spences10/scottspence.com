@@ -14,7 +14,13 @@
         // the processed Svelte component from the markdown file
         component: post.default,
       }))
-      .sort((a, b) => (a.metadata.date < b.metadata.date ? 1 : -1))
+      .sort((b, a) => {
+        const da = new Date(a.metadata.date).getTime()
+        const db = new Date(b.metadata.date).getTime()
+        if (da < db) return -1
+        if (da === db) return 0
+        if (da > db) return 1
+      })
 
     const { slug } = params
     const index = posts.findIndex(post => slug === post.metadata.slug)
@@ -37,9 +43,9 @@
 </script>
 
 <script>
-  import ButtonLink from '$lib/components/ButtonLink.svelte';
-  import { name,website } from '$lib/info';
-  import { format } from 'date-fns';
+  import ButtonLink from '$lib/components/ButtonLink.svelte'
+  import { name, website } from '$lib/info'
+  import { format } from 'date-fns'
 
   export let component
 
