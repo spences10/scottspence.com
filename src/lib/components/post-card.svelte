@@ -1,5 +1,5 @@
 <script>
-  import ButtonLink from '$lib/components/button-link.svelte'
+  import ButtonLink from '$lib/components/ButtonLink.svelte'
   import { format } from 'date-fns'
 
   export let post

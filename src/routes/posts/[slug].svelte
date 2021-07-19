@@ -45,7 +45,7 @@
 </script>
 
 <script>
-  import ButtonLink from '$lib/components/button-link.svelte';
+  import ButtonLink from '$lib/components/ButtonLink.svelte';
   import Head from '$lib/components/head.svelte';
   import { name,website } from '$lib/info';
   import { ogImageUrl } from '$lib/og-image-url-build';
