@@ -63,7 +63,7 @@ render(<button onClick={onClick}>Click Me!</button>)
 
 Image for prosperity 👍
 
-![](./highlightVLive.png)
+![highlightVLive]
 
 ### Mdx is a bit slow
 
@@ -74,3 +74,7 @@ Image for prosperity 👍
 - [ ] Autolink headers
 - [ ] Embed tweets
 - [ ] Embed videos
+
+<!-- Images -->
+
+[highlightvlive]: ./highlightVLive.png

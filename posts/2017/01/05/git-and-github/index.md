@@ -13,7 +13,7 @@ changes to your repos then there's a good chance that you just use
 `git push origin master` to move your changes from your local machine
 to GitHub, this is not best practice.
 
-![image of octocat](./git-logo.jpg)
+![octocat]
 
 What if it's not your repository you want to make changes to? You'll
 need to create a pull request, where you make a copy (fork) of the
@@ -143,3 +143,7 @@ you'll need to add your auth token in as a `remote set-url` so you can
 push/pull without having to authenticate each time.
 
 `git remote set-url origin https://yourgithubuser:your-token@github.com/yourgithubuser/yourrepo.git`
+
+<!-- Images -->
+
+[octocat]: ./git-logo.jpg

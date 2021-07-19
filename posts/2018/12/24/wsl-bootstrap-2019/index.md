@@ -138,7 +138,7 @@ You can check what version of Ubuntu you have installed with:
 lsb_release -a
 ```
 
-![lsb_release image]
+!e]
 
 If you want to use a specific LTS version of Ubuntu you can get them
 from the Windows Store, here:
@@ -713,7 +713,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
   https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/powershell.gif
 [show file extensions]:
   https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/show-extensions.gif
-[lsb_release image]:
+[lsb_release]:
   https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/lsb_release.png
 [vscode config]:
   https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/vscode-wsl-config.gif
