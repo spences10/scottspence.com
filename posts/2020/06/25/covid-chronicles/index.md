@@ -108,7 +108,7 @@ I made a first time appearance on a Podcast
 
 ## Started Whiskey Wednesday
 
-Whisky Wednesday was started my my friend [Marc Backes] from our
+Whisky Wednesday was started by my friend [Marc Backes] from our
 mutual appreciation of Whiskey.
 
 I think this is when we first discovered we both appreciated a tipple!
@@ -144,6 +144,9 @@ Stay safe!
 [coco di mama]: https://www.cocodimama.co.uk/coffee/
 [first time pc build]:
   https://scottspence.com/2020/05/30/first-time-pc-build/
+
+<!-- Images  -->
+
 [before haircut]: ./hair-before.jpg
 [after haircut]: ./hair-after.jpg
 [marc backes]: https://marc.dev
