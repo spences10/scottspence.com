@@ -29,7 +29,7 @@ evenings I usually have from 20:00–22:00 but this is full of
 interruptions so you could probably condense it down to about 1.5
 hours again.
 
-![](./gollum.jpg)
+![gollum]
 
 So.
 
@@ -54,7 +54,7 @@ relationships are priority and they can get a bit strained when all
 you're doing is staring at a monitor whenever you get a spare 45
 minutes.
 
-![](./fccbreakdown.jpg)
+![fcc breakdown]
 
 [#100DaysOfCode] has been a great tool for me with regard to building
 good habits and something that has both distracted me from purely
@@ -77,3 +77,8 @@ We shall see where I am in a years time 👍
 
 [100daysofcode]:
   https://medium.freecodecamp.com/start-2017-with-the-100daysofcode-improved-and-updated-18ce604b237b
+
+<!-- Links -->
+
+[gollum]:./gollum.jpg
+[fcc breakdown]:./fccbreakdown.jpg

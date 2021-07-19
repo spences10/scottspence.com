@@ -223,7 +223,7 @@ Well, if I built the site and inspected the source I could pick out
 the image URL from the page HTML, if you take a look you may be able
 to see the issue.
 
-![page source image url]
+![page source url]
 
 Here's an example URL of what is being added to the page source:
 
@@ -238,7 +238,7 @@ https://image-og.now.sh/og.jpg
 Getting `&amp;` instead of `&` so if you copy paste this link into a
 browser you get this sort of image:
 
-![undefined og
+![undefined og]
 
 I still get this now if I go inspect the source of a page on the site
 and opening one of the URLs give the same error.
@@ -268,5 +268,5 @@ implementing it [into this site].
 <!-- Images -->
 
 [no tsc config error]: ./no-tsc-config.png
-[page source image url]: ./page-source-image-url.png
+[page source url]: ./page-source-image-url.png
 [undefined og]: ./undefined-og-image.jpg

@@ -66,7 +66,7 @@ do it [here] so let's go through it together.
 
 Ok, so everything in React is a component, that's why I like it so
 much - so let's make a `SomethingContext.js` component, as I want to
-do the [things] with the styled-components 💅
+do the things with the styled-components 💅
 
 Let's start by giving it an imaginative name:
 
@@ -90,7 +90,7 @@ Let's create the `Context` and the `Consumer` in this component.
 
 **Using the snippet it should look something like this:**
 
-###### `src/layouts/components/BlogThemeContext.js`
+`src/layouts/components/BlogThemeContext.js`
 
 ```js
 import React from 'react'
@@ -140,7 +140,7 @@ This is what it looks like before adding the context provider, you'll
 notice that the styled-components `ThemeProvider` is a top level
 component here.
 
-###### `src/layouts/index.js`
+`src/layouts/index.js`
 
 ```js
 const TemplateWrapper = ({ children }) => (
@@ -345,7 +345,7 @@ going to use to handle the theme change, it will use the
 `handleThemeChange` method in the `BlogThemeContext` so we better use
 a Context consumer to access the method:
 
-###### `src/layouts/components/Footer.js`
+`src/layouts/components/Footer.js`
 
 ```js
 <BlogThemeContext.Consumer>
@@ -466,8 +466,7 @@ here: https://scottspence.com/
 [styled-components 💅 getting started]:
   https://scottspence.me/styled-components-getting-started
 [personal site]: https://scottspence.me
-[here]: # 'this site, 👀'
-[things]: # 'things being using the styled components `ThemeProvider`'
+[here]: https://scottspence.com
 [vs code snippet]:
   https://github.com/spences10/settings/blob/71dc76fb8e11c176f4517431be57c021fb72411a/globalVs.code-snippets#L74-L111
 [please get in touch]: https://scottspence.me/contact

@@ -226,14 +226,14 @@ export default Layout
 
 Here's the comparison:
 
-![](./compareLayout.png)
+![compareLayout]
 
 On now to the `seo` component, same again, remove `StaticQuery` and
 use `useSiteMetadata` in it's place.
 
 Here's the comparison:
 
-![](./compareSEO.png)
+![compareSEO]
 
 If you want to check out the code the example is available here:
 [example code]
@@ -262,3 +262,8 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [even]: https://youtu.be/8ruJBKFrRCk?t=93
 [gatsby documentation]:
   https://www.gatsbyjs.org/docs/use-static-query/
+
+<!-- Images -->
+
+[comparelayout]: ./compareLayout.png
+[compareseo]: ./compareSEO.png

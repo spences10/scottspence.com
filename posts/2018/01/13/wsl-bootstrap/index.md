@@ -47,7 +47,7 @@ upgrade statement is to default the answer to yes for any prompts that
 are displayed in the terminal. You might not want to do this, as there
 may be some programs you don't want to update but I do.
 
-![upgrade]
+![upgrade message]
 
 You wont have these messages 👆
 
@@ -161,7 +161,7 @@ directory in WSL, you can check them with:
 ls -la ~/
 ```
 
-![bash files wrong permissions](./bash-wrong-perms.png)
+![bash files wrong permissions]
 
 I copied across my `.gitconfig`, `.gitignore` and `.npmrc` dotfiles
 pictured here and you can see that the permissions are not consistent
@@ -202,7 +202,7 @@ chmod 644 .gitconfig .gitignore .npmrc
 
 And now my files look like this. 👍
 
-![bash files permissions](./bash-dotfiles.png)
+![bash files permissions]
 
 Ok now were up and running with an up to date Ubuntu install, node and
 fish terminal. Of course there's still the case of installing all your
@@ -210,7 +210,7 @@ global npm packages you want for development now.
 
 <!-- links -->
 
-[ppa]: # 'Personal Package Archive'
+[ppa]: https://itsfoss.com/ppa-guide/
 [fixanycomputer]: http://theoatmeal.com/blog/fix_computer
 [slowbash]: https://github.com/Microsoft/WSL/issues/776
 [wslmsstore]: https://www.microsoft.com/store/productId/9NBLGGH4MSV6
@@ -226,4 +226,6 @@ global npm packages you want for development now.
 
 <!-- Images -->
 
-[upgrade]: ./upgrade-yes.png
+[upgrade message]: ./upgrade-yes.png
+[bash files wrong permissions]: ./bash-wrong-perms.png
+[bash files permissions]: ./bash-dotfiles.png
