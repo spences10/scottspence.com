@@ -93,7 +93,7 @@ they use:
 
 - [Jekyll] > Ruby
 - [Hugo] > Go
-- [11ty](Eleventy) > JavaScript
+- [11ty] (Eleventy) > JavaScript
 - [Gatsby] > JavaScript
 
 Jekyll is the OG of the static site generators and what I used for my
