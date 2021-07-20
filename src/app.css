@@ -3,11 +3,12 @@
 html {
   scroll-behavior: smooth;
   margin-left: calc(100vw - 100%);
+  word-break: break-word;
 }
 
 :root {
   --primary: #ffb3d9;
-  --secondary:  #f000b8;
+  --secondary: #f000b8;
 }
 
 @layer utilities {
