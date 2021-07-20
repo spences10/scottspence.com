@@ -2,6 +2,7 @@ import relativeImages from 'mdsvex-relative-images'
 import path from 'path'
 import autolinkHeadings from 'rehype-autolink-headings'
 import slugPlugin from 'rehype-slug'
+import remarkExternalLinks from 'remark-external-links'
 import preview, { htmlFormatter, textFormatter } from 'remark-preview'
 import readingTime from 'remark-reading-time'
 import { visit } from 'unist-util-visit'
@@ -28,6 +29,8 @@ export default {
         attribute: 'previewHtml',
       }
     ),
+    // external links open in a new tab
+    [remarkExternalLinks, { target: '_blank', rel: 'noopener' }],
     posts,
     videos,
     relativeImages,

@@ -1,17 +1,28 @@
 <script>
   import { browser } from '$app/env'
+  import { page } from '$app/stores'
   import { name } from '$lib/info'
   import {
     MoonIcon,
     SunIcon,
   } from '@mattjennings/heroicons-svelte/solid'
+  import * as Fathom from 'fathom-client'
   import 'focus-visible'
+  import { onMount } from 'svelte'
   import '../app.css'
   import '../prism.css'
 
   let prefersLight = browser
     ? Boolean(JSON.parse(localStorage.getItem('prefersLight')))
     : false
+
+  onMount(() => {
+    Fathom.load(import.meta.env.VITE_FATHOM_ID, {
+      url: import.meta.env.VITE_FATHOM_URL,
+    })
+  })
+
+  $: $page.path, browser && Fathom.trackPageview()
 </script>
 
 <div class="flex flex-col min-h-screen">

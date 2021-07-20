@@ -4,7 +4,7 @@
   import Head from '$lib/components/head.svelte'
   import PostCard from '$lib/components/post-card.svelte'
   import { getPosts } from '$lib/get-posts'
-  import { name } from '$lib/info.js'
+  import { description, name } from '$lib/info.js'
   import { ogImageUrl } from '$lib/og-image-url-build'
   import Fuse from 'fuse.js'
 
@@ -35,7 +35,7 @@
 
 <Head
   title={`Welcome! · ${name}`}
-  description="My own little space on the internet, where I write about what I've learned as a web devloper."
+  {description}
   image={ogImageUrl({ name }, 'scottspence.com', { name })}
 />
 
@@ -45,7 +45,7 @@
   >
     <input type="text" bind:value={query} class="border" />
 
-    {#if results.length === 0}
+    {#if results.length === 0 && query.length === 0}
       {#each posts as post}
         {#if !post.isPrivate}
           <PostCard {post} />
@@ -60,3 +60,10 @@
     {/if}
   </div>
 </div>
+
+<!-- `<article class="py-8 first:pt-0">
+  <div>
+    <span>😅</span>
+    No results found for <code>{query}</code>
+  </div>
+</article>` -->
