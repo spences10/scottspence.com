@@ -16,8 +16,8 @@ export async function get() {
   }
 }
 
-const render = postsMeta => `
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+const render =
+  postsMeta => `<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>
       <![CDATA[ ${name}'s Blog! ]]>
@@ -60,21 +60,4 @@ const render = postsMeta => `
       .join('')}
   </channel>
 </rss>
-  `
-//   <url>
-//     <loc>${website}</loc>
-//     <changefreq>daily</changefreq>
-//     <priority>0.7</priority>
-//   </url>
-//   ${postsMeta
-//     .map(
-//       meta => `
-//   <url>
-//     <loc>${website}/posts/${meta.slug}/</loc>
-//     <changefreq>daily</changefreq>
-//     <priority>0.7</priority>
-//   </url>
-//   `
-//     )
-//     .join('')}
-// </urlset>
+`
