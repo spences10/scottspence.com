@@ -45,9 +45,11 @@
 <script>
   import ButtonLink from '$lib/components/button-link.svelte'
   import Head from '$lib/components/head.svelte'
+  import TableOfContents from '$lib/components/table-of-contents.svelte'
   import { name, website } from '$lib/info'
   import { ogImageUrl } from '$lib/og-image-url-build'
   import { format } from 'date-fns'
+  import { onMount } from 'svelte'
 
   export let component
 
@@ -61,6 +63,22 @@
   export let previous
 
   const url = `${website}/${slug}`
+
+  let headingNodeList
+  let headings
+  async function getHeadings() {
+    await headings
+  }
+
+  onMount(() => {
+    headingNodeList = document.querySelectorAll('h2')
+    headings = Array.from(headingNodeList).map(h2 => {
+      return {
+        label: h2.innerText,
+        href: `#${h2.id}`,
+      }
+    })
+  })
 </script>
 
 <Head
@@ -71,6 +89,12 @@
   {url}
   {website}
 />
+
+{#await getHeadings()}
+  Loading...
+{:then}
+  <TableOfContents {headings} />
+{/await}
 
 <article>
   <h1 class="!mt-0 !mb-1">{title}</h1>

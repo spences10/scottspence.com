@@ -5,6 +5,11 @@ html {
   margin-left: calc(100vw - 100%);
 }
 
+:root {
+  --primary: #ffb3d9;
+  --secondary:  #f000b8;
+}
+
 @layer utilities {
   .focus {
     @apply outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-300;
@@ -21,6 +26,45 @@ html {
 
 .prose {
   max-width: none;
+}
+
+.table-of-contents {
+  z-index: 1;
+  position: fixed;
+  left: calc(50% + 400px);
+  top: 18rem;
+  max-height: 50vh;
+  width: 310px;
+  padding: 0.75rem;
+  margin: 0.75rem 0;
+  font-size: 1rem;
+  line-height: 1.75rem;
+}
+
+/* Scrollbar styles */
+
+/* Firefox */
+/* stylelint-disable */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) var(--primary);
+}
+/* stylelint-enable */
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary);
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary);
+  border-radius: 14px;
+  border: 3px solid var(--primary);
 }
 
 hr {

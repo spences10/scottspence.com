@@ -23,7 +23,7 @@
   export let posts
 
   let options = {
-    keys: ['title', 'tags', 'preview', 'previewHtml'],
+    keys: ['title', 'tags', 'preview'],
     includeScore: true,
     includeMatches: true,
     threshold: 0.2,
