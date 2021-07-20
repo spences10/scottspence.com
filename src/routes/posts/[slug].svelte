@@ -1,6 +1,4 @@
 <script context="module">
-  export const prerender = true
-
   /**
    * @type {import('@sveltejs/kit').Load}
    */
@@ -45,11 +43,11 @@
 </script>
 
 <script>
-  import ButtonLink from '$lib/components/ButtonLink.svelte';
-  import Head from '$lib/components/head.svelte';
-  import { name,website } from '$lib/info';
-  import { ogImageUrl } from '$lib/og-image-url-build';
-  import { format } from 'date-fns';
+  import ButtonLink from '$lib/components/button-link.svelte'
+  import Head from '$lib/components/head.svelte'
+  import { name, website } from '$lib/info'
+  import { ogImageUrl } from '$lib/og-image-url-build'
+  import { format } from 'date-fns'
 
   export let component
 

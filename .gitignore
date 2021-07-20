@@ -4,3 +4,5 @@ node_modules
 .vercel
 /build
 /public
+.vercel_build_output
+.env
