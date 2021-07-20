@@ -8,6 +8,7 @@ isPrivate: false
 <script>
   import YouTube from '$lib/components/youtube.svelte'
   import Vimeo from '$lib/components/vimeo.svelte'
+  import Details from '$lib/components/details.svelte'
 </script>
 
 I have been a Gatsby user since around [v0 May 2017], at that time was
@@ -155,7 +156,9 @@ yarn dev
 
 And with that the "Hello World" incantation is complete 🧙!
 
-<YouTube youTubeId="2vP3ZTDbN1g" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="2vP3ZTDbN1g" />
+</Details>
 
 ## Add content
 
@@ -309,7 +312,9 @@ GraphQL GraphiQL explorer and check out the data:
 }
 ```
 
-<YouTube youTubeId="MPNJu24ad_s" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="MPNJu24ad_s" />
+</Details>
 
 ## Site Metadata
 
@@ -396,7 +401,9 @@ export default () => {
 }
 ```
 
-<YouTube youTubeId="TfycpV4yyqY" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="TfycpV4yyqY" />
+</Details>
 
 ## Styling
 
@@ -481,7 +488,9 @@ export default () => {
 That is styled-components on a very basic level, basically create the
 styling you want for your page elements you're creating in the JSX.
 
-<YouTube youTubeId="41aNkb2tLyg" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="41aNkb2tLyg" />
+</Details>
 
 ## Layout
 
@@ -582,7 +591,9 @@ export default () => {
 }
 ```
 
-<YouTube youTubeId="Ase7bjxtQ3w" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="Ase7bjxtQ3w" />
+</Details>
 
 ## Index page posts query
 
@@ -681,7 +692,9 @@ GraphQL query. Gatsby `graphql` runs the query (`SITE_INDEX_QUERY`) at
 runtime and gives us the results as props to your component via the
 `data` prop.
 
-<YouTube youTubeId="2GDbxZ0mHbM" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="2GDbxZ0mHbM" />
+</Details>
 
 ## Slugs and Paths
 
@@ -804,7 +817,9 @@ export const query = graphql`
 `
 ```
 
-<YouTube youTubeId="7eZZk7aJnUU" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="7eZZk7aJnUU" />
+</Details>
 
 ## Link Paths
 
@@ -989,7 +1004,9 @@ posts.forEach(post => {
 })
 ```
 
-<YouTube youTubeId="OyQfIvXr4YA" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="OyQfIvXr4YA" />
+</Details>
 
 ## Build out Blog Post Template
 
@@ -1085,7 +1102,9 @@ your dev server.
 Now you can click on one of the post links and see your blog post
 template in all it's basic glory!
 
-<YouTube youTubeId="S7cnkRoCjsc" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="S7cnkRoCjsc" />
+</Details>
 
 ## Previous and Next
 
@@ -1285,7 +1304,9 @@ export const query = graphql`
 `
 ```
 
-<YouTube youTubeId="AjLimYEwDOk" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="AjLimYEwDOk" />
+</Details>
 
 ## Code Blocks
 
@@ -1358,7 +1379,9 @@ export const wrapRootElement = ({ element }) => (
 You're now overriding any `h2` in your rendered markdown along with
 any `code` blocks (that's words wrapped in `` `backticks` ``).
 
-<YouTube youTubeId="kN8ld7iLQso" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="kN8ld7iLQso" />
+</Details>
 
 Ok, now for the syntax highlighting, create a post with a block of
 code in it:
@@ -1618,7 +1641,9 @@ export const wrapRootElement = ({ element }) => (
 )
 ```
 
-<YouTube youTubeId="k6gI3jVxjKg" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="k6gI3jVxjKg" />
+</Details>
 
 Ok, now time to abstract this out into it's own component so your
 `root-wrapper.js` isn't so crowded.
@@ -1762,7 +1787,9 @@ pre: ({ children: { props } }) => {
 }
 ```
 
-<YouTube youTubeId="m0tWxa9Ip5E" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="m0tWxa9Ip5E" />
+</Details>
 
 Ok, now you're back to where you were before abstracting out the
 `Highlight` component to it's own module. Add some additional styles
@@ -1830,7 +1857,9 @@ const Code = ({ codeString, language, ...props }) => {
 export default Code
 ```
 
-<YouTube youTubeId="PPH153kWpqc" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="PPH153kWpqc" />
+</Details>
 
 ### Copy code to clipboard
 
@@ -1984,7 +2013,9 @@ const Code = ({ codeString, language }) => {
 export default Code
 ```
 
-<YouTube youTubeId="j-EINXVe2WA" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="j-EINXVe2WA" />
+</Details>
 
 ## React live
 
@@ -2146,7 +2177,9 @@ const Dump = props => (
 render(<Dump props={['One', 'Two', 'Three', 'Four']} />)
 ```
 
-<YouTube youTubeId="AlOdd-TvqHE" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="AlOdd-TvqHE" />
+</Details>
 
 ## Cover Image
 
@@ -2320,7 +2353,9 @@ export const query = graphql`
 `
 ```
 
-<YouTube youTubeId="9S5GNtql02w" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="9S5GNtql02w" />
+</Details>
 
 **Additional resources:**
 
@@ -2332,7 +2367,9 @@ export const query = graphql`
 
 ## Adding an SEO component to the site
 
-<YouTube youTubeId="I9qQslUJknw" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="I9qQslUJknw" />
+</Details>
 
 There's a Gatsby [github PR on seo] with some [great notes from Andrew
 Welch] on SEO and a link to a presentation he did back in 2017.
@@ -2565,7 +2602,9 @@ export const query = graphql`
 `
 ```
 
-<YouTube youTubeId="O0jk9AqM_ls" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="O0jk9AqM_ls" />
+</Details>
 
 ### Configure SEO Component for Blog Posts
 
@@ -2706,7 +2745,9 @@ export const query = graphql`
 `
 ```
 
-<YouTube youTubeId="a2fcgYIQRIU" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="a2fcgYIQRIU" />
+</Details>
 
 ### Build Site and Validate Meta Tags
 
@@ -2732,7 +2773,9 @@ site as it will appear when it is on the internet. Validate meta tags
 have been added to the build by selecting "View page source" (Crtl+u
 in Windows and Linux) on the page and do a Ctrl+f to find them.
 
-<YouTube youTubeId="c6bB9ddAgjc" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="c6bB9ddAgjc" />
+</Details>
 
 ## Adding the Project to GitHub
 
@@ -2750,7 +2793,9 @@ command looks like.
 Some good resources for authenticating with GitHub via SSH are [Kent
 Dodds Egghead.io video] and also a how-to [on CheatSheets.xyz].
 
-<YouTube youTubeId="r2eiJ8E_YT0" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="r2eiJ8E_YT0" />
+</Details>
 
 ## Deploy to Netlify
 
@@ -2785,7 +2830,9 @@ You will be prompted to commit the changes and push them to GitHub
 (with `git push`), once you have done that your site will be published
 and ready for all to see!
 
-<YouTube youTubeId="voWeHvIGB0g" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="voWeHvIGB0g" />
+</Details>
 
 ## Validate Metadata with Heymeta
 
@@ -2800,7 +2847,9 @@ Once your site is built with a valid url you can then test the
 homepage and a blog page for the correct meta tags with
 [heymeta.com](http://heymeta.com/).
 
-<YouTube youTubeId="JH1AVanYhwo" />
+<Details buttonText="Check out the Video">
+  <YouTube youTubeId="JH1AVanYhwo" />
+</Details>
 
 **OpenGraph checking tools:**
 
