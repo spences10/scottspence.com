@@ -3,11 +3,13 @@
   "git.postCommitCommand": "sync",
   "cSpell.words": [
     "clsx",
+    "daisyui",
     "mdsvex",
     "noopener",
     "rehype",
     "sveltejs",
     "unist",
+    "vercel",
     "webm"
   ]
 }
