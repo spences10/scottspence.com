@@ -97,7 +97,7 @@
 {/await}
 
 <article>
-  <h1 class="!mt-0 !mb-1">{title}</h1>
+  <h1 class="!text-5xl !mb-1">{title}</h1>
   <div>
     <time datetime={new Date(date).toISOString()}
       >{format(new Date(date), 'MMMM d, yyyy')}</time
