@@ -26,7 +26,7 @@
 
 <div class="flex flex-col min-h-screen">
   <div class="mx-auto flex flex-col flex-grow w-full max-w-2xl">
-    <div class="flex h-16 px-4 py-2 justify-between items-center">
+    <div class="flex h-16 px-4 py-2 justify-between items-center mb-14">
       <p class="text-6xl font-extrabold">
         <a href="/">{name}</a>
       </p>

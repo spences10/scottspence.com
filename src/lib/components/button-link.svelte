@@ -3,11 +3,7 @@
   export let isBack = false
 </script>
 
-<a
-  {...$$restProps}
-  {href}
-  class="block px-3 py-1 !text-gray-800 dark:!text-gray-300 dark:!text-opacity-90 bg-gray-300 dark:bg-gray-800 rounded-md !no-underline"
->
+<a {...$$restProps} {href} class="btn">
   <div class="flex items-center space-x-2">
     {#if isBack}
       <svg
