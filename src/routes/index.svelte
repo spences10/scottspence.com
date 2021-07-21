@@ -36,7 +36,7 @@
 <Head
   title={`Welcome! · ${name}`}
   {description}
-  image={ogImageUrl({ name }, 'scottspence.com', { name })}
+  image={ogImageUrl(name, 'scottspence.com', name)}
 />
 
 <div class="flex flex-col flex-grow">
