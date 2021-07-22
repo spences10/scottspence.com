@@ -1,13 +1,19 @@
+<script>
+  import DateDistance from '$lib/components/date-distance.svelte'
+  import Details from '$lib/components/details.svelte'
+  import Spotify from '$lib/components/spotify.svelte'
+</script>
+
 ## Newsletter
 
-I have been writing a weekly newsletter now for <DateDistance
-date={`2021-01-24`} /> where I share what I have been working on and
-learning over the past week and share helpful links I have found along
-the way.
+I have been writing a weekly newsletter now for
+<DateDistance date='2021-01-24' /> where I share what I have been
+working on and learning over the past week and share helpful links I
+have found along the way.
 
 You can check out the previous ones here:
 
-<Details label="Expand to take a look.">
+<Details buttonText="Expand to take a look.">
 
 - Issue #15 [What do you call a snake that works for the government? A
   Civil Serpent.]

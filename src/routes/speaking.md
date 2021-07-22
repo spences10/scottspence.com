@@ -1,3 +1,9 @@
+<script>
+  import Details from '$lib/components/details.svelte'
+  import Spotify from '$lib/components/spotify.svelte'
+  import YouTube from '$lib/components/youtube.svelte'
+</script>
+
 # Speaking
 
 I have spoken at several meetups and conferences now and would be keen
@@ -15,7 +21,7 @@ recently.
 
 Build a Gatsby blog with MDX and Theme UI
 
-<Details label="Expand to watch.">
+<Details buttonText="Expand to watch.">
   <YouTube youTubeId="Mg19wDM4wS8" />
 </Details>
 
@@ -27,7 +33,7 @@ I was invited to talk about MDX at the MMT Gatsby meetup.
 
 Slides here: https://i-have-a-hammer.vercel.app/
 
-<Details label="Expand to watch.">
+<Details buttonText="Expand to watch.">
   <YouTube
     youTubeId="km2KsVnlM4I"
     skipTo={{ hour: 0, minute: 0, second: 553 }}
@@ -42,7 +48,7 @@ I was invited to talk about the jamstack at Scale by the Bay.
 
 Slides here: https://ss10.dev/jam-talk
 
-<Details label="Expand to watch.">
+<Details buttonText="Expand to watch.">
   <YouTube youTubeId="L7_z8rcbFPg" />
 </Details>
 
@@ -69,9 +75,10 @@ Markdown Showdown: all the things I know about markdown a 1-hour
 Markdown primer, which will lead into using Markdown with a Gatsby
 blog with MDX.
 
-<Details label="Expand to watch.">
+<Details buttonText="Expand to watch.">
   <YouTube youTubeId="VNVF7ZIUj60" />
 </Details>
+
 ## Whiskey Wednesday - 2020 September 23rd
 
 #### Episode #9 - a11y (Accessibility)
@@ -244,7 +251,7 @@ We also spend a significant amount of time talking about the power of
 using MDX, which allows you to embed React components right inside of
 your Markdown.
 
-<Details label="Expand to watch.">
+<Details buttonText="Expand to watch.">
   <YouTube youTubeId="eLYf3Twl00Q" />
 </Details>
 
@@ -269,7 +276,7 @@ a job in tech.
 - Slides
 - Code
 
-<Details label="Expand to watch.">
+<Details buttonText="Expand to watch.">
   <YouTube youTubeId="hZ6tO4N50Sc" />
 </Details>
 
@@ -279,7 +286,7 @@ a job in tech.
 - Slides
 - Code
 
-<Details label="Expand to watch.">
+<Details buttonText="Expand to watch.">
   <YouTube youTubeId="A0q3JqSLr_0" />
 </Details>
 

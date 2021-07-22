@@ -6,8 +6,9 @@ isPrivate: false
 ---
 
 <script>
-  import YouTube from '$lib/components/youtube.svelte'
   import MarkdownParser from '$lib/components/youtube.svelte'
+  import YouTube from '$lib/components/youtube.svelte'
+  import Small from '$lib/components/small.svelte'
 </script>
 
 Here it is kids! All I know about Markdown. First! The standard
@@ -194,10 +195,10 @@ Markdown is to make the text easier to read.
 
 The approach I like to take is using keys or references:
 
-<small>
+<Small>
   Right now the component I have for the Markdown rendering doesn't
   support it so I'll be adding these in with no rendered example.
-</small>
+</Small>
 
 ```markdown
 <!-- This isn't great to read -->

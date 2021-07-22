@@ -1,7 +1,12 @@
+<script>
+  import DateUpdated from '$lib/components/date-updated.svelte'
+  import Small from '$lib/components/small.svelte'
+</script>
+
 # Uses
 
 <Small>
-  Last updated: <DateUpdated date={`2021-02-17`} small={`true`} />
+  Last updated: <DateUpdated date='2021-02-17' small='true' />
 </Small>
 
 All the equipment and tools I use on a daily basis.

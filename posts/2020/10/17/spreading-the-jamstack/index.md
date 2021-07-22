@@ -8,6 +8,7 @@ isPrivate: true
 <script>
   import DateDistance from '$lib/components/date-distance.svelte'
   import Sarcasm from '$lib/components/sarcasm.svelte'
+  import Small from '$lib/components/small.svelte'
 </script>
 
 I have delivered this talk several times now but not actually written
@@ -53,10 +54,10 @@ Let's looks at some other web dev stacks.
 Using a group of technologies together is where the term stack comes
 from.
 
-<small>
+<Small>
   It doesn't necessarily have to be tech, the fitness industry term
   their nutritional supplements combination as a stack, anyway...
-</small>
+</Small>
 
 So you may or may not have heard of some of these stacks being
 mentioned.

@@ -1,7 +1,15 @@
+<script>
+  import DateUpdated from '$lib/components/date-updated.svelte'
+  import Small from '$lib/components/small.svelte'
+  import TopLanguages from '$lib/components/top-languages.svelte'
+  import GitHubContributions from '$lib/components/github-contributions.svelte'
+  import Projects from '$lib/components/portfolio-projects.svelte'
+</script>
+
 ## Portfolio
 
 <Small>
-  Last updated: <DateUpdated date={`2021-01-09`} small={`true`} />
+  Last updated: <DateUpdated date='2021-01-09' small='true' />
 </Small>
 
 This page details some projects I have worked on along with my GitHub

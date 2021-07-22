@@ -1,7 +1,13 @@
+<script>
+  import DateUpdated from '$lib/components/date-updated.svelte'
+  import DateDistance from '$lib/components/date-distance.svelte'
+  import Small from '$lib/components/small.svelte'
+</script>
+
 ## For recruiters - FAQ
 
 <Small>
-  Last updated: <DateUpdated date={`2021-04-02`} small={`true`} />
+  Last updated: <DateUpdated date='2021-04-02' small='true' />
 </Small>
 
 Hello friend 👋, thanks for taking an interest in me and my profile.
@@ -116,12 +122,11 @@ experience is.
   These numbers are calculated each time the site is built.
 </Small>
 
-JavaScript, HTML and CSS (the holy trinity), <DateDistance
-date={`2016-06-15`} />
+JavaScript, HTML and CSS (the holy trinity), <DateDistance date='2016-06-15' />
 
-React, <DateDistance date={`2017-05-20`} />
+React, <DateDistance date='2017-05-20' />
 
-I have <DateDistance date={`2018-03-14`} /> as a professional web
+I have <DateDistance date='2018-03-14' /> as a professional web
 developer.
 
 I have 11 years previous experience as an analyst developer for
