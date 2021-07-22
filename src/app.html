@@ -12,14 +12,17 @@
       const storageValue = JSON.parse(
         localStorage.getItem('prefersLight')
       )
-      const prefersLight = storageValue
-        ? Boolean(storageValue)
-        : window?.matchMedia('(prefers-color-scheme: light)').matches
+      // const prefersLight = storageValue
+      //   ? Boolean(storageValue)
+      //   : window?.matchMedia('(prefers-color-scheme: light)').matches
 
-      // default to dark mode unless explicitly set preference to light
-      if (prefersLight) {
-        document.querySelector('html').classList.remove('dark')
-      }
+      // // default to dark mode unless explicitly set preference to light
+      // if (prefersLight) {
+      //   document
+      //     .querySelector('html')
+      //     .setAttribute('data-theme', 'light')
+      //   // document.querySelector('html').classList.remove('dark')
+      // }
     </script>
   </head>
   <body>
