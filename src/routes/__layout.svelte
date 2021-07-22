@@ -10,9 +10,20 @@
   import '../app.css'
   import '../prism.css'
 
-  let prefersLight = browser
-    ? Boolean(JSON.parse(localStorage.getItem('prefersLight')))
-    : false
+  // let prefersLight = browser
+  //   ? Boolean(JSON.parse(localStorage.getItem('prefersLight')))
+  //   : false
+
+  // let theme = () => {
+  //   prefersLight = !prefersLight
+  //   localStorage.setItem('prefersLight', prefersLight.toString())
+
+  //   if (prefersLight) {
+  //     document.querySelector('html').classList.remove('dark')
+  //   } else {
+  //     document.querySelector('html').classList.add('dark')
+  //   }
+  // }
 
   onMount(() => {
     themeChange(false)
