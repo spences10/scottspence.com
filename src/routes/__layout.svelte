@@ -25,17 +25,19 @@
 </script>
 
 <div class="flex flex-col min-h-screen">
-  <div class="mx-auto flex flex-col flex-grow w-full max-w-2xl">
-    <div class="flex h-16 px-4 py-2 justify-between items-center mb-14">
-      <p class="text-6xl font-extrabold">
+  <div class="flex flex-col flex-grow mx-auto w-full max-w-2xl">
+    <div
+      class="flex h-16 mb-14 py-2 px-4 justify-between items-center"
+    >
+      <p class="font-extrabold text-3xl lg:text-6xl">
         <a href="/">{name}</a>
       </p>
-      <div class=" ">
+      <div>
         <ThemeSelect />
       </div>
     </div>
     <main
-      class="flex flex-col w-full flex-grow prose prose-lg lg:prose-xl dark:prose-dark py-4 px-4"
+      class="flex flex-col flex-grow w-full py-4 px-4 prose prose-lg lg:prose-xl dark:prose-dark"
     >
       <slot />
     </main>

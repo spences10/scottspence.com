@@ -1,5 +1,4 @@
 <script>
-  import ButtonLink from '$lib/components/button-link.svelte'
   import { format } from 'date-fns'
 
   export let post
@@ -15,7 +14,4 @@
     <span>{post.readingTime.text}</span>
   </div>
   <div>{@html post.previewHtml}</div>
-  <div class="flex justify-end w-full">
-    <ButtonLink href={`/posts/${post.slug}`}>Read More</ButtonLink>
-  </div>
 </article>

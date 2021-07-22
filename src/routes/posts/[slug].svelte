@@ -14,7 +14,7 @@
         // the processed Svelte component from the markdown file
         component: post.default,
       }))
-      .sort((b, a) => {
+      .sort((a, b) => {
         const da = new Date(a.metadata.date).getTime()
         const db = new Date(b.metadata.date).getTime()
         if (da < db) return -1
@@ -27,23 +27,16 @@
 
     const { metadata, component } = posts[index]
 
-    // next/previous posts
-    const next = posts[index - 1]?.metadata
-    const previous = posts[index + 1]?.metadata
-
     return {
       props: {
         component,
         ...metadata,
-        next,
-        previous,
       },
     }
   }
 </script>
 
 <script>
-  import ButtonLink from '$lib/components/button-link.svelte'
   import Head from '$lib/components/head.svelte'
   import TableOfContents from '$lib/components/table-of-contents.svelte'
   import { name, website } from '$lib/info'
@@ -59,8 +52,6 @@
   export let preview
   export let readingTime
   export let slug
-  export let next
-  export let previous
 
   const url = `${website}/${slug}`
 
@@ -97,7 +88,7 @@
 {/await}
 
 <article>
-  <h1 class="!text-5xl !mb-1">{title}</h1>
+  <h1 class="!mb-1 !text-5xl">{title}</h1>
   <div>
     <time datetime={new Date(date).toISOString()}
       >{format(new Date(date), 'MMMM d, yyyy')}</time
@@ -107,16 +98,3 @@
   </div>
   <svelte:component this={component} />
 </article>
-
-<div class="pt-12 flex justify-between">
-  {#if previous}
-    <ButtonLink isBack href={`/posts/${previous.slug}`}
-      >{previous.title}</ButtonLink
-    >
-  {:else}
-    <div />
-  {/if}
-  {#if next}
-    <ButtonLink href={`/posts/${next.slug}`}>{next.title}</ButtonLink>
-  {/if}
-</div>
