@@ -2,6 +2,7 @@
   "git.enableSmartCommit": true,
   "git.postCommitCommand": "sync",
   "cSpell.words": [
+    "VITE",
     "clsx",
     "daisyui",
     "mdsvex",

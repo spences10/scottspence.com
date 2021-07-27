@@ -17,7 +17,17 @@
 </script>
 
 <script>
+  import Head from '$lib/components/head.svelte'
+  import { description, name } from '$lib/info'
+  import { ogImageUrl } from '$lib/og-image-url-build'
+
   export let Post
 </script>
+
+<Head
+  title={`Welcome! · ${name}`}
+  {description}
+  image={ogImageUrl(name, 'scottspence.com', name)}
+/>
 
 <Post />
