@@ -7,14 +7,11 @@
 ## Hi I'm Scott
 
 <Small>
-  Last updated: <DateUpdated date={`2021-04-02`} small={`true`} />
+  Last updated: <DateUpdated date='2021-07-27' small='true' />
 </Small>
 
-I'm a web developer for Creative Products at [Karmarama], based in
-Farringdon, London UK. Currently working from home.
-
-From the 26th of April 2021 I will be working with GraphCMS as a
-Developer Advocate.
+I'm a developer advocate working with [GraphCMS] to create content
+that helps remove friction and educate around the GraphQL space.
 
 I create content written in the blog here and also in educational
 videos supporting the written content.
@@ -23,7 +20,8 @@ I'm a second career dev, that reskilled from a VBA analyst developer
 role into web development.
 
 I'm a massive fan of the [Jamstack] I have a wealth of knowledge
-working with [Gatsby].
+working with [Gatsby] and am spending a lot of time familiarising
+myself with Svelte and SvelteKit.
 
 More details in the [portfolio section].
 
@@ -69,10 +67,6 @@ Other playlists I'd recommend would be the UKF Drum and Bass Top 100:
   width="100%"
 />
 
-### Now Playing - Spotify 🎧
-
-[<img src="https://spotify-now-playing.spences10.vercel.app/api/spotify-playing" alt="Scott, Spotify Playing" width="350" />](https://open.spotify.com/user/spences10)
-
 ### Podcasts I listen to
 
 I listen to many podcasts, here are some that I get a lot of value
@@ -96,7 +90,7 @@ Indie Hackers
 
 ---
 
-[karmarama]: https://karmarama.com
+[graphcms]: http://graphcms.com/
 [vba]: https://en.wikipedia.org/wiki/Visual_Basic_for_Applications
 [now]: https://zeit.co/now
 [gatsby]: https://www.gatsbyjs.org/
