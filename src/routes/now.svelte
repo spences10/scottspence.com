@@ -1,7 +1,7 @@
 <script context="module">
   export async function load({ page }) {
     try {
-      const Copy = await import(`../../copy/about.md`)
+      const Copy = await import(`../../copy/now.md`)
       return {
         props: {
           Copy: Copy.default,
@@ -17,15 +17,15 @@
 </script>
 
 <script>
-  import Head from '$lib/components/head.svelte'
-  import { description, name } from '$lib/info'
-  import { ogImageUrl } from '$lib/og-image-url-build'
+  import Head from '$lib/components/head.svelte';
+  import { description,name } from '$lib/info';
+  import { ogImageUrl } from '$lib/og-image-url-build';
 
   export let Copy
 </script>
 
 <Head
-  title={`Welcome! · ${name}`}
+  title={`What I'm doing now · ${name}`}
   {description}
   image={ogImageUrl(name, 'scottspence.com', name)}
 />

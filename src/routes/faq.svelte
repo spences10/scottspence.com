@@ -1,7 +1,7 @@
 <script context="module">
   export async function load({ page }) {
     try {
-      const Copy = await import(`../../copy/about.md`)
+      const Copy = await import(`../../copy/faq.md`)
       return {
         props: {
           Copy: Copy.default,
@@ -25,7 +25,7 @@
 </script>
 
 <Head
-  title={`Welcome! · ${name}`}
+  title={`Recruiter FAQs · ${name}`}
   {description}
   image={ogImageUrl(name, 'scottspence.com', name)}
 />
