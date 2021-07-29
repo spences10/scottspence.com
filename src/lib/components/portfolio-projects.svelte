@@ -9,16 +9,12 @@
         class="space-y-4 mt-12 sm:grid lg:mx-auto xl:max-w-none sm:mt-16 sm:space-y-0 sm:grid-cols-2 sm:gap-6 lg:max-w-4xl xl:mx-0 xl:grid-cols-4"
       >
         {#each PORTFOLIO_PROJECTS as project}
-          <div
-            class="divide-y rounded-lg divide-gray-900 bg-gray-800 shadow-sm"
-          >
-            <div class="p-6">
-              <h3 class="font-bold text-2xl leading-6">
+          <div class="card bordered">
+            <div class="card-body">
+              <h3 class="card-title !-mt-0">
                 {project.title}
               </h3>
-              <p
-                class="mt-4 text-sm opacity-70 sm:min-h-[2rem] md:min-h-[3rem] xl:min-h-[5rem]"
-              >
+              <p>
                 {project.copy}
               </p>
               <div class="flex gap-x-2">
@@ -26,52 +22,37 @@
                   href={project.demo}
                   target="_blank"
                   rel="noopener"
-                  class="btn w-1/2"
+                  class="w-1/2 btn btn-secondary"
                 >
                   Demo
                 </a>
-                {#if project.repo}
+                {#if project.repo.length > 0}
                   <a
                     href={project.repo}
                     target="_blank"
                     rel="noopener"
-                    class="btn w-1/2"
+                    class="w-1/2 btn btn-secondary"
                   >
                     Repo
                   </a>
                 {:else}
-                  <a href="noop" class="btn w-1/2"> Repo </a>
+                  <a
+                    href="noop"
+                    class="w-1/2 btn"
+                    disabled="disabled"
+                  >
+                    Repo
+                  </a>
                 {/if}
               </div>
-            </div>
-            <div class="px-6 pt-6 pb-8">
-              <h3
-                class="font-medium text-sm tracking-wide text-primary-200 uppercase"
-              >
-                Built with
-              </h3>
-              <ul class="space-y-4 mt-6 list-none">
+              <p>Uses</p>
+              <div class="flex flex-wrap mt-2 break-words relative">
                 {#each project.tags as tag}
-                  <li class="flex space-x-3">
-                    <svg
-                      class="flex-shrink-0 h-5 text-green-500 w-5"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                    <span class="text-sm opacity-70">
-                      {tag}
-                    </span>
-                  </li>
+                  <div class="flex badge m-2 badge-secondary">
+                    {tag}
+                  </div>
                 {/each}
-              </ul>
+              </div>
             </div>
           </div>
         {/each}
