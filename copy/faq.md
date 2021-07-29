@@ -101,8 +101,8 @@ I'm _really_ enjoying using the [Jamstack] right now, I have a wealth
 of knowledge using [Gatsby] (which uses **React** and **GraphQL**) and
 have consulted on large scale apps using it.
 
-I have used using styled-components for many projects, I am also
-comforable using Theme UI and Tailwind CSS.
+I have used styled-components for many projects, I am also comforable
+using Theme UI and Tailwind CSS.
 
 For CMS' any opportunity to work with any of the new headless CMS'
 that are emerging would be great: [Sanity.io], [GraphCMS], [Strapi],
@@ -122,7 +122,8 @@ experience is.
   These numbers are calculated each time the site is built.
 </Small>
 
-JavaScript, HTML and CSS (the holy trinity), <DateDistance date='2016-06-15' />
+JavaScript, HTML and CSS (the holy trinity), <DateDistance
+date='2016-06-15' />
 
 React, <DateDistance date='2017-05-20' />
 
@@ -141,7 +142,7 @@ bit more about me.
 
 In my next permanent role I'm looking for **£60,500**.
 
-I'm run OES Technology where I offer consulting on a contract basis if
+I run OES Technology where I offer consulting on a contract basis if
 you have a project in mind get in touch to discuss.
 
 I'm not giving a number for my _current_ salary because, among other
@@ -184,8 +185,8 @@ I'm happy in sunny, sunny Swanley
 
 ## Are you willing to work remotely?
 
-Yeah, I mean, the whole industry has been working remotley for the
-last twelve months.
+Yeah, I mean, the whole industry has been working remotley since the
+pandemic.
 
 I'd prefer not to be bound by any number of days needed to be worked
 in an office. Occasional meetings, fine.
@@ -226,9 +227,9 @@ avoid phone calls for these reasons:
 
 1. I'm on a [maker's schedule], which means interruptions are
    disruptive to my flow.
-1. I've already tried to answer the most basic questions on this page,
-   and I've probably phrased them more clearly here than I will on the
-   phone.
+1. I've already tried to answer the majority of questions asked on
+   this page. I've probably phrased them more clearly here than I will
+   on the phone.
 1. This question gets asked frequently enough that my default answer
    has to be, if not **"no"**, at least **"[read this first]"**.
 
@@ -253,8 +254,6 @@ my attention, gratitude and a guaranteed reply. 🙏
 ## Can I take a look at your CV?
 
 Sure, my CV is here: [mecv.xyz].
-
-The CV uses the [JSON Schema] standard, raw data [here].
 
 ---
 
@@ -309,8 +308,6 @@ Feel free to [check out the rest of the site](/)
 [keystone 5]: https://www.keystonejs.com/
 [about]: https://scottspence.com/about
 [read this first]: https://scottspence.com/faq
-[json schema]: https://jsonresume.org/schema/
-[here]: https://cvjson.now.sh/cv.json
 [mecv.xyz]: https://www.mecv.xyz?goalId=TCRZB23L
 [two weeks]: https://www.youtube.com/watch?v=9v-33jcEDk4
 [15 minute chat]: https://calendly.com/spences10apps/15min
