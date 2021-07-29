@@ -48,7 +48,7 @@
 	"dependencies": {
 		"@mattjennings/heroicons-svelte": "^0.0.6",
 		"clsx": "^1.1.1",
-		"date-fns": "^2.22.1",
+		"date-fns": "2.23.0",
 		"focus-visible": "^5.2.0"
 	}
 }
