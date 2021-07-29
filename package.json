@@ -37,7 +37,7 @@
 		"rehype-autolink-headings": "^5.1.0",
 		"rehype-slug": "^4.0.1",
 		"remark-external-links": "^8.0.0",
-		"remark-preview": "^1.0.1",
+		"remark-preview": "1.0.2",
 		"remark-reading-time": "^1.0.1",
 		"svelte": "^3.38.3",
 		"svelte-preprocess": "^4.7.4",
