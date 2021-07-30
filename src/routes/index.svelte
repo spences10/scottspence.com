@@ -30,4 +30,4 @@
   image={ogImageUrl(name, 'scottspence.com', name)}
 />
 
-<Copy />
+<svelte:component this={Copy} />
