@@ -40,10 +40,19 @@
 />
 
 <div class="flex flex-col flex-grow">
-  <div
-    class="flex-grow divide-y divide-gray-300 dark:divide-gray-700"
-  >
-    <input type="text" bind:value={query} class="border" />
+  <div class="">
+    <div class="form-control">
+      <label for="search" class="label">
+        <span class="label-text">Search {posts.length} posts...</span>
+      </label>
+      <input
+        type="text"
+        bind:value={query}
+        id="search"
+        placeholder="Search"
+        class="input input-primary input-bordered"
+      />
+    </div>
 
     {#if results.length === 0 && query.length === 0}
       {#each posts as post}
