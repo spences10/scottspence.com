@@ -6,7 +6,10 @@
   <aside
     class="rounded-md shadow w-64 table-of-contents lg:block hidden"
   >
-    <h3 class="!font-extrabold !text-lg !mt-2 !mb-0" id="table-of-contents">
+    <h3
+      class="!font-extrabold !text-lg !mt-2 !mb-0"
+      id="table-of-contents"
+    >
       Table of Contents
     </h3>
     <ul class="max-h-72 overflow-auto !mb-0">
