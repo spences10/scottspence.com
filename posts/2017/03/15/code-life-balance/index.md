@@ -75,10 +75,9 @@ http://amiarealdeveloper.com/
 
 We shall see where I am in a years time 👍
 
-[100daysofcode]:
-  https://medium.freecodecamp.com/start-2017-with-the-100daysofcode-improved-and-updated-18ce604b237b
-
 <!-- Links -->
 
-[gollum]:./gollum.jpg
-[fcc breakdown]:./fccbreakdown.jpg
+[#100daysofcode]:
+  https://medium.freecodecamp.com/start-2017-with-the-100daysofcode-improved-and-updated-18ce604b237b
+[gollum]: ./gollum.jpg
+[fcc breakdown]: ./fccbreakdown.jpg

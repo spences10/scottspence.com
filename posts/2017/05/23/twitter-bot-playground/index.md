@@ -641,8 +641,7 @@ If you want tweets from a certain website you can specify with the
 bot.get(
   'search/tweets',
   {
-    q:
-      'from:@dan_abramov url:facebook filter:images since:2017-01-01',
+    q: 'from:@dan_abramov url:facebook filter:images since:2017-01-01',
     count: 5,
   },
   (err, data, response) => {
