@@ -24,8 +24,8 @@
 
 <Head
   title={`Posts by tag · ${name}`}
-  description='Poopy doopy'
-  image={ogImageUrl(name, 'scottspence.com', name)}
+  {description}
+  image={ogImageUrl(name, 'scottspence.com', 'Posts by tag')}
 />
 
 <ul class="flex justify-start flex-wrap ">
