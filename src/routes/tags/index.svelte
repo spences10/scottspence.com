@@ -1,7 +1,10 @@
 <script context="module">
   export const prerender = true
 
+  import Head from '$lib/components/head.svelte'
   import { getPostTags } from '$lib/get-post-tags'
+  import { description, name } from '$lib/info'
+  import { ogImageUrl } from '$lib/og-image-url-build'
 
   export async function load() {
     const { tags, postsByTag } = await getPostTags()
@@ -18,6 +21,12 @@
   export let tags
   export let postsByTag
 </script>
+
+<Head
+  title={`Posts by tag · ${name}`}
+  {description}
+  image={ogImageUrl(name, 'scottspence.com', name)}
+/>
 
 <ul class="flex justify-start flex-wrap ">
   {#each tags as tag}
