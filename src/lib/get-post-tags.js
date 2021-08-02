@@ -3,7 +3,6 @@ import { getPosts } from '$lib/get-posts'
 export async function getPostTags() {
   const posts = await getPosts()
   const postsByTag = {}
-  const tagsAndPosts = {}
 
   posts.forEach(post => {
     const { tags, isPrivate } = post
@@ -17,12 +16,10 @@ export async function getPostTags() {
     }
   })
 
-  const tags = Object.keys(postsByTag)
+  const tags = Object.keys(postsByTag).sort()
 
-  tags.forEach(tag => {
-    const posts = postsByTag[tag]
-    tagsAndPosts[tag] = posts
-  })
-
-  return tagsAndPosts
+  return {
+    tags,
+    postsByTag,
+  }
 }

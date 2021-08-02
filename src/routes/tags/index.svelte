@@ -1,20 +1,28 @@
 <script context="module">
-  import { getPostTags } from '$lib/get-post-tags'
-
   export const prerender = true
 
+  import { getPostTags } from '$lib/get-post-tags'
+
   export async function load() {
-    const tagsAndPosts = await getPostTags()
+    const { tags, postsByTag } = await getPostTags()
     return {
       props: {
-        tagsAndPosts,
+        tags,
+        postsByTag,
       },
     }
   }
 </script>
 
 <script>
-  export let tagsAndPosts
+  export let tags
+  export let postsByTag
 </script>
 
-<pre>{JSON.stringify(tagsAndPosts, null, 2)}</pre>
+<ul class="flex justify-start flex-wrap ">
+  {#each tags as tag}
+    <a href={`tags/${tag}`} class="mr-4"
+      >{tag} ({postsByTag[tag].length})</a
+    >
+  {/each}
+</ul>
