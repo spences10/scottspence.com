@@ -24,7 +24,7 @@
 
 <Head
   title={`Posts by tag · ${name}`}
-  {description}
+  description='Poopy doopy'
   image={ogImageUrl(name, 'scottspence.com', name)}
 />
 

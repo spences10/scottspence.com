@@ -3,7 +3,7 @@
 
   import Head from '$lib/components/head.svelte'
   import { getPostTags } from '$lib/get-post-tags'
-  import { description, name } from '$lib/info'
+  import { name } from '$lib/info'
   import { ogImageUrl } from '$lib/og-image-url-build'
 
   export async function load({ page }) {
@@ -25,7 +25,7 @@
 
 <Head
   title={`Posts relating to ${slug} · ${name}`}
-  {description}
+  description="Poopy doopy slug"
   image={ogImageUrl(name, 'scottspence.com', name)}
 />
 
