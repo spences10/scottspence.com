@@ -25,7 +25,7 @@
 <Head
   title={`Posts by tag · ${name}`}
   {description}
-  image={ogImageUrl(name, 'scottspence.com', `Posts by tag`)}
+  image={ogImageUrl(name, 'scottspence.com', `Tags`)}
 />
 
 <ul class="flex justify-start flex-wrap ">
