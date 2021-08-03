@@ -53,7 +53,15 @@ const render =
               'EE, dd MMM yyyy HH:mm:ss O'
             )}
           </pubDate>
-          <content:encoded>${meta.previewHtml}</content:encoded>
+          <content:encoded>${meta.previewHtml} 
+            <div style="margin-top: 50px; font-style: italic;">
+              <strong>
+                <a href="${website}/posts/${meta.slug}/">
+                  Keep reading
+                </a>.
+              </strong>  
+            </div>
+          </content:encoded>
         </item>
       `
       )
