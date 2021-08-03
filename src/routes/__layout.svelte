@@ -40,7 +40,9 @@
     <div
       class="flex h-16 mb-14 py-2 px-4 justify-between items-center"
     >
-      <p class="font-extrabold text-3xl lg:text-6xl">
+      <p
+        class="bg-clip-text bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] font-extrabold text-transparent text-xl lg:text-2xl"
+      >
         <a href="/">{name}</a>
       </p>
       <div>
