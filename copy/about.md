@@ -1,7 +1,7 @@
 <script>
   import DateUpdated from '$lib/components/date-updated.svelte'
   import Small from '$lib/components/small.svelte'
-  import Spotify from '$lib/components/spotify.svelte'
+  import Deezer from '$lib/components/deezer.svelte'
 </script>
 
 ## Hi I'm Scott
@@ -51,20 +51,19 @@ Nintendo Switch.
 
 ### Music I listen to
 
-I'm a massive Drum and Bass fan, I have a Spotify playlist I like to
+I'm a massive Drum and Bass fan, I have a Deezer playlist I like to
 listen to for coding with the title for which I stole from Phil
 Hawksworth:
 
-<Spotify
-  spotifyLink="playlist/4etN3fawLp5rWiAFdJZQp5?si=bWljWzzsTq2kFj6hq5f-lQ"
-  width="100%"
+<Deezer
+  frameSrc="playlist/8980854742"
 />
 
-Other playlists I'd recommend would be the UKF Drum and Bass Top 100:
+Other playlists I'd recommend would be Hospital Records Drum & Bass
+Fresh Selections:
 
-<Spotify
-  spotifyLink="playlist/0Zarq4BVkFkZOWkmqsfrjA?si=x3WLxJnVS12NVWWDt1LUXg"
-  width="100%"
+<Deezer
+  frameSrc="playlist/4061543982"
 />
 
 ### Podcasts I listen to
@@ -72,20 +71,16 @@ Other playlists I'd recommend would be the UKF Drum and Bass Top 100:
 I listen to many podcasts, here are some that I get a lot of value
 from that aren't all code related:
 
-Darknet Diaries
+**Darknet Diaries**
 
-<Spotify
-  spotifyLink="show/4XPl3uEEL9hvqMkoZrzbx5"
-  width="100%"
-  height="180px"
+<Deezer
+  frameSrc="show/496882"
 />
 
-Indie Hackers
+**Indie Hackers**
 
-<Spotify
-  spotifyLink="show/4ex8hmrHCPvPohKJb3wsuC"
-  width="100%"
-  height="180px"
+<Deezer
+  frameSrc="show/618372"
 />
 
 ---
