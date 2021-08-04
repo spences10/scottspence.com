@@ -28,9 +28,9 @@
   image={ogImageUrl(name, 'scottspence.com', `Tags`)}
 />
 
-<ul class="flex justify-start flex-wrap ">
+<ul class="flex flex-wrap justify-start">
   {#each tags as tag}
-    <a href={`tags/${tag}`} class="mr-4"
+    <a href={`tags/${tag}`} class="my-4 mr-6"
       >{tag} ({postsByTag[tag].length})</a
     >
   {/each}

@@ -1,6 +1,7 @@
 <script>
   import { browser } from '$app/env'
   import { page } from '$app/stores'
+  import Nav from '$lib/components/nav.svelte'
   import ThemeSelect from '$lib/components/theme-select.svelte'
   import { name } from '$lib/info'
   import * as Fathom from 'fathom-client'
@@ -38,7 +39,7 @@
 <div class="flex flex-col min-h-screen">
   <div class="flex flex-col flex-grow mx-auto w-full max-w-2xl">
     <div
-      class="flex h-16 mb-14 py-2 px-4 justify-between items-center"
+      class="flex h-16 mb-4 py-2 px-4 justify-between items-center"
     >
       <p
         class="bg-clip-text bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] font-extrabold text-transparent text-xl lg:text-2xl"
@@ -49,6 +50,7 @@
         <ThemeSelect />
       </div>
     </div>
+    <Nav />
     <main
       class="flex flex-col flex-grow w-full py-4 px-4 prose prose-lg lg:prose-xl dark:prose-dark"
     >
