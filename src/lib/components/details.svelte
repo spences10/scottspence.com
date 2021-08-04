@@ -6,7 +6,7 @@
 
 <div>
   <button class="btn" on:click={() => (isOpen = !isOpen)}
-    >{buttonText}</button
+    >{isOpen ? `Close` : buttonText}</button
   >
   {#if isOpen}
     <div transition:slide>
