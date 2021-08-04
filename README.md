@@ -1,7 +1,13 @@
-# sveltekit-blog-template
+# https://scottspence.com
 
-A SvelteKit blog template built on mdsvex and tailwind.
+A blog made with SvelteKit, MDSveX, Tailwind and DaisyUI. 
 
-[Demo](https://sveltekit-blog-template.vercel.app)
+Massive thanks to [Matt Jennings] for the [initial template] which has
+some really useful features, like images in markdown, html preview and
+more.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fmattjennings%2Fsveltekit-blog-template)
+<!-- Links -->
+
+[matt jennings]: https://github.com/mattjennings
+[initial template]:
+  https://github.com/mattjennings/sveltekit-blog-template
