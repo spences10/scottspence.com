@@ -1,7 +1,7 @@
 <div>
   <select
     data-choose-theme
-    class="select select-bordered select-primary select-xs"
+    class="select select-bordered select-primary select-xs pr-9"
   >
     <option disabled="disabled" selected="selected">Theme</option>
     <option value="aqua">Aqua</option>
