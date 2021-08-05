@@ -31,3 +31,13 @@
 />
 
 <svelte:component this={Copy} />
+
+<iframe
+  title="substack_subscribe"
+  src="https://spences10.substack.com/embed"
+  width="100%"
+  height="320"
+  style="border:1px solid #EEE; background:transparent;"
+  frameborder="0"
+  scrolling="no"
+/>
