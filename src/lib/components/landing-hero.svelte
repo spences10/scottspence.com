@@ -1,6 +1,6 @@
 <div class="mb-44 relative lg:-mx-52 xl:-mx-64 2xl:-mx-96">
   <div class="hero">
-    <div class="flex-col hero-content lg:flex-row-reverse">
+    <div class="flex-col hero-content lg:flex-row-reverse p-0">
       <img
         src="/mug-face.png"
         alt="Cartoon face Scott"
