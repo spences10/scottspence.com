@@ -37,12 +37,12 @@
 </script>
 
 <script>
-  import Head from '$lib/components/head.svelte'
-  import TableOfContents from '$lib/components/table-of-contents.svelte'
-  import { name, website } from '$lib/info'
-  import { ogImageUrl } from '$lib/og-image-url-build'
-  import { format } from 'date-fns'
-  import { onMount } from 'svelte'
+  import Head from '$lib/components/head.svelte';
+  import TableOfContents from '$lib/components/table-of-contents.svelte';
+  import { name,website } from '$lib/info';
+  import { ogImageUrl } from '$lib/og-image-url-build';
+  import { format } from 'date-fns';
+  import { onMount } from 'svelte';
 
   export let component
 
@@ -75,7 +75,7 @@
 <Head
   title={`${title} · ${name}`}
   description={preview}
-  image={ogImageUrl(name, 'scottspence.com', title)}
+  image={ogImageUrl(name, `scottspence.com`, title)}
   {name}
   {url}
   {website}

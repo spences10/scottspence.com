@@ -18,7 +18,7 @@
 
 <script>
   import Head from '$lib/components/head.svelte'
-  import { description, name } from '$lib/info'
+  import { name } from '$lib/info'
   import { ogImageUrl } from '$lib/og-image-url-build'
 
   export let Copy
@@ -26,8 +26,8 @@
 
 <Head
   title={`Privacy Policy · ${name}`}
-  {description}
-  image={ogImageUrl(name, 'scottspence.com', name)}
+  description={`${name} Privacy Policy page.`}
+  image={ogImageUrl(name, `scottspence.com`, `Privacy Policy`)}
 />
 
 <svelte:component this={Copy} />
