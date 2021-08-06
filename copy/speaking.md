@@ -15,6 +15,18 @@ touch].
 Here's the list of talks, podcasts and livestreams I have done
 recently.
 
+## Purrfect.dev - 2021 Jul
+
+#### Delivering Digital Content with GraphCMS
+
+https://codingcat.dev/podcast/1-31-delivering-digital-content-with-graphcms
+
+<Spotify
+  spotifyLink="episode/404wafUKZho8inHT6iYcdi"
+  width="100%"
+  height="180px"
+/>
+
 ## UtkalHacks 3.0 - 2021 March
 
 #### Building a blog using GatsbyJS and MDX
