@@ -10,13 +10,10 @@
 <svelte:head>
   <!-- Meta Tags Generated via http://heymeta.com -->
 
-  <title>{title}</title>
-  <meta name="description" content={description} />
-  <meta name="author" content={name} />
-
   <!-- HTML Meta Tags -->
   <title>{title}</title>
   <meta name="description" content={description} />
+  <meta name="author" content={name} />
 
   <!-- Google / Search Engine Tags -->
   <meta itemprop="name" content={title} />
