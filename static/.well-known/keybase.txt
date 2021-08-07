@@ -1,0 +1,68 @@
+==================================================================
+https://keybase.io/spences10
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://scottspence.com
+  * I am spences10 (https://keybase.io/spences10) on keybase.
+  * I have a public key with fingerprint B8C6 7F63 C1B8 1EDF 48BC  BDFD 28EE 1E46 7902 7FF6
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "010189350b618c246df269567b796a631d5220371fa96b2799b39266db0a22e849570a",
+      "fingerprint": "b8c67f63c1b81edf48bcbdfd28ee1e4679027ff6",
+      "host": "keybase.io",
+      "key_id": "28ee1e4679027ff6",
+      "kid": "010189350b618c246df269567b796a631d5220371fa96b2799b39266db0a22e849570a",
+      "uid": "c7813e212a1d10f2fdd369e51cb45419",
+      "username": "spences10"
+    },
+    "service": {
+      "hostname": "scottspence.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1590658155,
+  "expire_in": 157680000,
+  "prev": "a3999b6cf7446419f5807b0174b63cf6194637dbdbd658cdbc2dd50e119b8df5",
+  "seqno": 124,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.1.13
+Comment: https://keybase.io/crypto
+
+yMIjAnicrVJZaBNBGE68ghFRETHF42GlarGmO7O7szsRPMALPEJojeAVdo5t1trd
+dLOtVm19EUPVdw8QVNQ+RBE8CqKoLUVBxaPUaoVSakUULGgVRYrgbLVvPjrzMMw/
+3/fN9/0znVPHh6LhbeEFhfN3DvaHH7efqQ/tena45oBEXNYoJQ5INXx04XsYz/uZ
+GptJCUkGMjCwoskEAYNCFTELIqwhnegYmUgBTINQVnRgmRgRqGNMFAwRYkQ2IeSG
+ijVdNqVyybKdau7lPNvxhSwxKNItpFBADMCZpRqEEmYxaHAOuIp0LEPdspAgZt18
+wBDmiJnncdsVNbHJjNr7B/4/+64flaO6ARQOATQBA7IFLcYUhLkGKFE1FeAAmOee
+Y9Zygc7nuEN5HshSU7kkyg025UFngyhjEOr6/h9cnLq1gp/zXN+l7h5xmPX9XD4R
+kP3GXIDey0nmr06G2A4TvRSMBu7lbdeREkAgqW8HwkDDMtIMoGnlEt+Xsz2esQOE
+piNDFiO4hzcISVPBIjOilq6qSCSwNEPWiQx0lYhnsRDAKlJ0RsQUepQRChnTZA4A
+JgazNClIVue4QhuqwqhZHaSyqx3Tr/e41NRxf8eEUDgamjRxXPDLQtHJ08f+Xq4q
+MjIpkpxZ13mh7fSazc1l/YuOf91XLLm0+Gait3X77BkHt1YYmcSSyym7MjX/esvC
+VepIZe2NOdPw95dXht8vf/1xcH84VdXY8aM4Zf2DN8qrbOrR+293jZVttzseo/bY
+u8SnztSLolTa7D5J15QsK1ak0+mTS992nega3NLnDLRe/nx/pxVR5C/13ReT3X7f
+1KuRQ81lG72W6foQLG2Jb6g7By7Iw+1rVeVhqz8l+WH9UExd/PN5T9X5JqOn+Wix
+MJw8e2TYLNDCh18DHSvvrRuIXlNianxe2zJ8TH8YPRfbllqxfOmt3nRyXN2pqsis
+3au9TSVlQ9mjd+Y+pbC6NPwbHpE54A==
+=MyWj
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/spences10
+
+==================================================================
