@@ -1,7 +1,7 @@
 ---
 date: 2021-05-06
 title: SvelteKit starter blog with GraphCMS
-tags: ['svelte', 'sveltekit', 'vite']
+tags: ['svelte', 'sveltekit', 'vite', 'graphcms']
 isPrivate: false
 ---
 
