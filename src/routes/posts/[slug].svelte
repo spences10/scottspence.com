@@ -37,12 +37,13 @@
 </script>
 
 <script>
-  import Head from '$lib/components/head.svelte';
-  import TableOfContents from '$lib/components/table-of-contents.svelte';
-  import { name,website } from '$lib/info';
-  import { ogImageUrl } from '$lib/og-image-url-build';
-  import { format } from 'date-fns';
-  import { onMount } from 'svelte';
+  import ButtButt from '$lib/components/butt-butt.svelte'
+  import Head from '$lib/components/head.svelte'
+  import TableOfContents from '$lib/components/table-of-contents.svelte'
+  import { name, website } from '$lib/info'
+  import { ogImageUrl } from '$lib/og-image-url-build'
+  import { format } from 'date-fns'
+  import { onMount } from 'svelte'
 
   export let component
 
@@ -97,4 +98,7 @@
     <span>{readingTime.text}</span>
   </div>
   <svelte:component this={component} />
+
+  <div class="divider mt-8 mb-16" />
+  <ButtButt />
 </article>
