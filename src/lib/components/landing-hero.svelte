@@ -2,7 +2,7 @@
   <div class="hero">
     <div class="flex-col hero-content lg:flex-row-reverse p-0">
       <img
-        src="/mug-face.png"
+        src="https://res.cloudinary.com/defkmsrpw/image/upload/f_auto,q_auto/v1614936697/scottspence.com/mugFace.png"
         alt="Cartoon face Scott"
         class="rounded-full h-full max-w-sm w-full shadow-2xl"
       />
