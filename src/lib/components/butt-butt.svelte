@@ -1,4 +1,6 @@
 <script>
+  import viewport from '$lib/use-viewport-action'
+
   export let height = '100px'
   export let width = '160px'
   const puns = [
@@ -12,22 +14,42 @@
     `I'll understand if you think it didn't Butt the mustard!`,
   ]
   const randomPun = puns[Math.floor(Math.random() * puns.length)]
+  let intersecting
+
+  function customTransition(node, {delay, duration}) {
+    return {
+      delay,
+      css: t => {
+        return `
+          opacity: ${t};
+          transform: scale(${t});
+        `
+      },
+    }
+  }
 </script>
 
-<div>
+<div
+  use:viewport
+  on:enterViewport={() => (intersecting = true)}
+  on:exitViewport={() => (intersecting = false)}
+>
   <aside class="mb-12 text-center">
     <p class="mb-6">
       Looks like you have reached the bottom of this page!
     </p>
-    <div class="flex justify-center mb-12">
-      <img
-        src="https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614936696/scottspence.com/buttbutt.png"
-        alt="a cheeky butt"
-        {height}
-        {width}
-        class="h-full"
-      />
-    </div>
+    {#if intersecting}
+      <div class="flex justify-center mb-12">
+        <img
+          src="https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614936696/scottspence.com/buttbutt.png"
+          alt="a cheeky butt"
+          {height}
+          {width}
+          class="h-full"
+          transition:customTransition={{ delay: 200 }}
+        />
+      </div>
+    {/if}
     <p class="mb-6">Bummer!</p>
     <p class="mb-6">{randomPun}</p>
   </aside>
