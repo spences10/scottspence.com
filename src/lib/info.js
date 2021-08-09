@@ -65,3 +65,41 @@ export const POPULAR_POSTS = [
     views: `6.1k`,
   },
 ]
+
+export const SITE_LINKS = [
+  {
+    title: `Writing`,
+    slug: `posts`,
+    id: `FJDJRF2N`,
+  },
+  {
+    title: `About`,
+    slug: `about`,
+    id: `2DRIXVSS`,
+  },
+  {
+    title: `Now`,
+    slug: `now`,
+    id: `Z8N5C2XV`,
+  },
+  {
+    title: `Portfolio`,
+    slug: `portfolio`,
+    id: `NE5JFD1S`,
+  },
+  {
+    title: `Speaking`,
+    slug: `speaking`,
+    id: `FYDDOCX1`,
+  },
+  {
+    title: `Uses`,
+    slug: `uses`,
+    id: `AALDN3U2`,
+  },
+  {
+    title: `Newsletter`,
+    slug: `newsletter`,
+    id: `4RFXKMAJ`,
+  },
+]
