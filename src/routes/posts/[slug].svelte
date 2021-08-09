@@ -39,6 +39,7 @@
 <script>
   import ButtButt from '$lib/components/butt-butt.svelte'
   import Head from '$lib/components/head.svelte'
+  import IsPrivateBanner from '$lib/components/is-private-banner.svelte'
   import TableOfContents from '$lib/components/table-of-contents.svelte'
   import { name, website } from '$lib/info'
   import { ogImageUrl } from '$lib/og-image-url-build'
@@ -53,6 +54,7 @@
   export let preview
   export let readingTime
   export let slug
+  export let isPrivate
 
   const url = `${website}/${slug}`
 
@@ -97,6 +99,9 @@
     •
     <span>{readingTime.text}</span>
   </div>
+  {#if isPrivate}
+    <IsPrivateBanner />
+  {/if}
   <svelte:component this={component} />
 
   <div class="divider mt-8 mb-16" />
