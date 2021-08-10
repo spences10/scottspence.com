@@ -26,9 +26,24 @@ endpoints] to define the data type I want returned from that endpoint.
 
 RSS feeds are expected in XML format and I want my endpoint to be
 [`https://scottspence.com/rss.xml`] so I'll define a file in my routes
-folder called `rss.xml.js` this is located in the
+folder called `rss.xml.js` this is located in the routes folder of the
+project, so the full path would be `src/routes/rss.xml.js`.
 
 `rss.xml.js`
+
+In the file define the `get` function and set up the headers:
+
+```js
+export async function get() {
+  const headers = {
+    'Cache-Control': 'max-age=0, s-maxage=600',
+    'Content-Type': 'application/xml',
+  }
+  return {
+    headers,
+  }
+}
+```
 
 <Details buttonText="Expand to see the full code.">
 
@@ -108,6 +123,9 @@ const render =
 
 </Details>
 
+David Parker has a [great post] on this with a more generic example
+for getting the posts data for the feed.
+
 <!-- Links -->
 
 [blog]: https://scottspence.com/posts
@@ -115,3 +133,5 @@ const render =
   https://scottspence.com/posts/dynamic-sitemap-generation-with-nextjs-and-sanity
 [routing endpoints]: https://kit.svelte.dev/docs#routing-endpoints
 [`https://scottspence.com/rss.xml`]: https://scottspence.com/rss.xml
+[great post]:
+  https://www.davidwparker.com/posts/how-to-make-an-rss-feed-in-sveltekit
