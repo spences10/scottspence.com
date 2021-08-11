@@ -12,11 +12,21 @@
     `Like it? You can always take another crack at it?`,
     `Butt wait, there's more!`,
     `I'll understand if you think it didn't Butt the mustard!`,
+    `Personally, I feel like this is a really half-assed attempt at humour.`,
+    `Sorry if I'm being a smart ass.`,
+    `Ok time to get stuck into the backend again instead of wasting my time writing bottom-drawer jokes.`,
+    `I'm a little Behind on my jokes butt a well-Rounded Butt pun always beats a Crappy one.`,
   ]
-  const randomPun = puns[Math.floor(Math.random() * puns.length)]
+
+  $: pun = randomPun()
+  function randomPun() {
+    pun = puns[Math.floor(Math.random() * puns.length)]
+    return pun
+  }
+
   let intersecting
 
-  function customTransition(node, {delay, duration}) {
+  function customTransition(node, { delay, duration }) {
     return {
       delay,
       css: t => {
@@ -51,6 +61,9 @@
       </div>
     {/if}
     <p class="mb-6">Bummer!</p>
-    <p class="mb-6">{randomPun}</p>
+    <p class="mb-6">{pun}</p>
+    <button class="btn btn-xs" on:click={() => randomPun()}>
+      pun me up
+    </button>
   </aside>
 </div>
