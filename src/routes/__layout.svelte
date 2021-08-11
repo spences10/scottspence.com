@@ -1,7 +1,6 @@
 <script>
   import { browser } from '$app/env'
   import { page } from '$app/stores'
-  import Footer from '$lib/components/footer.svelte'
   import Nav from '$lib/components/nav.svelte'
   import ThemeSelect from '$lib/components/theme-select.svelte'
   import { name } from '$lib/info'
@@ -59,4 +58,4 @@
     </main>
   </div>
 </div>
-<Footer />
+<!-- <Footer /> -->
