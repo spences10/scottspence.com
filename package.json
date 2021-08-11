@@ -36,7 +36,7 @@
 		"prettier-plugin-svelte": "^2.3.1",
 		"rehype-autolink-headings": "^6.0.0",
 		"rehype-slug": "^5.0.0",
-		"remark-external-links": "^9.0.0",
+		"remark-external-links": "9.0.0",
 		"remark-preview": "^1.0.2",
 		"remark-reading-time": "^1.0.1",
 		"svelte": "^3.42.1",
