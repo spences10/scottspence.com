@@ -2,7 +2,7 @@
 date: 2021-08-12
 title: Deploy Your Own Links Page with One Click
 tags: ['jamstack', 'vercel', 'netlify', 'guide', 'tailwind']
-isPrivate: true
+isPrivate: false
 ---
 
 Having one place for all your social links is big business! Services
