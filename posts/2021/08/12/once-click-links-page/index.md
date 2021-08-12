@@ -10,22 +10,22 @@ like [Linktree], [ContactInBio], [LinkBook], etc all offer the same
 sort of service. One location for all your social links.
 
 This is a nice project as a proof of concept to get you set up with
-your own socials links. I've made this with in conjunction with [Jamie
-Barton] as a simple once click set up.
+your own socials links. I've made this in conjunction with [Jamie
+Barton] as a simple one click set up.
 
 This was part inspired from a post from [Avneesh Agarwal] and from
 some work Jamie had done a while ago. Avneesh's post on [Hashnode]
-details making it with a framework.
+details making it with the NextJS framework.
 
-This example is a full jamstack example using Handlebars.js and
-Tailwind CSS.
+This example is a full jamstack lightweight example using
+Handlebars.js and Tailwind CSS.
 
-All you need to do is enter your details into the prompt provided.
+All you need to do is enter your details into the prompts provided.
 There's a choice of platforms Netlify or Vercel.
 
-The one thing you'll need one of the following git hosting accounts
-already: GitLab, GitHub, or BitBucket. I'm guessing if you're reading
-this then you have at least one of these already.
+The one thing you'll need one of the following git hosting accounts:
+GitLab, GitHub, or BitBucket. I'm guessing if you're reading this then
+you have at least one of these already.
 
 ## Deploy with Netlify
 
