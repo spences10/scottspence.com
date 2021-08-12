@@ -1,7 +1,7 @@
 ---
 date: 2021-08-12
 title: Deploy Your Own Links Page with One Click
-tags: ['jamstack', 'vercel', 'netlify', 'guide']
+tags: ['jamstack', 'vercel', 'netlify', 'guide', 'tailwind']
 isPrivate: true
 ---
 
@@ -12,6 +12,13 @@ sort of service. One location for all your social links.
 This is a nice project as a proof of concept to get you set up with
 your own socials links. I've made this with in conjunction with [Jamie
 Barton] as a simple once click set up.
+
+This was part inspired from a post from [Avneesh Agarwal] and from
+some work Jamie had done a while ago. Avneesh's post on [Hashnode]
+details making it with a framework.
+
+This example is a full jamstack example using Handlebars.js and
+Tailwind CSS.
 
 All you need to do is enter your details into the prompt provided.
 There's a choice of platforms Netlify or Vercel.
@@ -97,6 +104,9 @@ Thanks for reading!
 
 <!-- Links -->
 
+[avneesh agarwal]: https://avneesh0612.hashnode.dev/
+[hashnode]:
+  https://avneesh0612.hashnode.dev/stop-using-linktree-build-your-own
 [jamie barton]: https://twitter.com/notrab
 [linktree]: https://linktr.ee/
 [contactinbio]: https://contactinbio.com/
