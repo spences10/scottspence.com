@@ -1,5 +1,5 @@
 <script>
-  import viewport from '$lib/use-viewport-action'
+  import viewport from '$lib/use-viewport-action';
 
   export let height = '100px'
   export let width = '160px'
@@ -14,6 +14,7 @@
     `I'll understand if you think it didn't Butt the mustard!`,
     `Personally, I feel like this is a really half-assed attempt at humour.`,
     `Sorry if I'm being a smart ass.`,
+    `Hope this isn't crack-ing you up?`,
     `Ok time to get stuck into the backend again instead of wasting my time writing bottom-drawer jokes.`,
     `I'm a little Behind on my jokes butt a well-Rounded Butt pun always beats a Crappy one.`,
   ]
