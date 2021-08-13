@@ -25,7 +25,7 @@ have an awesome affiliate program where every customer can take part!
 
 For every paying customer I refer with [my unique code], I'll get a
 25% lifetime commission on that customers payments, and if you use
-that code too [you'll get a \$10 discount on your first invoice].
+that code too [you'll get a $10 discount on your first invoice].
 
 For now here's some of the Fathom marketing copy.
 
@@ -43,7 +43,7 @@ For now here's some of the Fathom marketing copy.
   of them, an they wont ever stop tracking for you because of a spike
   in popularity.
 - All of the plans allow for unlimited websites to be tracked and
-  receive top-notch customer support. Plans start at \$14 a month.
+  receive top-notch customer support. Plans start at $14 a month.
 
 Do you use Google Analytics (GA) for any of your sites? I've used it
 in the past and it gives the sort of information you'd expect but it
@@ -234,7 +234,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 <!-- Links -->
 
 [fathom analytics]: https://usefathom.com/
-[you'll get a \$10 discount on your first invoice]:
+[you'll get a $10 discount on your first invoice]:
   https://usefathom.com/ref/HG492L
 [my unique code]: https://usefathom.com/ref/HG492L
 [gatsby plugin for fathom]:

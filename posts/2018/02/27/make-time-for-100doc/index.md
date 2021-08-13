@@ -18,7 +18,7 @@ But fist, **preamble:**
 That was the overriding message I got when I started out in
 freeCodeCamp it's a fun and exciting time and you will see a lot of
 articles along the lines of 'hey look at me I was a school teacher
-before, now I'm earning \$100k as a engineer for x startup'
+before, now I'm earning $100k as a engineer for x startup'
 
 I don't mean this in a mean spirited or passive aggressive way, but if
 you're starting out in web development and you surround yourself with
