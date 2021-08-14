@@ -6,9 +6,9 @@
       <img
         src="/mug-face.png"
         alt="Cartoon face Scott"
-        class="rounded-full max-w-sm w-full shadow-xl"
+        class="rounded-full max-w-sm w-1/2 lg:w-full shadow-xl"
       />
-      <div class="mr-28">
+      <div class="lg:mr-28">
         <h1 class="font-bold mb-5 text-5xl">
           <span class="block">Scott Spence</span>
           <span class="text-primary block">Hello World!</span>

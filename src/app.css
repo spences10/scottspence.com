@@ -135,12 +135,10 @@ html {
 /* Scrollbar styles */
 
 /* Firefox */
-/* stylelint-disable */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--secondary) var(--primary);
 }
-/* stylelint-enable */
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
