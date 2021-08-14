@@ -2,7 +2,7 @@
 date: 2020-12-31
 title: Getting started with Preact and the Preact CLI
 tags: ['learning', 'guide']
-isPrivate: true
+isPrivate: false
 ---
 
 For the past couple of weeks now I have been getting familiar with
@@ -10,7 +10,7 @@ Preact and the Preact CLI.
 
 It's great, it's _similar_ to React
 
-## The `{ h }` isn't needed
+## The `{ h }` is needed
 
 I was quite hung up on the `{ h }` import, I use the VSCode setting to
 organise the imports on save.

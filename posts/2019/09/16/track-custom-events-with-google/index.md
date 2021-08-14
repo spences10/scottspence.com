@@ -2,7 +2,7 @@
 date: 2019-09-16
 title: Track Custom Events With Google Analytics
 tags: ['learning', 'guide', 'hooks', 'react', 'analytics']
-isPrivate: true
+isPrivate: false
 ---
 
 Do you use Google Analytics (GA) for any of your sites?

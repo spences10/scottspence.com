@@ -3,7 +3,7 @@ date: 2019-09-01
 title: Why is anything intimidating?
 tags: ['habits']
 excerpt: ''
-isPrivate: true
+isPrivate: false
 ---
 
 Stand back everyone, I'm doing pontification! I've had a couple
@@ -13,7 +13,7 @@ along the lines of gym going and nutrition actually.
 One friend in particular Danielle Ormshaw asked why is going to the
 gym so intimidating?
 
-Why is exercise so intimidating. Can you blog on that? Is what
+"Why is exercise so intimidating. Can you blog on that?" Is what
 Danielle asked, if you have seen me recently you'd know I'm not the
 best person to be giving out advice about going to the gym.
 
@@ -31,10 +31,6 @@ realise that everyone else there is there to do the same thing and
 they're probably feeling like you or have felt like you feel now in
 the past at some point. No one is there to judge, everyone had to
 start somewhere.
-
-Five and two diet
-
-Gym
 
 A whole new world 🙃
 
@@ -62,13 +58,11 @@ What are macros?
 
 Macros make up the calorie content of food:
 
-1 gram of fat = 9 calories
+- 1 gram of fat = 9 calories
+- 1 gram of carbs (carbohydrates) = 4 calories
+- 1 gram of protein = 4 calories
 
-1 gram of carbs (carbohydrates) = 4 calories
-
-1 gram of protein = 4 calories
-
-Don't treat any of them as bad, there's no ‘bad' macros
+Don't treat any of them as bad, there's no 'bad' macros
 
 Plan your food
 
@@ -78,7 +72,7 @@ nutrition first workout last
 
 Be aware of the calories you're consuming, this is hard I know and
 you'll probably think your developing some form of obsessive
-compulsive disorder and you'll be ‘that person' when you go out with
+compulsive disorder and you'll be 'that person' when you go out with
 your friends to eat — this is where the consistency comes in.
 
 https://tdeecalculator.net/

@@ -2,7 +2,7 @@
 date: 2019-05-27
 title: JavaScript snippets from around the web
 tags: ['learning', 'javascript', 'snippets']
-isPrivate: true
+isPrivate: false
 ---
 
 This is a dump of all the snippets I have collected over the last 18

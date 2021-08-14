@@ -1,8 +1,8 @@
 ---
 date: 2020-05-09
 title: VS Code Tips and Snippets
-tags: ['learning', 'guide']
-isPrivate: true
+tags: ['learning', 'guide', 'vscode']
+isPrivate: false
 ---
 
 Use the same frontmatter block all the time for your blog posts?

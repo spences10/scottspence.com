@@ -2,7 +2,7 @@
 date: 2020-05-11
 title: Styled Components Resources
 tags: ['css', 'resource', 'styled-components']
-isPrivate: true
+isPrivate: false
 ---
 
 A curated list of hints and tips for using styled-components.

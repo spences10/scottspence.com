@@ -35,8 +35,6 @@ amount unreasonable requests for the take home project.
 
 ## The take home test
 
-<Tweet twitterLink="tommypalm/status/1316687991788711937" />
-
 ## Time to fill the position
 
 You give each candidate a test that is specified not to take longer
@@ -47,9 +45,9 @@ The expectation (for the employer) is that the candidate has nothing
 better to do with their time and that this is the one and only focus
 in their life.
 
-The reality is that the candidate is interviewing with 6 other places.
-Imagine if each prospective employer asked the candidate to do a take
-home test.
+The reality is that the candidate is interviewing with 3-6 other
+places. Imagine if each prospective employer asked the candidate to do
+a take home test.
 
 So, this take home test will go to the bottom of the pile whilst they
 tackle the other assignments.
@@ -70,7 +68,7 @@ Slight exaggeration I'm sure but I see this a lot from employers
 ## Do the groundwork
 
 1. Make a shortlist.
-1. Validate the candidates credentails. They should have a presence on
+1. Validate the candidates credentials. They should have a presence on
    at least one of GitHub, GitLab and Bitbucket.
 1. Do they have a blog or write on any other platform dev.to, Hashnode
    or Medium.

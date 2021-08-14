@@ -2,7 +2,7 @@
 date: 2020-12-31
 title: Create a Video Overlay with Hooks
 tags: ['learning', 'guide', 'hooks', 'react']
-isPrivate: true
+isPrivate: false
 ---
 
 Create a Video overlay with React hooks
