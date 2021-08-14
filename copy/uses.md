@@ -45,8 +45,8 @@ Channel.
 
 - Microsoft [Visual Studio Code] with [Sarah Drasner]'s awesome [Night
   Owl] 🦉 theme
-- Terminal of choice is [Windows Terminal]. Check out the video on
-  [making a custom config] or [read the post].
+- Terminal of choice is [Windows Terminal Preview]. Check out the
+  video on [making a custom config] or [read the post].
 - [Victor Mono] font for both text editor and terminal.
 
 ### Desktop Apps
@@ -71,7 +71,7 @@ Channel.
 
 - Microsoft [Visual Studio Code] with [Sarah Drasner]'s awesome [Night
   Owl] 🦉 theme
-- Windows Terminal
+- [Windows Terminal Preview]
 
 ### Desktop apps
 
@@ -82,23 +82,17 @@ Channel.
 
 <!-- Links -->
 
-[mackbook pro (15-inch, 2019)]: https://amzn.to/30ZX76C
 [hp elitedisplay's e232 58,4 cm (23")]: https://amzn.to/2ZKVMUP
 [håg capisco puls]: https://amzn.to/2ZKWKQa
 [open broadcaster software]: https://obsproject.com/
 [victor mono]: https://rubjo.github.io/victor-mono/
 [sarah drasner]: https://github.com/sdras/
 [night owl]: https://github.com/sdras/night-owl-vscode-theme
-[fifine usb cardioid studio condenser microphone]:
-  https://amzn.to/2N1uDWK
-[this guide]: https://ss10.me/wsl-2019
 [logitech g915]:
   https://www.logitechg.com/en-gb/products/gaming-keyboards/g915-tkl-wireless.html
 [visual studio code]: https://code.visualstudio.com/
-[windows terminal]:
-  https://www.microsoft.com/en-gb/p/windows-terminal/9n0dx20hk701
-[ubuntu for web development]:
-  https://www.youtube.com/watch?v=eSAsdQuQ-1o
+[windows terminal preview]:
+  https://www.microsoft.com/en-gb/p/windows-terminal-preview/9n8g5rfz9xk3
 [shotcut]: https://shotcut.org/
 [chocolatey]: https://chocolatey.org/
 [ryzen 5 mini itx build]: https://uk.pcpartpicker.com/list/pHkrCL

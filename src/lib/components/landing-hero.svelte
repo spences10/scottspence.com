@@ -34,5 +34,5 @@
       </div>
     </div>
   </div>
-  chevron down animated!!
+  <!-- chevron down animated!! -->
 </div>
