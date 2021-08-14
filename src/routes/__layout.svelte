@@ -31,6 +31,7 @@
     themeChange(false)
     Fathom.load(import.meta.env.VITE_FATHOM_ID, {
       url: import.meta.env.VITE_FATHOM_URL,
+      excludedDomains: ['localhost'],
     })
   })
 
