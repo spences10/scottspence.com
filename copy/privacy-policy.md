@@ -20,20 +20,25 @@ The privacy policy in this site includes these points:
 
 ### How I collect your information
 
-I use SendGrid to capture your email address, SendGrid is owned by
-Twilio, you can see their privacy statement [here][0].
+The only piece of information I collect is your email address. If you
+want to receive email updates from me.
+
+I use Substack to capture your email address when you give voluntarily
+via the email sign up form, you can see their privacy statement
+[here][0].
 
 The information collected is an email address with no other personal
 identifying information.
 
 ### What I do with collected information
 
-I use the collected information to send weekly emails to subscribers.
+I use the collected information (an email address) to send emails to
+subscribers.
 
-If there is a giveaway being run where I need to send you something in
-the post, like stickers. I will request your address via the email
-given in the mailing list on SendGrid. Once the post has been sent I
-will delete any emails with identifying information in them.
+If there is a giveaway being run where I need to send something in the
+post, like stickers. I will request your address via the email given
+in the mailing list on Substack. Once the package has been sent I will
+delete any emails with identifying information in them.
 
 ### What cookies, pixels, and other trackers my site uses and their purpose.
 
@@ -50,8 +55,8 @@ I don't use any advertising networks on my site.
 The data collected by Fathom Analytics is cookieless and is compliant
 with GDPR, ePrivacy, PECR, CCPA, and COPPA.
 
-You browsing data is not being sent to any big tech companies to be
-sold off.
+Browsing data is not being sent to any big tech companies to be sold
+off.
 
 If you do not want to send anonymous aggregated data to Fathom
 Analytics you can opt out from the console on this site.
@@ -65,7 +70,7 @@ Use the following snippet to block tracking:
 fathom.blockTrackingForMe()
 ```
 
-If you wish to enable it use this:
+If you wish to re-enable it use this:
 
 ```js
 fathom.enableTrackingForMe()
@@ -73,13 +78,12 @@ fathom.enableTrackingForMe()
 
 ### How users of this site can request their data be turned over to them and/or be deleted
 
-As I only collect email addresses for the purposes of the weekly
-newsletter you can unsubscribe from the mailing list via the email
-sent.
+As I only collect email addresses for the purposes of the newsletter
+you can unsubscribe from the mail sent.
 
 If you want to contact me see
 [Contact information for site administrators](#contact-information-for-site-administrators)
-and I will personally remove your email address from SendGrid.
+and I will personally remove your email address from Substack.
 
 ### Contact information for site administrators
 
@@ -101,6 +105,10 @@ For a way to get to the right information about what the large sites
 mean in their Terms of Service check out [Terms of Service Didn't
 Read] for a simple breakdown of what the ToS actually means.
 
+---
+
+<!-- Links -->
+
 [how i collect your information]: #how-i-collect-your-information
 [what i do with collected information]:
   #what-i-do-with-collected-information
@@ -114,7 +122,7 @@ Read] for a simple breakdown of what the ToS actually means.
   #how-users-of-this-site-can-request-their-data-be-turned-over-to-them-andor-be-deleted
 [contact information for site administrators]:
   #contact-information-for-site-administrators
-[0]: https://www.twilio.com/legal/privacy
+[0]: https://substack.com/privacy
 [1]: https://usefathom.com/privacy
 [yo@scottspence.dev]:
   mailto:yo@scottspence.dev?subject=Privacy%20Concern&body=Hi%20Scott%2C%0D%0A%0D%0AI%20have%20a%20concern%20about%20my%20privacy%20on%20your%20site.
