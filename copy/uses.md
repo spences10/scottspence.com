@@ -6,12 +6,12 @@
 # Uses
 
 <Small>
-  Last updated: <DateUpdated date='2021-02-17' small='true' />
+  Last updated: <DateUpdated date='2021-08-14' small='true' />
 </Small>
 
 All the equipment and tools I use on a daily basis.
 
-For home, I use Windows 10 Pro Insider Preview exclusively now.
+For home, I use Windows 11 Pro Insider Preview exclusively now.
 Windows Subsystem for Linux (WSL) has come a long way with WSL2.
 
 If you are intersted in getting familiar with it check the [tags
@@ -27,12 +27,12 @@ section for WSL].
   building a PC].
 - Desk chair is a [HÅG Capisco Puls]
 - I run two [HP EliteDisplay's E232 58,4 cm (23")] Monitors through a
-  Dell 452-BBOO USB 3.0 Ultra HD Triple Video Docking Station.
+  [WAVLINK USB C Laptop Universal Docking Station].
 - Keyboard is now a [Logitech G915], I [made some notes] on it as
   well.
-- Mouse Logitech MX Master 3 (wheel goes brrrrrrrrrr)
-- Microphone, a [Fifine Usb Cardioid Studio Condenser Microphone]
-  which is surprisingly good quality for the price.
+- Mouse, Logitech MX Master 3 (wheel goes brrrrrrrrrr)
+- Microphone, a Elgato Wave 3.
+- Webcam, Logitech Brio Stream Webcam, Ultra HD 4K Streaming Edition.
 
 ### OS
 
@@ -45,14 +45,17 @@ Channel.
 
 - Microsoft [Visual Studio Code] with [Sarah Drasner]'s awesome [Night
   Owl] 🦉 theme
-- Terminal of choice is [Windows Terminal].
+- Terminal of choice is [Windows Terminal]. Check out the video on
+  [making a custom config] or [read the post].
 - [Victor Mono] font for both text editor and terminal.
 
 ### Desktop Apps
 
 - I use OBS ([Open Broadcaster Software]) for recording some coding
   sessions.
-- For light video editing I use [Shotcut]
+- Restream for livestreams.
+- For light video editing I use [Shotcut], I'm currently evaluating
+  Camtasia.
 
 ---
 
@@ -60,18 +63,24 @@ Channel.
 
 ### Desk
 
-- My work computer is a i9 [MackBook Pro (15-inch, 2019)]
+- My work computer is a ASUS ROG Zephyrus G14 (Acronym Edition) with
+  Windows 10.
+- As I'm fully remote I use the same desk set-up as my home desk.
 
 ### Editor + Terminal
 
 - Microsoft [Visual Studio Code] with [Sarah Drasner]'s awesome [Night
   Owl] 🦉 theme
-- Hyper with Fish and Oh My Fish
+- Windows Terminal
 
 ### Desktop apps
 
-- For gif capture I use Kap.
-- For installing any apps I'm using [Homebrew].
+- For gif capture I'm currently evaluating Snagit.
+- For installing any apps I use [Chocolatey].
+
+---
+
+<!-- Links -->
 
 [mackbook pro (15-inch, 2019)]: https://amzn.to/30ZX76C
 [hp elitedisplay's e232 58,4 cm (23")]: https://amzn.to/2ZKVMUP
@@ -91,9 +100,13 @@ Channel.
 [ubuntu for web development]:
   https://www.youtube.com/watch?v=eSAsdQuQ-1o
 [shotcut]: https://shotcut.org/
-[homebrew]: https://cheatsheets.xyz/homebrew/
+[chocolatey]: https://chocolatey.org/
 [ryzen 5 mini itx build]: https://uk.pcpartpicker.com/list/pHkrCL
 [first time pc building a pc]:
-  https://scottspence.com/2020/05/30/first-time-pc-build/
-[made some notes]: https://scottspence.com/2021/02/01/logitech-g915/
-[tags section for wsl]: https://scottspence.com/tags/wsl/
+  https://scottspence.com/2020/05/30/first-time-pc-build
+[made some notes]: https://scottspence.com/2021/02/01/logitech-g915
+[tags section for wsl]: https://scottspence.com/tags/wsl
+[wavlink usb c laptop universal docking station]:
+  https://www.amazon.co.uk/gp/product/B082SR6GMB/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1
+[making a custom config]: https://www.youtube.com/watch?v=iT47xk3F7EA
+[read the post]: http://localhost:3300/posts/windows-terminal-config
