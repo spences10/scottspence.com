@@ -9,7 +9,7 @@
 ## Portfolio
 
 <Small>
-  Last updated: <DateUpdated date='2021-01-09' small='true' />
+  Last updated: <DateUpdated date="2021-01-09" small="true" />
 </Small>
 
 This page details some projects I have worked on along with my GitHub

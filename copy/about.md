@@ -7,7 +7,7 @@
 ## Hi I'm Scott
 
 <Small>
-  Last updated: <DateUpdated date='2021-07-27' small='true' />
+  Last updated: <DateUpdated date="2021-08-14" small="true" />
 </Small>
 
 I'm a developer advocate working with [GraphCMS] to create content
@@ -32,7 +32,8 @@ organisations in Finance (Risk, Asset Management), Property, Oil & Gas
 and Lloyd's insurance market.
 
 As a web developer I've worked in government digital transformation
-and creative digital.
+and creative digital. Now in the content management space with
+GraphCMS.
 
 ### My personality
 
@@ -40,9 +41,6 @@ I find it hard to identify my traits, so instead I took the
 [16Personalities] test, here are [my results].
 
 ## My interests
-
-Since COVID hit we've all been housebound for well over a year now. I
-like to go running daily or every other day.
 
 I'm obsessed with watching anything to do with mechanical engineering.
 
