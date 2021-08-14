@@ -1,9 +1,20 @@
+import { getPostTags } from '$lib/get-post-tags'
 import { getPosts } from '$lib/get-posts'
 import { website } from '$lib/info'
+import slugify from 'slugify'
 
 export async function get() {
   const postsMeta = await getPosts()
-  const body = render(postsMeta)
+  const { tags } = await getPostTags()
+  const pages = [
+    `about`,
+    `faq`,
+    `newsletter`,
+    `now`,
+    `portfolio`,
+    `privacy-policy`,
+  ]
+  const body = render(pages, tags, postsMeta)
 
   const headers = {
     'Cache-Control': `max-age=0, s-max-age=${600}`,
@@ -15,7 +26,11 @@ export async function get() {
   }
 }
 
-const render = postsMeta => `<?xml version="1.0" encoding="UTF-8" ?>
+const render = (
+  pages,
+  tags,
+  postsMeta
+) => `<?xml version="1.0" encoding="UTF-8" ?>
 <urlset
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
@@ -29,11 +44,33 @@ const render = postsMeta => `<?xml version="1.0" encoding="UTF-8" ?>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
+  ${pages
+    .map(
+      page => `
+  <url>
+    <loc>${website}/${page}</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  `
+    )
+    .join('')}
+  ${tags
+    .map(
+      tag => `
+  <url>
+    <loc>${website}/tags/${slugify(tag)}</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  `
+    )
+    .join('')}
   ${postsMeta
     .map(
       meta => `
   <url>
-    <loc>${website}/posts/${meta.slug}/</loc>
+    <loc>${website}/posts/${meta.slug}</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
