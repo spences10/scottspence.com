@@ -56,7 +56,7 @@
   export let slug
   export let isPrivate
 
-  const url = `${website}/${slug}`
+  const url = `${website}/posts/${slug}`
 
   let headingNodeList
   let headings
@@ -79,9 +79,7 @@
   title={`${title} · ${name}`}
   description={preview}
   image={ogImageUrl(name, `scottspence.com`, title)}
-  {name}
   {url}
-  {website}
 />
 
 {#await getHeadings()}

@@ -4,7 +4,7 @@
   import Head from '$lib/components/head.svelte'
   import PostCard from '$lib/components/post-card.svelte'
   import { getPosts } from '$lib/get-posts'
-  import { description, name } from '$lib/info.js'
+  import { description, name, website } from '$lib/info.js'
   import { ogImageUrl } from '$lib/og-image-url-build'
   import Fuse from 'fuse.js'
 
@@ -37,6 +37,7 @@
   title={`Welcome! · ${name}`}
   {description}
   image={ogImageUrl(name, `scottspence.com`, `Thoughts Pamphlet`)}
+  url={`${website}/posts`}
 />
 
 <div class="flex flex-col flex-grow">

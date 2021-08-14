@@ -3,7 +3,7 @@
 
   import Head from '$lib/components/head.svelte'
   import { getPostTags } from '$lib/get-post-tags'
-  import { description, name } from '$lib/info'
+  import { description, name, website } from '$lib/info'
   import { ogImageUrl } from '$lib/og-image-url-build'
 
   export async function load({ page }) {
@@ -21,6 +21,8 @@
 <script>
   export let postsByTag
   export let slug
+
+  const url = `${website}/tags/${slug}`
 </script>
 
 <Head
@@ -31,6 +33,7 @@
     'scottspence.com',
     `Posts relating to ${slug}`
   )}
+  {url}
 />
 
 <ul>

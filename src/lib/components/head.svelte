@@ -1,13 +1,14 @@
 <script>
+  import { name, website } from '$lib/info'
+
   export let title
   export let description
   export let image
-  export let name
   export let url
-  export let website
 </script>
 
 <svelte:head>
+  <link rel="canonical" href={url} />
   <!-- Meta Tags Generated via http://heymeta.com -->
 
   <!-- HTML Meta Tags -->

@@ -19,7 +19,7 @@
 <script>
   import Head from '$lib/components/head.svelte';
   import LandingHero from '$lib/components/landing-hero.svelte';
-  import { description,name } from '$lib/info';
+  import { description,name, website } from '$lib/info';
   import { ogImageUrl } from '$lib/og-image-url-build';
 
   export let Copy
@@ -29,6 +29,7 @@
   title={`Welcome! · ${name}`}
   {description}
   image={ogImageUrl(name, `scottspence.com`, name)}
+  url={`${website}`}
 />
 
 <LandingHero />
