@@ -1,19 +1,19 @@
 <script>
-  import { POPULAR_POSTS, SITE_LINKS } from '$lib/info'
-  import { trackGoal } from 'fathom-client'
+  import { POPULAR_POSTS,SITE_LINKS } from '$lib/info';
+  import { trackGoal } from 'fathom-client';
 </script>
 
 <footer
-  class="bg-primary inset-0 relative"
+  class="bg-primary inset-0 relative z-10"
   aria-labelledby="footerHeading"
 >
   <h3 id="footerHeading" class="sr-only">Footer</h3>
   <div class="mx-auto max-w-full py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
     <div class="xl:grid xl:gap-8 xl:grid-cols-2">
       <div class="space-y-8 xl:col-span-1">
-        <div class="avatar">
-          <div class="rounded-full h-10 mb-8 w-10">
-            <img src="/mug-face.png" alt="scott profile" />
+        <div class="">
+          <div class="rounded-full overflow-hidden h-14 mb-8 w-14">
+            <img src="/mug-face.png" alt="scott profile" class='object-cover' />
           </div>
         </div>
         <p class="text-left text-primary-content">
