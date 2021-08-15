@@ -716,19 +716,19 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [remark-slug repo]: https://github.com/remarkjs/remark-slug
 [mdx js repo issue 810]: https://github.com/mdx-js/mdx/issues/810
 [previous post]:
-  https://scottspence.com/2020/02/06/globally-style-gatsby-styled-components/
+  https://scottspence.com/posts/globally-style-gatsby-styled-components/
 [build a coding blog from scratch with gatsby and mdx]:
-  https://scottspence.com/2019/10/31/build-an-mdx-blog
+  https://scottspence.com/posts/build-an-mdx-blog
 [index page posts query]:
-  https://scottspence.com/2019/10/31/build-an-mdx-blog/#index-page-posts-query
+  https://scottspence.com/posts/build-an-mdx-blog/#index-page-posts-query
 [slugs and paths]:
-  https://scottspence.com/2019/10/31/build-an-mdx-blog/#slugs-and-paths
+  https://scottspence.com/posts/build-an-mdx-blog/#slugs-and-paths
 [link paths]:
-  https://scottspence.com/2019/10/31/build-an-mdx-blog/#link-paths
+  https://scottspence.com/posts/build-an-mdx-blog/#link-paths
 [adding a blog post template]:
-  https://scottspence.com/2019/10/31/build-an-mdx-blog/#adding-a-blog-post-template
+  https://scottspence.com/posts/build-an-mdx-blog/#adding-a-blog-post-template
 [build out blog post template]:
-  https://scottspence.com/2019/10/31/build-an-mdx-blog/#build-out-blog-post-template
+  https://scottspence.com/posts/build-an-mdx-blog/#build-out-blog-post-template
 [markdown from this post!]:
   https://raw.githubusercontent.com/spences10/scottspence.com/authoring/2020/02/13/smooth-scroll-toc-gatsby/index.mdx
 [mdx table of components]:

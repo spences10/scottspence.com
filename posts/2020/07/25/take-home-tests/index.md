@@ -125,9 +125,9 @@ time.
 
 <!-- Links -->
 
-[in the past]: https://scottspence.com/2016/12/05/job-hunting/
+[in the past]: https://scottspence.com/posts/job-hunting/
 [into a dev project]:
-  https://scottspence.com/2018/11/30/job-hunt-dev-project/
+  https://scottspence.com/posts/job-hunt-dev-project/
 [1]: https://twitter.com/spences10/status/1286744623742955520
 [2]: https://twitter.com/spences10/status/1286948087408267264
 [3]: https://twitter.com/BekahHW/status/1251918165338198018

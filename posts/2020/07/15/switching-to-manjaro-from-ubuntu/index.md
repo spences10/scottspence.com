@@ -210,8 +210,7 @@ snappy and FAST!
 
 <!-- Links -->
 
-[my shiny new rig]:
-  https://scottspence.com/2020/05/30/first-time-pc-build/
+[my shiny new rig]: https://scottspence.com/posts/first-time-pc-build/
 [manjaro forum]:
   https://forum.manjaro.org/t/bluetooth-is-not-working-with-headphones/116661/4
 [yarn repo]: https://github.com/yarnpkg/yarn/issues/5824

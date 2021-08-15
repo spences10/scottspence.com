@@ -680,7 +680,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [ubuntu 18.04 lts]:
   https://www.microsoft.com/en-gb/p/ubuntu-1804-lts/9n9tngvndl3q?activetab=pivot:overviewtab
 [my guide from the start of 2018]:
-  https://scottspence.com/2018/01/13/wsl-bootstrap/
+  https://scottspence.com/posts/wsl-bootstrap/
 [official guidance]:
   https://docs.microsoft.com/en-us/windows/wsl/install-win10
 [windows keyboard shortcuts]:

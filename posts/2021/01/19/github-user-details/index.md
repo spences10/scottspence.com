@@ -307,7 +307,7 @@ be the same amount of latency.
 
 [paul scanlon]: https://twitter.com/PaulieScanlon
 [serverless open graph image]:
-  https://scottspence.com/2020/04/30/serverless-og-images/
+  https://scottspence.com/posts/serverless-og-images/
 [leigh halliday]: https://www.youtube.com/user/leighhalliday
 [map, reduce, filter, and pie charts]:
   https://www.youtube.com/watch?v=28StAxSjyIU
@@ -324,7 +324,7 @@ be the same amount of latency.
 [my affiliate link]:
   http://courses.leighhalliday.com/next-level-next-js?coupon=SCOTT
 [graphql query in axios]:
-  https://scottspence.com/2021/01/02/get-graphql-data-with-axios/
+  https://scottspence.com/posts/get-graphql-data-with-axios/
 [data transform]:
   https://github.com/spences10/github-user-information/blob/main/src/data-transform.ts
 [interactive example]: #interactive-example

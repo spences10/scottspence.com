@@ -861,10 +861,9 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 
 <!-- Links -->
 
-[how that went here]:
-  https://scottspence.com/2018/09/08/react-context-api/
+[how that went here]: https://scottspence.com/posts/react-context-api/
 [styled-components getting started]:
-  https://scottspence.com/2018/04/03/styled-components/
+  https://scottspence.com/posts/styled-components/
 [example]: https://codesandbox.io/s/7wwr706nz0
 [react docs]: https://reactjs.org/docs/context.html
 [prop drilling]:

@@ -326,8 +326,7 @@ There's [example code on GitHub] for the serverless function and an
 [#100daysofcode twitter bot]: https://twitter.com/_100DaysOfCode
 [back in the day]:
   https://github.com/freeCodeCamp/100DaysOfCode-twitter-bot/graphs/contributors
-[a digital garden]:
-  https://scottspence.com/2020/04/27/a-digital-garden/
+[a digital garden]: https://scottspence.com/posts/a-digital-garden/
 [paul]: https://twitter.com/PaulieScanlon
 [rich]: https://twitter.com/studio_hungry
 [random blog name]: https://github.com/spences10/random-blog-name

@@ -46,7 +46,7 @@ Linux from Addictive Tips.
 
 <!-- Links -->
 
-[this post]: https://scottspence.com/2020/12/09/gui-with-wsl/
+[this post]: https://scottspence.com/posts/gui-with-wsl/
 [solution untested by me]:
   https://github.com/microsoft/WSL/issues/2374#issuecomment-699110721
 [greg brisebois]:

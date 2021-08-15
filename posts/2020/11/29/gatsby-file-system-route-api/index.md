@@ -509,7 +509,7 @@ Gatsby [File System Route Starter] I made.
 [dynamic routing you get with next.js]:
   https://nextjs.org/blog/next-9#dynamic-route-segments
 [getting started chakra ui gatsby]:
-  https://scottspence.com/2020/11/21/getting-started-chakra-ui-gatsby/
+  https://scottspence.com/posts/getting-started-chakra-ui-gatsby/
 [file system route starter]:
   https://github.com/spences10/gatsby-starter-file-system-route-api-mdx
 [curly bois]: https://twitter.com/spences10/status/1329335632041299971

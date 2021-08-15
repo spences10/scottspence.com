@@ -481,7 +481,7 @@ on my Windows machine and configured it for use in web development.
 [his post]:
   https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#the-display-variable
 [enable guis wsl]:
-  https://scottspence.com/2020/12/09/gui-with-wsl/#gui-things
+  https://scottspence.com/posts/gui-with-wsl/#gui-things
 [this one from github]:
   https://github.com/fedora-cloud/docker-brew-fedora/tree/33/x86_64
 [official guidance from microsoft]:

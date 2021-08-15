@@ -582,12 +582,12 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 <!-- Links -->
 
 [past with styled-components v4]:
-  https://scottspence.com/2018/11/29/gatsby-starter-to-styled-components/
+  https://scottspence.com/posts/gatsby-starter-to-styled-components/
 [wraprootelement]:
   https://www.gatsbyjs.org/docs/browser-apis/#wrapRootElement
 [v5 release]: https://styled-components.com/releases#v5.0.0
 [detailed here]:
-  https://scottspence.com/2018/11/29/gatsby-starter-to-styled-components/#3-global-style
+  https://scottspence.com/posts/gatsby-starter-to-styled-components/#3-global-style
 [box sizing]: https://css-tricks.com/box-sizing/#article-header-id-3
 [styled-components themeprovider]:
   https://styled-components.com/docs/api#themeprovider
@@ -600,7 +600,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [build and style a dropdown in tailwind]:
   https://egghead.io/playlists/build-and-style-a-dropdown-in-tailwind-7f34fead
 [i wrote about]:
-  https://scottspence.com/2019/11/06/react-advanced-london-2019/#siddharth-kshetrapal---design-systems-design-system
+  https://scottspence.com/posts/react-advanced-london-2019/#siddharth-kshetrapal---design-systems-design-system
 [design systems design system - siddharth kshetrapal]:
   https://www.youtube.com/watch?v=Dd-Y9K7IKmk&feature=emb_title
 [tailwind full config]:

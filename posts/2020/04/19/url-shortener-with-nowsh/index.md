@@ -48,7 +48,7 @@ that long!
 Other examples could be the "Build a coding blog from scratch with
 Gatsby and MDX" guide I did at the end of last year:
 
-- Full URL https://scottspence.com/2019/10/31/build-an-mdx-blog
+- Full URL https://scottspence.com/posts/build-an-mdx-blog
 - Short URL https://ss10.dev/bab-guide
 
 Or if you have a crazy URL no one is going to be able to recite from
@@ -280,7 +280,7 @@ the same project.
 [now cli]: https://vercel.com/download
 [vercel.com account]: https://vercel.com/signup
 [github account]: https://github.com/join
-[for windows]: https://scottspence.com/2018/12/24/wsl-bootstrap-2019/
+[for windows]: https://scottspence.com/posts/wsl-bootstrap-2019/
 [kent c dodds example with netlify]:
   https://www.youtube.com/watch?v=HL6paXyx6hM
 [vercel's documentation]:

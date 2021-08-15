@@ -119,11 +119,11 @@ Get it down then get it done!
 [building a digital garden]:
   https://tomcritchlow.com/2019/02/17/building-digital-garden/
 [moving from now to netlify then back to now]:
-  https://scottspence.com/2020/05/02/moving-from-now-to-netlify/
+  https://scottspence.com/posts/moving-from-now-to-netlify/
 [moving large markdown assets to a cdn]:
-  https://scottspence.com/2020/04/30/large-md-assets-to-cdn/
+  https://scottspence.com/posts/large-md-assets-to-cdn/
 [generated with a serverless function]:
-  https://scottspence.com/2020/04/30/serverless-og-images/
+  https://scottspence.com/posts/serverless-og-images/
 [sinister background]:
   https://gigaom.com/2014/06/30/the-dark-side-of-io-how-the-u-k-is-making-web-domain-profits-from-a-shady-cold-war-land-deal/
 [styled scrollbars]:

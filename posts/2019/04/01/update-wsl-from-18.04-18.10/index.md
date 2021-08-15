@@ -111,7 +111,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [ask me anything]: https://github.com/spences10/ama
 [dev.to]: https://dev.to
 [earlier posts from me]:
-  https://scottspence.com/2018/12/24/wsl-bootstrap-2019/#update-upgrade-and-autoremove
+  https://scottspence.com/posts/wsl-bootstrap-2019/#update-upgrade-and-autoremove
 [david's post]:
   https://dev.to/david_j_eddy/how-to-upgrade-wsl-ubuntu-18-04-to-18-10-203
 [stack overflow]:

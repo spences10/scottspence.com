@@ -182,7 +182,7 @@ it by me.
 [react seo component]:
   https://www.npmjs.com/package/react-seo-component
 [build a coding blog from scratch with gatsby and mdx]:
-  https://scottspence.com/2019/10/31/build-an-mdx-blog
+  https://scottspence.com/posts/build-an-mdx-blog
 [github pr on seo]: https://github.com/gatsbyjs/gatsby/pull/10780
 [issue]: https://github.com/gatsbyjs/gatsby/issues/14125
 [great notes from andrew welch]:
@@ -203,7 +203,7 @@ it by me.
   https://github.com/spences10/react-seo-component/blob/32acf12d53/rollup.config.js
 [typescript package development]: https://github.com/jaredpalmer/tsdx
 [open graph images with gatsby and now]:
-  https://scottspence.com/2020/04/30/serverless-og-images/
+  https://scottspence.com/posts/serverless-og-images/
 [this post]:
   https://medium.com/recraftrelic/building-a-react-component-as-a-npm-module-18308d4ccde9
 [example code]:

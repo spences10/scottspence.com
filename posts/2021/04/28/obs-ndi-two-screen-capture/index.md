@@ -77,5 +77,5 @@ Lesson learned.
 [ndi]: https://ndi.tv/
 [twitter]: https://twitter.com/spences10/status/1387412287330430978
 [obs fix display capture not working]:
-  https://scottspence.com/2021/04/28/obs-display-capture-not-working/
+  https://scottspence.com/posts/obs-display-capture-not-working/
 [kevin lewis]: https://twitter.com/_phzn

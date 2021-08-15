@@ -238,7 +238,7 @@ These resources helped me along the way.
 
 [my affiliate link]: https://usefathom.com/ref/HG492L
 [track custom events]:
-  https://scottspence.com/2020/01/02/track-custom-events-with-fathom-analytics/
+  https://scottspence.com/posts/track-custom-events-with-fathom-analytics/
 [fathom goal]: https://usefathom.com/support/goals
 [stackoverflow posts]: https://stackoverflow.com/a/12151322/1138354
 [mdn url api]: https://developer.mozilla.org/en-US/docs/Web/API/URL

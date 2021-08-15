@@ -211,7 +211,7 @@ needs.
 <!-- Links -->
 
 [getting started with linaria]:
-  https://scottspence.com/2020/06/04/linaria-getting-started/
+  https://scottspence.com/posts/linaria-getting-started/
 [defaults from tailwind css]:
   https://github.com/tailwindcss/designing-with-tailwindcss/blob/master/01-getting-up-and-running/07-customizing-your-design-system/tailwind-full.config.js
 [callstack theme provider]:

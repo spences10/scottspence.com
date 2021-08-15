@@ -97,8 +97,8 @@ Channel.
 [chocolatey]: https://chocolatey.org/
 [ryzen 5 mini itx build]: https://uk.pcpartpicker.com/list/pHkrCL
 [first time pc building a pc]:
-  https://scottspence.com/2020/05/30/first-time-pc-build
-[made some notes]: https://scottspence.com/2021/02/01/logitech-g915
+  https://scottspence.com/posts/first-time-pc-build
+[made some notes]: https://scottspence.com/posts/logitech-g915
 [tags section for wsl]: https://scottspence.com/tags/wsl
 [wavlink usb c laptop universal docking station]:
   https://www.amazon.co.uk/gp/product/B082SR6GMB/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1

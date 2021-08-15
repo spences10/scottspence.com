@@ -185,7 +185,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [twitter]: https://twitter.com/spences10
 [ask me anything]: https://github.com/spences10/ama
 [this process in the past]:
-  https://scottspence.com/2019/04/01/update-wsl-from-18.04-18.10/
+  https://scottspence.com/posts/update-wsl-from-18.04-18.10/
 [my comments]: https://dev.to/spences10/comment/9n19
 [do-release-upgrade]:
   https://help.ubuntu.com/lts/serverguide/installing-upgrading.html

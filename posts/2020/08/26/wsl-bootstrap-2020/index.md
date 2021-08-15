@@ -680,9 +680,9 @@ try.
 <!-- Links -->
 
 [windows subsystem linux setup]:
-  https://scottspence.com/2018/01/13/wsl-bootstrap/
+  https://scottspence.com/posts/wsl-bootstrap/
 [windows web-dev bootstrap]:
-  https://scottspence.com/2018/12/24/wsl-bootstrap-2019/
+  https://scottspence.com/posts/wsl-bootstrap-2019/
 [this comment on a wsl issue]:
   https://github.com/microsoft/WSL/issues/5078#issuecomment-613384302
 [symbolic links]: https://en.wikipedia.org/wiki/Symbolic_link
@@ -716,7 +716,7 @@ try.
 [chocolatey]: https://chocolatey.org/
 [get started]: https://chocolatey.org/install
 [had to install git on windows]:
-  https://scottspence.com/2018/12/24/wsl-bootstrap-2019/#install-windows-git
+  https://scottspence.com/posts/wsl-bootstrap-2019/#install-windows-git
 [using node version manager]: https://github.com/nvm-sh/nvm
 [n]: https://www.npmjs.com/package/n#installation
 [fnm]: https://github.com/Schniz/fnm#using-a-script
@@ -744,4 +744,4 @@ try.
 [windows 10 home]:
   https://docs.microsoft.com/en-us/windows/wsl/wsl2-faq#does-wsl-2-use-hyper-v-will-it-be-available-on-windows-10-home
 [switching to manjaro from ubuntu]:
-  https://scottspence.com/2020/07/15/switching-to-manjaro-from-ubuntu/#yarn
+  https://scottspence.com/posts/switching-to-manjaro-from-ubuntu/#yarn

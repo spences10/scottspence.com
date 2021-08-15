@@ -143,7 +143,7 @@ Stay safe!
   https://www.amazon.co.uk/Amazon-Brand-Solimo-Coffee-Beans/dp/B07CGXZMT3
 [coco di mama]: https://www.cocodimama.co.uk/coffee/
 [first time pc build]:
-  https://scottspence.com/2020/05/30/first-time-pc-build/
+  https://scottspence.com/posts/first-time-pc-build/
 
 <!-- Images  -->
 

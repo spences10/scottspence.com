@@ -136,4 +136,4 @@ wsl --unregister Fedora-test
 ```
 
 [wsl web developer bootstrap with fedora 33]:
-  https://scottspence.com/2021/01/06/fedora-bootstrap-from-scratch/
+  https://scottspence.com/posts/fedora-bootstrap-from-scratch/
