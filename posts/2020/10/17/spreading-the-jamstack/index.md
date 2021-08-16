@@ -2,7 +2,7 @@
 date: 2020-10-17
 title: Spreading the Jamstack
 tags: ['jamstack', 'resource']
-isPrivate: true
+isPrivate: false
 ---
 
 <script>

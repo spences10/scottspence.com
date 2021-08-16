@@ -2,7 +2,7 @@
 date: 2021-01-20
 title: QA Wolf v2 Getting Started
 tags: ['ci-cd', 'testing', 'e2e']
-isPrivate: true
+isPrivate: false
 ---
 
 I'm a bug writing machine, all developers are! We're only human after
@@ -34,8 +34,6 @@ const page = await context.newPage()
 process.env.URL || 'https://scottspence.com'
 ```
 
-Jon Perl3:18 PM
-
 ```js
 launch({ browser: 'firefox' })
 
@@ -43,7 +41,5 @@ launch({ browser: 'webkit' })
 
 launch({ browser: process.env.BROWSER })
 ```
-
-Jon Perl3:25 PM
 
 https://www.qawolf.com/docs/test-localhost

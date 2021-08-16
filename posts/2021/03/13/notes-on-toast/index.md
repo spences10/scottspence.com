@@ -2,7 +2,7 @@
 date: 2021-03-13
 title: Notes on Toast
 tags: ['toast', 'jamstack', 'notes']
-isPrivate: true
+isPrivate: false
 ---
 
 For the past couple of weeks I have slowly been getting a more

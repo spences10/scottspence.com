@@ -2,10 +2,13 @@
 date: 2020-12-31
 title: Create a Video Overlay with Hooks
 tags: ['learning', 'guide', 'hooks', 'react']
-isPrivate: true
+isPrivate: false
 ---
 
-Create a Video overlay with React hooks
+Create a Video overlay with React hooks.
+
+I had to create a video overlay for a project I was working on. This
+example use a portal to render the player with `react-player`.
 
 ```js
 // useModal.js

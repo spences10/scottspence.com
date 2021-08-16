@@ -276,4 +276,5 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [codesandbox docs for importing projects]:
   https://codesandbox.io/docs/importing
 [chris biscardi]: https://twitter.com/chrisbiscardi
-[here]: https://scottspence.com/convert-gatsby-default-blog-to-use-mdx
+[here]:
+  https://scottspence.com/posts/convert-gatsby-default-blog-to-mdx
