@@ -42,7 +42,7 @@
 
 <div class="flex flex-col flex-grow">
   <div class="">
-    <div class="form-control mb-10">
+    <div class="mb-10 form-control">
       <label for="search" class="label">
         <span class="label-text">Search {posts.length} posts...</span>
       </label>

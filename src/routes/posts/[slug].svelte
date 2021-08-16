@@ -89,7 +89,7 @@
 {/await}
 
 <article>
-  <h1 class="mb-1 text-5xl font-black">{title}</h1>
+  <h1 class="font-black mb-1 text-5xl">{title}</h1>
   <div class='mb-10'>
     <time datetime={new Date(date).toISOString()}
       >{format(new Date(date), 'MMMM d, yyyy')}</time
@@ -104,6 +104,6 @@
     <svelte:component this={component} />
   </div>
 
-  <div class="divider mt-8 mb-16" />
+  <div class="mt-8 mb-16 divider" />
   <ButtButt />
 </article>

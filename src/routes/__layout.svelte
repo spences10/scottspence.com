@@ -53,9 +53,7 @@
       </div>
     </div>
     <Nav />
-    <main
-      class="flex flex-col flex-grow w-full py-4 px-4"
-    >
+    <main class="flex flex-col flex-grow w-full py-4 px-4">
       <slot />
     </main>
   </div>
