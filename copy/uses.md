@@ -6,7 +6,7 @@
 # Uses
 
 <Small>
-  Last updated: <DateUpdated date='2021-08-14' small='true' />
+  Last updated: <DateUpdated date="2021-08-14" small="true" />
 </Small>
 
 All the equipment and tools I use on a daily basis.

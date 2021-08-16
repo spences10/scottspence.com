@@ -31,7 +31,9 @@
   url={`${website}/newsletter`}
 />
 
-<svelte:component this={Copy} />
+<div class="all-prose">
+  <svelte:component this={Copy} />
+</div>
 
 <iframe
   title="substack_subscribe"

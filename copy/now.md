@@ -3,7 +3,7 @@
   import Small from '$lib/components/small.svelte'
 </script>
 
-## What I'm doing Now
+# What I'm doing Now
 
 <Small>
   Last updated: <DateUpdated date="2021-08-14" small="true" />

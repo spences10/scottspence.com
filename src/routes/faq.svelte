@@ -18,10 +18,28 @@
 
 <script>
   import Head from '$lib/components/head.svelte'
+  import TableOfContents from '$lib/components/table-of-contents.svelte'
   import { name, website } from '$lib/info'
   import { ogImageUrl } from '$lib/og-image-url-build'
+  import { onMount } from 'svelte'
 
   export let Copy
+
+  let headingNodeList
+  let headings
+  async function getHeadings() {
+    await headings
+  }
+
+  onMount(() => {
+    headingNodeList = document.querySelectorAll('h2')
+    headings = Array.from(headingNodeList).map(h2 => {
+      return {
+        label: h2.innerText,
+        href: `#${h2.id}`,
+      }
+    })
+  })
 </script>
 
 <Head
@@ -31,4 +49,12 @@
   url={`${website}/faq`}
 />
 
-<svelte:component this={Copy} />
+{#await getHeadings()}
+  Loading...
+{:then}
+  <TableOfContents {headings} />
+{/await}
+
+<div class="all-prose">
+  <svelte:component this={Copy} />
+</div>

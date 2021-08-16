@@ -1,4 +1,13 @@
-## Privacy Policy
+<script>
+  import DateUpdated from '$lib/components/date-updated.svelte'
+  import Small from '$lib/components/small.svelte'
+</script>
+
+# Privacy Policy
+
+<Small>
+  Last updated: <DateUpdated date="2021-08-14" small="true" />
+</Small>
 
 Hello, welcome to the privacy policy for scottspence.com, I want to be
 transparent about anything this site collets from you and what I use

@@ -17,10 +17,10 @@
 </script>
 
 <script>
-  import Head from '$lib/components/head.svelte';
-  import LandingHero from '$lib/components/landing-hero.svelte';
-  import { description,name, website } from '$lib/info';
-  import { ogImageUrl } from '$lib/og-image-url-build';
+  import Head from '$lib/components/head.svelte'
+  import LandingHero from '$lib/components/landing-hero.svelte'
+  import { description, name, website } from '$lib/info'
+  import { ogImageUrl } from '$lib/og-image-url-build'
 
   export let Copy
 </script>
@@ -34,4 +34,6 @@
 
 <LandingHero />
 
-<svelte:component this={Copy} />
+<article class="all-prose">
+  <svelte:component this={Copy} />
+</article>

@@ -1,10 +1,16 @@
 <script>
+  import DateUpdated from '$lib/components/date-updated.svelte'
   import Details from '$lib/components/details.svelte'
+  import Small from '$lib/components/small.svelte'
   import Spotify from '$lib/components/spotify.svelte'
   import YouTube from '$lib/components/youtube.svelte'
 </script>
 
 # Speaking
+
+<Small>
+  Last updated: <DateUpdated date="2021-08-14" small="true" />
+</Small>
 
 I have spoken at several meetups and conferences now and would be keen
 to do more, if you are having a meetup and want speakers [get in

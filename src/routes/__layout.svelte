@@ -44,7 +44,7 @@
       class="flex h-16 mb-4 py-2 px-4 justify-between items-center"
     >
       <p
-        class="bg-clip-text bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] font-extrabold text-transparent text-xl lg:text-2xl"
+        class="bg-clip-text bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] font-extrabold text-transparent text-3xl lg:text-4xl"
       >
         <a href="/">{name}</a>
       </p>
@@ -54,7 +54,7 @@
     </div>
     <Nav />
     <main
-      class="flex flex-col flex-grow w-full py-4 px-4 prose prose-lg lg:prose-xl dark:prose-dark"
+      class="flex flex-col flex-grow w-full py-4 px-4"
     >
       <slot />
     </main>

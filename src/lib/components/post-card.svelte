@@ -4,14 +4,22 @@
   export let post
 </script>
 
-<article class="py-8 first:pt-0">
-  <div>
-    <h1 class="!mt-0 !mb-1">
-      <a href={`/posts/${post.slug}`}>{post.title}</a>
-    </h1>
-    <time>{format(new Date(post.date), 'MMMM d, yyyy')}</time>
-    •
-    <span>{post.readingTime.text}</span>
-  </div>
-  <div>{@html post.previewHtml}</div>
+<article
+  class="mb-5 p-5 transition card bordered hover:text-accent-focus first:pt-0"
+>
+  <a href={`/posts/${post.slug}`}>
+    <div>
+      <h1 class="font-black mb-1 text-3xl">
+        {post.title}
+      </h1>
+      <div class="mb-4 text-accent uppercase text-sm font-bold">
+        <time>{format(new Date(post.date), 'MMMM d, yyyy')}</time>
+        •
+        <span>{post.readingTime.text}</span>
+      </div>
+    </div>
+    <div class="all-prose">
+      {@html post.previewHtml}
+    </div>
+  </a>
 </article>

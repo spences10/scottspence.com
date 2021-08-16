@@ -4,7 +4,7 @@
   import Small from '$lib/components/small.svelte'
 </script>
 
-## For recruiters - FAQ
+# For recruiters - FAQ
 
 <Small>
   Last updated: <DateUpdated date='2021-04-02' small='true' />

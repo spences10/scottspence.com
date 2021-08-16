@@ -6,7 +6,7 @@
   import Projects from '$lib/components/portfolio-projects.svelte'
 </script>
 
-## Portfolio
+# Portfolio
 
 <Small>
   Last updated: <DateUpdated date="2021-01-09" small="true" />

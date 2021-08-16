@@ -6,12 +6,15 @@
       <img
         src="/mug-face.png"
         alt="Cartoon face Scott"
-        class="rounded-full max-w-sm w-1/2 lg:w-full shadow-xl"
+        class="rounded-full max-w-sm shadow-xl w-1/2 lg:w-full"
       />
-      <div class="lg:mr-28">
+      <div class="all-prose lg:mr-28">
         <h1 class="font-bold mb-5 text-5xl">
           <span class="block">Scott Spence</span>
-          <span class="text-primary block">Hello World!</span>
+          <span
+            class="bg-clip-text bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-transparent block"
+            >Hello World!</span
+          >
         </h1>
         <p class="mb-5">
           This is my blog where I write about many things, including,

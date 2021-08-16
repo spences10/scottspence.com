@@ -31,8 +31,12 @@
 
 <ul class="flex flex-wrap justify-start">
   {#each tags as tag}
-    <a href={`tags/${tag}`} class="my-4 mr-6"
-      >{tag} ({postsByTag[tag].length})</a
-    >
+    <li class="my-4 text-xl">
+      <a
+        href={`tags/${tag}`}
+        class="mr-6 transition link hover:text-primary"
+        >{tag} ({postsByTag[tag].length})</a
+      >
+    </li>
   {/each}
 </ul>

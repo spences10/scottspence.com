@@ -37,14 +37,14 @@
 </script>
 
 <script>
-  import ButtButt from '$lib/components/butt-butt.svelte'
-  import Head from '$lib/components/head.svelte'
-  import IsPrivateBanner from '$lib/components/is-private-banner.svelte'
-  import TableOfContents from '$lib/components/table-of-contents.svelte'
-  import { name, website } from '$lib/info'
-  import { ogImageUrl } from '$lib/og-image-url-build'
-  import { format } from 'date-fns'
-  import { onMount } from 'svelte'
+  import ButtButt from '$lib/components/butt-butt.svelte';
+  import Head from '$lib/components/head.svelte';
+  import IsPrivateBanner from '$lib/components/is-private-banner.svelte';
+  import TableOfContents from '$lib/components/table-of-contents.svelte';
+  import { name,website } from '$lib/info';
+  import { ogImageUrl } from '$lib/og-image-url-build';
+  import { format } from 'date-fns';
+  import { onMount } from 'svelte';
 
   export let component
 
@@ -89,8 +89,8 @@
 {/await}
 
 <article>
-  <h1 class="!mb-1 !text-5xl">{title}</h1>
-  <div>
+  <h1 class="mb-1 text-5xl font-black">{title}</h1>
+  <div class='mb-10'>
     <time datetime={new Date(date).toISOString()}
       >{format(new Date(date), 'MMMM d, yyyy')}</time
     >
@@ -100,7 +100,9 @@
   {#if isPrivate}
     <IsPrivateBanner />
   {/if}
-  <svelte:component this={component} />
+  <div class="all-prose">
+    <svelte:component this={component} />
+  </div>
 
   <div class="divider mt-8 mb-16" />
   <ButtButt />

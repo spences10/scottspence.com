@@ -17,13 +17,13 @@ export default {
     readingTime(),
 
     // Add a text preview snippet (no formatting) so we can use it in the meta description tag
-    preview(textFormatter({ length: 300, maxBlocks: 1 })),
+    preview(textFormatter({ length: 250, maxBlocks: 2 })),
 
     // Add an HTML preview snippet (formatted) so we can use it when displaying all posts
     preview(
       htmlFormatter({
-        length: 300,
-        maxBlocks: 1,
+        length: 250,
+        maxBlocks: 2,
       }),
       {
         attribute: 'previewHtml',

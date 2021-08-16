@@ -31,4 +31,6 @@
   url={`${website}/uses`}
 />
 
-<svelte:component this={Copy} />
+<div class="all-prose">
+  <svelte:component this={Copy} />
+</div>
