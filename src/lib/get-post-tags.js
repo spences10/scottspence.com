@@ -1,4 +1,5 @@
 import { getPosts } from '$lib/get-posts'
+import slugify from 'slugify'
 
 export async function getPostTags() {
   const posts = await getPosts()
@@ -7,7 +8,8 @@ export async function getPostTags() {
   posts.forEach(post => {
     const { tags, isPrivate } = post
     if (tags && !isPrivate) {
-      tags.forEach(tag => {
+      tags.forEach(postTag => {
+        const tag = slugify(postTag)
         if (!postsByTag[tag]) {
           postsByTag[tag] = []
         }
