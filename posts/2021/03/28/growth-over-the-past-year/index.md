@@ -84,15 +84,15 @@ You can sign up to the newsletter as well:
 [wsl web developer bootstrap with fedora 33]:
   https://scottspence.com/posts/fedora-bootstrap-from-scratch/
 [fedora remix for wsl gui apps]:
-  https://toast.scottspence.com/posts/fedora-remix-for-wsl-gui-apps/
+  https://scottspence.com/posts/fedora-remix-for-wsl-gui-apps/
 [use chrome in ubuntu on windows subsystem linux]:
-  https://toast.scottspence.com/posts/use-chrome-in-ubuntu-wsl/
+  https://scottspence.com/posts/use-chrome-in-ubuntu-wsl/
 [enable guis on windows subsystem linux (wsl)]:
-  https://toast.scottspence.com/posts/gui-with-wsl/
+  https://scottspence.com/posts/gui-with-wsl/
 [notes on zsh and oh my zsh]:
-  https://toast.scottspence.com/posts/zsh-and-oh-my-zsh/
+  https://scottspence.com/posts/zsh-and-oh-my-zsh/
 [built my first pc]:
-  https://toast.scottspence.com/posts/first-time-pc-build/
+  https://scottspence.com/posts/first-time-pc-build/
 [started a newsletter]: https://ss10.dev/nl
 [my second brain - zettelkasten]:
-  https://toast.scottspence.com/posts/my-second-brain-zettelkasten/
+  https://scottspence.com/posts/my-second-brain-zettelkasten/
