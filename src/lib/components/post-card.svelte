@@ -9,9 +9,9 @@
 >
   <a href={`/posts/${post.slug}`}>
     <div>
-      <h1 class="font-black mb-1 text-3xl">
+      <h2 class="font-black mb-1 text-3xl">
         {post.title}
-      </h1>
+      </h2>
       <div class="mb-4 text-accent uppercase text-sm font-bold">
         <time>{format(new Date(post.date), 'MMMM d, yyyy')}</time>
         •
