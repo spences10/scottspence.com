@@ -6,10 +6,6 @@
 
 ## Hi I'm Scott
 
-<Small>
-  Last updated: <DateUpdated date="2021-08-14" small="true" />
-</Small>
-
 I'm a developer advocate working with [GraphCMS] to create content
 that helps remove friction and educate around the GraphQL space.
 

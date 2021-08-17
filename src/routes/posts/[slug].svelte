@@ -90,7 +90,7 @@
 
 <article>
   <h1 class="font-black mb-1 text-5xl">{title}</h1>
-  <div class='mb-10'>
+  <div class='mb-10 uppercase'>
     <time datetime={new Date(date).toISOString()}
       >{format(new Date(date), 'MMMM d, yyyy')}</time
     >
