@@ -56,7 +56,7 @@ const render =
           <content:encoded>${meta.previewHtml} 
             <div style="margin-top: 50px; font-style: italic;">
               <strong>
-                <a href="${website}/posts/${meta.slug}/">
+                <a href="${website}/posts/${meta.slug}">
                   Keep reading
                 </a>.
               </strong>  

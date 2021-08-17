@@ -6,4 +6,11 @@ along the way.
 
 I do occasional giveaways for existing and new subscribers as well.
 
+I don't keep any of your personal data. Take a look at the [privacy
+policy] for more info.
+
 ---
+
+<!-- Links -->
+
+[privacy policy]: /privacy-policy
