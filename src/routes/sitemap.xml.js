@@ -67,8 +67,10 @@ const render = (
     )
     .join('')}
   ${postsMeta
-    .map(
-      meta => `
+    .map(meta =>
+      meta.isPrivate
+        ? null
+        : `
   <url>
     <loc>${website}/posts/${meta.slug}</loc>
     <changefreq>daily</changefreq>
