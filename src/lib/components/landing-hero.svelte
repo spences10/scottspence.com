@@ -39,7 +39,7 @@
   <!-- chevron down animated!! -->
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    class="my-6 lg:mt-20 animate-bounce h-8 w-8 block m-auto"
+    class="m-auto h-8 my-6 animate-bounce w-8 block lg:mt-20"
     viewBox="0 0 20 20"
     fill="currentColor"
   >
