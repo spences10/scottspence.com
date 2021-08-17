@@ -27,4 +27,4 @@ outside.
 
 ---
 
-[graphcms]: http://graphcms.com
+[graphcms]: https://graphcms.com

@@ -148,10 +148,10 @@ give it a like and don't forget to share it on social media 🙌
 <!--Links-->
 
 [git-cheatsheet]: https://cheatsheets.xyz/git/
-[toolsday]: http://www.toolsday.io/
-[chris]: http://twitter.com/chrisdhanaraj
-[una]: http://twitter.com/una
-[git-tools]: http://www.toolsday.io/episodes/git.html
+[toolsday]: https://www.toolsday.io/
+[chris]: https://twitter.com/chrisdhanaraj
+[una]: https://twitter.com/una
+[git-tools]: https://www.toolsday.io/episodes/git.html
 [pi]: https://github.com/paulirish
 [pidf]: https://github.com/paulirish/dotfiles/blob/master/.gitconfig
 [sdt]: https://twitter.com/spences10

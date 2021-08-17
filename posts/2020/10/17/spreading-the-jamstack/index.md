@@ -196,6 +196,6 @@ on business goals. For example, the BBC found they lost an additional
 [why does speed matter]: https://web.dev/why-speed-matters/
 [name change]: https://github.com/jamstack/jamstack.org/issues/279
 [hugo]: https://gohugo.io/
-[jekyll]: http://jekyllrb.com
+[jekyll]: https://jekyllrb.com
 [11ty]: https://11ty.dev/
 [gatsby]: https://www.gatsbyjs.com/

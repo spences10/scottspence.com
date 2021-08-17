@@ -170,7 +170,7 @@ New CSS Logical Properties!: [medium post]
 [mycolor.space]: https://mycolor.space/?hex=%23663399&sub=1
 [color.adobe.com]: https://color.adobe.com
 [palx.jxnblk.com]: https://palx.jxnblk.com/
-[bada55.io]: http://bada55.io/
+[bada55.io]: https://bada55.io/
 [0to255.com]: https://www.0to255.com/
 [color-hex.com]: https://www.color-hex.com/
 [jxnblk.com/hello-color]: https://jxnblk.com/hello-color
@@ -189,5 +189,5 @@ New CSS Logical Properties!: [medium post]
 [tanaguru contrast finder]: https://contrast-finder.tanaguru.com/
 [animated gradients codesandbox]:
   https://codesandbox.io/s/muddy-sun-gp0el
-[a most excellent hsl color picker]: http://hslpicker.com/
+[a most excellent hsl color picker]: https://hslpicker.com/
 [colorhunt.co]: https://colorhunt.co/

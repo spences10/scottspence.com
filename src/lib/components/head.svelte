@@ -9,7 +9,7 @@
 
 <svelte:head>
   <link rel="canonical" href={url} />
-  <!-- Meta Tags Generated via http://heymeta.com -->
+  <!-- Meta Tags Generated via https://heymeta.com -->
 
   <!-- HTML Meta Tags -->
   <title>{title}</title>

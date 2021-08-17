@@ -211,7 +211,7 @@ global npm packages you want for development now.
 <!-- links -->
 
 [ppa]: https://itsfoss.com/ppa-guide/
-[fixanycomputer]: http://theoatmeal.com/blog/fix_computer
+[fixanycomputer]: https://theoatmeal.com/blog/fix_computer
 [slowbash]: https://github.com/Microsoft/WSL/issues/776
 [wslmsstore]: https://www.microsoft.com/store/productId/9NBLGGH4MSV6
 [usen]:

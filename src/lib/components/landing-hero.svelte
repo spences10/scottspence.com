@@ -38,7 +38,7 @@
   </div>
   <!-- chevron down animated!! -->
   <svg
-    xmlns="http://www.w3.org/2000/svg"
+    xmlns="https://www.w3.org/2000/svg"
     class="m-auto h-8 my-6 animate-bounce w-8 block lg:mt-20"
     viewBox="0 0 20 20"
     fill="currentColor"

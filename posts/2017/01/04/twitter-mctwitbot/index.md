@@ -209,7 +209,7 @@ better replies.
 <!-- Links -->
 
 [github]: https://github.com
-[random quote generator]: http://codepen.io/spences10/full/dOaYbP/
+[random quote generator]: https://codepen.io/spences10/full/dOaYbP/
 [twitter-bot-bootstrap]:
   https://github.com/mobeets/twitter-bot-bootstrap
 [heroku]: https://heroku.com

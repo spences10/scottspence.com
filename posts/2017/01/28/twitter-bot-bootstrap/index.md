@@ -391,9 +391,9 @@ Other posts detailing useful Twitter bots.
 [awesome-twitter-bots]:
   https://github.com/amandeepmittal/awesome-twitter-bots
 [www.brit.co/twitter-bots-to-follow]:
-  http://www.brit.co/twitter-bots-to-follow/
+  https://www.brit.co/twitter-bots-to-follow/
 [www.hongkiat.com/using-twitter-bots]:
-  http://www.hongkiat.com/blog/using-twitter-bots/
+  https://www.hongkiat.com/blog/using-twitter-bots/
 
 <!-- Images -->
 

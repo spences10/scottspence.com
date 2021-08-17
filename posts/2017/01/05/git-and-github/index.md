@@ -131,7 +131,7 @@ was then successfully merged as PR
 ### Resources
 
 A great resource for me was
-[Git-It](http://jlord.us/git-it/index.html)
+[Git-It](https://jlord.us/git-it/index.html)
 
 And obviously the [GitHub Help](https://help.github.com/)
 documentation.

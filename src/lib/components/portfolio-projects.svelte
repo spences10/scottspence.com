@@ -36,11 +36,7 @@
                     Repo
                   </a>
                 {:else}
-                  <a
-                    href="noop"
-                    class="w-1/2 btn"
-                    disabled="disabled"
-                  >
+                  <a href="/" class="w-1/2 btn" disabled="disabled">
                     Repo
                   </a>
                 {/if}

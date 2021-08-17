@@ -32,7 +32,7 @@
             <span class="sr-only">Twitter</span>
             <svg
               role="img"
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               height="20"
               width="20"
@@ -53,7 +53,7 @@
             <svg
               role="img"
               viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               height="20"
               width="20"
               class="fill-current text-primary-content hover:text-primary-focus"
@@ -73,7 +73,7 @@
             <svg
               role="img"
               viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               height="20"
               width="20"
               class="fill-current text-primary-content hover:text-primary-focus"
@@ -92,7 +92,7 @@
             <span class="sr-only">YouTube</span>
             <svg
               role="img"
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               height="20"
               width="20"
@@ -112,7 +112,7 @@
             <span class="sr-only">Twitch</span>
             <svg
               role="img"
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               height="20"
               width="20"

@@ -103,7 +103,7 @@ well!!
 
 [fedora remix for wsl]:
   https://www.microsoft.com/en-us/p/fedora-remix-for-wsl/9n6gdm4k2hnc?activetab=pivot:overviewtab
-[i did previously]: http://scottspence.com/2020/12/09/gui-with-wsl/
+[i did previously]: https://scottspence.com/2020/12/09/gui-with-wsl/
 [nicky's post]:
   https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress
 [automatically start `dbus`]:

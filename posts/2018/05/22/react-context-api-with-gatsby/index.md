@@ -473,7 +473,7 @@ here: https://scottspence.com/
 [here's the source]:
   https://github.com/spences10/scottspence.me/blob/master/src/components/ThemeSelect.js
 [steve schoger]: https://twitter.com/steveschoger
-[hero patterns]: http://www.heropatterns.com/
+[hero patterns]: https://www.heropatterns.com/
 
 <!-- Images -->
 

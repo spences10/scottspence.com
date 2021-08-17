@@ -104,6 +104,6 @@ so I've left well alone for now!
 
 <!-- Links -->
 
-[nomoregoogle.com]: http://nomoregoogle.com/
+[nomoregoogle.com]: https://nomoregoogle.com/
 [i have been their product]:
   https://quoteinvestigator.com/2017/07/16/product/

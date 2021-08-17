@@ -298,9 +298,9 @@ one hour interview in real time would be preferred.
 Feel free to [check out the rest of the site](/)
 
 [site]: https://www.styled-components.com/
-[maker's schedule]: http://www.paulgraham.com/makersschedule.html
+[maker's schedule]: https://www.paulgraham.com/makersschedule.html
 [jamstack]: https://jamstack.org/
-[gatsby]: http://gatsbyjs.org/
+[gatsby]: https://gatsbyjs.org/
 [graphcms]: https://graphcms.com/
 [sanity.io]: https://www.sanity.io/
 [contentful]: https://www.contentful.com

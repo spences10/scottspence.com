@@ -87,7 +87,7 @@ start with CSS on the page,I took the majority of it from Barry's blog
 page with the intention of modifying it to my own liking.
 
 In the end I took quite a bit of CSS, the
-[Meyer Reset](http://meyerweb.com/eric/tools/css/reset/) was something
+[Meyer Reset](https://meyerweb.com/eric/tools/css/reset/) was something
 I knew nothing of before starting this, now I think it's quite a handy
 thing to have/know.
 

@@ -79,7 +79,7 @@ from that aren't all code related:
 
 ---
 
-[graphcms]: http://graphcms.com/
+[graphcms]: https://graphcms.com/
 [vba]: https://en.wikipedia.org/wiki/Visual_Basic_for_Applications
 [now]: https://zeit.co/now
 [gatsby]: https://www.gatsbyjs.org/

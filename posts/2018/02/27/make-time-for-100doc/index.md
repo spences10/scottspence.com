@@ -191,4 +191,4 @@ junior dev.
 [chingu]: https://medium.com/chingu
 [my portfolio]: https://scottspence.com/#portfolio
 [content on egghead.io]: https://egghead.io/instructors/kentcdodds
-[wesbos.com]: http://wesbos.com/courses/
+[wesbos.com]: https://wesbos.com/courses/

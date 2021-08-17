@@ -33,7 +33,7 @@ So, what I found is that Microsoft really want you to make VSCode
 extensions and give you all the tools you need to do so.
 
 I found guides [here][guide1], [here][guide2] and [here][guide3] all
-of which have you using [Yeoman](http://yeoman.io/) by installing via
+of which have you using [Yeoman](https://yeoman.io/) by installing via
 npm, now I've never heard of Yeoman before trying to do this so I
 don't have an opinion on that apart from to say it was a bit of a
 ballache to get any of it up and running. I tried installing it on

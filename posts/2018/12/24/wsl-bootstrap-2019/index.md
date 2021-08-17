@@ -692,7 +692,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [pros of using n]:
   https://github.com/Microsoft/WSL/issues/776#issuecomment-266112578
 [n-install]: https://github.com/mklement0/n-install
-[hyper]: http://hyper.is
+[hyper]: https://hyper.is
 [firacode]: https://github.com/tonsky/FiraCode
 [git support for vscode]:
   https://github.com/Microsoft/vscode/issues/9502

@@ -91,7 +91,7 @@ learning experience for me
 [benjamin lannon's portfolio]: https://github.com/lannonbr/Portfolio
 [tony alves template]: https://github.com/talves/toast-template
 [toast example site prince]: https://github.com/maxcell/prince-toast
-[react data viz for use in toast]: http://uber.github.io/react-vis/
+[react data viz for use in toast]: https://uber.github.io/react-vis/
 [toast starters]: https://github.com/toastdotdev/starters
 [snowpack]: https://www.snowpack.dev/
 [esm]:

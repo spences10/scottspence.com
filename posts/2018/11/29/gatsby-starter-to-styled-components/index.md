@@ -261,5 +261,5 @@ export default IndexPage
 Here's the [example code] we worked on if you need reference. 👀
 
 [codesandbox]: https://codesandbox.io
-[new codesandbox]: https://codesandbox.io/s/
+[new codesandbox]: https://codesandbox.io/s/github
 [example code]: https://codesandbox.io/s/yp3z16yw11

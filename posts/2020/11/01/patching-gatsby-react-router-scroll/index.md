@@ -150,5 +150,5 @@ can get updates when I [go live] and release new content.
 [specifically for yarn]:
   https://www.npmjs.com/package/patch-package#why-use-postinstall-postinstall-with-yarn
 [livestream]: https://www.twitch.tv/videos/777497800?t=00h29m52s
-[subscribe]: http://ss10.dev/yt?sub_confirmation=1
-[go live]: http://ss10.dev/twitch
+[subscribe]: https://ss10.dev/yt?sub_confirmation=1
+[go live]: https://ss10.dev/twitch

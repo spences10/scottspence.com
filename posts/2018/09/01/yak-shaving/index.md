@@ -94,7 +94,7 @@ it.
 <!-- Links -->
 
 [seth godin article]:
-  http://sethgodin.typepad.com/seths_blog/2005/03/dont_shave_that.html
+  https://sethgodin.typepad.com/seths_blog/2005/03/dont_shave_that.html
 [chingu colabs]: https://chingu.io/
 [marina biletska]: https://github.com/mar-bi
 [grad.then()]: https://github.com/chingu-voyage6/grad.then/issues/191

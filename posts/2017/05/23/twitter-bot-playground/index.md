@@ -1946,7 +1946,7 @@ Copyright (c) 2017, Scott Spence. All rights reserved.
 
 [license-badge]:
   https://img.shields.io/github/license/mashape/apistatus.svg
-[license-url]: http://opensource.org/licenses/MIT
+[license-url]: https://opensource.org/licenses/MIT
 [gitter-bagde]:
   https://badges.gitter.im/awesome-twitter-bots/Lobby.svg
 [gitter-url]:

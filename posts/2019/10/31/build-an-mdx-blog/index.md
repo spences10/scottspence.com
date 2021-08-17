@@ -1867,7 +1867,7 @@ What if you had some way of getting that props code string into the
 clipboard?
 
 I had a look around and found the majority of the components available
-for this sort of thing expected an input until [this] in the Gatsby
+for this sort of thing expected an input until this in the Gatsby
 source code. Which is creating the input for you.
 
 So, create a `utils` directory and the `copy-to-clipboard.js` file and
@@ -2845,7 +2845,7 @@ changes to GitHub again.
 
 Once your site is built with a valid url you can then test the
 homepage and a blog page for the correct meta tags with
-[heymeta.com](http://heymeta.com/).
+[heymeta.com](https://heymeta.com/).
 
 <Details buttonText="Check out the Video">
   <YouTube youTubeId="JH1AVanYhwo" />
@@ -2873,7 +2873,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 <!-- Links -->
 
 [windows web-dev bootstrap]:
-  http://scottspence.com/posts/wsl-bootstrap-2019/
+  https://scottspence.com/posts/wsl-bootstrap-2019/
 [ubuntu as well]: https://www.youtube.com/watch?v=eSAsdQuQ-1o
 [codesandbox.io]: https://codesandbox.io
 [gatsby-source-filesystem]:
@@ -2893,13 +2893,11 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
   https://egghead.io/lessons/vue-js-introduction-to-mdx?pl=building-websites-with-mdx-and-gatsby-161e9529
 [chris biscardi]: https://twitter.com/chrisbiscardi
 [duotonedark]:
-  https://github.com/FormidableLabs/prism-react-renderer/blob/master/themes/duotoneDark.js
+  https://github.com/FormidableLabs/prism-react-renderer/blob/master/src/themes/duotoneDark.js
 [nightowl]:
-  https://github.com/FormidableLabs/prism-react-renderer/blob/master/themes/nightOwl.js
+  https://github.com/FormidableLabs/prism-react-renderer/blob/master/src/themes/nightOwl.js
 [the other examples]:
-  https://github.com/FormidableLabs/prism-react-renderer/blob/master/themes
-[this]:
-  https://github.com/gatsbyjs/gatsby/blob/master/www/src/utils/copy-to-clipboard.js
+  https://github.com/FormidableLabs/prism-react-renderer/blob/master/src/themes
 [github pr on seo]: https://github.com/gatsbyjs/gatsby/issues/14125
 [great notes from andrew welch]:
   https://github.com/gatsbyjs/gatsby/pull/10780#issuecomment-451048608
