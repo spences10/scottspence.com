@@ -5,7 +5,7 @@ tags: ['learning', 'career']
 isPrivate: false
 ---
 
-## Cliffs/TL;DR
+Cliffs/TL;DR
 
 I made a [recruiter FAQ] on my personal site for recruiters and
 created an [online CV].

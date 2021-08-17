@@ -16,6 +16,8 @@ isPrivate: false
 
 Let's use the React Context API to change theme in an app!
 
+This is what it will look like by the end of this post:
+
 ![theme switching in react app]
 
 ## But first, some **context**! 🤣

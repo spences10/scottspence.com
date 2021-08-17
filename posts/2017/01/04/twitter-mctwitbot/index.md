@@ -8,14 +8,14 @@ isPrivate: false
 I must say this was great to do and a nice little introduction to node
 and npm.
 
-![twitter logo]
-
 I got to doing this from finding it on [GitHub] I think I was looking
 for the Twitter icon in bootstrap whilst working on my [Random Quote
 Generator] I stumbled across the [twitter-bot-bootstrap] (as you do)
 so after stalling with my progress on the freeCodeCamp(🔥) zipline for
 a Wikipedia viewer I decided to give the Twitter bot a try and managed
 to create it and add it to [Heroku] 🎉"
+
+![twitter logo]
 
 This app didn't work as well as expected though 😦, so I then decided
 to take a look at [@amanhimself]'s Twitter bot he had created for the

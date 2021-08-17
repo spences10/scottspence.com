@@ -8,6 +8,8 @@ isPrivate: false
 We're going to style the basic create react app with styled-components
 to look something like this:
 
+This is what it will look like by the end of this post:
+
 ![theme switch with styled-components]
 
 But first, preamble✨: I have always struggled with styling sites, it

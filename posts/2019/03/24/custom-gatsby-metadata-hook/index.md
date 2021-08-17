@@ -9,7 +9,7 @@ isPrivate: false
   import YouTube from '$lib/components/youtube.svelte'
 </script>
 
-## Hooks ahoy!
+Hooks ahoy!
 
 Ok, let's get it on with the new hotness in Reactland, React Hooks!
 This is a guide covering using the Gatsby custom React hook for

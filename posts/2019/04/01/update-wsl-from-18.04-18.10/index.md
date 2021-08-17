@@ -5,7 +5,7 @@ tags: ['learning', 'wsl', 'guide', 'ubuntu']
 isPrivate: false
 ---
 
-## Already use WSL with Ubuntu? Want an Upgrade??
+Already use WSL with Ubuntu? Want an Upgrade??
 
 This is a guide that will cover upgrading Windows Subsystem Linux
 (WSL) from the current LTS version to the latest 'normal' version

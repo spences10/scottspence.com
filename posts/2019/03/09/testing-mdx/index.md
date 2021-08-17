@@ -5,7 +5,7 @@ tags: ['learning', 'gatsby', 'mdx']
 isPrivate: false
 ---
 
-## Moving to the new hotness!!
+Moving to the new hotness!!
 
 I've now moved this blog over to Gatsby MDX. You can see all the
 changes

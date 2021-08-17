@@ -8,8 +8,6 @@ isPrivate: false
 I'm a published developer! [sort of] Well that was a bit painful, well
 not actually I mean from the documentation I feel I was a bit mislead.
 
-![vscode vba market-place]
-
 So for those of you that know what I do for a living I'm primarily an
 Analyst Developer with a skill set of VBA and SQL which has put me in
 good stead for the last 10+ years. I'm currently 'up-skilling' myself
@@ -17,6 +15,8 @@ on more general programming languages, but enough of that! I basically
 wanted to use [VSCode][vscode] with VBA which is fine as it's just
 text files but I wanted some of the shexy stuff that VSCode comes
 with.
+
+![vscode vba market-place]
 
 I'm not going to go into how awesome (I think) VSCode is here but I
 will mention that for the purpose of me wanting to use (or at least

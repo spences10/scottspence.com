@@ -5,7 +5,7 @@ tags: ['learning', 'guide', 'wsl', 'n', 'node']
 isPrivate: false
 ---
 
-## From scratch to Create React App on Windows
+From scratch to Create React App on Windows
 
 **An opinionated guide on setting up a web development environment on
 Windows 10**
