@@ -87,7 +87,7 @@ learning experience for me
 [toast]: https://github.com/toastdotdev
 [markdown showdown]:
   https://scottspence.com/posts/writing-with-markdown/
-[intro to toast]: https://m-allanson-garden.netlify.app/intro-to-toast
+[intro to toast]: https://www.mikeallanson.com/intro-to-toast
 [benjamin lannon's portfolio]: https://github.com/lannonbr/Portfolio
 [tony alves template]: https://github.com/talves/toast-template
 [toast example site prince]: https://github.com/maxcell/prince-toast

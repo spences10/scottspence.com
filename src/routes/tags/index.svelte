@@ -33,9 +33,8 @@
   {#each tags as tag}
     <li class="my-4 text-xl">
       <a
-        href={`tags/${tag}`}
         class="mr-6 transition link hover:text-primary"
-        >{tag} ({postsByTag[tag].length})</a
+        href={`tags/${tag}`}>{tag} ({postsByTag[tag].length})</a
       >
     </li>
   {/each}

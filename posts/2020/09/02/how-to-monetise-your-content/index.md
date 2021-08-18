@@ -170,7 +170,7 @@ payment pointer in the [settings] panel under 'Web Monetization'.
 [there's a plugin for that]:
   https://github.com/Daudr/gatsby-plugin-web-monetization
 [top level module]:
-  https://github.com/spences10/scottspence.com/blob/production/src/root-wrapper.js#L75
+  https://github.com/spences10/last.scottspence.com/blob/production/src/root-wrapper.js#L79
 [settings]: https://dev.to/settings/misc
 [spelling]:
   https://dictionary.cambridge.org/dictionary/english/monetization

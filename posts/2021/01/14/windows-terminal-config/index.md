@@ -448,7 +448,7 @@ Command Line Blog].
   https://www.youtube.com/watch?v=oHhiMf_6exY&t=225s
 [windows terminal themes]: https://windowsterminalthemes.dev/
 [windows terminal themes github `themes.json` file]:
-  https://github.com/atomcorp/themes/blob/master/server/themes.json
+  https://github.com/atomcorp/themes/blob/master/themes.json
 [campbell]:
   https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#campbell
 [campbell powershell]:

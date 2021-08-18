@@ -1206,16 +1206,17 @@ const Tabletop = require('tabletop')
 const bot = new Twit(config)
 ```
 
-On your [`Google spreadsheet`][google-sheets] you'll need to have a
-header defined and then add your links, we'll use the following for an
-example:
+On your [`Google spreadsheet`] you'll need to have a header defined
+and then add your links, we'll use the following for an example:
 
+```
 | links                        |
 | ---------------------------- |
 | https://www.freecodecamp.com |
 | https://github.com           |
 | https://www.reddit.com       |
 | https://twitter.com          |
+```
 
 Now from Google sheets we can select 'File'>'Publish to the web' and
 copy the link that is generated we can use that in table top.
@@ -1976,7 +1977,7 @@ Copyright (c) 2017, Scott Spence. All rights reserved.
 [npm-tabletop]: https://www.npmjs.com/package/tabletop
 [egghead-tabletop]:
   https://egghead.io/lessons/node-js-retrieve-and-tweet-information-from-google-spreadsheets
-[google-sheets]: sheets.google.com
+[`google spreadsheet`]: https:/sheets.google.com
 [zeit-login]: https://zeit.co/login
 [now]: https://zeit.co/now
 [now-getting-started-cli]:

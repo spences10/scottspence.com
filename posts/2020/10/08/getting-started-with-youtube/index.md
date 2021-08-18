@@ -384,18 +384,15 @@ Thanks again 👍
 [openshot]: https://www.openshot.org/
 [shotcut]: https://shotcut.org/
 [powered by wsl]: https://scottspence.com/posts/wsl-bootstrap-2020/
-[usb lighting]:
-  https://www.amazon.co.uk/gp/product/B07P8LCBS6/ref=ppx_yo_dt_b_search_asin_title
-[fifine usb mic]:
-  https://www.amazon.co.uk/gp/product/B06XQ39XCY/ref=ppx_yo_dt_b_search_asin_title
+[usb lighting]: https://www.amazon.co.uk/gp/product/B07P8LCBS6
+[fifine usb mic]: https://www.amazon.co.uk/gp/product/B06XQ39XCY
 [xsplit vcam]: https://www.xsplit.com/vcam
-[aukey webcam]:
-  https://www.amazon.co.uk/gp/product/B0721MKXQ2/ref=ppx_yo_dt_b_search_asin_title
+[aukey webcam]: https://www.amazon.co.uk/gp/product/B0721MKXQ2
 [2009]: https://www.youtube.com/watch?v=9gk_rl3y_SU
 [obs forum resources section]:
   https://obsproject.com/forum/resources/count-down-adaptive-time.719/
 [large microphone boom arm]:
-  https://www.amazon.co.uk/gp/product/B07JN2CJF9/ref=ppx_yo_dt_b_search_asin_title
+  https://www.amazon.co.uk/gp/product/B07JN2CJF9
 [create a new google account]:
   https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp
 [youtube channel switcher]: https://www.youtube.com/channel_switcher

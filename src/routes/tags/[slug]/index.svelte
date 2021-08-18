@@ -38,8 +38,11 @@
 
 <ul>
   {#each [...postsByTag[slug]] as post}
-    <li>
-      <a href={`/posts/${post.slug}`}>{post.title}</a>
+    <li class="my-4 text-xl">
+      <a
+        class="mr-6 transition link hover:text-primary"
+        href={`/posts/${post.slug}`}>{post.title}</a
+      >
     </li>
   {/each}
 </ul>

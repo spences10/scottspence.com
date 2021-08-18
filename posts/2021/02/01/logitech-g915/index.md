@@ -109,8 +109,7 @@ num pad.
 <!-- Links -->
 
 [logitech g815]: https://scottspence.com/posts/logitech-g815/
-[havit kb395l]:
-  https://www.amazon.co.uk/gp/product/B0767YQQTQ/ref=ox_sc_saved_title_1?smid=A144NZUZAZWQSX&psc=1
+[havit kb395l]: https://www.amazon.co.uk/gp/product/B0767YQQTQ
 
 <!-- Images -->
 

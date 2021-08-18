@@ -322,7 +322,7 @@ be the same amount of latency.
 [serverless og image - part 4 - taking screenshot]:
   https://www.youtube.com/watch?v=ZjGCiBpDZ7g
 [my affiliate link]:
-  http://courses.leighhalliday.com/next-level-next-js?coupon=SCOTT
+  https://courses.leighhalliday.com/next-level-next-js?coupon=SCOTT
 [graphql query in axios]:
   https://scottspence.com/posts/get-graphql-data-with-axios/
 [data transform]:

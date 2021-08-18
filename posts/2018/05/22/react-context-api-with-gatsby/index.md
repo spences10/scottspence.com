@@ -451,10 +451,7 @@ it at (two) different points in the app.
 
 Thanks you for looking at all the code walls!
 
-If you have any feedback [please get in touch]
-
-You can find all the source code to this on my repo for this project
-here: https://scottspence.com/
+If you have any feedback [please get in touch].
 
 <!-- Links -->
 
@@ -464,12 +461,12 @@ here: https://scottspence.com/
 [how to use it]: https://www.youtube.com/watch?v=yzQ_XulhQFw
 [@leighchalliday]: https://twitter.com/leighchalliday
 [styled-components 💅 getting started]:
-  https://scottspence.me/styled-components-getting-started
+  https://scottspence.com/posts/styled-components
 [personal site]: https://scottspence.me
 [here]: https://scottspence.com
 [vs code snippet]:
   https://github.com/spences10/settings/blob/71dc76fb8e11c176f4517431be57c021fb72411a/globalVs.code-snippets#L74-L111
-[please get in touch]: https://scottspence.me/contact
+[please get in touch]: mailto:spences10apps@gmail.com
 [here's the source]:
   https://github.com/spences10/scottspence.me/blob/master/src/components/ThemeSelect.js
 [steve schoger]: https://twitter.com/steveschoger

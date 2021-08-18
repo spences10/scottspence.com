@@ -180,8 +180,7 @@ G5 key is mapped to F5 so it may get annoying.
 
 <!-- Links -->
 
-[havit kb395l]:
-  https://www.amazon.co.uk/gp/product/B0767YQQTQ/ref=ox_sc_saved_title_1?smid=A144NZUZAZWQSX&psc=1
+[havit kb395l]: https://www.amazon.co.uk/gp/product/B0767YQQTQ
 [ruminating]: https://en.wikipedia.org/wiki/Rumination_(psychology)
 [logitech g hub]:
   https://www.logitechg.com/en-gb/innovation/g-hub.html

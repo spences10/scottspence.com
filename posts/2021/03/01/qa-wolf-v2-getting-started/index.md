@@ -42,4 +42,4 @@ launch({ browser: 'webkit' })
 launch({ browser: process.env.BROWSER })
 ```
 
-https://www.qawolf.com/docs/test-localhost
+https://www.qawolf.com/docs/use-localhost#test-localhost

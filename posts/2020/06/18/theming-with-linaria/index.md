@@ -77,10 +77,9 @@ export const theme = {
 
 ## Theming with Linaria
 
-If I wanted to I could create my own theme with Linaria
-[using CSS custom properties](variables) but instead I'm going to be
-using the [Callstack theme provider] which has a hook I can use in
-`useTheme`.
+If I wanted to I could create my own theme with Linaria [using CSS
+custom properties] (variables) but instead I'm going to be using the
+[Callstack theme provider] which has a hook I can use in `useTheme`.
 
 ```bash
 # install the theme provider

@@ -101,6 +101,6 @@ Channel.
 [made some notes]: https://scottspence.com/posts/logitech-g915
 [tags section for wsl]: https://scottspence.com/tags/wsl
 [wavlink usb c laptop universal docking station]:
-  https://www.amazon.co.uk/gp/product/B082SR6GMB/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1
+  https://www.amazon.co.uk/gp/product/B082SR6GMB
 [making a custom config]: https://www.youtube.com/watch?v=iT47xk3F7EA
 [read the post]: http://localhost:3300/posts/windows-terminal-config
