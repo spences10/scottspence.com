@@ -36,6 +36,8 @@
   {url}
 />
 
+<h1 class='font-bold mb-5 text-5xl'>Posts for {slug}</h1>
+
 <ul>
   {#each [...postsByTag[slug]] as post}
     <li class="my-4 text-xl">

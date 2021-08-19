@@ -29,7 +29,7 @@
   title={`Welcome! · ${name}`}
   {description}
   image={ogImageUrl(name, `scottspence.com`, name)}
-  url={`${website}`}
+  url={website}
 />
 
 <LandingHero />
