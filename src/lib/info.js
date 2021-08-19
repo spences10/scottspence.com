@@ -2,7 +2,7 @@ export const name = `Scott Spence`
 
 export const website = `https://scottspence.com`
 
-export const description = `My own little space on the internet, where I write about what I've learned as a web devloper.`
+export const description = `My own little space on the internet, where I write about what I've learned as a web developer mainly Svelte and SvelteKit.`
 
 export const PORTFOLIO_PROJECTS = [
   {

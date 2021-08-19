@@ -37,7 +37,7 @@ We're going to need some links, which are:
 
 - [CodeSandbox docs for importing projects]
 
-- [CodeSandbox import wizard]
+- CodeSandbox import wizard: `https://codesandbox.io/s/github`
 
 - [Gatsby starter blog]
 
@@ -232,7 +232,6 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [ask me anything]: https://github.com/spences10/ama
 [example code]: https://codesandbox.io/s/lqp6p647q
 [gatsby starter blog]: https://github.com/gatsbyjs/gatsby-starter-blog
-[codesandbox import wizard]: https://codesandbox.io/s/github
 [codesandbox docs for importing projects]:
   https://codesandbox.io/docs/importing
 

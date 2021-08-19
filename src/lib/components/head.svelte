@@ -7,6 +7,12 @@
   export let url
 </script>
 
+<!-- 
+  Ahrefs guidance:
+  - Generally recommended <title> length is between 50 and 60 characters  
+  - A general recommendation today is to keep your page <description> between 110 and 160 characters
+-->
+
 <svelte:head>
   <link rel="canonical" href={url} />
   <!-- Meta Tags Generated via https://heymeta.com -->

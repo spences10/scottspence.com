@@ -16,7 +16,8 @@ default starter.
 
 In this example we're going to use the Gatsby default starter you get
 with [CodeSandbox] and add in styled-components, so first up, open a
-[new CodeSandbox] and select Gatsby from the SERVER TEMPLATES.
+new CodeSandbox, go to `https://codesandbox.io/s/github` and select
+Gatsby from the SERVER TEMPLATES.
 
 ## 1. Dependencies
 
@@ -261,5 +262,4 @@ export default IndexPage
 Here's the [example code] we worked on if you need reference. 👀
 
 [codesandbox]: https://codesandbox.io
-[new codesandbox]: https://codesandbox.io/s/github
 [example code]: https://codesandbox.io/s/yp3z16yw11

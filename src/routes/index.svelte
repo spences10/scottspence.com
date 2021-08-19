@@ -26,7 +26,7 @@
 </script>
 
 <Head
-  title={`Welcome! · ${name}`}
+  title={`Hello World! Welcome to my site! Enjoy! · ${name}`}
   {description}
   image={ogImageUrl(name, `scottspence.com`, name)}
   url={website}

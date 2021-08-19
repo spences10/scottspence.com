@@ -25,8 +25,8 @@
 </script>
 
 <Head
-  title={`Portfolio Page · ${name}`}
-  description={`Scott Spence Portfolio page.`}
+  title={`Portfolio Page, recent projects, GitHub contributions and more · ${name}`}
+  description={`${name}'s Portfolio Page. Recent projects, GitHub contributions and more`}
   image={ogImageUrl(
     name,
     `scottspence.com`,
