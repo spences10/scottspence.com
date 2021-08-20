@@ -40,6 +40,7 @@
   import ButtButt from '$lib/components/butt-butt.svelte'
   import Head from '$lib/components/head.svelte'
   import IsPrivateBanner from '$lib/components/is-private-banner.svelte'
+  import PopularPosts from '$lib/components/popular-posts.svelte'
   import TableOfContents from '$lib/components/table-of-contents.svelte'
   import { name, website } from '$lib/info'
   import { ogImageUrl } from '$lib/og-image-url-build'
@@ -115,5 +116,6 @@
   </div>
 
   <div class="mt-8 mb-16 divider" />
+  <PopularPosts />
   <ButtButt />
 </article>
