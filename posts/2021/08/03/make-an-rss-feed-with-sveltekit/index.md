@@ -19,112 +19,44 @@ I made an RSS feed for my [blog] using SvelteKit routes. Much like the
 [Sitemap Generation for Dynamic Routes In NextJS with the Sanity
 Client] post I did back in February.
 
-## RSS route
+## RSS on [`scottspence.com`](https://scottspence.com)
 
 So as my blog is a SvelteKit project I can use the SvelteKit [routing
 endpoints] to define the data type I want returned from that endpoint.
 
 RSS feeds are expected in XML format and I want my endpoint to be
-[`https://scottspence.com/rss.xml`] so I'll define a file in my routes
-folder called `rss.xml.js` this is located in the routes folder of the
-project, so the full path would be `src/routes/rss.xml.js`.
+[`https://scottspence.com/rss.xml`] so I've defined a file in my
+routes folder called `rss.xml.js` this is located in the routes folder
+of the project, so the full path would be `src/routes/rss.xml.js`.
 
-`rss.xml.js`
+## RSS route
 
-In the file define the `get` function and set up the headers:
+For this guide I'll using the great [template from Matt Jennings]
+(which this blog is based off of) as an example of how to do it.
 
-```js
-export async function get() {
-  const headers = {
-    'Cache-Control': 'max-age=0, s-maxage=600',
-    'Content-Type': 'application/xml',
-  }
-  return {
-    headers,
-  }
-}
+I'm using the template as it's the most basic example to use and there
+won't be any additional user specific routes that will need to be
+taken into account.
+
+Let's take a quick look at how the project is structured:
+
+```bash
+sveltekit-blog-template/
+├─ posts/
+├─ src/
+│ └─ lib/
+│ └─ routes/
+│ │ └─ posts/
+│ │   └─ [slug].svelte/
+│ │─ __layout.svelte/
+│ └─ index.svelte/
+...rest of the files
 ```
 
-<Details buttonText="Expand to see the full code.">
+I've left some of the filing structure that isn't relevant right now.
 
-```js
-import { getPosts } from '$lib/get-posts'
-import { description, name, website } from '$lib/info'
-import { format } from 'date-fns'
-
-export async function get() {
-  const postsMeta = await getPosts()
-  const body = render(postsMeta)
-
-  const headers = {
-    'Cache-Control': `max-age=0, s-max-age=${600}`,
-    'Content-Type': 'application/xml',
-  }
-  return {
-    headers,
-    body,
-  }
-}
-
-const render =
-  postsMeta => `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
-  <channel>
-    <title>
-      <![CDATA[ ${name}'s Blog! ]]>
-    </title>
-    <description>
-      <![CDATA[ ${description} ]]>
-    </description>
-    <link>${website}</link>
-    <generator>RSS for Node</generator>
-    <lastBuildDate>Tue, 20 Jul 2021 14:52:01 GMT</lastBuildDate>
-    <atom:link href="${website}/rss.xml" rel="self" type="application/rss+xml"/>
-    ${postsMeta
-      .map(
-        meta =>
-          `
-        <item>
-          <title>
-            <![CDATA[ ${meta.title} ]]>
-          </title>
-          <description>
-            <![CDATA[ ${meta.preview} ]]>
-          </description>
-          <link>${website}/posts/${meta.slug}/</link>
-          <guid isPermaLink="false">${website}/posts/${
-            meta.slug
-          }/</guid>
-          <dc:creator>
-            <![CDATA[ ${name} ]]>
-          </dc:creator>
-          <pubDate>
-            ${format(
-              new Date(meta.date),
-              'EE, dd MMM yyyy HH:mm:ss O'
-            )}
-          </pubDate>
-          <content:encoded>${meta.previewHtml} 
-            <div style="margin-top: 50px; font-style: italic;">
-              <strong>
-                <a href="${website}/posts/${meta.slug}/">
-                  Keep reading
-                </a>.
-              </strong>  
-            </div>
-          </content:encoded>
-        </item>
-      `
-      )
-      .join('')}
-  </channel>
-</rss>
-`
-```
-
-</Details>
-
-David Parker has a [great post] on this with a more generic example
-for getting the posts data for the feed.
+For now I want to focus on the routes folder as this is where I'll be
+creating the RSS page.
 
 <!-- Links -->
 
@@ -133,5 +65,5 @@ for getting the posts data for the feed.
   https://scottspence.com/posts/dynamic-sitemap-generation-with-nextjs-and-sanity
 [routing endpoints]: https://kit.svelte.dev/docs#routing-endpoints
 [`https://scottspence.com/rss.xml`]: https://scottspence.com/rss.xml
-[great post]:
-  https://www.davidwparker.com/posts/how-to-make-an-rss-feed-in-sveltekit
+[template from matt jennings]:
+  https://github.com/mattjennings/sveltekit-blog-template
