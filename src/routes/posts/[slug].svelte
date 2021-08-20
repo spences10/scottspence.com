@@ -55,6 +55,7 @@
   export let readingTime
   export let slug
   export let isPrivate
+  export let tags
 
   const url = `${website}/posts/${slug}`
 
@@ -96,6 +97,10 @@
     >
     •
     <span>{readingTime.text}</span>
+    <br>
+    {#each tags as tag}
+       <span class='mr-1 badge badge-primary'>{tag}</span>
+    {/each}
   </div>
   {#if isPrivate}
     <IsPrivateBanner />

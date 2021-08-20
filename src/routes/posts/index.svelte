@@ -26,7 +26,7 @@
     keys: ['title', 'tags', 'preview'],
     includeScore: true,
     includeMatches: true,
-    threshold: 0.2,
+    threshold: 0.4,
   }
   let fuse = new Fuse(posts, options)
   let query = ''
