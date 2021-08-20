@@ -37,14 +37,14 @@
 </script>
 
 <script>
-  import ButtButt from '$lib/components/butt-butt.svelte';
-  import Head from '$lib/components/head.svelte';
-  import IsPrivateBanner from '$lib/components/is-private-banner.svelte';
-  import TableOfContents from '$lib/components/table-of-contents.svelte';
-  import { name,website } from '$lib/info';
-  import { ogImageUrl } from '$lib/og-image-url-build';
-  import { format } from 'date-fns';
-  import { onMount } from 'svelte';
+  import ButtButt from '$lib/components/butt-butt.svelte'
+  import Head from '$lib/components/head.svelte'
+  import IsPrivateBanner from '$lib/components/is-private-banner.svelte'
+  import TableOfContents from '$lib/components/table-of-contents.svelte'
+  import { name, website } from '$lib/info'
+  import { ogImageUrl } from '$lib/og-image-url-build'
+  import { format } from 'date-fns'
+  import { onMount } from 'svelte'
 
   export let component
 
@@ -91,15 +91,20 @@
 
 <article>
   <h1 class="font-black mb-1 text-5xl">{title}</h1>
-  <div class='mb-10 uppercase'>
+  <div class="mb-10 mt-4 uppercase">
     <time datetime={new Date(date).toISOString()}
       >{format(new Date(date), 'MMMM d, yyyy')}</time
     >
     •
     <span>{readingTime.text}</span>
-    <br>
+    <br />
     {#each tags as tag}
-       <span class='mr-1 badge badge-primary'>{tag}</span>
+      <a href={`/tags/${tag}`}>
+        <span
+          class="mr-1 badge badge-primary transition hover:bg-secondary-focus"
+          >{tag}</span
+        >
+      </a>
     {/each}
   </div>
   {#if isPrivate}
