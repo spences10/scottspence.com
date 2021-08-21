@@ -45,7 +45,7 @@
   on:enterViewport={() => (intersecting = true)}
   on:exitViewport={() => (intersecting = false)}
 >
-  <aside class="mb-12 text-center">
+  <aside class="mb-12 text-center all-prose">
     <p class="mb-6">
       Looks like you have reached the bottom of this page!
     </p>
