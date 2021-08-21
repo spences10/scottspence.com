@@ -2,7 +2,7 @@
 date: 2021-08-21
 title: Make a Sitemap with Sveltekit
 tags: ['svelte', 'sveltekit', 'seo', 'guide', 'how-to']
-isPrivate: true
+isPrivate: false
 ---
 
 If you want to rank on Google (and other search engines) you need to
