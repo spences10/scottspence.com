@@ -83,10 +83,12 @@ Now to create the endpoint for where the RSS feed will be located:
 touch src/routes/rss.xml.js
 ```
 
-In the `rss.xml.js` file I'll create a `get` function which will need
+Now if I go to `localhost:3000/rss.xml` I get a 404.
+
+In the `rss.xml.js` file I'll create a `get()` function which will need
 to return the RSS XML and the headers for the endpoint, the XML is
 inside [template literals] so I can add in the dynamic data I want to
-return:
+return later in this post:
 
 ```js
 export async function get() {
