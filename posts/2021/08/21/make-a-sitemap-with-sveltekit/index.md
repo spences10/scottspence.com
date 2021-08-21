@@ -118,18 +118,254 @@ as an example here. You can check out Sitemaps XML format over on
 Now if I go check `localhost:3000/rss.xml` I get the beginning of my
 RSS feed.
 
-## Adding pages/posts to the sitemap
+## Hardcoding pages into the sitemap
+
+First up I'll tackle the first url which isn't going to change, the
+site URL.
+
+In Matt's template there's an `info.js` file that contains the project
+`name` and `website` links. I'll import the `website` and use that.
+
+```js
+import { website } from '$lib/info'
+
+export async function get() {
+  const headers = {
+    'Cache-Control': 'max-age=0, s-maxage=3600',
+    'Content-Type': 'application/xml',
+  }
+  return {
+    headers,
+    body: `<?xml version="1.0" encoding="UTF-8" ?>
+    <urlset
+      xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
+      xmlns:xhtml="https://www.w3.org/1999/xhtml"
+      xmlns:mobile="https://www.google.com/schemas/sitemap-mobile/1.0"
+      xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
+      xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
+    >
+      <url>
+        <loc>${website}</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.7</priority>
+      </url>
+    </urlset>`,
+  }
+}
+```
+
+That was straightforward enough, right? That's only one page though so
+the Googlebot isn't going to be doing much with that.
+
+## Adding posts to sitemap
+
+Because the posts routes are dynamically generated I'll need to create
+a little helper function for the posts, I'll use a trimmed down
+version of what Matt uses in the homepage (`src/routes/index.js`) to
+get the posts.
+
+I'll create a `get-posts.js` in the `lib` directory of the project:
+
+```bash
+# create the file
+touch src/lib/get-posts.js
+```
+
+Here's what the function for `getPosts` looks like:
+
+```js
+export async function getPosts() {
+  const posts = await Object.entries(
+    import.meta.globEager('/posts/**/*.md')
+  )
+    // get post metadata
+    .map(([, post]) => post.metadata)
+    // sort by date
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+
+  return posts
+}
+```
+
+I can now import that into the `sitemap.xml.js` file so I can map over
+the posts returned from the `getPosts` function inside the XML markup
+using tags `${}`.
+
+Before I do that though I'll move the markup out into a function so
+it's not cluttering up the return of the `get()` function.
+
+I can pass the `posts` from the `getPosts()` function into this, then
+I can map over each post and render out the markup for each one:
+
+```js
+const sitemap = posts => `<?xml version="1.0" encoding="UTF-8" ?>
+<urlset
+  xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
+  xmlns:xhtml="https://www.w3.org/1999/xhtml"
+  xmlns:mobile="https://www.google.com/schemas/sitemap-mobile/1.0"
+  xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
+>
+  <url>
+    <loc>${website}</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  ${posts
+    .map(post =>
+      post.isPrivate
+        ? null
+        : `
+  <url>
+    <loc>${website}/posts/${post.slug}</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  `
+    )
+    .join('')}
+</urlset>`
+```
+
+Now in the get function I'll pass the `posts` from the `getPosts()`
+into the `sitemap` function and use that for the body return of
+`getPosts()`.
+
+Here's the full file:
+
+```js
+import { getPosts } from '$lib/get-posts'
+import { website } from '$lib/info'
+
+export async function get() {
+  const posts = await getPosts()
+  const body = sitemap(posts)
+
+  const headers = {
+    'Cache-Control': 'max-age=0, s-maxage=3600',
+    'Content-Type': 'application/xml',
+  }
+  return {
+    headers,
+    body,
+  }
+}
+
+const sitemap = posts => `<?xml version="1.0" encoding="UTF-8" ?>
+<urlset
+  xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
+  xmlns:xhtml="https://www.w3.org/1999/xhtml"
+  xmlns:mobile="https://www.google.com/schemas/sitemap-mobile/1.0"
+  xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
+>
+  <url>
+    <loc>${website}</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  ${posts
+    .map(post =>
+      post.isPrivate
+        ? null
+        : `
+  <url>
+    <loc>${website}/posts/${post.slug}</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  `
+    )
+    .join('')}
+</urlset>`
+```
+
+## Next steps from here
 
 There's some aspects of this project that wont change very often, like
-the routes for the homepage, I could hardcode these into the XML
-directly.
+the routes for the homepage, about page etc. I could hardcode these
+into the XML directly.
 
-But rather than doing that I'll add the pages to an array variable so
+But rather than doing that I can add the pages to an array variable so
 that I can add any new pages that exist in the `src/routes` to it.
 
-This is for pages that are not dynamically generated, I can add any
-new pages to the array rather than creating a new `<url>` element for
-each new page that's added.
+I can add any new pages to the array rather than creating a new
+`<url>` element for each new page that's added. Here's an example of
+how that may look:
+
+```js
+import { getPosts } from '$lib/get-posts'
+import { website } from '$lib/info'
+
+export async function get() {
+  const posts = await getPosts()
+  const pages = [`about`, `newsletter`, `privacy-policy`]
+  const body = sitemap(posts, pages)
+
+  const headers = {
+    'Cache-Control': 'max-age=0, s-maxage=3600',
+    'Content-Type': 'application/xml',
+  }
+  return {
+    headers,
+    body,
+  }
+}
+
+const sitemap = (
+  posts,
+  pages
+) => `<?xml version="1.0" encoding="UTF-8" ?>
+<urlset
+  xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
+  xmlns:xhtml="https://www.w3.org/1999/xhtml"
+  xmlns:mobile="https://www.google.com/schemas/sitemap-mobile/1.0"
+  xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
+>
+  <url>
+    <loc>${website}</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  ${pages
+    .map(
+      page => `
+  <url>
+    <loc>${website}/${page}</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  `
+    )
+    .join('')}
+  ${posts
+    .map(post =>
+      post.isPrivate
+        ? null
+        : `
+  <url>
+    <loc>${website}/posts/${post.slug}</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  `
+    )
+    .join('')}
+</urlset>`
+```
+
+## Conclusion
+
+Alright, I've gone through and created a sitemap that contains all the
+pages on the project.
+
+I hope this has given you enough information to get started with
+making your own sitemap on your SvelteKit projects.
 
 <!-- Links -->
 
