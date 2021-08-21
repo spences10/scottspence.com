@@ -27,7 +27,7 @@ const render =
     </description>
     <link>${website}</link>
     <generator>RSS for Node</generator>
-    <lastBuildDate>Tue, 20 Jul 2021 14:52:01 GMT</lastBuildDate>
+    <lastBuildDate>${new Date()}</lastBuildDate>
     <atom:link href="${website}/rss.xml" rel="self" type="application/rss+xml"/>
     ${postsMeta
       .map(
