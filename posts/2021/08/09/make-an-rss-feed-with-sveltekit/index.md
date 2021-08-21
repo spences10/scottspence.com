@@ -5,10 +5,6 @@ tags: ['svelte', 'sveltekit', 'rss', 'guide', 'how-to']
 isPrivate: false
 ---
 
-<script>
-  import Details from '$lib/components/details.svelte'
-</script>
-
 The indie web is alive and well and there are more and more people
 taking control and owning their online presence and also how they
 consume other content. One way to help consumers of your site know
