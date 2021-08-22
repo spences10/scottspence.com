@@ -116,6 +116,21 @@ export const PEOPLE = [
     met: true,
   },
   {
+    name: `Phil Pluckthun`,
+    link: `https://twitter.com/_philpl`,
+    met: true,
+  },
+  {
+    name: `Phil Hawksworth`,
+    link: `https://twitter.com/philhawksworth`,
+    met: false,
+  },
+  {
+    name: `Marc Littlemore`,
+    link: `https://twitter.com/MarcLittlemore`,
+    met: true,
+  },
+  {
     name: `James Perkins`,
     link: `https://twitter.com/james_r_perkins`,
     met: false,
