@@ -36,7 +36,9 @@ GraphCMS.
 I find it hard to identify my traits, so instead I took the
 [16Personalities] test, here are [my results].
 
-## My interests
+I like to think of myself as a easy to approach and friendly person.
+
+### My interests
 
 I'm obsessed with watching anything to do with mechanical engineering.
 
@@ -67,14 +69,30 @@ from that aren't all code related:
 
 **Darknet Diaries**
 
+Stories of cyber threats/breaches that happened on the internet, these
+are stories from the past not covering current tech security. Super
+intersting to listen to.
+
 <Deezer
   frameSrc="show/496882"
 />
 
-**Indie Hackers**
+**Random But Memorable**
+
+From the makers od 1Password for security advice and a round-up of the
+latest security news.
 
 <Deezer
-  frameSrc="show/618372"
+  frameSrc="show/401552"
+/>
+
+**Land of the Giants**
+
+Stories about big tech and how it's changing the world, the latest
+series covers the food delivery industry.
+
+<Deezer
+  frameSrc="show/679992"
 />
 
 ---
