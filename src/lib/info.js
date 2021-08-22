@@ -103,3 +103,101 @@ export const SITE_LINKS = [
     id: `4RFXKMAJ`,
   },
 ]
+
+export const PEOPLE = [
+  {
+    name: `Rodney Lab`,
+    link: `https://twitter.com/askRodney`,
+    met: false,
+  },
+  {
+    name: `David Darnes`,
+    link: `https://twitter.com/DavidDarnes`,
+    met: true,
+  },
+  {
+    name: `James Perkins`,
+    link: `https://twitter.com/james_r_perkins`,
+    met: false,
+  },
+  {
+    name: `Victoria Bergquist `,
+    link: `https://twitter.com/vicbergquist`,
+    met: true,
+  },
+  {
+    name: `Aman Mittal`,
+    link: `https://twitter.com/amanhimself`,
+    met: false,
+  },
+  {
+    name: `Nicky Meuleman`,
+    link: `https://twitter.com/NMeuleman`,
+    met: false,
+  },
+  {
+    name: `Nick De Jesus`,
+    link: `https://twitter.com/Dayhaysoos`,
+    met: false,
+  },
+  {
+    name: `Tom Hirst`,
+    link: `https://twitter.com/tom_hirst`,
+    met: false,
+  },
+  {
+    name: `Rich Haines`,
+    link: `https://twitter.com/studio_hungry`,
+    met: false,
+  },
+  {
+    name: `Paul Scanlon`,
+    link: `https://twitter.com/PaulieScanlon`,
+    met: false,
+  },
+  {
+    name: `Marc Backes`,
+    link: `https://twitter.com/themarcba`,
+    met: false,
+  },
+  {
+    name: `Catalin Pit`,
+    link: `https://twitter.com/catalinmpit`,
+    met: false,
+  },
+  {
+    name: `Danny Thompson`,
+    link: `https://twitter.com/DThompsonDev`,
+    met: false,
+  },
+  {
+    name: `Debs O'Brien`,
+    link: `https://twitter.com/debs_obrien`,
+    met: false,
+  },
+  {
+    name: `Pouya Saadeghi`,
+    link: `https://twitter.com/Saadeghi`,
+    met: false,
+  },
+  {
+    name: `Scott Tolinski`,
+    link: `https://twitter.com/stolinski`,
+    met: false,
+  },
+  {
+    name: `Wes Bos`,
+    link: `https://twitter.com/wesbos`,
+    met: false,
+  },
+  {
+    name: `Ken Wheeler`,
+    link: `https://twitter.com/ken_wheeler`,
+    met: true,
+  },
+  {
+    name: `Jamie Barton`,
+    link: `https://twitter.com/notrab`,
+    met: true,
+  },
+]
