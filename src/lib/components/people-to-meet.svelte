@@ -8,7 +8,11 @@
 </script>
 
 <article class="m-0 mb-20 sm:-mx-30 lg:-mx-40 ">
-  <a href='#people-id-like-to-meet' id='people-id-like-to-meet' class="font-bold text-2xl mb-2">
+  <a
+    href="#people-id-like-to-meet"
+    id="people-id-like-to-meet"
+    class="font-bold mb-2 text-2xl"
+  >
     People I'd like to meet in real life (aka the meatspace).
   </a>
 
@@ -21,7 +25,7 @@
   </p>
 
   <ul
-    class="grid gap-7 grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-10"
+    class="mb-10 grid gap-4 grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
   >
     {#each PEOPLE as { name, link, met }}
       <li class="">
@@ -36,7 +40,9 @@
   </ul>
 
   <div class="md:flex md:items-center">
-    <p class="all-prose md:mr-5 mb-3 md:mb-0">Not on the list? Want to meet up?</p>
+    <p class="mb-3 all-prose md:mr-5 md:mb-0">
+      Not on the list? Want to meet up?
+    </p>
     <a
       class="btn btn-sm"
       rel="noopener"
@@ -48,7 +54,7 @@
 
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="block fill-current text-primary hover:text-secondary transition h-5 w-5"
+          class="h-5 fill-current text-primary transition w-5 block hover:text-secondary"
           viewBox="0 0 20 20"
           fill="currentColor"
           ><path
