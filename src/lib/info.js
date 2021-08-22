@@ -121,7 +121,7 @@ export const PEOPLE = [
     met: false,
   },
   {
-    name: `Victoria Bergquist `,
+    name: `Victoria Bergquist`,
     link: `https://twitter.com/vicbergquist`,
     met: true,
   },
@@ -129,6 +129,11 @@ export const PEOPLE = [
     name: `Aman Mittal`,
     link: `https://twitter.com/amanhimself`,
     met: false,
+  },
+  {
+    name: `Carlos Rufo`,
+    link: `https://twitter.com/swcarlosrj`,
+    met: true,
   },
   {
     name: `Nicky Meuleman`,
@@ -144,6 +149,11 @@ export const PEOPLE = [
     name: `Tom Hirst`,
     link: `https://twitter.com/tom_hirst`,
     met: false,
+  },
+  {
+    name: `Sean Grove`,
+    link: `https://twitter.com/sgrove`,
+    met: true,
   },
   {
     name: `Rich Haines`,
@@ -163,6 +173,11 @@ export const PEOPLE = [
   {
     name: `Catalin Pit`,
     link: `https://twitter.com/catalinmpit`,
+    met: false,
+  },
+  {
+    name: `Wes Bos`,
+    link: `https://twitter.com/wesbos`,
     met: false,
   },
   {
@@ -186,11 +201,6 @@ export const PEOPLE = [
     met: false,
   },
   {
-    name: `Wes Bos`,
-    link: `https://twitter.com/wesbos`,
-    met: false,
-  },
-  {
     name: `Ken Wheeler`,
     link: `https://twitter.com/ken_wheeler`,
     met: true,
@@ -199,5 +209,230 @@ export const PEOPLE = [
     name: `Jamie Barton`,
     link: `https://twitter.com/notrab`,
     met: true,
+  },
+  {
+    name: `Benedicte Raae`,
+    link: `http://twitter.com/raae`,
+    met: false,
+  },
+  {
+    name: `Matt Jennings`,
+    link: `https://twitter.com/mattjennings44`,
+    met: false,
+  },
+  {
+    name: `Dave Bittner`,
+    link: `https://twitter.com/bittner`,
+    met: false,
+  },
+  {
+    name: `Jed Watson`,
+    link: `https://twitter.com/JedWatson`,
+    met: false,
+  },
+  {
+    name: `Kevin Canlas`,
+    link: `https://twitter.com/kvncnls`,
+    met: false,
+  },
+  {
+    name: `Angie Jones`,
+    link: `https://twitter.com/techgirl1908`,
+    met: false,
+  },
+  {
+    name: `Jake Archibald`,
+    link: `https://twitter.com/jaffathecake`,
+    met: false,
+  },
+  {
+    name: `Tan Li Hau`,
+    link: `https://twitter.com/lihautan`,
+    met: false,
+  },
+  {
+    name: `Ron Au`,
+    link: `https://twitter.com/ronvoluted`,
+    met: false,
+  },
+  {
+    name: `Guillermo Rauch`,
+    link: `https://twitter.com/rauchg`,
+    met: false,
+  },
+  {
+    name: `Steve Schoger`,
+    link: `https://twitter.com/steveschoger`,
+    met: false,
+  },
+  {
+    name: `Jesse Skinner`,
+    link: `https://twitter.com/JesseSkinner`,
+    met: false,
+  },
+  {
+    name: `Jack Forge`,
+    link: `https://twitter.com/TheJackForge`,
+    met: false,
+  },
+  {
+    name: `Rich Harris`,
+    link: `https://twitter.com/Rich_Harris`,
+    met: false,
+  },
+  {
+    name: `Salma`,
+    link: `https://twitter.com/whitep4nth3r`,
+    met: false,
+  },
+  {
+    name: `Jenny Potts`,
+    link: `https://twitter.com/jennycodes`,
+    met: false,
+  },
+  {
+    name: `Sophie Koonin`,
+    link: `https://twitter.com/type__error`,
+    met: true,
+  },
+  {
+    name: `Fred K Schott`,
+    link: `https://twitter.com/FredKSchott`,
+    met: false,
+  },
+  {
+    name: `Alex Naydenov`,
+    link: `https://twitter.com/vremigrant`,
+    met: false,
+  },
+  {
+    name: `John Otander`,
+    link: `https://twitter.com/4lpine`,
+    met: true,
+  },
+  {
+    name: `Frederik Eychenié`,
+    link: `https://twitter.com/feychenie`,
+    met: false,
+  },
+  {
+    name: `Michael Lukaszczyk`,
+    link: `https://twitter.com/m_lukaszczyk`,
+    met: false,
+  },
+  {
+    name: `Ben Awad`,
+    link: `https://twitter.com/benawad`,
+    met: false,
+  },
+  {
+    name: `Mark Freeman`,
+    link: `https://twitter.com/nitecoda1`,
+    met: false,
+  },
+  {
+    name: `Sam Larsen Disney`,
+    link: `https://twitter.com/SamLarsenDisney`,
+    met: false,
+  },
+  {
+    name: `Kevin Lewis`,
+    link: `https://twitter.com/_phzn`,
+    met: true,
+  },
+  {
+    name: `Tim Benniks`,
+    link: `https://twitter.com/timbenniks`,
+    met: false,
+  },
+  {
+    name: `Eli Schutze`,
+    link: `https://twitter.com/elibelly`,
+    met: true,
+  },
+  {
+    name: `Jamie Bradley`,
+    link: `https://twitter.com/jamiebradley234`,
+    met: true,
+  },
+  {
+    name: `Michael Brooks`,
+    link: `https://twitter.com/MBrooksUK`,
+    met: false,
+  },
+  {
+    name: `Pauline Narvas`,
+    link: `https://twitter.com/paulienuh`,
+    met: false,
+  },
+  {
+    name: `Lovell Fuller`,
+    link: `https://twitter.com/lovell`,
+    met: true,
+  },
+  {
+    name: `Jack Ellis`,
+    link: `https://twitter.com/JackEllis`,
+    met: false,
+  },
+  {
+    name: `Domitrius Clark`,
+    link: `https://twitter.com/domitriusclark`,
+    met: false,
+  },
+  {
+    name: `Rafa`,
+    link: `https://twitter.com/rafahari`,
+    met: false,
+  },
+  {
+    name: `James Q Quick`,
+    link: `https://twitter.com/jamesqquick`,
+    met: false,
+  },
+  {
+    name: `Telmo`,
+    link: `https://twitter.com/telmo`,
+    met: false,
+  },
+  {
+    name: `Chris Bongers`,
+    link: `https://twitter.com/DailyDevTips1`,
+    met: false,
+  },
+  {
+    name: `Ania Kubów`,
+    link: `https://twitter.com/ania_kubow`,
+    met: false,
+  },
+  {
+    name: `Ro`,
+    link: `https://twitter.com/rothecoder`,
+    met: false,
+  },
+  {
+    name: `Brittney Postma`,
+    link: `https://twitter.com/BrittneyPostma`,
+    met: false,
+  },
+  {
+    name: `Lors`,
+    link: `https://twitter.com/miss_lorsx`,
+    met: false,
+  },
+  {
+    name: `Alex Thomas`,
+    link: `https://twitter.com/graftoverflow`,
+    met: false,
+  },
+  {
+    name: `Ronak Ganatra`,
+    link: `https://twitter.com/gunnyganatra`,
+    met: false,
+  },
+  {
+    name: `Jon Hilton`,
+    link: `https://twitter.com/jonhilt`,
+    met: false,
   },
 ]

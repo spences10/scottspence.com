@@ -2,13 +2,9 @@
   import { PEOPLE } from '$lib/info'
   import PeopleToMeetCheck from './people-to-meet-check.svelte'
 
-  const peopleSorted = PEOPLE.sort((a, b) => {
-    return a.met - b.met
-  })
-
-  console.log('=====================')
-  console.log({ peopleSorted })
-  console.log('=====================')
+  // const peopleSorted = PEOPLE.sort((a, b) => {
+  //   return a.met - b.met
+  // })
 </script>
 
 <article class="m-0 mb-20 sm:-mx-30 lg:-mx-40 ">
@@ -25,9 +21,9 @@
   </p>
 
   <ul
-    class="grid gap-7 grid-cols-1 relative md:grid-cols-3 lg:grid-cols-4"
+    class="grid gap-7 grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
   >
-    {#each peopleSorted as { name, link, met }}
+    {#each PEOPLE as { name, link, met }}
       <li class="">
         <div class="flex text-left items-center">
           <PeopleToMeetCheck {met} />
