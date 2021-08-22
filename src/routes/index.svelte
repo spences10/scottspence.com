@@ -19,6 +19,7 @@
 <script>
   import Head from '$lib/components/head.svelte'
   import LandingHero from '$lib/components/landing-hero.svelte'
+  import PeopleToMeet from '$lib/components/people-to-meet.svelte'
   import { description, name, website } from '$lib/info'
   import { ogImageUrl } from '$lib/og-image-url-build'
 
@@ -34,6 +35,8 @@
 
 <LandingHero />
 
-<article class="all-prose">
+<article class="all-prose mb-10">
   <svelte:component this={Copy} />
 </article>
+
+<PeopleToMeet />
