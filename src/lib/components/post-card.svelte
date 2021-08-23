@@ -7,7 +7,7 @@
 <article
   class="mb-5 p-5 transition card bordered hover:text-accent-focus first:pt-0"
 >
-  <a href={`/posts/${post.slug}`}>
+  <a sveltekit:prefetch href={`/posts/${post.slug}`}>
     <div>
       <h2 class="font-black mb-1 text-3xl">
         {post.title}

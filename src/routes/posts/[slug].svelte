@@ -100,7 +100,7 @@
     <span>{readingTime.text}</span>
     <br />
     {#each tags as tag}
-      <a href={`/tags/${tag}`}>
+      <a sveltekit:prefetch href={`/tags/${tag}`}>
         <span
           class="mr-1 badge badge-primary transition hover:bg-secondary-focus"
           >{tag}</span

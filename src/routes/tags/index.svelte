@@ -61,6 +61,7 @@
       <li class="my-4 text-xl">
         <a
           class="mr-6 transition link hover:text-primary"
+          sveltekit:prefetch
           href={`tags/${tag}`}>{tag} ({postsByTag[tag].length})</a
         >
       </li>
@@ -70,6 +71,7 @@
       <li class="my-4 text-xl">
         <a
           class="mr-6 transition link hover:text-primary"
+          sveltekit:prefetch
           href={`tags/${item}`}>{item} ({postsByTag[item].length})</a
         >
       </li>

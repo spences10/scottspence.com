@@ -1,6 +1,6 @@
 <script>
-  import { POPULAR_POSTS,SITE_LINKS } from '$lib/info';
-  import { trackGoal } from 'fathom-client';
+  import { POPULAR_POSTS, SITE_LINKS } from '$lib/info'
+  import { trackGoal } from 'fathom-client'
 </script>
 
 <footer
@@ -13,7 +13,11 @@
       <div class="space-y-8 xl:col-span-1">
         <div class="">
           <div class="rounded-full overflow-hidden h-14 mb-8 w-14">
-            <img src="/mug-face.png" alt="scott profile" class='object-cover' />
+            <img
+              src="/mug-face.png"
+              alt="scott profile"
+              class="object-cover"
+            />
           </div>
         </div>
         <p class="text-left text-primary-content">
@@ -137,9 +141,8 @@
               {#each POPULAR_POSTS as post}
                 <li>
                   <a
+                    sveltekit:prefetch
                     href={`/${post.slug}`}
-                    alt={post.title}
-                    key={post.slug}
                     class="text-primary-content hover:opacity-50"
                   >
                     {post.title}
@@ -158,10 +161,9 @@
               {#each SITE_LINKS as link}
                 <li>
                   <a
+                    sveltekit:prefetch
                     href={`/${link.slug}`}
                     on:click={() => trackGoal(link.id)}
-                    alt={link.title}
-                    key={link.slug}
                     class="text-primary-content hover:opacity-50"
                   >
                     {link.title}
