@@ -10,7 +10,7 @@
     class="grid z-10 gap-4 grid-cols-1 relative md:grid-cols-2 lg:grid-cols-4"
   >
     {#each POPULAR_POSTS as post}
-      <a class="h-max" href={`/${post.slug}`}>
+      <a class="h-max" sveltekit:prefetch href={`/${post.slug}`}>
         <aside
           class="rounded-xl font-bold h-full p-5 transition card bordered hover:text-accent-focus"
         >
@@ -18,7 +18,7 @@
             {post.title}
           </h3>
           <div class="mt-5">
-            <span class="text-secondary mb-4 bottom-0 absolute"
+            <span class="text-primary mb-4 bottom-0 absolute"
               >Views: {post.views}</span
             >
           </div>
