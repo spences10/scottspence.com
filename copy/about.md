@@ -40,7 +40,8 @@ I like to think of myself as a easy to approach and friendly person.
 
 ### My interests
 
-I'm obsessed with watching anything to do with mechanical engineering.
+I'm obsessed with watching anything to do with mechanical engineering
+and restorations on YouTube.
 
 I play Borderlands 3 on Stadia, then Borderlands 1 and 2 on the
 Nintendo Switch.
