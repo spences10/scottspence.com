@@ -11,13 +11,16 @@
   <a
     href="#people-id-like-to-meet"
     id="people-id-like-to-meet"
-    class="font-bold mb-2 text-2xl"
+    class="font-bold text-2xl"
   >
     People I'd like to meet in real life (aka the meatspace).
   </a>
+  <p class="mb-1 -mt-1 all-prose">
+    These are all people I'd like to share a firm handshake with.
+  </p>
 
-  <p class="text-sm text-secondary mb-5">
-    Totally stolen this idea from
+  <p class="text-sm text-secondary mb-9">
+    Idea totally stolen from
     <a
       class="transition link hover:text-primary"
       href="https://rafa.design/">Rafael Conde</a
