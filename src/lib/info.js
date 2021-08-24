@@ -455,4 +455,9 @@ export const PEOPLE = [
     link: `https://twitter.com/jonhilt`,
     met: false,
   },
+  {
+    name: `Quincy Larson`,
+    link: `https://twitter.com/ossia`,
+    met: false,
+  },
 ]

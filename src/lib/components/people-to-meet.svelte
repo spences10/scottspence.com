@@ -34,7 +34,7 @@
       <li class="">
         <div class="flex text-left items-center">
           <PeopleToMeetCheck {met} />
-          <span class="hover:text-primary">
+          <span class="hover:text-primary transition">
             <a class="text-xl" href={link}>{name}</a>
           </span>
         </div>
