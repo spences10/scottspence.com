@@ -41,6 +41,7 @@
   import Head from '$lib/components/head.svelte'
   import IsPrivateBanner from '$lib/components/is-private-banner.svelte'
   import PopularPosts from '$lib/components/popular-posts.svelte'
+  import ShareWithTweet from '$lib/components/share-with-tweet.svelte'
   import TableOfContents from '$lib/components/table-of-contents.svelte'
   import { name, website } from '$lib/info'
   import { ogImageUrl } from '$lib/og-image-url-build'
@@ -111,11 +112,20 @@
   {#if isPrivate}
     <IsPrivateBanner />
   {/if}
-  <div class="all-prose">
+
+  <div class="all-prose mb-10">
     <svelte:component this={component} />
   </div>
 
   <div class="mt-8 mb-16 divider" />
+
+  <div class="grid justify-items-center mb-24">
+    <ShareWithTweet
+      buttonText="Useful? Share it on Twitter."
+      tweetText={`Check out this post from @spences10, ${title}: ${url}`}
+    />
+  </div>
+
   <PopularPosts />
   <ButtButt />
 </article>
