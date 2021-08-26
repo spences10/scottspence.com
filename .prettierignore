@@ -1,4 +1,6 @@
 .cache
+.svelte-kit
+.vercel_build_output
 package.json
 package-lock.json
 public

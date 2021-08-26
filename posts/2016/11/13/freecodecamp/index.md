@@ -16,11 +16,15 @@ real world situation course where you go over some basics first then
 apply them, once you have learnt enough you then have to complete
 projects using the skills you have just learned.
 
-So far I have made a tribute page
-[DJ Hype](https://codepen.io/spences10/full/NbqZob/) and created a
-personal [Portfolio](https://codepen.io/spences10/full/NbGXoy/) page on
-[CODEPEN.io](https://codepen.io/spences10/) there's some great examples
-on [CODEPEN.io](https://codepen.io/) to help you get started and so far
-I have really enjoyed them.
+So far I have made a tribute page [DJ Hype] and created a personal
+[Portfolio] page on [CODEPEN.io] there's some great examples on
+CODEPEN.io to help you get started and so far I have really enjoyed
+them.
 
 So now onto JavaScript!
+
+<!-- Links -->
+
+[dj hype]: https://codepen.io/spences10/full/NbqZob/
+[portfolio]: https://codepen.io/spences10/full/NbGXoy/
+[codepen.io]: https://codepen.io/spences10/

@@ -13,24 +13,23 @@ So I got to checking out Barry's blog and his Jekyll Now templates and
 tried to make sense of the two so I could make my own, based off of
 the ideas I got from Barry's blog.
 
-![jekyll logo](./jekyll-logo.png)
+![jekyll logo]
 
 ## Development environment, enter Cloud 9
 
 I tried to set up Ruby on my Windows machine and it didn't go well,
 then I tried to set it up on my Raspberry Pi, that didn't go well
 either. Then I recalled that I could have any number of different
-environments with [Cloud9](https://c9.io/?redirect=0) so I set up a
-Ruby machine on there and installed Jekyll, no problem
+environments with [Cloud9] so I set up a Ruby machine on there and
+installed Jekyll, no problem
 
 ### Setup
 
 It wasn't as simple as just going to the local host page as it's a
 cloud based system so after som digging I found this from
-Jean-François L'Heureux [jflheureux](https://github.com/jflheureux) on
-GitHub.
+Jean-François L'Heureux [jflheureux] on GitHub.
 
-[https://www.jflh.ca/2016-01-18-running-jekyll-on-cloud9](https://www.jflh.ca/2016-01-18-running-jekyll-on-cloud9)
+https://www.jflh.ca/2016-01-18-running-jekyll-on-cloud9
 
 Basically you need to set up a Run Configuration on your c9 box,
 thanks for that Jean-François.
@@ -44,7 +43,7 @@ in the was of bells and whistles.
 
 #### here is the base project
 
-![bas-project-layout](./base-jekyll-project.png)
+![bas-project-layout]
 
 Running the following from the terminal on my Ruby development box
 
@@ -57,14 +56,17 @@ Running the following from the terminal on my Ruby development box
 Omitting the `~/myblog $ bundle exec jekyll serve` and
 `# => Now browse to http://localhost:4000` for reasons just mentioned.
 
-Use the run configuration
-`jekyll serve --host $IP --port $PORT --config _config.yml,_local_config.yml`
+Use the run configuration:
+
+```bash
+jekyll serve --host $IP --port $PORT --config _config.yml,_local_config.yml
+```
 
 You get this:
 
 #### new blog yay!
 
-![base-jekyll-site](./base-jekyll-site.png)
+![base-jekyll-site]
 
 ## Confusing
 
@@ -86,8 +88,7 @@ and Barry's sites I was able to piece together a `default.html`,
 start with CSS on the page,I took the majority of it from Barry's blog
 page with the intention of modifying it to my own liking.
 
-In the end I took quite a bit of CSS, the
-[Meyer Reset](https://meyerweb.com/eric/tools/css/reset/) was something
+In the end I took quite a bit of CSS, the [Meyer Reset] was something
 I knew nothing of before starting this, now I think it's quite a handy
 thing to have/know.
 
@@ -109,7 +110,7 @@ golden, no worries. Queue a raft of commits with me dicking around
 with various combinations of having corrected `_config.yml` entries it
 got pretty messy.
 
-![dem-commits](./dem-commits.png)
+![dem-commits]
 
 Currently I am still with the `_hilights.scss` in the `sass` folder
 which I'm going to have to play around with to get it how I like it,
@@ -124,7 +125,9 @@ my own vanilla build, I was getting that first paragraph to show on
 the main blog page I found it eventually, not on the `post.html` or
 the `default.html` no it was on the `index.html` here:
 
-` {``{ post.content | split:"<!--more-->" | first }``} `
+```js
+{``{ post.content | split:"<!--more-->" | first }``}
+```
 
 Then add the `<!--more-->` tag after the first paragraph on your post,
 then I added a class to float the image on the top of the post and
@@ -143,3 +146,15 @@ flow around the image, the CSS is this:
 
 So I have the basics I think, still a fair bit to play around with but
 for now I have what I need.
+
+<!-- Links -->
+
+[cloud9]: https://c9.io/?redirect=0
+[jflheureux]: https://github.com/jflheureux
+[meyer reset]: https://meyerweb.com/eric/tools/css/reset/
+
+<!-- Images -->
+
+[jekyll logo]: ./jekyll-logo.png
+[bas-project-layout]: ./base-jekyll-project.png
+[dem-commits]:./dem-commits.png
