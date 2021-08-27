@@ -22,19 +22,19 @@
   }
 </script>
 
-<div class="m-0 mb-20 -mx-30 lg:-mx-40">
+<div class="m-0 -mx-30 mb-20 lg:-mx-40">
   {#if success}
     <div
       class="mx-auto text-center max-w-7xl py-12 px-4 px-6 lg:py-16 lg:px-8"
     >
       <div
-        class="bg-primary-700 rounded-3xl py-10 px-6 py-16 px-12 lg:flex lg:p-20 lg:items-center"
+        class="bg-primary rounded-3xl py-10 py-16 px-6 px-12 lg:flex lg:p-20 lg:items-center"
       >
         <div class="lg:flex-1 lg:w-0">
           <h3 class=" font-extrabold tracking-tight text-3xl">
             Awesome, you're all signed up!
           </h3>
-          <p class="mt-4 text-lg text-indigo-100">
+          <p class="mt-4 text-lg">
             Thanks for showing interest in my content.
           </p>
         </div>
@@ -43,7 +43,7 @@
   {:else}
     <div class="mx-auto max-w-7xl py-12 px-4 px-6 lg:py-16 lg:px-8">
       <div
-        class="bg-primary rounded-3xl py-10 px-6 py-16 px-12 lg:flex lg:p-20 lg:items-center"
+        class="bg-primary rounded-3xl py-10 py-16 px-6 px-12 lg:flex lg:p-20 lg:items-center"
       >
         <div class="lg:flex-1 lg:w-0">
           <h3 class="font-extrabold tracking-tight text-3xl">
@@ -53,14 +53,14 @@
             Want to keep up to date with what I'm working on?
           </p>
         </div>
-        <div class="mt-12 max-w-md w-full lg:flex-1 lg:mt-0 lg:ml-8">
+        <div class="max-w-md mt-12 w-full lg:flex-1 lg:mt-0 lg:ml-8">
           <div class="form-control">
             <form class="" on:submit|preventDefault={submitForm}>
               <label for="email" class="label">
                 <span class="sr-only label-text">Your Email</span>
               </label>
               <div
-                class="flex flex-col space-y-2 md:space-y-0 md:flex-row md:space-x-2"
+                class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2"
               >
                 <input
                   class="w-full input input-primary input-bordered"
