@@ -1,28 +1,29 @@
 <script>
-  let submitted = false
+  let success
   let email = ''
 
-  async function submitEmail() {
-    await fetch('https://spences10.substack.com/api/v1/free', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST',
-        'Access-Control-Allow-Headers':
-          'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
-      },
-      body: JSON.stringify({
-        email: 'spences10apps+test@gmail.com',
-      }),
-    }).then(() => {
-      submitted = true
-    })
+  async function submitForm() {
+    try {
+      const submit = await fetch('/submit-email', {
+        method: 'POST',
+        body: JSON.stringify({ email }),
+      })
+      const data = await submit.json()
+
+      success = data
+    } catch (error) {
+      return {
+        status: 500,
+        body: {
+          error: 'Big oof! Sorry',
+        },
+      }
+    }
   }
 </script>
 
 <div class="m-0 mb-20 -mx-30 lg:-mx-40">
-  {#if submitted}
+  {#if success}
     <div
       class="mx-auto text-center max-w-7xl py-12 px-4 px-6 lg:py-16 lg:px-8"
     >
@@ -54,14 +55,7 @@
         </div>
         <div class="mt-12 max-w-md w-full lg:flex-1 lg:mt-0 lg:ml-8">
           <div class="form-control">
-            <form
-              class=""
-              action="#"
-              on:submit={e => {
-                e.preventDefault()
-                submitEmail()
-              }}
-            >
+            <form class="" on:submit|preventDefault={submitForm}>
               <label for="email" class="label">
                 <span class="sr-only label-text">Your Email</span>
               </label>
@@ -79,7 +73,7 @@
                   required
                   bind:value={email}
                 />
-                <button class="btn btn-primary">Submit</button>
+                <input type="submit" class="btn btn-secondary" />
               </div>
             </form>
           </div>

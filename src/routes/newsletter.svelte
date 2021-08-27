@@ -18,6 +18,7 @@
 
 <script>
   import Head from '$lib/components/head.svelte'
+  import NewsletterSignup from '$lib/components/newsletter-signup.svelte'
   import { name, website } from '$lib/info'
   import { ogImageUrl } from '$lib/og-image-url-build'
 
@@ -35,12 +36,4 @@
   <svelte:component this={Copy} />
 </div>
 
-<iframe
-  title="substack_subscribe"
-  src="https://spences10.substack.com/embed"
-  width="100%"
-  height="320"
-  style="border:1px solid #EEE; background:transparent;"
-  frameborder="0"
-  scrolling="no"
-/>
+<NewsletterSignup />
