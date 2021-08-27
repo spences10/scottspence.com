@@ -1,0 +1,96 @@
+<script>
+  let submitted = false
+  let email = ''
+
+  async function submitEmail() {
+    await fetch('https://spences10.substack.com/api/v1/free', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST',
+        'Access-Control-Allow-Headers':
+          'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
+      },
+      body: JSON.stringify({
+        email: 'spences10apps+test@gmail.com',
+      }),
+    }).then(() => {
+      submitted = true
+    })
+  }
+</script>
+
+<div class="m-0 mb-20 -mx-30 lg:-mx-40">
+  {#if submitted}
+    <div
+      class="mx-auto text-center max-w-7xl py-12 px-4 px-6 lg:py-16 lg:px-8"
+    >
+      <div
+        class="bg-primary-700 rounded-3xl py-10 px-6 py-16 px-12 lg:flex lg:p-20 lg:items-center"
+      >
+        <div class="lg:flex-1 lg:w-0">
+          <h3 class=" font-extrabold tracking-tight text-3xl">
+            Awesome, you're all signed up!
+          </h3>
+          <p class="mt-4 text-lg text-indigo-100">
+            Thanks for showing interest in my content.
+          </p>
+        </div>
+      </div>
+    </div>
+  {:else}
+    <div class="mx-auto max-w-7xl py-12 px-4 px-6 lg:py-16 lg:px-8">
+      <div
+        class="bg-primary rounded-3xl py-10 px-6 py-16 px-12 lg:flex lg:p-20 lg:items-center"
+      >
+        <div class="lg:flex-1 lg:w-0">
+          <h3 class="font-extrabold tracking-tight text-3xl">
+            Sign up for the newsletter
+          </h3>
+          <p class="mt-4 text-lg max-w-3xl">
+            Want to keep up to date with what I'm working on?
+          </p>
+        </div>
+        <div class="mt-12 max-w-md w-full lg:flex-1 lg:mt-0 lg:ml-8">
+          <div class="form-control">
+            <form
+              class=""
+              action="#"
+              on:submit={e => {
+                e.preventDefault()
+                submitEmail()
+              }}
+            >
+              <label for="email" class="label">
+                <span class="sr-only label-text">Your Email</span>
+              </label>
+              <div
+                class="flex flex-col space-y-2 md:space-y-0 md:flex-row md:space-x-2"
+              >
+                <input
+                  class="w-full input input-primary input-bordered"
+                  id="email"
+                  aria-label="email"
+                  type="email"
+                  name="email"
+                  autocomplete="email"
+                  placeholder="ada@lovelace.com"
+                  required
+                  bind:value={email}
+                />
+                <button class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+          <p class="mt-3 text-sm">
+            I care about the protection of your data. Read the
+            <a href="/privacy-policy" class="link">
+              Privacy Policy.
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  {/if}
+</div>
