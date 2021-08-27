@@ -96,7 +96,7 @@ series covers the food delivery industry.
   frameSrc="show/679992"
 />
 
----
+<!-- Links -->
 
 [graphcms]: https://graphcms.com/
 [vba]: https://en.wikipedia.org/wiki/Visual_Basic_for_Applications

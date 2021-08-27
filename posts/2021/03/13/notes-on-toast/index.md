@@ -82,7 +82,7 @@ learning experience for me
 - [React data viz for use in Toast]
 - [Toast starters]
 
----
+<!-- Links -->
 
 [toast]: https://github.com/toastdotdev
 [markdown showdown]:
