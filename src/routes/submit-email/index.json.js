@@ -10,8 +10,9 @@ export async function post(req) {
     }),
   })
   return {
-    body: {
-      email,
-    },
+    status: 200,
+    body: JSON.stringify({
+      message: 'Email sent!',
+    }),
   }
 }
