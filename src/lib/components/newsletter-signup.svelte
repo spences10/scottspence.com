@@ -4,7 +4,7 @@
 
   async function submitForm() {
     try {
-      const submit = await fetch('/submit-email', {
+      const submit = await fetch('/submit-email.json', {
         method: 'POST',
         body: JSON.stringify({ email }),
       })
