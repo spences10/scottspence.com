@@ -7,7 +7,7 @@
   class="btn btn-sm"
   rel="noopener"
   target="_blank"
-  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+  href={`https://twitter.com/intent/tweet?text=${encodeURI(
     tweetText
   )}`}
 >
