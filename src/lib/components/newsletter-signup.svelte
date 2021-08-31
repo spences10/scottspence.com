@@ -30,7 +30,7 @@
       <div
         class="bg-primary rounded-3xl py-10 py-16 px-6 px-12 lg:flex lg:p-20 lg:items-center"
       >
-        <div class="lg:flex-1 lg:w-0">
+        <div class="lg:flex-1 lg:w-0 text-primary-content">
           <h3 class=" font-extrabold tracking-tight text-3xl">
             Awesome, you're all signed up!
           </h3>
@@ -41,7 +41,9 @@
       </div>
     </div>
   {:else}
-    <div class="mx-auto max-w-7xl py-12 px-4 px-6 lg:py-16 lg:px-8">
+    <div
+      class="mx-auto max-w-7xl py-12 px-4 px-6 lg:py-16 lg:px-8 text-primary-content"
+    >
       <div
         class="bg-primary rounded-3xl py-10 py-16 px-6 px-12 lg:flex lg:p-20 lg:items-center"
       >
@@ -80,8 +82,9 @@
           <p class="mt-3 text-sm">
             I care about the protection of your data. Read the
             <a href="/privacy-policy" class="link">
-              Privacy Policy.
+              Privacy Policy
             </a>
+            for more info.
           </p>
         </div>
       </div>
