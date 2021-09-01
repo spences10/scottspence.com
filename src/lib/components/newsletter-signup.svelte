@@ -30,7 +30,7 @@
       <div
         class="bg-primary rounded-3xl py-10 py-16 px-6 px-12 lg:flex lg:p-20 lg:items-center"
       >
-        <div class="lg:flex-1 lg:w-0 text-primary-content">
+        <div class="text-primary-content lg:flex-1 lg:w-0">
           <h3 class=" font-extrabold tracking-tight text-3xl">
             Awesome, you're all signed up!
           </h3>
@@ -42,7 +42,7 @@
     </div>
   {:else}
     <div
-      class="mx-auto max-w-7xl py-12 px-4 px-6 lg:py-16 lg:px-8 text-primary-content"
+      class="mx-auto text-primary-content max-w-7xl py-12 px-4 px-6 lg:py-16 lg:px-8"
     >
       <div
         class="bg-primary rounded-3xl py-10 py-16 px-6 px-12 lg:flex lg:p-20 lg:items-center"

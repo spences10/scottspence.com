@@ -7,7 +7,7 @@
     Take a look at some popular content from me...
   </p>
   <div
-    class="grid z-10 gap-4 grid-cols-1 relative md:grid-cols-2 lg:grid-cols-4"
+    class="grid gap-4 grid-cols-1 relative md:grid-cols-2 lg:grid-cols-4"
   >
     {#each POPULAR_POSTS as post}
       <a class="h-max" sveltekit:prefetch href={`/${post.slug}`}>
