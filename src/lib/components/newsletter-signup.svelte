@@ -1,5 +1,6 @@
 <script>
   import { scaleAndFade } from '$lib/custom-transition'
+  import { trackGoal } from 'fathom-client'
 
   let success = false
   let email = ''
@@ -83,7 +84,13 @@
                   required
                   bind:value={email}
                 />
-                <input type="submit" class="btn btn-secondary" />
+                <input
+                  type="submit"
+                  class="btn btn-secondary"
+                  on:click={() => {
+                    trackGoal(`ZWGL5VLX`)
+                  }}
+                />
               </div>
             </form>
           </div>
