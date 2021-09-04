@@ -24,7 +24,8 @@
         <p class="mb-5">
           Check out that massive picture of my <a
             href="https://www.cockneyrhymingslang.co.uk/slang/boat_race"
-            >boat race</a
+            target="_blank"
+            rel="noopener">boat race</a
           >! What do you think? If you want to crack on then check out
           some of the stuff I'm writing about on the
           <a href="/posts">posts page</a>.
