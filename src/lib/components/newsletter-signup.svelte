@@ -1,5 +1,7 @@
 <script>
-  let success
+  import { scaleAndFade } from '$lib/custom-transition'
+
+  let success = false
   let email = ''
 
   async function submitForm() {
@@ -22,9 +24,10 @@
   }
 </script>
 
-<div class="m-0 -mx-30 mb-20 lg:-mx-40">
+<div class="m-0 -mx-30 mb-10 lg:-mx-40 max-h-96">
   {#if success}
     <div
+      in:scaleAndFade={{ delay: 400 }}
       class="mx-auto text-center max-w-7xl py-12 px-4 px-6 lg:py-16 lg:px-8"
     >
       <div
@@ -37,11 +40,16 @@
           <p class="mt-4 text-lg">
             Thanks for showing interest in my content.
           </p>
+          <p class="mt-4 text-lg">
+            No double opt-in required, I'll send you an email when I'm
+            ready!
+          </p>
         </div>
       </div>
     </div>
   {:else}
     <div
+      out:scaleAndFade={{ delay: 200 }}
       class="mx-auto text-primary-content max-w-7xl py-12 px-4 px-6 lg:py-16 lg:px-8"
     >
       <div

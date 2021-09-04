@@ -1,4 +1,5 @@
 <script>
+  import { scaleAndFade } from '$lib/custom-transition'
   import viewport from '$lib/use-viewport-action'
 
   export let height = '100px'
@@ -26,18 +27,6 @@
   }
 
   let intersecting
-
-  function customTransition(node, { delay, duration }) {
-    return {
-      delay,
-      css: t => {
-        return `
-          opacity: ${t};
-          transform: scale(${t});
-        `
-      },
-    }
-  }
 </script>
 
 <div
@@ -57,7 +46,7 @@
           {height}
           {width}
           class="h-full"
-          transition:customTransition={{ delay: 200 }}
+          transition:scaleAndFade={{ delay: 200 }}
         />
       </div>
     {/if}
