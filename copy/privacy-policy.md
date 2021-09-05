@@ -6,7 +6,7 @@
 # Privacy Policy
 
 <Small>
-  Last updated: <DateUpdated date="2021-08-14" small="true" />
+  Last updated: <DateUpdated date="2021-09-05" small="true" />
 </Small>
 
 Hello, welcome to the privacy policy for scottspence.com, I want to be
@@ -29,10 +29,10 @@ The privacy policy in this site includes these points:
 
 ### How I collect your information
 
-The only piece of information I collect is your email address. If you
-want to receive email updates from me.
+The only piece of information I collect is your email address _if_ you
+sign up to receive email updates from me.
 
-I use Substack to capture your email address when you give voluntarily
+I use Revue to capture your email address when you give it voluntarily
 via the email sign up form, you can see their privacy statement
 [here][0].
 
@@ -46,7 +46,7 @@ subscribers.
 
 If there is a giveaway being run where I need to send something in the
 post, like stickers. I will request your address via the email given
-in the mailing list on Substack. Once the package has been sent I will
+in the mailing list on Revue. Once the package has been sent I will
 delete any emails with identifying information in them.
 
 ### What cookies, pixels, and other trackers my site uses and their purpose.
@@ -90,9 +90,9 @@ fathom.enableTrackingForMe()
 As I only collect email addresses for the purposes of the newsletter
 you can unsubscribe from the mail sent.
 
-If you want to contact me see
-[Contact information for site administrators](#contact-information-for-site-administrators)
-and I will personally remove your email address from Substack.
+If you want to contact me see [Contact information for site
+administrators] and I will personally remove your email address from
+Revue.
 
 ### Contact information for site administrators
 
@@ -129,8 +129,10 @@ Read] for a simple breakdown of what the ToS actually means.
   #how-users-of-this-site-can-request-their-data-be-turned-over-to-them-andor-be-deleted
 [contact information for site administrators]:
   #contact-information-for-site-administrators
-[0]: https://substack.com/privacy
+[0]: https://www.getrevue.co/privacy/platform
 [1]: https://usefathom.com/privacy
 [yo@scottspence.dev]:
   mailto:yo@scottspence.dev?subject=Privacy%20Concern&body=Hi%20Scott%2C%0D%0A%0D%0AI%20have%20a%20concern%20about%20my%20privacy%20on%20your%20site.
 [terms of service didn't read]: https://tosdr.org/
+[contact information for site administrators]:
+  #contact-information-for-site-administrators
