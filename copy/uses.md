@@ -78,8 +78,6 @@ Channel.
 - For gif capture I'm currently evaluating Snagit.
 - For installing any apps I use [Chocolatey].
 
----
-
 <!-- Links -->
 
 [hp elitedisplay's e232 58,4 cm (23")]: https://amzn.to/2ZKVMUP

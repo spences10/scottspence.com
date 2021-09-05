@@ -58,3 +58,7 @@
 <div class="all-prose">
   <svelte:component this={Copy} />
 </div>
+
+<div class="flex flex-col w-full my-10">
+  <div class="divider" />
+</div>

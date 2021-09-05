@@ -117,7 +117,9 @@
     <svelte:component this={component} />
   </div>
 
-  <div class="mt-8 mb-16 divider" />
+  <div class="flex flex-col w-full my-10">
+    <div class="divider" />
+  </div>
 
   <div class="grid justify-items-center mb-24">
     <ShareWithTweet

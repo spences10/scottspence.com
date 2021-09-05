@@ -114,8 +114,6 @@ For a way to get to the right information about what the large sites
 mean in their Terms of Service check out [Terms of Service Didn't
 Read] for a simple breakdown of what the ToS actually means.
 
----
-
 <!-- Links -->
 
 [how i collect your information]: #how-i-collect-your-information

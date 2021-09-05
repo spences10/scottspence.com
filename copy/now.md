@@ -25,6 +25,4 @@ Switch I'm now playing Borderlands 2 again!!
 Try to get out of the house twice a day to go for a walk and see the
 outside.
 
----
-
 [graphcms]: https://graphcms.com
