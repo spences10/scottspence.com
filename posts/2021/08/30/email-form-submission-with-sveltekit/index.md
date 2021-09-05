@@ -7,6 +7,7 @@ isPrivate: true
 
 <script>
   import NewsletterSignup from '$lib/components/newsletter-signup.svelte'
+  import Details from '$lib/components/details.svelte'
 </script>
 
 Bit of preamble before I kick this off, subscribers to my newsletter
@@ -288,7 +289,7 @@ page of the project, first I'll create the component in the `lib`
 folder:
 
 ```bash
-touch src/lib/components/signUp.svelte
+touch src/lib/components/submit.svelte
 ```
 
 Then add the following script to the component:
@@ -368,9 +369,82 @@ The main part to note here is in the `<form>` element and the call to
 going to call the `submitForm` function defined in the `<script>` at
 the top of the component.
 
+This is all wrapped in a Svelte `{# if}` directive so that there can
+be a message displayed to the user once they have submitted the form.
+
+Full code from the component here if you need it.
+
+<Details buttonText="submit.svelte code">
+
+```svelte
+<script>
+  let success
+  let email = ''
+
+  async function submitForm() {
+    try {
+      const submit = await fetch('/submit-email.json', {
+        method: 'POST',
+        body: JSON.stringify({ email }),
+      })
+      const data = await submit.json()
+
+      success = data
+    } catch (error) {
+      return {
+        status: 500,
+        body: {
+          error: 'Big oof! Sorry',
+        },
+      }
+    }
+  }
+</script>
+
+<div class="mb-10">
+  {#if success}
+    <div class="mx-auto text-center">
+      <h3 class="font-extrabold text-3xl">You have signed up!</h3>
+      <p class="mt-4 text-lg">There'll be an email from me soon™️</p>
+    </div>
+  {:else}
+    <div class="mx-auto">
+      <div class="text-center">
+        <h3 class="font-extrabold text-3xl">
+          Sign up for the newsletter
+        </h3>
+        <div class="form-control">
+          <form class="" on:submit|preventDefault={submitForm}>
+            <label for="email" class="label">
+              <span class="sr-only label-text">Your Email</span>
+            </label>
+            <div class="">
+              <input
+                id="email"
+                aria-label="email"
+                type="email"
+                name="email"
+                autocomplete="email"
+                placeholder="ada@lovelace.com"
+                required
+                bind:value={email}
+              />
+              <input type="submit" class="btn btn-secondary" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  {/if}
+</div>
+```
+
+</Details>
+
 ## Test the submit
 
-Time to add an email to the form and hit submit!
+Time to add the sign up form to the index page of the project and hit
+submit!
 
 <!-- Links -->
 
