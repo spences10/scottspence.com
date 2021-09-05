@@ -2,6 +2,7 @@
   export let width = 560
   export let height = 315
   export let youTubeId = ''
+  export let listId = ''
   export let autoPlay = false
   export let aspectRatio = '16:9'
   export let skipTo = { h: 0, m: 0, s: 0 }
@@ -23,6 +24,13 @@
     }
     return config[aspectRatio]
   }
+
+  const baseUrl = `https://www.youtube-nocookie.com/embed/`
+  const src = `${baseUrl}${
+    youTubeId.length > 0
+      ? `${youTubeId}?&autoplay=${autoPlay}&start=${startTime}`
+      : `&videoseries?list=${listId}`
+  }`
 </script>
 
 <div
@@ -37,7 +45,7 @@
     {height}
     class="youtube-sveltekit-embed"
     title={`youTube-${youTubeId}`}
-    src={`https://www.youtube-nocookie.com/embed/${youTubeId}?&autoplay=${autoPlay}&start=${startTime}`}
+    {src}
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen
