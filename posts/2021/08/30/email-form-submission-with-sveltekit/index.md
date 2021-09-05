@@ -54,6 +54,19 @@ Because Revue has an open API that means there's ✨[documentation]✨
 If you're following along you will need your Revue API key, you can
 find it at the bottom of the [integrations] page.
 
+Scroll to the bottom and look for something like this:
+
+<div style="text-align:center;">
+<br />
+
+Your API key is `2f09ecd9-6a64-4d5b-9c77-a5587cedbcf7`.
+
+Usage of the API must follow Revue’s [Terms of Service] and [Privacy
+Policy].
+
+<br />
+</div>
+
 ⚠️ Usual warning about exposing API keys here, there doesn't seem to
 be a way to generate a new Revue API key, so if it's leaked somewhere
 I'm not sure how you'd go about revoking it.
@@ -91,7 +104,8 @@ preview reply looking something like this:
 }
 ```
 
-Alright, sweet! I can now add a subscriber to my Revue account!
+Alright, sweet! I can now add a subscriber to my Revue account via the
+Revue API!
 
 ## Setup the project
 
@@ -159,9 +173,213 @@ The rest of the config here isn't really pertenant, what matters is
 that I have swapped out `adapter-static` with `adapter-vercel` I've
 literally copied the code of what I'm working on.
 
+## Setting up environment variables
+
+Because I'm going to be using an API key I don't want exposed there's
+a few things I'll need to do!
+
+First is to add `.env` to the `.gitignore` file. For some reason this
+isn't in the default skeleton you make with `npm init svelte@next`
+project so I'll be adding `.env` to the `.gitignore` file. I'll be
+doing this via the terminal, you can edit the file manually if you
+like:
+
+```bash
+echo .env >> .gitignore
+```
+
+SvelteKit uses [Vite] and you can prefix you environment variables
+with `VITE_` so they're available to the client (the browser) this
+also means that they can be seen from the client.
+
+Although the code for an endpoint runs on the server and adding the
+`VITE_` means that you can access the variable in development mode it
+_shouldn't_ be exposed to the client **but** I prefer to use
+`process.env` to access the variables.
+
+I've made a short post on how to use [`.env` secrets in SvelteKit] if
+you need a bit more detail on that.
+
+I'm going to install `env-cmd` and add that to the dev script, first
+up install the package:
+
+```bash
+npm i -D env-cmd
+```
+
+Then add it to the dev script:
+
+```json
+"scripts": {
+  "dev": "env-cmd svelte-kit dev",
+```
+
+No I can access environment variables in development mode.
+
+## Setting up the endpoint
+
+Now I'll need to set up the endpoint to submit the email to the Revue
+API. I'll do this in the terminal:
+
+```bash
+# make the directory
+mkdir src/routes/email-submit
+# create the file
+touch src/routes/email-submit/index.json.js
+```
+
+Now for the endpoint `post` function!
+
+Now I can scaffold ou the function to submit the email to the Revue
+API.
+
+For now, to test it's worked I'll hardcode in the email address to the
+`POST` body, then I'll build on that once I've validated it's working.
+
+```js
+export async function post() {
+  const API_KEY = process.env['REVUE_API_KEY']
+
+  await fetch('https://www.getrevue.co/api/v2/subscribers', {
+    method: 'POST',
+    headers: {
+      Authorization: `Token ${API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email: 'spences10apps+test@gmail.com',
+      first_name: '',
+      last_name: '',
+      double_opt_in: false,
+    }),
+  })
+  return {
+    status: 200,
+    body: JSON.stringify({
+      message: 'Email sent!',
+    }),
+  }
+}
+```
+
+One thing to note is that I'm not asking for a first or last name and
+that I'm not requiring users to double opt in (i.e. reply to another
+email to say yes sign me up to the list I've just subscribed to).
+
+```js
+body: JSON.stringify({
+  email: 'spences10apps+test@gmail.com',
+  first_name: '',
+  last_name: '',
+  double_opt_in: false,
+})
+```
+
+If you want you can do what you like with these options, my aim is to
+remove as much friction as possible.
+
+Sweet! Now that the endpoint is set up I can test it by submitting a
+request from a page.
+
+## Setting up the submit form
+
+I'm going to create a sign up component and then use that on the index
+page of the project, first I'll create the component in the `lib`
+folder:
+
+```bash
+touch src/lib/components/signUp.svelte
+```
+
+Then add the following script to the component:
+
+```svelte
+<script>
+  let success
+  let email = ''
+
+  async function submitForm() {
+    try {
+      const submit = await fetch('/submit-email.json', {
+        method: 'POST',
+        body: JSON.stringify({ email }),
+      })
+      const data = await submit.json()
+
+      success = data
+    } catch (error) {
+      return {
+        status: 500,
+        body: {
+          error: 'Big oof! Sorry',
+        },
+      }
+    }
+  }
+</script>
+```
+
+So this is setting up the call to the endpoint using the browser fetch
+API to the endpoint `/submit-email.json` then setting the `success`
+variable if there's no issues.
+
+In the body of the component I'll add the form and the submit button,
+the project uses Tailwind so I've added some minimal styles:
+
+```svelte
+<div class="mb-10">
+  {#if success}
+    <div class="mx-auto text-center">
+      <h3 class="font-extrabold text-3xl">You have signed up!</h3>
+      <p class="mt-4 text-lg">There'll be an email from me soon™️</p>
+    </div>
+  {:else}
+    <div class="mx-auto">
+      <div class="text-center">
+        <h3 class="font-extrabold text-3xl">
+          Sign up for the newsletter
+        </h3>
+        <div class="form-control">
+          <form on:submit|preventDefault={submitForm}>
+            <label for="email" class="label">
+              <span class="sr-only label-text">Your Email</span>
+            </label>
+            <div>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                autocomplete="email"
+                required
+                bind:value={email}
+              />
+              <input type="submit" class="btn btn-secondary" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  {/if}
+</div>
+```
+
+The main part to note here is in the `<form>` element and the call to
+`submitForm` via `on:submit|preventDefault={submitForm}`. this is
+going to call the `submitForm` function defined in the `<script>` at
+the top of the component.
+
+## Test the submit
+
+Time to add an email to the form and hit submit!
+
 <!-- Links -->
 
 [sveltekit blog template]:
   https://github.com/mattjennings/sveltekit-blog-template
 [documentation]: https://www.getrevue.co/api#get-/v2/lists
 [integrations]: https://www.getrevue.co/app/integrations
+[terms of service]: https://www.getrevue.co/terms
+[privacy policy]: https://www.getrevue.co/privacy/platform
+[vite]: https://vitejs.dev/
+[`.env` secrets in sveltekit]:
+  https://scottspence.com/posts/sveltekit-env-secrets
