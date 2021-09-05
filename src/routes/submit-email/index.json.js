@@ -1,9 +1,11 @@
 export async function post(req) {
   const { email } = JSON.parse(req.body)
+  const REVUE_API_KEY = process.env['REVUE_API_KEY']
+
   await fetch('https://www.getrevue.co/api/v2/subscribers', {
     method: 'POST',
     headers: {
-      Authorization: `Token ${import.meta.env.VITE_REVUE_API_KEY}`,
+      Authorization: `Token ${REVUE_API_KEY}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({

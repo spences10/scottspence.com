@@ -33,12 +33,13 @@ export const contributions = async user => {
 }
 
 export async function get() {
-  
+  const GITHUB_TOKEN = process.env['GITHUB_TOKEN']
+
   const graphCmsClient = new GraphQLClient(
     'https://api.github.com/graphql',
     {
       headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
+        Authorization: `Bearer ${GITHUB_TOKEN}`,
       },
     }
   )

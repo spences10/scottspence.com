@@ -1,10 +1,8 @@
 export async function get() {
+  const FATHOM_API_KEY = process.env['FATHOM_API_KEY']
   try {
     const getHeaders = new Headers()
-    getHeaders.append(
-      `Authorization`,
-      `Bearer ${import.meta.env.VITE_FATHOM_API_KEY}`
-    )
+    getHeaders.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
     const encURI = encodeURI(
       `[{"property": "pathname","operator": "is","value": "/"}]`
     )
