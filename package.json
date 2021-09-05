@@ -43,7 +43,7 @@
 		"slugify": "^1.6.0",
 		"svelte": "3.42.4",
 		"svelte-lazy": "1.0.10",
-		"svelte-preprocess": "4.8.0",
+		"svelte-preprocess": "4.9.1",
 		"tailwindcss": "2.2.9",
 		"theme-change": "2.0.2",
 		"unist-util-visit": "4.0.0"
