@@ -33,6 +33,7 @@ export const contributions = async user => {
 }
 
 export async function get() {
+  
   const graphCmsClient = new GraphQLClient(
     'https://api.github.com/graphql',
     {
@@ -43,12 +44,13 @@ export async function get() {
   )
   try {
     const query = gql`
-      query UserContributions {
-        user(login: "spences10") {
-          contributionsCollection(
-            from: "2019-01-01T00:00:00.000Z"
-            to: "2019-12-31T00:00:00.000Z"
-          ) {
+      query UserContributions(
+        $username: String!
+        $yearFrom: DateTime!
+        $yearTo: DateTime!
+      ) {
+        user(login: $username) {
+          contributionsCollection(from: $yearFrom, to: $yearTo) {
             contributionCalendar {
               totalContributions
               weeks {
@@ -64,7 +66,14 @@ export async function get() {
         }
       }
     `
-    const { user } = await graphCmsClient.request(query)
+
+    const variables = {
+      username: 'spences10',
+      yearFrom: `2019-01-01T00:00:00.000Z`,
+      yearTo: `2019-12-31T00:00:00.000Z`,
+    }
+
+    const { user } = await graphCmsClient.request(query, variables)
 
     return {
       status: 200,
@@ -73,9 +82,7 @@ export async function get() {
   } catch (error) {
     return {
       status: 500,
-      body: {
-        error: 'A server error occurred',
-      },
+      body: error.message,
     }
   }
 }
