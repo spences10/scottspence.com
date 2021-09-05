@@ -1,50 +1,50 @@
 <script>
   import DateUpdated from '$lib/components/date-updated.svelte'
   import Small from '$lib/components/small.svelte'
-  import TopLanguages from '$lib/components/top-languages.svelte'
-  import GitHubContributions from '$lib/components/github-contributions.svelte'
-  import Projects from '$lib/components/portfolio-projects.svelte'
+  import YouTube from '$lib/components/youtube.svelte'
+  import NewsletterSignup from '$lib/components/newsletter-signup.svelte'
 </script>
 
 # Portfolio
 
 <Small>
-  Last updated: <DateUpdated date="2021-01-09" small="true" />
+  Last updated: <DateUpdated date="2021-09-05" small="true" />
 </Small>
 
-This page details some projects I have worked on along with my GitHub
-contributions.
+🚧**This page is currently under construction.**🚧
 
-The charts are made using a serverless function to query the GitHub
-GraphQL API. The serverless function uses [Google charts] to render
-the data then Puppeteer to take a picture of the chart and return it
-as an image. Clicking on one of the charts will open the chart in
-interactive mode where you hover over the elements for more
-information.
+There'll be some cool SvelteKit features added here to get my GitHib
+user information and show it in a graph or two.
 
-### Top Languages used:
+I've added some of my recent work here if you would like to check it
+out.
 
-Here's my top languages I use, calculated from my GitHub commits.
+## Recent work
 
-This chart is updated via the GitHub GraphQL endpoint every time the
-page is requested, you can see what languages I'm working with daily.
+Recent work I have done at GraphCMS includes a walkthrough of all the
+example projects in the [GraphCMS Examples Monorepo]. Check out the
+playlist on the GraphCMS YouTube account. 👇
 
-<TopLanguages />
+<YouTube listId='PL5SvzogSTpeH1Szqw4tPi9ZfgXDbY8GU-'/>
 
-### Projects:
+There's also the build your own timeline with SvelteKit and GraphCMS,
+you can check out the full guide over on the [GraphCMS blog].
 
-A mixture of personal and professional projects I have worked on. If
-you want to collaborate on anything reach out. 👍
+## Upcoming work
 
-<Projects />
+There's some super exciting stuff coming up, I'm working on a full
+video course for building with SvelteKit and GraphQL!
 
-### Contributions:
+## Get the news first
 
-This is my GitHub contributions chart taken from the GitHub API
-GraphQL endpoint. You can click on it to see the interactive example.
+If you're interested in knowing exactly when that'll be available you
+can sign up the newsletter below as my newsletter subscribers will be
+the first to know.
 
-<GitHubContributions />
-
----
+<NewsletterSignup />
 
 [google charts]: https://developers.google.com/chart/interactive/docs
+[graphcms examples monorepo]:
+  https://github.com/GraphCMS/graphcms-examples
+[graphcms blog]:
+  https://graphcms.com/blog/build-a-personal-timeline-with-graphcms-and-sveltekit
