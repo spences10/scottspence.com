@@ -28,7 +28,7 @@ export async function post(req) {
         }),
       }
     }
-    if (res.status === 400) {
+    if (res.status !== 200) {
       return {
         status: 400,
         body: JSON.stringify({
