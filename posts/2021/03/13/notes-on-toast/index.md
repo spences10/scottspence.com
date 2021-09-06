@@ -88,7 +88,7 @@ learning experience for me
 [markdown showdown]:
   https://scottspence.com/posts/writing-with-markdown/
 [intro to toast]: https://www.mikeallanson.com/intro-to-toast
-[benjamin lannon's portfolio]: https://github.com/lannonbr/Portfolio
+[benjamin lannon's portfolio]: https://github.com/lannonbr
 [tony alves template]: https://github.com/talves/toast-template
 [toast example site prince]: https://github.com/maxcell/prince-toast
 [react data viz for use in toast]: https://uber.github.io/react-vis/

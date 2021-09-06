@@ -387,10 +387,8 @@ Boom! GUI running in WSL!!
 
 <!-- Links -->
 
-[x410]:
-  https://www.microsoft.com/en-gb/p/x410/9nlp712zmn9q?activetab=pivot:overviewtab
-[pengwin]:
-  https://www.microsoft.com/en-gb/p/pengwin/9nv1gv1pxz6p?ocid=badge&rtc=1&activetab=pivot:overviewtab
+[x410]: https://www.microsoft.com/en-gb/p/x410/9nlp712zmn9q
+[pengwin]: https://www.microsoft.com/en-gb/p/pengwin/9nv1gv1pxz6p
 [the readies]:
   https://dictionary.cambridge.org/dictionary/english/readies
 [linux on windows wsl2 zsh docker]:
@@ -400,8 +398,7 @@ Boom! GUI running in WSL!!
 [using graphical user interfaces like cypress' in wsl2]:
   https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress
 [nicky meuleman]: https://twitter.com/NMeuleman
-[debian]:
-  https://www.microsoft.com/en-gb/p/debian/9msvkqc78pk6?activetab=pivot:overviewtab
+[debian]: https://www.microsoft.com/en-gb/p/debian/9msvkqc78pk6
 [notes on zsh and oh my zsh]:
   https://scottspence.com/posts/zsh-and-oh-my-zsh/
 [gui]: https://en.wikipedia.org/wiki/Graphical_user_interface
