@@ -2,7 +2,7 @@
 date: 2021-08-30
 title: Make an Email Form Submission with Sveltekit
 tags: ['sveltekit', 'how-to', 'svelte']
-isPrivate: true
+isPrivate: false
 ---
 
 <script>
@@ -234,38 +234,73 @@ Now for the endpoint `post` function!
 Now I can scaffold ou the function to submit the email to the Revue
 API.
 
-For now, to test it's worked I'll hardcode in the email address to the
-`POST` body, then I'll build on that once I've validated it's working.
+For now, to test it's worked I'll **hardcode** in the email address to
+the `POST` body, then I'll build on that once I've validated it's
+working.
 
 ```js
 export async function post() {
-  const API_KEY = process.env['REVUE_API_KEY']
-
-  await fetch('https://www.getrevue.co/api/v2/subscribers', {
-    method: 'POST',
-    headers: {
-      Authorization: `Token ${API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email: 'spences10apps+test@gmail.com',
-      first_name: '',
-      last_name: '',
-      double_opt_in: false,
-    }),
-  })
-  return {
-    status: 200,
-    body: JSON.stringify({
-      message: 'Email sent!',
-    }),
+  const REVUE_API_KEY = process.env['REVUE_API_KEY']
+  try {
+    const res = await fetch(
+      'https://www.getrevue.co/api/v2/subscribers',
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Token ${REVUE_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: 'spences10apps+test@gmail.com',
+          first_name: '',
+          last_name: '',
+          double_opt_in: false,
+        }),
+      }
+    )
+    if (res.ok) {
+      return {
+        status: 200,
+        body: JSON.stringify({
+          message: 'email sent!',
+        }),
+      }
+    }
+    if (res.status !== 200) {
+      return {
+        status: 400,
+        body: JSON.stringify({
+          message: 'bad request',
+        }),
+      }
+    }
+  } catch (error) {
+    return {
+      status: 500,
+      body: JSON.stringify({
+        message: 'something went wrong with the email submit!',
+      }),
+    }
   }
 }
 ```
 
-One thing to note is that I'm not asking for a first or last name and
-that I'm not requiring users to double opt in (i.e. reply to another
-email to say yes sign me up to the list I've just subscribed to).
+Nice big wall of text! Like that? Apologies, you could just remove the
+error checks and YOLO it if you like, I'm not your mum! 😂
+
+So everything is wrapped in a `try` block and if there's an bad
+request made to the Revue API then that'll be caught and a response of
+`bad request` given.
+
+There's a final catch if the Revue request fails as well.
+
+ℹ️ One thing to note is that I'm not asking for a first or last name
+and that I'm not requiring users to double opt in (i.e. reply to
+another email to say yes sign me up to the list I've just subscribed
+to).
+
+**Note** again, if you didn't catch it earlier, the email address is
+hardcoded in here:
 
 ```js
 body: JSON.stringify({
@@ -275,6 +310,9 @@ body: JSON.stringify({
   double_opt_in: false,
 })
 ```
+
+I'll be changing that once I've validated the submit is working. I
+cover that in the [Receive email in endpoint] section.
 
 If you want you can do what you like with these options, my aim is to
 remove as much friction as possible.
@@ -296,32 +334,37 @@ Then add the following script to the component:
 
 ```svelte
 <script>
-  let success
   let email = ''
+  let showMessage = false
+  let responseMessage = ''
 
   async function submitForm() {
-    try {
-      const submit = await fetch('/submit-email.json', {
-        method: 'POST',
-        body: JSON.stringify({ email }),
-      })
-      const data = await submit.json()
+    const submit = await fetch('/email-submit.json', {
+      method: 'POST',
+      body: JSON.stringify({ email }),
+    })
+    const data = await submit.json()
 
-      success = data
-    } catch (error) {
-      return {
-        status: 500,
-        body: {
-          error: 'Big oof! Sorry',
-        },
-      }
+    if (data.message === 'bad request') {
+      showMessage = true
+      responseMessage = `That looks like a bad request`
+    }
+    if (data.message === 'email sent!') {
+      showMessage = true
+      responseMessage = `Sweet! You're signed up!`
+    }
+    if (
+      data.message === 'something went wrong with the email submit!'
+    ) {
+      showMessage = false
+      // deal with failed response from server
     }
   }
 </script>
 ```
 
 So this is setting up the call to the endpoint using the browser fetch
-API to the endpoint `/submit-email.json` then setting the `success`
+API to the endpoint `/email-submit.json` then setting the `success`
 variable if there's no issues.
 
 In the body of the component I'll add the form and the submit button,
@@ -330,35 +373,30 @@ the project uses Tailwind so I've added some minimal styles:
 ```svelte
 <div class="mb-10">
   {#if success}
-    <div class="mx-auto text-center">
-      <h3 class="font-extrabold text-3xl">You have signed up!</h3>
-      <p class="mt-4 text-lg">There'll be an email from me soon™️</p>
+    <div class="text-center">
+      <h3 class="font-extrabold text-3xl">{responseMessage}</h3>
     </div>
   {:else}
-    <div class="mx-auto">
-      <div class="text-center">
-        <h3 class="font-extrabold text-3xl">
-          Sign up for the newsletter
-        </h3>
-        <div class="form-control">
-          <form on:submit|preventDefault={submitForm}>
-            <label for="email" class="label">
-              <span class="sr-only label-text">Your Email</span>
-            </label>
-            <div>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                autocomplete="email"
-                required
-                bind:value={email}
-              />
-              <input type="submit" class="btn btn-secondary" />
-            </div>
-          </form>
-        </div>
-      </div>
+    <div class="text-center">
+      <h3 class="font-extrabold text-3xl">
+        Sign up for the newsletter
+      </h3>
+      <form class="" on:submit|preventDefault={submitForm}>
+        <label for="email" class="label">
+          <span class="sr-only">Your Email</span>
+        </label>
+        <input
+          id="email"
+          aria-label="email"
+          type="email"
+          name="email"
+          autocomplete="email"
+          placeholder="your@email.com"
+          required
+          bind:value={email}
+        />
+        <input type="submit" />
+      </form>
     </div>
   {/if}
 </div>
@@ -370,7 +408,8 @@ going to call the `submitForm` function defined in the `<script>` at
 the top of the component.
 
 This is all wrapped in a Svelte `{# if}` directive so that there can
-be a message displayed to the user once they have submitted the form.
+be a message displayed with the `showMessage` variable to the user
+once they have submitted the form.
 
 Full code from the component here if you need it.
 
@@ -378,62 +417,60 @@ Full code from the component here if you need it.
 
 ```svelte
 <script>
-  let success
   let email = ''
+  let showMessage = false
+  let responseMessage = ''
 
   async function submitForm() {
-    try {
-      const submit = await fetch('/submit-email.json', {
-        method: 'POST',
-        body: JSON.stringify({ email }),
-      })
-      const data = await submit.json()
+    const submit = await fetch('/email-submit.json', {
+      method: 'POST',
+      body: JSON.stringify({ email }),
+    })
+    const data = await submit.json()
 
-      success = data
-    } catch (error) {
-      return {
-        status: 500,
-        body: {
-          error: 'Big oof! Sorry',
-        },
-      }
+    if (data.message === 'bad request') {
+      showMessage = true
+      responseMessage = `That looks like a bad request`
+    }
+    if (data.message === 'email sent!') {
+      showMessage = true
+      responseMessage = `Sweet! You're signed up!`
+    }
+    if (
+      data.message === 'something went wrong with the email submit!'
+    ) {
+      showMessage = false
+      // deal with failed response from server
     }
   }
 </script>
 
 <div class="mb-10">
   {#if success}
-    <div class="mx-auto text-center">
-      <h3 class="font-extrabold text-3xl">You have signed up!</h3>
-      <p class="mt-4 text-lg">There'll be an email from me soon™️</p>
+    <div class="text-center">
+      <h3 class="font-extrabold text-3xl">{responseMessage}</h3>
     </div>
   {:else}
-    <div class="mx-auto">
-      <div class="text-center">
-        <h3 class="font-extrabold text-3xl">
-          Sign up for the newsletter
-        </h3>
-        <div class="form-control">
-          <form class="" on:submit|preventDefault={submitForm}>
-            <label for="email" class="label">
-              <span class="sr-only label-text">Your Email</span>
-            </label>
-            <div class="">
-              <input
-                id="email"
-                aria-label="email"
-                type="email"
-                name="email"
-                autocomplete="email"
-                placeholder="ada@lovelace.com"
-                required
-                bind:value={email}
-              />
-              <input type="submit" class="btn btn-secondary" />
-            </div>
-          </form>
-        </div>
-      </div>
+    <div class="text-center">
+      <h3 class="font-extrabold text-3xl">
+        Sign up for the newsletter
+      </h3>
+      <form class="" on:submit|preventDefault={submitForm}>
+        <label for="email" class="label">
+          <span class="sr-only">Your Email</span>
+        </label>
+        <input
+          id="email"
+          aria-label="email"
+          type="email"
+          name="email"
+          autocomplete="email"
+          placeholder="your@email.com"
+          required
+          bind:value={email}
+        />
+        <input type="submit" />
+      </form>
     </div>
   {/if}
 </div>
@@ -446,6 +483,117 @@ Full code from the component here if you need it.
 Time to add the sign up form to the index page of the project and hit
 submit!
 
+I'll import the `<Submit />` component into `src/routes/index.svelte`
+here's what the top of the file looks like for me:
+
+```svelte
+<script>
+  import ButtonLink from '$lib/components/ButtonLink.svelte'
+  import Submit from '$lib/components/submit.svelte'
+  import { name } from '$lib/info.js'
+  import { format } from 'date-fns'
+
+  export let posts
+  export let page
+
+  $: isFirstPage = page === 1
+  $: hasNextPage = posts[posts.length - 1]?.previous
+</script>
+
+<svelte:head>
+  <title>{name}</title>
+</svelte:head>
+
+<Submit />
+
+<div class="flex flex-col flex-grow">
+  <!-- rest of the code here -->
+```
+
+Now I can enter an email address and hit submit! It doesn't matter
+what the email is because it's hardcoded into the endpoint at the
+moment!
+
+I'll hit submit and I'll go over to my Revue [subscribers list] and
+check to see if the email is there!
+
+![revue-subscribers-list-search]
+
+Sweet! Now I've validated the submit is working I can delete the
+subscriber from my [subscribers list] and go about having the endpoint
+receive what is submitted from the component!
+
+## Receive email in endpoint
+
+Now all I need to do is add the the `req` parameter to the `post`
+function on the `email-submit` endpoint and pull out (destructure) the
+`email` from the `req.body`!
+
+```js
+export async function post(req) {
+  const { email } = JSON.parse(req.body)
+  const REVUE_API_KEY = process.env['REVUE_API_KEY']
+
+  try {
+    const res = await fetch('https://www.getrevue.co/api/v2/subscribers', {
+      method: 'POST',
+      headers: {
+        Authorization: `Token ${REVUE_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email,
+        first_name: '',
+        last_name: '',
+        double_opt_in: false
+      })
+    })
+  // rest of the code unchanged
+```
+
+## Test it's worked on Vercel
+
+Ok, now time to test it's working when deployed to Vercel! I use the
+Vercel CLI so I can push this off from my terminal with once command
+`vc` and off it goes!
+
+I've selected the default for all the CLI options, here's what I have:
+
+```bash
+➜ vc
+Vercel CLI 23.0.1
+? Set up and deploy “~/repos/svelte-kit-form-submission”? [Y/n] y
+? Which scope do you want to deploy to? Scott Spence
+? Link to existing project? [y/N] n
+? What’s your project’s name? svelte-kit-form-submission
+? In which directory is your code located? ./
+Auto-detected Project Settings (SvelteKit):
+- Build Command: `npm run build` or `svelte-kit build`
+- Output Directory: public
+- Development Command: svelte-kit dev --port $PORT
+? Want to override the settings? [y/N] n
+```
+
+There is one issue however, currently there's no environment variable
+for the Revue api set up on Vercel, so if I go to the preview
+generated and try submit an email I'll get the bad response message!
+
+From the Vercel project I'll navigate to Settings > Environment
+Variables and add in the `REVUE_API_KEY` name and value. Now I can run
+the Vercel CLI again and test the form again, wait for the submit then
+the Revue [subscribers list] again!
+
+**Success** 🎉
+
+![revue-subscribers-list-search]
+
+## Wrap up!
+
+That's it, I've gone and added an email submit from to a site that
+uses the Revue API with SvelteKit endpoints!
+
+I cann now use this pattern in other projects!
+
 <!-- Links -->
 
 [sveltekit blog template]:
@@ -457,3 +605,9 @@ submit!
 [vite]: https://vitejs.dev/
 [`.env` secrets in sveltekit]:
   https://scottspence.com/posts/sveltekit-env-secrets
+[subscribers list]: https://www.getrevue.co/app/lists
+[receive email in endpoint]: #receive-email-in-endpoint
+
+<!-- Images -->
+
+[revue-subscribers-list-search]: ./revue-subscribers-list-search.png
