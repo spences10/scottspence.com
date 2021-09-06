@@ -1,7 +1,7 @@
 ---
 date: 2021-03-15
 title: Stylelint Configuration for use with Tailwind CSS
-tags: ['tailwind css', 'css', 'notes']
+tags: ['tailwind', 'css', 'notes']
 isPrivate: false
 ---
 
