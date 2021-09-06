@@ -2,29 +2,43 @@
   import { scaleAndFade } from '$lib/custom-transition'
   import { trackGoal } from 'fathom-client'
 
-  let success = false
   let email = ''
+  let success = false
+  let responseMessage = ''
 
   async function submitForm() {
-    try {
-      const submit = await fetch('/submit-email.json', {
-        method: 'POST',
-        body: JSON.stringify({ email }),
-      })
-      const data = await submit.json()
+    const submit = await fetch('/submit-email.json', {
+      method: 'POST',
+      body: JSON.stringify({ email }),
+    })
+    const data = await submit.json()
 
-      success = data
-    } catch (error) {
-      return {
-        status: 500,
-        body: {
-          error: 'Big oof! Sorry',
-        },
-      }
+    if (data.message === 'bad request') {
+      success = true
+      responseMessage = [
+        `Looks like you might already be signed up!`,
+        `Thanks for showing interest in my content though!`,
+        `If you haven't signed up already <a class="link" href="mailto:spences10apps@gmail.com">reach out</a> and let me know. 🙏`,
+      ]
+    }
+    if (data.message === 'email sent!') {
+      success = true
+      responseMessage = [
+        `Awesome, you're all signed up!`,
+        `Thanks for showing interest in my content.`,
+        `No double opt-in required, I'll send you an email when I'm ready!`,
+      ]
+    }
+    if (
+      data.message === 'something went wrong with the email submit!'
+    ) {
+      success = false
+      // TODO deal with failed response from server
     }
   }
 </script>
 
+<!-- TODO deal with failed response from server -->
 <div class="m-0 -mx-30 mb-10 lg:-mx-40 max-h-96">
   {#if success}
     <div
@@ -36,14 +50,13 @@
       >
         <div class="text-primary-content lg:flex-1 lg:w-0">
           <h3 class=" font-extrabold tracking-tight text-3xl">
-            Awesome, you're all signed up!
+            {responseMessage[0]}
           </h3>
           <p class="mt-4 text-lg">
-            Thanks for showing interest in my content.
+            {responseMessage[1]}
           </p>
           <p class="mt-4 text-lg">
-            No double opt-in required, I'll send you an email when I'm
-            ready!
+            {@html responseMessage[2]}
           </p>
         </div>
       </div>
