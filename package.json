@@ -8,7 +8,7 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"dev": "svelte-kit dev",
+		"dev": "env-cmd svelte-kit dev",
 		"build": "svelte-kit build",
 		"preview": "svelte-kit preview",
 		"lint": "prettier --check . && eslint --ignore-path .gitignore .",
@@ -21,6 +21,7 @@
 		"autoprefixer": "10.3.4",
 		"cssnano": "5.0.8",
 		"daisyui": "1.14.0",
+		"env-cmd": "^10.1.0",
 		"eslint": "7.32.0",
 		"eslint-config-prettier": "8.3.0",
 		"eslint-plugin-svelte3": "3.2.0",
