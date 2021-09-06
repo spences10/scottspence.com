@@ -2,7 +2,7 @@
 date: 2020-06-04
 title: Linaria - Getting Started
 tags:
-  ['getting started', 'hello world', 'css', 'css-in-js', 'linaria']
+  ['getting-started', 'hello-world', 'css', 'css-in-js', 'linaria']
 isPrivate: false
 ---
 

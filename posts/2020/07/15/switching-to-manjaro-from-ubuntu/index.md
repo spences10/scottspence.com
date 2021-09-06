@@ -1,7 +1,7 @@
 ---
 date: 2020-07-15
 title: Switching to Manjaro from Ubuntu
-tags: ['manjaro', 'ubuntu', 'getting started', 'linux']
+tags: ['manjaro', 'ubuntu', 'getting-started', 'linux']
 isPrivate: false
 ---
 

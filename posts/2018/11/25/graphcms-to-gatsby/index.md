@@ -6,7 +6,7 @@ tags:
     'learning',
     'guide',
     'gatsby',
-    'getting started',
+    'getting-started',
     'graphql',
     'graphcms',
   ]

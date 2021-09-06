@@ -1,7 +1,7 @@
 ---
 date: 2018-11-29
 title: Convert the Gatsby default starter to styled-components
-tags: ['learning', 'guide', 'gatsby', 'getting started']
+tags: ['learning', 'guide', 'gatsby', 'getting-started']
 isPrivate: false
 ---
 

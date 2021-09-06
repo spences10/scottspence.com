@@ -1,7 +1,7 @@
 ---
 date: 2020-09-17
 title: Markdown Showdown - All I Know About Markdown
-tags: ['markdown', 'getting started', 'guide']
+tags: ['markdown', 'getting-started', 'guide']
 isPrivate: false
 ---
 

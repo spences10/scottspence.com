@@ -1,7 +1,7 @@
 ---
 date: 2020-11-21
 title: Chakra UI and Gatsby - Getting Started
-tags: ['gatsby', 'getting started', 'guide']
+tags: ['gatsby', 'getting-started', 'guide']
 isPrivate: false
 ---
 

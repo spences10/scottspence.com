@@ -5,7 +5,7 @@ tags:
   [
     'learning',
     'guide',
-    'getting started',
+    'getting-started',
     'react',
     'api',
     'styled-components',
