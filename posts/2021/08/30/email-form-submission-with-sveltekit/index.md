@@ -6,7 +6,6 @@ isPrivate: false
 ---
 
 <script>
-  import NewsletterSignup from '$lib/components/newsletter-signup.svelte'
   import Details from '$lib/components/details.svelte'
 </script>
 
