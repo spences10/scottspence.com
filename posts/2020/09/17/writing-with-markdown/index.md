@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import MarkdownParser from '$lib/components/youtube.svelte'
+  import MarkdownParser from '$lib/components/markdown-parser.svelte'
   import YouTube from '$lib/components/youtube.svelte'
   import Small from '$lib/components/small.svelte'
 </script>
@@ -95,13 +95,13 @@ Markdown needs a line between them to identify them as paragraph
 elements, example:
 
 <MarkdownParser
-markdownContent="This is a paragraph.\nThis is also a paragraph." />
+markdownContent={`This is a paragraph.\nThis is also a paragraph.`} />
 
 Adding a clear line space between paragraphs allows Markdown to make
 the distinction:
 
 <MarkdownParser
-markdownContent="This is a paragraph.\n\nThis is also a paragraph."
+markdownContent={`This is a paragraph.\n\nThis is also a paragraph.`}
 />
 
 ### Bold
@@ -109,14 +109,14 @@ markdownContent="This is a paragraph.\n\nThis is also a paragraph."
 Bold text is achieved by adding double asterisks around the word or
 paragraph you want to bold.
 
-<MarkdownParser markdownContent="This is **bold**." />
+<MarkdownParser markdownContent={`This is **bold**.`} />
 
 ### Italic
 
 Italic or emphasis is done by adding underscores around the word or
 paragraph you want to add emphasis to.
 
-<MarkdownParser markdownContent="This is _italic_." />
+<MarkdownParser markdownContent={`This is _italic_.`} />
 
 One thing to note in Markdown is that one set of _either_ underscores
 or asterisks will make it _italic_ and two sets of **either**
@@ -134,7 +134,7 @@ a single one, using a single tilde with show the tilde either side of
 the word/paragraph.
 
 <MarkdownParser
-markdownContent="This is ~~strikethrough~~.\n\nThis is not ~strikethrough~."
+markdownContent={`This is ~~strikethrough~~.\n\nThis is not ~strikethrough~.`}
 />
 
 <YouTube youTubeId="iTSFkvJqQlw" />
@@ -144,7 +144,7 @@ markdownContent="This is ~~strikethrough~~.\n\nThis is not ~strikethrough~."
 There are two ways to do headings in Markdown, the first way which you
 may see but is way less popular is with `===` and `---`:
 
-<MarkdownParser markdownContent="Heading 1\n===\n\nHeading 2\n---"
+<MarkdownParser markdownContent={`Heading 1\n===\n\nHeading 2\n---`}
 />
 
 This approach will only give you the option of a h1 and a h2 however,
@@ -152,7 +152,9 @@ so the next approach (and what you will see a lot more than the
 previous example) is to use hashes `#` for going from h1 (single `#`)
 all the way to h6 (six `######`)!
 
-<MarkdownParser markdownContent="# h1 heading\n ## h2 heading\n ### h3 heading\n #### h4 heading\n ##### h5 heading\n ###### h6 heading" />
+<MarkdownParser
+markdownContent={`# h1 heading\n ## h2 heading\n ### h3 heading\n #### h4 heading\n ##### h5 heading\n ###### h6 heading`}
+/>
 
 With this way of doing Markdown headings if you put these in a
 `README.md` on GitHub it will automatically add IDs to the heading.
@@ -171,14 +173,14 @@ For a raw link you want displayed you can add it as is, or surround it
 with angle brackets.
 
 <MarkdownParser
-markdownContent="Raw link: https://scottspence.com/garden\n\nWith angle brackets: <https://scottspence.com/garden>"
+markdownContent={`Raw link: https://scottspence.com/garden\n\nWith angle brackets: <https://scottspence.com/garden>`}
 />
 
 To link text wrap the text you want to link in square brackets with
 parenthesis at the end with the link in there:
 
 <MarkdownParser
-markdownContent="Check out my [digital garden](https://scottspence.com/garden) for more content."
+markdownContent={`Check out my [digital garden](https://scottspence.com/garden) for more content.`}
 />
 
 There is also the option to add a title to the link where hovering the
@@ -186,7 +188,7 @@ link will show the title, do this by adding the title in quotes after
 the hyperlink.
 
 <MarkdownParser
-markdownContent="Check out my [digital garden](https://scottspence.com/garden 'check it out') for more content."
+markdownContent={`Check out my [digital garden](https://scottspence.com/garden 'check it out') for more content.`}
 />
 
 This way of adding links can become a bit disorienting if there are
@@ -267,7 +269,7 @@ parenthesis (`()`) are where the link to the image goes, you can also
 add in a tool tip (title) in the same way as with links.
 
 <MarkdownParser
-markdownContent="![alt name for image](https://picsum.photos/200/100 'tool tip to show on hover of image')"
+markdownContent={`![alt name for image](https://picsum.photos/200/100 'tool tip to show on hover of image')`}
 />
 
 With images being a lot like links in Markdown the same applies for
@@ -315,7 +317,7 @@ how the list is structured and they can all be used in one list, the
 identifiers are asterisks (`*`), hyphens (`-`) and plus (`+`):
 
 <MarkdownParser
-markdownContent="* Using asterisks\n- Using hyphens\n+ Using plus"
+markdownContent={`* Using asterisks\n- Using hyphens\n+ Using plus`}
 />
 
 Again Prettier has taken away the decision making for me here and
@@ -333,7 +335,7 @@ middle of the list all the numbering has to change.
 Using the `1.` approach Markdown does all the numbering for you:
 
 <MarkdownParser
-markdownContent="1. Ordered Lists\n1. All use\n1. The same number, 1."
+markdownContent={`1. Ordered Lists\n1. All use\n1. The same number, 1.`}
 />
 
 ### Nesting lists
@@ -375,8 +377,8 @@ checkbox (`[ ]`) or with an x to indicate that it's checked (`[x]`).
 The checkbox needs to start with the hyphen, space then the square
 brackets indicating if it is checked or not:
 
-<MarkdownParser style={{ listStyleType: 'none' }} markdownContent="- [
-] Check, check one\n- [x] Check two" />
+<MarkdownParser
+markdownContent={`- [ ] Check, check one\n- [x] Check two`} />
 
 <YouTube youTubeId="aqKnADsZkz0" />
 
@@ -407,11 +409,11 @@ Like with the text decorations for bold and italic Prettier has
 declared that hyphens are the way to do this for me in my text editor
 but I'm detailing the differences here.
 
-<MarkdownParser markdownContent="Hyphens\n\n---" />
+<MarkdownParser markdownContent={`Hyphens\n\n---`} />
 
-<MarkdownParser markdownContent="Asterisks\n\n***" />
+<MarkdownParser markdownContent={`Asterisks\n\n***`} />
 
-<MarkdownParser markdownContent="Underscores\n\n___" />
+<MarkdownParser markdownContent={`Underscores\n\n___`} />
 
 Take note of the clear line between the content and the hyphens, if
 there is no clear break between the two then that will render a h1.
@@ -430,7 +432,7 @@ The same Markdown formatting applies to the text within it but there
 may be limitations on with the Markdown parser being used.
 
 <MarkdownParser
-markdownContent="> Block Quotes Are Cool!\n>\n> **- Yo!**" />
+markdownContent={`> Block Quotes Are Cool!\n>\n> **- Yo!**`} />
 
 <YouTube youTubeId="vN1e_zVbCGE" />
 
@@ -457,8 +459,8 @@ The code fence helps the parser identify the language being used, a
 code fence will start with three backticks then have the language
 that's being used, in this example JS:
 
-<MarkdownParser markdownContent="\`\`\`\js\nconsole.log('hello
-world!')\n\`\`\`\n" />
+<MarkdownParser markdownContent={`\`\`\`\js\nconsole.log('hello
+world!')\n\`\`\`\n`} />
 
 GitHub uses [Linguist] to determine the syntax highlighting on issues
 and READMEs, there's a lot in there!
@@ -466,8 +468,8 @@ and READMEs, there's a lot in there!
 Code fences don't have to have a language attached to them and a code
 fence with no language assigned will look like this:
 
-<MarkdownParser markdownContent="\`\`\`\nconsole.log('hello
-world!')\n\`\`\`\n" />
+<MarkdownParser markdownContent={`\`\`\`\nconsole.log('hello
+world!')\n\`\`\`\n`} />
 
 <YouTube youTubeId="Hwok0c9V1Fo" />
 
