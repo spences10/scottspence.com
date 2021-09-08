@@ -69,7 +69,7 @@ Which will be converted to a h2 as you see in the web browser. Take a
 look at this interactive component here 👇 try editing the text on the
 left:
 
-<MarkdownParser markdownContent="## This is a h2 heading" />
+<MarkdownParser rows={1} markdownContent="## This is a h2 heading" />
 
 ## Markdown Tooling
 
@@ -87,14 +87,14 @@ tool for writing Markdown in the browser.
 The basics of Markdown is writing text in paragraphs the whole idea is
 that it's readable in plain text before it get parsed out to HTML.
 
-<MarkdownParser markdownContent="This is a paragraph" />
+<MarkdownParser rows={1} markdownContent="This is a paragraph" />
 
 One little gotcha here is that there needs to be a clear space between
 paragraphs otherwise Markdown parses them all as one paragraph as
 Markdown needs a line between them to identify them as paragraph
 elements, example:
 
-<MarkdownParser
+<MarkdownParser rows={2}
 markdownContent={`This is a paragraph.\nThis is also a paragraph.`} />
 
 Adding a clear line space between paragraphs allows Markdown to make
@@ -109,14 +109,14 @@ markdownContent={`This is a paragraph.\n\nThis is also a paragraph.`}
 Bold text is achieved by adding double asterisks around the word or
 paragraph you want to bold.
 
-<MarkdownParser markdownContent={`This is **bold**.`} />
+<MarkdownParser rows={1} markdownContent={`This is **bold**.`} />
 
 ### Italic
 
 Italic or emphasis is done by adding underscores around the word or
 paragraph you want to add emphasis to.
 
-<MarkdownParser markdownContent={`This is _italic_.`} />
+<MarkdownParser rows={1} markdownContent={`This is _italic_.`} />
 
 One thing to note in Markdown is that one set of _either_ underscores
 or asterisks will make it _italic_ and two sets of **either**
@@ -144,7 +144,7 @@ markdownContent={`This is ~~strikethrough~~.\n\nThis is not ~strikethrough~.`}
 There are two ways to do headings in Markdown, the first way which you
 may see but is way less popular is with `===` and `---`:
 
-<MarkdownParser markdownContent={`Heading 1\n===\n\nHeading 2\n---`}
+<MarkdownParser rows={5} markdownContent={`Heading 1\n===\n\nHeading 2\n---`}
 />
 
 This approach will only give you the option of a h1 and a h2 however,
@@ -152,7 +152,7 @@ so the next approach (and what you will see a lot more than the
 previous example) is to use hashes `#` for going from h1 (single `#`)
 all the way to h6 (six `######`)!
 
-<MarkdownParser
+<MarkdownParser rows={6}
 markdownContent={`# h1 heading\n ## h2 heading\n ### h3 heading\n #### h4 heading\n ##### h5 heading\n ###### h6 heading`}
 />
 
@@ -172,14 +172,14 @@ To add a link to Markdown, be it external (to another site) or locally
 For a raw link you want displayed you can add it as is, or surround it
 with angle brackets.
 
-<MarkdownParser
+<MarkdownParser rows={6}
 markdownContent={`Raw link: https://scottspence.com/garden\n\nWith angle brackets: <https://scottspence.com/garden>`}
 />
 
 To link text wrap the text you want to link in square brackets with
 parenthesis at the end with the link in there:
 
-<MarkdownParser
+<MarkdownParser 
 markdownContent={`Check out my [digital garden](https://scottspence.com/garden) for more content.`}
 />
 
@@ -459,7 +459,7 @@ The code fence helps the parser identify the language being used, a
 code fence will start with three backticks then have the language
 that's being used, in this example JS:
 
-<MarkdownParser markdownContent={`\`\`\`\js\nconsole.log('hello
+<MarkdownParser rows={5} markdownContent={`\`\`\`\js\nconsole.log('hello
 world!')\n\`\`\`\n`} />
 
 GitHub uses [Linguist] to determine the syntax highlighting on issues
@@ -468,7 +468,7 @@ and READMEs, there's a lot in there!
 Code fences don't have to have a language attached to them and a code
 fence with no language assigned will look like this:
 
-<MarkdownParser markdownContent={`\`\`\`\nconsole.log('hello
+<MarkdownParser rows={5} markdownContent={`\`\`\`\nconsole.log('hello
 world!')\n\`\`\`\n`} />
 
 <YouTube youTubeId="Hwok0c9V1Fo" />
