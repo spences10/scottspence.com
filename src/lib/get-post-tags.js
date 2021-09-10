@@ -1,7 +1,7 @@
 import { getPosts } from '$lib/get-posts'
 import slugify from 'slugify'
 
-export async function getPostTags() {
+export const getPostTags = async () => {
   const posts = await getPosts()
   const postsByTag = {}
 

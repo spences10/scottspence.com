@@ -1,5 +1,5 @@
 <script context="module">
-  export async function load({ page }) {
+  export const load = async ({ page }) => {
     try {
       const Copy = await import(`../../copy/now.md`)
       return {

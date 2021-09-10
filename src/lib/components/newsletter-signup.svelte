@@ -6,7 +6,7 @@
   let success = false
   let responseMessage = ''
 
-  async function submitForm() {
+  const submitForm = async () => {
     const submit = await fetch('/submit-email.json', {
       method: 'POST',
       body: JSON.stringify({ email }),

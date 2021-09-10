@@ -8,7 +8,7 @@
   import { ogImageUrl } from '$lib/og-image-url-build'
   import Fuse from 'fuse.js'
 
-  export async function load() {
+  export const load = async () => {
     const posts = await getPosts()
 
     return {

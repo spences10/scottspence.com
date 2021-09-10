@@ -1,5 +1,5 @@
 <script context="module">
-  export async function load({ page }) {
+  export const load = async () => {
     try {
       const Copy = await import(`../../copy/faq.md`)
       return {
@@ -27,7 +27,7 @@
 
   let headingNodeList
   let headings
-  async function getHeadings() {
+  const getHeadings = async () => {
     await headings
   }
 

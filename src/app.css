@@ -6,6 +6,10 @@ html {
   word-break: break-word;
 }
 
+/* 
+  These are the styles from DaisyUI needed 
+  for the scroll bar colours 
+*/
 :root {
   /* Default is Dark */
   --bg-color: #3d4451;

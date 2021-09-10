@@ -2,7 +2,7 @@
   /**
    * @type {import('@sveltejs/kit').Load}
    */
-  export async function load({ page: { params } }) {
+  export const load = async ({ page: { params } }) => {
     // get all posts
     const posts = Object.entries(
       import.meta.globEager('/posts/**/*.md')
@@ -63,7 +63,7 @@
 
   let headingNodeList
   let headings
-  async function getHeadings() {
+  const getHeadings = async () => {
     await headings
   }
 

@@ -1,5 +1,5 @@
 <script context="module">
-  export async function load({ page }) {
+  export const load = async () => {
     try {
       const Copy = await import(`../../copy/privacy-policy.md`)
       return {

@@ -3,7 +3,7 @@ import { getPosts } from '$lib/get-posts'
 import { website } from '$lib/info'
 import slugify from 'slugify'
 
-export async function get() {
+export const get = async () => {
   const postsMeta = await getPosts()
   const { tags } = await getPostTags()
   const pages = [

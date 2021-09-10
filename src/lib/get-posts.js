@@ -1,4 +1,4 @@
-export async function getPosts() {
+export const getPosts = async () => {
   const posts = await Object.entries(
     import.meta.globEager('/posts/**/*.md')
   )

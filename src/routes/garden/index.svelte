@@ -1,5 +1,5 @@
 <script context="module">
-  export async function load() {
+  export const load = async () => {
     return {
       status: 301,
       redirect: `/posts`,

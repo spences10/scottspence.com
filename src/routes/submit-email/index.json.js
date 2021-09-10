@@ -1,4 +1,4 @@
-export async function post(req) {
+export const post = async req => {
   const { email } = JSON.parse(req.body)
   const REVUE_API_KEY = process.env['REVUE_API_KEY']
 
