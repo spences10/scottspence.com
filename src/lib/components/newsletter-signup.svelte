@@ -87,7 +87,7 @@
                 class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2"
               >
                 <input
-                  class="w-full input input-primary input-bordered"
+                  class="w-full input input-primary text-primary input-bordered"
                   id="email"
                   aria-label="email"
                   type="email"
