@@ -39,12 +39,12 @@
 <h1 class="font-bold mb-5 text-5xl">Posts for {slug}</h1>
 
 <ul>
-  {#each [...postsByTag[slug]] as post}
+  {#each postsByTag[slug] as { metadata: { title }, metadata: { slug } }}
     <li class="my-4 text-xl">
       <a
         class="mr-6 transition link hover:text-primary"
         sveltekit:prefetch
-        href={`/posts/${post.slug}`}>{post.title}</a
+        href={`/posts/${slug}`}>{title}</a
       >
     </li>
   {/each}

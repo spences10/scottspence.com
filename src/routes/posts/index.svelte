@@ -9,11 +9,9 @@
   import Fuse from 'fuse.js'
 
   export const load = async () => {
-    const posts = await getPosts()
-
     return {
       props: {
-        posts,
+        posts: getPosts().map(post => post.metadata),
       },
     }
   }

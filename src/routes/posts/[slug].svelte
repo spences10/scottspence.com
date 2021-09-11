@@ -1,52 +1,39 @@
 <script context="module">
+  export const prerender = true
   /**
    * @type {import('@sveltejs/kit').Load}
    */
   export const load = async ({ page: { params } }) => {
-    // get all posts
-    const posts = Object.entries(
-      import.meta.globEager('/posts/**/*.md')
-    )
-      .map(([, post]) => ({
-        // frontmatter data
-        metadata: post.metadata,
-
-        // the processed Svelte component from the markdown file
-        component: post.default,
-      }))
-      .sort((a, b) => {
-        const da = new Date(a.metadata.date).getTime()
-        const db = new Date(b.metadata.date).getTime()
-        if (da < db) return -1
-        if (da === db) return 0
-        if (da > db) return 1
-      })
-
     const { slug } = params
-    const index = posts.findIndex(post => slug === post.metadata.slug)
-
-    const { metadata, component } = posts[index]
+    const post = getPosts().find(post => slug === post.metadata.slug)
+    if (!post) {
+      return {
+        status: 404,
+        error: 'Post not found',
+      }
+    }
 
     return {
       props: {
-        component,
-        ...metadata,
+        ...post.metadata,
+        component: post.component,
       },
     }
   }
 </script>
 
 <script>
-  import ButtButt from '$lib/components/butt-butt.svelte'
-  import Head from '$lib/components/head.svelte'
-  import IsPrivateBanner from '$lib/components/is-private-banner.svelte'
-  import PopularPosts from '$lib/components/popular-posts.svelte'
-  import ShareWithTweet from '$lib/components/share-with-tweet.svelte'
-  import TableOfContents from '$lib/components/table-of-contents.svelte'
-  import { name, website } from '$lib/info'
-  import { ogImageUrl } from '$lib/og-image-url-build'
-  import { format } from 'date-fns'
-  import { onMount } from 'svelte'
+  import ButtButt from '$lib/components/butt-butt.svelte';
+  import Head from '$lib/components/head.svelte';
+  import IsPrivateBanner from '$lib/components/is-private-banner.svelte';
+  import PopularPosts from '$lib/components/popular-posts.svelte';
+  import ShareWithTweet from '$lib/components/share-with-tweet.svelte';
+  import TableOfContents from '$lib/components/table-of-contents.svelte';
+  import { getPosts } from '$lib/get-posts';
+  import { name,website } from '$lib/info';
+  import { ogImageUrl } from '$lib/og-image-url-build';
+  import { format } from 'date-fns';
+  import { onMount } from 'svelte';
 
   export let component
 

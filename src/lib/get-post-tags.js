@@ -1,12 +1,11 @@
 import { getPosts } from '$lib/get-posts'
 import slugify from 'slugify'
 
-export const getPostTags = async () => {
-  const posts = await getPosts()
+export function getPostTags() {
   const postsByTag = {}
 
-  posts.forEach(post => {
-    const { tags, isPrivate } = post
+  getPosts().map(post => {
+    const { tags, isPrivate } = post.metadata
     if (tags && !isPrivate) {
       tags.forEach(postTag => {
         const tag = slugify(postTag)
