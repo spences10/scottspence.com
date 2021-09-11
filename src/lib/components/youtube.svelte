@@ -1,4 +1,6 @@
 <script>
+  import GeneralObserver from './general-observer.svelte'
+
   export let width = 560
   export let height = 315
   export let youTubeId = ''
@@ -33,28 +35,30 @@
   }`
 </script>
 
-<div
-  style={`
+<GeneralObserver {height} {width}>
+  <div
+    style={`
     position: relative;
     width: 100%;
     ${getPadding(aspectRatio)}
   `}
->
-  <iframe
-    {width}
-    {height}
-    class="youtube-sveltekit-embed"
-    title={`youTube-${youTubeId}`}
-    {src}
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen
-    style={`
+  >
+    <iframe
+      {width}
+      {height}
+      class="youtube-sveltekit-embed"
+      title={`youTube-${youTubeId}`}
+      {src}
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      style={`
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
     `}
-  />
-</div>
+    />
+  </div>
+</GeneralObserver>
