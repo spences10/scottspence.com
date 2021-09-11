@@ -12,7 +12,8 @@
 		"build": "svelte-kit build",
 		"preview": "svelte-kit preview",
 		"lint": "prettier --check . && eslint --ignore-path .gitignore .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"clean": "rm -rf .svelte-kit && rm -rf .vercel_build_output && rm -rf build && rm -rf public"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-vercel": "1.0.0-next.28",
