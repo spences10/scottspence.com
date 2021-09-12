@@ -67,6 +67,11 @@
 		"tailwindcss": "2.2.15",
 >>>>>>> chore(deps): update dependency svelte-preprocess to v4.9.5
 		"theme-change": "2.0.2",
+<<<<<<< HEAD
 		"unist-util-visit": "4.1.0"
+=======
+		"truncate-html": "^1.0.4",
+		"unist-util-visit": "4.0.0"
+>>>>>>> feat: :sparkles: use endpoint for posts
 	}
 }
