@@ -1,8 +1,13 @@
 <script>
   import { format } from 'date-fns'
+  import truncateHtml from 'truncate-html'
   import EdgeGlow from './edge-glow.svelte'
 
   export let post
+
+  let excerpt = truncateHtml(post.html, 300, {
+    ellipsis: '...',
+  })
 </script>
 
 <EdgeGlow>
@@ -21,7 +26,7 @@
         </div>
       </div>
       <div class="all-prose">
-        {@html post.previewHtml}
+        {@html excerpt}
       </div>
     </a>
   </article>
