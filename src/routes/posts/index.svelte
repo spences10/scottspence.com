@@ -6,11 +6,24 @@
   import { ogImageUrl } from '@lib/og-image-url-build'
   import Fuse from 'fuse.js'
 
-  export const load = async () => {
+  export const load = async ({ fetch }) => {
+    const res = await fetch(`/posts.json`)
+    if (res.ok) {
+      const { posts } = await res.json()
+      posts.sort((b, a) => {
+        const da = new Date(a.date).getTime()
+        const db = new Date(b.date).getTime()
+        if (da < db) return -1
+        if (da === db) return 0
+        if (da > db) return 1
+      })
+      return {
+        props: { posts },
+      }
+    }
+    const { message } = await res.json()
     return {
-      props: {
-        posts: getPosts().map(post => post.metadata),
-      },
+      error: new Error(message),
     }
   }
 </script>
