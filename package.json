@@ -45,11 +45,7 @@
 		"remark-preview": "^1.0.2",
 		"remark-reading-time": "1.0.1",
 		"slugify": "1.6.0",
-<<<<<<< HEAD
 		"svelte": "3.42.6",
-=======
-		"svelte": "3.42.5",
->>>>>>> d67e8f6 (chore(deps): update dependency svelte-lazy to v1.0.12)
 		"svelte-lazy": "1.0.12",
 		"svelte-preprocess": "4.9.4",
 		"tailwindcss": "2.2.15",
