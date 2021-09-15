@@ -49,12 +49,14 @@
 		"svelte": "3.44.3",
 =======
 		"slugify": "1.6.0",
-<<<<<<< HEAD
 		"svelte": "3.42.6",
+<<<<<<< HEAD
 =======
 		"svelte": "3.42.5",
 >>>>>>> d67e8f6 (chore(deps): update dependency svelte-lazy to v1.0.12)
 >>>>>>> chore(deps): update dependency svelte-lazy to v1.0.12
+=======
+>>>>>>> chore(deps): update dependency @sveltejs/adapter-vercel to v1.0.0-next.29
 		"svelte-lazy": "1.0.12",
 		"svelte-preprocess": "4.10.1",
 		"svelte-scrollto": "0.2.0",
