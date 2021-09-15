@@ -6,7 +6,7 @@
 
   $: filteredSearch = items.filter(item => {
     let title = item.title.toLowerCase()
-    let tags = item.tags
+    let tags = item?.tags
       .map(tag => tag.toLowerCase().split('-'))
       .join(' ')
       .replace(',', ' ')
@@ -18,17 +18,27 @@
   })
 </script>
 
-<label for="">
-  Search <br />
+<div class="mb-10 form-control">
+  <label for="search" class="label">
+    <span class="label-text">Search {items.length} posts...</span>
+  </label>
   <input
-    class="input input-primary input-bordered"
-    bind:value={search}
     type="text"
+    bind:value={search}
+    id="search"
     placeholder="Search"
+    class="input input-primary input-bordered"
   />
-</label>
+</div>
 
 <ul>
+  {#if filteredSearch.length === 0}
+    <li>
+      <p class="all-prose">
+        No results for <code>{search}</code>
+      </p>
+    </li>
+  {/if}
   {#each filteredSearch as item}
     <li>
       <PostCard post={item} />
