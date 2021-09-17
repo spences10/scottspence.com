@@ -47,22 +47,22 @@ export const POPULAR_POSTS = [
   {
     title: `Use Chrome in Ubuntu on Windows Subsystem Linux`,
     slug: `posts/use-chrome-in-ubuntu-wsl`,
-    views: `14k`,
+    views: `14.5k`,
   },
   {
     title: `Enable GUIs on Windows Subsystem Linux (WSL)`,
     slug: `posts/gui-with-wsl`,
-    views: `10.7k`,
+    views: `15.4k`,
   },
   {
-    title: `styled-components 💅 getting started`,
-    slug: `posts/styled-components`,
-    views: `2.6k`,
+    title: `Globally Style the Gatsby Default Starter with styled-components v5`,
+    slug: `posts/globally-style-gatsby-styled-components`,
+    views: `7.4k`,
   },
   {
     title: `Stylelint Configuration for use with Tailwind CSS`,
     slug: `posts/stylelint-configuration-for-tailwindcss`,
-    views: `1k`,
+    views: `1.4k`,
   },
 ]
 
