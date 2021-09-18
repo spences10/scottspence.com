@@ -1,5 +1,5 @@
 <script context="module">
-  export const prerender = true
+  // export const prerender = true
 
   import Head from '$lib/components/head.svelte'
   import PostCard from '$lib/components/post-card.svelte'
