@@ -1,7 +1,6 @@
 const tailwindcss = require('tailwindcss')
 const autoprefixer = require('autoprefixer')
 const cssnano = require('cssnano')
-const focusVisible = require('postcss-focus-visible')
 
 const mode = process.env.NODE_ENV
 const dev = mode === 'development'
@@ -20,7 +19,5 @@ module.exports = {
       cssnano({
         preset: 'default',
       }),
-
-    focusVisible,
   ],
 }
