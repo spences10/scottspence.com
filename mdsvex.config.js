@@ -3,6 +3,7 @@ import path from 'path'
 import autolinkHeadings from 'rehype-autolink-headings'
 import slugPlugin from 'rehype-slug'
 import remarkExternalLinks from 'remark-external-links'
+import preview, { htmlFormatter, textFormatter } from 'remark-preview'
 import readingTime from 'remark-reading-time'
 import { visit } from 'unist-util-visit'
 
@@ -14,6 +15,20 @@ export default {
   remarkPlugins: [
     // adds a `readingTime` frontmatter attribute
     readingTime(),
+
+    // Add a text preview snippet (no formatting) so we can use it in the meta description tag
+    preview(textFormatter({ length: 150, maxBlocks: 2 })),
+
+    // Add an HTML preview snippet (formatted) so we can use it when displaying all posts
+    preview(
+      htmlFormatter({
+        length: 250,
+        maxBlocks: 2,
+      }),
+      {
+        attribute: 'previewHtml',
+      }
+    ),
     // external links open in a new tab
     [remarkExternalLinks, { target: '_blank', rel: 'noopener' }],
     posts,
