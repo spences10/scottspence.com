@@ -31,8 +31,17 @@
   export let post
 
   // metadata
-  const { html, title, date, readingTime, slug, isPrivate, tags } =
-    post
+  const {
+    html,
+    title,
+    date,
+    readingTime,
+    slug,
+    isPrivate,
+    tags,
+    preview,
+    previewHtml,
+  } = post
 
   const url = `${website}/posts/${slug}`
 
@@ -52,15 +61,12 @@
     })
   })
 
-  let excerpt = truncateHtml(html, 150, {
-    ellipsis: '...',
-    stripTags: true,
-  })
+
 </script>
 
 <Head
   title={`${title} · ${name}`}
-  description={excerpt}
+  description={preview}
   image={ogImageUrl(name, `scottspence.com`, title)}
   {url}
 />
