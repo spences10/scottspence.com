@@ -5,12 +5,15 @@ tags: ['svelte', 'sveltekit']
 isPrivate: true
 ---
 
-Okedokey! Hi, my name is Scott Spence and I make web dev related
-content in the shape of written posts on my blog over at
-scottspence.com and supporting video content on YouTube!
+<script>
+  import YouTube from '$lib/components/youtube.svelte'
+</script>
 
-In this crash course I'll be detailing loads of SvelteKit features and
-how you can use them in a project.
+Okedokey! In this crash course I'll be detailing loads of SvelteKit
+features and how you can use them in a project.
+
+If you prefer to see this in a video you can [Tl;Dr] to the video
+section.
 
 ## What I'm going to Build
 
@@ -147,6 +150,10 @@ plugins: [
 Then I'll also need to configure `env-cmd` to add the environment
 variables for use in the dev server.
 
+## Complete video
+
+<YouTube youTubeId="zH2qG9YwN3s" />
+
 ## Setup GraphQL client
 
 ## Setup API Endpoints
@@ -158,3 +165,7 @@ variables for use in the dev server.
 ## (SSR) Pages for each post
 
 ## Svelte Animations
+
+<!-- Links -->
+
+[tl;dr]: #complete-video
