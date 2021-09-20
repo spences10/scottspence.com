@@ -42,6 +42,7 @@
 		"rehype-autolink-headings": "6.1.0",
 		"rehype-slug": "5.0.0",
 		"remark-external-links": "9.0.1",
+		"remark-preview": "^1.0.2",
 		"remark-reading-time": "1.0.1",
 		"slugify": "1.6.0",
 		"svelte": "3.42.6",
@@ -49,7 +50,6 @@
 		"svelte-preprocess": "4.9.4",
 		"tailwindcss": "2.2.15",
 		"theme-change": "2.0.2",
-		"truncate-html": "^1.0.4",
 		"unist-util-visit": "4.0.0"
 	}
 }
