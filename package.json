@@ -50,7 +50,6 @@
 		"svelte-preprocess": "4.9.5",
 		"tailwindcss": "2.2.15",
 		"theme-change": "2.0.2",
-		"truncate-html": "^1.0.4",
 		"unist-util-visit": "4.0.0"
 	}
 }
