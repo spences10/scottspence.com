@@ -2,7 +2,6 @@
   // export const prerender = true
 
   import Head from '$lib/components/head.svelte'
-  import PostCard from '$lib/components/post-card.svelte'
   import SearchFilter from '$lib/components/search-filter.svelte'
   import { description, name, website } from '$lib/info.js'
   import { ogImageUrl } from '$lib/og-image-url-build'
