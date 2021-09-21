@@ -3,6 +3,7 @@ import path from 'path'
 import autolinkHeadings from 'rehype-autolink-headings'
 import slugPlugin from 'rehype-slug'
 import remarkExternalLinks from 'remark-external-links'
+import preview, { htmlFormatter, textFormatter } from 'remark-preview'
 import readingTime from 'remark-reading-time'
 import { visit } from 'unist-util-visit'
 
@@ -21,8 +22,8 @@ export default {
     // Add an HTML preview snippet (formatted) so we can use it when displaying all posts
     preview(
       htmlFormatter({
-        length: 250,
-        maxBlocks: 2,
+        length: 25000,
+        maxBlocks: 2000,
       }),
       {
         attribute: 'previewHtml',
