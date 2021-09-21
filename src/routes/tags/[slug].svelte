@@ -19,7 +19,7 @@
 </script>
 
 <script>
-  export let postsByTag
+  export let tag
   export let slug
 
   const url = `${website}/tags/${slug}`
@@ -39,13 +39,15 @@
 <h1 class="font-bold mb-5 text-5xl">Posts for {slug}</h1>
 
 <ul>
-  {#each postsByTag[slug] as { metadata: { title }, metadata: { slug } }}
-    <li class="my-4 text-xl">
-      <a
-        class="mr-6 transition link hover:text-primary"
-        sveltekit:prefetch
-        href={`/posts/${slug}`}>{title}</a
-      >
-    </li>
+  {#each tag as { title, slug, isPrivate }}
+    {#if !isPrivate}
+      <li class="my-4 text-xl">
+        <a
+          class="mr-6 transition link hover:text-primary"
+          sveltekit:prefetch
+          href={`/posts/${slug}`}>{title}</a
+        >
+      </li>
+    {/if}
   {/each}
 </ul>
