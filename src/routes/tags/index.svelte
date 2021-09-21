@@ -7,13 +7,17 @@
   import { ogImageUrl } from '@lib/og-image-url-build'
   import Fuse from 'fuse.js'
 
-  export const load = async () => {
-    const { tags, postsByTag } = await getPostTags()
+  export const load = async ({ fetch }) => {
+    const res = await fetch(`/tags.json`)
+    if (res.ok) {
+      const { postsByTag, tags } = await res.json()
+      return {
+        props: { postsByTag, tags },
+      }
+    }
+    const { message } = await res.json()
     return {
-      props: {
-        tags,
-        postsByTag,
-      },
+      error: new Error(message),
     }
   }
 </script>
