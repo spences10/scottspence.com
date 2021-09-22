@@ -51,6 +51,28 @@ that `process.env` has the super secret secret populated:
 Now I can access my super secret secret and have client side variables
 too.
 
+## Update
+
+There's annother option to use which I found on the [Blog by
+Hideckies] in their example it's a `svelte.config.js` change:
+
+```js
+const config = {
+  kit: {
+    // ...
+    vite: {
+      define: {
+        'process.env': process.env,
+      },
+    },
+  },
+}
+
+export default config
+```
+
+Check out the post linked earlier for more info!
+
 ## Thanks!
 
 A kind thank you to Discord users `Xyo` and especially `saikatdas0790`
@@ -62,3 +84,5 @@ this!
   https://vitejs.dev/guide/env-and-mode.html#env-variables
 [env-cmd]: https://www.npmjs.com/package/env-cmd
 [dotenv]: https://www.npmjs.com/package/dotenv
+[blog by hideckies]:
+  https://blog.hdks.org/Environment-Variables-in-SvelteKit-and-Vercel/
