@@ -19,14 +19,9 @@ section.
 
 Ok so let's take a look at what I'm going to build!
 
-https://alik0211.github.io/pokedex/
-https://github.com/alik0211/pokedex
-
 A Pokedex!
 
 No, a blog!
-
-http://localhost:3300/
 
 A blog is up there with making project with a Pokedex but with the
 blog you can add to it over time if you're going to use it for your
@@ -39,10 +34,12 @@ GraphQL API!
 There are a few prerequisites you'll need if you're following along.
 These are:
 
-- Node v14
+- Node v14+
 - Terminal
 - VS Code or a text editor of your choosing
 - GitHub/Gitlab account
+
+Or GitPod ot GitHub code spaces.
 
 ## What is Svelte and SvelteKit
 
@@ -67,7 +64,7 @@ log in and select the Blog starter template.
 
 I'll give the project a really serious name, Sparkles Blog!
 
-Now that finished we can take a quick look around the GraphCMS
+Now that's finished we can take a quick look around the GraphCMS
 project.
 
 ## SvelteKit init
