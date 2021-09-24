@@ -13,7 +13,9 @@
   on:exitViewport={() => (intersecting = false)}
 >
   {#if intersecting}
-    <div class="flex justify-center mb-12" style={`width: ${width}`}><slot /></div>
+    <div class="flex justify-center mb-12" style={`width: ${width}`}>
+      <slot />
+    </div>
   {:else}
     <div
       class="flex justify-center mb-12"
