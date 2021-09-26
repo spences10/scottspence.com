@@ -80,7 +80,7 @@ intersting to listen to.
 
 **Random But Memorable**
 
-From the makers od 1Password for security advice and a round-up of the
+From the makers of 1Password for security advice and a round-up of the
 latest security news.
 
 <Deezer
