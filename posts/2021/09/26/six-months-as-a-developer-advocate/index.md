@@ -7,6 +7,7 @@ isPrivate: true
 
 <script>
   import YouTube from '$lib/components/youtube.svelte'
+  import SimpleCast from '$lib/components/simple-cast.svelte'
 </script>
 
 Six months ago today I started a new job as a developer advocate for
@@ -71,9 +72,15 @@ The first couple of days back from holiday Jamie and I came up with
 the idea of creating a full [Jamstack Linktree clone] that could be
 created with one click.
 
+Then I started on the Jamstack explorers videos
+
 ## September recap
 
-Rolling out of August
+<SimpleCast episodeId='46aaf483-8567-451a-aa7c-4c92fbb13f28' />
+
+Rolling out of August I made a SvelteKit Crash Course
+
+<YouTube youTubeId='zH2qG9YwN3s'/>
 
 https://graphcms.com/blog/build-with-sveltekit-and-graphcms
 
