@@ -8,6 +8,7 @@ isPrivate: true
 <script>
   import YouTube from '$lib/components/youtube.svelte'
   import SimpleCast from '$lib/components/simple-cast.svelte'
+  import AnchorFm from '$lib/components/anchor-fm.svelte'
 </script>
 
 Six months ago today I started a new job as a developer advocate for
@@ -32,6 +33,10 @@ project all the examples are based off of.
 
 Soon after that I was asked to talk with Brittney and Alex about
 GraphCMS on the [CodingCat.dev podcast]. This was released in July
+
+<AnchorFm
+  episodeUrl='purrfect-dev/embed/episodes/1-31---Delivering-Digital-Content-with-GraphCMS-e14g55c/a-a650v9a' 
+/>
 
 I was well on my way down the Svelte and SvelteKit rabbit hole by this
 time and started to put out some more written content. [Data Binding
