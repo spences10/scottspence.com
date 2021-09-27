@@ -7,7 +7,7 @@
 
 <GeneralObserver>
   <div
-    class="simplecast-episode-mdx-embed"
+    class="simplecast-episode-svelte-embed"
     style={`
       position: relative;
       height: 200px;
