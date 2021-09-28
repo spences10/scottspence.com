@@ -81,11 +81,20 @@ Then I started on the Jamstack explorers videos
 
 ## September recap
 
+Busy month from what I can recall!
+
+First up was a nice chat with my Twitter buddy James Perkins
+
 <SimpleCast episodeId='46aaf483-8567-451a-aa7c-4c92fbb13f28' />
 
-Rolling out of August I made a SvelteKit Crash Course
+Then I released a SvelteKit crash course video on YuoTube.
 
 <YouTube youTubeId='zH2qG9YwN3s'/>
+
+I was asked to do a livestream with Eddie Jaoude where we made a full
+stack CRUD app with Svelte.
+
+<YouTube youTubeId='aCP6sEvmYU4'/>
 
 https://graphcms.com/blog/build-with-sveltekit-and-graphcms
 
