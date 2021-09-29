@@ -13,11 +13,12 @@ isPrivate: true
 
 Six months ago today I started a new job as a developer advocate for
 GraphCMS. This has taken me by surprise as if feels like I've only
-just started still! So I think now is a good time to reflect on what I
-have done in this time.
+just started still!
 
-My main goal with GraphCMS is content creation so let's take a look at
-what I have done in that space.
+https://twitter.com/GraphCMS/status/1387036398314786821
+
+I think now is a good time to reflect on what I have done in this
+time.
 
 ## April recap
 
@@ -30,6 +31,12 @@ Many one to one video calls.
 After my onboarding one of the first things I did was crete a
 SvelteKit example project that used the GraphCMS eCommerce example
 project all the examples are based off of.
+
+https://github.com/GraphCMS/graphcms-examples/tree/master/with-sveltekit
+
+My Svelte love story begins!
+
+https://twitter.com/spences10/status/1389682243925327874
 
 Soon after that I was asked to talk with Brittney and Alex about
 GraphCMS on the [CodingCat.dev podcast]. This was released in July
@@ -77,7 +84,7 @@ The first couple of days back from holiday Jamie and I came up with
 the idea of creating a full [Jamstack Linktree clone] that could be
 created with one click.
 
-Then I started on the Jamstack explorers videos
+Then I started on the [Jamstack explorers mission]
 
 ## September recap
 
@@ -113,3 +120,5 @@ https://graphcms.com/blog/build-with-sveltekit-and-graphcms
   https://graphcms.com/blog/graphcms-examples-series
 [building a personal timeline with graphcms and sveltekit]:
   https://graphcms.com/blog/build-a-personal-timeline-with-graphcms-and-sveltekit
+[jamstack explorers mission]:
+  https://explorers.netlify.com/learn/building-with-sveltekit-and-graphcms
