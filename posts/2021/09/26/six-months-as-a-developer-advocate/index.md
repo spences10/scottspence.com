@@ -117,7 +117,7 @@ past achievements, which is one of the reasons I've put this post
 together.
 
 Which brings me to my team! I'm thankful for is a really supportive
-team and manager ([Jamie Barton]) that belieives in me and the content
+team and manager ([Jamie Barton]) that believes in me and the content
 I'm producing. Before I started at GraphCMS I never thought I'd be
 putting out the amount of content I have produced.
 
