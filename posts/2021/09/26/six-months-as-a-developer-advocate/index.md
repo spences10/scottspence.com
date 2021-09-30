@@ -29,11 +29,10 @@ Many one to one video calls.
 
 ## May recap
 
-After my onboarding one of the first things I did was crete a
-SvelteKit example project that used the GraphCMS eCommerce example
-project all the examples are based off of.
-
-https://github.com/GraphCMS/graphcms-examples/tree/master/with-sveltekit
+After my onboarding one of the first things I did was [create a
+SvelteKit example project] that used the GraphCMS eCommerce example
+project. All the examples in the GraphCMS examples repos use the
+GraphCMS eCommerce example.
 
 My Svelte love story begins!
 
@@ -79,7 +78,7 @@ I was on a family holiday for the last week of July.
 
 ## August recap
 
-I was still away on holiday for the first half of August.
+I was away on holiday for the first half of August.
 
 The first couple of days back from holiday Jamie and I came up with
 the idea of creating a full [Jamstack Linktree clone] that could be
@@ -109,8 +108,8 @@ followed up [with a blog post] on the GraphCMS blog.
 
 ## Conclusion
 
-So now I've listed off what I've done in the last sever months, I can
-see I have been quite busy!
+So now I've listed off what I've done in the last several months, I
+can see I have been quite busy!
 
 I have had periods of overwhelming imposter syndrome, at points like
 this I have had colleagues like [Pranshu Khanna] highlight some of my
@@ -132,6 +131,8 @@ I'm doing now. I really feel like I'm only just getting started!!
 
 <!-- Links -->
 
+[create a sveltekit example project]:
+  https://github.com/GraphCMS/graphcms-examples/tree/master/with-sveltekit
 [sveltekit starter blog with graphcms]:
   https://graphcms.com/blog/sveltekit-starter-blog-with-graphcms
 [graphcms examples]: https://github.com/GraphCMS/graphcms-examples/
