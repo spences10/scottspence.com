@@ -2,20 +2,21 @@
 date: 2021-09-26
 title: Six Months as a Developer Advocate - a retrospective
 tags: ['career', 'notes']
-isPrivate: true
+isPrivate: false
 ---
 
 <script>
   import YouTube from '$lib/components/youtube.svelte'
   import SimpleCast from '$lib/components/simple-cast.svelte'
   import AnchorFm from '$lib/components/anchor-fm.svelte'
+  import Tweet from '$lib/components/tweet.svelte'
 </script>
 
 Six months ago today I started a new job as a developer advocate for
 GraphCMS. This has taken me by surprise as if feels like I've only
 just started still!
 
-https://twitter.com/GraphCMS/status/1387036398314786821
+<Tweet tweetLink="https://twitter.com/GraphCMS/status/1387036398314786821" />
 
 I think now is a good time to reflect on what I have done in this
 time.
@@ -36,7 +37,7 @@ https://github.com/GraphCMS/graphcms-examples/tree/master/with-sveltekit
 
 My Svelte love story begins!
 
-https://twitter.com/spences10/status/1389682243925327874
+<Tweet tweetLink="https://twitter.com/spences10/status/1389682243925327874" />
 
 Soon after that I was asked to talk with Brittney and Alex about
 GraphCMS on the [CodingCat.dev podcast]. This was released in July
@@ -94,7 +95,7 @@ First up was a nice chat with my Twitter buddy James Perkins
 
 <SimpleCast episodeId='46aaf483-8567-451a-aa7c-4c92fbb13f28' />
 
-Then I released a SvelteKit crash course video on YuoTube.
+Then I released a SvelteKit crash course video on YouTube.
 
 <YouTube youTubeId='zH2qG9YwN3s'/>
 
@@ -103,7 +104,31 @@ stack CRUD app with Svelte.
 
 <YouTube youTubeId='aCP6sEvmYU4'/>
 
-https://graphcms.com/blog/build-with-sveltekit-and-graphcms
+The [Jamstack explorers mission] was [announced by Netlify] and I
+followed up [with a blog post] on the GraphCMS blog.
+
+## Conclusion
+
+So now I've listed off what I've done in the last sever months, I can
+see I have been quite busy!
+
+I have had periods of overwhelming imposter syndrome, at points like
+this I have had colleagues like [Pranshu Khanna] highlight some of my
+past achievements, which is one of the reasons I've put this post
+together.
+
+Which brings me to my team! I'm thankful for is a really supportive
+team and manager ([Jamie Barton]) that belieives in me and the content
+I'm producing. Before I started at GraphCMS I never thought I'd be
+putting out the amount of content I have produced.
+
+What I have listed here is actual content and doesn't include all the
+planning and co-ordination with the rest of the team. Helping out with
+the community in the public Slack, speaking with other companies and
+individuals about collaborations and partnerships.
+
+The GraphQL ecosystem and the Svelte ecosystem is a big part of what
+I'm doing now. I really feel like I'm only just getting started!!
 
 <!-- Links -->
 
@@ -122,3 +147,9 @@ https://graphcms.com/blog/build-with-sveltekit-and-graphcms
   https://graphcms.com/blog/build-a-personal-timeline-with-graphcms-and-sveltekit
 [jamstack explorers mission]:
   https://explorers.netlify.com/learn/building-with-sveltekit-and-graphcms
+[announced by netlify]:
+  https://twitter.com/Netlify/status/1439974131290755078
+[with a blog post]:
+  https://graphcms.com/blog/build-with-sveltekit-and-graphcms
+[jamie barton]: https://twitter.com/notrab
+[pranshu khanna]: https://twitter.com/inmypranshoes
