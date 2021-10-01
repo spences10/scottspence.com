@@ -16,7 +16,7 @@ Six months ago today I started a new job as a developer advocate for
 GraphCMS. This has taken me by surprise as if feels like I've only
 just started still!
 
-<Tweet tweetLink="https://twitter.com/GraphCMS/status/1387036398314786821" />
+<Tweet tweetLink="GraphCMS/status/1387036398314786821" />
 
 I think now is a good time to reflect on what I have done in this
 time.
@@ -36,7 +36,7 @@ GraphCMS eCommerce example.
 
 My Svelte love story begins!
 
-<Tweet tweetLink="https://twitter.com/spences10/status/1389682243925327874" />
+<Tweet tweetLink="spences10/status/1389682243925327874" />
 
 Soon after that I was asked to talk with Brittney and Alex about
 GraphCMS on the [CodingCat.dev podcast]. This was released in July
