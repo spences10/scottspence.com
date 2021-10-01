@@ -1,6 +1,4 @@
 <script>
-  import GeneralObserver from './general-observer.svelte'
-
   export let tweetLink = ''
 </script>
 
@@ -11,10 +9,10 @@
     charset="utf-8"></script>
 </svelte:head>
 
-<GeneralObserver>
+<div class="flex justify-center mb-12">
   <blockquote class="twitter-tweet">
     <a class="twitter-tweet" href={`https://twitter.com/${tweetLink}`}
       >Loading Tweet...</a
     >
   </blockquote>
-</GeneralObserver>
+</div>
