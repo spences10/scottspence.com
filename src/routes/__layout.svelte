@@ -6,7 +6,6 @@
   import ThemeSelect from '$lib/components/theme-select.svelte'
   import { name } from '$lib/info'
   import * as Fathom from 'fathom-client'
-  import 'focus-visible'
   import { onMount } from 'svelte'
   import { themeChange } from 'theme-change'
   import '../app.css'

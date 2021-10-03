@@ -22,6 +22,7 @@
 		"autoprefixer": "10.3.6",
 		"cssnano": "5.0.8",
 		"daisyui": "1.14.2",
+		"date-fns": "^2.24.0",
 		"env-cmd": "10.1.0",
 		"eslint": "7.32.0",
 		"eslint-config-prettier": "8.3.0",
@@ -34,7 +35,6 @@
 		"mdsvex": "0.9.8",
 		"mdsvex-relative-images": "1.0.1",
 		"postcss": "8.3.8",
-		"postcss-focus-visible": "5.0.0",
 		"postcss-load-config": "3.1.0",
 		"prettier": "2.4.1",
 		"prettier-plugin-svelte": "2.4.0",
@@ -51,11 +51,5 @@
 		"tailwindcss": "2.2.16",
 		"theme-change": "2.0.2",
 		"unist-util-visit": "4.1.0"
-	},
-	"dependencies": {
-		"@mattjennings/heroicons-svelte": "0.0.6",
-		"clsx": "1.1.1",
-		"date-fns": "2.24.0",
-		"focus-visible": "5.2.0"
 	}
 }
