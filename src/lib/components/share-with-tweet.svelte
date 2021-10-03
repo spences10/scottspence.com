@@ -5,7 +5,7 @@
 
 <a
   class="btn btn-sm"
-  rel="noopener"
+  rel="noreferrer noopener"
   target="_blank"
   href={`https://twitter.com/intent/tweet?text=${encodeURI(
     tweetText
