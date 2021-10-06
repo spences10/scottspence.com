@@ -192,7 +192,7 @@ export const PEOPLE = [
   },
   {
     name: `Catalin Pit`,
-    link: `https://twitter.com/catalinmpit`,
+    link: `https://catalins.tech/`,
     met: false,
   },
   {
