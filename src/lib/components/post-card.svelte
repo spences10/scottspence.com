@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="all-prose">
-        {@html post.previewHtml}
+        {@html `${post.html.slice(0,150)}...`}
       </div>
     </a>
   </article>
