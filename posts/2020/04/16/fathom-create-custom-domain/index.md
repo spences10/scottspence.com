@@ -87,17 +87,17 @@ dashboard, click on the Site ID for my site the pick the domain from
 the select list and verify it's working on my site that is already
 configured with Fathom.
 
-![pick custom domain in site settings]
-
-## Add DNS record in Netlify
-
-I'm going to do the same with Netlify now, it's a bit more
-straightforward with Netlify, I go to my sites page, select Domains,
-pick my domain scroll to the bottom of the list and select 'Add new
-record', add the details from the Fathom Domains page.
+I'm going to do the same with Netlify now, it's a bit more pick my
+domain scroll to the bottom of the list and select 'Add new record',
+add the details from the Fathom Domains page.
 
 ![create new dns record netlify]
 
+## Add DNS record in Netlify
+
+![pick custom domain in site settings]
+
+straightforward with Netlify, I go to my sites page, select Domains,
 It didn't take long to validate the record in the Fathom setting page
 then I picked the custom domain like I did in the previous step.
 
@@ -167,9 +167,14 @@ Done!
 [this gist]:
   https://gist.github.com/jaydenseric/f4147d7d9788d1f46b30e4ac7b57e6b2
 [dns editor for vercel domains]: https://vercel.com/integrations/dns
-[fathom dns record for a site]: ./fathom-dns-record-for-site.png
-[pick custom domain in site settings]:
-  ./pick-custom-domain-in-site-settings.png
-[create new dns record netlify]: ./create-new-dns-record-netlify.png
 [to your gatsby site]: https://usefathom.com/integrations/gatsbyjs
 [`default-html.js` file]: https://www.gatsbyjs.org/docs/custom-html/
+
+<!-- Images -->
+
+[create new dns record netlify]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/create-new-dns-record-netlify-388b4824b94966a449b57c7fd59f5fa8.png
+[pick custom domain in site settings]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/pick-custom-domain-in-site-settings-3af1a934a7a66f45d754f3cfa36bb80e.png
+[fathom dns record for a site]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/fathom-dns-record-for-site-918a662955a145472c8b3a65061649e2.png

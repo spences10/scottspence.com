@@ -180,8 +180,6 @@ New CSS Logical Properties!: [medium post]
 [react-color-tools.surge.sh]: https://react-color-tools.surge.sh/
 [worldvectorlogo.com]: https://worldvectorlogo.com/search/GraphQL
 [layoutit.com/build]: https://www.layoutit.com/build
-[desaturating images]: ./desaturatingImages.jpg
-[circle images]: ./circleImages.jpg
 [9elements.github.io/fancy-border-radius]:
   https://9elements.github.io/fancy-border-radius
 [mathias bynens]: https://twitter.com/mathias
@@ -191,3 +189,10 @@ New CSS Logical Properties!: [medium post]
   https://codesandbox.io/s/muddy-sun-gp0el
 [a most excellent hsl color picker]: https://hslpicker.com/
 [colorhunt.co]: https://colorhunt.co/
+
+<!-- Images -->
+
+[desaturating images]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/desaturatingImages-e8f3e086004f22ace2e1f29cf08c706b.jpg
+[circle images]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/circleImages-30b19bb25510c6ba66ef181a3023ebac.jpg

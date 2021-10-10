@@ -168,5 +168,7 @@ Medium:
 
 <!-- Images -->
 
-[stress-office]: ./stress-office.jpg
-[shady-recruiter-middle-man]: ./shady-recruiter-middle-man.jpg
+[stress-office]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930931/scottspence.com/stress-office-76b7f4c70276388a047bbf68a48a19a5.jpg
+[shady-recruiter-middle-man]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930935/scottspence.com/shady-recruiter-middle-man-39c169147b3806bbb9898f3b553bf0a6.jpg

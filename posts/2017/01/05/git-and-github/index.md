@@ -153,6 +153,9 @@ push/pull without having to authenticate each time.
 
 <!-- Images -->
 
-[octocat]: ./git-logo.jpg
-[fork-a-repo]: ./fork-a-repo.png
-[open-a-pull-request]: ./open-a-pull-request.png
+[octocat]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930928/scottspence.com/git-logo-536686b63ad7e966fc425ed4c67c2ddc.jpg
+[fork-a-repo]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930928/scottspence.com/fork-a-repo-7898cedb809d19d597af446ca0683bd8.png
+[open-a-pull-request]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/open-a-pull-request-3344c43215debf994772b5f1893bc581.png

@@ -125,7 +125,7 @@ const Layout = ({ children }) => {
 In the code example here 👆I've I removed the `useStaticQuery` hook
 for readability.
 
-![reset page](./reset-page.png)
+![reset page]
 
 Ok, cool, looks pretty reset to me!
 
@@ -607,3 +607,8 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
   https://github.com/tailwindcss/designing-with-tailwindcss/blob/master/01-getting-up-and-running/07-customizing-your-design-system/tailwind-full.config.js
 [twitter]: https://twitter.com/spences10
 [ask me anything]: https://github.com/spences10/ama
+
+<!-- Images -->
+
+[reset page]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/reset-page-39c26fbeac89322ffc9491b0efa0ad13.png

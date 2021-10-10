@@ -112,9 +112,13 @@ well!!
   https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#grant-passwordless-access-for-dbus
 [stack overflow question]:
   https://stackoverflow.com/questions/58134793/error-while-loading-shared-libraries-libnss3-so-while-running-gtlab-ci-job-to
-[stack overflow comment]: ./stack-overflow-comment.png
 [code weavers]:
   https://www.codeweavers.com/support/wiki/Diag/MissingLibAsoundMidi
 [this page]:
   https://www.codeweavers.com/support/wiki/Diag/MissingLibAsound
 [mdx embed project]: https://github.com/PaulieScanlon/mdx-embed
+
+<!-- Images -->
+
+[stack overflow comment]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/stack-overflow-comment-55459b70613d9cd30faf38898f07e47d.png

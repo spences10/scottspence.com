@@ -265,5 +265,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 
 <!-- Images -->
 
-[comparelayout]: ./compareLayout.png
-[compareseo]: ./compareSEO.png
+[comparelayout]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/compareLayout-ea4dd0fb5890ca0f00a8d98e9f57a0df.png
+[compareseo]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/compareSEO-0e2968ec8991f7a0c3f41e1b64986288.png

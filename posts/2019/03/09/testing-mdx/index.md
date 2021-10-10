@@ -77,4 +77,5 @@ Image for prosperity 👍
 
 <!-- Images -->
 
-[highlightvlive]: ./highlightVLive.png
+[highlightvlive]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/highlightVLive-3b1ee37a5c2b58e0079a1c23bea2b7e4.png

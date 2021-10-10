@@ -126,7 +126,7 @@ time for my development.
 
 It’s a balance though 😀
 
-![compare](./weight-gain.png)
+![compare]
 
 ### Tools
 
@@ -141,7 +141,7 @@ Todoist and come back to it when I get the capacity to work on it.
 when doing <span>#100DaysOfCode</span>, you get that instant feedback
 on how you're doing for the day.
 
-![compare](./wakatime-stats.png)
+![wakatime]
 
 **RescueTime**, is handy for helping you identify your productivity
 black holes and give you a nice breakdown of where your time is spent
@@ -192,3 +192,10 @@ junior dev.
 [my portfolio]: https://scottspence.com/#portfolio
 [content on egghead.io]: https://egghead.io/instructors/kentcdodds
 [wesbos.com]: https://wesbos.com/courses/
+
+<!-- Images -->
+
+[compare]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930929/scottspence.com/weight-gain-349fdf64fd8046a361b7bcf639250909.png
+[wakatime]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930932/scottspence.com/wakatime-stats-8581ce35405d8dd3124ca0fdb229c5f0.png

@@ -115,16 +115,21 @@ Thanks for reading!
 
 <!-- Images -->
 
-[netlify-connect-github]: ./netlify-connect-github.png
-[netlify-configure-env-vars]: ./netlify-configure-env-vars.png
+[netlify-connect-github]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-connect-github.png
+[netlify-configure-env-vars]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881281/scottspence.com/netlify-configure-env-vars.png
 [netlify-configure-env-vars-example]:
-  ./netlify-configure-env-vars-example.png
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-configure-env-vars-example.png
 [netlify-production-deploy-section]:
-  ./netlify-production-deploy-section.png
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-production-deploy-section.png
 [netlify-production-preview-button]:
-  ./netlify-production-preview-button.png
-[vercel-pick-git-provider]: ./vercel-pick-git-provider.png
-[vercel-create-private-repo]: ./vercel-create-private-repo.png
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-production-preview-button.png
+[vercel-pick-git-provider]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-pick-git-provider.png
+[vercel-create-private-repo]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-create-private-repo.png
 [vercel-configure-env-vars-example]:
-  ./vercel-configure-env-vars-example.png
-[vercel-congratulations]: ./vercel-congratulations.png
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-configure-env-vars-example.png
+[vercel-congratulations]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-congratulations.png

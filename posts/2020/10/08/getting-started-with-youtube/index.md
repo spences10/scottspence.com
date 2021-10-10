@@ -400,9 +400,15 @@ Thanks again 👍
 
 <!-- Images -->
 
-[obs-auto-configuration-wizard]: ./obs-auto-configuration-wizard.png
-[empty-starting-scene]: ./empty-starting-scene.png
-[add-display-capture.png]: ./add-display-capture.png
-[add-text-to-scene]: ./add-text-to-scene.png
-[add-script]: ./add-script.png
-[youtube-add-icon]: ./youtube-add-icon.png
+[obs-auto-configuration-wizard]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/obs-auto-configuration-wizard-9f4d97bea64dba475beaea2e3803bd54.png
+[empty-starting-scene]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/empty-starting-scene-13cafbf630213ab2bd16ab1b8980975a.png
+[add-display-capture.png]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/add-display-capture-0aac3d0f1e6f42f31ded0493cbd4c6a3.png
+[add-text-to-scene]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/add-text-to-scene-4ff48ee5a07dffb57f0ddb6769deec3a.png
+[add-script]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/add-script-ab536cc3ff3fa25f5312dcba22ff2d6b.png
+[youtube-add-icon]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/youtube-add-icon-76d47080f1e5e3f0a736929663a9cd86.png

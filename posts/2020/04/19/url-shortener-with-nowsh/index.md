@@ -295,3 +295,10 @@ the same project.
   https://vercel.com/docs/v2/git-integrations/vercel-for-gitlab
 [bitbucket]:
   https://vercel.com/docs/v2/git-integrations/vercel-for-bitbucket
+
+<!-- Images -->
+
+[vercel project overview]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/vercel-project-overview-920be865823e277d7de4076c16bf0cef.png
+[vercel domains settings]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/vercel-domains-settings-1a61d18a56f360b8fc4d92ed3767365b.png
