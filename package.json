@@ -31,7 +31,7 @@
 		"fuse.js": "6.4.6",
 		"graphql": "15.6.1",
 		"graphql-request": "3.5.0",
-		"marked": "3.0.4",
+		"marked": "3.0.7",
 		"mdsvex": "0.9.8",
 		"mdsvex-relative-images": "1.0.1",
 		"postcss": "8.3.9",
