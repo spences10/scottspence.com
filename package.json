@@ -10,6 +10,7 @@
 	"scripts": {
 		"dev": "env-cmd svelte-kit dev",
 		"build": "svelte-kit build",
+		"build:local": "env-cmd svelte-kit build",
 		"preview": "svelte-kit preview",
 		"lint": "prettier --check . && eslint --ignore-path .gitignore .",
 		"format": "prettier --write .",
