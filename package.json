@@ -19,6 +19,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-vercel": "^1.0.0-next.34",
 		"@sveltejs/kit": "next",
+<<<<<<< HEAD
 		"@tailwindcss/typography": "0.5.0",
 		"autoprefixer": "10.4.1",
 		"cssnano": "5.0.14",
@@ -76,5 +77,40 @@
 >>>>>>> refactor: :recycle: use remarrk-preview in place of truncate-html
 		"unist-util-visit": "4.0.0"
 >>>>>>> feat: :sparkles: use endpoint for posts
+=======
+		"@tailwindcss/typography": "0.4.1",
+		"autoprefixer": "10.3.7",
+		"clsx": "1.1.1",
+		"cssnano": "5.0.8",
+		"daisyui": "1.14.2",
+		"date-fns": "2.25.0",
+		"env-cmd": "10.1.0",
+		"eslint": "8.0.0",
+		"eslint-config-prettier": "8.3.0",
+		"eslint-plugin-svelte3": "3.2.1",
+		"fathom-client": "3.2.0",
+		"fuse.js": "6.4.6",
+		"graphql": "15.6.1",
+		"graphql-request": "3.5.0",
+		"marked": "3.0.7",
+		"mdsvex": "0.9.8",
+		"mdsvex-relative-images": "1.0.1",
+		"postcss": "8.3.9",
+		"postcss-load-config": "3.1.0",
+		"prettier": "2.4.1",
+		"prettier-plugin-svelte": "2.4.0",
+		"rehype-autolink-headings": "6.1.0",
+		"rehype-slug": "5.0.0",
+		"remark-external-links": "9.0.1",
+		"remark-preview": "^1.0.2",
+		"remark-reading-time": "1.0.1",
+		"slugify": "1.6.1",
+		"svelte": "3.43.1",
+		"svelte-lazy": "1.0.12",
+		"svelte-preprocess": "4.9.8",
+		"tailwindcss": "2.2.16",
+		"theme-change": "2.0.2",
+		"unist-util-visit": "4.1.0"
+>>>>>>> chore: :arrow_up:
 	}
 }
