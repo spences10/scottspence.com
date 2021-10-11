@@ -35,7 +35,7 @@ Credit to [Jim Perrin] for the original post in [Fedora Magazine] on
 this.
 
 Get the Dockerhub container image which is what I'll be using for the
-Linux instance, this is because Fedore doesn't ship with `rootfs` so
+Linux instance, this is because Fedora doesn't ship with `rootfs` so
 I'm jacking [this one from GitHub].
 
 I'll download the image and put it on my C drive in a distros folder.
