@@ -17,7 +17,7 @@
 		"clean": "rm -rf .svelte-kit && rm -rf .vercel_build_output && rm -rf build && rm -rf public"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-vercel": "1.0.0-next.30",
+		"@sveltejs/adapter-vercel": "1.0.0-next.31",
 		"@sveltejs/kit": "next",
 		"@tailwindcss/typography": "0.4.1",
 		"autoprefixer": "10.3.7",
@@ -25,7 +25,7 @@
 		"daisyui": "1.14.2",
 		"date-fns": "2.25.0",
 		"env-cmd": "10.1.0",
-		"eslint": "7.32.0",
+		"eslint": "8.0.0",
 		"eslint-config-prettier": "8.3.0",
 		"eslint-plugin-svelte3": "3.2.1",
 		"fathom-client": "3.2.0",
