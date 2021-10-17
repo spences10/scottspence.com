@@ -33,14 +33,14 @@ specifiers:
   svelte-lazy: 1.0.12
   svelte-preprocess: 4.9.8
   svelte-scrollto: 0.2.0
-  tailwindcss: 2.2.16
+  tailwindcss: 2.2.17
   theme-change: 2.0.2
   unist-util-visit: 4.1.0
 
 devDependencies:
   '@sveltejs/adapter-vercel': 1.0.0-next.31
-  '@sveltejs/kit': 1.0.0-next.183_svelte@3.43.2
-  '@tailwindcss/typography': 0.4.1_tailwindcss@2.2.16
+  '@sveltejs/kit': 1.0.0-next.184_svelte@3.43.2
+  '@tailwindcss/typography': 0.4.1_tailwindcss@2.2.17
   autoprefixer: 10.3.7_postcss@8.3.9
   cssnano: 5.0.8_postcss@8.3.9
   daisyui: 1.14.2
@@ -70,7 +70,7 @@ devDependencies:
   svelte-lazy: 1.0.12_svelte@3.43.2
   svelte-preprocess: 4.9.8_6791a88092a7dfc8f03ced7bd61bb4e4
   svelte-scrollto: 0.2.0
-  tailwindcss: 2.2.16_96f83969316717847b3edf58a3f353f3
+  tailwindcss: 2.2.17_96f83969316717847b3edf58a3f353f3
   theme-change: 2.0.2
   unist-util-visit: 4.1.0
 
@@ -164,9 +164,9 @@ packages:
       esbuild: 0.13.4
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.183_svelte@3.43.2:
-    resolution: {integrity: sha512-XS115RLu8mQk0wZ33BF6sKHEQD8BUFhErfxJhEkXoR4m2bW1h1JBLKHaZ1qnG9eAPkalmccCXDMxJjuYVCh/oQ==}
-    engines: {node: ^12.20 || >=14.13}
+  /@sveltejs/kit/1.0.0-next.184_svelte@3.43.2:
+    resolution: {integrity: sha512-bQNka3td/OMmnbDEzUTmb3czPgt/y93WOyYiT14ORq/qPewoMhEtgPikfboejdZMTJESSq06s43YXmF2MzqSSA==}
+    engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
       svelte: ^3.43.0
@@ -207,7 +207,7 @@ packages:
       - supports-color
     dev: true
 
-  /@tailwindcss/typography/0.4.1_tailwindcss@2.2.16:
+  /@tailwindcss/typography/0.4.1_tailwindcss@2.2.17:
     resolution: {integrity: sha512-ovPPLUhs7zAIJfr0y1dbGlyCuPhpuv/jpBoFgqAc658DWGGrOBWBMpAWLw2KlzbNeVk4YBJMzue1ekvIbdw6XA==}
     peerDependencies:
       tailwindcss: '>=2.0.0'
@@ -216,7 +216,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
-      tailwindcss: 2.2.16_96f83969316717847b3edf58a3f353f3
+      tailwindcss: 2.2.17_96f83969316717847b3edf58a3f353f3
     dev: true
 
   /@trysound/sax/0.2.0:
@@ -1874,10 +1874,6 @@ packages:
     resolution: {integrity: sha512-2nMHqg1x5PU+unxX7PGY7AuYxl2qDx7PSrTRjizr8sxdd3l/3hBuWWaki62qmtYm2U5i4Z5E7GbjlyDFhs9/EQ==}
     dev: true
 
-  /nanocolors/0.2.13:
-    resolution: {integrity: sha512-0n3mSAQLPpGLV9ORXT5+C/D4mwew7Ebws69Hx4E2sgz2ZA5+32Q80B9tL8PbL7XHnRDiAxH/pnrUJ9a4fkTNTA==}
-    dev: true
-
   /nanoid/3.1.29:
     resolution: {integrity: sha512-dW2pUSGZ8ZnCFIlBIA31SV8huOGCHb6OwzVCc7A69rb/a+SgPBwfmLvK5TKQ3INPbRkcI8a/Owo0XbiTNH19wg==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
@@ -2072,7 +2068,7 @@ packages:
     engines: {node: '>=10.0'}
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.3.8
+      postcss: 8.3.9
     dev: true
 
   /postcss-load-config/3.1.0:
@@ -2339,15 +2335,6 @@ packages:
     resolution: {integrity: sha512-97DXOFbQJhk71ne5/Mt6cOu6yxsSfM0QGQyl0L25Gca4yGWEGJaig7l7gbCX623VqTBNGLRLaVUCnNkcedlRSQ==}
     dev: true
 
-  /postcss/8.3.8:
-    resolution: {integrity: sha512-GT5bTjjZnwDifajzczOC+r3FI3Cu+PgPvrsjhQdRqa2kTJ4968/X9CUce9xttIB0xOs5c6xf0TCWZo/y9lF6bA==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanocolors: 0.2.13
-      nanoid: 3.1.29
-      source-map-js: 0.6.2
-    dev: true
-
   /postcss/8.3.9:
     resolution: {integrity: sha512-f/ZFyAKh9Dnqytx5X62jgjhhzttjZS7hMsohcI7HEI5tjELX/HxCy3EFhsRxyzGvrzFF+82XPvCS8T9TFleVJw==}
     engines: {node: ^10 || ^12 || >=14}
@@ -2411,7 +2398,7 @@ packages:
     dependencies:
       commander: 6.2.1
       glob: 7.2.0
-      postcss: 8.3.8
+      postcss: 8.3.9
       postcss-selector-parser: 6.0.6
     dev: true
 
@@ -2815,8 +2802,8 @@ packages:
       stable: 0.1.8
     dev: true
 
-  /tailwindcss/2.2.16_96f83969316717847b3edf58a3f353f3:
-    resolution: {integrity: sha512-EireCtpQyyJ4Xz8NYzHafBoy4baCOO96flM0+HgtsFcIQ9KFy/YBK3GEtlnD+rXen0e4xm8t3WiUcKBJmN6yjg==}
+  /tailwindcss/2.2.17_96f83969316717847b3edf58a3f353f3:
+    resolution: {integrity: sha512-WgRpn+Pxn7eWqlruxnxEbL9ByVRWi3iC10z4b6dW0zSdnkPVC4hPMSWLQkkW8GCyBIv/vbJ0bxIi9dVrl4CfoA==}
     engines: {node: '>=12.13.0'}
     hasBin: true
     peerDependencies:
