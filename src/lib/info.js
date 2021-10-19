@@ -188,7 +188,7 @@ export const PEOPLE = [
   {
     name: `Marc Backes`,
     link: `https://twitter.com/themarcba`,
-    met: false,
+    met: true,
   },
   {
     name: `Catalin Pit`,
