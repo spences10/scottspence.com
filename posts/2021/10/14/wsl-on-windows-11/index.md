@@ -49,6 +49,14 @@ the Windows Store, you _can_ do this and I have detailed the whole
 setup for web dev in [WSL Web Developer Bootstrap with Fedora 33]
 (replace Fedora 33 with your distro of choice).
 
+## Windows Subsystem for Linux Preview
+
+You can now install WSL from the Windows store with the [Windows
+Subsystem for Linux Preview] app!
+
+Just make sure you have **Virtual Machine Platform** enabled in the
+'Turn Windows Features on or off' section.
+
 ## Conclusion
 
 What was once several blog posts on how to configure your system to
@@ -67,3 +75,5 @@ couple of PowerShell commands!
   https://scottspence.com/posts/fedora-bootstrap-from-scratch
 [enable guis on windows subsystem linux (wsl)]:
   http://localhost:3300/posts/gui-with-wsl#gui-things
+[windows subsystem for linux preview]:
+  https://www.microsoft.com/en-gb/p/windows-subsystem-for-linux-preview/9p9tqf7mrm4r?activetab=pivot:overviewtab
