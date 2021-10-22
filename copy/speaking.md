@@ -4,28 +4,52 @@
   import Small from '$lib/components/small.svelte'
   import Spotify from '$lib/components/spotify.svelte'
   import YouTube from '$lib/components/youtube.svelte'
+  import SimpleCast from '$lib/components/simple-cast.svelte'
 </script>
 
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2021-08-14" small="true" />
+  Last updated: <DateUpdated date="2021-10-22" small="true" />
 </Small>
 
-I have spoken at several meetups and conferences now and would be keen
-to do more, if you are having a meetup and want speakers [get in
-touch].
+If you want me to talk about using Svelte with GraphQL, the Jamstack
+or anything else [get in touch].
 
-### Recent talks and appearances
+**Recent talks, workshops and appearances**
 
 Here's the list of talks, podcasts and livestreams I have done
 recently.
 
+## Jamstack Conf Workshop - 2021 October
+
+Jamstack Conference workshop Building with Svelte and GraphQL
+
+![jamstack conf workshop]
+
+## Jamstack Explorers - 2021 October
+
+Jamstack explorers mission on building a production ready Svelte
+project with Svelte
+
+![jamstack explorers]
+
+## Eddie Jaoude - 2021 September
+
+Livestream with Eddie Jaoude where we made a full stack CRUD app with
+Svelte.
+
+<YouTube youTubeId='aCP6sEvmYU4'/>
+
+## Developers Hangout - 2021 September
+
+Chatting with James Perkins about Dev Rel
+
+<SimpleCast episodeId='46aaf483-8567-451a-aa7c-4c92fbb13f28' />
+
 ## Purrfect.dev - 2021 Jul
 
-#### Delivering Digital Content with GraphCMS
-
-https://codingcat.dev/podcast/1-31-delivering-digital-content-with-graphcms
+Delivering Digital Content with GraphCMS
 
 <Spotify
   spotifyLink="episode/404wafUKZho8inHT6iYcdi"
@@ -35,9 +59,8 @@ https://codingcat.dev/podcast/1-31-delivering-digital-content-with-graphcms
 
 ## UtkalHacks 3.0 - 2021 March
 
-#### Building a blog using GatsbyJS and MDX
-
-Build a Gatsby blog with MDX and Theme UI
+Building a blog using GatsbyJS and MDX, Build a Gatsby blog with MDX
+and Theme UI
 
 <Details buttonText="Expand to watch.">
   <YouTube youTubeId="Mg19wDM4wS8" />
@@ -45,9 +68,8 @@ Build a Gatsby blog with MDX and Theme UI
 
 ## MMT Tech Meet-up - 2021 Feb
 
-#### I Have a Hammer
-
-I was invited to talk about MDX at the MMT Gatsby meetup.
+I Have a Hammer, I was invited to talk about MDX at the MMT Gatsby
+meetup.
 
 Slides here: https://i-have-a-hammer.vercel.app/
 
@@ -60,9 +82,8 @@ Slides here: https://i-have-a-hammer.vercel.app/
 
 ## Scale by the Bay - 2020 November 13th
 
-#### Spreading the Jamstack
-
-I was invited to talk about the jamstack at Scale by the Bay.
+Spreading the Jamstack, I was invited to talk about the jamstack at
+Scale by the Bay.
 
 Slides here: https://ss10.dev/jam-talk
 
@@ -72,12 +93,10 @@ Slides here: https://ss10.dev/jam-talk
 
 ## Whiskey Wednesday - 2020 October 7th
 
-#### Episode #10 - Mentioning
-
-Finding a mentor when starting out as a beginner (and also after) is
-important and not always an easy task. In this episode, we will talk
-about everything you need to know when looking for a mentor, or
-becoming a mentor.
+Episode #10 - Mentioning, Finding a mentor when starting out as a
+beginner (and also after) is important and not always an easy task. In
+this episode, we will talk about everything you need to know when
+looking for a mentor, or becoming a mentor.
 
 📺 [Watch it on Youtube](https://www.youtube.com/watch?v=Ei9gQBiE_YE)
 
@@ -99,11 +118,9 @@ blog with MDX.
 
 ## Whiskey Wednesday - 2020 September 23rd
 
-#### Episode #9 - a11y (Accessibility)
-
-Accessibility is an important part of every website and every
-developer should try implementing at least the most important
-accessibility features.
+Episode #9 - a11y (Accessibility), Accessibility is an important part
+of every website and every developer should try implementing at least
+the most important accessibility features.
 
 We will talk about what accessibility actually is, why it is
 important, and how to implement it.
@@ -118,12 +135,8 @@ important, and how to implement it.
 
 ## Whiskey Wednesday - 2020 September 9th
 
-#### Episode #8 - Content Creation
-
-Whether it's blog posts, video courses, live streams, or books -
-content creation is BIG, also for developers.
-
-We'll get some first-hand expert insight into these topics 💪
+Episode #8 - Content Creation, Whether it's blog posts, video courses,
+live streams, or books - content creation is BIG, also for developers.
 
 📺 [Watch it on Youtube](https://www.youtube.com/watch?v=N6eShctTwxo)
 
@@ -133,28 +146,18 @@ We'll get some first-hand expert insight into these topics 💪
   height="180px"
 />
 
-## Spreading the Jamstack
+## Migrating Gatsby from Markdown to MDX - 2020 September
 
-#### NottsJS Meetup - 2020 September 8th
-
-I was invited to talk at the NottsJS meetup to talk about the
-Jamstack.
-
-## Migrating Gatsby from Markdown to MDX
-
-#### Brad Garropy (Live Stream) - 2020 September 8th
-
-I joined Brad to talk him through setting up [MDX Embed] and ironing
-out some of the issues he was having after transitioning his site over
-to MDX from Markdown Remark.
+Brad Garropy (Live Stream), I joined Brad to talk him through setting
+up [MDX Embed] and ironing out some of the issues he was having after
+transitioning his site over to MDX from Markdown Remark.
 
 ## Whiskey Wednesday - 2020 August 26th
 
-#### Episode #7 - Mental Wellbeing As A Developer
-
-Becoming and being a developer is not an easy task. Many challenges
-await us in the daily battle. It's important to keep good mental
-wellbeing. We will talk about common problems among developers.
+Episode #7 - Mental Wellbeing As A Developer, Becoming and being a
+developer is not an easy task. Many challenges await us in the daily
+battle. It's important to keep good mental wellbeing. We will talk
+about common problems among developers.
 
 📺 [Watch it on Youtube](https://www.youtube.com/watch?v=0P8GTyBEUVE)
 
@@ -166,12 +169,11 @@ wellbeing. We will talk about common problems among developers.
 
 ## Whiskey Wednesday - 2020 August 12th
 
-#### Episode #6 - Developer fitness
-
-It's not always easy to stay healthy as a developer. Especially
-because you are sitting in front of a desk for at least 8 hours a day.
-With our guests who are experts in fitness, we will find out what you
-can do to become a healthier developer.
+Episode #6 - Developer fitness, It's not always easy to stay healthy
+as a developer. Especially because you are sitting in front of a desk
+for at least 8 hours a day. With our guests who are experts in
+fitness, we will find out what you can do to become a healthier
+developer.
 
 📺 [Watch it on Youtube](https://www.youtube.com/watch?v=pBARlvSvACs)
 
@@ -183,13 +185,11 @@ can do to become a healthier developer.
 
 ## Whiskey Wednesday - 2020 July 29th
 
-#### Episode #5 - Down the CSS rabbit hole
-
-In this episode, we will discuss CSS. There are entirely different
-worlds of CSS out there. One is positioning elements and making a
-pretty button. But there is this other world. The one where complete
-art pieces are done with just a single div element (or less). We talk
-about all of it.
+Episode #5 - Down the CSS rabbit hole, In this episode, we will
+discuss CSS. There are entirely different worlds of CSS out there. One
+is positioning elements and making a pretty button. But there is this
+other world. The one where complete art pieces are done with just a
+single div element (or less). We talk about all of it.
 
 📺 [Watch it on Youtube](https://www.youtube.com/watch?v=1_q6ESYR3R8)
 
@@ -201,9 +201,8 @@ about all of it.
 
 ## Whiskey Wednesday - 2020 July 15th
 
-#### Episode 4: How To Use Twitter For Yourself As A Developer
-
-In this episode, we talk about how to get the most out of Twitter as a
+Episode 4: How To Use Twitter For Yourself As A Developer, In this
+episode, we talk about how to get the most out of Twitter as a
 developer and how to grow your account.
 
 📺 [Watch it on Youtube](https://www.youtube.com/watch?v=2YFa6aJG1bo)
@@ -216,11 +215,10 @@ developer and how to grow your account.
 
 ## Whiskey Wednesday - 2020 July 1st
 
-#### Episode 3: Freelancing As A Web Developer
-
-In this episode, we have some freelancing experts on the show to tell
-us how to get started, what to look out for, and how to enjoy the
-whole process of doing freelance work.
+Episode 3: Freelancing As A Web Developer, In this episode, we have
+some freelancing experts on the show to tell us how to get started,
+what to look out for, and how to enjoy the whole process of doing
+freelance work.
 
 📺 [Watch it on Youtube](https://www.youtube.com/watch?v=k3lsSMByTPw)
 
@@ -232,11 +230,9 @@ whole process of doing freelance work.
 
 ## Whiskey Wednesday - 2020 June 25th
 
-#### Episode 2: Learning and Unlearning How To Code
-
-In this episode, we have some fantastic guests with different coding
-backgrounds that will talk with us about how to learn (and unlearn)
-how to code 💻📚
+Episode 2: Learning and Unlearning How To Code, In this episode, we
+have some fantastic guests with different coding backgrounds that will
+talk with us about how to learn (and unlearn) how to code 💻📚
 
 📺 [Watch it on Youtube](https://www.youtube.com/watch?v=5eJ2a9rn54U)
 
@@ -248,12 +244,10 @@ how to code 💻📚
 
 ## The Front End podcast
 
-A podcast that explores the in's and out's of life as a developer.
-
-For the final episode in season one I talk to Rob Kendal and share my
-path into development from VBA analyst to web developer.
-
-Unsurprisingly I'm talking about the JAMstack and Gatsby JS.
+A podcast that explores the in's and out's of life as a developer. For
+the final episode in season one I talk to Rob Kendal and share my path
+into development from VBA analyst to web developer. Unsurprisingly I'm
+talking about the Jamstack and Gatsby JS.
 
 <Spotify
   spotifyLink="episode/5o1QgLLtL19Mr7RfnA7N8y"
@@ -275,11 +269,9 @@ your Markdown.
 
 ## Whiskey Wednesday - 2020 June 10th
 
-#### Episode 1: Coding Motivation
-
-In this episode, we talk with Danny Thompson and Eddy Vinck about
-coding motivation and whether or not you need a college degree to get
-a job in tech.
+Episode 1: Coding Motivation, In this episode, we talk with Danny
+Thompson and Eddy Vinck about coding motivation and whether or not you
+need a college degree to get a job in tech.
 
 📺 [Watch it on Youtube](https://www.youtube.com/watch?v=LQwvSAcs-QY)
 
@@ -291,9 +283,6 @@ a job in tech.
 
 ## JS Roundabout - 2020 March
 
-- Slides
-- Code
-
 <Details buttonText="Expand to watch.">
   <YouTube youTubeId="hZ6tO4N50Sc" />
 </Details>
@@ -301,8 +290,6 @@ a job in tech.
 ## MMT Tech Meet-up - 2020 Jan
 
 - [Post from Ilesh]
-- Slides
-- Code
 
 <Details buttonText="Expand to watch.">
   <YouTube youTubeId="A0q3JqSLr_0" />
@@ -324,14 +311,23 @@ the Jamstack is and the advantages of using it.
 
 - [Spreading the Jamstack (Slides)]
 
+<!-- Links  -->
+
 [post from ilesh]:
   https://www.ileshmistry.com/mmt-tech-meet-up-january-2020-recap-gatsbyjs-and-houdini-css
 [gatsby eats apis (slides)]:
   https://github.com/spences10/gatsby-eats-apis
-[api days london 2019]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1616774309/scottspence.com/api-days-london-2019.jpg
 [jesse martin]: https://twitter.com/motleydev
 [spreading the jamstack (slides)]:
   https://spreading-the-jam-stack.now.sh/#0
-[get in touch]: mailto:yo@scottspence.dev
+[get in touch]: mailto:yo@scottspence.com
 [mdx embed]: https://www.mdx-embed.com/
+
+<!-- Images -->
+
+[api days london 2019]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1616774309/scottspence.com/api-days-london-2019.jpg
+[jamstack explorers]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1634933520/scottspence.com/jamstack-explorers-mission.png
+[jamstack conf workshop]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1634933520/scottspence.com/jamstack-conf-workshopp.png
