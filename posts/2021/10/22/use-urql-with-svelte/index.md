@@ -39,7 +39,16 @@ command:
 npm init svelte@next sveltekit-with-urql
 ```
 
-Once that's finished doing it's think I can change into the newly
+From the CLI prompts I'll pick the following options:
+
+```bash
+✔ Skeleton project
+✔ Use TypeScript? › No
+✔ Add ESLint for code linting? › No
+✔ Add Prettier for code formatting? › Yes
+```
+
+Once that's finished doing it's thing I can change into the newly
 created project (`cd`) directory and install the dependencies along
 with the dependencies I'll need for URQL:
 
@@ -69,9 +78,22 @@ a Svelte layout page, I'll need to create that:
 touch src/routes/'__layout.svelte'
 ```
 
-[env secrets]
+I'll add in the URQL `initClient` and pass in the endpoint, you can
+use a `.env` file here, if you do make sure to add `.env` to your
+`.gitignore` file:
+
+```bash
+touch .env
+echo .env >> .gitignore
+```
+
+As it's a publically accessible endpoint I'm not going to be too
+concerned about exposing it publically with the `VITE_` variable you
+can read up on hiding [env secrets] with SvelteKit for more
+information.
 
 ```svelte
+<!-- src/routes/__layout.svelte -->
 <script>
   import { initClient } from '@urql/svelte'
   initClient({
@@ -93,6 +115,119 @@ touch src/routes/'__layout.svelte'
 </style>
 ```
 
+## Using the URQL client
+
+Now I can use the client in the index page of the project to display
+the results from a query, for now I'll just query for the `posts`,
+`title` and `slug`, I'll define the query in a `qgl` tag as
+`postsQuery` and pass that to the URQL `operationStore` then use the
+URQL `query` to create a subscription for `posts`:
+
+```svelte
+<!-- src/routes/index.svelte -->
+<script>
+  // urql initialization
+  import { gql, operationStore, query } from '@urql/svelte'
+  const postsQuery = gql`
+    query Posts {
+      posts {
+        title
+        slug
+      }
+    }
+  `
+  // request policy is cache-first (default)
+  const posts = operationStore(postsQuery)
+  query(posts)
+</script>
+```
+
+The subscription means I can use the `$` sign in front of the `posts`
+variable to subscribe to changes.
+
+I'll use some conditional rendering with Svelte to check if the posts
+are fetching or if there are any errors before using the Svelte each
+directive to loop through the results of the data from endpoint:
+
+```svelte
+{#if $posts.fetching}
+  <p>Loading...</p>
+{:else if $posts.error}
+  <p>Oopsie! {$posts.error.message}</p>
+{:else}
+  <ul>
+    {#each $posts.data.posts as post}
+      <li>
+        <a href={`/posts/${post.slug}`}>
+          <p>{post.title}</p>
+        </a>
+      </li>
+    {/each}
+  </ul>
+{/if}
+```
+
+Here's the full `src/routes/index.svelte` file:
+
+```svelte
+<script>
+  // urql initialization
+  import { gql, operationStore, query } from '@urql/svelte'
+  const postsQuery = gql`
+    query Posts {
+      posts {
+        title
+        slug
+      }
+    }
+  `
+  // request policy is cache-first (default)
+  const posts = operationStore(postsQuery)
+  query(posts)
+</script>
+
+{#if $posts.fetching}
+  <p>Loading...</p>
+{:else if $posts.error}
+  <p>Oopsie! {$posts.error.message}</p>
+{:else}
+  <ul>
+    {#each $posts.data.posts as post}
+      <li>
+        <a href={`/posts/${post.slug}`}>
+          <p>{post.title}</p>
+        </a>
+      </li>
+    {/each}
+  </ul>
+{/if}
+
+<style>
+  li {
+    list-style: none;
+    margin-bottom: 5rem;
+  }
+</style>
+```
+
+Running the dev server will now give me an unordered list with the
+post title and a link to the `posts` route for that slug! That doesn't
+exist yet, so if you're interested in going through that then I'll add
+more to that in [Building on the example].
+
+## Conclusion
+
+I now have URQL configured for use in a SvelteKit project 🎉
+
+This pattern can be used for querying any GraphQL endpoint and
+displaying the results on the client (the browser).
+
+## Building on the example
+
+So I have an index page showing me the results for a query but not
+much else, so now I can add to the example I currently have to use
+SvelteKit routing to display the data for a single post.
+
 <!-- Links -->
 
 [features by comparison]:
@@ -101,3 +236,4 @@ touch src/routes/'__layout.svelte'
 [svelte bindings in urql]:
   https://formidable.com/open-source/urql/docs/basics/svelte/
 [env secrets]: https://scottspence.com/posts/sveltekit-env-secrets
+[building on the example]: #building-on-the-example
