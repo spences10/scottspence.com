@@ -2,7 +2,7 @@
 date: 2021-10-22
 title: Use URQL with Svelte
 tags: ['sveltekit', 'how-to', 'svelte']
-isPrivate: true
+isPrivate: false
 ---
 
 <script>
@@ -227,6 +227,122 @@ displaying the results on the client (the browser).
 So I have an index page showing me the results for a query but not
 much else, so now I can add to the example I currently have to use
 SvelteKit routing to display the data for a single post.
+
+As I'm using a predefined template from GraphCMS I'm going to pop on
+over to the GraphCMS playground and define a query for a single post,
+this will look a little something like this:
+
+```graphql
+query Post($slug: String!) {
+  post(where: { slug: $slug }) {
+    title
+    date
+    tags
+    content {
+      html
+    }
+  }
+}
+```
+
+I can now use that in the `posts` route to query for the post relating
+to the `$slug` variable being passed into the query.
+
+I'll need to create the `posts` folder and the `[slug].svelte` file:
+
+```bash
+# make the posts folder
+mkdir -p src/routes/posts
+# make the [slug].svelte file
+touch src/routes/posts/'[slug]'.svelte
+```
+
+To get the slug needed for the GraphQL query I'll need to get that
+from the page params using the SvelteKit script context module load
+function:
+
+```svelte
+<script context="module">
+	export const load = async ({ page: { params } }) => {
+		const { slug } = params;
+		return { props: { slug } };
+	};
+</script>
+```
+
+The `<script context="module">` is run before the pae loads and the
+`load` function is destructuring out the `params` parameter, then
+there's a further destructuring of the `slug` from that, the `slug`
+can now be passed to the page as `props`.
+
+Then I can instantiate a new `operationStore` in the `[slug].svelte`
+file passing in that query:
+
+```svelte
+<script>
+  export let slug;
+	import { gql, operationStore, query } from '@urql/svelte';
+	const productQuery = gql`
+		query Post($slug: String!) {
+			post(where: { slug: $slug }) {
+				title
+				date
+				tags
+				content {
+					html
+				}
+			}
+		}
+	`;
+	const post = operationStore(productQuery, { slug });
+	query(post);
+</script>
+```
+
+The page slug is passed into the `operationStore` for the GraphQL
+variable that is used in the `Post` query (`Post($slug:`).
+
+I can then subscribe to the changes with `$post`, for the sake of
+brevity I'm going to use a `pre` tag and stringify the results:
+
+```html
+<pre>{JSON.stringify($post, null, 2)}</pre>
+```
+
+Here's the full file:
+
+```svelte
+<script context="module">
+	export const load = async ({ page: { params } }) => {
+		const { slug } = params;
+		return { props: { slug } };
+	};
+</script>
+
+<script>
+	export let slug;
+	import { gql, operationStore, query } from '@urql/svelte';
+	const productQuery = gql`
+		query Post($slug: String!) {
+			post(where: { slug: $slug }) {
+				title
+				date
+				tags
+				content {
+					html
+				}
+			}
+		}
+	`;
+	const post = operationStore(productQuery, { slug });
+	query(post);
+</script>
+
+<pre>{JSON.stringify($post, null, 2)}</pre>
+```
+
+That's it, the rest of this can be built on for rendering out the post
+markup the same way as in the index file.
 
 <!-- Links -->
 
