@@ -35,28 +35,28 @@ const render =
           `
         <item>
           <title>
-            <![CDATA[ ${meta.title} ]]>
+            <![CDATA[ ${meta.metadata.title} ]]>
           </title>
           <description>
-            <![CDATA[ ${meta.preview} ]]>
+            <![CDATA[ ${meta.metadata.preview} ]]>
           </description>
-          <link>${website}/posts/${meta.slug}/</link>
+          <link>${website}/posts/${meta.metadata.slug}/</link>
           <guid isPermaLink="false">${website}/posts/${
-            meta.slug
+            meta.metadata.slug
           }/</guid>
           <dc:creator>
             <![CDATA[ ${name} ]]>
           </dc:creator>
           <pubDate>
             ${format(
-              new Date(meta.date),
+              new Date(meta.metadata.date),
               'EE, dd MMM yyyy HH:mm:ss O'
             )}
           </pubDate>
-          <content:encoded>${meta.previewHtml} 
+          <content:encoded>${meta.metadata.previewHtml} 
             <div style="margin-top: 50px; font-style: italic;">
               <strong>
-                <a href="${website}/posts/${meta.slug}">
+                <a href="${website}/posts/${meta.metadata.slug}">
                   Keep reading
                 </a>.
               </strong>  
