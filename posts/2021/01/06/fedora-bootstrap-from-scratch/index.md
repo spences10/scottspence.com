@@ -48,8 +48,8 @@ it's a `*.tar` file, I use 7zip to do that.
 Time to import the `*.tar` into WSL, I've already created a `distros`
 folder on my C drive, now to point PowerShell to the file and import:
 
-```bash
-wsl --import Fedora-33 C:\Users\scott\distros\ C:\Users\scott\distros\fedora-33.20201230-x86_64.tar
+```powershell
+wsl --import Fedora-33 C:\\Users\\scott\\distros\\ C:\\Users\\scott\\distros\\fedora-33.20201230-x86_64.tar
 ```
 
 To break down that command, `wsl` is clear what that is hopefully,
@@ -133,8 +133,8 @@ This PowerShell one-liner configures my user properly, (thanks Jim!)
 take note of the last value here `1000` that's the `id -u` I checked
 for earlier:
 
-```bash
-Get-ItemProperty Registry::HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Lxss\*\ DistributionName | Where-Object -Property DistributionName -eq Fedora-33  | Set-ItemProperty -Name DefaultUid -Value 1000
+```powershell
+Get-ItemProperty Registry::HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Lxss\\*\\ DistributionName | Where-Object -Property DistributionName -eq Fedora-33  | Set-ItemProperty -Name DefaultUid -Value 1000
 ```
 
 The last piece here is to add [Copr] for the Windows integration:
