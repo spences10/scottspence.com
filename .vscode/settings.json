@@ -14,5 +14,6 @@
     "unist",
     "vercel",
     "webm"
-  ]
+  ],
+  "cSpell.enableFiletypes": ["dotenv", "jsx-tags", "svelte", "windi"]
 }
