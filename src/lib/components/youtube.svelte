@@ -1,5 +1,5 @@
 <script>
-  import { getPadding } from '$lib/utils'
+  import { getPadding } from '@utils'
   import GeneralObserver from './general-observer.svelte'
 
   export let width = 560

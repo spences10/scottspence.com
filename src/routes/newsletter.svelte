@@ -17,10 +17,10 @@
 </script>
 
 <script>
-  import Head from '$lib/components/head.svelte'
-  import NewsletterSignup from '$lib/components/newsletter-signup.svelte'
-  import { name, website } from '$lib/info'
-  import { ogImageUrl } from '$lib/og-image-url-build'
+  import Head from '@components/head.svelte'
+  import NewsletterSignup from '@components/newsletter-signup.svelte'
+  import { name, website } from '@lib/info'
+  import { ogImageUrl } from '@lib/og-image-url-build'
 
   export let Copy
 </script>

@@ -1,6 +1,6 @@
-import { getPostTags } from '$lib/get-post-tags'
-import { getPosts } from '$lib/get-posts'
-import { website } from '$lib/info'
+import { getPostTags } from '@lib/get-post-tags'
+import { getPosts } from '@lib/get-posts'
+import { website } from '@lib/info'
 import slugify from 'slugify'
 
 export const get = async () => {

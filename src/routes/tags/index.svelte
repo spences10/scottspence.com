@@ -1,10 +1,10 @@
 <script context="module">
   export const prerender = true
 
-  import Head from '$lib/components/head.svelte'
-  import { getPostTags } from '$lib/get-post-tags'
-  import { description, name, website } from '$lib/info'
-  import { ogImageUrl } from '$lib/og-image-url-build'
+  import Head from '@components/head.svelte'
+  import { getPostTags } from '@lib/get-post-tags'
+  import { description, name, website } from '@lib/info'
+  import { ogImageUrl } from '@lib/og-image-url-build'
   import Fuse from 'fuse.js'
 
   export const load = async () => {

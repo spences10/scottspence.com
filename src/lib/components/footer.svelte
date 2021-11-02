@@ -1,10 +1,10 @@
 <script>
-  import GitHub from '$lib/icons/git-hub..svelte'
-  import Spotify from '$lib/icons/spotify.svelte'
-  import Twitch from '$lib/icons/twitch.svelte'
-  import Twitter from '$lib/icons/twitter.svelte'
-  import YouTube from '$lib/icons/you-tube.svelte'
-  import { POPULAR_POSTS, SITE_LINKS } from '$lib/info'
+  import GitHub from '@lib/icons/git-hub..svelte'
+  import Spotify from '@lib/icons/spotify.svelte'
+  import Twitch from '@lib/icons/twitch.svelte'
+  import Twitter from '@lib/icons/twitter.svelte'
+  import YouTube from '@lib/icons/you-tube.svelte'
+  import { POPULAR_POSTS, SITE_LINKS } from '@lib/info'
   import { trackGoal } from 'fathom-client'
 </script>
 

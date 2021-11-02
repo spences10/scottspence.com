@@ -1,5 +1,5 @@
 <script>
-  import { PEOPLE } from '$lib/info'
+  import { PEOPLE } from '@lib/info'
   import PeopleToMeetCheck from './people-to-meet-check.svelte'
   import ShareWithTweet from './share-with-tweet.svelte'
 

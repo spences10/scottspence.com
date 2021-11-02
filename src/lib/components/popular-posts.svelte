@@ -1,5 +1,5 @@
 <script>
-  import { POPULAR_POSTS } from '$lib/info'
+  import { POPULAR_POSTS } from '@lib/info'
 </script>
 
 <div class="m-0 mb-20 sm:-mx-30 lg:-mx-40 ">
