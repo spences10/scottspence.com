@@ -22,9 +22,12 @@ const config = {
     target: '#svelte',
     adapter: adapter(),
     vite: {
+      // https://vitejs.dev/config/#server-fs-allow
       server: {
         fs: {
-          allow: [`copy`, `posts`],
+          // Allow serving files from one level up to the project root
+          // posts, copy
+          allow: ['..'],
         },
       },
       resolve: {
