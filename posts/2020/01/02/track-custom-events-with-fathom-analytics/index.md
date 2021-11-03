@@ -216,10 +216,8 @@ if you're looking to do the same:
 - Consume the analytics provider function to log the event to the
   `fathom` global function.
 
-🥁 Demo site: https://gatsby-starter-business-fathom.netlify.com
-
 📈 Demo Fathom Dashboard:
-https://app.usefathom.com/share/nymdtplm/gatsby-starter-business
+https://app.usefathom.com/share/nymdtplm/ideal-memory
 
 🤝 Affiliate link for £10 of off your first month of Fathom Analytics:
 https://usefathom.com/ref/HG492L
