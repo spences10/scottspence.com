@@ -185,6 +185,17 @@ command in PowerShell:
 wsl --shutdown
 ```
 
+In the same PowerShell terminal I can check the installed WSL
+instances with the `--list` command:
+
+```powershell
+PS D:\\distros\\backups> wsl -l -v
+  NAME          STATE           VERSION
+* Ubuntu        Stopped         2
+  Fedora-35     Stopped         2
+  UbuntuTest    Stopped         2
+```
+
 Now opening up a new UbuntuTest terminal I have the right permissions
 for the default user!
 
