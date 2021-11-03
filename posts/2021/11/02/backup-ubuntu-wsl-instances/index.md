@@ -194,7 +194,7 @@ To remove the installed distro I can use the unregister command in
 PowerShell to remove it:
 
 ```powershell
-wsl --unregister Fedora-test
+wsl --unregister UbuntuTest
 ```
 
 ## Recap and wrap up!
