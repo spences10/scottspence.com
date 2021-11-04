@@ -31,7 +31,7 @@ PowerShell prompt:
 wsl -l -v
 ```
 
-That command gives me a list of my installed Linus distrobutions that
+That command gives me a list of my installed Linus distributions that
 look a little something like this:
 
 ```powershell
@@ -45,11 +45,11 @@ open a new Windows Terminal.
 
 ## Set up save location
 
-I'm going to want to save the distrobution in a folder somewhere on my
-hard drive. For me that will be a new folder on a dive that's not my
+I'm going to want to save the distribution in a folder somewhere on my
+hard drive. For me that will be a new folder on a drive that's not my
 main partition.
 
-If you want to see the dives you have available in PowerShell you can
+If you want to see the drives you have available in PowerShell you can
 use this:
 
 ```powershell
@@ -132,7 +132,7 @@ For performance I'll want to use the new Ubuntu instance on my faster
 `C` drive, I'll call it UbuntuTest.
 
 I already have a `distros` folder on my `C` drive but I'll need to
-create a folder for the new UbuntuTest distrobution:
+create a folder for the new UbuntuTest distribution:
 
 ```powershell
 mkdir C:\\Users\\scott\\distros\\UbuntuTest
