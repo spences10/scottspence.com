@@ -31,32 +31,32 @@ const render =
     <atom:link href="${website}/rss.xml" rel="self" type="application/rss+xml"/>
     ${postsMeta
       .map(
-        meta =>
+        ({ metadata }) =>
           `
         <item>
           <title>
-            <![CDATA[ ${meta.metadata.title} ]]>
+            <![CDATA[ ${metadata.title} ]]>
           </title>
           <description>
-            <![CDATA[ ${meta.metadata.preview} ]]>
+            <![CDATA[ ${metadata.preview} ]]>
           </description>
-          <link>${website}/posts/${meta.metadata.slug}/</link>
+          <link>${website}/posts/${metadata.slug}/</link>
           <guid isPermaLink="false">${website}/posts/${
-            meta.metadata.slug
+            metadata.slug
           }/</guid>
           <dc:creator>
             <![CDATA[ ${name} ]]>
           </dc:creator>
           <pubDate>
             ${format(
-              new Date(meta.metadata.date),
+              new Date(metadata.date),
               'EE, dd MMM yyyy HH:mm:ss O'
             )}
           </pubDate>
-          <content:encoded>${meta.metadata.previewHtml} 
+          <content:encoded>${metadata.previewHtml} 
             <div style="margin-top: 50px; font-style: italic;">
               <strong>
-                <a href="${website}/posts/${meta.metadata.slug}">
+                <a href="${website}/posts/${metadata.slug}">
                   Keep reading
                 </a>.
               </strong>  
