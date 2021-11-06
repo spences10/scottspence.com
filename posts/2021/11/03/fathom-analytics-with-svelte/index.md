@@ -172,12 +172,17 @@ page that has been loaded. You can read more about [`$app/stores`] on
 the SvelteKit documentation. The `$` is so that I can subscribe to
 changes in that (`page`) store.
 
-`onMount` is used to run after the `__layout` component has loaded,
+[`onMount`] is used to run after the `__layout` component has loaded,
 that's when I'm running the Fathom client and passing in my Fathom
 site ID.
 
-`&&` is a shortcircuit evaluation to if there's no `browser` then
-`Fathom.trackPageview()`
+If you're not familiar with Svelte the the `$:` might look a bit
+funky, you can learn more about it on the [Svelte
+Reactivity/Declarations] tutorial. The `&&` is a shortcircuit
+evaluation to if there's no `browser` then `Fathom.trackPageview()`
+wont run.
+
+Ok, with that explanation out of the way time to see if the client is working
 
 <!-- Links -->
 
@@ -188,3 +193,6 @@ site ID.
 [`fathom-client`]: https://github.com/derrickreimer/fathom-client
 [`$app/env`]: https://kit.svelte.dev/docs#modules-$app-env
 [`$app/stores`]: https://kit.svelte.dev/docs#modules-$app-stores
+[`onmount`]: https://svelte.dev/docs#onMount
+[svelte reactivity/declarations]:
+  https://svelte.dev/tutorial/reactive-declarations
