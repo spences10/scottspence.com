@@ -123,7 +123,7 @@ export const PEOPLE = [
   {
     name: `Phil Hawksworth`,
     link: `https://twitter.com/philhawksworth`,
-    met: false,
+    met: true,
   },
   {
     name: `Marc Littlemore`,
@@ -193,7 +193,7 @@ export const PEOPLE = [
   {
     name: `Catalin Pit`,
     link: `https://catalins.tech/`,
-    met: false,
+    met: true,
   },
   {
     name: `Wes Bos`,
@@ -301,11 +301,6 @@ export const PEOPLE = [
     met: false,
   },
   {
-    name: `Salma`,
-    link: `https://twitter.com/whitep4nth3r`,
-    met: false,
-  },
-  {
     name: `Jenny Potts`,
     link: `https://twitter.com/jennycodes`,
     met: false,
@@ -388,11 +383,6 @@ export const PEOPLE = [
   {
     name: `Michael Brooks`,
     link: `https://twitter.com/MBrooksUK`,
-    met: false,
-  },
-  {
-    name: `Pauline Narvas`,
-    link: `https://twitter.com/paulienuh`,
     met: false,
   },
   {
