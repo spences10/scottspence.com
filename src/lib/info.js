@@ -241,11 +241,6 @@ export const PEOPLE = [
     met: false,
   },
   {
-    name: `Dave Bittner`,
-    link: `https://twitter.com/bittner`,
-    met: false,
-  },
-  {
     name: `Jed Watson`,
     link: `https://twitter.com/JedWatson`,
     met: false,
@@ -253,11 +248,6 @@ export const PEOPLE = [
   {
     name: `Kevin Canlas`,
     link: `https://twitter.com/kvncnls`,
-    met: false,
-  },
-  {
-    name: `Angie Jones`,
-    link: `https://twitter.com/techgirl1908`,
     met: false,
   },
   {
@@ -351,11 +341,6 @@ export const PEOPLE = [
     met: false,
   },
   {
-    name: `Mark Freeman`,
-    link: `https://twitter.com/nitecoda1`,
-    met: false,
-  },
-  {
     name: `Sam Larsen Disney`,
     link: `https://twitter.com/SamLarsenDisney`,
     met: false,
@@ -426,6 +411,11 @@ export const PEOPLE = [
     met: false,
   },
   {
+    name: `Gen Ashley`,
+    link: `https://twitter.com/coderinheels`,
+    met: true,
+  },
+  {
     name: `Ro`,
     link: `https://twitter.com/rothecoder`,
     met: false,
@@ -434,6 +424,11 @@ export const PEOPLE = [
     name: `Brittney Postma`,
     link: `https://twitter.com/BrittneyPostma`,
     met: false,
+  },
+  {
+    name: `Antony Jones`,
+    link: `https://twitter.com/antony`,
+    met: true,
   },
   {
     name: `Lors`,
@@ -449,6 +444,11 @@ export const PEOPLE = [
     name: `Ronak Ganatra`,
     link: `https://twitter.com/gunnyganatra`,
     met: false,
+  },
+  {
+    name: `Joe Reeve`,
+    link: `https://twitter.com/isnit0`,
+    met: true,
   },
   {
     name: `Jon Hilton`,
