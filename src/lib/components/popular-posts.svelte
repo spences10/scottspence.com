@@ -12,7 +12,7 @@
     {#each POPULAR_POSTS as post}
       <a class="h-max" sveltekit:prefetch href={`/${post.slug}`}>
         <aside
-          class="rounded-xl font-bold h-full p-5 transition card bordered hover:text-accent-focus"
+          class="rounded-xl font-bold h-full p-5 transition card shadow-lg hover:text-accent-focus"
         >
           <h3 class="mb-5 text-2xl">
             {post.title}
