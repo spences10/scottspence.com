@@ -1,5 +1,5 @@
 <script>
-  import { marked } from 'marked'
+  import marked from 'marked'
   export let markdownContent = ''
   export let rows = 3
 
