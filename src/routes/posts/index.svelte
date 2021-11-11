@@ -1,6 +1,4 @@
 <script context="module">
-  export const prerender = true
-
   import Head from '@components/head.svelte'
   import PostCard from '@components/post-card.svelte'
   import { getPosts } from '@lib/get-posts'
@@ -69,10 +67,3 @@
     {/if}
   </div>
 </div>
-
-<!-- `<article class="py-8 first:pt-0">
-  <div>
-    <span>😅</span>
-    No results found for <code>{query}</code>
-  </div>
-</article>` -->
