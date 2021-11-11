@@ -182,7 +182,8 @@ Reactivity/Declarations] tutorial. The `&&` is a shortcircuit
 evaluation to if there's no `browser` then `Fathom.trackPageview()`
 wont run.
 
-Ok, with that explanation out of the way time to see if the client is working
+Ok, with that explanation out of the way time to see if the client is
+working
 
 <!-- Links -->
 
