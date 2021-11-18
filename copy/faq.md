@@ -322,6 +322,6 @@ Feel free to [check out the rest of the site](/)
 [read this first]: https://scottspence.com/faq
 [mecv.xyz]: https://www.mecv.xyz?goalId=TCRZB23L
 [two weeks]: https://www.youtube.com/watch?v=9v-33jcEDk4
-[15 minute chat]: https://calendly.com/spences10apps/15min
+[15 minute chat]: https://savvycal.com/spences10/15-minutes
 [if it's not a hell yes, it's a no]:
   https://lifehacker.com/if-its-not-a-hell-yes-its-a-no-1723393142
