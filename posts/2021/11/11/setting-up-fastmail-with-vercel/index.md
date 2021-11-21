@@ -49,10 +49,10 @@ vc dns add yourdomainname.com fm3._domainkey CNAME fm3.yourdomainname.com.dkim.f
 vc dns add yourdomainname.com @ TXT 'v=spf1 include:spf.messagingengine.com ?all'
 ```
 
-## Check the changes too effect
+## Check the changes took effect
 
 Use the Check Now button to see if the changes have been applied. This
-can take a few minutes.
+can take a few minutes so be patient.
 
 <!-- Links -->
 
