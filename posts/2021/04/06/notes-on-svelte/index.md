@@ -394,12 +394,12 @@ Now take a look at the same example in Svelte:
 
 ```html
 <script>
-	let count = 0
+  let count = 0
 </script>
 
 <p>You clicked {count} times</p>
 <button on:click={() => count++}>
-	Click me
+  Click me
 </button>
 ```
 

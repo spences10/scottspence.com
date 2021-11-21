@@ -263,10 +263,10 @@ function:
 
 ```svelte
 <script context="module">
-	export const load = async ({ page: { params } }) => {
-		const { slug } = params;
-		return { props: { slug } };
-	};
+  export const load = async ({ page: { params } }) => {
+    const { slug } = params;
+    return { props: { slug } };
+  };
 </script>
 ```
 
@@ -281,21 +281,21 @@ file passing in that query:
 ```svelte
 <script>
   export let slug;
-	import { gql, operationStore, query } from '@urql/svelte';
-	const productQuery = gql`
-		query Post($slug: String!) {
-			post(where: { slug: $slug }) {
-				title
-				date
-				tags
-				content {
-					html
-				}
-			}
-		}
-	`;
-	const post = operationStore(productQuery, { slug });
-	query(post);
+  import { gql, operationStore, query } from '@urql/svelte';
+  const productQuery = gql`
+    query Post($slug: String!) {
+      post(where: { slug: $slug }) {
+        title
+        date
+        tags
+        content {
+          html
+        }
+      }
+    }
+  `;
+  const post = operationStore(productQuery, { slug });
+  query(post);
 </script>
 ```
 
@@ -313,29 +313,29 @@ Here's the full file:
 
 ```svelte
 <script context="module">
-	export const load = async ({ page: { params } }) => {
-		const { slug } = params;
-		return { props: { slug } };
-	};
+  export const load = async ({ page: { params } }) => {
+    const { slug } = params;
+    return { props: { slug } };
+  };
 </script>
 
 <script>
-	export let slug;
-	import { gql, operationStore, query } from '@urql/svelte';
-	const productQuery = gql`
-		query Post($slug: String!) {
-			post(where: { slug: $slug }) {
-				title
-				date
-				tags
-				content {
-					html
-				}
-			}
-		}
-	`;
-	const post = operationStore(productQuery, { slug });
-	query(post);
+  export let slug;
+  import { gql, operationStore, query } from '@urql/svelte';
+  const productQuery = gql`
+    query Post($slug: String!) {
+      post(where: { slug: $slug }) {
+        title
+        date
+        tags
+        content {
+          html
+        }
+      }
+    }
+  `;
+  const post = operationStore(productQuery, { slug });
+  query(post);
 </script>
 
 <pre>{JSON.stringify($post, null, 2)}</pre>
