@@ -127,7 +127,7 @@ directory:
 ```bash
 sveltekit-and-fathom/
 │ └─ routes/
-│   ├─ __lauout.svelte
+│   ├─ __layout.svelte
 │   ├─ about.svelte
 │   ├─ index.svelte
 │   └─ services.svelte
@@ -141,22 +141,22 @@ In the `__layout.svelte` file I'll add this:
 
 ```svelte
 <script>
-	import { browser } from '$app/env';
-	import { page } from '$app/stores';
-	import * as Fathom from 'fathom-client';
-	import { onMount } from 'svelte';
+  import { browser } from '$app/env';
+  import { page } from '$app/stores';
+  import * as Fathom from 'fathom-client';
+  import { onMount } from 'svelte';
 
-	onMount(() => {
-		Fathom.load('NYMDTPLM');
-	});
+  onMount(() => {
+    Fathom.load('NYMDTPLM');
+  });
 
-	$: $page.path, browser && Fathom.trackPageview();
+  $: $page.path, browser && Fathom.trackPageview();
 </script>
 
 <ul>
-	<a href="/">Home</a>
-	<a href="/about">About</a>
-	<a href="/services">Services</a>
+  <a href="/">Home</a>
+  <a href="/about">About</a>
+  <a href="/services">Services</a>
 </ul>
 
 <slot />
