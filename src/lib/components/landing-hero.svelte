@@ -38,7 +38,7 @@
     </div>
   </div>
   <!-- chevron down animated!! -->
-  <a href="#hi-im-scott">
+  <a href="#hi-im-scott" aria-label="scroll down for more">
     <svg
       xmlns="https://www.w3.org/2000/svg"
       class="m-auto h-8 my-6 animate-bounce w-8 block lg:mt-20"
