@@ -1,5 +1,5 @@
 <script context="module">
-  export const prerender = true
+  // export const prerender = true
 
   import Head from '@components/head.svelte'
   import { getPostTags } from '@lib/get-post-tags'
