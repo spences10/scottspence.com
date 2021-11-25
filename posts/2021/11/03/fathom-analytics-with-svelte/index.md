@@ -138,7 +138,7 @@ directory:
 ```bash
 sveltekit-and-fathom/
 │ └─ routes/
-│   ├─ __lauout.svelte
+│   ├─ __layout.svelte
 │   ├─ about.svelte
 │   ├─ index.svelte
 │   └─ services.svelte
