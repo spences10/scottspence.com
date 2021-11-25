@@ -27,21 +27,32 @@ of this, Fathom doesn't require cookie banners.
 
 Enough selling! Let's get started!
 
+## Prerequisites
+
+I'll presume that you have a basic understanding of using a JavaScript
+framework and are familiar with using the command line (CLI) to get
+certain tasks done.
+
+So this means you already have a developement environment with Node a
+terminal and a text editor like VS Code installed and ready to go. If
+you don't then there are still services like GitPod and GitHub
+Codespaces you can use from a browser.
+
 ## Create a Fathom site
 
-before I get into configuring the SvelteKit project I'll need to
+Before I get into configuring the SvelteKit project I'll need to
 create a new site on Fathom. From my Fathom [settings] screen in the
 sites section I can scroll down to the 'Create New Site' section and
 enter a site name. I'm calling this one [`ideal-memory`].
 
-That link is a public dashboard you can go and check out now if you
-like.
+That link is a public Fathom dashboard you can go and check out now if
+you like.
 
 ℹ️ The site name doesn't have to corespond with the actual project
 name but it could get confusing if it doesn't and you have a lot of
 sites.
 
-that's it for now on the Fathom side of things, I'll go back to this
+That's it for now on the Fathom side of things, I'll go back to this
 once I've set up the project.
 
 ## Create the SvelteKit skeleton project
@@ -104,10 +115,10 @@ To start tracking page views I'll first need to install
 pnpm i -D fathom-client
 ```
 
-Now to start tracking page views the Fathom client will need to be in
-a place that wraps all the pages in the project.
+To start tracking page views the Fathom client will need to be in a
+place that wraps all the pages in the project.
 
-I can use the `__layout.svelte` component for this, it will be applied
+I'll use the `__layout.svelte` component for this, it will be applied
 to every page in the project and can be used to add styles and
 components I want visible on each page.
 
@@ -141,30 +152,30 @@ In the `__layout.svelte` file I'll add this:
 
 ```svelte
 <script>
-	import { browser } from '$app/env';
-	import { page } from '$app/stores';
-	import * as Fathom from 'fathom-client';
-	import { onMount } from 'svelte';
+  import { browser } from '$app/env';
+  import { page } from '$app/stores';
+  import * as Fathom from 'fathom-client';
+  import { onMount } from 'svelte';
 
-	onMount(() => {
-		Fathom.load('NYMDTPLM');
-	});
+  onMount(() => {
+    Fathom.load('NYMDTPLM');
+  });
 
-	$: $page.path, browser && Fathom.trackPageview();
+  $: $page.path, browser && Fathom.trackPageview();
 </script>
 
 <ul>
-	<a href="/">Home</a>
-	<a href="/about">About</a>
-	<a href="/services">Services</a>
+  <a href="/">Home</a>
+  <a href="/about">About</a>
+  <a href="/services">Services</a>
 </ul>
 
 <slot />
 ```
 
-So let me break down what's going on here, importting the `browser`
+Let's break down what's going on here, importting the `browser`
 indicates if the project is running in the browser or not, this will
-return a Boolean (`true`,`false`) value. You can read more about
+return a Boolean (`true`, `false`) value. You can read more about
 [`$app/env`] on the SvelteKit documentation.
 
 Using `page` for the `$page.path` this is the route for the current
@@ -174,7 +185,8 @@ changes in that (`page`) store.
 
 [`onMount`] is used to run after the `__layout` component has loaded,
 that's when I'm running the Fathom client and passing in my Fathom
-site ID.
+site ID. As a side not here I will be adding the Fathom site ID to a
+`.env` file so that it's not visible on GitHub.
 
 If you're not familiar with Svelte the the `$:` might look a bit
 funky, you can learn more about it on the [Svelte
@@ -183,7 +195,7 @@ evaluation to if there's no `browser` then `Fathom.trackPageview()`
 wont run.
 
 Ok, with that explanation out of the way time to see if the client is
-working
+working.
 
 <!-- Links -->
 
