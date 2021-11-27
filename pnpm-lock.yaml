@@ -5,7 +5,7 @@ specifiers:
   '@sveltejs/kit': next
   '@tailwindcss/typography': 0.4.1
   autoprefixer: 10.4.0
-  cssnano: 5.0.11
+  cssnano: 5.0.12
   daisyui: 1.16.2
   date-fns: 2.26.0
   env-cmd: 10.1.0
@@ -42,7 +42,7 @@ devDependencies:
   '@sveltejs/kit': 1.0.0-next.201_svelte@3.44.2
   '@tailwindcss/typography': 0.4.1_tailwindcss@2.2.19
   autoprefixer: 10.4.0_postcss@8.4.1
-  cssnano: 5.0.11_postcss@8.4.1
+  cssnano: 5.0.12_postcss@8.4.1
   daisyui: 1.16.2
   date-fns: 2.26.0
   env-cmd: 10.1.0
@@ -722,8 +722,8 @@ packages:
       postcss: 8.4.1
     dev: true
 
-  /cssnano/5.0.11_postcss@8.4.1:
-    resolution: {integrity: sha512-5SHM31NAAe29jvy0MJqK40zZ/8dGlnlzcfHKw00bWMVFp8LWqtuyPSFwbaoIoxvt71KWJOfg8HMRGrBR3PExCg==}
+  /cssnano/5.0.12_postcss@8.4.1:
+    resolution: {integrity: sha512-U38V4x2iJ3ijPdeWqUrEr4eKBB5PbEKsNP5T8xcik2Au3LeMtiMHX0i2Hu9k51FcKofNZumbrcdC6+a521IUHg==}
     engines: {node: ^10 || ^12 || >=14.0}
     peerDependencies:
       postcss: ^8.2.15
