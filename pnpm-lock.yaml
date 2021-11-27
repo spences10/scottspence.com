@@ -5,7 +5,7 @@ specifiers:
   '@sveltejs/kit': next
   '@tailwindcss/typography': 0.4.1
   autoprefixer: 10.4.0
-  cssnano: 5.0.11
+  cssnano: 5.0.12
   daisyui: 1.16.2
   date-fns: 2.26.0
   env-cmd: 10.1.0
@@ -42,7 +42,7 @@ devDependencies:
   '@sveltejs/kit': 1.0.0-next.201_svelte@3.44.2
   '@tailwindcss/typography': 0.4.1_tailwindcss@2.2.19
   autoprefixer: 10.4.0_postcss@8.4.1
-  cssnano: 5.0.11_postcss@8.4.1
+  cssnano: 5.0.12_postcss@8.4.1
   daisyui: 1.16.2
   date-fns: 2.26.0
   env-cmd: 10.1.0
@@ -675,8 +675,8 @@ packages:
     hasBin: true
     dev: true
 
-  /cssnano-preset-default/5.1.7_postcss@8.4.1:
-    resolution: {integrity: sha512-bWDjtTY+BOqrqBtsSQIbN0RLGD2Yr2CnecpP0ydHNafh9ZUEre8c8VYTaH9FEbyOt0eIfEUAYYk5zj92ioO8LA==}
+  /cssnano-preset-default/5.1.8_postcss@8.4.1:
+    resolution: {integrity: sha512-zWMlP0+AMPBVE852SqTrP0DnhTcTA2C1wAF92TKZ3Va+aUVqLIhkqKlnJIXXdqXD7RN+S1ujuWmNpvrJBiM/vg==}
     engines: {node: ^10 || ^12 || >=14.0}
     peerDependencies:
       postcss: ^8.2.15
@@ -707,7 +707,7 @@ packages:
       postcss-normalize-url: 5.0.3_postcss@8.4.1
       postcss-normalize-whitespace: 5.0.1_postcss@8.4.1
       postcss-ordered-values: 5.0.2_postcss@8.4.1
-      postcss-reduce-initial: 5.0.1_postcss@8.4.1
+      postcss-reduce-initial: 5.0.2_postcss@8.4.1
       postcss-reduce-transforms: 5.0.1_postcss@8.4.1
       postcss-svgo: 5.0.3_postcss@8.4.1
       postcss-unique-selectors: 5.0.2_postcss@8.4.1
@@ -722,13 +722,13 @@ packages:
       postcss: 8.4.1
     dev: true
 
-  /cssnano/5.0.11_postcss@8.4.1:
-    resolution: {integrity: sha512-5SHM31NAAe29jvy0MJqK40zZ/8dGlnlzcfHKw00bWMVFp8LWqtuyPSFwbaoIoxvt71KWJOfg8HMRGrBR3PExCg==}
+  /cssnano/5.0.12_postcss@8.4.1:
+    resolution: {integrity: sha512-U38V4x2iJ3ijPdeWqUrEr4eKBB5PbEKsNP5T8xcik2Au3LeMtiMHX0i2Hu9k51FcKofNZumbrcdC6+a521IUHg==}
     engines: {node: ^10 || ^12 || >=14.0}
     peerDependencies:
       postcss: ^8.2.15
     dependencies:
-      cssnano-preset-default: 5.1.7_postcss@8.4.1
+      cssnano-preset-default: 5.1.8_postcss@8.4.1
       is-resolvable: 1.1.0
       lilconfig: 2.0.4
       postcss: 8.4.1
@@ -2252,8 +2252,8 @@ packages:
       postcss-value-parser: 4.1.0
     dev: true
 
-  /postcss-reduce-initial/5.0.1_postcss@8.4.1:
-    resolution: {integrity: sha512-zlCZPKLLTMAqA3ZWH57HlbCjkD55LX9dsRyxlls+wfuRfqCi5mSlZVan0heX5cHr154Dq9AfbH70LyhrSAezJw==}
+  /postcss-reduce-initial/5.0.2_postcss@8.4.1:
+    resolution: {integrity: sha512-v/kbAAQ+S1V5v9TJvbGkV98V2ERPdU6XvMcKMjqAlYiJ2NtsHGlKYLPjWWcXlaTKNxooId7BGxeraK8qXvzKtw==}
     engines: {node: ^10 || ^12 || >=14.0}
     peerDependencies:
       postcss: ^8.2.15
