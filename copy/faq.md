@@ -7,7 +7,7 @@
 # For recruiters - FAQ
 
 <Small>
-  Last updated: <DateUpdated date='2021-11-07' small='true' />
+  Last updated: <DateUpdated date='2021-11-29' small='true' />
 </Small>
 
 Hello friend 👋, thanks for taking an interest in me and my profile.
@@ -322,6 +322,6 @@ Feel free to [check out the rest of the site](/)
 [read this first]: https://scottspence.com/faq
 [mecv.xyz]: https://www.mecv.xyz?goalId=TCRZB23L
 [two weeks]: https://www.youtube.com/watch?v=9v-33jcEDk4
-[15 minute chat]: https://savvycal.com/spences10/15-minutes
+[15 minute chat]: https://cal.com/spences10/recruiter-chat
 [if it's not a hell yes, it's a no]:
   https://lifehacker.com/if-its-not-a-hell-yes-its-a-no-1723393142
