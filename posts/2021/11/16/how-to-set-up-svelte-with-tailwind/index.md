@@ -236,7 +236,7 @@ npm i
 Now I can make the changes in the index page which in this project is
 located `src/App.svelte`.
 
-Again removing the `<style>` from the page, here’s the git diff of
+Again removing the `<style>` from the page, here's the git diff of
 that:
 
 ```git

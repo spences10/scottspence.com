@@ -16,7 +16,7 @@ since 2019 now. I got tired of the confusing Google Analytics
 dashboard and wanted something simpler to use and to use a product
 that wasn't going to sell off the browsing data like Google does.
 
-_If you’re not already signed up you can get a $10 credit by signing
+_If you're not already signed up you can get a $10 credit by signing
 up with my [referral link]. Yes I get a kick back from this, it's an
 awesome product and if you're interested in using it using the link
 would really help me out._

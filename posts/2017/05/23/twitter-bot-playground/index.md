@@ -783,7 +783,7 @@ function getPhoto() {
 The `parameters` specify an `api_key` for this you can [apply for an
 API key][api-apply] or you can use the `DEMO_KEY` this API key can be
 used for initially exploring APIs prior to signing up, but it has much
-lower rate limits, so you’re encouraged to signup for your own API
+lower rate limits, so you're encouraged to signup for your own API
 key.
 
 In the example you can see that I have configured my key with the rest

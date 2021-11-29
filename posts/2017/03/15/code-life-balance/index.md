@@ -63,9 +63,9 @@ source interactions. Since starting the challenge I have contributed
 to several GitHub projects and made some of my own.
 
 I have also created a personal goals repo like the one Una Kravets has
-on her GitHub this will be what I’ll use going forward after I have
-completed the 100 Days of Code challenge, I’m not going to take part
-in the 301 days of code challenge as I’d like to go on holiday without
+on her GitHub this will be what I'll use going forward after I have
+completed the 100 Days of Code challenge, I'm not going to take part
+in the 301 days of code challenge as I'd like to go on holiday without
 having to think about any coding for a week or so.
 
 I often think if I am a proper developer and what am I doing all this

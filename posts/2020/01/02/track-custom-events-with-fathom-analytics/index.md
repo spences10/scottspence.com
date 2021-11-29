@@ -224,7 +224,7 @@ https://usefathom.com/ref/HG492L
 
 ## Thanks for reading 🙏
 
-That’s all folks! If there is anything I have missed, or if there is a
+That's all folks! If there is anything I have missed, or if there is a
 better way to do something then please let me know.
 
 Follow me on [Twitter] or [Ask Me Anything] on GitHub.

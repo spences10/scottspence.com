@@ -53,7 +53,7 @@ progressed with my FCC certification.
 
 > It's an employers market
 >
-> Another thing which is bad, because it’s an employer’s market
+> Another thing which is bad, because it's an employer's market
 > (apparently) employers are being very specific about the skills they
 > want potential candidates to have and currently they are driving
 > down the cost of resources with these job specifications, like: C#
@@ -67,7 +67,7 @@ progressed with my FCC certification.
 Things I have learned, most of the time the job doesn't exist (lead
 generation) If it does exist and you match one of the skills on the
 spec you will have every resourcer in the country [and abroad] calling
-you for the role. Wild salary ranges £40k-£80k that’s a pretty big
+you for the role. Wild salary ranges £40k-£80k that's a pretty big
 range, these ads usually come with every skill imaginable so it's safe
 to say that they don't really know what they want or the role doesn't
 really exist.
@@ -88,12 +88,12 @@ find good candidates.
 #### What the recruiter says:
 
 > hi Scott, just seen your profile and think you will be a really good
-> match for a role I’m recruiting for
+> match for a role I'm recruiting for
 
 #### What it actually means:
 
 > you have come up in my keyword search and I'm blindly calling you, I
-> haven’t really read your profile
+> haven't really read your profile
 
 This was incredibly frustrating experience for me, yes I could have
 done things better and like I said this was basically a rant, this is

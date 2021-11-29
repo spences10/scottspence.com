@@ -11,7 +11,7 @@ with Brave and the Basic Attention Token (BAT) back in 2018 on
 scottspence.me.
 
 So what is web monetisation? It's an alternative approach to payments
-that doesn’t rely on advertising or stealing your data and selling it
+that doesn't rely on advertising or stealing your data and selling it
 on.
 
 This time around I've re-enlisted the Brave BAT for [scottspence.com]
