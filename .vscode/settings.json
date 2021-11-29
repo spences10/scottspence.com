@@ -2,17 +2,22 @@
   "git.enableSmartCommit": true,
   "git.postCommitCommand": "sync",
   "cSpell.words": [
-    "VITE",
     "clsx",
+    "Color",
+    "Contentful",
     "daisyui",
     "deezer",
     "iframe",
     "mdsvex",
+    "mecv",
+    "NCSC",
     "noopener",
     "rehype",
+    "Strapi",
     "sveltejs",
     "unist",
     "vercel",
+    "VITE",
     "webm"
   ],
   "cSpell.enableFiletypes": ["dotenv", "jsx-tags", "svelte", "windi"]
