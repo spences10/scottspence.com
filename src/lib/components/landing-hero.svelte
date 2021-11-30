@@ -1,3 +1,11 @@
+<script>
+  import Asi from '@lib/icons/asi.svelte'
+  import Astrazeneca from '@lib/icons/astrazeneca.svelte'
+  import Bt from '@lib/icons/bt.svelte'
+  import Honda from '@lib/icons/honda.svelte'
+  import Ncsc from '@lib/icons/ncsc.svelte'
+</script>
+
 <div
   class="mb-4 relative lg:-mx-40 lg:mb-44 lg:px-8 xl:-mx-64 xl:mb-[17rem] 2xl:-mx-60 2xl:mb-72"
 >
@@ -37,6 +45,24 @@
       </div>
     </div>
   </div>
+
+  <div class="grid gap-4 grid-cols-3">
+    <!-- I've written code used at these places: -->
+    <!-- Aberdeen Standard Investments -->
+    <Asi />
+    <!-- BT -->
+    <Bt />
+    <!-- AstraZeneca -->
+    <Astrazeneca />
+    <!-- Honda -->
+    <Honda />
+    <!-- NCSC -->
+    <Ncsc />
+  </div>
+  <!-- Barclays -->
+  <!-- Chubb -->
+  <!-- Fidelity -->
+
   <!-- chevron down animated!! -->
   <a href="#hi-im-scott" aria-label="scroll down for more">
     <svg
