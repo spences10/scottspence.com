@@ -10,7 +10,7 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2021-10-22" small="true" />
+  Last updated: <DateUpdated date="2021-12-07" small="true" />
 </Small>
 
 If you want me to talk about using Svelte with GraphQL, the Jamstack
@@ -20,6 +20,16 @@ or anything else [get in touch].
 
 Here's the list of talks, podcasts and livestreams I have done
 recently.
+
+## GraphQL Galaxy Workshop - 2021 December
+
+Build with SvelteKit and GraphQL
+
+## MMT Tech Meetup - 2021 November
+
+SvelteKit and the Content Layer
+
+<YouTube youTubeId='LNAApZIYZUw' skipTo={{ h: 1, m: 31, s: 50 }} />
 
 ## Jamstack Conf Workshop - 2021 October
 
