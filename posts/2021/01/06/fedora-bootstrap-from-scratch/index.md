@@ -63,11 +63,11 @@ Now to check out the installed versions available on my machine with
 brevity but leaving Ubuntu there with the `*` next to it denoting it
 as the default:
 
-```bash
+```powershell
 # the l is for list
 # v is for verbose 🤷‍♀️
 # this is the long version => wsl --list --verbose
-PS C:\Windows\system32> wsl -l -v
+PS C:\\Windows\\system32> wsl -l -v
   NAME                  STATE           VERSION
 * Ubuntu                Stopped         2
   Fedora-33             Running         2
