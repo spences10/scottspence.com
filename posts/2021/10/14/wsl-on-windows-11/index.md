@@ -30,7 +30,7 @@ If you want to install Chrome on Ubuntu however there's still the same
 manual install needed for that. See my post on [Use Chrome in Ubuntu
 on Windows Subsystem Linux] for more info on how to do that.
 
-## Third part apps with winget
+## Third party apps with winget
 
 For third part apps in the past I have used Chocolatey as it had all
 the apps I needed, now with Windows 11 all the apps I need are there
