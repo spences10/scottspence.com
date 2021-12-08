@@ -23,7 +23,7 @@ recently.
 
 ## GraphQL Galaxy Workshop - 2021 December
 
-Build with SvelteKit and GraphQL
+Building with SvelteKit and GraphQL
 
 ## MMT Tech Meetup - 2021 November
 
