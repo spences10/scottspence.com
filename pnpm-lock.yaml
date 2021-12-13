@@ -16,7 +16,7 @@ specifiers:
   fuse.js: 6.4.6
   graphql: 16.1.0
   graphql-request: 3.7.0
-  marked: 4.0.6
+  marked: 4.0.7
   mdsvex: 0.9.8
   mdsvex-relative-images: 1.0.1
   postcss: 8.4.4
@@ -53,7 +53,7 @@ devDependencies:
   fuse.js: 6.4.6
   graphql: 16.1.0
   graphql-request: 3.7.0_graphql@16.1.0
-  marked: 4.0.6
+  marked: 4.0.7
   mdsvex: 0.9.8_svelte@3.44.2
   mdsvex-relative-images: 1.0.1
   postcss: 8.4.4
@@ -1739,8 +1739,8 @@ packages:
       sourcemap-codec: 1.4.8
     dev: true
 
-  /marked/4.0.6:
-    resolution: {integrity: sha512-+H0bTf8DM8zLuFBUm/2VklxaCrwlBFgoJzHJcMZCnZ9cPgsllHwKpL6TPLdDeA38yPluMuVKOL1hO5w6HmG5Mg==}
+  /marked/4.0.7:
+    resolution: {integrity: sha512-mQrRvV2vRk7DHZsWsYJfAjmBo+lSYPhTJPThaaGpkEfmC+4oefeug2txZniQTieDS0CFpokfVhd7JuS5GtnHhA==}
     engines: {node: '>= 12'}
     hasBin: true
     dev: true
