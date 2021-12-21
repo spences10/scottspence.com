@@ -36,7 +36,12 @@
         <div class="flex text-left items-center">
           <PeopleToMeetCheck {met} />
           <span class="hover:text-primary transition">
-            <a class="text-xl" href={link}>{name}</a>
+            <a
+              class="text-xl"
+              href={link}
+              rel="noreferrer noopener"
+              target="_blank">{name}</a
+            >
           </span>
         </div>
       </li>

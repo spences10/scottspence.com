@@ -183,7 +183,7 @@ export const PEOPLE = [
   {
     name: `Paul Scanlon`,
     link: `https://twitter.com/PaulieScanlon`,
-    met: false,
+    met: true,
   },
   {
     name: `Marc Backes`,
