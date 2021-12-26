@@ -1,4 +1,5 @@
 <script>
+  import Eye from '@lib/icons/eye.svelte'
   import GitHub from '@lib/icons/git-hub..svelte'
   import Spotify from '@lib/icons/spotify.svelte'
   import Twitch from '@lib/icons/twitch.svelte'
@@ -96,6 +97,9 @@
                     class="text-primary-content hover:opacity-50"
                   >
                     {post.title}
+                    <span class="text-primary-content font-bold"
+                      ><Eye /> {post.views}</span
+                    >
                   </a>
                 </li>
               {/each}

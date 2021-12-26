@@ -45,14 +45,14 @@ export const PORTFOLIO_PROJECTS = [
 
 export const POPULAR_POSTS = [
   {
-    title: `Use Chrome in Ubuntu on Windows Subsystem Linux`,
+    title: `Use Chrome in Ubuntu on WSL`,
     slug: `posts/use-chrome-in-ubuntu-wsl`,
-    views: `21k`,
+    views: `28.4k`,
   },
   {
     title: `Enable GUIs on Windows Subsystem Linux (WSL)`,
     slug: `posts/gui-with-wsl`,
-    views: `18k`,
+    views: `19.8k`,
   },
   {
     title: `styled-components 💅 getting started`,
@@ -62,7 +62,7 @@ export const POPULAR_POSTS = [
   {
     title: `Stylelint Configuration for use with Tailwind CSS`,
     slug: `posts/stylelint-configuration-for-tailwindcss`,
-    views: `2.6k`,
+    views: `3.6k`,
   },
 ]
 
