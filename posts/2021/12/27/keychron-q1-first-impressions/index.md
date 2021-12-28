@@ -152,7 +152,7 @@ sliver of tape next to each of the mounting screws, which I did.
 
 [![keychron-q1-backplate-with-tape]] [keychron-q1-backplate-with-tape]
 
-You can see the imprint of the PBC on the foam there, so it's a really
+You can see the imprint of the PCB on the foam there, so it's a really
 tight fit with the additional layer of foam in there.
 
 [![keychron-q1-backplate-and-pcb]] [keychron-q1-backplate-and-pcb]
