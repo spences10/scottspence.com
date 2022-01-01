@@ -1,10 +1,16 @@
 <script context="module">
   export const load = async () => {
     try {
-      const Copy = await import(`../../copy/speaking.md`)
+      const [copy2019, copy2020, copy2021] = await Promise.all([
+        import(`../../copy/speaking-2019.md`),
+        import(`../../copy/speaking-2020.md`),
+        import(`../../copy/speaking.md`),
+      ])
       return {
         props: {
-          Copy: Copy.default,
+          copy2019: copy2019.default,
+          copy2020: copy2020.default,
+          copy2021: copy2021.default,
         },
       }
     } catch (e) {
@@ -21,7 +27,21 @@
   import { name, website } from '@lib/info'
   import { ogImageUrl } from '@lib/og-image-url-build'
 
-  export let Copy
+  export let copy2019
+  export let copy2020
+  export let copy2021
+
+  let selected
+
+  function setContent() {
+    if (selected === '2019') {
+      return copy2019
+    } else if (selected === '2020') {
+      return copy2020
+    } else if (selected === '2021') {
+      return copy2021
+    }
+  }
 </script>
 
 <Head
@@ -31,8 +51,23 @@
   url={`${website}/speaking`}
 />
 
+<div class="text-right">
+  Previous years:
+  <select
+    class="pr-9 select select-bordered select-primary select-xs"
+    bind:value={selected}
+    on:change={() => {
+      setContent(selected)
+    }}
+  >
+    <option value="2021">2021</option>
+    <option value="2020">2020</option>
+    <option value="2019">2019</option>
+  </select>
+</div>
+
 <div class="all-prose">
-  <svelte:component this={Copy} />
+  <svelte:component this={setContent()} />
 </div>
 
 <div class="flex flex-col w-full my-10">
