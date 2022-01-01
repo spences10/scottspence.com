@@ -6,8 +6,8 @@
   import { description, name, website } from '@lib/info'
   import { ogImageUrl } from '@lib/og-image-url-build'
 
-  export const load = async ({ page }) => {
-    const { slug } = page.params
+  export const load = async ({ params }) => {
+    const { slug } = params
     const { postsByTag } = await getPostTags()
     return {
       props: {

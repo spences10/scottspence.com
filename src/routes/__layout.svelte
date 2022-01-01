@@ -34,7 +34,7 @@
     })
   })
 
-  $: $page.path, browser && Fathom.trackPageview()
+  $: $page.pathname, browser && Fathom.trackPageview()
 </script>
 
 <div class="flex flex-col min-h-screen">

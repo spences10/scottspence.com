@@ -3,7 +3,7 @@
   /**
    * @type {import('@sveltejs/kit').Load}
    */
-  export const load = async ({ page: { params } }) => {
+  export const load = async ({ params }) => {
     const { slug } = params
     const post = getPosts().find(post => slug === post.metadata.slug)
     if (!post) {
