@@ -1,45 +1,52 @@
 <script context="module">
+  import Head from '@components/head.svelte'
+  import { name, website } from '@lib/info'
+  import { ogImageUrl } from '@lib/og-image-url-build'
+
   export const load = async () => {
     try {
-      const [copy2019, copy2020, copy2021] = await Promise.all([
-        import(`../../copy/speaking-2019.md`),
-        import(`../../copy/speaking-2020.md`),
-        import(`../../copy/speaking.md`),
-      ])
+      const [copy2019, copy2020, copy2021, copy2022] =
+        await Promise.all([
+          import(`../../copy/speaking-2019.md`),
+          import(`../../copy/speaking-2020.md`),
+          import(`../../copy/speaking-2021.md`),
+          import(`../../copy/speaking.md`),
+        ])
       return {
         props: {
-          copy2019: copy2019.default,
-          copy2020: copy2020.default,
-          copy2021: copy2021.default,
+          copy: {
+            copy2019: copy2019.default,
+            copy2020: copy2020.default,
+            copy2021: copy2021.default,
+            copy2022: copy2022.default,
+          },
         },
       }
     } catch (e) {
       return {
         status: 404,
-        error: 'Uh oh!',
+        error: `Uh oh! There's an error! ${e.message}`,
       }
     }
   }
 </script>
 
 <script>
-  import Head from '@components/head.svelte'
-  import { name, website } from '@lib/info'
-  import { ogImageUrl } from '@lib/og-image-url-build'
-
-  export let copy2019
-  export let copy2020
-  export let copy2021
+  export let copy
 
   let selected
 
   function setContent() {
     if (selected === '2019') {
-      return copy2019
+      return copy.copy2019
     } else if (selected === '2020') {
-      return copy2020
+      return copy.copy2020
     } else if (selected === '2021') {
-      return copy2021
+      return copy.copy2021
+    } else if (selected === '2022') {
+      return copy.copy2022
+    } else {
+      return copy.copy2022
     }
   }
 </script>
@@ -60,6 +67,7 @@
       setContent(selected)
     }}
   >
+    <option value="2022">2022</option>
     <option value="2021">2021</option>
     <option value="2020">2020</option>
     <option value="2019">2019</option>
