@@ -354,4 +354,4 @@ and replaced the index page styles on each with Tailwind styles.
 <!-- Images -->
 
 [changes-after-svelte-add-tailwind]:
-  ./changes-after-svelte-add-tailwind.png
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1641143473/scottspence.com/changes-after-svelte-add-tailwind.png
