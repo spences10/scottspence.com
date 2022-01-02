@@ -163,10 +163,6 @@ const config = {
 }
 
 export default config
-// Workaround until SvelteKit uses Vite 2.3.8 (and it's confirmed to fix the Tailwind JIT problem)
-const mode = process.env.NODE_ENV
-const dev = mode === 'development'
-process.env.TAILWIND_MODE = dev ? 'watch' : 'build'
 ```
 
 The rest of the config here isn't really pertenant, what matters is
@@ -609,4 +605,5 @@ I cann now use this pattern in other projects!
 
 <!-- Images -->
 
-[revue-subscribers-list-search]: ./revue-subscribers-list-search.png
+[revue-subscribers-list-search]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881311/scottspence.com/revue-subscribers-list-search.png

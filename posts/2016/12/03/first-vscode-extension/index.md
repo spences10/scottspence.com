@@ -40,7 +40,7 @@ ballache to get any of it up and running. I tried installing it on
 both my home machine and a Cloud9 machine several times over with no
 success.
 
-![YeomanErr](./yeoman-err.png)
+![YeomanErr]
 
 Got tired after uninstalling and reinstalling several times at home
 and on the cloud so moved on. I read
@@ -76,12 +76,12 @@ and going through the commands so I tried `vsce publish 1.0.0`
 
 I was pretty surprised (and relieved) to see the output pictured.
 
-![vscePublish](./vsce-publish.png)
+![vscePublish]
 
 I had a quick check of my publisher profile and lo and behold, there's
 my extension!
 
-![YeomanErr](./marketplace-extensions-management.png)
+![extension on market place]
 
 Here's my extension:
 [VBA Snippets](https://marketplace.visualstudio.com/items?itemName=spences10.vba-snippets)
@@ -104,4 +104,11 @@ hope it comes in handy for you one day!
 
 <!-- Images -->
 
-[vscode vba market-place]: ./visual-studio-marketplace.png
+[vscode vba market-place]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/visual-studio-marketplace-50f58b39bdbe05c6e32a31e989f12802.png
+[yeomanerr]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/yeoman-err-0d720ffedb48cce898538fc5510ccb14.png
+[vscepublish]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/vsce-publish-4e408c5714752608e16b26532fdddb43.png
+[extension on market place]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/marketplace-extensions-management-ed95fb9a535f6a2cfc14a3745830a20a.png

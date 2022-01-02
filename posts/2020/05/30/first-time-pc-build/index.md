@@ -401,15 +401,27 @@ that sort of price, believe me I've looked.
 
 <!-- Images -->
 
-[the empty case]: ./case-with-power.jpg
-[cpu fan clearance]: ./cpu-fan-clearance.jpg
-[fan covering memory slots]: ./fan-covering-memory.jpg
-[case screws]: ./case-screws.jpg
-[cables]: ./cables.jpg
-[gpu assembly]: ./gpu-assembly.jpg
-[case front with gpu installed]: ./gpu-installed.jpg
-[case back gpu installed]: ./gpu-fan-side.jpg
-[motherboard front panel headers]: ./case-headers.jpg
-[motherboard wired]: ./motherboard-wired.jpg
-[ready to close]: ./ready-to-close.jpg
-[closed case]: ./closed-case.jpg
+[the empty case]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858548/scottspence.com/case-with-power-faf69a26264d7fd5f99a53071669ee9c.jpg
+[cpu fan clearance]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858544/scottspence.com/cpu-fan-clearance-8ff552c0bd8c66159487186119de3dcc.jpg
+[fan covering memory slots]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858544/scottspence.com/fan-covering-memory-d72cdcea00af9dd34d6f0aa36bd5cd45.jpg
+[case screws]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858547/scottspence.com/case-screws-e4129b6c6bfac904a0eb322163bc3903.jpg
+[cables]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/cables-31127d7cbe4678eecdf989424ad122d9.jpg
+[gpu assembly]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/gpu-assembly-85e7c5f9718d4733ee86439f4d289853.jpg
+[case front with gpu installed]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/gpu-installed-2d7956962b127bafa994bdaaf3fefcb2.jpg
+[case back gpu installed]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858547/scottspence.com/gpu-fan-side-68a687d00ad79aebcaa658bd0e40359a.jpg
+[motherboard front panel headers]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/case-headers-c91e915482db72e7780a8540272cc7bc.jpg
+[motherboard wired]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858545/scottspence.com/motherboard-wired-9f43dde89286b528cd3d364482bb20da.jpg
+[ready to close]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/ready-to-close-37d3aac59fe95afdf9fb0790446d058b.jpg
+[closed case]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858547/scottspence.com/closed-case-e8b7093f6cd0a6c70733f8d492c30774.jpg

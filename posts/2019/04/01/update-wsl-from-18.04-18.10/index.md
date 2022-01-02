@@ -37,7 +37,7 @@ Now we can go about updating Ubuntu with the `do-release-upgrade`
 command, if you do that right away you may see something along the
 lines of:
 
-![no lts upgrade](./noLtsUpgrade.png)
+![no lts upgrade]
 
 This is setting the updater to to only check for Long Term Support
 versions, we're going to change that now by changing the prompt from
@@ -49,11 +49,11 @@ sudo nano /etc/update-manager/release-upgrades
 
 You should see the default release upgrader settings:
 
-![default release ugrader](./defaultRelaeaseUpgrader.png)
+![default release ugrader]
 
 You'll need to set it to normal:
 
-![default release ugrader](./normalRelaeaseUpgrader.png)
+![normal release ugrader]
 
 Now we can go and do the release upgrade command:
 
@@ -73,12 +73,12 @@ any packages. You can do what you like with yours, I'm not your mum 😜
 
 You should now have your Ubuntu WSL version at 18.10 👏
 
-![update complete](./updateComlpete.png)
+![update complete]
 
 If, like me, you uninstalled Ubuntu and tried to reinstall it and are
 getting errors like this:
 
-![error installing ubuntu](./derp-install.gif)
+![error installing ubuntu]
 
 Then what worked for me was to restart the `LxssManager` via a
 PowerShell console with admin rights.
@@ -124,3 +124,16 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [even]: https://youtu.be/8ruJBKFrRCk?t=93
 [gatsby documentation]:
   https://www.gatsbyjs.org/docs/use-static-query/
+
+<!-- Images -->
+
+[no lts upgrade]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/noLtsUpgrade-7d50b4fcaaff9385631fc85d31cd2418.png
+[default release ugrader]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/defaultRelaeaseUpgrader-0920e538b6e247b6658b4ae737dd6113.png
+[normal release ugrader]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/normalRelaeaseUpgrader-f459e42150a391a68786a8b0a9562a03.png
+[update complete]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/updateComlpete-659d8b8617efe423b8fb2548500b9806.png
+[error installing ubuntu]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/derp-install-1beb072890d40cbdb693721fb1b7d414.gif

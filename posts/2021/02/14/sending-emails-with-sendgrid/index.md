@@ -94,4 +94,5 @@ To do that, if you create a new list in your contacts then
 
 <!-- Images -->
 
-[sendgrid empty contact list]: ./sendgrid-empty-contact-list.png
+[sendgrid empty contact list]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/sendgrid-empty-contact-list-73204f3ecdb25d07f4bedfb3be6b6434.png

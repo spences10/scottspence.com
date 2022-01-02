@@ -2905,7 +2905,6 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [his own implementation]:
   https://github.com/LekoArts/gatsby-starter-prismic/blob/master/src/components/SEO/SEO.jsx
 [lumen]: https://github.com/alxshelepenok/gatsby-starter-lumen
-[draw a horse quincy tweet]: ./draw-a-horse-quincy-tweet.png
 [the essential meta tags for social media]:
   https://css-tricks.com/essential-meta-tags-social-media/
 [as a react component]:
@@ -2920,3 +2919,8 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
   https://www.cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh
 [twitter]: https://twitter.com/spences10
 [ask me anything]: https://github.com/spences10/ama
+
+<!-- Images -->
+
+[draw a horse quincy tweet]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/draw-a-horse-quincy-tweet-c94426ee247944669175d7575b851f60.png

@@ -111,7 +111,7 @@ On the MS Word doc I would have all the search terms a recruiter would
 search for, JavaScript, React, HTML, CSS and so on at the bottom of
 the document. At the top was a greeting:
 
-![jobsite-cv](./jobsite-cv.jpg)
+![jobsite-cv]
 
 It was a friendly hello and something different to what must be very
 repetitive.
@@ -141,3 +141,8 @@ pick up the phone than READ the information provided.
 [teh jamstack behbeh!]: https://jamstack.org/
 [jsonresume]: https://jsonresume.org/
 [use my cv]: https://github.com/spences10/cv
+
+<!-- Images -->
+
+[jobsite-cv]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/jobsite-cv-11a27b76e59cb7c0015d28592c76c4c8.jpg

@@ -161,7 +161,7 @@ export const A = props => {
 The only thing with this was that the `goalId` would still be in the
 URL.
 
-![url with goalid showing](./url-with-goalid-showing.png)
+![url with goalid showing]
 
 I didn't really like the way this looked, especially if someone was
 going to share that link after clicking it.
@@ -250,3 +250,8 @@ These resources helped me along the way.
   https://stackoverflow.com/questions/22753052/remove-url-parameters-without-refreshing-page
 [google urlsearchparams]:
   https://developers.google.com/web/updates/2016/01/urlsearchparams
+
+<!-- Images -->
+
+[url with goalid showing]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/url-with-goalid-showing-a8b55efd542a1abaf4905a646549dea6.png

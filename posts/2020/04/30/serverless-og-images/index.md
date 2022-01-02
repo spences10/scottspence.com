@@ -267,6 +267,9 @@ implementing it [into this site].
 
 <!-- Images -->
 
-[no tsc config error]: ./no-tsc-config.png
-[page source url]: ./page-source-image-url.png
-[undefined og]: ./undefined-og-image.jpg
+[no tsc config error]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858542/scottspence.com/no-tsc-config-e9f31650c9c030db545f53eee91277a2.png
+[page source url]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858542/scottspence.com/page-source-image-url-d3f732295bfea040414f963976b7287f.png
+[undefined og]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/undefined-og-image-63cb64d032a31d5ffa730e5e4d5ed10d.jpg

@@ -150,9 +150,10 @@ with being mentioned, thanks James. 🙏
 <!-- Images -->
 
 [slack message asking about site map]:
-  ./slack-message-asking-about-site-map.png
-[knut slack reply]: ./knut-slack-reply.png
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/slack-message-asking-about-site-map-eb4b170b1db4454e381d622f3374b6cd.png
+[knut slack reply]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/knut-slack-reply-09be06278ce5133cf55987bd7be2a328.png
 [james weis reply headers to text/xml]:
-  ./james-weis-reply-headers-to-text-xml.png
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/james-weis-reply-headers-to-text-xml-38b5a75fc9ea820d41bc3cf287eae85f.png
 [asking for permission to add this content to my blog]:
-  ./credit-james.png
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/credit-james-4b96034fad83ad2aab9b4d85238a7260.png

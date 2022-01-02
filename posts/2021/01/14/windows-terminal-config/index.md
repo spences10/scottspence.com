@@ -468,7 +468,9 @@ Command Line Blog].
 
 <!-- Images -->
 
-[default windows terminal appearance]: ./default-windows-terminal.png
-[intellisense options]: ./intellisense-options.png
+[default windows terminal appearance]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/default-windows-terminal-388c6cbaeab229756619d246cd1146d6.png
+[intellisense options]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/intellisense-options-97c4b0402609f01069d9b439767e682e.png
 [shell dropdown in windows terminal]:
-  ./shell-dropdown-in-windows-terminal.png
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/shell-dropdown-in-windows-terminal-9f552c4510800ab3e2f06a71092f7f51.png
