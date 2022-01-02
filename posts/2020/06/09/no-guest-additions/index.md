@@ -49,11 +49,16 @@ CLI, instructions on that can be found in this video.
 
 <YouTube youTubeId="JMT2qimIL9Q" />
 
-<!-- Images -->
+<!-- Links -->
 
-[system extended features]: ./system-extended-features.png
-[display screen setting]: ./display-screen.png
 [superuser]:
   https://superuser.com/questions/1118712/when-do-i-have-to-use-pae-nx/1381508#1381508
 [wikipedia page]:
   https://en.wikipedia.org/wiki/Physical_Address_Extension
+
+<!-- Images -->
+
+[system extended features]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/system-extended-features-0cb51df6f5316a8fef9f226039dfe5a8.png
+[display screen setting]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/display-screen-d102c2aab478fd9477c4f5bc0db649ed.png

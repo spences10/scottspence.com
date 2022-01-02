@@ -55,5 +55,7 @@ with the master that I will one day make a PR for 😅
 
 <!-- Images -->
 
-[compare]: ./git-compare.png
-[git-compare-after]: ./git-compare-after.png
+[compare]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/git-compare-5602c54638703c110ed8325946dd4e07.png
+[git-compare-after]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930928/scottspence.com/git-compare-after-8e5004783656e0f79dadb8b730fc43ae.png

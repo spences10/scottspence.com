@@ -33,7 +33,7 @@ From the GitHub page I can click on the image to downloaf it. For me
 at the time of writing that file is
 [`fedora-35.20211125-x86_64.tar.xz`].
 
-The download is a `*.tar.xz` file, I need to extract this so it’s a
+The download is a `*.tar.xz` file, I need to extract this so it's a
 `*.tar` file, I'll use 7zip to do that.
 
 ## Import `rootfs` into WSL
@@ -162,7 +162,7 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 
 There'll be some output from Oh My Zsh:
 
-> I can’t change your shell automatically because this system does not
+> I can't change your shell automatically because this system does not
 > have chsh. Please manually change your default shell to zsh
 
 How to change the default shell next.

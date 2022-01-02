@@ -221,6 +221,12 @@ snappy and FAST!
   https://forum.manjaro.org/t/solved-emoji-support-problem/86783
 [again from the manjaro forum]:
   https://forum.manjaro.org/t/help-me-install-virtualbox/103458/4
-[emoji support before]: ./emoji-support-before.png
-[emoji support after]: ./emoji-support-after.png
-[activity view]: ./activity-view.png
+
+<!-- Images -->
+
+[emoji support before]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/emoji-support-before-fb1277dfef2dd2715391a9f42ac41d33.png
+[emoji support after]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/emoji-support-after-aa2d85234ffe7f945397acf5920003cb.png
+[activity view]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858544/scottspence.com/activity-view-c64b5569a8cfbd4c280c13540bbefbac.png

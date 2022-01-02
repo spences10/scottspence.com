@@ -37,7 +37,7 @@ lsb_release -a
 
 The output looks like this:
 
-![current-version](./current-version.png)
+![current-version]
 
 ## Do the release upgrade!
 
@@ -48,7 +48,7 @@ To start the upgrade I enter the terminal command
 sudo do-release-upgrade
 ```
 
-![do-release-upgrade](./do-release-upgrade.png)
+![do-release-upgrade]
 
 This will prompt me if my `release-upgrades` file isn't set to
 `normal`.
@@ -65,7 +65,7 @@ sudo nano /etc/update-manager/release-upgrades
 In the file I change the `Prompt` from `Prompt=lts` to
 `Prompt=normal`.
 
-![release-upgrades-normal](./release-upgrades-normal.png)
+![release-upgrades-normal]
 
 To save the file in Nano I use Ctrl+o to write out the file, confirm
 (Enter/Return) then to close use I Ctrl+x.
@@ -75,7 +75,7 @@ To save the file in Nano I use Ctrl+o to write out the file, confirm
 Now the `release-upgrades` file is set to `normal` I can do the
 [do-release-upgrade].
 
-![release-upgrade-for-realsies](./release-upgrade-for-realsies.png)
+![release-upgrade-for-realsies]
 
 You may be aware of an [lxd error] that occurs on the Ubuntu 18.04 to
 Ubuntu 18.10 upgrade. This is where there is a prompt saying ["Your
@@ -98,7 +98,7 @@ sudo do-release-upgrade
 I'm now prompted with the details of what is going to happen in the
 upgrade:
 
-![upgrade-confirmation](./upgrade-confirmation.png)
+![upgrade-confirmation]
 
 I respond with `y` to continue and start the upgrade.
 
@@ -107,13 +107,13 @@ I respond with `y` to continue and start the upgrade.
 When I'm prompted about `libc6` for restarting services during package
 upgrades I use the tab key to select `<Yes>` then return to continue.
 
-![config-libc6](./config-libc6.png)
+![config-libc6]
 
 Next I have the `Lxd` warning I mentioned earlier, in this case I'm
 going to arrow down and select the option to `<Skip>` then hit return
 to continue.
 
-![lxd-warning](./lxd-warning.png)
+![lxd-warning]
 
 In the following screens I'm being asked about package configuration,
 I'm going to be picking the option to
@@ -122,38 +122,38 @@ I'm going to be picking the option to
 Same with `openssh-server` arrow up key to to
 `install the package maintainer's version` and hit return to continue.
 
-![openssh-servier-config](./openssh-servier-config.png)
+![openssh-servier-config]
 
 Then there's the `release-upgrades` configuration and yeah I'm going
 to select to `install the package maintainer's version` and confirm to
 continue.
 
-![release-upgrades-config](./release-upgrades-config.png)
+![release-upgrades-config]
 
 ## Finish up install
 
 One of the last few prompts is to confirm the removal of the obsolete
 packages, confirm `y` to continue.
 
-![finish-up-install](./finish-up-install.png)
+![finish-up-install]
 
 Restart is required now, so I confirm with `y`.
 
-![restart-prompt](./restart-prompt.png)
+![restart-prompt]
 
 Now I have the confirmation that the do release upgrade completed
 successfully. I press Ctrl+c
 
-![finish-upgrade](./finish-upgrade.png)
+![finish-upgrade]
 
 Then have to press `x` to destroy!
 
-![press-x](./press-x.png)
+![press-x]
 
 That takes me back to the regular prompt where I can check with
 `lsb_release -a` what version I'm now on.
 
-![done](./done.png)
+![done]
 
 Confirmation the Windows Subsystem Linux version of Ubuntu I'm using
 is now on 19.10.
@@ -193,3 +193,34 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [lxd error]: https://dev.to/spences10/comment/9n3j
 ["your system is unable to reach the snap store"]:
   https://askubuntu.com/questions/1119301/your-system-is-unable-to-reach-the-snap-store
+
+<!-- Images -->
+
+[current-version]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858536/scottspence.com/01.current-version-56f1518727b9d6339ef9cbc2f7813813.png
+[do-release-upgrade]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/02.do-release-upgrade-805fa66fa97906724e4644eceacbae5b.png
+[release-upgrades-normal]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/03.release-upgrades-normal-396a67aa70e77081cacb71f123e08cad.png
+[release-upgrade-for-realsies]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/04.release-upgrade-for-realsies-a48e73b6af82c743301d46ca098e03d1.png
+[upgrade-confirmation]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/05.upgrade-confirmation-d4e06ebd5c9d732cffeaf9c8d0273841.png
+[config-libc6]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/06.config-libc6-1cc150556cfed1f2b15fa369dbaacb46.png
+[lxd-warning]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858536/scottspence.com/07.lxd-warning-c71b11ddfc5f0f3d0c8827901b8cdef0.png
+[openssh-servier-config]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/08.openssh-servier-config-bfad8f011380589631f7857a44b4e99e.png
+[release-upgrades-config]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/09.release-upgrades-config-5c27fb195ae859a7575b1376cd6132f3.png
+[finish-up-install]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/10.finish-up-install-be96c886864a0920396fcffe2c546315.png
+[restart-prompt]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858536/scottspence.com/11.restart-prompt-f720e506166f0f6898567559fbca187d.png
+[finish-upgrade]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/12.finish-upgrade-3f0a6842f37baa0f0e96b0468168a9e6.png
+[press-x]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/13.press-x-49c154256be46d63b6dc1298907787f8.png
+[done]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/14.done-c0cac6ec5e1203fba1cdd7becdcd5391.png

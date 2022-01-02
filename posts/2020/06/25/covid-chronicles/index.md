@@ -144,9 +144,11 @@ Stay safe!
 [coco di mama]: https://www.cocodimama.co.uk/coffee/
 [first time pc build]:
   https://scottspence.com/posts/first-time-pc-build/
+[marc backes]: https://marc.dev
 
 <!-- Images  -->
 
-[before haircut]: ./hair-before.jpg
-[after haircut]: ./hair-after.jpg
-[marc backes]: https://marc.dev
+[before haircut]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/hair-before-1de64d3df31333fcc2f33b47ce6f592d.jpg
+[after haircut]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/hair-after-348b184b399231f119669c6f5aae250d.jpg

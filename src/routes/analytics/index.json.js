@@ -1,4 +1,4 @@
-export const get = async() =>{
+export const get = async () => {
   const FATHOM_API_KEY = process.env['FATHOM_API_KEY']
   try {
     const getHeaders = new Headers()

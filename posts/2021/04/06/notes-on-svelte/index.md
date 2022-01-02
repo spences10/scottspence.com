@@ -9,7 +9,7 @@ I had a play around with Svelte the other day and wanted to make a few
 notes and comparisons to React, React being a point of reference for
 me and hopefully others.
 
-I've found a lot of the examples here on
+I've found a lot of the examples here on [Svelte Mastery]
 
 There's also the Svelte docs with [interactive tutorials] which I'm
 going through.
@@ -394,12 +394,12 @@ Now take a look at the same example in Svelte:
 
 ```html
 <script>
-  let count = 0
+	let count = 0
 </script>
 
 <p>You clicked {count} times</p>
 <button on:click={() => count++}>
-  Click me
+	Click me
 </button>
 ```
 
@@ -416,3 +416,5 @@ Check out [Svelte Mastery] for all these examples and more
 [svelte.dev titorial site]:
   https://svelte.dev/tutorial/reactive-declarations
 [introducing hooks]: https://reactjs.org/docs/hooks-intro.html
+[svelte mastery]:
+  https://www.youtube.com/channel/UCg6SQd5jnWo5Y70rZD9SQFA

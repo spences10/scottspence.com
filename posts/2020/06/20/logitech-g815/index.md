@@ -189,7 +189,14 @@ G5 key is mapped to F5 so it may get annoying.
 [libratbag]: https://github.com/libratbag/libratbag
 [add a ppa]:
   https://launchpad.net/~libratbag-piper/+archive/ubuntu/piper-libratbag-git
-[box comparison]: ./box-comparison.jpg
-[boards comparison]: ./boards-comparison.jpg
-[rainbow cycle lights]: ./rainbow-cycle-lights.jpg
-[preferred-colour]: ./preferred-colour.jpg
+
+<!-- Images -->
+
+[box comparison]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/box-comparison-7e4831de6c91f0502ba6d2118ab18302.jpg
+[boards comparison]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858548/scottspence.com/boards-comparison-91ea724edce1f0b60656eecc5af09480.jpg
+[rainbow cycle lights]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858548/scottspence.com/rainbow-cycle-lights-b6b3b5f54b383db6328804ad822b858a.jpg
+[preferred-colour]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858547/scottspence.com/preferred-colour-25622ecd01126ad8d50122b6df2e52cc.jpg

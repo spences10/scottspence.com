@@ -226,6 +226,9 @@ global npm packages you want for development now.
 
 <!-- Images -->
 
-[upgrade message]: ./upgrade-yes.png
-[bash files wrong permissions]: ./bash-wrong-perms.png
-[bash files permissions]: ./bash-dotfiles.png
+[upgrade message]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/upgrade-yes-d9fdf06ee6eadf39561e9293149c669e.png
+[bash files wrong permissions]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/bash-wrong-perms-7499ad1ca9beabe2915014e11a7368d4.png
+[bash files permissions]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930929/scottspence.com/bash-dotfiles-dad0b2d87dfb1eba5a9fc5320da452ce.png

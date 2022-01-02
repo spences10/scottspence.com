@@ -155,6 +155,11 @@ for now I have what I need.
 
 <!-- Images -->
 
-[jekyll logo]: ./jekyll-logo.png
-[bas-project-layout]: ./base-jekyll-project.png
-[dem-commits]:./dem-commits.png
+[jekyll logo]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930929/scottspence.com/jekyll-logo-9a6784d0e7ab903d7aa9970e804ccaa3.png
+[bas-project-layout]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/base-jekyll-project-f23bbe735fd8a42717474db5013e7542.png
+[base-jekyll-site]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930928/scottspence.com/base-jekyll-site-bec10c4a17adb57f6381b8bc833f463f.png
+[dem-commits]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930931/scottspence.com/dem-commits-8e23cb21d43675e06988080fad218959.png

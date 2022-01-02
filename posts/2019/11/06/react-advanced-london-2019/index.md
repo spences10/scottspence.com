@@ -235,7 +235,7 @@ Ken's IMDOPE system but it was the message was what was important.
 Jamie went on to talk about how the community can benefit from any
 kind of sharing.
 
-![anything acronym](./anything.png)
+![anything acronym]
 
 - YouTube video or video series
 
@@ -330,13 +330,13 @@ better navigation, less technical debt.
 
 <YouTube youTubeId="nkJbGgieALI" />
 
-<!-- Links -->
-
 Complete playlist of all the talks on YouTube [here].
 
 Check the [hashtag] on Twitter and also [my coverage] on Twitter.
 
 https://twitter.com/search?q=spences10%20reactadvanced&f=live
+
+<!-- Links -->
 
 [codesandbox.io]: https://codesandbox.io
 [fetch example]: https://codesandbox.io/s/reactadvanced-final-uwrx0
@@ -349,3 +349,8 @@ https://twitter.com/search?q=spences10%20reactadvanced&f=live
 [hashtag]: https://twitter.com/hashtag/ReactAdvanced
 [my coverage]:
   https://twitter.com/search?q=reactadvanced%20spences10&f=live
+
+<!-- Images -->
+
+[anything acronym]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/anything-a5977c43c2e8140e1898ffb67e75234f.png
