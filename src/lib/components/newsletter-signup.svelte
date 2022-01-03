@@ -67,7 +67,7 @@
       class="mx-auto text-primary-content max-w-7xl py-12 lg:py-16 lg:px-8"
     >
       <div
-        class="bg-primary rounded-3xl py-10 lg:flex lg:p-20 lg:items-center"
+        class="bg-primary rounded-3xl py-10 px-4 lg:flex lg:p-20 lg:items-center"
       >
         <div class="lg:flex-1 lg:w-0">
           <h3 class="font-extrabold tracking-tight text-3xl">
@@ -109,7 +109,7 @@
           </div>
           <p class="mt-3 text-sm">
             I care about the protection of your data. Read the
-            <a href="/privacy-policy" class="link">
+            <a href="/privacy-policy" class="link text-primary-content">
               Privacy Policy
             </a>
             for more info.
