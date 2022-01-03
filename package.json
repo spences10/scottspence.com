@@ -40,7 +40,7 @@
 		"prettier": "2.5.1",
 		"prettier-plugin-svelte": "2.5.1",
 		"rehype-autolink-headings": "6.1.0",
-		"rehype-slug": "5.0.0",
+		"rehype-slug": "5.0.1",
 		"remark-external-links": "9.0.1",
 		"remark-preview": "1.0.2",
 		"remark-reading-time": "1.0.1",
