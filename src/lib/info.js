@@ -460,4 +460,9 @@ export const PEOPLE = [
     link: `https://twitter.com/ossia`,
     met: false,
   },
+  {
+    name: `Jay`,
+    link: `https://twitter.com/_thisisthejay`,
+    met: false,
+  },
 ]
