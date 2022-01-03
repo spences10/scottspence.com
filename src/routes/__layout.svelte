@@ -38,6 +38,10 @@
 </script>
 
 <div class="flex flex-col min-h-screen">
+  <a
+    class="transition left-0 bg-primary text-primary-content absolute p-3 m-3 -translate-y-16  focus:translate-y-0"
+    href="#main-content">Skip Navigation</a
+  >
   <div class="flex flex-col flex-grow mx-auto w-full max-w-2xl">
     <div
       class="flex h-16 mb-4 py-2 px-4 justify-between items-center"
@@ -52,7 +56,10 @@
       </div>
     </div>
     <Nav />
-    <main class="flex flex-col flex-grow w-full py-4 px-4">
+    <main
+      id="main-content"
+      class="flex flex-col flex-grow w-full py-4 px-4"
+    >
       <slot />
     </main>
   </div>
