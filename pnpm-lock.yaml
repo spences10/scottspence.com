@@ -28,7 +28,7 @@ specifiers:
   remark-external-links: 9.0.1
   remark-preview: 1.0.2
   remark-reading-time: 1.0.1
-  slugify: 1.6.4
+  slugify: 1.6.5
   svelte: 3.44.3
   svelte-lazy: 1.0.12
   svelte-preprocess: 4.10.1
@@ -39,7 +39,7 @@ specifiers:
 
 devDependencies:
   '@sveltejs/adapter-vercel': 1.0.0-next.34
-  '@sveltejs/kit': 1.0.0-next.213_svelte@3.44.3
+  '@sveltejs/kit': 1.0.0-next.215_svelte@3.44.3
   '@tailwindcss/typography': 0.5.0_tailwindcss@3.0.7
   autoprefixer: 10.4.1_postcss@8.4.5
   cssnano: 5.0.14_postcss@8.4.5
@@ -65,7 +65,7 @@ devDependencies:
   remark-external-links: 9.0.1
   remark-preview: 1.0.2
   remark-reading-time: 1.0.1
-  slugify: 1.6.4
+  slugify: 1.6.5
   svelte: 3.44.3
   svelte-lazy: 1.0.12_svelte@3.44.3
   svelte-preprocess: 4.10.1_780263383bd82c24c3a39ba88c8c2aa6
@@ -164,8 +164,8 @@ packages:
       esbuild: 0.13.15
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.213_svelte@3.44.3:
-    resolution: {integrity: sha512-0IA8cRTMMoIr+OWPFtTuihmW09v+oH8KLURy/91qzkIqJBrf23cQ8jFyUcqGtHBDziuUbGZpMtDgHUV8oP5Sow==}
+  /@sveltejs/kit/1.0.0-next.215_svelte@3.44.3:
+    resolution: {integrity: sha512-3y6NFKacahEjgAuGNgs49t2Jf708syKEf6A7uf0dXoQXq3giF+/O1XDF4f+I2g/39iiOtkJMW10tyvIiRG22Hw==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
@@ -2426,8 +2426,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /slugify/1.6.4:
-    resolution: {integrity: sha512-Pcz296CK0uGnTf4iNQId79Uv6/5G16t0g0x3OsxWS8qVSOW+JXNnNHKVcuDiMgEGTWyK6zjlWXo2dvzV/FLf9Q==}
+  /slugify/1.6.5:
+    resolution: {integrity: sha512-8mo9bslnBO3tr5PEVFzMPIWwWnipGS0xVbYf65zxDqfNwmzYn1LpiKNrR6DlClusuvo+hDHd1zKpmfAe83NQSQ==}
     engines: {node: '>=8.0.0'}
     dev: true
 
