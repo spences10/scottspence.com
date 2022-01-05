@@ -8,7 +8,15 @@ const config = {
       xs: '475px',
       ...defaultTheme.screens,
     },
-    extend: {},
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: null,
+          },
+        },
+      },
+    },
   },
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
 }
