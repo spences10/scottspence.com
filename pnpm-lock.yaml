@@ -28,7 +28,7 @@ specifiers:
   remark-external-links: 9.0.1
   remark-preview: 1.0.2
   remark-reading-time: 1.0.1
-  slugify: 1.6.4
+  slugify: 1.6.5
   svelte: 3.44.3
   svelte-lazy: 1.0.12
   svelte-preprocess: 4.10.1
@@ -65,7 +65,7 @@ devDependencies:
   remark-external-links: 9.0.1
   remark-preview: 1.0.2
   remark-reading-time: 1.0.1
-  slugify: 1.6.4
+  slugify: 1.6.5
   svelte: 3.44.3
   svelte-lazy: 1.0.12_svelte@3.44.3
   svelte-preprocess: 4.10.1_ca286960db9d91ba388e2f7552631d28
@@ -2406,8 +2406,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /slugify/1.6.4:
-    resolution: {integrity: sha512-Pcz296CK0uGnTf4iNQId79Uv6/5G16t0g0x3OsxWS8qVSOW+JXNnNHKVcuDiMgEGTWyK6zjlWXo2dvzV/FLf9Q==}
+  /slugify/1.6.5:
+    resolution: {integrity: sha512-8mo9bslnBO3tr5PEVFzMPIWwWnipGS0xVbYf65zxDqfNwmzYn1LpiKNrR6DlClusuvo+hDHd1zKpmfAe83NQSQ==}
     engines: {node: '>=8.0.0'}
     dev: true
 
