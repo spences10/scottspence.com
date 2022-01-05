@@ -15,7 +15,7 @@
         <h1 class="font-bold mb-5 text-5xl">
           <span class="block">Scott Spence</span>
           <span
-            class="bg-clip-text bg-gradient-to-r from-primary to-secondary text-transparent block"
+            class="bg-clip-text bg-gradient-to-b from-primary to-secondary text-transparent block"
             >Hello World!</span
           >
         </h1>

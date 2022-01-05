@@ -47,7 +47,7 @@
       class="flex h-16 mb-4 py-2 px-4 justify-between items-center"
     >
       <p
-        class="bg-clip-text bg-gradient-to-r from-primary to-secondary font-extrabold text-transparent text-3xl lg:text-4xl"
+        class="bg-clip-text bg-gradient-to-b from-primary to-secondary font-extrabold text-transparent text-3xl lg:text-4xl"
       >
         <a href="/">{name}</a>
       </p>
