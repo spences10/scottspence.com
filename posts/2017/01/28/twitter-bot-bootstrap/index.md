@@ -167,7 +167,7 @@ doesn't reply to itself when it has been followed by a user.
 
 ![c9 strings config1]
 
-This step isn't strictly necessary if this account isn’t going to be
+This step isn't strictly necessary if this account isn't going to be
 following any users.
 
 That should be it, go to the terminal and enter `npm start` you should
@@ -300,7 +300,7 @@ You can also deploy your app by connecting to GitHub and deploy
 automatically to Heroku each time your master branch is updated on
 GitHub, this is straight forward enough.
 
-Go to the ‘Deploy’ dashboard on Heroku, select GitHub as the
+Go to the 'Deploy' dashboard on Heroku, select GitHub as the
 deployment method if you have connected your GitHub account to your
 Heroku account then you can search for the repository so if you forked
 this repo then you can just enter `twitter-bot-bootstrap` and

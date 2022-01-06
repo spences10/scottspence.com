@@ -35,7 +35,7 @@ Credit to [Jim Perrin] for the original post in [Fedora Magazine] on
 this.
 
 Get the Dockerhub container image which is what I'll be using for the
-Linux instance, this is because Fedore doesn't ship with `rootfs` so
+Linux instance, this is because Fedora doesn't ship with `rootfs` so
 I'm jacking [this one from GitHub].
 
 I'll download the image and put it on my C drive in a distros folder.
@@ -48,8 +48,8 @@ it's a `*.tar` file, I use 7zip to do that.
 Time to import the `*.tar` into WSL, I've already created a `distros`
 folder on my C drive, now to point PowerShell to the file and import:
 
-```bash
-wsl --import Fedora-33 C:\Users\scott\distros\ C:\Users\scott\distros\fedora-33.20201230-x86_64.tar
+```powershell
+wsl --import Fedora-33 C:\\Users\\scott\\distros\\ C:\\Users\\scott\\distros\\fedora-33.20201230-x86_64.tar
 ```
 
 To break down that command, `wsl` is clear what that is hopefully,
@@ -63,11 +63,11 @@ Now to check out the installed versions available on my machine with
 brevity but leaving Ubuntu there with the `*` next to it denoting it
 as the default:
 
-```bash
+```powershell
 # the l is for list
 # v is for verbose 🤷‍♀️
 # this is the long version => wsl --list --verbose
-PS C:\Windows\system32> wsl -l -v
+PS C:\\Windows\\system32> wsl -l -v
   NAME                  STATE           VERSION
 * Ubuntu                Stopped         2
   Fedora-33             Running         2
@@ -133,8 +133,8 @@ This PowerShell one-liner configures my user properly, (thanks Jim!)
 take note of the last value here `1000` that's the `id -u` I checked
 for earlier:
 
-```bash
-Get-ItemProperty Registry::HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Lxss\*\ DistributionName | Where-Object -Property DistributionName -eq Fedora-33  | Set-ItemProperty -Name DefaultUid -Value 1000
+```powershell
+Get-ItemProperty Registry::HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Lxss\\*\\ DistributionName | Where-Object -Property DistributionName -eq Fedora-33  | Set-ItemProperty -Name DefaultUid -Value 1000
 ```
 
 The last piece here is to add [Copr] for the Windows integration:

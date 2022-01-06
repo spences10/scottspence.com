@@ -21,7 +21,7 @@ the tech community as a whole.
 Ever see roles advertised with wild swings in pay "£50k-£80k for the
 right candidate"?
 
-> Often employers advertise jobs that don’t exist, hoping to find
+> Often employers advertise jobs that don't exist, hoping to find
 > people who might be useful later on or in a different context.
 
 ## Hiring in tech is hard

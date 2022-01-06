@@ -1,22 +1,19 @@
 <script context="module">
   // export const prerender = true
 
-  import Head from '$lib/components/head.svelte'
-  import { description, name, website } from '$lib/info'
-  import { ogImageUrl } from '$lib/og-image-url-build'
+  import Head from '@components/head.svelte'
+  import { getPostTags } from '@lib/get-post-tags'
+  import { description, name, website } from '@lib/info'
+  import { ogImageUrl } from '@lib/og-image-url-build'
   import Fuse from 'fuse.js'
 
-  export const load = async ({ fetch }) => {
-    const res = await fetch(`/tags.json`)
-    if (res.ok) {
-      const { postsByTag, tags } = await res.json()
-      return {
-        props: { postsByTag, tags },
-      }
-    }
-    const { message } = await res.json()
+  export const load = async () => {
+    const { tags, postsByTag } = await getPostTags()
     return {
-      error: new Error(message),
+      props: {
+        tags,
+        postsByTag,
+      },
     }
   }
 </script>

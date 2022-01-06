@@ -7,7 +7,7 @@
 # For recruiters - FAQ
 
 <Small>
-  Last updated: <DateUpdated date='2021-04-02' small='true' />
+  Last updated: <DateUpdated date='2021-11-29' small='true' />
 </Small>
 
 Hello friend 👋, thanks for taking an interest in me and my profile.
@@ -50,14 +50,16 @@ I'll always be open to the right position, read on for what that is.
 
 ## What's my ideal role?
 
-Working in an agile environment using best practices for development.
+Creating educational content in the form of conference and meetup
+talks, videos, blog posts and workshops.
 
 Working in a _team_ of other developers where there is an emphasis on
 technical development.
 
-A good percentage of pair programming on the team.
+A good percentage of pair programming and collaboration on the team.
 
-Working with React, Gatsby, Netlify, Vercel, Next.js and GitHub.
+Working with Svelte, React, Gatsby, Netlify, Vercel, Next.js and
+GitHub.
 
 **If you really want to grab my attention,** tell me how you
 collaborate, how you keep quality high, how you contribute back to the
@@ -97,19 +99,23 @@ companies please**.
 
 ## What's your preferred stack?
 
-I'm _really_ enjoying using the [Jamstack] right now, I have a wealth
-of knowledge using [Gatsby] (which uses **React** and **GraphQL**) and
-have consulted on large scale apps using it.
+I'm _really_ enjoying using the [Jamstack] right now, my preferred
+framework is Svelte and I'll be very interested in roles that are
+using it.
+
+I have a wealth of knowledge using [Gatsby] (which uses **React** and
+**GraphQL**) and have consulted on large scale apps using it.
 
 I have used styled-components for many projects, I am also comforable
-using Theme UI and Tailwind CSS.
+using Theme UI and Tailwind CSS. Tailwind is my current preference for
+the speed which it offers when creating projects.
 
 For CMS' any opportunity to work with any of the new headless CMS'
-that are emerging would be great: [Sanity.io], [GraphCMS], [Strapi],
+that are emerging would be great: [GraphCMS], [Sanity.io], [Strapi],
 [Keystone 5] or [Contentful].
 
-I have commercial experience with Contentful and have built projects
-in Sanity.io, GraphCMS and Keystone 5.
+I have commercial experience with GraphCMS and Contentful and have
+built projects in Sanity.io and Keystone 5.
 
 For back-end I prefer node which is where the majority of my back-end
 experience is.
@@ -123,14 +129,16 @@ experience is.
 </Small>
 
 JavaScript, HTML and CSS (the holy trinity), <DateDistance
-date='2016-06-15' />
+date='2016-06-15' />.
 
-React, <DateDistance date='2017-05-20' />
+Svelte, <DateDistance date='2021-04-06' />.
 
-I have <DateDistance date='2018-03-14' /> as a professional web
-developer.
+React, <DateDistance date='2017-05-20' />.
 
-I have 11 years previous experience as an analyst developer for
+I have <DateDistance date='2018-03-14' /> experience as a professional
+web developer.
+
+I have 10+ years previous experience as an analyst developer for
 financial organisations.
 
 For more, check out my [about] page which details my experience and a
@@ -140,7 +148,8 @@ bit more about me.
 
 ## Salary?
 
-In my next permanent role I'm looking for **£60,500**.
+In my next permanent role I'm looking for roles starting at
+**£65,500**.
 
 I run OES Technology where I offer consulting on a contract basis if
 you have a project in mind get in touch to discuss.
@@ -163,7 +172,7 @@ offer for me. I'll disclose my salary if:
 
 ## Benefits? Yes please!
 
-25+ days holiday a year is ideal.
+30+ days holiday a year is ideal.
 
 There's an increasing amount of places that offer "unlimited holiday".
 In this circumstance I'd like to know the _minimum_ amount of holiday
@@ -186,13 +195,14 @@ I'm happy in sunny, sunny Swanley
 ## Are you willing to work remotely?
 
 Yeah, I mean, the whole industry has been working remotley since the
-pandemic.
+pandemic started.
 
 I'd prefer not to be bound by any number of days needed to be worked
 in an office. Occasional meetings, fine.
 
 I do appreciate the value of working closely with my colleges and I am
-comfortable with that using tools like Slack, MS Teams, Zoom etc!
+comfortable with that using tools like Google Meet, Slack, MS Teams,
+Zoom etc!
 
 ---
 
@@ -222,16 +232,16 @@ Sure book in a [15 minute chat].
 **"But I have to talk to you today, my client's deadline is this
 afternoon"**, please, book in a [15 minute chat].
 
-Please don't call without a previously agreed time slot, I prefer to
-avoid phone calls for these reasons:
+Please don't call without a previously agreed time slot, I don't
+answer my phone if I'm not expecting a call.
+
+I prefer to avoid phone calls for these reasons:
 
 1. I'm on a [maker's schedule], which means interruptions are
    disruptive to my flow.
 1. I've already tried to answer the majority of questions asked on
    this page. I've probably phrased them more clearly here than I will
    on the phone.
-1. This question gets asked frequently enough that my default answer
-   has to be, if not **"no"**, at least **"[read this first]"**.
 
 **Contact me by email.** That's my preferred means of communication.
 If we are still interested after some fact checking I'd love to have a
@@ -243,8 +253,7 @@ Like I mentioned at the start of this FAQ, I _really_ value my time
 and the way I make a decision on a commitment is [If it's not a HELL
 YES, it's a NO].
 
-Want me to know you have spent more than the **_three seconds_**
-nearly all recruiters spend on this page?
+Want me to know you you have taken the time to read this FAQ?
 
 In your email mention **"Quick Start Guides Rock!"** and you will have
 my attention, gratitude and a guaranteed reply. 🙏
@@ -254,6 +263,8 @@ my attention, gratitude and a guaranteed reply. 🙏
 ## Can I take a look at your CV?
 
 Sure, my CV is here: [mecv.xyz].
+
+Most of the pertinent stuff you want to know is covered here really.
 
 ---
 
@@ -283,13 +294,14 @@ I can telephone interview with little notice.
 I can video call with prior arrangement.
 
 Please be upfront about timings for interview rounds. I'm not
-interested in several day long rounds.
+interested in several day long interview rounds.
 
 With regard to technical/take home 'tests', I'm not willing to spend
-more than two hours on any given assignment to assess my skill level.
+more than two hours on any given assignment to assess my skill level
+unless I'm being paid for my time.
 
-The effort exchange for take homes doesn't seem quite right to me. A
-one hour interview in real time would be preferred.
+The effort exchange for take home assignments isn't right. A one hour
+interview in real time would be preferred.
 
 ---
 
@@ -310,6 +322,6 @@ Feel free to [check out the rest of the site](/)
 [read this first]: https://scottspence.com/faq
 [mecv.xyz]: https://www.mecv.xyz?goalId=TCRZB23L
 [two weeks]: https://www.youtube.com/watch?v=9v-33jcEDk4
-[15 minute chat]: https://calendly.com/spences10apps/15min
+[15 minute chat]: https://cal.com/spences10/recruiter-chat
 [if it's not a hell yes, it's a no]:
   https://lifehacker.com/if-its-not-a-hell-yes-its-a-no-1723393142

@@ -1,5 +1,5 @@
 <script>
-  import { scaleAndFade } from '$lib/custom-transition'
+  import { scaleAndFade } from '@lib/custom-transition'
   import { trackGoal } from 'fathom-client'
 
   let email = ''
@@ -39,14 +39,14 @@
 </script>
 
 <!-- TODO deal with failed response from server -->
-<div class="m-0 -mx-30 mb-10 lg:-mx-40 max-h-96">
+<div class="m-0 -mx-30 mb-10 max-h-96 lg:-mx-40">
   {#if success}
     <div
       in:scaleAndFade={{ delay: 400 }}
-      class="mx-auto text-center max-w-7xl py-12 px-4 px-6 lg:py-16 lg:px-8"
+      class="mx-auto text-center max-w-7xl py-12 lg:py-16 lg:px-8"
     >
       <div
-        class="bg-primary rounded-3xl py-10 py-16 px-6 px-12 lg:flex lg:p-20 lg:items-center"
+        class="bg-primary rounded-3xl py-10 lg:flex lg:p-20 lg:items-center"
       >
         <div class="text-primary-content lg:flex-1 lg:w-0">
           <h3 class=" font-extrabold tracking-tight text-3xl">
@@ -64,10 +64,10 @@
   {:else}
     <div
       out:scaleAndFade={{ delay: 200 }}
-      class="mx-auto text-primary-content max-w-7xl py-12 px-4 px-6 lg:py-16 lg:px-8"
+      class="mx-auto text-primary-content max-w-7xl py-12 lg:py-16 lg:px-8"
     >
       <div
-        class="bg-primary rounded-3xl py-10 py-16 px-6 px-12 lg:flex lg:p-20 lg:items-center"
+        class="bg-primary rounded-3xl py-10 px-4 lg:flex lg:p-20 lg:items-center"
       >
         <div class="lg:flex-1 lg:w-0">
           <h3 class="font-extrabold tracking-tight text-3xl">
@@ -87,7 +87,7 @@
                 class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2"
               >
                 <input
-                  class="w-full input input-primary text-primary input-bordered"
+                  class="text-primary w-full input input-primary input-bordered"
                   id="email"
                   aria-label="email"
                   type="email"
@@ -109,7 +109,7 @@
           </div>
           <p class="mt-3 text-sm">
             I care about the protection of your data. Read the
-            <a href="/privacy-policy" class="link">
+            <a href="/privacy-policy" class="link text-primary-content">
               Privacy Policy
             </a>
             for more info.

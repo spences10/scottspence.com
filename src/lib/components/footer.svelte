@@ -1,10 +1,11 @@
 <script>
-  import GitHub from '$lib/icons/git-hub..svelte'
-  import Spotify from '$lib/icons/spotify.svelte'
-  import Twitch from '$lib/icons/twitch.svelte'
-  import Twitter from '$lib/icons/twitter.svelte'
-  import YouTube from '$lib/icons/you-tube.svelte'
-  import { POPULAR_POSTS, SITE_LINKS } from '$lib/info'
+  import Eye from '@lib/icons/eye.svelte'
+  import GitHub from '@lib/icons/git-hub..svelte'
+  import Spotify from '@lib/icons/spotify.svelte'
+  import Twitch from '@lib/icons/twitch.svelte'
+  import Twitter from '@lib/icons/twitter.svelte'
+  import YouTube from '@lib/icons/you-tube.svelte'
+  import { POPULAR_POSTS, SITE_LINKS } from '@lib/info'
   import { trackGoal } from 'fathom-client'
 </script>
 
@@ -96,6 +97,9 @@
                     class="text-primary-content hover:opacity-50"
                   >
                     {post.title}
+                    <span class="text-primary-content font-bold"
+                      ><Eye /> {post.views}</span
+                    >
                   </a>
                 </li>
               {/each}

@@ -17,11 +17,11 @@
 </script>
 
 <script>
-  import Head from '$lib/components/head.svelte'
-  import LandingHero from '$lib/components/landing-hero.svelte'
-  import PeopleToMeet from '$lib/components/people-to-meet.svelte'
-  import { description, name, website } from '$lib/info'
-  import { ogImageUrl } from '$lib/og-image-url-build'
+  import Head from '@components/head.svelte'
+  import LandingHero from '@components/landing-hero.svelte'
+  import PeopleToMeet from '@components/people-to-meet.svelte'
+  import { description, name, website } from '@lib/info'
+  import { ogImageUrl } from '@lib/og-image-url-build'
 
   export let Copy
 </script>

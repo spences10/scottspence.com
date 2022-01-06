@@ -45,24 +45,24 @@ export const PORTFOLIO_PROJECTS = [
 
 export const POPULAR_POSTS = [
   {
-    title: `Use Chrome in Ubuntu on Windows Subsystem Linux`,
+    title: `Use Chrome in Ubuntu on WSL`,
     slug: `posts/use-chrome-in-ubuntu-wsl`,
-    views: `14.5k`,
+    views: `28.4k`,
   },
   {
     title: `Enable GUIs on Windows Subsystem Linux (WSL)`,
     slug: `posts/gui-with-wsl`,
-    views: `15.4k`,
+    views: `19.8k`,
   },
   {
-    title: `Globally Style the Gatsby Default Starter with styled-components v5`,
-    slug: `posts/globally-style-gatsby-styled-components`,
-    views: `7.4k`,
+    title: `styled-components 💅 getting started`,
+    slug: `posts/styled-components`,
+    views: `4.4k`,
   },
   {
     title: `Stylelint Configuration for use with Tailwind CSS`,
     slug: `posts/stylelint-configuration-for-tailwindcss`,
-    views: `1.4k`,
+    views: `3.6k`,
   },
 ]
 
@@ -123,7 +123,7 @@ export const PEOPLE = [
   {
     name: `Phil Hawksworth`,
     link: `https://twitter.com/philhawksworth`,
-    met: false,
+    met: true,
   },
   {
     name: `Marc Littlemore`,
@@ -183,17 +183,17 @@ export const PEOPLE = [
   {
     name: `Paul Scanlon`,
     link: `https://twitter.com/PaulieScanlon`,
-    met: false,
+    met: true,
   },
   {
     name: `Marc Backes`,
     link: `https://twitter.com/themarcba`,
-    met: false,
+    met: true,
   },
   {
     name: `Catalin Pit`,
     link: `https://catalins.tech/`,
-    met: false,
+    met: true,
   },
   {
     name: `Wes Bos`,
@@ -241,11 +241,6 @@ export const PEOPLE = [
     met: false,
   },
   {
-    name: `Dave Bittner`,
-    link: `https://twitter.com/bittner`,
-    met: false,
-  },
-  {
     name: `Jed Watson`,
     link: `https://twitter.com/JedWatson`,
     met: false,
@@ -253,11 +248,6 @@ export const PEOPLE = [
   {
     name: `Kevin Canlas`,
     link: `https://twitter.com/kvncnls`,
-    met: false,
-  },
-  {
-    name: `Angie Jones`,
-    link: `https://twitter.com/techgirl1908`,
     met: false,
   },
   {
@@ -298,11 +288,6 @@ export const PEOPLE = [
   {
     name: `Rich Harris`,
     link: `https://twitter.com/Rich_Harris`,
-    met: false,
-  },
-  {
-    name: `Salma`,
-    link: `https://twitter.com/whitep4nth3r`,
     met: false,
   },
   {
@@ -351,8 +336,8 @@ export const PEOPLE = [
     met: false,
   },
   {
-    name: `Mark Freeman`,
-    link: `https://twitter.com/nitecoda1`,
+    name: `Ste`,
+    link: `https://twitter.com/stecodes`,
     met: false,
   },
   {
@@ -383,11 +368,6 @@ export const PEOPLE = [
   {
     name: `Michael Brooks`,
     link: `https://twitter.com/MBrooksUK`,
-    met: false,
-  },
-  {
-    name: `Pauline Narvas`,
-    link: `https://twitter.com/paulienuh`,
     met: false,
   },
   {
@@ -431,6 +411,11 @@ export const PEOPLE = [
     met: false,
   },
   {
+    name: `Gen Ashley`,
+    link: `https://twitter.com/coderinheels`,
+    met: true,
+  },
+  {
     name: `Ro`,
     link: `https://twitter.com/rothecoder`,
     met: false,
@@ -439,6 +424,11 @@ export const PEOPLE = [
     name: `Brittney Postma`,
     link: `https://twitter.com/BrittneyPostma`,
     met: false,
+  },
+  {
+    name: `Antony Jones`,
+    link: `https://twitter.com/antony`,
+    met: true,
   },
   {
     name: `Lors`,
@@ -456,6 +446,11 @@ export const PEOPLE = [
     met: false,
   },
   {
+    name: `Joe Reeve`,
+    link: `https://twitter.com/isnit0`,
+    met: true,
+  },
+  {
     name: `Jon Hilton`,
     link: `https://twitter.com/jonhilt`,
     met: false,
@@ -464,5 +459,15 @@ export const PEOPLE = [
     name: `Quincy Larson`,
     link: `https://twitter.com/ossia`,
     met: false,
+  },
+  {
+    name: `Jay`,
+    link: `https://twitter.com/_thisisthejay`,
+    met: false,
+  },
+  {
+    name: `Ghost`,
+    link: `https://twitter.com/onlyspaceghost`,
+    met: true,
   },
 ]

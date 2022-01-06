@@ -5,7 +5,7 @@ tags: ['guide', 'learning', 'habits', 'career']
 isPrivate: false
 ---
 
-> Life moves pretty fast. If you don’t stop and look around once in a
+> Life moves pretty fast. If you don't stop and look around once in a
 > while, you could miss it. — Ferris Bueller.
 
 I'm going to go over steps I have taken the help me with learning to
@@ -13,7 +13,7 @@ code ([again])
 
 But fist, **preamble:**
 
-### Let’s pick up a new skill, get a new job, all in a few months.
+### Let's pick up a new skill, get a new job, all in a few months.
 
 That was the overriding message I got when I started out in
 freeCodeCamp it's a fun and exciting time and you will see a lot of
@@ -45,7 +45,7 @@ community as a whole is truly amazing.
 
 ### Patience
 
-Patience is needed, instant gratification doesn’t work here, well at
+Patience is needed, instant gratification doesn't work here, well at
 least not for me. This will soon come to light if you start to compare
 yourself to how other people (your cohorts) are progressing. You may
 start to wonder why you are not progressing as fast as they appear to
@@ -113,7 +113,7 @@ will make time. You're the only one that can make these things happen.
 ### Balance
 
 This weight gain is a mixture of illness at the start of 2017 and bad
-diet choices thereafter. In the past I consciously opted for ‘healthy’
+diet choices thereafter. In the past I consciously opted for 'healthy'
 foods spending that little extra time deciding what to eat.
 
 Whilst being ill at the start of 2017 I developed a bit of an
@@ -124,7 +124,7 @@ Quick and easy soon became the norm after that 🙃 I have identified
 this now and am making an effort to reduce this whilst also making
 time for my development.
 
-It’s a balance though 😀
+It's a balance though 😀
 
 ![compare]
 

@@ -162,7 +162,7 @@ Here's the same talk from RSCONF 2019:
 
 <YouTube youTubeId="373pc0AbR9M" />
 
-## Daniel Irvine - Don’t Let Your Unit Tests Slow You Down
+## Daniel Irvine - Don't Let Your Unit Tests Slow You Down
 
 Six ideas that can help improve your testing.
 

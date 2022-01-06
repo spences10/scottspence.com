@@ -87,7 +87,7 @@ it.
 
 ## Resources
 
-- [Seth Godin - Don’t Shave That Yak!]
+- [Seth Godin - Don't Shave That Yak!]
 - [Wiktionary - Ren and Stimpy reference]
 - [Jason Lengstorf - meta-work]
 
@@ -103,7 +103,7 @@ it.
 [update dependencies]:
   https://github.com/chingu-voyage6/grad.then/issues/191
 [wd-40]: https://en.wikipedia.org/wiki/WD-40
-[seth godin - don’t shave that yak!]:
+[seth godin - don't shave that yak!]:
   https://seths.blog/2005/03/dont_shave_that/
 [wiktionary - ren and stimpy reference]:
   https://en.wiktionary.org/wiki/yak_shaving

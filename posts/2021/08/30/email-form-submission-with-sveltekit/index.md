@@ -61,7 +61,7 @@ Scroll to the bottom and look for something like this:
 
 Your API key is `2f09ecd9-6a64-4d5b-9c77-a5587cedbcf7`.
 
-Usage of the API must follow Revue’s [Terms of Service] and [Privacy
+Usage of the API must follow Revue's [Terms of Service] and [Privacy
 Policy].
 
 <br />
@@ -560,7 +560,7 @@ Vercel CLI 23.0.1
 ? Set up and deploy “~/repos/svelte-kit-form-submission”? [Y/n] y
 ? Which scope do you want to deploy to? Scott Spence
 ? Link to existing project? [y/N] n
-? What’s your project’s name? svelte-kit-form-submission
+? What's your project's name? svelte-kit-form-submission
 ? In which directory is your code located? ./
 Auto-detected Project Settings (SvelteKit):
 - Build Command: `npm run build` or `svelte-kit build`

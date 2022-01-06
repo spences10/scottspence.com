@@ -144,8 +144,8 @@ markdownContent={`This is ~~strikethrough~~.\n\nThis is not ~strikethrough~.`}
 There are two ways to do headings in Markdown, the first way which you
 may see but is way less popular is with `===` and `---`:
 
-<MarkdownParser rows={5} markdownContent={`Heading 1\n===\n\nHeading 2\n---`}
-/>
+<MarkdownParser rows={5}
+markdownContent={`Heading 1\n===\n\nHeading 2\n---`} />
 
 This approach will only give you the option of a h1 and a h2 however,
 so the next approach (and what you will see a lot more than the
@@ -179,7 +179,7 @@ markdownContent={`Raw link: https://scottspence.com/garden\n\nWith angle bracket
 To link text wrap the text you want to link in square brackets with
 parenthesis at the end with the link in there:
 
-<MarkdownParser 
+<MarkdownParser
 markdownContent={`Check out my [digital garden](https://scottspence.com/garden) for more content.`}
 />
 
@@ -459,8 +459,9 @@ The code fence helps the parser identify the language being used, a
 code fence will start with three backticks then have the language
 that's being used, in this example JS:
 
-<MarkdownParser rows={5} markdownContent={`\`\`\`\js\nconsole.log('hello
-world!')\n\`\`\`\n`} />
+<MarkdownParser rows={5}
+markdownContent={`\`\`\`\js\nconsole.log('hello world!')\n\`\`\`\n`}
+/>
 
 GitHub uses [Linguist] to determine the syntax highlighting on issues
 and READMEs, there's a lot in there!

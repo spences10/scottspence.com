@@ -1,5 +1,5 @@
-import { getPosts } from '$lib/get-posts'
-import { description, name, website } from '$lib/info'
+import { getPosts } from '@lib/get-posts'
+import { description, name, website } from '@lib/info'
 import { format } from 'date-fns'
 
 export const get = async () => {
@@ -31,32 +31,32 @@ const render =
     <atom:link href="${website}/rss.xml" rel="self" type="application/rss+xml"/>
     ${postsMeta
       .map(
-        meta =>
+        ({ metadata }) =>
           `
         <item>
           <title>
-            <![CDATA[ ${meta.title} ]]>
+            <![CDATA[ ${metadata.title} ]]>
           </title>
           <description>
-            <![CDATA[ ${meta.preview} ]]>
+            <![CDATA[ ${metadata.preview} ]]>
           </description>
-          <link>${website}/posts/${meta.slug}/</link>
+          <link>${website}/posts/${metadata.slug}/</link>
           <guid isPermaLink="false">${website}/posts/${
-            meta.slug
+            metadata.slug
           }/</guid>
           <dc:creator>
             <![CDATA[ ${name} ]]>
           </dc:creator>
           <pubDate>
             ${format(
-              new Date(meta.date),
+              new Date(metadata.date),
               'EE, dd MMM yyyy HH:mm:ss O'
             )}
           </pubDate>
-          <content:encoded>${meta.previewHtml} 
+          <content:encoded>${metadata.previewHtml} 
             <div style="margin-top: 50px; font-style: italic;">
               <strong>
-                <a href="${website}/posts/${meta.slug}">
+                <a href="${website}/posts/${metadata.slug}">
                   Keep reading
                 </a>.
               </strong>  

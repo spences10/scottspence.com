@@ -183,7 +183,7 @@ and inspect the project.
 As I set the root of the redirect to go to my portfolio site that's
 what I have in my project overview in Vercel.
 
-![vercel project overview](./vercel-project-overview.png)
+![vercel project overview]
 
 I can now take that URL (now-short-urls-fzph462o0.now.sh) add it to a
 browser and it will redirect to https://scottspence.me.
@@ -256,7 +256,7 @@ My domain isn't supplied by Vercel so I will need to configure the DNS
 settings in my domain provider by adding the custom DNS configuration
 supplied here by Vercel.
 
-![vercel domains settings](./vercel-domains-settings.png)
+![vercel domains settings]
 
 The cool thing with Vercel is that I can have many domains pointing to
 the same project.

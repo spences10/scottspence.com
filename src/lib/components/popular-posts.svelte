@@ -1,5 +1,5 @@
 <script>
-  import { POPULAR_POSTS } from '$lib/info'
+  import { POPULAR_POSTS } from '@lib/info'
 </script>
 
 <div class="m-0 mb-20 sm:-mx-30 lg:-mx-40 ">
@@ -10,9 +10,9 @@
     class="grid gap-4 grid-cols-1 relative md:grid-cols-2 lg:grid-cols-4"
   >
     {#each POPULAR_POSTS as post}
-      <a class="h-max" sveltekit:prefetch href={`/${post.slug}`}>
+      <a class="h-full" sveltekit:prefetch href={`/${post.slug}`}>
         <aside
-          class="rounded-xl font-bold h-full p-5 transition card bordered hover:text-accent-focus"
+          class="rounded-xl font-bold h-full p-5 transition card shadow-lg hover:text-accent-focus"
         >
           <h3 class="mb-5 text-2xl">
             {post.title}

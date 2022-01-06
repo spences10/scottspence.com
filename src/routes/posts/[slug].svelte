@@ -1,43 +1,50 @@
 <script context="module">
   // export const prerender = true
-  export async function load({ fetch, page: { params } }) {
+  /**
+   * @type {import('@sveltejs/kit').Load}
+   */
+  export const load = async ({ params }) => {
     const { slug } = params
-    const res = await fetch(`/posts/${slug}.json`)
-    if (res.ok) {
-      const { post } = await res.json()
+    const post = getPosts().find(post => slug === post.metadata.slug)
+    if (!post) {
       return {
-        props: { post },
+        status: 404,
+        error: 'Post not found',
       }
+    }
+
+    return {
+      props: {
+        ...post.metadata,
+        component: post.component,
+      },
     }
   }
 </script>
 
 <script>
-  import ButtButt from '$lib/components/butt-butt.svelte'
-  import Head from '$lib/components/head.svelte'
-  import IsPrivateBanner from '$lib/components/is-private-banner.svelte'
-  import PopularPosts from '$lib/components/popular-posts.svelte'
-  import ShareWithTweet from '$lib/components/share-with-tweet.svelte'
-  import TableOfContents from '$lib/components/table-of-contents.svelte'
-  import { name, website } from '$lib/info'
-  import { ogImageUrl } from '$lib/og-image-url-build'
+  import ButtButt from '@components/butt-butt.svelte'
+  import Head from '@components/head.svelte'
+  import IsPrivateBanner from '@components/is-private-banner.svelte'
+  import PopularPosts from '@components/popular-posts.svelte'
+  import ShareWithTweet from '@components/share-with-tweet.svelte'
+  import TableOfContents from '@components/table-of-contents.svelte'
+  import { getPosts } from '@lib/get-posts'
+  import { name, website } from '@lib/info'
+  import { ogImageUrl } from '@lib/og-image-url-build'
   import { format } from 'date-fns'
   import { onMount } from 'svelte'
 
-  export let post
+  export let component
 
   // metadata
-  const {
-    html,
-    title,
-    date,
-    readingTime,
-    slug,
-    isPrivate,
-    tags,
-    preview,
-    previewHtml,
-  } = post
+  export let title
+  export let date
+  export let preview
+  export let readingTime
+  export let slug
+  export let isPrivate
+  export let tags
 
   const url = `${website}/posts/${slug}`
 
@@ -56,8 +63,6 @@
       }
     })
   })
-
-
 </script>
 
 <Head
@@ -96,7 +101,7 @@
   {/if}
 
   <div class="all-prose mb-10">
-    {@html html}
+    <svelte:component this={component} />
   </div>
 
   <div class="flex flex-col w-full my-10">

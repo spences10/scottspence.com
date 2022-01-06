@@ -1,3 +1,6 @@
+<script>
+</script>
+
 <div
   class="mb-4 relative lg:-mx-40 lg:mb-44 lg:px-8 xl:-mx-64 xl:mb-[17rem] 2xl:-mx-60 2xl:mb-72"
 >
@@ -12,7 +15,7 @@
         <h1 class="font-bold mb-5 text-5xl">
           <span class="block">Scott Spence</span>
           <span
-            class="bg-clip-text bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-transparent block"
+            class="bg-clip-text bg-gradient-to-b from-primary to-secondary text-transparent block"
             >Hello World!</span
           >
         </h1>
@@ -37,8 +40,9 @@
       </div>
     </div>
   </div>
+
   <!-- chevron down animated!! -->
-  <a href="#hi-im-scott">
+  <a href="#hi-im-scott" aria-label="scroll down for more">
     <svg
       xmlns="https://www.w3.org/2000/svg"
       class="m-auto h-8 my-6 animate-bounce w-8 block lg:mt-20"

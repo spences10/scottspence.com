@@ -1,6 +1,6 @@
-import { getPostTags } from '$lib/get-post-tags'
-import { getPosts } from '$lib/get-posts'
-import { website } from '$lib/info'
+import { getPostTags } from '@lib/get-post-tags'
+import { getPosts } from '@lib/get-posts'
+import { website } from '@lib/info'
 import slugify from 'slugify'
 
 export const get = async () => {
@@ -15,6 +15,10 @@ export const get = async () => {
     `privacy-policy`,
   ]
   const body = render(pages, tags, postsMeta)
+
+  console.log('=====================')
+  console.log(postsMeta)
+  console.log('=====================')
 
   const headers = {
     'Cache-Control': 'max-age=0, s-maxage=3600',
@@ -67,12 +71,12 @@ const render = (
     )
     .join('')}
   ${postsMeta
-    .map(meta =>
-      meta.isPrivate
+    .map(({ metadata }) =>
+      metadata.isPrivate
         ? null
         : `
   <url>
-    <loc>${website}/posts/${meta.slug}</loc>
+    <loc>${website}/posts/${metadata.slug}</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
