@@ -7,7 +7,7 @@ isPrivate: false
 
 This is a specific usecase for using Chrome in Ubuntu on WSL.
 
-On Ubuntu Snap is the preferred method to install Chromium and
+On Ubuntu, Snap is the preferred method to install Chromium and
 although snap is on the WSL image you get from the Microsoft store
 it's not functional. There is a [solution untested by me] that may
 work.
