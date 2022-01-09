@@ -45,7 +45,7 @@
 		"remark-preview": "1.0.2",
 		"remark-reading-time": "1.0.1",
 		"slugify": "1.6.5",
-		"svelte": "3.44.3",
+		"svelte": "3.45.0",
 		"svelte-lazy": "1.0.12",
 		"svelte-preprocess": "4.10.1",
 		"svelte-scrollto": "0.2.0",
