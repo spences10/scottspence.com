@@ -1,11 +1,12 @@
 ---
 date: 2021-01-05
-title: Use Chrome in Ubuntu on Windows Subsystem Linux
+title: Use Google Chrome in Ubuntu on Windows Subsystem Linux
 tags: ['guide', 'linux', 'ubuntu', 'wsl']
 isPrivate: false
 ---
 
-This is a specific usecase for using Chrome in Ubuntu on WSL.
+This is a specific usecase for installing Google Chrome in Ubuntu on
+WSL.
 
 On Ubuntu, Snap is the preferred method to install Chromium and
 although snap is on the WSL image you get from the Microsoft store
