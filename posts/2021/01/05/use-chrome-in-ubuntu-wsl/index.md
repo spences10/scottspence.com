@@ -5,6 +5,10 @@ tags: ['guide', 'linux', 'ubuntu', 'wsl']
 isPrivate: false
 ---
 
+<script>
+  import YouTube from '$lib/components/youtube.svelte'
+</script>
+
 This is a specific usecase for installing Google Chrome in Ubuntu on
 WSL.
 
@@ -19,6 +23,10 @@ use it for Selenium then check out his post.
 
 ℹ Prerequisites for this is that you are already set up to use GUIs on
 WSL, if you've not done that then check out [this post].
+
+Here's a video detailing the process:
+
+<YouTube youTubeId="RNesoCuLMO8" />
 
 Dependencies, make sure you're up to date first:
 
