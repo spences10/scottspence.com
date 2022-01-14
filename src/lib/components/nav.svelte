@@ -2,8 +2,12 @@
   import { page } from '$app/stores'
 </script>
 
-<nav class="sticky top-0 z-10 bg-base-100">
-  <ul class="flex mb-8 py-2 px-4 justify-between items-center">
+<nav
+  class="sticky top-0 z-10 backdrop-filter backdrop-blur-xl py-4 mb-10"
+>
+  <ul
+    class="flex px-4 justify-between items-center container max-w-3xl mx-auto"
+  >
     <li>
       <a
         class={`text-xl link link-primary ${
