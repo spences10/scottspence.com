@@ -11,7 +11,7 @@ specifiers:
   env-cmd: 10.1.0
   eslint: 8.6.0
   eslint-config-prettier: 8.3.0
-  eslint-plugin-svelte3: 3.3.0
+  eslint-plugin-svelte3: 3.4.0
   fathom-client: 3.2.0
   fuse.js: 6.5.3
   graphql: 16.2.0
@@ -22,7 +22,7 @@ specifiers:
   postcss: 8.4.5
   postcss-load-config: 3.1.1
   prettier: 2.5.1
-  prettier-plugin-svelte: 2.5.1
+  prettier-plugin-svelte: 2.6.0
   rehype-autolink-headings: 6.1.1
   rehype-slug: 5.0.1
   remark-external-links: 9.0.1
@@ -47,7 +47,7 @@ devDependencies:
   env-cmd: 10.1.0
   eslint: 8.6.0
   eslint-config-prettier: 8.3.0_eslint@8.6.0
-  eslint-plugin-svelte3: 3.3.0_eslint@8.6.0+svelte@3.45.0
+  eslint-plugin-svelte3: 3.4.0_eslint@8.6.0+svelte@3.45.0
   fathom-client: 3.2.0
   fuse.js: 6.5.3
   graphql: 16.2.0
@@ -58,7 +58,7 @@ devDependencies:
   postcss: 8.4.5
   postcss-load-config: 3.1.1
   prettier: 2.5.1
-  prettier-plugin-svelte: 2.5.1_prettier@2.5.1+svelte@3.45.0
+  prettier-plugin-svelte: 2.6.0_prettier@2.5.1+svelte@3.45.0
   rehype-autolink-headings: 6.1.1
   rehype-slug: 5.0.1
   remark-external-links: 9.0.1
@@ -1045,8 +1045,8 @@ packages:
       eslint: 8.6.0
     dev: true
 
-  /eslint-plugin-svelte3/3.3.0_eslint@8.6.0+svelte@3.45.0:
-    resolution: {integrity: sha512-MpeaDA+/hVsKoCmiVIhI54SrtFt1MQwss+bkeRGx6vx8j2ln3C3SDympR45R8ZOpWjp6qOqROnqo55tA+tnOgQ==}
+  /eslint-plugin-svelte3/3.4.0_eslint@8.6.0+svelte@3.45.0:
+    resolution: {integrity: sha512-MIQUTuRv3o7LyQ+360qOc9mLT35j1I5YzHr04g/UDcvJTpg0X/kHWELY99ve869Rp/9wjqD7I26Aq5H8OH5RIg==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: '>=6.0.0'
@@ -2186,8 +2186,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-svelte/2.5.1_prettier@2.5.1+svelte@3.45.0:
-    resolution: {integrity: sha512-IhZUcqr7Bg4LY15d87t9lDr7EyC0IPehkzH5ya5igG8zYwf3UYaYDFnVW2mckREaZyLREcH9YOouesmt4f5Ozg==}
+  /prettier-plugin-svelte/2.6.0_prettier@2.5.1+svelte@3.45.0:
+    resolution: {integrity: sha512-NPSRf6Y5rufRlBleok/pqg4+1FyGsL0zYhkYP6hnueeL1J/uCm3OfOZPsLX4zqD9VAdcXfyEL2PYqGv8ZoOSfA==}
     peerDependencies:
       prettier: ^1.16.4 || ^2.0.0
       svelte: ^3.2.0
