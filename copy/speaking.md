@@ -4,6 +4,7 @@
   import Spotify from '$lib/components/spotify.svelte'
   import YouTube from '$lib/components/youtube.svelte'
   import SimpleCast from '$lib/components/simple-cast.svelte'
+  import Buzzsprout from '$lib/components/buzzsprout.svelte'
 </script>
 
 # Speaking
@@ -19,6 +20,13 @@ or anything else [get in touch].
 
 Here's the list of talks, podcasts and livestreams I have done
 recently.
+
+## Dev Journey with Tim Bourguignon - 2022 January
+
+Talking with Tim Bourguignon about my career switch from VBA analyst
+developer to web developer.
+
+<Buzzsprout buzzsproutId="190346/9866589-185-scott-spence-from-vba-analyst-to-webdev" />
 
 <!-- Links  -->
 
