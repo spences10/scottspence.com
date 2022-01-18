@@ -131,8 +131,8 @@
     </div>
     <div class="border-t border-gray-200 mt-12 pt-8">
       <p class="text-primary-content mb-12 lg:mb-0 xl:text-center">
-        &copy; {`${new Date().getFullYear()}`} Scott Spence. All rights
-        reserved, whatever that means. 🤷‍♀️
+        &copy; 2016 - {`${new Date().getFullYear()}`} Scott Spence. All
+        rights reserved, whatever that means. 🤷‍♀️
       </p>
     </div>
   </div>
