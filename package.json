@@ -17,7 +17,7 @@
 		"clean": "rm -rf .svelte-kit && rm -rf .vercel_build_output && rm -rf build && rm -rf public"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-vercel": "1.0.0-next.37",
+		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"@tailwindcss/typography": "0.5.0",
 		"autoprefixer": "10.4.2",
