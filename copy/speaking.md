@@ -21,12 +21,20 @@ or anything else [get in touch].
 Here's the list of talks, podcasts and livestreams I have done
 recently.
 
-## Dev Journey with Tim Bourguignon - 2022 January
+## Dev Journey with Tim Bourguignon - January
 
 Talking with Tim Bourguignon about my career switch from VBA analyst
 developer to web developer.
 
 <Buzzsprout buzzsproutId="190346/9866589-185-scott-spence-from-vba-analyst-to-webdev" />
+
+## Developer Perspectives Episode 8 | Ale Thomas and Scott Spence - January
+
+I joined Ale for an episode of Microsoft's Developer Perspectives! A
+series championing the unique voices of the Windows community and
+members from around the world.
+
+<YouTube youTubeId='iZc6kkon3Vk' />
 
 <!-- Links  -->
 
