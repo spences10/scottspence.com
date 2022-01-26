@@ -1,8 +1,8 @@
 ---
 date: 2022-01-25
 title: Reduce and filter object on property
-tags: ['', '', '']
-private: true
+tags: ['snippets', 'javascript']
+isPrivate: true
 ---
 
 How do you filter an object that has duplicate properties? Use reduce!
