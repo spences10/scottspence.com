@@ -1,6 +1,6 @@
 ---
 date: 2022-01-25
-title: Reduce and filter object on property
+title: Reduce and Filter JavaScript Object on Property
 tags: ['snippets', 'javascript']
 isPrivate: true
 ---
