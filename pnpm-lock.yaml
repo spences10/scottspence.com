@@ -15,7 +15,7 @@ specifiers:
   fathom-client: 3.4.0
   fuse.js: 6.5.3
   graphql: 16.3.0
-  graphql-request: 3.7.0
+  graphql-request: 4.0.0
   marked: 4.0.12
   mdsvex: 0.9.8
   mdsvex-relative-images: 1.0.1
@@ -38,7 +38,7 @@ specifiers:
 
 devDependencies:
   '@sveltejs/adapter-auto': 1.0.0-next.17
-  '@sveltejs/kit': 1.0.0-next.247_svelte@3.46.3
+  '@sveltejs/kit': 1.0.0-next.251_svelte@3.46.3
   '@tailwindcss/typography': 0.5.1_tailwindcss@3.0.17
   autoprefixer: 10.4.2_postcss@8.4.5
   cssnano: 5.0.16_postcss@8.4.5
@@ -51,7 +51,7 @@ devDependencies:
   fathom-client: 3.4.0
   fuse.js: 6.5.3
   graphql: 16.3.0
-  graphql-request: 3.7.0_graphql@16.3.0
+  graphql-request: 4.0.0_graphql@16.3.0
   marked: 4.0.12
   mdsvex: 0.9.8_svelte@3.46.3
   mdsvex-relative-images: 1.0.1
@@ -188,8 +188,8 @@ packages:
       esbuild: 0.13.15
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.247_svelte@3.46.3:
-    resolution: {integrity: sha512-8xoSxJ3+Zid4y53dXd9lTLp94heYV1qmCEN6K2sjkFNELy2VaQ0/AWj2z0HWMnUQ2/iojb63OQvdXC46NaV+sQ==}
+  /@sveltejs/kit/1.0.0-next.251_svelte@3.46.3:
+    resolution: {integrity: sha512-7GtUrUHqOa7ISo86PlICcMKcfGodOZwP9p7hXnN4t1yMWIQD2eKZlJffvnwx1X+NMcJ8hLChgcjGYjc1xZABhQ==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
@@ -1329,8 +1329,8 @@ packages:
     resolution: {integrity: sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==}
     dev: true
 
-  /graphql-request/3.7.0_graphql@16.3.0:
-    resolution: {integrity: sha512-dw5PxHCgBneN2DDNqpWu8QkbbJ07oOziy8z+bK/TAXufsOLaETuVO4GkXrbs0WjhdKhBMN3BkpN/RIvUHkmNUQ==}
+  /graphql-request/4.0.0_graphql@16.3.0:
+    resolution: {integrity: sha512-cdqQLCXlBGkaLdkLYRl4LtkwaZU6TfpE7/tnUQFl3wXfUPWN74Ov+Q61VuIh+AltS789YfGB6whghmCmeXLvTw==}
     peerDependencies:
       graphql: 14 - 16
     dependencies:
