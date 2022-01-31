@@ -109,7 +109,10 @@
           </div>
           <p class="mt-3 text-sm">
             I care about the protection of your data. Read the
-            <a href="/privacy-policy" class="link text-primary-content">
+            <a
+              href="/privacy-policy"
+              class="link text-primary-content"
+            >
               Privacy Policy
             </a>
             for more info.
