@@ -17,7 +17,7 @@ specifiers:
   graphql: 16.3.0
   graphql-request: 4.0.0
   marked: 4.0.12
-  mdsvex: 0.10.2
+  mdsvex: 0.10.4
   mdsvex-relative-images: 1.0.1
   postcss: 8.4.5
   postcss-load-config: 3.1.1
@@ -53,7 +53,7 @@ devDependencies:
   graphql: 16.3.0
   graphql-request: 4.0.0_graphql@16.3.0
   marked: 4.0.12
-  mdsvex: 0.10.2_svelte@3.46.3
+  mdsvex: 0.10.4_svelte@3.46.3
   mdsvex-relative-images: 1.0.1
   postcss: 8.4.5
   postcss-load-config: 3.1.1
@@ -1672,8 +1672,8 @@ packages:
       unist-util-visit: 3.1.0
     dev: true
 
-  /mdsvex/0.10.2_svelte@3.46.3:
-    resolution: {integrity: sha512-zv2O6pZK6ea6xG2lU3ssTxSj4SCF0kncF737e0kYMBx+ESZxb1fJ3j8I6yKa9fbo4Ohe7K+4jboJ/psg2jptBQ==}
+  /mdsvex/0.10.4_svelte@3.46.3:
+    resolution: {integrity: sha512-5SRbXlxsi+FKD5cBCm98ECla8caa6ievZ49PpwpG5xPp/EXe+hKBoo6JNsR26+PKFuWQc7c8lh1j771+ccTxBQ==}
     peerDependencies:
       svelte: 3.x
     dependencies:
