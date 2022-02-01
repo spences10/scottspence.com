@@ -539,4 +539,4 @@ details with an ad blocker enabled!
 [fathom-vercel-domain-nameservers-added]:
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643748495/scottspence.com/fathom-vercel-domain-nameservers-added.png
 [fathom-vercel-updated-embed-code]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1643749178/scottspence.com/fathom-vercel-updated-embed-code.png
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643749178/scottspence.com/fathom-vercel-updated-embed-code.png
