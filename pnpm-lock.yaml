@@ -32,14 +32,14 @@ specifiers:
   svelte: 3.46.3
   svelte-preprocess: 4.10.2
   svelte-scrollto: 0.2.0
-  tailwindcss: 3.0.17
+  tailwindcss: 3.0.18
   theme-change: 2.0.2
   unist-util-visit: 4.1.0
 
 devDependencies:
   '@sveltejs/adapter-auto': 1.0.0-next.17
   '@sveltejs/kit': 1.0.0-next.251_svelte@3.46.3
-  '@tailwindcss/typography': 0.5.1_tailwindcss@3.0.17
+  '@tailwindcss/typography': 0.5.1_tailwindcss@3.0.18
   autoprefixer: 10.4.2_postcss@8.4.5
   cssnano: 5.0.16_postcss@8.4.5
   daisyui: 1.25.4
@@ -68,7 +68,7 @@ devDependencies:
   svelte: 3.46.3
   svelte-preprocess: 4.10.2_9a77c5740cdf58251fd8209a6cf19316
   svelte-scrollto: 0.2.0
-  tailwindcss: 3.0.17_ef48b3b8837f8a23677bffe8f9cd866d
+  tailwindcss: 3.0.18_ef48b3b8837f8a23677bffe8f9cd866d
   theme-change: 2.0.2
   unist-util-visit: 4.1.0
 
@@ -229,7 +229,7 @@ packages:
       - supports-color
     dev: true
 
-  /@tailwindcss/typography/0.5.1_tailwindcss@3.0.17:
+  /@tailwindcss/typography/0.5.1_tailwindcss@3.0.18:
     resolution: {integrity: sha512-AmSzZSgLhHKlILKduU+PKBTHL6c+al82syZlRid1xgmlWwXagLigO+O++B4C0scpMfzW//f/3YCRcwwEHWoU3w==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1 || insiders'
@@ -237,7 +237,7 @@ packages:
       lodash.castarray: 4.4.0
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
-      tailwindcss: 3.0.17_ef48b3b8837f8a23677bffe8f9cd866d
+      tailwindcss: 3.0.18_ef48b3b8837f8a23677bffe8f9cd866d
     dev: true
 
   /@trysound/sax/0.2.0:
@@ -2591,8 +2591,8 @@ packages:
       stable: 0.1.8
     dev: true
 
-  /tailwindcss/3.0.17_ef48b3b8837f8a23677bffe8f9cd866d:
-    resolution: {integrity: sha512-OiHUsmOKQQEg/ocXaLIjk/kOz8EK2jF6iPuc1bQ4NsmhYl7sk70UDsGV02AJvBAAiJhinPCkDR8egT9qY+ulCw==}
+  /tailwindcss/3.0.18_ef48b3b8837f8a23677bffe8f9cd866d:
+    resolution: {integrity: sha512-ihPTpEyA5ANgZbwKlgrbfnzOp9R5vDHFWmqxB1PT8NwOGCOFVVMl+Ps1cQQ369acaqqf1BEF77roCwK0lvNmTw==}
     engines: {node: '>=12.13.0'}
     hasBin: true
     peerDependencies:
