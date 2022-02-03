@@ -51,8 +51,8 @@ Add ESLint for code linting? › No
 Add Prettier for code formatting? › Yes
 ```
 
-Once it's finished I can change directory into the project install
-dependencies
+Once it's finished I can change directory into the project and install
+the dependencies.
 
 ```bash
 # change directory into the newly created project
@@ -62,6 +62,167 @@ pnpm install
 # optional init git repo
 git init && git add -A && git commit -m "Initial commit"
 ```
+
+Install the Houdini dependencies
+
+```bash
+pnpm i -D houdini houdini-preprocess
+```
+
+Initialise Houdini
+
+```bash
+npx houdini init
+```
+
+I'll be prompted for the GraphCMS project GraphQL API here, you can
+check out the video here for how to get that:
+
+<YouTube youTubeId='ID8bchiyNfw'/>
+
+## Add Houdini to `svelte.config.js`
+
+I'll need to add the Houdini preprocess to the `svelte.config.js`
+
+```js
+import adapter from '@sveltejs/adapter-auto'
+import houdini from 'houdini-preprocess'
+import path from 'path'
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: [houdini()],
+  kit: {
+    adapter: adapter(),
+
+    // hydrate the <div id="svelte"> element in src/app.html
+    target: '#svelte',
+    vite: {
+      resolve: {
+        alias: {
+          $houdini: path.resolve('.', '$houdini'),
+        },
+      },
+      server: {
+        fs: {
+          // Allow serving files from one level up to the project root
+          // https://vitejs.dev/config/#server-fs-allow
+          allow: ['..'],
+        },
+      },
+    },
+  },
+}
+
+export default config
+```
+
+Add the Houdini client to the `__layout.svelte` file
+
+```bash
+touch src/routes/__layout.svelte
+```
+
+```svelte
+<script context="module">
+  import { setEnvironment } from '$houdini'
+  import environment from '../environment'
+
+  setEnvironment(environment)
+</script>
+
+<slot />
+```
+
+## Show GraphQL endpoint data in the browser
+
+```svelte
+<script>
+  import { graphql, query } from '$houdini'
+  const { data } = query(graphql`
+    query AllPosts {
+      posts {
+        title
+        slug
+        date
+        excerpt
+        tags
+        coverImage {
+          url(transformation: { image: { resize: { width: 400, height: 400, fit: clip } } })
+        }
+      }
+    }
+  `)
+  const { posts } = $data
+</script>
+
+<pre>{JSON.stringify(posts, null, 2)}</pre>
+```
+
+```bash
+npx houdini generate
+```
+
+```bash
+npx houdini generate
+AllPosts
+Error: Could not convert scalar type: Date
+```
+
+Edit the Houdini config file with the custom scalar
+
+```js
+/** @type {import('houdini').ConfigFile} */
+
+const config = {
+  schemaPath: './schema.graphql',
+  sourceGlob: 'src/**/*.svelte',
+  module: 'esm',
+  framework: 'kit',
+  scalars: {
+    // the name of the scalar we are configuring
+    Date: {
+      // the corresponding typescript type (what the typedef generator leaves behind in the response and operation inputs)
+      type: 'Date',
+      // turn the api's response into that type
+      unmarshal(val) {
+        const date = new Date(val).toISOString()
+        return date
+      },
+      // turn the value into something the API can use
+      marshal(date) {
+        return date.getTime()
+      },
+    },
+  },
+}
+
+export default config
+```
+
+Run Houdini generate again
+
+```bash
+npx houdini generate
+AllPosts
+```
+
+Add Houdini generate command to the `package.json` scripts
+
+```json
+"scripts": {
+  "dev": "npx houdini generate && svelte-kit dev",
+  "build": "npx houdini generate && svelte-kit build",
+  "package": "svelte-kit package",
+  "preview": "npx houdini generate && svelte-kit preview",
+  "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. .",
+  "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
+},
+```
+
+## Add index page markup
+
+
 
 <!-- Links -->
 
