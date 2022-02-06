@@ -19,7 +19,6 @@ const config = {
   ],
 
   kit: {
-    target: '#svelte',
     adapter: adapter(),
     vite: {
       // https://vitejs.dev/config/#server-fs-allow
