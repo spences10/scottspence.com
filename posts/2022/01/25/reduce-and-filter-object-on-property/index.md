@@ -14,6 +14,11 @@ Use reduce! The specific situation I had is a list of objects with
 duplicate properties. I wanted to filter out the duplicates and return
 a new object with only the unique properties.
 
+There's two sections here, the first is how I approached the solution
+then, there's the [much simpler approach] which I have now adopted.
+
+## What the data looks like
+
 Here's a small example of what the object looked like:
 
 ```json
@@ -54,8 +59,8 @@ A lot of the examples you'll see on using reduce will be to count up a
 value, in my case I needed to have only the relevant information to
 add back into an object to build out the page details.
 
-A mentor of mine, Leigh Halliday has done some great videos detailing
-how to use reduce.
+A mentor of mine, [Leigh] Halliday has done some great videos
+detailing how to use reduce.
 
 If you want a really good explanation of how to use filter, map and
 reduce go check out Leigh's videos!
@@ -67,11 +72,15 @@ This is another good one brought to my attention by
 
 <YouTube youTubeId='NiLUGy1Mh4U'/>
 
+## My approach
+
 So, my specific use-case! I'll first set up the `.reduce` function
 with the `acc`umulator (the thing I'm adding to) and the current
-`item` in the reduce then return the `acc` which is what I want at the
-end of the reduce. Then finally add the initial value of the reduce
-which I want returned, in this case it's an array `[]`.
+`item` in the reduce, then return the `acc` which is what I want at
+the end of the reduce.
+
+Then finally add the initial value of the reduce which I want
+returned, in this case it's an array `[]`.
 
 ```js
 items.reduce((acc, item) => {
@@ -116,4 +125,47 @@ const products = items
   .filter(item => item !== null)
 ```
 
+## Leigh's approach
+
+After running my approach past [Leigh], he had a much simpler
+solution!
+
+He had a small suggestion on the final code... the initial value
+should probably be an object `{}` so that I can check if the
+`productId` exists inside of that object.
+
+What I'd get at the end though would be an object where the keys are
+the product ids... so if I just want the deduped values, I could use
+`Object.values()` to extract them.
+
+```js
+const dedupedObject = items.reduce((acc, item) => {
+  if (!acc[item.productId]) {
+    acc[item.productId] = item
+  }
+  return acc
+}, {})
+const dedupedArray = Object.values(dedupedObject)
+```
+
+I could even go a step further and just remove the if statement, since
+it would just override the previous product with the same product id:
+
+```js
+const dedupedObject = items.reduce((acc, item) => {
+  acc[item.productId] = item
+  return acc
+}, {})
+const dedupedArray = Object.values(dedupedObject)
+```
+
+A lot more simpler than my solution! Thanks Leigh!
+
+## Fin!
+
 That's it! Hope you found it useful!
+
+<!-- Links -->
+
+[much simpler approach]: #leighs-approach
+[leigh]: https://twitter.com/leighchalliday
