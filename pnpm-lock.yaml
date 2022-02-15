@@ -12,7 +12,7 @@ specifiers:
   eslint: 8.9.0
   eslint-config-prettier: 8.3.0
   eslint-plugin-svelte3: 3.4.0
-  fathom-client: 3.4.0
+  fathom-client: 3.4.1
   fuse.js: 6.5.3
   graphql: 16.3.0
   graphql-request: 4.0.0
@@ -38,7 +38,7 @@ specifiers:
 
 devDependencies:
   '@sveltejs/adapter-auto': 1.0.0-next.17
-  '@sveltejs/kit': 1.0.0-next.267_svelte@3.46.4
+  '@sveltejs/kit': 1.0.0-next.269_svelte@3.46.4
   '@tailwindcss/typography': 0.5.1_tailwindcss@3.0.22
   autoprefixer: 10.4.2_postcss@8.4.6
   cssnano: 5.0.17_postcss@8.4.6
@@ -48,7 +48,7 @@ devDependencies:
   eslint: 8.9.0
   eslint-config-prettier: 8.3.0_eslint@8.9.0
   eslint-plugin-svelte3: 3.4.0_eslint@8.9.0+svelte@3.46.4
-  fathom-client: 3.4.0
+  fathom-client: 3.4.1
   fuse.js: 6.5.3
   graphql: 16.3.0
   graphql-request: 4.0.0_graphql@16.3.0
@@ -188,8 +188,8 @@ packages:
       esbuild: 0.13.15
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.267_svelte@3.46.4:
-    resolution: {integrity: sha512-zwtSuhgQV4qCXggmSU6hduFLuEE/7HMBNgRDHNjFPlXTn6VZT6whKPIfLGVRpHVveOyYzCxH6Dcy7nl0wfZ9kw==}
+  /@sveltejs/kit/1.0.0-next.269_svelte@3.46.4:
+    resolution: {integrity: sha512-Z6BqG/vo1IYPy2mW5r0mHHY5JsOAWrbBQuJFfG2aANxWQSIfWhZ/U35Ndk4Un4SlOT0QIgmeSz6qB8nJvuclbQ==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
@@ -1411,8 +1411,8 @@ packages:
       reusify: 1.0.4
     dev: true
 
-  /fathom-client/3.4.0:
-    resolution: {integrity: sha512-9ZgVLSP5GLXrIOLqY2ipar2Pw2/Dw6YNsqix9SbbrK9XpFA318VYf0GeKUBqZQQM+z7fbyDTWkBjl+UMe+eQwA==}
+  /fathom-client/3.4.1:
+    resolution: {integrity: sha512-iQFKx9B9RDeGLzgNqsaXWg3Fvu7yfq1Z8GjpAG3DP8IoGoPRWOOktpM7DUKiUzoE3d37hdvDQvkqUHfNzVwimg==}
     dev: true
 
   /file-entry-cache/6.0.1:
