@@ -4,39 +4,39 @@
   import Deezer from '$lib/components/deezer.svelte'
 </script>
 
-## Hi I'm Scott
+## Hi, I'm Scott
 
 I'm a developer advocate working with [GraphCMS] to create content
 that helps remove friction and educate around the GraphQL space.
 
-I create content written in the blog here and also in educational
-videos supporting the written content.
+I create content written in the blog here and educational videos
+supporting the written content.
 
-I'm a second career dev, that reskilled from a VBA analyst developer
+I'm a second career dev that reskilled from a VBA analyst developer
 role into web development.
 
-I'm a massive fan of the [Jamstack] I have a wealth of knowledge
+I'm a massive fan of the [Jamstack]. I have a wealth of knowledge
 working with [Gatsby] and am spending a lot of time familiarising
 myself with Svelte and SvelteKit.
 
-More details in the [portfolio section].
+You can check out the [portfolio section] for more information.
 
 ### Sectors I have worked in:
 
-I have over ten years experience in working for large corporate
+I have over ten years of experience working for large corporate
 organisations in Finance (Risk, Asset Management), Property, Oil & Gas
 and Lloyd's insurance market.
 
 As a web developer I've worked in government digital transformation
-and creative digital. Now in the content management space with
+and creative digital. I now work in the content management space with
 GraphCMS.
 
 ### My personality
 
-I find it hard to identify my traits, so instead I took the
-[16Personalities] test, here are [my results].
+I find it hard to identify my traits, so instead, I took the
+[16Personalities] test; here are [my results].
 
-I like to think of myself as a easy to approach and friendly person.
+I like to think of myself as an easy to approach and friendly person.
 
 ### My interests
 
@@ -48,7 +48,7 @@ Nintendo Switch.
 
 ### Music I listen to
 
-I'm a massive Drum and Bass fan, I have a Deezer playlist I like to
+I'm a massive Drum and Bass fan. I have a Deezer playlist I like to
 listen to for coding with the title for which I stole from Phil
 Hawksworth:
 
