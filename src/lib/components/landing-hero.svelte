@@ -21,8 +21,8 @@
         </h1>
         <p class="mb-5">
           This is my blog where I write about many things, including,
-          but not limited to JavaScript, React, Gatsby, Toast,
-          Tailwind, Svelte and many more web dev related topics.
+          but not limited to JavaScript, React, Gatsby, Tailwind,
+          Svelte and many more web dev related topics.
         </p>
         <p class="mb-5">
           Check out that massive picture of my <a
