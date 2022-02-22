@@ -26,7 +26,7 @@
 		"date-fns": "2.28.0",
 		"env-cmd": "10.1.0",
 		"eslint": "8.9.0",
-		"eslint-config-prettier": "8.3.0",
+		"eslint-config-prettier": "8.4.0",
 		"eslint-plugin-svelte3": "3.4.0",
 		"fathom-client": "3.4.1",
 		"fuse.js": "6.5.3",
@@ -43,12 +43,12 @@
 		"rehype-slug": "5.0.1",
 		"remark-external-links": "9.0.1",
 		"remark-preview": "1.0.2",
-		"remark-reading-time": "2.0.1",
+		"remark-reading-time": "1.0.1",
 		"slugify": "1.6.5",
 		"svelte": "3.46.4",
 		"svelte-preprocess": "4.10.3",
 		"svelte-scrollto": "0.2.0",
-		"tailwindcss": "3.0.22",
+		"tailwindcss": "3.0.23",
 		"theme-change": "2.0.2",
 		"unist-util-visit": "4.1.0"
 	}
