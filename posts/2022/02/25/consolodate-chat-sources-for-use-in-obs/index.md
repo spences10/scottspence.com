@@ -193,12 +193,12 @@ that out over on [YouTube]!
 [edge-developer-mode-toggle]:
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645804438/scottspence.com/edge-developer-mode-toggle.png
 [edge-load-unpacked-extension]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1645804996/scottspence.com/edge-load-unpacked-extension.png
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645804996/scottspence.com/edge-load-unpacked-extension.png
 [social-stream-ninja-browser-extension-options]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1645805384/scottspence.com/social-stream-ninja-browser-extension-options.png
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645805384/scottspence.com/social-stream-ninja-browser-extension-options.png
 [social-stream-ninja-browser-extension-options-selected]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1645806059/scottspence.com/social-stream-ninja-browser-extension-options-selected.png
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645806059/scottspence.com/social-stream-ninja-browser-extension-options-selected.png
 [obs-add-browser-source]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1645809147/scottspence.com/obs-add-browser-source.png
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645809147/scottspence.com/obs-add-browser-source.png
 [obs-browser-source-properties-dialogue]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1645809699/scottspence.com/obs-browser-source-properties-dialogue.png
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645809699/scottspence.com/obs-browser-source-properties-dialogue.png
