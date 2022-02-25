@@ -149,7 +149,7 @@ streaming chat link' or the 'Single message overlay link' and you can
 inspect the css variables for each element you'd like to change.
 
 You can find the CSS variables in the `index.html` file inside the
-extracred folder for Social Stream. Find the variable you want to
+extracted folder for Social Stream. Find the variable you want to
 change, change it then use that in the browser.
 
 Example, instead of using the hosted version of the file, which is
