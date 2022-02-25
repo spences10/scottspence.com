@@ -172,7 +172,7 @@ I've gone and added chat from two services together, YouTube and
 Twitch and added them to one panel in OBS.
 
 That's it! Well that's all I've got to documenting right now, there's
-a lot of other additional stuff you can manage in there youself!
+a lot of other additional stuff you can manage in there yourself!
 
 Steve did I great explainer video on using it as well you can check
 that out over on [YouTube]!
