@@ -108,6 +108,13 @@ WSL with the `wsl --shutdown` command in PowerShell:
 wsl --shutdown
 ```
 
+I can also terminate a single instance of WSL with the
+`wsl --terminate` command:
+
+```powershell
+wsl.exe --terminate Ubuntu # or -t for short
+```
+
 Now I can run the `--export` command to backup Ubuntu into the
 `backups` directory:
 

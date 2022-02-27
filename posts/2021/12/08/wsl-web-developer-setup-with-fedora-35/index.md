@@ -130,6 +130,13 @@ logout
 PS C:\\Users\\scott> wsl --shutdown
 ```
 
+I can also terminate a single instance of WSL with the
+`wsl --terminate` command:
+
+```powershell
+wsl.exe --terminate Fedora-35 # or -t for short
+```
+
 Opening a new Fedora 35 terminal I'm now logged in a `scott`.
 
 One last part here is to add [Copr], this is a collection of utilities

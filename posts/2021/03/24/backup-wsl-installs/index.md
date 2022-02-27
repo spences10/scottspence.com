@@ -70,6 +70,13 @@ It's best to stop WSL with:
 wsl --shutdown
 ```
 
+I can also terminate a single instance of WSL with the
+`wsl --terminate` command:
+
+```powershell
+wsl.exe --terminate Ubuntu # or -t for short
+```
+
 ## Backup distro
 
 I'll make sure I've not got anything running on there before going to
