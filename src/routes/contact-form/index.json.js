@@ -4,6 +4,7 @@ export const post = async ({ request }) => {
   const name = fd.get('name')
   const email = fd.get('email')
   const reason = fd.get('reason')
+  const message = fd.get('message')
 
   const AIRTABLE_BASE_ID = process.env['AIRTABLE_BASE_ID']
   const AIRTABLE_TOKEN = process.env['AIRTABLE_TOKEN']
@@ -16,6 +17,7 @@ export const post = async ({ request }) => {
           name,
           email,
           reason,
+          message,
         },
       },
     ],
