@@ -102,6 +102,11 @@ export const SITE_LINKS = [
     slug: `newsletter`,
     id: `4RFXKMAJ`,
   },
+  {
+    title: `Contact`,
+    slug: `contact`,
+    id: `CM8DXERV`,
+  },
 ]
 
 export const PEOPLE = [
