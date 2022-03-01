@@ -2,6 +2,7 @@
   // export const prerender = true
 
   import Head from '@components/head.svelte'
+  import ContactForm from '@lib/components/contact-form.svelte'
   import { getPostTags } from '@lib/get-post-tags'
   import { description, name, website } from '@lib/info'
   import { ogImageUrl } from '@lib/og-image-url-build'
@@ -39,6 +40,8 @@
   image={ogImageUrl(name, `scottspence.com`, `Tags`)}
   url={`${website}/tags`}
 />
+
+<ContactForm />
 
 <h1 class="font-bold mb-5 text-5xl">Posts by Tag</h1>
 

@@ -38,5 +38,15 @@
         href="/speaking">Speaking</a
       >
     </li>
+    <li>
+      <a
+        class={`text-xl link link-primary ${
+          $page.url.pathname === '/contact' &&
+          `text-xl link link-secondary`
+        }`}
+        sveltekit:prefetch
+        href="/contact">Contact</a
+      >
+    </li>
   </ul>
 </nav>
