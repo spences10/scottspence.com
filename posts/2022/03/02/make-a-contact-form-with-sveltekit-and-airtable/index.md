@@ -385,7 +385,7 @@ VITE_AIRTABLE_BASE_ID=appMdmn2bcQAUCeGb
 VITE_AIRTABLE_TOKEN=keybJWwl29RhmPEQh
 ```
 
-These need to be accessed with Vite's `import.meta.env.` syntax.
+These need to be accessed with Vite's `import.meta` syntax.
 
 ## `POST` the data to Airtable
 
