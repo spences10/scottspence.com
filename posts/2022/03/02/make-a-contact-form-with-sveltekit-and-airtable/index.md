@@ -5,19 +5,21 @@ tags: ['sveltekit', 'how-to', 'svelte']
 isPrivate: true
 ---
 
-In this how to I'll be walking you through the process of creating a
-contact form in SvelteKit using Airtable for storing the submissions.
+In this how-to I'll be walking through the process of creating a
+contact form in SvelteKit using Airtable for storing the submissions
+with no additional dependencies.
 
 I got the inspiration for doing this when a saw a video on YouTube
-from WebJeda on [Sveltekit Contact Form using Google Forms]. Sharath's
+from WebJeda on [SvelteKit Contact Form using Google Forms]. Sharath's
 video is great but I'm not a fan of using Google products so thought
 I'd try the same approach with Airtable.
 
 So, time for the standard preamble of the reasoning behind why a
 contact form on your site is a good thing; Having a contact form on
-your site is a great way to get people to get in touch with you. I'm
-not opposed to adding my email address to my website but some people
-prefer to contact you from the context of the site.
+your site is a great way to get people to get in touch with you whilst
+on your site (great explanation! Right? 😂). I'm not opposed to adding
+my email address to my website but some people prefer to contact you
+from the context of the site.
 
 Ok, preamble done let's get to the actual content!
 
@@ -60,19 +62,19 @@ set up with Airtable.
 
 ## Set up Airtable
 
-So, Airtable is like a hosted version of MS Excel, simply put it's a
+So, Airtable is like a hosted version of MS Excel, simply put, it's a
 database with a nice UI. If you don't have an Airtable account you can
 [sign up] over on the Airtable website.
 
 I'll scroll to the bottom of the page and there's a '+ Add a
-workspace' option. CLick that ans select 'Create workspace', I'll be
+workspace' option. CLick that and select 'Create workspace', I'll be
 prompted to give it a name I'll call it `form-submissions`, then I can
 'Add a base'. Clicking 'Add a base' gives me the following screen:
 
 [![airtable-untitled-base]] [airtable-untitled-base]
 
-From here I can rename the 'Untitled Base' to `contact-requests` and
-'Table 1' to `submissions`. I can go through the fields on there now
+From here I'll rename the 'Untitled Base' to `contact-requests` and
+'Table 1' to `submissions`. I can now go through the fields on there
 and customise each field type by clicking on the small down arrow next
 to the field name.
 
@@ -85,7 +87,8 @@ changing the types with the 'Customize field type' option.
 - 'email' as a 'Email' field
 - 'message' as a 'Long text' field
 
-You can add in any additional fields you want to store in Airtable.
+You can add or remove any additional fields you want to store in
+Airtable, you do you 😊.
 
 ## Set up Svelte form
 
@@ -162,24 +165,361 @@ home page (`src/routes/index.svelte`) at the moment I'll add it there.
 Now that I have the form sorted I'll need to capture the inputs to
 submit to Airtable.
 
-To capture the form inputs I'll add a `handleSubmit` method to the
-from along with `preventDefault` as the default action will refresh
-the page.
+To capture the form inputs I'll need to create a `handleSubmit` method
+in some `<script>` tags in the `src/lib/contact-from.svelte`
+component.
+
+To handle the form data I'll create a `new FormData()` object and
+reference it with `data.currentTarget`. For now I'll console log out
+the form data to validate.
+
+```js
+const handleSubmit = async data => {
+  const formData = new FormData(data.currentTarget)
+
+  console.log(formData.get('name'))
+  console.log(formData.get('email'))
+  console.log(formData.get('message'))
+}
+```
+
+On the form I'll need to add in an event handler for `on:submit` using
+the `handleSubmit` method. Currently the default form action will
+cause a page refresh so along with the `handleSubmit` method I'll pipe
+in the Svelte `preventDefault` modifier.
+
+```svelte
+<form on:submit|preventDefault={handleSubmit}>
+```
+
+Here's what the component looks like now:
 
 ```svelte
 <script>
   const handleSubmit = async data => {
     const formData = new FormData(data.currentTarget)
 
-    console.log('=====================')
-    console.log(formData)
-    console.log('=====================')
+    console.log(formData.get('name'))
+    console.log(formData.get('email'))
+    console.log(formData.get('message'))
+  }
+</script>
 
+<form on:submit|preventDefault="{handleSubmit}">
+  <label for="name">
+    <span>Name</span>
+  </label>
+  <input
+    type="text"
+    name="name"
+    aria-label="name"
+    placeholder="Enter your name"
+    required
+  />
+  <label for="email">
+    <span>Email</span>
+  </label>
+  <input
+    type="email"
+    name="email"
+    aria-label="email"
+    placeholder="bill@hotmail.com"
+    required
+  />
+  <label for="message">
+    <span>Message</span>
+  </label>
+  <textarea
+    name="message"
+    aria-label="name"
+    placeholder="Message"
+    required
+    rows="3"
+  />
+  <input type="submit" />
+</form>
+```
+
+Now, from the homepage I'll be able to add in some form values, click
+submit and see them logged out in the browser console!
+
+Ok now I have the form ready to submit data to Airtable I'll need to
+create a SvelteKit endpoint to `POST` the data to Airtable.
+
+## Get Airtable API keys
+
+I'll be `POST`ing the data to the Airtable REST API, to do this I'm
+going to need to reference the awesome Airtable documentation!
+
+I can access it by clicking the 'HELP ?' link in the top right of the
+base page. Clicking it will pop out the help panel and at the very
+bottom of the panel is the '`<> API Dcoumentaion`' link.
+
+[![airtable-help-panel]] [airtable-help-panel]
+
+Clicking that will take me to the documentation for that base! What
+I'm interested in here is the 'Create records' section. I'll scroll
+down to that on the page.
+
+[![airtable-api-documentation-create-record]]
+[airtable-api-documentation-create-record]
+
+So at the moment this gives me the workspace ID `appMdmn2bcQAUCeGb`
+and has `"Authorization: Bearer YOUR_API_KEY"` as well. If I click on
+the 'show API key' in the top right hand corner it will show me the
+API key `"Authorization: Bearer keybJWwl29RhmPEQh"`. I'll need this
+for `POST`ing the form data to Airtable.
+
+Also note the `"records"` array doesn't give me a great deal of
+information as there's no data to display from my table.
+
+What I'm going to do is go back to the table and add some dummy data
+first then go back to the API documentation. I'll hop on over to the
+table and add in some dummy data.
+
+[![airtable-add-dummy-data]] [airtable-add-dummy-data]
+
+No I can go back to the API documentation page and hit refresh and
+I'll see the dummy data in the `"records"` array.
+
+[![airtable-api-documentation-dummy-data]]
+[airtable-api-documentation-dummy-data]
+
+Why am I doing this? This is so I know the shape of the data that the
+API is expecting!
+
+Now onto creating the endpoint in SvelteKit to submit the data to
+Airtable.
+
+## Set up SvelteKit endpoint
+
+I'm going to create a `contact-form` folder and a `index.json.js` to
+go in there.
+
+I'll do this with the following bash commands:
+
+```bash
+# create the endpoint folder
+mkdir src/routes/contact-form
+# create the endpoint index file
+touch src/routes/contact-form/index.json.js
+```
+
+In the `index.json.js` file I'm going to create a post function that
+will accept a `{request}` object. The `.json.js` file notation may
+look a bit funky, this is letting SvelteKit know the return type of
+the data (`JSON`) from the endpoint.
+
+From that request comming into the endpoint I'll be able to get the
+`formData` which needs to be submitted from the form to the endpoint!
+
+I'll scaffold out the endpoint first, then go to the form to submit
+the data to the endpoint, first in
+`src/routes/contact-form/index.json.js` I'll add this:
+
+```js
+export const post = async ({ request }) => {
+  const fd = await request.formData()
+
+  const name = fd.get('name')
+  const email = fd.get('email')
+  const message = fd.get('message')
+
+  console.log('name:', name)
+  console.log('email:', email)
+  console.log('message:', message)
+
+  return {
+    status: 200,
+    body: { message: 'success' },
+  }
+}
+```
+
+This is so I can log out the details from the submission and confirm
+they are being received by the endpoint.
+
+Now in the contact form `<script>` tags I'll add in a request to the
+`contact-form` endpoint.
+
+```svelte
+<script>
+  const handleSubmit = async data => {
+    const formData = new FormData(data.currentTarget)
+
+    const res = await fetch('/contact-form.json', {
+      method: 'POST',
+      body: formData,
+    })
+
+    const { message } = await res.json()
+
+    console.log(message)
   }
 </script>
 ```
 
-## Set up Sveltekit endpoint
+Here I'm making a request to the `contact-form` endpoint, defining the
+`method` as a `POST` and the `body` as the `formData` from the form.
+
+This is to validate the data from the form is being passed to the
+endpoint, looking at the browser console and my terminal I can see
+that the `formData` is being logged out on the endpoint and the
+success message is being returned to the form!
+
+## Environment variables
+
+So I'm not committing my AirTable API keys to the repo, I'm going to
+create a `.env` file in the root of the project:
+
+```bash
+# create the .env file
+touch .env
+```
+
+Then I'll add in the base ID (workspace ID) and the authorisation
+bearer token:
+
+```text
+VITE_AIRTABLE_BASE_ID=appMdmn2bcQAUCeGb
+VITE_AIRTABLE_TOKEN=keybJWwl29RhmPEQh
+```
+
+These need to be accessed with Vite's `import.meta.env.` syntax.
+
+## `POST` the data to Airtable
+
+In my endpoint I'll remove the `console.log`'s and replace them with
+the `AIRTABLE_BASE_ID` the `AIRTABLE_TOKEN` and I'll take the
+`AIRTABLE_URL` from the AirTable API documentation and replace the
+`AIRTABLE_BASE_ID` in the `AIRTABLE_URL` with a variable. This can be
+committed but I prefer to keep anything that can change to a minimum.
+
+```js
+const AIRTABLE_BASE_ID = import.meta.env.VITE_AIRTABLE_BASE_ID
+const AIRTABLE_TOKEN = import.meta.env.VITE_AIRTABLE_TOKEN
+const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/submissions`
+```
+
+I'll take the shape of the data being expected from the API
+documentation and add it to a variable:
+
+```js
+let data = {
+  records: [
+    {
+      fields: {
+        name,
+        email,
+        message,
+      },
+    },
+  ],
+}
+```
+
+The `name`, `email` and `message` variables taken from the `fd` object
+can be added directly to the `data` variable now. This is why I
+renamed the fields with lowercase characters 😊.
+
+Then I'll create a `fetch` request to the `AIRTABLE_URL` endpoint,
+adding in the `AIRTABLE_TOKEN` as the `Authorization` header and
+specifying the content type as `application/json` and passing in the
+`data` object for the `body` of the request:
+
+```js
+const res = await fetch(AIRTABLE_URL, {
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${AIRTABLE_TOKEN}`,
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+```
+
+I can now check that the request was successful from the from by
+checking the `res.ok` status in an if statement:
+
+```js
+if (res.ok) {
+  return {
+    status: 200,
+    body: {
+      message: 'success',
+    },
+  }
+} else {
+  return {
+    status: 404,
+    body: {
+      message: 'failed',
+    },
+  }
+}
+```
+
+If you're not into code walls then scroll on! I'll share the source
+for all of this at the end of this post.
+
+Anyway, if you're interested, here's what the full
+`src/routes/contact-form/index.json.js` file looks like now:
+
+```js
+export const post = async ({ request }) => {
+  const fd = await request.formData()
+
+  const name = fd.get('name')
+  const email = fd.get('email')
+  const message = fd.get('message')
+
+  const AIRTABLE_BASE_ID = import.meta.env.VITE_AIRTABLE_BASE_ID
+  const AIRTABLE_TOKEN = import.meta.env.VITE_AIRTABLE_TOKEN
+  const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/submissions`
+
+  let data = {
+    records: [
+      {
+        fields: {
+          name,
+          email,
+          message,
+        },
+      },
+    ],
+  }
+  const res = await fetch(AIRTABLE_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${AIRTABLE_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+
+  if (res.ok) {
+    return {
+      status: 200,
+      body: {
+        message: 'success',
+      },
+    }
+  } else {
+    return {
+      status: 404,
+      body: {
+        message: 'failed',
+      },
+    }
+  }
+}
+```
+
+Sweet! So, I'll tes this out now my adding in some form data to the
+form and clicking the submit button!
+
+If you fount this post useful, consider sharing it on Twitter with the
+button, thanks!
 
 <!-- Links -->
 
@@ -193,3 +533,11 @@ the page.
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646207112/scottspence.com/airtable-untitled-base.png
 [airtable-customise-field]:
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646207766/scottspence.com/airtable-customise-field.png
+[airtable-help-panel]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646246246/scottspence.com/airtable-help-panel.png
+[airtable-api-documentation-create-record]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646246824/scottspence.com/airtable-api-documentation-create-record.png
+[airtable-add-dummy-data]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/v1646247312/scottspence.com/airtable-add-dummy-data.png
+[airtable-api-documentation-dummy-data]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/v1646247538/scottspence.com/airtable-api-documentation-dummy-data.png
