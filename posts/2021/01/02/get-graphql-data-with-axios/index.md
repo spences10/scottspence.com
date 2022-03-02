@@ -9,7 +9,7 @@ Ok this is a little snippet I've got set up to query data from the
 GitHub GraphQL API.
 
 I use this for getting data to work with in data visualisation tools,
-I've done it a couple of times noe with my Gatsby site but now I'm
+I've done it a couple of times now with my Gatsby site but now I'm
 attempting to do it in a serverless function.
 
 Here's the snippet I'm using from [SO]:
