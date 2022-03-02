@@ -1,28 +1,8 @@
-<script context="module">
-  export const load = async () => {
-    try {
-      const Copy = await import(`../../copy/about.md`)
-      return {
-        props: {
-          Copy: Copy.default,
-        },
-      }
-    } catch (e) {
-      return {
-        status: 404,
-        error: 'Uh oh!',
-      }
-    }
-  }
-</script>
-
 <script>
   import Head from '@components/head.svelte'
   import ContactForm from '@lib/components/contact-form.svelte'
   import { name, website } from '@lib/info'
   import { ogImageUrl } from '@lib/og-image-url-build'
-
-  export let Copy
 </script>
 
 <Head
