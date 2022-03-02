@@ -2,7 +2,7 @@
 date: 2022-03-02
 title: Make a Contact Form with SvelteKit and Airtable
 tags: ['sveltekit', 'how-to', 'svelte']
-isPrivate: true
+isPrivate: false
 ---
 
 In this how-to I'll be walking through the process of creating a
@@ -697,7 +697,7 @@ someone submits a message via the form I'll receive an email so I can
 action it without having to keep checking on the Airtable table.
 
 You can check out the demo project and code for this post with some
-minimal styles added over on GitHub.
+minimal styles added over on [GitHub].
 
 If you found this post useful, consider sharing it on Twitter with the
 button, thanks!
@@ -707,6 +707,8 @@ button, thanks!
 [sveltekit contact form using google forms]:
   https://www.youtube.com/watch?v=mBXEnakkUIM
 [sign up]: https://airtable.com/signup
+[github]:
+  https://github.com/spences10/svelte-and-airtable-contact-form-example
 
 <!-- Images -->
 
