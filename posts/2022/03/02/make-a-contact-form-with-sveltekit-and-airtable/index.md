@@ -2,7 +2,7 @@
 date: 2022-03-02
 title: Make a Contact Form with SvelteKit and Airtable
 tags: ['sveltekit', 'how-to', 'svelte']
-isPrivate: false
+isPrivate: true
 ---
 
 In this how to I'll be walking you through the process of creating a
@@ -159,7 +159,25 @@ home page (`src/routes/index.svelte`) at the moment I'll add it there.
 <ContactForm />
 ```
 
-Now 
+Now that I have the form sorted I'll need to capture the inputs to
+submit to Airtable.
+
+To capture the form inputs I'll add a `handleSubmit` method to the
+from along with `preventDefault` as the default action will refresh
+the page.
+
+```svelte
+<script>
+  const handleSubmit = async data => {
+    const formData = new FormData(data.currentTarget)
+
+    console.log('=====================')
+    console.log(formData)
+    console.log('=====================')
+
+  }
+</script>
+```
 
 ## Set up Sveltekit endpoint
 
