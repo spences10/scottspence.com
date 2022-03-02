@@ -44,7 +44,7 @@ I'll select the following options from the CLI:
 ✔ Add Playwright for browser testing? … No
 ```
 
-The I'll follow the rest of the steps from the CLI output:
+Then I'll follow the rest of the steps from the CLI output:
 
 ```text
 Next steps:
@@ -94,7 +94,7 @@ Airtable, you do you 😊.
 
 For the contact form I'll make a Svelte component, that can be used
 anywhere in the project so I'm not bound to having it in one place
-like a (like a `https://mysite.com/contact`) route.
+like a (`https://mysite.com/contact`) route.
 
 I'll create the `lib` folder and the `contact-form.svelte` file via
 the terminal:
@@ -515,10 +515,191 @@ export const post = async ({ request }) => {
 }
 ```
 
-Sweet! So, I'll tes this out now my adding in some form data to the
+Sweet! So, I'll test this out now by adding in some form data to the
 form and clicking the submit button!
 
-If you fount this post useful, consider sharing it on Twitter with the
+Now if I go over to the AirTable `submissions` table I can see that
+the form data I added is here! AWESOME!
+
+## Managing form state
+
+So I've submitted the data to the Airtable API, now I need to manage
+the form state, as it is at the moment the form data is still there
+after I click the submit button.
+
+I can use the `message` I get back from the endpoint to control the
+form. So I'll create a variable for the endpoint status.
+
+I'll create a `submissionStatus` variable to control the form state
+outside of the `handleSubmit` function, then inside of the
+`handleSubmit` function I'll set the `submissionStatus` to
+`submitting` then I know that the `POST` has started.
+
+In the form I can use the Svelte `if` expression for the various
+messages that can be returned from the endpoint.
+
+```svelte
+{#if submissionStatus === 'submitting'}
+  <p>Submitting...</p>
+{:else if submissionStatus === 'failed'}
+  <p>Submission failed.</p>
+{:else if submissionStatus === 'success'}
+  <p>Submission success.</p>
+{:else}
+  <!-- form goes here! -->
+{/if}
+```
+
+Another code wall warning! Here's the full
+`src/routes/contact-form/index.svelte` file:
+
+```svelte
+<script>
+  let submissionStatus = ''
+  const handleSubmit = async data => {
+    submissionStatus = 'submitting'
+    const formData = new FormData(data.currentTarget)
+
+    const res = await fetch('/contact-form.json', {
+      method: 'POST',
+      body: formData,
+    })
+
+    const { message } = await res.json()
+    submissionStatus = message
+  }
+</script>
+
+{#if submissionStatus === 'submitting'}
+  <p>Submitting...</p>
+{:else if submissionStatus === 'failed'}
+  <p>Submission failed.</p>
+{:else if submissionStatus === 'success'}
+  <p>Submission success.</p>
+{:else}
+  <form on:submit|preventDefault={handleSubmit}>
+    <label for="name">
+      <span>Name</span>
+    </label>
+    <input
+      type="text"
+      name="name"
+      aria-label="name"
+      placeholder="Enter your name"
+      required
+    />
+    <label for="email">
+      <span>Email</span>
+    </label>
+    <input
+      type="email"
+      name="email"
+      aria-label="email"
+      placeholder="bill@hotmail.com"
+      required
+    />
+    <label for="message">
+      <span>Message</span>
+    </label>
+    <textarea
+      name="message"
+      aria-label="name"
+      placeholder="Message"
+      required
+      rows="3"
+    />
+    <input type="submit" />
+  </form>
+{/if}
+```
+
+Now I can control the form state from the `submissionStatus` variable
+and give a useful message back to the user on the status of the
+submission!
+
+Awesome, right?
+
+But wait! There's more!
+
+## Automation
+
+So, let's think about this now; I now have another thing I need to
+keep tabs on for message submissions, right?
+
+**WRONG!** Airtable has an awesome integrations feature that you can
+do loads of things with.
+
+For this example though all I need really is to be notified when
+there's a new submission.
+
+So, I'll set that up now!
+
+Back on over on the Airtable workspace much like where the help panel
+link was there's also a link for 'Automations' in the top right.
+
+Clicking on that will pop out the automations panel, on that I'll
+select the 'Create a custom automation' link.
+
+[![airtable-automations-panel]] [airtable-automations-panel]
+
+That opens the automation flow.
+
+[![airtable-automations-flow]] [airtable-automations-flow]
+
+In here I can change the automation name by clicking on it to
+something like `submission-email-automation`, note the default state
+is off.
+
+From hereI can add a trigger by clicking '+ Add trigger' and selecting
+'When record is created'. The 'Run actions' panel then appears and I
+can select '+ Add action' and select 'Send email'.
+
+[![airtable-automations-run-action]] [airtable-automations-run-action]
+
+I'll select the 'Send email' option.
+
+You may have noticed the exclamation mark next to 'When a record is
+created'. If I hover the mouse over it, it will expand to say 'Fix
+configuration'. Clicking that pops open a configuration option in the
+side panel to select the table. I'll pick the `submissions` table.
+
+Then there'll be an exclamation next to the 'Send an email' option.
+Hovering over that with the mouse gives the same 'Fix configuration'
+message. Clicking that will open the configuration panel for email!
+
+In that panel I can add in the email address I want the submission
+sent to along with the subject line.
+
+If I scroll down a little there's an option for the message, by
+clicking the blue `+` button I can add in the message.
+
+[![airtable-automations-configure-email]]
+[airtable-automations-configure-email]
+
+There's one option to 'Record (from Step 1: When a record is created),
+clicking on 'Continue' will bring up the available properties. I'm
+going to select to inset `name`, `email`, and `message`.
+
+Next I can scroll down to the 'Testing' section, expand that and
+select 'Test action'. I'll select to 'Run tests' and wait for the
+result.
+
+I get a successful result, so, now I can change the state of the
+automation to 'On' and I'm done!
+
+Now anytime a submission is made I'll get an email sent to my inbox!
+
+## Conclusion
+
+I've gone and created a simple form that will collect data from the
+user of the site that will then post that data to an endpoint. When
+someone submits a message via the form I'll receive an email so I can
+action it without having to keep checking on the Airtable table.
+
+You can check out the demo project and code for this post with some
+minimal styles added over on GitHub.
+
+If you found this post useful, consider sharing it on Twitter with the
 button, thanks!
 
 <!-- Links -->
@@ -538,6 +719,14 @@ button, thanks!
 [airtable-api-documentation-create-record]:
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646246824/scottspence.com/airtable-api-documentation-create-record.png
 [airtable-add-dummy-data]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1646247312/scottspence.com/airtable-add-dummy-data.png
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646247312/scottspence.com/airtable-add-dummy-data.png
 [airtable-api-documentation-dummy-data]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1646247538/scottspence.com/airtable-api-documentation-dummy-data.png
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646247538/scottspence.com/airtable-api-documentation-dummy-data.png
+[airtable-automations-panel]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/v1646254724/scottspence.com/airtable-automations-panel.png
+[airtable-automations-flow]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/v1646255090/scottspence.com/airtable-automations-flow.png
+[airtable-automations-run-action]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/v1646255540/scottspence.com/airtable-automations-run-action.png
+[airtable-automations-configure-email]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/v1646256042/scottspence.com/airtable-automations-configure-email.png
