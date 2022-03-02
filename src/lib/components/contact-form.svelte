@@ -90,7 +90,6 @@
       </label>
       <textarea
         class="textarea input-bordered w-full max-w-xs all-prose mb-5"
-        type="text"
         name="message"
         aria-label="name"
         placeholder="Hey! I'd love to talk about..."
