@@ -471,7 +471,7 @@ export const PEOPLE = [
     met: false,
   },
   {
-    name: `Ghost`,
+    name: `Willow (GHOST)`,
     link: `https://twitter.com/onlyspaceghost`,
     met: true,
   },
