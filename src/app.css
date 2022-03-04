@@ -34,8 +34,8 @@ html {
 }
 [data-theme='bumblebee'] {
   --bg-color: #ffffff;
-  --primary: #f9d72f;
-  --secondary: #e0a82e;
+  --primary: #e0a82e;
+  --secondary: #f9d72f;
 }
 [data-theme='emerald'] {
   --bg-color: #ffffff;
@@ -83,8 +83,8 @@ html {
   --secondary: #1fd65f;
 }
 [data-theme='aqua'] {
-  --bg-color: #0b25b7;
-  --primary: #42e3ff;
+  --bg-color: #345da7;
+  --primary: #09ecf3;
   --secondary: #966fb3;
 }
 [data-theme='lofi'] {
@@ -109,8 +109,8 @@ html {
 }
 [data-theme='black'] {
   --bg-color: #000000;
-  --primary: #ffffff;
-  --secondary: #000000;
+  --primary: #333333;
+  --secondary: #333333;
 }
 [data-theme='luxury'] {
   --bg-color: #09090b;
@@ -118,7 +118,7 @@ html {
   --secondary: #152747;
 }
 [data-theme='dracula'] {
-  --bg-color: #302f3d;
+  --bg-color: #282a36;
   --primary: #ffb3d9;
   --secondary: #b9ffb3;
 }
