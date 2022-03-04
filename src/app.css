@@ -63,7 +63,7 @@ html {
   --secondary: #75d1f0;
 }
 [data-theme='valentine'] {
-  --bg-color: #f0d6e8;
+  --bg-color: #efd6e8;
   --primary: #e96d7b;
   --secondary: #a991f7;
 }
@@ -83,7 +83,7 @@ html {
   --secondary: #1fd65f;
 }
 [data-theme='aqua'] {
-  --bg-color: #355da9;
+  --bg-color: #345ca8;
   --primary: #09ecf3;
   --secondary: #966fb3;
 }
