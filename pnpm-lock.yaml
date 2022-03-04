@@ -30,10 +30,12 @@ specifiers:
   remark-reading-time: 1.0.1
   slugify: 1.6.5
   svelte: 3.46.4
+  svelte-cubed: ^0.2.1
   svelte-preprocess: 4.10.4
   svelte-scrollto: 0.2.0
   tailwindcss: 3.0.23
   theme-change: 2.0.2
+  three: ^0.138.3
   unist-util-visit: 4.1.0
 
 devDependencies:
@@ -66,10 +68,12 @@ devDependencies:
   remark-reading-time: 1.0.1
   slugify: 1.6.5
   svelte: 3.46.4
+  svelte-cubed: 0.2.1
   svelte-preprocess: 4.10.4_267bdea6a4c44ec9b77b315a8750f243
   svelte-scrollto: 0.2.0
   tailwindcss: 3.0.23_autoprefixer@10.4.2
   theme-change: 2.0.2
+  three: 0.138.3
   unist-util-visit: 4.1.0
 
 packages:
@@ -2545,6 +2549,14 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
+  /svelte-cubed/0.2.1:
+    resolution: {integrity: sha512-6k0m4Bg2abA0WBigqBSR5QW+aBFX/UV26W0IlrNzDVBm6rlJHt7OYeeHW9AuBZzyWq4A/gSBCoa1GNYiANFrbQ==}
+    dependencies:
+      hast-util-heading-rank: 2.1.0
+      unist-util-visit: 4.1.0
+      yootils: 0.3.1
+    dev: true
+
   /svelte-hmr/0.14.9_svelte@3.46.4:
     resolution: {integrity: sha512-bKE9+4qb4sAnA+TKHiYurUl970rjA0XmlP9TEP7K/ncyWz3m81kA4HOgmlZK/7irGK7gzZlaPDI3cmf8fp/+tg==}
     peerDependencies:
@@ -2669,6 +2681,10 @@ packages:
 
   /theme-change/2.0.2:
     resolution: {integrity: sha512-YvQqavf8nlGB3J7PdO0zLLhSLlgYhrqZL6By3FuzFIlWBsPTSPG/V98cHJllK3mmU97Jecei8XYiHalhy2umUw==}
+    dev: true
+
+  /three/0.138.3:
+    resolution: {integrity: sha512-4t1cKC8gimNyJChJbaklg8W/qj3PpsLJUIFm5LIuAy/hVxxNm1ru2FGTSfbTSsuHmC/7ipsyuGKqrSAKLNtkzg==}
     dev: true
 
   /timsort/0.3.0:
@@ -2878,4 +2894,8 @@ packages:
   /yaml/1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
+    dev: true
+
+  /yootils/0.3.1:
+    resolution: {integrity: sha512-A7AMeJfGefk317I/3tBoUYRcDcNavKEkpiPN/nQsBz/viI2GvT7BtrqdPD6rGqBFN8Ax7v4obf+Cl32JF9DDVw==}
     dev: true
