@@ -10,7 +10,7 @@ specifiers:
   date-fns: 2.28.0
   env-cmd: 10.1.0
   eslint: 8.10.0
-  eslint-config-prettier: 8.4.0
+  eslint-config-prettier: 8.5.0
   eslint-plugin-svelte3: 3.4.1
   fathom-client: 3.4.1
   fuse.js: 6.5.3
@@ -38,7 +38,7 @@ specifiers:
 
 devDependencies:
   '@sveltejs/adapter-vercel': 1.0.0-next.45
-  '@sveltejs/kit': 1.0.0-next.288_svelte@3.46.4
+  '@sveltejs/kit': 1.0.0-next.291_svelte@3.46.4
   '@tailwindcss/typography': 0.5.2_tailwindcss@3.0.23
   autoprefixer: 10.4.2_postcss@8.4.7
   cssnano: 5.1.0_postcss@8.4.7
@@ -46,7 +46,7 @@ devDependencies:
   date-fns: 2.28.0
   env-cmd: 10.1.0
   eslint: 8.10.0
-  eslint-config-prettier: 8.4.0_eslint@8.10.0
+  eslint-config-prettier: 8.5.0_eslint@8.10.0
   eslint-plugin-svelte3: 3.4.1_eslint@8.10.0+svelte@3.46.4
   fathom-client: 3.4.1
   fuse.js: 6.5.3
@@ -162,8 +162,8 @@ packages:
       esbuild: 0.14.23
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.288_svelte@3.46.4:
-    resolution: {integrity: sha512-6ky4CUFNGKoU1QV+fY2LOIB7atHdUCIMRx3pX21B2g9yZzQzkot0zHBrMMBSKF0/4Wx19PLEWrlGxlhakYmi8Q==}
+  /@sveltejs/kit/1.0.0-next.291_svelte@3.46.4:
+    resolution: {integrity: sha512-mFd1EJbxoyPGiomYwYhZnjNLPYahCC2gHfKvPetguL/7BCHcyUjjYQbwTTmjVxtgBs0oLzKVA9bt45gpr9JqBQ==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
@@ -1083,8 +1083,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-config-prettier/8.4.0_eslint@8.10.0:
-    resolution: {integrity: sha512-CFotdUcMY18nGRo5KGsnNxpznzhkopOcOo0InID+sgQssPrzjvsyKZPvOgymTFeHrFuC3Tzdf2YndhXtULK9Iw==}
+  /eslint-config-prettier/8.5.0_eslint@8.10.0:
+    resolution: {integrity: sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
