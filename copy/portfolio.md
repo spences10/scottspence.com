@@ -3,18 +3,47 @@
   import Small from '$lib/components/small.svelte'
   import YouTube from '$lib/components/youtube.svelte'
   import NewsletterSignup from '$lib/components/newsletter-signup.svelte'
+  import GithubContributions from '@lib/components/github-contributions.svelte'
+
+  export let contributions
+  let years = [2017, 2018, 2019, 2020, 2021, 2022]
+  let year = 2020
+
+  const getContributions = async year => {
+    const res = await fetch(`/github-contributions.json?year=${year}`)
+    if (res.ok) {
+      contributions = await res.json()
+    }
+    return await contributions
+  }
+  $: getContributions(year)
 </script>
 
 # Portfolio
 
 <Small>
-  Last updated: <DateUpdated date="2022-01-14" small="true" />
+  Last updated: <DateUpdated date="2022-03-05" small="true" />
 </Small>
 
 🚧**This page is currently under construction.**🚧
 
 There'll be some cool SvelteKit features added here to get my GitHib
 user information and show it in a graph or two.
+
+Here's a Svelte Cubed playground of my GitHub contributions for the
+last six years, you can play around with it with the mouse or the
+controls here.
+
+<span>Pick a year: <select bind:value={year}>
+
+  <option disabled selected>Year</option>
+  {#each years as year}
+    <option value={year}>{year}</option>
+  {/each}
+</select>
+</span>
+
+<GithubContributions {contributions} />
 
 I've added some of my recent work here if you would like to check it
 out.

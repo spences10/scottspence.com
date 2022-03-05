@@ -11,7 +11,7 @@
 		"dev": "env-cmd svelte-kit dev",
 		"build": "svelte-kit build",
 		"build:local": "env-cmd svelte-kit build",
-		"preview": "svelte-kit preview",
+		"preview": "env-cmd svelte-kit preview",
 		"lint": "prettier --check . && eslint --ignore-path .gitignore .",
 		"format": "prettier --write .",
 		"clean": "rm -rf .svelte-kit && rm -rf .vercel_build_output && rm -rf build && rm -rf public"

@@ -1,10 +1,8 @@
 <script context="module">
-  // export const prerender = true
-
+  import { getPostTags } from '$lib/get-post-tags'
+  import { description, name, website } from '$lib/info'
+  import { ogImageUrl } from '$lib/og-image-url-build'
   import Head from '@components/head.svelte'
-  import { getPostTags } from '@lib/get-post-tags'
-  import { description, name, website } from '@lib/info'
-  import { ogImageUrl } from '@lib/og-image-url-build'
 
   export const load = async ({ params }) => {
     const { slug } = params
@@ -23,6 +21,9 @@
   export let slug
 
   const url = `${website}/tags/${slug}`
+
+  // @ts-ignore
+  let postsWithTag = postsByTag[slug] ?? []
 </script>
 
 <Head
@@ -39,7 +40,7 @@
 <h1 class="font-bold mb-5 text-5xl">Posts for {slug}</h1>
 
 <ul>
-  {#each postsByTag[slug] as { metadata: { title }, metadata: { slug } }}
+  {#each postsWithTag as { metadata: { title }, metadata: { slug } }}
     <li class="my-4 text-xl">
       <a
         class="mr-6 transition link hover:text-primary"

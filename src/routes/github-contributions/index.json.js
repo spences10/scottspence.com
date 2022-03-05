@@ -1,5 +1,59 @@
 import { gql, GraphQLClient } from 'graphql-request'
 
+export const get = async ({ url }) => {
+  const year = await url.searchParams.get('year')
+  const GITHUB_TOKEN = process.env['GITHUB_TOKEN']
+
+  const client = new GraphQLClient('https://api.github.com/graphql', {
+    headers: {
+      Authorization: `Bearer ${GITHUB_TOKEN}`,
+    },
+  })
+
+  try {
+    const query = gql`
+      query UserContributions(
+        $username: String!
+        $yearFrom: DateTime!
+        $yearTo: DateTime!
+      ) {
+        user(login: $username) {
+          contributionsCollection(from: $yearFrom, to: $yearTo) {
+            contributionCalendar {
+              totalContributions
+              weeks {
+                contributionDays {
+                  color
+                  contributionCount
+                  date
+                  weekday
+                }
+              }
+            }
+          }
+        }
+      }
+    `
+
+    const variables = {
+      username: 'spences10',
+      yearFrom: `${year}-01-01T00:00:00.000Z`,
+      yearTo: `${year}-12-31T00:00:00.000Z`,
+    }
+
+    const { user } = await client.request(query, variables)
+    return {
+      status: 200,
+      body: await contributions(user),
+    }
+  } catch (error) {
+    return {
+      status: 500,
+      body: error.message,
+    }
+  }
+}
+
 export const contributions = async user => {
   const arrayOfDays = []
 
@@ -30,60 +84,4 @@ export const contributions = async user => {
     .slice(0, smoosh.length - 1)
 
   return contributionsData
-}
-
-export const get = async () => {
-  const GITHUB_TOKEN = process.env['GITHUB_TOKEN']
-
-  const graphCmsClient = new GraphQLClient(
-    'https://api.github.com/graphql',
-    {
-      headers: {
-        Authorization: `Bearer ${GITHUB_TOKEN}`,
-      },
-    }
-  )
-  try {
-    const query = gql`
-      query UserContributions(
-        $username: String!
-        $yearFrom: DateTime!
-        $yearTo: DateTime!
-      ) {
-        user(login: $username) {
-          contributionsCollection(from: $yearFrom, to: $yearTo) {
-            contributionCalendar {
-              totalContributions
-              weeks {
-                contributionDays {
-                  color
-                  contributionCount
-                  date
-                  weekday
-                }
-              }
-            }
-          }
-        }
-      }
-    `
-
-    const variables = {
-      username: 'spences10',
-      yearFrom: `2019-01-01T00:00:00.000Z`,
-      yearTo: `2019-12-31T00:00:00.000Z`,
-    }
-
-    const { user } = await graphCmsClient.request(query, variables)
-
-    return {
-      status: 200,
-      body: await contributions(user),
-    }
-  } catch (error) {
-    return {
-      status: 500,
-      body: error.message,
-    }
-  }
 }
