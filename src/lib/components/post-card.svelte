@@ -19,7 +19,9 @@
           •
           <span>{post.readingTime.text}</span>
           {#if differenceInDays(new Date(), new Date(post.date)) < 31}
-            <span class="badge bg-primary text-primary-content">
+            <span
+              class="badge bg-primary hover:bg-secondary hover:text-secondary-content text-primary-content"
+            >
               new
             </span>
           {/if}
