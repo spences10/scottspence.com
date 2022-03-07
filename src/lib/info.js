@@ -66,6 +66,29 @@ export const POPULAR_POSTS = [
   },
 ]
 
+export const SOCIAL_LINKS = [
+  {
+    title: `Twitter`,
+    link: `https://ss10.dev/twitter`,
+  },
+  {
+    title: `GitHub`,
+    link: `https://ss10.dev/git`,
+  },
+  {
+    title: `Deezer`,
+    link: `https://ss10.dev/twitter`,
+  },
+  {
+    title: `YouTube`,
+    link: `https://ss10.dev/yt`,
+  },
+  {
+    title: `Twitch`,
+    link: `https://ss10.dev/twitch`,
+  },
+]
+
 export const SITE_LINKS = [
   {
     title: `Writing`,
