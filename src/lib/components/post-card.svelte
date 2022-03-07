@@ -1,5 +1,5 @@
 <script>
-  import { format } from 'date-fns'
+  import { differenceInDays, format } from 'date-fns'
   import EdgeGlow from './edge-glow.svelte'
 
   export let post
@@ -18,6 +18,11 @@
           <time>{format(new Date(post.date), 'MMMM d, yyyy')}</time>
           •
           <span>{post.readingTime.text}</span>
+          {#if differenceInDays(new Date(), new Date(post.date)) < 31}
+            <span class="badge bg-primary text-primary-content">
+              new
+            </span>
+          {/if}
         </div>
       </div>
       <div class="all-prose">
