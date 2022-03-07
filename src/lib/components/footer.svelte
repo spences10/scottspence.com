@@ -1,6 +1,7 @@
 <script>
-  import { POPULAR_POSTS,SITE_LINKS,SOCIAL_LINKS } from '$lib/info'
+  import { POPULAR_POSTS, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
   import Eye from '@lib/icons/eye.svelte'
+  import { name } from '@lib/info'
   import { trackGoal } from 'fathom-client'
 </script>
 
@@ -48,4 +49,11 @@
     {/each}
   </div>
 </footer>
-
+<div class="divider bg-primary m-0" />
+<div class="bg-primary text-primary-content">
+  <p class='text-center py-4'>
+    Copyright &copy; 2017 - {`${new Date().getFullYear()}`} - All right
+    reserved
+    {name}
+  </p>
+</div>
