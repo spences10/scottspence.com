@@ -32,7 +32,7 @@
   import { getPosts } from '@lib/get-posts'
   import { name, website } from '@lib/info'
   import { ogImageUrl } from '@lib/og-image-url-build'
-  import { format } from 'date-fns'
+  import { differenceInDays, format } from 'date-fns'
   import { onMount } from 'svelte'
 
   export let component
@@ -87,14 +87,23 @@
     •
     <span>{readingTime.text}</span>
     <br />
-    {#each tags as tag}
-      <a sveltekit:prefetch href={`/tags/${tag}`}>
+    <div class="space-x-2">
+      {#each tags as tag}
+        <a sveltekit:prefetch href={`/tags/${tag}`}>
+          <span
+            class="badge badge-primary text-primary-content transition hover:bg-secondary-focus"
+            >{tag}</span
+          >
+        </a>
+      {/each}
+      {#if differenceInDays(new Date(), new Date(date)) < 31}
         <span
-          class="mr-1 badge badge-primary transition hover:bg-secondary-focus"
-          >{tag}</span
+          class="badge badge-secondary text-secondary-content font-bold transition hover:bg-secondary-focus cursor-pointer"
         >
-      </a>
-    {/each}
+          new
+        </span>
+      {/if}
+    </div>
   </div>
   {#if isPrivate}
     <IsPrivateBanner />
