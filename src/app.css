@@ -15,6 +15,38 @@ html {
   --primary: #793ef9;
   --secondary: #f000b8;
 }
+[data-theme='acid'] {
+  --primary: #ff00f4;
+  --secondary: #ff7400;
+}
+[data-theme='autumn'] {
+  --primary: #8c0327;
+  --secondary: #d85251;
+}
+[data-theme='business'] {
+  --primary: #1c4e80;
+  --secondary: #7c909a;
+}
+[data-theme='cmyk'] {
+  --primary: #45aeee;
+  --secondary: #e8488a;
+}
+[data-theme='coffee'] {
+  --primary: #db924b;
+  --secondary: #263e3f;
+}
+[data-theme='lemonade'] {
+  --primary: #519903;
+  --secondary: #e9e92e;
+}
+[data-theme='night'] {
+  --primary: #38bdf8;
+  --secondary: #818cf8;
+}
+[data-theme='winter'] {
+  --primary: #047aff;
+  --secondary: #463aa2;
+}
 [data-theme='light'] {
   --primary: #570df8;
   --secondary: #f000b8;
