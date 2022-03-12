@@ -241,7 +241,7 @@ Then I can get a redirect out of the `urls` array. I'll declare this
 this as a `[redirect]` variable.
 
 So I'll see what I get if I log out the contents of `[redirect]` now,
-I'm going to want to filer for anything that matches the
+I'm going to want to filter for anything that matches the
 `url.pathname` from `urls-list` file, so for now I'll `console.log`
 out the results:
 
