@@ -15,13 +15,20 @@ In the past I've made a personal URL shorteners with a Netlify
 I'm going to make a URL shortener with SvelteKit.
 
 I will use a SvelteKit endpoint to redirect the requests made to it.
+This will redirect the `source` URL to the target or `destination`
+URL.
+
+An example could be the URL given to this project, say
+`https://svort.li`. anything after the TLD (`.li`) will be the
+`source` so `https://svort.li/me` will be redirected to the
+`destination` URL for that source `https://scottspence.com`.
+
 In the previous two projects I made there wasn't anything in the way
 of a front-end framework as they were just configuration files to do
 the redirects on the server.
 
-This is still pretty much the same as the Vercel project, I've
-actually just ripped out the `now.json` file from the project and I'm
-using it in the Svelte one!
+This is still pretty much the same as it will be taking an incoming
+request on the server (in the SvelteKit endpoint) and redirecting it.
 
 ## Setup the project
 
@@ -35,6 +42,10 @@ I'll follow the prompts, I'll be yes to all the prompts there. Which
 are.
 
 ```text
+? Which Svelte app template? › - Use arrow-keys. Return to submit.
+    SvelteKit demo app
+❯   Skeleton project
+
 ✔ Which Svelte app template? › Skeleton project
 ✔ Use TypeScript? … Yes
 ✔ Add ESLint for code linting? … Yes
@@ -42,19 +53,26 @@ are.
 ✔ Add Playwright for browser testing? … Yes
 ```
 
+I'm not going to be covering browser testing in this post, but it's
+nice to have the config there if you need it.😊
+
 ## Create the endpoint
 
-In the `routes` folder create a new `[slug].ts` file.
+In the `routes` folder I'll create a new `[slug].ts` file.
 
 ```bash
-touch src/routes/[slug].ts
+touch src/routes/'[slug]'.ts
 ```
 
-The `[slug].ts` file is an endpoint, in SvelteKit you can use HTTP
-methods in endpoints. In this case I'm using a GET method.
+The `[slug].ts` file is an endpoint, a HTTP endpoint in SvelteKit you
+can use HTTP methods in endpoints. So, if I want to `GET` some data in
+a route I can access it via these special SvelteKit files.
+
+In this case I'm using a `GET` method so the `source` can be
+redirected to the `destination`.
 
 ```ts
-export const get = async ({ url }) => {
+export const get = async () => {
   return {
     headers: { Location: '/' },
     status: 301,
@@ -62,12 +80,29 @@ export const get = async ({ url }) => {
 }
 ```
 
+This will accept anything after root path (`/`) and redirect it at the
+moment back to the homepage `/`.
+
+So going to `localhost:3000/me` will redirect to `localhost:3000/`.
+
+That is pretty much it!
+
+For the list of links I'll be using a local config file, but you can
+use something like a CMS or a database to control this.
+
+## Acknowledgements
+
 Thanks to Rainlife over on the Svelte Discord for suggesting the use
 of `HEAD` (as I'm only interested in the header of the request). Also
 thanks to Jordan (also on the Svelte Discord) for giving me this handy
 MDN link for [Redirections in HTTP].
 
+Also [Dana Woodman on Dev.to] for using redirects in SvelteKit
+endpoints. I was using `redirect` instead of setting the headers.
+
 <!-- Links -->
 
 [redirections in http]:
   https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections#permanent_redirections
+[dana woodman on dev.to]:
+  https://dev.to/danawoodman/how-to-redirect-in-sveltekit-endpoints-1im3
