@@ -279,11 +279,6 @@ export const PEOPLE = [
     met: false,
   },
   {
-    name: `Jake Archibald`,
-    link: `https://twitter.com/jaffathecake`,
-    met: false,
-  },
-  {
     name: `Tan Li Hau`,
     link: `https://twitter.com/lihautan`,
     met: false,
@@ -457,6 +452,16 @@ export const PEOPLE = [
     name: `Antony Jones`,
     link: `https://twitter.com/antony`,
     met: true,
+  },
+  {
+    name: `Michael Bromley`,
+    link: `https://twitter.com/michlbrmly`,
+    met: false,
+  },
+  {
+    name: `JYC`,
+    link: `https://twitter.com/jycouet`,
+    met: false,
   },
   {
     name: `Lors`,
