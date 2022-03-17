@@ -11,11 +11,9 @@ const config = {
   // for more information about preprocessors
   preprocess: [
     mdsvex(mdsvexConfig),
-    [
-      preprocess({
-        postcss: true,
-      }),
-    ],
+    preprocess({
+      postcss: true,
+    }),
   ],
 
   kit: {
