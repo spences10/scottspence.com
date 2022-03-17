@@ -1,3 +1,4 @@
+import { defineMDSveXConfig as defineConfig } from 'mdsvex'
 import relativeImages from 'mdsvex-relative-images'
 import path from 'path'
 import autolinkHeadings from 'rehype-autolink-headings'
@@ -7,8 +8,9 @@ import preview, { htmlFormatter, textFormatter } from 'remark-preview'
 import readingTime from 'remark-reading-time'
 import { visit } from 'unist-util-visit'
 
-export default {
-  extensions: ['.svx', '.md'],
+const config = defineConfig({
+  extensions: ['.svelte.md', '.md', '.svx'],
+
   smartypants: {
     dashes: 'oldschool',
   },
@@ -44,7 +46,9 @@ export default {
       },
     ],
   ],
-}
+})
+
+export default config
 
 /**
  * Add slug to metadata and convert `date` timezone to UTC
