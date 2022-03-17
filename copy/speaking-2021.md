@@ -9,7 +9,7 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2021-12-10" small="true" />
+  Last updated: <DateUpdated date="2022-03-17" small="true" />
 </Small>
 
 If you want me to talk about using Svelte with GraphQL, the Jamstack
@@ -87,7 +87,7 @@ skipTo={{ hour: 0, minute: 0, second: 553 }} />
 
 <!-- Links  -->
 
-[get in touch]: mailto:yo@scottspence.com
+[get in touch]: /contact
 
 <!-- Images -->
 

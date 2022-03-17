@@ -10,7 +10,7 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2021-12-10" small="true" />
+  Last updated: <DateUpdated date="2022-03-17" small="true" />
 </Small>
 
 If you want me to talk about using Svelte with GraphQL, the Jamstack
@@ -235,7 +235,7 @@ need a college degree to get a job in tech.
 
 [post from ilesh]:
   https://www.ileshmistry.com/mmt-tech-meet-up-january-2020-recap-gatsbyjs-and-houdini-css
-[get in touch]: mailto:yo@scottspence.com
+[get in touch]: /contact
 [mdx embed]: https://www.mdx-embed.com/
 
 <!-- Images -->

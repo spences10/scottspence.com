@@ -10,7 +10,7 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2022-01-01" small="true" />
+  Last updated: <DateUpdated date="2022-03-17" small="true" />
 </Small>
 
 If you want me to talk about using Svelte with GraphQL, the Jamstack
@@ -38,4 +38,4 @@ members from around the world.
 
 <!-- Links  -->
 
-[get in touch]: mailto:yo@scottspence.com
+[get in touch]: /contact

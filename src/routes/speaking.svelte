@@ -1,6 +1,6 @@
 <script context="module">
   import Head from '@components/head.svelte'
-  import { name, website } from '@lib/info'
+  import { name,website } from '@lib/info'
   import { ogImageUrl } from '@lib/og-image-url-build'
 
   export const load = async () => {
@@ -59,7 +59,7 @@
 />
 
 <div class="mb-5 text-right">
-  Previous years:
+  <span class="text-sm mr-2">Year:</span> 
   <select
     class="pr-9 select select-bordered select-primary select-xs"
     bind:value={selected}
