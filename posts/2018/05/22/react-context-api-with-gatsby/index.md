@@ -466,7 +466,7 @@ If you have any feedback [please get in touch].
 [here]: https://scottspence.com
 [vs code snippet]:
   https://github.com/spences10/settings/blob/71dc76fb8e11c176f4517431be57c021fb72411a/globalVs.code-snippets#L74-L111
-[please get in touch]: mailto:spences10apps@gmail.com
+[please get in touch]: /contact
 [here's the source]:
   https://github.com/spences10/scottspence.me/blob/master/src/components/ThemeSelect.js
 [steve schoger]: https://twitter.com/steveschoger

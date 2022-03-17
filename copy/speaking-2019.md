@@ -10,7 +10,7 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2021-12-10" small="true" />
+  Last updated: <DateUpdated date="2022-03-17" small="true" />
 </Small>
 
 If you want me to talk about using Svelte with GraphQL, the Jamstack
@@ -39,7 +39,7 @@ the Jamstack is and the advantages of using it.
 [jesse martin]: https://twitter.com/motleydev
 [spreading the jamstack (slides)]:
   https://spreading-the-jam-stack.now.sh/#0
-[get in touch]: mailto:yo@scottspence.com
+[get in touch]: /contact
 
 <!-- Images -->
 

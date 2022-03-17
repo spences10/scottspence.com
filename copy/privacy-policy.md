@@ -6,7 +6,7 @@
 # Privacy Policy
 
 <Small>
-  Last updated: <DateUpdated date="2021-09-05" small="true" />
+  Last updated: <DateUpdated date="2022-03-17" small="true" />
 </Small>
 
 Hello, welcome to the privacy policy for scottspence.com, I want to be
@@ -96,8 +96,8 @@ Revue.
 
 ### Contact information for site administrators
 
-If you need to get in touch, email me at [yo@scottspence.dev] and I'll
-action it straight away.
+If you need to get in touch, email me at [yo@scottspence.dev] or use
+the [contact form] and I'll action it straight away.
 
 ### Tools
 
@@ -133,6 +133,7 @@ Read] for a simple breakdown of what the ToS actually means.
 [1]: https://usefathom.com/privacy
 [yo@scottspence.dev]:
   mailto:yo@scottspence.dev?subject=Privacy%20Concern&body=Hi%20Scott%2C%0D%0A%0D%0AI%20have%20a%20concern%20about%20my%20privacy%20on%20your%20site.
+[contact form]: /contact
 [terms of service didn't read]: https://tosdr.org/
 [contact information for site administrators]:
   #contact-information-for-site-administrators
