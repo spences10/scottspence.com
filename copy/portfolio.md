@@ -34,9 +34,10 @@ Here's a Svelte Cubed playground of my GitHub contributions for the
 last six years, you can play around with it with the mouse or the
 controls here.
 
-<span>Pick a year: <select bind:value={year}>
+<span>Pick a year:
+<select class='select select-bordered select-primary select-sm' bind:value={year}>
 
-  <option disabled selected>Year</option>
+  <option class='px-2' disabled selected>Year</option>
   {#each years as year}
     <option value={year}>{year}</option>
   {/each}
