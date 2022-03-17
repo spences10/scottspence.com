@@ -261,7 +261,12 @@ export const PEOPLE = [
   {
     name: `Benedicte Raae`,
     link: `http://twitter.com/raae`,
-    met: false,
+    met: true,
+  },
+  {
+    name: `Sid`,
+    link: `https://twitter.com/chatsidhartha`,
+    met: true,
   },
   {
     name: `Matt Jennings`,
