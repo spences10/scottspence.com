@@ -5,9 +5,9 @@ tags: ['svelte', 'sveltekit', 'graphql', 'graphcms']
 isPrivate: true
 ---
 
-KitQL is a GraphQL client for Svelte. It is a simple way to query
-GraphQL APIs. I've been using it in a couple of projects now and want
-to share what I have learned. What better wat to do that than the
+KitQL is a GraphQL client for Svelte. It is a set of tools to help you
+query GraphQL APIs. I've been using it in a couple of projects now and
+want to share what I have learned. What better wat to do that than the
 (now) classic re-reaction of the GraphCMS blog template with
 SvelteKit.
 
@@ -86,6 +86,10 @@ touch .graphqlrc.yaml
 ```
 
 I've taken the config for the file here from the [KitQL all-in] docs.
+To be able to do code gen on this there needs to be a schema for use
+in the `.graphqlrc.yaml` file. The schema can be either a local file
+or a remote URL, I'm pointing this to the public content API of the
+GraphCMS blog template.
 
 ```yaml
 projects:
@@ -116,9 +120,12 @@ projects:
           useTypeImports: true
 ```
 
-Then there's the `sveltekit.config.js` file. In here I'll need to add
+Then, there's the `sveltekit.config.js` file. In here I'll need to add
 and configure the `vite-plugin-watch-and-run`, take note here if
 you're not using `pnpm` you'll need to change the `run` command.
+
+This plugin is really handy, with this configuration it will watch for
+any changes to GraphQL files and then run a `npm` script.
 
 ```js
 import watchAndRun from '@kitql/vite-plugin-watch-and-run'
@@ -144,8 +151,9 @@ const config = {
 export default config
 ```
 
-Now that `pnpm run gen` is being called I'll need to add it to the
-scripts in the `package.json` file.
+Now that `pnpm run gen` is added to `vite-plugin-watch-and-run` and
+being called each time there's a change to any GraphQL files, I'll
+need to add it to the scripts in the `package.json` file.
 
 ```json
 "scripts": {
@@ -171,13 +179,15 @@ output from `graphql-codegen` because I've not created any GraphQL
 queries!
 
 I'll create that folder structure now, note the `-p` flag will create
-parent folders as well.
+parent folders as well. So this command creates the `lib`, `graphql`
+and `_kitql` folders.
 
 ```bash
 mkdir src/lib/graphql/_kitql -p
 ```
 
-In the `src/lib/graphql` folder I'll create a `all-posts.gql` file:
+In the `src/lib/graphql` folder I'll create an `all-posts.gql` file,
+this is to list all the posts in the blog on the index page:
 
 ```gql
 query AllPosts {
@@ -202,10 +212,16 @@ Now with the dev script running `vite-plugin-watch-and-run` will do
 it's thing and run the `gen` script. This creates the
 `graphqlStores.ts` and `graphqlTypes.ts` files in the `_kitql` folder.
 
+Taking a look at the `graphqlStores.ts` file now I can see that there
+is a function for `KQL_AllPostsStore()` which exports `KQL_AllPosts`.
+
+The function has all the methods on it I'll need for working with the
+data.
+
 ## Additional config for Tailwind
 
-If you're follwing along and you're not into Tailwind you can skip the
-next bit.
+The rest of the code examples will be using Tailwind. If you're
+follwing along and you're not into Tailwind you can skip this bit.
 
 ```bash
 # install and config tailwind
@@ -222,7 +238,15 @@ const config = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
 
   theme: {
-    extend: {},
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: null,
+          },
+        },
+      },
+    },
   },
 
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
@@ -233,9 +257,15 @@ module.exports = config
 
 ## Create KitQL client
 
+Now I can create the KitQL client to start querying data. Create the
+`.ts` file for it first:
+
 ```bash
 touch src/lib/graphql/kitQLClient.ts
 ```
+
+Then I'll add the following configuration to the `kitQLClient.ts`
+file:
 
 ```ts
 import { KitQLClient } from '@kitql/client'
@@ -247,6 +277,68 @@ export const kitQLClient = new KitQLClient({
   headersContentType: 'application/json',
   logType: ['client', 'server', 'operationAndvariables'],
 })
+```
+
+## Use queried data from `graphqlStores`
+
+Now for the home page (`src/routes/index.svelte`) I can use the
+`KQL_AllPosts` store and use the `query` method.
+
+In a SvelteKit load function I can `await` the query for `AllPosts`
+and return an empty object from the load function. It's empty because
+once the data has been fetched before the page loads it's added to a
+Svelte store for use in the page.
+
+```svelte
+<script lang="ts" context="module">
+  import { KQL_AllPosts } from '$lib/graphql/_kitql/graphqlStores'
+
+  export const load = async ({ fetch }) => {
+    await KQL_AllPosts.query({ fetch })
+    return {}
+  }
+</script>
+```
+
+Once the page has loaded I can subscribe to the `KQL_AllPosts` store
+to get the data.
+
+```svelte
+<script lang="ts">
+  let posts = $KQL_AllPosts.data?.posts
+</script>
+```
+
+I an now use that in a Svelte each expression to render the posts.
+
+```svelte
+{#each posts as { title, slug, excerpt, coverImage, tags }}
+  <div class="card text-center shadow-2xl mb-20">
+    <figure class="">
+      <img
+        class=""
+        src={coverImage.url}
+        alt={`Cover image for ${title}`}
+      />
+    </figure>
+    <div class="card-body prose">
+      <h2 class="title">{title}</h2>
+      <p>{excerpt}</p>
+      <div class="flex justify-center mb-5 space-x-2">
+        {#each tags as tag}
+          <span class="badge badge-primary">{tag}</span>
+        {/each}
+      </div>
+      <div class="justify-center card-actions">
+        <a
+          sveltekit:prefetch
+          href={`/posts/${slug}`}
+          class="btn btn-outline btn-primary">Read &rArr;</a
+        >
+      </div>
+    </div>
+  </div>
+{/each}
 ```
 
 <!-- Links -->
