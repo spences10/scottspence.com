@@ -9,7 +9,7 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2022-03-17" small="true" />
+  Last updated: <DateUpdated date="2022-03-21" small="true" />
 </Small>
 
 If you want me to talk about using Svelte with GraphQL, the Jamstack
@@ -34,14 +34,14 @@ SvelteKit and the Content Layer
 
 ## Jamstack Conf Workshop - 2021 October
 
-Jamstack Conference workshop Building with Svelte and GraphQL
+[Jamstack Conference workshop Building with Svelte and GraphQL]
 
 [![jamstack conf workshop 2021]] [jamstack conf workshop 2021]
 
 ## Jamstack Explorers - 2021 October
 
-Jamstack explorers mission on building a production ready Svelte
-project with Svelte
+[Jamstack explorers mission on building a production ready Svelte
+project with Svelte]
 
 [![jamstack explorers]] [jamstack explorers]
 
@@ -88,6 +88,10 @@ skipTo={{ hour: 0, minute: 0, second: 553 }} />
 <!-- Links  -->
 
 [get in touch]: /contact
+[jamstack conference workshop building with svelte and graphql]:
+  https://jamstackconf.com/workshops/005054976ff9/build-with-sveltekit-and-graphql
+[jamstack explorers mission on building a production ready svelte project with svelte]:
+  https://explorers.netlify.com/learn/building-with-sveltekit-and-graphcms
 
 <!-- Images -->
 
