@@ -12,7 +12,7 @@
       <a
         sveltekit:prefetch
         class="text-primary-content hover:opacity-50"
-        href={post.slug}
+        href={`/${post.slug}`}
       >
         {post.title}
         <span class="text-primary-content font-bold">
@@ -51,7 +51,7 @@
 </footer>
 <div class="divider bg-primary m-0" />
 <div class="bg-primary text-primary-content">
-  <p class='text-center py-4'>
+  <p class="text-center py-4">
     Copyright &copy; 2017 - {`${new Date().getFullYear()}`} - All right
     reserved
     {name}
