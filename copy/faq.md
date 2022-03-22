@@ -7,7 +7,7 @@
 # For recruiters - FAQ
 
 <Small>
-  Last updated: <DateUpdated date='2021-11-29' small='true' />
+  Last updated: <DateUpdated date='2022-03-22' small='true' />
 </Small>
 
 Hello friend 👋, thanks for taking an interest in me and my profile.
@@ -149,10 +149,10 @@ bit more about me.
 ## Salary?
 
 In my next permanent role I'm looking for roles starting at
-**£65,500**.
+**£70,400**.
 
 I run OES Technology where I offer consulting on a contract basis if
-you have a project in mind get in touch to discuss.
+you have a project in mind [get in touch] to discuss.
 
 I'm not giving a number for my _current_ salary because, among other
 things, it can be used to cap any offer made to me.
@@ -294,10 +294,10 @@ I can telephone interview with little notice.
 I can video call with prior arrangement.
 
 Please be upfront about timings for interview rounds. I'm not
-interested in several day long interview rounds.
+interested in taking part in several day long interview rounds.
 
 With regard to technical/take home 'tests', I'm not willing to spend
-more than two hours on any given assignment to assess my skill level
+more than an hour on any given assignment to assess my skill level
 unless I'm being paid for my time.
 
 The effort exchange for take home assignments isn't right. A one hour
@@ -308,6 +308,8 @@ interview in real time would be preferred.
 ## Thanks for reading 🙏
 
 Feel free to [check out the rest of the site](/)
+
+<!-- Links -->
 
 [site]: https://www.styled-components.com/
 [maker's schedule]: https://www.paulgraham.com/makersschedule.html
@@ -325,3 +327,4 @@ Feel free to [check out the rest of the site](/)
 [15 minute chat]: https://cal.com/spences10/recruiter-chat
 [if it's not a hell yes, it's a no]:
   https://lifehacker.com/if-its-not-a-hell-yes-its-a-no-1723393142
+[get in touch]: /contact
