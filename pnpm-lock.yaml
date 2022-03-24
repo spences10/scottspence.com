@@ -15,7 +15,7 @@ specifiers:
   fathom-client: 3.4.1
   fuse.js: 6.5.3
   graphql: 16.3.0
-  graphql-request: 4.1.0
+  graphql-request: 4.2.0
   marked: 4.0.12
   mdsvex: 0.10.5
   mdsvex-relative-images: 1.0.1
@@ -50,7 +50,7 @@ devDependencies:
   fathom-client: 3.4.1
   fuse.js: 6.5.3
   graphql: 16.3.0
-  graphql-request: 4.1.0_graphql@16.3.0
+  graphql-request: 4.2.0_graphql@16.3.0
   marked: 4.0.12
   mdsvex: 0.10.5_svelte@3.46.4
   mdsvex-relative-images: 1.0.1
@@ -1379,8 +1379,8 @@ packages:
     resolution: {integrity: sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==}
     dev: true
 
-  /graphql-request/4.1.0_graphql@16.3.0:
-    resolution: {integrity: sha512-CBFcO6LP7cg+aBMc+x9C1dZEQsKTBZKR2J+HzuB0cR/6aaU4K4/tRXTQu8CDMp5195ZU+DTNKZZOSK1WRbTeAg==}
+  /graphql-request/4.2.0_graphql@16.3.0:
+    resolution: {integrity: sha512-uFeMyhhl8ss4LFgjlfPeAn2pqYw+CJto+cjj71uaBYIMMK2jPIqgHm5KEFxUk0YDD41A8Bq31a2b4G2WJBlp2Q==}
     peerDependencies:
       graphql: 14 - 16
     dependencies:
