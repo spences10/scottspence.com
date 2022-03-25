@@ -549,9 +549,9 @@ loaded. 🔥
 
 This is a super snappy experience for the user.
 
-Now, because I haven't added a navbar yet, if I go to the browser
-'back' button on the browser the console logs this out (on mouse
-hover):
+Now, because I haven't added a navbar yet (more on that soon), if I go
+to the browser 'back' button on the browser the console logs this out
+(on mouse hover):
 
 ```text
 [KitQL Client] From: CACHE,   Operation: KQL_AllPosts
@@ -559,6 +559,49 @@ hover):
 
 KitQL is getting the data from the cache for the route. The index page
 loads up super fast!
+
+## There's a widget!!!
+
+One thing I found from a recent meetup talk from JYC is that there's
+also a widget that is part of KitQL.
+
+You can use it to display the store contents on the page with the
+`KitQLInfo` component that's now part of the `@kitql/all-in` package.
+
+So say I want to check out the contents of the `KQL_AllPosts` store,
+in the index page I'll import the component:
+
+```svelte
+<script lang="ts" context="module">
+  import { KQL_AllPosts } from '$lib/graphql/_kitql/graphqlStores'
+  import { KitQLInfo } from '@kitql/all-in'
+  export const load = async ({ fetch }) => {
+    await KQL_AllPosts.query({ fetch })
+    return {}
+  }
+</script>
+```
+
+Then I can use the component passing in the `KQL_AllPosts` store:
+
+```svelte
+<KitQLInfo store={KQL_AllPosts} />
+```
+
+Going over to the index page of the project now I can see the
+`KitQLInfo` component in it's initial state:
+
+[![kitql-kitqlinfo-component-initial]]
+[kitql-kitqlinfo-component-initial]
+
+If I click on the store name in the component it expands out with the
+store data with options to reset the current store and options for
+where to to query the data from:
+
+[![kitql-kitqlinfo-component-expanded]]
+[kitql-kitqlinfo-component-expanded]
+
+Super neat!
 
 ## Conclusion
 
@@ -588,3 +631,10 @@ Thanks!
   https://github.com/jycouet/kitql/tree/main/packages/all-in
 [source code on github]:
   https://github.com/spences10/kitql-with-sveltekit-and-graphcms
+
+<!-- Images -->
+
+[kitql-kitqlinfo-component-initial]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1648194979/scottspence.com/kitql-kitqlinfo-component-initial.png
+[kitql-kitqlinfo-component-expanded]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1648194980/scottspence.com/kitql-kitqlinfo-component-expanded.png
