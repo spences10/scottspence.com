@@ -132,8 +132,16 @@ projects:
 ```
 
 You may be thinking, wait, why is the content API hardcoded in here?
+If you watched JYC's video you would have seen him take the schema
+from the browser network tab and put in into a local `schema.json`
+file.
 
-Then, there's the `sveltekit.config.js` file. In here I'll need to add
+I won't be committing the API endpoints to git as I don't really want
+to be adding them to a public repo. Even though the is publically
+accessible. I'll replace the `schema` and `url` properties with
+`${VITE_GRAPHQL_API}` before I commit the file to git.
+
+There's then the `sveltekit.config.js` file. In here I'll need to add
 and configure the `vite-plugin-watch-and-run`, take note here if
 you're not using `pnpm` you may want to change the `run` command.
 
@@ -143,10 +151,15 @@ script.
 
 ```js
 import watchAndRun from '@kitql/vite-plugin-watch-and-run'
-import adapter from '@sveltejs/adapter-vercel'
+import adapter from '@sveltejs/adapter-auto'
+import preprocess from 'svelte-preprocess'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
+  // Consult https://github.com/sveltejs/svelte-preprocess
+  // for more information about preprocessors
+  preprocess: preprocess(),
+
   kit: {
     adapter: adapter(),
     vite: {
@@ -200,10 +213,15 @@ and `_kitql` folders.
 mkdir src/lib/graphql/_kitql -p
 ```
 
-In the `src/lib/graphql` folder I'll create an `all-posts.gql` file,
+In the `src/lib/graphql` folder I'll create an `all-posts.gql` file:
+
+```bash
+touch src/lib/graphql/all-posts.gql
+```
+
 this is to list all the posts in the blog on the index page:
 
-```gql
+```graphql
 query AllPosts {
   posts {
     title
@@ -301,7 +319,14 @@ export const kitQLClient = new KitQLClient({
 ## Use queried data from `graphqlStores`
 
 Now for the home page (`src/routes/index.svelte`) I can use the
-`KQL_AllPosts` store and use the `query` method.
+`KQL_AllPosts` store and use the `queryLoad` method.
+
+You may notice there's two types of query you can use on the store,
+there's a `query` and a `queryLoad` method that are on the store.
+
+`queryLoad` is intended for use in a SvelteKit load function whereas
+with the `query` is non blocking and can be used in components and
+pages.
 
 In a SvelteKit load function I can `await` the query for `AllPosts`
 and return an empty object from the load function. It's empty because
@@ -310,10 +335,10 @@ Svelte store for use in the page.
 
 ```svelte
 <script lang="ts" context="module">
-  import { KQL_AllPosts } from '$lib/graphql/_kitql/graphqlStores'
+  import { KQL_AllPosts } from '$lib/graphql/_kitql/graphqlStores';
 
   export const load = async ({ fetch }) => {
-    await KQL_AllPosts.query({ fetch })
+    await KQL_AllPosts.queryLoad({ fetch })
     return {}
   }
 </script>
@@ -360,6 +385,65 @@ This is with Tailwind and daisyUI classes.
   </div>
 {/each}
 ```
+
+<Details buttonText="See the full file.">
+
+```svelte
+<script lang="ts" context="module">
+  import { KQL_AllPosts } from '$lib/graphql/_kitql/graphqlStores'
+
+  export const load = async ({ fetch }) => {
+    await KQL_AllPosts.queryLoad({ fetch })
+    return {}
+  }
+</script>
+
+<script lang="ts">
+  let posts = $KQL_AllPosts.data?.posts
+</script>
+
+<svelte:head>
+  <title>KitQL with GraphCMS | Welcome</title>
+</svelte:head>
+
+<div class="prose mb-12">
+  <h1>KitQL with GraphCMS</h1>
+  <p>
+    An example project using the GraphCMS blog template and KitQL for
+    the GraphQL client
+  </p>
+</div>
+
+{#each posts as { title, slug, excerpt, coverImage, tags }}
+  <div class="card text-center shadow-2xl mb-20">
+    <figure class="">
+      <img
+        class=""
+        src={coverImage.url}
+        alt={`Cover image for ${title}`}
+      />
+    </figure>
+    <div class="card-body prose">
+      <h2 class="title">{title}</h2>
+      <p>{excerpt}</p>
+      <div class="flex justify-center mb-5 space-x-2">
+        {#each tags as tag}
+          <span class="badge badge-primary">{tag}</span>
+        {/each}
+      </div>
+      <div class="justify-center card-actions">
+        <a
+          sveltekit:prefetch
+          href={`/posts/${slug}`}
+          class="btn btn-outline btn-primary">Read &rArr;</a
+        >
+      </div>
+    </div>
+  </div>
+{/each}
+```
+
+</Details>
 
 Sweet! That's the index page rendering out all the posts!
 
@@ -425,7 +509,7 @@ the posts route.
 # make the posts folder
 mkdir src/routes/posts
 # create the /posts/[slug].svelte file
-touch src/routes/posts/[slug].svelte
+touch src/routes/posts/'[slug]'.svelte
 ```
 
 I'll break down the several parts of the `posts/[slug].svelte` file
@@ -435,18 +519,19 @@ go straight in here and destructure the `params` object (which has the
 `slug` value) and also destructure `fetch` for KitQL to use:
 
 ```svelte
-<script context="module">
-  import { KQL_GetPost } from '$lib/graphql/_kitql/graphqlStores'
+<script lang="ts" context="module">
+  import { KQL_GetPost } from '$lib/graphql/_kitql/graphqlStores';
+
   export const load = async ({ params, fetch }) => {
-    const { slug } = params
-    if (slug) await KQL_GetPost.query({ fetch, variables: { slug } })
-    return {}
-  }
+    const { slug } = params;
+    if (slug) await KQL_GetPost.queryLoad({ fetch, variables: { slug } });
+    return {};
+  };
 </script>
 ```
 
 I'm importing the `KQL_GetPost` store here, and then I'm calling the
-`.query` passing in the `fetch` and `variables` object.
+`.queryLoad` passing in the `fetch` and `variables` object.
 
 Using `context="module"` means that code will run before the page
 loads.
@@ -480,7 +565,7 @@ Here's what the rest of the `posts/[slug].svelte` file looks like:
 
 ```svelte
 <svelte:head>
-  <title>KitQL with GraphCMS | {title}</title>
+  <title>KitQL with GraphCMS | {title || null}</title>
 </svelte:head>
 
 <div class="sm:-mx-5 md:-mx-10 lg:-mx-20 xl:-mx-38 mb-5">
@@ -596,7 +681,7 @@ in the index page I'll import the component:
   import { KQL_AllPosts } from '$lib/graphql/_kitql/graphqlStores'
   import { KitQLInfo } from '@kitql/all-in'
   export const load = async ({ fetch }) => {
-    await KQL_AllPosts.query({ fetch })
+    await KQL_AllPosts.queryLoad({ fetch })
     return {}
   }
 </script>
@@ -648,12 +733,13 @@ The theme switch will need an additional package in the way of
 pnpm i -D theme-change
 ```
 
-Then I'll create the files needed for the navbar, footer, theme switch
+Then I'll create the files needed for the navbar, footer, theme select
 and the page route:
 
 ```bash
-touch src/lib/components/{navbar.svelte,footer.svelte,theme-switch.svelte}
-touch src/routes/[slug].svelte
+mkdir src/lib/components
+touch src/lib/components/{navbar.svelte,footer.svelte,theme-select.svelte}
+touch src/routes/'[slug]'.svelte
 # create query files for the page route
 touch src/lib/graphql/{all-pages.gql,get-page.gql}
 ```
@@ -884,6 +970,78 @@ for anything being passed into the component.
     <ThemeSelect />
   </div>
 </div>
+```
+
+</Details>
+
+Lastly I'll add in the `src/routes/[slug].svelte` file markup!
+
+<Details buttonText="View page.">
+
+```svelte
+<script lang="ts" context="module">
+  import { KQL_GetPost } from '$lib/graphql/_kitql/graphqlStores';
+
+  export const load = async ({ params, fetch }) => {
+    const { slug } = params;
+    if (slug) await KQL_GetPost.queryLoad({ fetch, variables: { slug } });
+    return {};
+  };
+</script>
+
+<script lang="ts">
+  let post = $KQL_GetPost.data?.post;
+  const {
+    title,
+    date,
+    tags,
+    author: { name, authorTitle, picture },
+    content: { html },
+    coverImage
+  } = post;
+</script>
+
+<svelte:head>
+  <title>KitQL with GraphCMS | {title || null}</title>
+</svelte:head>
+
+<div class="sm:-mx-5 md:-mx-10 lg:-mx-20 xl:-mx-38 mb-5">
+  <img src={coverImage.url} alt={`Cover image for ${title}`} class="" />
+</div>
+
+<h1 class="text-4xl font-semibold mb-5">{title}</h1>
+
+<a href="/" class="inline-flex items-center mb-3">
+  <img
+    src={picture.url}
+    alt={name}
+    class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
+  />
+  <span class="flex-grow flex flex-col pl-4">
+    <span class="title-font font-medium">{name}</span>
+    <span class="text-secondary text-xs tracking-widest mt-0.5">{authorTitle}</span>
+  </span>
+</a>
+
+<p class="text-secondary text-xs tracking-widest font-semibold">
+  {new Date(date).toDateString()}
+</p>
+
+<div class="mb-5 flex justify-between">
+  <div>
+    {#if tags}
+      <div class="mt-5 space-x-2">
+        {#each tags as tag}
+          <span class="badge badge-primary">{tag}</span>
+        {/each}
+      </div>
+    {/if}
+  </div>
+</div>
+
+<article class="prose mb-28">
+  {@html html}
+</article>
 ```
 
 </Details>
