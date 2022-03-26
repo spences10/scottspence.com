@@ -2,12 +2,16 @@
 date: 2022-03-18
 title: Getting Started with KitQL and GraphCMS
 tags: ['svelte', 'sveltekit', 'graphql', 'graphcms']
-isPrivate: true
+isPrivate: false
 ---
+
+<script>
+  import Details from '$lib/components/details.svelte'
+</script>
 
 KitQL is a GraphQL client for Svelte. It is a set of tools to help you
 query GraphQL APIs. I've been using it in a couple of projects now and
-want to share what I have learned. What better wat to do that than the
+want to share what I have learned. What better way to do that than the
 (now) classic re-reaction of the GraphCMS blog template with
 SvelteKit.
 
@@ -40,7 +44,7 @@ place of JavaScript.
 ## Create a new project
 
 I'll start by creating the project with the `npm init` command and
-pick the follwing options:
+pick the following options:
 
 ```text
 ➜ npm init svelte@next kitql-with-sveltekit-and-graphcms
@@ -68,6 +72,13 @@ Create a `.env` file for my GraphCMS content API endpoint.
 
 ```bash
 touch .env
+```
+
+In the `.env` file I'll create a `VITE_` environment variable for the
+GraphCMS content API endpoint:
+
+```env
+VITE_GRAPHQL_API=https://api.graphcms.com/v2/projectid/master
 ```
 
 ## Install dependencies and configure
@@ -119,6 +130,8 @@ projects:
         config:
           useTypeImports: true
 ```
+
+You may be thinking, wait, why is the content API hardcoded in here?
 
 Then, there's the `sveltekit.config.js` file. In here I'll need to add
 and configure the `vite-plugin-watch-and-run`, take note here if
@@ -224,8 +237,8 @@ The rest of the code examples will be using Tailwind. If you're
 follwing along and you're not into Tailwind you can skip this bit.
 
 Don't like Tailwind? That's cool, you do you. 😊 It's not relevant to
-this example, really. I do want this be a guide you can follow to have
-the same result as what I have put on GitHub. If you only want to
+this example, really. I do want this to be a guide you can follow to
+have the same result as what I have put on GitHub. If you only want to
 check out the code there's a link at the end of the post. 👍
 
 ```bash
@@ -350,7 +363,7 @@ This is with Tailwind and daisyUI classes.
 Sweet! That's the index page rendering out all the posts!
 
 I'll now concentrate on creating the `src/routes/posts/[slug].svelte`
-file so clicking the link on the index page will take you to the that
+file so clicking the link on the index page will take you to that
 post.
 
 ## Passing GraphQL variables
@@ -396,9 +409,9 @@ query GetPost($slug: String!) {
 }
 ```
 
-Now I've created that query `vite-plugin-watch-and-run` will will do
-it's thing (as I have the dev server running) and generate the store
-and types for that query.
+Now I've created that query, `vite-plugin-watch-and-run` will do it's
+thing (as I have the dev server running) and generate the store and
+types for that query.
 
 This query is expecting the `$slug` variable, I'll need to get that
 from the `context` in the load function of the `[slug].svelte` file.
@@ -457,8 +470,12 @@ to use in the page.
 
 ⚠️ **codewall incoming!** ⚠️
 
-So no I have all I need to render out the post from the `KQL_GetPost`
+So now I have all I need to render out the post from the `KQL_GetPost`
 store.
+
+Here's what the rest of the `posts/[slug].svelte` file looks like:
+
+<Details buttonText="Click to expand.">
 
 ```svelte
 <svelte:head>
@@ -510,6 +527,8 @@ store.
 </article>
 ```
 
+</Details>
+
 Made it through all that? Good! Ok, so now I have a list of posts that
 I can click through to from the index page.
 
@@ -518,7 +537,7 @@ with the configuration I currently have.
 
 ## Caching in KitQL
 
-Alright I have something of a project now where I can click a link on
+Alright, I have something of a project now where I can click a link on
 the index page to go to the post page.
 
 If I pop open the browser console, do a page reload and take a look at
@@ -596,21 +615,54 @@ Going over to the index page of the project now I can see the
 
 If I click on the store name in the component it expands out with the
 store data with options to reset the current store and options for
-where to to query the data from:
+where to query the data from:
 
 [![kitql-kitqlinfo-component-expanded]]
 [kitql-kitqlinfo-component-expanded]
 
 Super neat!
 
+## Add in additional components
+
+With the setup and configuration done now; along with querying data
+and passing variables to get specific data for a page route this post
+is effectively done!
+
+The rest of this is just adding in the additional components I need to
+keep it in line with the rest of the examples for the differing
+clients.
+
+So that's a navbar, a footer and a theme switch.
+
+The theme switch will need an additional package in the way of
+`theme-change`, I'll install that now:
+
+```bash
+pnpm i -D theme-change
+```
+
+Then I'll create the files needed for the navbar, footer and theme
+switch:
+
+```bash
+touch src/lib/components/{navbar.svelte,footer.svelte,theme-switch.svelte}
+```
+
 ## Conclusion
 
 KitQL is an awesome bit of, ahem, kit!
 
+With all the GraphQL Code Generator plugins added this gives you code
+intellisense superpowers with VS Code in your SvelteKit project. All
+packaged up for you in one dependency in the `@kitql/all-in` package.
+
+This makes working though GraphQL queries in your SvelteKit projects a
+joy!
+
 I've already linked the resources but will put them here for ease of
 access:
 
-- Follow [JYC] on Twitter for daily updates
+- Follow [JYC] on Twitter for daily updates on the KitQL project
 - [KitQL Docs](https://kitql.vercel.app/docs)
 - [Explaner video by JYC](https://www.youtube.com/watch?v=6pH4fnFN70w)
 - [KitQL All In](https://github.com/jycouet/kitql/tree/main/packages/all-in)
