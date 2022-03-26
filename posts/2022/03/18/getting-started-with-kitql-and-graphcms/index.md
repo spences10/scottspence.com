@@ -135,10 +135,11 @@ You may be thinking, wait, why is the content API hardcoded in here?
 
 Then, there's the `sveltekit.config.js` file. In here I'll need to add
 and configure the `vite-plugin-watch-and-run`, take note here if
-you're not using `pnpm` you'll need to change the `run` command.
+you're not using `pnpm` you may want to change the `run` command.
 
 This plugin is really handy, with this configuration it will watch for
-any changes to GraphQL files and then run a `npm` script.
+any changes to GraphQL files and then run the `gen`, `package.json`
+script.
 
 ```js
 import watchAndRun from '@kitql/vite-plugin-watch-and-run'
@@ -634,6 +635,12 @@ clients.
 
 So that's a navbar, a footer and a theme switch.
 
+There's also an additional page `src/routes/[slug].svelte` file that
+I'll use for generating pages from the GraphCMS schema. It has a
+`Pages` model that can be used to create additional pages. Currently
+there's an about page but with the schema it allows content editors to
+create new pages via GraphCMS.
+
 The theme switch will need an additional package in the way of
 `theme-change`, I'll install that now:
 
@@ -641,12 +648,247 @@ The theme switch will need an additional package in the way of
 pnpm i -D theme-change
 ```
 
-Then I'll create the files needed for the navbar, footer and theme
-switch:
+Then I'll create the files needed for the navbar, footer, theme switch
+and the page route:
 
 ```bash
 touch src/lib/components/{navbar.svelte,footer.svelte,theme-switch.svelte}
+touch src/routes/[slug].svelte
+# create query files for the page route
+touch src/lib/graphql/{all-pages.gql,get-page.gql}
 ```
+
+I'll make the `AllPages` and `GetPage` queries for the page route and
+add the code to the `all-pages.gql` and `get-page.gql` files.
+
+All pages first:
+
+```graphql
+query AllPages {
+  pages {
+    title
+    slug
+    content {
+      html
+    }
+  }
+}
+```
+
+Then the get page query:
+
+```graphql
+query GetPage($slug: String!) {
+  page(where: { slug: $slug }) {
+    title
+    content {
+      html
+    }
+  }
+}
+```
+
+Next up I'll add the markup to the theme switch component, this is a
+list of all the available themes in daisyUI:
+
+<Details buttonText="View theme select.">
+
+```svelte
+<div>
+  <select
+    data-choose-theme
+    class="pr-9 select select-bordered select-primary bg-base-100 select-xs text-base-content"
+  >
+    <option disabled selected>Theme</option>
+    <option value="acid">Acid</option>
+    <option value="aqua">Aqua</option>
+    <option value="autumn">Autumn</option>
+    <option value="black">Black</option>
+    <option value="bumblebee">Bumblebee</option>
+    <option value="business">Business</option>
+    <option value="cmyk">CMYK</option>
+    <option value="coffee">Coffee</option>
+    <option value="corporate">Corporate</option>
+    <option value="cupcake">Cupcake</option>
+    <option value="cyberpunk">Cyberpunk</option>
+    <option value="dark">Dark</option>
+    <option value="dracula">Dracula</option>
+    <option value="emerald">Emerald</option>
+    <option value="fantasy">Fantasy</option>
+    <option value="forest">Forest</option>
+    <option value="garden">Garden</option>
+    <option value="halloween">Halloween</option>
+    <option value="lemonade">Lemonade</option>
+    <option value="light">Light</option>
+    <option value="lofi">Lofi</option>
+    <option value="luxury">Luxury</option>
+    <option value="night">Night</option>
+    <option value="pastel">Pastel</option>
+    <option value="retro">Retro</option>
+    <option value="synthwave">Synthwave</option>
+    <option value="valentine">Valentine</option>
+    <option value="winter">Winter</option>
+    <option value="wireframe">Wireframe</option>
+  </select>
+</div>
+```
+
+</Details>
+
+The footer, this is taken straight from the daisyUI examples nothing
+of note here, aesthetics only:
+
+<Details buttonText="View footer.">
+
+```svelte
+<footer
+  class="p-10 bg-primary footer text-base-content footer-center"
+>
+  <div class="grid grid-flow-col gap-4">
+    <a class="link link-hover" href="/">About us</a>
+    <a class="link link-hover" href="/">Contact</a>
+    <a class="link link-hover" href="/">Jobs</a>
+    <a class="link link-hover" href="/">Press kit</a>
+  </div>
+  <div>
+    <div class="grid grid-flow-col gap-4">
+      <a href="/">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          class="fill-current"
+        >
+          <path
+            d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+          />
+        </svg>
+      </a>
+      <a href="/">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          class="fill-current"
+        >
+          <path
+            d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"
+          />
+        </svg>
+      </a>
+      <a href="/">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          class="fill-current"
+        >
+          <path
+            d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div>
+    <p>
+      Copyright © 2021 - All right reserved by ACME Industries Ltd
+    </p>
+  </div>
+</footer>
+```
+
+</Details>
+
+Before I tackle the navbar, I'll need to implement the theme change
+feature in the `__layout.svelte` file. I'm also querying all pages so
+I can pass that to the navbar and it can generate links from the
+result of that query:
+
+<Details buttonText="View layout.">
+
+```svelte
+<script lang="ts" context="module">
+  import Footer from '$lib/components/footer.svelte'
+  import Navbar from '$lib/components/navbar.svelte'
+  import { KQL_AllPages } from '$lib/graphql/_kitql/graphqlStores'
+  import { onMount } from 'svelte'
+  import { themeChange } from 'theme-change'
+  import '../app.css'
+
+  export const load = async ({ fetch }) => {
+    await KQL_AllPages.query({ fetch })
+    return {}
+  }
+</script>
+
+<script>
+  let pages = $KQL_AllPages.data?.pages
+  onMount(() => {
+    themeChange(false)
+  })
+</script>
+
+<Navbar {pages} />
+
+<main class="container max-w-3xl mx-auto px-4">
+  <slot />
+</main>
+
+<Footer />
+```
+
+</Details>
+
+The navbar is expecting a `pages` prop, which is the result of the
+`AllPages` query from KitQL.
+
+There's a Svelte each loop in there to create the page name and link
+for anything being passed into the component.
+
+<Details buttonText="View navbar.">
+
+```svelte
+<script>
+  import ThemeSelect from './theme-select.svelte'
+
+  export let pages
+</script>
+
+<div class="navbar mb-10 shadow-lg bg-neutral text-neutral-content">
+  <div class="px-2 mx-2 navbar-start">
+    <a sveltekit:prefetch href="/">
+      <span class="text-lg font-bold"> KitQL with GraphCMS </span>
+    </a>
+  </div>
+  <div class="px-2 mx-2 navbar-center">
+    <div class="flex items-stretch">
+      <a
+        sveltekit:prefetch
+        class="btn btn-ghost btn-sm rounded-btn"
+        href={`/`}>Home</a
+      >
+      {#each pages as { title, slug }}
+        <a
+          sveltekit:prefetch
+          class="btn btn-ghost btn-sm rounded-btn"
+          href={`/${slug}`}>{title}</a
+        >
+      {/each}
+    </div>
+  </div>
+  <div class="navbar-end">
+    <ThemeSelect />
+  </div>
+</div>
+```
+
+</Details>
+
+That's it, I have a sweet looking, basic project now!
 
 ## Conclusion
 
