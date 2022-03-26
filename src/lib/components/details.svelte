@@ -5,8 +5,8 @@
 </script>
 
 <div>
-  <button class="btn" on:click={() => (isOpen = !isOpen)}
-    >{isOpen ? `Close` : buttonText}</button
+  <button class="btn" on:click={() => (isOpen = !isOpen)}>
+    {isOpen ? `Close` : buttonText}</button
   >
   {#if isOpen}
     <div transition:slide>
