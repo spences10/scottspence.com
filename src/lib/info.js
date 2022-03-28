@@ -336,7 +336,7 @@ export const PEOPLE = [
   {
     name: `Alex Naydenov`,
     link: `https://twitter.com/vremigrant`,
-    met: false,
+    met: true,
   },
   {
     name: `John Otander`,
@@ -346,12 +346,12 @@ export const PEOPLE = [
   {
     name: `Frederik Eychenié`,
     link: `https://twitter.com/feychenie`,
-    met: false,
+    met: true,
   },
   {
     name: `Michael Lukaszczyk`,
     link: `https://twitter.com/m_lukaszczyk`,
-    met: false,
+    met: true,
   },
   {
     name: `Chris Biscardi`,
@@ -396,7 +396,7 @@ export const PEOPLE = [
   {
     name: `João Pedro Schmitz`,
     link: `https://twitter.com/jpedroschmitz`,
-    met: false,
+    met: true,
   },
   {
     name: `Michael Brooks`,
@@ -486,7 +486,7 @@ export const PEOPLE = [
   {
     name: `Ronak Ganatra`,
     link: `https://twitter.com/gunnyganatra`,
-    met: false,
+    met: true,
   },
   {
     name: `Joe Reeve`,
