@@ -134,8 +134,8 @@ set up now, I have been using SSH over HTTPS for a while now on WSL.
 
 > At the time of writing this WSL Git integration with VS Code doesn't
 > work so I have added a Git install to my windows machine, you can
-> omit this and go full Git via the terminal but I really like the
-> VS Code git integration.
+> omit this and go full Git via the terminal but I really like the VS
+> Code git integration.
 
 To get SSH set up on your machine take a look at this [handy SSH
 setup]. I say SSH instead of HTTPS 1. because I had all sorts of

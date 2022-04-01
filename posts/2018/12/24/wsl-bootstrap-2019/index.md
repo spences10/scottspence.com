@@ -224,11 +224,11 @@ so we're going to need a text editor, and there's nothing out there at
 the moment that comes close to VS Code, if you already have a text
 editor installed then skip to the next part.
 
-Install the Windows version of VS Code from the [Download section] once
-installed we can enable WSL in the settings, the quickest way to do
-this is to open the integrated terminal in VS Code with the shortcut
-keys Ctrl+' 👈 that's and apostrophe. You will be prompted to select
-your default terminal, select WSL Bash.
+Install the Windows version of VS Code from the [Download section]
+once installed we can enable WSL in the settings, the quickest way to
+do this is to open the integrated terminal in VS Code with the
+shortcut keys Ctrl+' 👈 that's and apostrophe. You will be prompted to
+select your default terminal, select WSL Bash.
 
 ![vscode config]
 
@@ -248,8 +248,8 @@ that additional binary, there's an overhead with having to maintain
 and configure SSH keys for both Windows and WSL Git but it's a one
 time setup.
 
-Until the VS Code team incorporate [WSLGit] into VS Code I think this is
-the best option.
+Until the VS Code team incorporate [WSLGit] into VS Code I think this
+is the best option.
 
 Install from [git-scm.com] the link will start downloading the install
 binary you can then open it and go through the install, you can keep
@@ -516,8 +516,8 @@ the `code .` command, navigate to the `App.js` component and add a
 Now the landing page should show the newly added h1, we can confirm
 that the file is changed in Git by doing a `git status` from the
 terminal. Then we can commit it from either the terminal or the IDE
-(VS Code) my preference is to use VS Code as the visual diffing of files
-is great.
+(VS Code) my preference is to use VS Code as the visual diffing of
+files is great.
 
 Commit the changes with Ctrl+Enter if you have not selected the file
 you want to commit you wil get a dialogue telling you there are no

@@ -222,8 +222,6 @@ Add Houdini generate command to the `package.json` scripts
 
 ## Add index page markup
 
-
-
 <!-- Links -->
 
 [alec aivazis]: https://github.com/AlecAivazis

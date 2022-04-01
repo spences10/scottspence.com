@@ -128,8 +128,8 @@ checked into GitHub.
 There are many GUIs that integrate with Git for use with GitHub the
 official GitHub one is pretty nice but I quickly got into situations
 that the GUI couldn't get me out of so I have stuck with the terminal
-since, well there is VS Code though which has a beautiful Git UI that I
-use daily, but there are some things that I still use the terminal
+since, well there is VS Code though which has a beautiful Git UI that
+I use daily, but there are some things that I still use the terminal
 for:
 
 ```bash

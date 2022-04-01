@@ -12,8 +12,8 @@ It's great, it's _similar_ to React
 
 ## The `{ h }` is needed
 
-I was quite hung up on the `{ h }` import, I use the VS Code setting to
-organise the imports on save.
+I was quite hung up on the `{ h }` import, I use the VS Code setting
+to organise the imports on save.
 
 ```json
 "editor.codeActionsOnSave": {
