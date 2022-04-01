@@ -44,12 +44,12 @@ module.exports = {
 }
 ```
 
-Install VSCode extensions:
+Install VS Code extensions:
 
 - [stylelint]
 - [Tailwind CSS IntelliSense]
 
-Add the following to a VSCode settings file:
+Add the following to a VS Code settings file:
 
 ```json
 "css.validate": false,

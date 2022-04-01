@@ -96,7 +96,7 @@ First up I'll need to download and install the Debian app, this will
 open up the Debian command line and prompt me to enter a username and
 password.
 
-I'll then need to change this from WSL to WSL2 via a Powershell admin
+I'll then need to change this from WSL to WSL2 via a PowerShell admin
 panel (`Windows Key+x`, then `a`) as it's fresh from the store it'll
 be on version 1.
 
@@ -117,7 +117,7 @@ PS C:\Windows\system32> wsl -l -v
 ```
 
 That lists out what I have installed, see that Debian is version 1,
-I'll use the `wsl` command in Powershell to set it to version 2, it'll
+I'll use the `wsl` command in PowerShell to set it to version 2, it'll
 show some output and let you know when it's done it's thing:
 
 ```bash

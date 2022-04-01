@@ -1,6 +1,6 @@
 ---
 date: 2021-08-21
-title: Make a Sitemap with Sveltekit
+title: Make a Sitemap with SvelteKit
 tags: ['svelte', 'sveltekit', 'seo', 'guide', 'how-to']
 isPrivate: false
 ---

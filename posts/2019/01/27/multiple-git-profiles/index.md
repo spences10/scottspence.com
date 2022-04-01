@@ -58,7 +58,7 @@ This will open a new file with nano that we can add the following to:
   User git
   IdentityFile ~/.ssh/id_default
 
-# Github (secondary)
+# GitHub (secondary)
   Host gh
   HostName github.com
   User git

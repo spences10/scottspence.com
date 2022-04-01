@@ -64,7 +64,7 @@ Gradient maker: [cssgradient.io/gradient-backgrounds]
 Nice Gradient Swatches: [gradientmagic.com]
 
 Animated gradients, via Chris Biscardi, example: [animated gradients
-Codesandbox]
+CodeSandbox]
 
 <Tweet tweetLink="chrisbiscardi/status/1259606045858467840" />
 

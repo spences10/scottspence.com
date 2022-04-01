@@ -1,6 +1,6 @@
 ---
 date: 2016-12-03
-title: My first Microsoft Visual Studio Code [VSCode] extension
+title: My first Microsoft Visual Studio Code [VS Code] extension
 tags: ['learning', 'vscode', 'extension']
 isPrivate: false
 ---
@@ -12,13 +12,13 @@ So for those of you that know what I do for a living I'm primarily an
 Analyst Developer with a skill set of VBA and SQL which has put me in
 good stead for the last 10+ years. I'm currently 'up-skilling' myself
 on more general programming languages, but enough of that! I basically
-wanted to use [VSCode][vscode] with VBA which is fine as it's just
-text files but I wanted some of the shexy stuff that VSCode comes
+wanted to use [VS Code][vscode] with VBA which is fine as it's just
+text files but I wanted some of the shexy stuff that VS Code comes
 with.
 
 ![vscode vba market-place]
 
-I'm not going to go into how awesome (I think) VSCode is here but I
+I'm not going to go into how awesome (I think) VS Code is here but I
 will mention that for the purpose of me wanting to use (or at least
 see syntax highlighting) I found this extension for
 [VBScript][vbscript] which was neat but didn't give me any
@@ -27,9 +27,9 @@ intellisense for even the most straight forward stuff like to create a
 
 So that got me playing around with making my own [snippets][snippets]
 and I found that after a while I had quite a lot of them so I decided
-to put them on the VSCode market place.
+to put them on the VS Code market place.
 
-So, what I found is that Microsoft really want you to make VSCode
+So, what I found is that Microsoft really want you to make VS Code
 extensions and give you all the tools you need to do so.
 
 I found guides [here][guide1], [here][guide2] and [here][guide3] all
@@ -45,7 +45,7 @@ success.
 Got tired after uninstalling and reinstalling several times at home
 and on the cloud so moved on. I read
 [this](https://code.visualstudio.com/docs/tools/vscecli) guide about
-setting yourself up as a publisher on the Microsoft VSCode
+setting yourself up as a publisher on the Microsoft VS Code
 [Marketplace](https://marketplace.visualstudio.com/) using with `vsce`
 (agin installed with npm) so after creating a Personal Access Token
 and creating my publisher account I could then publish my extension.

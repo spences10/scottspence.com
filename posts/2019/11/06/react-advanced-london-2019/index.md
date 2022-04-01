@@ -216,7 +216,7 @@ Library's lock you into _their_ way of testing things.
 
 <YouTube youTubeId="1vDXRDQ9aJE" />
 
-After this talk I was off to the React native hall to go see some of
+After this talk I was off to the React Native hall to go see some of
 the lightening talks as I knew one of the speakers.
 
 ## Dave Nicholas - Functions vs Classes

@@ -37,9 +37,9 @@ These are:
 - Node v14+
 - Terminal
 - VS Code or a text editor of your choosing
-- GitHub/Gitlab account
+- GitHub/GitLab account
 
-Or GitPod ot GitHub code spaces.
+Or Gitpod ot GitHub code spaces.
 
 ## What is Svelte and SvelteKit
 

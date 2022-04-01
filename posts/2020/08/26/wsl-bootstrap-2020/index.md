@@ -13,7 +13,7 @@ Yo! It's that time again!!
 
 This is an opinionated guide on setting up a development environment
 for web development in widows that will use the requisite tools, Bash,
-Node, Git, VSCode etc...
+Node, Git, VS Code etc...
 
 Tl;Dr to the [guide] if you're not interested in the preamble and how
 I got here.
@@ -40,7 +40,7 @@ the past:
 This time round it was just as confusing (for me) at the times before,
 so this is why I'm making notes for future Scott to refer to. 🔥
 
-## Advantages of Windows over Linux or MacOs
+## Advantages of Windows over Linux or macOS
 
 I'm not going to get into a debate on the advantages of one platform
 over another.
@@ -49,7 +49,7 @@ I can be productive on all of them given the right tools and that's
 fine with me. Consider it like building a project for a client, they
 really don't care what framework you used to make it as long as it
 works and I feel the same about that with using Windows, Linux or
-MacOs.
+macOS.
 
 ## Why WSL?
 
@@ -245,10 +245,10 @@ clist -l
 ```
 
 The only ones on there to take note of really that are used for web
-dev are VSCode and **WSLGit**.
+dev are VS Code and **WSLGit**.
 
 WSLGit being the important one that enables the use of Git installed
-on my WSL instance to work in VSCode on Windows.
+on my WSL instance to work in VS Code on Windows.
 
 Prior to this I [had to install Git on Windows] which had it's own set
 of problems with line endings and file permissions.
@@ -539,16 +539,16 @@ cd ../
 sudo chmod 700 .ssh/
 ```
 
-## VSCode
+## VS Code
 
-Ok I'm ready to use VSCode, configuring VSCode is another topic in
-itself the one thing I want to for Git to work with VSCode is to pick
-the default shell I want to use with VSCode.
+Ok I'm ready to use VS Code, configuring VS Code is another topic in
+itself the one thing I want to for Git to work with VS Code is to pick
+the default shell I want to use with VS Code.
 
-On first opening VSCode I'm prompted in install the [Remote WSL]
-extension this will integrate VSCode with my WSL instance.
+On first opening VS Code I'm prompted in install the [Remote WSL]
+extension this will integrate VS Code with my WSL instance.
 
-I'll pop out the terminal pane in VSCode with the shortcut Ctrl+j (or
+I'll pop out the terminal pane in VS Code with the shortcut Ctrl+j (or
 Ctrl+') then in the top of the panel there's a drop down box with the
 option to 'Select Default Shell', selecting this option gives me the
 list of shells to choose from I'm picking Fish.
@@ -565,7 +565,7 @@ I've always added that setting manually in the past!
 
 I can open the settings as a JSON file because I have set my workbench
 settings to open the JSON file rather than the UI, if you want to open
-the JSON file use the VSCode shortcut to open the command pallet with
+the JSON file use the VS Code shortcut to open the command pallet with
 Ctrl+Shift+p then search for 'Preferences: Open Setting (JSON)', I
 have the following setting so I can use the JSON file over the UI:
 
@@ -575,15 +575,15 @@ have the following setting so I can use the JSON file over the UI:
 
 ## WSLGit
 
-Time to touch on [WSLGit] again, now that I've got VSCode pointing to
+Time to touch on [WSLGit] again, now that I've got VS Code pointing to
 my WSL terminal I should see any changes under source control (Git)
-appear in the Git VSCode panel.
+appear in the Git VS Code panel.
 
 I mentioned previously in the past I [had to install Git on windows]
 with WSLGit installed via Chocolatey any issues I had in the past are
 forgotten (for now).
 
-Now any code changes that are made in VSCode are forwarded to the WSL
+Now any code changes that are made in VS Code are forwarded to the WSL
 Git instance so there's no need to install Git in Windows!
 
 ## Other Guides

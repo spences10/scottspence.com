@@ -243,15 +243,15 @@ settings file is where I can set the default profile to use:
 ```
 
 These default options on a profile can be extended, so when I pick a
-Debian shell I can have the `colorScheme` set to Campbell Powershell:
+Debian shell I can have the `colorScheme` set to Campbell PowerShell:
 
 ```json {6}
 {
   "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
   "hidden": false,
   "name": "Debian",
-  "source": "Windows.Terminal.Wsl",
-  "colorScheme": "Campbell Powershell"
+  "source": "Windows.Terminal.WSL",
+  "colorScheme": "Campbell PowerShell"
 }
 ```
 
@@ -267,10 +267,10 @@ well if I want:
   "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
   "hidden": false,
   "name": "Debian",
-  "source": "Windows.Terminal.Wsl",
+  "source": "Windows.Terminal.WSL",
   "fontSize": 8,
   "fontFace": "Comic Sans MS",
-  "colorScheme": "Campbell Powershell"
+  "colorScheme": "Campbell PowerShell"
 }
 ```
 
@@ -310,7 +310,7 @@ Here's how it looks for Ubuntu:
   "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
   "hidden": false,
   "name": "Ubuntu-20.04",
-  "source": "Windows.Terminal.Wsl",
+  "source": "Windows.Terminal.WSL",
   "backgroundImage": "ms-appdata:///roaming/ubuntu.png",
   "backgroundImageStretchMode": "none",
   "backgroundImageAlignment": "bottomRight",

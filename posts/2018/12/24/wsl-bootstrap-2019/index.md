@@ -11,7 +11,7 @@ From scratch to Create React App on Windows
 Windows 10**
 
 I have been a professional web developer for 10 months now and used
-both MacOs and Windows in that time. My preferred OS to use is
+both macOS and Windows in that time. My preferred OS to use is
 Windows, for no other reason than I prefer the keyboard layout.
 
 With Windows/Linux I like to have my Ctrl key as the key to use for
@@ -218,15 +218,15 @@ Now check the versions of Node and npm we have installed with
 
 ## Install Visual Studio Code
 
-Install VSCode? What? This post is to set up WSL? Ok, so we're going
+Install VS Code? What? This post is to set up WSL? Ok, so we're going
 to presume that this is going from nothing to being able to web dev,
 so we're going to need a text editor, and there's nothing out there at
-the moment that comes close to VSCode, if you already have a text
+the moment that comes close to VS Code, if you already have a text
 editor installed then skip to the next part.
 
-Install the Windows version of VSCode from the [Download section] once
+Install the Windows version of VS Code from the [Download section] once
 installed we can enable WSL in the settings, the quickest way to do
-this is to open the integrated terminal in VSCode with the shortcut
+this is to open the integrated terminal in VS Code with the shortcut
 keys Ctrl+' 👈 that's and apostrophe. You will be prompted to select
 your default terminal, select WSL Bash.
 
@@ -234,7 +234,7 @@ your default terminal, select WSL Bash.
 
 ## Install Windows Git
 
-There's a bit of stumbling block getting [Git support for VSCode],
+There's a bit of stumbling block getting [Git support for VS Code],
 it's well documented in the various issues mentioned in the linked
 issue.
 
@@ -242,13 +242,13 @@ There are workarounds as well with things like [WSLGit] which has it's
 own set of issues, this all stems from users (me included) not wanting
 to have to install another binary for Git.
 
-I have tried several variants when it comes to using Git with VSCode
+I have tried several variants when it comes to using Git with VS Code
 and the path of least resistance was biting the bullet and installing
 that additional binary, there's an overhead with having to maintain
 and configure SSH keys for both Windows and WSL Git but it's a one
 time setup.
 
-Until the VSCode team incorporate [WSLGit] into VSCode I think this is
+Until the VS Code team incorporate [WSLGit] into VS Code I think this is
 the best option.
 
 Install from [git-scm.com] the link will start downloading the install
@@ -283,10 +283,10 @@ or from Hyper itself use the shortcut key Ctrl+, to pop open the
 settings.
 
 If the settings file (`.hyper.js`) opens in Notepad then you can set
-the default to be VSCode. In File Explorer (Use Windows key+e to open
+the default to be VS Code. In File Explorer (Use Windows key+e to open
 it) navigate to the file, it'll be in your User folder, right-click
 the file and select Properties, then Change for 'Opens with:' and
-select VSCode from the list.
+select VS Code from the list.
 
 ![default-file-type]
 
@@ -388,7 +388,7 @@ could tab to complete the rest of the command.
 
 ## Configure
 
-So, now we have a swanky looking new terminal and a bare-bones VSCode
+So, now we have a swanky looking new terminal and a bare-bones VS Code
 install it's time to get things moving.
 
 I have a [cheat-sheets] repo detailing a lot of the configuration
@@ -484,10 +484,10 @@ So, now that we have spun up a React app to work on we should make a
 change and then add it to GitHub.
 
 Navigate to the create-react-app folder in the terminal and open the
-project. You can open VSCode with the `code .` command, the `.`
+project. You can open VS Code with the `code .` command, the `.`
 denotes the current folder in the terminal.
 
-This will open VSCode at the root of the create-react-app project,
+This will open VS Code at the root of the create-react-app project,
 make sure everything is working as expected by running the start
 script in npm.
 
@@ -501,14 +501,14 @@ the `package.json` file.
 
 A window will open displaying the basic Create React App landing page,
 we're going to add a h1 to the `App.js` module then commit it, via the
-Source Control menu in VSCode.
+Source Control menu in VS Code.
 
 > Please bear in mind this is an up and running guide for a
 > development environment, I'm not going to be detailing developing in
 > React
 
 Whilst the terminal is busy starting up the create-react-page we can
-open another tab in Hyper with Ctrl+Shift+t and open up VSCode with
+open another tab in Hyper with Ctrl+Shift+t and open up VS Code with
 the `code .` command, navigate to the `App.js` component and add a
 `<h1>` tag to it just above the `<img>` tag with
 `<h1>Hello React!</h1>` in it.
@@ -516,7 +516,7 @@ the `code .` command, navigate to the `App.js` component and add a
 Now the landing page should show the newly added h1, we can confirm
 that the file is changed in Git by doing a `git status` from the
 terminal. Then we can commit it from either the terminal or the IDE
-(VSCode) my preference is to use VSCode as the visual diffing of files
+(VS Code) my preference is to use VS Code as the visual diffing of files
 is great.
 
 Commit the changes with Ctrl+Enter if you have not selected the file
@@ -525,7 +525,7 @@ staged changes to commit, you can select the files (in this case only
 the `App.js` file) by clicking the plus next to the file. Hitting
 Ctrl+Enter again will commit the changes with a message, you can check
 that there are no changes to commit with `git status` from the
-terminal or visually from the Source Control section in VSCode.
+terminal or visually from the Source Control section in VS Code.
 
 ![cra change]
 
@@ -694,7 +694,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [n-install]: https://github.com/mklement0/n-install
 [hyper]: https://hyper.is
 [firacode]: https://github.com/tonsky/FiraCode
-[git support for vscode]:
+[git support for vs code]:
   https://github.com/Microsoft/vscode/issues/9502
 [wslgit]: https://github.com/andy-5/wslgit
 [git-scm.com]: https://git-scm.com/download/win

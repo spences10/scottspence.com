@@ -111,7 +111,7 @@ use-cases however:
 
 First alternitive I found was FUSUMA and it wasn't until I got into
 the very important part of customisation of the slides that I found
-the Yaml file used to configure the theme and code blocks didn't work
+the YAML file used to configure the theme and code blocks didn't work
 on my setup (WSL behbeh).
 
 Another main feature I look for is the ability to publish the slides

@@ -73,7 +73,7 @@ Delivering Digital Content with GraphCMS
 Building a blog using GatsbyJS and MDX, Build a Gatsby blog with MDX
 and Theme UI
 
-📺 [Watch it on Youtube](https://youtu.be/Mg19wDM4wS8?t=76)
+📺 [Watch it on YouTube](https://youtu.be/Mg19wDM4wS8?t=76)
 
 ## MMT Tech Meet-up - 2021 Feb
 

@@ -102,7 +102,7 @@ public
 yarn-error.log" > .gitignore
 ```
 
-Ok now is a good time to do a `git init` and if you're using VSCode
+Ok now is a good time to do a `git init` and if you're using VS Code
 you'll see the changes reflected in the sidebar.
 
 ### basic hello world

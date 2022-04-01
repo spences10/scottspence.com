@@ -47,9 +47,9 @@ to do the stream from to Twitch.
 
 ## Burn
 
-The issue for me was that I didn't have the WiFi bandwidth to stream
+The issue for me was that I didn't have the Wi-Fi bandwidth to stream
 it. It wasn't until I started the stream that I saw the majority of
-the stream was buffering whilst my WiFi crumbled under the load of
+the stream was buffering whilst my Wi-Fi crumbled under the load of
 sharing the output from the two devices.
 
 ## Another way

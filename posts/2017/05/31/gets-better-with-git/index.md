@@ -87,7 +87,7 @@ much the same as with VSS and TFS.
 - Make changes.
 - Once the changes are made then add them back with accompanying
   commit messages.
-- Push the changes back to the repo on Github.
+- Push the changes back to the repo on GitHub.
 
 The documentation on GitHub is fantastic for anything you want to
 achieve and in this post I have referenced some the documentation.
@@ -128,7 +128,7 @@ checked into GitHub.
 There are many GUIs that integrate with Git for use with GitHub the
 official GitHub one is pretty nice but I quickly got into situations
 that the GUI couldn't get me out of so I have stuck with the terminal
-since, well there is VSCode though which has a beautiful Git UI that I
+since, well there is VS Code though which has a beautiful Git UI that I
 use daily, but there are some things that I still use the terminal
 for:
 

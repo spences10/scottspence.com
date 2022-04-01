@@ -24,7 +24,7 @@ All you need to do is enter your details into the prompts provided.
 There's a choice of platforms Netlify or Vercel.
 
 The one thing you'll need one of the following git hosting accounts:
-GitLab, GitHub, or BitBucket. I'm guessing if you're reading this then
+GitLab, GitHub, or Bitbucket. I'm guessing if you're reading this then
 you have at least one of these already.
 
 ## Deploy with Netlify
@@ -69,7 +69,7 @@ Click the Deploy button to start the proces.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnotrab%2Fshortcuts&env=SHORTCUTS_NAME,SHORTCUTS_SITE,SHORTCUTS_TWITTER,SHORTCUTS_YOUTUBE,SHORTCUTS_GITHUB,SHORTCUTS_LINKEDIN,SHORTCUTS_DEVTO,SHORTCUTS_MEDIUM)
 
-You'll be prompted to connect to GitHub, GitLab, or BitBucket.
+You'll be prompted to connect to GitHub, GitLab, or Bitbucket.
 
 ![vercel-pick-git-provider]
 

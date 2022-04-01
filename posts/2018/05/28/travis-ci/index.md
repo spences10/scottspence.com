@@ -42,7 +42,7 @@ Travis-ci
 The [guide here] covers it for using now, the part I found
 particularly painful was generating the secure variable for the
 `.travis.yml` file because I don't have Ruby installed and I struggled
-to set it up on my OpenSUSE WSL install, so instead I used a Cloud9
+to set it up on my openSUSE WSL install, so instead I used a Cloud9
 machine in the end.
 
 #### the flow

@@ -11,7 +11,7 @@ all.
 ## Playwright
 
 Playwright is neat n' all, it's the main 'evergreen' browsers all on
-one package, so that's Chromium, Firefox and Webkit (Safari).
+one package, so that's Chromium, Firefox and WebKit (Safari).
 
 ## Config
 

@@ -127,7 +127,7 @@ That last command will prompt me for the password I created for
 `scott`, presuming that went well then it's time to set the default
 user.
 
-To do that, `exit` WSL to get back into Powershell.
+To do that, `exit` WSL to get back into PowerShell.
 
 This PowerShell one-liner configures my user properly, (thanks Jim!)
 take note of the last value here `1000` that's the `id -u` I checked

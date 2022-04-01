@@ -75,7 +75,7 @@ left:
 
 There are many places to use Markdown as I mentioned earlier, for the
 examples here I'll be using the interactive component, if you want to
-follow along I'll be using VSCode and Prettier.
+follow along I'll be using VS Code and Prettier.
 
 There's also [Markdown Forge] by [Justin Juno] which is a very handy
 tool for writing Markdown in the browser.

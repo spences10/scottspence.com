@@ -36,7 +36,7 @@ framework like Svelte and are familiar with using the command line
 
 So this means you already have a developement environment with Node a
 terminal and a text editor like VS Code installed and ready to go. If
-you don't then there are still services like GitPod, [StackBlitz] and
+you don't then there are still services like Gitpod, [StackBlitz] and
 GitHub Codespaces you can use from a browser.
 
 StackBlitz is bonkers fast and would be my go-to if I was to use one
@@ -142,7 +142,7 @@ VITE_FATHOM_URL=https://cdn.usefathom.com/script.js
 ```
 
 The reason for using a `.env` file if because a lot of ad blockers
-will scrape it from places like GitHub, Gitlab and Bitbucket and add
+will scrape it from places like GitHub, GitLab and Bitbucket and add
 it to their block lists.
 
 ## Install and config Fathom client

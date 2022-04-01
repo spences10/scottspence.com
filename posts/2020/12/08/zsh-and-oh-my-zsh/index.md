@@ -182,7 +182,7 @@ abstracted out the aliases into their own file `.zsh_aliases` this is
 because I have a lot of aliases for things.
 
 If you're interested in checking out my configuration for Zsh you can
-see my [`dotfiles`] on Github.
+see my [`dotfiles`] on GitHub.
 
 ## What's next?
 

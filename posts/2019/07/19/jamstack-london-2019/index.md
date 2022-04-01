@@ -85,7 +85,7 @@ for my blog. Obviously Netlify is used to build Netlify so Matt showed
 off the continuous deployment for Netlify whilst putting the feature
 live.
 
-### Transforming the Json - GROQ (& Sanity CMS) - Knut Melvær
+### Transforming the JSON - GROQ (& Sanity CMS) - Knut Melvær
 
 Knut showing off the advantages of using GROQ for querying your data.
 

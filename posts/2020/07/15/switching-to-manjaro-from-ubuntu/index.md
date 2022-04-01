@@ -63,7 +63,7 @@ didn't know at the time was that a straight up copy pasta with the
 file GUI doesn't copy hidden files!
 
 Luckily I had my dotfiles on GitHub along with my setting for various
-apps like VSCode so it wasn't a massive issue.
+apps like VS Code so it wasn't a massive issue.
 
 If you're thinking about doing something similar check your backups or
 use a backup tool.
@@ -145,7 +145,7 @@ snap install emote
 Emote package details here: https://snapcraft.io/install/emote/ubuntu
 
 There were issues with emoji not showing in some apps, I've come
-across it before but this time there was no support in my VSCode!
+across it before but this time there was no support in my VS Code!
 
 Before:
 
@@ -180,12 +180,12 @@ setting] which was disabled in the Tweaks dialog.
 
 Tweaks > Top Bar > Activities Overview Hot Corner
 
-## Virtualbox
+## VirtualBox
 
-Installing Virtualbox wasn't a straightforward click install either I
+Installing VirtualBox wasn't a straightforward click install either I
 had to get a version matching my kernel version! 🙃
 
-There's a dialog that the add/remove software interface presents you
+There's a dialogue that the add/remove software interface presents you
 with with a big list of host modules.
 
 To check the kernel:

@@ -34,7 +34,7 @@ beginner (and also after) is important and not always an easy task. In
 this episode, we will talk about everything you need to know when
 looking for a mentor, or becoming a mentor.
 
-📺 [Watch it on Youtube](https://www.youtube.com/watch?v=Ei9gQBiE_YE)
+📺 [Watch it on YouTube](https://www.youtube.com/watch?v=Ei9gQBiE_YE)
 
 <Spotify
   spotifyLink="episode/5vDA5M3fVGXz5UAWWIoM6T"
@@ -61,7 +61,7 @@ the most important accessibility features.
 We will talk about what accessibility actually is, why it is
 important, and how to implement it.
 
-📺 [Watch it on Youtube](https://www.youtube.com/watch?v=Utf1cznHYcI)
+📺 [Watch it on YouTube](https://www.youtube.com/watch?v=Utf1cznHYcI)
 
 <Spotify
   spotifyLink="episode/5ru6HIgUyTCH9hypKepeGJ"
@@ -74,7 +74,7 @@ important, and how to implement it.
 Episode #8 - Content Creation, Whether it's blog posts, video courses,
 live streams, or books - content creation is BIG, also for developers.
 
-📺 [Watch it on Youtube](https://www.youtube.com/watch?v=N6eShctTwxo)
+📺 [Watch it on YouTube](https://www.youtube.com/watch?v=N6eShctTwxo)
 
 <Spotify
   spotifyLink="episode/48fjNuaZVB50ygM5R5jaeu"
@@ -95,7 +95,7 @@ developer is not an easy task. Many challenges await us in the daily
 battle. It's important to keep good mental wellbeing. We will talk
 about common problems among developers.
 
-📺 [Watch it on Youtube](https://www.youtube.com/watch?v=0P8GTyBEUVE)
+📺 [Watch it on YouTube](https://www.youtube.com/watch?v=0P8GTyBEUVE)
 
 <Spotify
   spotifyLink="episode/1xdozdWXWINddIIbxqZAzL"
@@ -111,7 +111,7 @@ for at least 8 hours a day. With our guests who are experts in
 fitness, we will find out what you can do to become a healthier
 developer.
 
-📺 [Watch it on Youtube](https://www.youtube.com/watch?v=pBARlvSvACs)
+📺 [Watch it on YouTube](https://www.youtube.com/watch?v=pBARlvSvACs)
 
 <Spotify
   spotifyLink="episode/6YpCB55IX3EE6gE7cJ94UJ"
@@ -127,7 +127,7 @@ is positioning elements and making a pretty button. But there is this
 other world. The one where complete art pieces are done with just a
 single div element (or less). We talk about all of it.
 
-📺 [Watch it on Youtube](https://www.youtube.com/watch?v=1_q6ESYR3R8)
+📺 [Watch it on YouTube](https://www.youtube.com/watch?v=1_q6ESYR3R8)
 
 <Spotify
   spotifyLink="episode/0jOVCvKNJUx158U587pPUt"
@@ -141,7 +141,7 @@ Episode 4: How To Use Twitter For Yourself As A Developer, In this
 episode, we talk about how to get the most out of Twitter as a
 developer and how to grow your account.
 
-📺 [Watch it on Youtube](https://www.youtube.com/watch?v=2YFa6aJG1bo)
+📺 [Watch it on YouTube](https://www.youtube.com/watch?v=2YFa6aJG1bo)
 
 <Spotify
   spotifyLink="episode/12q74FKWRRF7Tsl7ieefXA"
@@ -156,7 +156,7 @@ some freelancing experts on the show to tell us how to get started,
 what to look out for, and how to enjoy the whole process of doing
 freelance work.
 
-📺 [Watch it on Youtube](https://www.youtube.com/watch?v=k3lsSMByTPw)
+📺 [Watch it on YouTube](https://www.youtube.com/watch?v=k3lsSMByTPw)
 
 <Spotify
   spotifyLink="episode/7x4kDYzJnGDbZs9qYIpouy"
@@ -170,7 +170,7 @@ Episode 2: Learning and Unlearning How To Code, In this episode, we
 have some fantastic guests with different coding backgrounds that will
 talk with us about how to learn (and unlearn) how to code 💻📚
 
-📺 [Watch it on Youtube](https://www.youtube.com/watch?v=5eJ2a9rn54U)
+📺 [Watch it on YouTube](https://www.youtube.com/watch?v=5eJ2a9rn54U)
 
 <Spotify
   spotifyLink="episode/4QjQa9vO41AdnmZgwvZRpl"
@@ -209,7 +209,7 @@ Episode 1: Coding Motivation, In this episode, we talk with Danny
 Thompson and Eddy Vinck about coding motivation and whether or not you
 need a college degree to get a job in tech.
 
-📺 [Watch it on Youtube](https://www.youtube.com/watch?v=LQwvSAcs-QY)
+📺 [Watch it on YouTube](https://www.youtube.com/watch?v=LQwvSAcs-QY)
 
 <Spotify
   spotifyLink="episode/0li7Ya8CsnpX0GudnnMuUy"

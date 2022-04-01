@@ -37,7 +37,7 @@ there was an opportunity to use it.
 
 It's JavaScript, APIs and Markup
 
-Javascript > browserside
+JavaScript > browserside
 
 APIs > the backend for the browser
 

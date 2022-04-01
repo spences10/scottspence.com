@@ -47,7 +47,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 To get around this I just took the latest version of the `use-ts-bot`
 branch from my GitHub account and then and used that in place of the
 `origin` conflicts as what I'm working on will ultimately replace the
-master branch, so it was just a copy pasta into my VSCode then
+master branch, so it was just a copy pasta into my VS Code then
 recommit the changes files. Phew! I now have a branch I can compare
 with the master that I will one day make a PR for 😅
 

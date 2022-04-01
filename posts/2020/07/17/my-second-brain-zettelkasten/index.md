@@ -73,7 +73,7 @@ The Android version just straight up stopped working, I couldn't use
 it and the general feeling from Notion was meh!
 
 I learned the hard way about differing Markdown versions with this too
-after making a 8k word post in Notion then copy pasting into VSCode to
+after making a 8k word post in Notion then copy pasting into VS Code to
 find all the artifacts for code snippets and word formatting
 throughout.
 
@@ -127,27 +127,27 @@ This is nice, there's an import option for Roam exports, you can
 configure your daily notes location and it has a super nice graph
 view.
 
-This experience felt a lot like working in VSCode, but it wasn't
-VSCode! 😬
+This experience felt a lot like working in VS Code, but it wasn't
+VS Code! 😬
 
-I'm very comfortable with editing Markdown in VSCode and felt a bit
+I'm very comfortable with editing Markdown in VS Code and felt a bit
 cheated when I couldn't select a tab or move lines around.
 
 ## Foam
 
-So, Foam! [Foam is a VSCode extension] that enables the features of
-Obsidian but with the editing power of VSCode, so no brainier, right?
+So, Foam! [Foam is a VS Code extension] that enables the features of
+Obsidian but with the editing power of VS Code, so no brainier, right?
 
 Foam are the first to admit that [things may be a little rough] as
 it's still in preview. But I _really_ like working with my Markdown in
-VSCode so I'm prepared for the teething issues.
+VS Code so I'm prepared for the teething issues.
 
 There's a [super welcoming Discord] to join and talk to other users
 and the developers.
 
 With my new liberated data from Notion and RoamResearch I'm in the
 process of working through all this data which is easy to visualise
-with the VSCode file explorer and built in graph view of Foam.
+with the VS Code file explorer and built in graph view of Foam.
 
 The Foam graph view is still a WIP so I'm referring to Obsidian to
 check that out for now.
@@ -166,7 +166,7 @@ I'm super excited following the progress of this!
 [how to screen snip]: https://cheatsheets.xyz/mac/#screen-snip
 [kill a process]: https://cheatsheets.xyz/bash/#kill-process-on-port
 [one repository]: https://github.com/spences10/cheat-sheets
-[foam is a vscode extension]: https://github.com/foambubble/foam
+[foam is a vs code extension]: https://github.com/foambubble/foam
 [things may be a little rough]:
   https://foambubble.github.io/foam/#getting-started
 [super welcoming discord]: https://discord.gg/rtdZKgj
