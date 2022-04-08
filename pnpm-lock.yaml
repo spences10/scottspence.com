@@ -16,7 +16,7 @@ specifiers:
   fuse.js: 6.5.3
   graphql: 16.3.0
   graphql-request: 4.2.0
-  marked: 4.0.12
+  marked: 4.0.13
   mdsvex: 0.10.5
   mdsvex-relative-images: 1.0.2
   postcss: ^8.4.12
@@ -37,7 +37,7 @@ specifiers:
 
 devDependencies:
   '@sveltejs/adapter-vercel': 1.0.0-next.47
-  '@sveltejs/kit': 1.0.0-next.305_svelte@3.46.6
+  '@sveltejs/kit': 1.0.0-next.308_svelte@3.46.6
   '@tailwindcss/typography': 0.5.2_tailwindcss@3.0.23
   autoprefixer: 10.4.4_postcss@8.4.12
   cssnano: 5.1.7_postcss@8.4.12
@@ -51,7 +51,7 @@ devDependencies:
   fuse.js: 6.5.3
   graphql: 16.3.0
   graphql-request: 4.2.0_graphql@16.3.0
-  marked: 4.0.12
+  marked: 4.0.13
   mdsvex: 0.10.5_svelte@3.46.6
   mdsvex-relative-images: 1.0.2
   postcss: 8.4.12
@@ -160,8 +160,8 @@ packages:
       esbuild: 0.14.27
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.305_svelte@3.46.6:
-    resolution: {integrity: sha512-xnykqWuN/9pRQOG8M+qnqbOyM/UK6UnnrdWIy82DkQ+ZO0jKA+puM7V6r0jso2vQr8n7LGSabgwioeJ/EINKpg==}
+  /@sveltejs/kit/1.0.0-next.308_svelte@3.46.6:
+    resolution: {integrity: sha512-/ORLef5kZEMTUgUkdSQ5Lsn3IKBRNYmLdJ26JjtSa03nPKsybvSMiGIho9WS6ESBw3+XaYF91TqksTyr/gTeoA==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
@@ -1681,8 +1681,8 @@ packages:
       sourcemap-codec: 1.4.8
     dev: true
 
-  /marked/4.0.12:
-    resolution: {integrity: sha512-hgibXWrEDNBWgGiK18j/4lkS6ihTe9sxtV4Q1OQppb/0zzyPSzoFANBa5MfsG/zgsWklmNnhm0XACZOH/0HBiQ==}
+  /marked/4.0.13:
+    resolution: {integrity: sha512-lS/ZCa4X0gsRcfWs1eoh6dLnHr9kVH3K1t2X4M/tTtNouhZ7anS1Csb6464VGLQHv8b2Tw1cLeZQs58Jav8Rzw==}
     engines: {node: '>= 12'}
     hasBin: true
     dev: true
