@@ -45,7 +45,7 @@
         <a
           href="/contact"
           on:click={() => trackGoal(`T2YXL68Y`)}
-          class="btn btn-md md:w-full lg:btn-lg btn-primary text-primary-content mb-5 hover:text-primary-content"
+          class="btn btn-md w-full lg:btn-lg btn-primary text-primary-content mb-5 hover:text-primary-content"
           >Get in Touch</a
         >
       </div>

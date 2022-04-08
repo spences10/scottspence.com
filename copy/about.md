@@ -2,6 +2,7 @@
   import DateUpdated from '$lib/components/date-updated.svelte'
   import Small from '$lib/components/small.svelte'
   import Deezer from '$lib/components/deezer.svelte'
+  import DateDistance from '$lib/components/date-distance.svelte'
 </script>
 
 ## Hi, I'm Scott
@@ -15,11 +16,16 @@ supporting the written content.
 I'm a second career dev that reskilled from a VBA analyst developer
 role into web development.
 
-I'm a massive fan of the [Jamstack]. I have a wealth of knowledge
-working with [Gatsby] and am spending a lot of time familiarising
-myself with Svelte and SvelteKit.
+I have been spending a lot of time working in Svelte and SvelteKit
+for, <DateDistance date='2021-04-06' /> now, holding workshops and
+organising events in the form of the London Svelte Meetup.
 
-You can check out the [portfolio section] for more information.
+Check out the [speaking] section for more details about those!
+
+I'm a massive fan of the [Jamstack], with a wealth of knowledge
+working with [Gatsby] (the React framework).
+
+Also, check out the [portfolio section] for more information.
 
 ### Sectors I have worked in:
 
@@ -106,3 +112,4 @@ series covers the food delivery industry.
 [my results]: https://www.16personalities.com/profiles/ba01a67248b68
 [jamstack]: https://jamstack.org/
 [portfolio section]: /portfolio
+[speaking]: /speaking
