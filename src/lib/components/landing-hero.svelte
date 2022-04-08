@@ -1,4 +1,5 @@
 <script>
+  import { trackGoal } from 'fathom-client'
 </script>
 
 <div
@@ -37,6 +38,16 @@
           You can carry on scrolling for a bit more info about me if
           you like.
         </p>
+        <p class="mb-10">
+          Or if you want to get in touch, feel free to reach out to
+          me...
+        </p>
+        <a
+          href="/contact"
+          on:click={() => trackGoal(`T2YXL68Y`)}
+          class="btn btn-md md:w-full lg:btn-lg btn-primary text-primary-content mb-5 hover:text-primary-content"
+          >Get in Touch</a
+        >
       </div>
     </div>
   </div>
