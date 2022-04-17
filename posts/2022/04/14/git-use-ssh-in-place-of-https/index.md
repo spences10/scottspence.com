@@ -2,7 +2,7 @@
 date: 2022-04-14
 title: Git Use SSH in place of HTTPS
 tags: ['git', 'how-to']
-isPrivate: false
+isPrivate: true
 ---
 
 Get your SSH set up on your machine and add a key to GitHub, more on
