@@ -11,7 +11,11 @@ content of the page.
 So on this page, if you hit the tab key you'll see a skip navigation
 button, something like this:
 
-<button class="btn p-3 bg-primary"> Skip Navigation </button>
+<div class="flex justify-center">
+  <button class="btn p-3 bg-primary text-primary-content hover:text-primary-focus">
+    Skip Navigation 
+  </button>
+</div>
 
 This is an accessibility improvement that lets keyboard users skip all
 the navigation links and move to the main content of the page.
