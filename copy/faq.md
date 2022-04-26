@@ -7,7 +7,7 @@
 # For recruiters - FAQ
 
 <Small>
-  Last updated: <DateUpdated date='2022-03-22' small='true' />
+  Last updated: <DateUpdated date='2022-04-26' small='true' />
 </Small>
 
 Hello friend 👋, thanks for taking an interest in me and my profile.
@@ -99,16 +99,16 @@ companies please**.
 
 ## What's your preferred stack?
 
-I'm _really_ enjoying using the [Jamstack] right now, my preferred
-framework is Svelte and I'll be very interested in roles that are
+I'm _really_ enjoying working with Svelte and SvelteKit and I'll be
+very interested in roles that are using it.
+
+Tailwind is my current preference for the speed which it offers when
+creating projects. I have used styled-components for many projects, I
+am also comforable using Theme UI and Tailwind CSS.
+
+I have a wealth of knowledge using [Gatsby] (2017-2020) (which uses
+**React** and **GraphQL**) and have consulted on large scale projects
 using it.
-
-I have a wealth of knowledge using [Gatsby] (which uses **React** and
-**GraphQL**) and have consulted on large scale apps using it.
-
-I have used styled-components for many projects, I am also comforable
-using Theme UI and Tailwind CSS. Tailwind is my current preference for
-the speed which it offers when creating projects.
 
 For CMS' any opportunity to work with any of the new headless CMS'
 that are emerging would be great: [GraphCMS], [Sanity.io], [Strapi],
@@ -194,8 +194,11 @@ I'm happy in sunny, sunny Swanley
 
 ## Are you willing to work remotely?
 
-Yeah, I mean, the whole industry has been working remotley since the
-pandemic started.
+I think the question now should be, are you willing to come into the
+office!
+
+Yeah, I mean, the whole industry has been working remotley since 2020
+now.
 
 I'd prefer not to be bound by any number of days needed to be worked
 in an office. Occasional meetings, fine.
