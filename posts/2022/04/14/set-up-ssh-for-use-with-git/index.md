@@ -1,9 +1,24 @@
 ---
 date: 2022-04-14
-title: Git Use SSH in place of HTTPS
-tags: ['git', 'how-to']
+title: Set up SSH for use with Git
+tags: ['git', 'ssh', 'how-to']
 isPrivate: true
 ---
+
+Secure Shell (SSH) is a secure way to connect with code repository
+hosts like GitLab, Bitbucket and of course GitHub. While HTTPS
+connections require a username and password credentials, SSH instead
+uses a pair of cryptographically generated keys.
+
+The two keys are public and private, the public key is the one that
+can be stored on the code repository/hosting provider (GitHub, GitLab,
+and the like) and the private one stays secure on your machine.
+
+## Already have projects on your machine that use HTTPS for authentication?
+
+When you have decided to use SSH in place of HTTPS connections with
+Git there there's a few things you'll need to do to your existing
+projects that use HTTPS for authentication.
 
 Get your SSH set up on your machine and add a key to GitHub, more on
 that here:
