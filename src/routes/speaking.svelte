@@ -58,8 +58,8 @@
   url={`${website}/speaking`}
 />
 
-<div class="mb-5 text-right">
-  <span class="text-sm mr-2">Year:</span> 
+<div class="mb-5">
+  <span class="text-md mr-2">Year:</span> 
   <select
     class="pr-9 select select-bordered select-primary select-xs"
     bind:value={selected}
