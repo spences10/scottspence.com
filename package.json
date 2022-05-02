@@ -32,7 +32,7 @@
     "fuse.js": "6.5.3",
     "graphql": "16.4.0",
     "graphql-request": "4.2.0",
-    "marked": "4.0.14",
+    "marked": "4.0.15",
     "mdsvex": "0.10.5",
     "mdsvex-relative-images": "1.0.2",
     "postcss": "8.4.13",
