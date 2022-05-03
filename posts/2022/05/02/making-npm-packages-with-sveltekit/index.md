@@ -1,6 +1,6 @@
 ---
 date: 2022-05-02
-title: Making npm Packages with Sveltekit
+title: Making npm Packages with SvelteKit
 tags: ['svelte', 'sveltekit', 'npm']
 isPrivate: false
 ---
