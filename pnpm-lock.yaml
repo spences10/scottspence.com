@@ -11,7 +11,7 @@ specifiers:
   env-cmd: 10.1.0
   eslint: 8.14.0
   eslint-config-prettier: 8.5.0
-  eslint-plugin-svelte3: 3.4.1
+  eslint-plugin-svelte3: 4.0.0
   fathom-client: 3.4.1
   fuse.js: 6.5.3
   graphql: 16.4.0
@@ -46,7 +46,7 @@ devDependencies:
   env-cmd: 10.1.0
   eslint: 8.14.0
   eslint-config-prettier: 8.5.0_eslint@8.14.0
-  eslint-plugin-svelte3: 3.4.1_ocxlrf2nkx6hb2cyi7uc5mkzg4
+  eslint-plugin-svelte3: 4.0.0_ocxlrf2nkx6hb2cyi7uc5mkzg4
   fathom-client: 3.4.1
   fuse.js: 6.5.3
   graphql: 16.4.0
@@ -1036,11 +1036,10 @@ packages:
       eslint: 8.14.0
     dev: true
 
-  /eslint-plugin-svelte3/3.4.1_ocxlrf2nkx6hb2cyi7uc5mkzg4:
-    resolution: {integrity: sha512-7p59WG8qV8L6wLdl4d/c3mdjkgVglQCdv5XOTk/iNPBKXuuV+Q0eFP5Wa6iJd/G2M1qR3BkLPEzaANOqKAZczw==}
-    engines: {node: '>=10'}
+  /eslint-plugin-svelte3/4.0.0_ocxlrf2nkx6hb2cyi7uc5mkzg4:
+    resolution: {integrity: sha512-OIx9lgaNzD02+MDFNLw0GEUbuovNcglg+wnd/UY0fbZmlQSz7GlQiQ1f+yX0XvC07XPcDOnFcichqI3xCwp71g==}
     peerDependencies:
-      eslint: '>=6.0.0'
+      eslint: '>=8.0.0'
       svelte: ^3.2.0
     dependencies:
       eslint: 8.14.0
