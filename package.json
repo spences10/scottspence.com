@@ -29,7 +29,7 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-svelte3": "4.0.0",
     "fathom-client": "3.4.1",
-    "fuse.js": "6.5.3",
+    "fuse.js": "6.6.1",
     "graphql": "16.4.0",
     "graphql-request": "4.2.0",
     "marked": "4.0.15",
