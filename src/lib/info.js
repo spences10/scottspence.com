@@ -164,6 +164,11 @@ export const PEOPLE = [
     met: false,
   },
   {
+    name: `Anna McDougall/`,
+    link: `https://twitter.com/AnnaJMcDougall/`,
+    met: false,
+  },
+  {
     name: `Rob Kendal`,
     link: `https://twitter.com/kendalmintcode`,
     met: false,
