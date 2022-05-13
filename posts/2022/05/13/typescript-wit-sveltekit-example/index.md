@@ -159,7 +159,7 @@ following CLI output:
 Now I can go over to the `src/lib/graphql` folder and I can see the
 `types.ts` file has been generated.
 
-```html
+```svelte
 <script context="module" lang="ts">
   import {
     AllPostsDocument,
