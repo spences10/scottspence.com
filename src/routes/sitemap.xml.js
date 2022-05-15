@@ -16,10 +16,6 @@ export const get = async () => {
   ]
   const body = render(pages, tags, postsMeta)
 
-  console.log('=====================')
-  console.log(postsMeta)
-  console.log('=====================')
-
   const headers = {
     'Cache-Control': 'max-age=0, s-maxage=3600',
     'Content-Type': 'application/xml',
@@ -48,6 +44,19 @@ const render = (
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
+  ${postsMeta
+    .map(({ metadata }) =>
+      metadata.isPrivate
+        ? null
+        : `
+  <url>
+    <loc>${website}/posts/${metadata.slug}</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  `
+    )
+    .join('')}
   ${pages
     .map(
       page => `
@@ -64,19 +73,6 @@ const render = (
       tag => `
   <url>
     <loc>${website}/tags/${slugify(tag)}</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  `
-    )
-    .join('')}
-  ${postsMeta
-    .map(({ metadata }) =>
-      metadata.isPrivate
-        ? null
-        : `
-  <url>
-    <loc>${website}/posts/${metadata.slug}</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
