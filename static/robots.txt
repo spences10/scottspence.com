@@ -1,3 +1,12 @@
+# Updates taken from this post on reddit
+# https://www.reddit.com/r/nextjs/comments/u0soy3/update_your_robotstxt_to_help_google_index_your/
+
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+
+# SvelteKit Crawl Budget Performance Updates
+# Block files ending in .js
+# The asterisks allows any file name
+# The dollar sign ensures it only matches the end of an URL and not a oddly formatted url (e.g. /locations.json.html)
+
+Disallow: /*.js$
