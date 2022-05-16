@@ -7,7 +7,7 @@
 # For recruiters - FAQ
 
 <Small>
-  Last updated: <DateUpdated date='2022-04-26' small='true' />
+  Last updated: <DateUpdated date='2022-05-16' small='true' />
 </Small>
 
 Hello friend 👋, thanks for taking an interest in me and my profile.
@@ -273,14 +273,7 @@ Most of the pertinent stuff you want to know is covered here really.
 
 ## Do you have your CV in PDF/MS Word format?
 
-No.
-
-The link to my CV is my product and brand, as it was built and styled
-by me. I consider this a way to showcase my current skill level. If
-your client wants to see my CV give them the link.
-
-I understand that a lot of companies will have ATS that you need to
-add a document to. I'll leave this part of _your job_ up to you.
+Sure, hit the download button on [mecv.xyz].
 
 ---
 
