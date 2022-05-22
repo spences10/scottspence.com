@@ -1,54 +1,45 @@
 <script context="module">
   import Head from '@components/head.svelte'
-  import { name,website } from '@lib/info'
+  import TableOfContents from '@components/table-of-contents.svelte'
+  import { name, website } from '@lib/info'
   import { ogImageUrl } from '@lib/og-image-url-build'
+  import { onMount } from 'svelte'
 
   export const load = async () => {
     try {
-      const [copy2019, copy2020, copy2021, copy2022] =
-        await Promise.all([
-          import(`../../copy/speaking-2019.md`),
-          import(`../../copy/speaking-2020.md`),
-          import(`../../copy/speaking-2021.md`),
-          import(`../../copy/speaking.md`),
-        ])
+      const Copy = await import(`../../copy/speaking.md`)
       return {
         props: {
-          copy: {
-            copy2019: copy2019.default,
-            copy2020: copy2020.default,
-            copy2021: copy2021.default,
-            copy2022: copy2022.default,
-          },
+          Copy: Copy.default,
         },
       }
     } catch (e) {
       return {
         status: 404,
-        error: `Uh oh! There's an error! ${e.message}`,
+        error: 'Uh oh!',
       }
     }
   }
 </script>
 
 <script>
-  export let copy
+  export let Copy
 
-  let selected
-
-  function setContent() {
-    if (selected === '2019') {
-      return copy.copy2019
-    } else if (selected === '2020') {
-      return copy.copy2020
-    } else if (selected === '2021') {
-      return copy.copy2021
-    } else if (selected === '2022') {
-      return copy.copy2022
-    } else {
-      return copy.copy2022
-    }
+  let headingNodeList
+  let headings
+  const getHeadings = async () => {
+    await headings
   }
+
+  onMount(() => {
+    headingNodeList = document.querySelectorAll('h2')
+    headings = Array.from(headingNodeList).map(h2 => {
+      return {
+        label: h2.innerText,
+        href: `#${h2.id}`,
+      }
+    })
+  })
 </script>
 
 <Head
@@ -58,24 +49,14 @@
   url={`${website}/speaking`}
 />
 
-<div class="mb-5">
-  <span class="text-md mr-2">Year:</span> 
-  <select
-    class="pr-9 select select-bordered select-primary select-xs"
-    bind:value={selected}
-    on:change={() => {
-      setContent(selected)
-    }}
-  >
-    <option value="2022">2022</option>
-    <option value="2021">2021</option>
-    <option value="2020">2020</option>
-    <option value="2019">2019</option>
-  </select>
-</div>
+{#await getHeadings()}
+  Loading...
+{:then}
+  <TableOfContents {headings} />
+{/await}
 
 <div class="all-prose">
-  <svelte:component this={setContent()} />
+  <svelte:component this={Copy} />
 </div>
 
 <div class="flex flex-col w-full my-10">
