@@ -6,8 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import YouTube from '$lib/components/youtube.svelte'
-  import Tweet from '$lib/components/tweet.svelte'
+  import { Tweet, YouTube } from 'sveltekit-embed'
 </script>
 
 I recently purged all the cover images from this site to reduce the

@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import YouTube from '$lib/components/youtube.svelte'
+  import { YouTube } from 'sveltekit-embed'
 </script>
 
 I've been using the Windows Terminal now since the summer, it's great

@@ -1,10 +1,12 @@
 <script>
   import DateUpdated from '$lib/components/date-updated.svelte'
   import Small from '$lib/components/small.svelte'
-  import Spotify from '$lib/components/spotify.svelte'
-  import YouTube from '$lib/components/youtube.svelte'
-  import SimpleCast from '$lib/components/simple-cast.svelte'
-  import Buzzsprout from '$lib/components/buzzsprout.svelte'
+  import { 
+    Buzzsprout,
+    SimpleCast,
+    Spotify,
+    YouTube
+  } from 'sveltekit-embed'
 </script>
 
 # Speaking

@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import YouTube from '$lib/components/youtube.svelte'
+  import { YouTube } from 'sveltekit-embed'
 </script>
 
 This is a specific usecase for installing Google Chrome in Ubuntu on

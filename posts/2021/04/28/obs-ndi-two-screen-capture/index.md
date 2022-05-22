@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import YouTube from '$lib/components/youtube.svelte'
+  import { YouTube } from 'sveltekit-embed'
 </script>
 
 I got my new hardware from GraphCMS today and wanted to stream the

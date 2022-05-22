@@ -7,7 +7,7 @@ isPrivate: false
 ---
 
 <script>
-  import YouTube from '$lib/components/youtube.svelte'
+  import { YouTube } from 'sveltekit-embed'
 </script>
 
 I'm going to go over globally styling the Gatsby Default Starter with

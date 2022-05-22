@@ -14,7 +14,7 @@ isPrivate: false
 ---
 
 <script>
-  import YouTube from '$lib/components/youtube.svelte'
+  import { YouTube } from 'sveltekit-embed'
 </script>
 
 Let's set up Gatsby to pull data from GraphCMS.

@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import Tweet from '$lib/components/tweet.svelte'
+  import { Tweet } from 'sveltekit-embed'
 </script>
 
 I am a massive fan of both Vercel's [Now.sh] platform and the

@@ -6,7 +6,7 @@ isPrivate: true
 ---
 
 <script>
-  import Tweet from '$lib/components/tweet.svelte'
+  import { Tweet } from 'sveltekit-embed'
 </script>
 
 I was asked to create a simple auth from at work, this tweet

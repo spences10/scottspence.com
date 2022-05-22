@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import Tweet from '$lib/components/tweet.svelte'
+  import { Tweet } from 'sveltekit-embed'
 </script>
 
 Fathom Analytics recently added a really neat feature for [custom

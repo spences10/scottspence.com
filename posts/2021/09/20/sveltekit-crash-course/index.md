@@ -6,7 +6,7 @@ isPrivate: true
 ---
 
 <script>
-  import YouTube from '$lib/components/youtube.svelte'
+  import { YouTube } from 'sveltekit-embed'
 </script>
 
 Okedokey! In this crash course I'll be detailing loads of SvelteKit

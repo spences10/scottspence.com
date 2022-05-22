@@ -6,7 +6,7 @@ isPrivate: true
 ---
 
 <script>
-  import YouTube from '$lib/components/youtube.svelte'
+  import { YouTube } from 'sveltekit-embed'
 </script>
 
 Houdini! The disappearing GraphQL client! I've used Houdini for a

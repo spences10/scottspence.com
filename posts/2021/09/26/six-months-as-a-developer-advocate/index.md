@@ -6,10 +6,12 @@ isPrivate: false
 ---
 
 <script>
-  import YouTube from '$lib/components/youtube.svelte'
-  import SimpleCast from '$lib/components/simple-cast.svelte'
-  import AnchorFm from '$lib/components/anchor-fm.svelte'
-  import Tweet from '$lib/components/tweet.svelte'
+  import {
+    AnchorFm,
+    SimpleCast,
+    Tweet,
+    YouTube
+  } from 'sveltekit-embed'
 </script>
 
 Six months ago today I started a new job as a developer advocate for

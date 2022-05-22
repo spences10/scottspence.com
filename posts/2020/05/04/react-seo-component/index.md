@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import Vimeo from '$lib/components/vimeo.svelte'
+  import { Vimeo } from 'sveltekit-embed'
 </script>
 
 Here's some of the reasoning and detail that went into making the

@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import Tweet from '$lib/components/tweet.svelte'
+  import { Tweet } from 'sveltekit-embed'
 </script>
 
 This is a collection of some handy snippets and resources I collected

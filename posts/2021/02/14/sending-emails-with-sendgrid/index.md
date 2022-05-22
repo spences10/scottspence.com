@@ -6,7 +6,7 @@ isPrivate: true
 ---
 
 <script>
-  import YouTube from '$lib/components/youtube.svelte'
+  import { YouTube } from 'sveltekit-embed'
 </script>
 
 Now I have a super sweet email pipeline for sending weekly emails

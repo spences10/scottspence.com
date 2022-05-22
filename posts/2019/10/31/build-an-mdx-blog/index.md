@@ -6,9 +6,8 @@ isPrivate: false
 ---
 
 <script>
-  import YouTube from '$lib/components/youtube.svelte'
-  import Vimeo from '$lib/components/vimeo.svelte'
   import Details from '$lib/components/details.svelte'
+  import { Vimeo, YouTube } from 'sveltekit-embed'
 </script>
 
 I have been a Gatsby user since around [v0 May 2017], at that time was

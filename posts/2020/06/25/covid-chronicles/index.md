@@ -6,9 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import YouTube from '$lib/components/youtube.svelte'
-  import Tweet from '$lib/components/tweet.svelte'
-  import Spotify from '$lib/components/spotify.svelte'
+  import { Spotify, Tweet, YouTube } from 'sveltekit-embed'
 </script>
 
 Unprecedented times, 2020 has been something else, and hopefully

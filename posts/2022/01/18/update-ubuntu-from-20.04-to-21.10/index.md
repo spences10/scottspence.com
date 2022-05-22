@@ -7,7 +7,7 @@ isPrivate: false
 ---
 
 <script>
-  import YouTube from '$lib/components/youtube.svelte'
+  import { YouTube } from 'sveltekit-embed'
 </script>
 
 In this guide I’m going to detail upgrading Ubuntu on Windows

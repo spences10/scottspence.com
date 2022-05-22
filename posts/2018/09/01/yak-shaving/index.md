@@ -7,7 +7,7 @@ isPrivate: false
 
 <script>
   import Details from '$lib/components/details.svelte'
-  import YouTube from '$lib/components/youtube.svelte'
+  import { YouTube } from 'sveltekit-embed'
 </script>
 
 Don't save the yak! But put in the work so you're not wasting time.

@@ -6,7 +6,7 @@ isPrivate: true
 ---
 
 <script>
-  import Tweet from '$lib/components/tweet.svelte'
+  import { Tweet } from 'sveltekit-embed'
 </script>
 
 These two tweets came in quick succession of each other.

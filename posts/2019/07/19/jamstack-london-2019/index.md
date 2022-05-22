@@ -6,8 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import YouTube from '$lib/components/youtube.svelte'
-  import Tweet from '$lib/components/tweet.svelte'
+  import { Tweet, YouTube } from 'sveltekit-embed'
 </script>
 
 I've been wanting to go to a JAMstack conf since the first one was

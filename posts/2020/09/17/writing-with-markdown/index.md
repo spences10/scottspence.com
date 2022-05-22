@@ -7,7 +7,7 @@ isPrivate: false
 
 <script>
   import MarkdownParser from '$lib/components/markdown-parser.svelte'
-  import YouTube from '$lib/components/youtube.svelte'
+  import { YouTube } from 'sveltekit-embed'
   import Small from '$lib/components/small.svelte'
 </script>
 
