@@ -46,7 +46,7 @@ choose what to install, I use it to skip having to agree to the
 prompts.
 
 ```bash
-sudo apt install build-essential git curl -y
+sudo apt install build-essential git curl wget -y
 ```
 
 Now if I run the `curl` command again to install Oh My Zsh, it works!
