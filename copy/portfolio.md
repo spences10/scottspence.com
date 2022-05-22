@@ -1,7 +1,7 @@
 <script>
   import DateUpdated from '$lib/components/date-updated.svelte'
   import Small from '$lib/components/small.svelte'
-  import YouTube from '$lib/components/youtube.svelte'
+  import { YouTube } from 'sveltekit-embed'
   import NewsletterSignup from '$lib/components/newsletter-signup.svelte'
 </script>
 

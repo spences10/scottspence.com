@@ -5,6 +5,10 @@ tags: ['tailwind', 'css', 'how-to']
 isPrivate: false
 ---
 
+<script>
+  import { CodePen } from 'sveltekit-embed'
+</script>
+
 Skip links are internal links that allow you to skip to the main
 content of the page.
 
@@ -126,6 +130,8 @@ So I'll add a transition to the class and reset the transform back to
 Thats it!
 
 You can check out this [Codepen] for and example of this in action.
+
+<CodePen codePenId="WNMvXpa" />
 
 <!-- Links -->
 
