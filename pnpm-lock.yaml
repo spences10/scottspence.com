@@ -17,7 +17,7 @@ specifiers:
   graphql: 16.5.0
   graphql-request: 4.2.0
   husky: ^8.0.1
-  marked: 4.0.15
+  marked: 4.0.16
   mdsvex: 0.10.5
   mdsvex-relative-images: 1.0.2
   postcss: 8.4.13
@@ -55,7 +55,7 @@ devDependencies:
   graphql: 16.5.0
   graphql-request: 4.2.0_graphql@16.5.0
   husky: 8.0.1
-  marked: 4.0.15
+  marked: 4.0.16
   mdsvex: 0.10.5_svelte@3.48.0
   mdsvex-relative-images: 1.0.2
   postcss: 8.4.13
@@ -1692,8 +1692,8 @@ packages:
       sourcemap-codec: 1.4.8
     dev: true
 
-  /marked/4.0.15:
-    resolution: {integrity: sha512-esX5lPdTfG4p8LDkv+obbRCyOKzB+820ZZyMOXJZygZBHrH9b3xXR64X4kT3sPe9Nx8qQXbmcz6kFSMt4Nfk6Q==}
+  /marked/4.0.16:
+    resolution: {integrity: sha512-wahonIQ5Jnyatt2fn8KqF/nIqZM8mh3oRu2+l5EANGMhu6RFjiSG52QNE2eWzFMI94HqYSgN184NurgNG6CztA==}
     engines: {node: '>= 12'}
     hasBin: true
     dev: true
