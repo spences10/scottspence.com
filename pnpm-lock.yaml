@@ -9,7 +9,7 @@ specifiers:
   daisyui: 2.15.0
   date-fns: 2.28.0
   env-cmd: 10.1.0
-  eslint: 8.15.0
+  eslint: 8.16.0
   eslint-config-prettier: 8.5.0
   eslint-plugin-svelte3: 4.0.0
   fathom-client: 3.4.1
@@ -47,9 +47,9 @@ devDependencies:
   daisyui: 2.15.0_cr4sis33dk4di3xnobyqnqmrf4
   date-fns: 2.28.0
   env-cmd: 10.1.0
-  eslint: 8.15.0
-  eslint-config-prettier: 8.5.0_eslint@8.15.0
-  eslint-plugin-svelte3: 4.0.0_usjo443ynfgvutifl4ot2fkxzy
+  eslint: 8.16.0
+  eslint-config-prettier: 8.5.0_eslint@8.16.0
+  eslint-plugin-svelte3: 4.0.0_vypdqzeyqutkgs6qzc7qod4c64
   fathom-client: 3.4.1
   fuse.js: 6.6.2
   graphql: 16.5.0
@@ -1072,22 +1072,22 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-config-prettier/8.5.0_eslint@8.15.0:
+  /eslint-config-prettier/8.5.0_eslint@8.16.0:
     resolution: {integrity: sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
     dependencies:
-      eslint: 8.15.0
+      eslint: 8.16.0
     dev: true
 
-  /eslint-plugin-svelte3/4.0.0_usjo443ynfgvutifl4ot2fkxzy:
+  /eslint-plugin-svelte3/4.0.0_vypdqzeyqutkgs6qzc7qod4c64:
     resolution: {integrity: sha512-OIx9lgaNzD02+MDFNLw0GEUbuovNcglg+wnd/UY0fbZmlQSz7GlQiQ1f+yX0XvC07XPcDOnFcichqI3xCwp71g==}
     peerDependencies:
       eslint: '>=8.0.0'
       svelte: ^3.2.0
     dependencies:
-      eslint: 8.15.0
+      eslint: 8.16.0
       svelte: 3.48.0
     dev: true
 
@@ -1099,13 +1099,13 @@ packages:
       estraverse: 5.3.0
     dev: true
 
-  /eslint-utils/3.0.0_eslint@8.15.0:
+  /eslint-utils/3.0.0_eslint@8.16.0:
     resolution: {integrity: sha512-uuQC43IGctw68pJA1RgbQS8/NP7rch6Cwd4j3ZBtgo4/8Flj4eGE7ZYSZRN3iq5pVUv6GPdW5Z1RFleo84uLDA==}
     engines: {node: ^10.0.0 || ^12.0.0 || >= 14.0.0}
     peerDependencies:
       eslint: '>=5'
     dependencies:
-      eslint: 8.15.0
+      eslint: 8.16.0
       eslint-visitor-keys: 2.1.0
     dev: true
 
@@ -1119,8 +1119,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /eslint/8.15.0:
-    resolution: {integrity: sha512-GG5USZ1jhCu8HJkzGgeK8/+RGnHaNYZGrGDzUtigK3BsGESW/rs2az23XqE0WVwDxy1VRvvjSSGu5nB0Bu+6SA==}
+  /eslint/8.16.0:
+    resolution: {integrity: sha512-MBndsoXY/PeVTDJeWsYj7kLZ5hQpJOfMYLsF6LicLHQWbRDG19lK5jOix4DPl8yY4SUFcE3txy86OzFLWT+yoA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -1133,7 +1133,7 @@ packages:
       doctrine: 3.0.0
       escape-string-regexp: 4.0.0
       eslint-scope: 7.1.1
-      eslint-utils: 3.0.0_eslint@8.15.0
+      eslint-utils: 3.0.0_eslint@8.16.0
       eslint-visitor-keys: 3.3.0
       espree: 9.3.2
       esquery: 1.4.0
