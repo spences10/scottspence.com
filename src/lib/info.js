@@ -376,7 +376,7 @@ export const PEOPLE = [
   {
     name: `Sam Larsen Disney`,
     link: `https://twitter.com/SamLarsenDisney`,
-    met: false,
+    met: true,
   },
   {
     name: `Kevin Lewis`,
