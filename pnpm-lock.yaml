@@ -15,7 +15,7 @@ specifiers:
   fathom-client: 3.4.1
   fuse.js: 6.6.2
   graphql: 16.5.0
-  graphql-request: 4.2.0
+  graphql-request: 4.3.0
   husky: 8.0.1
   marked: 4.0.16
   mdsvex: 0.10.5
@@ -40,7 +40,7 @@ specifiers:
 
 devDependencies:
   '@sveltejs/adapter-vercel': 1.0.0-next.56
-  '@sveltejs/kit': 1.0.0-next.345_svelte@3.48.0
+  '@sveltejs/kit': 1.0.0-next.346_svelte@3.48.0
   '@tailwindcss/typography': 0.5.2_tailwindcss@3.0.24
   autoprefixer: 10.4.7_postcss@8.4.14
   cssnano: 5.1.9_postcss@8.4.14
@@ -53,7 +53,7 @@ devDependencies:
   fathom-client: 3.4.1
   fuse.js: 6.6.2
   graphql: 16.5.0
-  graphql-request: 4.2.0_graphql@16.5.0
+  graphql-request: 4.3.0_graphql@16.5.0
   husky: 8.0.1
   marked: 4.0.16
   mdsvex: 0.10.5_svelte@3.48.0
@@ -167,14 +167,14 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.345_svelte@3.48.0:
-    resolution: {integrity: sha512-2nLZoXZ02uXMSxqRAMRCr/J4aCphqgKLxEhRRyh3c3aWLAjWiDWLDcvSB770eHt3y0MkYrTvp7JrDF7RhfyuBA==}
+  /@sveltejs/kit/1.0.0-next.346_svelte@3.48.0:
+    resolution: {integrity: sha512-WFv+yi1pY1CwJt8xAp/hUSqXcry/gQswE6qKnDMJJrgy2LfDjuYrvnt2RLdbW2BqPqDzfDjvplNuATAIbh0mxw==}
     engines: {node: '>=16.7'}
     hasBin: true
     peerDependencies:
       svelte: ^3.44.0
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 1.0.0-next.44_svelte@3.48.0+vite@2.9.9
+      '@sveltejs/vite-plugin-svelte': 1.0.0-next.46_svelte@3.48.0+vite@2.9.9
       chokidar: 3.5.3
       sade: 1.8.1
       svelte: 3.48.0
@@ -187,8 +187,8 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/vite-plugin-svelte/1.0.0-next.44_svelte@3.48.0+vite@2.9.9:
-    resolution: {integrity: sha512-n+sssEWbzykPS447FmnNyU5GxEhrBPDVd0lxNZnxRGz9P6651LjjwAnISKr3CKgT9v8IybP8VD0n2i5XzbqExg==}
+  /@sveltejs/vite-plugin-svelte/1.0.0-next.46_svelte@3.48.0+vite@2.9.9:
+    resolution: {integrity: sha512-dumtaI5XusnDgXoQ3vxQAdoCaTWf8zKVezJdiTGjuaS/GSsmLIvtHUvMt0NlwEikPQ/hL53eIzMliRQ/j35w9w==}
     engines: {node: ^14.13.1 || >= 16}
     peerDependencies:
       diff-match-patch: ^1.0.5
@@ -204,7 +204,7 @@ packages:
       kleur: 4.1.4
       magic-string: 0.26.2
       svelte: 3.48.0
-      svelte-hmr: 0.14.11_svelte@3.48.0
+      svelte-hmr: 0.14.12_svelte@3.48.0
       vite: 2.9.9
     transitivePeerDependencies:
       - supports-color
@@ -863,7 +863,7 @@ packages:
     dev: true
 
   /delayed-stream/1.0.0:
-    resolution: {integrity: sha1-3zrhmayt+31ECqrgsp4icrJOxhk=}
+    resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
     engines: {node: '>=0.4.0'}
     dev: true
 
@@ -1580,8 +1580,8 @@ packages:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
     dev: true
 
-  /graphql-request/4.2.0_graphql@16.5.0:
-    resolution: {integrity: sha512-uFeMyhhl8ss4LFgjlfPeAn2pqYw+CJto+cjj71uaBYIMMK2jPIqgHm5KEFxUk0YDD41A8Bq31a2b4G2WJBlp2Q==}
+  /graphql-request/4.3.0_graphql@16.5.0:
+    resolution: {integrity: sha512-2v6hQViJvSsifK606AliqiNiijb1uwWp6Re7o0RTyH+uRTv/u7Uqm2g4Fjq/LgZIzARB38RZEvVBFOQOVdlBow==}
     peerDependencies:
       graphql: 14 - 16
     dependencies:
@@ -3178,8 +3178,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svelte-hmr/0.14.11_svelte@3.48.0:
-    resolution: {integrity: sha512-R9CVfX6DXxW1Kn45Jtmx+yUe+sPhrbYSUp7TkzbW0jI5fVPn6lsNG9NEs5dFg5qRhFNAoVdRw5qQDLALNKhwbQ==}
+  /svelte-hmr/0.14.12_svelte@3.48.0:
+    resolution: {integrity: sha512-4QSW/VvXuqVcFZ+RhxiR8/newmwOCTlbYIezvkeN6302YFRE8cXy0naamHcjz8Y9Ce3ITTZtrHrIL0AGfyo61w==}
     engines: {node: ^12.20 || ^14.13.1 || >= 16}
     peerDependencies:
       svelte: '>=3.19.0'
