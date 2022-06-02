@@ -1,6 +1,7 @@
 {
   "git.enableSmartCommit": true,
   "git.postCommitCommand": "sync",
+  "css.validate": false,
   "cSpell.words": [
     "clsx",
     "Color",
