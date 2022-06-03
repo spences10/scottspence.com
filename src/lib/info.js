@@ -45,24 +45,24 @@ export const PORTFOLIO_PROJECTS = [
 
 export const POPULAR_POSTS = [
   {
-    title: `Use Chrome in Ubuntu on WSL`,
-    slug: `posts/use-chrome-in-ubuntu-wsl`,
-    views: `28.4k`,
-  },
-  {
-    title: `Enable GUIs on Windows Subsystem Linux (WSL)`,
-    slug: `posts/gui-with-wsl`,
-    views: `19.8k`,
-  },
-  {
-    title: `styled-components 💅 getting started`,
-    slug: `posts/styled-components`,
-    views: `4.4k`,
+    title: `Make an Email Form Submission with SvelteKit`,
+    slug: `posts/email-form-submission-with-sveltekit`,
+    views: `6.7k`,
   },
   {
     title: `Stylelint Configuration for use with Tailwind CSS`,
     slug: `posts/stylelint-configuration-for-tailwindcss`,
-    views: `3.6k`,
+    views: `6.9k`,
+  },
+  {
+    title: `SvelteKit .env secrets`,
+    slug: `posts/sveltekit-env-secrets`,
+    views: `5.8k`,
+  },
+  {
+    title: `Get GraphQL Data Using Axios`,
+    slug: `posts/get-graphql-data-with-axios`,
+    views: `4.5k`,
   },
 ]
 
