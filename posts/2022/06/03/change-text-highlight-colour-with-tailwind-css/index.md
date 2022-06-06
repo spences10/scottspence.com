@@ -206,7 +206,7 @@ html {
 
 That's it!
 
-Hope you find it as useful as I found it!
+Hope you find it useful, I know I did! 😊
 
 <!-- Links -->
 
