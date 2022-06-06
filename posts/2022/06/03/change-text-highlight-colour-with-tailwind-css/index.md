@@ -7,6 +7,7 @@ isPrivate: true
 
 <script>
   import Details from '$lib/components/details.svelte'
+  import Chat from '$lib/components/chat.svelte'
 </script>
 
 How to change the highlight color of text on the page. Here's the
@@ -83,12 +84,44 @@ look like clicking the button.
 
 </Details>
 
-I'm mentioning this because I was using CSS variables for the theme
-change.
+I'm mentioning this because I was using my own CSS variables for the
+theme change. It wasn't until I messaged the massively helpful [Pouya]
+(daisyUI creator) on Twitter that I realized that I could use daisyUI
+CSS variables.
 
-It wasn't until I messaged the massively helpful [Pouya] (daisyUI
-creator) on Twitter that I realized that I could use daisyUI CSS
-variables.
+Here's how the chat went:
+
+<Chat>
+Hey man! If I want to change the selection colors in Tailwind I'll
+need to use the daisyUI hardcoded theme colors right?
+</Chat>
+
+<Chat reply>
+Hey, if the color exists in theme already, you can just use that variable
+
+Over on daisyUI you can see all the variables. for example `--s` is
+for `secondary` color
+
+and they're all HSL values
+
+so they should be used like `hsl(var(--s))`
+
+</Chat>
+
+<Chat>
+whaaaa??
+
+So I can use a variable instead of hardcoding in all the values??
+</Chat>
+
+<Chat reply>
+Yeah 😅 all colors are CSS variables already
+</Chat>
+
+<Chat>
+Sweet! I didn't know they were accessible in the main `tailwind.css`
+file. Thanks! 🙏
+</Chat>
 
 <!-- Links -->
 
