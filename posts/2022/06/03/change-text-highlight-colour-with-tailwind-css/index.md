@@ -15,8 +15,8 @@ situation! I wanted to change the text highlight color to a different
 colour than the default blue on my site.
 
 To change the default text highlight color in a Tailwind CSS project
-you can add the `::selection` selector the Tailwind file that has the
-`@tailwind` directives in it (usually named `app.css` or
+you can add the `::selection` selector to the Tailwind file that has
+the `@tailwind` directives in it (usually named `app.css` or
 `tailwind.css`).
 
 In the selector I can add in the colour that I want to use.
@@ -35,7 +35,7 @@ highlighted</mark> it shows the theme colour.
 
 As a side note, my site did have quite a big configuration file for
 the scrollbar. You can take a look at what my `app.css` file used to
-look like clicking the button.
+look like by clicking the button.
 
 <Details buttonText="Click to expand">
 
@@ -98,12 +98,16 @@ CSS variables.
 Here's how the chat went:
 
 <Chat>
+
 Hey man! If I want to change the selection colors in Tailwind I'll
 need to use the daisyUI hardcoded theme colors right?
+
 </Chat>
 
 <Chat reply>
-Hey, if the color exists in theme already, you can just use that variable
+
+Hey, if the color exists in theme already, you can just use that
+variable
 
 Over on daisyUI you can see all the variables. for example `--s` is
 for `secondary` color
@@ -115,22 +119,28 @@ so they should be used like `hsl(var(--s))`
 </Chat>
 
 <Chat>
+
 whaaaa??
 
 So I can use a variable instead of hardcoding in all the values??
+
 </Chat>
 
 <Chat reply>
+
 Yeah 😅 all colors are CSS variables already
+
 </Chat>
 
 <Chat>
+
 Sweet! I didn't know they were accessible in the main `tailwind.css`
 file. Thanks! 🙏
+
 </Chat>
 
-Pouya that I can get the daisyUI colours from the [colors section] of
-the daisyUI docs.
+Pouya mentioned that I can get the daisyUI colours from the [colors
+section] of the daisyUI docs.
 
 So with this information I set about making the `::selection` selector
 in my `app.css` file. The CSS looks like this for it now:
