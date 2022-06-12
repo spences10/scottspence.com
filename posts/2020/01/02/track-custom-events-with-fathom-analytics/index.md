@@ -238,7 +238,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
   https://usefathom.com/ref/HG492L
 [my unique code]: https://usefathom.com/ref/HG492L
 [gatsby plugin for fathom]:
-  https://www.gatsbyjs.org/packages/gatsby-plugin-fathom/
+  https://www.gatsbyjs.com/packages/gatsby-plugin-fathom/
 [fathom dashboard]: https://app.usefathom.com/#/settings/sites
 [gatsby-starter-business]:
   https://github.com/v4iv/gatsby-starter-business

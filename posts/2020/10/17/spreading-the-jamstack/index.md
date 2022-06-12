@@ -183,7 +183,7 @@ on business goals. For example, the BBC found they lost an additional
 [smashingmagazine.com]: https://smashingmagazine.com
 [jfkt4.nyc]: https://jfkt4.nyc
 [reactjs.org]: https://reactjs.org
-[store.gatsbyjs.org]: https://store.gatsbyjs.org
+[store.gatsbyjs.com]: https://store.gatsbyjs.com
 [nozzle.io]: https://nozzle.io
 [staticgen.com]: https://www.staticgen.com/)
 [404pagefound.com]: https://www.404pagefound.com/)

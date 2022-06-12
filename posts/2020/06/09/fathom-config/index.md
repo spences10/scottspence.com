@@ -161,6 +161,6 @@ quotes (`""`) around the `goalId`.
 [use the code with gatsby]:
   https://usefathom.com/integrations/gatsbyjs
 [`gatsby-plugin-fathom`]:
-  https://www.gatsbyjs.org/packages/gatsby-plugin-fathom/
+  https://www.gatsbyjs.com/packages/gatsby-plugin-fathom/
 [add analytics tracking links to your markdown]:
   https://scottspence.com/posts/add-tracking-links-to-your-markdown/

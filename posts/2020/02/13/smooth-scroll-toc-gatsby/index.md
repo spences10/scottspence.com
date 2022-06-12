@@ -734,6 +734,6 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [mdx table of components]:
   https://mdxjs.com/getting-started#table-of-components
 [gatsby-remark-autolink-headers]:
-  https://www.gatsbyjs.org/packages/gatsby-remark-autolink-headers/
+  https://www.gatsbyjs.com/packages/gatsby-remark-autolink-headers/
 [being addressed by the gatsby team]:
   https://github.com/gatsbyjs/gatsby/issues/25554

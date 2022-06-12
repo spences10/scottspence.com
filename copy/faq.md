@@ -310,7 +310,7 @@ Feel free to [check out the rest of the site](/)
 [site]: https://www.styled-components.com/
 [maker's schedule]: https://www.paulgraham.com/makersschedule.html
 [jamstack]: https://jamstack.org/
-[gatsby]: https://gatsbyjs.org/
+[gatsby]: https://gatsbyjs.com/
 [graphcms]: https://graphcms.com/
 [sanity.io]: https://www.sanity.io/
 [contentful]: https://www.contentful.com

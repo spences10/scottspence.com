@@ -123,7 +123,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [example code]: https://codesandbox.io/s/1vnvko0zqj
 [even]: https://youtu.be/8ruJBKFrRCk?t=93
 [gatsby documentation]:
-  https://www.gatsbyjs.org/docs/use-static-query/
+  https://www.gatsbyjs.com/docs/use-static-query/
 
 <!-- Images -->
 

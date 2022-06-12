@@ -584,7 +584,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [past with styled-components v4]:
   https://scottspence.com/posts/gatsby-starter-to-styled-components/
 [wraprootelement]:
-  https://www.gatsbyjs.org/docs/browser-apis/#wrapRootElement
+  https://www.gatsbyjs.com/docs/browser-apis/#wrapRootElement
 [v5 release]: https://styled-components.com/releases#v5.0.0
 [detailed here]:
   https://scottspence.com/posts/gatsby-starter-to-styled-components/#3-global-style

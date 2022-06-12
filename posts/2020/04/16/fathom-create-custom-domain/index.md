@@ -168,7 +168,7 @@ Done!
   https://gist.github.com/jaydenseric/f4147d7d9788d1f46b30e4ac7b57e6b2
 [dns editor for vercel domains]: https://vercel.com/integrations/dns
 [to your gatsby site]: https://usefathom.com/integrations/gatsbyjs
-[`default-html.js` file]: https://www.gatsbyjs.org/docs/custom-html/
+[`default-html.js` file]: https://www.gatsbyjs.com/docs/custom-html/
 
 <!-- Images -->
 

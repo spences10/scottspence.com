@@ -107,7 +107,7 @@ series covers the food delivery industry.
 [graphcms]: https://graphcms.com/
 [vba]: https://en.wikipedia.org/wiki/Visual_Basic_for_Applications
 [now]: https://zeit.co/now
-[gatsby]: https://www.gatsbyjs.org/
+[gatsby]: https://www.gatsbyjs.com/
 [16personalities]: https://www.16personalities.com/
 [my results]: https://www.16personalities.com/profiles/ba01a67248b68
 [jamstack]: https://jamstack.org/

@@ -921,7 +921,7 @@ you're going to be using the `createPages` API.
 
 More details on Gatsby `createPages` API can be found on the Gatsby
 docs, details here:
-[https://www.gatsbyjs.org/docs/node-apis/#createPages](https://www.gatsbyjs.org/docs/node-apis/#createPages)
+[https://www.gatsbyjs.com/docs/node-apis/#createPages](https://www.gatsbyjs.com/docs/node-apis/#createPages)
 
 In your `gatsby-node.js` file you're going to add in the following in
 addition to the `onCreateNode` export you did earlier.
@@ -2362,7 +2362,7 @@ export const query = graphql`
   [https://juliangaramendy.dev/custom-open-graph-images-in-gatsby-blog/](https://juliangaramendy.dev/custom-open-graph-images-in-gatsby-blog/)
 
 - and the Gatsby docs:
-  [https://www.gatsbyjs.org/docs/working-with-images/](https://www.gatsbyjs.org/docs/working-with-images/)
+  [https://www.gatsbyjs.com/docs/working-with-images/](https://www.gatsbyjs.com/docs/working-with-images/)
 
 ## Adding an SEO component to the site
 
@@ -2876,14 +2876,14 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [ubuntu as well]: https://www.youtube.com/watch?v=eSAsdQuQ-1o
 [codesandbox.io]: https://codesandbox.io
 [gatsby-source-filesystem]:
-  https://www.gatsbyjs.org/packages/gatsby-source-filesystem/
+  https://www.gatsbyjs.com/packages/gatsby-source-filesystem/
 [gatsby-plugin-mdx]:
-  https://www.gatsbyjs.org/packages/gatsby-plugin-mdx/
+  https://www.gatsbyjs.com/packages/gatsby-plugin-mdx/
 [v0 may 2017]:
   https://github.com/spences10/blog.scottspence.me/tree/a470e8563e1a040527cf2094fc1b377550a88c77
 [progressive disclosure of complexity]:
   https://lengstorf.com/progressive-disclosure-of-complexity/
-[layout components]: https://www.gatsbyjs.org/docs/layout-components/
+[layout components]: https://www.gatsbyjs.com/docs/layout-components/
 [dump.js]: https://github.com/wesbos/dump
 [prism-react-renderer]:
   https://github.com/FormidableLabs/prism-react-renderer

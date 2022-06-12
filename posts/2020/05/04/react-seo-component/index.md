@@ -193,7 +193,7 @@ it by me.
 [jason lengstorf]: https://twitter.com/jlengstorf
 [marisa's site]:
   https://github.com/marisamorby/marisamorby.com/blob/master/packages/gatsby-theme-blog-sanity/src/components/seo.js
-[well documented]: https://www.gatsbyjs.org/docs/add-seo-component/
+[well documented]: https://www.gatsbyjs.com/docs/add-seo-component/
 [gatsby starter prismic]:
   https://github.com/LeKoArts/gatsby-starter-prismic/blob/master/src/components/SEO/SEO.jsx
 [open graph protocol]: https://ogp.me/
