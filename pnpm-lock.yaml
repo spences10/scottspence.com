@@ -12,7 +12,7 @@ specifiers:
   eslint: 8.17.0
   eslint-config-prettier: 8.5.0
   eslint-plugin-svelte3: 4.0.0
-  fathom-client: 3.4.1
+  fathom-client: 3.5.0
   fuse.js: 6.6.2
   graphql: 16.5.0
   graphql-request: 4.3.0
@@ -50,7 +50,7 @@ devDependencies:
   eslint: 8.17.0
   eslint-config-prettier: 8.5.0_eslint@8.17.0
   eslint-plugin-svelte3: 4.0.0_3aft6623ti3qaietkx5ojwfh2e
-  fathom-client: 3.4.1
+  fathom-client: 3.5.0
   fuse.js: 6.6.2
   graphql: 16.5.0
   graphql-request: 4.3.0_graphql@16.5.0
@@ -1412,8 +1412,8 @@ packages:
       reusify: 1.0.4
     dev: true
 
-  /fathom-client/3.4.1:
-    resolution: {integrity: sha512-iQFKx9B9RDeGLzgNqsaXWg3Fvu7yfq1Z8GjpAG3DP8IoGoPRWOOktpM7DUKiUzoE3d37hdvDQvkqUHfNzVwimg==}
+  /fathom-client/3.5.0:
+    resolution: {integrity: sha512-BiRDS9Q9a8Zma0H717FWC5cvf545K/CsxBpxKT22TcSl1EbRhhlHWIJgrdeiQUfdorBK2ppy09TwMOhRsbos/A==}
     dev: true
 
   /file-entry-cache/6.0.1:
