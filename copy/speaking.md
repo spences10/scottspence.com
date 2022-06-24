@@ -25,6 +25,12 @@ recently.
 
 ## 2022
 
+### JSNation Workshop - June
+
+Three hour workshop for [Building with SvelteKit and GraphQL].
+
+[![jsnation workshop 2022]] [jsnation workshop 2022]
+
 ### Dev Journey with Tim Bourguignon - January
 
 Talking with Tim Bourguignon about my career switch from VBA analyst
@@ -44,7 +50,7 @@ members from around the world.
 
 ### GraphQL Galaxy Workshop - December
 
-[Building with SvelteKit and GraphQL]
+[Building with SvelteKit and GraphCMS]
 
 [![GraphQL Galaxy 2021]] [GraphQL Galaxy 2021]
 
@@ -347,15 +353,19 @@ the Jamstack is and the advantages of using it.
 [jesse martin]: https://twitter.com/motleydev
 [spreading the jamstack (slides)]:
   https://spreading-the-jam-stack.now.sh/#0
+[building with sveltekit and graphcms]:
+  https://graphqlgalaxy.com/workshops-3h#ckwajl0u87vcm0c56xivankq9
+[building with sveltekit and graphql]:
+  https://jsnation.com/remote-js-workshops#building-with-svelte-kit-and-graph-ql-remote
 
 <!-- Images -->
 
+[jsnation workshop 2022]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1656077172/scottspence.com/building-with-svelte-and-graphql-jsnation-2022.png
 [jamstack explorers]:
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1634933520/scottspence.com/jamstack-explorers-mission.png
 [jamstack conf workshop 2021]:
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1634933520/scottspence.com/jamstack-conf-workshopp.png
-[building with sveltekit and graphql]:
-  https://graphqlgalaxy.com/workshops-3h#ckwajl0u87vcm0c56xivankq9
 [graphql galaxy 2021]:
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1639133326/scottspence.com/building-with-svelte-and-graphql-graphql-galaxy-2021.png
 [api days london 2019]:
