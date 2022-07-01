@@ -66,6 +66,8 @@ SvelteKit and the Content Layer
 
 [![jamstack conf workshop 2021]] [jamstack conf workshop 2021]
 
+<YouTube youTubeId='uI8am7HfWC8' />
+
 ### Jamstack Explorers - October
 
 [Jamstack explorers mission on building a production ready Svelte
