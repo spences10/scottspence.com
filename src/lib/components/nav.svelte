@@ -1,52 +1,42 @@
 <script>
   import { page } from '$app/stores'
+
+  let links = [`/posts`, `/tags`, `/speaking`, `/contact`]
 </script>
 
 <nav
-  class="sticky top-0 z-10 backdrop-filter bg-base-100/90 backdrop-blur-xl py-4 mb-10"
+  class="sticky top-0 z-10 backdrop-filter bg-base-100/30 backdrop-blur-xl py-4 mb-10 hidden flex-none px-2 mx-2 lg:flex"
 >
   <ul
     class="flex px-4 justify-between items-center container max-w-3xl mx-auto"
   >
-    <li>
-      <a
-        class={`text-xl link link-primary ${
-          $page.url.pathname === '/posts' &&
-          `text-xl link link-secondary`
-        }`}
-        sveltekit:prefetch
-        href="/posts">Posts</a
-      >
-    </li>
-    <li>
-      <a
-        class={`text-xl link link-primary ${
-          $page.url.pathname === '/tags' &&
-          `text-xl link link-secondary`
-        }`}
-        sveltekit:prefetch
-        href="/tags">Tags</a
-      >
-    </li>
-    <li>
-      <a
-        class={`text-xl link link-primary ${
-          $page.url.pathname === '/speaking' &&
-          `text-xl link link-secondary`
-        }`}
-        sveltekit:prefetch
-        href="/speaking">Speaking</a
-      >
-    </li>
-    <li>
-      <a
-        class={`text-xl link link-primary ${
-          $page.url.pathname === '/contact' &&
-          `text-xl link link-secondary`
-        }`}
-        sveltekit:prefetch
-        href="/contact">Contact</a
-      >
-    </li>
+    {#each links as link}
+      <li>
+        <a
+          class={`text-xl link link-primary capitalize ${
+            $page.url.pathname === link && `link-secondary`
+          }`}
+          sveltekit:prefetch
+          href={link}
+        >
+          {link.slice(1)}
+        </a>
+      </li>
+    {/each}
   </ul>
 </nav>
+
+<div
+  class="btm-nav lg:hidden border rounded-xl max-w-[95vw] mb-2 mx-auto z-10 bg-primary"
+>
+  {#each links as link}
+    <a
+      href={link}
+      class={`link link-primary-content capitalize ${
+        $page.url.pathname === link && `link-secondary`
+      }`}
+    >
+      {link.slice(1)}
+    </a>
+  {/each}
+</div>
