@@ -44,6 +44,13 @@ html {
 
 *::-webkit-scrollbar-thumb {
   background-color: hsl(var(--s));
+  /* background: repeating-linear-gradient(
+    45deg,
+    hsl(var(--s)),
+    hsl(var(--s)) 5px,
+    hsl(var(--p)) 5px,
+    hsl(var(--p)) 10px
+  ); */
   border-radius: 14px;
   border: 3px solid hsl(var(--p));
 }
