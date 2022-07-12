@@ -9,6 +9,10 @@ isPrivate: false
   import Details from '$lib/components/details.svelte'
 </script>
 
+**This post uses the legacy configuration for KitQL, there's a more up
+to date post on getting started with it
+[here](https://scottspence.com/posts/the-new-kitql-sveltekit-graphql-client).**
+
 KitQL is a GraphQL client for Svelte. It is a set of tools to help you
 query GraphQL APIs. I've been using it in a couple of projects now and
 want to share what I have learned. What better way to do that than the
