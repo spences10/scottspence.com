@@ -17,7 +17,7 @@ specifiers:
   graphql: 16.5.0
   graphql-request: 4.3.0
   husky: 8.0.1
-  marked: 4.0.17
+  marked: 4.0.18
   mdsvex: 0.10.6
   mdsvex-relative-images: 1.0.2
   postcss: 8.4.14
@@ -41,7 +41,7 @@ specifiers:
 
 devDependencies:
   '@sveltejs/adapter-vercel': 1.0.0-next.60
-  '@sveltejs/kit': 1.0.0-next.370_svelte@3.49.0+vite@2.9.14
+  '@sveltejs/kit': 1.0.0-next.372_svelte@3.49.0+vite@2.9.14
   '@tailwindcss/typography': 0.5.3_tailwindcss@3.1.6
   autoprefixer: 10.4.7_postcss@8.4.14
   cssnano: 5.1.12_postcss@8.4.14
@@ -56,7 +56,7 @@ devDependencies:
   graphql: 16.5.0
   graphql-request: 4.3.0_graphql@16.5.0
   husky: 8.0.1
-  marked: 4.0.17
+  marked: 4.0.18
   mdsvex: 0.10.6_svelte@3.49.0
   mdsvex-relative-images: 1.0.2
   postcss: 8.4.14
@@ -169,8 +169,8 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.370_svelte@3.49.0+vite@2.9.14:
-    resolution: {integrity: sha512-HAQtw8IjXs9yOPWKpuwpGgDT8x6Dgqm14NmFx0emF52vo5wn3tQzu0cBx299Po2RdRgfSDFKrNqVSlL1hVTHcA==}
+  /@sveltejs/kit/1.0.0-next.372_svelte@3.49.0+vite@2.9.14:
+    resolution: {integrity: sha512-pcnDfV8YQwj7d/SCaKWT7yPBrmgkPH9Dc4UIeX8yTLXDu8IPzI5kukEOy4xf6LjyJsuSGPy1Ch91ULugtVIdAQ==}
     engines: {node: '>=16.9'}
     hasBin: true
     peerDependencies:
@@ -1953,8 +1953,8 @@ packages:
       semver: 6.3.0
     dev: true
 
-  /marked/4.0.17:
-    resolution: {integrity: sha512-Wfk0ATOK5iPxM4ptrORkFemqroz0ZDxp5MWfYA7H/F+wO17NRWV5Ypxi6p3g2Xmw2bKeiYOl6oVnLHKxBA0VhA==}
+  /marked/4.0.18:
+    resolution: {integrity: sha512-wbLDJ7Zh0sqA0Vdg6aqlbT+yPxqLblpAZh1mK2+AO2twQkPywvvqQNfEPVwSSRjZ7dZcdeVBIAgiO7MMp3Dszw==}
     engines: {node: '>= 12'}
     hasBin: true
     dev: true
