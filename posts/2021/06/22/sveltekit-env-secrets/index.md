@@ -10,9 +10,14 @@ you ever tried to use a `.env` secret that you didn't want exposed on
 the client?
 
 SvelteKit uses [Vite] and it has a specific way to reference [Env
-Variables and Modes], you reference a `.env` variable with
-`import.meta.env.VITE_NAME_OF_VARIABLE` the `VITE_*` prefix means in
-SvelteKit it makes that variable available on the client.
+Variables and Modes], you reference a `.env` variable with:
+
+```js
+import.meta.env.VITE_NAME_OF_VARIABLE
+```
+
+The `VITE_*` prefix means in SvelteKit it makes that variable
+available on the client.
 
 ## What if you have a secret key?
 
