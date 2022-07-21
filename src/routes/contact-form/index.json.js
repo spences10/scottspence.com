@@ -1,4 +1,4 @@
-export const post = async ({ request }) => {
+export const POST = async ({ request }) => {
   const fd = await request.formData()
 
   const name = fd.get('name')

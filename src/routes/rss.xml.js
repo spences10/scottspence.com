@@ -2,7 +2,7 @@ import { getPosts } from '@lib/get-posts'
 import { description, name, website } from '@lib/info'
 import { format } from 'date-fns'
 
-export const get = async () => {
+export const GET = async () => {
   const postsMeta = await getPosts()
   const body = render(postsMeta)
 

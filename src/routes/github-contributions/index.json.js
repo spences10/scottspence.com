@@ -32,7 +32,7 @@ export const contributions = async user => {
   return contributionsData
 }
 
-export const get = async () => {
+export const GET = async () => {
   const GITHUB_TOKEN = process.env['GITHUB_TOKEN']
 
   const graphCmsClient = new GraphQLClient(

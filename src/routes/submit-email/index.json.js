@@ -1,4 +1,4 @@
-export const post = async ({ request }) => {
+export const POST = async ({ request }) => {
   const { email } = await request.json()
 
   const REVUE_API_KEY = process.env['REVUE_API_KEY']
