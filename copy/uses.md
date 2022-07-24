@@ -6,7 +6,7 @@
 # Uses
 
 <Small>
-  Last updated: <DateUpdated date="2021-08-14" small="true" />
+  Last updated: <DateUpdated date="2022-07-24" small="true" />
 </Small>
 
 All the equipment and tools I use on a daily basis.
@@ -28,11 +28,11 @@ section for WSL].
 - Desk chair is a [HÅG Capisco Puls]
 - I run two [HP EliteDisplay's E232 58,4 cm (23")] Monitors through a
   [WAVLINK USB C Laptop Universal Docking Station].
-- Keyboard is now a [Logitech G915], I [made some notes] on it as
-  well.
+- Keyboard is a [Keychron Q1].
 - Mouse, Logitech MX Master 3 (wheel goes brrrrrrrrrr)
-- Microphone, a Elgato Wave 3.
-- Webcam, Logitech Brio Stream Webcam, Ultra HD 4K Streaming Edition.
+- Microphone, a Shure MV7.
+- Webcam, Elgato facecam.
+- Speakers Harman Kardon Computer Speaker System - SOUNDSTICKS3AM-A
 
 ### OS
 
@@ -54,8 +54,8 @@ Channel.
 - I use OBS ([Open Broadcaster Software]) for recording some coding
   sessions.
 - Restream for livestreams.
-- For light video editing I use [Shotcut], I'm currently evaluating
-  Camtasia.
+- For light video editing I use [Shotcut] and ReCut, longer videos
+  DaVinci Resolve.
 
 ---
 
@@ -76,7 +76,7 @@ Channel.
 ### Desktop apps
 
 - For gif capture I'm currently evaluating Snagit.
-- For installing any apps I use [Chocolatey].
+- For installing any apps I use [Winget].
 
 <!-- Links -->
 
@@ -86,13 +86,14 @@ Channel.
 [victor mono]: https://rubjo.github.io/victor-mono/
 [sarah drasner]: https://github.com/sdras/
 [night owl]: https://github.com/sdras/night-owl-vscode-theme
-[logitech g915]:
-  https://www.logitechg.com/en-gb/products/gaming-keyboards/g915-tkl-wireless.html
+[keychron q1]:
+  https://scottspence.com/posts/keychron-q1-first-impressions
 [visual studio code]: https://code.visualstudio.com/
 [windows terminal preview]:
   https://www.microsoft.com/en-gb/p/windows-terminal-preview/9n8g5rfz9xk3
 [shotcut]: https://shotcut.org/
-[chocolatey]: https://chocolatey.org/
+[winget]:
+  https://docs.microsoft.com/en-us/windows/package-manager/winget/
 [ryzen 5 mini itx build]: https://uk.pcpartpicker.com/list/pHkrCL
 [first time pc building a pc]:
   https://scottspence.com/posts/first-time-pc-build
