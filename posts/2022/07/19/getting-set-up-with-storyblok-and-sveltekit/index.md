@@ -5,6 +5,10 @@ tags: ['sveltekit', 'storyblok', 'how-to', 'guide']
 isPrivate: true
 ---
 
+<script>
+  import Details from '$lib/components/details.svelte'
+</script>
+
 I've been having a play around with Storyblok this evening and want to
 make some notes on getting set up with it.
 
@@ -106,21 +110,32 @@ token' needed for accessing the Storyblok API.
 [storyblok-welcome-to-the-visual-editor]
 
 There's also a 'Set up preview url' section with an input field for
-the URL or the your local dev server.
+the URL of my local dev server.
+
+I'll add in the suggested URL from the placeholder in the input field:
+
+```bash
+https://localhost:3000/
+```
+
+Yes! That is **`https`**!
+
+Before clicking 'Save and show' I'll need to get my SvelteKit project
+set up to enable the visual editor.
 
 ## SvelteKit and Vite HTTPS server setup
 
 Storyblok needs to run from a HTTPS server, so unlike normal local
-development (on HTTP) I'll need to install the
-`@vitejs/plugin-basic-ssl` Vite plugin and configure it. First up
-install the Vite plugin:
+development (on HTTP) I'll need to create a local `HTTPS` server. To
+do that I'll install the `@vitejs/plugin-basic-ssl` Vite plugin and
+configure it. First up install the Vite plugin:
 
 ```bash
 pnpm i -D @vitejs/plugin-basic-ssl
 ```
 
 This is also a good time to set the server port as Vite will use the
-default port (5173) for you otherwise.
+default port (5173) otherwise.
 
 In the `vite.config.js` file I'll add the following:
 
@@ -140,27 +155,100 @@ const config = {
 export default config
 ```
 
-In the 'Set up preview url' input add in the localhost URL with HTTPS
-`https://localhost:3000/` then click 'Save and show'.
+I can start the dev server now (`pnpm run dev`) and the terminal
+output will show the `HTTPS` server running.
 
-The live preview will update showing a `404` page on here you'll need
-to click on the sliders for 'Entry configuration' in the header and
-set the 'Real path' as `/`.
+Going to `https://localhost:3000/` on Edge I get a warning.
+
+[![storyblok-your-connection-isnt-private]]
+[storyblok-your-connection-isnt-private]
+
+From here I can click on the 'Advanced' button and select the
+'Continue to localhost (unsafe)' link.
+
+[![storyblok-your-connection-isnt-private-advanced]]
+[storyblok-your-connection-isnt-private-advanced]
+
+Now I have access to `https://localhost:3000/` with a persistent
+warning from Edge to show that I'm using a connection without a
+certificate (~~`https`~~).
+
+[![storyblok-not-secure]] [storyblok-not-secure]
+
+Over to the visual editor page on Storyblok I can click on the 'Save
+and show' button now.
+
+The live preview will update showing a `404` page on here I need to
+click on the sliders for 'Entry configuration' in the header and set
+the 'Real path' as `/`.
+
+[![storyblok-set-visual-editor-real-path]]
+[storyblok-set-visual-editor-real-path]
+
+Clicking 'Save & Close' will now show the SvelteKit skeleton project!
+
+[![storyblok-connect-to-local-host-success]]
+[storyblok-connect-to-local-host-success]
+
+Now I can configure Storyblok to work with my local dev server and my
+Storyblok project to show the page content type with it's nested types
+on there.
 
 ## Storyblok bridge with Svelte
 
 If you've not used Storyblok before this is where the magic happens.
-The Svelte Storyblok SDK amongst other things allows the live preview
-and editing of the components in Storyblok to be reflected on the
-project running on `localhost`.
+The Svelte Storyblok SDK (amongst other things) allows the live
+preview and editing of the components in Storyblok to be reflected on
+the project running on `localhost`.
 
-Install the [`@storyblok/svelte`] package:
+Install the [`@storyblok/svelte`] package and the Storyblok peer
+dependency for `axios`, at the time of writing this was how I resolved
+this. There's a mention of adding `axios` to `optimiseDeps` in the
+[Add a Headless CMS to Svelte in 5 minutes] guide but adding that to
+the `vite.config.js` file caused the same errors.
 
 ```bash
-pnpm i -D @storyblok/svelte
+pnpm i -D @storyblok/svelte axios
 ```
 
 Now onto the configuration!
+
+## Create SvelteKit files for use with Storyblok
+
+I'll create the files I'm going to need to get the connection between
+the local SvelteKit project and the Storyblok project set up.
+
+I'll need a SvelteKit layout file and some components to represent the
+various content types in Storyblok. I'll need to create the following
+files:
+
+- Content type: page
+- Nested (Block): grid, feature, teaser
+
+I'll use the terminal to create the files and folders (directories)
+needed:
+
+```bash
+# create layout file
+touch src/routes/__layout.svelte
+# create lib and components folders in src
+mkdir -p src/lib/components
+# Create the component files needed
+touch src/lib/components/{feature.svelte,grid.svelte,page.svelte,teaser.svelte}
+```
+
+<Details buttonText="Click to expand"></Details>
+
+## Env files
+
+```bash
+# draft
+VITE_STORYBLOK_ACCESS_TOKEN=
+VITE_STORYBLOK_STAGE=draft
+# published
+VITE_STORYBLOK_ACCESS_TOKEN=
+VITE_STORYBLOK_STAGE=published
+```
 
 ## SvelteKit layout file
 
@@ -179,6 +267,8 @@ library.
 
 You'll need to add in add the access token for the Storyblok space:
 
+<Details buttonText="Click to expand">
+
 ```svelte
 <script context="module">
   import Feature from '$lib/components/feature.svelte'
@@ -188,7 +278,7 @@ You'll need to add in add the access token for the Storyblok space:
   import { apiPlugin, storyblokInit } from '@storyblok/svelte'
 
   storyblokInit({
-    accessToken: 'i6PKqI8NukDVKJ6mjjN06wtt',
+    accessToken: import.meta.env.VITE_STORYBLOK_ACCESS_TOKEN,
     use: [apiPlugin],
     components: {
       feature: Feature,
@@ -204,19 +294,25 @@ You'll need to add in add the access token for the Storyblok space:
 </main>
 ```
 
+</Details>
+
 ## Svelte index (home) page
+
+<Details buttonText="Click to expand">
 
 ```svelte
 <script context="module">
   import { useStoryblokApi } from '@storyblok/svelte'
 
-  export async function load() {
+  export const load = async () => {
     const storyblokApi = useStoryblokApi()
-    const { data } = await storyblokApi.get('cdn/stories/home', {
-      version: 'draft',
+    const {
+      data: { story },
+    } = await storyblokApi.get('cdn/stories/home', {
+      version: import.meta.env.VITE_STORYBLOK_STAGE,
     })
     return {
-      props: { story: data.story },
+      props: { story },
     }
   }
 </script>
@@ -241,20 +337,26 @@ You'll need to add in add the access token for the Storyblok space:
   {/if}
 </div>
 ```
+
+</Details>
 
 ## Svelte FAQ page
 
+<Details buttonText="Click to expand">
+
 ```svelte
 <script context="module">
   import { useStoryblokApi } from '@storyblok/svelte'
 
   export async function load() {
     const storyblokApi = useStoryblokApi()
-    const { data } = await storyblokApi.get('cdn/stories/faq', {
-      version: 'draft',
+    const {
+      data: { story },
+    } = await storyblokApi.get('cdn/stories/home', {
+      version: import.meta.env.VITE_STORYBLOK_STAGE,
     })
     return {
-      props: { story: data.story },
+      props: { story },
     }
   }
 </script>
@@ -279,6 +381,12 @@ You'll need to add in add the access token for the Storyblok space:
   {/if}
 </div>
 ```
+
+</Details>
+
+## Conclusion
+
+## Resources
 
 <!-- Links -->
 
@@ -289,6 +397,8 @@ You'll need to add in add the access token for the Storyblok space:
   https://learn.svelte.dev/tutorial/welcome-to-svelte
 [sign up for one]: https://app.storyblok.com/#!/signup
 [`@storyblok/svelte`]: https://github.com/storyblok/storyblok-svelte
+[add a headless cms to svelte in 5 minutes]:
+  https://www.storyblok.com/tp/add-a-headless-cms-to-svelte-in-5-minutes#one-last-thing
 
 <!-- Images -->
 
@@ -298,3 +408,13 @@ You'll need to add in add the access token for the Storyblok space:
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658758071/scottspence.com/storyblok-switch-to-v2-sidebar.png
 [storyblok-welcome-to-the-visual-editor]:
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658759454/scottspence.com/storyblok-welcome-to-the-visual-editor.png
+[storyblok-your-connection-isnt-private]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-your-connection-isnt-private.png
+[storyblok-your-connection-isnt-private-advanced]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-your-connection-isnt-private-advanced.png
+[storyblok-not-secure]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-not-secure.png
+[storyblok-set-visual-editor-real-path]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658763198/scottspence.com/storyblok-set-visual-editor-real-path.png
+[storyblok-connect-to-local-host-success]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658763672/scottspence.com/storyblok-connect-to-local-host-success.png
