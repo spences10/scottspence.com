@@ -256,10 +256,14 @@ touch src/lib/components/{feature.svelte,grid.svelte,page.svelte,teaser.svelte}
 ## Environment variables
 
 As I'll want to be committing this to source control I don't really
-want to add my access tokens. I can use the Vite
-`import.meta.env.VITE_VARIABLE_NAME` and add the tokens to a `.env`
-file to store them, however, Vite will expose these on the client (the
-browser).
+want to add my access tokens. I can use the Vite way which is to add:
+
+```js
+import.meta.env.VITE_VARIABLE_NAME
+```
+
+To the Svelte file and add the tokens to a `.env` file to access them,
+however, Vite will expose these on the client (the browser).
 
 To keep them away from prying eyes I can use `env-cmd` which will
 allow me to access the environment variables without Vite.
