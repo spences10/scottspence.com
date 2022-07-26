@@ -267,6 +267,12 @@ however, Vite will expose these on the client (the browser).
 To keep them away from prying eyes I can use `env-cmd` which will
 allow me to access the environment variables without Vite.
 
+I'll install the `env-cmd` package for use shortly:
+
+```bash
+pnpm i -D env-cmd
+```
+
 I did a post a while back on [SvelteKit .env secrets] if you want to
 give that a read!
 
