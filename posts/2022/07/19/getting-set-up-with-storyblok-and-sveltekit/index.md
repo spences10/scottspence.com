@@ -237,37 +237,91 @@ mkdir -p src/lib/components
 touch src/lib/components/{feature.svelte,grid.svelte,page.svelte,teaser.svelte}
 ```
 
-<Details buttonText="Click to expand"></Details>
+## Environment variables
 
-## Env files
+As I'll want to be committing this to source control I don't really
+want to add my access tokens. I can use the Vite
+`import.meta.env.VITE_VARIABLE_NAME` in an `.env` file to store them,
+however, Vite will expose these on the client (the browser).
+
+To keep them away from prying eyes I can use `env-cmd` which will
+allow me to access the environment variables without Vite.
+
+I did a post a while back on [SvelteKit .env secrets] if you want to
+give that a read!
+
+I'll create a `.env` file in the root of the project and a
+`env-vars.ts` file in the `src/lib` folder.
+
+```bash
+touch .env
+touch src/lib/env-vars.ts
+```
+
+In the `.env` file I can define however many environment variables I
+need for use locally. I've put an example one for using a public token
+where the stage is published:
 
 ```bash
 # draft
-VITE_STORYBLOK_ACCESS_TOKEN=
-VITE_STORYBLOK_STAGE=draft
+STORYBLOK_ACCESS_TOKEN=my-local-access-token
+STORYBLOK_STAGE=draft
 # published
-VITE_STORYBLOK_ACCESS_TOKEN=
-VITE_STORYBLOK_STAGE=published
+# STORYBLOK_ACCESS_TOKEN=my-production-access-token
+# STORYBLOK_STAGE=published
+```
+
+I can create additional tokens in the 'Settings' > 'Access tokens'
+section on Storyblok.
+
+[![storyblok-settings-access-tokens]]
+[storyblok-settings-access-tokens]
+
+[storyblok-settings-access-tokens]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/v1658779775/scottspence.com/storyblok-settings-access-tokens.png
+
+Within the `env-vars.ts` file I can export the variables needed for
+the access token and the stage:
+
+<!-- prettier-ignore -->
+```ts
+export const STORYBLOK_ACCESS_TOKEN = process.env['STORYBLOK_ACCESS_TOKEN']
+export const STORYBLOK_STAGE = process.env['STORYBLOK_STAGE']
+```
+
+I will now be able to import these in the currently empty SvelteKit
+files.
+
+Last thing to do here is to add `env-cmd` to the `package.json`
+scripts:
+
+```json
+"scripts": {
+  "dev": "env-cmd vite dev",
+  // rest of the scripts
+```
+
+If I wanted to create builds locally I'll need to create a
+`build:local` script which uses `env-cmd` too:
+
+```json
+"scripts": {
+  "dev": "env-cmd vite dev",
+  "build": "vite build",
+  "build:local": "env-cmd vite build",
+  "preview": "vite preview",
+  // rest of the scripts
 ```
 
 ## SvelteKit layout file
 
 A layout file in SvelteKit is a way to persist elements across route
-changes
+changes, like a navbar and footer. This is also the place to
+initialise Storyblok for use across the project.
 
-Time to create a `__layout.svelte` file:
-
-```bash
-touch src/routes/__layout.svelte
-```
-
-in the `src/routes` folder of the SvelteKit project. This is to make
-use of `apiPlugin` and `storyblokInit` from the [`@storyblok/svelte`]
-library.
-
-You'll need to add in add the access token for the Storyblok space:
-
-<Details buttonText="Click to expand">
+I'll add in add the access token for the Storyblok project here and
+import the components needed for use in the `storyblokInit` function
+from the `lib` folder.
 
 ```svelte
 <script context="module">
@@ -275,10 +329,11 @@ You'll need to add in add the access token for the Storyblok space:
   import Grid from '$lib/components/grid.svelte'
   import Page from '$lib/components/page.svelte'
   import Teaser from '$lib/components/teaser.svelte'
+  import { STORYBLOK_ACCESS_TOKEN } from '$lib/env-vars'
   import { apiPlugin, storyblokInit } from '@storyblok/svelte'
 
   storyblokInit({
-    accessToken: import.meta.env.VITE_STORYBLOK_ACCESS_TOKEN,
+    accessToken: STORYBLOK_ACCESS_TOKEN,
     use: [apiPlugin],
     components: {
       feature: Feature,
@@ -294,7 +349,79 @@ You'll need to add in add the access token for the Storyblok space:
 </main>
 ```
 
-</Details>
+## Component files
+
+page.svelte
+
+```svelte
+<script lang="ts">
+  import {
+    StoryblokComponent,
+    storyblokEditable,
+  } from '@storyblok/svelte'
+
+  export let blok: any
+</script>
+
+<div use:storyblokEditable={blok} class="px-6">
+  {#each blok.body as blok}
+    <StoryblokComponent {blok} />
+  {/each}
+</div>
+```
+
+grid.svelte
+
+```svelte
+<script lang="ts">
+  import {
+    StoryblokComponent,
+    storyblokEditable,
+  } from '@storyblok/svelte'
+
+  export let blok: any
+</script>
+
+<div use:storyblokEditable={blok} class="flex py-8 mb-6">
+  {#each blok.columns as blok}
+    <div class="flex-auto px-6">
+      <StoryblokComponent {blok} />
+    </div>
+  {/each}
+</div>
+```
+
+page.svelte
+
+```svelte
+<script lang="ts">
+  import {
+    StoryblokComponent,
+    storyblokEditable,
+  } from '@storyblok/svelte'
+
+  export let blok: any
+</script>
+
+<div use:storyblokEditable={blok} class="px-6">
+  {#each blok.body as blok}
+    <StoryblokComponent {blok} />
+  {/each}
+</div>
+```
+
+teaser.svelte
+
+```svelte
+<script lang="ts">
+  import { storyblokEditable } from '@storyblok/svelte'
+  export let blok: any
+</script>
+
+<div use:storyblokEditable={blok}>
+  {blok.headline}
+</div>
+```
 
 ## Svelte index (home) page
 
@@ -302,6 +429,7 @@ You'll need to add in add the access token for the Storyblok space:
 
 ```svelte
 <script context="module">
+  import { STORYBLOK_STAGE } from '$lib/env-vars'
   import { useStoryblokApi } from '@storyblok/svelte'
 
   export const load = async () => {
@@ -309,7 +437,7 @@ You'll need to add in add the access token for the Storyblok space:
     const {
       data: { story },
     } = await storyblokApi.get('cdn/stories/home', {
-      version: import.meta.env.VITE_STORYBLOK_STAGE,
+      version: STORYBLOK_STAGE,
     })
     return {
       props: { story },
@@ -388,6 +516,10 @@ You'll need to add in add the access token for the Storyblok space:
 
 ## Resources
 
+https://www.storyblok.com/tp/add-a-headless-cms-to-svelte-in-5-minutes
+https://github.com/josefineschaefer/Storyblok-SvelteKit
+https://github.com/storyblok/storyblok-svelte
+
 <!-- Links -->
 
 [svelte]: https://svelte.dev
@@ -399,6 +531,8 @@ You'll need to add in add the access token for the Storyblok space:
 [`@storyblok/svelte`]: https://github.com/storyblok/storyblok-svelte
 [add a headless cms to svelte in 5 minutes]:
   https://www.storyblok.com/tp/add-a-headless-cms-to-svelte-in-5-minutes#one-last-thing
+[sveltekit .env secrets]:
+  https://scottspence.com/posts/sveltekit-env-secrets
 
 <!-- Images -->
 
