@@ -31,7 +31,6 @@ I'll get the SvelteKit project set up first with a few commands:
 ```bash
 npm init svelte storyblok-and-sveltekit
 cd storyblok-and-sveltekit
-pnpm i
 ```
 
 I'll be using `pnpm` for installing dependencies, if you prefer `npm`
