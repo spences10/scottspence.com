@@ -20,8 +20,9 @@ the awesome tutorial for Svelte over on [svelte.dev/tutorial] it's got
 everything you need. There's also [learn.svelte.dev] for SvelteKit
 which is under development at the time of writing.
 
-Minimum requirements will be a computer development setup with Node
-version 16 installed and a text editor, I'll be using VS Code.
+If you want to follow along, minimum requirements will be a computer
+development setup with Node version 16+ installed and a text editor,
+I'll be using VS Code.
 
 ## Setup the SvelteKit project
 
@@ -211,16 +212,32 @@ the `vite.config.js` file caused the same errors.
 pnpm i -D @storyblok/svelte axios
 ```
 
-Now onto the configuration!
+## Setup Tailwind
+
+Just before I go onto the configuration, I'll want to get some nice
+default styles into the project with Tailwind CSS. This is a one liner
+setup with the awesome [Svelte Add] project:
+
+```bash
+## --typography adds the Tailwind typography plugin
+npx svelte-add@latest tailwindcss --typography
+```
+
+The script will configure tailwind for use in the project and add in
+the typography plugin to the `tailwind.config.cjs` file.
+
+All that's needed to do after that is install the dependencies with
+`pnpm i`.
 
 ## Create SvelteKit files for use with Storyblok
 
 I'll create the files I'm going to need to get the connection between
 the local SvelteKit project and the Storyblok project set up.
 
-I'll need a SvelteKit layout file and some components to represent the
-various content types in Storyblok. I'll need to create the following
-files:
+Svelte Add already took care of creating the SvelteKit
+`__layout.svelte` file for me, so I'll create some components to
+represent the various content types in Storyblok. I'll need to create
+the following files:
 
 - Content type: page
 - Nested (Block): grid, feature, teaser
@@ -229,8 +246,6 @@ I'll use the terminal to create the files and folders (directories)
 needed:
 
 ```bash
-# create layout file
-touch src/routes/__layout.svelte
 # create lib and components folders in src
 mkdir -p src/lib/components
 # Create the component files needed
@@ -241,8 +256,9 @@ touch src/lib/components/{feature.svelte,grid.svelte,page.svelte,teaser.svelte}
 
 As I'll want to be committing this to source control I don't really
 want to add my access tokens. I can use the Vite
-`import.meta.env.VITE_VARIABLE_NAME` in an `.env` file to store them,
-however, Vite will expose these on the client (the browser).
+`import.meta.env.VITE_VARIABLE_NAME` and add the tokens to a `.env`
+file to store them, however, Vite will expose these on the client (the
+browser).
 
 To keep them away from prying eyes I can use `env-cmd` which will
 allow me to access the environment variables without Vite.
@@ -259,8 +275,8 @@ touch src/lib/env-vars.ts
 ```
 
 In the `.env` file I can define however many environment variables I
-need for use locally. I've put an example one for using a public token
-where the stage is published:
+need for use locally. I've put an example for one for using draft and
+published tokens where the stage is published which is commented out:
 
 ```bash
 # draft
@@ -277,11 +293,9 @@ section on Storyblok.
 [![storyblok-settings-access-tokens]]
 [storyblok-settings-access-tokens]
 
-[storyblok-settings-access-tokens]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1658779775/scottspence.com/storyblok-settings-access-tokens.png
-
 Within the `env-vars.ts` file I can export the variables needed for
-the access token and the stage:
+the access token (`STORYBLOK_ACCESS_TOKEN`) and the stage
+(`STORYBLOK_STAGE`):
 
 <!-- prettier-ignore -->
 ```ts
@@ -293,7 +307,7 @@ I will now be able to import these in the currently empty SvelteKit
 files.
 
 Last thing to do here is to add `env-cmd` to the `package.json`
-scripts:
+scripts so it runs on the `dev` script:
 
 ```json
 "scripts": {
@@ -301,7 +315,7 @@ scripts:
   // rest of the scripts
 ```
 
-If I wanted to create builds locally I'll need to create a
+If I wanted to create builds locally I'd also need to create a
 `build:local` script which uses `env-cmd` too:
 
 ```json
@@ -315,7 +329,7 @@ If I wanted to create builds locally I'll need to create a
 
 ## SvelteKit layout file
 
-A layout file in SvelteKit is a way to persist elements across route
+A [layout file in SvelteKit] is a way to persist elements across route
 changes, like a navbar and footer. This is also the place to
 initialise Storyblok for use across the project.
 
@@ -331,6 +345,7 @@ from the `lib` folder.
   import Teaser from '$lib/components/teaser.svelte'
   import { STORYBLOK_ACCESS_TOKEN } from '$lib/env-vars'
   import { apiPlugin, storyblokInit } from '@storyblok/svelte'
+  import '../app.css'
 
   storyblokInit({
     accessToken: STORYBLOK_ACCESS_TOKEN,
@@ -344,14 +359,25 @@ from the `lib` folder.
   })
 </script>
 
-<main>
+<main class="prose prose-xl">
   <slot />
 </main>
 ```
 
 ## Component files
 
-page.svelte
+Now I can get to adding code to the component files. Credit to
+Josefine Schaefer and her [example code on GitHub].
+
+The page component (`page.svelte`) is a [root block] content type and
+uses a Svelte action in `storyblokEditable` to use the prop being
+passed to it (`export let blok`).
+
+Using a Svelte each expression I can loop through the `blok.body` and
+pass the `blok` to the `StoryblokComponent` as props.
+
+I'm using the TypeScript `any` type because I was having issues using
+the `StoryData` type.
 
 ```svelte
 <script lang="ts">
@@ -370,7 +396,8 @@ page.svelte
 </div>
 ```
 
-grid.svelte
+For the `grid.svelte` component, a similar story to the page component
+except I'm checking for a columns property and looping over that.
 
 ```svelte
 <script lang="ts">
@@ -391,30 +418,63 @@ grid.svelte
 </div>
 ```
 
-page.svelte
+The `feature.svelte` file is nested in the grid component!
 
-```svelte
-<script lang="ts">
-  import {
-    StoryblokComponent,
-    storyblokEditable,
-  } from '@storyblok/svelte'
+Let me break down my understanding of it, the `blok` prop being passed
+to the `StoryblokComponent` in `grid.svelte` is the prop being passed
+into this file (`feature.svelte`).
 
-  export let blok: any
-</script>
+If I dump out the data being passed onto the grid component:
 
-<div use:storyblokEditable={blok} class="px-6">
-  {#each blok.body as blok}
-    <StoryblokComponent {blok} />
-  {/each}
-</div>
+```js
+columns: [
+  {
+    _uid: 'eb32fb87-721d-4834-8523-73ea81cbb6f7',
+    name: 'Feature 1',
+    component: 'feature',
+    _editable: '<!--#storyblok#{"name": "feature"} -->',
+  },
+]
 ```
 
-teaser.svelte
+Then the data being passed to the feature component:
+
+```js
+{
+  _uid: 'eb32fb87-721d-4834-8523-73ea81cbb6f7',
+  name: 'Feature 1',
+  component: 'feature',
+  _editable: '<!--#storyblok#{"name": "feature"} -->',
+}
+```
+
+It's the same data, with the individual `columns` being rendered out
+by `feature.svelte` as a child (or nested) component.
+
+I'll use the `storyblokEditable` action in the `feature.svelte`
+component passing in the `blok` prop and render out a div with the
+`blok.name` for the content.
 
 ```svelte
 <script lang="ts">
   import { storyblokEditable } from '@storyblok/svelte'
+
+  export let blok: any
+</script>
+
+<div use:storyblokEditable={blok} class="py-2">
+  <div class="text-lg">{blok.name}</div>
+</div>
+```
+
+For `teaser.svelte` I'm going to use the same pattern as
+`feature.svelte`, but as I want to use it as the page heading, I'll
+wrap the `blok.name` in a `h1` tag.
+
+```svelte
+<script lang="ts">
+  import { storyblokEditable } from '@storyblok/svelte'
+
   export let blok: any
 </script>
 
@@ -424,6 +484,8 @@ teaser.svelte
 ```
 
 ## Svelte index (home) page
+
+I've got all the components I need now for use in `storyblokInit`.
 
 <Details buttonText="Click to expand">
 
@@ -467,6 +529,11 @@ teaser.svelte
 ```
 
 </Details>
+
+## Add additional field to Feature block
+
+Say if I wanted a bit more data in the feature component here, like
+some body content explaining the feature.
 
 ## Svelte FAQ page
 
@@ -533,6 +600,13 @@ https://github.com/storyblok/storyblok-svelte
   https://www.storyblok.com/tp/add-a-headless-cms-to-svelte-in-5-minutes#one-last-thing
 [sveltekit .env secrets]:
   https://scottspence.com/posts/sveltekit-env-secrets
+[svelte add]: https://github.com/svelte-add/tailwindcss
+[layout file in sveltekit]: https://kit.svelte.dev/docs/layouts
+[example code on github]:
+  https://github.com/josefineschaefer/Storyblok-SvelteKit
+[root block]: https://www.storyblok.com/docs/Guides/root-blocks
+[nestable block]:
+  https://www.storyblok.com/docs/Guides/nestable-blocks
 
 <!-- Images -->
 
@@ -552,3 +626,5 @@ https://github.com/storyblok/storyblok-svelte
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658763198/scottspence.com/storyblok-set-visual-editor-real-path.png
 [storyblok-connect-to-local-host-success]:
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658763672/scottspence.com/storyblok-connect-to-local-host-success.png
+[storyblok-settings-access-tokens]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658779775/scottspence.com/storyblok-settings-access-tokens.png
