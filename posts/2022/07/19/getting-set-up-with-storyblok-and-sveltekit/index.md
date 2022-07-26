@@ -2,7 +2,7 @@
 date: 2022-07-19
 title: Getting set up with Storyblok and SvelteKit
 tags: ['sveltekit', 'storyblok', 'how-to', 'guide']
-isPrivate: true
+isPrivate: false
 ---
 
 <script>
@@ -26,7 +26,7 @@ I'll be using VS Code.
 
 ## Setup the SvelteKit project
 
-I'll get the SvelteKit project set up with a few commands:
+I'll get the SvelteKit project set up first with a few commands:
 
 ```bash
 npm init svelte storyblok-and-sveltekit
@@ -34,7 +34,7 @@ cd storyblok-and-sveltekit
 pnpm i
 ```
 
-I'll be using `pnpm` for installing dependencies, if you perfer `npm`
+I'll be using `pnpm` for installing dependencies, if you prefer `npm`
 or `yarn` you can use those instead. Just be aware if you're copy
 pasting terminal commands you'll need to change that.
 
@@ -76,7 +76,7 @@ project.
 ## Get Storyblok setup
 
 If you're following along and you've not got a Storyblok account
-already then you'll need to [sign up for one] otherwise sign in.
+already then you'll need to [sign up for one], otherwise sign in.
 
 From here, I'm greeted with a welcome screen and a button to 'Create a
 new space'.
@@ -84,7 +84,8 @@ new space'.
 Clicking that I'll be taken to the 'Create a new space' page with
 several options, the default 'Create new space' is good enough for
 this guide. I'll give it a name (I'm calling mine 'SvelteKit example'
-very imaginative I know 😊) then I'll click the 'Create space' button.
+very imaginative, I know 😊) then I'll click the 'Create space'
+button.
 
 [![storyblok-create-new-space]] [storyblok-create-new-space]
 
@@ -197,7 +198,7 @@ on there.
 
 ## Storyblok bridge with Svelte
 
-If you've not used Storyblok before this is where the magic happens.
+If you've not used Storyblok before, this is where the magic happens.
 The Svelte Storyblok SDK (amongst other things) allows the live
 preview and editing of the components in Storyblok to be reflected on
 the project running on `localhost`.
@@ -333,9 +334,13 @@ A [layout file in SvelteKit] is a way to persist elements across route
 changes, like a navbar and footer. This is also the place to
 initialise Storyblok for use across the project.
 
-I'll add in add the access token for the Storyblok project here and
-import the components needed for use in the `storyblokInit` function
-from the `lib` folder.
+To load data before the page loads I'll use the
+`<script context="module">` script tags to initialise the Storyblok
+client.
+
+I'll add in the access token for the Storyblok project here and import
+the components needed for use in the `storyblokInit` function from the
+`lib` folder.
 
 ```svelte
 <script context="module">
@@ -424,7 +429,8 @@ Let me break down my understanding of it, the `blok` prop being passed
 to the `StoryblokComponent` in `grid.svelte` is the prop being passed
 into this file (`feature.svelte`).
 
-If I dump out the data being passed onto the grid component:
+If I dump out the data being passed into the grid component, I get
+this:
 
 ```js
 columns: [
@@ -437,7 +443,7 @@ columns: [
 ]
 ```
 
-Then the data being passed to the feature component:
+Then the data being passed to the feature component looks like this:
 
 ```js
 {
@@ -487,6 +493,19 @@ wrap the `blok.name` in a `h1` tag.
 
 I've got all the components I need now for use in `storyblokInit`.
 
+In the index page I'll want to get the Storyblok `home` data for use
+in the page. Much like with the layout file I'll want to get this data
+before the page loads so I'll need a `<script context="module">` block
+to call the results from the `useStoryblokApi` in a SvelteKit load
+function.
+
+I'll destructure the `story` out of the response from the API call and
+return that as props for the page to use.
+
+With Svelte `onMount`, this is called once the page has loaded, this
+is when the `useStoryblokBridge` is called passing in the `story` prop
+from the context module.
+
 <Details buttonText="Click to expand">
 
 ```svelte
@@ -532,60 +551,86 @@ I've got all the components I need now for use in `storyblokInit`.
 
 ## Add additional field to Feature block
 
-Say if I wanted a bit more data in the feature component here, like
-some body content explaining the feature.
+Let's say now, if I wanted to add a bit more content to the feature
+component, like some body content explaining the feature. I'll expand
+on that a little now.
 
-## Svelte FAQ page
+What I'll do to finish up here is add a new field to the feature
+block, I can get to my block library from navigating back from the
+visual editor page and select the 'Block Library' from the sidebar.
 
-<Details buttonText="Click to expand">
+I can hover over the 'feature' block and click the ellipsis (`...`)
+and select 'Edit'.
+
+[![storyblok-edit-block-schema-menu]]
+[storyblok-edit-block-schema-menu]
+
+This brings up a context menu where I can edit the feature block and
+add additional fields to it, I'm going to give the field a name of
+body and click the 'Add' button.
+
+[![storyblok-edit-block-schema-add-field]]
+[storyblok-edit-block-schema-add-field]
+
+The newly created field will now show up in the list under the 'name'
+field.
+
+[![storyblok-edit-block-schema-field-added]]
+[storyblok-edit-block-schema-field-added]
+
+Clicking on that will take me to the edit field options where I can
+select the field type. I'm going to keep it as a text field, I could
+go into using the [Storyblok `RichTextResolver`] but I think I'll
+leave that for another post.
+
+[![storyblok-edit-block-schema-edit-field]]
+[storyblok-edit-block-schema-edit-field]
+
+Now, if I go back to the 'Content' section in the sidebar and select
+the 'Home' story, I can select the 'Grid' then 'Feature' I can see
+there's a new 'Body' field I can start adding content to.
+
+I'll add in content to the three fields and save the content for each
+block as I go along.
+
+To display the feature body content I'll make a little adjustment to
+the `feature.svelte` file to include the `blok.body` content.
 
 ```svelte
-<script context="module">
-  import { useStoryblokApi } from '@storyblok/svelte'
-
-  export async function load() {
-    const storyblokApi = useStoryblokApi()
-    const {
-      data: { story },
-    } = await storyblokApi.get('cdn/stories/home', {
-      version: import.meta.env.VITE_STORYBLOK_STAGE,
-    })
-    return {
-      props: { story },
-    }
-  }
-</script>
-
 <script lang="ts">
-  import {
-    StoryblokComponent,
-    useStoryblokBridge,
-  } from '@storyblok/svelte'
-  import { onMount } from 'svelte'
+  import { storyblokEditable } from '@storyblok/svelte'
 
-  export let story: any
-
-  onMount(() => {
-    useStoryblokBridge(story.id, newStory => (story = newStory))
-  })
+  export let blok: any
 </script>
 
-<div>
-  {#if story}
-    <StoryblokComponent blok={story.content} />
-  {/if}
+<div use:storyblokEditable={blok} class="py-2">
+  <div class="text-lg">{blok.name}</div>
+  <div class="text-lg">{blok.body}</div>
 </div>
 ```
 
-</Details>
-
 ## Conclusion
 
+There you have it! I've gone from scratch to a basic SvelteKit project
+to consume a Storyblok API.
+
+I hope you found it useful and that you have everything you need to
+get started with Storyblok and SvelteKit.
+
+I've only really scratched the surface of Storyblok here using the
+default story generated when creating a new space, but I've learned a
+_lot_ in the process documenting this.
+
 ## Resources
+
+From searching around I found all these resources which helped me
+along the way:
 
 https://www.storyblok.com/tp/add-a-headless-cms-to-svelte-in-5-minutes
 https://github.com/josefineschaefer/Storyblok-SvelteKit
 https://github.com/storyblok/storyblok-svelte
+https://www.storyblok.com/docs/Guides/nestable-blocks
+https://www.storyblok.com/docs/Guides/root-blocks
 
 <!-- Links -->
 
@@ -607,6 +652,8 @@ https://github.com/storyblok/storyblok-svelte
 [root block]: https://www.storyblok.com/docs/Guides/root-blocks
 [nestable block]:
   https://www.storyblok.com/docs/Guides/nestable-blocks
+[storyblok `richtextresolver`]:
+  https://github.com/storyblok/storyblok-js-client
 
 <!-- Images -->
 
@@ -628,3 +675,11 @@ https://github.com/storyblok/storyblok-svelte
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658763672/scottspence.com/storyblok-connect-to-local-host-success.png
 [storyblok-settings-access-tokens]:
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658779775/scottspence.com/storyblok-settings-access-tokens.png
+[storyblok-edit-block-schema-menu]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658865559/scottspence.com/storyblok-edit-block-schema-menu.png
+[storyblok-edit-block-schema-add-field]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/v1658865559/scottspence.com/storyblok-edit-block-schema-add-field.png
+[storyblok-edit-block-schema-field-added]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/v1658865559/scottspence.com/storyblok-edit-block-schema-field-added.png
+[storyblok-edit-block-schema-edit-field]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/v1658866411/scottspence.com/storyblok-edit-block-schema-edit-field.png
