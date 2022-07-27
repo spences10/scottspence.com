@@ -72,6 +72,23 @@ pnpm run dev
 Going to `http://localhost:5173` will display the SvelteKit skeleton
 project.
 
+## Setup Tailwind
+
+Just before I go onto the Storyblok configuration, I'll want to get
+some nice default styles into the project with Tailwind CSS. This is a
+one liner setup with the awesome [Svelte Add] project:
+
+```bash
+## --typography adds the Tailwind typography plugin
+npx svelte-add@latest tailwindcss --typography
+```
+
+The script will configure Tailwind for use in the project and add in
+the typography plugin to the `tailwind.config.cjs` file.
+
+All that's needed to do after that is install the dependencies with
+`pnpm i`.
+
 ## Get Storyblok setup
 
 If you're following along and you've not got a Storyblok account
@@ -211,23 +228,6 @@ the `vite.config.js` file caused the same errors.
 ```bash
 pnpm i -D @storyblok/svelte axios
 ```
-
-## Setup Tailwind
-
-Just before I go onto the configuration, I'll want to get some nice
-default styles into the project with Tailwind CSS. This is a one liner
-setup with the awesome [Svelte Add] project:
-
-```bash
-## --typography adds the Tailwind typography plugin
-npx svelte-add@latest tailwindcss --typography
-```
-
-The script will configure tailwind for use in the project and add in
-the typography plugin to the `tailwind.config.cjs` file.
-
-All that's needed to do after that is install the dependencies with
-`pnpm i`.
 
 ## Create SvelteKit files for use with Storyblok
 
