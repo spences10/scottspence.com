@@ -30,7 +30,7 @@
     "daisyui": "2.20.0",
     "date-fns": "2.29.1",
     "env-cmd": "10.1.0",
-    "eslint": "8.20.0",
+    "eslint": "8.21.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-svelte3": "4.0.0",
     "fathom-client": "3.5.0",
