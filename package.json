@@ -8,9 +8,8 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "env-cmd vite dev",
+    "dev": "vite dev",
     "build": "vite build",
-    "build:local": "env-cmd vite build",
     "preview": "vite preview",
     "lint": "prettier --check . && eslint --ignore-path .gitignore .",
     "format": "pretty-quick",
@@ -29,7 +28,6 @@
     "cssnano": "5.1.12",
     "daisyui": "2.20.0",
     "date-fns": "2.29.1",
-    "env-cmd": "10.1.0",
     "eslint": "8.21.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-svelte3": "4.0.0",
