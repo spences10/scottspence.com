@@ -1,7 +1,7 @@
+import { env } from '$env/dynamic/private'
+
 export const POST = async ({ request }) => {
   const { email } = await request.json()
-
-  const REVUE_API_KEY = process.env['REVUE_API_KEY']
 
   try {
     const res = await fetch(
@@ -9,7 +9,7 @@ export const POST = async ({ request }) => {
       {
         method: 'POST',
         headers: {
-          Authorization: `Token ${REVUE_API_KEY}`,
+          Authorization: `Token ${env.REVUE_API_KEY}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({

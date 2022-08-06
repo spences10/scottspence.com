@@ -1,3 +1,5 @@
+import { env } from '$env/dynamic/private'
+
 export const POST = async ({ request }) => {
   const fd = await request.formData()
 
@@ -6,9 +8,7 @@ export const POST = async ({ request }) => {
   const reason = fd.get('reason')
   const message = fd.get('message')
 
-  const AIRTABLE_BASE_ID = process.env['AIRTABLE_BASE_ID']
-  const AIRTABLE_TOKEN = process.env['AIRTABLE_TOKEN']
-  const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Contact%20Requests`
+  const AIRTABLE_URL = `https://api.airtable.com/v0/${env.AIRTABLE_BASE_ID}/Contact%20Requests`
 
   let data = {
     records: [
@@ -25,7 +25,7 @@ export const POST = async ({ request }) => {
   const res = await fetch(AIRTABLE_URL, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${AIRTABLE_TOKEN}`,
+      Authorization: `Bearer ${env.AIRTABLE_TOKEN}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
