@@ -1,8 +1,8 @@
 ---
 date: 2022-08-07
-title: The SvelteKit $env Module
+title: SvelteKit Environment Variables with the SvelteKit $env Module
 tags: ['sveltekit', 'notes']
-isPrivate: true
+isPrivate: false
 ---
 
 <script>
@@ -51,7 +51,37 @@ will result in an error.
 Accessing any data that needs a private variable will need to be done
 on the server.
 
-https://kit.svelte.dev/docs/modules#$env-static-public
+Example, using a public variable in a `.svelte` file:
+
+```svelte
+<script>
+  import { env } from '$env/dynamic/private'
+</script>
+
+{env.SECRET_VARIABLE}
+```
+
+In a `.js` file (endpoint):
+
+```js
+import { env as private_env } from '$env/dynamic/private'
+import { env as public_env } from '$env/dynamic/public'
+
+export const GET = async () => {
+  console.log('=====================')
+  console.log(private_env.SECRET_VARIABLE)
+  console.log(public_env.PUBLIC_VARIABLE)
+  console.log('=====================')
+  return {}
+}
+```
+
+Check out the documentation for each implementation:
+
+- https://kit.svelte.dev/docs/modules#$env-dynamic-private
+- https://kit.svelte.dev/docs/modules#$env-dynamic-public
+- https://kit.svelte.dev/docs/modules#$env-static-private
+- https://kit.svelte.dev/docs/modules#$env-static-public
 
 <!-- Links -->
 
