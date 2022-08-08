@@ -5,8 +5,9 @@ tags: ['sveltekit', 'notes']
 isPrivate: false
 ---
 
-> SvelteKit now handles env secrets, take a look at [The SvelteKit
-> $env Module] which details how to use it in a SvelteKit project.
+> SvelteKit now handles env secrets, take a look at [SvelteKit
+> Environment Variables with the SvelteKit $env Module] which details
+> how to use it in a SvelteKit project.
 
 So SvelteKit is super awesome n' all and the best thing ever but have
 you ever tried to use a `.env` secret that you didn't want exposed on
@@ -94,5 +95,5 @@ this!
 [dotenv]: https://www.npmjs.com/package/dotenv
 [blog by hideckies]:
   https://blog.hdks.org/Environment-Variables-in-SvelteKit-and-Vercel/
-[the sveltekit $env module]:
-  https://scottspence.com/posts/the-sveltekit-env-module
+[sveltekit environment variables with the sveltekit $env module]:
+  https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module
