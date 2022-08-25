@@ -13,7 +13,7 @@ specifiers:
   eslint-plugin-svelte3: 4.0.0
   fathom-client: 3.5.0
   fuse.js: 6.6.2
-  graphql: 16.5.0
+  graphql: 16.6.0
   graphql-request: 4.3.0
   husky: 8.0.1
   marked: 4.0.18
@@ -51,8 +51,8 @@ devDependencies:
   eslint-plugin-svelte3: 4.0.0_laaqauvsmoyypsiqkozwyi2fn4
   fathom-client: 3.5.0
   fuse.js: 6.6.2
-  graphql: 16.5.0
-  graphql-request: 4.3.0_graphql@16.5.0
+  graphql: 16.6.0
+  graphql-request: 4.3.0_graphql@16.6.0
   husky: 8.0.1
   marked: 4.0.18
   mdsvex: 0.10.6_svelte@3.49.0
@@ -1597,7 +1597,7 @@ packages:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
     dev: true
 
-  /graphql-request/4.3.0_graphql@16.5.0:
+  /graphql-request/4.3.0_graphql@16.6.0:
     resolution: {integrity: sha512-2v6hQViJvSsifK606AliqiNiijb1uwWp6Re7o0RTyH+uRTv/u7Uqm2g4Fjq/LgZIzARB38RZEvVBFOQOVdlBow==}
     peerDependencies:
       graphql: 14 - 16
@@ -1605,13 +1605,13 @@ packages:
       cross-fetch: 3.1.5
       extract-files: 9.0.0
       form-data: 3.0.1
-      graphql: 16.5.0
+      graphql: 16.6.0
     transitivePeerDependencies:
       - encoding
     dev: true
 
-  /graphql/16.5.0:
-    resolution: {integrity: sha512-qbHgh8Ix+j/qY+a/ZcJnFQ+j8ezakqPiHwPiZhV/3PgGlgf96QMBB5/f2rkiC9sgLoy/xvT6TSiaf2nTHJh5iA==}
+  /graphql/16.6.0:
+    resolution: {integrity: sha512-KPIBPDlW7NxrbT/eh4qPXz5FiFdL5UbaA0XUNz2Rp3Z3hqBSkbj0GVjwFDztsWVauZUWsbKHgMg++sk8UX0bkw==}
     engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
     dev: true
 

@@ -33,7 +33,7 @@
     "eslint-plugin-svelte3": "4.0.0",
     "fathom-client": "3.5.0",
     "fuse.js": "6.6.2",
-    "graphql": "16.5.0",
+    "graphql": "16.6.0",
     "graphql-request": "4.3.0",
     "husky": "8.0.1",
     "marked": "4.0.18",
