@@ -7,7 +7,7 @@
 # For recruiters - FAQ
 
 <Small>
-  Last updated: <DateUpdated date='2022-05-16' small='true' />
+  Last updated: <DateUpdated date='2022-08-25' small='true' />
 </Small>
 
 Hello friend 👋, thanks for taking an interest in me and my profile.
@@ -111,8 +111,8 @@ I have a wealth of knowledge using [Gatsby] (2017-2020) (which uses
 using it.
 
 For CMS' any opportunity to work with any of the new headless CMS'
-that are emerging would be great: [GraphCMS], [Sanity.io], [Strapi],
-[Keystone 5] or [Contentful].
+that are emerging would be great: [Storyblok], [GraphCMS],
+[Sanity.io], [Strapi], [Keystone 5] or [Contentful].
 
 I have commercial experience with GraphCMS and Contentful and have
 built projects in Sanity.io and Keystone 5.
@@ -311,6 +311,7 @@ Feel free to [check out the rest of the site](/)
 [maker's schedule]: https://www.paulgraham.com/makersschedule.html
 [jamstack]: https://jamstack.org/
 [gatsby]: https://gatsbyjs.com/
+[storyblok]: https://www.storyblok.com/
 [graphcms]: https://graphcms.com/
 [sanity.io]: https://www.sanity.io/
 [contentful]: https://www.contentful.com

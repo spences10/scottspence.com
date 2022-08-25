@@ -7,8 +7,9 @@
 
 ## Hi, I'm Scott
 
-I'm a developer advocate working with [GraphCMS] to create content
-that helps remove friction and educate around the GraphQL space.
+I'm a developer relations engineer working with [Storyblok] to create
+content that helps remove friction and educate around the headless CMS
+space.
 
 I create content written in the blog here and educational videos
 supporting the written content.
@@ -35,7 +36,7 @@ and Lloyd's insurance market.
 
 As a web developer I've worked in government digital transformation
 and creative digital. I now work in the content management space with
-GraphCMS.
+Storyblok.
 
 ### My personality
 
@@ -104,7 +105,7 @@ series covers the food delivery industry.
 
 <!-- Links -->
 
-[graphcms]: https://graphcms.com/
+[storyblok]: https://www.storyblok.com/
 [vba]: https://en.wikipedia.org/wiki/Visual_Basic_for_Applications
 [now]: https://zeit.co/now
 [gatsby]: https://www.gatsbyjs.com/

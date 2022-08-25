@@ -12,7 +12,7 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2022-03-17" small="true" />
+  Last updated: <DateUpdated date="2022-08-25" small="true" />
 </Small>
 
 If you want me to talk about using Svelte with GraphQL, the Jamstack
@@ -24,6 +24,13 @@ Here's the list of talks, podcasts and livestreams I have done
 recently.
 
 ## 2022
+
+### Svelte Society London - August
+
+Live coding example refactoring the new SvelteKit routes API changes
+at the Svelte Society London meetup.
+
+<YouTube youTubeId='ua6gE2zPulw' skipTo={{ h: 1, m: 16, s: 28 }} />
 
 ### JSNation Workshop - June
 
