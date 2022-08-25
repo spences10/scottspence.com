@@ -35,12 +35,12 @@ specifiers:
   sveltekit-embed: 0.0.5
   tailwindcss: 3.1.8
   theme-change: 2.2.0
-  unist-util-visit: 4.1.0
+  unist-util-visit: 4.1.1
   vite: 3.0.4
 
 devDependencies:
   '@sveltejs/adapter-vercel': 1.0.0-next.66
-  '@sveltejs/kit': 1.0.0-next.428_svelte@3.49.0+vite@3.0.4
+  '@sveltejs/kit': 1.0.0-next.440_svelte@3.49.0+vite@3.0.4
   '@tailwindcss/typography': 0.5.4_tailwindcss@3.1.8
   autoprefixer: 10.4.8_postcss@8.4.16
   cssnano: 5.1.12_postcss@8.4.16
@@ -73,7 +73,7 @@ devDependencies:
   sveltekit-embed: 0.0.5
   tailwindcss: 3.1.8_postcss@8.4.16
   theme-change: 2.2.0
-  unist-util-visit: 4.1.0
+  unist-util-visit: 4.1.1
   vite: 3.0.4
 
 packages:
@@ -184,8 +184,8 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.428_svelte@3.49.0+vite@3.0.4:
-    resolution: {integrity: sha512-CVp7zltQ+3VOII1s7KuvgvGEFwD0PSqts9R3q4eaj0CNoC3gpdzcbEZayyQwXX/3lI1HdSNSF8gxbX0TRUoFuA==}
+  /@sveltejs/kit/1.0.0-next.440_svelte@3.49.0+vite@3.0.4:
+    resolution: {integrity: sha512-nZAW4gFjfHIMw5y6eZz1Q1xd00mEUDJ8bykXvqItWVU0kwLDvYzIgLf5DKYGN0gGIUrnrgeKMPmr953zmwXm2g==}
     engines: {node: '>=16.9'}
     hasBin: true
     requiresBuild: true
@@ -1960,7 +1960,7 @@ packages:
     dependencies:
       '@types/mdast': 3.0.10
       '@types/unist': 2.0.6
-      unist-util-visit: 4.1.0
+      unist-util-visit: 4.1.1
     dev: true
 
   /mdast-util-to-hast/11.3.0:
@@ -1974,7 +1974,7 @@ packages:
       unist-builder: 3.0.0
       unist-util-generated: 2.0.0
       unist-util-position: 4.0.3
-      unist-util-visit: 4.1.0
+      unist-util-visit: 4.1.1
     dev: true
 
   /mdn-data/2.0.14:
@@ -2801,7 +2801,7 @@ packages:
       hast-util-heading-rank: 2.1.0
       hast-util-is-element: 2.1.2
       unified: 10.1.2
-      unist-util-visit: 4.1.0
+      unist-util-visit: 4.1.1
     dev: true
 
   /rehype-slug/5.0.1:
@@ -2813,7 +2813,7 @@ packages:
       hast-util-heading-rank: 2.1.0
       hast-util-to-string: 2.0.0
       unified: 10.1.2
-      unist-util-visit: 4.1.0
+      unist-util-visit: 4.1.1
     dev: true
 
   /remark-external-links/9.0.1:
@@ -2826,7 +2826,7 @@ packages:
       mdast-util-definitions: 5.1.1
       space-separated-tokens: 2.0.1
       unified: 10.1.2
-      unist-util-visit: 4.1.0
+      unist-util-visit: 4.1.1
     dev: true
 
   /remark-preview/1.0.2:
@@ -3343,8 +3343,8 @@ packages:
       unist-util-visit-parents: 4.1.1
     dev: true
 
-  /unist-util-visit/4.1.0:
-    resolution: {integrity: sha512-n7lyhFKJfVZ9MnKtqbsqkQEk5P1KShj0+//V7mAcoI6bpbUjh3C/OG8HVD+pBihfh6Ovl01m8dkcv9HNqYajmQ==}
+  /unist-util-visit/4.1.1:
+    resolution: {integrity: sha512-n9KN3WV9k4h1DxYR1LoajgN93wpEi/7ZplVe02IoB4gH5ctI1AaF2670BLHQYbwj+pY83gFtyeySFiyMHJklrg==}
     dependencies:
       '@types/unist': 2.0.6
       unist-util-is: 5.1.1
