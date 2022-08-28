@@ -40,7 +40,7 @@ specifiers:
 
 devDependencies:
   '@sveltejs/adapter-vercel': 1.0.0-next.68
-  '@sveltejs/kit': 1.0.0-next.443_svelte@3.49.0+vite@3.0.9
+  '@sveltejs/kit': 1.0.0-next.445_svelte@3.49.0+vite@3.0.9
   '@tailwindcss/typography': 0.5.4_tailwindcss@3.1.8
   autoprefixer: 10.4.8_postcss@8.4.16
   cssnano: 5.1.13_postcss@8.4.16
@@ -189,8 +189,8 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.443_svelte@3.49.0+vite@3.0.9:
-    resolution: {integrity: sha512-Stdjwj6iL/u40O/+20UKTWtCBYxYaKwX2nRV5devrGk5hvq6/FbAqw+azwoWKvNoz3PGtrSmHIyeLcAx8iKQcw==}
+  /@sveltejs/kit/1.0.0-next.445_svelte@3.49.0+vite@3.0.9:
+    resolution: {integrity: sha512-E/d6lhJ+4cSGJmAk8JnlrBwJfa6xYeCZ1zBc8kTdrO/vNiFpMDRJM9pgT8DGlXYA7kI+OBud/p3Eipl5m5jntw==}
     engines: {node: '>=16.9'}
     hasBin: true
     requiresBuild: true
@@ -497,7 +497,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001383
-      electron-to-chromium: 1.4.230
+      electron-to-chromium: 1.4.233
       node-releases: 2.0.6
       update-browserslist-db: 1.0.5_browserslist@4.21.3
     dev: true
@@ -968,8 +968,8 @@ packages:
       domhandler: 4.3.1
     dev: true
 
-  /electron-to-chromium/1.4.230:
-    resolution: {integrity: sha512-3pwjAK0qHSDN9+YAF4fJknsSruP7mpjdWzUSruIJD/JCH77pEh0SorEyb3xVaKkfwk2tzjOt2D8scJ0KAdfXLA==}
+  /electron-to-chromium/1.4.233:
+    resolution: {integrity: sha512-ejwIKXTg1wqbmkcRJh9Ur3hFGHFDZDw1POzdsVrB2WZjgRuRMHIQQKNpe64N/qh3ZtH2otEoRoS+s6arAAuAAw==}
     dev: true
 
   /emoji-regex/8.0.0:
