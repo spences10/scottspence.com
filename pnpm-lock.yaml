@@ -16,7 +16,7 @@ specifiers:
   graphql: 16.6.0
   graphql-request: 5.0.0
   husky: 8.0.1
-  marked: 4.0.19
+  marked: 4.1.0
   mdsvex: 0.10.6
   mdsvex-relative-images: 1.0.2
   postcss: 8.4.16
@@ -54,7 +54,7 @@ devDependencies:
   graphql: 16.6.0
   graphql-request: 5.0.0_graphql@16.6.0
   husky: 8.0.1
-  marked: 4.0.19
+  marked: 4.1.0
   mdsvex: 0.10.6_svelte@3.49.0
   mdsvex-relative-images: 1.0.2
   postcss: 8.4.16
@@ -1963,8 +1963,8 @@ packages:
       semver: 6.3.0
     dev: true
 
-  /marked/4.0.19:
-    resolution: {integrity: sha512-rgQF/OxOiLcvgUAj1Q1tAf4Bgxn5h5JZTp04Fx4XUkVhs7B+7YA9JEWJhJpoO8eJt8MkZMwqLCNeNqj1bCREZQ==}
+  /marked/4.1.0:
+    resolution: {integrity: sha512-+Z6KDjSPa6/723PQYyc1axYZpYYpDnECDaU6hkaf5gqBieBkMKYReL5hteF2QizhlMbgbo8umXl/clZ67+GlsA==}
     engines: {node: '>= 12'}
     hasBin: true
     dev: true
