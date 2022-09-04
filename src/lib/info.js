@@ -46,22 +46,22 @@ export const PORTFOLIO_PROJECTS = [
 export const POPULAR_POSTS = [
   {
     title: `Make an Email Form Submission with SvelteKit`,
-    slug: `posts/email-form-submission-with-sveltekit`,
+    slug: `email-form-submission-with-sveltekit`,
     views: `6.7k`,
   },
   {
     title: `Stylelint Configuration for use with Tailwind CSS`,
-    slug: `posts/stylelint-configuration-for-tailwindcss`,
+    slug: `stylelint-configuration-for-tailwindcss`,
     views: `6.9k`,
   },
   {
     title: `SvelteKit .env secrets`,
-    slug: `posts/sveltekit-env-secrets`,
+    slug: `sveltekit-env-secrets`,
     views: `5.8k`,
   },
   {
     title: `Get GraphQL Data Using Axios`,
-    slug: `posts/get-graphql-data-with-axios`,
+    slug: `get-graphql-data-with-axios`,
     views: `4.5k`,
   },
 ]
