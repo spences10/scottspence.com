@@ -15,6 +15,7 @@
   let {
     title,
     date,
+    updated,
     preview,
     readingTime,
     slug,
@@ -58,12 +59,20 @@
 <article>
   <h1 class="font-black mb-1 text-5xl">{title}</h1>
   <div class="mb-10 mt-4 uppercase">
-    <time datetime={new Date(date).toISOString()}
-      >{format(new Date(date), 'MMMM d, yyyy')}</time
-    >
-    •
+    <time datetime={new Date(date).toISOString()}>
+      {format(new Date(date), 'MMMM d, yyyy')}
+    </time>
+    &bull;
     <span>{readingTime.text}</span>
     <br />
+    {#if updated}
+      <span class="text-xs font-bold">
+        updated
+        <time datetime={new Date(updated).toISOString()}>
+          {format(new Date(updated), 'MMMM d, yyyy')}
+        </time>
+      </span>
+    {/if}
     <div class="space-x-2">
       {#each tags as tag}
         <a sveltekit:prefetch href={`/tags/${tag}`}>

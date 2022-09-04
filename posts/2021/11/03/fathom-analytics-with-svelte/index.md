@@ -1,5 +1,6 @@
 ---
 date: 2021-11-03
+updated: 2022-09-02
 title: Fathom Analytics with SvelteKit
 tags: ['analytics', 'svelte', 'sveltekit']
 isPrivate: false
@@ -141,7 +142,7 @@ VITE_FATHOM_ID=NYMDTPLM
 VITE_FATHOM_URL=https://cdn.usefathom.com/script.js
 ```
 
-The reason for using a `.env` file if because a lot of ad blockers
+The reason for using a `.env` file is because a lot of ad blockers
 will scrape it from places like GitHub, GitLab and Bitbucket and add
 it to their block lists.
 
