@@ -16,7 +16,6 @@
           class={`text-xl link link-primary capitalize ${
             $page.url.pathname === link && `link-secondary`
           }`}
-          sveltekit:prefetch
           href={link}
         >
           {link.slice(1)}

@@ -75,7 +75,7 @@
     {/if}
     <div class="space-x-2">
       {#each tags as tag}
-        <a sveltekit:prefetch href={`/tags/${tag}`}>
+        <a href={`/tags/${tag}`}>
           <span
             class="badge badge-primary text-primary-content transition hover:bg-secondary-focus"
             >{tag}</span

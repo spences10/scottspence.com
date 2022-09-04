@@ -10,9 +10,8 @@
     <span class="footer-title">Popular Posts</span>
     {#each POPULAR_POSTS as post}
       <a
-        sveltekit:prefetch
         class="text-primary-content hover:opacity-50"
-        href={`/${post.slug}`}
+        href={`/posts/${post.slug}`}
       >
         {post.title}
         <span class="text-primary-content font-bold">
@@ -26,7 +25,6 @@
     <span class="footer-title">Site Links</span>
     {#each SITE_LINKS as link}
       <a
-        sveltekit:prefetch
         href={`/${link.slug}`}
         on:click={() => trackGoal(link.id, 0)}
         class="text-primary-content hover:opacity-50"
