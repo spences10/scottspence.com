@@ -27,7 +27,6 @@
     <li class="my-4 text-xl">
       <a
         class="mr-6 transition link hover:text-primary"
-        sveltekit:prefetch
         href={`/posts/${slug}`}>{title}</a
       >
     </li>
