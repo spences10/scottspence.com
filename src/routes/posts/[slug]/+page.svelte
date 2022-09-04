@@ -58,15 +58,15 @@
 <article>
   <h1 class="font-black mb-1 text-5xl">{title}</h1>
   <div class="mb-10 mt-4 uppercase">
-    <time datetime={new Date(date).toISOString()}
-      >{format(new Date(date), 'MMMM d, yyyy')}</time
-    >
-    •
+    <time datetime={new Date(date).toISOString()}>
+      {format(new Date(date), 'MMMM d, yyyy')}
+    </time>
+    &bull;
     <span>{readingTime.text}</span>
     <br />
     <div class="space-x-2">
       {#each tags as tag}
-        <a sveltekit:prefetch href={`/tags/${tag}`}>
+        <a href={`/tags/${tag}`}>
           <span
             class="badge badge-primary text-primary-content transition hover:bg-secondary-focus"
             >{tag}</span

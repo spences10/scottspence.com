@@ -12,10 +12,10 @@
   >
     {#each POPULAR_POSTS as post}
       <a
-        class="h-full"
-        sveltekit:prefetch
-        href={`/${post.slug}`}
+        data-sveltekit-reload
+        href={`/posts/${post.slug}`}
         on:click={() => trackGoal(`WKHRXHV8`)}
+        class="h-full"
       >
         <aside
           class="rounded-xl font-bold h-full p-5 transition card shadow-lg hover:text-accent-focus"
