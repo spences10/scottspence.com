@@ -48,7 +48,7 @@
     "rehype-slug": "5.0.1",
     "remark-external-links": "9.0.1",
     "remark-preview": "1.0.2",
-    "remark-reading-time": "1.0.1",
+    "remark-reading-time": "2.0.1",
     "slugify": "1.6.5",
     "svelte": "3.50.0",
     "svelte-preprocess": "4.10.7",
