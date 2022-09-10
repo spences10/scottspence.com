@@ -172,7 +172,7 @@ export const PEOPLE = [
     name: `Mads Brodt`,
     link: `https://twitter.com/madsbrodt`,
     met: false,
-  },  
+  },
   {
     name: `Annie`,
     link: `https://twitter.com/anniebombanie_`,
@@ -296,12 +296,12 @@ export const PEOPLE = [
   {
     name: `Tan Li Hau`,
     link: `https://twitter.com/lihautan`,
-    met: false,
+    met: true,
   },
   {
     name: `Ron Au`,
     link: `https://twitter.com/ronvoluted`,
-    met: false,
+    met: true,
   },
   {
     name: `Guillermo Rauch`,
@@ -326,7 +326,7 @@ export const PEOPLE = [
   {
     name: `Rich Harris`,
     link: `https://twitter.com/Rich_Harris`,
-    met: false,
+    met: true,
   },
   {
     name: `Jenny Potts`,
@@ -471,7 +471,7 @@ export const PEOPLE = [
   {
     name: `Brittney Postma`,
     link: `https://twitter.com/BrittneyPostma`,
-    met: false,
+    met: true,
   },
   {
     name: `Antony Jones`,
@@ -486,7 +486,7 @@ export const PEOPLE = [
   {
     name: `JYC`,
     link: `https://twitter.com/jycouet`,
-    met: false,
+    met: true,
   },
   {
     name: `Lors`,
@@ -536,6 +536,11 @@ export const PEOPLE = [
   {
     name: `Pranshu`,
     link: `https://twitter.com/inmypranshoes`,
+    met: true,
+  },
+  {
+    name: `Puru`,
+    link: `https://twitter.com/puruvjdev`,
     met: true,
   },
 ]

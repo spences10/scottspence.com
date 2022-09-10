@@ -6,6 +6,10 @@
   // const peopleSorted = PEOPLE.sort((a, b) => {
   //   return a.met - b.met
   // })
+
+  const peopleShuffled = PEOPLE.sort(() => {
+    return 0.5 - Math.random()
+  })
 </script>
 
 <div class="flex flex-col w-full my-10">
@@ -35,7 +39,7 @@
   <ul
     class="mb-10 grid gap-4 grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
   >
-    {#each PEOPLE as { name, link, met }}
+    {#each peopleShuffled as { name, link, met }}
       <li class="">
         <div class="flex text-left items-center">
           <PeopleToMeetCheck {met} />
