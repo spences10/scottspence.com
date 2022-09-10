@@ -18,7 +18,7 @@ const config = {
   ],
 
   kit: {
-    adapter: adapter(),
+    adapter: adapter({ edge: true }),
     alias: {
       '@components': resolve('./src/lib/components'),
       '@lib': resolve('./src/lib'),
