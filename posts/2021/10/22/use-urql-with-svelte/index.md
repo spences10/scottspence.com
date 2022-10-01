@@ -9,6 +9,9 @@ isPrivate: false
   import { YouTube } from 'sveltekit-embed'
 </script>
 
+> This guide has now been updated, take a look at [Use URQL with
+> SvelteKit] for an up to date reference
+
 Use the Universal React Query Library (URQL) in Svelte!
 
 Yeah, React and Svelte! Well, not really! There are [Svelte bindings
@@ -353,3 +356,4 @@ markup the same way as in the index file.
   https://formidable.com/open-source/urql/docs/basics/svelte/
 [env secrets]: https://scottspence.com/posts/sveltekit-env-secrets
 [building on the example]: #building-on-the-example
+[Use URQL with SvelteKit]: https://scottspence.com/posts/use-urql-with-sveltekit
