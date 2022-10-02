@@ -1,8 +1,8 @@
 ---
-date: 2021-10-22
+date: 2022-10-01
 title: Use URQL with SvelteKit
 tags: ['sveltekit', 'how-to', 'svelte']
-isPrivate: false
+isPrivate: true
 ---
 
 In this guide I'll be going through getting set up with the Universal
@@ -112,6 +112,8 @@ along pick whatever makes you happy:
 ✔ Add Prettier for code formatting? › Yes
 ✔ Add Playwright for browser testing? › Yes
 ```
+
+Then I can follow the
 
 <!-- Links -->
 
