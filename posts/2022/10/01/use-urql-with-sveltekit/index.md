@@ -440,6 +440,9 @@ That's it!
 Real basic set up, but enough to get started with using URQL with
 SvelteKit.
 
+If you want to have a look at the example code for this it's over on
+my [GitHub account].
+
 <!-- Links -->
 
 [documentation]:
@@ -452,6 +455,7 @@ SvelteKit.
 [graphql endpoint]: https://rickandmortyapi.com/graphql
 [example code]: https://github.com/spences10/sveltekit-with-urql
 [svelte context api]: https://svelte.dev/tutorial/context-api
+[github account]: https://github.com/spences10/sveltekit-with-urql
 
 <!-- Images -->
 
