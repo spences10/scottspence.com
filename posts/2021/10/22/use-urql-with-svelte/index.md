@@ -9,7 +9,7 @@ isPrivate: false
   import { YouTube } from 'sveltekit-embed'
 </script>
 
-> This guide has now been updated, take a look at [Use URQL with >
+> This guide has now been updated, take a look at [Use URQL with
 > SvelteKit] for an up to date reference
 
 Use the Universal React Query Library (URQL) in Svelte!
@@ -357,4 +357,4 @@ markup the same way as in the index file.
 [env secrets]: https://scottspence.com/posts/sveltekit-env-secrets
 [building on the example]: #building-on-the-example
 [use urql with sveltekit]:
-  https://scottspence.com/posts/use-urql-with-svelte
+  https://scottspence.com/posts/use-urql-with-sveltekit
