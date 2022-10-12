@@ -55,9 +55,9 @@ export const POPULAR_POSTS = [
     views: `6.9k`,
   },
   {
-    title: `SvelteKit .env secrets`,
-    slug: `sveltekit-env-secrets`,
-    views: `5.8k`,
+    title: `Make a Sitemap with SvelteKit`,
+    slug: `make-a-sitemap-with-sveltekit`,
+    views: `6.2k`,
   },
   {
     title: `Get GraphQL Data Using Axios`,
