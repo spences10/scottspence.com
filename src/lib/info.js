@@ -261,7 +261,7 @@ export const PEOPLE = [
   {
     name: `Debs O'Brien`,
     link: `https://twitter.com/debs_obrien`,
-    met: false,
+    met: true,
   },
   {
     name: `Pouya Saadeghi`,
