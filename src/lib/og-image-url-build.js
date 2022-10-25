@@ -7,12 +7,11 @@ const objectToQueryParams = obj => {
 
 export const ogImageUrl = (author, website, title) => {
   const params = {
+    title,
     author,
     website: website || `scottspence.com`,
-    title,
-    image: `https://scottspence.com/favicon.ico`,
   }
-  return `https://image-og.now.sh/og.jpg${objectToQueryParams(
+  return `https://ogimggen.vercel.app/og${objectToQueryParams(
     params
   )}`
 }
