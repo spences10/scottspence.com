@@ -32,7 +32,10 @@ const config = defineConfig({
       }
     ),
     // external links open in a new tab
-    [remarkExternalLinks, { target: '_blank', rel: 'noopener' }],
+    [
+      remarkExternalLinks,
+      { target: '_blank', rel: 'noopener noreferrer' },
+    ],
     posts,
     videos,
     relativeImages,

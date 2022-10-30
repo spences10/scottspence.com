@@ -40,7 +40,7 @@
         class="text-primary-content hover:opacity-50"
         href={social.link}
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
       >
         {social.title}
       </a>
