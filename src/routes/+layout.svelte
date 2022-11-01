@@ -22,7 +22,7 @@
     })
   })
 
-  $: $page.pathname, browser && Fathom.trackPageview()
+  $: $page.routeId, browser && Fathom.trackPageview()
 </script>
 
 <a
