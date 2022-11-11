@@ -35,6 +35,7 @@
   </div>
   <div>
     <span class="footer-title">Socials</span>
+        <a rel="me" href="https://mas.to/@spences10">Mastodon</a>
     {#each SOCIAL_LINKS as social}
       <a
         class="text-primary-content hover:opacity-50"
@@ -50,7 +51,7 @@
 <div class="divider bg-primary m-0" />
 <div class="bg-primary text-primary-content">
   <p class="text-center py-4">
-    Copyright &copy; 2017 - {`${new Date().getFullYear()}`} - All right
+    Copyright &copy; 2017 - {`${new Date().getFullYear()}`} - All rights
     reserved
     {name}
   </p>
