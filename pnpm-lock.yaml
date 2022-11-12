@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@sveltejs/adapter-vercel': 1.0.0-next.81
-  '@sveltejs/kit': 1.0.0-next.539
+  '@sveltejs/kit': 1.0.0-next.544
   '@tailwindcss/typography': 0.5.7
   autoprefixer: 10.4.13
   cssnano: 5.1.14
@@ -40,7 +40,7 @@ specifiers:
 
 devDependencies:
   '@sveltejs/adapter-vercel': 1.0.0-next.81
-  '@sveltejs/kit': 1.0.0-next.539_svelte@3.52.0+vite@3.2.2
+  '@sveltejs/kit': 1.0.0-next.544_svelte@3.52.0+vite@3.2.2
   '@tailwindcss/typography': 0.5.7_tailwindcss@3.2.4
   autoprefixer: 10.4.13_postcss@8.4.18
   cssnano: 5.1.14_postcss@8.4.18
@@ -194,8 +194,8 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.539_svelte@3.52.0+vite@3.2.2:
-    resolution: {integrity: sha512-BCD9lMiNoz1S5k1R+4s0pkyMwiqtut5kAXgC7qo3WaJnzXxBJziJfkyJZT0fM6mrEHlcdJ/o5hBkswyVHsxqtA==}
+  /@sveltejs/kit/1.0.0-next.544_svelte@3.52.0+vite@3.2.2:
+    resolution: {integrity: sha512-zgQHiSvxiTDjJJROj9mPwIEoT6sAopagDroh89cHKarKc2eK/1nISA2dascKz/atGF8mghOn7RXZPnPofr01fQ==}
     engines: {node: '>=16.14'}
     hasBin: true
     requiresBuild: true
