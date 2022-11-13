@@ -25,6 +25,14 @@ recently.
 
 ## 2022
 
+### Connect.Tech Atlanta - November
+
+Building with SvelteKit
+
+### NXT Nordics Oslo - October
+
+SvelteKit and the content layer
+
 ### Svelte Society London - August
 
 Live coding example refactoring the new SvelteKit routes API changes
