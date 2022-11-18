@@ -95,6 +95,8 @@ generates:
       - typescript
       - typescript-operations
       - typed-document-node
+    config:
+      useTypeImports: true
 ```
 
 The `codegen.yml` file here is telling the GraphQL Code Generator to
@@ -166,14 +168,6 @@ Now I can go over to the `src/lib/graphql` folder and I can see the
 `types.ts` file has been generated.
 
 ## Using the generated types
-
-ℹ️ On opening the `types.ts` file there might me a lint warning on the
-`@graphql-typed-document-node/core` import, this is because
-`TypedDocumentNode` needs to be imported as a type:
-
-```ts
-import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
-```
 
 What I'm looking for in the `types.ts` file is the `AllPostsDocument`,
 it's right at the bottom of the file. If we take a look at that here:
