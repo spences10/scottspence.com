@@ -25,6 +25,16 @@ recently.
 
 ## 2022
 
+### Modern Frontends Live London - November
+
+SvelteKit and the Content Layer
+
+[![scott-at-modern-frontends-1]] [scott-at-modern-frontends-1]
+[![scott-at-modern-frontends-2]] [scott-at-modern-frontends-2]
+
+### Modern Frontends Live London - November
+
+Building with SvelteKit and GraphQL
 ### Connect.Tech Atlanta - November
 
 Building with SvelteKit
@@ -387,3 +397,7 @@ the Jamstack is and the advantages of using it.
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1639133326/scottspence.com/building-with-svelte-and-graphql-graphql-galaxy-2021.png
 [api days london 2019]:
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1616774309/scottspence.com/api-days-london-2019.jpg
+[scott-at-modern-frontends-1]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1668962975/scottspence.com/scott-at-modern-frontends-1.jpg
+[scott-at-modern-frontends-2]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1668962976/scottspence.com/scott-at-modern-frontends-2.jpg
