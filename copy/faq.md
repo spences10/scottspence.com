@@ -7,7 +7,7 @@
 # For recruiters - FAQ
 
 <Small>
-  Last updated: <DateUpdated date='2022-08-25' small='true' />
+  Last updated: <DateUpdated date='2022-11-21' small='true' />
 </Small>
 
 Hello friend 👋, thanks for taking an interest in me and my profile.
@@ -131,7 +131,9 @@ experience is.
 JavaScript, HTML and CSS (the holy trinity), <DateDistance
 date='2016-06-15' />.
 
-Svelte, <DateDistance date='2021-04-06' />.
+Svelte, <DateDistance date='2021-04-06' />. I've hosted several
+workshops on Svelte and SvelteKit you can find in the speaking section
+of this site.
 
 React, <DateDistance date='2017-05-20' />.
 
@@ -149,7 +151,8 @@ bit more about me.
 ## Salary?
 
 In my next permanent role I'm looking for roles starting at
-**£70,400**.
+**£70,400**. Please take note of the currency and covert it
+accordingly to currency the company pays in.
 
 I run OES Technology where I offer consulting on a contract basis if
 you have a project in mind [get in touch] to discuss.
@@ -321,7 +324,7 @@ Feel free to [check out the rest of the site](/)
 [read this first]: https://scottspence.com/faq
 [mecv.xyz]: https://www.mecv.xyz?goalId=TCRZB23L
 [two weeks]: https://www.youtube.com/watch?v=9v-33jcEDk4
-[15 minute chat]: https://cal.com/spences10/recruiter-chat
+[15 minute chat]: https://ss10.dev/15min
 [if it's not a hell yes, it's a no]:
   https://lifehacker.com/if-its-not-a-hell-yes-its-a-no-1723393142
 [get in touch]: /contact
