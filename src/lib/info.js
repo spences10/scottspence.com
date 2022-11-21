@@ -446,7 +446,7 @@ export const PEOPLE = [
   {
     name: `James Q Quick`,
     link: `https://twitter.com/jamesqquick`,
-    met: false,
+    met: true,
   },
   {
     name: `Telmo`,
