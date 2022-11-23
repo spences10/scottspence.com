@@ -1,7 +1,7 @@
 <script>
   import DateUpdated from '$lib/components/date-updated.svelte'
   import Small from '$lib/components/small.svelte'
-  import { Deezer } from 'sveltekit-embed'
+  import { Deezer, Spotify } from 'sveltekit-embed'
   import DateDistance from '$lib/components/date-distance.svelte'
 </script>
 
@@ -55,19 +55,20 @@ Nintendo Switch.
 
 ### Music I listen to
 
-I'm a massive Drum and Bass fan. I have a Deezer playlist I like to
+I'm a massive Drum and Bass fan. I have a Spotify playlist I like to
 listen to for coding with the title for which I stole from Phil
 Hawksworth:
 
-<Deezer
-  frameSrc="playlist/8980854742"
+<Spotify
+  spotifyLink="playlist/75OcGUSaOXVnOLsFRA9taT?si=0ef1521713074cf9"
+  width="100%"
 />
 
-Other playlists I'd recommend would be Hospital Records Drum & Bass
-Fresh Selections:
+Other playlists I'd recommend would be the UKF Drum and Bass Top 100:
 
-<Deezer
-  frameSrc="playlist/4061543982"
+<Spotify
+  spotifyLink="playlist/0Zarq4BVkFkZOWkmqsfrjA?si=00e42e2f62174e17"
+  width="100%"
 />
 
 ### Podcasts I listen to
