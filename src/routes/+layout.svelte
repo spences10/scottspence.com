@@ -33,7 +33,7 @@
 <Nav />
 <main
   id="main-content"
-  class="container max-w-3xl mx-auto px-4 mb-20"
+  class="container max-w-3xl mx-auto px-4 mb-20 flex-grow"
 >
   <slot />
 </main>
