@@ -219,17 +219,16 @@ export const load = async ({ fetch }) => {
       },
       body: JSON.stringify({
         query: `
-					query AllCharacters {
-						characters {
-							results {
-								name
-								id
-								image
-							}
-						}
-					}
-			`,
-      }),
+          query AllCharacters {
+            characters {
+              results {
+                name
+                id
+                image
+              }
+            }
+          }
+      `,
     })
     const {
       data: {
