@@ -2,7 +2,7 @@
 date: 2022-12-08
 title: Adding Environment Variables to GitHub Actions
 tags: ['ci-cd', 'github', 'e2e']
-isPrivate: true
+isPrivate: false
 ---
 
 In this post, go over how to add environment variables to your GitHub
@@ -78,7 +78,28 @@ jobs:
 Pretty simple right? Add in the environment variables and you're good,
 well, there's also the need to add them to the repo secrets.
 
-the secrets, screenshots
+Over on the GitHub repository, select the 'Settings' tab.
+
+[![github-settings-tab]] [github-settings-tab]
+
+In the left hand panel there's a 'Security' section where 'Secrets'
+are, expand that and select 'Actions'.
+
+[![github-security-actions]] [github-security-actions]
+
+In the Actions tab you can add an 'New repository secret'.
+
+[![github-new-repository-secret]] [github-new-repository-secret]
+
+Add in the secret name and value, for the sake of continuity, I name
+mine the same as what's in the repository. Then 'Add secret' and I'm
+ready to go.
+
+[![github-actions-secrets-new-secret]]
+[github-actions-secrets-new-secret]
+
+Now I'm done I can push the changes to GitHub and watch the action
+run!
 
 <!-- Links -->
 
@@ -89,3 +110,14 @@ the secrets, screenshots
 [fathom analytics]: https://usefathom.com
 [referral link]: https://usefathom.com/ref/HG492L
 [liran tal]: https://twitter.com/liran_tal
+
+<!-- Images -->
+
+[github-settings-tab]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1670763989/scottspence.com/github-settings-tab.png
+[github-security-actions]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1670763989/scottspence.com/github-security-actions.png
+[github-new-repository-secret]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1670763989/scottspence.com/github-new-repository-secret.png
+[github-actions-secrets-new-secret]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1670763989/scottspence.com/github-actions-secrets-new-secret.png
