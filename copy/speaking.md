@@ -3,7 +3,6 @@
   import Small from '$lib/components/small.svelte'
   import { 
     Buzzsprout,
-    SimpleCast,
     Spotify,
     YouTube
   } from 'sveltekit-embed'
@@ -111,7 +110,7 @@ Svelte.
 
 Chatting with James Perkins about Dev Rel
 
-<SimpleCast episodeId='46aaf483-8567-451a-aa7c-4c92fbb13f28' />
+https://zencastr.com/z/TARGseQu
 
 ### Purrfect.dev - Jul
 

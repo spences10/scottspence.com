@@ -8,7 +8,6 @@ isPrivate: false
 <script>
   import {
     AnchorFm,
-    SimpleCast,
     Tweet,
     YouTube
   } from 'sveltekit-embed'
@@ -94,7 +93,7 @@ Busy month from what I can recall!
 
 First up was a nice chat with my Twitter buddy James Perkins
 
-<SimpleCast episodeId='46aaf483-8567-451a-aa7c-4c92fbb13f28' />
+https://zencastr.com/z/TARGseQu
 
 Then I released a SvelteKit crash course video on YouTube.
 
