@@ -32,8 +32,12 @@
     Idea totally stolen from
     <a
       class="transition link hover:text-primary"
-      href="https://rafa.design/">Rafael Conde</a
+      rel="noreferrer noopener"
+      target="_blank"
+      href="https://rafa.design/"
     >
+      Rafael Conde
+    </a>
   </p>
 
   <ul
