@@ -6,10 +6,10 @@
   let progress = ((value / max) * 100).toFixed()
 </script>
 
-<section class={`${width} ${label ? `` : `-mt-4`}`}>
+<section class={`not-prose ${width} ${label ? `` : `-mt-4`}`}>
   {#if label}
      <label for="progress" class="label -mb-5 -ml-1">
-       <span class="label-text">{label}</span>
+       <span class="label-text text-lg font-medium">{label}</span>
      </label>
   {/if}
   <progress
@@ -19,6 +19,6 @@
     {max}
   />
   <label for="progress" class="label -mt-4 -ml-1">
-    <span class="label-text">{progress}%</span>
+    <span class="label-text text-lg font-medium">{progress}%</span>
   </label>
 </section>
