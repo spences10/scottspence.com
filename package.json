@@ -29,7 +29,7 @@
     "daisyui": "2.46.1",
     "date-fns": "2.29.3",
     "eslint": "8.31.0",
-    "eslint-config-prettier": "8.5.0",
+    "eslint-config-prettier": "8.6.0",
     "eslint-plugin-svelte3": "4.0.0",
     "fathom-client": "3.5.0",
     "fuse.js": "6.6.2",
