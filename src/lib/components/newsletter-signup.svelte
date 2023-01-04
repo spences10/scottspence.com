@@ -24,9 +24,9 @@
     if (data.message === 'email sent!') {
       success = true
       responseMessage = [
-        `Awesome, you're all signed up!`,
+        `Awesome! 🥳`,
         `Thanks for showing interest in my content.`,
-        `No double opt-in required, I'll send you an email when I'm ready!`,
+        `Please check your email to confirm your subscription. 📨`,
       ]
     }
     if (
