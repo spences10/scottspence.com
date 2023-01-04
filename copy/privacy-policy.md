@@ -6,7 +6,7 @@
 # Privacy Policy
 
 <Small>
-  Last updated: <DateUpdated date="2022-03-17" small="true" />
+  Last updated: <DateUpdated date="2023-01-04" small="true" />
 </Small>
 
 Hello, welcome to the privacy policy for scottspence.com, I want to be
@@ -32,9 +32,9 @@ The privacy policy in this site includes these points:
 The only piece of information I collect is your email address _if_ you
 sign up to receive email updates from me.
 
-I use Revue to capture your email address when you give it voluntarily
-via the email sign up form, you can see their privacy statement
-[here][0].
+I use Sendinblue to capture your email address when you give it
+voluntarily via the email sign up form, you can see their privacy
+statement [here][0].
 
 The information collected is an email address with no other personal
 identifying information.
@@ -46,14 +46,14 @@ subscribers.
 
 If there is a giveaway being run where I need to send something in the
 post, like stickers. I will request your address via the email given
-in the mailing list on Revue. Once the package has been sent I will
-delete any emails with identifying information in them.
+in the mailing list on Sendinblue. Once the package has been sent I
+will delete any emails with identifying information in them.
 
 ### What cookies, pixels, and other trackers my site uses and their purpose.
 
-I use Fathom Analytics to measure page visits, no cookies, no
-trackers, you can view the Fathom Analytics privacy statement
-[here][1]
+I use Fathom Analytics to measure page visits to scottspence.com, no
+cookies, no trackers, you can view the Fathom Analytics privacy
+statement [here][1]
 
 ### Any advertising networks and their methods/purposes of data collection and ad delivery.
 
@@ -92,7 +92,7 @@ you can unsubscribe from the mail sent.
 
 If you want to contact me see [Contact information for site
 administrators] and I will personally remove your email address from
-Revue.
+Sendinblue.
 
 ### Contact information for site administrators
 
@@ -129,7 +129,7 @@ Read] for a simple breakdown of what the ToS actually means.
   #how-users-of-this-site-can-request-their-data-be-turned-over-to-them-andor-be-deleted
 [contact information for site administrators]:
   #contact-information-for-site-administrators
-[0]: https://www.getrevue.co/privacy/platform
+[0]: https://www.sendinblue.com/legal/privacypolicy/
 [1]: https://usefathom.com/privacy
 [yo@scottspence.dev]:
   mailto:yo@scottspence.dev?subject=Privacy%20Concern&body=Hi%20Scott%2C%0D%0A%0D%0AI%20have%20a%20concern%20about%20my%20privacy%20on%20your%20site.

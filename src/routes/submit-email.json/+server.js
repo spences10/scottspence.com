@@ -5,18 +5,23 @@ export const POST = async ({ request }) => {
 
   try {
     const res = await fetch(
-      'https://www.getrevue.co/api/v2/subscribers',
+      'https://api.sendinblue.com/v3/contacts/doubleOptinConfirmation',
       {
         method: 'POST',
         headers: {
-          Authorization: `Token ${env.REVUE_API_KEY}`,
+          Accept: 'application/json',
           'Content-Type': 'application/json',
+          'api-key': env.EMAIL_SIGNUP_API_KEY,
         },
         body: JSON.stringify({
           email,
-          first_name: '',
-          last_name: '',
-          double_opt_in: false,
+          attributes: {
+            FNAME: '',
+            LNAME: '',
+          },
+          includeListIds: [4],
+          redirectionUrl: 'https://scottspence.com',
+          templateId: 6,
         }),
       }
     )
