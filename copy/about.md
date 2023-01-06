@@ -19,7 +19,7 @@ role into web development.
 
 I have been spending a lot of time working in Svelte and SvelteKit
 for, <DateDistance date='2021-04-06' /> now, holding workshops and
-organising events in the form of the London Svelte Meetup.
+organising events in the form of the [Svelte Society London] events.
 
 Check out the [speaking] section for more details about those!
 
@@ -115,3 +115,5 @@ series covers the food delivery industry.
 [jamstack]: https://jamstack.org/
 [portfolio section]: /portfolio
 [speaking]: /speaking
+[svelte society london]:
+  https://beta.guild.host/svelte-society-london/events

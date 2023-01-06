@@ -11,7 +11,7 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2022-08-25" small="true" />
+  Last updated: <DateUpdated date="2023-01-06" small="true" />
 </Small>
 
 If you want me to talk about using Svelte with GraphQL, the Jamstack
@@ -24,19 +24,27 @@ recently.
 
 ## 2022
 
+### Svelte Society London - December
+
+A brief overview of a project I have been working on with Vendure
+eCommerce.
+
+<YouTube youTubeId='2ijSarsHfN0' skipTo={{ h: 0, m: 15, s: 36 }} />
+
 ### Modern Frontends Live London - November
 
-SvelteKit and the Content Layer
+SvelteKit and the Content Layer, still not managed to get this talk
+recorded! 😂
+
+At least this time there were some pictures!
 
 [![scott-at-modern-frontends-1]] [scott-at-modern-frontends-1]
 [![scott-at-modern-frontends-2]] [scott-at-modern-frontends-2]
 
-### Modern Frontends Live London - November
-
-Building with SvelteKit and GraphQL
 ### Connect.Tech Atlanta - November
 
-Building with SvelteKit
+Building with SvelteKit! This was intended to be a workshop but turned
+into a talk about data loading in SvelteKit.
 
 ### NXT Nordics Oslo - October
 

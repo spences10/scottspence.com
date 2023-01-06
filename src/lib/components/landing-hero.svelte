@@ -22,16 +22,18 @@
         </h1>
         <p class="mb-5">
           This is my blog where I write about many things, including,
-          but not limited to JavaScript, React, Gatsby, Tailwind,
-          Svelte and many more web dev related topics.
+          but not limited to Svelte, SvelteKit, JavaScript, Tailwind
+          and many more web dev related topics.
         </p>
         <p class="mb-5">
           Check out that massive picture of my <a
             href="https://www.cockneyrhymingslang.co.uk/slang/boat_race"
             target="_blank"
-            rel="noopener noreferrer">boat race</a
-          >! What do you think? If you want to crack on then check out
-          some of the stuff I'm writing about on the
+            rel="noopener noreferrer"
+          >
+            boat race
+          </a>! What do you think? If you want to crack on then check
+          out some of the stuff I'm writing about on the
           <a href="/posts">posts page</a>.
         </p>
         <p class="mb-5">
