@@ -84,6 +84,9 @@ articles.length
 // 146
 ```
 
+If you're interested in the performance of the page, then you can
+check it out over on [Lighthouse Metrics].
+
 ## Expanding on the above
 
 An expansion on this is, say I have a long list of heading id's on a
@@ -108,3 +111,8 @@ That's it, if you found it useful consider sharing it for others to
 benefit from too 😊.
 
 Thanks.
+
+<!-- Links -->
+
+[lighthouse metrics]:
+  https://lighthouse-metrics.com/lighthouse/checks/4fad27cb-2c64-456c-bacf-73dee564c945
