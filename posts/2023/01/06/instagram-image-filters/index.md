@@ -162,6 +162,62 @@ using some backticks to apply the class.
 That's it! Now, when I select a filter from the list, it will apply to
 the `figure` element.
 
+## Expanding on the above
+
+There's a little more expansion that could be done here using some
+Svelte features.
+
+Say I _do_ actually want to list out all the filters, I can use the
+Svelte `{#each}` loop to create a list of `figure` elements and apply
+some CSS styles to it.
+
+Underneath where the `Filters` component is imported, I'll create
+`div` which I'll apply some CSS grid styles to and loop through all
+the filters.
+
+As the filters array is used in more than one place now it makes sense
+to abstract that out into its own file and import it where it's
+needed.
+
+```svelte
+<div class="figure-group">
+  {#each filtersList as item}
+    <figure class={`styled-fugure filter-${item}`}>
+      <img
+        src="https://picsum.photos/400/400"
+        alt="random picsum asset"
+      />
+      <p>{item}</p>
+    </figure>
+  {/each}
+</div>
+
+<style>
+  .styled-fugure {
+    height: 100%;
+  }
+  .figure-group {
+    margin: 0 auto;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  @media (min-width: 1000px) {
+    .figure-group {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1450px) {
+    .figure-group {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
+```
+
+I've add in some media queries in the `style` tags there to make the
+grid responsive as well.
+
 If you're interested you can check out the code over on [GitHub].
 
 Thanks for reading!
