@@ -10,12 +10,11 @@ previously but decided to migrate to Fastmail. I'm going to go into
 the details of _why_ I switched. This is personal preference and my
 reasoning behind the switch.
 
-I had tried Zoho mail for a short time before Proton mail but quickly
-moved to ProtonMail for some of the reasons I moved from ProtonMail to
-Fastmail.
+For full disclosure,I had tried Zoho mail for a short time before
+Proton mail but quickly moved to ProtonMail for some of the reasons I
+moved from ProtonMail to Fastmail.
 
-For full disclosure, I'm not affiliated with either of these and I
-still use ProtonVPN.
+I'm not affiliated with either of these and I still use ProtonVPN.
 
 Here's my reasoning for the switch.
 
