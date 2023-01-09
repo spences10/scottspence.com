@@ -19,9 +19,25 @@ look at this quarterly and update it accordingly.
     Total progress
   </h2>
   <div class="flex justify-center">
-    <ProgressBar value="{2}" max="{59}" width="w-3/4" />
+    <ProgressBar value="{6.2}" max="{59}" width="w-3/4" />
   </div>
 </div>
+
+<!--
+Help organise 12 Svelte meetups 0
+Speak at 4 Svelte meetups 0
+Host 4 free Svelte community workshops 0
+Host 4 paid Svelte workshops 0
+Lose 15kg in weight from 117kg => 3.2
+Release 4 video course on building with Svelte 0
+Release 12 blog posts on building with Svelte 0
+Build site skeleton site 1
+Build auth feature 1
+Build gated content feature 1
+Deploy and market to the world 0
+Total 59
+Current 6.2
+-->
 
 ## Be more active in the Svelte community
 
@@ -64,8 +80,10 @@ I'd like to get lighter than I am currently (117kg), ideal body weight
 would be 92kg but a healthy amount to lose would be around 15kg, so a
 target body weight of 112kg.
 
+<!-- started at 117, current 113.8 -->
+
 <ProgressBar
-  value={0}
+  value={3.2}
   max={15}
   width="w-2/3"
   label="Lose 15kg in weight"
