@@ -19,7 +19,7 @@ look at this quarterly and update it accordingly.
     Total progress
   </h2>
   <div class="flex justify-center">
-    <ProgressBar value="{6.2}" max="{59}" width="w-3/4" />
+    <ProgressBar value="{8.2}" max="{59}" width="w-3/4" />
   </div>
 </div>
 
@@ -30,13 +30,13 @@ Host 4 free Svelte community workshops 0
 Host 4 paid Svelte workshops 0
 Lose 15kg in weight from 117kg => 3.2
 Release 4 video course on building with Svelte 0
-Release 12 blog posts on building with Svelte 0
+Release 12 blog posts on building with Svelte 2
 Build site skeleton site 1
 Build auth feature 1
 Build gated content feature 1
 Deploy and market to the world 0
 Total 59
-Current 6.2
+Current 8.2
 -->
 
 ## Be more active in the Svelte community
