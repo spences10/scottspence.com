@@ -35,7 +35,7 @@
     "fuse.js": "6.6.2",
     "graphql": "16.6.0",
     "graphql-request": "5.1.0",
-    "husky": "8.0.2",
+    "husky": "8.0.3",
     "marked": "4.2.5",
     "mdsvex": "0.10.6",
     "mdsvex-relative-images": "1.0.3",
