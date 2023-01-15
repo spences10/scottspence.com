@@ -1,7 +1,7 @@
 ---
 date: 2021-11-11
 title: Setting up Fastmail with Vercel
-tags: ['domains', 'guide', 'resource']
+tags: ['domains', 'guide', 'resource', 'fastmail']
 isPrivate: false
 ---
 
