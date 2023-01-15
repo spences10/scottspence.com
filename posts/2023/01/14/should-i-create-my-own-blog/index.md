@@ -6,19 +6,32 @@ isPrivate: true
 ---
 
 There were a couple of Tweets I saw in quick succession today along
-the lines of "Don't create your own blog, write on someone else's
-platform instead". Now, as someone that has been blogging since April
-2010 ([since 2016 here]) I can tell you it is absolutely worth doing.
+the lines of **"Don't create your own blog, write on someone else's
+platform instead"**. Now, as someone that has been blogging since
+April 2010 ([since 2016 here]) I can tell you it is absolutely worth
+doing.
 
 So, I class myself as a fullstack developer, all the opinions here
 will be geared toward someone that is in web development and wants to
 share what they have learned.
 
+The setup I use for this blog is writing in Markdown, using SvelteKit
+with MDSveX to render the Markdown into HTML with some additional
+Svelte components added in for use in the Markdown. This is a feature
+not supported by any blogging platform and reasoning for me to build
+my own blog.
+
+For an example of what I mean, take a look at the [Writing with
+Markdown] post I did a while back for the interactive elements on
+there.
+
+## Let's compare
+
 Ok, here's a table comparing the pros and cons of using a blogging
 platform vs owning your own blog. I've tried to be as objective as
-possible here and I've more than likely missed some things. If can see
-a glaring omission and it's triggering you, LET ME KNOW! I'll update
-the table accordingly.
+possible here and I've more than likely missed some things. If you can
+see a glaring omission and it's triggering you, [LET ME KNOW]! I'll
+update the table accordingly.
 
 The ✔️ is a yes you get that pro or con, the ❌ is no you don't get
 that pro or con.
@@ -34,8 +47,8 @@ that pro or con.
 | Customisation options          | ❌                | ✔️       |
 | Control over monetization      | ✔️                | ✔️       |
 | Ownership of content and data  | ✔️                | ✔️       |
-| Governed by Terms of Service   | ✔️                | ❌       |
-| More work to build a community | ❌                | ✔️       |
+| Governed by Terms of Service   | ✔️                | ✔️       |
+| More work to build a community | ✔️                | ✔️       |
 | Technical skills to set up     | ❌                | ✔️       |
 | More responsibilities          | ❌                | ✔️       |
 | Save time on maintenance       | ✔️                | ❌       |
@@ -127,7 +140,7 @@ platform (whatever platform that may be).
 
 So, what about setting up your own blog? Well, let's look at the costs
 involved in that. Here's a shopping list of things you'll need to set
-up your own blog I've added in some other things as well that you
+up your own blog. I've added in some other things as well that you
 don't get with a blogging platform:
 
 - domain
@@ -204,7 +217,10 @@ time.
 
 ## Customisation options
 
-Some blogging platforms have a lot of customisation options, allowing
+I've put this as a con for the blogging platforms as a lot of them
+don't offer this functionality.
+
+Some blogging platforms _do_ have some customisation options, allowing
 you to change the layout to a predefined set of options.
 
 Some platforms allow adding your own custom domain to map to and the
@@ -224,31 +240,200 @@ to your blog, usually restricted to their provider of choice.
 I'm not going to name names but I have seen a platform that replaced
 the users pointer with their own. So, they're getting the monetisation
 rather than the user. This was raised with them by me and one of my
-friends and was glossed over.
+friends and was glossed over by the platform as a testing token.
 
 Needless to say, you can use your preferred provider on your own blog
 without any third party interference.
 
 **Conclusion**, you have full control over monetisation on your own
-blog.
+blog. Blogging platforms can be hit amd miss with this.
 
 ## Ownership of content and data
 
+Who reads the terms and conditions of a blogging platform? I know I
+don't. I'll come onto that in the next section anyway, for now let's
+discuss ownership of content and data.
+
+So, when you sign up to these services there'll be a section in the
+terms of service that says something along the lines of:
+
+**"You grant us (blogging platform) a perpetual, worldwide,
+royalty-free and non-exclusive license(s) do essentially what we like
+with Your Content."**
+
+Now, terms of service are usually a lot more wordy than that, but,
+that's the gist of it. You're giving them the right to do what they
+like with your content.
+
+If you're cool with that then that's fine. Some blogging platforms
+will offer up ways for you to import/export your data from other
+platforms, why not, more content is more content, right? You're still
+giving them the right to do what they like with your content once it's
+on their platform.
+
+I have an MIT license on my blog, so, this means that anyone can rip
+it off and claim it as their own, which, by the way I see a _lot_ of
+over on GitHub 👀. I'm cool with it as I have the SEO juice to back up
+that I am the original author of the content, I'll come onto SEO
+later.
+
+**Conclusion**, you own your content and data on your own blog.
+Blogging platforms will have terms of service that allow them to do
+what they like with your content.
+
 ## Platform terms of service
+
+With your own blog you're bound to the terms of service of the
+platform you use. If you're using GitHub then you're bound to their
+terms of service. If you're using Vercel then you're bound to their
+terms of service.
+
+The terms of service of a blogging platform is there to cover them if
+there's anything in the user generated content that could possibly be
+construed as illegal/unethical/copyright infringement or anything else
+which could land them in legal hot water. They're not there to protect
+you, they're there to protect "The Platform".
+
+It's up to you to moderate your own content, keep comments clear of
+spam which could infringe on the terms of service of the platform.
+Otherwise you could find yourself in a situation where your account is
+suspended or deleted.
+
+**Conclusion**, you're bound to the terms of service of any platform
+you use. They can decide to change these terms at any time and you, by
+using the platform are implicitly agreeing to these changes.
 
 ## More work to build a community
 
+Blogging platforms don't guarantee you'll build a community, gain
+views, likes and comments just by using the platfrom. There's the
+tools there to enable this, but people still need to find your
+content.
+
+A lot of platforms will have an algorithmically generated feed where
+views, likes and comments are taken into account to determine what
+content is shown to users.
+
+So, the initial work to build a community is still on you. You need to
+make people aware of your content, get them to view it, like it and
+comment on it. Usually achieved by sharing the content on social
+media. Pretty much the same as if you were using your own blog.
+
 ## Technical skills to set up
+
+This point has been covered several times already in other sections
+here. If you're a tech blogger then you're probably already
+comfortable with setting up your own blog.
+
+The only thing is the time investment.
+
+**Conclusion**, blogging platforms make it easy to get up and running,
+you're restricted to the features they offer however.
 
 ## More responsibilities
 
+I have this as a pro for the blogging platforms, my thinking is that
+all you have to worry about is adding your content on there.
+
+With your own blog you have to take care of deploying new content,
+this can be done with a git push to GitHub, and have a CD service on
+Vercel take care of that part for you.
+
+**Conclusion**, you're responsible for moderating your content, you're
+responsible for building your community on both your own blog and a
+blogging platform. With your won blog you could have issues with
+deploying new content, you're responsible for making sure it's up and
+running.
+
+## Save time on maintenance
+
+Again, I have this as a pro for the blogging platforms, all you have
+to worry about is adding your content on there.
+
+With your own blog you have security patches to apply to any packages
+you may use, failed deployments to fix, and any other issues that may
+arise.
+
+The blogging platform is up and maintained by them, that's their
+problem.
+
+**Conclusion**, bloggin platforms win on this side only for the time
+element. Again, for your own blog this can a learning experience which
+will set you up for when this happens in the future.
+
+## Additional notes
+
+I've decided to add in som additional sections not covered in the
+checklist here but feel that after researching this topic I should add
+them in.
+
+I haven't even touched on using a CMS, this, in my opinion is another
+service to get locked into where they can switch up the terms of use
+at any time.
+
 ## Learning as you're doing
 
-## Owning your content
+The main benefit of creating your own blog is the learning along the
+way, I'd say that almost all of the content on this site has came
+about from me building a project in some form or another.
+
+Your blog is your space to experiment, to learn, to build and to test
+out new ideas. It's a continuous learning process and the opportunity
+to feed that back into your site and share what you have learned in
+the way of blog posts.
 
 ## It's your SEO
 
-## No rug pulls
+An advantage of having your own blog is that you can control the SEO.
+Many blogging platforms will allow you to add a canonical link to the
+content you add to their platform. This is a link to the original
+source of the content (your blog).
+
+So what you can do is add your content from you own blog onto other
+blogging platforms, add the canonical link to your own blog and then
+share the content on social media. The canonical link will tell the
+search engines that the original source of the content is your blog.
+
+If you have all your content on one platform without it pointing back
+to and original source then you're missing out on the SEO juice there.
+
+A couple of years ago I experimented with the effectiveness of a
+blogging platforms SEO. I added original content on there, left it a
+month or so then searched for specific phrases in a search engine. The
+results weren't great, I couldn't find my content.
+
+With searching for content on my blog I can find it, I can find it
+quickly and I can find it in the search results.
+
+This isn't to say that blogging platforms don't have SEO, they do, but
+it's not as effective as having your own blog.
+
+## Conclusion
+
+Obviously, I went into this with a bias towards setting up your own
+blog.
+
+The main benefit from my point of view is that I get to learn how to
+implement the features I want on my blog. I get to learn how to use
+the tools I want to use. I get to learn how to build a community
+around my blog.
+
+The time investment for me is well worth it as I usually learn a lot
+when implementing a new features which ultimately turns into more
+content to write about.
+
+I've found that the only _real_ main difference is the time you want
+to spend setting up your own blog. You're still bound to the terms of
+service of the platform you use, you're still responsible for
+moderating your own content and you're still responsible for building
+your own community.
+
+Any platform at any time can decide to shut up shop and you're left
+without it.
+
+Backups are important, so, if GitHub and Vercel decide to shut up shop
+tomorrow I can start hosting my blog on a Raspberry pi on my kitchen
+windowsill 😂.
 
 <!-- Links -->
 
@@ -257,6 +442,9 @@ blog.
   https://github.com/mattjennings/sveltekit-blog-template
 [mehdi vasigh's sveltekit mdsvex blog]:
   https://github.com/mvasigh/sveltekit-mdsvex-blog
+[writing with markdown]:
+  https://scottspence.com/posts/writing-with-markdown#markdown-headings
+[let me know]: mailto:yo@scottspence.com
 
 []:https://startafuckingblog.com/#posse-every-fucking-thing
 
