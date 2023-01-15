@@ -82,7 +82,7 @@ you get free hosting either way.
 There's no denying that you get out of the box features when you use a
 blogging platform. It's essentail to them to get other people involved
 on their platform. Post commenting and the ability to follow someone
-on there so that their posts will turn up in your feed.
+are on there so that their posts will turn up in your feed.
 
 This does mean that you're sort of locked into their ecosystem and you
 have to go there to get new content or see when someone your following
@@ -306,7 +306,7 @@ using the platform are implicitly agreeing to these changes.
 ## More work to build a community
 
 Blogging platforms don't guarantee you'll build a community, gain
-views, likes and comments just by using the platfrom. There's the
+views, likes and comments just by using the platform. There's the
 tools there to enable this, but people still need to find your
 content.
 
@@ -341,7 +341,7 @@ Vercel take care of that part for you.
 
 **Conclusion**, you're responsible for moderating your content, you're
 responsible for building your community on both your own blog and a
-blogging platform. With your won blog you could have issues with
+blogging platform. With your own blog you could have issues with
 deploying new content, you're responsible for making sure it's up and
 running.
 
@@ -419,7 +419,7 @@ the tools I want to use. I get to learn how to build a community
 around my blog.
 
 The time investment for me is well worth it as I usually learn a lot
-when implementing a new features which ultimately turns into more
+when implementing new features which ultimately turns into more
 content to write about.
 
 I've found that the only _real_ main difference is the time you want
