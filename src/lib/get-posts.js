@@ -1,11 +1,13 @@
 export function getPosts() {
   const posts = Object.entries(
-    import.meta.globEager('/posts/**/*.md')
+    import.meta.glob('/posts/**/*.md', { eager: true })
   )
-    .map(([, post]) => ({
-      metadata: post.metadata,
-      component: post.default,
-    }))
+    .map(([, post]) => {
+      return {
+        metadata: post.metadata,
+        component: post.default,
+      }
+    })
     // sort by date
     .sort((b, a) => {
       const da = new Date(a.metadata.date).getTime()
