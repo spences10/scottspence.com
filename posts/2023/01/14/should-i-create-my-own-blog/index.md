@@ -36,8 +36,6 @@ update the table accordingly.
 The ✔️ is a yes you get that pro or con, the ❌ is no you don't get
 that pro or con.
 
-<!-- markdown table with three columns -->
-
 | Pros/Cons                      | Blogging Platform | Own Blog |
 | ------------------------------ | ----------------- | -------- |
 | Free Hosting                   | ✔️                | ✔️       |
@@ -357,7 +355,7 @@ arise.
 The blogging platform is up and maintained by them, that's their
 problem.
 
-**Conclusion**, bloggin platforms win on this side only for the time
+**Conclusion**, blogging platforms win on this side only for the time
 element. Again, for your own blog this can a learning experience which
 will set you up for when this happens in the future.
 
