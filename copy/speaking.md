@@ -46,6 +46,8 @@ At least this time there were some pictures!
 Building with SvelteKit! This was intended to be a workshop but turned
 into a talk about data loading in SvelteKit.
 
+<YouTube youTubeId='g-Xr6ygI0VE' />
+
 ### NXT Nordics Oslo - October
 
 SvelteKit and the content layer
