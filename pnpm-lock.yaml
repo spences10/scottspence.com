@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@sveltejs/adapter-vercel': 1.0.4
   '@sveltejs/kit': 1.0.7
-  '@tailwindcss/typography': 0.5.8
+  '@tailwindcss/typography': 0.5.9
   autoprefixer: 10.4.13
   cssnano: 5.1.14
   daisyui: 2.46.1
@@ -41,7 +41,7 @@ specifiers:
 devDependencies:
   '@sveltejs/adapter-vercel': 1.0.4_@sveltejs+kit@1.0.7
   '@sveltejs/kit': 1.0.7_svelte@3.55.1+vite@4.0.4
-  '@tailwindcss/typography': 0.5.8_tailwindcss@3.2.4
+  '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.4
   autoprefixer: 10.4.13_postcss@8.4.21
   cssnano: 5.1.14_postcss@8.4.21
   daisyui: 2.46.1_gbtt6ss3tbiz4yjtvdr6fbrj44
@@ -428,8 +428,8 @@ packages:
       - supports-color
     dev: true
 
-  /@tailwindcss/typography/0.5.8_tailwindcss@3.2.4:
-    resolution: {integrity: sha512-xGQEp8KXN8Sd8m6R4xYmwxghmswrd0cPnNI2Lc6fmrC3OojysTBJJGSIVwPV56q4t6THFUK3HJ0EaWwpglSxWw==}
+  /@tailwindcss/typography/0.5.9_tailwindcss@3.2.4:
+    resolution: {integrity: sha512-t8Sg3DyynFysV9f4JDOVISGsjazNb48AeIYQwcL+Bsq5uf4RYL75C1giZ43KISjeDGBaTN3Kxh7Xj/vRSMJUUg==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
     dependencies:
