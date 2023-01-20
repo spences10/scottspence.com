@@ -16,7 +16,8 @@ I just followed the directions and didn't know that adding an
 additional SPF record would invalidate the previous one for Fastmail.
 
 There's a good explanation on the UK Government site for [Email
-Security Standards] with guidance on it.
+Security Standards] with guidance on it. There was also a
+[Stackoverflow] post I found on it!
 
 So, looking at the DNS entries on Vercel (with the Vercel CLI command
 `vc dns scottspence.com`), there's two TXT records:
@@ -40,6 +41,7 @@ That's it! I hope this helps someone else out there!
 
 <!-- Links -->
 
+[stackoverflow]: https://stackoverflow.com/a/51001395
 [Email Security Standards]:
   https://www.gov.uk/government/publications/email-security-standards/sender-policy-framework-spf
 [Adding DKIM records to Vercel]:
