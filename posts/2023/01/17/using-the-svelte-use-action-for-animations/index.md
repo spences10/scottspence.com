@@ -7,7 +7,8 @@ isPrivate: true
 
 <script>
   import Sarcasm from '$lib/components/sarcasm.svelte'
-  import Details from './details.svelte'
+  import DetailsTransition from './details-transition.svelte'
+  import DetailsAction from './details-action.svelte'
 </script>
 
 I did what I usually do and made a useless project! I was searching
@@ -70,26 +71,44 @@ So this is the component:
 <script>
   import { slide } from 'svelte/transition'
   export let buttonText = ''
-  export let isOpen = false
+  export let open = false
 </script>
 
-<div class="border">
-  <button on:click={() => (isOpen = !isOpen)}>
-    {buttonText}
+<section class="border">
+  <button
+    on:click={() => {
+      open = !open
+    }}
+  >
+    <div class="flex items-center text-left">
+      <span style="margin:0 1rem;" class="transition" class:open>
+        ▶
+      </span>
+      <p>{buttonText}</p>
+    </div>
   </button>
-  {#if isOpen}
-    <div transition:slide>
+  {#if open}
+    <div transition:slide class="prose-ol:pl-20">
       <slot />
     </div>
   {/if}
-</div>
+</section>
+
+<style>
+  .open {
+    transform: rotate(90deg);
+    transform-origin: center;
+  }
+</style>
 ```
+
+I use Tailwind CSS for the styling, but you can see that I'm using the
+`open` class to rotate the triangle.
 
 Then it's used like this:
 
 ```svelte
-<Details
-  class='border'
+<DetailsTransition
   buttonText={`HTTP response status codes indicate whether a specific HTTP
     request has been successfully completed. Responses are grouped
     in five classes:`}
@@ -99,27 +118,24 @@ Then it's used like this:
     <li>Successful responses (200 - 299)</li>
     <li>Redirection messages (300 - 399)</li>
     <li>Client error responses (400 - 499)</li>
-    <li class="pb-5">Server error responses (500 - 599)</li>
+    <li >Server error responses (500 - 599)</li>
   </ol>
-</Details>
+</DetailsTransition>
 ```
 
 And I get a result something like this:
 
-<Details 
-  class='border'
-  buttonText={`HTTP response status codes indicate whether a specific HTTP
-    request has been successfully completed. Responses are grouped
-    in five classes:`}
->
-  <ol class="list-decimal px-20">
+<DetailsTransition
+buttonText={`HTTP response status codes indicate whether a specific HTTP request has been successfully completed. Responses are grouped in five classes:`}>
+
+  <ol style='list-style-type: decimal;padding-left:80px;margin:1rem 0'>
     <li>Informational responses (100 - 199)</li>
     <li>Successful responses (200 - 299)</li>
     <li>Redirection messages (300 - 399)</li>
     <li>Client error responses (400 - 499)</li>
-    <li class="pb-5">Server error responses (500 - 599)</li>
+    <li >Server error responses (500 - 599)</li>
   </ol>
-</Details>
+</DetailsTransition>
 
 Not too shabby, but do you notice at the very end of the transition?
 It sort of snaps out to the full height of the content.
@@ -135,6 +151,18 @@ engines unless the details component `isOpen` is se to `true`.
 
 With the Svelte use action you get access to the DOM node the action
 is attached to and you can also pass in additional parameters.
+
+<DetailsAction
+buttonText={`HTTP response status codes indicate whether a specific HTTP request has been successfully completed. Responses are grouped in five classes:`}>
+
+  <ol style='list-style-type:decimal;padding-left:80px;'>
+    <li>Informational responses (100 - 199)</li>
+    <li>Successful responses (200 - 299)</li>
+    <li>Redirection messages (300 - 399)</li>
+    <li>Client error responses (400 - 499)</li>
+    <li style='padding-bottom:20px'>Server error responses (500 - 599)</li>
+  </ol>
+</DetailsAction>
 
 ## Click outside
 
