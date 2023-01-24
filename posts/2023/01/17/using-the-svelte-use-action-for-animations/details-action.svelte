@@ -51,6 +51,11 @@
   </button>
   <div
     use:slide={open}
+    on:animationEnd={() => {
+      console.log('=====================')
+      console.log('animation ended event')
+      console.log('=====================')
+    }}
     id="accordion__content_2"
     role="region"
     aria-hidden={!open}
