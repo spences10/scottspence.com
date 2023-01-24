@@ -6,6 +6,10 @@
 
 <section class="border not-prose">
   <button
+    aria-controls="accordion__content_1"
+    aria-expanded={open}
+    tabindex="0"
+    id="accordion__title_1"
     on:click={() => {
       open = !open
     }}
@@ -18,7 +22,13 @@
     </div>
   </button>
   {#if open}
-    <div transition:slide>
+    <div
+      transition:slide
+      id="accordion__content_1"
+      role="region"
+      aria-hidden={!open}
+      aria-labelledby="accordion__title_1"
+    >
       <slot />
     </div>
   {/if}

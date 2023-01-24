@@ -1,6 +1,6 @@
 <script>
   export let buttonText = ''
-  export let open = true
+  export let open = false
 
   // custom slide animation
   const slide = (node, open) => {
@@ -34,6 +34,10 @@
 
 <section class="border not-prose">
   <button
+    aria-controls="accordion__content_2"
+    aria-expanded={open}
+    tabindex="0"
+    id="accordion__title_2"
     on:click={() => {
       open = !open
     }}
@@ -45,7 +49,13 @@
       <p style="margin:1rem 0;">{buttonText}</p>
     </div>
   </button>
-  <div use:slide={open}>
+  <div
+    use:slide={open}
+    id="accordion__content_2"
+    role="region"
+    aria-hidden={!open}
+    aria-labelledby="accordion__title_2"
+  >
     <slot />
   </div>
 </section>
