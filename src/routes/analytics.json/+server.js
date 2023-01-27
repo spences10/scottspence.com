@@ -10,11 +10,11 @@ export const GET = async ({ url }) => {
   const params = {
     entity: 'pageview',
     entity_id: PUBLIC_FATHOM_ID,
-    aggregates: 'pageviews,visits,uniques',
-    date_from: '2022-04-01',
-    date_to: '2022-04-02',
-    field_grouping: 'pathname',
+    aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
     date_grouping: 'day',
+    date_from: '2023-01-27 00:00:00',
+    date_to: '2023-01-27 23:59:59',
+    field_grouping: 'pathname',
     filters: `[{"property": "pathname","operator": "is","value": "${pathname}"}]`,
   }
 
