@@ -103,6 +103,7 @@
                   on:click={() => {
                     trackGoal(`ZWGL5VLX`)
                   }}
+                  value="sign me up!"
                 />
               </div>
             </form>
