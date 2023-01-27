@@ -9,3 +9,10 @@ export const getPadding = aspectRatio => {
 
   return config[aspectRatio]
 }
+
+export const objectToQueryParams = obj => {
+  const params = Object.entries(obj).map(
+    ([key, value]) => `${key}=${value}`
+  )
+  return '?' + params.join('&')
+}

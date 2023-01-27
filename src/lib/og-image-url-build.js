@@ -1,9 +1,4 @@
-const objectToQueryParams = obj => {
-  const params = Object.entries(obj).map(
-    ([key, value]) => `${key}=${value}`
-  )
-  return '?' + params.join('&')
-}
+import { objectToQueryParams } from "./utils"
 
 export const ogImageUrl = (author, website, title) => {
   const params = {
