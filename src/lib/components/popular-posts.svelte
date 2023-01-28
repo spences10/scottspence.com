@@ -1,5 +1,6 @@
 <script>
-  import { POPULAR_POSTS } from '@lib/info'
+  import { popular_posts_store } from '@lib/stores'
+  import { number_crunch } from '@lib/utils'
   import { trackGoal } from 'fathom-client'
 </script>
 
@@ -10,10 +11,10 @@
   <div
     class="grid gap-4 grid-cols-1 relative md:grid-cols-2 lg:grid-cols-4"
   >
-    {#each POPULAR_POSTS as post}
+    {#each $popular_posts_store as post}
       <a
         data-sveltekit-reload
-        href={`/posts/${post.slug}`}
+        href={`${post.pathname}`}
         on:click={() => trackGoal(`WKHRXHV8`)}
         class="h-full"
       >
@@ -25,7 +26,7 @@
           </h3>
           <div class="mt-5">
             <span class="text-primary mb-4 bottom-0 absolute">
-              Views: {post.views}
+              Views: {number_crunch(post.pageviews)}
             </span>
           </div>
         </aside>
