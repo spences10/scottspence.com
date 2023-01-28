@@ -14,6 +14,8 @@
   import '../app.css'
   import '../prism.css'
 
+  export let data
+
   onMount(() => {
     themeChange(false)
     Fathom.load(PUBLIC_FATHOM_ID, {
@@ -38,4 +40,4 @@
   <slot />
 </main>
 
-<Footer />
+<Footer {data} />
