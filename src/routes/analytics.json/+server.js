@@ -6,27 +6,39 @@ import { json } from '@sveltejs/kit'
 /** @type {import('./$types').RequestHandler} */
 export const GET = async ({ url }) => {
   const pathname = url.searchParams.get('pathname') ?? '/'
+  const date_grouping = url.searchParams.get('date_grouping') ?? 'day'
+  const date_from =
+    url.searchParams.get('date_from') ?? '2023-01-20 00:00:00'
+  const date_to =
+    url.searchParams.get('date_to') ?? '2023-01-27 23:59:59'
+  const sort_by = url.searchParams.get('sort_by') ?? 'timestamp:desc'
 
-  const params = {
+  const date_params = {
+    date_grouping,
+    date_from,
+    date_to,
+    sort_by,
+  }
+
+  const default_params = {
     entity: 'pageview',
     entity_id: PUBLIC_FATHOM_ID,
     aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
-    date_grouping: 'day',
-    date_from: '2023-01-27 00:00:00',
-    date_to: '2023-01-27 23:59:59',
     field_grouping: 'pathname',
     filters: `[{"property": "pathname","operator": "is","value": "${pathname}"}]`,
   }
 
+  const params = { ...default_params, ...date_params }
+
   try {
-    const getHeaders = new Headers()
-    getHeaders.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
+    const headers_auth = new Headers()
+    headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
     const res = await fetch(
       `https://api.usefathom.com/v1/aggregations${objectToQueryParams(
         params
       )}`,
       {
-        headers: getHeaders,
+        headers: headers_auth,
       }
     )
 
