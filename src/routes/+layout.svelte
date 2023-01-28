@@ -8,6 +8,7 @@
   import Footer from '@components/footer.svelte'
   import Header from '@components/header.svelte'
   import Nav from '@lib/components/nav.svelte'
+  import { popular_posts_store } from '@lib/stores'
   import * as Fathom from 'fathom-client'
   import { onMount } from 'svelte'
   import { themeChange } from 'theme-change'
@@ -15,6 +16,7 @@
   import '../prism.css'
 
   export let data
+  $popular_posts_store = data.post_analytics
 
   onMount(() => {
     themeChange(false)
