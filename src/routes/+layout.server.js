@@ -22,5 +22,15 @@ export const load = async ({ fetch }) => {
     })
   )
 
-  return { post_analytics }
+  // get current visitors
+  const fetch_visitors = async () => {
+    const res = await fetch(`../current-visitors.json`)
+    const { visitors } = await res.json()
+    return visitors
+  }
+
+  return {
+    post_analytics,
+    visitors: fetch_visitors(),
+  }
 }
