@@ -33,16 +33,17 @@
         </span>
       </p>
     {/each}
-    <div class="flex">
-      <p class="flex font-semibold tracking-wide">
-        Current visitor count:
-        <span
-          class="rounded-full bg-secondary text-secondary-content px-2 ml-2 flex items-center w-6 h-6 font-bold"
-        >
+    {#if visitors?.total}
+      <p
+        class="tracking-wide bg-secondary text-secondary-content mt-2 px-2 py-1 rounded-xl"
+      >
+        There's currently
+        <span class="font-bold">
           {visitors?.total || 0}
         </span>
+        live {visitors?.total === 1 ? 'visitor' : 'visitors'}
       </p>
-    </div>
+    {/if}
   </div>
   <div>
     <span class="footer-title">Site Links</span>
