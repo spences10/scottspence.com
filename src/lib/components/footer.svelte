@@ -6,7 +6,7 @@
   import { trackGoal } from 'fathom-client'
 
   export let data
-  let { post_analytics } = data
+  let { post_analytics, visitors } = data
 </script>
 
 <footer class="footer p-10 bg-primary text-primary-content">
@@ -33,6 +33,16 @@
         </span>
       </p>
     {/each}
+    <div class="flex">
+      <p class="flex font-semibold tracking-wide">
+        Current visitor count:
+        <span
+          class="rounded-full bg-secondary text-secondary-content px-2 ml-2 flex items-center w-6 h-6 font-bold"
+        >
+          {visitors?.total || 0}
+        </span>
+      </p>
+    </div>
   </div>
   <div>
     <span class="footer-title">Site Links</span>
