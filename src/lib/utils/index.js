@@ -34,3 +34,10 @@ export const shuffle_array = array => {
     .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value)
 }
+
+export const get_current_page_visitors = (path, content) => {
+  let current_visitors = content.find(
+    visitor => visitor.pathname === path
+  )
+  return current_visitors
+}

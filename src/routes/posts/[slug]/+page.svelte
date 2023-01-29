@@ -10,6 +10,7 @@
   import { name, website } from '@lib/info'
   import { ogImageUrl } from '@lib/og-image-url-build'
   import { visitors_store } from '@lib/stores'
+  import { get_current_page_visitors } from '@lib/utils'
   import {
     differenceInDays,
     differenceInYears,
@@ -49,16 +50,12 @@
   })
 
   let current_path = $page.url.pathname
+  let { content } = $visitors_store
 
-  const get_current_page_visitors = path => {
-    let { content } = $visitors_store
-    let current_visitors = content.find(
-      visitor => visitor.pathname === path
-    )
-    return current_visitors
-  }
-
-  let visitors_count = get_current_page_visitors(current_path)
+  let visitors_count = get_current_page_visitors(
+    current_path,
+    content
+  )
 </script>
 
 <Head
@@ -105,7 +102,9 @@
   </div>
   {#if visitors_count?.total > 0}
     <p class="mb-10 text-sm">
-      {visitors_count.total} people viewing this page live
+      {visitors_count.total}
+      {visitors_count.total > 1 ? `people` : `person`} viewing this page
+      live
     </p>
   {/if}
   {#if isPrivate}

@@ -1,5 +1,16 @@
 <script>
+  import { page } from '$app/stores'
+  import { visitors_store } from '@lib/stores'
+  import { get_current_page_visitors } from '@lib/utils'
   import { trackGoal } from 'fathom-client'
+
+  let current_path = $page.url.pathname
+  let { content } = $visitors_store
+
+  let visitors_count = get_current_page_visitors(
+    current_path,
+    content
+  )
 </script>
 
 <div
@@ -13,12 +24,13 @@
         class="rounded-full max-w-sm shadow-xl w-1/2 lg:w-full"
       />
       <div class="all-prose lg:mr-28">
-        <h1 class="font-bold mb-5 text-5xl">
+        <h1 class="font-bold -mb-5 text-5xl">
           <span class="block">Scott Spence</span>
           <span
             class="bg-clip-text bg-gradient-to-b from-primary to-secondary text-transparent block"
-            >Hello World!</span
           >
+            Hello World!
+          </span>
         </h1>
         <p class="mb-5">
           This is my blog where I write about many things, including,
@@ -47,9 +59,18 @@
         <a
           href="/contact"
           on:click={() => trackGoal(`T2YXL68Y`)}
-          class="btn btn-md w-full lg:btn-lg btn-primary text-primary-content mb-5 hover:text-primary-content"
-          >Get in Touch</a
+          class="btn btn-md w-full lg:btn-lg btn-primary text-primary-content hover:text-primary-content"
         >
+          Get in Touch
+        </a>
+        {#if visitors_count?.total > 0}
+          <p class="text-sm mb-5">
+            There {visitors_count.total > 1 ? `are` : `is`}
+            {visitors_count.total}
+            {visitors_count.total > 1 ? `people` : `person`}
+            looking at this page right now!
+          </p>
+        {/if}
       </div>
     </div>
   </div>
