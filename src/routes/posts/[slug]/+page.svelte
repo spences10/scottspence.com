@@ -1,4 +1,5 @@
 <script>
+  import { page } from '$app/stores'
   import ButtButt from '@components/butt-butt.svelte'
   import Head from '@components/head.svelte'
   import IsPrivateBanner from '@components/is-private-banner.svelte'
@@ -8,6 +9,7 @@
   import DateDistance from '@lib/components/date-distance.svelte'
   import { name, website } from '@lib/info'
   import { ogImageUrl } from '@lib/og-image-url-build'
+  import { visitors_store } from '@lib/stores'
   import {
     differenceInDays,
     differenceInYears,
@@ -45,6 +47,18 @@
       }
     })
   })
+
+  let current_path = $page.url.pathname
+
+  const get_current_page_visitors = path => {
+    let { content } = $visitors_store
+    let current_visitors = content.find(
+      visitor => visitor.pathname === path
+    )
+    return current_visitors
+  }
+
+  let visitors_count = get_current_page_visitors(current_path)
 </script>
 
 <Head
@@ -62,20 +76,22 @@
 
 <article>
   <h1 class="font-black mb-1 text-5xl">{title}</h1>
-  <div class="mb-10 mt-4 uppercase">
-    <time datetime={new Date(date).toISOString()}>
-      {format(new Date(date), 'MMMM d, yyyy')}
-    </time>
-    &bull;
-    <span>{readingTime.text}</span>
-    <br />
+  <div class="mb-3 mt-4 uppercase">
+    <div class="mb-1">
+      <time datetime={new Date(date).toISOString()}>
+        {format(new Date(date), 'MMMM d, yyyy')}
+      </time>
+      &bull;
+      <span>{readingTime.text}</span>
+    </div>
     <div class="space-x-2">
       {#each tags as tag}
         <a href={`/tags/${tag}`}>
           <span
             class="badge badge-primary text-primary-content transition hover:bg-secondary-focus"
-            >{tag}</span
           >
+            {tag}
+          </span>
         </a>
       {/each}
       {#if differenceInDays(new Date(), new Date(date)) < 31}
@@ -87,6 +103,11 @@
       {/if}
     </div>
   </div>
+  {#if visitors_count?.total > 0}
+    <p class="mb-10 text-sm">
+      {visitors_count.total} people viewing this page live
+    </p>
+  {/if}
   {#if isPrivate}
     <IsPrivateBanner />
   {/if}
