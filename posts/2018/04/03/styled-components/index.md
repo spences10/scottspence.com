@@ -5,6 +5,10 @@ tags: ['guide', 'styled-components', 'css-in-js']
 isPrivate: false
 ---
 
+<script>
+  import Details from '$lib/components/details.svelte'
+</script>
+
 We're going to style the basic create react app with styled-components
 to look something like this:
 
@@ -25,9 +29,11 @@ was on my team was such an inspiration for me watching how components
 were styled and really gave me the confidence to start using
 styled-components.
 
-###### me with css before
+## me with css before
 
-![impossible puzzle]
+<Details buttonText="Expand for an idea.">
+  <img src="https://media.giphy.com/media/2rj8VysAig8QE/giphy.gif" alt="impossible puzzle" />
+</Details>
 
 I want to share what I have learned so far by going through styling a
 basic react application.
@@ -42,7 +48,7 @@ modern web browsers you add to your site, like leaving font size at
 16px (or 1rem) or `box-sizing:` `border-box;` there's some packages
 out there to take care of this for you as well.
 
-### Install styled-components
+## Install styled-components
 
 Ok let's bootstrap the basic react application you get when using
 [Create React App] with [`npx`], if you already have Create React App
@@ -145,7 +151,7 @@ class App extends Component {
 export default App
 ```
 
-### styled-components all the things
+## styled-components all the things
 
 So let's do that for the remaining four CSS classes, and take a look,
 I'll define them underneath the `AppWrapper` here:
@@ -328,7 +334,7 @@ class App extends Component {
 export default App
 ```
 
-### Style the body with injectGlobal
+## Style the body with injectGlobal
 
 For styling the body of our react app we currently have the
 `index.css` file that is being imported into the mounting point of our
@@ -444,7 +450,7 @@ import Montserrat from './fonts/Montserrat-Regular.ttf'
 injectGlobal`@font-face { font-family: Montserrat; src: url(${Montserrat}); }`
 ```
 
-### Theming
+## Theming
 
 Themes are often used to change the look and feel of a wide range of
 things at once. For example, you may have a night and day mode like in
@@ -452,7 +458,7 @@ Twitter. You can create your own themes in styled-components too.
 
 ![light and dark theme]
 
-### Use the styled-components ThemeProvider
+## Use the styled-components ThemeProvider
 
 Now say we want to have several components in our app that use a CSS
 colour property `color: #6e27c5` instead of hard coding it through the
@@ -512,7 +518,7 @@ const AppHeader = styled.div`
 
 Now we can change our app theme globally
 
-### Ok cool, can you change theme?
+## Ok cool, can you change theme?
 
 This is what I was thinking and it turns out you can, there's a great
 [Stack Overflow answer] from [Max] on it.
@@ -546,7 +552,7 @@ a select box for them, let's create a components folder and in there
 make a `ThemeSelect.js` component, we can worry about refactoring the
 `App.js` component when I'm not here :
 
-#### ThemeSelect.js
+## ThemeSelect.js
 
 ```js
 import React from 'react'
@@ -589,7 +595,7 @@ You've probably noticed the
 add that method to the `App.js` component along with some state to
 manage what theme is selected.
 
-#### App.js
+## App.js
 
 ```js
 import React, { Component } from 'react'
@@ -647,7 +653,7 @@ Add a method to handle the change of the `ThemeSelect.js` component
 Let's try it out, we should be able to switch between the two themes
 we've defined now.
 
-### Extending styled-components
+## Extending styled-components
 
 So far our app hasn't got many styled-components that are similar but
 what if we were to add some buttons…
@@ -716,7 +722,7 @@ enjoy.
 
 https://codesandbox.io/s/x26q7l9vyq?from-embed
 
-### Want to know more?
+## Want to know more?
 
 A great resource for getting started with styled-components which
 really helped me is [Simon Vrachliotis]'s [egghead.io]
@@ -727,7 +733,7 @@ rest are currently available to watch for free.
 There's also the [spectrum.chat] community and of course [Stack
 Overflow].
 
-### Thanks for reading 🙏
+## Thanks for reading 🙏
 
 If there is anything I have missed, or if you have a better way to do
 something then please let me know.

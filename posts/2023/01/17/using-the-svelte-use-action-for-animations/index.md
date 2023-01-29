@@ -7,6 +7,7 @@ isPrivate: false
 
 <script>
   import Sarcasm from '$lib/components/sarcasm.svelte'
+  import Details from '$lib/components/details.svelte'
   import DetailsTransition from './details-transition.svelte'
   import DetailsAction from './details-action.svelte'
 </script>
@@ -25,8 +26,9 @@ got to do with this?
 First up! Sorry if you're on a slow internet connection! This image is
 a whopper! But it explains what I wanted to acheive!
 
-[![http-codes-dev-accordion-animation]]
-[http-codes-dev-accordion-animation]
+<Details buttonText="Click to load up the image!">
+  <img src="https://res.cloudinary.com/defkmsrpw/video/upload/f_webp,fl_animated,fl_awebp/e_loop/v1674149984/scottspence.com/http-codes-dev-accordion-animation.mp4" alt="http-codes-dev-accordion-animation"/>
+</Details>
 
 That nice smooth open close transition!
 
