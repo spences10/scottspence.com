@@ -1,24 +1,37 @@
 <script>
-  import { POPULAR_POSTS, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
+  import { SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
   import Eye from '@lib/icons/eye.svelte'
   import { name } from '@lib/info'
+  import { number_crunch } from '@lib/utils'
   import { trackGoal } from 'fathom-client'
+
+  export let data
+  let { post_analytics } = data
 </script>
 
 <footer class="footer p-10 bg-primary text-primary-content">
   <div>
     <span class="footer-title">Popular Posts</span>
-    {#each POPULAR_POSTS as post}
-      <a
-        class="text-primary-content hover:opacity-50"
-        href={`/posts/${post.slug}`}
-      >
-        {post.title}
-        <span class="text-primary-content font-bold">
+    {#each post_analytics as post}
+      <p>
+        <a
+          class="text-primary-content hover:opacity-50"
+          href={`https://scottspence.com${post.pathname}`}
+        >
+          {post.title}
+        </a>
+        <span
+          class="text-primary-content font-bold tooltip relative group cursor-pointer"
+          data-tip={`
+            Visits: ${number_crunch(post.visits)},
+            Uniques: ${number_crunch(post.uniques)},
+            Pageviews: ${number_crunch(post.pageviews)}
+          `}
+        >
           <Eye />
-          {post.views}
+          {number_crunch(post.pageviews)}
         </span>
-      </a>
+      </p>
     {/each}
   </div>
   <div>
@@ -35,7 +48,7 @@
   </div>
   <div>
     <span class="footer-title">Socials</span>
-        <a rel="me" href="https://mas.to/@spences10">Mastodon</a>
+    <a rel="me" href="https://mas.to/@spences10">Mastodon</a>
     {#each SOCIAL_LINKS as social}
       <a
         class="text-primary-content hover:opacity-50"

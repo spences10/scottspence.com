@@ -45,24 +45,36 @@ export const PORTFOLIO_PROJECTS = [
 
 export const POPULAR_POSTS = [
   {
+    path: `/posts/use-chrome-in-ubuntu-wsl`,
+    title: `Use Google Chrome in Ubuntu on Windows Subsystem Linux`,
+  },
+  {
+    path: `/posts/change-scrollbar-color-tailwind-css`,
+    title: `Change Browser Scrollbar Colour with Tailwind CSS`,
+  },
+  {
+    path: `/posts/stylelint-configuration-for-tailwindcss`,
+    title: `Change Browser Scrollbar Colour with Tailwind CSS`,
+  },
+  {
+    path: `/posts/email-form-submission-with-sveltekit`,
     title: `Make an Email Form Submission with SvelteKit`,
-    slug: `email-form-submission-with-sveltekit`,
-    views: `6.7k`,
   },
   {
-    title: `Stylelint Configuration for use with Tailwind CSS`,
-    slug: `stylelint-configuration-for-tailwindcss`,
-    views: `6.9k`,
-  },
-  {
-    title: `Make a Sitemap with SvelteKit`,
-    slug: `make-a-sitemap-with-sveltekit`,
-    views: `6.2k`,
-  },
-  {
+    path: `/posts/get-graphql-data-with-axios`,
     title: `Get GraphQL Data Using Axios`,
-    slug: `get-graphql-data-with-axios`,
-    views: `4.5k`,
+  },
+  {
+    path: `/posts/make-a-sitemap-with-sveltekit`,
+    title: `Make a Sitemap with SvelteKit`,
+  },
+  {
+    path: `/posts/sveltekit-environment-variables-with-the-sveltekit-env-module`,
+    title: `SvelteKit Environment Variables with the SvelteKit $env Module`,
+  },
+  {
+    path: `/posts/change-text-highlight-colour-with-tailwind-css`,
+    title: `Change Text Highlight Color with Tailwind CSS`,
   },
 ]
 
