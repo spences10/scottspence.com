@@ -47,13 +47,9 @@ export const GET = async ({ url }) => {
       analytics: await res.json(),
     })
   } catch (error) {
-    return json(
-      {
-        error: 'Big oof! Sorry' + error,
-      },
-      {
-        status: 500,
-      }
-    )
+    return json({
+      error: 'Big oof! Sorry' + error,
+      status: 500,
+    })
   }
 }
