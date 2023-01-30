@@ -56,7 +56,14 @@
     current_path,
     content
   )
+
+  let daily_visits = data.daily_visits[0]
 </script>
+
+<!-- <pre>{JSON.stringify(data.hourly_visits, null, 2)}</pre> -->
+<pre>{JSON.stringify(data.daily_visits, null, 2)}</pre>
+<!-- <pre>{JSON.stringify(data.monthly_visits, null, 2)}</pre> -->
+<!-- <pre>{JSON.stringify(data.yearly_visits, null, 2)}</pre> -->
 
 <Head
   title={`${title} · ${name}`}
@@ -101,10 +108,13 @@
     </div>
   </div>
   {#if visitors_count?.total > 0}
-    <p class="mb-10 text-sm">
+    <p class="text-sm">
       {visitors_count.total}
       {visitors_count.total > 1 ? `people` : `person`} viewing this page
       live
+    </p>
+    <p class="mb-10 text-sm">
+      Read to the end of the post for more stats
     </p>
   {/if}
   {#if isPrivate}
@@ -147,6 +157,37 @@
   <div class="flex flex-col w-full my-10">
     <div class="divider" />
   </div>
+
+  {#if daily_visits.visits > 0}
+    <p class="mb-2 pl-1">Daily analytics for this post</p>
+    <div
+      class="stats stats-vertical lg:stats-horizontal shadow-lg w-full border border-secondary"
+    >
+      <div class="stat">
+        <div class="stat-title">Visits Today</div>
+        <div class="stat-value text-2xl">{daily_visits.visits}</div>
+        <div class="stat-desc">Jan 1st - Feb 1st</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-title">Unique Visitors</div>
+        <div class="stat-value text-2xl">{daily_visits.uniques}</div>
+        <div class="stat-desc">↗︎ 400 (22%)</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-title">Total Page Views</div>
+        <div class="stat-value text-2xl">
+          {daily_visits.pageviews}
+        </div>
+        <div class="stat-desc">↘︎ 90 (14%)</div>
+      </div>
+    </div>
+
+    <div class="flex flex-col w-full my-10">
+      <div class="divider" />
+    </div>
+  {/if}
 
   <div class="grid justify-items-center mb-24">
     <ShareWithTweet

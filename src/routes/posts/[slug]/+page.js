@@ -1,10 +1,9 @@
 import { getPosts } from '@lib/get-posts'
 import { error } from '@sveltejs/kit'
 
-/**
- * @type {import('@sveltejs/kit').PageLoad}
- */
-export const load = async ({ params }) => {
+/** @type {import('@sveltejs/kit').PageLoad} */
+export const load = async ({ params, parent, data }) => {
+  await parent()
   const { slug } = params
   const post = getPosts().find(post => slug === post.metadata.slug)
   if (!post) {
@@ -12,6 +11,10 @@ export const load = async ({ params }) => {
   }
 
   return {
+    // hourly_visits: data.hourly_visits,
+    daily_visits: data.daily_visits,
+    // monthly_visits: data.monthly_visits,
+    // yearly_visits: data.yearly_visits,
     ...post.metadata,
     component: post.component,
   }
