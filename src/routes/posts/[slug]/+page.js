@@ -11,10 +11,10 @@ export const load = async ({ params, parent, data }) => {
   }
 
   return {
-    // hourly_visits: data.hourly_visits,
+    hourly_visits: data.hourly_visits,
     daily_visits: data.daily_visits,
-    // monthly_visits: data.monthly_visits,
-    // yearly_visits: data.yearly_visits,
+    monthly_visits: data.monthly_visits,
+    yearly_visits: data.yearly_visits,
     ...post.metadata,
     component: post.component,
   }
