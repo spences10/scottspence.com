@@ -6,7 +6,9 @@
   import PopularPosts from '@components/popular-posts.svelte'
   import ShareWithTweet from '@components/share-with-tweet.svelte'
   import TableOfContents from '@components/table-of-contents.svelte'
+  import { StatsCard } from '@lib/components'
   import DateDistance from '@lib/components/date-distance.svelte'
+  import { WarningTriangle } from '@lib/icons'
   import { name, website } from '@lib/info'
   import { ogImageUrl } from '@lib/og-image-url-build'
   import { visitors_store } from '@lib/stores'
@@ -15,6 +17,9 @@
     differenceInDays,
     differenceInYears,
     format,
+    getDate,
+    getMonth,
+    parseISO,
   } from 'date-fns'
   import { onMount } from 'svelte'
 
@@ -57,13 +62,11 @@
     content
   )
 
+  // let hourly_visits = data.hourly_visits
   let daily_visits = data.daily_visits[0]
+  let monthly_visits = data.monthly_visits[0]
+  let yearly_visits = data.yearly_visits[0]
 </script>
-
-<!-- <pre>{JSON.stringify(data.hourly_visits, null, 2)}</pre> -->
-<pre>{JSON.stringify(data.daily_visits, null, 2)}</pre>
-<!-- <pre>{JSON.stringify(data.monthly_visits, null, 2)}</pre> -->
-<!-- <pre>{JSON.stringify(data.yearly_visits, null, 2)}</pre> -->
 
 <Head
   title={`${title} · ${name}`}
@@ -92,7 +95,7 @@
       {#each tags as tag}
         <a href={`/tags/${tag}`}>
           <span
-            class="badge badge-primary text-primary-content transition hover:bg-secondary-focus"
+            class="badge badge-primary text-primary-content transition hover:bg-secondary-focus hover:text-secondary-content shadow-md"
           >
             {tag}
           </span>
@@ -100,7 +103,7 @@
       {/each}
       {#if differenceInDays(new Date(), new Date(date)) < 31}
         <span
-          class="badge badge-secondary text-secondary-content font-bold transition hover:bg-secondary-focus cursor-pointer"
+          class="badge badge-secondary text-secondary-content font-bold transition hover:bg-secondary-focus hover:text-secondary-content cursor-pointer shadow-md"
         >
           new
         </span>
@@ -124,19 +127,7 @@
   {#if differenceInYears(new Date(), new Date(date)) >= 1}
     <div class="alert alert-warning shadow-lg">
       <div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="stroke-current flex-shrink-0 h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-          />
-        </svg>
+        <WarningTriangle />
         <span>
           Hey! Thanks for stopping by! Just a word of warning, this
           post is
@@ -154,37 +145,32 @@
     <svelte:component this={component} />
   </div>
 
-  <div class="flex flex-col w-full my-10">
+  <div class="flex flex-col w-full mt-10 mb-5">
     <div class="divider" />
   </div>
 
-  {#if daily_visits.visits > 0}
-    <p class="mb-2 pl-1">Daily analytics for this post</p>
-    <div
-      class="stats stats-vertical lg:stats-horizontal shadow-lg w-full border border-secondary"
-    >
-      <div class="stat">
-        <div class="stat-title">Visits Today</div>
-        <div class="stat-value text-2xl">{daily_visits.visits}</div>
-        <div class="stat-desc">Jan 1st - Feb 1st</div>
-      </div>
-
-      <div class="stat">
-        <div class="stat-title">Unique Visitors</div>
-        <div class="stat-value text-2xl">{daily_visits.uniques}</div>
-        <div class="stat-desc">↗︎ 400 (22%)</div>
-      </div>
-
-      <div class="stat">
-        <div class="stat-title">Total Page Views</div>
-        <div class="stat-value text-2xl">
-          {daily_visits.pageviews}
-        </div>
-        <div class="stat-desc">↘︎ 90 (14%)</div>
-      </div>
-    </div>
-
-    <div class="flex flex-col w-full my-10">
+  {#if daily_visits?.visits > 0}
+    <StatsCard
+      title="Daily analytics for this post"
+      stats={daily_visits}
+      time_period="day"
+    />
+  {/if}
+  {#if monthly_visits?.visits > 0 && getDate(new Date()) > 1}
+    <StatsCard
+      title="Month to date analytics for this post"
+      stats={monthly_visits}
+      time_period="month"
+    />
+  {/if}
+  {#if yearly_visits?.date > 0 && getMonth(parseISO(monthly_visits.date)) > 0}
+    <StatsCard
+      title="Year to date analytics for this post"
+      stats={yearly_visits}
+    />
+  {/if}
+  {#if daily_visits?.visits > 0 || monthly_visits?.visits > 0 || yearly_visits?.visits > 0}
+    <div class="flex flex-col w-full mt-5 mb-10">
       <div class="divider" />
     </div>
   {/if}
