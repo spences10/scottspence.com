@@ -35,7 +35,7 @@
     {/each}
     {#if visitors?.total}
       <p
-        class="tracking-wide bg-secondary text-secondary-content mt-2 px-2 py-1 rounded-xl"
+        class="tracking-wide bg-secondary text-secondary-content mt-2 px-2 py-1 shadow-lg rounded-xl"
       >
         There's currently
         <span class="font-bold">
