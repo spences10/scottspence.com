@@ -6,13 +6,13 @@
   import { trackGoal } from 'fathom-client'
 
   export let data
-  let { post_analytics, visitors } = data
+  let { popular_posts_analytics, visitors } = data
 </script>
 
 <footer class="footer p-10 bg-primary text-primary-content">
   <div>
     <span class="footer-title">Popular Posts</span>
-    {#each post_analytics as post}
+    {#each popular_posts_analytics as post}
       <p>
         <a
           class="text-primary-content hover:opacity-50"

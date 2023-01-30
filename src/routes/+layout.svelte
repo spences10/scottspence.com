@@ -16,7 +16,7 @@
   import '../prism.css'
 
   export let data
-  $popular_posts_store = data.post_analytics
+  $popular_posts_store = data.popular_posts_analytics
   $visitors_store = data.visitors
 
   onMount(() => {

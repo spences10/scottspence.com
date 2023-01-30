@@ -5,7 +5,7 @@ export const load = async ({ fetch }) => {
   const posts = shuffle_array(POPULAR_POSTS).slice(0, 4)
 
   // loop thorugh posts and fetch data
-  const post_analytics = await Promise.all(
+  const popular_posts_analytics = await Promise.all(
     posts.map(async post => {
       const res = await fetch(
         `../analytics.json?pathname=${post.path}`
@@ -30,7 +30,7 @@ export const load = async ({ fetch }) => {
   }
 
   return {
-    post_analytics,
+    popular_posts_analytics,
     visitors: fetch_visitors(),
   }
 }
