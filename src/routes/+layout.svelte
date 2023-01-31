@@ -1,5 +1,5 @@
 <script>
-  import { browser } from '$app/environment'
+  import { browser, dev } from '$app/environment'
   import { page } from '$app/stores'
   import {
     PUBLIC_FATHOM_ID,
@@ -9,6 +9,7 @@
   import Header from '@components/header.svelte'
   import Nav from '@lib/components/nav.svelte'
   import { popular_posts_store, visitors_store } from '@lib/stores'
+  import { inject } from '@vercel/analytics'
   import * as Fathom from 'fathom-client'
   import { onMount } from 'svelte'
   import { themeChange } from 'theme-change'
@@ -27,6 +28,7 @@
     })
   })
 
+  inject({ mode: dev ? 'development' : 'production' })
   $: $page.url.pathname, browser && Fathom.trackPageview()
 </script>
 

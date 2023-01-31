@@ -4,6 +4,7 @@ specifiers:
   '@sveltejs/adapter-vercel': 1.0.5
   '@sveltejs/kit': 1.0.7
   '@tailwindcss/typography': 0.5.9
+  '@vercel/analytics': ^0.1.8
   autoprefixer: 10.4.13
   cssnano: 5.1.14
   daisyui: 2.47.0
@@ -42,6 +43,7 @@ devDependencies:
   '@sveltejs/adapter-vercel': 1.0.5_@sveltejs+kit@1.0.7
   '@sveltejs/kit': 1.0.7_svelte@3.55.1+vite@4.0.4
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.4
+  '@vercel/analytics': 0.1.8
   autoprefixer: 10.4.13_postcss@8.4.21
   cssnano: 5.1.14_postcss@8.4.21
   daisyui: 2.47.0_gbtt6ss3tbiz4yjtvdr6fbrj44
@@ -491,6 +493,12 @@ packages:
 
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
+    dev: true
+
+  /@vercel/analytics/0.1.8:
+    resolution: {integrity: sha512-PQrOI8BJ9qUiVJuQfnKiJd15eDjDJH9TBKsNeMrtelT4NAk7d9mBVz1CoZkvoFnHQ0OW7Xnqmr1F2nScfAnznQ==}
+    peerDependencies:
+      react: ^16.8||^17||^18
     dev: true
 
   /@vercel/nft/0.22.1:
