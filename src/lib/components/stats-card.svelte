@@ -1,5 +1,5 @@
 <script>
-  import { number_crunch } from '@lib/utils'
+  import { number_crunch } from '$lib/utils'
   import { format, startOfMonth, startOfYear } from 'date-fns'
 
   export let stats

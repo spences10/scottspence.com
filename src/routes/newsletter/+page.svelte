@@ -1,8 +1,7 @@
 <script>
-  import Head from '@components/head.svelte'
-  import NewsletterSignup from '@components/newsletter-signup.svelte'
-  import { name, website } from '@lib/info'
-  import { ogImageUrl } from '@lib/og-image-url-build'
+  import { Head, NewsletterSignup } from '$lib/components'
+  import { name, website } from '$lib/info'
+  import { ogImageUrl } from '$lib/og-image-url-build'
 
   export let data
   let { Copy } = data

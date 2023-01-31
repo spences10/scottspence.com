@@ -1,5 +1,5 @@
 <script>
-  import { name } from '@lib/info'
+  import { name } from '$lib/info'
   import ThemeSelect from './theme-select.svelte'
 </script>
 

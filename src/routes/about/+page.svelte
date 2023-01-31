@@ -1,9 +1,7 @@
 <script>
-  import DateUpdated from '@components/date-updated.svelte'
-  import Head from '@components/head.svelte'
-  import Small from '@components/small.svelte'
-  import { name, website } from '@lib/info'
-  import { ogImageUrl } from '@lib/og-image-url-build'
+  import { DateUpdated, Head, Small } from '$lib/components'
+  import { name, website } from '$lib/info'
+  import { ogImageUrl } from '$lib/og-image-url-build'
 
   export let data
   let { Copy } = data

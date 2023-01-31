@@ -1,8 +1,7 @@
 <script>
-  import Head from '@components/head.svelte'
-  import ContactForm from '@lib/components/contact-form.svelte'
-  import { name, website } from '@lib/info'
-  import { ogImageUrl } from '@lib/og-image-url-build'
+  import { ContactForm, Head } from '$lib/components'
+  import { name, website } from '$lib/info'
+  import { ogImageUrl } from '$lib/og-image-url-build'
 </script>
 
 <Head

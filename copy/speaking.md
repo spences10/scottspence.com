@@ -1,6 +1,8 @@
 <script>
-  import DateUpdated from '$lib/components/date-updated.svelte'
-  import Small from '$lib/components/small.svelte'
+  import {
+    DateUpdated, 
+    Small
+  } from '$lib/components'
   import { 
     Buzzsprout,
     Spotify,
@@ -11,7 +13,7 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2023-01-06" small="true" />
+  Last updated: <DateUpdated date="2023-01-31" small="true" />
 </Small>
 
 If you want me to talk about using Svelte with GraphQL, the Jamstack
@@ -21,6 +23,19 @@ or anything else [get in touch].
 
 Here's the list of talks, podcasts and livestreams I have done
 recently.
+
+## 2023
+
+### PodRocket
+
+I was on the web development podcast from LogRocket, had a blast
+speaking with Sean Rayment and talking about SvelteKit.
+
+<Spotify
+  spotifyLink="episode/3OC43WIzjgWSiq1GFoILhQ"
+  width="100%"
+  height="180px"
+/>
 
 ## 2022
 

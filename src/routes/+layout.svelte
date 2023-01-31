@@ -5,10 +5,8 @@
     PUBLIC_FATHOM_ID,
     PUBLIC_FATHOM_URL,
   } from '$env/static/public'
-  import Footer from '@components/footer.svelte'
-  import Header from '@components/header.svelte'
-  import Nav from '@lib/components/nav.svelte'
-  import { popular_posts_store, visitors_store } from '@lib/stores'
+  import { Footer, Header, Nav } from '$lib/components'
+  import { popular_posts_store, visitors_store } from '$lib/stores'
   import * as Fathom from 'fathom-client'
   import { onMount } from 'svelte'
   import { themeChange } from 'theme-change'

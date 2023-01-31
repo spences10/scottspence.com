@@ -1,6 +1,6 @@
 <script>
-  import { popular_posts_store } from '@lib/stores'
-  import { number_crunch } from '@lib/utils'
+  import { popular_posts_store } from '$lib/stores'
+  import { number_crunch } from '$lib/utils'
   import { trackGoal } from 'fathom-client'
 </script>
 

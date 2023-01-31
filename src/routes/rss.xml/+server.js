@@ -1,5 +1,5 @@
-import { getPosts } from '@lib/get-posts'
-import { description, name, website } from '@lib/info'
+import { getPosts } from '$lib/get-posts'
+import { description, name, website } from '$lib/info'
 import { format } from 'date-fns'
 
 export const GET = async () => {

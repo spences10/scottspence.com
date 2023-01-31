@@ -1,8 +1,10 @@
 <script>
-  import DateUpdated from '$lib/components/date-updated.svelte'
-  import Small from '$lib/components/small.svelte'
   import { YouTube } from 'sveltekit-embed'
-  import NewsletterSignup from '$lib/components/newsletter-signup.svelte'
+  import {
+    DateUpdated, 
+    Small, 
+    NewsletterSignup
+  } from '$lib/components'
 </script>
 
 # Portfolio
@@ -13,7 +15,7 @@
 
 🚧**This page is currently under construction.**🚧
 
-There'll be some cool SvelteKit features added here to get my GitHib
+There'll be some cool SvelteKit features added here to get my GitHub
 user information and show it in a graph or two.
 
 I've added some of my recent work here if you would like to check it

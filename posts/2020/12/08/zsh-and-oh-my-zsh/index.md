@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import Sarcasm from '$lib/components/sarcasm.svelte'
+  import { Sarcasm } from '$lib/components'
 </script>
 
 Sooooooo, so, so, so, Zsh is pretty neat, right?

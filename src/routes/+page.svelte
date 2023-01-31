@@ -1,9 +1,7 @@
 <script>
-  import Head from '@components/head.svelte'
-  import LandingHero from '@components/landing-hero.svelte'
-  import PeopleToMeet from '@components/people-to-meet.svelte'
-  import { description, name, website } from '@lib/info'
-  import { ogImageUrl } from '@lib/og-image-url-build'
+  import { Head, LandingHero, PeopleToMeet } from '$lib/components'
+  import { description, name, website } from '$lib/info'
+  import { ogImageUrl } from '$lib/og-image-url-build'
 
   export let data
   let { Copy } = data

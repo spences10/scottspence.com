@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import Details from '$lib/components/details.svelte'
+  import { Details } from '$lib/components'
 </script>
 
 **This post uses the legacy configuration for KitQL, there's a more up

@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import Details from '$lib/components/details.svelte'
+  import { Details } from '$lib/components'
 </script>
 
 Bit of preamble before I kick this off, subscribers to my newsletter

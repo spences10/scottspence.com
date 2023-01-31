@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import Details from '$lib/components/details.svelte'
+  import { Details } from '$lib/components'
 </script>
 
 We're going to style the basic create react app with styled-components

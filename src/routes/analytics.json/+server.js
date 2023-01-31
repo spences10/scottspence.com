@@ -1,6 +1,6 @@
 import { FATHOM_API_KEY } from '$env/static/private'
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
-import { object_to_query_params } from '@lib/utils'
+import { object_to_query_params } from '$lib/utils'
 import { json } from '@sveltejs/kit'
 
 /** @type {import('./$types').RequestHandler} */

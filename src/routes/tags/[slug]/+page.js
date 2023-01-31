@@ -1,4 +1,4 @@
-import { getPostTags } from '@lib/get-post-tags'
+import { getPostTags } from '$lib/get-post-tags'
 
 export const load = async ({ params }) => {
   const { slug } = params

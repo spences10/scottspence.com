@@ -1,7 +1,9 @@
 <script>
-  import DateUpdated from '$lib/components/date-updated.svelte'
-  import DateDistance from '$lib/components/date-distance.svelte'
-  import Small from '$lib/components/small.svelte'
+  import {
+    DateDistance, 
+    DateUpdated, 
+    Small, 
+  } from '$lib/components'
 </script>
 
 # For recruiters - FAQ

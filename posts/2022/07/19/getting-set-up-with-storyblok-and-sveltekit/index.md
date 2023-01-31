@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import Details from '$lib/components/details.svelte'
+  import { Details } from '$lib/components'
 </script>
 
 I've been having a play around with Storyblok this evening and want to

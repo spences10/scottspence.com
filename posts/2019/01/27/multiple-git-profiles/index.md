@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 Over the past couple of weeks now I have set up several development
-machines at work and have had to also use two git accounts, GitHib and
+machines at work and have had to also use two git accounts, GitHub and
 Bitbucket.
 
 To connect to both I use SSH as a preference, I have been using SSH in

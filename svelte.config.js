@@ -1,6 +1,5 @@
 import adapter from '@sveltejs/adapter-vercel'
 import { mdsvex } from 'mdsvex'
-import { resolve } from 'path'
 import preprocess from 'svelte-preprocess'
 import mdsvexConfig from './mdsvex.config.js'
 
@@ -19,11 +18,6 @@ const config = {
 
   kit: {
     adapter: adapter(),
-    alias: {
-      '@components': resolve('./src/lib/components'),
-      '@lib': resolve('./src/lib'),
-      '@utils': resolve('./src/lib/utils'),
-    },
   },
 }
 

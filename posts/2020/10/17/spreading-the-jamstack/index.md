@@ -6,9 +6,11 @@ isPrivate: false
 ---
 
 <script>
-  import DateDistance from '$lib/components/date-distance.svelte'
-  import Sarcasm from '$lib/components/sarcasm.svelte'
-  import Small from '$lib/components/small.svelte'
+  import {
+    DateDistance, 
+    Sarcasm, 
+    Small
+  } from '$lib/components'
 </script>
 
 I have delivered this talk several times now but not actually written

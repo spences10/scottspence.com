@@ -1,6 +1,8 @@
 <script>
-  import DateUpdated from '$lib/components/date-updated.svelte'
-  import Small from '$lib/components/small.svelte'
+  import {
+    DateUpdated, 
+    Small
+  } from '$lib/components'
 </script>
 
 # Uses

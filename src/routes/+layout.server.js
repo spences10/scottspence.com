@@ -1,5 +1,5 @@
-import { POPULAR_POSTS } from '@lib/info'
-import { shuffle_array } from '@lib/utils'
+import { POPULAR_POSTS } from '$lib/info'
+import { shuffle_array } from '$lib/utils'
 
 export const load = async ({ fetch }) => {
   const posts = shuffle_array(POPULAR_POSTS).slice(0, 4)

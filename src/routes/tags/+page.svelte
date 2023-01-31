@@ -1,7 +1,7 @@
 <script>
-  import Head from '@components/head.svelte'
-  import { description, name, website } from '@lib/info'
-  import { ogImageUrl } from '@lib/og-image-url-build'
+  import { Head } from '$lib/components'
+  import { description, name, website } from '$lib/info'
+  import { ogImageUrl } from '$lib/og-image-url-build'
   import Fuse from 'fuse.js'
 
   export let data

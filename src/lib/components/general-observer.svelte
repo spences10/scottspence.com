@@ -1,5 +1,5 @@
 <script>
-  import viewport from '@lib/use-viewport-action'
+  import viewport from '$lib/use-viewport-action'
 
   export let height = 100
   export let width = 100

@@ -1,5 +1,5 @@
 <script>
-  import { scaleAndFade } from '@lib/custom-transition'
+  import { scaleAndFade } from '$lib/custom-transition'
   import { trackGoal } from 'fathom-client'
 
   let email = ''

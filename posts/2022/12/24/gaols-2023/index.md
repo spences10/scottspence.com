@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import ProgressBar from '@lib/components/progress-bar.svelte'
+  import { ProgressBar } from '$lib/components'
 </script>
 
 For 2023 I'm going to note down my goals for the year. I'll take a

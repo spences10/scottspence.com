@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import DateDistance from '$lib/components/date-distance.svelte'
+  import { DateDistance } from '$lib/components'
 </script>
 
 For as long as I have been learning web development (<DateDistance

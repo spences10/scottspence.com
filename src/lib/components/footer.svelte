@@ -1,8 +1,7 @@
 <script>
-  import { SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
-  import Eye from '@lib/icons/eye.svelte'
-  import { name } from '@lib/info'
-  import { number_crunch } from '@lib/utils'
+  import { Eye } from '$lib/icons'
+  import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
+  import { number_crunch } from '$lib/utils'
   import { trackGoal } from 'fathom-client'
 
   export let data

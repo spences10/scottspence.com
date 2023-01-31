@@ -6,8 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import Details from '$lib/components/details.svelte'
-  import Chat from '$lib/components/chat.svelte'
+  import { Chat, Details } from '$lib/components'
 </script>
 
 How to change the highlight color of text on the page? Here's the

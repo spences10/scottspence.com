@@ -6,9 +6,8 @@ isPrivate: false
 ---
 
 <script>
-  import MarkdownParser from '$lib/components/markdown-parser.svelte'
+  import { MarkdownParser, Small } from '$lib/components'
   import { YouTube } from 'sveltekit-embed'
-  import Small from '$lib/components/small.svelte'
 </script>
 
 Here it is kids! All I know about Markdown. First! The standard

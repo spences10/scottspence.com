@@ -1,7 +1,7 @@
 <script>
   import { page } from '$app/stores'
-  import { visitors_store } from '@lib/stores'
-  import { get_current_page_visitors } from '@lib/utils'
+  import { visitors_store } from '$lib/stores'
+  import { get_current_page_visitors } from '$lib/utils'
   import { trackGoal } from 'fathom-client'
 
   let current_path = $page.url.pathname
@@ -65,9 +65,9 @@
         </a>
         {#if visitors_count?.total > 0}
           <p class="text-sm mb-5">
-            There {visitors_count.total > 1 ? `are` : `is`}
-            {visitors_count.total}
-            {visitors_count.total > 1 ? `people` : `person`}
+            There {visitors_count?.total > 1 ? `are` : `is`}
+            {visitors_count?.total}
+            {visitors_count?.total > 1 ? `people` : `person`}
             looking at this page right now!
           </p>
         {/if}

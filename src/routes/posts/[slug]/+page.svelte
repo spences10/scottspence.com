@@ -1,18 +1,20 @@
 <script>
   import { page } from '$app/stores'
-  import ButtButt from '@components/butt-butt.svelte'
-  import Head from '@components/head.svelte'
-  import IsPrivateBanner from '@components/is-private-banner.svelte'
-  import PopularPosts from '@components/popular-posts.svelte'
-  import ShareWithTweet from '@components/share-with-tweet.svelte'
-  import TableOfContents from '@components/table-of-contents.svelte'
-  import { StatsCard } from '@lib/components'
-  import DateDistance from '@lib/components/date-distance.svelte'
-  import { WarningTriangle } from '@lib/icons'
-  import { name, website } from '@lib/info'
-  import { ogImageUrl } from '@lib/og-image-url-build'
-  import { visitors_store } from '@lib/stores'
-  import { get_current_page_visitors } from '@lib/utils'
+  import {
+    ButtButt,
+    DateDistance,
+    Head,
+    IsPrivateBanner,
+    PopularPosts,
+    ShareWithTweet,
+    StatsCard,
+    TableOfContents,
+  } from '$lib/components'
+  import { WarningTriangle } from '$lib/icons'
+  import { name, website } from '$lib/info'
+  import { ogImageUrl } from '$lib/og-image-url-build'
+  import { visitors_store } from '$lib/stores'
+  import { get_current_page_visitors } from '$lib/utils'
   import {
     differenceInDays,
     differenceInYears,

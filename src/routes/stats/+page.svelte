@@ -1,6 +1,5 @@
 <script>
-    import { popular_posts_store } from '@lib/stores'
-
+  import { popular_posts_store } from '$lib/stores'
 
   /** @type {import('./$types').PageData} */
   export let data

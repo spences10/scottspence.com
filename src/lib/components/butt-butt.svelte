@@ -1,6 +1,6 @@
 <script>
-  import { scaleAndFade } from '@lib/custom-transition'
-  import viewport from '@lib/use-viewport-action'
+  import { scaleAndFade } from '$lib/custom-transition'
+  import viewport from '$lib/use-viewport-action'
 
   export let height = '100px'
   export let width = '160px'

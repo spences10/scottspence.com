@@ -1,4 +1,4 @@
-import { getPosts } from '@lib/get-posts'
+import { getPosts } from '$lib/get-posts'
 import slugify from 'slugify'
 
 export function getPostTags() {

@@ -1,5 +1,5 @@
 <script>
-  import { scaleAndFade } from '@lib/custom-transition'
+  import { scaleAndFade } from '$lib/custom-transition'
 
   // acknowledgement: https://www.youtube.com/watch?v=mBXEnakkUIM
   let submitStatus = ''
@@ -66,9 +66,9 @@
         required
       />
       <label class="label" for="reason">
-        <span class="label-text all-prose"
-          >What are you reaching out for?</span
-        >
+        <span class="label-text all-prose">
+          What are you reaching out for?
+        </span>
       </label>
       <select
         class="input input-bordered w-full max-w-xs all-prose"
@@ -99,6 +99,7 @@
       <input
         class="btn btn-primary w-full max-w-xs prose prose-lg lg:prose-xl prose-a:transition prose-a:text-primary hover:prose-a:text-primary-focus"
         type="submit"
+        value="Submit"
       />
     </form>
   </div>

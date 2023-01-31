@@ -1,5 +1,5 @@
 <script>
-  import { name, website } from '@lib/info'
+  import { name, website } from '$lib/info'
 
   export let title
   export let description

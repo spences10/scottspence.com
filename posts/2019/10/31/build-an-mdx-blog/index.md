@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 <script>
-  import Details from '$lib/components/details.svelte'
+  import { Details } from '$lib/components'
   import { Vimeo, YouTube } from 'sveltekit-embed'
 </script>
 
