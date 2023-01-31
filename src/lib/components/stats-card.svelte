@@ -52,7 +52,7 @@
   </div>
 
   <div class="stat">
-    <div class="stat-title">Total Page Views {time_period_label}</div>
+    <div class="stat-title">Total Views {time_period_label}</div>
     <div class="stat-value text-2xl">
       {number_crunch(stats.pageviews)}
     </div>
