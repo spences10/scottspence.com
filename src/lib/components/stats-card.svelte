@@ -10,22 +10,22 @@
   let time_period_range
   if (time_period === 'day') {
     time_period_label = 'Today'
-    time_period_range = format(new Date(), 'MMMM d, yyyy h:mm a')
+    time_period_range = format(new Date(), 'MMM d, yyyy h:mm a')
   }
   if (time_period === 'week') time_period_label = 'This Week'
   if (time_period === 'month') {
     time_period_label = 'This Month'
     time_period_range = `${format(
       startOfMonth(new Date()),
-      'MMMM d, yyyy'
-    )} - ${format(new Date(), 'MMMM d, yyyy')}`
+      'MMM d, yyyy'
+    )} - ${format(new Date(), 'MMM d, yyyy')}`
   }
   if (time_period === 'year') {
     time_period_label = 'This Year'
     time_period_range = `${format(
       startOfYear(new Date()),
-      'MMMM d, yyyy'
-    )} - ${format(new Date(), 'MMMM d, yyyy')}`
+      'MMM d, yyyy'
+    )} - ${format(new Date(), 'MMM d, yyyy')}`
   }
 </script>
 
