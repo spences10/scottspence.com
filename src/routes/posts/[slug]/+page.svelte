@@ -169,6 +169,7 @@
     <StatsCard
       title="Year to date analytics for this post"
       stats={yearly_visits}
+      time_period="year"
     />
   {/if}
   {#if daily_visits?.visits > 0 || monthly_visits?.visits > 0 || yearly_visits?.visits > 0}
