@@ -31,6 +31,7 @@ specifiers:
   remark-reading-time: 1.0.1
   slugify: 1.6.5
   svelte: 3.55.1
+  svelte-frappe-charts: ^1.10.0
   svelte-preprocess: 5.0.1
   sveltekit-embed: 0.0.11
   tailwindcss: 3.2.4
@@ -69,6 +70,7 @@ devDependencies:
   remark-reading-time: 1.0.1
   slugify: 1.6.5
   svelte: 3.55.1
+  svelte-frappe-charts: 1.10.0_svelte@3.55.1
   svelte-preprocess: 5.0.1_gqx7lw3sljhsd4bstor5m2aa2u
   sveltekit-embed: 0.0.11
   tailwindcss: 3.2.4_postcss@8.4.21
@@ -1489,6 +1491,10 @@ packages:
 
   /fraction.js/4.2.0:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
+    dev: true
+
+  /frappe-charts/1.6.2:
+    resolution: {integrity: sha512-9TC3/+YVUi84yYoEbxFiSqu+1FQ5If/ydUNj6i8FRpwynd08t6a7RkS+IRJozAk6NfdL8/LVTTE1DUOjjKZZxg==}
     dev: true
 
   /fs-minipass/2.1.0:
@@ -3143,6 +3149,15 @@ packages:
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+    dev: true
+
+  /svelte-frappe-charts/1.10.0_svelte@3.55.1:
+    resolution: {integrity: sha512-TkkcovOAeoieiDFFJS7p56E91WcS5qFq5lpkF+yuCBMG17HaC+7PrkT/0zzii0BBnYlOuumsfb9S5UmsDZRhdg==}
+    peerDependencies:
+      svelte: ^3.0.0
+    dependencies:
+      frappe-charts: 1.6.2
+      svelte: 3.55.1
     dev: true
 
   /svelte-hmr/0.15.1_svelte@3.55.1:
