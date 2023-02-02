@@ -165,7 +165,7 @@
       time_period="month"
     />
   {/if}
-  {#if yearly_visits?.date > 0 && getMonth(parseISO(monthly_visits?.date)) > 0}
+  {#if (yearly_visits?.date > 0 && getMonth(parseISO(monthly_visits?.date)) > 0) || (!monthly_visits?.visits && yearly_visits?.visits > 0)}
     <StatsCard
       title="Year to date analytics for this post"
       stats={yearly_visits}
