@@ -28,7 +28,7 @@
     "cssnano": "5.1.14",
     "daisyui": "2.50.0",
     "date-fns": "2.29.3",
-    "eslint": "8.32.0",
+    "eslint": "8.33.0",
     "eslint-config-prettier": "8.6.0",
     "eslint-plugin-svelte3": "4.0.0",
     "fathom-client": "3.5.0",
@@ -57,6 +57,6 @@
     "tailwindcss": "3.2.4",
     "theme-change": "2.3.0",
     "unist-util-visit": "4.1.2",
-    "vite": "4.0.4"
+    "vite": "4.1.1"
   }
 }
