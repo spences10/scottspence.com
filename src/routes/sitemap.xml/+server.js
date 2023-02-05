@@ -78,7 +78,7 @@ const render = (pages, tags, postsMeta) => {
         tag => `
     <url>
       <loc>${website}/tags/${slugify(tag)}</loc>
-      <lastmod>${lastMod}</lastmod>
+      <priority>0.64</priority>
     </url>
     `
       )
