@@ -120,6 +120,9 @@ Or you could even use an image!
 
 So there you have it, really simple way to style a scrollbar with CSS!
 
+If you want to [Change Text Highlight Color with Tailwind CSS] you can
+check out that post too.
+
 <!-- Links -->
 
 [change text highlight color with tailwind css]:
@@ -130,3 +133,5 @@ So there you have it, really simple way to style a scrollbar with CSS!
   https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements
 [css scrollbars]:
   https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scrollbars
+[Change Text Highlight Color with Tailwind CSS]:
+  https://scottspence.com/posts/change-text-highlight-colour-with-tailwind-css
