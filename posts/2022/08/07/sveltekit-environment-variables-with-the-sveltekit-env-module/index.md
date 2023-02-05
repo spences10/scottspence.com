@@ -1,5 +1,6 @@
 ---
 date: 2022-08-07
+updated: 2023-02-05
 title: SvelteKit Environment Variables with the SvelteKit $env Module
 tags: ['sveltekit', 'notes']
 isPrivate: false
@@ -55,17 +56,17 @@ Example, using a public variable in a `.svelte` file:
 
 ```svelte
 <script>
-  import { env } from '$env/dynamic/private'
+  import { env } from '$env/static/public'
 </script>
 
-{env.SECRET_VARIABLE}
+{env.PUBLIC_VARIABLE}
 ```
 
 In a `.js` file (endpoint):
 
 ```js
-import { env as private_env } from '$env/dynamic/private'
-import { env as public_env } from '$env/dynamic/public'
+import { env as private_env } from '$env/static/private'
+import { env as public_env } from '$env/static/public'
 
 export const GET = async () => {
   console.log('=====================')
@@ -75,6 +76,9 @@ export const GET = async () => {
   return {}
 }
 ```
+
+There's an example repository over on GitHub that you can take a look
+at here: https://github.com/spences10/sveltekit-env-example
 
 Check out the documentation for each implementation:
 
