@@ -54,7 +54,7 @@ export const POPULAR_POSTS = [
   },
   {
     path: `/posts/stylelint-configuration-for-tailwindcss`,
-    title: `Change Browser Scrollbar Colour with Tailwind CSS`,
+    title: `Stylelint Configuration for use with Tailwind CSS`,
   },
   {
     path: `/posts/email-form-submission-with-sveltekit`,
