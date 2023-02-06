@@ -2,7 +2,7 @@
 date: 2023-01-29
 title: Adding real-time analytics to my SvelteKit site with Fathom
 tags: ['analytics', 'svelte', 'sveltekit', 'fathom']
-isPrivate: true
+isPrivate: false
 ---
 
 I spent a bit of time the other day lookinginto the Fathom Analytics
@@ -22,9 +22,11 @@ Ok so if you want a privacy focused analytics solution, Fathom, in my
 biased opinion, is the best one out there.
 
 Seriously, if you're looking for a privacy first analytics option
-check it out! Also while you're at it use my [referral code]! It's
-paid! It will help me out and you're welcome for putting you onto an
-awesome product!
+check it out! Also while you're at it use my [referral code]! It will
+help me out and you're welcome for putting you onto an awesome
+product!
+
+Fathom Analytics is paid service, well worth the money in my opinion.
 
 If you've not seen any of my previous content check out the
 [analytics] tag on the site here! I've written about them a ton in the
@@ -34,11 +36,17 @@ Anyways! Preamble over, let's get into how I did it.
 
 ## The Fathom API
 
-The Fathom API is (from what I can tell) early access, so you'll need
-to email them to get access to it. You'll be notified when it's ready
-with instructions on how to get started.
+The Fathom API is still (from what I can tell) early access, so you'll
+need to email them to get access to it. You'll be notified when it's
+ready with instructions on how to get started.
 
-The [Fathom API documentation]
+The [Fathom API documentation] in their own words is **absolutely
+gorgeous** and I agree.
+
+## My implementation
+
+How to Implement Redirects for Changed Post Routes in Sveltekit
+
 
 <!-- Links -->
 
