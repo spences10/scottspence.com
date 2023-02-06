@@ -19,16 +19,16 @@ For the **Tl;Dr** skip to the [solution](#the-new-solution).
 This site is <DateDistance date='2021-04-06' /> old now! Before that I
 was using a URL path that directly mapped onto where the posts lived
 in the folder structure of the project. I used to have the routes on
-posts as `/:year/:month/:day/:slug`. With the new site I waned to map
+posts as `/:year/:month/:day/:slug`. With the new site I wanted to map
 them to `/posts/:slug`.
 
 The old structure (to my mind) made perfect sense as it was easy to
-understand the age of the post from looking at the URL. However, I
-clearly mark the date on the post and even give a little informational
+understand the age of the post from looking at the URL. However, now I
+clearly mark the date on the post. I even give a little informational
 banner at the top of the post to let you know the age of the post if
 it is over a year old.
 
-From what I can glean the path structure of the URL is not a ranking
+From what I can glean, the path structure of the URL is not a ranking
 factor for SEO, but it is a factor for user experience. There was also
 technical reasons for the change, but that's another post.
 
@@ -36,8 +36,8 @@ Anyway, preamble over let's get into how I did it.
 
 ## The Problem
 
-I went from `/posts/:year/:month/:day/:slug` to `/posts/:slug` and I
-wanted to redirect the old URLs to the new ones.
+I went from `/:year/:month/:day/:slug` to `/posts/:slug` and I wanted
+to redirect the old URLs to the new ones.
 
 I asked this question a while back on Twitter, which was **"I want to
 do a load of redirects (~130) using SvelteKit, anyone have any
@@ -62,9 +62,9 @@ Please bear in mind that the tweet from Rodney was from pre SvelteKit
 v1 which was <DateDistance date='2021-06-05' /> ago now and the
 routing wasn't thoroughly worked out then.
 
-If the tweet/and Twitter is still around you'll see that it's using
-the `<script context="module">` method where SvelteKit did the data
-loading in one file.
+If the tweet/and Twitter is still around you'll see in the image that
+it's using the `<script context="module">` method where SvelteKit used
+to do the data loading in one file.
 
 ```svelte
 <script context="module">
@@ -78,9 +78,8 @@ loading in one file.
 </script>
 ```
 
-With the SvelteKit v1 changes which happened around August 2022 I
-moved out the `load` function out of the `+page.svelte` file into a
-`+page.js` file.
+With the SvelteKit v1 changes which happened I moved the `load`
+function out of the `+page.svelte` file into a `+page.js` file.
 
 So, the solution was to have the load function in a `+page.js` take in
 the `params` and then redirect to the new URL.
@@ -125,7 +124,11 @@ https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-wi
 ```
 
 I can add anything into those placeholders really, it doesn't matter.
-Here's the folder structure as it was from SvelteKit v1.
+What does matter is that I have a fair few posts out there which have
+the old URL structure.
+
+Here's the folder structure as I refactored it to accommodate the
+SvelteKit v1 changes.
 
 ```text
 ├── src
@@ -198,3 +201,5 @@ that I've done it.
 <!-- Links -->
 
 [Rodney]: https://twitter.com/askRodney
+[real time analytics]:
+  https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom
