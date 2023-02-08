@@ -2,7 +2,7 @@
 date: 2023-01-29
 title: Adding real-time analytics to my SvelteKit site with Fathom
 tags: ['analytics', 'svelte', 'sveltekit', 'fathom']
-isPrivate: false
+isPrivate: true
 ---
 
 I spent a bit of time the other day lookinginto the Fathom Analytics
@@ -45,8 +45,9 @@ gorgeous** and I agree.
 
 ## My implementation
 
-How to Implement Redirects for Changed Post Routes in Sveltekit
-
+How to Implement Redirects for Changed Post Routes in Sveltekit. So
+first up there needs to be a call to the Fathom API, I'll do that by
+creating an server endpoint to call out to
 
 <!-- Links -->
 
