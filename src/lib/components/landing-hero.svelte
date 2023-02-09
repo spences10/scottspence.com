@@ -1,5 +1,6 @@
 <script>
   import { page } from '$app/stores'
+  import MugFace from '$lib/images/mug-face.png'
   import { visitors_store } from '$lib/stores'
   import { get_current_page_visitors } from '$lib/utils'
   import { trackGoal } from 'fathom-client'
@@ -19,7 +20,7 @@
   <div class="hero">
     <div class="flex-col p-0 hero-content lg:flex-row-reverse">
       <img
-        src="/mug-face.png"
+        src={MugFace}
         alt="Cartoon face Scott"
         class="rounded-full max-w-sm shadow-xl w-1/2 lg:w-full"
       />
