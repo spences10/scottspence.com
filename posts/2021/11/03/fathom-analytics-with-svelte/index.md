@@ -1,5 +1,6 @@
 ---
 date: 2021-11-03
+updated: 2023-02-09
 title: Fathom Analytics with SvelteKit
 tags: ['analytics', 'svelte', 'sveltekit']
 isPrivate: false
@@ -80,16 +81,18 @@ I'm going to create the project with the following command, I use
 of choice (like `npm` or `yarn`):
 
 ```bash
-npm init svelte@next sveltekit-and-fathom
+pnpm create svelte sveltekit-and-fathom
 ```
 
 I'll choose the following options from the CLI:
 
 ```bash
-✔ Skeleton project
-✔ Use TypeScript? › No
-✔ Add ESLint for code linting? › No
-✔ Add Prettier for code formatting? › Yes
+✔ Which Svelte app template? › Skeleton project
+✔ Add type checking with TypeScript? › Yes, using TypeScript syntax
+✔ Add ESLint for code linting? … Yes
+✔ Add Prettier for code formatting? … Yes
+✔ Add Playwright for browser testing? … Yes
+✔ Add Vitest for unit testing? … Yes
 ```
 
 I'll change directory (`cd`) into the project and install the
@@ -105,40 +108,48 @@ like this:
 
 ```bash
 sveltekit-and-fathom/
-├─ node_modules/
-├─ src/
-│ └─ routes/
-│   └─ index.svelte
-├─ static/
-│   └─ favicon.png
-├─ .env
-├─ .gitignore
-├─ .prettierrc
-├─ jsconfig.json
-├─ package.json
-├─ pnpm-lock.yaml
-├─ README.md
-└─ svelte.config.js
+├── src
+│   ├── routes
+│   │   └── +page.svelte
+│   ├── app.d.ts
+│   ├── app.html
+│   └── index.test.ts
+├── static
+│   └── favicon.png
+├── tests
+│   └── test.ts
+├── .eslintignore
+├── .eslintrc.cjs
+├── .gitignore
+├── .npmrc
+├── .prettierignore
+├── .prettierrc
+├── README.md
+├── package.json
+├── playwright.config.ts
+├── svelte.config.js
+├── tsconfig.json
+└── vite.config.ts
 ```
 
 ## Add Fathom details to `.env` file
 
 Create a `.env` file in the root of the project and add in the Fathom
-`SiteID` and the Fathom tracking script variables for Vite to use,
+`SiteID` and the Fathom tracking script variables for Svelte to use,
 this bash command will do the trick:
 
 ```bash
 touch .env
-echo VITE_FATHOM_ID= >> .env
-echo VITE_FATHOM_URL= >> .env
+echo PUBLIC_FATHOM_ID= >> .env
+echo PUBLIC_FATHOM_URL= >> .env
 ```
 
 Then add the `SiteID` and the tracking script to the variables to the
 `.env` file:
 
 ```js
-VITE_FATHOM_ID=NYMDTPLM
-VITE_FATHOM_URL=https://cdn.usefathom.com/script.js
+PUBLIC_FATHOM_ID=NYMDTPLM
+PUBLIC_FATHOM_URL=https://cdn.usefathom.com/script.js
 ```
 
 The reason for using a `.env` file if because a lot of ad blockers
@@ -157,18 +168,19 @@ pnpm i -D fathom-client
 To start tracking page views the Fathom client will need to be in a
 place that wraps all the pages in the project.
 
-I'll use the `__layout.svelte` component for this, it will be applied
-to every page in the project and can also be used to add styles and
+I'll use the `+layout.svelte` page for this, it will be applied to
+every page in the project and can also be used to add styles and
 components I want visible on each page.
 
 Currently there's only one page in the `routes` directory for the
-`index.svelte` page. I'll add in an `about.svelte` and a
-`services.svelte` page as well for now.
+`+page.svelte` file. I'll add in an `about` and a `services` routes
+for some additional pages as well for now.
 
-I'll do this with one bash command in the terminal:
+I'll do this with a couple of bash commands in the terminal:
 
 ```bash
-touch src/routes/{__layout,about,services}.svelte
+mkdir -p src/routes/{about,services}
+touch src/routes/{+layout.svelte,about/+page.svelte,services/+page.svelte}
 ```
 
 After running that I have a couple of new files in my `src/routes`
@@ -176,33 +188,38 @@ directory:
 
 ```bash
 sveltekit-and-fathom/
-│ └─ routes/
-│   ├─ __layout.svelte
-│   ├─ about.svelte
-│   ├─ index.svelte
-│   └─ services.svelte
+└── routes
+    ├── about
+    │   └── +page.svelte
+    ├── services
+    │   └── +page.svelte
+    └── +layout.svelte
 ```
 
 The `about` and `services` files are so I can check the route change
 in my Fathom dashboard once I've configured the client, which I'll do
 now.
 
-In the `__layout.svelte` file I'll add this:
+In the `+layout.svelte` file I'll add this:
 
 ```svelte
-<script>
-  import { browser } from '$app/env';
-  import { page } from '$app/stores';
-  import * as Fathom from 'fathom-client';
-  import { onMount } from 'svelte';
+<script lang="ts">
+  import { browser } from '$app/environment'
+  import { page } from '$app/stores'
+  import {
+    PUBLIC_FATHOM_ID,
+    PUBLIC_FATHOM_URL,
+  } from '$env/static/public'
+  import * as Fathom from 'fathom-client'
+  import { onMount } from 'svelte'
 
   onMount(async () => {
-    Fathom.load('NYMDTPLM', {
-      url: 'https://cdn.usefathom.com/script.js',
+    Fathom.load(PUBLIC_FATHOM_ID, {
+      url: PUBLIC_FATHOM_URL,
     })
   })
 
-  $: $page.pathname, browser && Fathom.trackPageview()
+  $: $page.url.pathname, browser && Fathom.trackPageview()
 </script>
 
 <ul>
@@ -217,14 +234,14 @@ In the `__layout.svelte` file I'll add this:
 Let's break down what's going on here, importting the `browser`
 indicates if the project is running in the browser or not, this will
 return a Boolean (`true`, `false`) value. You can read more about
-[`$app/env`] on the SvelteKit documentation.
+[`$app-environment`] on the SvelteKit documentation.
 
-Using `page` for the `$page.pathname` this is the route for the
+Using `page` for the `$page.url.pathname` this is the route for the
 current page that has been loaded. You can read more about
 [`$app/stores`] on the SvelteKit documentation. The `$` is so that I
 can subscribe to changes in that (`page`) store.
 
-[`onMount`] is used to run after the `__layout` component has loaded,
+[`onMount`] is used to run after the `+layout.svelte` page has loaded,
 that's when I'm running the Fathom client and passing in my Fathom
 site ID.
 
@@ -244,8 +261,8 @@ this:
 
 ```js
 onMount(async () => {
-  Fathom.load(import.meta.env.VITE_FATHOM_ID, {
-    url: import.meta.env.VITE_FATHOM_URL,
+  Fathom.load(PUBLIC_FATHOM_ID, {
+    url: PUBLIC_FATHOM_URL,
   })
 })
 ```
@@ -297,10 +314,10 @@ code' I'll take a note of that and use it a button on the index page.
 [![fathom-event-code]] [fathom-event-code]
 
 So the site has no content right now! I know, I'll just go and stick
-this button in the `src/routes/index.svelte` file for now.
+this button in the `src/routes/+page.svelte` file for now.
 
 ```svelte
-<script>
+<script lang="ts">
   import { trackGoal } from 'fathom-client'
 </script>
 
@@ -310,16 +327,16 @@ this button in the `src/routes/index.svelte` file for now.
   documentation
 </p>
 
-<button on:click={trackGoal(`H1CCQXUL`)}
-  >Don't Click This Button!!</button
->
+<button on:click={() => trackGoal(`H1CCQXUL`, 100)}>
+  Don't Click This Button!!
+</button>
 ```
 
 So, what I'm doing here is importing the `trackGoal` function from
 `fathom-client` then using that in the `on:click` event handler for
 the button.
 
-Now going ove to the index page of my SvelteKit project I can see the
+Now going over to the index page of my SvelteKit project I can see the
 button click it then go back to the Fathom dashboard and see that the
 event has been recorded.
 
@@ -329,9 +346,9 @@ If the event has a monetary value you can also pass in the value per
 click.
 
 ```svelte
-<button on:click={trackGoal(`H1CCQXUL`, 100)}>
-  Don't Click This Button!!</button
->
+<button on:click={() => trackGoal(`H1CCQXUL`, 100)}>
+  Don't Click This Button!!
+</button>
 ```
 
 So in this case each click is worth $1.
@@ -340,23 +357,27 @@ I can also use it on links, here I've added the `trackGoal` to the
 home page link.
 
 ```svelte
-<script>
-  import { browser } from '$app/env'
+<script lang="ts">
+  import { browser } from '$app/environment'
   import { page } from '$app/stores'
+  import {
+    PUBLIC_FATHOM_ID,
+    PUBLIC_FATHOM_URL,
+  } from '$env/static/public'
   import * as Fathom from 'fathom-client'
   import { onMount } from 'svelte'
 
   onMount(async () => {
-    Fathom.load(import.meta.env.VITE_FATHOM_ID, {
-      url: import.meta.env.VITE_FATHOM_URL,
+    Fathom.load(PUBLIC_FATHOM_ID, {
+      url: PUBLIC_FATHOM_URL,
     })
   })
 
-  $: $page.pathname, browser && Fathom.trackPageview()
+  $: $page.url.pathname, browser && Fathom.trackPageview()
 </script>
 
 <ul>
-  <a href="/" on:click={Fathom.trackGoal(`KWOYX0PK`)}>Home</a>
+  <a href="/" on:click={() => Fathom.trackGoal(`KWOYX0PK`)}>Home</a>
   <a href="/about">About</a>
   <a href="/services">Services</a>
 </ul>
@@ -469,13 +490,13 @@ Once it's been validated I'll get my new embed code
 [![fathom-vercel-updated-embed-code]]
 [fathom-vercel-updated-embed-code]
 
-With the new domain I can replace the `VITE_FATHOM_URL` in the `.env`
-file:
+With the new domain I can replace the `PUBLIC_FATHOM_URL` in the
+`.env` file:
 
 ```diff
-VITE_FATHOM_ID=NYMDTPLM
--VITE_FATHOM_URL=https://cdn.usefathom.com/script.js
-+VITE_FATHOM_URL=https://ecstatic-thirtyone.ideal-memory.com/script.js
+PUBLIC_FATHOM_ID=NYMDTPLM
+-PUBLIC_FATHOM_URL=https://cdn.usefathom.com/script.js
++PUBLIC_FATHOM_URL=https://ecstatic-thirtyone.ideal-memory.com/script.js
 ```
 
 One thing to note here is that I'll need to add the `.env` variables
@@ -483,7 +504,7 @@ to the 'Environment variables' section of the project settings on
 Vercel.
 
 Rather than do a Git push I'll just run the `vc` command again to push
-up the latest changes with the new custom `VITE_FATHOM_URL`.
+up the latest changes with the new custom `PUBLIC_FATHOM_URL`.
 
 Now if I use a browser with an ad blocker enabled and go to
 `ideal-memory.com` and select some routes and click the button I added
@@ -495,6 +516,9 @@ That's it! I've now added Fathom to my SvelteKit project to track page
 changes and events. Set up a custom domain for it and it tracks
 details with an ad blocker enabled!
 
+If you want to check out an example of this setup check out [the
+GitHub repo]!
+
 <!-- Links -->
 
 [referral link]: https://usefathom.com/ref/HG492L
@@ -502,8 +526,9 @@ details with an ad blocker enabled!
 [`ideal-memory`]:
   https://app.usefathom.com/share/nymdtplm/ideal-memory
 [`fathom-client`]: https://github.com/derrickreimer/fathom-client
-[`$app/env`]: https://kit.svelte.dev/docs#modules-$app-env
-[`$app/stores`]: https://kit.svelte.dev/docs#modules-$app-stores
+[`$app-environment`]:
+  https://kit.svelte.dev/docs/modules#$app-environment
+[`$app/stores`]: https://kit.svelte.dev/docs/modules#$app-stores
 [`onmount`]: https://svelte.dev/docs#onMount
 [svelte reactivity/declarations]:
   https://svelte.dev/tutorial/reactive-declarations
@@ -511,6 +536,7 @@ details with an ad blocker enabled!
 [fathom dashboard]: https://app.usefathom.com/#/
 [linked docs]: https://usefathom.com/docs/script/custom-domains
 [vercel cli]: https://vercel.com/cli
+[the github repo]: https://github.com/spences10/sveltekit-and-fathom
 
 <!-- Images -->
 
