@@ -51,8 +51,8 @@ The absolute legend that is [Rodney] suggested that I use a dynamic
 route for the old URLs and then redirect to the new ones.
 
 The response was: **"The idea is you create a file there and that file
-only contains a redirect to http://example.com/[slug], year, month,
-day parameters are available but you don't have to use them."**
+only contains a redirect to `example.com/[slug]`, year, month, day
+parameters are available but you don't have to use them."**
 
 <Tweet tweetLink="askRodney/status/1408474251292725248" />
 

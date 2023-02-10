@@ -659,7 +659,7 @@ https://www.storyblok.com/docs/Guides/root-blocks
 [sveltekit .env secrets]:
   https://scottspence.com/posts/sveltekit-env-secrets
 [svelte add]: https://github.com/svelte-add/tailwindcss
-[layout file in sveltekit]: https://kit.svelte.dev/docs/layouts
+[layout file in sveltekit]: https://kit.svelte.dev/docs/routing#layout-layout-svelte
 [example code on github]:
   https://github.com/josefineschaefer/Storyblok-SvelteKit
 [root block]: https://www.storyblok.com/docs/Guides/root-blocks

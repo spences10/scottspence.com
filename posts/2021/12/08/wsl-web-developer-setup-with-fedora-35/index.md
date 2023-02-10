@@ -392,7 +392,7 @@ with the use of the [Remote WSL] extension.
   https://scottspence.com/posts/wsl-on-windows-11
 [`fedora-35.20211125-x86_64.tar.xz`]:
   https://github.com/fedora-cloud/docker-brew-fedora/tree/35/x86_64
-[copr]: https://copr.fedorainfracloud.org/coprs/trustywolf/wslu/
+[copr]: https://github.com/wslutilities/wslu
 [`wslu`]: https://github.com/wslutilities/wslu
 [zsh-syntax-highlighting]:
   https://github.com/zsh-users/zsh-syntax-highlighting

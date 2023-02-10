@@ -175,7 +175,7 @@ New CSS Logical Properties!: [medium post]
 [bada55.io]: https://bada55.io/
 [0to255.com]: https://www.0to255.com/
 [color-hex.com]: https://www.color-hex.com/
-[jxnblk.com/hello-color]: https://jxnblk.com/hello-color
+[jxnblk.com/hello-color]: https://jxnblk.github.io/hello-color/?c=795ada
 [colorbox.io]: https://www.colorbox.io/
 [hihayk.github.io/scale]: https://hihayk.github.io/scale
 [eggradients.com]: https://www.eggradients.com/

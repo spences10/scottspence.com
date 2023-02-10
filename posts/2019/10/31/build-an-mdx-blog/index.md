@@ -2853,7 +2853,6 @@ homepage and a blog page for the correct meta tags with
 **OpenGraph checking tools:**
 
 - [heymeta](https://www.heymeta.com/)
-- [opengraphcheck](https://opengraphcheck.com/)
 - [twitter validator](https://cards-dev.twitter.com/validator)
 - [facebook sharing](https://developers.facebook.com/tools/debug/sharing)
 - [linkedin inspector/](https://www.linkedin.com/post-inspector/)

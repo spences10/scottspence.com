@@ -111,8 +111,8 @@ out the [W3C Feed Validation Service] for more detail on what's needed
 here.
 
 The schemas (`xmlns:news` etc) are used to tell the search engines
-what type of data you're returning. I've used [Josh Comeau's sitemap]
-as an example here. You can check out Sitemaps XML format over on
+what type of data you're returning. I've used Josh Comeau's sitemap as
+an example here. You can check out Sitemaps XML format over on
 [sitemaps.org] for more information.
 
 Now if I go check `localhost:3000/rss.xml` I get the beginning of my
@@ -378,5 +378,4 @@ making your own sitemap on your SvelteKit projects.
   https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#expiration
 [w3c feed validation service]:
   https://validator.w3.org/feed/docs/rss2.html
-[josh comeau's sitemap]: https://www.joshwcomeau.com/sitemap.xml
 [sitemaps.org]: https://www.sitemaps.org/protocol.html

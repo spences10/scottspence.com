@@ -706,7 +706,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [ask me anything]: https://github.com/spences10/ama
 [4pine's blog]:
   https://johno.com/mdx-table-of-contents-components-in-gatsby
-[theme ui guide]: https://theme-ui.com/guides/linked-headings/
+[theme ui guide]: https://theme-ui.com/mdx/linked-headings
 [gatsby mdx repo issue 396]:
   https://github.com/ChristopherBiscardi/gatsby-mdx/issues/396
 [gatsby mdx repo issue 140]:
