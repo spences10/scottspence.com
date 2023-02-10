@@ -155,7 +155,7 @@ quotes (`""`) around the `goalId`.
 <!-- Links -->
 
 [how to track custom events with fathom]:
-  http://localhost:4512/2020/01/02/track-custom-events-with-fathom-analytics
+  https://scottspence.com/posts/track-custom-events-with-fathom-analytics
 [changed their tracking/embed code]:
   https://usefathom.com/support/tracking
 [use the code with gatsby]:
