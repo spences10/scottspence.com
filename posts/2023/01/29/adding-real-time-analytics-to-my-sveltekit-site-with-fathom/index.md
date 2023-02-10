@@ -5,9 +5,21 @@ tags: ['analytics', 'svelte', 'sveltekit', 'fathom']
 isPrivate: true
 ---
 
+<script>
+  import { DateDistance } from '$lib/components'
+</script>
+
 I spent a bit of time the other day lookinginto the Fathom Analytics
 API, this was something I took a look at around a year ago now, but I
 didn't really get around to using it.
+
+If you're looking to implement Fathom analytics on your site, I've
+written a post on [Fathom Analytics with SvelteKit] on how to do it
+with SvelteKit which was updated <DateDistance date='2023-02-09' />
+ago.
+
+It also incorporates the Fathom API for real time page views. So if
+you're looking to do that, check out that post and [the github repo]!
 
 Well, now I have got round to using it! If you're on this site now and
 you're not using something like uBlock Origin, you'll probably see the
@@ -54,3 +66,6 @@ creating an server endpoint to call out to
 [referral code]: https://usefathom.com/ref/HG492L
 [analytics]: https://scottspence.com/tags/analytics
 [Fathom API documentation]: https://usefathom.com/api
+[Fathom Analytics with SvelteKit]:
+  https://scottspence.com/posts/fathom-analytics-with-svelte
+[the github repo]: https://github.com/spences10/sveltekit-and-fathom
