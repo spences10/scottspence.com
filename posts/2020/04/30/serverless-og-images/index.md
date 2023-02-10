@@ -7,6 +7,7 @@ isPrivate: false
 
 <script>
   import { Tweet, YouTube } from 'sveltekit-embed'
+  import { Details } from '$lib/components'
 </script>
 
 I recently purged all the cover images from this site to reduce the
@@ -52,7 +53,9 @@ the Now platform had no idea what to do with the project!
 
 Here's Leigh getting set up:
 
-<YouTube youTubeId="Al3tCJKOydY" />
+<Details buttonText="Expand to watch.">
+  <YouTube youTubeId="Al3tCJKOydY" />
+</Details>
 
 Cool, cool, after that video I had a card rendering to HTML after
 running the `now dev` command.
@@ -67,7 +70,9 @@ After this I can now add the variables to the HTML being generated.
 I didn't get the issues Leigh was having with the Now CLI having to
 restart it continually.
 
-<YouTube youTubeId="ANedwsfXpO0" />
+<Details buttonText="Expand to watch.">
+  <YouTube youTubeId="ANedwsfXpO0" />
+</Details>
 
 ## Temporary file
 
@@ -75,7 +80,9 @@ Write the HTML to a temp file, which I could create the file but
 couldn't access the file locally via the browser like Leigh does. I
 could `cat` the contents however.
 
-<YouTube youTubeId="KlLgjuUQoJs" />
+<Details buttonText="Expand to watch.">
+  <YouTube youTubeId="KlLgjuUQoJs" />
+</Details>
 
 ## Taking a screenshot
 
@@ -96,7 +103,9 @@ by Chromium.
 
 Sing us a song while we wait for the build to finish Leigh! 😂
 
-<YouTube youTubeId="ZjGCiBpDZ7g" />
+<Details buttonText="Expand to watch.">
+  <YouTube youTubeId="ZjGCiBpDZ7g" />
+</Details>
 
 In my project for this I've kept the HTML version so I can edit the
 card locally, if you take a look at my project I've left comments in
