@@ -2,22 +2,20 @@
   import { page } from '$app/stores'
   import {
     ButtButt,
-    DateDistance,
     Head,
     IsPrivateBanner,
     PopularPosts,
     ShareWithTweet,
     StatsCard,
     TableOfContents,
+    UpdatedBanner,
   } from '$lib/components'
-  import { WarningTriangle } from '$lib/icons'
   import { name, website } from '$lib/info'
   import { ogImageUrl } from '$lib/og-image-url-build'
   import { visitors_store } from '$lib/stores'
   import { get_current_page_visitors } from '$lib/utils'
   import {
     differenceInDays,
-    differenceInYears,
     format,
     getDate,
     getMonth,
@@ -30,6 +28,7 @@
   let {
     title,
     date,
+    updated,
     preview,
     readingTime,
     slug,
@@ -126,22 +125,10 @@
     <IsPrivateBanner />
   {/if}
 
-  {#if differenceInYears(new Date(), new Date(date)) >= 1}
-    <div class="alert alert-warning shadow-lg">
-      <div>
-        <WarningTriangle />
-        <span>
-          Hey! Thanks for stopping by! Just a word of warning, this
-          post is
-          <span class="font-bold italic">
-            <DateDistance date={new Date(date)} /> old.
-          </span>
-          If there's technical information in here it's more than likely
-          out of date.
-        </span>
-      </div>
-    </div>
-  {/if}
+  <UpdatedBanner
+    updated={updated === undefined ? date : updated}
+    {date}
+  />
 
   <div class="all-prose mb-10">
     <svelte:component this={component} />
