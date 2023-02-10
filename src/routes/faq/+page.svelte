@@ -25,7 +25,7 @@
 </script>
 
 <Head
-  title={`Recruiter FAQs · ${name}`}
+  title={`Recruiter FAQs - ${name}`}
   description={`Frequently Asked Questions for recruiters.`}
   image={ogImageUrl(name, `scottspence.com`, `FAQs`)}
   url={`${website}/faq`}

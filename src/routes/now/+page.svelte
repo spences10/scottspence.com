@@ -8,7 +8,7 @@
 </script>
 
 <Head
-  title={`What I'm doing now · ${name}`}
+  title={`What I'm doing now - ${name}`}
   description={`What I'm doing now. Updated irregularly, check last updated date.`}
   image={ogImageUrl(name, `scottspence.com`, `What I'm doing now.`)}
   url={`${website}/now`}

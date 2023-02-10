@@ -19,7 +19,7 @@
 </script>
 
 <Head
-  title={`Posts by tag · ${name}`}
+  title={`Posts by tag - ${name}`}
   {description}
   image={ogImageUrl(name, `scottspence.com`, `Tags`)}
   url={`${website}/tags`}

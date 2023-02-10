@@ -25,7 +25,7 @@
 </script>
 
 <Head
-  title={`Speaking · ${name}`}
+  title={`Speaking - ${name}`}
   description={`A list of events where ${name} has held a workshop, a talk or spoken publically.`}
   image={ogImageUrl(name, `scottspence.com`, `Scott Speaks!`)}
   url={`${website}/speaking`}

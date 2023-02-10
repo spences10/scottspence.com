@@ -10,7 +10,7 @@
 </script>
 
 <Head
-  title={`Posts relating to ${slug} · ${name}`}
+  title={`Posts relating to ${slug} - ${name}`}
   {description}
   image={ogImageUrl(
     name,

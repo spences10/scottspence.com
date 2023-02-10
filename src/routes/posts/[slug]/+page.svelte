@@ -71,7 +71,7 @@
 </script>
 
 <Head
-  title={`${title} · ${name}`}
+  title={`${title} - ${name}`}
   description={preview}
   image={ogImageUrl(name, `scottspence.com`, title)}
   {url}

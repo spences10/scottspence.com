@@ -8,7 +8,7 @@
 </script>
 
 <Head
-  title={`Newsletter, get updates on what I'm working on · ${name}`}
+  title={`Newsletter, get updates on what I'm working on - ${name}`}
   description={`Keep up to date with what content I'm creating with my newsletter.`}
   image={ogImageUrl(name, `scottspence.com`, `Newsletter`)}
   url={`${website}/newsletter`}

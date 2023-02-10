@@ -5,7 +5,7 @@
 </script>
 
 <Head
-  title={`Contact · ${name}`}
+  title={`Contact - ${name}`}
   description={`Get in touch, say hi!`}
   image={ogImageUrl(name, `scottspence.com`, `contact`)}
   url={`${website}/about`}

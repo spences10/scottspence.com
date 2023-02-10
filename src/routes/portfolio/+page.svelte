@@ -8,7 +8,7 @@
 </script>
 
 <Head
-  title={`Portfolio Page, recent projects, GitHub contributions and more · ${name}`}
+  title={`Portfolio Page, recent projects, GitHub contributions and more - ${name}`}
   description={`${name}'s Portfolio Page. Recent projects, GitHub contributions and more`}
   image={ogImageUrl(
     name,

@@ -19,7 +19,7 @@
 </script>
 
 <Head
-  title={`Welcome! · ${name}`}
+  title={`Welcome! - ${name}`}
   {description}
   image={ogImageUrl(name, `scottspence.com`, `Thoughts Pamphlet`)}
   url={`${website}/posts`}

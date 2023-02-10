@@ -8,7 +8,7 @@
 </script>
 
 <Head
-  title={`Uses · ${name}`}
+  title={`Uses - ${name}`}
   description={`The equipment I use to do what I do.`}
   image={ogImageUrl(name, `scottspence.com`, `Uses`)}
   url={`${website}/uses`}

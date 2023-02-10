@@ -8,7 +8,7 @@
 </script>
 
 <Head
-  title={`Privacy Policy · ${name}`}
+  title={`Privacy Policy - ${name}`}
   description={`${name} Privacy Policy page.`}
   image={ogImageUrl(name, `scottspence.com`, `Privacy Policy`)}
   url={`${website}/privacy-policy`}
