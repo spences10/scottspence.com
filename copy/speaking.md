@@ -111,9 +111,7 @@ SvelteKit and the Content Layer
 
 ### Jamstack Conf Workshop - October
 
-[Jamstack Conference workshop Building with Svelte and GraphQL]
-
-[![jamstack conf workshop 2021]] [jamstack conf workshop 2021]
+Jamstack Conference workshop Building with Svelte and GraphQL
 
 <YouTube youTubeId='uI8am7HfWC8' />
 
@@ -392,8 +390,6 @@ the Jamstack is and the advantages of using it.
 <!-- Links  -->
 
 [get in touch]: /contact
-[jamstack conference workshop building with svelte and graphql]:
-  https://jamstackconf.com/workshops/005054976ff9/build-with-sveltekit-and-graphql
 [jamstack explorers mission on building a production ready svelte project with svelte]:
   https://explorers.netlify.com/learn/building-with-sveltekit-and-graphcms
 [post from ilesh]:
