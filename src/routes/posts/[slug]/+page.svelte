@@ -16,6 +16,7 @@
   import { get_current_page_visitors } from '$lib/utils'
   import {
     differenceInDays,
+    differenceInYears,
     format,
     getDate,
     getMonth,
@@ -125,10 +126,12 @@
     <IsPrivateBanner />
   {/if}
 
-  <UpdatedBanner
-    updated={updated === undefined ? date : updated}
-    {date}
-  />
+  {#if differenceInYears(new Date(), new Date(date)) >= 1 || updated}
+    <UpdatedBanner
+      updated={updated === undefined ? date : updated}
+      {date}
+    />
+  {/if}
 
   <div class="all-prose mb-10">
     <svelte:component this={component} />
