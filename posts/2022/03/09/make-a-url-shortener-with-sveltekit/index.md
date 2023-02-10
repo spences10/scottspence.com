@@ -130,7 +130,7 @@ With my list of short links in place, I can use them in the
 redirect to `https://scottspence.com`.
 
 I'll need a way to know what the source URL is in the endpoint so I
-can destructure that out of the context passed tp the endpoint.
+can destructure that out of the context passed to the endpoint.
 
 Let's take a quick look at what we get in the `context` (or `ctx`)
 object.
