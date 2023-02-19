@@ -10,8 +10,9 @@ User-agent: *
 # The dollar sign ensures it only matches the end of an URL and not a oddly formatted url (e.g. /locations.json.html)
 
 Disallow: /*.js$
-Disallow: /analytics.json/
-Disallow: /current-visitors.json/
+Disallow: /*.json
+Disallow: /analytics.json
+Disallow: /current-visitors.json
 
 Noindex: https://scottspence.com/analytics.json?pathname=/posts/theming-with-linaria&date_from=2023-02-11T00:00:00.000Z&date_to=2023-02-11T23:59:59.999Z&date_grouping=hour&sort_by=timestamp:asc
 Noindex: https://scottspence.com/analytics.json?pathname=/posts/reduce-and-filter-object-on-property&date_from=2023-02-10T00:00:00.000Z&date_to=2023-02-10T23:59:59.999Z&date_grouping=hour&sort_by=timestamp:asc
