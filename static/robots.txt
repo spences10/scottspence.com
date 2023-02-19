@@ -114,3 +114,16 @@ Noindex: https://scottspence.com/posts/testing
 Noindex: https://scottspence.com/tags/vba/
 Noindex: https://scottspence.com/tags/graphcms/
 Noindex: https://scottspence.com/tags/seo/
+Noindex: https://scottspence.com/?ref=https://githublabs.com
+Noindex: https://toast.scottspence.com/2020/04/30/serverless-og-images/
+Noindex: https://scottspence.com/?ref=https://devpick.io
+Noindex: https://toast.scottspence.com/uses/
+Noindex: https://scottspence.com/posts/graphcms-to-gatsby/
+Noindex: https://scottspence.com/posts/gatsby-starter-to-styled-components/
+Noindex: https://scottspence.com/posts/getting-started-chakra-ui-gatsby/
+Noindex: https://scottspence.com/posts/job-hunting/
+Noindex: https://toast.scottspence.com/privacy-policy/
+Noindex: https://www.scottspence.com/2018/12/24/wsl-bootstrap-2019/
+Noindex: https://www.scottspence.com/2020/09/17/writing-with-markdown/
+Noindex: https://www.scottspence.com/2019/10/31/build-an-mdx-blog/
+Noindex: https://www.scottspence.com/speaking/
