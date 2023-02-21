@@ -34,7 +34,7 @@ speaking with Sean Rayment and talking about SvelteKit.
 <Spotify
   spotifyLink="episode/3OC43WIzjgWSiq1GFoILhQ"
   width="100%"
-  height="180px"
+  height="152px"
 />
 
 ## 2022
@@ -142,7 +142,7 @@ Delivering Digital Content with GraphCMS
 <Spotify
   spotifyLink="episode/404wafUKZho8inHT6iYcdi"
   width="100%"
-  height="180px"
+  height="152px"
 />
 
 ### UtkalHacks 3.0 - March
@@ -185,7 +185,7 @@ looking for a mentor, or becoming a mentor.
 <Spotify
   spotifyLink="episode/5vDA5M3fVGXz5UAWWIoM6T"
   width="100%"
-  height="180px"
+  height="152px"
 />
 
 ### Mintbean - Markdown Showdown, September
@@ -210,7 +210,7 @@ important, and how to implement it.
 <Spotify
   spotifyLink="episode/5ru6HIgUyTCH9hypKepeGJ"
   width="100%"
-  height="180px"
+  height="152px"
 />
 
 ### Whiskey Wednesday - September
@@ -223,7 +223,7 @@ live streams, or books - content creation is BIG, also for developers.
 <Spotify
   spotifyLink="episode/48fjNuaZVB50ygM5R5jaeu"
   width="100%"
-  height="180px"
+  height="152px"
 />
 
 ### Migrating Gatsby from Markdown to MDX - September
@@ -244,7 +244,7 @@ about common problems among developers.
 <Spotify
   spotifyLink="episode/1xdozdWXWINddIIbxqZAzL"
   width="100%"
-  height="180px"
+  height="152px"
 />
 
 ### Whiskey Wednesday - August
@@ -260,7 +260,7 @@ developer.
 <Spotify
   spotifyLink="episode/6YpCB55IX3EE6gE7cJ94UJ"
   width="100%"
-  height="180px"
+  height="152px"
 />
 
 ### Whiskey Wednesday - July
@@ -276,7 +276,7 @@ single div element (or less). We talk about all of it.
 <Spotify
   spotifyLink="episode/0jOVCvKNJUx158U587pPUt"
   width="100%"
-  height="180px"
+  height="152px"
 />
 
 ### Whiskey Wednesday - July
@@ -290,7 +290,7 @@ developer and how to grow your account.
 <Spotify
   spotifyLink="episode/12q74FKWRRF7Tsl7ieefXA"
   width="100%"
-  height="180px"
+  height="152px"
 />
 
 ### Whiskey Wednesday - July
@@ -305,7 +305,7 @@ freelance work.
 <Spotify
   spotifyLink="episode/7x4kDYzJnGDbZs9qYIpouy"
   width="100%"
-  height="180px"
+  height="152px"
 />
 
 ### Whiskey Wednesday - June
@@ -319,7 +319,7 @@ talk with us about how to learn (and unlearn) how to code 💻📚
 <Spotify
   spotifyLink="episode/4QjQa9vO41AdnmZgwvZRpl"
   width="100%"
-  height="180px"
+  height="152px"
 />
 
 ### The Front End podcast
@@ -332,7 +332,7 @@ talking about the Jamstack and Gatsby JS.
 <Spotify
   spotifyLink="episode/5o1QgLLtL19Mr7RfnA7N8y"
   width="100%"
-  height="180px"
+  height="152px"
 />
 
 ### Gatsby Recipes and MDX with James Q Quick (Live Stream) - June
@@ -356,7 +356,7 @@ need a college degree to get a job in tech.
 <Spotify
   spotifyLink="episode/0li7Ya8CsnpX0GudnnMuUy"
   width="100%"
-  height="180px"
+  height="152px"
 />
 
 ### JS Roundabout - March
