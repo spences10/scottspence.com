@@ -35,7 +35,7 @@
   class="stats stats-vertical md:stats-horizontal shadow-lg w-full border border-secondary mb-8"
 >
   <div class="stat">
-    <div class="stat-title">Visits {time_period_label}</div>
+    <div class="stat-title">Entries {time_period_label}</div>
     <div class="stat-value text-2xl">
       {number_crunch(stats.visits)}
     </div>
@@ -43,7 +43,7 @@
   </div>
 
   <div class="stat">
-    <div class="stat-title">Unique Visitors {time_period_label}</div>
+    <div class="stat-title">Visitors {time_period_label}</div>
     <div class="stat-value text-2xl">
       {number_crunch(stats.uniques)}
     </div>
@@ -53,7 +53,7 @@
   </div>
 
   <div class="stat">
-    <div class="stat-title">Total Views {time_period_label}</div>
+    <div class="stat-title">Views {time_period_label}</div>
     <div class="stat-value text-2xl">
       {number_crunch(stats.pageviews)}
     </div>
