@@ -208,6 +208,9 @@ That's it!
 If you want to [Change Browser Scrollbar Colour with Tailwind CSS]
 then check out the post where I go into more detail about that.
 
+Also there's a post on [Gradient animations with Tailwind CSS and
+SvelteKit] that you can check out.
+
 Hope you find it useful, I know I did! 😊
 
 <!-- Links -->
@@ -218,3 +221,5 @@ Hope you find it useful, I know I did! 😊
   https://github.com/spences10/scottspence.com/blob/edd5b9cf3b8a26893edb36505e2b66dc73e14923/src/app.css
 [Change Browser Scrollbar Colour with Tailwind CSS]:
   https://scottspence.com/posts/change-scrollbar-color-tailwind-css
+[Gradient animations with Tailwind CSS and SvelteKit]:
+  https://scottspence.com/posts/gradient-animations-in-tailwindcss
