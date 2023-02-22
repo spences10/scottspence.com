@@ -32,6 +32,7 @@
 <pre>{JSON.stringify(stats, null, 2)}</pre>
 
 <p class="mb-2 pl-1">{title}</p>
+
 <div
   class="stats stats-vertical md:stats-horizontal shadow-lg w-full border border-secondary mb-8"
 >
