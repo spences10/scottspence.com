@@ -29,8 +29,6 @@
   }
 </script>
 
-<pre>{JSON.stringify(stats, null, 2)}</pre>
-
 <p class="mb-2 pl-1">{title}</p>
 
 <div
