@@ -21,7 +21,7 @@
   ]
 
   $: pun = randomPun()
-  function randomPun() {
+  const randomPun = () => {
     pun = puns[Math.floor(Math.random() * puns.length)]
     return pun
   }
@@ -52,7 +52,7 @@
     {/if}
     <p class="mb-6">Bummer!</p>
     <p class="mb-6">{pun}</p>
-    <button class="btn btn-xs" on:click={() => randomPun()}>
+    <button class="btn btn-xs" on:click={randomPun}>
       pun me up
     </button>
   </aside>
