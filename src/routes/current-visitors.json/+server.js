@@ -20,13 +20,9 @@ export const GET = async () => {
       visitors: data,
     })
   } catch (error) {
-    return json(
-      {
-        error: 'Big oof! Sorry' + error,
-      },
-      {
-        status: 500,
-      }
-    )
+    return json({
+      error: 'Big oof! Sorry' + error,
+      status: 500,
+    })
   }
 }
