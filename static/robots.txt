@@ -128,3 +128,9 @@ Noindex: https://www.scottspence.com/2018/12/24/wsl-bootstrap-2019/
 Noindex: https://www.scottspence.com/2020/09/17/writing-with-markdown/
 Noindex: https://www.scottspence.com/2019/10/31/build-an-mdx-blog/
 Noindex: https://www.scottspence.com/speaking/
+Noindex: https://toast.scottspence.com/
+Noindex: https://toast.scottspence.com/2020/02/13/smooth-scroll-toc-gatsby/
+Noindex: https://toast.scottspence.com/speaking/
+Noindex: https://toast.scottspence.com/garden
+Noindex: https://toast.scottspence.com/2021/01/05/use-chrome-in-ubuntu-wsl/
+Noindex: http://wwww.scottspence.com/
