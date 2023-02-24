@@ -6,7 +6,7 @@ isPrivate: true
 ---
 
 <script>
-  import { DateDistance as DD } from '$lib/components'
+  import { DateDistance as DD, Details } from '$lib/components'
 </script>
 
 I spent a bit of time the other day looking into the Fathom Analytics
@@ -46,6 +46,18 @@ past and you can probably tell by now that I really love the product.
 
 Anyways! Preamble over, let's get into how I did it.
 
+## Implementation
+
+I'll be documenting the implementation for the [SvelteKit and fathom
+GitHub project] that is detailed in the [Fathom Analytics with
+SvelteKit] post, the approach is the same for this site.
+
+If you want to take a look at the code for the project you can check
+out the [before] and [after] branches I've created on the repo.
+
+In the following sections I'll be detailing how to get current
+visitors on the site and individual page analytics.
+
 ## The Fathom API
 
 The Fathom API is still (from what I can tell) early access, so you'll
@@ -61,23 +73,309 @@ options, **Admin key**, **All sites read only key** and
 **Site-specific key**. The site specific and read only key option is
 to my mind the most sensible option.
 
-With the options available Fathom have basically opened up the whole
-API here so you can create your own analytics reporting dashboard if
-you want!
+With all the options available Fathom have basically opened up the
+whole API here so you can create your own analytics reporting
+dashboard if you want!
 
-In the following sections now I'll be detailing how to get current
-visitors on the site and page analytics.
+## Fathom API key
+
+Before I start trying to access the API I'll need to generate an API
+key. To do this, I'll pop on over to [`app.usefathom.com/api`] click
+'Create new', name the key `ideal-memory-read-only` for the
+permissions I'll select 'Site specific key' and select the site to
+have the key for, (which is [`ideal-memory.com`]), check the 'Read'
+access then click 'Save changes'.
+
+I already have a pre-existing `.env` file so I'll add an entry to it
+for the `FATHOM_API_KEY` I just generated.
 
 ## Current visitors analytics
 
+To get the current visitors to a site I'll make an endpoint to hit the
+Fathom API, I'll do that by creating a `+server.js` endpoint to call
+out to, in my implementation I'll call it `current-visitors.json` and
+it's located in the `src/routes` folder.
+
+So, I'll create the folder and the server file from the terminal.
+
+```bash
+# create the folder
+mkdir src/routes/current-visitors.json
+# then the server file
+touch src/routes/current-visitors.json/+server.ts
+```
+
+Then in the `+server.ts` file I'll create a `GET` request handler to
+call the Fathom API.
+
+```ts
+import { json } from '@sveltejs/kit'
+import type { RequestHandler } from './$types'
+
+export const GET: RequestHandler = async () => {
+  return json({
+    visitors: 0,
+  })
+}
+```
+
+This is the basic outline of the `GET` request and I'm using the
+SvelteKit `json` helper to return the data as JSON.
+
+If I spin up the dev server and go to `/current-visitors.json` on
+`localhost` I'll see the following JSON response.
+
+```json
+{ "visitors": 0 }
+```
+
+This is eventually going to return the current visitors to the site.
+If we take a look at the [Fathom API documentation] we can see that
+the `current_visitors` endpoint takes the `site_id` as a query
+parameter, here's the `curl` request to get it from the documentation.
+
+```bash
+curl https://api.usefathom.com/v1/current_visitors \/
+-H "Authorization: Bearer API_TOKEN_HERE" \/
+-d site_id=ABCDEFG \/
+-G
+```
+
+So, I'll make a fetch request to the Fathom API and pass in the
+`site_id` as a query parameter along with the `Authorization` header,
+both of which are from the `.env` file. One is private
+`FATHOM_API_KEY` the other is public `PUBLIC_FATHOM_ID` both using the
+`$env` module.
+
+You can read up more about using the `$env` module with the [SvelteKit
+Environment Variables with the SvelteKit $env Module] post I updated a
+while back.
+
+I'll wrap the fetch request with the `Authorization` header in a try
+catch block and return the data from the API as JSON.
+
+```ts
+import { FATHOM_API_KEY } from '$env/static/private'
+import { PUBLIC_FATHOM_ID } from '$env/static/public'
+import { json } from '@sveltejs/kit'
+import type { RequestHandler } from './$types'
+
+export const GET: RequestHandler = async () => {
+  try {
+    const headers_auth = new Headers()
+    headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
+    const res = await fetch(
+      `https://api.usefathom.com/v1/current_visitors?site_id=${PUBLIC_FATHOM_ID}&detailed=true`,
+      {
+        headers: headers_auth,
+      }
+    )
+
+    let data = await res.json()
+
+    return json({
+      visitors: data,
+    })
+  } catch (error) {
+    return json({
+      error: `Error: ${error}`,
+      status: 500,
+    })
+  }
+}
+```
+
+Sweet! Now I can see the current visitors to the site. To test it
+quickly I'll go to `ideal-memory.com` and select the `contact` page.
+Over on `localhost` I'll refresh the `current-visitors.json` endpoint
+and I get the following JSON response.
+
+```json
+{
+  "visitors": {
+    "total": 1,
+    "content": [
+      {
+        "hostname": "https://www.ideal-memory.com",
+        "pathname": "/contact",
+        "total": "1"
+      }
+    ],
+    "referrers": []
+  }
+}
+```
+
+Aight! I can now use this in the project somewhere to show the current
+visitors to the site.
+
+The `ideal-memory.com` site is a bit basic, so rather than create a
+footer and place the current visitors there I'll add it to the navbar
+so it's in plain sight of visitors.
+
+To do that I'll first need to call the `current-visitors.json` API
+endpoint from a `+layout.server.ts` file and pass the data from that
+to the `nav` component.
+
+Create the `+layout.server.ts` file:
+
+```bash
+touch src/routes/+layout.server.ts
+```
+
+Then in the `+layout.server.ts` file I'll create a `load` function to
+call the `current-visitors.json` API endpoint and return the
+`visitors`.
+
+```ts
+import type { LayoutServerLoad } from './$types'
+
+export const load: LayoutServerLoad = async ({ fetch }) => {
+  const fetch_visitors = async () => {
+    const res = await fetch(`../current-visitors.json`)
+    const { visitors } = await res.json()
+    return visitors
+  }
+
+  return {
+    visitors: fetch_visitors(),
+  }
+}
+```
+
+The data returned from the `+layout.server.ts`, `load` function is
+then available to child `+layout.svelte` components.
+
+In the `+layout.svelte` file I can accept the `visitors` data:
+
+```ts
+import type { PageData } from './$types'
+
+export let data: PageData
+```
+
+Then pass that to the `nav` component.
+
+```svelte
+<Nav visitors={data?.visitors.total} />
+```
+
+I've hidden the full file contents behind some buttons, you can click
+on them to check out how the files look.
+
+<Details buttonText="+layout.svelte">
+
+```svelte
+<script lang="ts">
+  import { browser } from '$app/environment'
+  import { page } from '$app/stores'
+  import {
+    PUBLIC_FATHOM_ID,
+    PUBLIC_FATHOM_URL,
+  } from '$env/static/public'
+  import Nav from '$lib/components/nav.svelte'
+  import * as Fathom from 'fathom-client'
+  import { onMount } from 'svelte'
+  import '../app.css'
+  import type { PageData } from './$types'
+
+  export let data: PageData
+
+  onMount(async () => {
+    Fathom.load(PUBLIC_FATHOM_ID, {
+      url: PUBLIC_FATHOM_URL,
+    })
+  })
+
+  $: $page.url.pathname, browser && Fathom.trackPageview()
+</script>
+
+<Nav visitors={data?.visitors.total} />
+<main class="container mx-auto mb-20 max-w-3xl px-4">
+  <slot />
+</main>
+```
+
+</Details>
+
+The nav now takes in a visitors prop:
+
+```ts
+export let visitors: number
+```
+
+Which I can use in the navbar end:
+
+```svelte
+<div class="navbar-end">
+  <p
+    class="text-sm font-semibold cursor-pointer rounded-xl bg-secondary px-2 tracking-wide text-secondary-content"
+  >
+    {visitors} Live Visitors
+  </p>
+</div>
+```
+
+This is what the navbar looks like now:
+
+<Details buttonText="nav.svelte">
+
+```svelte
+<script lang="ts">
+  import { trackGoal } from 'fathom-client'
+
+  let links = [
+    {
+      href: '/pricing',
+      text: 'Pricing',
+    },
+    {
+      href: '/contact',
+      text: 'Contact Us',
+    },
+    {
+      href: '/about',
+      text: 'About',
+    },
+    {
+      href: '/blog',
+      text: 'Blog',
+    },
+  ]
+
+  export let visitors: number
+</script>
+
+<div class="navbar mb-10 bg-neutral text-neutral-content shadow-lg">
+  <div class="navbar-start mx-2 px-2">
+    <a href="/" on:click={() => trackGoal(`KWOYX0PK`, 0)}>
+      <span class="text-lg font-bold">SvelteKit and Fathom</span>
+    </a>
+  </div>
+  <div class="navbar-center mx-2 hidden px-2 lg:flex">
+    <div class="flex items-stretch">
+      {#each links as { href, text }}
+        <a {href} class="btn-ghost rounded-btn btn-sm btn">
+          {text}
+        </a>
+      {/each}
+    </div>
+  </div>
+  <div class="navbar-end">
+    <p
+      class="text-sm font-semibold cursor-pointer rounded-xl bg-secondary px-2 tracking-wide text-secondary-content"
+    >
+      {visitors} Live Visitors
+    </p>
+  </div>
+</div>
+```
+
+</Details>
+
+That's it for this section. Now onto getting the page analytics.
+
 ## Page analytics
-
-I'll be documenting the implementation for the [SvelteKit and fathom
-GitHub project] that is detailed in the [Fathom Analytics with
-SvelteKit] post the approach is the same for this site.
-
-If you want to take a look at the code for the project you can check
-out the [before] and [after] branches I've created on the repo.
 
 So, I'll make an endpoint to hit the Fathom API, I'll do that by
 creating a `+server.js` endpoint to call out to, in my implementation
@@ -114,15 +412,6 @@ The roots folder looks like this now:
 So, now I have a server side endpoint, I need to make a call to the
 Fathom API, I'll do that with a HTTP GET method using the SvelteLit
 `fetch`.
-
-I'll need an API key to do this, I'll pop on over to
-[`app.usefathom.com/api`] click 'Create new', name the key
-`ideal-memory-read-only` for the permissions I'll select 'Site
-specific key' and select the site to have the key for, (which is
-[`ideal-memory.com`]), check the 'Read' access then click 'Save
-changes'.
-
-so I'll create a `.env` file in the
 
 Here's the basic outline of the request:
 
@@ -199,3 +488,5 @@ useful.
 [after]:
   https://github.com/spences10/sveltekit-and-fathom/tree/feat/add-real-time-analytics
 [`ideal-memory.com`]: https://ideal-memory.com
+[SvelteKit Environment Variables with the SvelteKit $env Module]:
+  https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module
