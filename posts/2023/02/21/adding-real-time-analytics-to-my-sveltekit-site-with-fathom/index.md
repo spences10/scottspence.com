@@ -105,8 +105,28 @@ mkdir src/routes/current-visitors.json
 touch src/routes/current-visitors.json/+server.ts
 ```
 
-Then in the `+server.ts` file I'll create a `GET` request handler to
-call the Fathom API.
+The `routes` folder looks like this now:
+
+```text
+├── routes
+│   ├── about
+│   │   └── +page.svelte
+│   ├── blog
+│   │   └── +page.svelte
+│   ├── contact
+│   │   └── +page.svelte
+│   ├── current-visitors.json
+│   │   └── +server.js
+│   ├── pricing
+│   │   └── +page.svelte
+│   ├── services
+│   │   └── +page.svelte
+│   ├── +layout.svelte
+│   └── +page.svelte
+```
+
+In the `+server.ts` file I'll create a `GET` request handler to call
+the Fathom API.
 
 ```ts
 import { json } from '@sveltejs/kit'
@@ -263,7 +283,7 @@ Then pass that to the `nav` component.
 I've hidden the full file contents behind some buttons, you can click
 on them to check out how the files look.
 
-<Details buttonText="+layout.svelte">
+<Details buttonText="+layout.svelte" styles="lowercase">
 
 ```svelte
 <script lang="ts">
@@ -298,7 +318,7 @@ on them to check out how the files look.
 
 </Details>
 
-The nav now takes in a visitors prop:
+Add a visitors prop to the nav component:
 
 ```ts
 export let visitors: number
@@ -318,7 +338,7 @@ Which I can use in the navbar end:
 
 This is what the navbar looks like now:
 
-<Details buttonText="nav.svelte">
+<Details buttonText="nav.svelte" styles="lowercase">
 
 ```svelte
 <script lang="ts">
@@ -377,10 +397,14 @@ That's it for this section. Now onto getting the page analytics.
 
 ## Page analytics
 
-So, I'll make an endpoint to hit the Fathom API, I'll do that by
-creating a `+server.js` endpoint to call out to, in my implementation
-I called it `analytics.json` and it's located in the `src/routes`
-folder.
+Ok, so in this section things will get a bit more intense! Why?
+Because there's a lot of parameters that need passing to the Fathom
+API to get the `aggregations` for the page analytics.
+
+So, let's take this a step at a time.
+
+As before, I'll make an endpoint this time for `analytics.json` and
+create a `+server.js` file for the API call.
 
 ```bash
 # create the folder
@@ -389,7 +413,7 @@ mkdir src/routes/analytics.json
 touch src/routes/analytics.json/+server.ts
 ```
 
-The roots folder looks like this now:
+Now this is how the `routes` folder looks:
 
 ```text
 ├── routes
@@ -401,6 +425,8 @@ The roots folder looks like this now:
 │   │   └── +page.svelte
 │   ├── contact
 │   │   └── +page.svelte
+│   ├── current-visitors.json
+│   │   └── +server.js
 │   ├── pricing
 │   │   └── +page.svelte
 │   ├── services
@@ -409,41 +435,143 @@ The roots folder looks like this now:
 │   └── +page.svelte
 ```
 
-So, now I have a server side endpoint, I need to make a call to the
-Fathom API, I'll do that with a HTTP GET method using the SvelteLit
-`fetch`.
-
-Here's the basic outline of the request:
+Same again, I'll make a simple `GET` request handler in the
+`+server.ts` file and return `analytics`.
 
 ```js
+import { json } from '@sveltejs/kit'
+import type { RequestHandler } from './$types'
+
+export const GET: RequestHandler = async () => {
+  return json({
+    analytics: 0,
+  })
+}
+```
+
+As before I can visit the endpoint to validate it's working, I'll go
+to the `localhost` on my dev server for `/analytics.json` and validate
+it's working:
+
+```json
+{ "analytics": 0 }
+```
+
+Cool, cool, cool, now, with the easy part out of the way it's time to
+take a look at the Fathom API docs!
+
+Let's take a look at the most basic request to the API for pageviews,
+here's the `curl` request in the Fathom docs:
+
+```bash
+curl https://api.usefathom.com/v1/aggregations \/
+  -H "Authorization: Bearer API_TOKEN_HERE" \/
+  -d entity="pageview" \/
+  -d entity_id="CDBUGS" \/
+  -d aggregates="pageviews" \/
+  -G
+```
+
+You'll notice this time there's no `site_id` and instead this time
+it's an `entity_id`.
+
+I'll fold that into the `+server.ts` file now adding in the `entity`,
+`entity_id` and `aggregates` values from the `curl` request along with
+the `PUBLIC_FATHOM_ID` to identify the site:
+
+```ts
 import { FATHOM_API_KEY } from '$env/static/private'
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
-import { object_to_query_params } from '$lib/utils'
 import { json } from '@sveltejs/kit'
+import type { RequestHandler } from './$types'
 
-/** @type {import('./$types').RequestHandler} */
-export const GET = async ({ url }) => {
+export const GET: RequestHandler = async () => {
   try {
     const headers_auth = new Headers()
     headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
     const res = await fetch(
-      `https://api.usefathom.com/v1/aggregations`,
+      `https://api.usefathom.com/v1/aggregations?entity=pageview&entity_id=${PUBLIC_FATHOM_ID}&aggregates=pageviews`,
       {
         headers: headers_auth,
       }
     )
 
+    let data = await res.json()
+
     return json({
-      analytics: await res.json(),
+      analytics: data,
     })
   } catch (error) {
     return json({
-      error: 'Big oof! Sorry' + error,
+      error: `Error: ${error}`,
       status: 500,
     })
   }
 }
 ```
+
+That gives me a response of:
+
+```json
+{ "analytics": [{ "pageviews": "1382" }] }
+```
+
+That's total pageviews for all time for the site, but I want to get
+the pageviews for the year, so I'll add in `date_from` and `date_to`
+parameters and also a `date_grouping` one I'll add in the dates from
+the start of the year to the end of the year and have the grouping as
+`year`:
+
+```ts
+import { FATHOM_API_KEY } from '$env/static/private'
+import { PUBLIC_FATHOM_ID } from '$env/static/public'
+import { json } from '@sveltejs/kit'
+import type { RequestHandler } from './$types'
+
+export const GET: RequestHandler = async () => {
+  try {
+    const headers_auth = new Headers()
+    headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
+    const res = await fetch(
+      `https://api.usefathom.com/v1/aggregations?entity=pageview&entity_id=${PUBLIC_FATHOM_ID}&aggregates=pageviews&date_from=2023-01-01T00:00:00.000Z&date_to=2023-12-31T23:59:59.999Z&date_grouping=year`,
+      {
+        headers: headers_auth,
+      }
+    )
+
+    let data = await res.json()
+
+    return json({
+      analytics: data,
+    })
+  } catch (error) {
+    return json({
+      error: `Error: ${error}`,
+      status: 500,
+    })
+  }
+}
+```
+
+Refreshing the endpoint on the dev server gives me:
+
+```json
+{ "analytics": [{ "pageviews": "641", "date": "2023" }] }
+```
+
+So now, if I change the start year from `2023` to `2021` I get:
+
+```json
+{
+  "analytics": [
+    { "pageviews": "647", "date": "2023" },
+    { "pageviews": "492", "date": "2022" },
+    { "pageviews": "23", "date": "2021" }
+  ]
+}
+```
+
+Pretty neat right!?
 
 ## Google wants to crawl my API endpoint
 
