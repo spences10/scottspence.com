@@ -2,10 +2,11 @@
   import { slide } from 'svelte/transition'
   export let buttonText = ''
   export let isOpen = false
+  export let styles = ''
 </script>
 
 <div>
-  <button class="btn" on:click={() => (isOpen = !isOpen)}>
+  <button class="btn {styles}" on:click={() => (isOpen = !isOpen)}>
     {isOpen ? `Close` : buttonText}</button
   >
   {#if isOpen}
