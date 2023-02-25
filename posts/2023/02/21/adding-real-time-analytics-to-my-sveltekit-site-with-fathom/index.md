@@ -513,12 +513,12 @@ export const GET: RequestHandler = async () => {
 That gives me a response of:
 
 ```json
-{ "analytics": [{ "pageviews": "1382" }] }
+{ "analytics": [{ "pageviews": "1162" }] }
 ```
 
 That's total pageviews for all time for the site, but I want to get
 the pageviews for the year, so I'll add in `date_from` and `date_to`
-parameters and also a `date_grouping` one I'll add in the dates from
+parameters and also a `date_grouping` one. I'll add in the dates from
 the start of the year to the end of the year and have the grouping as
 `year`:
 
@@ -556,7 +556,7 @@ export const GET: RequestHandler = async () => {
 Refreshing the endpoint on the dev server gives me:
 
 ```json
-{ "analytics": [{ "pageviews": "641", "date": "2023" }] }
+{ "analytics": [{ "pageviews": "647", "date": "2023" }] }
 ```
 
 So now, if I change the start year from `2023` to `2021` I get:
@@ -571,7 +571,244 @@ So now, if I change the start year from `2023` to `2021` I get:
 }
 ```
 
-Pretty neat right!?
+Page views grouped by year, pretty neat right!?
+
+## Refine the analytics parameters
+
+Those query parameters in the `fetch` for the analytics is super long
+right? What I'll now is, rather than hard code in the parameters I'll
+pass an object to the fetch request.
+
+I'll keep the same parameters as before, but I'll create a new
+`default_params` object and pass that to the `fetch` request via a
+function to build the URL with the query parameters in it.
+
+Let's take a quick look at the function to do that, I'll create
+somewhere for it to go first though, I could just co-locate it in the
+`analytics.json/+server.ts` file, but I'll create a new folder and
+file so it can be reused elsewhere if needed:
+
+```bash
+# create a new folder for the utils
+mkdir src/lib/utils
+# create a new file for the function
+touch src/lib/utils/index.ts
+```
+
+The function will take in an object and return a query string, joining
+the `key` and `value` from the object being passed in with an `=` and
+joining all the entries with an `&`:
+
+```ts
+export const object_to_query_params = (
+  obj: { [s: string]: unknown } | ArrayLike<unknown>
+) => {
+  const params = Object.entries(obj).map(
+    ([key, value]) => `${key}=${value}`
+  )
+  return '?' + params.join('&')
+}
+```
+
+Let's do a quick example of how that would work then. So, let's take
+the parameters used in the last example and add them to the
+`default_params` object:
+
+```ts
+const default_params = {
+  entity: 'pageview',
+  entity_id: PUBLIC_FATHOM_ID,
+  aggregates: 'pageviews',
+  date_from: '2021-01-01T00:00:00.000Z',
+  date_to: '2023-12-31T23:59:59.999Z',
+  date_grouping: 'year',
+}
+```
+
+Passing that into the `object_to_query_params` function will return:
+
+```text
+?entity=pageview&entity_id=CDBUGS&aggregates=pageviews&date_from=2021-01-01T00:00:00.000Z&date_to=2023-12-31T23:59:59.999Z&date_grouping=year
+```
+
+I'll break that up a bit so it's readable and I hope you get the idea
+of what's going on here:
+
+```text
+?entity=pageview
+&entity_id=CDBUGS
+&aggregates=pageviews
+&date_from=2021-01-01T00:00:00.000Z
+&date_to=2023-12-31T23:59:59.999Z
+&date_grouping=year
+```
+
+So, I know I've just shifted the hard coded parameters from one place
+to another, but these are some base defaults to use and they can be
+replaced with variables, I'll come onto that shortly.
+
+For now what I want to do is set some more aggregates, currently
+there's just the `pageviews`, I'm going to add `visits`, `uniques`,
+`pageviews`, `avg_duration` and `bounce_rate`.
+
+```ts
+const default_params = {
+  entity: 'pageview',
+  entity_id: PUBLIC_FATHOM_ID,
+  aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
+  date_from: '2021-01-01T00:00:00.000Z',
+  date_to: '2023-12-31T23:59:59.999Z',
+  date_grouping: 'year',
+}
+```
+
+Now I refresh the dev server and see what I get from the API now:
+
+```json
+{
+  "analytics": [
+    {
+      "visits": "99",
+      "uniques": "140",
+      "pageviews": "681",
+      "avg_duration": "55.5731",
+      "bounce_rate": 0.2828282828282828,
+      "date": "2023"
+    },
+    {
+      "visits": "145",
+      "uniques": "202",
+      "pageviews": "492",
+      "avg_duration": "30.7709",
+      "bounce_rate": 0.1310344827586207,
+      "date": "2022"
+    },
+    {
+      "visits": "4",
+      "uniques": "5",
+      "pageviews": "23",
+      "avg_duration": "36.0909",
+      "bounce_rate": 0.75,
+      "date": "2021"
+    }
+  ]
+}
+```
+
+Ok, so, now I've validated the `aggregates`, I'm going to remove the
+hardcoded dates and replace them with URL parameters.
+
+In the `+server.ts` `load` function I'll destructure out the `url`
+from the `load` function context object and use the `searchParams`
+property to get the `date_from` and `date_to` parameters:
+
+```ts
+export const GET: RequestHandler = async ({ url }) => {
+  const date_from = url.searchParams.get('date_from') ?? null
+  const date_to = url.searchParams.get('date_to') ?? null
+
+  const default_params = {
+    entity: 'pageview',
+    entity_id: PUBLIC_FATHOM_ID,
+    aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
+    date_from,
+    date_to,
+    date_grouping: 'year',
+  }
+
+  try {
+    const headers_auth = new Headers()
+    headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
+    const res = await fetch(
+      `https://api.usefathom.com/v1/aggregations${object_to_query_params(
+        default_params
+      )}`,
+      {
+        headers: headers_auth,
+      }
+    )
+
+    let data = await res.json()
+
+    return json({
+      analytics: data,
+    })
+  } catch (error) {
+    return json({
+      error: `Error: ${error}`,
+      status: 500,
+    })
+  }
+}
+```
+
+There's an issue now with this approach as I have to add in some URL
+parameters on the local dev server to get the data I want.
+
+From the `localhost:5173/analytics.json` (`:5173` is the default local
+development port for Vite) endpoint I can add in the `date_from` and
+`date_to` parameters and see what I get:
+
+```text
+http://localhost:5174/analytics.json?date_from=2021-01-01T00:00:00.000Z&date_to=2023-12-31T23:59:59.999Z
+```
+
+The result is the same as before, so, I know I'm getting the data I
+want by passing in the `date_from` and `date_to` parameters.
+
+Now I have to make sure that every call to the API has the date URL
+parameters, not very flexible.
+
+So, now instead of having the `date_from` and `date_to` in the
+`default_params` I'll create a new object called `date_params`. I'll
+conditionally add the parameters if they exist I'll also toss in the
+`date_grouping` here.
+
+I found this approach conditionally adding object properties on a
+[Stack Overflow] answer, pretty neat!
+
+```ts
+const date_params = {
+  ...(date_from && { date_from }),
+  ...(date_to && { date_to }),
+  ...(date_grouping && { date_grouping }),
+}
+```
+
+Then I can smoosh both the `default_params` and `date_params` together
+with the ES6 spread syntax.
+
+```ts
+const params = { ...default_params, ...date_params }
+```
+
+Then pass the `params` into the `object_to_query_params` function.
+
+So now if I make a call to the `/analytics.json` endpoint without any
+parameters I get the lump total again:
+
+```json
+{
+  "analytics": [
+    {
+      "visits": "470",
+      "uniques": "453",
+      "pageviews": "2328",
+      "avg_duration": "47.8992",
+      "bounce_rate": 0.265824915584089
+    }
+  ]
+}
+```
+
+Cool, cool! Now if I don't add in any URL parameters I get the total
+data, if I add in the `date_from` and `date_to` parameters I get the
+data I want.
+
+Ok, now in the next section I'll add in page paths so that I can get
+detailed information on individual pages.
+
+## Getting specific page data
 
 ## Google wants to crawl my API endpoint
 
@@ -618,3 +855,4 @@ useful.
 [`ideal-memory.com`]: https://ideal-memory.com
 [SvelteKit Environment Variables with the SvelteKit $env Module]:
   https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module
+[Stack Overflow]: https://stackoverflow.com/a/51200448
