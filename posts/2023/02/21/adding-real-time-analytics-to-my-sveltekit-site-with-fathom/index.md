@@ -812,28 +812,48 @@ detailed information on individual pages.
 
 ## Google wants to crawl my API endpoint
 
-This may happen to you or it may not, in my case Google decided it
+One last thing, not related to implementing the analytics, this may
+happen to you or it may not. In my case however Google decided it
 didn't want to crawl all the blog posts I have made since the start of
-the year and instead try to crawl the API endpoints I created.
+the year and instead wanted to crawl the API endpoints I created.
 
 If this is something you want to check then you can find if Google is
 trying to crawl your API endpoints by going to the Google Search
 Console selecting 'Pages', then in 'Page indexing' check to see if
 there are any entries for 'Crawled - currently not indexed'.
 
-There may be some entries for the endpoint.
+There may be some entries for the endpoints.
 
-To stop this I've added a `Disallow: /analytics.json` line in a
-`robots.txt` in the `static` folder.
+To stop this I've added a `Disallow:` line for the endpoints in a
+`robots.txt` in the `static` folder of my SvelteKit project.
 
 ```text
 User-agent: *
 Disallow: /analytics.json
+Disallow: /current-visitors.json
 ```
 
 I made a short post going into more detail for [Robots.txt file for
 SvelteKit projects] there's a couple more things in there you may find
 useful.
+
+## Conclusion
+
+I've implements Fathom Analytics on a pre-existing project using the
+Fathom Analytics API.
+
+This means I can get real-time page views and current visitors the
+website.
+
+The Fathom API is still in early access, contact them to get access to
+it.
+
+This was just my implementation I hacked on over a weekend. The Fathom
+API could allow you create your own fully functional analytics
+reporting dashboard.
+
+Finally, to prevent Google from crawling API endpoints, I added in a
+`Disallow` line in a `robots.txt`.
 
 <!-- Links -->
 
