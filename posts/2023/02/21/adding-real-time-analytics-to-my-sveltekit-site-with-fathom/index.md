@@ -2,7 +2,7 @@
 date: 2023-02-21
 title: Adding real-time analytics to my SvelteKit site with Fathom
 tags: ['analytics', 'svelte', 'sveltekit', 'fathom']
-isPrivate: true
+isPrivate: false
 ---
 
 <script>
@@ -25,7 +25,7 @@ you're not using something like uBlock Origin, you'll probably see the
 live counter of people on this page right now under the tags!
 
 If not you can scroll to the bottom of this page and depending on how
-long this post is into the future (I may have scraped it, you know!)
+long this post is into the future (I may have scrapped it, you know!)
 there'll be an analytics section where you can see how may people have
 been on this page.
 
@@ -53,7 +53,8 @@ GitHub project] that is detailed in the [Fathom Analytics with
 SvelteKit] post, the approach is the same for this site.
 
 If you want to take a look at the code for the project you can check
-out the [before] and [after] branches I've created on the repo.
+out the [before] and [after] branches I've created on the repo, here's
+the [diff] so you can take a look at what's changed.
 
 In the following sections I'll be detailing how to get current
 visitors on the site and individual page analytics.
@@ -711,8 +712,6 @@ export const GET: RequestHandler = async ({ url }) => {
     entity: 'pageview',
     entity_id: PUBLIC_FATHOM_ID,
     aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
-    date_from,
-    date_to,
     date_grouping: 'year',
   }
 
@@ -805,10 +804,461 @@ Cool, cool! Now if I don't add in any URL parameters I get the total
 data, if I add in the `date_from` and `date_to` parameters I get the
 data I want.
 
+Here's what the full `+server.ts` file for `/analytics.json` looks
+like now:
+
+```ts
+import { FATHOM_API_KEY } from '$env/static/private'
+import { PUBLIC_FATHOM_ID } from '$env/static/public'
+import { object_to_query_params } from '$lib/utils'
+import { json } from '@sveltejs/kit'
+import type { RequestHandler } from './$types'
+
+export const GET: RequestHandler = async ({ url }) => {
+  const date_from = url.searchParams.get('date_from') ?? null
+  const date_to = url.searchParams.get('date_to') ?? null
+  const date_grouping = url.searchParams.get('date_grouping') ?? null
+
+  const date_params = {
+    ...(date_from && { date_from }),
+    ...(date_to && { date_to }),
+    ...(date_grouping && { date_grouping }),
+  }
+
+  const default_params = {
+    entity: 'pageview',
+    entity_id: PUBLIC_FATHOM_ID,
+    aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
+  }
+
+  const params = { ...default_params, ...date_params }
+
+  try {
+    const headers_auth = new Headers()
+    headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
+    const res = await fetch(
+      `https://api.usefathom.com/v1/aggregations${object_to_query_params(
+        params
+      )}`,
+      {
+        headers: headers_auth,
+      }
+    )
+
+    let data = await res.json()
+
+    return json({
+      analytics: data,
+    })
+  } catch (error) {
+    return json({
+      error: `Error: ${error}`,
+      status: 500,
+    })
+  }
+}
+```
+
 Ok, now in the next section I'll add in page paths so that I can get
 detailed information on individual pages.
 
 ## Getting specific page data
+
+Up until now there's only been information on the whole site, now I
+want to get specific page analytics.
+
+I can do this by adding in some filters to the `default_params`
+object, remember this is hardcoded, you can pass whatever you want as
+query parameters to the endpoint, I just find that this is a nice set
+of defaults to use.
+
+For these filters I'll need to specify a `field_grouping` for the
+`pathname` which will be the page slug. Then in the `filters` I'll
+specify the `property` to filter on as `pathname` with the
+`operator: is` and the `value` as the `pathname` I'll pass in.
+
+The `default_params` object will looks like this now:
+
+```ts
+const default_params = {
+  entity: 'pageview',
+  entity_id: PUBLIC_FATHOM_ID,
+  aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
+  field_grouping: 'pathname',
+  filters: `[{"property": "pathname","operator": "is","value": "${pathname}"}]`,
+}
+```
+
+I'll need to pass in the `pathname` as a parameter to the endpoint, so
+in the `GET` function I'll add in a variable to get the `pathname`
+from the URL:
+
+```ts
+const pathname = url.searchParams.get('pathname') ?? '/'
+```
+
+Aight! Sweet! I'm now set up to pass parameters to the endpoint.
+
+So, now, for each page load I want to pass in the date range I want
+for the page analytics and the page path.
+
+I'm going to add daily, month to date and year to date analytics for
+the pages.
+
+As none of the pages in this project are dynamically generated I'll
+use a `+page.server.ts` file for each route to request the data.
+
+If the pages were dynamically generated this could be done in one
+file. As they're not, I'll create a utility function to create the
+query parameters passing in the `pathname` parameter.
+
+So, in the `page_analytics` function I'm about to create, I'll want to
+get the dates and times for the `day_start`, `day_end`, `month_start`,
+`month_end`, `year_start` and `year_end` variables.
+
+Rather than faffing around with the `Date` object I'm going to use
+`date-fns` this has all the utility functions I need to do this.
+
+```bash
+pnpm i -D date-fns
+```
+
+In the `src/lib/utils/index.ts` where I'll create the `page_analytics`
+function I'll import the `date-fns` functions:
+
+```ts
+import {
+  format,
+  startOfDay,
+  endOfDay,
+  startOfMonth,
+  endOfMonth,
+  startOfYear,
+  endOfYear,
+} from 'date-fns'
+```
+
+Then I'll create the `page_analytics` function, this will need to take
+in the `base_path` for the endpoint call that includes the page slug,
+so for the about page `analytics.json?pathname=/about`. I'll also pass
+the `fetch` from the `+page.server.ts` to call the endpoint. I'll come
+onto the `+page.server.ts` files in a bit.
+
+For the Svelte fetch being passed I've used the VS Code helper to
+infer the type:
+
+```ts
+export const page_analytics = async (
+  base_path: string,
+  fetch: {
+    (
+      input: URL | RequestInfo,
+      init?: RequestInit | undefined
+    ): Promise<Response>
+    (
+      input: URL | RequestInfo,
+      init?: RequestInit | undefined
+    ): Promise<Response>
+    (arg0: string): any
+  }
+) => {}
+```
+
+The add in the date variables:
+
+```ts
+const day_start = startOfDay(new Date()).toISOString()
+const day_end = endOfDay(new Date()).toISOString()
+
+const month_start = startOfMonth(new Date()).toISOString()
+const month_end = endOfMonth(new Date()).toISOString()
+
+const year_start = startOfYear(new Date()).toISOString()
+const year_end = endOfYear(new Date()).toISOString()
+```
+
+Then create a functions to `fetch_daily_visits`,
+`fetch_monthly_visits` and `fetch_yearly_visits` I'll show the example
+for `fetch_daily_visits` and return `daily_visits`.
+
+```ts
+const fetch_daily_visits = async () => {
+  const res = await fetch(
+    `${base_path}&date_from=${day_start}&date_to=${day_end}`
+  )
+  const { analytics } = await res.json()
+  return analytics
+}
+
+return {
+  daily_visits: fetch_daily_visits(),
+}
+```
+
+Here's what the full `page_analytics` function looks like:
+
+<Details buttonText="page_analytics" styles="lowercase">
+
+```ts
+export const page_analytics = async (
+  base_path: string,
+  fetch: {
+    (
+      input: URL | RequestInfo,
+      init?: RequestInit | undefined
+    ): Promise<Response>
+    (
+      input: URL | RequestInfo,
+      init?: RequestInit | undefined
+    ): Promise<Response>
+    (arg0: string): any
+  }
+) => {
+  const day_start = startOfDay(new Date()).toISOString()
+  const day_end = endOfDay(new Date()).toISOString()
+
+  const month_start = startOfMonth(new Date()).toISOString()
+  const month_end = endOfMonth(new Date()).toISOString()
+
+  const year_start = startOfYear(new Date()).toISOString()
+  const year_end = endOfYear(new Date()).toISOString()
+
+  // get daily visits
+  const fetch_daily_visits = async () => {
+    const res = await fetch(
+      `${base_path}&date_from=${day_start}&date_to=${day_end}`
+    )
+    const { analytics } = await res.json()
+    return analytics
+  }
+  // get monthly visits
+  const fetch_monthly_visits = async () => {
+    const res = await fetch(
+      `${base_path}&date_from=${month_start}&date_to=${month_end}&date_grouping=month`
+    )
+    const { analytics } = await res.json()
+    return analytics
+  }
+  // get yearly visits
+  const fetch_yearly_visits = async () => {
+    const res = await fetch(
+      `${base_path}&date_from=${year_start}&date_to=${year_end}&date_grouping=year`
+    )
+    const { analytics } = await res.json()
+    return analytics
+  }
+
+  return {
+    daily_visits: fetch_daily_visits(),
+    monthly_visits: fetch_monthly_visits(),
+    yearly_visits: fetch_yearly_visits(),
+  }
+}
+```
+
+</Details>
+
+I can now create a `+page.server.ts` file for each page and call the
+`page_analytics` function.
+
+Create the `+page.server.ts` file for the about page:
+
+```bash
+touch src/routes/about/+page.server.ts
+```
+
+Then add in a `load` function and call the `page_analytics` function:
+
+```ts
+import { page_analytics } from '$lib/utils'
+import type { PageServerLoad } from './$types'
+
+export const load: PageServerLoad = async ({ fetch }) => {
+  const base_path = `analytics.json?pathname=/about`
+
+  let { daily_visits, monthly_visits, yearly_visits } =
+    await page_analytics(base_path, fetch)
+
+  return {
+    daily_visits,
+    monthly_visits,
+    yearly_visits,
+  }
+}
+```
+
+Now to test this out I'll add the `daily_visits` to the about page,
+I'll need to accept the `data` prop then I can validate the data by
+dumping it out into a `<pre>` tag:
+
+```svelte
+<script lang="ts">
+  import type { PageData } from './$types'
+
+  export let data: PageData
+</script>
+
+<pre>{JSON.stringify(data, null, 2)}</pre>
+
+<svelte:head>
+  <title>SvelteKit with Fathom | About</title>
+</svelte:head>
+
+<section
+  class="prose-xl prose-h1:text-secondary prose-a:link-primary"
+>
+  <h1>About</h1>
+
+  <p>This site was built to made to showcase Fathom Analytics.</p>
+</section>
+```
+
+Looking at the about page I get the pre tag with the data:
+
+```json
+{
+  "visitors": {
+    "total": 1,
+    "content": [
+      {
+        "hostname": "http://localhost",
+        "pathname": "/about",
+        "total": "1"
+      }
+    ],
+    "referrers": []
+  },
+  "daily_visits": [
+    {
+      "visits": "5",
+      "uniques": "3",
+      "pageviews": "132",
+      "avg_duration": "66.4521",
+      "bounce_rate": 0,
+      "pathname": "/about"
+    }
+  ],
+  "monthly_visits": [
+    {
+      "visits": "7",
+      "uniques": "16",
+      "pageviews": "192",
+      "avg_duration": "46.9545",
+      "bounce_rate": 0.14285714285714285,
+      "date": "2023-02",
+      "pathname": "/about"
+    }
+  ],
+  "yearly_visits": [
+    {
+      "visits": "7",
+      "uniques": "18",
+      "pageviews": "194",
+      "avg_duration": "46.1339",
+      "bounce_rate": 0.14285714285714285,
+      "date": "2023",
+      "pathname": "/about"
+    }
+  ]
+}
+```
+
+Success!!
+
+Yes the `visitors` data is also in the page `data` variable, this is
+available as the layout file is a parent file to the page file.
+
+I could be more specific and only destructure the data I need, but
+this is fine for now.
+
+Ok, that's it! All I need to do now is display the data on the page,
+I'll use the daisyUI stats component to do this.
+
+I'll create a component for the stats:
+
+```bash
+touch src/lib/components/analytics-card.svelte
+```
+
+Then in the component I'll need to accept the analytics data as
+`page_analytics` and use the daisyUI classes to style the stats:
+
+```svelte
+<script lang="ts">
+  export let page_analytics: {
+    date: string
+    visits: number
+    uniques: number
+    pageviews: number
+  }
+</script>
+
+<div
+  class="stats stats-vertical mb-8 w-full border border-secondary shadow-lg md:stats-horizontal"
+>
+  <div class="stat">
+    <div class="stat-title">Entries</div>
+    <div class="stat-value text-2xl">
+      {page_analytics?.visits}
+    </div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">Visitors</div>
+    <div class="stat-value text-2xl">
+      {page_analytics?.uniques}
+    </div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">Views</div>
+    <div class="stat-value text-2xl">
+      {page_analytics?.pageviews}
+    </div>
+  </div>
+</div>
+```
+
+Then in the about page I'll import the component and pass in the data
+for each of the stats:
+
+```svelte
+<script lang="ts">
+  import { AnalyticsCard } from '$lib/components'
+  import type { PageData } from './$types'
+
+  export let data: PageData
+</script>
+
+<svelte:head>
+  <title>SvelteKit with Fathom | About</title>
+</svelte:head>
+
+<section
+  class="prose-xl prose-h1:text-secondary prose-a:link-primary"
+>
+  <h1>About</h1>
+
+  <p>This site was built to made to showcase Fathom Analytics.</p>
+
+  <p>Live Analytics for daily visits.</p>
+  <AnalyticsCard page_analytics={data?.daily_visits[0]} />
+  <p>Live Analytics for monthly visits.</p>
+  <AnalyticsCard page_analytics={data?.monthly_visits[0]} />
+  <p>Live Analytics for yearly visits.</p>
+  <AnalyticsCard page_analytics={data?.yearly_visits[0]} />
+
+</section>
+```
+
+I'll repeat the same process for the other pages in the project, I'm
+not going to be posting any more code walls as it's the same process
+for each page.
+
+Done!
+
+That's it I implemented Fathom Analytics in a SvelteKit project for
+live visitors and individual page stats.
 
 ## Google wants to crawl my API endpoint
 
@@ -817,10 +1267,10 @@ happen to you or it may not. In my case however Google decided it
 didn't want to crawl all the blog posts I have made since the start of
 the year and instead wanted to crawl the API endpoints I created.
 
-If this is something you want to check then you can find if Google is
-trying to crawl your API endpoints by going to the Google Search
-Console selecting 'Pages', then in 'Page indexing' check to see if
-there are any entries for 'Crawled - currently not indexed'.
+If this is something you want to check for yourself then you can find
+if Google is trying to crawl your API endpoints by going to the Google
+Search Console selecting 'Pages', then in 'Page indexing' check to see
+if there are any entries for 'Crawled - currently not indexed'.
 
 There may be some entries for the endpoints.
 
@@ -872,6 +1322,8 @@ Finally, to prevent Google from crawling API endpoints, I added in a
   https://github.com/spences10/sveltekit-and-fathom/tree/ref/pre-real-time-analytics-implementation
 [after]:
   https://github.com/spences10/sveltekit-and-fathom/tree/feat/add-real-time-analytics
+[diff]:
+  https://github.com/spences10/sveltekit-and-fathom/pull/160/files
 [`ideal-memory.com`]: https://ideal-memory.com
 [SvelteKit Environment Variables with the SvelteKit $env Module]:
   https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module
