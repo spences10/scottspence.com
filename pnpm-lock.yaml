@@ -33,7 +33,7 @@ specifiers:
   svelte: 3.55.1
   svelte-frappe-charts: ^1.10.0
   svelte-preprocess: 5.0.1
-  sveltekit-embed: 0.0.11
+  sveltekit-embed: 0.0.12
   tailwindcss: 3.2.4
   theme-change: 2.3.0
   unist-util-visit: 4.1.2
@@ -72,7 +72,7 @@ devDependencies:
   svelte: 3.55.1
   svelte-frappe-charts: 1.10.0_svelte@3.55.1
   svelte-preprocess: 5.0.1_gqx7lw3sljhsd4bstor5m2aa2u
-  sveltekit-embed: 0.0.11
+  sveltekit-embed: 0.0.12
   tailwindcss: 3.2.4_postcss@8.4.21
   theme-change: 2.3.0
   unist-util-visit: 4.1.2
@@ -3223,8 +3223,8 @@ packages:
     engines: {node: '>= 8'}
     dev: true
 
-  /sveltekit-embed/0.0.11:
-    resolution: {integrity: sha512-gx2s06ZJFrZ2JTOpC9gVewZy9+Q5b/0yzCwucz9HlIoAzbotpV9HCyP1rldSdi0ioliKZC1xVBxKmVpl0cbaDQ==}
+  /sveltekit-embed/0.0.12:
+    resolution: {integrity: sha512-77GiPxkn4ZyF5tcq+YuosYjiFTrjYwA+sOMUiWoN+8sTCM0vJVi9sxHpIHWK6Cvmn0fAeaHagV//2i+tFmELkA==}
     dev: true
 
   /svgo/2.8.0:
