@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Head } from '$lib/components'
   import { name, website } from '$lib/info'
-  import { ogImageUrl } from '$lib/og-image-url-build'
+  import { og_image_url } from '$lib/utils'
 
   export let data
   let { Copy } = data
@@ -10,7 +10,7 @@
 <Head
   title={`Privacy Policy - ${name}`}
   description={`${name} Privacy Policy page.`}
-  image={ogImageUrl(name, `scottspence.com`, `Privacy Policy`)}
+  image={og_image_url(name, `scottspence.com`, `Privacy Policy`)}
   url={`${website}/privacy-policy`}
 />
 

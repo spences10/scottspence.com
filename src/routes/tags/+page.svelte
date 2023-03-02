@@ -1,7 +1,7 @@
 <script>
   import { Head } from '$lib/components'
   import { description, name, website } from '$lib/info'
-  import { ogImageUrl } from '$lib/og-image-url-build'
+  import { og_image_url } from '$lib/utils'
   import Fuse from 'fuse.js'
 
   export let data
@@ -21,7 +21,7 @@
 <Head
   title={`Posts by tag - ${name}`}
   {description}
-  image={ogImageUrl(name, `scottspence.com`, `Tags`)}
+  image={og_image_url(name, `scottspence.com`, `Tags`)}
   url={`${website}/tags`}
 />
 

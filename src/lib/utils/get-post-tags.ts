@@ -1,9 +1,14 @@
 // @ts-nocheck
-import { getPosts } from '$lib/get-posts'
+
+interface PostsByTag {
+  [tag: string]: Post[]
+}
+
+import { getPosts } from './get-posts'
 import slugify from 'slugify'
 
 export function getPostTags() {
-  const postsByTag = {}
+  const postsByTag: PostsByTag = {}
 
   getPosts().map(post => {
     const { tags, isPrivate } = post.metadata

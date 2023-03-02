@@ -1,6 +1,5 @@
-import { getPostTags } from '$lib/get-post-tags'
-import { getPosts } from '$lib/get-posts'
 import { website } from '$lib/info'
+import { getPosts, getPostTags } from '$lib/utils'
 import slugify from 'slugify'
 import type { RequestHandler } from './$types'
 

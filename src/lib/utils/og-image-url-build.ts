@@ -1,6 +1,6 @@
-import { object_to_query_params } from './utils'
+import { object_to_query_params } from './object-to-query-params'
 
-export const ogImageUrl = (
+export const og_image_url = (
   author: string,
   website: string,
   title: string
