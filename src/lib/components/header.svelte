@@ -3,7 +3,6 @@
   import ThemeSelect from './theme-select.svelte'
 </script>
 
-
 <div class="container max-w-3xl mx-auto px-4">
   <div class="flex h-16 mb-4 py-2 justify-between items-center">
     <p

@@ -231,9 +231,9 @@ out the HTML using the Svelte `@html` directive.
 
 ```svelte
 <script lang="ts">
-  import type { PageData } from './$types';
+  import type { PageData } from './$types'
 
-  export let data: PageData;
+  export let data: PageData
 </script>
 
 <div class="prose">

@@ -36,9 +36,7 @@
                     Repo
                   </a>
                 {:else}
-                  <a href="/" class="w-1/2 btn">
-                    Repo
-                  </a>
+                  <a href="/" class="w-1/2 btn">Repo</a>
                 {/if}
               </div>
               <p>Uses</p>

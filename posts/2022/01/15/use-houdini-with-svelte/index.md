@@ -148,7 +148,13 @@ touch src/routes/__layout.svelte
         excerpt
         tags
         coverImage {
-          url(transformation: { image: { resize: { width: 400, height: 400, fit: clip } } })
+          url(
+            transformation: {
+              image: {
+                resize: { width: 400, height: 400, fit: clip }
+              }
+            }
+          )
         }
       }
     }

@@ -267,9 +267,9 @@ function:
 ```svelte
 <script context="module">
   export const load = async ({ page: { params } }) => {
-    const { slug } = params;
-    return { props: { slug } };
-  };
+    const { slug } = params
+    return { props: { slug } }
+  }
 </script>
 ```
 
@@ -283,8 +283,8 @@ file passing in that query:
 
 ```svelte
 <script>
-  export let slug;
-  import { gql, operationStore, query } from '@urql/svelte';
+  export let slug
+  import { gql, operationStore, query } from '@urql/svelte'
   const productQuery = gql`
     query Post($slug: String!) {
       post(where: { slug: $slug }) {
@@ -296,9 +296,9 @@ file passing in that query:
         }
       }
     }
-  `;
-  const post = operationStore(productQuery, { slug });
-  query(post);
+  `
+  const post = operationStore(productQuery, { slug })
+  query(post)
 </script>
 ```
 
@@ -317,14 +317,14 @@ Here's the full file:
 ```svelte
 <script context="module">
   export const load = async ({ page: { params } }) => {
-    const { slug } = params;
-    return { props: { slug } };
-  };
+    const { slug } = params
+    return { props: { slug } }
+  }
 </script>
 
 <script>
-  export let slug;
-  import { gql, operationStore, query } from '@urql/svelte';
+  export let slug
+  import { gql, operationStore, query } from '@urql/svelte'
   const productQuery = gql`
     query Post($slug: String!) {
       post(where: { slug: $slug }) {
@@ -336,9 +336,9 @@ Here's the full file:
         }
       }
     }
-  `;
-  const post = operationStore(productQuery, { slug });
-  query(post);
+  `
+  const post = operationStore(productQuery, { slug })
+  query(post)
 </script>
 
 <pre>{JSON.stringify($post, null, 2)}</pre>

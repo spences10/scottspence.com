@@ -64,8 +64,8 @@ wonder if it was [still supported].
 We get it, Jackson's a busy guy and OSS is, well OSS. So after I was
 lined up to do talk about [Spreading the jamstack] at [Scale By the
 Bay] I opted for something with a touch more features to use, this is
-when I discovered Next MDX Deck when [Monica Powell] did a talk at
-MDX conf.
+when I discovered Next MDX Deck when [Monica Powell] did a talk at MDX
+conf.
 
 ## Next MDX Deck
 

@@ -3,7 +3,9 @@
 
   // acknowledgement: https://www.youtube.com/watch?v=mBXEnakkUIM
   let submitStatus = ''
-  const submitForm = async (data: { currentTarget: HTMLFormElement | undefined }) => {
+  const submitForm = async (data: {
+    currentTarget: HTMLFormElement | undefined
+  }) => {
     submitStatus = 'submitting'
     const formData = new FormData(data.currentTarget)
 

@@ -13,7 +13,7 @@
   import { name, website } from '$lib/info'
   import { ogImageUrl } from '$lib/og-image-url-build'
   import { visitors_store } from '$lib/stores'
-  import type { VisitorsData } from '$lib/stores';
+  import type { VisitorsData } from '$lib/stores'
   import { get_current_page_visitors } from '$lib/utils'
   import {
     differenceInDays,

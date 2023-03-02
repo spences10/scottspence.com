@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-  <title>Uh oh! {$page.status}</title>
+  <title>Ruh-roh! {$page.status}</title>
 </svelte:head>
 
 <main class="all-prose">

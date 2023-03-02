@@ -23,7 +23,7 @@
           <DateDistance date={new Date(date)} /> ago.
         </span>
         If there's anything in here which doesn't make sense,
-        <a class='link' href="/contact"> please get in touch.</a>
+        <a class="link" href="/contact"> please get in touch.</a>
       </span>
     </div>
   </div>

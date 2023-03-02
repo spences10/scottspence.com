@@ -42,7 +42,7 @@ and use the CSS filter class names in a `figure` element.
 
 ```svelte
 <script>
-  import '../instagram.css';
+  import '../instagram.css'
 </script>
 
 <figure class="filter-1977">
@@ -59,12 +59,7 @@ the `option` element using the Svelte `{each}` loop.
 
 ```svelte
 <script>
-  let filtersList = [
-    'looooong',
-    'list',
-    'of',
-    'filters',
-  ];
+  let filtersList = ['looooong', 'list', 'of', 'filters']
 </script>
 
 <select>
@@ -81,8 +76,8 @@ Cool, so, now I have a list of filters, I'll idd that into my
 
 ```svelte
 <script lang="ts">
-  import Filters from '$lib/components/filters.svelte';
-  import '../instagram.css';
+  import Filters from '$lib/components/filters.svelte'
+  import '../instagram.css'
 </script>
 
 <figure class="filter-1977">
@@ -116,18 +111,11 @@ the component.
 
 ```svelte
 <script>
-  let filtersList = [
-    'looooong',
-    'list',
-    'of',
-    'filters',
-  ];
+  let filtersList = ['looooong', 'list', 'of', 'filters']
   export let value = ''
 </script>
 
-<select
-  bind:value={value}
->
+<select bind:value>
   {#each filtersList as filter}
     <option value={filter}>
       <span>{filter}</span>
@@ -147,9 +135,9 @@ using some backticks to apply the class.
 
 ```svelte
 <script lang="ts">
-  import Filters from '$lib/components/filters.svelte';
-  import '../instagram.css';
-  let optionValue = '';
+  import Filters from '$lib/components/filters.svelte'
+  import '../instagram.css'
+  let optionValue = ''
 </script>
 
 <figure class={`filter-${optionValue}`}>

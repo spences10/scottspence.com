@@ -1247,7 +1247,6 @@ for each of the stats:
   <AnalyticsCard page_analytics={data?.monthly_visits[0]} />
   <p>Live Analytics for yearly visits.</p>
   <AnalyticsCard page_analytics={data?.yearly_visits[0]} />
-
 </section>
 ```
 

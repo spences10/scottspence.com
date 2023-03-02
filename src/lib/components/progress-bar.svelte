@@ -8,9 +8,9 @@
 
 <section class={`not-prose ${width} ${label ? `` : `-mt-4`}`}>
   {#if label}
-     <label for="progress" class="label -mb-5 -ml-1">
-       <span class="label-text text-lg font-medium">{label}</span>
-     </label>
+    <label for="progress" class="label -mb-5 -ml-1">
+      <span class="label-text text-lg font-medium">{label}</span>
+    </label>
   {/if}
   <progress
     id="progress"
