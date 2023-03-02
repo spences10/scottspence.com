@@ -2,6 +2,7 @@
   <a
     href="https://altcoffee.xyz/p/1640635929023x772240859907412000"
     target="_blank"
+    rel="noopener noreferrer"
   >
     <img
       src="https://s3.amazonaws.com/appforest_uf/f1638866811059x775730535897205800/buymeacoffee-crypto.png"

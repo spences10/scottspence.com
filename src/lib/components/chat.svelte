@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   export let reply = false
   let styleReply = reply ? '' : 'flex justify-end'
   let styleContent = reply

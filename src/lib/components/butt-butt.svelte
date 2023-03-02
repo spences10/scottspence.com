@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
   import { scaleAndFade } from '$lib/custom-transition'
   import viewport from '$lib/use-viewport-action'
 
   export let height = '100px'
   export let width = '160px'
-  const puns = [
+  const puns: string[] = [
     `Ok, well, now that's behind you maybe you'd like to share this?`,
     `Is that two cheeky for you?!`,
     `I know, what a half-arsed attempt at humour!`,
@@ -21,12 +21,12 @@
   ]
 
   $: pun = randomPun()
-  const randomPun = () => {
+  const randomPun = (): string => {
     pun = puns[Math.floor(Math.random() * puns.length)]
     return pun
   }
 
-  let intersecting
+  let intersecting: boolean = false
 </script>
 
 <div
@@ -46,7 +46,7 @@
           {height}
           {width}
           class="h-full"
-          transition:scaleAndFade={{ delay: 200 }}
+          transition:scaleAndFade={{ delay: 200, duration: 400 }}
         />
       </div>
     {/if}

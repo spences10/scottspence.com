@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Head, LandingHero, PeopleToMeet } from '$lib/components'
   import { description, name, website } from '$lib/info'
   import { ogImageUrl } from '$lib/og-image-url-build'

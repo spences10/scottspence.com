@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { browser } from '$app/environment'
   import { page } from '$app/stores'
   import {
@@ -12,8 +12,9 @@
   import { themeChange } from 'theme-change'
   import '../app.css'
   import '../prism.css'
+  import type { LayoutData } from './$types'
 
-  export let data
+  export let data: LayoutData
   $popular_posts_store = data.popular_posts_analytics
   $visitors_store = data.visitors
 

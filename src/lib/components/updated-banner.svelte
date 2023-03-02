@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { WarningTriangle } from '$lib/icons'
   import { compareDesc } from 'date-fns'
   import DateDistance from './date-distance.svelte'

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Head, PostCard } from '$lib/components'
   import { description, name, website } from '$lib/info.js'
   import { ogImageUrl } from '$lib/og-image-url-build'
@@ -12,7 +12,7 @@
     includeScore: true,
     includeMatches: true,
     threshold: 0.4,
-  }
+  } as Fuse.IFuseOptions<any>
   let fuse = new Fuse(posts, options)
   let query = ''
   $: results = fuse.search(query)

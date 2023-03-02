@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { popular_posts_store } from '$lib/stores'
   import { number_crunch } from '$lib/utils'
   import { trackGoal } from 'fathom-client'
@@ -15,7 +15,7 @@
       <a
         data-sveltekit-reload
         href={`${post.pathname}`}
-        on:click={() => trackGoal(`WKHRXHV8`)}
+        on:click={() => trackGoal(`WKHRXHV8`, 0)}
         class="h-full"
       >
         <aside

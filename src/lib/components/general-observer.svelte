@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
   import viewport from '$lib/use-viewport-action'
 
   export let height = 100
   export let width = 100
 
-  let intersecting
+  let intersecting: boolean
 </script>
 
 <div

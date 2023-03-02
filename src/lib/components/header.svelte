@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { name } from '$lib/info'
   import ThemeSelect from './theme-select.svelte'
 </script>

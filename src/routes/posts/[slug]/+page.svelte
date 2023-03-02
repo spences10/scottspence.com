@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { page } from '$app/stores'
   import {
     ButtButt,
@@ -13,6 +13,7 @@
   import { name, website } from '$lib/info'
   import { ogImageUrl } from '$lib/og-image-url-build'
   import { visitors_store } from '$lib/stores'
+  import type { VisitorsData } from '$lib/stores';
   import { get_current_page_visitors } from '$lib/utils'
   import {
     differenceInDays,
@@ -40,24 +41,26 @@
 
   const url = `${website}/posts/${slug}`
 
-  let headingNodeList
-  let headings
+  let headingNodeList: NodeListOf<HTMLHeadingElement>
+  let headings: { label: string; href: string }[]
+
   const getHeadings = async () => {
-    await headings
+    headings
   }
 
   onMount(() => {
     headingNodeList = document.querySelectorAll('h2')
-    headings = Array.from(headingNodeList).map(h2 => {
-      return {
+    headings = []
+    for (const h2 of headingNodeList) {
+      headings.push({
         label: h2.innerText,
         href: `#${h2.id}`,
-      }
-    })
+      })
+    }
   })
 
   let current_path = $page.url.pathname
-  let { content } = $visitors_store
+  let { content } = $visitors_store as VisitorsData
 
   let visitors_count = get_current_page_visitors(
     current_path,

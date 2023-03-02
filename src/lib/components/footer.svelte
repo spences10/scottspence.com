@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Eye } from '$lib/icons'
   import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
   import { number_crunch } from '$lib/utils'

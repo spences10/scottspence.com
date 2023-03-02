@@ -1,13 +1,17 @@
-<script>
-  let children = ''
+<script lang="ts">
+  let children: string | null
 
-  const sarky = node => {
-    children = node.childNodes[0].nodeValue
+  const sarky = (node: HTMLSpanElement) => {
+    children = node.childNodes[0]?.nodeValue
 
-    node.childNodes[0].nodeValue = children
-      .split('')
-      .map((char, i) => char[`to${i % 2 ? 'Upper' : 'Lower'}Case`]())
-      .join('')
+    if (children) {
+      node.childNodes[0].nodeValue = children
+        .split('')
+        .map((char, i) =>
+          char[`to${i % 2 ? 'Upper' : 'Lower'}Case`]()
+        )
+        .join('')
+    }
   }
 </script>
 

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { page } from '$app/stores'
   import MugFace from '$lib/images/mug-face.png'
   import { visitors_store } from '$lib/stores'
@@ -59,7 +59,7 @@
         </p>
         <a
           href="/contact"
-          on:click={() => trackGoal(`T2YXL68Y`)}
+          on:click={() => trackGoal(`T2YXL68Y`, 0)}
           class="btn btn-md w-full lg:btn-lg btn-primary text-primary-content hover:text-primary-content"
         >
           Get in Touch

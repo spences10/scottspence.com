@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { formatDistance } from 'date-fns'
 
   export let date
