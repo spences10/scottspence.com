@@ -1,32 +1,36 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, test } from 'vitest'
 import { number_crunch } from './number-crunch'
 
 describe('number_crunch', () => {
-  it('should return string value for input as string', () => {
-    const input = '1000'
-    const result = number_crunch(input)
-
-    expect(result).toEqual('1000')
+  it('should return "0" when given an empty string', () => {
+    expect(number_crunch('')).toEqual('0')
   })
 
-  it('should return updated value for input as number >= 1000000', () => {
-    const input = 10000000
-    const result = number_crunch(input)
-
-    expect(result).toEqual('10.00m')
+  it('should return "0" when given NaN', () => {
+    expect(number_crunch(NaN)).toEqual('0')
   })
 
-  it('should return updated value for input as number >= 1000', () => {
-    const input = 5000
-    const result = number_crunch(input)
-
-    expect(result).toEqual('5.00k')
+  it('should return "0" when given a non-numeric string', () => {
+    expect(number_crunch('hello')).toEqual('0')
   })
 
-  it('should return updated value for input as number < 1000', () => {
-    const input = 500
-    const result = number_crunch(input)
+  it('should return the correct abbreviation for a given number', () => {
+    expect(number_crunch(1234)).toEqual('1.2k')
+    expect(number_crunch(12345)).toEqual('12.3k')
+    expect(number_crunch(123456)).toEqual('123.5k')
+    expect(number_crunch(1234567)).toEqual('1.2m')
+    expect(number_crunch(12345678)).toEqual('12.3m')
+    expect(number_crunch(123456789)).toEqual('123.5m')
+    expect(number_crunch(1234567890)).toEqual('1.2b')
+    expect(number_crunch(12345678901)).toEqual('12.3b')
+    expect(number_crunch(123456789012)).toEqual('123.5b')
+    expect(number_crunch(1234567890123)).toEqual('1.2t')
+    expect(number_crunch(12345678901234)).toEqual('12.3t')
+    expect(number_crunch(123456789012345)).toEqual('123.5t')
+  })
 
-    expect(result).toEqual(500)
+  it('should return the correct abbreviation for a negative number', () => {
+    expect(number_crunch(-1234)).toEqual('-1.2k')
   })
 })
+
