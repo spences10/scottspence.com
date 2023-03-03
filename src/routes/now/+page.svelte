@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Head } from '$lib/components'
   import { name, website } from '$lib/info'
-  import { ogImageUrl } from '$lib/og-image-url-build'
+  import { og_image_url } from '$lib/utils'
 
   export let data
   let { Copy } = data
@@ -10,7 +10,7 @@
 <Head
   title={`What I'm doing now - ${name}`}
   description={`What I'm doing now. Updated irregularly, check last updated date.`}
-  image={ogImageUrl(name, `scottspence.com`, `What I'm doing now.`)}
+  image={og_image_url(name, `scottspence.com`, `What I'm doing now.`)}
   url={`${website}/now`}
 />
 

@@ -1,5 +1,5 @@
-import { getPosts } from '$lib/get-posts'
 import { description, name, website } from '$lib/info'
+import { getPosts } from '$lib/utils'
 import { format } from 'date-fns'
 import type { RequestHandler } from './$types'
 

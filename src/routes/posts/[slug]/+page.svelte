@@ -11,10 +11,9 @@
     UpdatedBanner,
   } from '$lib/components'
   import { name, website } from '$lib/info'
-  import { ogImageUrl } from '$lib/og-image-url-build'
-  import { visitors_store } from '$lib/stores'
   import type { VisitorsData } from '$lib/stores'
-  import { get_current_page_visitors } from '$lib/utils'
+  import { visitors_store } from '$lib/stores'
+  import { get_current_page_visitors, og_image_url } from '$lib/utils'
   import {
     differenceInDays,
     differenceInYears,
@@ -76,7 +75,7 @@
 <Head
   title={`${title} - ${name}`}
   description={preview}
-  image={ogImageUrl(name, `scottspence.com`, title)}
+  image={og_image_url(name, `scottspence.com`, title)}
   {url}
 />
 

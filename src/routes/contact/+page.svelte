@@ -1,13 +1,13 @@
 <script lang="ts">
   import { ContactForm, Head } from '$lib/components'
   import { name, website } from '$lib/info'
-  import { ogImageUrl } from '$lib/og-image-url-build'
+  import { og_image_url } from '$lib/utils'
 </script>
 
 <Head
   title={`Contact - ${name}`}
   description={`Get in touch, say hi!`}
-  image={ogImageUrl(name, `scottspence.com`, `contact`)}
+  image={og_image_url(name, `scottspence.com`, `contact`)}
   url={`${website}/about`}
 />
 

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Head, TableOfContents } from '$lib/components'
   import { name, website } from '$lib/info'
-  import { ogImageUrl } from '$lib/og-image-url-build'
+  import { og_image_url } from '$lib/utils'
   import { onMount } from 'svelte'
 
   export let data
@@ -27,7 +27,7 @@
 <Head
   title={`Speaking - ${name}`}
   description={`A list of events where ${name} has held a workshop, a talk or spoken publically.`}
-  image={ogImageUrl(name, `scottspence.com`, `Scott Speaks!`)}
+  image={og_image_url(name, `scottspence.com`, `Scott Speaks!`)}
   url={`${website}/speaking`}
 />
 

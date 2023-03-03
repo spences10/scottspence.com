@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { scaleAndFade } from '$lib/custom-transition'
+  import { scale_and_fade } from '$lib/utils'
 
   // acknowledgement: https://www.youtube.com/watch?v=mBXEnakkUIM
   let submitStatus = ''
@@ -23,7 +23,7 @@
   <p>Failed oops!</p>
 {:else if submitStatus === 'success'}
   <div
-    in:scaleAndFade={{ delay: 400, duration: 400 }}
+    in:scale_and_fade={{ delay: 400, duration: 400 }}
     class="mx-auto text-center max-w-7xl py-12 lg:py-16 lg:px-8"
   >
     <div
@@ -40,7 +40,7 @@
   </div>
 {:else}
   <div
-    out:scaleAndFade={{ delay: 200, duration: 200 }}
+    out:scale_and_fade={{ delay: 200, duration: 200 }}
     class="flex justify-around mb-5"
   >
     <form class="form-control" on:submit|preventDefault={submitForm}>

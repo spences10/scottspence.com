@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Head, LandingHero, PeopleToMeet } from '$lib/components'
   import { description, name, website } from '$lib/info'
-  import { ogImageUrl } from '$lib/og-image-url-build'
+  import { og_image_url } from '$lib/utils'
 
   export let data
   let { Copy } = data
@@ -10,7 +10,7 @@
 <Head
   title={`Hello World! Welcome to my site! Enjoy! - ${name}`}
   {description}
-  image={ogImageUrl(name, `scottspence.com`, name)}
+  image={og_image_url(name, `scottspence.com`, name)}
   url={website}
 />
 

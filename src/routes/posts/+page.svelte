@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Head, PostCard } from '$lib/components'
   import { description, name, website } from '$lib/info.js'
-  import { ogImageUrl } from '$lib/og-image-url-build'
+  import { og_image_url } from '$lib/utils'
   import Fuse from 'fuse.js'
 
   export let data
@@ -21,7 +21,7 @@
 <Head
   title={`Welcome! - ${name}`}
   {description}
-  image={ogImageUrl(name, `scottspence.com`, `Thoughts Pamphlet`)}
+  image={og_image_url(name, `scottspence.com`, `Thoughts Pamphlet`)}
   url={`${website}/posts`}
 />
 

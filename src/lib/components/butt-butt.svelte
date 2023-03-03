@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { scaleAndFade } from '$lib/custom-transition'
-  import viewport from '$lib/use-viewport-action'
+  import { scale_and_fade, viewport } from '$lib/utils'
 
   export let height = '100px'
   export let width = '160px'
@@ -46,7 +45,7 @@
           {height}
           {width}
           class="h-full"
-          transition:scaleAndFade={{ delay: 200, duration: 400 }}
+          transition:scale_and_fade={{ delay: 200, duration: 400 }}
         />
       </div>
     {/if}

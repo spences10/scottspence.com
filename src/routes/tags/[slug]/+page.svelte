@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Head } from '$lib/components'
   import { description, name, website } from '$lib/info'
-  import { ogImageUrl } from '$lib/og-image-url-build'
+  import { og_image_url } from '$lib/utils'
 
   export let data: {
     postsByTag: {
@@ -20,7 +20,7 @@
 <Head
   title={`Posts relating to ${tag_slug} - ${name}`}
   {description}
-  image={ogImageUrl(
+  image={og_image_url(
     name,
     'scottspence.com',
     `Posts relating to ${tag_slug}`
