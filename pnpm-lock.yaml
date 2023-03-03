@@ -9,6 +9,7 @@ specifiers:
   '@types/marked': ^4.0.8
   '@typescript-eslint/eslint-plugin': ^5.54.0
   '@typescript-eslint/parser': ^5.54.0
+  '@vitest/ui': ^0.29.2
   autoprefixer: 10.4.13
   cssnano: 5.1.15
   daisyui: 2.51.2
@@ -57,6 +58,7 @@ devDependencies:
   '@types/marked': 4.0.8
   '@typescript-eslint/eslint-plugin': 5.54.0_6mj2wypvdnknez7kws2nfdgupi
   '@typescript-eslint/parser': 5.54.0_ycpbpc6yetojsgtrx3mwntkhsu
+  '@vitest/ui': 0.29.2
   autoprefixer: 10.4.13_postcss@8.4.21
   cssnano: 5.1.15_postcss@8.4.21
   daisyui: 2.51.2_gbtt6ss3tbiz4yjtvdr6fbrj44
@@ -94,7 +96,7 @@ devDependencies:
   typescript: 4.9.5
   unist-util-visit: 4.1.2
   vite: 4.1.4
-  vitest: 0.29.2_jsdom@21.1.0
+  vitest: 0.29.2_hjnfa4mohew6fc4mnpzgbfyvpa
 
 packages:
 
@@ -803,6 +805,16 @@ packages:
     resolution: {integrity: sha512-Hc44ft5kaAytlGL2PyFwdAsufjbdOvHklwjNy/gy/saRbg9Kfkxfh+PklLm1H2Ib/p586RkQeNFKYuJInUssyw==}
     dependencies:
       tinyspy: 1.1.1
+    dev: true
+
+  /@vitest/ui/0.29.2:
+    resolution: {integrity: sha512-GpCExCMptrS1z3Xf6kz35Xdvjc2eTBy9OIIwW3HjePVxw9Q++ZoEaIBVimRTTGzSe40XiAI/ZyR0H0Ya9brqLA==}
+    dependencies:
+      fast-glob: 3.2.12
+      flatted: 3.2.7
+      pathe: 1.1.0
+      picocolors: 1.0.0
+      sirv: 2.0.2
     dev: true
 
   /@vitest/utils/0.29.2:
@@ -4622,7 +4634,7 @@ packages:
       vite: 4.1.4
     dev: true
 
-  /vitest/0.29.2_jsdom@21.1.0:
+  /vitest/0.29.2_hjnfa4mohew6fc4mnpzgbfyvpa:
     resolution: {integrity: sha512-ydK9IGbAvoY8wkg29DQ4ivcVviCaUi3ivuPKfZEVddMTenFHUfB8EEDXQV8+RasEk1ACFLgMUqAaDuQ/Nk+mQA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -4650,6 +4662,7 @@ packages:
       '@vitest/expect': 0.29.2
       '@vitest/runner': 0.29.2
       '@vitest/spy': 0.29.2
+      '@vitest/ui': 0.29.2
       '@vitest/utils': 0.29.2
       acorn: 8.8.2
       acorn-walk: 8.2.0
