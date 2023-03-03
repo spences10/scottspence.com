@@ -20,7 +20,7 @@ specifiers:
   fathom-client: 3.5.0
   fuse.js: 6.6.2
   graphql: 16.6.0
-  graphql-request: 5.1.0
+  graphql-request: 5.2.0
   husky: 8.0.3
   jsdom: ^21.1.0
   marked: 4.2.12
@@ -69,7 +69,7 @@ devDependencies:
   fathom-client: 3.5.0
   fuse.js: 6.6.2
   graphql: 16.6.0
-  graphql-request: 5.1.0_graphql@16.6.0
+  graphql-request: 5.2.0_graphql@16.6.0
   husky: 8.0.3
   jsdom: 21.1.0
   marked: 4.2.12
@@ -2155,8 +2155,8 @@ packages:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
     dev: true
 
-  /graphql-request/5.1.0_graphql@16.6.0:
-    resolution: {integrity: sha512-0OeRVYigVwIiXhNmqnPDt+JhMzsjinxHE7TVy3Lm6jUzav0guVcL0lfSbi6jVTRAxcbwgyr6yrZioSHxf9gHzw==}
+  /graphql-request/5.2.0_graphql@16.6.0:
+    resolution: {integrity: sha512-pLhKIvnMyBERL0dtFI3medKqWOz/RhHdcgbZ+hMMIb32mEPa5MJSzS4AuXxfI4sRAu6JVVk5tvXuGfCWl9JYWQ==}
     peerDependencies:
       graphql: 14 - 16
     dependencies:
