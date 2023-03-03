@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { PEOPLE } from '$lib/info'
   import PeopleToMeetCheck from './people-to-meet-check.svelte'
   import ShareWithTweet from './share-with-tweet.svelte'
@@ -52,8 +52,10 @@
               class="text-xl"
               href={link}
               rel="noreferrer noopener"
-              target="_blank">{name}</a
+              target="_blank"
             >
+              {name}
+            </a>
           </span>
         </div>
       </li>

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { PORTFOLIO_PROJECTS } from '../info'
 </script>
 
@@ -21,7 +21,7 @@
                 <a
                   href={project.demo}
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   class="w-1/2 btn btn-secondary"
                 >
                   Demo
@@ -30,15 +30,13 @@
                   <a
                     href={project.repo}
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener noreferrer"
                     class="w-1/2 btn btn-secondary"
                   >
                     Repo
                   </a>
                 {:else}
-                  <a href="/" class="w-1/2 btn" disabled="disabled">
-                    Repo
-                  </a>
+                  <a href="/" class="w-1/2 btn">Repo</a>
                 {/if}
               </div>
               <p>Uses</p>

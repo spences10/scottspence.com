@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
   export let buttonText = ''
   export let open = false
 
   // custom slide animation
-  const slide = (node, open) => {
+  const slide = (node: HTMLDivElement, open: boolean) => {
     let initialHeight = node.offsetHeight
     node.style.height = open ? `auto` : '0px'
     node.style.overflow = 'hidden'

@@ -339,7 +339,7 @@ Svelte store for use in the page.
 
 ```svelte
 <script lang="ts" context="module">
-  import { KQL_AllPosts } from '$lib/graphql/_kitql/graphqlStores';
+  import { KQL_AllPosts } from '$lib/graphql/_kitql/graphqlStores'
 
   export const load = async ({ fetch }) => {
     await KQL_AllPosts.queryLoad({ fetch })
@@ -524,13 +524,14 @@ go straight in here and destructure the `params` object (which has the
 
 ```svelte
 <script lang="ts" context="module">
-  import { KQL_GetPost } from '$lib/graphql/_kitql/graphqlStores';
+  import { KQL_GetPost } from '$lib/graphql/_kitql/graphqlStores'
 
   export const load = async ({ params, fetch }) => {
-    const { slug } = params;
-    if (slug) await KQL_GetPost.queryLoad({ fetch, variables: { slug } });
-    return {};
-  };
+    const { slug } = params
+    if (slug)
+      await KQL_GetPost.queryLoad({ fetch, variables: { slug } })
+    return {}
+  }
 </script>
 ```
 

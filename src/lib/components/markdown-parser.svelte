@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { marked } from 'marked'
   export let markdownContent = ''
   export let rows = 3

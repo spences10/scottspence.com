@@ -1,5 +1,5 @@
-<script>
-  export let headings
+<script lang="ts">
+  export let headings: { label: string; href: string }[]
 </script>
 
 {#if headings.length}
@@ -14,12 +14,14 @@
         Table of Contents
       </h3>
       <ul class="max-h-72 overflow-auto !mb-0">
-        {#each headings as heading}
-          <li class="mr-4 mb-2" key={`heading-${heading.href}`}>
+        {#each headings as heading (heading.href)}
+          <li class="mr-4 mb-2">
             <a
               class="transition hover:text-accent-focus"
-              href={heading.href}>{heading.label}</a
+              href={heading.href}
             >
+              {heading.label}
+            </a>
           </li>
         {/each}
       </ul>

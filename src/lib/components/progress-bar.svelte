@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   export let value = 0
   export let max = 100
   export let width = `w-full`
@@ -8,9 +8,9 @@
 
 <section class={`not-prose ${width} ${label ? `` : `-mt-4`}`}>
   {#if label}
-     <label for="progress" class="label -mb-5 -ml-1">
-       <span class="label-text text-lg font-medium">{label}</span>
-     </label>
+    <label for="progress" class="label -mb-5 -ml-1">
+      <span class="label-text text-lg font-medium">{label}</span>
+    </label>
   {/if}
   <progress
     id="progress"

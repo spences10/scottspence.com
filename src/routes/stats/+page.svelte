@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
+  // @ts-nocheck
   import Chart from 'svelte-frappe-charts'
 
-  /** @type {import('./$types').PageData} */
   export let data
   let { analytics } = data
 

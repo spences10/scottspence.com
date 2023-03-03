@@ -132,7 +132,7 @@ props are received into components with `export let`.
 ```svelte
 <script>
   /** @type {import('./$types').PageData} */
-  export let data;
+  export let data
 </script>
 
 <p>{data.greeting}</p>
@@ -168,7 +168,7 @@ the data being passed to `+page.svelte`.
 ```svelte
 <script>
   /** @type {import('./$types').PageData} */
-  export let data;
+  export let data
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>

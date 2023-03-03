@@ -205,7 +205,7 @@ Here's what the component looks like now:
   }
 </script>
 
-<form on:submit|preventDefault="{handleSubmit}">
+<form on:submit|preventDefault={handleSubmit}>
   <label for="name">
     <span>Name</span>
   </label>

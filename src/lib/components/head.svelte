@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
   import { name, website } from '$lib/info'
 
-  export let title
-  export let description
-  export let image
-  export let url
+  export let title = ''
+  export let description = ''
+  export let image = ''
+  export let url = ''
 </script>
 
 <!-- 

@@ -164,7 +164,8 @@ payment pointer in the [settings] panel under 'Web Monetization'.
 [quick start]: https://webmonetization.org/docs/getting-started
 [back in june]: https://dev.to/devteam/dev-is-now-web-monetized-21db
 [scottspence.com]: https://scottspence.com
-[interledger protocol]: https://interledger.org/developer-tools/get-started/set-up
+[interledger protocol]:
+  https://interledger.org/developer-tools/get-started/set-up
 [uphold]: https://uphold.com/
 [gatehub]: https://gatehub.net/
 [there's a plugin for that]:

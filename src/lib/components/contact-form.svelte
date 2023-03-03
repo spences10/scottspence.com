@@ -1,9 +1,11 @@
-<script>
+<script lang="ts">
   import { scaleAndFade } from '$lib/custom-transition'
 
   // acknowledgement: https://www.youtube.com/watch?v=mBXEnakkUIM
   let submitStatus = ''
-  const submitForm = async data => {
+  const submitForm = async (data: {
+    currentTarget: HTMLFormElement | undefined
+  }) => {
     submitStatus = 'submitting'
     const formData = new FormData(data.currentTarget)
 
@@ -21,7 +23,7 @@
   <p>Failed oops!</p>
 {:else if submitStatus === 'success'}
   <div
-    in:scaleAndFade={{ delay: 400 }}
+    in:scaleAndFade={{ delay: 400, duration: 400 }}
     class="mx-auto text-center max-w-7xl py-12 lg:py-16 lg:px-8"
   >
     <div
@@ -38,7 +40,7 @@
   </div>
 {:else}
   <div
-    out:scaleAndFade={{ delay: 200 }}
+    out:scaleAndFade={{ delay: 200, duration: 200 }}
     class="flex justify-around mb-5"
   >
     <form class="form-control" on:submit|preventDefault={submitForm}>
@@ -72,13 +74,12 @@
       </label>
       <select
         class="input input-bordered w-full max-w-xs all-prose"
-        type="text"
         name="reason"
         aria-label="reason"
         placeholder="I'd love to have a chat!"
         required
       >
-        <option disabled="disabled" selected="selected">
+        <option disabled selected>
           Select a reason for reaching out
         </option>
         <option value="hi">Say hi!</option>

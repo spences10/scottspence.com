@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Head, TableOfContents } from '$lib/components'
   import { name, website } from '$lib/info'
   import { ogImageUrl } from '$lib/og-image-url-build'
@@ -8,9 +8,9 @@
   let { Copy } = data
 
   let headingNodeList
-  let headings
+  let headings: { label: string; href: string }[] = []
   const getHeadings = async () => {
-    await headings
+    headings
   }
 
   onMount(() => {

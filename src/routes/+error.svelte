@@ -1,14 +1,14 @@
-<script>
+<script lang="ts">
   import { page } from '$app/stores'
 </script>
 
 <svelte:head>
-  <title>Uh oh! {$page.status}</title>
+  <title>Ruh-roh! {$page.status}</title>
 </svelte:head>
 
 <main class="all-prose">
   <h1>{$page.status}</h1>
-  <p>{$page.error.message}</p>
+  <p>{$page.error?.message}</p>
   <p>That's a nop! 😭</p>
   <p>It looks like <code>{$page.url}</code> doesn't exist</p>
   <p>

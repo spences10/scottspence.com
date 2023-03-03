@@ -204,7 +204,7 @@ the action is the element that has the `use:` added to it.
   </div>
 </button>
 
-<div use:slide={open} >
+<div use:slide={open}>
   <slot />
 </div>
 ```
@@ -385,9 +385,7 @@ So, with that all being said, here's the full component:
     }}
   >
     <div>
-      <span class="transition" class:open>
-        ▶
-      </span>
+      <span class="transition" class:open> ▶ </span>
       <p>{buttonText}</p>
     </div>
   </button>

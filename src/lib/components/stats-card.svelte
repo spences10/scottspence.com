@@ -1,13 +1,17 @@
-<script>
+<script lang="ts">
   import { number_crunch } from '$lib/utils'
   import { format, startOfMonth, startOfYear } from 'date-fns'
 
-  export let stats
-  export let title
+  export let stats: {
+    [x: string]: string | number
+    visits: number
+    visitors: number
+  }
+  export let title: string
   export let time_period = 'day'
 
   let time_period_label = 'Today'
-  let time_period_range
+  let time_period_range: string
   if (time_period === 'day') {
     time_period_label = 'Today'
     time_period_range = format(new Date(), 'MMM d, yyyy h:mm a')

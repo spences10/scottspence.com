@@ -1,8 +1,16 @@
-<script>
+<script lang="ts">
   import { differenceInDays, format } from 'date-fns'
   import EdgeGlow from './edge-glow.svelte'
 
-  export let post
+  export let post: {
+    title: string
+    date: string
+    readingTime: {
+      text: string
+    }
+    slug: string
+    previewHtml: string
+  }
 </script>
 
 <EdgeGlow>

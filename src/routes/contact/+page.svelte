@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { ContactForm, Head } from '$lib/components'
   import { name, website } from '$lib/info'
   import { ogImageUrl } from '$lib/og-image-url-build'
