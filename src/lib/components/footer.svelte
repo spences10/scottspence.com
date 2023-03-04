@@ -1,17 +1,28 @@
 <script lang="ts">
-  import { Eye } from '$lib/icons'
-  import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
-  import { number_crunch } from '$lib/utils'
+  // import { Eye } from '$lib/icons'
+  import { name, POPULAR_POSTS, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
+  // import { number_crunch } from '$lib/utils'
   import { trackGoal } from 'fathom-client'
 
-  export let data
-  let { popular_posts_analytics, visitors } = data
+  // export let data
+  // let { popular_posts_analytics, visitors } = data
 </script>
 
 <footer class="footer p-10 bg-primary text-primary-content">
   <div>
     <span class="footer-title">Popular Posts</span>
-    {#each popular_posts_analytics as post}
+    {#each POPULAR_POSTS as post}
+      <p>
+        <a
+          class="text-primary-content hover:opacity-50"
+          href={`https://scottspence.com${post.path}`}
+        >
+          {post.title}
+        </a>
+      </p>
+    {/each}
+    <!-- TODO: Fix Analytics caching -->
+    <!-- {#each popular_posts_analytics as post}
       <p>
         <a
           class="text-primary-content hover:opacity-50"
@@ -31,8 +42,8 @@
           {number_crunch(post.pageviews)}
         </span>
       </p>
-    {/each}
-    {#if visitors?.total}
+    {/each} -->
+    <!-- {#if visitors?.total}
       <p
         class="tracking-wide bg-secondary text-secondary-content mt-2 px-2 py-1 shadow-lg rounded-xl"
       >
@@ -42,7 +53,7 @@
         </span>
         live {visitors?.total === 1 ? 'visitor' : 'visitors'}
       </p>
-    {/if}
+    {/if} -->
   </div>
   <div>
     <span class="footer-title">Site Links</span>

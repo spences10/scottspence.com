@@ -1,26 +1,23 @@
 <script lang="ts">
-  import { page } from '$app/stores'
+  // import { page } from '$app/stores'
   import {
     ButtButt,
     Head,
     IsPrivateBanner,
     PopularPosts,
     ShareWithTweet,
-    StatsCard,
+    // StatsCard,
     TableOfContents,
     UpdatedBanner,
   } from '$lib/components'
   import { name, website } from '$lib/info'
-  import type { VisitorsData } from '$lib/stores'
-  import { visitors_store } from '$lib/stores'
-  import { get_current_page_visitors, og_image_url } from '$lib/utils'
+  // import type { VisitorsData } from '$lib/stores'
+  // import { visitors_store } from '$lib/stores'
+  import { og_image_url } from '$lib/utils'
   import {
     differenceInDays,
     differenceInYears,
     format,
-    getDate,
-    getMonth,
-    parseISO,
   } from 'date-fns'
   import { onMount } from 'svelte'
 
@@ -57,19 +54,19 @@
       })
     }
   })
+  // TODO: Fix Analytics caching
+  // let current_path = $page.url.pathname
+  // let { content } = $visitors_store as VisitorsData
 
-  let current_path = $page.url.pathname
-  let { content } = $visitors_store as VisitorsData
-
-  let visitors_count = get_current_page_visitors(
-    current_path,
-    content
-  )
+  // let visitors_count = get_current_page_visitors(
+  //   current_path,
+  //   content
+  // )
 
   // let hourly_visits = data.hourly_visits
-  let daily_visits = data.daily_visits[0]
-  let monthly_visits = data.monthly_visits[0]
-  let yearly_visits = data.yearly_visits[0]
+  // let daily_visits = data.daily_visits[0]
+  // let monthly_visits = data.monthly_visits[0]
+  // let yearly_visits = data.yearly_visits[0]
 </script>
 
 <Head
@@ -114,7 +111,8 @@
       {/if}
     </div>
   </div>
-  {#if visitors_count?.total > 0}
+  <!-- TODO: Fix Analytics caching -->
+  <!-- {#if visitors_count?.total > 0}
     <p class="text-sm">
       {visitors_count.total}
       {visitors_count.total > 1 ? `people` : `person`} viewing this page
@@ -123,7 +121,7 @@
     <p class="mb-10 text-sm">
       Read to the end of the post for more stats
     </p>
-  {/if}
+  {/if} -->
   {#if isPrivate}
     <IsPrivateBanner />
   {/if}
@@ -142,33 +140,33 @@
   <div class="flex flex-col w-full mt-10 mb-5">
     <div class="divider" />
   </div>
-
-  {#if daily_visits?.visits > 0}
+  <!-- TODO: Fix Analytics caching -->
+  <!-- {#if daily_visits?.visits > 0}
     <StatsCard
       title="Daily analytics for this post"
       stats={daily_visits}
       time_period="day"
     />
-  {/if}
-  {#if monthly_visits?.visits > 0 && getDate(new Date()) > 1}
+  {/if} -->
+  <!-- {#if monthly_visits?.visits > 0 && getDate(new Date()) > 1}
     <StatsCard
       title="Month to date analytics for this post"
       stats={monthly_visits}
       time_period="month"
     />
-  {/if}
-  {#if (yearly_visits?.date > 0 && getMonth(parseISO(monthly_visits?.date)) > 0) || (!monthly_visits?.visits && yearly_visits?.visits > 0)}
+  {/if} -->
+  <!-- {#if (yearly_visits?.date > 0 && getMonth(parseISO(monthly_visits?.date)) > 0) || (!monthly_visits?.visits && yearly_visits?.visits > 0)}
     <StatsCard
       title="Year to date analytics for this post"
       stats={yearly_visits}
       time_period="year"
     />
-  {/if}
-  {#if daily_visits?.visits > 0 || monthly_visits?.visits > 0 || yearly_visits?.visits > 0}
-    <div class="flex flex-col w-full mt-5 mb-10">
-      <div class="divider" />
-    </div>
-  {/if}
+  {/if} -->
+  <!-- {#if daily_visits?.visits > 0 || monthly_visits?.visits > 0 || yearly_visits?.visits > 0}
+  <div class="flex flex-col w-full mt-5 mb-10">
+    <div class="divider" />
+  </div>
+  {/if} -->
 
   <div class="grid justify-items-center mb-24">
     <ShareWithTweet

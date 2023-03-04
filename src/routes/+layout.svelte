@@ -12,11 +12,12 @@
   import { themeChange } from 'theme-change'
   import '../app.css'
   import '../prism.css'
-  import type { LayoutData } from './$types'
-
-  export let data: LayoutData
-  $popular_posts_store = data.popular_posts_analytics
-  $visitors_store = data.visitors
+  // import type { LayoutData } from './$types'
+  
+  // TODO: Fix Analytics caching
+  // export let data: LayoutData
+  // $popular_posts_store = data.popular_posts_analytics
+  // $visitors_store = data.visitors
 
   onMount(() => {
     themeChange(false)
@@ -42,4 +43,6 @@
   <slot />
 </main>
 
-<Footer {data} />
+<!-- TODO: Fix Analytics caching -->
+<!-- <Footer {data} /> -->
+<Footer />
