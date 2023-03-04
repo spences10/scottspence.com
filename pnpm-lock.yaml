@@ -1,9 +1,9 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@playwright/test': ^1.31.1
-  '@sveltejs/adapter-vercel': 2.0.1
-  '@sveltejs/kit': ^1.5.0
+  '@playwright/test': ^1.31.2
+  '@sveltejs/adapter-vercel': 2.3.0
+  '@sveltejs/kit': ^1.10.0
   '@tailwindcss/typography': 0.5.9
   '@testing-library/svelte': ^3.2.2
   '@types/marked': ^4.0.8
@@ -12,7 +12,7 @@ specifiers:
   '@vitest/ui': ^0.29.2
   autoprefixer: 10.4.13
   cssnano: 5.1.15
-  daisyui: 2.51.2
+  daisyui: 2.51.3
   date-fns: 2.29.3
   eslint: 8.35.0
   eslint-config-prettier: 8.6.0
@@ -20,7 +20,7 @@ specifiers:
   fathom-client: 3.5.0
   fuse.js: 6.6.2
   graphql: 16.6.0
-  graphql-request: 5.1.0
+  graphql-request: 5.2.0
   husky: 8.0.3
   jsdom: ^21.1.0
   marked: 4.2.12
@@ -41,8 +41,8 @@ specifiers:
   svelte-frappe-charts: ^1.10.0
   svelte-preprocess: 5.0.1
   sveltekit-embed: 0.0.12
-  tailwindcss: 3.2.4
-  theme-change: 2.3.0
+  tailwindcss: 3.2.7
+  theme-change: 2.5.0
   tslib: ^2.5.0
   typescript: ^4.9.5
   unist-util-visit: 4.1.2
@@ -50,10 +50,10 @@ specifiers:
   vitest: ^0.29.2
 
 devDependencies:
-  '@playwright/test': 1.31.1
-  '@sveltejs/adapter-vercel': 2.0.1_@sveltejs+kit@1.9.3
-  '@sveltejs/kit': 1.9.3_svelte@3.55.1+vite@4.1.4
-  '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.4
+  '@playwright/test': 1.31.2
+  '@sveltejs/adapter-vercel': 2.3.0_@sveltejs+kit@1.10.0
+  '@sveltejs/kit': 1.10.0_svelte@3.55.1+vite@4.1.4
+  '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
   '@testing-library/svelte': 3.2.2_svelte@3.55.1
   '@types/marked': 4.0.8
   '@typescript-eslint/eslint-plugin': 5.54.0_6mj2wypvdnknez7kws2nfdgupi
@@ -61,7 +61,7 @@ devDependencies:
   '@vitest/ui': 0.29.2
   autoprefixer: 10.4.13_postcss@8.4.21
   cssnano: 5.1.15_postcss@8.4.21
-  daisyui: 2.51.2_gbtt6ss3tbiz4yjtvdr6fbrj44
+  daisyui: 2.51.3_gbtt6ss3tbiz4yjtvdr6fbrj44
   date-fns: 2.29.3
   eslint: 8.35.0
   eslint-config-prettier: 8.6.0_eslint@8.35.0
@@ -69,7 +69,7 @@ devDependencies:
   fathom-client: 3.5.0
   fuse.js: 6.6.2
   graphql: 16.6.0
-  graphql-request: 5.1.0_graphql@16.6.0
+  graphql-request: 5.2.0_graphql@16.6.0
   husky: 8.0.3
   jsdom: 21.1.0
   marked: 4.2.12
@@ -90,8 +90,8 @@ devDependencies:
   svelte-frappe-charts: 1.10.0_svelte@3.55.1
   svelte-preprocess: 5.0.1_b25a55hc532q56kmuqlrolam2i
   sveltekit-embed: 0.0.12
-  tailwindcss: 3.2.4_postcss@8.4.21
-  theme-change: 2.3.0
+  tailwindcss: 3.2.7_postcss@8.4.21
+  theme-change: 2.5.0
   tslib: 2.5.0
   typescript: 4.9.5
   unist-util-visit: 4.1.2
@@ -431,13 +431,13 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@playwright/test/1.31.1:
-    resolution: {integrity: sha512-IsytVZ+0QLDh1Hj83XatGp/GsI1CDJWbyDaBGbainsh0p2zC7F4toUocqowmjS6sQff2NGT3D9WbDj/3K2CJiA==}
+  /@playwright/test/1.31.2:
+    resolution: {integrity: sha512-BYVutxDI4JeZKV1+ups6dt5WiqKhjBtIYowyZIJ3kBDmJgsuPKsqqKNIMFbUePLSCmp2cZu+BDL427RcNKTRYw==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
       '@types/node': 18.14.4
-      playwright-core: 1.31.1
+      playwright-core: 1.31.2
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -454,12 +454,12 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@sveltejs/adapter-vercel/2.0.1_@sveltejs+kit@1.9.3:
-    resolution: {integrity: sha512-pIFUcOui3jFGA12hvsgcCYWDhQc1XlvLZ/VScAxoRBvSgnGvIhXELmzB01AAm36MYZG16HZPn5LRA0TOwcjpcg==}
+  /@sveltejs/adapter-vercel/2.3.0_@sveltejs+kit@1.10.0:
+    resolution: {integrity: sha512-LvSO/jO0rO2tFGNZhNtgzNniMobZmTXho83PouDgjKS3hW9CvIsn80RlRwT/Ay5Tag+kCHb0jViFuWktR9/OVw==}
     peerDependencies:
       '@sveltejs/kit': ^1.5.0
     dependencies:
-      '@sveltejs/kit': 1.9.3_svelte@3.55.1+vite@4.1.4
+      '@sveltejs/kit': 1.10.0_svelte@3.55.1+vite@4.1.4
       '@vercel/nft': 0.22.6
       esbuild: 0.16.17
     transitivePeerDependencies:
@@ -467,8 +467,8 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/kit/1.9.3_svelte@3.55.1+vite@4.1.4:
-    resolution: {integrity: sha512-rh9FbGfS8w328JZSZmG/ahabBbE50TisHvfz4sVNU3IM3AOhgUAv3EhAJ2dij9R8uARbDHRTY8jOQbIPjcKBZQ==}
+  /@sveltejs/kit/1.10.0_svelte@3.55.1+vite@4.1.4:
+    resolution: {integrity: sha512-0P35zHrByfbF3Ym3RdQL+RvzgsCDSyO3imSwuZ67XAD5HoCQFF3a8Mhh0V3sObz3rc5aJd4Qn82UpAihJqZ6gQ==}
     engines: {node: ^16.14 || >=18}
     hasBin: true
     requiresBuild: true
@@ -514,7 +514,7 @@ packages:
       - supports-color
     dev: true
 
-  /@tailwindcss/typography/0.5.9_tailwindcss@3.2.4:
+  /@tailwindcss/typography/0.5.9_tailwindcss@3.2.7:
     resolution: {integrity: sha512-t8Sg3DyynFysV9f4JDOVISGsjazNb48AeIYQwcL+Bsq5uf4RYL75C1giZ43KISjeDGBaTN3Kxh7Xj/vRSMJUUg==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
@@ -523,7 +523,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.4_postcss@8.4.21
+      tailwindcss: 3.2.7_postcss@8.4.21
     dev: true
 
   /@testing-library/dom/8.20.0:
@@ -1424,8 +1424,8 @@ packages:
       cssom: 0.3.8
     dev: true
 
-  /daisyui/2.51.2_gbtt6ss3tbiz4yjtvdr6fbrj44:
-    resolution: {integrity: sha512-Jnfknn9HrOBNzj1kUI9g/kqNSA5oP5B/r6X4Ff/cdMO27glisO2Oi9QAO8hKwMN9LzfWGdfyqvJGvc3Ji78CXA==}
+  /daisyui/2.51.3_gbtt6ss3tbiz4yjtvdr6fbrj44:
+    resolution: {integrity: sha512-AQa9exq/DsnvjyDi6bwOqHExQr9LJJag0iKRXNvRRtHXPo1gaAQ3ASJWylUB8J8KMH2M9zIpr7cvPHc7yGckyQ==}
     peerDependencies:
       autoprefixer: ^10.0.2
       postcss: ^8.1.6
@@ -1435,7 +1435,7 @@ packages:
       css-selector-tokenizer: 0.8.0
       postcss: 8.4.21
       postcss-js: 4.0.1_postcss@8.4.21
-      tailwindcss: 3.2.4_postcss@8.4.21
+      tailwindcss: 3.2.7_postcss@8.4.21
     transitivePeerDependencies:
       - ts-node
     dev: true
@@ -2155,8 +2155,8 @@ packages:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
     dev: true
 
-  /graphql-request/5.1.0_graphql@16.6.0:
-    resolution: {integrity: sha512-0OeRVYigVwIiXhNmqnPDt+JhMzsjinxHE7TVy3Lm6jUzav0guVcL0lfSbi6jVTRAxcbwgyr6yrZioSHxf9gHzw==}
+  /graphql-request/5.2.0_graphql@16.6.0:
+    resolution: {integrity: sha512-pLhKIvnMyBERL0dtFI3medKqWOz/RhHdcgbZ+hMMIb32mEPa5MJSzS4AuXxfI4sRAu6JVVk5tvXuGfCWl9JYWQ==}
     peerDependencies:
       graphql: 14 - 16
     dependencies:
@@ -3229,8 +3229,8 @@ packages:
       pathe: 1.1.0
     dev: true
 
-  /playwright-core/1.31.1:
-    resolution: {integrity: sha512-JTyX4kV3/LXsvpHkLzL2I36aCdml4zeE35x+G5aPc4bkLsiRiQshU5lWeVpHFAuC8xAcbI6FDcw/8z3q2xtJSQ==}
+  /playwright-core/1.31.2:
+    resolution: {integrity: sha512-a1dFgCNQw4vCsG7bnojZjDnPewZcw7tZUNFN0ZkcLYKj+mPmXvg4MpaaKZ5SgqPsOmqIf2YsVRkgqiRDxD+fDQ==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
@@ -4218,8 +4218,8 @@ packages:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
     dev: true
 
-  /tailwindcss/3.2.4_postcss@8.4.21:
-    resolution: {integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==}
+  /tailwindcss/3.2.7_postcss@8.4.21:
+    resolution: {integrity: sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
     peerDependencies:
@@ -4268,8 +4268,8 @@ packages:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
 
-  /theme-change/2.3.0:
-    resolution: {integrity: sha512-MOv3g4dQfte9Q7WZKyLRshcw9JqcJCwB+CO1OS7lN1WMJcQyPzmpgwm5Ve55vQ4qt62g++A9+8s1x+vRPpm42w==}
+  /theme-change/2.5.0:
+    resolution: {integrity: sha512-B/UdsgdHAGhSKHTAQnxg/etN0RaMDpehuJmZIjLMDVJ6DGIliRHGD6pODi1CXLQAN9GV0GSyB3G6yCuK05PkPQ==}
     dev: true
 
   /tiny-glob/0.2.9:
