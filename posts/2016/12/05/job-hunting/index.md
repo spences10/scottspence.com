@@ -28,7 +28,7 @@ What I have also found is that my skill set is now in a minority,
 that's not to say that banks are going to stop using Excel overnight
 but it does mean that there are other technologies being used here,
 Visual Studio Tools for Office and Excel DNA mean that there are .NET
-controls that can be used in lil old Excel which a lot of
+controls that can be used in little old Excel which a lot of
 organisations want now.
 
 This has basically brought me to the conclusion that I should be
@@ -66,7 +66,7 @@ progressed with my FCC certification.
 
 Things I have learned, most of the time the job doesn't exist (lead
 generation) If it does exist and you match one of the skills on the
-spec you will have every resourcer in the country [and abroad] calling
+spec you will have every recruiter in the country [and abroad] calling
 you for the role. Wild salary ranges £40k-£80k that's a pretty big
 range, these ads usually come with every skill imaginable so it's safe
 to say that they don't really know what they want or the role doesn't

@@ -29,7 +29,7 @@ or to recover from a catastrophic event [like a nuked computer].
 Here's how I set up _my_ Windows Subsystem Linux for my development
 environment.
 
-This is my opinionated view on my specif setup and usage of WSL and
+This is my opinionated view on my specific setup and usage of WSL and
 this is my step by step guide for the next time I have to spin up a
 development environment from scratch on Windows.
 
@@ -114,7 +114,7 @@ sudo apt update && sudo apt -y install fish
 
 ### Install Oh My Fish | OMF
 
-Oh My Fish is like a package manager for Fish enabling the instal of
+Oh My Fish is like a package manager for Fish enabling the install of
 packages and themes.
 
 ```bash

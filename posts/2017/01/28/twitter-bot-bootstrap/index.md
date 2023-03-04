@@ -88,7 +88,7 @@ further detail on configuration on Heroku
 
 ## Setup twitter
 
-Set up an application on the Twitter account you want to favorite and
+Set up an application on the Twitter account you want to favourite and
 retweet from via: [https://apps.twitter.com/app/new]
 
 As an example I'll configure the old [@DroidScott] twitter account I
@@ -120,7 +120,7 @@ running in minutes with one of the pre made Node.js environments.
 
 In the project tree delete the example project files of `client`,
 `package.json`, `README.md` and `server.js` you'll not need them, you
-can leve them there if you desire.
+can leave them there if you desire.
 
 In your new Node.js c9 environment go to the terminal and enter:
 
@@ -272,7 +272,7 @@ ACCESS_TOKEN
 ACCESS_TOKEN_SECRET
 ```
 
-Once you have the Heroku vars set up then you can un-comment the
+Once you have the Heroku vars set up then you can uncomment the
 `module.exports` section in the `config.js` file on your development
 environment and you're ready to deploy to Heroku again without your
 Twitter keys.

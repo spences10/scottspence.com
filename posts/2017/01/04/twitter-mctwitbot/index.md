@@ -25,7 +25,7 @@ So with his great documentation [here], [and here] I managed to cobble
 together my own Twitter-bot which I use on my [@spences10] Twitter
 account.
 
-> If you'r wondering about the post name [check here]
+> If you're wondering about the post name [check here]
 
 ## Technologies used
 
@@ -46,7 +46,7 @@ I already had this installed on my c9 environment so I just had to
 
 I didn't really get what Heroku was until I started this project but
 once I'd read the guides it was quite straightforward and the [Heroku
-CLI] was already installed on c9 i checked with `heroku --version`
+CLI] was already installed on c9 I checked with `heroku --version`
 before attempting to install it.
 
 ### GitHub
@@ -96,7 +96,7 @@ like this:
 The first gotcha for me was the Heroku `Procfile` I couldn't
 understand why it kept timing out, this was because it was trying to
 run the default `web` process instead of the `worker` process which is
-whats needed for the bot.
+what's needed for the bot.
 
 After getting the bare bones set up on part 1 I then got to playing
 around with the timings and the query strings used by the bot, this is
@@ -119,7 +119,7 @@ $ herouku logs -t
 ```
 
 This will give you your logs back from Heroku so you can add all the
-debug lines you want in there to determine whats going on.
+debug lines you want in there to determine what's going on.
 
 I was getting the errors pictured so I started to play with the query
 string and just using one value at a time which didn't cause any

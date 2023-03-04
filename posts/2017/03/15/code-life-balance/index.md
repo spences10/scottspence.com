@@ -33,7 +33,7 @@ hours again.
 
 So.
 
-Let say I'm lazer focussed and relentlessly do 1 hour in the morning
+Let say I'm laser focussed and relentlessly do 1 hour in the morning
 and 3 hours in the evening 4 hours a day 2,080/4 so 520 days? That's
 1.4 years, wow! Ok now let's be a bit more realistic, 1 hour in the
 morning 1 hour in the evening, 1040 = 2.85 nearly 3 years, oh!

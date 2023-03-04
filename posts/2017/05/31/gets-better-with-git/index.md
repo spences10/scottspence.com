@@ -97,7 +97,7 @@ sync, i.e. forget to pull a change made on the remote then try to
 check your changes in before pulling the changes into your local
 version. I'm by no means confident if things go a bit wrong but I have
 developed a “[Commit Often Perfect Later]” approach so if you do break
-something you din't lose too much of you valuable time trying to work
+something you didn't lose too much of you valuable time trying to work
 out what went wrong where.
 
 If you take a look at a repo you have cloned from GitHub you will see

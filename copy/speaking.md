@@ -190,7 +190,7 @@ looking for a mentor, or becoming a mentor.
 
 ### Mintbean - Markdown Showdown, September
 
-Markdown Showdown: all the things I know about markdown a 1-hour
+Markdown Showdown: all the things I know about markdown a 1 hour
 Markdown primer, which will lead into using Markdown with a Gatsby
 blog with MDX.
 

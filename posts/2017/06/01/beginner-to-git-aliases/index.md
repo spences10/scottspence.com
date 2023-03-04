@@ -23,7 +23,7 @@ So still used by me on a daily basis, and everyone else that uses git
 `git push origin <branch>`
 
 In my short time using Git I have always just typed out the full
-commands [usually with [my cheatsheet] close to hand] and thought
+commands [usually with [my cheat sheet] close to hand] and thought
 nothing more of it, that is how you use the tool, right?
 
 Well that was what I foolishly presumed until I learned about
@@ -137,7 +137,7 @@ look at [Paul Irish][pidf]'s dotfiles repo for his `.gitconfig` you'll
 see there is a lot of ways to configure Git, I'm still learning and
 finding new ways to do things.
 
-If there is anything I have missed, or if you have a better way to dom
+If there is anything I have missed, or if you have a better way to do
 something then please let me know 👍
 
 Get me on [Twitter][sdt] or [Ask Me Anything][ama] on GitHub

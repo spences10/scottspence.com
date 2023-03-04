@@ -714,7 +714,7 @@ stream.on('tweet', function (t) {
 })
 ```
 
-You can also use multiple words in the `track` parameter, tis will get
+You can also use multiple words in the `track` parameter, this will get
 you results with either `twitter` or `bot` in them.
 
 ```js
@@ -764,7 +764,7 @@ const config = require('./config')
 const bot = new Twit(config)
 ```
 
-First up get the photo from the NASA api, for this we will need to
+First up get the photo from the NASA API, for this we will need to
 create a parameter object inside our `getPhoto` function that will be
 passed to the node HTTP client `request` for the image:
 
@@ -1398,7 +1398,7 @@ Status posted!
 Done in 9.89s.
 ```
 
-Ok, so thats the picture of the day done, but it has run once and
+Ok, so that's the picture of the day done, but it has run once and
 completed we need to put it on an interval with `setInterval` which we
 need to pass two options to, the function it's going to call and the
 timeout value.
@@ -1570,11 +1570,11 @@ We can now leave the bot running to do its thing!!
 
 Right, we have a bot that does a few things but it's on our
 development environment, so it can't stay there forever, well it could
-but it'd be pretty impcratcical. Let's put our bot on a server
+but it'd be pretty impractical. Let's put our bot on a server
 somewhere to do it's thing.
 
 To do this we're going to be using [now][now], `now` allows for simple
-deployments from the CLI if you're not fimailiar with now then take a
+deployments from the CLI if you're not familiar with now then take a
 quick look at the [documentation][now] in these examples we're going
 to be using the `now-cli`.
 
@@ -1609,7 +1609,7 @@ now --login
 
 The first time you run `now`, it'll ask for your email address in
 order to identify you. Go to the email account to supplied when
-sigining up an click on the email sent to you from `now`, and you'll
+signing up an click on the email sent to you from `now`, and you'll
 be logged in automatically.
 
 If you need to switch the account or re-authenticate, run the same
@@ -1648,11 +1648,11 @@ documentation is there you just need to put it all together 😎
 > outright wrong then please [log an issue][github-issue] or create a
 > pull request 👍
 
-The now settings `alias` is to give your deployment a shothand name
+The now settings `alias` is to give your deployment a shorthand name
 over the auto generated URL that `now` creates, the `files` section
-covers what we want to include in the depoloyment to `now` we'll go
+covers what we want to include in the deployment to `now` we'll go
 over the file structure shortly. Basically what is included in the
-`files` array is all that get pused up to the now servers.
+`files` array is all that get pushed up to the now servers.
 
 All good so for?
 
@@ -1747,7 +1747,7 @@ const tmpDir = os.tmpdir()
 
 Those two lines give us the `temp` directory of the operating system,
 so if like me you're on Windows it will work as well as if you are on
-another stsyem like a linux based system, which is what `now` is. In
+another system like a Linux based system, which is what `now` is. In
 our `saveFile` function we're going to use `tmpDir` to save our file.
 
 We've taken out the `nasa.jpg` from the `getPhoto` function as we can
@@ -1884,7 +1884,7 @@ module.exports = getPhoto
 
 </details>
 
-Ok, thats it! We're ready to deploy to `now`!🚀
+Ok, that's it! We're ready to deploy to `now`!🚀
 
 So from the terminal we call our deployment script we defined earlier:
 

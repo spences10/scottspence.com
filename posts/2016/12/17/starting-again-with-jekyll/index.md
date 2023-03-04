@@ -26,7 +26,7 @@ installed Jekyll, no problem
 ### Setup
 
 It wasn't as simple as just going to the local host page as it's a
-cloud based system so after som digging I found this from
+cloud based system so after some digging I found this from
 Jean-François L'Heureux [jflheureux] on GitHub.
 
 https://www.jflh.ca/2016-01-18-running-jekyll-on-cloud9
