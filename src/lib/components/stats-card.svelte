@@ -2,34 +2,67 @@
   import { number_crunch } from '$lib/utils'
   import { format, startOfMonth, startOfYear } from 'date-fns'
 
-  export let stats: {
-    [x: string]: string | number
+  interface Stats {
     visits: number
-    visitors: number
+    visitors?: number
+    uniques: number
+    pageviews: number
   }
+
+  export let stats: Stats
   export let title: string
   export let time_period = 'day'
 
-  let time_period_label = 'Today'
-  let time_period_range: string
-  if (time_period === 'day') {
-    time_period_label = 'Today'
-    time_period_range = format(new Date(), 'MMM d, yyyy h:mm a')
+  const time_periods: {
+    [key: string]: {
+      label: string
+      range?: string
+    }
+  } = {
+    day: {
+      label: 'Today',
+      range: format(new Date(), 'MMM d, yyyy h:mm a'),
+    },
+    week: {
+      label: 'This Week',
+    },
+    month: {
+      label: 'This Month',
+      range: `${format(
+        startOfMonth(new Date()),
+        'MMM d, yyyy'
+      )} - ${format(new Date(), 'MMM d, yyyy')}`,
+    },
+    year: {
+      label: 'This Year',
+      range: `${format(
+        startOfYear(new Date()),
+        'MMM d, yyyy'
+      )} - ${format(new Date(), 'MMM d, yyyy')}`,
+    },
   }
-  if (time_period === 'week') time_period_label = 'This Week'
-  if (time_period === 'month') {
-    time_period_label = 'This Month'
-    time_period_range = `${format(
-      startOfMonth(new Date()),
-      'MMM d, yyyy'
-    )} - ${format(new Date(), 'MMM d, yyyy')}`
-  }
-  if (time_period === 'year') {
-    time_period_label = 'This Year'
-    time_period_range = `${format(
-      startOfYear(new Date()),
-      'MMM d, yyyy'
-    )} - ${format(new Date(), 'MMM d, yyyy')}`
+
+  const time_period_config =
+    time_periods[time_period] || time_periods.day
+  const time_period_label = time_period_config.label
+  const time_period_range = time_period_config.range || ''
+
+  export const formatted_stats = {
+    entries: {
+      label: `Entries ${time_period_label}`,
+      value: number_crunch(stats.visits) ?? '0',
+      range: time_period_range,
+    },
+    visitors: {
+      label: `Visitors ${time_period_label}`,
+      value: number_crunch(stats.uniques) ?? '0',
+      range: time_period_range,
+    },
+    views: {
+      label: `Views ${time_period_label}`,
+      value: number_crunch(stats.pageviews) ?? '0',
+      range: time_period_range,
+    },
   }
 </script>
 
@@ -38,29 +71,13 @@
 <div
   class="stats stats-vertical md:stats-horizontal shadow-lg w-full border border-secondary mb-8"
 >
-  <div class="stat">
-    <div class="stat-title">Entries {time_period_label}</div>
-    <div class="stat-value text-2xl">
-      {number_crunch(stats.visits)}
+  {#each Object.entries(formatted_stats) as [key, { label, value, range }]}
+    <div class="stat">
+      <div class="stat-title">{label}</div>
+      <div class="stat-value text-2xl">{value}</div>
+      {#if range}
+        <div class="stat-desc">{range}</div>
+      {/if}
     </div>
-    <div class="stat-desc">{time_period_range}</div>
-  </div>
-
-  <div class="stat">
-    <div class="stat-title">Visitors {time_period_label}</div>
-    <div class="stat-value text-2xl">
-      {number_crunch(stats.uniques)}
-    </div>
-    <div class="stat-desc">
-      {time_period_range}
-    </div>
-  </div>
-
-  <div class="stat">
-    <div class="stat-title">Views {time_period_label}</div>
-    <div class="stat-value text-2xl">
-      {number_crunch(stats.pageviews)}
-    </div>
-    <div class="stat-desc">{time_period_range}</div>
-  </div>
+  {/each}
 </div>
