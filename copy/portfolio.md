@@ -34,7 +34,7 @@ SvelteKit and GraphCMS] over on the freeCodeCamp news publication.
 I conducted a workshop at Jamstack conf to "[Build with SvelteKit and
 GraphQL]".
 
-There's also a Jamstack exploreres guide on "[Building with SvelteKit
+There's also a Jamstack explorers guide on "[Building with SvelteKit
 and GraphCMS]" you can check out for free!
 
 A walkthrough of all the example projects in the [GraphCMS Examples

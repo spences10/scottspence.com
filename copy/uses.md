@@ -16,7 +16,7 @@ All the equipment and tools I use on a daily basis.
 For home, I use Windows 11 Pro Insider Preview exclusively now.
 Windows Subsystem for Linux (WSL) has come a long way with WSL2.
 
-If you are intersted in getting familiar with it check the [tags
+If you are interested in getting familiar with it check the [tags
 section for WSL].
 
 ---
@@ -55,7 +55,7 @@ Channel.
 
 - I use OBS ([Open Broadcaster Software]) for recording some coding
   sessions.
-- Restream for livestreams.
+- Restream for live streams.
 - For light video editing I use [Shotcut] and ReCut, longer videos
   DaVinci Resolve.
 

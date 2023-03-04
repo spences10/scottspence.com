@@ -12,7 +12,7 @@
 </Small>
 
 Hello, welcome to the privacy policy for scottspence.com, I want to be
-transparent about anything this site collets from you and what I use
+transparent about anything this site collects from you and what I use
 it for.
 
 The privacy policy in this site includes these points:

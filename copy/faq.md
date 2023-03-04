@@ -106,7 +106,7 @@ very interested in roles that are using it.
 
 Tailwind is my current preference for the speed which it offers when
 creating projects. I have used styled-components for many projects, I
-am also comforable using Theme UI and Tailwind CSS.
+am also comfortable using Theme UI and Tailwind CSS.
 
 I have a wealth of knowledge using [Gatsby] (2017-2020) (which uses
 **React** and **GraphQL**) and have consulted on large scale projects
@@ -202,7 +202,7 @@ I'm happy in sunny, sunny Swanley
 I think the question now should be, are you willing to come into the
 office!
 
-Yeah, I mean, the whole industry has been working remotley since 2020
+Yeah, I mean, the whole industry has been working remotely since 2020
 now.
 
 I'd prefer not to be bound by any number of days needed to be worked

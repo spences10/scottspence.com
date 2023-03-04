@@ -21,7 +21,7 @@ or anything else [get in touch].
 
 **Recent talks, workshops and appearances**
 
-Here's the list of talks, podcasts and livestreams I have done
+Here's the list of talks, podcasts and live streams I have done
 recently.
 
 ## 2023
@@ -124,7 +124,7 @@ project with Svelte]
 
 ### Eddie Jaoude - September
 
-Livestream with Eddie Jaoude where we made a full stack CRUD app with
+Live stream with Eddie Jaoude where we made a full stack CRUD app with
 Svelte.
 
 <YouTube youTubeId='aCP6sEvmYU4'/>
@@ -234,9 +234,9 @@ transitioning his site over to MDX from Markdown Remark.
 
 ### Whiskey Wednesday - August
 
-Episode #7 - Mental Wellbeing As A Developer, Becoming and being a
+Episode #7 - Mental Well-being As A Developer, Becoming and being a
 developer is not an easy task. Many challenges await us in the daily
-battle. It's important to keep good mental wellbeing. We will talk
+battle. It's important to keep good mental well-being. We will talk
 about common problems among developers.
 
 📺 [Watch it on YouTube](https://www.youtube.com/watch?v=0P8GTyBEUVE)

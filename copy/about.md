@@ -16,7 +16,7 @@ space.
 I create content written in the blog here and educational videos
 supporting the written content.
 
-I'm a second career dev that reskilled from a VBA analyst developer
+I'm a second career dev that re-skilled from a VBA analyst developer
 role into web development.
 
 I have been spending a lot of time working in Svelte and SvelteKit
@@ -82,7 +82,7 @@ from that aren't all code related:
 
 Stories of cyber threats/breaches that happened on the internet, these
 are stories from the past not covering current tech security. Super
-intersting to listen to.
+interesting to listen to.
 
 <Deezer
   frameSrc="show/496882"
