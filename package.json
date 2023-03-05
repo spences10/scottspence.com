@@ -19,7 +19,8 @@
     "test:ui": "vitest --ui",
     "test:ci": "vitest run",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
-    "format": "prettier --plugin-search-dir . --write ."
+    "format": "prettier --plugin-search-dir . --write .",
+    "cspell": "cspell '**/*.md' --config cspell.json --language-id en-gb --wordsOnly"
   },
   "devDependencies": {
     "@playwright/test": "^1.31.2",
@@ -32,6 +33,7 @@
     "@typescript-eslint/parser": "^5.54.0",
     "@vitest/ui": "^0.29.2",
     "autoprefixer": "10.4.13",
+    "cspell": "^6.28.0",
     "cssnano": "5.1.15",
     "daisyui": "2.51.3",
     "date-fns": "2.29.3",

@@ -39,3 +39,5 @@ jobs:
           FATHOM_API_KEY: ${{ secrets.FATHOM_API_KEY }}
       - name: Test
         run: pnpm run test:ci
+      - name: Check spelling
+        run: npm run cspell
