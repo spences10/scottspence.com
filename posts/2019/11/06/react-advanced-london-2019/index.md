@@ -45,6 +45,8 @@ tools.
 
 **Example:**
 
+<!-- cSpell:ignore mainthread -->
+
 ```bash
 performance.mark('mainthread-start')
 # do expensive things for performance
@@ -85,6 +87,8 @@ main thread.
 There are some downsides to this relating to serialization though.
 
 **WASM**
+
+<!-- cSpell:ignore worklet -->
 
 He finished up with an auto tune example made with Rust and a Google
 audio worklet to process a stream of audio to do the Daft Punk "one
@@ -178,6 +182,8 @@ Here's the same talk from RSCONF 2019:
 ## Daniel Irvine - Don't Let Your Unit Tests Slow You Down
 
 Six ideas that can help improve your testing.
+
+<!-- cSpell:ignore Minimise -->
 
 <!-- | Developer Tests             | QA tests                      |
 | --------------------------- | ----------------------------- |

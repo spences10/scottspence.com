@@ -11,7 +11,7 @@ isPrivate: false
 
 Hooks ahoy!
 
-Ok, let's get it on with the new hotness in Reactland, React Hooks!
+Ok, let's get it on with the new hotness in React-land, React Hooks!
 This is a guide covering using the Gatsby custom React hook for
 `StaticQuery` which it is now replacing with `useStaticQuery`.
 
@@ -227,12 +227,16 @@ export default Layout
 
 Here's the comparison:
 
+<!-- cSpell:ignore compareLayout -->
+
 ![compareLayout]
 
 On now to the `seo` component, same again, remove `StaticQuery` and
 use `useSiteMetadata` in it's place.
 
 Here's the comparison:
+
+<!-- cSpell:ignore compareSEO -->
 
 ![compareSEO]
 

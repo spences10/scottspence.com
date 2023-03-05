@@ -29,12 +29,14 @@ VT-x/AMD-V"
 
 ![system extended features]
 
+<!-- cSpell:ignore svga -->
+
 Then the display setting pick the "VBoxSVGA" option from the "Graphics
 Controller" dropdown.
 
 ![display screen setting]
 
-With these setting enabled ther's no need to install the Guest
+With these setting enabled there's no need to install the Guest
 Additions software.
 
 > I've found that I need only to enable "Enable Nested VT-x/AMD-V"

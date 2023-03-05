@@ -133,7 +133,7 @@ tricks with it.
 
 ### Serverless functions - Simona Cotin
 
-Simona detailed key usecases for serveless functions.
+Simona detailed key use cases for serveless functions.
 
 <!-- cSpell:ignore surma -->
 

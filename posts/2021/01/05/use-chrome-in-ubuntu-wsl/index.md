@@ -9,7 +9,7 @@ isPrivate: false
   import { YouTube } from 'sveltekit-embed'
 </script>
 
-This is a specific usecase for installing Google Chrome in Ubuntu on
+This is a specific use case for installing Google Chrome in Ubuntu on
 WSL.
 
 On Ubuntu, Snap is the preferred method to install Chromium and

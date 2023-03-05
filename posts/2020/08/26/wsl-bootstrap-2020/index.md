@@ -495,7 +495,7 @@ like [Pengwin] (which is a great extension on what's already available
 in the recommended distros from Microsoft).
 
 **What does that have to do with symlinks though?** Well, if you think
-about each one of these instances as their own isolated oppearting
+about each one of these instances as their own isolated operating
 system on your machine.
 
 Each one with it's own set of configurations, it will get pretty
@@ -550,7 +550,7 @@ Then I'll simlink to those files:
 ln -s /windir/c/Users/scott/stuff-not-on-linux/symlinks/.ssh/* .
 ```
 
-Now to change the premissions from within the `.ssh` folder for the
+Now to change the permissions from within the `.ssh` folder for the
 symlinks, I'll do that with `chmod`:
 
 ```bash

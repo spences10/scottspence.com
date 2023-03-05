@@ -187,7 +187,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 ```
 
 Because I installed the nvm package with fish there's no need to worry
-about adding the variables output from the nvm insall, I can install
+about adding the variables output from the nvm install, I can install
 my required node version:
 
 ```bash

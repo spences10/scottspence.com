@@ -128,7 +128,7 @@ one!
 The Ryzen 5 also comes with a CPU **fan included**, so saving a bit of
 money there.
 
-<!-- cSpell:ignore strix,nvme -->
+<!-- cSpell:ignore strix,nvme,HTPC -->
 
 For the **Motherboard** I went with whatever I could get that would
 offered some expansion to the memory further down the line so I went

@@ -154,7 +154,7 @@ const Headline = styled.div`
 
 const StyledLink = styled(Link)`
   color: white;
-  textdecoration: none;
+  textDecoration: none;
 `
 
 const Header = ({ siteTitle }) => (
@@ -185,9 +185,9 @@ import { GlobalStyle } from '../theme/globalStyle'
 
 const ContentWrapper = styled.div`
   margin: 0 auto;
-  maxwidth: 960;
+  maxWidth: 960;
   padding: 0px 1.0875rem 1.45rem;
-  paddingtop: 0;
+  paddingTop: 0;
 `
 
 const Layout = ({ children }) => (

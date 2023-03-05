@@ -201,6 +201,7 @@ I'll be having a look at [powerlevel10k] sometime soon as it looks
 pretty swish!
 
 <!-- Links -->
+<!-- cSpell:ignore powerlevel -->
 
 [oh my fish]: https://github.com/oh-my-fish/oh-my-fish
 [spacefish]: https://github.com/matchai/spacefish

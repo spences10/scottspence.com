@@ -65,6 +65,8 @@ render(<button onClick={onClick}>Click Me!</button>)
 
 Image for prosperity 👍
 
+<!-- cSpell:ignore highlightVLive -->
+
 ![highlightVLive]
 
 ### Mdx is a bit slow

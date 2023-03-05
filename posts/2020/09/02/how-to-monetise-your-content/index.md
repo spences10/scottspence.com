@@ -45,6 +45,8 @@ a few things.
 
 ## 1. Set up a web monetised wallet
 
+<!-- cSpell:ignore gatehub -->
+
 You'll need a web monetised wallet that supports web monetisation,
 although there are wallets that support the [Interledger Protocol]
 (ILP) it only appears that [Uphold] and [GateHub] support web

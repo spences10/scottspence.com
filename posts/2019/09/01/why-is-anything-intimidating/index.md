@@ -37,7 +37,7 @@ start somewhere.
 A whole new world 🙃
 
 I'm not an expert, the fitness industry is massive and unregulated,
-any gymbro can open a YouTube channel and be the de facto expert on
+any gym bro can open a YouTube channel and be the de facto expert on
 whatever it is they're peddling.
 
 It's like with any industry there's shysters and there's people who

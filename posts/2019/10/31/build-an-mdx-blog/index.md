@@ -1592,6 +1592,8 @@ export const wrapRootElement = ({ element }) => (
 )
 ```
 
+<!-- cSpell:ignore duotoneDark -->
+
 [prism-react-renderer] comes with additional themes over the default
 theme which is [duotoneDark] you're going to use [nightOwl] in this
 example, feel free to take a look at [the other examples] if you like.
@@ -1880,12 +1882,14 @@ for this sort of thing expected an input until this in the Gatsby
 source code. Which is creating the input for you.
 
 So, create a `utils` directory and the `copy-to-clipboard.js` file and
-add in the code from the Gatsby sourcue code.
+add in the code from the Gatsby source code.
 
 ```bash
 mkdir src/utils
 touch src/utils/copy-to-clipboard.js
 ```
+
+<!-- cSpell:ignore contenteditable -->
 
 ```js
 // https://github.com/gatsbyjs/gatsby/blob/master/www/src/utils/copy-to-clipboard.js

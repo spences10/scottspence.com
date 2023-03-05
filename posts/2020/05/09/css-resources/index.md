@@ -41,6 +41,8 @@ From **Adam Wathan:**
 
 From **Steve Schoger:**
 
+<!-- cSpell:ignore greyscale,colourising -->
+
 > Working with images that clash with each other? Try desaturating
 > them to greyscale or colourising them all with a single colour to
 > make them a little more cohesive.
@@ -122,6 +124,8 @@ The last time I asked [Mathias Bynens] answered!
 
 If you want the list go to the [the CSS3 spec] and run this snippet in
 the dev console:
+
+<!-- cSpell:ignore valdef -->
 
 ```js
 ;[

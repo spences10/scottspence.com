@@ -153,7 +153,7 @@ with whatever variables you pass to it.
 
 ## Interactive example
 
-Here's an intercalative example, edit the `params` object here to
+Here's an interactive example, edit the `params` object here to
 generate an image:
 
 ```js react-live

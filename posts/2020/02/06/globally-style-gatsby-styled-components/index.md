@@ -155,7 +155,7 @@ Then I'm adding in the smooth scroll html property and some additional
 styles for base font size and colour along with base line height
 letter spacing and background colour.
 
-<!-- cSpell:ignore behavior,Segoe,Tahoma -->
+<!-- cSpell:ignore behavior,Segoe,Tahoma,Verdana -->
 
 ```jsx {12-15,17-21}
 import { createGlobalStyle } from 'styled-components'
@@ -256,7 +256,7 @@ yarn add gatsby-plugin-google-fonts
 Configure, I'll add three fonts, sans, sans serif and monospace to the
 Gatsby plugin array in `gatsby-config.js`:
 
-<!-- cSpell:ignore arvo -->
+<!-- cSpell:ignore arvo,cambay -->
 
 ```js
 {

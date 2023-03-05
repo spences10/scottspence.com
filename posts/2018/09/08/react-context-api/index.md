@@ -40,7 +40,7 @@ went here].
 > ### Explain the Context API to me.
 >
 > A great resource on explaining the API can be found from
-> [@leighchalliday] with a [great usecase] on the subject.
+> [@leighchalliday] with a [great use case] on the subject.
 
 ## What we're doing...
 
@@ -849,7 +849,7 @@ Then in the `App` component we can import our
 
 As mentioned at the start of this article a great resource is
 [@leighchalliday] and [his YouTube channel] where you can find his
-[great usecase] for the React Context API.
+[great use case] for the React Context API.
 
 There's also the [React community on spectrum] and [styled-components
 on spectrum].
@@ -873,7 +873,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [prop drilling]:
   https://blog.kentcdodds.com/prop-drilling-bb62e02cb691
 [@leighchalliday]: https://twitter.com/leighchalliday
-[great usecase]: https://www.youtube.com/watch?v=yzQ_XulhQFw
+[great use case]: https://www.youtube.com/watch?v=yzQ_XulhQFw
 [codesandbox]: https://codesandbox.io
 [coding straight away]: https://codesandbox.io/s/new
 [open a react codesandbox]: https://codesandbox.io/s/new

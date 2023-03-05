@@ -86,7 +86,7 @@ yarn patch-package gatsby-react-router-scroll
 ```
 
 This creates a `patches` folder with the git diff in there of the
-change I made, it also details the package version in the filemane.
+change I made, it also details the package version in the filename.
 
 Now if I upgrade `gatsby-react-router-scroll` and the changes I have
 made are irrelevant then patch package will give me a warning asking

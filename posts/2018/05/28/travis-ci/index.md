@@ -93,7 +93,7 @@ global:
   secure: lngmfinghashvariable!
 ```
 
-<!-- cSpell:ignore lngmfinghashvariable,cleanup -->
+<!-- cSpell:ignore lngmfinghashvariable,cleanup,scottblog -->
 
 My `package.json` looks like this:
 

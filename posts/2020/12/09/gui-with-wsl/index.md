@@ -81,6 +81,8 @@ There's a some things I'll need up front, an [X-server] I already have
 [X410] which I got on offer from the Windows store, it retails around
 £8.39.
 
+<!-- cSpell:ignore Xsrv -->
+
 Check out Nicky's blog on getting set up with [VcXsrv] if you're not
 going to hand over the cash for X410. There's an important note on the
 additional settings needed for that on Nicky's post.
@@ -360,6 +362,8 @@ I'll need to create a `sudoers` file to grant passwordless access for
 doesn't exist already), in there I need to give no password access to
 `dbus`:
 
+<!-- cSpell:ignore NOPASSWD -->
+
 ```bash
 # open or create the sudoers file for dbus
 sudo visudo -f /etc/sudoers.d/dbus
@@ -397,11 +401,13 @@ Boom! GUI running in WSL!!
 
 ## Video detailing the process
 
-<YouTube youTubeId="hhxMFVQsklI" />
+<!-- cSpell:ignore hhxMFVQsklI -->
+
+<YouTube youTubeId="" />
 
 <!-- Links -->
 
-<!-- cSpell:ignore commandline -->
+<!-- cSpell:ignore commandline,vcxsrv -->
 
 [x410]: https://www.microsoft.com/en-gb/p/x410/9nlp712zmn9q
 [pengwin]: https://www.microsoft.com/en-gb/p/pengwin/9nv1gv1pxz6p
@@ -425,18 +431,16 @@ Boom! GUI running in WSL!!
 [adding linux gui app support to wsl]:
   https://devblogs.microsoft.com/commandline/the-windows-subsystem-for-linux-build-2020-summary/#wsl-gui
 [windows insiders]: https://insider.windows.com/en-gb/for-developers
-[vcxsrv]:
-  https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#vcxsrv
+
+[]: https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#vcxsrv
 [wsl bootstrap 2020]:
-  https://scottspence.com/posts/wsl-bootstrap-2020/
-[stack overflow answer]: https://stackoverflow.com/a/60016407/1138354
+https://scottspence.com/posts/wsl-bootstrap-2020/ [stack overflow
+answer]: https://stackoverflow.com/a/60016407/1138354
 [`explorer.exe`]:
-  https://devblogs.microsoft.com/commandline/whats-new-for-wsl-in-windows-10-version-1903/#accessing-linux-files-from-windows
+https://devblogs.microsoft.com/commandline/whats-new-for-wsl-in-windows-10-version-1903/#accessing-linux-files-from-windows
 [explains brilliantly]:
-  https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#the-display-variable
-[d-bus]: https://en.wikipedia.org/wiki/D-Bus
-[`build-essential`]:
-  https://packages.ubuntu.com/xenial/build-essential
-[yarn install docs]:
-  https://classic.yarnpkg.com/en/docs/install/#debian-stable
+https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#the-display-variable
+[d-bus]: https://en.wikipedia.org/wiki/D-Bus [`build-essential`]:
+https://packages.ubuntu.com/xenial/build-essential [yarn install
+docs]: https://classic.yarnpkg.com/en/docs/install/#debian-stable
 [playwright]: https://github.com/microsoft/playwright

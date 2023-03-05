@@ -477,6 +477,7 @@ that's it, I've gone and installed an off the shelf version of Linux
 on my Windows machine and configured it for use in web development.
 
 <!-- Links -->
+<!-- cSpell:ignore Xsrv -->
 
 [fedora magazine]: https://fedoramagazine.org/wsl-fedora-33/
 [dev.to]:

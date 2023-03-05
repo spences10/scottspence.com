@@ -56,7 +56,7 @@ and the VALUE is the DNS server.
 
 So in the now CLI I did the following:
 
-<!-- cSpell:ignore cdrjcy -->
+<!-- cSpell:ignore cdrjcy,randomsite,starman,fathomdns -->
 
 ```bash
 now dns add randomsite.com cdrjcy CNAME starman.fathomdns.com

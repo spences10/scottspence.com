@@ -638,6 +638,8 @@ If you want to search for a tweet without another word use `-` like
 
 You can search for tweets with emoticons, like `q: 'sad :('` try it!
 
+<!-- cSpell:ignore towie,geocode,gitter,scottbot,scotttwit,iotd -->
+
 Of course look for hashtags `q: '#towie'`. Look for tweets to a user
 `q: 'to:@stephenfry'` or from a user `q: 'from:@stephenfry'`
 

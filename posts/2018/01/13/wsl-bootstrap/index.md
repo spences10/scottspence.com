@@ -18,6 +18,8 @@ I love it, you can have a bash shell in Windows and run all your node
 apps through it too and with the Windows 10 Fall Creators Update WSL
 is really straightforward to set up.
 
+<!-- cSpell:ignore slowbash,settingsrepo,wslmsstore,usen -->
+
 Quick backstory on why I'm posting this: I nuked my laptop the other
 day as I was having issues with bash on Windows. Related partly to
 using [nvm][slowbash] with WSL and generally getting frustrated with

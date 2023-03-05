@@ -185,6 +185,7 @@ on business goals. For example, the BBC found they lost an additional
 > additional second their site took to load
 
 <!-- Links -->
+<!-- cSpell:ignore 404pagefound,jfkt,staticgen -->
 
 [smashingmagazine.com]: https://smashingmagazine.com
 [jfkt4.nyc]: https://jfkt4.nyc

@@ -657,7 +657,7 @@ If you want to use a different version of Ubuntu, Debian or any of the
 other available distributions of Linux from the Windows store with
 Hyper you will need to change the default version from PowerShell:
 
-<!-- cSpell:ignore wslconfig -->
+<!-- cSpell:ignore wslconfig,setdefault -->
 
 ```bash
 # list available versions

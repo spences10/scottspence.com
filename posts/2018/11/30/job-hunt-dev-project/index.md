@@ -129,6 +129,8 @@ pick up the phone than READ the information provided.
 
 <!-- Links -->
 
+<!-- cSpell:ignore jobsite,jsonresume -->
+
 [json resume schema]: https://jsonresume.org/schema/
 [bot]:
   https://dev.to/whokilledkevin/how-i-created-a-bot-that-talked-to-recruiters-for-me-54n5

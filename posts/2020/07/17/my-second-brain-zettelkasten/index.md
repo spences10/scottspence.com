@@ -56,7 +56,7 @@ These later were added to [Cheat Sheets].xyz
 ## Notion
 
 Back when Notion was the new hotness and I jumped onto it as soon as a
-discovered how flexable it was and more importantly cross platform, so
+discovered how flexible it was and more importantly cross platform, so
 I could take notes on my phone, work laptop and personal computer yay
 🎉
 
