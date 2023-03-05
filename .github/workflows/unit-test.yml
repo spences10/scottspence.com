@@ -10,30 +10,33 @@ jobs:
   unit-tests:
     name: Run unit tests
     runs-on: ubuntu-latest
-    env:
-      PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
-      PUBLIC_FATHOM_URL: ${{ secrets.PUBLIC_FATHOM_URL }}
-      AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
-      AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
-      EMAIL_SIGNUP_API_KEY: ${{ secrets.EMAIL_SIGNUP_API_KEY }}
-      FATHOM_API_KEY: ${{ secrets.FATHOM_API_KEY }}
 
     steps:
-      - uses: actions/cache@v2.2.1
+      - uses: actions/cache@v2
         with:
           path: ~/.pnpm-store
           key:
             ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-
-      - uses: actions/checkout@v2.5.2
-      - uses: actions/setup-node@v2.5.1
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.2.4
         with:
-          node-version: '16.x'
+          version: 6.0.2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 18.x
       - name: Install dependencies
         run: pnpm install
       - name: Build
         run: pnpm run build
+        env:
+          PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
+          PUBLIC_FATHOM_URL: ${{ secrets.PUBLIC_FATHOM_URL }}
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+          EMAIL_SIGNUP_API_KEY: ${{ secrets.EMAIL_SIGNUP_API_KEY }}
+          FATHOM_API_KEY: ${{ secrets.FATHOM_API_KEY }}
       - name: Test
         run: pnpm run test:ci
       - name: Check spelling
