@@ -5,6 +5,8 @@ tags: ['tools', 'cli', 'notes']
 isPrivate: false
 ---
 
+<!-- cSpell:ignore direnv,vlad,envrc -->
+
 I was directed to direnv by Chris Biscardi when I was trying to use
 some environment variables in my Toast site.
 

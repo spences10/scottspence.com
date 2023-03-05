@@ -67,6 +67,8 @@ Let's add in a Google font and reset the `padding` and `margin`, for
 visual feedback we're going to add the font directly to the body
 element.
 
+<!-- cSpell:ignore Kodchasan -->
+
 ```js
 import { createGlobalStyle } from 'styled-components'
 
@@ -152,7 +154,7 @@ const Headline = styled.div`
 
 const StyledLink = styled(Link)`
   color: white;
-  textdecoration: none;
+  textDecoration: none;
 `
 
 const Header = ({ siteTitle }) => (
@@ -183,9 +185,9 @@ import { GlobalStyle } from '../theme/globalStyle'
 
 const ContentWrapper = styled.div`
   margin: 0 auto;
-  maxwidth: 960;
+  maxWidth: 960;
   padding: 0px 1.0875rem 1.45rem;
-  paddingtop: 0;
+  paddingTop: 0;
 `
 
 const Layout = ({ children }) => (

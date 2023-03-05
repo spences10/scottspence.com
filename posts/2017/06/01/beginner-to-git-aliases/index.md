@@ -35,6 +35,8 @@ Tools][git-tools] give it a listen it's a great show.
 This was a pretty cool learning experience for me and I now have a
 pretty efficient git workflow 🚀
 
+<!-- cSpell:ignore yourusername -->
+
 Let's go over `.gitconfig`, do you remember having to enter your email
 address and name when first setting up Git on your computer? That
 information is stored in your `.gitconfig` file, your file will be
@@ -131,6 +133,8 @@ You'll no doubt notice the link I have in there for `o = open` that
 little gem belongs to [Paul Irish][pi] it's an npm package that will
 pop open a browser tab to the current repository you are in, pretty
 neat right?
+
+<!-- cSpell:ignore pidf -->
 
 I'm sure there are many, many more ways to configure Git if you take a
 look at [Paul Irish][pidf]'s dotfiles repo for his `.gitconfig` you'll

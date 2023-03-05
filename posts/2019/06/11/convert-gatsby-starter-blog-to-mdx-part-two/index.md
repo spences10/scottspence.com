@@ -236,6 +236,8 @@ more content yo!
 <Butt>yoyoyo</Butt>
 ```
 
+<!-- cSpell:ignore yoyoyo -->
+
 ## MDXProvider
 
 If you want to change the rendering of any of the page elements, i.e.

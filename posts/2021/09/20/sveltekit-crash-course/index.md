@@ -19,6 +19,8 @@ section.
 
 Ok so let's take a look at what I'm going to build!
 
+<!-- cSpell:ignore Pokedex -->
+
 A Pokedex!
 
 No, a blog!
@@ -122,8 +124,8 @@ Let's talk about Vite environment variables quickly:
 https://vitejs.dev/config/#envprefix
 
 Because I'll be using environment variables in the endpoints this
-shouldn't be an issue but to avoid any confudion and possible exposure
-of sensitise API keys I think it's best to go with a solution like
+shouldn't be an issue but to avoid any confusion and possible exposure
+of sensitive API keys I think it's best to go with a solution like
 `env-cmd`: https://www.npmjs.com/package/env-cmd
 
 Add additional packages for use in the endpoints I'll be creating to

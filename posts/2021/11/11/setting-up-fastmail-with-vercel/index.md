@@ -30,12 +30,16 @@ Vercel CLI.
 
 ## MX records
 
+<!-- cSpell:ignore yourdomainname,messagingengine -->
+
 ```bash
 vc dns add yourdomainname.com @ MX in1-smtp.messagingengine.com 10
 vc dns add yourdomainname.com @ MX in2-smtp.messagingengine.com 20
 ```
 
 ## CNAME records
+
+<!-- cSpell:ignore fmhosted,domainkey -->
 
 ```bash
 vc dns add yourdomainname.com fm1._domainkey CNAME fm1.yourdomainname.com.dkim.fmhosted.com

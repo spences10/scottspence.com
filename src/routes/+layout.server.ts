@@ -5,7 +5,7 @@ import type { LayoutServerLoad } from './$types'
 export const load: LayoutServerLoad = async ({ fetch }) => {
   // const posts = shuffle_array(POPULAR_POSTS).slice(0, 4)
 
-  // loop thorugh posts and fetch data
+  // loop through posts and fetch data
   // const popular_posts_analytics = await Promise.all(
   //   posts.map(async (post: { path: any; title: any }) => {
   //     const res = await fetch(

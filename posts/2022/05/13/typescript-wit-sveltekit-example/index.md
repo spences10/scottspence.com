@@ -10,7 +10,7 @@ Svelte. My buddy Jamie Barton has helped me out with getting set up
 with the GraphQL Code Generator so that data is typed in the project.
 
 This is a _just so you know_ kind of guide as there is
-[KitQL](https://kitql.vercel.app/) as an alternitive which will
+[KitQL](https://kitql.vercel.app/) as an alternative which will
 generate all the types you need for your GraphQL schema for use in
 your SvelteKit projects.
 
@@ -25,7 +25,7 @@ link].
 
 Usual fare with this, use the CLI to create a new project. So from the
 command line I'll scaffold out a new SvelteKit skeleton project. One
-thing to note is that the `@next` isn't needed anymore, this
+thing to note is that the `@next` isn't needed any more, this
 **doesn't** mean that SvelteKit is at v1 though like I have said in
 the past.
 
@@ -308,6 +308,8 @@ the imported types from the `types.ts` file:
 <pre>{JSON.stringify(posts, null, 2)}</pre>
 ```
 
+<!-- cSpell:ignore stringifying -->
+
 I'm JSON stringifying the `posts` array in a `<pre>` tag so that I can
 see the data is being returned from the API as I expect.
 
@@ -319,7 +321,7 @@ the API by adding it to some markup on the page.
 I've set up and configured the GraphQL Code Generator and plugins on a
 project and used the generated types in my code.
 
-I can now use typesafe code in my Svelte project!
+I can now use type safe code in my Svelte project!
 
 If you want to check out how to do this with KitQL then check out my
 guide on [Getting Started with KitQL and GraphCMS] for more

@@ -12,12 +12,14 @@ isPrivate: false
 
 Don't save the yak! But put in the work so you're not wasting time.
 
+<!-- cSpell:ignore Biletska,godin -->
+
 [Marina Biletska] told me about this expression when we were working
-on our [Chingu colabs] project together.
+on our [Chingu collabs] project together.
 
 This initially came up in an issue I raised on the project we were
 working on together ([grad.then()]) where I was having issues with
-[ESLint linebreak style] and Marina left a link to a [Seth Godin
+[ESLint line-break style] and Marina left a link to a [Seth Godin
 article].
 
 ## What's shaving the yak?
@@ -25,6 +27,7 @@ article].
 This YouTube video of Hal from Malcolm in the Middle beautifully
 illustrates Yak Shaving. 👇
 
+<!-- cSpell:ignore sehc -->
 <Details buttonText="Expand to watch.">
   <YouTube youTubeId="AbSehcT19u0" />
 </Details>
@@ -37,7 +40,7 @@ kitchen but the light doesn't work.
 
 He proceeds to the cupboard to get a light bulb but on opening the
 door notices that the shelf is missing a screw so he goes off to the
-draw to fetch a screwdiver to fix the shelf.
+draw to fetch a screwdriver to fix the shelf.
 
 On opening the draw to get the screwdriver he notices that the draw
 rails are squeaking.
@@ -78,7 +81,7 @@ and running?
 
 Like with most things, it depends. 😬
 
-If you're on a large team where you want codind standards enforced
+If you're on a large team where you want coding standards enforced
 then absolutely you'll need to have a linter like ESLint.
 
 If you're making a small example project to share with someone then
@@ -86,6 +89,8 @@ spending the additional time to setup a linter is probably not worth
 it.
 
 ## Resources
+
+<!-- cSpell:ignore stimpy -->
 
 - [Seth Godin - Don't Shave That Yak!]
 - [Wiktionary - Ren and Stimpy reference]
@@ -95,10 +100,10 @@ it.
 
 [seth godin article]:
   https://sethgodin.typepad.com/seths_blog/2005/03/dont_shave_that.html
-[chingu colabs]: https://chingu.io/
+[chingu collabs]: https://chingu.io/
 [marina biletska]: https://github.com/mar-bi
 [grad.then()]: https://github.com/chingu-voyage6/grad.then/issues/191
-[eslint linebreak style]:
+[eslint line-break style]:
   https://github.com/chingu-voyage6/grad.then/issues/118#issuecomment-353569629
 [update dependencies]:
   https://github.com/chingu-voyage6/grad.then/issues/191

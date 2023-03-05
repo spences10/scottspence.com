@@ -117,6 +117,8 @@ so they should be used like `hsl(var(--s))`
 
 </Chat>
 
+<!-- cSpell:ignore whaaaa -->
+
 <Chat>
 
 whaaaa??
@@ -159,6 +161,8 @@ some additional CSS removed. Or you can check out the file over on
 [GitHub].
 
 <Details buttonText="Click to expand">
+
+<!-- cSpell:ignore behavior -->
 
 ```css
 @tailwind base;

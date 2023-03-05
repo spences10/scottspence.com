@@ -42,10 +42,10 @@ Current 8.2
 ## Be more active in the Svelte community
 
 I'd like to keep up the consistency I had through 2022 with organising
-monthy Svelte meetups and contributing to the Svelte community.
+monthly Svelte events and contributing to the Svelte community.
 
 <ProgressBar
-  label="Help organise 12 Svelte meetups"
+  label="Help organise 12 Svelte events"
   value={0}
   max={12}
   width="w-2/3"

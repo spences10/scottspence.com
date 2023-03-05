@@ -5,9 +5,9 @@ tags: ['sveltekit', 'notes']
 isPrivate: false
 ---
 
-> SvelteKit now handles env secrets, take a look at [SvelteKit
-> Environment Variables with the SvelteKit $env Module] which details
-> how to use it in a SvelteKit project.
+**SvelteKit now handles env secrets, take a look at [SvelteKit
+Environment Variables with the SvelteKit $env Module] which details
+how to use it in a SvelteKit project.**
 
 So SvelteKit is super awesome n' all and the best thing ever but have
 you ever tried to use a `.env` secret that you didn't want exposed on
@@ -38,6 +38,8 @@ runtime `process.env` is populated in dev.
 
 Here I have defined my `.env` file at the root of my project:
 
+<!-- cSpell:ignore wheeeeeeeee,shhhhhh -->
+
 ```python
 VITE_CLIENT_VARIABLE=wheeeeeeeee
 SUPER_SECRET_SECRET=shhhhhh
@@ -62,8 +64,10 @@ too.
 
 ## Update
 
-There's annother option to use which I found on the [Blog by
-Hideckies] in their example it's a `svelte.config.js` change:
+<!-- cSpell:ignore Hideckies -->
+
+There's another option to use which I found on the [Blog by Hideckies]
+in their example it's a `svelte.config.js` change:
 
 ```js
 const config = {
@@ -83,6 +87,8 @@ export default config
 Check out the post linked earlier for more info!
 
 ## Thanks!
+
+<!-- cSpell:ignore saikatdas0790 -->
 
 A kind thank you to Discord users `Xyo` and especially `saikatdas0790`
 on the Svelte Discord `svelte-kit` channel for helping me out with

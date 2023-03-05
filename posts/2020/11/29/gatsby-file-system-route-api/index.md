@@ -64,7 +64,7 @@ gatsby-file-system-route-api-mdx/
 │  ├─ components/
 │  ├─ images/
 │  ├─ pages/
-│  └─ woot-wapper.tsx
+│  └─ woot-wrapper.tsx
 ... more files
 ```
 
@@ -132,6 +132,8 @@ on and the `-o` flag to open the tab on my default browser:
 yarn dev -- -p 8850 -o
 ```
 
+<!-- cSpell:ignore GraphiQL -->
+
 ## Validate data with the Gatsby GraphiQL explorer
 
 Once that's finished I can access the Gatsby Graph<em>i</em>QL
@@ -167,7 +169,7 @@ slug, here's the GraphQL query:
 ```
 
 From that I'll take a slug to use in a `mdx` query I'll grab the slug
-`09/02/how-to-monitise-your-content/`
+`09/02/how-to-monetise-your-content/`
 
 ```json
 {
@@ -262,6 +264,8 @@ the URL and wrap the file name in some curly bois:
 
 In the file structure like this:
 
+<!-- cSpell:ignore shiz -->
+
 ```text
 gatsby-file-system-route-api-mdx/
 ... content
@@ -281,7 +285,7 @@ it again `yarn dev`.
 Super duper! Now it's time to check that the Gatsby File System Route
 API is doing it's magic.
 
-If you didn't know already you can check the all the pages generatred
+If you didn't know already you can check the all the pages generated
 by Gatsby from the Gatsby 404 page, to access it I can enter a route
 that doesn't exist to see it or add the `404.js` path to the localhost
 URL, like `http://localhost:8000/404.js` from here I can see that the
@@ -500,7 +504,7 @@ Ok, that's it for the file routes! To recap what I did:
 - Validated the pages were created Gatsby `404.js` page
 - Used the MDXRenderer to render out the MDX on the page
 
-The source code for this walkthough can be found on GitHub in the
+The source code for this walkthrough can be found on GitHub in the
 Gatsby [File System Route Starter] I made.
 
 <!-- Links -->

@@ -9,6 +9,8 @@ isPrivate: false
   import { YouTube } from 'sveltekit-embed'
 </script>
 
+<!-- cSpell:ignore pengwin -->
+
 So this post started off with me getting GUI apps running on my
 Windows WSL install of [Pengwin], but has now turned into doing it
 without the need to fork over [the readies] for Pengwin as now you can
@@ -78,6 +80,8 @@ for now.
 There's a some things I'll need up front, an [X-server] I already have
 [X410] which I got on offer from the Windows store, it retails around
 £8.39.
+
+<!-- cSpell:ignore Xsrv -->
 
 Check out Nicky's blog on getting set up with [VcXsrv] if you're not
 going to hand over the cash for X410. There's an important note on the
@@ -239,7 +243,7 @@ Because I like to trash my Linux installs on a regular basis I have a
 set of SSH keys I move from install to install. I recently discovered
 the [`explorer.exe`] which allows you to access the Linux files in the
 Windows file explorer! This is really handy and means I haven't got to
-simlink them anymore!! 🚀
+simlink them any more!! 🚀
 
 I'll pop open my Debian instance and copy pasta the SSH files in
 there:
@@ -270,6 +274,8 @@ ssh -T git@github.com
 This is where Nicky's detailed posts come in, the dependencies here
 are what's needed to get the GUI stuff going:
 
+<!-- cSpell:disable -->
+
 ```bash
 sudo apt install \
   libgtk-3-dev \
@@ -280,8 +286,12 @@ sudo apt install \
   libasound2 -y
 ```
 
+<!-- cSpell:enable -->
+
 ℹ If you're using [Playwright] there's a few additional dependencies
 tha need installing for WebKit, this was from using with Ubuntu.
+
+<!-- cSpell:disable -->
 
 ```bash
 sudo apt install \
@@ -289,6 +299,8 @@ sudo apt install \
   libenchant1c2a \
   gstreamer1.0-libav -y
 ```
+
+<!-- cSpell:enable -->
 
 For the GUI apps to connect to my X-server I'll need to create a
 `DISPLAY` environment variable in my `.zshrc` config file.
@@ -302,6 +314,8 @@ nano ~/.zshrc
 Then add in the variable, when I have attempted this in the past the
 variable was literally `0.0` so this from Nicky is a nice expansion on
 that and he [explains brilliantly] why this needs to be done:
+
+<!-- cSpell:ignore resolv -->
 
 ```bash
 # set DISPLAY variable to the IP automatically assigned to WSL2
@@ -318,6 +332,8 @@ To confirm that it works I can open a new terminal or use
 source ~/.zshrc
 echo $DISPLAY
 ```
+
+<!-- cSpell:ignore dbus -->
 
 ## `dbus` start and access
 
@@ -345,6 +361,8 @@ I'll need to create a `sudoers` file to grant passwordless access for
 `dbus`, the following command will open that file (or create it if it
 doesn't exist already), in there I need to give no password access to
 `dbus`:
+
+<!-- cSpell:ignore NOPASSWD -->
 
 ```bash
 # open or create the sudoers file for dbus
@@ -383,9 +401,13 @@ Boom! GUI running in WSL!!
 
 ## Video detailing the process
 
-<YouTube youTubeId="hhxMFVQsklI" />
+<!-- cSpell:ignore hhxMFVQsklI -->
+
+<YouTube youTubeId="" />
 
 <!-- Links -->
+
+<!-- cSpell:ignore commandline,vcxsrv -->
 
 [x410]: https://www.microsoft.com/en-gb/p/x410/9nlp712zmn9q
 [pengwin]: https://www.microsoft.com/en-gb/p/pengwin/9nv1gv1pxz6p
@@ -409,7 +431,7 @@ Boom! GUI running in WSL!!
 [adding linux gui app support to wsl]:
   https://devblogs.microsoft.com/commandline/the-windows-subsystem-for-linux-build-2020-summary/#wsl-gui
 [windows insiders]: https://insider.windows.com/en-gb/for-developers
-[vcxsrv]:
+[VcXsrv]:
   https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#vcxsrv
 [wsl bootstrap 2020]:
   https://scottspence.com/posts/wsl-bootstrap-2020/

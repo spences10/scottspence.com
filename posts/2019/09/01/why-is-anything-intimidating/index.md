@@ -10,6 +10,8 @@ Stand back everyone, I'm doing pontification! I've had a couple
 conversations with my new found developer buddies about fitness, more
 along the lines of gym going and nutrition actually.
 
+<!-- cSpell:ignore ormshaw -->
+
 One friend in particular Danielle Ormshaw asked why is going to the
 gym so intimidating?
 
@@ -35,7 +37,7 @@ start somewhere.
 A whole new world 🙃
 
 I'm not an expert, the fitness industry is massive and unregulated,
-any gymbro can open a YouTube channel and be the defacto expert on
+any gym bro can open a YouTube channel and be the de facto expert on
 whatever it is they're peddling.
 
 It's like with any industry there's shysters and there's people who
@@ -58,6 +60,8 @@ What are macros?
 
 Macros make up the calorie content of food:
 
+<!-- cSpell:ignore carbs -->
+
 - 1 gram of fat = 9 calories
 - 1 gram of carbs (carbohydrates) = 4 calories
 - 1 gram of protein = 4 calories
@@ -76,6 +80,8 @@ compulsive disorder and you'll be 'that person' when you go out with
 your friends to eat — this is where the consistency comes in.
 
 https://tdeecalculator.net/
+
+<!-- cSpell:ignore tdee,tdeecalculator -->
 
 TDEE Calculator: Learn Your Total Daily Energy Expenditure Use the
 TDEE calculator to learn your Total Daily Energy Expenditure, a

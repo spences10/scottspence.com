@@ -42,7 +42,7 @@ terminal and search for what I want to install!
 
 I've created a [GitHub gist] of all the programs I install.
 
-## Linux distrobutions not on the Windows Store
+## Linux distributions not on the Windows Store
 
 There's still the aspect of using a Linux distribution that's not on
 the Windows Store, you _can_ do this and I have detailed the whole

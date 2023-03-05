@@ -62,6 +62,8 @@ accompany each of the examples in the [GraphCMS examples] repo.
 Twenty odd videos between two and six minutes each, this is when I
 started taking video editing seriously.
 
+<!-- cSpell:ignore PL5SvzogSTpeH1Szqw4tPi9ZfgXDbY8GU -->
+
 <YouTube listId='PL5SvzogSTpeH1Szqw4tPi9ZfgXDbY8GU-'/>
 
 These videos took up a lot of time and effort to make for something so
@@ -99,7 +101,7 @@ Then I released a SvelteKit crash course video on YouTube.
 
 <YouTube youTubeId='zH2qG9YwN3s'/>
 
-I was asked to do a livestream with Eddie Jaoude where we made a full
+I was asked to do a live stream with Eddie Jaoude where we made a full
 stack CRUD app with Svelte.
 
 <YouTube youTubeId='aCP6sEvmYU4'/>
@@ -111,6 +113,8 @@ followed up [with a blog post] on the GraphCMS blog.
 
 So now I've listed off what I've done in the last several months, I
 can see I have been quite busy!
+
+<!-- cSpell:ignore Pranshu,Khanna -->
 
 I have had periods of overwhelming imposter syndrome, at points like
 this I have had colleagues like [Pranshu Khanna] highlight some of my

@@ -70,6 +70,8 @@ In the file I change the `Prompt` from `Prompt=lts` to
 To save the file in Nano I use Ctrl+o to write out the file, confirm
 (Enter/Return) then to close use I Ctrl+x.
 
+<!-- cSpell:ignore realsies -->
+
 ## Do the release upgrade, for realsies
 
 Now the `release-upgrades` file is set to `normal` I can do the
@@ -83,6 +85,8 @@ system is unable to reach the snap store"].
 
 I'm going to skip this during the upgrade but you can _**optionally**_
 run this when doing this for yourself, here's the command:
+
+<!-- cSpell:ignore dpkg -->
 
 ```bash
 sudo dpkg --force depends -P lxd; sudo dpkg --force depends -P lxd-client
@@ -104,6 +108,8 @@ I respond with `y` to continue and start the upgrade.
 
 ## Warnings and configs
 
+<!-- cSpell:ignore libc -->
+
 When I'm prompted about `libc6` for restarting services during package
 upgrades I use the tab key to select `<Yes>` then return to continue.
 
@@ -121,6 +127,8 @@ I'm going to be picking the option to
 
 Same with `openssh-server` arrow up key to to
 `install the package maintainer's version` and hit return to continue.
+
+<!-- cSpell:ignore servier -->
 
 ![openssh-servier-config]
 
@@ -161,6 +169,8 @@ is now on 19.10.
 ## Wrap up!
 
 That's it! I upgraded a WSL Ubuntu version from 18.04 to 19.10.
+
+<!-- cSpell:ignore upgrader -->
 
 First, I changed the default behaviour of the release upgrader from
 `lts` to `normal`.

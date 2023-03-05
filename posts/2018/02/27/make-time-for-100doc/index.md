@@ -5,6 +5,8 @@ tags: ['guide', 'learning', 'habits', 'career']
 isPrivate: false
 ---
 
+<!-- cSpell:ignore Bueller -->
+
 > Life moves pretty fast. If you don't stop and look around once in a
 > while, you could miss it. — Ferris Bueller.
 
@@ -63,6 +65,8 @@ concepts/paradigms I need to see them in action. This is why I will
 always gush about courses by Wes Bos or Kent C. Dodds as they (among
 many others) are great at explaining complex subject simply and
 visually with their awesome [content on egghead.io] and wesbos.com.
+
+<!-- cSpell:ignore ymmv -->
 
 YMMV however, so, find what works for you, find it and stick with it.
 

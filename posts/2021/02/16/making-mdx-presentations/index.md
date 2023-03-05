@@ -35,6 +35,8 @@ This is the second slide
 I've tried several other solutions along the way, here they are
 listed:
 
+<!-- cSpell:ignore fusuma,mdxp,behbeh -->
+
 - MDX Deck
 - Gatsby Theme MDX Deck
 - [Next MDX Deck]
@@ -86,7 +88,7 @@ No doubt Sarah's presentation is going to be 🔥
 
 So whilst I was looking at doing my slides for the [MMT Tech Meetup] I
 decided _not_ to go with Next MDX Deck and went about trying to find
-an alternitive. See other solutions mentioned earlier on. 👍
+an alternative. See other solutions mentioned earlier on. 👍
 
 ## Prerequisites
 
@@ -109,7 +111,7 @@ use-cases however:
 
 ## FUSUMA
 
-First alternitive I found was FUSUMA and it wasn't until I got into
+First alternative I found was FUSUMA and it wasn't until I got into
 the very important part of customisation of the slides that I found
 the YAML file used to configure the theme and code blocks didn't work
 on my setup (WSL behbeh).
@@ -196,9 +198,9 @@ bear in mind that the component needs to wrap everything in that
 slide. So if I wanted notes with the MDXP `<Note>` component they
 could need to be contained by `<CodeHighlight>`.
 
-I like the flexability of this because it means that the slides can
+I like the flexibility of this because it means that the slides can
 have an individual look and feel which is something that I've found
-lacking in the alternitives.
+lacking in the alternatives.
 
 ## Wrap
 

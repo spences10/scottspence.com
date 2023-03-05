@@ -31,6 +31,8 @@ recently.
 I was on the web development podcast from LogRocket, had a blast
 speaking with Sean Rayment and talking about SvelteKit.
 
+<!-- cSpell:ignore izjg -->
+
 <Spotify
   spotifyLink="episode/3OC43WIzjgWSiq1GFoILhQ"
   width="100%"
@@ -72,11 +74,15 @@ SvelteKit and the content layer
 Live coding example refactoring the new SvelteKit routes API changes
 at the Svelte Society London meetup.
 
+<!-- cSpell:ignore pulw -->
+
 <YouTube youTubeId='ua6gE2zPulw' skipTo={{ h: 1, m: 16, s: 28 }} />
 
 ### JSNation Workshop - June
 
 Three hour workshop for [Building with SvelteKit and GraphQL].
+
+<!-- cSpell:ignore jsnation -->
 
 [![jsnation workshop 2022]] [jsnation workshop 2022]
 
@@ -93,6 +99,8 @@ I joined Ale for an episode of Microsoft's Developer Perspectives! A
 series championing the unique voices of the Windows community and
 members from around the world.
 
+<!-- cSpell:ignore kkon -->
+
 <YouTube youTubeId='iZc6kkon3Vk' />
 
 ## 2021
@@ -106,6 +114,8 @@ members from around the world.
 ### MMT Tech Meetup - November
 
 SvelteKit and the Content Layer
+
+<!-- cSpell:ignore ziyz -->
 
 <YouTube youTubeId='LNAApZIYZUw' skipTo={{ h: 1, m: 31, s: 50 }} />
 
@@ -139,11 +149,15 @@ https://zencastr.com/z/TARGseQu
 
 Delivering Digital Content with GraphCMS
 
+<!-- cSpell:ignore ycdi -->
+
 <Spotify
   spotifyLink="episode/404wafUKZho8inHT6iYcdi"
   width="100%"
   height="152px"
 />
+
+<!-- cSpell:ignore utkal -->
 
 ### UtkalHacks 3.0 - March
 
@@ -182,6 +196,8 @@ looking for a mentor, or becoming a mentor.
 
 📺 [Watch it on YouTube](https://www.youtube.com/watch?v=Ei9gQBiE_YE)
 
+<!-- cSpell:ignore uaww -->
+
 <Spotify
   spotifyLink="episode/5vDA5M3fVGXz5UAWWIoM6T"
   width="100%"
@@ -193,6 +209,8 @@ looking for a mentor, or becoming a mentor.
 Markdown Showdown: all the things I know about markdown a 1 hour
 Markdown primer, which will lead into using Markdown with a Gatsby
 blog with MDX.
+
+<!-- cSpell:ignore vnvf -->
 
 <YouTube youTubeId="VNVF7ZIUj60" />
 
@@ -207,6 +225,8 @@ important, and how to implement it.
 
 📺 [Watch it on YouTube](https://www.youtube.com/watch?v=Utf1cznHYcI)
 
+<!-- cSpell:ignore kepe -->
+
 <Spotify
   spotifyLink="episode/5ru6HIgUyTCH9hypKepeGJ"
   width="100%"
@@ -219,6 +239,8 @@ Episode #8 - Content Creation, Whether it's blog posts, video courses,
 live streams, or books - content creation is BIG, also for developers.
 
 📺 [Watch it on YouTube](https://www.youtube.com/watch?v=N6eShctTwxo)
+
+<!-- cSpell:ignore jaeu -->
 
 <Spotify
   spotifyLink="episode/48fjNuaZVB50ygM5R5jaeu"
@@ -240,6 +262,8 @@ battle. It's important to keep good mental well-being. We will talk
 about common problems among developers.
 
 📺 [Watch it on YouTube](https://www.youtube.com/watch?v=0P8GTyBEUVE)
+
+<!-- cSpell:ignore xdozdWXWI,bxq -->
 
 <Spotify
   spotifyLink="episode/1xdozdWXWINddIIbxqZAzL"
@@ -287,6 +311,8 @@ developer and how to grow your account.
 
 📺 [Watch it on YouTube](https://www.youtube.com/watch?v=2YFa6aJG1bo)
 
+<!-- cSpell:ignore FKWRRF,ieef -->
+
 <Spotify
   spotifyLink="episode/12q74FKWRRF7Tsl7ieefXA"
   width="100%"
@@ -302,6 +328,8 @@ freelance work.
 
 📺 [Watch it on YouTube](https://www.youtube.com/watch?v=k3lsSMByTPw)
 
+<!-- cSpell:ignore Ipouy -->
+
 <Spotify
   spotifyLink="episode/7x4kDYzJnGDbZs9qYIpouy"
   width="100%"
@@ -316,11 +344,14 @@ talk with us about how to learn (and unlearn) how to code 💻📚
 
 📺 [Watch it on YouTube](https://www.youtube.com/watch?v=5eJ2a9rn54U)
 
+<!-- cSpell:ignore AdnmZgwv -->
+
 <Spotify
   spotifyLink="episode/4QjQa9vO41AdnmZgwvZRpl"
   width="100%"
   height="152px"
 />
+
 
 ### The Front End podcast
 
@@ -352,6 +383,8 @@ Thompson and Eddy Vinck about coding motivation and whether or not you
 need a college degree to get a job in tech.
 
 📺 [Watch it on YouTube](https://www.youtube.com/watch?v=LQwvSAcs-QY)
+
+<!-- cSpell:ignore csnp,gudnn -->
 
 <Spotify
   spotifyLink="episode/0li7Ya8CsnpX0GudnnMuUy"

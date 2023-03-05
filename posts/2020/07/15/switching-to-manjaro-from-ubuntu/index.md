@@ -12,7 +12,7 @@ isPrivate: false
 I switched from Ubuntu to Manjaro Linux, here's how it went.
 
 So for a while now I've been using Ubuntu, from when my old Asus
-Transformer Pro decided that it didn't like running windows anymore.
+Transformer Pro decided that it didn't like running windows any more.
 
 To [my shiny new rig] where the first thing I installed was Ubuntu,
 now I'm not going to pontificate on OSs and which one is the best,
@@ -28,7 +28,7 @@ and decided I didn't like the unity launcher that came with it.
 Linux Mint was my go to as it was Windows like with the super key
 mapped to the applications menu so you could navigate around your apps
 which felt familiar and I stuck with it for a long time before going
-back to Windows (new hardware with Windows preinstalled).
+back to Windows (new hardware with Windows pre-installed).
 
 Then I switched back to Ubuntu with the introduction of Windows
 Subsystem Linux, it was only a matter of time before I decided to go
@@ -44,9 +44,9 @@ suggestions on other Linux distros to try.
 
 <Tweet tweetLink="spences10/status/1270385153232207874" />
 
-I decided to give all the Manjaro distros a try, I tried Majaro once
+I decided to give all the Manjaro distros a try, I tried Manjaro once
 before and was a bit overwhelmed (because it wasn't Debian) so didn't
-persue it any farther.
+peruse it any farther.
 
 <Tweet tweetLink="spences10/status/1270589501732278272" />
 
@@ -72,7 +72,7 @@ use a backup tool.
 
 It was a freakishly quick install, I do have a fast SSD but it was
 something like three minutes to install after clicking 'install' on
-the Majaro installer interface.
+the Manjaro installer interface.
 
 <Tweet tweetLink="spences10/status/1283394445300375553" />
 
@@ -97,6 +97,8 @@ message went away. 😅
 ## Bluetooth
 
 Bluetooth wasn't working with my headset, to Google!
+
+<!-- cSpell:ignore pulseaudio -->
 
 I found a post on the [Manjaro forum] which (once I got past the crazy
 amount of links on there) pointed me to install
@@ -135,7 +137,7 @@ set fish_user_paths (string match -rv yarn $fish_user_paths)
 
 ## Emoji
 
-There's no packages form am emoji dialog, you know like the one you
+There's no packages form am emoji dialogue, you know like the one you
 get in macOS with Ctrl+Command+Space so I installed Emote via a Snap!
 
 ```bash
@@ -154,6 +156,8 @@ Before:
 There was a post on the Manjaro forum for [emoji support] which I
 wasn't keen on so I had a play around in a VM and found there was no
 need to add the config.
+
+<!-- cSpell:ignore noto,pacman -->
 
 I needed to do was install the `noto-fonts-emoji` package:
 
@@ -176,7 +180,7 @@ I was somehow turning on the activity view, it looks like this:
 ![activity view]
 
 I was getting pretty annoying but I found out it was a [hot corner
-setting] which was disabled in the Tweaks dialog.
+setting] which was disabled in the Tweaks dialogue.
 
 Tweaks > Top Bar > Activities Overview Hot Corner
 
@@ -203,7 +207,7 @@ I found this info [again from the Manjaro forum].
 
 ## Done
 
-So far, that's all the hickups, so not completely smooth sailing!
+So far, that's all the hiccups, so not completely smooth sailing!
 
 But, I still _really_ like the GNOME desktop with Manjaro, super
 snappy and FAST!

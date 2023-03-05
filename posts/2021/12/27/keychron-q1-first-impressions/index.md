@@ -25,9 +25,11 @@ The G915 was (and still is) a really nice board to type on.
 ## Why change from the G915
 
 The G915 was what I thought to be my "end game" board. It had the
-media controls on it, which was a main decicion in me getting it. It
+media controls on it, which was a main decision in me getting it. It
 also had the super nice low profile Kailh switches I really liked
 typing on.
+
+<!-- cSpell:ignore kailh -->
 
 The only thing is with a factory made board like this, if there's
 issues with one of the switches, you can't just replace it. So, say
@@ -49,7 +51,7 @@ sourcing the new parts!
 
 So, I decided the best way to keep a keyboard for more than 18 months
 without it breaking and having to possibly have to break out a
-soldering iron was to get a keyboard that would be easily servicable.
+soldering iron was to get a keyboard that would be easily serviceable.
 
 From looking at subreddits for mechanical keyboards this looks like it
 can be a bonkers expensive hobby. Something I really want to avoid!
@@ -74,6 +76,8 @@ there's surprisingly few boards out there that I could choose from.
 
 The two candidates I found after searching was the [Keychron Q1] and
 the [GMMK Pro].
+
+<!-- cSpell:ignore gmmk -->
 
 From what I could glean from YuTube videos they both had the same
 volume knob on the top right of the board. I found out later that
@@ -100,6 +104,8 @@ YouTube videos! There were some issues with the Keychron case sounding
 "pingy" but the reviewers said this was going to get fixed in the
 production boards.
 
+<!-- cSpell:ignore pingy -->
+
 ## Switches
 
 The main reason I wanted a custom keyboard was to have the ability to
@@ -124,6 +130,8 @@ time or patience to do that!
 When going through the GMMK option I saw they sold pre-lubed switches
 GMMK Pandas. Which they sell in packs of 36 for some reason?? So I had
 to get 3 packs of switches to make up the whole board.
+
+<!-- cSpell:ignore clicky -->
 
 I have always liked the blue clicky switches from the Logitech G915
 but I do know that they can get super loud and annoying. The pandas
@@ -187,10 +195,12 @@ for one handed use:
 
 ## But what's it like to use?
 
-Honestly, it's nice to type on, the slight elivation of the keyboard
+Honestly, it's nice to type on, the slight elevation of the keyboard
 meant a bit of adjustment but I've not suffered from any RSI on it.
 Something I was worried about when you take a look at the elevation of
 the Q1 compared to the G915.
+
+<!-- cSpell:ignore ligitech -->
 
 [![elevation-comparison-keychron-q1-ligitech-g915]]
 [elevation-comparison-keychron-q1-ligitech-g915]

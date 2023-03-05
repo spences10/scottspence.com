@@ -9,6 +9,8 @@ In this how-to I'll be walking through the process of creating a
 contact form in SvelteKit using Airtable for storing the submissions
 with no additional dependencies.
 
+<!-- cSpell:ignore jeda -->
+
 I got the inspiration for doing this when a saw a video on YouTube
 from WebJeda on [SvelteKit Contact Form using Google Forms]. Sharath's
 video is great but I'm not a fan of using Google products so thought
@@ -253,7 +255,7 @@ going to need to reference the awesome Airtable documentation!
 
 I can access it by clicking the 'HELP ?' link in the top right of the
 base page. Clicking it will pop out the help panel and at the very
-bottom of the panel is the '`<> API Dcoumentaion`' link.
+bottom of the panel is the '`<> API Documentation`' link.
 
 [![airtable-help-panel]] [airtable-help-panel]
 
@@ -263,6 +265,8 @@ down to that on the page.
 
 [![airtable-api-documentation-create-record]]
 [airtable-api-documentation-create-record]
+
+<!-- cSpell:ignore appMdmn2bcQAUCeGb,keybJWwl29RhmPEQh -->
 
 So at the moment this gives me the workspace ID `appMdmn2bcQAUCeGb`
 and has `"Authorization: Bearer YOUR_API_KEY"` as well. If I click on
@@ -310,7 +314,7 @@ will accept a `{request}` object. The `.json.js` file notation may
 look a bit funky, this is letting SvelteKit know the return type of
 the data (`JSON`) from the endpoint.
 
-From that request comming into the endpoint I'll be able to get the
+From that request coming into the endpoint I'll be able to get the
 `formData` which needs to be submitted from the form to the endpoint!
 
 I'll scaffold out the endpoint first, then go to the form to submit

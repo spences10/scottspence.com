@@ -29,7 +29,7 @@ for more info.
 Off to GitHub to download the `rootfs` for Fedora 35 which is
 available from the Dockerhub container image.
 
-From the GitHub page I can click on the image to downloaf it. For me
+From the GitHub page I can click on the image to download it. For me
 at the time of writing that file is
 [`fedora-35.20211125-x86_64.tar.xz`].
 
@@ -38,7 +38,7 @@ The download is a `*.tar.xz` file, I need to extract this so it's a
 
 ## Import `rootfs` into WSL
 
-One thing to bear in mind is that the files you're importting into WSL
+One thing to bear in mind is that the files you're importing into WSL
 will need their own folder on your computer. So if you have Fedora 34
 and Fedora 35 instances the're going to need their own folders to live
 in.
@@ -48,6 +48,8 @@ I'm going to put mine in a Fedora-35 folder on my C drive.
 ```powershell
 wsl --import Fedora-35 C:\\Users\\scott\\distros\\Fedora-35 C:\\Users\\scott\\distros\\fedora-35.20211125-x86_64.tar
 ```
+
+<!-- cSpell:ignore vhdx -->
 
 In my Fedora-35 folder on my C drive I now have a `ext4.vhdx` file,
 this is my new Fedora 35 instance!
@@ -84,6 +86,8 @@ dnf -y update
 # install core packages
 dnf install -y wget curl sudo nano ncurses dnf-plugins-core dnf-utils passwd findutils
 ```
+
+<!-- cSpell:ignore findutils -->
 
 Now the core packages are installed I can go about setting up my user.
 
@@ -138,6 +142,8 @@ wsl.exe --terminate Fedora-35 # or -t for short
 ```
 
 Opening a new Fedora 35 terminal I'm now logged in a `scott`.
+
+<!-- cSpell:ignore copr,wslu -->
 
 One last part here is to add [Copr], this is a collection of utilities
 provided for use in WSL ([`wslu`]).
@@ -255,8 +261,10 @@ ZSH_THEME="spaceship"
 
 You might see a warning in a new shell now like this:
 
+<!-- cSpell:ignore upower,cantu,lart -->
+
 ```bash
-(upower:185): UPower-WARNING **: 18:38:44.618: Cannot connect to upowerd: Could not connect: No such file or directory
+(upower:185): UPower-WARNING **: 18:38:44.618: Cannot connect to upower: Could not connect: No such file or directory
 ```
 
 There's a post on [Miguel Alex Cantu]'s blog about this issue, there's

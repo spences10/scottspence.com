@@ -80,7 +80,7 @@ plugins: [
 ```
 
 The `...` represents the reset of the items in the array, I've
-shortend it for [brevity].
+shortened it for [brevity].
 
 I'll delete the `layout.css` file in the components directory and
 remove the `import "./layout.css"` line from the `layout.js`
@@ -328,6 +328,7 @@ Here's some resources on CSS-in-JS performance I found interesting.
 - [CSS-in-JS Performance Cost - Mitigating Strategies]
 
 <!-- Links -->
+<!-- cSpell:ignore Callstack -->
 
 [the unseen performance costs of modern css-in-js libraries in react apps]:
   https://calendar.perfplanet.com/2019/the-unseen-performance-costs-of-css-in-js-in-react-apps/

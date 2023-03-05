@@ -63,6 +63,8 @@ cat ~/.ssh/id_rsa.pub # Linux
 pbcopy < ~/.ssh/id_github.pub # Mac
 ```
 
+<!-- cSpell:ignore pbcopy -->
+
 I'm using Linux so I'll `cat` out the key and copy that then add the
 SSH key to my GitHub profile from the [settings] page by clicking the
 [New SSH key] button and paste in my key. Save it...
@@ -74,7 +76,7 @@ SSH in place of HTTPS connections with Git there there's a few things
 I'll need to do to my existing projects that use HTTPS for
 authentication.
 
-On the GitHub repository for the projct I'll pick the **Clone with
+On the GitHub repository for the project I'll pick the **Clone with
 SSH** option from the **Clone or download** section on the page.
 
 Once I have taken the link from there I'll need to set the repo remote

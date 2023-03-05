@@ -11,6 +11,8 @@ I've now moved this blog over to Gatsby MDX. You can see all the
 changes
 [on my repo here](https://github.com/spences10/blog.scottspence.me/pull/1128/files).
 
+<!-- cSpell:ignore leko -->
+
 From the pull I'm hoping you can glean that the majority of the work
 is in replacing `gatsby-transformer-remark` with `gatsby-mdx`, there
 are some additional files added, that pretty nifty `Code.js` component
@@ -62,6 +64,8 @@ render(<button onClick={onClick}>Click Me!</button>)
 ```
 
 Image for prosperity 👍
+
+<!-- cSpell:ignore highlightVLive -->
 
 ![highlightVLive]
 

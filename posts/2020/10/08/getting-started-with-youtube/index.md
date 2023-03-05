@@ -61,6 +61,8 @@ bit too rough around the edges to justify using it.
 
 ## How to get started
 
+<!-- cSpell:ignore jfdi,mkbhd -->
+
 In the words of Joel Hooks, JFDI, this is the same advice you will
 hear from a lot of YouTubers when someone asks "How to be a YouTuber?"
 they'll say, start, iterate, get better.
@@ -68,6 +70,8 @@ they'll say, start, iterate, get better.
 In the words of MKBHD
 
 > You'll never start off with a perfect first video.
+
+<!-- cSpell:ignore 4l8eeqgCJnQ -->
 
 <YouTube youTubeId="4l8eeqgCJnQ" skipTo={{
     h: 0,
@@ -102,6 +106,8 @@ The basics you would need would be:
 Here's my list of tools I use for recording videos, nothing that's
 going to break the bank but not incredibly cheap either.
 
+<!-- cSpell:ignore Fifine,aukey -->
+
 - [Fifine USB Mic], at £24.99 when I purchased it in 2018, it's now
   around £50.
 - [OBS]: Free and open source.
@@ -127,7 +133,7 @@ options for free and paid software.
 There is also Streamlabs OBS which has a lot of pre-made scenes and
 integration with YouTube and Twitch.
 
-Streamlabs OBS is alltogether a much nice looking experience but I
+Streamlabs OBS is all together a much nice looking experience but I
 found it a bit tedious digging around for settings.
 
 Streamlabs OBS is a fork of OBS so if there are any improvements in
@@ -298,6 +304,8 @@ remove something mid video on an otherwise useful video.
 Video editing software I'd recommend that I have used personally would
 be [OpenShot] and [Shotcut], both open source and cross platform.
 
+<!-- cSpell:ignore uhms -->
+
 Shotcut is my go to at the moment, it's really handy for removing all
 the uhms and errs from a video.
 
@@ -349,7 +357,7 @@ pages for this.
 
 Last section will be for visibility, you can set this to private or
 public, the default is unlisted, this means that anyone with a link
-can view it otherwise it's not publically accessable. Once the video
+can view it otherwise it's not publicly accessible. Once the video
 is finished uploading you can set this to public. There's also an
 option to schedule the release date.
 

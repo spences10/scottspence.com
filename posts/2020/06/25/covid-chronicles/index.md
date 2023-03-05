@@ -111,6 +111,7 @@ mutual appreciation of Whiskey.
 
 I think this is when we first discovered we both appreciated a tipple!
 
+<!-- cSpell:ignore _marcba -->
 <Tweet tweetLink="_marcba/status/1208045761109352448" />
 
 And this is what probably cemented the beginnings of the show.
@@ -128,6 +129,8 @@ guests.
 With the end of the lockdown still unsure and the spread of the virus
 in some countries on the rise again I'm still not done with lockdown
 lyfe!
+
+<!-- cSpell:ignore lyfe -->
 
 If there are more events I'll add there here, for now that's it!
 

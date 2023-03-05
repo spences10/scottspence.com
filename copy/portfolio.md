@@ -40,6 +40,7 @@ and GraphCMS]" you can check out for free!
 A walkthrough of all the example projects in the [GraphCMS Examples
 Monorepo]. Check out the playlist on the GraphCMS YouTube account. 👇
 
+<!-- cSpell:ignore Svzog, Szqw -->
 <YouTube listId='PL5SvzogSTpeH1Szqw4tPi9ZfgXDbY8GU-'/>
 
 There's also the build your own timeline with SvelteKit and GraphCMS,

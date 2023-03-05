@@ -141,7 +141,7 @@ from the browser network tab and put in into a local `schema.json`
 file.
 
 I won't be committing the API endpoints to git as I don't really want
-to be adding them to a public repo. Even though the is publically
+to be adding them to a public repo. Even though the is publicly
 accessible. I'll replace the `schema` and `url` properties with
 `${VITE_GRAPHQL_API}` before I commit the file to git.
 
@@ -257,7 +257,7 @@ data.
 ## Additional config for Tailwind
 
 The rest of the code examples will be using Tailwind. If you're
-follwing along and you're not into Tailwind you can skip this bit.
+following along and you're not into Tailwind you can skip this bit.
 
 Don't like Tailwind? That's cool, you do you. 😊 It's not relevant to
 this example, really. I do want this to be a guide you can follow to
@@ -506,6 +506,8 @@ This query is expecting the `$slug` variable, I'll need to get that
 from the `context` in the load function of the `[slug].svelte` file.
 Which doesn't exist yet.
 
+<!-- cSpell:ignore soooo -->
+
 Soooo, another bash command or two to create the folder and file for
 the posts route.
 
@@ -559,7 +561,7 @@ to use in the page.
 </script>
 ```
 
-⚠️ **codewall incoming!** ⚠️
+⚠️ **code wall incoming!** ⚠️
 
 So now I have all I need to render out the post from the `KQL_GetPost`
 store.
@@ -701,6 +703,8 @@ Then I can use the component passing in the `KQL_AllPosts` store:
 Going over to the index page of the project now I can see the
 `KitQLInfo` component in it's initial state:
 
+<!-- cSpell:ignore kitqlinfo -->
+
 [![kitql-kitqlinfo-component-initial]]
 [kitql-kitqlinfo-component-initial]
 
@@ -783,6 +787,8 @@ Next up I'll add the markup to the theme switch component, this is a
 list of all the available themes in daisyUI:
 
 <Details buttonText="View theme select.">
+
+<!-- cSpell:ignore cmyk,lofi -->
 
 ```svelte
 <div>
@@ -1028,7 +1034,7 @@ access:
 
 - Follow [JYC] on Twitter for daily updates on the KitQL project
 - [KitQL Docs](https://kitql.vercel.app/docs)
-- [Explaner video by JYC](https://www.youtube.com/watch?v=6pH4fnFN70w)
+- [Explainer video by JYC](https://www.youtube.com/watch?v=6pH4fnFN70w)
 - [KitQL All In](https://github.com/jycouet/kitql/tree/main/packages/all-in)
 
 You can check out the [source code on GitHub] for this post.

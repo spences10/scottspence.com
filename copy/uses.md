@@ -25,6 +25,8 @@ section for WSL].
 
 ### Desk
 
+<!-- cSpell:ignore brrrrrrrrrr -->
+
 - My computer is a [Ryzen 5 Mini ITX build], my [first time PC
   building a PC].
 - Desk chair is a [HÅG Capisco Puls]

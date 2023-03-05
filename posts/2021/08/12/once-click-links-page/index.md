@@ -13,6 +13,8 @@ This is a nice project as a proof of concept to get you set up with
 your own socials links. I've made this in conjunction with [Jamie
 Barton] as a simple one click set up.
 
+<!-- cSpell:ignore Avneesh -->
+
 This was part inspired from a post from [Avneesh Agarwal] and from
 some work Jamie had done a while ago. Avneesh's post on [Hashnode]
 details making it with the NextJS framework.
@@ -29,7 +31,7 @@ you have at least one of these already.
 
 ## Deploy with Netlify
 
-Click the Deploy to Netlify button to start the proces.
+Click the Deploy to Netlify button to start the process.
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/notrab/shortcuts)
 
@@ -65,7 +67,7 @@ Done, as an extra step you can configure your own domain.
 
 ## Deploy with Vercel
 
-Click the Deploy button to start the proces.
+Click the Deploy button to start the process.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnotrab%2Fshortcuts&env=SHORTCUTS_NAME,SHORTCUTS_SITE,SHORTCUTS_TWITTER,SHORTCUTS_YOUTUBE,SHORTCUTS_GITHUB,SHORTCUTS_LINKEDIN,SHORTCUTS_DEVTO,SHORTCUTS_MEDIUM)
 

@@ -13,7 +13,7 @@ A quick Google gave me a stackoverflow result for using it in Vue but
 the solution worked the same in Toast with one last configuration
 needed.
 
-Add stylelind dependencies:
+Add stylelint dependencies:
 
 ```bash
 npm install --save-dev stylelint stylelint-config-standard
@@ -65,6 +65,8 @@ touch .vscode/settings.json
 ```
 
 ## Note using in Toast
+
+<!-- cSpell:ignore stylelintrc -->
 
 With styling and using [stylelint] in Toast, rather than use the
 recommended `stylelint.config.js` use `.stylelintrc` and add in the

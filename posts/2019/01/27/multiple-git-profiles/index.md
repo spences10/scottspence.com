@@ -115,6 +115,8 @@ Example:
 
 Global config `~/.gitconfig`
 
+<!-- cSpell:ignore gitdir -->
+
 ```bash
 
 [user]

@@ -21,6 +21,8 @@ have a specific domain provider and I'm using Vercel's now.sh and
 Netlify for hosting my projects I want to add the Fathom custom
 domains to.
 
+<!-- cSpell:ignore godaddy -->
+
 Fathom has provided instructions for [Godaddy], [CloudFlare], [Hover]
 and [NameCheap] however, Like I mentioned, I have a custom DNS with my
 domain provider and I'm not be able to add a new CNAME record which is
@@ -53,6 +55,8 @@ With the two values from Fathom dashboard, the CNAME is the sub-domain
 and the VALUE is the DNS server.
 
 So in the now CLI I did the following:
+
+<!-- cSpell:ignore cdrjcy,randomsite,starman,fathomdns -->
 
 ```bash
 now dns add randomsite.com cdrjcy CNAME starman.fathomdns.com
@@ -122,6 +126,8 @@ least once so the `.cache` directory has been created.
 
 So now go to the `default-html.js` file and add in the Fathom snippet,
 here's what it should look like:
+
+<!-- cSpell:ignore NYMDTPLM -->
 
 ```js
 import PropTypes from 'prop-types'

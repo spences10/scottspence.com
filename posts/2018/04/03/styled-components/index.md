@@ -252,6 +252,8 @@ render() {
 }
 ```
 
+<!-- cSpell:ignore aaaaand -->
+
 Now all the classes originally used in `App.js` have been replaced so
 there's no need for the `import './App.css'` mapping, remove that
 aaaaand! Still no change!! Which is a good thing because at the moment
@@ -343,7 +345,7 @@ app in the `index.js` file.
 To style the body we can use [`injectGlobal`] from styled-components
 which adds the styles directly to the stylesheet.
 
-To do this you bring in the `injectGolabl` named export from
+To do this you bring in the `injectGlobal` named export from
 styled-components and add your styles between the back ticks.
 
 The current `index.css` looks like this:
@@ -392,6 +394,8 @@ ReactDOM.render(<App />, document.getElementById('root'))
 
 registerServiceWorker()
 ```
+
+<!-- cSpell:ignore roboto -->
 
 We should still have our nice `sans-serif` font going on, but let's
 add in some nice Roboto for the body and Montserrat for the heading in
@@ -553,6 +557,8 @@ make a `ThemeSelect.js` component, we can worry about refactoring the
 `App.js` component when I'm not here :
 
 ## ThemeSelect.js
+
+<!-- cSpell:ignore rgba -->
 
 ```js
 import React from 'react'
@@ -723,6 +729,8 @@ enjoy.
 https://codesandbox.io/s/x26q7l9vyq?from-embed
 
 ## Want to know more?
+
+<!-- cSpell:ignore Vrachliotis -->
 
 A great resource for getting started with styled-components which
 really helped me is [Simon Vrachliotis]'s [egghead.io]

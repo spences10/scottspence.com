@@ -63,6 +63,8 @@ I don't use any advertising networks on my site.
 
 ### How users of this site can op-in and op-out of their data being collected and stored.
 
+<!-- cSpell:ignore pecr,ccpa,coppa -->
+
 The data collected by Fathom Analytics is cookieless and is compliant
 with GDPR, ePrivacy, PECR, CCPA, and COPPA.
 
@@ -117,6 +119,7 @@ mean in their Terms of Service check out [Terms of Service Didn't
 Read] for a simple breakdown of what the ToS actually means.
 
 <!-- Links -->
+<!-- cSpell:ignore methodspurposes,andor -->
 
 [how i collect your information]: #how-i-collect-your-information
 [what i do with collected information]:

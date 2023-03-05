@@ -46,7 +46,7 @@ I developed the package locally using the `sveltekit package` command,
 then installed it from the resulting `package` folder generated.
 
 ```bash
-# package with sveltkit
+# package with sveltekit
 pnpm run package
 # install local package
 pnpm i -D ./package
@@ -68,7 +68,7 @@ run the `sveltekit package` command.
 npm login
 # bump version with npm
 npm version 0.0.2
-# package with sveltkit
+# package with sveltekit
 pnpm run package
 # publish from package directory
 ```

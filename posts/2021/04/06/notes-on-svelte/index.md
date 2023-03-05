@@ -76,6 +76,8 @@ defaulted to `hello world` but I can pass in my own prop to the
 </main>
 ```
 
+<!-- cSpell:ignore wheeeeee -->
+
 ## Styling
 
 Each components styles are scoped so if I want to import a goat image
@@ -350,7 +352,7 @@ Svelte uses the JavaScript label statement for when you want to change
 a components state when it's created from the state of another
 component.
 
-Here's the example take from the [Svelte.dev titorial site]:
+Here's the example take from the [Svelte.dev tutorial site]:
 
 ```html
 <script>
@@ -413,7 +415,7 @@ Check out [Svelte Mastery] for all these examples and more
 [interactive tutorials]: https://svelte.dev/tutorial/basics
 [svelte mastery]:
   https://www.youtube.com/channel/UCg6SQd5jnWo5Y70rZD9SQFA
-[svelte.dev titorial site]:
+[svelte.dev tutorial site]:
   https://svelte.dev/tutorial/reactive-declarations
 [introducing hooks]: https://reactjs.org/docs/hooks-intro.html
 [svelte mastery]:

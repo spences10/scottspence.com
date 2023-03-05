@@ -127,7 +127,7 @@ So I'll add a transition to the class and reset the transform back to
 }
 ```
 
-Thats it!
+That's it!
 
 You can check out this [Codepen] for and example of this in action.
 

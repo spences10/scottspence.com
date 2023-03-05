@@ -155,6 +155,8 @@ Then I'm adding in the smooth scroll html property and some additional
 styles for base font size and colour along with base line height
 letter spacing and background colour.
 
+<!-- cSpell:ignore behavior,Segoe,Tahoma,Verdana -->
+
 ```jsx {12-15,17-21}
 import { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
@@ -253,6 +255,8 @@ yarn add gatsby-plugin-google-fonts
 
 Configure, I'll add three fonts, sans, sans serif and monospace to the
 Gatsby plugin array in `gatsby-config.js`:
+
+<!-- cSpell:ignore arvo,cambay -->
 
 ```js
 {
@@ -430,7 +434,7 @@ export const GlobalStyle = createGlobalStyle`
 
 I'll add the base font at `.lg` (`1.125rem`), I'll also add in line
 height and line spacing defaults but I'll save adding the whole config
-here to save you a codewall, you get the idea though, right?
+here to save you a code wall, you get the idea though, right?
 
 Here's the rest of the GlobalStyle with defaults applied.
 
@@ -571,6 +575,8 @@ Please take a look at my other content if you enjoyed this.
 Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 
 ## Resources
+
+<!-- cSpell:ignore Siddharth,Kshetrapal -->
 
 - [Design Systems Design System - Siddharth Kshetrapal]
 - [Tailwind full config]

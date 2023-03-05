@@ -78,7 +78,7 @@ you get free hosting either way.
 ## Built-in community features
 
 There's no denying that you get out of the box features when you use a
-blogging platform. It's essentail to them to get other people involved
+blogging platform. It's essential to them to get other people involved
 on their platform. Post commenting and the ability to follow someone
 are on there so that their posts will turn up in your feed.
 
@@ -89,7 +89,7 @@ has posted something new.
 To build community, a lot of the posts that get amplified on these
 platforms are from people on the platform that already have a large
 social media following. This in turn brings more people to the
-platfrom when they share their content on the socials.
+platform when they share their content on the socials.
 
 This isn't to say that you can't have community features on your own
 blog, like commenting. There's a lot of services out there that will
@@ -98,6 +98,8 @@ commenting on your own blog.
 
 The thing with having commenting on blog posts is that there's a lot
 of spam.
+
+<!-- cSpell:ignore hashnode -->
 
 [![spam-messages-on-hashnode]] [spam-messages-on-hashnode]
 
@@ -197,6 +199,8 @@ your GitHub account.
 Pick a blog template, there's a few to choose from on GitHub. Here's a
 couple I'd recommend:
 
+<!-- cSpell:ignore Mehdi,Vasigh -->
+
 - [Matt Jennings' SvelteKit Blog Template]
 - [Mehdi Vasigh's SvelteKit MDSveX blog]
 
@@ -204,7 +208,7 @@ Both of these are specified as templates allowing you to create your
 own repository from them.
 
 There's even the option in GitHub to open the code directly in a
-GitHub Codespace, which is a VS Code instance running in the browser.
+GitHub Codespaces, which is a VS Code instance running in the browser.
 
 Add your content, push it to GitHub and use one of the continuous
 deployment features of Vercel or Netlify to deploy your site.

@@ -9,6 +9,8 @@ isPrivate: false
   import { Sarcasm } from '$lib/components'
 </script>
 
+<!-- cSpell:ignore Sooooooo -->
+
 Sooooooo, so, so, so, Zsh is pretty neat, right?
 
 I've been a long time fan of the Fish shell, but I recently had to go
@@ -72,6 +74,8 @@ plugins=(
   nvm
 )
 ```
+
+<!-- cSpell:ignore agnoster -->
 
 And I changed the theme to `ZSH_THEME="agnoster"`, pretty sweet theme
 out of the box!
@@ -150,6 +154,8 @@ One killer feature of Fish is the abbreviations, so you can shorten
 down things like `yarn && yarn develop` into `yyd` hitting enter will
 expand that out into the full command and run it.
 
+<!-- cSpell:ignore gotbletu -->
+
 I was quite keen to find something like that in Zsh and I did in the
 form of a [video from gotbletu] with accompanying [GitHub repo] for
 the code example.
@@ -195,6 +201,7 @@ I'll be having a look at [powerlevel10k] sometime soon as it looks
 pretty swish!
 
 <!-- Links -->
+<!-- cSpell:ignore powerlevel -->
 
 [oh my fish]: https://github.com/oh-my-fish/oh-my-fish
 [spacefish]: https://github.com/matchai/spacefish

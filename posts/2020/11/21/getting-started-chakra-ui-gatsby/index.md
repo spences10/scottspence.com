@@ -123,7 +123,7 @@ files or add it to the `src` folder, doesn't matter AFAIK.
 Create the file, from my terminal I'll do a touch:
 
 ```bash
-touch src/woot-wapper.tsx
+touch src/woot-wrapper.tsx
 ```
 
 Yes, I'm using a TypeScript (`.tsx`) file in a predominantly
@@ -157,7 +157,7 @@ Finally I'll need to import the root wrapper into both the
 `gatsby-ssr.js` and the `gatsby-browser.js` files.
 
 ```js
-import { wrapPageElement as wrap } from './src/woot-wapper'
+import { wrapPageElement as wrap } from './src/woot-wrapper'
 
 export const wrapPageElement = wrap
 ```
@@ -257,6 +257,8 @@ on hover with the `_hover` prop.
 So with that being done it takes the 42 lines that was there
 previously down to 35 lines of code.
 
+<!-- cSpell:ignore funsies -->
+
 I've also added the theme toggle button, not the best way to position
 it mind you, just for funsies!
 
@@ -323,6 +325,8 @@ const NotFoundPage = () => (
 
 export default NotFoundPage
 ```
+
+<!-- cSpell:ignore doesn -->
 
 ## Style the Index page
 

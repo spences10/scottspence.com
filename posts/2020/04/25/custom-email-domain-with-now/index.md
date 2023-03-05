@@ -62,6 +62,8 @@ with the Now CLI.
 
 The verification token will look something like this:
 
+<!-- cSpell:ignore zmverify -->
+
 ```bash
 zoho-verification=se4567894.zmverify.zoho.eu
 ```

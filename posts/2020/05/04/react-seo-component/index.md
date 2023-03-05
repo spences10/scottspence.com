@@ -25,6 +25,8 @@ the Build a Blog guide. It was when I was getting toward the end of
 writing the guide when I realised that the SEO part of the site was
 quite involved.
 
+<!-- cSpell:ignore schau -->
+
 To begin with I started looking around to see if anyone had created an
 SEO component for Gatsby and found a closed [GitHub PR on seo] from
 Dustin Schau with some [great notes from Andrew Welch] on SEO and a
@@ -33,6 +35,8 @@ link to a presentation he did back in 2017, great stuff.
 <Vimeo vimeoId="246846978" />
 
 ## Gatsby SEO
+
+<!-- cSpell:ignore leko,prismic -->
 
 Adding an SEO component to a Gatsby site is [well documented] and I,
 like a lot of other people developing in Gatsby took [Jason
@@ -156,6 +160,8 @@ It was interesting trying to find how to do it, I didn't find a great
 deal of documentation out there.
 
 I found [this post] with some [example code] on GitHub.
+
+<!-- cSpell:ignore tsdx -->
 
 The initial release [used Rollup] with Babel preset for React which
 worked fine. I've since moved it to use TypeScript with the awesome

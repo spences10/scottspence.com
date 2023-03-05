@@ -519,6 +519,8 @@ though, so I'm hoping this has helped in some way.
 
 For the TOC with smooth scroll you need several things:
 
+<!-- cSpell:ignore behavior -->
+
 - `scroll-behavior: smooth;` added to your `html`, this is part of the
   starter I made in a [previous post].
 - IDs in the headings to scroll to, this is done with
@@ -659,6 +661,7 @@ TOC.
 
 ## 📺 Here's a video detailing the process.
 
+<!-- cSpell:ignore Kajhlu -->
 <YouTube youTubeId="Kp51KajhluE" />
 
 ## Demo and Sauce

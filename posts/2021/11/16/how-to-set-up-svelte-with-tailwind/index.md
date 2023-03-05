@@ -339,6 +339,8 @@ Then adding in the Tailwind classes to the HTML elements:
 </main>
 ```
 
+<!-- cSpell:ignore roboto,segoe,neue -->
+
 Done.
 
 ## Conclusion

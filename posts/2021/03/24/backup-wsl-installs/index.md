@@ -21,7 +21,7 @@ Microsoft store before with a [WSL Web Developer Bootstrap with Fedora
 That covered importing the distribution from a `rootfs` (root file
 system) image and configuring it from scratch.
 
-This time around is for when I have a really nice setup and I'd perfer
+This time around is for when I have a really nice setup and I'd prefer
 not to have to setup again I can do this instead.
 
 ## List installed distros
@@ -33,7 +33,7 @@ with:
 wsl -l -v
 ```
 
-That gives me a list of my installed distrobutions:
+That gives me a list of my installed distributions:
 
 ```bash
   NAME                  STATE           VERSION
@@ -48,6 +48,8 @@ Fedora 33 instance. First up I'll need to navigate to where I want to
 save the backup, to list all drives in PowerShell I can use the
 following:
 
+<!-- cSpell:ignore WMIOBJECT,logicaldisk,fedoraremix -->
+
 ```bash
 # | FORMAT-TABLE added for less verbose output
 GET-WMIOBJECT win32_logicaldisk | FORMAT-TABLE
@@ -59,7 +61,7 @@ From here I can `cd` to the drive I want to save the distro:
 cd e:
 # list out local directories
 dir
-# change to disired folder
+# change to desired folder
 cd .\distros\
 ```
 

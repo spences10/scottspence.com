@@ -13,6 +13,8 @@ changes to your repos then there's a good chance that you just use
 `git push origin master` to move your changes from your local machine
 to GitHub, this is not best practice.
 
+<!-- cSpell:ignore octocat -->
+
 ![octocat]
 
 What if it's not your repository you want to make changes to? You'll

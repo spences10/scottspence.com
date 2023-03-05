@@ -178,6 +178,8 @@ output will show the `HTTPS` server running.
 
 Going to `https://localhost:3000/` on Edge I get a warning.
 
+<!-- cSpell:ignore isnt -->
+
 [![storyblok-your-connection-isnt-private]]
 [storyblok-your-connection-isnt-private]
 
@@ -254,7 +256,7 @@ touch src/lib/components/{feature.svelte,grid.svelte,page.svelte,teaser.svelte}
 
 ## Environment variables
 
-> SvelteKit now handles env secrets, take a look at [SvelteKit
+> SvelteKit now handles env secrets, take a look at [SvelteKit >
 > Environment Variables with the SvelteKit $env Module] which details
 > how to use it in a SvelteKit project.
 
@@ -386,6 +388,8 @@ the components needed for use in the `storyblokInit` function from the
 
 Now I can get to adding code to the component files. Credit to
 Josefine Schaefer and her [example code on GitHub].
+
+<!-- cSpell:ignore blok -->
 
 The page component (`page.svelte`) is a [root block] content type and
 uses a Svelte action in `storyblokEditable` to use the prop being

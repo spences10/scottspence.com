@@ -43,6 +43,8 @@ I'm also hoping to gain a lot of insight into general purpose
 programming languages, something currently lacking from my 'skill
 stack'.
 
+<!-- cSpell:ignore clik -->
+
 What I found whilst searching for roles is that someone with VBA, SQL
 and C# there is also the need now for Tableau, ClikView or some other
 data visualisation software which stands to reason that now we have
@@ -137,6 +139,8 @@ The call usually ends with a "I'll send the spec through for you to
 look at let me know what you think" and the mail never turns up or the
 old chestnuts "I'll pass you details on to my colleague" and "I'll
 update your details on our database"
+
+<!-- cSpell:ignore ranty -->
 
 So now we're near the end of Ranty McRantRant's post, if you made it
 this far thank you for persevering, if you can relate I'd be keen to

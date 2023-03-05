@@ -31,6 +31,8 @@ database to connect to.
 
 ## Get a database to connect to
 
+<!-- cSpell:ignore Nikolas -->
+
 I did find a guide for [how to set up a free PostgreSQL database on
 Heroku] by Nikolas Burk in the Prisma documentation.
 
@@ -43,6 +45,8 @@ this was a download from the
 [releases](https://github.com/planetscale/cli/releases/latest) page. I
 added to my home directory then run the command mentioned on the
 GitHub page:
+
+<!-- cSpell:ignore dpkg,pscale -->
 
 ```bash
 sudo dpkg -i pscale_0.107.0_linux_amd64.deb
@@ -113,7 +117,7 @@ datasource db {
 ```
 
 I needed to change `"postgresql"` to `"mysql"` and add in some
-additional items to the clent and database (`db`):
+additional items to the client and database (`db`):
 
 ```graphql
 generator client {
@@ -259,6 +263,8 @@ shared].
 
 I replaced the `vercel-build` and `prisma:generate` scripts I was
 using with these two and the project built with no issues! 🥳
+
+<!-- cSpell:ignore mikenikles -->
 
 Massive thanks to [@josefaidt] for bringing this to may attention,
 which he in turn got from [@mikenikles], [sveltekit-prisma] example 🙌

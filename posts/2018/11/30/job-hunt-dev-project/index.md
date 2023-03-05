@@ -12,6 +12,8 @@ created an [online CV].
 
 ## Preamble
 
+<!-- cSpell:ignore ranty,behbeh -->
+
 Apologies up front about this post if it comes across as entitled or
 ranty and I'm sure a lot of people will disagree with my approach.
 
@@ -126,6 +128,8 @@ seconds 😲 you could see the vast majority of recruiters would rather
 pick up the phone than READ the information provided.
 
 <!-- Links -->
+
+<!-- cSpell:ignore jobsite,jsonresume -->
 
 [json resume schema]: https://jsonresume.org/schema/
 [bot]:

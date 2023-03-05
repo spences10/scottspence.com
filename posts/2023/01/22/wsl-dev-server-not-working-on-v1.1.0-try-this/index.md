@@ -31,11 +31,15 @@ worked for me, so might work for you if you're having the same issue.
 Basically uninstall the most recent version of WSL and install the
 previous version.
 
+<!-- cSpell:ignore rudyzeinoun -->
+
 Thanks to [this comment] from [rudyzeinoun] which details the Windows
 PowerShell commands to do this.
 
 Before running the commands, you'll need to download the previous
 version of WSL from the [releases page] on GitHub.
+
+<!-- cSpell:ignore msixbundle -->
 
 I went and downloaded the `Microsoft.WSL_1.0.3.0_x64_ARM64.msixbundle`
 asset from the releases page and added it to the same location from
@@ -50,6 +54,8 @@ wsl --shutdown
 
 You'll need to have an elevated (admin) PowerShell window open to run
 these commands:
+
+<!-- cSpell:ignore Subsystemfor -->
 
 ```powershell
 $Package = Get-AppxPackage MicrosoftCorporationII.WindowsSubsystemforLinux -AllUsers
@@ -67,7 +73,7 @@ One thing to note is that now going to the Microsoft Store, to the WSL
 app page, it is prompting me to install it!
 
 I'll be monitoring the releases page for the WSL package over on
-GitHub and will probably unistall the previous version I have
+GitHub and will probably uninstall the previous version I have
 installed (with the first two commands detailed earlier) before going
 to the Microsoft Store to install the latest version.
 

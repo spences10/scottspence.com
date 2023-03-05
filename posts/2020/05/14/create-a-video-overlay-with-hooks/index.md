@@ -52,6 +52,8 @@ export const VideoPlayer = props => {
 }
 ```
 
+<!-- cSpell:ignore sizer,dialog -->
+
 ```js
 // VideoModal.js
 import React from 'react'

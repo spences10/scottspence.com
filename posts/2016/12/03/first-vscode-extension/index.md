@@ -8,6 +8,8 @@ isPrivate: false
 I'm a published developer! [sort of] Well that was a bit painful, well
 not actually I mean from the documentation I feel I was a bit mislead.
 
+<!-- cSpell:ignore shexy -->
+
 So for those of you that know what I do for a living I'm primarily an
 Analyst Developer with a skill set of VBA and SQL which has put me in
 good stead for the last 10+ years. I'm currently 'upskilling' myself
@@ -42,6 +44,8 @@ success.
 
 ![YeomanErr]
 
+<!-- cSpell:ignore vbscrip,YeomanErr -->
+
 Got tired after uninstalling and reinstalling several times at home
 and on the cloud so moved on. I read
 [this](https://code.visualstudio.com/docs/tools/vscecli) guide about
@@ -53,6 +57,8 @@ But this was the thing my extension is just the `vbscrip.json` file on
 my hard drive.
 
 ## How do I make it into a extension?
+
+<!-- cSpell:ignore vsix,vscepublish -->
 
 After reading up on extension I thought that you needed to have your
 package 'packaged' with a `.vsix` extension so looking at the links

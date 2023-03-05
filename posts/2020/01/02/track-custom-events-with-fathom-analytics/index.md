@@ -86,6 +86,8 @@ how many people submit a contact form.
 In the `gatsby-config.js` plugins array the config looks pretty
 similar to this:
 
+<!-- cSpell:ignore PBZRRJHH -->
+
 ```js
 {
   resolve: `gatsby-plugin-fathom`,
@@ -124,6 +126,8 @@ the configured site's dashboard and click the _Show more data_ toggle.
 This will reveal the _Goals_ section where I can configure goals. In
 this example I'll be adding goals for `about`, `pricing`, `blog`,
 `contact-us` and `form-submit`.
+
+<!-- cSpell:ignore CYAZA -->
 
 Each time I save the goal I'm given a JavaScript snippet to use, like:
 `fathom('trackGoal', 'CYAZA98C', 0);` , this is what I'm going to be
@@ -182,6 +186,8 @@ provider can be accessed throughout the site.
 
 Then use in the areas I want to track a goal I'll use the
 `useAnalytics` hook.
+
+<!-- cSpell:ignore CDDZY -->
 
 ```js
 const NavBar = ({ toggleNavbar, isActive }) => {

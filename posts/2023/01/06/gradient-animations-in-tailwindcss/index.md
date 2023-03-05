@@ -5,6 +5,8 @@ tags: ['css', 'tailwind', 'how-to', 'svelte', 'sveltekit']
 isPrivate: false
 ---
 
+<!-- cSpell:ignore Yoalli -->
+
 Tailwind is cool, right? Really configurable as well, I wanted to add
 some gradient animation to a project of mine. So did a search and
 found this awesome post by [Victor Yoalli] on how to do it! Thanks

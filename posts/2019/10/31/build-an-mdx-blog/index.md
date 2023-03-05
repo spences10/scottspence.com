@@ -294,6 +294,8 @@ module.exports = {
 
 ## Query data from GraphQL
 
+<!-- cSpell:ignore graphi -->
+
 Ok now you can see what the [gatsby-source-filesystem] and
 [gatsby-plugin-mdx] have done for us. You can now go to the Gatsby
 GraphQL GraphiQL explorer and check out the data:
@@ -399,6 +401,8 @@ export default () => {
   )
 }
 ```
+
+<!-- cSpell:ignore Tfycp -->
 
 <Details buttonText="Check out the Video">
   <YouTube youTubeId="TfycpV4yyqY" />
@@ -589,6 +593,8 @@ export default () => {
   )
 }
 ```
+
+<!-- cSpell:ignore bjxt -->
 
 <Details buttonText="Check out the Video">
   <YouTube youTubeId="Ase7bjxtQ3w" />
@@ -1101,6 +1107,8 @@ your dev server.
 Now you can click on one of the post links and see your blog post
 template in all it's basic glory!
 
+<!-- cSpell:ignore Cjsc -->
+
 <Details buttonText="Check out the Video">
   <YouTube youTubeId="S7cnkRoCjsc" />
 </Details>
@@ -1584,6 +1592,8 @@ export const wrapRootElement = ({ element }) => (
 )
 ```
 
+<!-- cSpell:ignore duotoneDark -->
+
 [prism-react-renderer] comes with additional themes over the default
 theme which is [duotoneDark] you're going to use [nightOwl] in this
 example, feel free to take a look at [the other examples] if you like.
@@ -1856,6 +1866,8 @@ const Code = ({ codeString, language, ...props }) => {
 export default Code
 ```
 
+<!-- cSpell:ignore wpqc -->
+
 <Details buttonText="Check out the Video">
   <YouTube youTubeId="PPH153kWpqc" />
 </Details>
@@ -1870,12 +1882,14 @@ for this sort of thing expected an input until this in the Gatsby
 source code. Which is creating the input for you.
 
 So, create a `utils` directory and the `copy-to-clipboard.js` file and
-add in the code from the Gatsby sourcue code.
+add in the code from the Gatsby source code.
 
 ```bash
 mkdir src/utils
 touch src/utils/copy-to-clipboard.js
 ```
+
+<!-- cSpell:ignore contenteditable -->
 
 ```js
 // https://github.com/gatsbyjs/gatsby/blob/master/www/src/utils/copy-to-clipboard.js
@@ -2012,6 +2026,8 @@ const Code = ({ codeString, language }) => {
 export default Code
 ```
 
+<!-- cSpell:ignore einx -->
+
 <Details buttonText="Check out the Video">
   <YouTube youTubeId="j-EINXVe2WA" />
 </Details>
@@ -2032,7 +2048,7 @@ import {
 } from 'react-live'
 ```
 
-Then ypu're going to check if `react-live` has been added to the
+Then you're going to check if `react-live` has been added to the
 language tag on your mdx file via the props:
 
 ```jsx
@@ -2070,7 +2086,7 @@ const Pre = styled.pre`
   overflow-x: auto;
   border-radius: 3px;
 
-  & .token-lline {
+  & .token-line {
     line-height: 1.3em;
     height: 1.3em;
   }
@@ -2352,6 +2368,8 @@ export const query = graphql`
 `
 ```
 
+<!-- cSpell:ignore Ntql -->
+
 <Details buttonText="Check out the Video">
   <YouTube youTubeId="9S5GNtql02w" />
 </Details>
@@ -2366,6 +2384,8 @@ export const query = graphql`
 
 ## Adding an SEO component to the site
 
+<!-- cSpell:ignore Jknw -->
+
 <Details buttonText="Check out the Video">
   <YouTube youTubeId="I9qQslUJknw" />
 </Details>
@@ -2376,6 +2396,8 @@ Welch] on SEO and a link to a presentation he did back in 2017.
 **Crafting Modern SEO with Andrew Welch:**
 
 <Vimeo vimeoId="246846978" />
+
+<!-- cSpell:ignore leko -->
 
 In the following comments of that PR, Gatsby's [LekoArts] details [his
 own implementation] which I have implemented [as a React component],
@@ -2509,6 +2531,8 @@ Check that all the props are displaying valid values then you can swap
 out the `Dump` component with the `SEO` component.
 
 The complete `src/pages/index.js` should look like this now:
+
+<!-- cSpell:ignore nothin -->
 
 ```js
 import { graphql, Link } from 'gatsby'
@@ -2744,6 +2768,8 @@ export const query = graphql`
 `
 ```
 
+<!-- cSpell:ignore YIQRIU -->
+
 <Details buttonText="Check out the Video">
   <YouTube youTubeId="a2fcgYIQRIU" />
 </Details>
@@ -2769,8 +2795,10 @@ yarn build && yarn serve
 
 This will build the site and open a browser tab so you can see the
 site as it will appear when it is on the internet. Validate meta tags
-have been added to the build by selecting "View page source" (Crtl+u
+have been added to the build by selecting "View page source" (Ctrl+u
 in Windows and Linux) on the page and do a Ctrl+f to find them.
+
+<!-- cSpell:ignore agjc -->
 
 <Details buttonText="Check out the Video">
   <YouTube youTubeId="c6bB9ddAgjc" />
@@ -2845,6 +2873,8 @@ changes to GitHub again.
 Once your site is built with a valid url you can then test the
 homepage and a blog page for the correct meta tags with
 [heymeta.com](https://heymeta.com/).
+
+<!-- cSpell:ignore yhwo -->
 
 <Details buttonText="Check out the Video">
   <YouTube youTubeId="JH1AVanYhwo" />
