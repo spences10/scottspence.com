@@ -119,22 +119,17 @@ mean in their Terms of Service check out [Terms of Service Didn't
 Read] for a simple breakdown of what the ToS actually means.
 
 <!-- Links -->
+<!-- cSpell:ignore methodspurposes,andor -->
 
 [how i collect your information]: #how-i-collect-your-information
 [what i do with collected information]:
   #what-i-do-with-collected-information
 [what cookies, pixels, and other trackers my site uses and their purpose]:
   #what-cookies-pixels-and-other-trackers-my-site-uses-and-their-purpose
-
-<!-- cSpell:ignore methodspurposes -->
-
 [any advertising networks and their methods/purposes of data collection and ad delivery]:
   #any-advertising-networks-and-their-methodspurposes-of-data-collection-and-ad-delivery
 [how users of this site can op-in and op-out of their data being collected and stored]:
   #how-users-of-this-site-can-op-in-and-op-out-of-their-data-being-collected-and-stored
-
-<!-- cSpell:ignore andor -->
-
 [how users of this site can request their data be turned over to them and/or be deleted]:
   #how-users-of-this-site-can-request-their-data-be-turned-over-to-them-andor-be-deleted
 [contact information for site administrators]:
