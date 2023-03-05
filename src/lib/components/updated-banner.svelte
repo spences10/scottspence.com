@@ -6,10 +6,13 @@
   export let date = new Date()
   export let updated = new Date()
 
-  let has_beenupdated = compareDesc(new Date(updated), new Date(date))
+  let has_been_updated = compareDesc(
+    new Date(updated),
+    new Date(date)
+  )
 </script>
 
-{#if has_beenupdated}
+{#if has_been_updated}
   <div class="alert alert-warning shadow-lg">
     <div>
       <WarningTriangle />
