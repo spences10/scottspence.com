@@ -9,8 +9,8 @@ isPrivate: false
   import { YouTube } from 'sveltekit-embed'
 </script>
 
-> This guide has now been updated, take a look at [Use URQL with > >
-> SvelteKit] for an up to date reference
+**This guide has now been updated, take a look at [Use URQL with
+SvelteKit] for an up to date reference**
 
 Use the Universal React Query Library (URQL) in Svelte!
 
@@ -95,9 +95,8 @@ echo .env >> .gitignore
 ```
 
 As it's a publicly accessible endpoint I'm not going to be too
-concerned about exposing it publicly with the `VITE_` variable you
-can read up on hiding [env secrets] with SvelteKit for more
-information.
+concerned about exposing it publicly with the `VITE_` variable you can
+read up on hiding [env secrets] with SvelteKit for more information.
 
 ```svelte
 <!-- src/routes/__layout.svelte -->
