@@ -440,8 +440,9 @@ Boom! GUI running in WSL!!
   https://devblogs.microsoft.com/commandline/whats-new-for-wsl-in-windows-10-version-1903/#accessing-linux-files-from-windows
 [explains brilliantly]:
   https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#the-display-variable
-
-[d-bus]: https://en.wikipedia.org/wiki/D-Bus [`build-essential`]:
-https://packages.ubuntu.com/xenial/build-essential [yarn install
-docs]: https://classic.yarnpkg.com/en/docs/install/#debian-stable
+[d-bus]: https://en.wikipedia.org/wiki/D-Bus
+[`build-essential`]:
+  https://packages.ubuntu.com/xenial/build-essential
+[yarn install docs]:
+  https://classic.yarnpkg.com/en/docs/install/#debian-stable
 [playwright]: https://github.com/microsoft/playwright
