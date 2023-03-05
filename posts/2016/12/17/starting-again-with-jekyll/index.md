@@ -25,6 +25,8 @@ installed Jekyll, no problem
 
 ### Setup
 
+<!-- cSpell:ignore l'heureux,jflheureux -->
+
 It wasn't as simple as just going to the local host page as it's a
 cloud based system so after some digging I found this from
 Jean-François L'Heureux [jflheureux] on GitHub.
@@ -35,6 +37,8 @@ Basically you need to set up a Run Configuration on your c9 box,
 thanks for that Jean-François.
 
 ## CSS
+
+<!-- cSpell:ignore myblog -->
 
 For some reason I thought that a Jekyll page didn't use CSS, well the
 reason may have been that there was nothing like that in the 'vanilla'
@@ -111,6 +115,8 @@ with various combinations of having corrected `_config.yml` entries it
 got pretty messy.
 
 ![dem-commits]
+
+<!-- cSpell:ignore hilights,sass -->
 
 Currently I am still with the `_hilights.scss` in the `sass` folder
 which I'm going to have to play around with to get it how I like it,

@@ -67,6 +67,8 @@ Let's add in a Google font and reset the `padding` and `margin`, for
 visual feedback we're going to add the font directly to the body
 element.
 
+<!-- cSpell:ignore Kodchasan -->
+
 ```js
 import { createGlobalStyle } from 'styled-components'
 

@@ -9,7 +9,7 @@ isPrivate: false
   import { YouTube } from 'sveltekit-embed'
 </script>
 
-> This guide has now been updated, take a look at [Use URQL with
+> This guide has now been updated, take a look at [Use URQL with > >
 > SvelteKit] for an up to date reference
 
 Use the Universal React Query Library (URQL) in Svelte!
@@ -24,12 +24,16 @@ thing.
 
 ## GraphQL endpoint
 
+<!-- cSpell:ignore probs -->
+
 So what I'm going to need is a GraphQL endpoint to query, no probs,
 I'll spin up a GraphCMS project blog template and use the Content API
 from that for my endpoint.
 
 Check out the short explainer video if none of that made any sense to
 you:
+
+<!-- cSpell:ignore ID8bchiyNfw -->
 
 <YouTube youTubeId='ID8bchiyNfw'/>
 
@@ -73,7 +77,7 @@ As URQL is used client side (in the browser after the page has loaded)
 there's no need to use `<script context="module">` which was what
 initially confused me when starting out with it!
 
-For the URQL client I'll need to create it in a place accessable by
+For the URQL client I'll need to create it in a place accessible by
 other pages so the most logical place (to me) is to use the client in
 a Svelte layout page, I'll need to create that:
 
@@ -90,8 +94,8 @@ touch .env
 echo .env >> .gitignore
 ```
 
-As it's a publically accessible endpoint I'm not going to be too
-concerned about exposing it publically with the `VITE_` variable you
+As it's a publicly accessible endpoint I'm not going to be too
+concerned about exposing it publicly with the `VITE_` variable you
 can read up on hiding [env secrets] with SvelteKit for more
 information.
 
@@ -151,6 +155,8 @@ variable to subscribe to changes.
 I'll use some conditional rendering with Svelte to check if the posts
 are fetching or if there are any errors before using the Svelte each
 directive to loop through the results of the data from endpoint:
+
+<!-- cSpell:ignore oopsie -->
 
 ```svelte
 {#if $posts.fetching}

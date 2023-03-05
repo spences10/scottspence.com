@@ -39,6 +39,8 @@ Anyway, preamble over let's get into how I did it.
 I went from `/:year/:month/:day/:slug` to `/posts/:slug` and I wanted
 to redirect the old URLs to the new ones.
 
+<!-- cSpell:ignore mydomain -->
+
 I asked this question a while back on Twitter, which was **"I want to
 do a load of redirects (~130) using SvelteKit, anyone have any
 examples of redirecting from:
@@ -96,11 +98,11 @@ export const load = async ({ params }) => {
 The filing structure needed to take in the year, month, day and the
 slug of the URL, so I had a dynamic route for each of those.
 
-This is effectively a wildcard route, but it's taking anyting that has
-a `/something/something/something/slug/` format.
+This is effectively a wildcard route, but it's taking anything that
+has a `/something/something/something/slug/` format.
 
-So, If I enter the follwing URLs they both redirect to the slug at the
-end.
+So, If I enter the following URLs they both redirect to the slug at
+the end.
 
 Examples:
 

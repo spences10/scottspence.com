@@ -70,6 +70,8 @@ After this I can now add the variables to the HTML being generated.
 I didn't get the issues Leigh was having with the Now CLI having to
 restart it continually.
 
+<!-- cSpell:ignore Nedwsf -->
+
 <Details buttonText="Expand to watch.">
   <YouTube youTubeId="ANedwsfXpO0" />
 </Details>
@@ -79,6 +81,8 @@ restart it continually.
 Write the HTML to a temp file, which I could create the file but
 couldn't access the file locally via the browser like Leigh does. I
 could `cat` the contents however.
+
+<!-- cSpell:ignore Lgju -->
 
 <Details buttonText="Expand to watch.">
   <YouTube youTubeId="KlLgjuUQoJs" />
@@ -92,6 +96,8 @@ Chromium.
 
 To do this locally you will need to find the path of where Chrome is,
 for me, being a Linux user I did:
+
+<!-- cSpell:ignore whereis -->
 
 ```bash
 whereis google-chrome-stable
@@ -234,6 +240,8 @@ to see the issue.
 ![page source url]
 
 Here's an example URL of what is being added to the page source:
+
+<!-- cSpell:ignore Fscottspence,Ffavicon -->
 
 ```text
 https://image-og.now.sh/og.jpg

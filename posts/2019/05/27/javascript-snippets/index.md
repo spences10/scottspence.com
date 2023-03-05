@@ -18,7 +18,7 @@ one item in an array meets what you are looking for
 
 ```js
 const user = {
-  name: 'Scott',
+  name: 'Dave',
   permissions: ['USER', 'CREATE_ITEM'],
 }
 
@@ -40,9 +40,9 @@ array meets what you are looking for.
 
 ```js
 const people = [
-  { name: 'Scott', age: 42 },
+  { name: 'Dave', age: 42 },
   { name: 'Sue', age: 26 },
-  { name: 'Orla', age: 9 },
+  { name: 'India', age: 9 },
 ]
 
 const canEveryoneDrink = people.every(p => p.age >= 18)
@@ -54,6 +54,8 @@ const canSomeoneDrink = people.some(p => p.age >= 18)
 const howManyDrinkers = people.filter(p => p.age >= 18).length
 // 2
 ```
+
+<!-- cSpell:ignore addy,osmani -->
 
 ## Via Addy Osmani
 

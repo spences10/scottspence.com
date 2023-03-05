@@ -32,6 +32,8 @@ find the [blog example using Houdini] over on GitHub.
 I'll be creating the backend for the project with the GraphCMS blog
 template, check out the video here on how to get started with that!
 
+<!-- cSpell:ignore CUudpo8n2FA -->
+
 <YouTube youTubeId='CUudpo8n2FA'/>
 
 I'll be using [pnpm] for my package management, you can do what you
@@ -77,6 +79,8 @@ npx houdini init
 
 I'll be prompted for the GraphCMS project GraphQL API here, you can
 check out the video here for how to get that:
+
+<!-- cSpell:ignore ID8bchiyNfw -->
 
 <YouTube youTubeId='ID8bchiyNfw'/>
 
@@ -205,6 +209,8 @@ const config = {
 
 export default config
 ```
+
+<!-- cSpell:ignore unmarshal -->
 
 Run Houdini generate again
 

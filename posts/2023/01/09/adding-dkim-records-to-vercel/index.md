@@ -30,7 +30,9 @@ vc dns add yourdomain.com @ TXT 'sendinblue-code:valueFromSendinblue'
 ```
 
 I add in all the `TXT` records with the Vercel CLI and check the the
-Sendinblue dashboard to see if they're verified, I get the follwing:
+Sendinblue dashboard to see if they're verified, I get the following:
+
+<!-- cSpell:ignore yourdomain,domainkey -->
 
 | Sendinblue code | We need to verify your domain       |     |
 | --------------- | ----------------------------------- | --- |

@@ -99,6 +99,8 @@ them for the `width` and `border-radius`. Go nuts! 😊
 
 Ok, so here's a vanilla CSS example in a CodePen you can check out:
 
+<!-- cSpell:ignore GRxjpbQ -->
+
 <CodePen codePenId="GRxjpbQ" />
 
 As a bonus you don't have to have the `background-color` as a solid

@@ -52,6 +52,8 @@ main partition.
 If you want to see the drives you have available in PowerShell you can
 use this:
 
+<!-- cSpell:ignore WMIOBJECT,logicaldisk -->
+
 ```powershell
 # | FORMAT-TABLE added for less verbose output
 GET-WMIOBJECT win32_logicaldisk | FORMAT-TABLE

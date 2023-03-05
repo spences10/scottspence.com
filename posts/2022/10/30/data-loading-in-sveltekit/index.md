@@ -141,7 +141,7 @@ props are received into components with `export let`.
 Ok, so that data defined locally now I'll take a look at getting some
 external data.
 
-In the follwing example I'm using the [CoinLore API] to get the top
+In the following example I'm using the [CoinLore API] to get the top
 100 cryptocurrencies (which is the default request). It's a fun API to
 play around with but for this example all I really need is some data
 from an external source.
@@ -175,6 +175,8 @@ the data being passed to `+page.svelte`.
 ```
 
 Resulting data being displayed on the page is something like this:
+
+<!-- cSpell:ignore nameid -->
 
 ```json
 {

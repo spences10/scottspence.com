@@ -67,12 +67,16 @@ reduce go check out Leigh's videos!
 
 <YouTube youTubeId='28StAxSjyIU'/>
 
+<!-- cSpell:ignore joost,Schuur -->
+
 This is another good one brought to my attention by
 [Joost Schuur](https://twitter.com/joostschuur) on Twitter.
 
 <YouTube youTubeId='NiLUGy1Mh4U'/>
 
 ## My approach
+
+<!-- cSpell:ignore umulator -->
 
 So, my specific use-case! I'll first set up the `.reduce` function
 with the `acc`umulator (the thing I'm adding to) and the current
@@ -137,6 +141,8 @@ should probably be an object `{}` so that I can check if the
 What I'd get at the end though would be an object where the keys are
 the product ids... so if I just want the deduped values, I could use
 `Object.values()` to extract them.
+
+<!-- cSpell:ignore deduped,leighs -->
 
 ```js
 const dedupedObject = items.reduce((acc, item) => {

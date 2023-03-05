@@ -11,7 +11,7 @@ if I could use it for web development.
 
 Well, yeah, you can, that's it, that's the post!
 
-There's a few subtle diffrences between doing it with Ubuntu/Debian
+There's a few subtle differences between doing it with Ubuntu/Debian
 which I'm going to cover here.
 
 First up, I couldn't get GUI app working for using tools like Cypress,
@@ -131,7 +131,7 @@ can use openSUSE for doing web dev on.
 
 What I covered:
 
-- The diffrences to updating and installing on Ubuntu/Debian
+- The differences to updating and installing on Ubuntu/Debian
 - Installing required tools for web development, Zsh, git, nano
 - Adding SSH keys from another Ubuntu/Debian install
 

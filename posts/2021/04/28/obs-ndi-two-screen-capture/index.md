@@ -34,6 +34,8 @@ suite from [NDI] so I did a bit more searching.
 Then I found this one which doesn't need additional software outside
 of OBS:
 
+<!-- cSpell:ignore 4q1rXLcXRLM -->
+
 <YouTube youTubeId="4q1rXLcXRLM" />
 
 So the idea is to set up OBS on both machines and have one pipe the

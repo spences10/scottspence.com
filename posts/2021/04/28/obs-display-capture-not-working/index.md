@@ -55,7 +55,7 @@ Adapters', there was two options for me `AMD Radeon(TM) Graphics` and
 `NVIDIA GeForce RTX 2060` I disabled the AMD one closed and reopened
 OBS and it was fine.
 
-The video also details putting OBS into compatability mode I tried
+The video also details putting OBS into compatibility mode I tried
 with and without and it made no difference for me so I left it how it
 was.
 
@@ -63,6 +63,8 @@ was.
 
 Here's a detailed video going over all the points I mentioned and some
 other things you can try if you're having a similar issue:
+
+<!-- cSpell:ignore FrmcLHFCAiM -->
 
 <YouTube youTubeId="FrmcLHFCAiM" />
 

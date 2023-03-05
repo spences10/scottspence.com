@@ -165,7 +165,7 @@ const config = {
 export default config
 ```
 
-The rest of the config here isn't really pertenant, what matters is
+The rest of the config here isn't really pertinent, what matters is
 that I have swapped out `adapter-static` with `adapter-vercel` I've
 literally copied the code of what I'm working on.
 
@@ -587,7 +587,7 @@ the Revue [subscribers list] again!
 That's it, I've gone and added an email submit from to a site that
 uses the Revue API with SvelteKit endpoints!
 
-I cann now use this pattern in other projects!
+I can now use this pattern in other projects!
 
 <!-- Links -->
 

@@ -32,6 +32,8 @@ Open a terminal as administrator, same as in the last section;
 `Windows + x` and then `a` to open a terminal as admin. Use the
 following commands:
 
+<!-- cSpell:ignore wuauserv -->
+
 ```powershell
 net stop wuauserv
 net stop bits

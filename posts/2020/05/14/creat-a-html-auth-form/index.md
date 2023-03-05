@@ -12,6 +12,8 @@ isPrivate: true
 I was asked to create a simple auth from at work, this tweet
 immediately sprang to mind.
 
+<!-- cSpell:ignore bubu -->
+
 <Tweet tweetLink={`KiddBubu/status/1187120868259979269`} />
 
 <!-- ![like a psychopath tweet](./like-a-psychopath.png) -->

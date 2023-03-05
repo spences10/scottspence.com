@@ -23,6 +23,8 @@ up with my [referral link]. Yes I get a kick back from this, it's an
 awesome product and if you're interested in using it using the link
 would really help me out._
 
+<!-- cSpell:ignore CCPA,PECR -->
+
 So, Fathom, digital privacy first. They're GDPR, CCPA, ePrivacy, PECR
 compliant. Their business model is selling software, not data. Because
 of this, Fathom doesn't require cookie banners.
@@ -35,7 +37,7 @@ I'll presume that you have a basic understanding of using a JavaScript
 framework like Svelte and are familiar with using the command line
 (CLI) to get certain tasks done.
 
-So this means you already have a developement environment with Node a
+So this means you already have a development environment with Node a
 terminal and a text editor like VS Code installed and ready to go. If
 you don't then there are still services like Gitpod, [StackBlitz] and
 GitHub Codespaces you can use from a browser.
@@ -53,7 +55,7 @@ enter a site name. I'm calling this one [`ideal-memory`].
 That link is a public Fathom dashboard you can go and check out now if
 you like.
 
-ℹ️ The site name doesn't have to corespond with the actual project
+ℹ️ The site name doesn't have to correspond with the actual project
 name but it could get confusing if it doesn't and you have a lot of
 sites.
 
@@ -147,6 +149,8 @@ echo PUBLIC_FATHOM_URL= >> .env
 Then add the `SiteID` and the tracking script to the variables to the
 `.env` file:
 
+<!-- cSpell:ignore NYMDTPLM -->
+
 ```js
 PUBLIC_FATHOM_ID=NYMDTPLM
 PUBLIC_FATHOM_URL=https://cdn.usefathom.com/script.js
@@ -231,7 +235,7 @@ In the `+layout.svelte` file I'll add this:
 <slot />
 ```
 
-Let's break down what's going on here, importting the `browser`
+Let's break down what's going on here, importing the `browser`
 indicates if the project is running in the browser or not, this will
 return a Boolean (`true`, `false`) value. You can read more about
 [`$app-environment`] on the SvelteKit documentation.
@@ -247,7 +251,7 @@ site ID.
 
 If you're not familiar with Svelte the the `$:` might look a bit
 funky, you can learn more about it on the [Svelte
-Reactivity/Declarations] tutorial. The `&&` is a shortcircuit
+Reactivity/Declarations] tutorial. The `&&` is a short circuit
 evaluation to if there's no `browser` then `Fathom.trackPageview()`
 wont run.
 
@@ -332,6 +336,8 @@ this button in the `src/routes/+page.svelte` file for now.
 </button>
 ```
 
+<!-- cSpell:ignore H1CCQXUL,pageview -->
+
 So, what I'm doing here is importing the `trackGoal` function from
 `fathom-client` then using that in the `on:click` event handler for
 the button.
@@ -385,6 +391,8 @@ home page link.
 <slot />
 ```
 
+<!-- cSpell:ignore KWOYX0PK -->
+
 ## Using a custom domain
 
 So last up I want to use a custom domain for my project!
@@ -418,6 +426,8 @@ dialogue which pops up after that I'll need to take a note of the
 [![fathom-domain-cname-dialogue]] [fathom-domain-cname-dialogue]
 
 I'll take a note of the values here for use later.
+
+<!-- cSpell:ignore thirtyone -->
 
 ```bash
 CNAME: van-protected

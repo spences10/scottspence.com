@@ -60,6 +60,8 @@ discovered how flexable it was and more importantly cross platform, so
 I could take notes on my phone, work laptop and personal computer yay
 🎉
 
+<!-- cSpell:ignore kanban -->
+
 I used it for stashing ideas for later, todo lists, shopping lists,
 kanban boards and the 100s of links that I thought looked interesting
 but didn't have time to read it there and then so stashed them in the
@@ -94,6 +96,8 @@ collate information from differing sources.
 The odd bit was that you could only add in a bullet fashion, so if you
 want to add a code block it always looked weird inline of a unordered
 list.
+
+<!-- cSpell:ignore culty,googlers -->
 
 It got a bit weird and culty, I always get a bit wary when companies
 start referring to their users/employees as tribes, "Roamers",

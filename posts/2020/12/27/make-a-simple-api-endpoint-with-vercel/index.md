@@ -57,13 +57,15 @@ when someone navigates to the posts they'll be presented with a random
 response from the script saying "hey welcome to my
 `jot unsightly helpless record`" or something to that effect!
 
-Becuse I wanted to use the same thing in two projects I made a third
+Because I wanted to use the same thing in two projects I made a third
 one! 😂 An endpoint to go get that from rather than moving around the
 script from project to project.
 
 It's the simple script from that project that is now an endpoint on
 Vercel. Hitting the URL https://random-blog-name.vercel.app/api will
 give you a response like this:
+
+<!-- cSpell:ignore datebook -->
 
 ```json
 {
@@ -95,7 +97,7 @@ project.
 
 ```bash
 mkdir random-password-generator
-cd random-passord-generator
+cd random-password-generator
 yarn init -y
 ```
 
@@ -264,7 +266,7 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Generate Pasword</h1>
+      <h1>Generate Password</h1>
       <h2>{blogNameObj.password}</h2>
       <button
         onClick={() => {
@@ -300,7 +302,7 @@ res.setHeader('Access-Control-Allow-Credentials', `true`)
 res.setHeader('Access-Control-Allow-Origin', '*')
 ```
 
-Now that's added I'll need to edploy it again with the `yarn deploy`
+Now that's added I'll need to deploy it again with the `yarn deploy`
 script.
 
 Now going back to the CodeSandbox example it returns the API response!

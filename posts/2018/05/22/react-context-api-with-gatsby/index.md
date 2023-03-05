@@ -367,6 +367,8 @@ Ok, success 💯 now onto the background switching/transition thingy.
 
 ## Switch hero (background patterns)
 
+<!-- cSpell:ignore Schoger,rando -->
+
 So, right now to switch between [Steve Schoger]'s awesome [hero
 patterns] I have a function sitting in the `globalStyle` module which
 returns a random HERO pattern:

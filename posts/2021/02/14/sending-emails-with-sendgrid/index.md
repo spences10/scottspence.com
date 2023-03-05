@@ -29,11 +29,13 @@ this in the past with Zoho and you can check [Setting up a Custom
 Email with Zoho] for details on that and also [Setting up ProtonMail
 with Vercel] they're both for Vercel via the Vercel CLI.
 
+<!-- cSpell:ignore kwes -->
+
 I'll need a from on my site to collect the information with, I use
-[Kews Forms] which isn't completely redundant a this point as it has
+[Kwes Forms] which isn't completely redundant a this point as it has
 great validation that I can use.
 
-Also it was what I had in place already, if you're interested in Kews
+Also it was what I had in place already, if you're interested in Kwes
 Forms take a look at the video here:
 
 <YouTube youTubeId="ZSFn1lnlAZw" />
@@ -88,7 +90,7 @@ To do that, if you create a new list in your contacts then
 [newsletter]: https://scottspence.com/newsletter
 [leigh halliday]: https://www.youtube.com/watch?v=gK7KKswOnOQ
 [james q quick]: https://www.youtube.com/watch?v=7HVM3HPhlTw
-[kews forms]: https://kwes.io/
+[Kwes forms]: https://kwes.io/
 [setting up protonmail with vercel]:
   https://scottspence.com/posts/setting-up-proton-mail-with-vercel/
 

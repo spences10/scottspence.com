@@ -70,9 +70,13 @@ CodeSandbox]
 
 ## Colours
 
+<!-- cSpell:ignore colorhunt -->
+
 Community driven colour pallets: [colorhunt.co]
 
 HSLA Colour picker: [A Most Excellent HSL Color Picker]
+
+<!-- cSpell:ignore tanaguru,leet,bada -->
 
 Colour contrast picker, this will give you a selection of colours with
 a 4.5:1 ratio: [tanaguru contrast finder]
@@ -80,6 +84,8 @@ a 4.5:1 ratio: [tanaguru contrast finder]
 Leet speak and colours: [bada55.io]
 
 For getting shades of a colour I lke to use 0to255 : [0to255.com]
+
+<!-- cSpell:ignore mycolor,palx,jxnblk -->
 
 Colour Space has a nice UI for creating colour pallets:
 [mycolor.space]
@@ -92,6 +98,8 @@ Automatic UI Colour Palette Generator: [palx.jxnblk.com]
 Name a colour from hex: [color-hex.com]
 
 Hello Colour: [jxnblk.com/hello-color]
+
+<!-- cSpell:ignore colorbox,hihayk -->
 
 Beautiful colour scales Colour Box: [colorbox.io]
 
@@ -148,6 +156,8 @@ I also found the original tweet I saw from Wes Bos back in 2017!
 <Tweet tweetLink="wesbos/status/932644812582522880" />
 
 ## CSS Grid
+
+<!-- cSpell:ignore layoutit -->
 
 CSS Grid has a good UI for building CSS Grid Layouts:
 [layoutit.com/build]

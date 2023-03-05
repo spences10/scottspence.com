@@ -87,7 +87,7 @@ extensions for known file types in Windows File Explorer.
 
 Open the Windows File Explorer with Windows key+e then select View
 from the ribbon. Then click the Options button on the far right, this
-will bring up the Folder Options dialog, from here we want to select
+will bring up the Folder Options dialogue, from here we want to select
 the View tab and select the Radio button for Hidden files and folders
 with the 'Show hidden files, folders and drives', uncheck the option
 for 'Hide extensions for known file types' too. Click apply and Ok.
@@ -97,6 +97,8 @@ project structures it's also needed for files like `.env` files which
 are used for environment configuration.
 
 ![show file extensions]
+
+<!-- cSpell:ignore dmin -->
 
 Use Windows key+x, this is the same as right-clicking the windows icon
 on the desktop, this will open the quick link menu. From here you need
@@ -319,6 +321,8 @@ Quick orientation with the Hyper terminal keyboard shortcuts:
 Now I'm going to configure some additional properties for Hyper, and
 change the theme to something a bit more subtle.
 
+<!-- cSpell:ignore fira -->
+
 I purchased Dank Mono, if you want a similar font as OSS check out
 [FiraCode].
 
@@ -371,6 +375,8 @@ After installing OMF you can pick a theme, here you may notice that
 the text doesn't fit in the screen on Hyper, a quick way to reset it
 is to maximise the window then back again, I did this with the Windows
 key+arrow up to maximise the Windows key+arrow down to restore it.
+
+<!-- cSpell:ignore agnoster -->
 
 After installing omf I chose the theme agnoster, installed with
 `omf install agnoster` you can list out what is available and what you
@@ -475,6 +481,8 @@ npx create-react-app create-react-app
 
 This is creating the project in my home (`~`) folder, I've had to
 speed the gif up to 20x faster, it does take a while.🙃
+
+<!-- cSpell:ignore Wheeeeeeeeeeeeeeeeeeeee -->
 
 Wheeeeeeeeeeeeeeeeeeeee!
 
@@ -608,6 +616,8 @@ differences when authenticating with Windows Git Bash.
 
 From Hyper, copy the SSH files from Linux to Windows:
 
+<!-- cSpell:ignore spenc -->
+
 ```bash
 cp ~/.ssh/* /c/Users/spenc/.ssh/
 ```
@@ -646,6 +656,8 @@ authenticated.
 If you want to use a different version of Ubuntu, Debian or any of the
 other available distributions of Linux from the Windows store with
 Hyper you will need to change the default version from PowerShell:
+
+<!-- cSpell:ignore wslconfig -->
 
 ```bash
 # list available versions

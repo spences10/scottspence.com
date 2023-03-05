@@ -48,9 +48,9 @@ I will come onto why this was a factor in the next section.
 
 ## Clear pricing
 
-Fastmail has clear, understanable pricing. There's three tiers, Basic,
-Standard and Professional. Each one listing what you get for your
-money.
+Fastmail has clear, understandable pricing. There's three tiers,
+Basic, Standard and Professional. Each one listing what you get for
+your money.
 
 I found with ProtonMail I was wading through pricing structures and
 addons which made no sense and I was quickly lost on what I was

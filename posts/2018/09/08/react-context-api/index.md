@@ -240,6 +240,8 @@ fontBody // font
 Create a file to contain the theme object in the `theme` directory and
 call it `globalStyle.js` and add in the following:
 
+<!-- cSpell:ignore Enriqueta,Kaushan -->
+
 ```js
 import { injectGlobal } from 'styled-components'
 

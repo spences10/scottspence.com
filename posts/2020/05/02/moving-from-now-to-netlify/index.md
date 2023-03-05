@@ -45,6 +45,8 @@ quickly [with no downtime].
 
 ## Vercel's Now.sh platform is also a CDN
 
+<!-- cSpell:ignore weserv -->
+
 I'm going through all the assets in posts on here and adding them with
 the Now CLI so I can use a link to them directly, or through a service
 like [Images.weserv.nl] for further optimisations.

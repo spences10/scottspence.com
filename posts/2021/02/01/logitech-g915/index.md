@@ -11,7 +11,7 @@ isPrivate: false
 
 The Logitech G915 Ten Keyless (TKL) has been a bit difficult to get
 hold of recently. If the feel of the keys on the G815 are anything to
-go by then this keyboard was on my wishlist.
+go by then this keyboard was on my wish list.
 
 I did get one and have been using it for the last week or so now, I
 actually purchased it mid January but didn't use it until the last
@@ -26,14 +26,19 @@ I was quite shocked to see ES on the front and that the keys were GL
 Tactile and not clicky, then I checked the order and that was exactly
 what I had ordered. 🤦‍♀️
 
+<!-- cSpell:ignore clicky -->
+
 I was so wrapped up in actually seeing one was available and that I
 could purchase it in five instalments that I went and hit that buy
 button! Thanks Jeff!
 
 ## Key caps
 
-Becsue it was the Spanish version of the board all the keycaps legends
-were in español! But the layout is still ISO so a nice big enter key!
+Because it was the Spanish version of the board all the keycaps
+legends were in español! But the layout is still ISO so a nice big
+enter key!
+
+<!-- cSpell:ignore bango -->
 
 I swapped those keys out with the keys on the G815 bingo bango! I now
 have a 'english' keyboard!
@@ -43,14 +48,16 @@ have a 'english' keyboard!
 Word of warning if you are considering getting a G815/G819 the keycaps
 _appear_ to be the same as the keycaps that come with my beloved
 [HAVIT KB395L] and I've had a look around and there doesn't seem to be
-a great deal of aftermarket options for them.
+a great deal of after market options for them.
 
 ![keycaps]
+
+<!-- cSpell:ignore CLACKITY -->
 
 ## No clack! (CLACKITY, CLACKITY, CLACK, CLACK)
 
 Now I'm using tactile keys, I'll say that the feel is pretty much the
-same, the audable click is something I'll miss but not something I
+same, the audible click is something I'll miss but not something I
 feel.
 
 I do spend a lot of time with my headphones on now whilst working so
@@ -64,6 +71,8 @@ of YouTube internet fame land gushing about how nice it is.
 <YouTube youTubeId="-rBV4I_LWhg" />
 
 ## What does it have over the G815
+
+<!-- cSpell:ignore chonky,LIGHTSPEED -->
 
 No chonky boi cable! Look at that thing! It took up two USB ports too,
 one for the keyboard ond another for the lighting. 😬
@@ -92,8 +101,8 @@ factor of the G915:
 
 The G keys on the G815 which I really didn't get on with to begin with
 I've now become reliant on the G1 button which was linked to the F5 (a
-web developers favourite key when developing) key, I ofthen find
-myself hitting the Ctrl key wanting to refresh a page.
+web developers favourite key when developing) key, I often find myself
+hitting the Ctrl key wanting to refresh a page.
 
 With the 104 keys of the G815 my left hand naturally rested between
 the Tab, Caps, Shift and Ctrl keys and the G keys, now my hand

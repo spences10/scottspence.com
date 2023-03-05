@@ -22,6 +22,8 @@ Security Standards] with guidance on it. There was also a
 So, looking at the DNS entries on Vercel (with the Vercel CLI command
 `vc dns scottspence.com`), there's two TXT records:
 
+<!-- cSpell:ignore messagingengine -->
+
 ```bash
 v=spf1 include:spf.sendinblue.com mx ~all
 v=spf1 include:spf.messagingengine.com ?all

@@ -16,6 +16,8 @@ isPrivate: false
 I have delivered this talk several times now but not actually written
 about it.
 
+<!-- cSpell:ignore Sooooo -->
+
 Sooooo, let's talks about the jamstack!
 
 Jamstack not JAMstack, Netlify have recently decided that there's a
@@ -39,7 +41,7 @@ there was an opportunity to use it.
 
 It's JavaScript, APIs and Markup
 
-JavaScript > browserside
+JavaScript > browser side
 
 APIs > the backend for the browser
 
@@ -67,6 +69,8 @@ mentioned.
 **LAMP** stack > Linux, Apache, MySQL, PHP
 
 **MEAN** stack > MongoDB, ExpressJS, AngularJS, NodeJS
+
+<!-- cSpell:ignore MERN -->
 
 **MERN** stack > MongoDB, ExpressJS, React, NodeJS
 

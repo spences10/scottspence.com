@@ -40,10 +40,10 @@ keyboard an mouse all the time.
 ## Replacement parts
 
 Regarding the fan on the Transformer, it's a sealed unit making a part
-replacement someting I'd either have to get specialist tools for or
+replacement something I'd either have to get specialist tools for or
 send it off somewhere to be serviced.
 
-After watching YouTube teardown videos I decided against attempting a
+After watching YouTube tear down videos I decided against attempting a
 repair myself.
 
 The first half of the video is getting the adhesive loose with a heat
@@ -70,7 +70,7 @@ fine tune my final selection of parts.
 ## What type of aesthetic do you want?
 
 I have no room to spare for a large tower PC so I decided to go with a
-Mini ITX compatable case.
+Mini ITX compatible case.
 
 The case you choose will be a determining factor in the parts you can
 have in there.
@@ -78,19 +78,19 @@ have in there.
 ## PC Part Picker
 
 Enter [PC Part Picker] this site is a MASSIVE help when it comes to
-picking compatabel parts for your PC build.
+picking compatible parts for your PC build.
 
 This was my guide when I came to picking parts and building my system.
 There are _loads_ of [completed builds] where enthusiasts and
 beginners just like myself would post their completed builds and
-coresponding parts list on PC Part Picker.
+corresponding parts list on PC Part Picker.
 
 If there is a specific system you have in mind chances are someone has
 already built it and posted their completed build here.
 
 Here's a couple of Intel builds I'd put together a few years ago
 without putting a great deal or research into the parts I was going to
-use. They centered around an i3 with differing [motherboards] and
+use. They centred around an i3 with differing [motherboards] and
 [GPUs], see the compatibility warnings on them.
 
 ## Decide on what to get
@@ -107,9 +107,9 @@ items needed to build a PC, these are:
 - GPU (Graphics Processing Unit)
 - Storage (onboard memory for OS)
 - Case
-- Powersupply (PSU)
+- Power supply (PSU)
 
-I wanted someting a bit more powerful than the Inter Core i7 (two
+I wanted something a bit more powerful than the Inter Core i7 (two
 cores, four threads) that was in the ASUS Transformer, with a bump to
 the 16GB of RAM it had.
 
@@ -127,6 +127,8 @@ one!
 
 The Ryzen 5 also comes with a CPU **fan included**, so saving a bit of
 money there.
+
+<!-- cSpell:ignore strix,nvme -->
 
 For the **Motherboard** I went with whatever I could get that would
 offered some expansion to the memory further down the line so I went
@@ -156,8 +158,8 @@ You can also get the Node 202 without a power supply but for the extra
 
 ## Watch other people build with your parts
 
-I watched a buttload of people building PCs on YouTube, channels I'd
-reccomend are [Paul's Hardware], [Bitwit] and of course [Linus Tech
+I watched a butt load of people building PCs on YouTube, channels I'd
+recommend are [Paul's Hardware], [Bitwit] and of course [Linus Tech
 Tips] all with good starter guides on building PCs.
 
 First up is a good build guide on Paul's Hardware on [How To Build a
@@ -207,7 +209,7 @@ case and those yummy looking "ketchup and mustard" cables!
 ![the empty case]
 
 One of the first things I wanted to check before going ay further was
-the clearance between the CPU fan and the case incase I needed to buy
+the clearance between the CPU fan and the case in case I needed to buy
 a lower profile fan, thankfully it was clear!
 
 ![cpu fan clearance]
@@ -217,8 +219,8 @@ This is when it becomes clear that I have made my first mistake!
 I started assembling the motherboard and noticed the fan was blocking
 the RAM slots!
 
-This was also by far the most uncomfortable part for me as the
-springloaded screws on the fan made it really difficult to get them to
+This was also by far the most uncomfortable part for me as the spring
+loaded screws on the fan made it really difficult to get them to
 thread into the board.
 
 ![fan covering memory slots]
@@ -227,11 +229,11 @@ Another confusing part for me was when I was trying to screw the
 motherboard into the case I noticed the screws weren't really catching
 the thread on the case. I looked at the case instructions and it says
 there's three different types of screws. They all looked identical to
-me but they were very subtally different.
+me but they were very subtly different.
 
 ![case screws]
 
-I secure the power supply to the case, which was loosly mounted then
+I secure the power supply to the case, which was loosely mounted then
 screw in the motherboard and notice it's a big mess of cables right
 now.
 
@@ -295,20 +297,22 @@ bit weird then, the software sources wouldn't load meaning I couldn't
 add any software over what was already installed.
 
 I was able to make a new USB drive with Ubuntu 20.04 and went ahead an
-reinsalled it over what I'd already installed.
+reinstalled it over what I'd already installed.
 
 What I will say for the hardware here is that it took minutes to
-install a new opperating system. I was blown away at how fast it went
+install a new operating system. I was blown away at how fast it went
 with an SSD.
 
 ## Areas for improvement
 
 Although I was glad to get through it all without anything
-catestrophic happening there are still some things that could be
+catastrophic happening there are still some things that could be
 improved upon if you're asking me.
 
 The included fan although really useful in helping cut costs isn't the
 best due to the height giving less than optimal airflow.
+
+<!-- cSpell:ignore noctua -->
 
 What I have eyed up for a future improvement is the [Noctua NH-L9a-AM4
 33.84 CFM CPU Cooler].
@@ -333,8 +337,8 @@ https://uk.pcpartpicker.com/list/pHkrCL
 The price wil vary depending on when you look, I got the whole setup
 for just over £750.
 
-There is no way you will find a laptop with that sort of specsheet for
-that sort of price, believe me I've looked.
+There is no way you will find a laptop with that sort of spec sheet
+for that sort of price, believe me I've looked.
 
 ## Resources
 

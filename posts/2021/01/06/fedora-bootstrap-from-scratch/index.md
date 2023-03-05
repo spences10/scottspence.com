@@ -93,6 +93,8 @@ dnf -y update
 dnf install -y wget curl sudo ncurses dnf-plugins-core dnf-utils passwd findutils
 ```
 
+<!-- cSpell:ignore findutils -->
+
 These are what're recommended on Jim's post so I'm going with this for
 now, I'll add additional packages once I have created my user details.
 
@@ -136,6 +138,8 @@ for earlier:
 ```powershell
 Get-ItemProperty Registry::HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Lxss\\*\\ DistributionName | Where-Object -Property DistributionName -eq Fedora-33  | Set-ItemProperty -Name DefaultUid -Value 1000
 ```
+
+<!-- cSpell:ignore HKEY_CURRENT_USER,copr,wslu -->
 
 The last piece here is to add [Copr] for the Windows integration:
 
@@ -181,6 +185,8 @@ Oh My Zsh will say:
 
 > I can't change your shell automatically because this system does not
 > have chsh. Please manually change your default shell to zsh
+
+<!-- cSpell:ignore  -->
 
 I'll do that next.
 
@@ -297,6 +303,8 @@ Paste in my `.ssh` folder and `.gitconfig`, one thing to note here is
 that sometimes copying files in will set the permissions on the files
 to `root`, check that with:
 
+<!-- cSpell:ignore lart -->
+
 ```bash
 # check the .ssh file permissions
 ls -lart .ss*
@@ -372,7 +380,7 @@ sudo dnf -y install yarn
 Install a global yarn package and make sure global binaries are
 showing.
 
-In this case I'll add Vercels CLI:
+In this case I'll add Vercel's CLI:
 
 ```bash
 yarn global add vercel
@@ -419,6 +427,8 @@ be set in Fedora 33, so I'll go through the same process as I did in
 my [Enable GUIs WSL] post. Credit to Nicky Muleman and [his post] that
 give me the initial details.
 
+<!-- cSpell:ignore resolv -->
+
 ```bash
 # set DISPLAY variable to the IP automatically assigned to WSL2
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
@@ -432,6 +442,8 @@ up an xserver check out [Nicky's post on getting it set up].
 I'm going to clone MDX Embed as I know it uses Cypress and run the
 command to do end to end tests with Cypress once it's finished
 installing:
+
+<!-- cSpell:ignore paulie -->
 
 ```bash
 git clone git@github.com:PaulieScanlon/mdx-embed.git

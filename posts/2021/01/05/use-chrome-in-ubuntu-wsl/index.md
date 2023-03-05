@@ -17,6 +17,8 @@ although snap is on the WSL image you get from the Microsoft store
 it's not functional. There is a [solution untested by me] that may
 work.
 
+<!-- cSpell:ignore Brisebois -->
+
 There's a nice post from [Greg Brisebois] on getting set up for
 Selenium in WSL and this is partly pulled from there, if you want to
 use it for Selenium then check out his post.
@@ -25,6 +27,8 @@ use it for Selenium then check out his post.
 WSL, if you've not done that then check out [this post].
 
 Here's a video detailing the process:
+
+<!-- cSpell:ignore RNesoCuLMO8 -->
 
 <YouTube youTubeId="RNesoCuLMO8" />
 

@@ -25,6 +25,8 @@ published to npm so I decided to give patch-package a try.
 
 ## Video on patch-package
 
+<!-- cSpell:ignore awad -->
+
 [Ben Awad] had a great video on how to use it with an example, check
 it out here:
 

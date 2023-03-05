@@ -29,6 +29,8 @@ evenings I usually have from 20:00–22:00 but this is full of
 interruptions so you could probably condense it down to about 1.5
 hours again.
 
+<!-- cSpell:ignore gollum -->
+
 ![gollum]
 
 So.

@@ -129,12 +129,16 @@ create.
 Now we add our API keys to the `.env` file, it should look something
 like this:
 
+<!-- cSpell:disable -->
+
 ```bash
 CONSUMER_KEY=AmMSbxxxxxxxxxxNh4BcdMhxg
 CONSUMER_SECRET=eQUfMrHbtlxxxxxxxxxxkFNNj1H107xxxxxxxxxx6CZH0fjymV
 ACCESS_TOKEN=7xxxxx492-uEcacdl7HJxxxxxxxxxxecKpi90bFhdsGG2N7iII
 ACCESS_TOKEN_SECRET=77vGPTt20xxxxxxxxxxxZAU8wxxxxxxxxxx0PhOo43cGO
 ```
+
+<!-- cSpell:enable -->
 
 In the `.gitignore` file we need to add `.env` and `node_modules`
 
@@ -269,6 +273,8 @@ bot.get(
   }
 )
 ```
+
+<!-- cSpell:ignore Guberti -->
 
 To follow back a follower we can use `.post('friendships/create'...`
 here the bot is following back the user `MarcGuberti`
@@ -468,6 +474,8 @@ bot.post(
 )
 ```
 
+<!-- cSpell:ignore unretweet -->
+
 To unretweet just use `.post('statuses/unretweet/:id'...`
 
 ```js
@@ -485,6 +493,8 @@ bot.post(
   }
 )
 ```
+
+<!-- cSpell:ignore favorites -->
 
 To like a tweet use `.post('favorites/create'...`
 
@@ -505,6 +515,8 @@ bot.post(
 ```
 
 To unlike a post use `.post('favorites/destroy'...`
+
+<!-- cSpell:ignore unliked -->
 
 ```js
 bot.post(
@@ -634,8 +646,12 @@ you can also use it to filter for `media` tweets which will return
 tweets containing video. You can specify for `images` to view tweets
 with images and you can specify `links` for tweets with links.
 
+<!-- cSpell:ignore asda -->
+
 If you want tweets from a certain website you can specify with the
 `url` parameter like `url:asda`
+
+<!-- cSpell:ignore abramov -->
 
 ```js
 bot.get(
@@ -714,8 +730,8 @@ stream.on('tweet', function (t) {
 })
 ```
 
-You can also use multiple words in the `track` parameter, this will get
-you results with either `twitter` or `bot` in them.
+You can also use multiple words in the `track` parameter, this will
+get you results with either `twitter` or `bot` in them.
 
 ```js
 const stream = bot.stream('statuses/filter', {
@@ -789,6 +805,8 @@ key.
 In the example you can see that I have configured my key with the rest
 of my `.env` variables.
 
+<!-- cSpell:disable -->
+
 ```bash
 CONSUMER_KEY=AmMSbxxxxxxxxxxNh4BcdMhxg
 CONSUMER_SECRET=eQUfMrHbtlxxxxxxxxxxkFNNj1H107xxxxxxxxxx6CZH0fjymV
@@ -797,6 +815,8 @@ ACCESS_TOKEN_SECRET=77vGPTt20xxxxxxxxxxxZAU8wxxxxxxxxxx0PhOo43cGO
 
 NASA_KEY=DEMO_KEY
 ```
+
+<!-- cSpell:enable -->
 
 Now to use the `request` to get the image:
 
@@ -809,14 +829,14 @@ function getPhoto() {
     },
     encoding: 'binary',
   }
-  request.get(parameters, (err, respone, body) => {
+  request.get(parameters, (err, response, body) => {
     body = JSON.parse(body)
     saveFile(body, 'nasa.jpg')
   })
 }
 ```
 
-In the `request` we pass in our parameters and parse the body as JOSN
+In the `request` we pass in our parameters and parse the body as JSON
 so we can save it with the `saveFile` function which we'll go over
 now:
 
@@ -887,7 +907,7 @@ function uploadMedia(descriptionText, fileName) {
     {
       file_path: fileName,
     },
-    (err, data, respone) => {
+    (err, data, response) => {
       if (err) {
         console.log(err)
       } else {
@@ -908,7 +928,7 @@ straightforward `.post('statuses/update'...`
 
 ```js
 function postStatus(params) {
-  bot.post('statuses/update', params, (err, data, respone) => {
+  bot.post('statuses/update', params, (err, data, response) => {
     if (err) {
       console.log(err)
     } else {
@@ -941,7 +961,7 @@ function getPhoto() {
     },
     encoding: 'binary',
   }
-  request.get(parameters, (err, respone, body) => {
+  request.get(parameters, (err, response, body) => {
     body = JSON.parse(body)
     saveFile(body, 'nasa.jpg')
   })
@@ -969,7 +989,7 @@ function uploadMedia(descriptionText, fileName) {
     {
       file_path: filePath,
     },
-    (err, data, respone) => {
+    (err, data, response) => {
       if (err) {
         console.log(err)
       } else {
@@ -985,7 +1005,7 @@ function uploadMedia(descriptionText, fileName) {
 }
 
 function postStatus(params) {
-  bot.post('statuses/update', params, (err, data, respone) => {
+  bot.post('statuses/update', params, (err, data, response) => {
     if (err) {
       console.log(err)
     } else {
@@ -1353,7 +1373,7 @@ const getPhoto = () => {
     },
     encoding: 'binary',
   }
-  request.get(parameters, (err, respone, body) => {
+  request.get(parameters, (err, response, body) => {
     body = JSON.parse(body)
     saveFile(body, 'nasa.jpg')
   })
@@ -1609,8 +1629,8 @@ now --login
 
 The first time you run `now`, it'll ask for your email address in
 order to identify you. Go to the email account to supplied when
-signing up an click on the email sent to you from `now`, and you'll
-be logged in automatically.
+signing up an click on the email sent to you from `now`, and you'll be
+logged in automatically.
 
 If you need to switch the account or re-authenticate, run the same
 command again.
@@ -1685,6 +1705,8 @@ short!] name.
 Ok, so from the terminal `now secrets ls` should list out your
 `secrets` you just created:
 
+<!-- cSpell:disable -->
+
 ```bash
 $ now secrets ls
 > 5 secrets found under spences10 [1s]
@@ -1696,6 +1718,8 @@ $ now secrets ls
   sec_xxxxxxxxxxMe1Cxxxxxxxxxx  ds-twit-access-secret  23h ago
   sec_xxxxxxxxxxMJ2jxxxxxxxxxx  nasa-key               23h ago
 ```
+
+<!-- cSpell:enable -->
 
 **Add npm deploy script**
 
@@ -1740,6 +1764,8 @@ Shout out to [@Tim][tim] from `zeit` for helping me out with this!
 In the `picture-bot.js` module add the following two lines to the top
 of the module:
 
+<!-- cSpell:ignore tmpdir -->
+
 ```js
 const os = require('os')
 const tmpDir = os.tmpdir()
@@ -1749,6 +1775,8 @@ Those two lines give us the `temp` directory of the operating system,
 so if like me you're on Windows it will work as well as if you are on
 another system like a Linux based system, which is what `now` is. In
 our `saveFile` function we're going to use `tmpDir` to save our file.
+
+<!-- cSpell:ignore potd -->
 
 We've taken out the `nasa.jpg` from the `getPhoto` function as we can
 define that information in the `saveFile` function, the NASA potd is
@@ -1813,7 +1841,7 @@ const getPhoto = () => {
     },
     encoding: 'binary',
   }
-  request.get(parameters, (err, respone, body) => {
+  request.get(parameters, (err, response, body) => {
     body = JSON.parse(body)
     saveFile(body)
   })
@@ -1854,7 +1882,7 @@ function uploadMedia(descriptionText, fileName) {
     {
       file_path: fileName,
     },
-    (err, data, respone) => {
+    (err, data, response) => {
       if (err) {
         console.log(err)
       } else {
@@ -1870,7 +1898,7 @@ function uploadMedia(descriptionText, fileName) {
 }
 
 function postStatus(params) {
-  bot.post('statuses/update', params, (err, data, respone) => {
+  bot.post('statuses/update', params, (err, data, response) => {
     if (err) {
       console.log(err)
     } else {
@@ -1893,6 +1921,8 @@ yarn deploy
 ```
 
 You will get some output:
+
+<!-- cSpell:ignore nowuser,gitrepos -->
 
 ```bash
 λ yarn deploy
@@ -1948,8 +1978,6 @@ Copyright (c) 2017, Scott Spence. All rights reserved.
 [license-badge]:
   https://img.shields.io/github/license/mashape/apistatus.svg
 [license-url]: https://opensource.org/licenses/MIT
-[gitter-bagde]:
-  https://badges.gitter.im/awesome-twitter-bots/Lobby.svg
 [gitter-url]:
   https://gitter.im/awesome-twitter-bots/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 [npm]: https://www.npmjs.com/

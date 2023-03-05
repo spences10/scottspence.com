@@ -40,7 +40,7 @@ $10 off with [my affiliate link].
 ## Approach
 
 The idea is to use a serverless function that will take in a GitHub
-usename and use that to query the GitHub GraphQL API and return data
+username and use that to query the GitHub GraphQL API and return data
 related to the username.
 
 The API data will then be used to populate a pie chart showing the
@@ -103,7 +103,7 @@ query GITHUB_USER_DATA_QUERY($username: String!) {
 ```
 
 This query will give the last 100 repos that aren't forks and are
-publically viewable for that GitHub username.
+publicly viewable for that GitHub username.
 
 Here's what the response from the GraphQL query looks like:
 
@@ -160,6 +160,8 @@ accordingly.
 Here's a small sample of the `script` in the HTML file that indicates
 the data it's expecting:
 
+<!-- cSpell:ignore corechart -->
+
 ```html
 <script type="text/javascript">
   google.charts.load('current', { packages: ['corechart'] })
@@ -206,11 +208,11 @@ open graph image] project I made a while back now.
 
 Loading the image does take a while, I've added this one below the
 fold but because it's not part of Gatsby image there will be layout
-shift unless I add a default heihgt to the `img` tag.
+shift unless I add a default height to the `img` tag.
 
 ![GitHub contributions pie chart]
 
-Becuse this isn't being done at build time there is a noticeable delay
+Because this isn't being done at build time there is a noticeable delay
 in the image being served sometimes.
 
 There may be something I can do about it with some persisted queries
@@ -259,10 +261,10 @@ offered up a colour to satisfy the W3C guidelines.
 This then had to be added to the [data transform] to change the colour
 of the text.
 
-Here's a small snippet of how the languages are addd to an object:
+Here's a small snippet of how the languages are add to an object:
 
 ```js {10}
-const langaugesArray = Object.entries(langObject).map(
+const languagesArray = Object.entries(langObject).map(
   ([key, value]: any) => {
     return {
       id: key,

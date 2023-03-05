@@ -44,7 +44,7 @@ const render = (
     xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
   >
   <!--
-    looks like changefreq isn't used by Google anymore
+    looks like changefreq isn't used by Google any more
     https://twitter.com/askRodney/status/1615409186782715904
     https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
     https://stackoverflow.com/questions/20257299/sitemap-xml-should-i-prefer-lastmod-to-changefreq#20917200 

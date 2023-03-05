@@ -2,6 +2,7 @@ Andvariables
 autoremove
 bcryptjs
 bindkey
+blogposts
 bootcamp
 changefreq
 chsh
@@ -14,6 +15,7 @@ dotenv
 dotfiles
 esbenp
 extrabold
+frontmatter
 globalalias
 globalias
 graphqlrc
@@ -25,6 +27,7 @@ lastmod
 LBUFFER
 maxage
 mdsvex
+nameserver
 noopener
 noreferrer
 npmignore
@@ -64,4 +67,4 @@ vbscript
 webm
 webp
 wireframe
-blogposts
+PageElement

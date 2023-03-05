@@ -19,9 +19,13 @@ supported with videos from the event.
 Ken's keynote didn't disappoint! Ken talks about how performance fixes
 aren't prescriptive and it's more like a puzzle to figure out.
 
+<!-- cSpell:ignore imdope -->
+
 To help with this he prescribed the IMDOPE system!
 
 ### IMDOPE System
+
+<!-- cSpell:disable -->
 
 - **I**dentify that a problem exists
 - **M**easure your timings
@@ -29,6 +33,8 @@ To help with this he prescribed the IMDOPE system!
 - **O**pen dev tools
 - **P**lay around until its better
 - **E**njoy newly performant app
+
+<!-- cSpell:enable -->
 
 Ken detailed an animation running at 60 frames per second and how that
 appears on the performance tab.
@@ -84,6 +90,7 @@ He finished up with an auto tune example made with Rust and a Google
 audio worklet to process a stream of audio to do the Daft Punk "one
 more time" vocoder example! Dope!
 
+<!-- cSpell:ignore svxxt -->
 <YouTube youTubeId="t8svxxtUTl8" />
 
 ## Sean Wang - React (with hooks) from scratch
@@ -97,6 +104,8 @@ React in 130 lines of code!".
 
 At blazing fast speed he covered many concepts, a lot I was unfamiliar
 with relating to React, topics covered:
+
+<!-- cSpell:ignore fiber -->
 
 - React Fiber
 - "Rendering"
@@ -148,6 +157,8 @@ suspends (or caches) as needed.
 
 <YouTube youTubeId="dFO4m7Y-yhs" />
 
+<!-- cSpell:ignore Vojtech,Miksu -->
+
 ## Vojtech Miksu - What a Drag
 
 Vojtech (Uber) goes through the history lesson about drag and drop and
@@ -155,6 +166,8 @@ the complexities that come with it.
 
 He details the options available and why they implemented their own
 [React Movable] Accessible drag and drop project.
+
+<!-- cSpell:ignore mtsa,RSCONF -->
 
 <YouTube youTubeId="y_XkQ2qMTSA" />
 
@@ -214,6 +227,8 @@ Library's lock you into _their_ way of testing things.
 
 > No tests are better than bad tests!
 
+<!-- cSpell:ignore DXRDQ -->
+
 <YouTube youTubeId="1vDXRDQ9aJE" />
 
 After this talk I was off to the React Native hall to go see some of
@@ -255,6 +270,8 @@ I have been doing this for a long time myself now and it's something I
 believe in a lot.
 
 ## Lunch
+
+<!-- cSpell:ignore Siddharth,Kshetrapal -->
 
 ## Siddharth Kshetrapal - Design Systems Design System
 
@@ -322,11 +339,13 @@ Pretty neat stuff!
 
 ## Emma Brillhart - A More Readable React Codebase Using TypeScript, GraphQL, and Hooks
 
-Emma's talk centered around why TypeScript is awesome and how
+Emma's talk centred around why TypeScript is awesome and how
 readability enables faster onboarding for developers.
 
 Using TypeScript on the client side give built in documentation,
 better navigation, less technical debt.
+
+<!-- cSpell:ignore Ggie -->
 
 <YouTube youTubeId="nkJbGgieALI" />
 

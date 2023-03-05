@@ -16,6 +16,8 @@ but my eyes always glaze over when I have to go on a six week training
 course just so I know how many services Amazon can offer me! Bitter?
 Maybe, confused? Absolutely.
 
+<!-- cSpell:ignore ranty -->
+
 I'm not going to get all ranty about AWS, all I'll say is that it's
 not the sort of thing you can go 'quickly' spin something up without
 worrying if you're going to end up with a massive bill at the end of
@@ -27,6 +29,8 @@ light option though, services like Vercel, Begin, Netlify functions
 and Render.
 
 ## Render YML
+
+<!-- cSpell:ignore psql -->
 
 Render gives you the option to configure your whole stack in one file.
 So far I've only spun up a Strapi web service with accompanying PSQL

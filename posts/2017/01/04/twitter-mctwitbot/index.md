@@ -93,6 +93,8 @@ like this:
 > process of understanding how to branch and use Pull Requests so bear
 > with me 😄
 
+<!-- cSpell:ignore Procfile -->
+
 The first gotcha for me was the Heroku `Procfile` I couldn't
 understand why it kept timing out, this was because it was trying to
 run the default `web` process instead of the `worker` process which is
@@ -115,7 +117,7 @@ var queryString = '#100DaysOfCode, #GitHub, #VSCode';
 You can get the logs from Heroku when you app is running by typing:
 
 ```
-$ herouku logs -t
+$ heroku logs -t
 ```
 
 This will give you your logs back from Heroku so you can add all the
@@ -125,6 +127,8 @@ I was getting the errors pictured so I started to play with the query
 string and just using one value at a time which didn't cause any
 errors so I decided to pass one value at a time by adding the Gist
 below.
+
+<!-- cSpell:ignore daysofcode -->
 
 ```js
 var queryList = [
@@ -141,7 +145,7 @@ var queryString = queryList[randomNumber]
 ```
 
 This worked, for a while then the same errors started creeping in, I
-then noticed that the `retweet` and `favoriteTweet` were on a timer
+then noticed that the `retweet` and `favouriteTweet` were on a timer
 but using the same random text from the `queryString` which was about
 as much use as the previous piece of code as it was a one time
 initialisation [or initialization] so the same string was being used
@@ -181,8 +185,8 @@ Then just replaced the `queryString` string with the `queryString()`
 method.
 
 Some other things to note that I discovered when playing around with
-the bot is the `retweet` and `favoriteTweet` function `params` was the
-`result_type:` options, here's my comments copy pasted from the
+the bot is the `retweet` and `favouriteTweet` function `params` was
+the `result_type:` options, here's my comments copy pasted from the
 Twitter dev portal:
 
 ```

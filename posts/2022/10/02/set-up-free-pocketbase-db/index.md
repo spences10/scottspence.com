@@ -81,6 +81,8 @@ curl -L https://fly.io/install.sh | sh
 
 Then use the CLI for signup and login, signup first:
 
+<!-- cSpell:ignore flyctl -->
+
 ```bash
 flyctl auth signup
 ```
@@ -135,6 +137,8 @@ Now I need to add the `[mounts]` section to the `fly.toml` file:
 
 Here's what my full TOML file looks like after adding in the
 `[mounts]` config:
+
+<!-- cSpell:ignore sigint -->
 
 ```toml
 # fly.toml file generated for pocketbase on 2022-10-02T17:22:41+01:00

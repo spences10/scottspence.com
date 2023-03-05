@@ -73,6 +73,8 @@ and find a appropriate place to add you alias. In
 
 To make aliases in Fish shell use:
 
+<!-- cSpell:ignore funcsave -->
+
 ```bash
 alias yga 'yarn global add'
 # remember to save it
@@ -83,7 +85,7 @@ funcsave yga
 
 Abbreviations are like having text expander in your terminal, so much
 like with the aliases I can shorten `git` to `g` the difference with
-abbreviations is that hitting the spacebar after that will expant it
+abbreviations is that hitting the space bar after that will expand it
 out to git.
 
 ```bash

@@ -13,13 +13,15 @@ As I'm all jazzed about using Cypress in WSL I thought I'd give it a
 go on Fedora.
 
 There's a few dependencies that are detailed by the Cypress CLI output
-that helps you underestand what needs to be installed, there were a
+that helps you understand what needs to be installed, there were a
 few that took a bit of searching to find but I've got it working in
 now.
 
 Unlike the post [I did previously] on doing it with Debian based WSL
 instances like Ubuntu and Debian there's no need to set the
 **$DISPLAY** variable like detailed in [Nicky's post].
+
+<!-- cSpell:ignore dbus -->
 
 Also I didn't configure to [Automatically start `dbus`] or [Grant
 passwordless access for `dbus`]. Right, enough link love to Nicky's
@@ -29,6 +31,8 @@ I'm using the [MDX Embed project] to run the Cypress tests which I
 have validated with Debian and Ubuntu in previous posts on here.
 
 Here's the dependencies that I needed to install:
+
+<!-- cSpell:ignore libdrm,libgbm,libasound -->
 
 ```bash
 sudo dnf install \
@@ -47,6 +51,8 @@ This one that I couldn't find with `dnf`:
 # elusive to find dependency
 sudo yum install alsa-lib.x86_64
 ```
+
+<!-- cSpell:ignore alsa,libnss -->
 
 ℹ the `-y` at the end of that command will automatically install the
 dependencies for you.

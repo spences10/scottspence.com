@@ -57,6 +57,8 @@ Cool! But I want to be able to select the filter from a list. So I
 create a `filters.svelte`, `select` component and add the filters to
 the `option` element using the Svelte `{each}` loop.
 
+<!-- cSpell:ignore looooong -->
+
 ```svelte
 <script>
   let filtersList = ['looooong', 'list', 'of', 'filters']
@@ -170,7 +172,7 @@ needed.
 ```svelte
 <div class="figure-group">
   {#each filtersList as item}
-    <figure class={`styled-fugure filter-${item}`}>
+    <figure class={`styled-figure filter-${item}`}>
       <img
         src="https://picsum.photos/400/400"
         alt="random picsum asset"
@@ -181,7 +183,7 @@ needed.
 </div>
 
 <style>
-  .styled-fugure {
+  .styled-figure {
     height: 100%;
   }
   .figure-group {

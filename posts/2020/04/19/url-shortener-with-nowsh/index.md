@@ -185,6 +185,8 @@ what I have in my project overview in Vercel.
 
 ![vercel project overview]
 
+<!-- cSpell:ignore fzph -->
+
 I can now take that URL (now-short-urls-fzph462o0.now.sh) add it to a
 browser and it will redirect to https://scottspence.me.
 

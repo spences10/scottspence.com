@@ -29,6 +29,8 @@ upgrade and I was left not knowing if I was fully upgraded or not.
 Thankfully someone else had come across the same problem and asked on
 [Stack Overflow], basically you need to uninstall Lxd with:
 
+<!-- cSpell:ignore dpkg -->
+
 ```bash
 sudo dpkg --force depends -P lxd; sudo dpkg --force depends -P lxd-client
 ```
@@ -47,7 +49,9 @@ versions, we're going to change that now by changing the prompt from
 sudo nano /etc/update-manager/release-upgrades
 ```
 
-You should see the default release upgrader settings:
+You should see the default release upgrade settings:
+
+<!-- cSpell:ignore ugrader -->
 
 ![default release ugrader]
 
@@ -80,6 +84,8 @@ getting errors like this:
 
 ![error installing ubuntu]
 
+<!-- cSpell:ignore lxss -->
+
 Then what worked for me was to restart the `LxssManager` via a
 PowerShell console with admin rights.
 
@@ -93,7 +99,7 @@ We went ahead an upgraded our WSL Ubuntu version from 18.04 to 18.10,
 we removed Lxd which isn't needed on WSL but is part of the Microsoft
 Store version 🤷‍♂️
 
-Then we changed the default behaviour of the release upgrader from
+Then we changed the default behaviour of the release upgrade from
 `lts` to `normal`.
 
 Once we have done those two parts we can then go ahead and upgrade

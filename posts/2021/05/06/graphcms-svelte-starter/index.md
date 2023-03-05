@@ -53,10 +53,9 @@ npm i
 ```
 
 I can now start the dev server and take a look at the project, I'll
-start the dev server with `npm run` and add some additional
-paramerters to the script with `--` then `-o` (or `--open`) to open in
-the browser and `-p 3300` (or `--port 3300`) to specify the port to
-run on:
+start the dev server with `npm run` and add some additional parameters
+to the script with `--` then `-o` (or `--open`) to open in the browser
+and `-p 3300` (or `--port 3300`) to specify the port to run on:
 
 ```bash
 npm run dev -- -o -p 3300
@@ -93,7 +92,7 @@ Add in the Tailwind directives to the `src/app.css` file:
 
 I'll come onto the styling later for now I'm going to focus on getting
 the posts into the project and using the SvelteKit layout to add some
-elements that are presisted through route changes.
+elements that are persisted through route changes.
 
 Create a SvelteKit layout in the routes folder:
 
@@ -182,7 +181,7 @@ touch .env
 
 I'll need to get the GraphQL endpoint from GraphCMS for
 `graphql-request`. So from my GraphCMS dashboard for my project
-there's a navigation bar on the leftand toward the bottom there's a
+there's a navigation bar on the left hand toward the bottom there's a
 settings button. Clicking that for the settings panel then under
 "Access" there's an "API Access" page that will show the URL endpoint.
 
@@ -437,7 +436,7 @@ This is a blog post paragraph.
 This is another a blog post paragraph.
 ```
 
-Svelte doesn't sanitise anyting inside the `{@html ...}` so make sure
+Svelte doesn't sanitise anything inside the `{@html ...}` so make sure
 that you trust the source of that data or you risk exposing the users
 to XSS attacks.
 

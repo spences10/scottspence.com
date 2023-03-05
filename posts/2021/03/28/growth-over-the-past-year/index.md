@@ -38,7 +38,7 @@ load of stuff relating to that:
 - [Enable GUIs on Windows Subsystem Linux (WSL)]
 
 I [built my first PC] as well, as my Surface clone couldn't hack it
-anymore.
+any more.
 
 Made posts on ZSH and how I switched from Fish to ZSH which is now my
 default shell, got a retweet from Robby Russel for that!

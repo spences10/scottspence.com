@@ -59,6 +59,8 @@ using for web dev on Windows is, in fact, Linux!
 Windows Subsystem Linux 2 to be precise, I was really excited for this
 ever since seeing the announcement back in May 2019.
 
+<!-- cSpell:ignore windowsdev -->
+
 <Tweet tweetLink="windowsdev/status/1125484494616649728" />
 
 > Dramatically improved file read performance up to a 3x improvement!
@@ -85,6 +87,8 @@ higher.
 If you don't have Windows Pro you should be able to enable WSL 2 on
 [Windows 10 home].
 
+<!-- cSpell:ignore winver -->
+
 To check use the Windows run command Windows key + r (Win+r) and enter
 `winver`, you'll get a dialogue with your machine details on it, I'm
 on version 2004 build 19041.
@@ -101,6 +105,8 @@ open PowerShell as admin and enter some commands.
 
 To open PowerShell as admin use Win+x then select Windows PowerShell
 (Admin) or press a on the keyboard.
+
+<!-- cSpell:ignore dism,featurename,norestart -->
 
 ```powershell
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
@@ -158,12 +164,16 @@ a look before letting it do it's thing then remove the `-y` flags.
 This will only come into play if you want to have your configuration
 files for things like `.gitconfig` and `.ssh` in a shared location.
 
+<!-- cSpell:ignore Turek -->
+
 This allows file permissions to be persisted see this [great
 explanation from Brian Turek] detailing it.
 
 I followed the documentation on the Microsoft docs to [configure per
 distro launch settings with `wsl.conf`], my `wsl.conf` file looks like
 this:
+
+<!-- cSpell:ignore fmask,automount,windir -->
 
 ```bash
 # Enable extra metadata options by default
@@ -186,6 +196,8 @@ With the first options I now have my root directory changed to
 `/windir/` instead of the default `/mnt/`. Partly my fault for blindly
 following instructions on the internet!
 
+<!-- cSpell:ignore RIDICURIOUS -->
+
 There's more detail on what the `[automount]` options are in this post
 on [RIDICURIOUS].
 
@@ -199,7 +211,7 @@ nano /etc/wsl.conf
 
 Now it's time for me to start adding programs for use on my Windows
 machine, this is a fresh install so all I have installed is the
-preinstalled app that come with the installation media I created via
+pre-installed app that come with the installation media I created via
 the Windows media creation tool.
 
 Anyways, to keep my packages in order I'm using [Chocolatey] the
@@ -222,6 +234,8 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 So for me there are a few programs I need:
 
+<!-- cSpell:ignore hwmonitor -->
+
 - 7zip
 - bitwarden
 - discord
@@ -237,6 +251,8 @@ So for me there are a few programs I need:
 
 To get that list I used this PowerShell command to list what I have
 installed:
+
+<!-- cSpell:ignore choco,clist -->
 
 ```powershell
 choco list --local-only
@@ -329,6 +345,8 @@ I can do that with `chsh` (Change Shell, I guess??).
 In the past I have used `chsh -l` to list available shells, that
 doesn't work here so instead I can see what shells are available with
 `cat /etc/shells`, this lists out my available shells:
+
+<!-- cSpell:ignore rbash -->
 
 ```bash
 # /etc/shells: valid login shells
@@ -437,6 +455,8 @@ sudo apt install hub
 Now I'll alias my `git` command which I already have aliased to `g`
 over to Hub:
 
+<!-- cSpell:ignore funcsave -->
+
 ```bash
 alias g hub
 funcsave g
@@ -465,6 +485,8 @@ desktop to that program, a symlink is like that.
 
 The reasoning for using them is with WSL you can have several several
 instances of a Linux distro on your machine.
+
+<!-- cSpell:ignore pengwin -->
 
 There's several for Ubuntu, with Ubuntu (20.04), Ubuntu 20.04 LTS and
 Ubuntu 18.04 LTS then on top of that there are [another several
@@ -610,6 +632,8 @@ tools I detailed in this post.
 They may work for you if you come across a similar problem.
 
 ### Open Linux files in Windows
+
+<!-- cSpell:ignore yeahp -->
 
 Yeahp! You can do that with `explore.exe` in WSL:
 

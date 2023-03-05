@@ -17,6 +17,8 @@ about it. Tangentially related, I've recently been having a bit of a
 mare with Google indexing things I don't want it to. So now I'm
 sharing it with you to help if you're having similar issues.
 
+<!-- cSpell:ignore Dino,Kukic -->
+
 So, I first noticed this when I was working with the absolute SEO
 legend that is [Dino Kukic]! He clued me into finding where your crawl
 budget is going in the Google Search Console.
@@ -33,7 +35,7 @@ a lot of my crawl budget on JavaScript files, like 30% of my crawl
 budget was being used on JavaScript files.
 
 From what I can glean, JavaScript content for the Google bot isn't
-primary content and HTML should be prioritised.
+primary content and HTML should be prioritized.
 
 So, in my `robots.txt` I'll add in a `Disallow` to stop the JavaScript
 files from being crawled.

@@ -18,6 +18,8 @@ At the beginning of January I asked a question in the Sanity.io Slack.
 
 ![slack message asking about site map]
 
+<!-- cSpell:ignore knut -->
+
 The Lee Robinson solution didn't work for me so I reached out on the
 Sanity slack channel and Knut being the legend he is offered up how
 they have done it:
@@ -80,6 +82,8 @@ module.exports = function sitemapXML(req, res, next) {
 }
 ```
 
+<!-- cSpell:ignore weis -->
+
 I was just about to start getting my head around how that was done
 then James Weis came in with setting the headers to `text/xml`
 
@@ -88,6 +92,8 @@ then James Weis came in with setting the headers to `text/xml`
 This made a lot more sense to me so I implemented this straight away.
 
 Create the file as `pages/sitemap.xml.js` then the following:
+
+<!-- cSpell:ignore groq -->
 
 ```js
 import groq from 'groq'

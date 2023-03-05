@@ -17,6 +17,8 @@ Install terminal
 
 Run terminal as admin
 
+<!-- cSpell:ignore dism -->
+
 ```bash
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 ```

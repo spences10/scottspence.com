@@ -48,6 +48,8 @@ query AllCharacters {
 I'll put that into the left side panel in the explorer and hit the
 play button, this returns a list of all the characters in the API.
 
+<!-- cSpell:ignore rickandmortyapi,graphiql -->
+
 [![rickandmortyapi-graphiql]] [rickandmortyapi-graphiql]
 
 The other query is for a single character by ID, I can add another
@@ -134,7 +136,7 @@ be made in Svelte `+page.svelte` and `+layout.svelte` files.
 Because the the URQL client uses the [Svelte Context API] to
 `setContextClient` and `getContextClient` there's no opinion as far as
 I know where it should go. Typically I'll create a client it in a
-place accessable by other pages so the most logical place (to me) is
+place accessible by other pages so the most logical place (to me) is
 to use the client in a Svelte layout page, I’ll need to create that:
 
 ```bash
@@ -256,6 +258,8 @@ render them.
   {/if}
 </div>
 ```
+
+<!-- cSpell:ignore oopsie -->
 
 I'll break down what's happening here:
 

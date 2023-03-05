@@ -74,13 +74,15 @@ In this example we're using [codesandbox.io] for our text editor and
 the Gatsby Default Starter you get when selecting Gatsby from the
 SERVER TEMPLATES available to you in [codesandbox.io]
 
+<!-- cSpell:ignore graphi -->
+
 ## 5. Query the data in Gatsby GraphiQL
 
 Now that the endpoint is set up we will be able to query the data with
 Gatsby's GraphiQL UI, we can shape the query we want to use to display
 the data here.
 
-In the preview of our app in [codesandbox.io] if you add `___grapgql`
+In the preview of our app in [codesandbox.io] if you add `___graphql`
 to the end of the url it will bring up the Gatsby GraphiQL UI, here we
 can shape the data we want to query.
 
@@ -164,6 +166,8 @@ const IndexPage = ({ data }) => (
 The output should be the same as the result of the Gatsby GraphiQL
 query we created:
 
+<!-- cSpell:disable -->
+
 ```json
 data 💩{
  "graphCmsData": {
@@ -196,6 +200,8 @@ data 💩{
  }
 }
 ```
+
+<!-- cSpell:enable -->
 
 [codesandbox.io]: https://codesandbox.io/dashboard/recent
 [dump]: https://github.com/wesbos/dump

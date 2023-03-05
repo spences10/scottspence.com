@@ -132,6 +132,8 @@ on and the `-o` flag to open the tab on my default browser:
 yarn dev -- -p 8850 -o
 ```
 
+<!-- cSpell:ignore GraphiQL -->
+
 ## Validate data with the Gatsby GraphiQL explorer
 
 Once that's finished I can access the Gatsby Graph<em>i</em>QL
@@ -167,7 +169,7 @@ slug, here's the GraphQL query:
 ```
 
 From that I'll take a slug to use in a `mdx` query I'll grab the slug
-`09/02/how-to-monitise-your-content/`
+`09/02/how-to-monetise-your-content/`
 
 ```json
 {
@@ -261,6 +263,8 @@ the URL and wrap the file name in some curly bois:
 ```
 
 In the file structure like this:
+
+<!-- cSpell:ignore shiz -->
 
 ```text
 gatsby-file-system-route-api-mdx/

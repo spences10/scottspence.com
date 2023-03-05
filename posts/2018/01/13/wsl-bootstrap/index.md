@@ -5,8 +5,10 @@ tags: ['guide', 'wsl', 'n', 'node']
 isPrivate: false
 ---
 
+<!-- cSpell:ignore beardy, fixanycomputer -->
+
 I'm a Windows user, I have been a Linux user as well but I have found
-that Windows is a bit less [neckbeardy][fixanycomputer] for me, both
+that Windows is a bit less [neck beardy][fixanycomputer] for me, both
 have their pros and cons. One of the big cons with Windows for me was
 when I started learning web development.
 
@@ -149,6 +151,8 @@ If you have all your [dotfiles] backed up in a GitHub repo then now is
 a good time to add them to your WSL folder, the last times I did this
 I manually set the permissions after moving each of the the files but
 have since discovered [`rsync`][rsync] to move all the files.
+
+<!-- cSpell:ignore avzh -->
 
 ```bash
 rsync -avzh /mnt/c/Users/dotfiles/ ~/

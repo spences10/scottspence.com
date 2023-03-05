@@ -6,7 +6,7 @@ isPrivate: false
 ---
 
 The Gatsby offline plugin is really handy right up until you don't
-want it anymore!
+want it any more!
 
 I switched my main site over to Toast from Gatsby and hit a bump when
 it came to removing the old Gatsby site because it used a service

@@ -12,6 +12,8 @@ created an [online CV].
 
 ## Preamble
 
+<!-- cSpell:ignore ranty,behbeh -->
+
 Apologies up front about this post if it comes across as entitled or
 ranty and I'm sure a lot of people will disagree with my approach.
 

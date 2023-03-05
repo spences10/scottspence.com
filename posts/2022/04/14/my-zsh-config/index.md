@@ -12,7 +12,7 @@ reference.
 I switched to Zsh around two years ago after being a long time [Fish]
 shell user. The reason for the switch? I found Zsh to be a bit simpler
 to configure. I'm by no means a power user but I like to have my own
-perferred configuration.
+preferred configuration.
 
 ## Install Zsh
 
@@ -123,6 +123,8 @@ SPACESHIP_CHAR_SYMBOL="⚡"
 export SPACESHIP_BATTERY_SHOW=false
 ```
 
+<!-- cSpell:ignore lbuffer -->
+
 There's quite a bit in there I know, so that's my full file, really
 all that I'm using from the default config is this:
 
@@ -209,6 +211,8 @@ cause some confusion, there's a workaround for it.
 
 The error message looks something like this:
 
+<!-- cSpell:ignore upower,upowerd,cantu -->
+
 ```bash
 (upower:185): UPower-WARNING **: 18:38:44.618: Cannot connect to upowerd: Could not connect: No such file or directory
 ```
@@ -252,6 +256,8 @@ export NVM_DIR="$HOME/.nvm"
 
 ## Global aliases
 
+<!-- cSpell:ignore gotbletu -->
+
 Global aliases I learned from a great [video from gotbletu] on
 YouTube!
 
@@ -265,7 +271,7 @@ github].
 
 That's it! My very own Zsh configuration! Like I said at the start
 this is mainly for my reference, but, if you have read through it and
-found it usefull then that's a massive win for me! Thank you 🙏
+found it useful then that's a massive win for me! Thank you 🙏
 
 <!-- Links -->
 

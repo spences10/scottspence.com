@@ -90,6 +90,8 @@ To consume the event tracking lower in the tree either use it with a
 hardcoded `goalId` or pass it in as a variable, here's how I do it for
 nav items.
 
+<!-- cSpell:ignore GH6DDCV6,HJAW5F8H -->
+
 ```jsx
 export const NavItems = () => {
   const fa = useAnalytics()

@@ -17,6 +17,8 @@ This means that my code now breaks with a random `s` in there where I
 thought I'd saved something, or where I've replaced a code block with
 `v`. 🙃
 
+<!-- cSpell:ignore CLACKITY -->
+
 > CLACKITY, CLACKITY, CLACK, CLACK
 
 When I say _beloved_ that keyboard was just the right mix of
@@ -25,6 +27,8 @@ a mechanical keyboard.
 
 Check out this video from TaeKeyboards on the HAVIT KB309L so you can
 get an idea of the sound of the keys.
+
+<!-- cSpell:ignore 9UhLZ9AWHJM,Kailh -->
 
 <YouTube youTubeId="9UhLZ9AWHJM" skipTo={{ h: 0, m: 6, s: 28 }} />
 
@@ -40,7 +44,7 @@ hard to come by.
 
 ## The new shiny
 
-Ok, time to stop [ruminating] on the keyboaard (as it's not healthy)!
+Ok, time to stop [ruminating] on the keyboard (as it's not healthy)!
 Time to move on, but where to? I mentioned earlier I've bee finding it
 _really_ difficult to find those switches in any other keyboards
 anywhere.
@@ -72,7 +76,7 @@ They keycaps have a nice matt finish, time will tell on how long it
 will be before the finish wears off to leave shiny buttons. I'm fine
 with that by the way.
 
-The buttons for the presets at the top, along withe the brightness
+The buttons for the presets at the top, along with the brightness
 switch and game mode switch add a good 25mm to the top of the board.
 
 That along with the G switches on the left of the board all add up to
@@ -83,10 +87,12 @@ quite a larger footprint that my previous board.
 That been said the keys feel exactly the same, maybe a bit firmer but
 it's that really nice crisp click that I like.
 
+<!-- cSpell:ignore thinn,thicc -->
+
 ## Thinn (but thicc)
 
 Super thin! This was one of the big draws for me, it is thinner than
-my last keyboaard. If you like to have the keyboaard elevated there's
+my last keyboard. If you like to have the keyboard elevated there's
 two settings to lift the back of the board.
 
 Weighty! It has a considerable weight to it coming in at over 1kg
@@ -103,7 +109,7 @@ to to something solid.
 
 There wasn't any presets that were solid so I put the light setting to
 0 and then couldn't make out the keys on the board as it was
-completley blank.
+completely blank.
 
 My touch typing isn't great so I had to set it to one of the least
 annoying presets until I figured out how to change them.
@@ -119,7 +125,7 @@ usually hover on the left hand side of the board.
 
 Alt+Tab I was instead pressing Super+G2, getting the Ctrl and Super
 key mixed up due to the additional keys on the side means I have to
-consiously find the groove between the G keys with my pinky before
+continuously find the groove between the G keys with my pinky before
 typing.
 
 ## Lighting configuration on Ubuntu
@@ -128,11 +134,13 @@ Logitech have management software for the G815 with the [Logitech G
 Hub] which is available for Windows and macOS users, but as I'm a
 Linux users that's no help to me! 🙃
 
-This was nearly a dealbreaker for me but I found a [Reddit post] with
+This was nearly a deal breaker for me but I found a [Reddit post] with
 someone asking the same question, turns out there is support for it in
 the shape of [libratbag].
 
 I had to [add a PPA] to install libratbag:
+
+<!-- cSpell:ignore ratbagd,libratbag -->
 
 ```bash
 sudo add-apt-repository ppa:libratbag-piper/piper-libratbag-git

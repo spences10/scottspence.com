@@ -9,6 +9,8 @@ isPrivate: false
   import { YouTube } from 'sveltekit-embed'
 </script>
 
+<!-- cSpell:ignore pengwin -->
+
 So this post started off with me getting GUI apps running on my
 Windows WSL install of [Pengwin], but has now turned into doing it
 without the need to fork over [the readies] for Pengwin as now you can
@@ -239,7 +241,7 @@ Because I like to trash my Linux installs on a regular basis I have a
 set of SSH keys I move from install to install. I recently discovered
 the [`explorer.exe`] which allows you to access the Linux files in the
 Windows file explorer! This is really handy and means I haven't got to
-simlink them anymore!! 🚀
+simlink them any more!! 🚀
 
 I'll pop open my Debian instance and copy pasta the SSH files in
 there:
@@ -270,6 +272,8 @@ ssh -T git@github.com
 This is where Nicky's detailed posts come in, the dependencies here
 are what's needed to get the GUI stuff going:
 
+<!-- cSpell:disable -->
+
 ```bash
 sudo apt install \
   libgtk-3-dev \
@@ -280,8 +284,12 @@ sudo apt install \
   libasound2 -y
 ```
 
+<!-- cSpell:enable -->
+
 ℹ If you're using [Playwright] there's a few additional dependencies
 tha need installing for WebKit, this was from using with Ubuntu.
+
+<!-- cSpell:disable -->
 
 ```bash
 sudo apt install \
@@ -289,6 +297,8 @@ sudo apt install \
   libenchant1c2a \
   gstreamer1.0-libav -y
 ```
+
+<!-- cSpell:enable -->
 
 For the GUI apps to connect to my X-server I'll need to create a
 `DISPLAY` environment variable in my `.zshrc` config file.
@@ -302,6 +312,8 @@ nano ~/.zshrc
 Then add in the variable, when I have attempted this in the past the
 variable was literally `0.0` so this from Nicky is a nice expansion on
 that and he [explains brilliantly] why this needs to be done:
+
+<!-- cSpell:ignore resolv -->
 
 ```bash
 # set DISPLAY variable to the IP automatically assigned to WSL2
@@ -318,6 +330,8 @@ To confirm that it works I can open a new terminal or use
 source ~/.zshrc
 echo $DISPLAY
 ```
+
+<!-- cSpell:ignore dbus -->
 
 ## `dbus` start and access
 
@@ -386,6 +400,8 @@ Boom! GUI running in WSL!!
 <YouTube youTubeId="hhxMFVQsklI" />
 
 <!-- Links -->
+
+<!-- cSpell:ignore commandline -->
 
 [x410]: https://www.microsoft.com/en-gb/p/x410/9nlp712zmn9q
 [pengwin]: https://www.microsoft.com/en-gb/p/pengwin/9nv1gv1pxz6p

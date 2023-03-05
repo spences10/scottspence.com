@@ -12,6 +12,8 @@ isPrivate: false
 
 Don't save the yak! But put in the work so you're not wasting time.
 
+<!-- cSpell:ignore Biletska,chingu,godin -->
+
 [Marina Biletska] told me about this expression when we were working
 on our [Chingu colabs] project together.
 
@@ -25,6 +27,7 @@ article].
 This YouTube video of Hal from Malcolm in the Middle beautifully
 illustrates Yak Shaving. 👇
 
+<!-- cSpell:ignore sehc -->
 <Details buttonText="Expand to watch.">
   <YouTube youTubeId="AbSehcT19u0" />
 </Details>
@@ -86,6 +89,8 @@ spending the additional time to setup a linter is probably not worth
 it.
 
 ## Resources
+
+<!-- cSpell:ignore stimpy -->
 
 - [Seth Godin - Don't Shave That Yak!]
 - [Wiktionary - Ren and Stimpy reference]

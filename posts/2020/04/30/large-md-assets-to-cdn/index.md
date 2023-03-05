@@ -22,6 +22,8 @@ du --max-depth=7 /home/scott/repos/thelocalhost/posts/ | sort -n
 
 It gave a similar output to this:
 
+<!-- cSpell:ignore mctwitbot -->
+
 ```
 592   /thelocalhost/posts/2017/01/04/twitter-mctwitbot
 2412	/thelocalhost/posts/2017/01/28/twitter-bot-bootstrap
@@ -90,6 +92,8 @@ images-on-now-sh/
 │   ├─ image2.png
 │   └─ image3.png
 ```
+
+<!-- cSpell:ignore weserv -->
 
 The whole reason I did this was so that if I wanted to I could run all
 these through a service like [Images.weserv.nl] where I could add the

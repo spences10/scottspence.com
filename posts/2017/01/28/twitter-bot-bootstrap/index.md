@@ -15,6 +15,8 @@ users relentlessly.
 
 ![rust bird]
 
+<!-- cSpell:ignore twisst -->
+
 Take the [Twisst ISS alerts] bot that sends you a DM when the
 international space station (ISS) will be visible at your location.
 
@@ -353,6 +355,8 @@ reviewed and discussed.
 
 Credit for the inspiration for this should go to [@amanhimself] and
 his posts on creating your own twitter bot.
+
+<!-- cSpell:ignore mctwitbot,hongkiat -->
 
 - [create-a-simple-twitter-bot-with-node-js]
 - [how-to-make-a-twitter-bot-with-nodejs]

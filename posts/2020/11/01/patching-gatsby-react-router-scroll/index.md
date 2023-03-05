@@ -11,6 +11,8 @@ React router for navigating between headers in their Gatsby sites.
 The issue has been [documented] several times now and the advice I
 have followed is to add a [resolutions to my `package.json` file].
 
+<!-- cSpell:ignore lukekarrys -->
+
 I've found using this approach didn't give very consistent results so
 I decided to use patch package again after seeing a [comment] from
 [lukekarrys] on the GitHub asking others to confirm if his approach
@@ -119,7 +121,7 @@ changes in the `.patch` file will be applied to the
 
 ## Watch me do it on Twitch
 
-Here's a [livestream] of me applying the changes with bonus happy
+Here's a [live stream] of me applying the changes with bonus happy
 dance!
 
 ## Done!
@@ -149,6 +151,6 @@ can get updates when I [go live] and release new content.
 [in the past]: https://scottspence.com/posts/patching-packages/
 [specifically for yarn]:
   https://www.npmjs.com/package/patch-package#why-use-postinstall-postinstall-with-yarn
-[livestream]: https://www.twitch.tv/videos/777497800?t=00h29m52s
+[live stream]: https://www.twitch.tv/videos/777497800?t=00h29m52s
 [subscribe]: https://ss10.dev/yt?sub_confirmation=1
 [go live]: https://ss10.dev/twitch

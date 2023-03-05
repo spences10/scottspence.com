@@ -1,11 +1,11 @@
 ---
 date: 2022-02-25
-title: Consolodate Chat Sources for Use in OBS with Social Stream
+title: Consolidate Chat Sources for Use in OBS with Social Stream
 tags: ['obs', 'how-to', 'streaming']
 isPrivate: false
 ---
 
-Do you ever watch a livestream and wonder how the chat is shown? If
+Do you ever watch a live stream and wonder how the chat is shown? If
 you have and you've searched online you'd probably have found videos
 detailing how to do this with services like Streamlabs, or Stream
 Elements. These involve configuring the panel you want in their
@@ -14,7 +14,7 @@ Broadcaster Software (OBS).
 
 I've just found out about this awesome tool from [Steve Seguin] on
 GitHub called [Social Stream]. It's a browser extension that allows
-you to consolodate chat sources from different platforms like YouTube,
+you to consolidate chat sources from different platforms like YouTube,
 Twitch, Facebook and the like.
 
 ## Who's this for then?
@@ -161,6 +161,8 @@ https://socialstream.ninja/index.html?session=TYLSfghEdb
 
 That would change to the local file location, so in the browser the
 above would look something like:
+
+<!-- cSpell:ignore TYLSfghEdb -->
 
 ```bash
 file:///C:/Users/scott/Downloads/social_stream-main/index.html?session=TYLSfghEdb

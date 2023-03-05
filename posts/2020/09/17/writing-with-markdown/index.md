@@ -44,7 +44,9 @@ come across before on the web, places like Discord, GitHub, Jira,
 Reddit, StackExchange, and even WhatsApp and Facebook all use some
 form of Markdown!
 
-If you're intertested you can take a look at the original spec from
+<!-- cSpell:ignore gruber -->
+
+If you're interested you can take a look at the original spec from
 John Gruber posted in [December 2004 on Daring Fireball]
 
 I'll be focusing on GitHub Flavoured Markdown Specification ([GFM]) in
@@ -55,13 +57,13 @@ you have not encountered Markdown before it before looks something
 like this in your text editor:
 
 ```markdown
-## This is a h2 headding
+## This is a h2 heading
 ```
 
 The equivalent in HTML will be:
 
 ```html
-<h2>This is a h2 headding</h2>
+<h2>This is a h2 heading</h2>
 ```
 
 Which will be converted to a h2 as you see in the web browser. Take a
@@ -256,6 +258,7 @@ have the ampersand removed and look like this:
 [Markdown & Images](#markdown--images)
 ```
 
+<!-- cSpell:ignore Knctg -->
 <YouTube youTubeId="Knctg-2vWRo" />
 
 ## Markdown Images
@@ -299,6 +302,8 @@ using keys and references here:
 
 [alt name for image]: https://picsum.photos/200/100 'tool tip'
 ```
+
+<!-- cSpell:ignore 7GVSEuif8_o -->
 
 <YouTube youTubeId="7GVSEuif8_o" />
 
@@ -360,6 +365,8 @@ bullet paragraph and the additional content to go in there:
 1. Rest of the ordered list items
 ```
 
+<!-- cSpell:ignore 3RMGk8Fymv4 -->
+
 <YouTube youTubeId="3RMGk8Fymv4" />
 
 ### Check Boxes
@@ -396,6 +403,8 @@ Line one<br/> Line two<br/> Line three<br/>
 Will render the following:
 
 Line one<br/> Line two<br/> Line three<br/>
+
+<!-- cSpell:ignore hCln_m1vgww -->
 
 <YouTube youTubeId="hCln_m1vgww" />
 
@@ -471,9 +480,13 @@ fence with no language assigned will look like this:
 <MarkdownParser rows={5} markdownContent={`\`\`\`\nconsole.log('hello
 world!')\n\`\`\`\n`} />
 
+<!-- cSpell:ignore Hwok0c9V1Fo -->
+
 <YouTube youTubeId="Hwok0c9V1Fo" />
 
 ## Markdown Tables
+
+<!-- cSpell:ignore fugly -->
 
 Markdown tables look fugly! There I said it! If there's content that
 needs to go into a table, each one of the columns needs to be
@@ -527,7 +540,7 @@ The amount of hyphens doesn't matter, as long as there is at least
 one. This is where having a formatting tool like Prettier step in to
 do the formatting for you is super handy.
 
-If there is more content added to the table and the coresponding
+If there is more content added to the table and the corresponding
 columns aren't formatted to fit it could get a bit tricky to read:
 
 ```markdown
@@ -536,6 +549,8 @@ columns aren't formatted to fit it could get a bit tricky to read:
 | col 1 row 1 content | col 2 row 1 |         col 3 row 1 |
 | col 1 row 2         | col 2 row 2 | col 3 row 2 content |
 ```
+
+<!-- cSpell:ignore x6UQpbkrmus -->
 
 <YouTube youTubeId="x6UQpbkrmus" />
 

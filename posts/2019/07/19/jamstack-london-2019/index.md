@@ -21,6 +21,8 @@ some exciting announcements.
 
 ## Tuesday - 2019-07-09
 
+<!-- cSpell:ignore moltin -->
+
 First up was the workshop events where I was attending a workshop on
 schema stitching with GraphQL using GraphCMS and Moltin
 
@@ -29,7 +31,7 @@ schema stitching with GraphQL using GraphCMS and Moltin
 Jesse was a great at going through the basics of the headless CMS and
 why you should be using one. The workshop consisted of us defining our
 CMS content model with pen and paper before creating them in the
-GraphCMS UI for use with the Moltin eComerce API
+GraphCMS UI for use with the Moltin eCommerce API
 
 <Tweet tweetLink="notrab/status/1148587457866358784" />
 
@@ -55,6 +57,7 @@ After the workshops it was time for the lightening talks.
 [@jamiebradley234] did a talk on the booming tech scene in
 Middlesbrough.
 
+<!-- cSpell:ignore kmelve -->
 <Tweet tweetLink="kmelve/status/1148664935305699328" />
 
 [@danfascia] did a great talk on how healthcare tech is benefiting
@@ -66,16 +69,19 @@ from JAMstack methodologies.
 
 ## Talks
 
-First up we had some apologies from Phill Hawksworth on behalf of
-Chris Coyer as Chris couldn't make it. We sent him a get well soon
-message.
+First up we had some apologies from Phil Hawksworth on behalf of Chris
+Coyer as Chris couldn't make it. We sent him a get well soon message.
 
 <Tweet tweetLink="philhawksworth/status/1148929743342972928" />
+
+<!-- cSpell:ignore Drasner -->
 
 ### State of the JAMstack Nation - Sarah Drasner
 
 Sarah gave a demo of how quickly you could set up a JAMstack site,
 using Vue and Nuxt
+
+<!-- cSpell:ignore biilmann -->
 
 ### Netlify Analytics - Matt Biilmann
 
@@ -85,6 +91,8 @@ off the continuous deployment for Netlify whilst putting the feature
 live.
 
 ### Transforming the JSON - GROQ (& Sanity CMS) - Knut Melvær
+
+<!-- cSpell:ignore groq,knut,Melvær -->
 
 Knut showing off the advantages of using GROQ for querying your data.
 
@@ -97,13 +105,15 @@ great all in one tool for making JAMstack sites with CMS integration.
 
 ### Code Sandbox. - Ives van Horne
 
-Ives (Flip) went into how he made [codesandbox.io] whils being a
+Ives (Flip) went into how he made [codesandbox.io] whilst being a
 college student.
 
 If you want something build cheaply, ask a student to build it for you
 was the take home here for me.
 
 ### Why & How Smashing Magazine moved to JAMstack - Vitaly Friedman
+
+<!-- cSpell:ignore Vitaly,Ramin,Bozorgzadeh -->
 
 Brilliant talks from Vitaly on the transition of Smashing Mag from
 monolith over to the JAMstack. Also great detail on the redesign.
@@ -119,9 +129,13 @@ tricks with it.
 
 [https://extra-css.netlify.com/]
 
+<!-- cSpell:ignore simona,cotin -->
+
 ### Serverless functions - Simona Cotin
 
 Simona detailed key usecases for serveless functions.
+
+<!-- cSpell:ignore surma -->
 
 ### Performance optimizing and Webpack bashing - Jake Archibald and Surma
 
@@ -146,6 +160,7 @@ venue although fitted with A/C units in the speaker hall the venue
 outside of that was hot and sweaty! I spent the majority of my time
 between talks situated directly in front of the A/C units.
 
+<!-- cSpell:ignore peduarte -->
 <Tweet tweetLink="spences10/status/1148927111526268928" />
 <Tweet tweetLink="peduarte/status/1148923305254096896" />
 <Tweet tweetLink="spences10/status/1148914884039577600" />

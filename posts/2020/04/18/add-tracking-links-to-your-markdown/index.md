@@ -61,12 +61,16 @@ So the Markdown will look something like this:
 ```md
 # My awesome Markdown
 
+<!-- cSpell:ignore IBQBRDPP -->
+
 Fathom Analytics recently added a feature for
 <a href="https://usefathom.com/blog/bypass-adblockers" goal="IBQBRDPP">custom
 domains</a> with their service.
 ```
 
 So, job done right?
+
+<!-- cSpell:ignore Wellllll -->
 
 Wellllll....
 
@@ -222,7 +226,9 @@ there's a goal ID in the `href` passed to the component in the props.
 
 In this video detail what I've been writing about.
 
-<YouTube youTubeId="Ihbx0BVIhZk" />
+<!-- cSpell:ignore Ihbx -->
+
+<YouTube youTubeId="0BVIhZk" />
 
 ## Resources 📑
 

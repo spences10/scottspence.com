@@ -284,6 +284,8 @@ Then pass that to the `nav` component.
 I've hidden the full file contents behind some buttons, you can click
 on them to check out how the files look.
 
+<!-- cSpell:ignore pageview,pageviews -->
+
 <Details buttonText="+layout.svelte" styles="lowercase">
 
 ```svelte
@@ -369,9 +371,11 @@ This is what the navbar looks like now:
 
 <div class="navbar mb-10 bg-neutral text-neutral-content shadow-lg">
   <div class="navbar-start mx-2 px-2">
+    <!-- cSpell:disable -->
     <a href="/" on:click={() => trackGoal(`KWOYX0PK`, 0)}>
       <span class="text-lg font-bold">SvelteKit and Fathom</span>
     </a>
+    <!-- cSpell:enable -->
   </div>
   <div class="navbar-center mx-2 hidden px-2 lg:flex">
     <div class="flex items-stretch">
@@ -464,6 +468,8 @@ take a look at the Fathom API docs!
 Let's take a look at the most basic request to the API for pageviews,
 here's the `curl` request in the Fathom docs:
 
+<!-- cSpell:disable -->
+
 ```bash
 curl https://api.usefathom.com/v1/aggregations \/
   -H "Authorization: Bearer API_TOKEN_HERE" \/
@@ -472,6 +478,8 @@ curl https://api.usefathom.com/v1/aggregations \/
   -d aggregates="pageviews" \/
   -G
 ```
+
+<!-- cSpell:enable -->
 
 You'll notice this time there's no `site_id` and instead this time
 it's an `entity_id`.
@@ -628,12 +636,18 @@ const default_params = {
 
 Passing that into the `object_to_query_params` function will return:
 
+<!-- cSpell:disable -->
+
 ```text
 ?entity=pageview&entity_id=CDBUGS&aggregates=pageviews&date_from=2021-01-01T00:00:00.000Z&date_to=2023-12-31T23:59:59.999Z&date_grouping=year
 ```
 
+<!-- cSpell:enable -->
+
 I'll break that up a bit so it's readable and I hope you get the idea
 of what's going on here:
+
+<!-- cSpell:disable -->
 
 ```text
 ?entity=pageview
@@ -643,6 +657,8 @@ of what's going on here:
 &date_to=2023-12-31T23:59:59.999Z
 &date_grouping=year
 ```
+
+<!-- cSpell:enable -->
 
 So, I know I've just shifted the hard coded parameters from one place
 to another, but these are some base defaults to use and they can be

@@ -26,7 +26,7 @@
 
 <Head
   title={`Speaking - ${name}`}
-  description={`A list of events where ${name} has held a workshop, a talk or spoken publically.`}
+  description={`A list of events where ${name} has held a workshop, a talk or spoken publicly.`}
   image={og_image_url(name, `scottspence.com`, `Scott Speaks!`)}
   url={`${website}/speaking`}
 />

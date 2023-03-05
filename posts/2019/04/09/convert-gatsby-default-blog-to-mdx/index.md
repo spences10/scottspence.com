@@ -213,6 +213,8 @@ more content yo!
 <Butt>yoyoyo</Butt>
 ```
 
+<!-- cSpell:ignore yoyoyo -->
+
 ## Wrap up!
 
 So, that's it, we've gone and converted the Gatsby starter blog from

@@ -11,6 +11,8 @@ isPrivate: false
   import DetailsAction from './details-action.svelte'
 </script>
 
+<!-- cSpell:ignore httpcodes -->
+
 I did what I usually do and made a useless project! I was searching
 for HTTP codes and went to httpcodes.com to see if anyone had done
 anything there and it looks like it's parked. This made me think
@@ -23,7 +25,7 @@ HTTP response codes! 😅 Ok, so what's using the [Svelte use action]
 got to do with this?
 
 First up! Sorry if you're on a slow internet connection! This image is
-a whopper! But it explains what I wanted to acheive!
+a whopper! But it explains what I wanted to achieve!
 
 <Details buttonText="Click to load up the image!">
   <img src="https://res.cloudinary.com/defkmsrpw/video/upload/f_webp,fl_animated,fl_awebp/e_loop/v1674149984/scottspence.com/http-codes-dev-accordion-animation.mp4" alt="http-codes-dev-accordion-animation"/>
@@ -172,7 +174,7 @@ engines unless the details component `isOpen` is se to `true`.
 With the Svelte use action you get access to the DOM node the action
 is attached to and you can also pass in additional parameters.
 
-So in the case of what I'm trying to acheive here, I want to be able
+So in the case of what I'm trying to achieve here, I want to be able
 to pass in if the details component is open or not. That's controlled
 by the button in the component.
 
@@ -252,6 +254,8 @@ height of the content.
 So I want to use the Web Animations API to animate the height of the
 content.
 
+<!-- cSpell:ignore keyframes -->
+
 The [Web Animations API] takes in two parameters, `keyframes` and
 `options`. The `keyframes` is an array of objects that define the
 animation. In this case I want to animate the `height` of the node
@@ -308,6 +312,8 @@ So I need a way to work out if the animation is playing or not.
 There's a `onfinish` method on the animation I can use a function to
 get the `currentTime` of the animation and if it's `0` then the
 animation is paused.
+
+<!-- cSpell:ignore onfinish -->
 
 ```js
 animation.onfinish = () => {
@@ -485,7 +491,11 @@ done via props.
 </section>
 ```
 
+<!-- cSpell:ignore labelledby -->
+
 ## Click outside
+
+<!-- cSpell:ignore storefront -->
 
 Another good example and use case for using the Svelte `use:` is for a
 click outside action. So this could be for a shopping cart or a
@@ -554,6 +564,8 @@ Then it's implemented like this:
 
 It uses a simple store to keep track of the cart open state:
 
+<!-- cSpell:ignore writable -->
+
 ```ts
 import { writable } from 'svelte/store'
 
@@ -565,7 +577,7 @@ commerce] demo over on GitHub.
 
 ## Sarcasm
 
-I also revivied the Sarcasm component on this blog after a long time
+I also revived the Sarcasm component on this blog after a long time
 of it not functioning after I moved the site from an MDX based blog
 over to Svelte.
 

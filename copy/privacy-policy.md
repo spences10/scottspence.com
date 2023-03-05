@@ -63,6 +63,8 @@ I don't use any advertising networks on my site.
 
 ### How users of this site can op-in and op-out of their data being collected and stored.
 
+<!-- cSpell:ignore pecr,ccpa,coppa -->
+
 The data collected by Fathom Analytics is cookieless and is compliant
 with GDPR, ePrivacy, PECR, CCPA, and COPPA.
 
@@ -123,10 +125,16 @@ Read] for a simple breakdown of what the ToS actually means.
   #what-i-do-with-collected-information
 [what cookies, pixels, and other trackers my site uses and their purpose]:
   #what-cookies-pixels-and-other-trackers-my-site-uses-and-their-purpose
+
+<!-- cSpell:ignore methodspurposes -->
+
 [any advertising networks and their methods/purposes of data collection and ad delivery]:
   #any-advertising-networks-and-their-methodspurposes-of-data-collection-and-ad-delivery
 [how users of this site can op-in and op-out of their data being collected and stored]:
   #how-users-of-this-site-can-op-in-and-op-out-of-their-data-being-collected-and-stored
+
+<!-- cSpell:ignore andor -->
+
 [how users of this site can request their data be turned over to them and/or be deleted]:
   #how-users-of-this-site-can-request-their-data-be-turned-over-to-them-andor-be-deleted
 [contact information for site administrators]:

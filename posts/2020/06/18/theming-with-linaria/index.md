@@ -5,7 +5,7 @@ tags: ['css', 'css-in-js', 'linaria']
 isPrivate: false
 ---
 
-This is a followup on the post I did about [Getting Started with
+This is a follow up on the post I did about [Getting Started with
 Linaria]
 
 The starter I worked on last time I made into a template so it can be
@@ -53,7 +53,8 @@ export const defaults = {
 ```
 
 The `...` represents the reset of the items in the object, I've
-shortend it for brevity otherwise this would be a 400 line snippet. 😅
+shortened it for brevity otherwise this would be a 400 line snippet.
+😅
 
 Really all I need from this is the `theme` object but rather than mess
 around with the object I'll destructure the theme out of it in the
@@ -76,6 +77,8 @@ export const theme = {
 ```
 
 ## Theming with Linaria
+
+<!-- cSpell:ignore Callstack -->
 
 If I wanted to I could create my own theme with Linaria [using CSS
 custom properties] (variables) but instead I'm going to be using the
@@ -123,7 +126,7 @@ const Header = ({ siteTitle }) => {
 }
 ```
 
-Now in the Linaria `styled` componet I can use any of the theme
+Now in the Linaria `styled` component I can use any of the theme
 values. In the Header component I'll change the `background` to blue:
 
 ```js {2}

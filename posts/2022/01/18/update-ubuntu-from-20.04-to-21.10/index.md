@@ -40,6 +40,8 @@ sudo nano /etc/update-manager/release-upgrades
 
 And change the default behaviour from `lts` to `normal`:
 
+<!-- cSpell:disable -->
+
 ```bash
 # Default behavior for the release upgrader.
 
@@ -58,6 +60,8 @@ And change the default behaviour from `lts` to `normal`:
 #           upgrader will assume prompt was meant to be normal.
 Prompt=normal
 ```
+
+<!-- cSpell:enable -->
 
 If you going this route then before you start, make sure you have
 updated and upgraded your system with the usual command:
@@ -136,7 +140,7 @@ continue.
 [![configure-ubuntu-mail-server-ok]] [configure-ubuntu-mail-server-ok]
 
 Next I'm prompted to confirm the removal of the obsolete packages,
-I'll answet `y` to this and hit enter.
+I'll answer `y` to this and hit enter.
 
 ```bash
 Reading package lists... Done
