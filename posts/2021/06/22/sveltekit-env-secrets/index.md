@@ -8,7 +8,7 @@ isPrivate: false
 <script>
   import { Banner } from '$lib/components'
 
-  let href = `https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module`
+  let href = `/posts/sveltekit-environment-variables-with-the-sveltekit-env-module`
   const options = {
     type: 'warning',
     message: `SvelteKit now handles env secrets, take a look at <a href=${href}>SvelteKit Environment Variables with the SvelteKit $env Module</a> which details how to use it in a SvelteKit project.`
