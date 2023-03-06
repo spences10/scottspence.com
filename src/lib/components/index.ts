@@ -1,3 +1,4 @@
+export { default as Banner } from './banner.svelte'
 export { default as ButtButt } from './butt-butt.svelte'
 export { default as Chat } from './chat.svelte'
 export { default as ContactForm } from './contact-form.svelte'

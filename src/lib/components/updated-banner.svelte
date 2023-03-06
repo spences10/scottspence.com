@@ -33,7 +33,7 @@
 {:else}
   <div class="alert alert-warning shadow-lg">
     <div>
-      <WarningTriangle />
+      <WarningTriangle height="24px" width="24px" />
       <span>
         Hey! Thanks for stopping by! Just a word of warning, this post
         is
