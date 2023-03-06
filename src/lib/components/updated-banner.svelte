@@ -13,7 +13,7 @@
 </script>
 
 {#if has_been_updated}
-  <div class="alert alert-warning shadow-lg">
+  <div class="alert alert-warning shadow-lg mb-8">
     <div>
       <WarningTriangle />
       <span>
@@ -31,7 +31,7 @@
     </div>
   </div>
 {:else}
-  <div class="alert alert-warning shadow-lg">
+  <div class="alert alert-warning shadow-lg mb-8">
     <div>
       <WarningTriangle height="24px" width="24px" />
       <span>
