@@ -6,12 +6,16 @@ isPrivate: false
 ---
 
 <script>
-  import { Details } from '$lib/components'
+  import { Banner, Details } from '$lib/components'
+
+  let href = `/posts/the-new-kitql-sveltekit-graphql-client`
+  const options = {
+    type: 'warning',
+    message: `This post uses the legacy configuration for KitQL, there's a more up to date post on getting started with it <a href=${href}>here</a>.`
+  };
 </script>
 
-**This post uses the legacy configuration for KitQL, there's a more up
-to date post on getting started with it
-[here](https://scottspence.com/posts/the-new-kitql-sveltekit-graphql-client).**
+<Banner {options} />
 
 KitQL is a GraphQL client for Svelte. It is a set of tools to help you
 query GraphQL APIs. I've been using it in a couple of projects now and

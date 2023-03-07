@@ -24,6 +24,11 @@ const config = {
       },
     },
   },
+  daisyui: {
+    logs: false,
+    prefix: '',
+    darkTheme: 'night',
+  },
   plugins: [typography, daisyui],
 }
 

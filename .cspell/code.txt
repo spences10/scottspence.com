@@ -71,6 +71,7 @@ srcset
 stopwords
 synthwave
 tabindex
+testid
 themeprovider
 truetype
 trustywolf
