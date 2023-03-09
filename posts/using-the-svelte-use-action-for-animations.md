@@ -7,8 +7,8 @@ isPrivate: false
 
 <script>
   import { Details, Sarcasm } from '$lib/components'
-  import DetailsTransition from './details-transition.svelte'
-  import DetailsAction from './details-action.svelte'
+  import DetailsTransition from './_details-transition.svelte'
+  import DetailsAction from './_details-action.svelte'
 </script>
 
 <!-- cSpell:ignore httpcodes -->
