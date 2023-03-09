@@ -1,6 +1,6 @@
 <script lang="ts">
   import { WarningTriangle } from '$lib/icons'
-  import { compareDesc } from 'date-fns'
+  import { compareDesc, differenceInYears } from 'date-fns'
   import DateDistance from './date-distance.svelte'
 
   export let date = new Date()
@@ -38,7 +38,12 @@
         Hey! Thanks for stopping by! Just a word of warning, this post
         is
         <span class="font-bold italic">
-          <DateDistance date={new Date(date)} /> old.
+          <DateDistance date={new Date(date)} /> old, {differenceInYears(
+            new Date(Date.now()),
+            new Date(date)
+          ) >= 4
+            ? 'wow!'
+            : '.'}
         </span>
         If there's technical information in here it's more than likely
         out of date.
