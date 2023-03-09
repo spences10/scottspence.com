@@ -21,8 +21,10 @@
   } from 'date-fns'
   import { onMount } from 'svelte'
 
-  // metadata
   export let data
+  let {
+    Content,
+  } = data
   let {
     title,
     date,
@@ -32,8 +34,7 @@
     slug,
     isPrivate,
     tags,
-    component,
-  } = data
+  } = data.meta
 
   const url = `${website}/posts/${slug}`
 
@@ -134,7 +135,7 @@
   {/if}
 
   <div class="all-prose mb-10">
-    <svelte:component this={component} />
+    <svelte:component this={Content} />
   </div>
 
   <div class="flex flex-col w-full mt-10 mb-5">

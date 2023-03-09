@@ -1,8 +1,9 @@
-import { getPosts } from '$lib/utils'
-import type { PageLoad } from './$types'
+import type { Load } from '@sveltejs/kit'
 
-export const load: PageLoad = async () => {
-  return {
-    posts: getPosts().map(post => post.metadata),
+export const load: Load = async ({ fetch }) => {
+  const res = await fetch(`/posts.json`)
+  if (res.ok) {
+    const posts = await res.json()
+    return { posts }
   }
 }
