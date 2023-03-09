@@ -1,10 +1,12 @@
-import { getPostTags } from '$lib/utils'
-import type { PageLoad } from './$types'
+import type { Load } from '@sveltejs/kit'
 
-export const load: PageLoad = async () => {
-  const { tags, postsByTag } = getPostTags()
-  return {
-    tags,
-    postsByTag,
+export const load: Load = async ({ fetch }) => {
+  const res = await fetch(`/post-tags.json`)
+  if (res.ok) {
+    const { tags, posts_by_tag } = await res.json()
+    return {
+      tags,
+      posts_by_tag,
+    }
   }
 }

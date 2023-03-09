@@ -5,7 +5,7 @@
   import Fuse from 'fuse.js'
 
   export let data
-  let { tags, postsByTag } = data
+  let { tags, posts_by_tag } = data
 
   let options = {
     keys: ['title', 'tags', 'preview'],
@@ -46,7 +46,7 @@
       <li class="my-4 text-xl">
         <a
           class="mr-6 transition link hover:text-primary"
-          href={`tags/${tag}`}>{tag} ({postsByTag[tag].length})</a
+          href={`tags/${tag}`}>{tag} ({posts_by_tag[tag].length})</a
         >
       </li>
     {/each}
@@ -55,7 +55,7 @@
       <li class="my-4 text-xl">
         <a
           class="mr-6 transition link hover:text-primary"
-          href={`tags/${item}`}>{item} ({postsByTag[item].length})</a
+          href={`tags/${item}`}>{item} ({posts_by_tag[item].length})</a
         >
       </li>
     {/each}
