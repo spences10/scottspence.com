@@ -20,15 +20,24 @@
   url={`${website}/about`}
 />
 
-<Images />
-
 <div class="all-prose">
   <h1>Media Pack</h1>
   <Small>
     Last updated: <DateUpdated date="2023-03-10" small="true" />
   </Small>
 
-  <p>Bio information and assets.</p>
+  <div class="sm:flex lg:-mx-40 items-center">
+    <p class="w-2/3 px-5">
+      Pick any of the images of me from here and use them on your
+      website or social media. You can click on the selected main
+      image to get the full resolution.
+    </p>
+    <Images />
+  </div>
+
+  <p>
+    Bio information. If there's anything else you need let me know.
+  </p>
 
   <div class="flex items-center space-x-2">
     <input
