@@ -1,4 +1,4 @@
-import { env } from '$env/dynamic/private'
+import { AIRTABLE_BASE_ID, AIRTABLE_TOKEN } from '$env/static/private'
 import { json as json$1 } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 
@@ -10,7 +10,7 @@ export const POST: RequestHandler = async ({ request }) => {
   const reason = fd.get('reason')
   const message = fd.get('message')
 
-  const AIRTABLE_URL = `https://api.airtable.com/v0/${env.AIRTABLE_BASE_ID}/Contact%20Requests`
+  const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Contact%20Requests`
 
   let data = {
     records: [
@@ -27,7 +27,7 @@ export const POST: RequestHandler = async ({ request }) => {
   const res = await fetch(AIRTABLE_URL, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${env.AIRTABLE_TOKEN}`,
+      Authorization: `Bearer ${AIRTABLE_TOKEN}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),

@@ -1,11 +1,11 @@
-import { env } from '$env/dynamic/private'
+import { EMAIL_SIGNUP_API_KEY } from '$env/static/private'
 import type { RequestHandler } from './$types'
 
 export const POST: RequestHandler = async ({ request }: any) => {
   const { email } = await request.json()
 
   try {
-    const api_key = env.EMAIL_SIGNUP_API_KEY ?? ''
+    const api_key = EMAIL_SIGNUP_API_KEY ?? ''
     const res = await fetch(
       'https://api.sendinblue.com/v3/contacts/doubleOptinConfirmation',
       {
