@@ -1,9 +1,9 @@
-import type { Load } from '@sveltejs/kit'
+import type { PageLoad } from '../$types'
 
-export const load: Load = async ({ fetch }) => {
+export const load = (async ({ fetch }) => {
   const res = await fetch(`/posts.json`)
   if (res.ok) {
     const posts = await res.json()
     return { posts }
   }
-}
+}) satisfies PageLoad
