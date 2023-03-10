@@ -1,11 +1,12 @@
 import { description, name, website } from '$lib/info'
-import { getPosts } from '$lib/utils'
+import { get_posts } from '$lib/posts'
 import { format } from 'date-fns'
 import type { RequestHandler } from './$types'
 
 export const GET: RequestHandler = async () => {
-  const postsMeta = getPosts()
-  const body = render(postsMeta)
+  const { posts: posts_metadata } = await get_posts()
+
+  const body = render(posts_metadata)
 
   return new Response(body, {
     headers: {
@@ -16,7 +17,7 @@ export const GET: RequestHandler = async () => {
 }
 
 const render = (
-  postsMeta: { metadata: any }[]
+  posts_metadata: any[]
 ) => `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>
@@ -29,34 +30,29 @@ const render = (
     <generator>RSS for Node</generator>
     <lastBuildDate>${new Date()}</lastBuildDate>
     <atom:link href="${website}/rss.xml" rel="self" type="application/rss+xml"/>
-    ${postsMeta
+    ${posts_metadata
       .map(
-        ({ metadata }) =>
+        ({ title, preview, slug, date, previewHtml }) =>
           `
         <item>
           <title>
-            <![CDATA[ ${metadata.title} ]]>
+            <![CDATA[ ${title} ]]>
           </title>
           <description>
-            <![CDATA[ ${metadata.preview} ]]>
+            <![CDATA[ ${preview} ]]>
           </description>
-          <link>${website}/posts/${metadata.slug}/</link>
-          <guid isPermaLink="false">${website}/posts/${
-            metadata.slug
-          }/</guid>
+          <link>${website}/posts/${slug}/</link>
+          <guid isPermaLink="false">${website}/posts/${slug}/</guid>
           <dc:creator>
             <![CDATA[ ${name} ]]>
           </dc:creator>
           <pubDate>
-            ${format(
-              new Date(metadata.date),
-              'EE, dd MMM yyyy HH:mm:ss O'
-            )}
+            ${format(new Date(date), 'EE, dd MMM yyyy HH:mm:ss O')}
           </pubDate>
-          <content:encoded>${metadata.previewHtml} 
+          <content:encoded>${previewHtml} 
             <div style="margin-top: 50px; font-style: italic;">
               <strong>
-                <a href="${website}/posts/${metadata.slug}">
+                <a href="${website}/posts/${slug}">
                   Keep reading
                 </a>.
               </strong>  
