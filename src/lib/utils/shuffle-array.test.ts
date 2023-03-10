@@ -42,6 +42,8 @@ describe('shuffle_array', () => {
     expect(output.sort((a, b) => a.id - b.id)).toEqual(
       input.sort((a, b) => a.id - b.id)
     )
+
+    // Ensure the output array is a different order than the input array
+    expect(output).not.toEqual([...input].reverse())
   })
 })
-

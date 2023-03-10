@@ -2,36 +2,31 @@
   import { Head } from '$lib/components'
   import { description, name, website } from '$lib/info'
   import { og_image_url } from '$lib/utils'
+  import type { PageData } from './$types'
 
-  export let data: {
-    postsByTag: {
-      [key: string]: { metadata: { title: string; slug: string } }[]
-    }
-    slug: string
-  }
+  export let data: PageData
 
-  const {
-    postsByTag,
-    slug: tag_slug,
-  }: { postsByTag: typeof data.postsByTag; slug: string } = data
+  const { posts_by_tag, slug: tag_slug } = data
   const url: string = `${website}/tags/${tag_slug}`
+
+  const tag = tag_slug ?? ''
 </script>
 
 <Head
-  title={`Posts relating to ${tag_slug} - ${name}`}
+  title={`Posts relating to ${tag} - ${name}`}
   {description}
   image={og_image_url(
     name,
     'scottspence.com',
-    `Posts relating to ${tag_slug}`
+    `Posts relating to ${tag}`
   )}
   {url}
 />
 
-<h1 class="font-bold mb-5 text-5xl">Posts for {tag_slug}</h1>
+<h1 class="font-bold mb-5 text-5xl">Posts for {tag}</h1>
 
 <ul>
-  {#each postsByTag[tag_slug] as { metadata: { title }, metadata: { slug: post_slug } }}
+  {#each posts_by_tag[tag] as { title, slug: post_slug }}
     <li class="my-4 text-xl">
       <a
         class="mr-6 transition link hover:text-primary"

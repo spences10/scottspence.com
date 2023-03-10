@@ -1,6 +1,7 @@
 <script lang="ts">
   import { scale_and_fade, viewport } from '$lib/utils'
-
+  import ButtButt from '$lib/images/buttbutt.png'
+  
   export let height = '100px'
   export let width = '160px'
   const puns: string[] = [
@@ -19,11 +20,26 @@
     `I'm a little Behind on my jokes butt a well-Rounded Butt pun always beats a Crappy one.`,
   ]
 
-  $: pun = randomPun()
-  const randomPun = (): string => {
-    pun = puns[Math.floor(Math.random() * puns.length)]
-    return pun
+  const puns_copy = puns.slice()
+
+  let pun: string | null = null
+
+  const random_pun = (): string => {
+    if (puns_copy.length === 0) {
+      puns_copy.push(pun as string)
+      pun = null
+    }
+    const index = Math.floor(Math.random() * puns_copy.length)
+    const new_pun = puns_copy[index]
+    puns_copy.splice(index, 1)
+    if (pun) {
+      puns_copy.push(pun)
+    }
+    pun = new_pun
+    return new_pun
   }
+
+  $: pun = random_pun()
 
   let intersecting: boolean = false
 </script>
@@ -40,7 +56,7 @@
     {#if intersecting}
       <div class="flex justify-center mb-12">
         <img
-          src="https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614936696/scottspence.com/buttbutt.png"
+          src={ButtButt}
           alt="a cheeky butt"
           {height}
           {width}
@@ -51,7 +67,7 @@
     {/if}
     <p class="mb-6">Bummer!</p>
     <p class="mb-6">{pun}</p>
-    <button class="btn btn-xs" on:click={randomPun}>
+    <button class="btn btn-xs" on:click={random_pun}>
       pun me up
     </button>
   </aside>

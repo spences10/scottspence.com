@@ -1,8 +1,6 @@
 export { scale_and_fade } from './custom-transition'
 export { get_current_page_visitors } from './get-current-page-visitors'
 export { get_padding } from './get-padding'
-export { getPostTags } from './get-post-tags'
-export { getPosts } from './get-posts'
 export { number_crunch } from './number-crunch'
 export { object_to_query_params } from './object-to-query-params'
 export { og_image_url } from './og-image-url-build'

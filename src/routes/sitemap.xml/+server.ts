@@ -1,11 +1,13 @@
 import { website } from '$lib/info'
-import { getPosts, getPostTags } from '$lib/utils'
+import { get_post_tags } from '$lib/post-tags'
+import { get_posts } from '$lib/posts'
 import slugify from 'slugify'
 import type { RequestHandler } from './$types'
 
 export const GET: RequestHandler = async () => {
-  const postsMeta = getPosts()
-  const { tags } = getPostTags()
+  const { posts: posts_metadata } = await get_posts()
+  const { tags } = await get_post_tags()
+
   const pages = [
     { page: `about`, updated: `2022-08-22` },
     { page: `contact`, updated: `2022-03-01` },
@@ -18,7 +20,7 @@ export const GET: RequestHandler = async () => {
     { page: `uses`, updated: `2022-08-22` },
   ]
 
-  const body = render(pages, tags, postsMeta)
+  const body = render(pages, tags, posts_metadata)
 
   return new Response(body, {
     headers: {
@@ -31,7 +33,7 @@ export const GET: RequestHandler = async () => {
 const render = (
   pages: { page: any; updated: any }[],
   tags: any[],
-  postsMeta: { metadata: any }[]
+  posts_metadata: any[]
 ) => {
   const lastMod = new Date().toISOString().split('T')[0]
   return `<?xml version="1.0" encoding="UTF-8" ?>
@@ -53,16 +55,14 @@ const render = (
       <loc>${website}</loc>
       <lastmod>${lastMod}</lastmod>
     </url>
-    ${postsMeta
-      .map(({ metadata }) =>
-        metadata.isPrivate
+    ${posts_metadata
+      .map(({ isPrivate, slug, date }) =>
+        isPrivate
           ? null
           : `
     <url>
-      <loc>${website}/posts/${metadata.slug}</loc>
-      <lastmod>${
-        new Date(metadata.date).toISOString().split('T')[0]
-      }</lastmod>
+      <loc>${website}/posts/${slug}</loc>
+      <lastmod>${new Date(date).toISOString().split('T')[0]}</lastmod>
     </url>
     `
       )
@@ -79,7 +79,7 @@ const render = (
       .join('')}
     ${tags
       .map(
-        tag => `
+        (tag: string) => `
     <url>
       <loc>${website}/tags/${slugify(tag)}</loc>
       <priority>0.64</priority>

@@ -1,11 +1,13 @@
-import { getPostTags } from '$lib/utils'
 import type { PageLoad } from './$types'
 
-export const load: PageLoad = async ({ params }) => {
+export const load: PageLoad = async ({ params, fetch }) => {
   const { slug } = params
-  const { postsByTag } = getPostTags()
-  return {
-    slug,
-    postsByTag,
+  const res = await fetch(`/post-tags.json`)
+  if (res.ok) {
+    const { posts_by_tag } = await res.json()
+    return {
+      slug,
+      posts_by_tag,
+    }
   }
 }
