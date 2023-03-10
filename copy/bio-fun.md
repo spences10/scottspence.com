@@ -1,25 +1,23 @@
 ## Short
 
 Scott is a Svelte ambassador, developer relations engineer, and
-international conference speaker who loves creating video content and
-educating others, with a focus on Svelte and SvelteKit.
-
-Their blog receives around 12k visitors and 25k views monthly and
-they're always looking for opportunities to connect with others in the
-Svelte community.
+international conference speaker with a passion for creating video
+content and educating others on Svelte and SvelteKit. They're also an
+experienced technical writer, producing engaging blog content to
+connect with the Svelte community.
 
 ## Medium
 
 Meet Scott, the developer relations engineer and Svelte ambassador who
-creates video content to support their extensive knowledge on headless
-CMS platforms, with a special focus on Svelte and SvelteKit.
+creates engaging video content on headless CMS platforms, with a
+special focus on Svelte and SvelteKit.
 
-As an international conference speaker and experienced meetup
-presenter, they love connecting with and educating others in the
-Svelte community.
+As an experienced international conference speaker and meetup
+presenter, they're passionate about connecting with and educating
+others in the Svelte community.
 
-Their blog receives around 12k visitors and 25k views monthly, and
-they're always looking for new ways to give back to the community.
+Their informative blog, (receiving around 12k visitors and 25k views
+monthly) showcases their commitment to giving back to the community.
 
 ## Long
 
