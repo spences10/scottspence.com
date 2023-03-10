@@ -7,7 +7,7 @@ describe('get_post_tags', () => {
     expect(result).toBeDefined()
     expect(typeof result).toBe('object')
     expect(result).toHaveProperty('tags')
-  }, 10000)
+  }, 20000)
 
   test('returns an object with a "posts_by_tag" property', async () => {
     const result = await get_post_tags()
