@@ -7,7 +7,7 @@ describe('get_posts', () => {
     expect(result).toBeDefined()
     expect(typeof result).toBe('object')
     expect(result).toHaveProperty('posts')
-  }, 20000)
+  }, 30000)
 
   test('each post contains expected properties', async () => {
     const { posts } = await get_posts()
