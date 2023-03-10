@@ -18,13 +18,17 @@
     rel="noopener noreferrer"
     href={selectedImage.url}
   >
-    <img src={selectedImage.square} alt={selectedImage.alt} />
+    <img class="m-0" src={selectedImage.square} alt={selectedImage.alt} />
   </a>
-  <div class="flex gap-2 justify-between mt-4">
+  <div class="flex gap-2 justify-between">
     {#each images as image}
       <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <div class="gallery-item" on:click={() => handleClick(image)}>
-        <img src={image.thumb} alt={image.alt} />
+      <div on:click={() => handleClick(image)}>
+        <img
+          class="cursor-pointer"
+          src={image.thumb}
+          alt={image.alt}
+        />
       </div>
     {/each}
   </div>
