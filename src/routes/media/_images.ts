@@ -5,12 +5,12 @@ let public_id = 'scottspence.com/upscaled-media'
 
 // Array of file names
 const fileNames = [
-  'scott-mug-face.jpg',
+  'scott-mug-face-no-bg.jpg',
   'scott-tall.jpg',
+  'scott-mug-face.jpg',
+  'scott-presents-connect-tech-1.jpg',
   'scott-presents-mfe.jpg',
   'scott-profile.jpg',
-  'scott-presents-connect-tech-1.jpg',
-  'scott-presents-connect-tech-2.jpg',
 ]
 
 // Generate the images array
