@@ -143,6 +143,11 @@ export const SITE_LINKS = [
     slug: `contact`,
     id: `CM8DXERV`,
   },
+  {
+    title: `Media Pack`,
+    slug: `media`,
+    id: `HRKVII5W`,
+  },
 ]
 
 export const PEOPLE = [
