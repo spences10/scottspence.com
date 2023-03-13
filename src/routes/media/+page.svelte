@@ -2,7 +2,7 @@
   import { DateUpdated, Head, Small } from '$lib/components'
   import { name, website } from '$lib/info'
   import { og_image_url } from '$lib/utils'
-  import Images from './_images.svelte'
+  import Images from './images.svelte'
 
   export let data
   let { CorporateCopy, FunCopy } = data
@@ -14,10 +14,10 @@
 </script>
 
 <Head
-  title={`About - ${name}`}
-  description={`Some info about ${name}`}
-  image={og_image_url(name, `scottspence.com`, `About`)}
-  url={`${website}/about`}
+  title={`Media - ${name}`}
+  description={`Media pack for ${name}`}
+  image={og_image_url(name, `scottspence.com`, `Media Pack`)}
+  url={`${website}/media`}
 />
 
 <div class="all-prose">
@@ -27,7 +27,7 @@
   </Small>
 
   <div class="sm:flex lg:-mx-40 items-center">
-    <p class="w-2/3 px-5">
+    <p class="sm:w-2/3 sm:px-5 sm:mb-36">
       Pick any of the images of me from here and use them on your
       website or social media. You can click on the selected main
       image to get the full resolution.
