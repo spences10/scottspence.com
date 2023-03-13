@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { images } from './_images'
+  import { images } from './images'
   let selectedImage = images[0]
 
   function handleClick(image: {
@@ -12,20 +12,20 @@
   }
 </script>
 
-<div class="w-full">
+<div class="w-full sm:w-1/3">
   <a
     target="_blank"
     rel="noopener noreferrer"
     href={selectedImage.url}
   >
-    <img class="m-0" src={selectedImage.square} alt={selectedImage.alt} />
+    <img class="m-0 shadow-xl" src={selectedImage.square} alt={selectedImage.alt} />
   </a>
   <div class="flex gap-2 justify-between">
     {#each images as image}
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div on:click={() => handleClick(image)}>
         <img
-          class="cursor-pointer"
+          class="cursor-pointer shadow-xl"
           src={image.thumb}
           alt={image.alt}
         />
