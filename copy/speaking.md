@@ -13,7 +13,7 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2023-01-31" small="true" />
+  Last updated: <DateUpdated date="2023-03-13" small="true" />
 </Small>
 
 If you want me to talk about using Svelte with GraphQL, the Jamstack
@@ -25,6 +25,17 @@ Here's the list of talks, podcasts and live streams I have done
 recently.
 
 ## 2023
+
+### Modern Web Podcast
+
+Jesse Tomchak and I dive into the ins and outs of Svelte, ramping up
+from React, what’s it like to a second career developer, and the
+importance of paying it forward to developers who are new to the
+community.
+
+<!-- cSpell:ignore _Y7DDVZotb8 -->
+
+<YouTube youTubeId='_Y7DDVZotb8' />
 
 ### PodRocket
 
@@ -351,7 +362,6 @@ talk with us about how to learn (and unlearn) how to code 💻📚
   width="100%"
   height="152px"
 />
-
 
 ### The Front End podcast
 
