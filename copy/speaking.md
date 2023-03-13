@@ -59,6 +59,15 @@ eCommerce.
 
 <YouTube youTubeId='2ijSarsHfN0' skipTo={{ h: 0, m: 15, s: 36 }} />
 
+### WeAreDevelopers - November
+
+I talked with Marc on Coffee with Developers about my role in
+organizing the Svelte London Meetup, my experiences travelling to
+different events, and my views on developer relations and work-life
+balance.
+
+<YouTube youTubeId='p6uWcaZ0_n4' />
+
 ### Modern Frontends Live London - November
 
 SvelteKit and the Content Layer, still not managed to get this talk
