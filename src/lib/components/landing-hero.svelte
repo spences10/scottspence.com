@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores'
   import MugFace from '$lib/images/mug-face.png'
+  import ScottMugFace from '$lib/images/scott-mug-face.jpg'
   import { visitors_store } from '$lib/stores'
   import { get_current_page_visitors } from '$lib/utils'
   import { trackGoal } from 'fathom-client'
@@ -12,6 +13,16 @@
     current_path,
     content
   )
+
+  let isHovering = false
+
+  function handleMouseOver() {
+    isHovering = true
+  }
+
+  function handleMouseOut() {
+    isHovering = false
+  }
 </script>
 
 <div
@@ -19,10 +30,14 @@
 >
   <div class="hero">
     <div class="flex-col p-0 hero-content lg:flex-row-reverse">
+      <!-- svelte-ignore a11y-mouse-events-have-key-events -->
+      <!-- svelte-ignore a11y-img-redundant-alt -->
       <img
-        src={MugFace}
+        src={isHovering ? ScottMugFace : MugFace}
         alt="Cartoon face Scott"
         class="rounded-full max-w-sm shadow-xl w-1/2 lg:w-full"
+        on:mouseover={handleMouseOver}
+        on:mouseout={handleMouseOut}
       />
       <div class="all-prose lg:mr-28">
         <h1 class="font-bold -mb-5 text-5xl">
