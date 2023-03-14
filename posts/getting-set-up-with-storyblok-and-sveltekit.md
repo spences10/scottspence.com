@@ -6,7 +6,13 @@ isPrivate: false
 ---
 
 <script>
-  import { Details } from '$lib/components'
+  import { Details, Banner } from '$lib/components'
+
+  let href = `/posts/sveltekit-environment-variables-with-the-sveltekit-env-module`
+  const options = {
+    type: 'warning',
+    message: `SvelteKit now handles env secrets, take a look at <a href=${href}>SvelteKit Environment Variables with the SvelteKit $env Module</a> which details how to use it in a SvelteKit project.`
+  }
 </script>
 
 I've been having a play around with Storyblok this evening and want to
@@ -256,9 +262,7 @@ touch src/lib/components/{feature.svelte,grid.svelte,page.svelte,teaser.svelte}
 
 ## Environment variables
 
-> SvelteKit now handles env secrets, take a look at [SvelteKit >
-> Environment Variables with the SvelteKit $env Module] which details
-> how to use it in a SvelteKit project.
+<Banner {options}/>
 
 As I'll want to be committing this to source control I don't really
 want to add my access tokens. I can use the Vite way which is to add:
@@ -672,8 +676,6 @@ https://www.storyblok.com/docs/Guides/root-blocks
   https://www.storyblok.com/docs/Guides/nestable-blocks
 [storyblok `richtextresolver`]:
   https://github.com/storyblok/storyblok-js-client
-[sveltekit environment variables with the sveltekit $env module]:
-  https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module
 
 <!-- Images -->
 

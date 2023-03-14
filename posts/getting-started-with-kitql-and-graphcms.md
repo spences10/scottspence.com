@@ -12,7 +12,7 @@ isPrivate: false
   const options = {
     type: 'warning',
     message: `This post uses the legacy configuration for KitQL, there's a more up to date post on getting started with it <a href=${href}>here</a>.`
-  };
+  }
 </script>
 
 <Banner {options} />
