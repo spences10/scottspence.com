@@ -5,15 +5,15 @@
     PUBLIC_FATHOM_ID,
     PUBLIC_FATHOM_URL,
   } from '$env/static/public'
-  import { Footer, Header, Nav } from '$lib/components'
-  import { popular_posts_store, visitors_store } from '$lib/stores'
+  import { BackToTop, Footer, Header, Nav } from '$lib/components'
+  // import { popular_posts_store, visitors_store } from '$lib/stores'
   import * as Fathom from 'fathom-client'
   import { onMount } from 'svelte'
   import { themeChange } from 'theme-change'
   import '../app.css'
   import '../prism.css'
   // import type { LayoutData } from './$types'
-  
+
   // TODO: Fix Analytics caching
   // export let data: LayoutData
   // $popular_posts_store = data.popular_posts_analytics
@@ -41,6 +41,7 @@
   class="container max-w-3xl mx-auto px-4 mb-20 flex-grow"
 >
   <slot />
+  <BackToTop />
 </main>
 
 <!-- TODO: Fix Analytics caching -->
