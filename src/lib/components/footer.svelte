@@ -1,6 +1,11 @@
 <script lang="ts">
   // import { Eye } from '$lib/icons'
-  import { name, POPULAR_POSTS, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
+  import {
+    name,
+    POPULAR_POSTS,
+    SITE_LINKS,
+    SOCIAL_LINKS,
+  } from '$lib/info'
   // import { number_crunch } from '$lib/utils'
   import { trackGoal } from 'fathom-client'
 

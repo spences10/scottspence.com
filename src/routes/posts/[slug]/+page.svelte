@@ -22,9 +22,7 @@
   import { onMount } from 'svelte'
 
   export let data
-  let {
-    Content,
-  } = data
+  let { Content } = data
   let {
     title,
     date,

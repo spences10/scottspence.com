@@ -55,8 +55,10 @@
       <li class="my-4 text-xl">
         <a
           class="mr-6 transition link hover:text-primary"
-          href={`tags/${item}`}>{item} ({posts_by_tag[item].length})</a
+          href={`tags/${item}`}
         >
+          {item} ({posts_by_tag[item].length})
+        </a>
       </li>
     {/each}
   {/if}

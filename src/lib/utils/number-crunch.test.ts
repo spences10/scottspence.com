@@ -33,4 +33,3 @@ describe('number_crunch', () => {
     expect(number_crunch(-1234)).toEqual('-1.2k')
   })
 })
-

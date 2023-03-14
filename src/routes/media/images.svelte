@@ -18,7 +18,11 @@
     rel="noopener noreferrer"
     href={selectedImage.url}
   >
-    <img class="m-0 shadow-xl" src={selectedImage.square} alt={selectedImage.alt} />
+    <img
+      class="m-0 shadow-xl"
+      src={selectedImage.square}
+      alt={selectedImage.alt}
+    />
   </a>
   <div class="flex gap-2 justify-between">
     {#each images as image}

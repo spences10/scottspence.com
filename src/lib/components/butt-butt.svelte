@@ -1,7 +1,7 @@
 <script lang="ts">
   import { scale_and_fade, viewport } from '$lib/utils'
   import ButtButt from '$lib/images/buttbutt.png'
-  
+
   export let height = '100px'
   export let width = '160px'
   const puns: string[] = [
