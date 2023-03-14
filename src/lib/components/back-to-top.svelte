@@ -2,6 +2,7 @@
   import { fly } from 'svelte/transition'
 
   let show_scroll_button = false
+  let last_scroll_top = 0
 
   function scroll_to_top() {
     window.scrollTo({
@@ -11,7 +12,10 @@
   }
 
   function handle_scroll() {
-    show_scroll_button = window.pageYOffset > 0
+    const current_scroll_top = window.pageYOffset
+    show_scroll_button =
+      current_scroll_top > last_scroll_top && current_scroll_top > 0
+    last_scroll_top = current_scroll_top
   }
 </script>
 
