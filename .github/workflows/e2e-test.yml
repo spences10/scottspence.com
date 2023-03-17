@@ -1,4 +1,4 @@
-name: 'Tests: Unit'
+name: 'Tests: E2E'
 on:
   push:
     branches: [main]
@@ -7,8 +7,8 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  unit-tests:
-    name: Run unit tests
+  e2e-tests:
+    name: Run e2e tests
     runs-on: ubuntu-latest
 
     steps:
@@ -38,5 +38,5 @@ jobs:
           AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
           EMAIL_SIGNUP_API_KEY: ${{ secrets.EMAIL_SIGNUP_API_KEY }}
           FATHOM_API_KEY: ${{ secrets.FATHOM_API_KEY }}
-      - name: Test
-        run: pnpm run test:ci
+      - name: Run e2e tests
+        run: pnpm run test:e2e
