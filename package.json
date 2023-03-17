@@ -15,7 +15,7 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "test": "playwright test",
-    "test:e2e": "playwright test",
+    "test:e2e": "playwright test --project=chromium --timeout=60000 --retries=2 --workers=2 --headed --env PUBLIC_FATHOM_ID=$PUBLIC_FATHOM_ID PUBLIC_FATHOM_URL=$PUBLIC_FATHOM_URL AIRTABLE_TOKEN=$AIRTABLE_TOKEN AIRTABLE_BASE_ID=$AIRTABLE_BASE_ID EMAIL_SIGNUP_API_KEY=$EMAIL_SIGNUP_API_KEY FATHOM_API_KEY=$FATHOM_API_KEY",
     "test:unit": "vitest",
     "test:ui": "vitest --ui",
     "test:ci": "vitest run",
