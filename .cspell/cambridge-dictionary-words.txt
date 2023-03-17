@@ -74,3 +74,5 @@ utilise
 visualisation
 visualise
 Zettelkasten
+granola
+writable

@@ -64,7 +64,7 @@ were getting.
 ## Ease of use
 
 Fastmail gets out of your way, set up folders simply, you're not
-prompted with additional modals or popups which I found frustrating
+prompted with additional modals or pop-ups which I found frustrating
 with ProtonMail.
 
 You can set up filters and rules after you make the folder in Fastmail
