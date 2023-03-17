@@ -1,7 +1,10 @@
 name: 'Tests: E2E'
 on:
-  - push
-  - pull_request
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
 
 jobs:
   tests_e2e:
