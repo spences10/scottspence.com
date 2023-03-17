@@ -6,6 +6,7 @@ const config: PlaywrightTestConfig = {
     port: 4173,
   },
   testDir: 'tests',
+  timeout: 12000,
 }
 
 export default config
