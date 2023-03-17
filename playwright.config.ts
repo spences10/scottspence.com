@@ -4,6 +4,8 @@ const config: PlaywrightTestConfig = {
   webServer: {
     command: 'pnpm run build && pnpm run preview',
     port: 4173,
+    timeout: 2 * 60 * 1000,
+    url: 'http://localhost:4173/',
   },
   testDir: 'tests',
   projects: [
