@@ -28,24 +28,15 @@ jobs:
         with:
           node-version: 18.x
       - name: Install dependencies
-        run: pnpm install
-      - name: Build
-        run: pnpm run build
-        env:
-          PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
-          PUBLIC_FATHOM_URL: ${{ secrets.PUBLIC_FATHOM_URL }}
-          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
-          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
-          EMAIL_SIGNUP_API_KEY: ${{ secrets.EMAIL_SIGNUP_API_KEY }}
-          FATHOM_API_KEY: ${{ secrets.FATHOM_API_KEY }}
-      - name: Start web server
-        run: pnpm run preview &
-        env:
-          PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
-          PUBLIC_FATHOM_URL: ${{ secrets.PUBLIC_FATHOM_URL }}
-          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
-          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
-          EMAIL_SIGNUP_API_KEY: ${{ secrets.EMAIL_SIGNUP_API_KEY }}
-          FATHOM_API_KEY: ${{ secrets.FATHOM_API_KEY }}
+        run: |
+          pnpm install
+          npx playwright install --with-deps
       - name: Run e2e tests
-        run: pnpm run test:e2e
+        run: |
+          PUBLIC_FATHOM_ID=${{ secrets.PUBLIC_FATHOM_ID }}
+          PUBLIC_FATHOM_URL=${{ secrets.PUBLIC_FATHOM_URL }}
+          AIRTABLE_TOKEN=${{ secrets.AIRTABLE_TOKEN }}
+          AIRTABLE_BASE_ID=${{ secrets.AIRTABLE_BASE_ID }}
+          EMAIL_SIGNUP_API_KEY=${{ secrets.EMAIL_SIGNUP_API_KEY }}
+          FATHOM_API_KEY=${{ secrets.FATHOM_API_KEY }}
+          pnpm run test:e2e
