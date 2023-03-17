@@ -27,16 +27,16 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.x
-      - name: Install dependencies
-        run: |
-          pnpm install
-          npx playwright install --with-deps
-      - name: Run e2e tests
-        run: |
+      - name: install dependencies
+        run: pnpm i
+      - name: install playwright browsers
+        run: npx playwright install --with-deps
+      - name: pnpm run test
+        run: pnpm run test:e2e
+        env:
           PUBLIC_FATHOM_ID=${{ secrets.PUBLIC_FATHOM_ID }}
           PUBLIC_FATHOM_URL=${{ secrets.PUBLIC_FATHOM_URL }}
           AIRTABLE_TOKEN=${{ secrets.AIRTABLE_TOKEN }}
           AIRTABLE_BASE_ID=${{ secrets.AIRTABLE_BASE_ID }}
           EMAIL_SIGNUP_API_KEY=${{ secrets.EMAIL_SIGNUP_API_KEY }}
           FATHOM_API_KEY=${{ secrets.FATHOM_API_KEY }}
-          pnpm run test:e2e
