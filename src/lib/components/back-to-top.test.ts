@@ -1,56 +1,63 @@
-import { fireEvent, render } from '@testing-library/svelte'
-import { describe, expect, it, vi } from 'vitest'
+import { cleanup, fireEvent, render } from '@testing-library/svelte'
+import { tick } from 'svelte'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import BackToTop from './back-to-top.svelte'
 
+function renderBackToTop(offset = 0) {
+  cleanup()
+  const component = render(BackToTop)
+  window.pageYOffset = offset
+  return component
+}
+
 describe('BackToTop', () => {
+  afterEach(() => {
+    window.pageYOffset = 0
+  })
+
   it('should not render the button initially', () => {
-    const { queryByLabelText } = render(BackToTop)
+    const { queryByLabelText } = renderBackToTop()
     expect(queryByLabelText('Back to top')).toBeFalsy()
   })
 
   it('should render the button when scrolling down', async () => {
-    const { queryAllByLabelText } = render(BackToTop)
-    window.pageYOffset = 100
+    const { queryByTestId } = renderBackToTop(100)
     fireEvent.scroll(window)
-    await new Promise(resolve => setTimeout(resolve, 100))
+    await new Promise(resolve => setTimeout(resolve, 400))
 
-    const buttons = queryAllByLabelText('Back to top')
-    expect(buttons.length).toBeGreaterThanOrEqual(1)
+    const button = queryByTestId('back-to-top')
+    expect(button).toBeTruthy()
   })
 
-  it('should not render the button when scrolling up', async () => {
-    const { queryAllByLabelText } = render(BackToTop)
+  it('should not render the button when scrolling up after scrolling down', async () => {
+    const { queryAllByLabelText } = renderBackToTop(1000)
 
-    // Scroll down
-    window.pageYOffset = 100
+    fireEvent.scroll(window)
+    await tick()
+
+    window.pageYOffset = 50
+    fireEvent.scroll(window)
+    await tick()
+
+    const buttons = queryAllByLabelText('Back to top')
+    expect(buttons.length).toBe(1)
+  })
+
+  it('should scroll to the top when the button is clicked', async () => {
+    const { queryByLabelText } = renderBackToTop(1000)
     fireEvent.scroll(window)
     await new Promise(resolve => setTimeout(resolve, 0))
 
-    // Check if the button is rendered when scrolling down
-    let buttons = queryAllByLabelText('Back to top')
-    expect(buttons.length).toBeGreaterThanOrEqual(1)
+    const scrollToMock = vi.fn(options => {
+      window.pageYOffset = options.top
+    })
+    window.scrollTo = scrollToMock
 
-    // Scroll up
-    window.pageYOffset = 50
-    fireEvent.scroll(window)
-    await new Promise(resolve => setTimeout(resolve, 0)) // let Svelte update the DOM
-
-    // Check if the button is not rendered when scrolling up
-    buttons = queryAllByLabelText('Back to top')
-    expect(buttons.).toBe(0)
-  })
-
-  it.skip('should scroll to the top when the button is clicked', async () => {
-    const { queryByLabelText } = render(BackToTop)
-    window.pageYOffset = 100
-    fireEvent.scroll(window)
-    await new Promise(resolve => setTimeout(resolve, 0)) // let Svelte update the DOM
-
-    const scrollToSpy = vi.spyOn(window, 'scrollTo')
     const button = queryByLabelText('Back to top')
-    await fireEvent.click(button)
+    await fireEvent.click(button as HTMLElement)
 
-    expect(scrollToSpy).toHaveBeenCalledWith({
+    expect(window.pageYOffset).toBe(0)
+    expect(scrollToMock).toHaveBeenCalledWith({
       top: 0,
       behavior: 'smooth',
     })
