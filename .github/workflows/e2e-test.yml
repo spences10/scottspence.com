@@ -15,10 +15,15 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ~/.pnpm-store
-          key:
-            # prettier-ignore
-            ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          # prettier-ignore
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-pnpm-
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/ms-playwright
+          # prettier-ignore
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-playwright-
       - uses: pnpm/action-setup@v2.2.4
         with:
           version: 6.0.2
