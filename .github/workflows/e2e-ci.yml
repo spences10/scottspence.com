@@ -7,7 +7,7 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  tests_e2e:
+  tests-e2e:
     name: Run end-to-end tests
     runs-on: ubuntu-latest
 
@@ -31,11 +31,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.x
-      - name: install dependencies
+      - name: Install dependencies
         run: pnpm i
-      - name: install playwright browsers
+      - name: Install playwright browsers
         run: npx playwright install --with-deps
-      - name: pnpm run test
+      - name: Test
         run: pnpm run test
         env:
           PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
