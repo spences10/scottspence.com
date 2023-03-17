@@ -39,4 +39,4 @@ jobs:
           EMAIL_SIGNUP_API_KEY: ${{ secrets.EMAIL_SIGNUP_API_KEY }}
           FATHOM_API_KEY: ${{ secrets.FATHOM_API_KEY }}
       - name: Run e2e tests
-        run: pnpm run test:e2e
+        run: pnpm run test:ci
