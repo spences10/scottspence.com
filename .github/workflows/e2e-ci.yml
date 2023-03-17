@@ -12,16 +12,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: ~/.cache/ms-playwright
+          # prettier-ignore
           key: Linux-playwright-${{ hashFiles('**/package-lock.json') }}
           restore-keys: Linux-playwright-
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: ~/.pnpm-store
-          key: Linux-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: Linux-pnpm-
+          # prettier-ignore
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-
       - uses: pnpm/action-setup@v2.2.4
         with:
           version: 6.0.2
