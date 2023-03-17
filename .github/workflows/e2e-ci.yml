@@ -12,31 +12,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/cache@v3
-        with:
-          path: ~/.cache/ms-playwright
-          # prettier-ignore
-          key: Linux-playwright-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: Linux-playwright-
-      - uses: actions/cache@v3
-        with:
-          path: ~/.pnpm-store
-          # prettier-ignore
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-pnpm-
-      - uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 6.0.2
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
           node-version: 18.x
-      - name: install dependencies
-        run: pnpm i
-      - name: install playwright browsers
-        run: npx playwright install --with-deps
-      - name: pnpm run test
-        run: pnpm run test
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          # prettier-ignore
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-deps-
+      - name: Install dependencies
+        run: pnpm install
+      - name: Cache Playwright browsers
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/ms-playwright
+          # prettier-ignore
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-playwright-
+      - name: Install Playwright browsers
+        run: npx playwright install
+      - name: Run tests
+        run: pnpm run test:e2e
         env:
           PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
           PUBLIC_FATHOM_URL: ${{ secrets.PUBLIC_FATHOM_URL }}
