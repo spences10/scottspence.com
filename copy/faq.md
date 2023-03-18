@@ -1,6 +1,6 @@
 <script>
   import {
-    DateDistance, 
+    DateDistance as DD, 
     DateUpdated, 
     Small, 
   } from '$lib/components'
@@ -9,7 +9,7 @@
 # For recruiters - FAQ
 
 <Small>
-  Last updated: <DateUpdated date='2022-11-21' small='true' />
+  Last updated: <DateUpdated date='2023-03-18' small='true' />
 </Small>
 
 Hello friend 👋, thanks for taking an interest in me and my profile.
@@ -60,8 +60,7 @@ technical development.
 
 A good percentage of pair programming and collaboration on the team.
 
-Working with Svelte, React, Gatsby, Netlify, Vercel, Next.js and
-GitHub.
+Working with Svelte and SvelteKit, Netlify, Vercel, and GitHub.
 
 **If you really want to grab my attention,** tell me how you
 collaborate, how you keep quality high, how you contribute back to the
@@ -74,8 +73,8 @@ Further to that, work life balance is a big deal for me, I really **do
 not** want to go over a 37.5 hour working week if presenteeism is a
 thing on the team.
 
-Open to contract roles. I have _very_ limited availability so it will
-depend on the amount of consulting you need.
+I work on a contract basis for OES Technology, I'd prefer to work with
+companies outside of the UK in a fully remote capacity.
 
 ---
 
@@ -105,18 +104,17 @@ I'm _really_ enjoying working with Svelte and SvelteKit and I'll be
 very interested in roles that are using it.
 
 Tailwind is my current preference for the speed which it offers when
-creating projects. I have used styled-components for many projects, I
-am also comfortable using Theme UI and Tailwind CSS.
+creating projects. I have used styled-components for many projects.
 
 I have a wealth of knowledge using [Gatsby] (2017-2020) (which uses
 **React** and **GraphQL**) and have consulted on large scale projects
 using it.
 
 For CMS' any opportunity to work with any of the new headless CMS'
-that are emerging would be great: [Storyblok], [GraphCMS],
-[Sanity.io], [Strapi], [Keystone 5] or [Contentful].
+that are emerging would be great: [Storyblok], [Hygraph], [Sanity.io],
+[Strapi], [Keystone 5] or [Contentful].
 
-I have commercial experience with GraphCMS and Contentful and have
+I have commercial experience with Hygraph and Contentful and have
 built projects in Sanity.io and Keystone 5.
 
 For back-end I prefer node which is where the majority of my back-end
@@ -127,20 +125,18 @@ experience is.
 ## How many years experience do you have?
 
 <Small>
-  These numbers are calculated each time the site is built.
+  These numbers are calculated each time the page loads.
 </Small>
 
-JavaScript, HTML and CSS (the holy trinity), <DateDistance
-date='2016-06-15' />.
+JavaScript, HTML and CSS (the holy trinity), <DD date='2016-06-15' />.
 
-Svelte, <DateDistance date='2021-04-06' />. I've hosted several
-workshops on Svelte and SvelteKit you can find in the speaking section
-of this site.
+Svelte, <DD date='2021-04-06' />. I host regular workshops on Svelte
+and SvelteKit you can find in the speaking section of this site.
 
-React, <DateDistance date='2017-05-20' />.
+React, <DD date='2017-05-20' />.
 
-I have <DateDistance date='2018-03-14' /> experience as a professional
-web developer.
+I have <DD date='2018-03-14' /> experience as a professional web
+developer.
 
 I have 10+ years previous experience as an analyst developer for
 financial organisations.
@@ -153,7 +149,7 @@ bit more about me.
 ## Salary?
 
 In my next permanent role I'm looking for roles starting at
-**£70,400**. Please take note of the currency and covert it
+**€80,200**. Please take note of the currency and covert it
 accordingly to currency the company pays in.
 
 I run OES Technology where I offer consulting on a contract basis if
@@ -284,7 +280,7 @@ Sure, hit the download button on [mecv.xyz].
 
 ## Notice period?
 
-[Two weeks].
+Months notice.
 
 ---
 
@@ -317,7 +313,7 @@ Feel free to [check out the rest of the site](/)
 [jamstack]: https://jamstack.org/
 [gatsby]: https://gatsbyjs.com/
 [storyblok]: https://www.storyblok.com/
-[graphcms]: https://graphcms.com/
+[graphcms]: https://hygraph.com/
 [sanity.io]: https://www.sanity.io/
 [contentful]: https://www.contentful.com
 [strapi]: https://strapi.io/
