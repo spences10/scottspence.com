@@ -40,7 +40,7 @@ specifiers:
   svelte: 3.56.0
   svelte-check: ^3.1.0
   svelte-frappe-charts: ^1.10.0
-  svelte-preprocess: 5.0.1
+  svelte-preprocess: 5.0.3
   sveltekit-embed: 0.0.13
   tailwindcss: 3.2.7
   theme-change: 2.5.0
@@ -90,7 +90,7 @@ devDependencies:
   svelte: 3.56.0
   svelte-check: 3.1.0_w3wowcclux2zom2naamp3btumu
   svelte-frappe-charts: 1.10.0_svelte@3.56.0
-  svelte-preprocess: 5.0.1_myszeeawkmjjvrp5vs3t62owqy
+  svelte-preprocess: 5.0.3_myszeeawkmjjvrp5vs3t62owqy
   sveltekit-embed: 0.0.13_svelte@3.56.0
   tailwindcss: 3.2.7_postcss@8.4.21
   theme-change: 2.5.0
@@ -898,13 +898,6 @@ packages:
 
   /@types/pug/2.0.6:
     resolution: {integrity: sha512-SnHmG9wN1UVmagJOnyo/qkk0Z7gejYxOYYmaAwr5u2yFYfsupN3sg10kyzN8Hep/2zbHxCnsumxOoRIRMBwKCg==}
-    dev: true
-
-  /@types/sass/1.45.0:
-    resolution: {integrity: sha512-jn7qwGFmJHwUSphV8zZneO3GmtlgLsmhs/LQyVvQbIIa+fzGMUiHI4HXJZL3FT8MJmgXWbLGiVVY7ElvHq6vDA==}
-    deprecated: This is a stub types definition. sass provides its own type definitions, so you do not need this installed.
-    dependencies:
-      sass: 1.58.3
     dev: true
 
   /@types/semver/7.3.13:
@@ -2870,10 +2863,6 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
-  /immutable/4.2.4:
-    resolution: {integrity: sha512-WDxL3Hheb1JkRN3sQkyujNlL/xRjAo3rJtaU5xeufUauG66JdMr32bLj4gF+vWl84DIA3Zxw7tiAjneYzRRw+w==}
-    dev: true
-
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -4415,16 +4404,6 @@ packages:
       rimraf: 2.7.1
     dev: true
 
-  /sass/1.58.3:
-    resolution: {integrity: sha512-Q7RaEtYf6BflYrQ+buPudKR26/lH+10EmO9bBqbmPh/KeLqv8bjpTNqxe71ocONqXq+jYiCbpPUmQMS+JJPk4A==}
-    engines: {node: '>=12.0.0'}
-    hasBin: true
-    dependencies:
-      chokidar: 3.5.3
-      immutable: 4.2.4
-      source-map-js: 1.0.2
-    dev: true
-
   /saxes/6.0.0:
     resolution: {integrity: sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==}
     engines: {node: '>=v12.22.7'}
@@ -4669,7 +4648,7 @@ packages:
       picocolors: 1.0.0
       sade: 1.8.1
       svelte: 3.56.0
-      svelte-preprocess: 5.0.1_myszeeawkmjjvrp5vs3t62owqy
+      svelte-preprocess: 5.0.3_myszeeawkmjjvrp5vs3t62owqy
       typescript: 4.9.5
     transitivePeerDependencies:
       - '@babel/core'
@@ -4701,8 +4680,8 @@ packages:
       svelte: 3.56.0
     dev: true
 
-  /svelte-preprocess/5.0.1_myszeeawkmjjvrp5vs3t62owqy:
-    resolution: {integrity: sha512-0HXyhCoc9rsW4zGOgtInylC6qj259E1hpFnJMJWTf+aIfeqh4O/QHT31KT2hvPEqQfdjmqBR/kO2JDkkciBLrQ==}
+  /svelte-preprocess/5.0.3_myszeeawkmjjvrp5vs3t62owqy:
+    resolution: {integrity: sha512-GrHF1rusdJVbOZOwgPWtpqmaexkydznKzy5qIC2FabgpFyKN57bjMUUUqPRfbBXK5igiEWn1uO/DXsa2vJ5VHA==}
     engines: {node: '>= 14.10.0'}
     requiresBuild: true
     peerDependencies:
@@ -4716,7 +4695,7 @@ packages:
       stylus: ^0.55.0
       sugarss: ^2.0.0 || ^3.0.0 || ^4.0.0
       svelte: ^3.23.0
-      typescript: ^3.9.5 || ^4.0.0
+      typescript: '>=3.9.5 || ^4.0.0 || ^5.0.0'
     peerDependenciesMeta:
       '@babel/core':
         optional: true
@@ -4740,7 +4719,6 @@ packages:
         optional: true
     dependencies:
       '@types/pug': 2.0.6
-      '@types/sass': 1.45.0
       detect-indent: 6.1.0
       magic-string: 0.27.0
       postcss: 8.4.21
