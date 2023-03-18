@@ -21,7 +21,7 @@
     "test:ci": "vitest run",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write .",
-    "cspell": "cspell '**/*.md' --config cspell.json --locale en-gb --wordsOnly"
+    "cspell": "cspell '**/*.md' --config cspell.json --wordsOnly"
   },
   "devDependencies": {
     "@playwright/test": "^1.31.2",
