@@ -6,7 +6,16 @@ isPrivate: false
 ---
 
 <script>
-  import { DateDistance as DD, Details } from '$lib/components'
+  import { Banner, DateDistance as DD, Details } from '$lib/components'
+
+  let href = `/posts/caching-with-fathom-redis-and-sveltekit`
+  const options = {
+    type: 'warning',
+    message: `If your site gets a lot of traffic and you are using 
+    Fathom with a modest plan then you may also want to look into 
+    <a href=${href}>Caching with Fathom, Redis, and SvelteKit</a> 
+    so you don't blow your API allowance.`
+  }
 </script>
 
 I spent a bit of time the other day looking into the Fathom Analytics
@@ -28,6 +37,8 @@ If not you can scroll to the bottom of this page and depending on how
 long this post is into the future (I may have scrapped it, you know!)
 there'll be an analytics section where you can see how may people have
 been on this page.
+
+<Banner {options}/>
 
 Ok so if you want a privacy focused analytics solution, Fathom, in my
 biased opinion, is the best one out there.
