@@ -1,5 +1,6 @@
 import { FATHOM_API_KEY } from '$env/static/private'
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
+import redis, { page_analytics_key } from '$lib/redis'
 import { object_to_query_params } from '$lib/utils'
 import { json } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
@@ -20,13 +21,21 @@ export const GET: RequestHandler = async ({ url }) => {
   const default_params = build_default_params(pathname)
   const params = { ...default_params, ...date_params }
 
+  const cache_key = page_analytics_key(`analytics.json${url.search}`)
+  const cached = await get_analytics_from_cache(cache_key)
+
+  if (cached) {
+    return json({ analytics: cached })
+  }
+
   try {
     const headers_auth = new Headers()
     headers_auth.append('Authorization', `Bearer ${FATHOM_API_KEY}`)
 
     const analytics_data = await fetch_analytics_data(
       params,
-      headers_auth
+      headers_auth,
+      `analytics.json${url.search}`
     )
 
     return json({
@@ -68,8 +77,11 @@ const build_default_params = (pathname: string) => ({
 
 const fetch_analytics_data = async (
   params: { [s: string]: unknown } | ArrayLike<unknown>,
-  headers: Headers
+  headers: Headers,
+  search: string
 ) => {
+  const cache_key = page_analytics_key(search)
+
   const res = await fetch(
     `https://api.usefathom.com/v1/aggregations${object_to_query_params(
       params
@@ -83,5 +95,36 @@ const fetch_analytics_data = async (
     throw new Error(`HTTP error ${res.status}: ${res.statusText}`)
   }
 
-  return await res.json()
+  const analytics_data = await res.json()
+  await cache_analytics_response(cache_key, analytics_data)
+
+  return analytics_data
+}
+
+const get_analytics_from_cache = async (cache_key: string) => {
+  try {
+    const cached = await redis.get(cache_key)
+    if (cached) {
+      return JSON.parse(cached)
+    }
+  } catch (e) {
+    console.error(`Error fetching analytics from cache: ${e}`)
+  }
+  return null
+}
+
+const cache_analytics_response = async (
+  cache_key: string,
+  analytics_data: any
+) => {
+  try {
+    await redis.set(
+      cache_key,
+      JSON.stringify(analytics_data),
+      'EX',
+      15 * 60
+    )
+  } catch (e) {
+    console.error(`Error caching analytics response: ${e}`)
+  }
 }
