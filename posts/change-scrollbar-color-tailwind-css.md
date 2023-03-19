@@ -14,7 +14,7 @@ Firefox. This is possible with [vendor prefixes] and
 [pseudo-elements].
 
 I touched on the configuration for this in the [Change Text Highlight
-Color with Tailwind CSS] post a did recently.
+Color with Tailwind CSS] post I did recently.
 
 So, I'll go over how to do this in Tailwind CSS then I can go over it
 with a vanilla CSS example too.
