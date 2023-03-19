@@ -6,7 +6,7 @@
     IsPrivateBanner,
     PopularPosts,
     ShareWithTweet,
-    // StatsCard,
+    StatsCard,
     TableOfContents,
     UpdatedBanner,
   } from '$lib/components'
@@ -18,6 +18,9 @@
     differenceInDays,
     differenceInYears,
     format,
+    getDate,
+    getMonth,
+    parseISO,
   } from 'date-fns'
   import { onMount } from 'svelte'
 
@@ -61,11 +64,6 @@
   //   current_path,
   //   content
   // )
-
-  // let hourly_visits = data.hourly_visits
-  // let daily_visits = data.daily_visits[0]
-  // let monthly_visits = data.monthly_visits[0]
-  // let yearly_visits = data.yearly_visits[0]
 </script>
 
 <Head
@@ -140,32 +138,59 @@
     <div class="divider" />
   </div>
   <!-- TODO: Fix Analytics caching -->
-  <!-- {#if daily_visits?.visits > 0}
-    <StatsCard
-      title="Daily analytics for this post"
-      stats={daily_visits}
-      time_period="day"
-    />
-  {/if} -->
-  <!-- {#if monthly_visits?.visits > 0 && getDate(new Date()) > 1}
-    <StatsCard
-      title="Month to date analytics for this post"
-      stats={monthly_visits}
-      time_period="month"
-    />
-  {/if} -->
-  <!-- {#if (yearly_visits?.date > 0 && getMonth(parseISO(monthly_visits?.date)) > 0) || (!monthly_visits?.visits && yearly_visits?.visits > 0)}
-    <StatsCard
-      title="Year to date analytics for this post"
-      stats={yearly_visits}
-      time_period="year"
-    />
-  {/if} -->
-  <!-- {#if daily_visits?.visits > 0 || monthly_visits?.visits > 0 || yearly_visits?.visits > 0}
-  <div class="flex flex-col w-full mt-5 mb-10">
-    <div class="divider" />
-  </div>
-  {/if} -->
+  {#await data?.analytics?.daily_visits}
+    Daily visits...
+  {:then [daily_visits]}
+    {#if daily_visits?.visits > 0}
+      <StatsCard
+        title="Daily analytics for this post"
+        stats={daily_visits}
+        time_period="day"
+      />
+    {/if}
+  {:catch error}
+    {error.message}
+  {/await}
+
+  {#await data?.analytics?.monthly_visits}
+    Monthly visits...
+  {:then [monthly_visits]}
+    {#if monthly_visits?.visits > 0 && getDate(new Date()) > 1}
+      <StatsCard
+        title="Month to date analytics for this post"
+        stats={monthly_visits}
+        time_period="month"
+      />
+    {/if}
+  {:catch error}
+    {error.message}
+  {/await}
+
+  {#await data?.analytics?.yearly_visits}
+    Yearly visits...
+  {:then [yearly_visits]}
+    {#if (yearly_visits?.date > 0 && getMonth(parseISO(data?.analytics?.monthly_visits?.date)) > 0) || (!data?.analytics?.monthly_visits?.visits && yearly_visits?.visits > 0)}
+      <StatsCard
+        title="Year to date analytics for this post"
+        stats={yearly_visits}
+        time_period="year"
+      />
+    {/if}
+  {:catch error}
+    {error.message}
+  {/await}
+
+  {#await (data?.analytics?.daily_visits, data?.analytics?.monthly_visits, data?.analytics?.yearly_visits)}
+    Divider...
+  {:then [daily_visits, monthly_visits, yearly_visits]}
+    {#if daily_visits?.visits > 0 || monthly_visits?.visits > 0 || yearly_visits?.visits > 0}
+      <div class="flex flex-col w-full mt-5 mb-10">
+        <div class="divider" />
+      </div>
+    {/if}
+  {:catch error}
+    {error.message}
+  {/await}
 
   <div class="grid justify-items-center mb-24">
     <ShareWithTweet

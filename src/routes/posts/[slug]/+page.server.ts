@@ -1,64 +1,58 @@
-// import {
-//   endOfDay,
-//   endOfMonth,
-//   endOfYear,
-//   startOfDay,
-//   startOfMonth,
-//   startOfYear,
-// } from 'date-fns'
+import {
+  endOfDay,
+  endOfMonth,
+  endOfYear,
+  startOfDay,
+  startOfMonth,
+  startOfYear,
+} from 'date-fns'
 import type { PageServerLoad } from './$types'
 
-// TODO: Fix Analytics caching
+const fetch_visits = async (
+  fetch: {
+    (
+      input: RequestInfo | URL,
+      init?: RequestInit | undefined
+    ): Promise<Response>
+    (arg0: string): any
+  },
+  base_path: string,
+  date_from: string,
+  date_to: string,
+  date_grouping: string = ''
+) => {
+  const url = `${base_path}&date_from=${date_from}&date_to=${date_to}&date_grouping=${date_grouping}`
+  const res = await fetch(url)
+  const { analytics } = await res.json()
+  return analytics
+}
+
 export const load: PageServerLoad = async ({ fetch, params }) => {
-  // const { slug } = params
-  // const base_path = `../analytics.json?pathname=/posts/${slug}`
+  const { slug } = params
+  const base_path = `../analytics.json?pathname=/posts/${slug}`
 
-  // const day_start = startOfDay(new Date()).toISOString()
-  // const day_end = endOfDay(new Date()).toISOString()
+  const now = new Date()
+  const day_start = startOfDay(now).toISOString()
+  const day_end = endOfDay(now).toISOString()
 
-  // const month_start = startOfMonth(new Date()).toISOString()
-  // const month_end = endOfMonth(new Date()).toISOString()
+  const month_start = startOfMonth(now).toISOString()
+  const month_end = endOfMonth(now).toISOString()
 
-  // const year_start = startOfYear(new Date()).toISOString()
-  // const year_end = endOfYear(new Date()).toISOString()
+  const year_start = startOfYear(now).toISOString()
+  const year_end = endOfYear(now).toISOString()
 
-  // // get hourly visits
-  // const fetch_hourly_visits = async () => {
-  //   const res = await fetch(
-  //     `${base_path}&date_from=${day_start}&date_to=${day_end}&date_grouping=hour&sort_by=timestamp:asc`
-  //   )
-  //   const { analytics } = await res.json()
-  //   return analytics
-  // }
-  // // get daily visits
-  // const fetch_daily_visits = async () => {
-  //   const res = await fetch(
-  //     `${base_path}&date_from=${day_start}&date_to=${day_end}`
-  //   )
-  //   const { analytics } = await res.json()
-  //   return analytics
-  // }
-  // // get monthly visits
-  // const fetch_monthly_visits = async () => {
-  //   const res = await fetch(
-  //     `${base_path}&date_from=${month_start}&date_to=${month_end}&date_grouping=month`
-  //   )
-  //   const { analytics } = await res.json()
-  //   return analytics
-  // }
-  // // get yearly visits
-  // const fetch_yearly_visits = async () => {
-  //   const res = await fetch(
-  //     `${base_path}&date_from=${year_start}&date_to=${year_end}&date_grouping=year`
-  //   )
-  //   const { analytics } = await res.json()
-  //   return analytics
-  // }
+  const [daily_visits, monthly_visits, yearly_visits] =
+    await Promise.all([
+      fetch_visits(fetch, base_path, day_start, day_end),
+      fetch_visits(fetch, base_path, month_start, month_end, 'month'),
+      fetch_visits(fetch, base_path, year_start, year_end, 'year'),
+    ])
 
-  // return {
-  //   hourly_visits: fetch_hourly_visits(),
-  //   daily_visits: fetch_daily_visits(),
-  //   monthly_visits: fetch_monthly_visits(),
-  //   yearly_visits: fetch_yearly_visits(),
-  // }
+  return {
+    analytics: {
+      daily_visits,
+      monthly_visits,
+      yearly_visits,
+    },
+  }
 }
