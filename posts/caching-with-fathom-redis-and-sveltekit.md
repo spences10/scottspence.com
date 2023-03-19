@@ -525,7 +525,7 @@ if I want to see the latest data, I'll have to wait 15 minutes. 😅
 
 ## Conclusion
 
-As I discorered (the hard way), caching is an essential technique for
+As I discovered (the hard way), caching is an essential technique for
 minimizing the impact of API calls in your projects.
 
 I'm hoping this guide will give you an idea on how to implement
