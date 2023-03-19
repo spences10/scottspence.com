@@ -6,9 +6,12 @@
 </script>
 
 <div>
-  <button class="btn {styles}" on:click={() => (isOpen = !isOpen)}>
-    {isOpen ? `Close` : buttonText}</button
+  <button
+    class="btn {styles} shadow-xl"
+    on:click={() => (isOpen = !isOpen)}
   >
+    {isOpen ? `Close` : buttonText}
+  </button>
   {#if isOpen}
     <div transition:slide>
       <slot />
