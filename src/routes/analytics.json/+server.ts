@@ -11,6 +11,10 @@ export const GET: RequestHandler = async ({ url }) => {
   const date_from = url.searchParams.get('date_from')
   const date_to = url.searchParams.get('date_to')
   const sort_by = url.searchParams.get('sort_by')
+  const cache_duration = parseInt(
+    url.searchParams.get('cache_duration') ?? '900',
+    10
+  )
 
   const date_params = build_date_params(
     date_from,
@@ -35,7 +39,8 @@ export const GET: RequestHandler = async ({ url }) => {
     const analytics_data = await fetch_analytics_data(
       params,
       headers_auth,
-      `analytics.json${url.search}`
+      `analytics.json${url.search}`,
+      cache_duration
     )
 
     return json({
@@ -78,7 +83,8 @@ const build_default_params = (pathname: string) => ({
 const fetch_analytics_data = async (
   params: { [s: string]: unknown } | ArrayLike<unknown>,
   headers: Headers,
-  search: string
+  search: string,
+  cache_duration: number
 ) => {
   const cache_key = page_analytics_key(search)
 
@@ -96,7 +102,11 @@ const fetch_analytics_data = async (
   }
 
   const analytics_data = await res.json()
-  await cache_analytics_response(cache_key, analytics_data)
+  await cache_analytics_response(
+    cache_key,
+    analytics_data,
+    cache_duration
+  )
 
   return analytics_data
 }
@@ -115,14 +125,15 @@ const get_analytics_from_cache = async (cache_key: string) => {
 
 const cache_analytics_response = async (
   cache_key: string,
-  analytics_data: any
+  analytics_data: any,
+  cache_duration: number
 ) => {
   try {
     await redis.set(
       cache_key,
       JSON.stringify(analytics_data),
       'EX',
-      15 * 60
+      cache_duration
     )
   } catch (e) {
     console.error(`Error caching analytics response: ${e}`)
