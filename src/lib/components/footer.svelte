@@ -31,7 +31,7 @@
       </p>
     {/each}
 
-    {#if $visitors_store.visitors.total}
+    {#if $visitors_store.visitors.total ?? 0}
       <p
         class="tracking-wide bg-secondary text-secondary-content mt-2 px-2 py-1 shadow-lg rounded-xl"
       >

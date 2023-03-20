@@ -13,4 +13,5 @@ export const get_current_page_visitors = (
   //     referrers: [],
   //   })
   // return current_visitors
+  return {}
 }

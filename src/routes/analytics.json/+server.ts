@@ -9,6 +9,10 @@ import {
 import { json } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 
+export const config = {
+  runtime: 'nodejs18.x',
+}
+
 export const GET: RequestHandler = async ({ url }) => {
   const pathname = url.searchParams.get('pathname') ?? '/'
   const date_grouping = url.searchParams.get('date_grouping')

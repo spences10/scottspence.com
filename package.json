@@ -32,7 +32,7 @@
     "@types/marked": "^4.0.8",
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",
-    "@vitest/ui": "^0.29.3",
+    "@vitest/ui": "^0.29.5",
     "autoprefixer": "10.4.14",
     "cspell": "^6.30.2",
     "cssnano": "5.1.15",
@@ -53,7 +53,7 @@
     "mdsvex-relative-images": "1.0.3",
     "postcss": "8.4.21",
     "postcss-load-config": "4.0.1",
-    "prettier": "2.8.4",
+    "prettier": "2.8.5",
     "prettier-plugin-svelte": "2.9.0",
     "rehype-autolink-headings": "6.1.1",
     "rehype-slug": "5.1.0",
@@ -71,7 +71,7 @@
     "tslib": "^2.5.0",
     "typescript": "^5.0.2",
     "unist-util-visit": "4.1.2",
-    "vite": "4.2.0",
-    "vitest": "^0.29.3"
+    "vite": "4.2.1",
+    "vitest": "^0.29.5"
   }
 }
