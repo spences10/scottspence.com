@@ -56,7 +56,7 @@
       })
     }
   })
-  // TODO: Fix Analytics caching
+  // TODO: TODO: Fix current visitors
   // let current_path = $page.url.pathname
   // let { content } = $visitors_store as VisitorsData
 
@@ -108,7 +108,7 @@
       {/if}
     </div>
   </div>
-  <!-- TODO: Fix Analytics caching -->
+  <!-- TODO: Fix current visitors -->
   <!-- {#if visitors_count?.total > 0}
     <p class="text-sm">
       {visitors_count.total}
@@ -137,7 +137,6 @@
   <div class="flex flex-col w-full mt-10 mb-5">
     <div class="divider" />
   </div>
-  <!-- TODO: Fix Analytics caching -->
   {#await data?.analytics?.daily_visits}
     Daily visits...
   {:then [daily_visits]}

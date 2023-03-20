@@ -6,18 +6,25 @@
     PUBLIC_FATHOM_URL,
   } from '$env/static/public'
   import { BackToTop, Footer, Header, Nav } from '$lib/components'
-  // import { popular_posts_store, visitors_store } from '$lib/stores'
+  import { popular_posts_store, visitors_store } from '$lib/stores'
   import * as Fathom from 'fathom-client'
   import { onMount } from 'svelte'
   import { themeChange } from 'theme-change'
   import '../app.css'
   import '../prism.css'
-  // import type { LayoutData } from './$types'
+  import type { LayoutData } from './$types'
 
-  // TODO: Fix Analytics caching
-  // export let data: LayoutData
-  // $popular_posts_store = data.popular_posts_analytics
-  // $visitors_store = data.visitors
+  export let data: LayoutData
+  $popular_posts_store = data.popular_posts_analytics.flatMap(
+    post_wrapper =>
+      post_wrapper.popular_posts.analytics.map(post => ({
+        ...post,
+        visits: parseInt(post.visits, 10),
+        uniques: parseInt(post.uniques, 10),
+        pageviews: parseInt(post.pageviews, 10),
+      }))
+  )
+  $visitors_store = data.visitors
 
   onMount(() => {
     themeChange(false)
@@ -46,6 +53,4 @@
   <BackToTop />
 </main>
 
-<!-- TODO: Fix Analytics caching -->
-<!-- <Footer {data} /> -->
 <Footer />

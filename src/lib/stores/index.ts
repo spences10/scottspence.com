@@ -1,17 +1,19 @@
 import { writable } from 'svelte/store'
 
 export interface VisitorsData {
-  total: number
-  content: {
-    hostname: string
-    pathname: string
+  visitors: {
     total: number
-  }[]
-  referrers: {
-    referrer_hostname: string
-    referrer_pathname: string
-    total: number
-  }[]
+    content: {
+      hostname: string
+      pathname: string
+      total: number
+    }[]
+    referrers: {
+      referrer_hostname: string
+      referrer_pathname: string
+      total: number
+    }[]
+  }
 }
 
 export interface PopularPost {
@@ -25,7 +27,9 @@ export interface PopularPost {
 export const popular_posts_store = writable<PopularPost[]>([])
 
 export const visitors_store = writable<VisitorsData>({
-  total: 0,
-  content: [],
-  referrers: [],
+  visitors: {
+    total: 0,
+    content: [],
+    referrers: [],
+  },
 })
