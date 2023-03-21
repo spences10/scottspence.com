@@ -1,19 +1,20 @@
 <script lang="ts">
-  // import { page } from '$app/stores'
+  import { page } from '$app/stores'
   import MugFace from '$lib/images/mug-face.png'
   import ScottMugFace from '$lib/images/scott-mug-face.jpg'
-  // import { visitors_store } from '$lib/stores'
-  // import { get_current_page_visitors } from '$lib/utils'
+  import { visitors_store } from '$lib/stores'
+  import { get_current_page_visitors } from '$lib/utils'
   import { trackGoal } from 'fathom-client'
 
-  // TODO: Fix current visitors
-  // let current_path = $page.url.pathname
-  // let { content } = $visitors_store
+  let current_path = $page.url.pathname
+  let {
+    visitors: { content },
+  } = $visitors_store
 
-  // let visitors_count = get_current_page_visitors(
-  //   current_path,
-  //   content
-  // )
+  let visitors_count = get_current_page_visitors(
+    current_path,
+    content
+  )
 
   let isHovering = false
 
@@ -80,15 +81,14 @@
         >
           Get in Touch
         </a>
-        <!-- TODO: Fix current visitors -->
-        <!-- {#if visitors_count?.total > 0}
+        {#if visitors_count?.total > 0}
           <p class="text-sm mb-5">
             There {visitors_count?.total > 1 ? `are` : `is`}
             {visitors_count?.total}
             {visitors_count?.total > 1 ? `people` : `person`}
             looking at this page right now!
           </p>
-        {/if} -->
+        {/if}
       </div>
     </div>
   </div>

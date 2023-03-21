@@ -1,5 +1,5 @@
 <script lang="ts">
-  // import { page } from '$app/stores'
+  import { page } from '$app/stores'
   import {
     ButtButt,
     Head,
@@ -11,9 +11,9 @@
     UpdatedBanner,
   } from '$lib/components'
   import { name, website } from '$lib/info'
-  // import type { VisitorsData } from '$lib/stores'
-  // import { visitors_store } from '$lib/stores'
-  import { og_image_url } from '$lib/utils'
+  import type { VisitorsData } from '$lib/stores'
+  import { visitors_store } from '$lib/stores'
+  import { get_current_page_visitors, og_image_url } from '$lib/utils'
   import {
     differenceInDays,
     differenceInYears,
@@ -56,14 +56,16 @@
       })
     }
   })
-  // TODO: TODO: Fix current visitors
-  // let current_path = $page.url.pathname
-  // let { content } = $visitors_store as VisitorsData
 
-  // let visitors_count = get_current_page_visitors(
-  //   current_path,
-  //   content
-  // )
+  let current_path = $page.url.pathname
+  let {
+    visitors: { content },
+  } = $visitors_store as VisitorsData
+
+  let visitors_count = get_current_page_visitors(
+    current_path,
+    content
+  )
 </script>
 
 <Head
@@ -108,8 +110,7 @@
       {/if}
     </div>
   </div>
-  <!-- TODO: Fix current visitors -->
-  <!-- {#if visitors_count?.total > 0}
+  {#if visitors_count?.total > 0}
     <p class="text-sm">
       {visitors_count.total}
       {visitors_count.total > 1 ? `people` : `person`} viewing this page
@@ -118,7 +119,7 @@
     <p class="mb-10 text-sm">
       Read to the end of the post for more stats
     </p>
-  {/if} -->
+  {/if}
   {#if isPrivate}
     <IsPrivateBanner />
   {/if}
