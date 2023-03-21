@@ -41,8 +41,8 @@ const get_visitors_from_api = async (cache_duration: number) => {
     const headers_auth = new Headers()
     headers_auth.append('Authorization', `Bearer ${FATHOM_API_KEY}`)
     const data = await fetch_fathom_data(
-      `current_visitors?site_id=${PUBLIC_FATHOM_ID}&detailed=true`,
-      {},
+      `current_visitors`,
+      { site_id: PUBLIC_FATHOM_ID, detailed: true },
       headers_auth
     )
     await cache_response(

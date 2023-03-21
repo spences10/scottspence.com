@@ -1,20 +1,18 @@
-import { FATHOM_API_KEY } from '$env/static/private'
 import redis from '$lib/redis'
-import { object_to_query_params } from '$lib/utils'
 
 export const fetch_fathom_data = async (
   endpoint: string,
   params: { [s: string]: unknown } | ArrayLike<unknown>,
   headers: Headers
 ) => {
-  const res = await fetch(
-    `https://api.usefathom.com/v1/${endpoint}${object_to_query_params(
-      params
-    )}`,
-    {
-      headers,
-    }
+  const url = new URL(`https://api.usefathom.com/v1/${endpoint}`)
+  Object.entries(params).forEach(([key, value]) =>
+    url.searchParams.append(key, value as string)
   )
+
+  const res = await fetch(url.toString(), {
+    headers,
+  })
 
   if (!res.ok) {
     throw new Error(`HTTP error ${res.status}: ${res.statusText}`)
