@@ -60,23 +60,22 @@ export const POPULAR_POSTS = [
     path: `/posts/email-form-submission-with-sveltekit`,
     title: `Make an Email Form Submission with SvelteKit`,
   },
-  // TODO: Fix Analytics caching
-  // {
-  //   path: `/posts/get-graphql-data-with-axios`,
-  //   title: `Get GraphQL Data Using Axios`,
-  // },
-  // {
-  //   path: `/posts/make-a-sitemap-with-sveltekit`,
-  //   title: `Make a Sitemap with SvelteKit`,
-  // },
-  // {
-  //   path: `/posts/sveltekit-environment-variables-with-the-sveltekit-env-module`,
-  //   title: `SvelteKit Environment Variables with the SvelteKit $env Module`,
-  // },
-  // {
-  //   path: `/posts/change-text-highlight-colour-with-tailwind-css`,
-  //   title: `Change Text Highlight Color with Tailwind CSS`,
-  // },
+  {
+    path: `/posts/get-graphql-data-with-axios`,
+    title: `Get GraphQL Data Using Axios`,
+  },
+  {
+    path: `/posts/make-a-sitemap-with-sveltekit`,
+    title: `Make a Sitemap with SvelteKit`,
+  },
+  {
+    path: `/posts/sveltekit-environment-variables-with-the-sveltekit-env-module`,
+    title: `SvelteKit Environment Variables with the SvelteKit $env Module`,
+  },
+  {
+    path: `/posts/change-text-highlight-colour-with-tailwind-css`,
+    title: `Change Text Highlight Color with Tailwind CSS`,
+  },
 ]
 
 export const SOCIAL_LINKS = [

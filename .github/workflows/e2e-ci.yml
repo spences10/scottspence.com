@@ -44,3 +44,5 @@ jobs:
           AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
           EMAIL_SIGNUP_API_KEY: ${{ secrets.EMAIL_SIGNUP_API_KEY }}
           FATHOM_API_KEY: ${{ secrets.FATHOM_API_KEY }}
+          REDIS_CONNECTION: ${{ secrets.REDIS_CONNECTION }}
+          VISITORS_KEY: ${{ secrets.VISITORS_KEY }}

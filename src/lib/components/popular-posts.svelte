@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { POPULAR_POSTS } from '$lib/info'
-  // import { popular_posts_store } from '$lib/stores'
-  // import { number_crunch } from '$lib/utils'
+  import { popular_posts_store } from '$lib/stores'
+  import { number_crunch } from '$lib/utils'
   import { trackGoal } from 'fathom-client'
 </script>
 
@@ -12,32 +11,10 @@
   <div
     class="grid gap-4 grid-cols-1 relative md:grid-cols-2 lg:grid-cols-4"
   >
-    {#each POPULAR_POSTS as post}
+    {#each $popular_posts_store as post}
       <a
         data-sveltekit-reload
-        href={`${post.path}`}
-        on:click={() => trackGoal(`WKHRXHV8`, 0)}
-        class="h-full"
-      >
-        <aside
-          class="rounded-xl font-bold h-full p-5 transition card shadow-lg hover:text-accent-focus"
-        >
-          <h3 class="mb-5 text-2xl">
-            {post.title}
-          </h3>
-          <!-- <div class="mt-5">
-            <span class="text-primary mb-4 bottom-0 absolute">
-              Views: {number_crunch(post.pageviews)}
-            </span>
-          </div> -->
-        </aside>
-      </a>
-    {/each}
-    <!-- TODO: Fix Analytics caching -->
-    <!-- {#each $popular_posts_store as post}
-      <a
-        data-sveltekit-reload
-        href={`${post.pathname}`}
+        href={`https://scottspence.com${post.pathname}`}
         on:click={() => trackGoal(`WKHRXHV8`, 0)}
         class="h-full"
       >
@@ -54,6 +31,6 @@
           </div>
         </aside>
       </a>
-    {/each} -->
+    {/each}
   </div>
 </div>

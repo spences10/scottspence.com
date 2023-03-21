@@ -1,33 +1,15 @@
 <script lang="ts">
-  // import { Eye } from '$lib/icons'
-  import {
-    name,
-    POPULAR_POSTS,
-    SITE_LINKS,
-    SOCIAL_LINKS,
-  } from '$lib/info'
-  // import { number_crunch } from '$lib/utils'
+  import { Eye } from '$lib/icons'
+  import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
+  import { popular_posts_store, visitors_store } from '$lib/stores'
+  import { number_crunch } from '$lib/utils'
   import { trackGoal } from 'fathom-client'
-
-  // export let data
-  // let { popular_posts_analytics, visitors } = data
 </script>
 
 <footer class="footer p-10 bg-primary text-primary-content">
   <div>
     <span class="footer-title">Popular Posts</span>
-    {#each POPULAR_POSTS as post}
-      <p>
-        <a
-          class="text-primary-content hover:opacity-50"
-          href={`https://scottspence.com${post.path}`}
-        >
-          {post.title}
-        </a>
-      </p>
-    {/each}
-    <!-- TODO: Fix Analytics caching -->
-    <!-- {#each popular_posts_analytics as post}
+    {#each $popular_posts_store as post}
       <p>
         <a
           class="text-primary-content hover:opacity-50"
@@ -38,27 +20,30 @@
         <span
           class="text-primary-content font-bold tooltip relative group cursor-pointer"
           data-tip={`
-            Visits: ${number_crunch(post.visits)},
-            Uniques: ${number_crunch(post.uniques)},
-            Pageviews: ${number_crunch(post.pageviews)}
-          `}
+          Visits: ${number_crunch(post.visits)},
+          Uniques: ${number_crunch(post.uniques)},
+          Pageviews: ${number_crunch(post.pageviews)}
+        `}
         >
           <Eye />
           {number_crunch(post.pageviews)}
         </span>
       </p>
-    {/each} -->
-    <!-- {#if visitors?.total}
+    {/each}
+
+    {#if $visitors_store.visitors && $visitors_store.visitors.total}
       <p
         class="tracking-wide bg-secondary text-secondary-content mt-2 px-2 py-1 shadow-lg rounded-xl"
       >
         There's currently
         <span class="font-bold">
-          {visitors?.total || 0}
+          {$visitors_store.visitors.total}
         </span>
-        live {visitors?.total === 1 ? 'visitor' : 'visitors'}
+        live {$visitors_store.visitors.total === 1
+          ? 'visitor'
+          : 'visitors'}
       </p>
-    {/if} -->
+    {/if}
   </div>
   <div>
     <span class="footer-title">Site Links</span>
