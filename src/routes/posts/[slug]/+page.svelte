@@ -11,7 +11,6 @@
     UpdatedBanner,
   } from '$lib/components'
   import { name, website } from '$lib/info'
-  import type { VisitorsData } from '$lib/stores'
   import { visitors_store } from '$lib/stores'
   import { get_current_page_visitors, og_image_url } from '$lib/utils'
   import {
@@ -58,9 +57,7 @@
   })
 
   let current_path = $page.url.pathname
-  let {
-    visitors: { content },
-  } = $visitors_store as VisitorsData
+  let content = $visitors_store?.visitors?.content || []
 
   let visitors_count = get_current_page_visitors(
     current_path,
