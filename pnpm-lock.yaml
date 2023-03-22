@@ -13,7 +13,7 @@ specifiers:
   autoprefixer: 10.4.14
   cspell: ^6.30.2
   cssnano: 5.1.15
-  daisyui: 2.51.4
+  daisyui: 2.51.5
   date-fns: 2.29.3
   eslint: 8.36.0
   eslint-config-prettier: 8.7.0
@@ -64,7 +64,7 @@ devDependencies:
   autoprefixer: 10.4.14_postcss@8.4.21
   cspell: 6.30.2
   cssnano: 5.1.15_postcss@8.4.21
-  daisyui: 2.51.4_j7yt3jd32cwenjqavrrga47yr4
+  daisyui: 2.51.5_j7yt3jd32cwenjqavrrga47yr4
   date-fns: 2.29.3
   eslint: 8.36.0
   eslint-config-prettier: 8.7.0_eslint@8.36.0
@@ -2066,8 +2066,8 @@ packages:
       rrweb-cssom: 0.6.0
     dev: true
 
-  /daisyui/2.51.4_j7yt3jd32cwenjqavrrga47yr4:
-    resolution: {integrity: sha512-TGYD2BQCduxkKbDALlaWWaUdi33tryUuO/MxxBtAmLJ9zKn04gF6xduMxbrAUesR4AFr6LZW187TqF2H5c1AoA==}
+  /daisyui/2.51.5_j7yt3jd32cwenjqavrrga47yr4:
+    resolution: {integrity: sha512-L05dRw0tasmz2Ha+10LhftEGLq4kaA8vRR/T0wDaXfHwqcgsf81jfXDJ6NlZ63Z7Rl1k3rj7UHs0l0p7CM3aYA==}
     peerDependencies:
       autoprefixer: ^10.0.2
       postcss: ^8.1.6
