@@ -65,9 +65,9 @@ then this will be useful for you as well.
 ## Thanks!
 
 First up, before we get into the details I want to thank [Geoff Rich]
-for his post on the Upstash for [Building SvelteKit Applications with
-Serverless Redis] Geoff is a great blogger who's site a get a lot of
-value out from.
+for his post on the Upstash blog for [Building SvelteKit Applications
+with Serverless Redis] Geoff is a great blogger who's site a get a lot
+of value out from.
 
 If you haven't checked out his site then I highly recommend you do so!
 
