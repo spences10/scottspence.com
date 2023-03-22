@@ -23,6 +23,7 @@ evangelising
 familiarise
 familiarising
 favourite
+granola
 Hackathons
 Honourable
 hostnames
@@ -73,6 +74,5 @@ upskilling
 utilise
 visualisation
 visualise
-Zettelkasten
-granola
 writable
+Zettelkasten
