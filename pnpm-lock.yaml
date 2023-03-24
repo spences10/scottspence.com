@@ -25,7 +25,7 @@ specifiers:
   husky: 8.0.3
   ioredis: ^5.3.1
   jsdom: ^21.1.1
-  marked: 4.2.12
+  marked: 4.3.0
   mdsvex: 0.10.6
   mdsvex-relative-images: 1.0.3
   postcss: 8.4.21
@@ -76,7 +76,7 @@ devDependencies:
   husky: 8.0.3
   ioredis: 5.3.1
   jsdom: 21.1.1
-  marked: 4.2.12
+  marked: 4.3.0
   mdsvex: 0.10.6_svelte@3.57.0
   mdsvex-relative-images: 1.0.3
   postcss: 8.4.21
@@ -3569,8 +3569,8 @@ packages:
       semver: 6.3.0
     dev: true
 
-  /marked/4.2.12:
-    resolution: {integrity: sha512-yr8hSKa3Fv4D3jdZmtMMPghgVt6TWbk86WQaWhDloQjRSQhMMYCAro7jP7VDJrjjdV8pxVxMssXS8B8Y5DZ5aw==}
+  /marked/4.3.0:
+    resolution: {integrity: sha512-PRsaiG84bK+AMvxziE/lCFss8juXjNaWzVbN5tXAm4XjeaS9NAHhop+PjQxz2A9h8Q4M/xGmzP8vqNwy6JeK0A==}
     engines: {node: '>= 12'}
     hasBin: true
     dev: true
