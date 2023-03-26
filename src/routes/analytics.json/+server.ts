@@ -6,10 +6,11 @@ import {
   fetch_fathom_data,
   get_data_from_cache,
 } from '$lib/utils/fathom'
+import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { json } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 
-export const config = {
+export const config: ServerlessConfig = {
   runtime: 'nodejs18.x',
 }
 
@@ -51,9 +52,16 @@ export const GET: RequestHandler = async ({ url }) => {
     )
     await cache_response(cache_key, analytics_data, cache_duration)
 
-    return json({
-      analytics: analytics_data,
-    })
+    return json(
+      {
+        analytics: analytics_data,
+      },
+      {
+        headers: {
+          'X-Robots-Tag': 'noindex, nofollow',
+        },
+      }
+    )
   } catch (error) {
     if (error instanceof Error) {
       return json({

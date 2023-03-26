@@ -6,10 +6,11 @@ import {
   fetch_fathom_data,
   get_data_from_cache,
 } from '$lib/utils/fathom'
+import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { json } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 
-export const config = {
+export const config: ServerlessConfig = {
   runtime: 'nodejs18.x',
 }
 
@@ -27,7 +28,16 @@ export const GET: RequestHandler = async ({ url }) => {
   const visitors = await get_visitors_from_api(cache_duration)
 
   if (visitors) {
-    return json({ visitors })
+    return json(
+      {
+        visitors,
+      },
+      {
+        headers: {
+          'X-Robots-Tag': 'noindex, nofollow',
+        },
+      }
+    )
   }
 
   return json({
@@ -40,11 +50,13 @@ const get_visitors_from_api = async (cache_duration: number) => {
   try {
     const headers_auth = new Headers()
     headers_auth.append('Authorization', `Bearer ${FATHOM_API_KEY}`)
+
     const data = await fetch_fathom_data(
       `current_visitors`,
       { site_id: PUBLIC_FATHOM_ID, detailed: true },
       headers_auth
     )
+
     await cache_response(
       current_visitors_key(),
       { visitors: data },
