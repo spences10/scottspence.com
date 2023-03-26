@@ -39,6 +39,7 @@ maxage
 mdsvex
 mediumseagreen
 nameserver
+nofollow
 noopener
 noreferrer
 npmignore
