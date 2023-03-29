@@ -1,5 +1,4 @@
 import { endOfYear, startOfYear } from 'date-fns'
-import type { PageLoad } from './$types'
 
 interface Post {
   date: string
@@ -9,7 +8,7 @@ interface GroupedPosts {
   [key: string]: number
 }
 
-export const load: PageLoad = async ({ fetch }) => {
+export const load = async ({ fetch }) => {
   const response = await fetch('/posts.json')
   const posts: Post[] = await response.json()
   const grouped_posts: GroupedPosts = group_posts_by_date(posts)

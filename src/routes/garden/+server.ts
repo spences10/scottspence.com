@@ -1,6 +1,5 @@
 import { redirect } from '@sveltejs/kit'
-import type { RequestHandler } from './$types'
 
-export const GET: RequestHandler = async () => {
+export const GET = async () => {
   throw redirect(301, `/posts`)
 }

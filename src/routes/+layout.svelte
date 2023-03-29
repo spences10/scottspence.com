@@ -12,9 +12,8 @@
   import { themeChange } from 'theme-change'
   import '../app.css'
   import '../prism.css'
-  import type { LayoutData } from './$types'
 
-  export let data: LayoutData
+  export let data
   $popular_posts_store = data.popular_posts_analytics.flatMap(
     post_wrapper =>
       post_wrapper.popular_posts.analytics.map(post => ({

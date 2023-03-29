@@ -1,6 +1,5 @@
 import { POPULAR_POSTS } from '$lib/info'
 import { shuffle_array, time_to_seconds } from '$lib/utils'
-import type { LayoutServerLoad } from './$types'
 
 interface Post {
   path: string
@@ -16,7 +15,7 @@ interface AnalyticsItem {
   pathname: string
 }
 
-export const load: LayoutServerLoad = async ({ fetch }) => {
+export const load = async ({ fetch }) => {
   const posts: Post[] = shuffle_array(POPULAR_POSTS).slice(0, 4)
 
   // loop through posts and fetch data

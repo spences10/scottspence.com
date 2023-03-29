@@ -1,9 +1,8 @@
 import { description, name, website } from '$lib/info'
 import { get_posts } from '$lib/posts'
 import { format } from 'date-fns'
-import type { RequestHandler } from './$types'
 
-export const GET: RequestHandler = async () => {
+export const GET = async () => {
   const { posts: posts_metadata } = await get_posts()
 
   const body = render(posts_metadata)

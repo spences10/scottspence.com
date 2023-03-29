@@ -2,9 +2,8 @@
   import { Head } from '$lib/components'
   import { description, name, website } from '$lib/info'
   import { og_image_url } from '$lib/utils'
-  import type { PageData } from './$types'
 
-  export let data: PageData
+  export let data
 
   const { posts_by_tag, slug: tag_slug } = data
   const url: string = `${website}/tags/${tag_slug}`

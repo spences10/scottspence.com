@@ -1,9 +1,4 @@
-import type { PageLoad } from './$types'
-
-export const load: PageLoad = async ({
-  params,
-  data: { analytics },
-}) => {
+export const load = async ({ params, data: { analytics } }) => {
   const { slug } = params
 
   try {
