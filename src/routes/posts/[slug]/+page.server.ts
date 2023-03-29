@@ -6,7 +6,6 @@ import {
   startOfMonth,
   startOfYear,
 } from 'date-fns'
-import type { PageServerLoad } from './$types'
 
 const fetch_visits = async (
   fetch: {
@@ -27,7 +26,7 @@ const fetch_visits = async (
   return analytics
 }
 
-export const load: PageServerLoad = async ({ fetch, params }) => {
+export const load = async ({ fetch, params }) => {
   const { slug } = params
   const base_path = `../analytics.json?pathname=/posts/${slug}`
 

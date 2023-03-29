@@ -1,7 +1,6 @@
 import { error } from '@sveltejs/kit'
-import type { PageLoad } from './$types'
 
-export const load: PageLoad = async () => {
+export const load = async () => {
   const slugs = ['bio-corporate', 'bio-fun']
   try {
     const [corporateCopy, funCopy] = await Promise.all(

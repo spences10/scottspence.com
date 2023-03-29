@@ -1,6 +1,4 @@
-import type { PageLoad } from './$types'
-
-export const load: PageLoad = async ({ params, fetch }) => {
+export const load = async ({ params, fetch }) => {
   const { slug } = params
   const res = await fetch(`/post-tags.json`)
   if (res.ok) {
