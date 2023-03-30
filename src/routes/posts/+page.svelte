@@ -1,21 +1,32 @@
 <script lang="ts">
-  import { Head, PostCard } from '$lib/components'
+  import { Head } from '$lib/components'
+  import PostCard from '$lib/components/post-card.svelte'
   import { description, name, website } from '$lib/info.js'
   import { og_image_url } from '$lib/utils'
-  import Fuse from 'fuse.js'
+  import type { Post } from '../../types'
 
   export let data
   let { posts } = data
 
-  let options = {
-    keys: ['title', 'tags', 'preview'],
-    includeScore: true,
-    includeMatches: true,
-    threshold: 0.4,
-  } as Fuse.IFuseOptions<any>
-  let fuse = new Fuse(posts, options)
-  let query = ''
-  $: results = fuse.search(query)
+  let search_query = ''
+
+  $: filtered_posts = posts.filter((post: Post) => {
+    if (post.isPrivate) return false
+
+    if (search_query === '') return true
+
+    return (
+      post.title.toLowerCase().indexOf(search_query.toLowerCase()) !==
+        -1 ||
+      post.tags.find(
+        (tag: string) =>
+          tag.toLowerCase() === search_query.toLowerCase()
+      ) ||
+      post.preview
+        .toLowerCase()
+        .indexOf(search_query.toLowerCase()) !== -1
+    )
+  })
 </script>
 
 <Head
@@ -25,34 +36,22 @@
   url={`${website}/posts`}
 />
 
-<div class="flex flex-col flex-grow">
-  <h1 class="font-bold mb-5 text-5xl">Posts</h1>
-  <div class="">
-    <div class="mb-10 form-control">
-      <label for="search" class="label">
-        <span class="label-text">Search {posts.length} posts...</span>
-      </label>
-      <input
-        type="text"
-        bind:value={query}
-        id="search"
-        placeholder="Search"
-        class="input input-primary input-bordered"
-      />
-    </div>
-
-    {#if results.length === 0 && query.length === 0}
-      {#each posts as post}
-        {#if !post.isPrivate}
-          <PostCard {post} />
-        {/if}
-      {/each}
-    {:else}
-      {#each results as { item }}
-        {#if !item.isPrivate}
-          <PostCard post={item} />
-        {/if}
-      {/each}
-    {/if}
-  </div>
+<div class="mb-10 form-control">
+  <label for="search" class="label">
+    <span class="label-text">
+      Search {filtered_posts.length} posts...
+    </span>
+  </label>
+  <input
+    data-testid="search"
+    id="search"
+    class="input input-primary input-bordered"
+    type="text"
+    placeholder="Search..."
+    bind:value={search_query}
+  />
 </div>
+
+{#each filtered_posts as post (post.slug)}
+  <PostCard {post} />
+{/each}
