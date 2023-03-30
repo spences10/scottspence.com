@@ -1,21 +1,17 @@
-<script>
+<script lang="ts">
   import { Head } from '$lib/components'
   import { description, name, website } from '$lib/info'
   import { og_image_url } from '$lib/utils'
-  import Fuse from 'fuse.js'
 
   export let data
   let { tags, posts_by_tag } = data
 
-  let options = {
-    keys: ['title', 'tags', 'preview'],
-    includeScore: true,
-    includeMatches: true,
-    threshold: 0.4,
-  }
-  let fuse = new Fuse(tags, options)
   let query = ''
-  $: results = fuse.search(query)
+
+  $: filtered_tags = tags.filter((tag: string) => {
+    if (query === '') return true
+    return tag.toLowerCase().includes(query.toLowerCase())
+  })
 </script>
 
 <Head
@@ -41,25 +37,12 @@
 </div>
 
 <ul class="flex flex-wrap justify-start">
-  {#if results.length === 0 && query.length === 0}
-    {#each tags as tag}
-      <li class="my-4 text-xl">
-        <a
-          class="mr-6 transition link hover:text-primary"
-          href={`tags/${tag}`}>{tag} ({posts_by_tag[tag].length})</a
-        >
-      </li>
-    {/each}
-  {:else}
-    {#each results as { item }}
-      <li class="my-4 text-xl">
-        <a
-          class="mr-6 transition link hover:text-primary"
-          href={`tags/${item}`}
-        >
-          {item} ({posts_by_tag[item].length})
-        </a>
-      </li>
-    {/each}
-  {/if}
+  {#each filtered_tags as tag}
+    <li class="my-4 text-xl">
+      <a
+        class="mr-6 transition link hover:text-primary"
+        href={`tags/${tag}`}>{tag} ({posts_by_tag[tag].length})</a
+      >
+    </li>
+  {/each}
 </ul>
