@@ -37,12 +37,14 @@
 </div>
 
 <ul class="flex flex-wrap justify-start">
-  {#each filtered_tags as tag}
+  {#each filtered_tags as tag (tag)}
     <li class="my-4 text-xl">
       <a
         class="mr-6 transition link hover:text-primary"
-        href={`tags/${tag}`}>{tag} ({posts_by_tag[tag].length})</a
+        href={`tags/${tag}`}
       >
+        {tag} ({posts_by_tag[tag].length})
+      </a>
     </li>
   {/each}
 </ul>
