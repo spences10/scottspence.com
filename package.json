@@ -59,7 +59,7 @@
     "remark-external-links": "9.0.1",
     "remark-preview": "1.0.2",
     "remark-reading-time": "1.0.1",
-    "slugify": "1.6.5",
+    "slugify": "1.6.6",
     "svelte": "3.57.0",
     "svelte-check": "^3.1.4",
     "svelte-frappe-charts": "^1.10.0",
