@@ -35,7 +35,7 @@
     "@vitest/ui": "^0.29.7",
     "autoprefixer": "10.4.14",
     "cspell": "^6.31.1",
-    "cssnano": "5.1.15",
+    "cssnano": "6.0.0",
     "daisyui": "2.51.5",
     "date-fns": "2.29.3",
     "eslint": "8.37.0",
