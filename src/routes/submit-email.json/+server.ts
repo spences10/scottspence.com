@@ -1,7 +1,6 @@
 import { EMAIL_SIGNUP_API_KEY } from '$env/static/private'
-import type { RequestHandler } from './$types'
 
-export const POST: RequestHandler = async ({ request }: any) => {
+export const POST = async ({ request }: any) => {
   const { email } = await request.json()
 
   try {

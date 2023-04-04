@@ -8,13 +8,12 @@ import {
 } from '$lib/utils/fathom'
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { json } from '@sveltejs/kit'
-import type { RequestHandler } from './$types'
 
 export const config: ServerlessConfig = {
   runtime: 'nodejs18.x',
 }
 
-export const GET: RequestHandler = async ({ url }) => {
+export const GET = async ({ url }) => {
   const cache_duration = parseInt(
     url.searchParams.get('cache_duration') ?? '900',
     10

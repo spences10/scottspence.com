@@ -2,9 +2,8 @@ import { website } from '$lib/info'
 import { get_post_tags } from '$lib/post-tags'
 import { get_posts } from '$lib/posts'
 import slugify from 'slugify'
-import type { RequestHandler } from './$types'
 
-export const GET: RequestHandler = async () => {
+export const GET = async () => {
   const { posts: posts_metadata } = await get_posts()
   const { tags } = await get_post_tags()
 
