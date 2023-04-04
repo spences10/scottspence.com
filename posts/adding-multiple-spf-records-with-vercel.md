@@ -43,7 +43,7 @@ vc dns add scottspence.com @ TXT 'v=spf1 include:spf.messagingengine.com include
 That's it! I hope this helps someone else out there!
 
 **UPDATE:** I had a spam email spoofing my domain and I had to adjust
-the SPF redord again. I found a [SPF record checker] via a linked post
+the SPF record again. I found a [SPF record checker] via a linked post
 on the SO question I mentioned above.
 
 The SPF checker found errors with the modifiers in the record. I had

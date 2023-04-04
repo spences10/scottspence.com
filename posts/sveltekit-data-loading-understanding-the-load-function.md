@@ -169,7 +169,7 @@ folder.
 touch src/routes/about/+page.ts
 ```
 
-Now ther's an associated `+page.ts` file for the `+page.svelte` file:
+Now there's an associated `+page.ts` file for the `+page.svelte` file:
 
 ```text
 ├── about/
@@ -229,15 +229,12 @@ Then I can use the data in the page and access the `title` property:
 So, yes, a super simple example which I hope help illustrate how the
 `load` function works in SvelteKit.
 
-
-
 ## Go deeper, practical examples
 
 Ok, now onto some practical examples of using the `load` function.
 
 So the most common use case for the `load` function is to fetch data
 from an external source, like an API.
-
 
 <!-- Links -->
 
