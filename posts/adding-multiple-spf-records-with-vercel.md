@@ -1,5 +1,6 @@
 ---
 date: 2023-01-20
+updated: 2023-04-04
 title: Adding multiple SPF records with Vercel
 tags: ['domains', 'guide', 'resource']
 isPrivate: false
@@ -36,10 +37,21 @@ I had to remove both the records (with the Vercel CLI command
 one:
 
 ```bash
-vc dns add scottspence.com @ TXT 'v=spf1 include:spf.messagingengine.com ?all include:spf.sendinblue.com mx ~all'
+vc dns add scottspence.com @ TXT 'v=spf1 include:spf.messagingengine.com include:spf.sendinblue.com mx ~all'
 ```
 
 That's it! I hope this helps someone else out there!
+
+**UPDATE:** I had a spam email spoofing my domain and I had to adjust
+the SPF redord again. I found a [SPF record checker] via a linked post
+on the SO question I mentioned above.
+
+The SPF checker found errors with the modifiers in the record. I had
+`?all` modifier after the first record, I removed that and re-checked
+on the SPF checker and it was all good.
+
+You can find the post on DMARCLY for [Can I have multiple SPF records
+on my domain].
 
 <!-- Links -->
 
@@ -48,3 +60,6 @@ That's it! I hope this helps someone else out there!
   https://www.gov.uk/government/publications/email-security-standards/sender-policy-framework-spf
 [Adding DKIM records to Vercel]:
   https://scottspence.com/posts/adding-dkim-records-to-vercel
+[Can I have multiple SPF records on my domain]:
+  https://dmarcly.com/blog/can-i-have-multiple-spf-records-on-my-domain
+[SPF record checker]: https://dmarcly.com/tools/spf-record-checker
