@@ -107,10 +107,9 @@ Jekyll is the OG of the static site generators and what I used for my
 first blog. But I could only run it on Cloud9 because I couldn't get
 Ruby running on my computer. 😅
 
-Hugo uses Go, <Sarcasm fontWeight="700">but where's the
-JavaScript!!?!1</Sarcasm> see this is where the [name change] comes in
-where there's no hard fast rules on the technologies that make up a
-jamstack site.
+Hugo uses Go, <Sarcasm sarky="but where's the JavaScript!!?!1" /> see
+this is where the [name change] comes in where there's no hard fast
+rules on the technologies that make up a jamstack site.
 
 ## Jamstack core philosophy
 

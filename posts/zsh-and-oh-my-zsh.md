@@ -132,8 +132,8 @@ plugins=(
 Plugins and themes, some are really not that helpful (documentation
 wise) when it comes to installing them.
 
-But hey <Sarcasm>it's open source so if you're not happy you can
-always ask for your money back</Sarcasm>, right? 😂
+But hey <Sarcasm sarky="it's open source so if you're not happy 
+you can always ask for your money back" />, right? 😂
 
 If the instruction is along the lines of, clone the repo then there is
 a path you can specify when cloning it.

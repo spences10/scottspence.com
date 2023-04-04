@@ -1,20 +1,16 @@
 <script lang="ts">
-  let children: string | null
+  export let sarky: string = ''
 
-  const sarky = (node: HTMLSpanElement) => {
-    children = node.childNodes[0]?.nodeValue
+  let transformedText: string = ''
 
-    if (children) {
-      node.childNodes[0].nodeValue = children
-        .split('')
-        .map((char, i) =>
-          char[`to${i % 2 ? 'Upper' : 'Lower'}Case`]()
-        )
-        .join('')
-    }
+  $: {
+    transformedText = sarky
+      .split('')
+      .map((char, i) => char[`to${i % 2 ? 'Upper' : 'Lower'}Case`]())
+      .join('')
   }
 </script>
 
-<span class="font-semibold" use:sarky>
-  <slot />
+<span class="font-semibold">
+  {transformedText}
 </span>
