@@ -1,6 +1,6 @@
 ---
 date: 2023-01-20
-updated: 2023-04-04
+updated: 2023-04-05
 title: Adding multiple SPF records with Vercel
 tags: ['domains', 'guide', 'resource']
 isPrivate: false
@@ -49,6 +49,9 @@ on the SO question I mentioned above.
 The SPF checker found errors with the modifiers in the record. I had
 `?all` modifier after the first record, I removed that and re-checked
 on the SPF checker and it was all good.
+
+I chose the most restrictive qualifier for the "all" mechanism. In my
+case, I used `~all` (soft fail) instead of `?all` (neutral).
 
 You can find the post on DMARCLY for [Can I have multiple SPF records
 on my domain].
