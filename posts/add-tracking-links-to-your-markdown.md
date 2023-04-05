@@ -58,10 +58,10 @@ export const A = props => {
 
 So the Markdown will look something like this:
 
+<!-- cSpell:ignore IBQBRDPP -->
+
 ```md
 # My awesome Markdown
-
-<!-- cSpell:ignore IBQBRDPP -->
 
 Fathom Analytics recently added a feature for
 <a href="https://usefathom.com/blog/bypass-adblockers" goal="IBQBRDPP">custom
