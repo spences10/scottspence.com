@@ -1,26 +1,34 @@
+import { time_to_seconds } from '$lib/utils'
 import {
-  endOfDay,
   endOfMonth,
   endOfYear,
-  startOfDay,
+  formatISO,
   startOfMonth,
   startOfYear,
 } from 'date-fns'
 
+type Fetch = (url: string) => Promise<Response>
+
+interface AnalyticsData {
+  [key: string]: number
+}
+
+function get_date_bounds(date: Date, start: boolean = true): string {
+  const formatted_date = formatISO(date, { representation: 'date' })
+  return start
+    ? `${formatted_date}T00:00:00.000Z`
+    : `${formatted_date}T23:59:59.999Z`
+}
+
 const fetch_visits = async (
-  fetch: {
-    (
-      input: RequestInfo | URL,
-      init?: RequestInit | undefined
-    ): Promise<Response>
-    (arg0: string): any
-  },
+  fetch: Fetch,
   base_path: string,
   date_from: string,
   date_to: string,
-  date_grouping: string = ''
-) => {
-  const url = `${base_path}&date_from=${date_from}&date_to=${date_to}&date_grouping=${date_grouping}`
+  date_grouping: string = '',
+  cache_duration: number
+): Promise<AnalyticsData> => {
+  const url = `${base_path}&date_from=${date_from}&date_to=${date_to}&date_grouping=${date_grouping}&cache_duration=${cache_duration}`
   const res = await fetch(url)
   const { analytics } = await res.json()
   return analytics
@@ -31,20 +39,41 @@ export const load = async ({ fetch, params }) => {
   const base_path = `../analytics.json?pathname=/posts/${slug}`
 
   const now = new Date()
-  const day_start = startOfDay(now).toISOString()
-  const day_end = endOfDay(now).toISOString()
+  const day_start = get_date_bounds(now)
+  const day_end = get_date_bounds(now, false)
 
-  const month_start = startOfMonth(now).toISOString()
-  const month_end = endOfMonth(now).toISOString()
+  const month_start = get_date_bounds(startOfMonth(now))
+  const month_end = get_date_bounds(endOfMonth(now), false)
 
-  const year_start = startOfYear(now).toISOString()
-  const year_end = endOfYear(now).toISOString()
+  const year_start = get_date_bounds(startOfYear(now))
+  const year_end = get_date_bounds(endOfYear(now), false)
 
   const [daily_visits, monthly_visits, yearly_visits] =
     await Promise.all([
-      fetch_visits(fetch, base_path, day_start, day_end),
-      fetch_visits(fetch, base_path, month_start, month_end, 'month'),
-      fetch_visits(fetch, base_path, year_start, year_end, 'year'),
+      fetch_visits(
+        fetch,
+        base_path,
+        day_start,
+        day_end,
+        '',
+        time_to_seconds({ minutes: 15 })
+      ),
+      fetch_visits(
+        fetch,
+        base_path,
+        month_start,
+        month_end,
+        'month',
+        time_to_seconds({ hours: 24 })
+      ),
+      fetch_visits(
+        fetch,
+        base_path,
+        year_start,
+        year_end,
+        'year',
+        time_to_seconds({ hours: 24 })
+      ),
     ])
 
   return {
