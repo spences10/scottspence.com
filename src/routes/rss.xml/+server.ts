@@ -1,6 +1,9 @@
 import { description, name, website } from '$lib/info'
 import { get_posts } from '$lib/posts'
 import { format } from 'date-fns'
+import type { Post } from '../../types'
+
+export const prerender = true
 
 export const GET = async () => {
   const { posts: posts_metadata } = await get_posts()
@@ -10,13 +13,14 @@ export const GET = async () => {
   return new Response(body, {
     headers: {
       'content-type': 'application/xml',
-      'cache-control': 'max-age=0, s-maxage=3600',
+      'cache-control':
+        'public, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=3600',
     },
   })
 }
 
 const render = (
-  posts_metadata: any[]
+  posts_metadata: Post[]
 ) => `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>
