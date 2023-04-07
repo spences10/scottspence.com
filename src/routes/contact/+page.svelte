@@ -8,7 +8,7 @@
   title={`Contact - ${name}`}
   description={`Get in touch, say hi!`}
   image={og_image_url(name, `scottspence.com`, `contact`)}
-  url={`${website}/about`}
+  url={`${website}/contact`}
 />
 
 <div class="all-prose">
