@@ -38,7 +38,7 @@
     "cssnano": "6.0.0",
     "daisyui": "2.51.5",
     "date-fns": "2.29.3",
-    "eslint": "8.37.0",
+    "eslint": "8.38.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-svelte3": "4.0.0",
     "fathom-client": "3.5.0",
