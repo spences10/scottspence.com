@@ -1,9 +1,13 @@
 <script lang="ts">
+  import { page } from '$app/stores'
   import { Eye } from '$lib/icons'
   import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
   import { popular_posts_store, visitors_store } from '$lib/stores'
   import { number_crunch } from '$lib/utils'
   import { trackGoal } from 'fathom-client'
+  import { get } from 'svelte/store'
+  const host = get(page).url.host
+  const protocol = get(page).url.protocol
 </script>
 
 <footer class="footer p-10 bg-primary text-primary-content">
@@ -12,8 +16,9 @@
     {#each $popular_posts_store as post}
       <p>
         <a
+          data-sveltekit-reload
           class="text-primary-content hover:opacity-50"
-          href={`https://scottspence.com${post.pathname}`}
+          href={`${protocol}//${host}${post.pathname}`}
         >
           {post.title}
         </a>

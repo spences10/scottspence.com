@@ -1,10 +1,14 @@
 <script lang="ts">
+  import { page } from '$app/stores'
   import { popular_posts_store } from '$lib/stores'
   import { number_crunch } from '$lib/utils'
   import { trackGoal } from 'fathom-client'
+  import { get } from 'svelte/store'
+  const host = get(page).url.host
+  const protocol = get(page).url.protocol
 </script>
 
-<div class="m-0 mb-20 sm:-mx-30 lg:-mx-40 ">
+<div class="m-0 mb-20 sm:-mx-30 lg:-mx-40">
   <p class="text-xl mb-4">
     Take a look at some popular content from me...
   </p>
@@ -14,7 +18,7 @@
     {#each $popular_posts_store as post}
       <a
         data-sveltekit-reload
-        href={`https://scottspence.com${post.pathname}`}
+        href={`${protocol}//${host}${post.pathname}`}
         on:click={() => trackGoal(`WKHRXHV8`, 0)}
         class="h-full"
       >

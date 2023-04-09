@@ -76,6 +76,14 @@ export const POPULAR_POSTS = [
     path: `/posts/change-text-highlight-colour-with-tailwind-css`,
     title: `Change Text Highlight Color with Tailwind CSS`,
   },
+  {
+    path: `/posts/why-fastmail-over-proton-mail`,
+    title: `Why Fastmail over ProtonMail`,
+  },
+  {
+    path: `/posts/my-zsh-config`,
+    title: `My Zsh Config`,
+  },
 ]
 
 export const SOCIAL_LINKS = [
