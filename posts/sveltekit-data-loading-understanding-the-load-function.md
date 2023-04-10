@@ -131,7 +131,7 @@ on that in the [Data Binding in Svelte] post I did a few years back.
 If I wanted to add a route for `/about`, I'd need to create a
 directory (or folder) with a `+page.svelte` file in that directory.
 
-I can do that with a bash command like this:
+I can do this with a bash command like this:
 
 ```bash
 mkdir src/routes/about
@@ -158,8 +158,8 @@ for the about route.
 
 ## Data loading
 
-Ok, so now I've detailed routing and component props in SvelteKit, I
-can now explain how the `load` function is used.
+Now that I've detailed routing and component props in SvelteKit, I can
+explain how the `load` function is used.
 
 If I wanted to load some data for the about page, I could create a
 `+page.ts` file alongside the `+page.svelte` file in the `/about`
@@ -235,6 +235,11 @@ Ok, now onto some practical examples of using the `load` function.
 
 So the most common use case for the `load` function is to fetch data
 from an external source, like an API.
+
+In the following sections I'll go through some examples of fetching
+data from an API on the server and client.
+
+## Fetching data from external sources
 
 <!-- Links -->
 
