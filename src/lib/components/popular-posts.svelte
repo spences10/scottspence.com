@@ -3,9 +3,6 @@
   import { popular_posts_store } from '$lib/stores'
   import { number_crunch } from '$lib/utils'
   import { trackGoal } from 'fathom-client'
-  import { get } from 'svelte/store'
-  const host = get(page).url.host
-  const protocol = get(page).url.protocol
 </script>
 
 <div class="m-0 mb-20 sm:-mx-30 lg:-mx-40">
@@ -18,7 +15,7 @@
     {#each $popular_posts_store as post}
       <a
         data-sveltekit-reload
-        href={`${protocol}//${host}${post.pathname}`}
+        href={$page.url.origin + post.pathname}
         on:click={() => trackGoal(`WKHRXHV8`, 0)}
         class="h-full"
       >

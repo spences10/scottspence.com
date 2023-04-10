@@ -5,9 +5,6 @@
   import { popular_posts_store, visitors_store } from '$lib/stores'
   import { number_crunch } from '$lib/utils'
   import { trackGoal } from 'fathom-client'
-  import { get } from 'svelte/store'
-  const host = get(page).url.host
-  const protocol = get(page).url.protocol
 </script>
 
 <footer class="footer p-10 bg-primary text-primary-content">
@@ -18,7 +15,7 @@
         <a
           data-sveltekit-reload
           class="text-primary-content hover:opacity-50"
-          href={`${protocol}//${host}${post.pathname}`}
+          href={$page.url.origin + post.pathname}
         >
           {post.title}
         </a>
