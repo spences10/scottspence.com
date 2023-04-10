@@ -109,6 +109,9 @@ devDependencies:
   slugify:
     specifier: 1.6.6
     version: 1.6.6
+  svead:
+    specifier: ^0.0.8
+    version: 0.0.8(svelte@3.58.0)
   svelte:
     specifier: 3.58.0
     version: 3.58.0
@@ -4935,6 +4938,14 @@ packages:
   /supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+    dev: true
+
+  /svead@0.0.8(svelte@3.58.0):
+    resolution: {integrity: sha512-jfCHCtAQBFOkiBgeiyrBbRuhYU3ge8OtUwBuc8GbvFuL72oJOyKJqLqSOAAMtVOobPXllMct/9/DN+2uoYIRfA==}
+    peerDependencies:
+      svelte: ^3.54.0
+    dependencies:
+      svelte: 3.58.0
     dev: true
 
   /svelte-check@3.1.4(postcss-load-config@4.0.1)(postcss@8.4.21)(svelte@3.58.0):
