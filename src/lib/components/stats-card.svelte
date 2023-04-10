@@ -2,14 +2,7 @@
   import { number_crunch } from '$lib/utils'
   import { format, startOfMonth, startOfYear } from 'date-fns'
 
-  interface Stats {
-    visits: number
-    visitors?: number
-    uniques: number
-    pageviews: number
-  }
-
-  export let stats: Stats
+  export let stats
   export let title: string
   export let time_period = 'day'
 

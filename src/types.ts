@@ -14,3 +14,13 @@ export interface Post {
   slug: string
   path: string
 }
+
+export interface AnalyticsData {
+  visits: string 
+  uniques: string
+  pageviews: string
+  avg_duration: string | null
+  bounce_rate: number
+  date: string
+  pathname: string
+}

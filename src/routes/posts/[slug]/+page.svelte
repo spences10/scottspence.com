@@ -40,6 +40,7 @@
     isPrivate,
     tags,
   } = data.meta
+  let { daily_visits, monthly_visits, yearly_visits } = data
 
   const url = `${website}/posts/${slug}`
 
@@ -61,6 +62,18 @@
 
   const handle_scroll = () => {
     show_table_of_contents = update_toc_visibility(end_of_copy, -200)
+  }
+
+  const is_truthy = (
+    value: any,
+    check_month: boolean = false
+  ): boolean => {
+    if (value === undefined || value === null) return false
+    if (check_month && typeof value === 'string') {
+      const month = getMonth(parseISO(value))
+      if (month < 0) return false
+    }
+    return true
   }
 </script>
 
@@ -144,59 +157,34 @@
     <div class="divider" />
   </div>
 
-  {#await data?.analytics?.daily_visits}
-    Daily visits...
-  {:then [daily_visits]}
-    {#if daily_visits?.visits > 0}
-      <StatsCard
-        title="Daily analytics for this post"
-        stats={daily_visits}
-        time_period="day"
-      />
-    {/if}
-  {:catch error}
-    {error.message}
-  {/await}
+  {#if is_truthy(daily_visits)}
+    <StatsCard
+      title="Daily analytics for this post"
+      stats={daily_visits}
+      time_period="day"
+    />
+  {/if}
+  {#if is_truthy(monthly_visits) && getDate(new Date()) > 1}
+    <StatsCard
+      title="Month to date analytics for this post"
+      stats={monthly_visits}
+      time_period="month"
+    />
+  {/if}
 
-  {#await data?.analytics?.monthly_visits}
-    Monthly visits...
-  {:then [monthly_visits]}
-    {#if monthly_visits?.visits > 0 && getDate(new Date()) > 1}
-      <StatsCard
-        title="Month to date analytics for this post"
-        stats={monthly_visits}
-        time_period="month"
-      />
-    {/if}
-  {:catch error}
-    {error.message}
-  {/await}
+  {#if (is_truthy(yearly_visits?.date, true) && is_truthy(yearly_visits?.visits)) || (!is_truthy(monthly_visits?.visits) && is_truthy(yearly_visits?.visits))}
+    <StatsCard
+      title="Year to date analytics for this post"
+      stats={yearly_visits}
+      time_period="year"
+    />
+  {/if}
 
-  {#await data?.analytics?.yearly_visits}
-    Yearly visits...
-  {:then [yearly_visits]}
-    {#if (yearly_visits?.date > 0 && getMonth(parseISO(data?.analytics?.monthly_visits?.date)) > 0) || (!data?.analytics?.monthly_visits?.visits && yearly_visits?.visits > 0)}
-      <StatsCard
-        title="Year to date analytics for this post"
-        stats={yearly_visits}
-        time_period="year"
-      />
-    {/if}
-  {:catch error}
-    {error.message}
-  {/await}
-
-  {#await (data?.analytics?.daily_visits, data?.analytics?.monthly_visits, data?.analytics?.yearly_visits)}
-    Divider...
-  {:then [daily_visits, monthly_visits, yearly_visits]}
-    {#if daily_visits?.visits > 0 || monthly_visits?.visits > 0 || yearly_visits?.visits > 0}
-      <div class="flex flex-col w-full mt-5 mb-10">
-        <div class="divider" />
-      </div>
-    {/if}
-  {:catch error}
-    {error.message}
-  {/await}
+  {#if is_truthy(daily_visits) || is_truthy(monthly_visits) || is_truthy(yearly_visits)}
+    <div class="flex flex-col w-full mt-5 mb-10">
+      <div class="divider" />
+    </div>
+  {/if}
 
   <div class="grid justify-items-center mb-24">
     <ShareWithTweet
