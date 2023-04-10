@@ -12,7 +12,12 @@
   } from '$lib/components'
   import { name, website } from '$lib/info'
   import { visitors_store } from '$lib/stores'
-  import { get_current_page_visitors, og_image_url } from '$lib/utils'
+  import {
+    get_current_page_visitors,
+    get_headings,
+    og_image_url,
+    update_toc_visibility,
+  } from '$lib/utils'
   import {
     differenceInDays,
     differenceInYears,
@@ -38,22 +43,12 @@
 
   const url = `${website}/posts/${slug}`
 
-  let headingNodeList: NodeListOf<HTMLHeadingElement>
-  let headings: { label: string; href: string }[]
-
-  const getHeadings = async () => {
-    headings
-  }
+  let end_of_copy: HTMLElement | null
+  let show_table_of_contents = true
+  let headings_promise: Promise<{ label: string; href: string }[]>
 
   onMount(() => {
-    headingNodeList = document.querySelectorAll('h2')
-    headings = []
-    for (const h2 of headingNodeList) {
-      headings.push({
-        label: h2.innerText,
-        href: `#${h2.id}`,
-      })
-    }
+    headings_promise = get_headings()
   })
 
   let current_path = $page.url.pathname
@@ -63,7 +58,13 @@
     current_path,
     content
   )
+
+  const handle_scroll = () => {
+    show_table_of_contents = update_toc_visibility(end_of_copy, -200)
+  }
 </script>
+
+<svelte:window on:scroll={handle_scroll} />
 
 <Head
   title={`${title} - ${name}`}
@@ -72,10 +73,14 @@
   {url}
 />
 
-{#await getHeadings()}
+{#await headings_promise}
   Loading...
-{:then}
-  <TableOfContents {headings} />
+{:then headings}
+  {#if show_table_of_contents}
+    <TableOfContents {headings} />
+  {/if}
+{:catch error}
+  <p>Failed to load table of contents: {error.message}</p>
 {/await}
 
 <article>
@@ -132,9 +137,13 @@
     <svelte:component this={Content} />
   </div>
 
-  <div class="flex flex-col w-full mt-10 mb-5">
+  <div
+    class="flex flex-col w-full mt-10 mb-5"
+    bind:this={end_of_copy}
+  >
     <div class="divider" />
   </div>
+
   {#await data?.analytics?.daily_visits}
     Daily visits...
   {:then [daily_visits]}

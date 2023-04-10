@@ -1,28 +1,30 @@
 <script lang="ts">
   import { Head, TableOfContents } from '$lib/components'
   import { name, website } from '$lib/info'
-  import { og_image_url } from '$lib/utils'
+  import {
+    get_headings,
+    og_image_url,
+    update_toc_visibility,
+  } from '$lib/utils'
   import { onMount } from 'svelte'
 
   export let data
   let { Copy } = data
 
-  let headingNodeList
-  let headings: { label: string; href: string }[]
-  const getHeadings = async () => {
-    headings
-  }
+  let end_of_copy: HTMLElement | null
+  let show_table_of_contents = true
+  let headings_promise: Promise<{ label: string; href: string }[]>
 
   onMount(() => {
-    headingNodeList = document.querySelectorAll('h2')
-    headings = Array.from(headingNodeList).map(h2 => {
-      return {
-        label: h2.innerText,
-        href: `#${h2.id}`,
-      }
-    })
+    headings_promise = get_headings()
   })
+
+  const handle_scroll = () => {
+    show_table_of_contents = update_toc_visibility(end_of_copy)
+  }
 </script>
+
+<svelte:window on:scroll={handle_scroll} />
 
 <Head
   title={`Recruiter FAQs - ${name}`}
@@ -31,16 +33,20 @@
   url={`${website}/faq`}
 />
 
-{#await getHeadings()}
+{#await headings_promise}
   Loading...
-{:then}
-  <TableOfContents {headings} />
+{:then headings}
+  {#if show_table_of_contents}
+    <TableOfContents {headings} />
+  {/if}
+{:catch error}
+  <p>Failed to load table of contents: {error.message}</p>
 {/await}
 
-<div class="all-prose">
+<div class="all-prose mb-10">
   <svelte:component this={Copy} />
 </div>
 
-<div class="flex flex-col w-full my-10">
+<div class="flex flex-col w-full mt-10 mb-5" bind:this={end_of_copy}>
   <div class="divider" />
 </div>

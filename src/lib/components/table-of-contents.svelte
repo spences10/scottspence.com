@@ -1,9 +1,11 @@
 <script lang="ts">
-  export let headings: { label: string; href: string }[]
+  import { fade } from 'svelte/transition'
+  export let headings: { label: string; href: string }[] = []
 </script>
 
 {#if headings.length}
   <aside
+    transition:fade
     class="bg-base-100 rounded-md shadow-lg w-64 table-of-contents lg:block hidden"
   >
     <div class="">
