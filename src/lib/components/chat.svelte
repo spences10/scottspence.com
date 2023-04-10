@@ -1,15 +1,13 @@
 <script lang="ts">
   export let reply = false
-  let styleReply = reply ? '' : 'flex justify-end'
-  let styleContent = reply
-    ? 'bg-accent text-accent-content rounded-bl-none'
-    : 'bg-primary text-primary-content rounded-br-none'
 </script>
 
 <div>
-  <div class={styleReply}>
+  <div class="flex {reply ? 'chat-start' : 'chat-end justify-end'}">
     <section
-      class={`p-3 mb-5 w-3/4 rounded-3xl ${styleContent} last:prose-p:m-0 first:prose-p:m-0`}
+      class="chat-bubble mb-8 {reply
+        ? 'chat-bubble-accent'
+        : 'chat-bubble-primary'}"
     >
       <slot />
     </section>
