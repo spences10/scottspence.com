@@ -1,5 +1,5 @@
 export const number_crunch = (num: number | string): string => {
-  if (!num) return '0'
+  if (!num || num === '' || num === '0') return '0'
 
   const suffixes = ['', 'k', 'm', 'b', 't']
   const num_absolute = Math.abs(Number(num))
@@ -22,6 +22,7 @@ export const number_crunch = (num: number | string): string => {
   )
     ? abbreviation.substring(0, abbreviation.length - 2)
     : abbreviation
+
   return `${
     sign < 0 ? '-' : ''
   }${abbreviation_without_trailing_zero}${suffixes[magnitude]}`
