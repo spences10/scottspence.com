@@ -239,7 +239,26 @@ from an external source, like an API.
 In the following sections I'll go through some examples of fetching
 data from an API on the server and client.
 
-## Fetching data from external sources
+## Fetching page data from external sources, client
+
+To get data from an external source, I'll use the coinlore API to get
+data about the top 100 cryptocurrencies.
+
+## Fetching page data from external sources, server
+
+## Fetching layout data from external sources, client
+
+## Fetching layout data from external sources, server
+
+## Conclusion
+
+In this post I've covered the basics of SvelteKit, including routing,
+component props, and the `load` function.
+
+I've also covered how to fetch data from external sources on the
+client and server.
+
+I hope this post has helped you get started with SvelteKit.
 
 <!-- Links -->
 
