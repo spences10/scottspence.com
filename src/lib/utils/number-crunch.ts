@@ -2,8 +2,9 @@ export const number_crunch = (num: number | string): string => {
   if (!num || num === '' || num === '0') return '0'
 
   const suffixes = ['', 'k', 'm', 'b', 't']
-  const num_absolute = Math.abs(Number(num))
-  const sign = Math.sign(Number(num))
+  const num_value = Number(num)
+  const num_absolute = Math.abs(num_value)
+  const sign = Math.sign(num_value)
 
   if (isNaN(num_absolute)) return '0'
 
@@ -20,7 +21,7 @@ export const number_crunch = (num: number | string): string => {
   const abbreviation_without_trailing_zero = abbreviation.endsWith(
     '.0'
   )
-    ? abbreviation.substring(0, abbreviation.length - 2)
+    ? abbreviation.slice(0, -2)
     : abbreviation
 
   return `${
