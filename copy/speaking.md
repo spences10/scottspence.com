@@ -13,7 +13,7 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2023-03-13" small="true" />
+  Last updated: <DateUpdated date="2023-04-11" small="true" />
 </Small>
 
 If you want me to talk about using Svelte with GraphQL, the Jamstack
@@ -25,6 +25,25 @@ Here's the list of talks, podcasts and live streams I have done
 recently.
 
 ## 2023
+
+### State of Svelte
+
+Panel discussion hosted by Tracy Lee and Rob Ocel, with Brittney
+Postma, Geoff Rich, Simon Holthausen and Kevin Åberg.
+
+We discussed the State of Svelte with key figures and core team
+members where we discuss the latest advancements, best practices, and
+future of Svelte.
+
+<!-- cSpell:ignore hXMrdpb6fpw -->
+
+<YouTube youTubeId='hXMrdpb6fpw' />
+
+### Getting started with Svelte and SvelteKit
+
+CityJS, 2hr community workshop on building with Svelte and SvelteKit
+
+<YouTube youTubeId='MWuARN5oUF8' />
 
 ### Modern Web Podcast
 

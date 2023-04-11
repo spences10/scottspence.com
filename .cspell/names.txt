@@ -105,6 +105,7 @@ HAVIT
 Hawksworth
 Heroku
 heymeta
+Holthausen
 Hygraph
 Ilesh
 imgur
@@ -155,6 +156,7 @@ nightowl
 notrab
 Nunito
 Nuxt
+Ocel
 openshot
 Otander
 Paulie
