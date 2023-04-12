@@ -19,7 +19,7 @@ look at this quarterly and update it accordingly.
     Total progress
   </h2>
   <div class="flex justify-center">
-    <ProgressBar value="{8.2}" max="{59}" width="w-3/4" />
+    <ProgressBar value="{11.2}" max="{59}" width="w-3/4" />
   </div>
 </div>
 
