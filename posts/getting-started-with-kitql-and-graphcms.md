@@ -11,7 +11,10 @@ isPrivate: false
   let href = `/posts/the-new-kitql-sveltekit-graphql-client`
   const options = {
     type: 'warning',
-    message: `This post uses the legacy configuration for KitQL, there's a more up to date post on getting started with it <a href=${href}>here</a>.`
+    message: `This post uses the legacy configuration for KitQL, 
+      there's a more up to date post on getting started with it 
+      <a href=${href} target="_blank" rel="noopener noreferrer">
+      here</a>.`
   }
 </script>
 

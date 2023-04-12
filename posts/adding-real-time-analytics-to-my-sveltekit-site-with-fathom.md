@@ -12,9 +12,10 @@ isPrivate: false
   const options = {
     type: 'warning',
     message: `If your site gets a lot of traffic and you are using 
-    Fathom with a modest plan then you may also want to look into 
-    <a href=${href}>Caching with Fathom, Redis, and SvelteKit</a> 
-    so you don't blow your API allowance.`
+      Fathom with a modest plan then you may also want to look into 
+      <a href=${href} target="_blank" rel="noopener noreferrer">
+      Caching with Fathom, Redis, and SvelteKit</a> so you don't 
+      blow your API allowance.`
   }
 </script>
 
