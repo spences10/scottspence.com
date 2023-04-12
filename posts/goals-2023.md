@@ -24,9 +24,9 @@ look at this quarterly and update it accordingly.
 </div>
 
 <!--
-Help organise 12 Svelte meetups 0
-Speak at 4 Svelte meetups 0
-Host 4 free Svelte community workshops 0
+Help organise 12 Svelte meetups 2
+Speak at 4 Svelte meetups 1
+Host 4 free Svelte community workshops 1
 Host 4 paid Svelte workshops 0
 Lose 15kg in weight from 117kg => 3.2
 Release 4 video course on building with Svelte 0
@@ -46,14 +46,14 @@ monthly Svelte events and contributing to the Svelte community.
 
 <ProgressBar
   label="Help organise 12 Svelte events"
-  value={0}
+  value={2}
   max={12}
   width="w-2/3"
 />
 
 <ProgressBar
   label="Speak at 4 Svelte meetups"
-  value={0}
+  value={1}
   max={4}
   width="w-2/3"
 />
@@ -62,7 +62,7 @@ Host in person workshops both paid and free.
 
 <ProgressBar
   label="Host 4 free Svelte community workshops"
-  value={0}
+  value={1}
   max={4}
   width="w-2/3"
 />
