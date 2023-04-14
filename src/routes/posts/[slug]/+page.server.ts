@@ -53,7 +53,7 @@ export const load = async ({ fetch, params }) => {
         day_start,
         day_end,
         '',
-        time_to_seconds({ minutes: 15 })
+        time_to_seconds({ hours: 1 })
       ),
       fetch_visits(
         fetch,

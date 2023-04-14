@@ -20,7 +20,7 @@ export const GET = async ({ url }) => {
   const date_to = url.searchParams.get('date_to')
   const sort_by = url.searchParams.get('sort_by')
   const cache_duration = parseInt(
-    url.searchParams.get('cache_duration') ?? '900',
+    url.searchParams.get('cache_duration') ?? '1800',
     10
   )
 
