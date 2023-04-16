@@ -461,15 +461,121 @@ being made one after the other:
 [![sveltekit-data-loading-understanding-the-load-function-waterfall]]
 [sveltekit-data-loading-understanding-the-load-function-waterfall]
 
-To avoid that I can wrap both the API calls in their own functions
+To avoid that I can wrap both the API calls in their own functions and
+the promise from each will be resolved at the same time:
 
-or I can use a `Promise.all`:
+```ts
+export const load = async ({ fetch }) => {
+  const query = `query AllCharacters {
+    characters {
+      results {
+        name
+        id
+        image
+      }
+    }
+  }`
+
+  try {
+    const fetchCharacters = async () => {
+      const res = await fetch(
+        'https://rickandmortyapi.com/graphql/',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ query }),
+        }
+      )
+
+      if (!res.ok) {
+        throw new Error(`HTTP error: ${res.status}`)
+      }
+
+      const { data } = await res.json()
+      return data.characters.results
+    }
+
+    const fetchCoins = async () => {
+      const response = await fetch(
+        'https://api.coinlore.com/api/tickers/'
+      )
+
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`)
+      }
+      const { data } = await response.json()
+      return data
+    }
+
+    return {
+      characters: fetchCharacters(),
+      currencies: fetchCoins(),
+    }
+  } catch (error) {
+    console.error(error)
+    return { error: 'Unable to fetch data' }
+  }
+}
+```
+
+Alternatively I can use a `Promise.all` to resolve both promises at:
+
+```ts
+export const load = async ({ fetch }) => {
+  const query = `query AllCharacters {
+    characters {
+      results {
+        name
+        id
+        image
+      }
+    }
+  }`
+
+  try {
+    const [charactersResponse, currenciesResponse] =
+      await Promise.all([
+        fetch('https://rickandmortyapi.com/graphql/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ query }),
+        }),
+        fetch('https://api.coinlore.com/api/tickers/'),
+      ])
+
+    if (!charactersResponse.ok) {
+      throw new Error(`HTTP error: ${charactersResponse.status}`)
+    }
+
+    if (!currenciesResponse.ok) {
+      throw new Error(`HTTP error: ${currenciesResponse.status}`)
+    }
+
+    const charactersData = await charactersResponse.json()
+    const currenciesData = await currenciesResponse.json()
+
+    const characters = charactersData.data.characters.results
+    const currencies = currenciesData.data
+
+    return { characters, currencies }
+  } catch (error) {
+    console.error(error)
+    return { error: 'Unable to fetch data' }
+  }
+}
+```
 
 Now if I take a look at the network tab in the browser, I can see that
 both requests are made in parallel:
 
 [![sveltekit-data-loading-understanding-the-load-function-parallel]]
 [sveltekit-data-loading-understanding-the-load-function-parallel]
+
+Aight, now I'll take a look at how to fetch data on the server.
 
 ## Fetching page data, server
 
