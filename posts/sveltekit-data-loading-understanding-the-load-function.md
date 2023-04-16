@@ -1,5 +1,5 @@
 ---
-date: 2023-03-30
+date: 2023-04-14
 title: SvelteKit Data Loading, Understanding the load function
 tags: ['sveltekit', 'resource', 'how-to']
 isPrivate: true
@@ -90,7 +90,7 @@ prop, which allows it to receive data from a parent component.
 In the following example, the `name` prop is declared and set to
 `World` by default.
 
-```html
+```svelte
 <script>
   export let name = 'World'
 </script>
@@ -101,7 +101,7 @@ In the following example, the `name` prop is declared and set to
 In the parent, be that a Svelte component or a SvelteKit
 `+page.svelte` route, the `name` prop can be set to a different value.
 
-```html
+```svelte
 <script>
   import Greeting from './Greeting.svelte'
 </script>
@@ -149,7 +149,7 @@ The folder structure would look like this now:
 In the `src/routes/about/+page.svelte` file, I can add some content to
 render.
 
-```html
+```svelte
 <h1>This is the about page</h1>
 ```
 
@@ -204,7 +204,7 @@ prop and use it in the page.
 I can just log out the data into a `<pre>` tag for now to see the
 data:
 
-```html
+```svelte
 <script lang="ts">
   export let data
 </script>
@@ -216,7 +216,7 @@ data:
 
 Then I can use the data in the page and access the `title` property:
 
-```html
+```svelte
 <script lang="ts">
   export let data
 </script>
@@ -234,21 +234,248 @@ So, yes, a super simple example which I hope help illustrate how the
 Ok, now onto some practical examples of using the `load` function.
 
 So the most common use case for the `load` function is to fetch data
-from an external source, like an API.
+from an external source, like an API. I'll be using two APIs in the
+following examples, the [Coinlore API] (REST) and the [Rick and Morty
+API] (GraphQL).
 
-In the following sections I'll go through some examples of fetching
+In the following sections I'll go through various examples of fetching
 data from an API on the server and client.
 
-## Fetching page data from external sources, client
+## Fetching page data, client
 
-To get data from an external source, I'll use the coinlore API to get
-data about the top 100 cryptocurrencies.
+Ok, I'll start with fetching the top 100 cryptocurrencies from the
+[Coinlore API] on the client.
 
-## Fetching page data from external sources, server
+I'll use the index route for this, so I'll add in a `+page.ts` file
+for the index route:
 
-## Fetching layout data from external sources, client
+```bash
+touch src/routes/+page.ts
+```
 
-## Fetching layout data from external sources, server
+My `/routes` folder now looks like this:
+
+```text
+├── about/
+│   └── +page.svelte
+├── +page.svelte
+└── +page.ts
+```
+
+In the `+page.ts` file, I'll create a `load` function, destructure the
+SvelteKit `fetch` and create a response variable to store the data.
+
+```ts
+export const load = async ({ fetch }) => {
+  const response = await fetch(
+    'https://api.coinlore.com/api/tickers/'
+  )
+  const currencies = await response.json()
+  return currencies
+}
+```
+
+This example doesn't have any error handling, I'll add in some simple
+error handling:
+
+```ts
+export const load = async ({ fetch }) => {
+  try {
+    const response = await fetch(
+      'https://api.coinlore.com/api/tickers/'
+    )
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`)
+    }
+    const currencies = await response.json()
+    return { currencies }
+  } catch (error) {
+    console.error(error)
+    return { error: 'Unable to fetch currencies' }
+  }
+}
+```
+
+The return value of the `load` function is the data that will be
+available in the `+page.svelte` file as the `data` prop.
+
+In the `+page.svelte` file, I'll receive the `data` prop and use it in
+the page. I'll just log out the data into a `<pre>` tag for now to see
+the data:
+
+```svelte
+<script lang="ts">
+  export let data
+</script>
+
+<pre>{JSON.stringify(data, null, 2)}</pre>
+```
+
+That gives me an output similar to this on the page:
+
+```json
+{
+  "currencies": {
+    "data": [
+      {
+        "id": "90",
+        "symbol": "BTC",
+        "name": "Bitcoin",
+        "nameid": "bitcoin",
+        "rank": 1
+      }
+    ]
+  }
+}
+```
+
+Now I've validated the data is being fetched from the API, I can
+iterate over the data and render it on the page with a Svelte each.
+
+```svelte
+<script lang="ts">
+  export let data
+</script>
+
+<h1>Top 100 Cryptocurrencies</h1>
+
+<ul>
+  {#each data.currencies.data as coin}
+    <li>{coin.name}</li>
+  {/each}
+</ul>
+```
+
+Now, say I have data from another API I want to fetch on the client.
+I'll use the [Rick and Morty API] in the next example along with the
+Coinlore API.
+
+## Fetching page data from multiple sources
+
+I'll show an example of how I'd get the data from the Rick and Morty
+API now, this is appending headers to the `fetch` function along with
+a post method on the request and returning stringified JSON data.
+
+```ts
+export const load = async ({ fetch }) => {
+  const query = `query AllCharacters {
+    characters {
+      results {
+        name
+        id
+        image
+      }
+    }
+  }`
+
+  try {
+    const response = await fetch(
+      'https://rickandmortyapi.com/graphql/',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query }),
+      }
+    )
+
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`)
+    }
+
+    const { data } = await response.json()
+    return { characters: data.characters.results }
+  } catch (error) {
+    console.error(error)
+    return { error: 'Unable to fetch characters' }
+  }
+}
+```
+
+Notice that I'm returning `characters` from the
+`data.characters.results` results here, it cleans up the data returned
+to the `+page.svelte` file.
+
+Also note that I'm not using a client like `graphql-request` to make
+the request, I'm using the `fetch` function from SvelteKit.
+
+So, now I can combine the data from the Coinlore API and the Rick and
+Morty API.
+
+```ts
+export const load = async ({ fetch }) => {
+  const query = `query AllCharacters {
+    characters {
+      results {
+        name
+        id
+        image
+      }
+    }
+  }`
+
+  try {
+    const response = await fetch(
+      'https://rickandmortyapi.com/graphql/',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query }),
+      }
+    )
+
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`)
+    }
+
+    const { data } = await response.json()
+
+    const fetchCoins = async () => {
+      const response = await fetch(
+        'https://api.coinlore.com/api/tickers/'
+      )
+      const { data } = await response.json()
+      return data
+    }
+
+    const currencies = await fetchCoins()
+
+    return { characters: data.characters.results, currencies }
+  } catch (error) {
+    console.error(error)
+    return { error: 'Unable to fetch data' }
+  }
+}
+```
+
+There's one issue with this approach, this is causing a waterfall
+where the Coinlore API request is only made after the Rick and Morty
+API request.
+
+If I check the network tab in the browser I can see they call are
+being made one after the other:
+
+[![sveltekit-data-loading-understanding-the-load-function-waterfall]]
+[sveltekit-data-loading-understanding-the-load-function-waterfall]
+
+To avoid that I can wrap both the API calls in their own functions
+
+or I can use a `Promise.all`:
+
+Now if I take a look at the network tab in the browser, I can see that
+both requests are made in parallel:
+
+[![sveltekit-data-loading-understanding-the-load-function-parallel]]
+[sveltekit-data-loading-understanding-the-load-function-parallel]
+
+## Fetching page data, server
+
+## Fetching layout data, client
+
+## Fetching layout data, server
 
 ## Conclusion
 
@@ -258,7 +485,8 @@ component props, and the `load` function.
 I've also covered how to fetch data from external sources on the
 client and server.
 
-I hope this post has helped you get started with SvelteKit.
+I hope this post has helped you get started understanding how to load
+data with SvelteKit.
 
 <!-- Links -->
 
@@ -266,3 +494,12 @@ I hope this post has helped you get started with SvelteKit.
   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
 [Data Binding in Svelte]:
   https://scottspence.com/posts/data-binding-in-svelte
+[Coinlore API]: https://api.coinlore.com/api/tickers
+[Rick and Morty API]: https://rickandmortyapi.com/graphql
+
+<!-- Images -->
+
+[sveltekit-data-loading-understanding-the-load-function-waterfall]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1681633125/sveltekit-data-loading-understanding-the-load-function-waterfall.png
+[sveltekit-data-loading-understanding-the-load-function-parallel]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1681638359/sveltekit-data-loading-understanding-the-load-function-parallel.png
