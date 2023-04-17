@@ -38,6 +38,7 @@ lightgray
 maxage
 mdsvex
 mediumseagreen
+nameid
 nameserver
 nofollow
 noopener
