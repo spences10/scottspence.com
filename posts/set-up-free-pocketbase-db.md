@@ -129,7 +129,7 @@ run the `flyctl launch` command.
 
 Now I need to add the `[mounts]` section to the `fly.toml` file:
 
-```toml
+```text
 [mounts]
   destination = "/pb/pb_data"
   source = "pb_data"
@@ -140,7 +140,7 @@ Here's what my full TOML file looks like after adding in the
 
 <!-- cSpell:ignore sigint -->
 
-```toml
+```text
 # fly.toml file generated for pocketbase on 2022-10-02T17:22:41+01:00
 
 app = "pocketbase"
