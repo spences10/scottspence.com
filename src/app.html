@@ -2,7 +2,7 @@
 <html lang="en" data-theme="emerald">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.ico" />
     %sveltekit.head%
     <script>
@@ -23,9 +23,7 @@
     </script>
   </head>
   <body data-sveltekit-preload-data="hover">
-    <div class="flex flex-col min-h-screen overflow-x-hidden">
-      %sveltekit.body%
-    </div>
+    <div style="display: contents">%sveltekit.body%</div>
 
     <!-- this fixes a bug in chrome where animations trigger from unstyled to styled content on page load -->
     <!-- https://stackoverflow.com/a/42969257/6342734 -->
@@ -33,3 +31,4 @@
     <script> </script>
   </body>
 </html>
+

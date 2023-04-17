@@ -42,14 +42,19 @@
 >
   Skip Navigation
 </a>
-<Header />
-<Nav />
-<main
-  id="main-content"
-  class="container max-w-3xl mx-auto px-4 mb-20 flex-grow"
->
-  <slot />
-  <BackToTop />
-</main>
 
-<Footer />
+<Header />
+
+<Nav />
+
+<div class="flex flex-col min-h-screen overflow-x-hidden">
+  <main
+    id="main-content"
+    class="container max-w-3xl mx-auto px-4 flex-grow"
+  >
+    <slot />
+    <BackToTop />
+  </main>
+
+  <Footer />
+</div>
