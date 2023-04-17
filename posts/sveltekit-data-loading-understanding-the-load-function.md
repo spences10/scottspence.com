@@ -14,6 +14,11 @@ isPrivate: true
       when you create a new SvelteKit project with the <code>pnpm create
       svelte</code> command.`,
   }
+  const env_info = {
+    type: 'info',
+    message: `Variables that begin with <code>PUBLIC_</code> will be
+      available via <code>$env/static/public</code>.`,
+  }
 </script>
 
 During a workshop I was hosting at CityJS (<DD date="2023-03-29"/>
@@ -578,6 +583,138 @@ both requests are made in parallel:
 Aight, now I'll take a look at how to fetch data on the server.
 
 ## Fetching page data, server
+
+Neither of the APIs I'm using require authentication, so I can fetch
+data from them on the server.
+
+The previous examples I've shown you are fetching data on the client
+and the server.
+
+If I add a console log to the `load` function, I can see that it's
+being called on the server (I see the console log in the terminal) and
+on the client (I see the console log in the browser).
+
+If I have an API that requires authentication, I can fetch data on the
+server and pass it to the client.
+
+I'll need a `+page.server.ts` file, this indicates that the `load`
+function should only be called on the server.
+
+```bash
+touch src/routes/+page.server.ts
+```
+
+Although this is a contrived example I'll create a `.env` file to hold
+some environment variables that can be used in the `load` function.
+
+I'll create the file via the terminal:
+
+```bash
+touch .env
+echo "PUBLIC_TOKEN=this is a public token" >> .env
+echo "SECRET_TOKEN=this is the secret token" >> .env
+```
+
+<Banner options={env_info} />
+
+I'll replace the code in the `+page.ts` file with the following, which
+will import the secret environment variable and log it to the console
+then fetch the data from the Coinlore API.
+
+I'll add the same code to the `+page.server.ts` file:
+
+```ts
+import { SECRET_TOKEN } from '$env/static/private'
+
+export const load = async () => {
+  console.log('=====================')
+  console.log(SECRET_TOKEN)
+  console.log('=====================')
+  const fetchCoins = async () => {
+    const req = await fetch('https://api.coinlore.com/api/tickers/')
+    const { data } = await req.json()
+    return data
+  }
+
+  return {
+    currenciesServer: fetchCoins(),
+  }
+}
+```
+
+If I try to run this code in the `+page.ts` file I'll get an error
+warning me that I can't use `$env/static/private` in a client-side
+file.
+
+In the `+page.ts` file I'll remove the `$env/static/private` reference
+and re-label the return value to `currenciesClient`:
+
+```ts
+export const load = async () => {
+  const fetchCoins = async () => {
+    const req = await fetch('https://api.coinlore.com/api/tickers/')
+    const { data } = await req.json()
+    return data
+  }
+
+  return {
+    currenciesClient: fetchCoins(),
+  }
+}
+```
+
+Now, running the dev server I can see that the secret token is logged
+to the console in the terminal but not in the browser.
+
+**But wait!** Remember this is a contrived example, but, getting
+client side data and server side will be a common task.
+
+I'm now getting the Coinlore data on the browser and the client,
+right?
+
+In the `+page.svelte` file dump out the contents of the `data` prop
+being passed to the page from the `load` function:
+
+```svelte
+<script lang="ts">
+  export let data
+</script>
+
+<pre>{JSON.stringify(data, null, 2)}</pre>
+```
+
+Going to the browser on `localhost` to check the JSON output I can see
+that I have a `currenciesClient` property but not one for
+`currenciesServer`...
+
+If I comment out the `load` function in the `+page.ts` file then I get
+the `currenciesServer` property in the JSON output, but not the
+`currenciesClient` property.
+
+If I have a `load` function in both a `+page.ts` and a
+`+page.server.ts` and I want that data to be available on the client
+I'll need to merge the two objects together.
+
+In the `+page.ts` file I can pass in the `+page.server.ts` `data` prop
+and merge it with the `+page.ts` `data`:
+
+```ts
+export const load = async ({ data }) => {
+  const fetchCoins = async () => {
+    const req = await fetch('https://api.coinlore.com/api/tickers/')
+    const { data } = await req.json()
+    return data
+  }
+
+  return {
+    ...data,
+    currenciesClient: fetchCoins(),
+  }
+}
+```
+
+Going to the browser now to check the JSON output I can see that I
+have a `currenciesClient` and `currenciesServer` in the output.
 
 ## Fetching layout data, client
 
