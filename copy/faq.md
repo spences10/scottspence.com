@@ -9,7 +9,7 @@
 # For recruiters - FAQ
 
 <Small>
-  Last updated: <DateUpdated date='2023-03-18' small='true' />
+  Last updated: <DateUpdated date='2023-04-17' small='true' />
 </Small>
 
 Hello friend 👋, thanks for taking an interest in me and my profile.
@@ -74,7 +74,10 @@ not** want to go over a 37.5 hour working week if presenteeism is a
 thing on the team.
 
 I work on a contract basis for OES Technology, I'd prefer to work with
-companies outside of the UK in a fully remote capacity.
+companies outside of the UK in a 'full time' fully remote capacity.
+
+If you're in the UK and have a project in mind that will not be full
+time [get in touch] to discuss.
 
 ---
 
@@ -104,7 +107,8 @@ I'm _really_ enjoying working with Svelte and SvelteKit and I'll be
 very interested in roles that are using it.
 
 Tailwind is my current preference for the speed which it offers when
-creating projects. I have used styled-components for many projects.
+creating projects. I have also used styled-components for many
+projects in the past.
 
 I have a wealth of knowledge using [Gatsby] (2017-2020) (which uses
 **React** and **GraphQL**) and have consulted on large scale projects
@@ -131,12 +135,12 @@ experience is.
 JavaScript, HTML and CSS (the holy trinity), <DD date='2016-06-15' />.
 
 Svelte, <DD date='2021-04-06' />. I host regular workshops on Svelte
-and SvelteKit you can find in the speaking section of this site.
+and SvelteKit you can find in the [speaking] section of this site.
 
 React, <DD date='2017-05-20' />.
 
 I have <DD date='2018-03-14' /> experience as a professional web
-developer.
+developer and <DD date='2021-04-21' /> as a developer advocate.
 
 I have 10+ years previous experience as an analyst developer for
 financial organisations.
@@ -149,25 +153,16 @@ bit more about me.
 ## Salary?
 
 In my next permanent role I'm looking for roles starting at
-**€80,200**. Please take note of the currency and covert it
+**€113,200**. Please take note of the currency and convert it
 accordingly to currency the company pays in.
 
-I run OES Technology where I offer consulting on a contract basis if
-you have a project in mind [get in touch] to discuss.
+As I mentioned earlier I run OES Technology where I offer consulting
+on a contract basis if you have a project in mind [get in touch] to
+discuss.
 
-I'm not giving a number for my _current_ salary because, among other
-things, it can be used to cap any offer made to me.
-
-In other words, my old salary becomes what's known in **behavioural
-economics** as an anchor.
-
-I know it's in your interest (being the recruiter) to get the best
-offer for me. I'll disclose my salary if:
-
-1. You agree not to disclose it to the employer without my express
-   permission — no exceptions.
-1. You can explain how you're going to use the information for my
-   benefit — needs to be a good reason.
+Want me to come on board on a contract basis? Sweet! I'm open to that!
+Depending on the setup I'be looking for something in the region of
+**€92,380**.
 
 ---
 
@@ -215,11 +210,10 @@ Zoom etc!
 Like I noted already, I'd prefer fully remote roles.
 
 I live a ~30 minute train ride from London stations like Elephant and
-Castle, Victoria and Blackfriars. I prefer to avoid travelling by
-tube.
+Castle, Victoria, Blackfriars and Charring Cross.
 
-I'll consider roles that are a short walk (~10-15 minutes) from either
-London Victoria, Blackfriars or Elephant & Castle.
+I'll consider roles that are a short walk (~10-15 minutes) from any of
+those stations.
 
 Based in Swanley, Kent I'll consider places that are in Sevenoaks and
 Bromley, **only** those two places though.
@@ -280,7 +274,7 @@ Sure, hit the download button on [mecv.xyz].
 
 ## Notice period?
 
-Months notice.
+My current contract stipulates 30 days notice.
 
 ---
 
@@ -313,7 +307,7 @@ Feel free to [check out the rest of the site](/)
 [jamstack]: https://jamstack.org/
 [gatsby]: https://gatsbyjs.com/
 [storyblok]: https://www.storyblok.com/
-[graphcms]: https://hygraph.com/
+[hygraph]: https://hygraph.com/
 [sanity.io]: https://www.sanity.io/
 [contentful]: https://www.contentful.com
 [strapi]: https://strapi.io/
@@ -326,3 +320,4 @@ Feel free to [check out the rest of the site](/)
 [if it's not a hell yes, it's a no]:
   https://lifehacker.com/if-its-not-a-hell-yes-its-a-no-1723393142
 [get in touch]: /contact
+[speaking]: /speaking
