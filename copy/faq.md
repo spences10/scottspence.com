@@ -199,7 +199,7 @@ now.
 I'd prefer not to be bound by any number of days needed to be worked
 in an office. Occasional meetings, fine.
 
-I do appreciate the value of working closely with my colleges and I am
+I do appreciate the value of working closely with my colleagues and I am
 comfortable with that using tools like Google Meet, Slack, MS Teams,
 Zoom etc!
 
@@ -225,7 +225,7 @@ else deemed "in the same region".
 
 ## Your skills look like a great match for this position we have!! Can we have a quick five minute phone call to discuss?
 
-Sure book in a [15 minute chat].
+Sure, book in a [15 minute chat].
 
 **"But I have to talk to you today, my client's deadline is this
 afternoon"**, please, book in a [15 minute chat].
