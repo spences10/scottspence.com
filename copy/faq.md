@@ -153,7 +153,7 @@ bit more about me.
 ## Salary?
 
 In my next permanent role I'm looking for roles starting at
-**€113,200**. Please take note of the currency and convert it
+**€135,200**. Please take note of the currency and convert it
 accordingly to currency the company pays in.
 
 As I mentioned earlier I run OES Technology where I offer consulting
@@ -161,8 +161,8 @@ on a contract basis if you have a project in mind [get in touch] to
 discuss.
 
 Want me to come on board on a contract basis? Sweet! I'm open to that!
-Depending on the setup I'be looking for something in the region of
-**€92,380**.
+Depending on the setup I'd be looking for something in the region of
+**€92,380** or a day rate of **€366.59**.
 
 ---
 
@@ -199,9 +199,9 @@ now.
 I'd prefer not to be bound by any number of days needed to be worked
 in an office. Occasional meetings, fine.
 
-I do appreciate the value of working closely with my colleagues and I am
-comfortable with that using tools like Google Meet, Slack, MS Teams,
-Zoom etc!
+I do appreciate the value of working closely with my colleagues and I
+am comfortable with that using tools like Google Meet, Slack, MS
+Teams, Zoom etc!
 
 ---
 
