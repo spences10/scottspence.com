@@ -13,9 +13,8 @@
     {#each links as link}
       <li>
         <a
-          class={`text-xl link link-primary capitalize ${
-            $page.url.pathname === link && `link-secondary`
-          }`}
+          class="text-xl link link-primary capitalize {$page.url
+            .pathname === link && `link-secondary`}"
           href={link}
         >
           {link.slice(1)}
@@ -31,9 +30,8 @@
   {#each links as link}
     <a
       href={link}
-      class={`link link-primary-content capitalize ${
-        $page.url.pathname === link && `link-secondary`
-      }`}
+      class="link link-primary-content capitalize {$page.url
+        .pathname === link && `link-secondary`}"
     >
       {link.slice(1)}
     </a>
