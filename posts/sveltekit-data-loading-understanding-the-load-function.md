@@ -718,6 +718,121 @@ have a `currenciesClient` and `currenciesServer` in the output.
 
 ## Fetching layout data, client
 
+Ok, so, now I'm hoping you have a good understanding of how the `+`
+files work for fetching data.
+
+For this example it's the same setup as the previous example, but I'll
+create a `+layout.ts` file to fetch data on the client.
+
+```bash
+touch src/routes/+layout.ts
+```
+
+I'll delete the `+page.server.ts` file and rename the return from the
+`+page.ts` file back to `currencies`:
+
+```ts
+export const load = async () => {
+  const fetchCoins = async () => {
+    const req = await fetch('https://api.coinlore.com/api/tickers/')
+    const { data } = await req.json()
+    return data
+  }
+
+  return {
+    currencies: fetchCoins(),
+  }
+}
+```
+
+Now, I have the following files in the `src/routes` directory:
+
+```text
+src/routes
+├── +layout.ts
+├── +page.svelte
+└── +page.ts
+```
+
+In the `+layout.ts` file I'll add a load function to get all the
+characters from the Rick and Marty API:
+
+```ts
+export const load = async ({ fetch }) => {
+  const reqCharacters = await fetch(
+    'https://rickandmortyapi.com/graphql/',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `
+					query AllCharacters {
+						characters {
+							results {
+								name
+								id
+								image
+							}
+						}
+					}
+			`,
+      }),
+    }
+  )
+  const {
+    data: {
+      characters: { results },
+    },
+  } = await reqCharacters.json()
+
+  return {
+    characters: results,
+  }
+}
+```
+
+Data from layouts in SvelteKit is available to all child
+`+page.svelte` routes.
+
+In the `src/routes/+page.svelte` file I'll add a `<pre>` tag to dump
+out the `data` prop:
+
+```svelte
+<script>
+  export let data
+</script>
+
+<pre>{JSON.stringify(data, null, 2)}</pre>
+```
+
+In the index page I have access to the Coinlore data from the
+`+page.ts` and also the Rick and Morty data.
+
+If I create another route, for example, `/about` I'll have access to
+the characters data. I'll validate that now by creating a new
+`+page.svelte` file in a `src/routes/about` directory:
+
+```bash
+mkdir src/routes/about
+touch src/routes/about/+page.svelte
+```
+
+Then in the `about` route add a `<pre>` tag to the `+page.svelte` file
+to dump out the `data` prop the same way I did for the index page:
+
+```svelte
+<script>
+  export let data
+</script>
+
+<pre>{JSON.stringify(data, null, 2)}</pre>
+```
+
+In the about page I only have access to the `characters` data provided
+by the `+layout.ts` file.
+
 ## Fetching layout data, server
 
 ## Conclusion
