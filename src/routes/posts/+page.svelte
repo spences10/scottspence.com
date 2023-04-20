@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from '$app/stores'
   import { Head } from '$lib/components'
   import PostCard from '$lib/components/post-card.svelte'
   import { description, name, website } from '$lib/info.js'
@@ -8,7 +9,7 @@
   export let data
   let { posts } = data
 
-  let search_query = ''
+  let search_query = $page.url.searchParams.get('search') || ''
 
   $: filtered_posts = posts.filter((post: Post) => {
     if (post.isPrivate) return false
