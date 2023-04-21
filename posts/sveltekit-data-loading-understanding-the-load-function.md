@@ -2,7 +2,7 @@
 date: 2023-04-14
 title: SvelteKit Data Loading, Understanding the load function
 tags: ['sveltekit', 'resource', 'how-to']
-isPrivate: true
+isPrivate: false
 ---
 
 <script>
@@ -460,7 +460,7 @@ There's one issue with this approach, this is causing a waterfall
 where the Coinlore API request is only made after the Rick and Morty
 API request.
 
-If I check the network tab in the browser I can see they call are
+If I check the network tab in the browser I can see the calls are
 being made one after the other:
 
 [![sveltekit-data-loading-understanding-the-load-function-waterfall]]
@@ -525,7 +525,7 @@ export const load = async ({ fetch }) => {
 }
 ```
 
-Alternatively I can use a `Promise.all` to resolve both promises at:
+Alternatively I can use a `Promise.all` to resolve both promises:
 
 ```ts
 export const load = async ({ fetch }) => {
@@ -755,7 +755,7 @@ src/routes
 ```
 
 In the `+layout.ts` file I'll add a load function to get all the
-characters from the Rick and Marty API:
+characters from the Rick and Morty API:
 
 ```ts
 export const load = async ({ fetch }) => {
@@ -768,16 +768,16 @@ export const load = async ({ fetch }) => {
       },
       body: JSON.stringify({
         query: `
-					query AllCharacters {
-						characters {
-							results {
-								name
-								id
-								image
-							}
-						}
-					}
-			`,
+          query AllCharacters {
+            characters {
+              results {
+                name
+                id
+                image
+              }
+            }
+          }
+      `,
       }),
     }
   )
@@ -810,7 +810,7 @@ out the `data` prop:
 In the index page I have access to the Coinlore data from the
 `+page.ts` and also the Rick and Morty data.
 
-If I create another route, for example, `/about` I'll have access to
+If I create another route, for example, `/about`, I'll have access to
 the characters data. I'll validate that now by creating a new
 `+page.svelte` file in a `src/routes/about` directory:
 
