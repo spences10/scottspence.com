@@ -26,6 +26,13 @@ recently.
 
 ## 2023
 
+### Panel: Cloudinary Programmable Media Best Practices
+
+As the headless CMS expert on the panel, I provided insights into the
+composable tech used by Paul Smith, including Storyblok. We discussed
+best practices and emerging trends related to media APIs and
+programmable media, and shared our expertise with the audience.
+
 ### State of Svelte
 
 Panel discussion hosted by Tracy Lee and Rob Ocel, with Brittney
