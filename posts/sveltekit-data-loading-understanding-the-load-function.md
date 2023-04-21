@@ -96,7 +96,7 @@ In the following example, the `name` prop is declared and set to
 `World` by default.
 
 ```svelte
-<script>
+<script lang="ts">
   export let name = 'World'
 </script>
 
@@ -107,7 +107,7 @@ In the parent, be that a Svelte component or a SvelteKit
 `+page.svelte` route, the `name` prop can be set to a different value.
 
 ```svelte
-<script>
+<script lang="ts">
   import Greeting from './Greeting.svelte'
 </script>
 
@@ -800,7 +800,7 @@ In the `src/routes/+page.svelte` file I'll add a `<pre>` tag to dump
 out the `data` prop:
 
 ```svelte
-<script>
+<script lang="ts">
   export let data
 </script>
 
@@ -823,7 +823,7 @@ Then in the `about` route add a `<pre>` tag to the `+page.svelte` file
 to dump out the `data` prop the same way I did for the index page:
 
 ```svelte
-<script>
+<script lang="ts">
   export let data
 </script>
 
