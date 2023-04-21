@@ -835,6 +835,25 @@ by the `+layout.ts` file.
 
 ## Fetching layout data, server
 
+For fetching layout data on the server it's the same exercise as with
+the `+page.server.ts` file.
+
+I'll rename the `+layout.ts` file to `+layout.server.ts`.
+
+```bash
+mv src/routes/+layout.ts src/routes/+layout.server.ts
+```
+
+Add in a console log to the `+layout.server.ts` file much like in the
+`+page.server.ts` file, then I can see the console log in the terminal
+but not on the browser console.
+
+If I visit the `/about` page I can see the data is being passed to the
+`src/routes/about/+page.svelte` file.
+
+Going back to the index page I get the Coinlore data along with the
+Rick and Morty data.
+
 ## Conclusion
 
 In this post I've covered the basics of SvelteKit, including routing,
