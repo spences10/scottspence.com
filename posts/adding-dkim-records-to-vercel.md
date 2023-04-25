@@ -1,9 +1,22 @@
 ---
 date: 2023-01-09
+updated: 2023-04-25
 title: Adding DKIM records to Vercel
 tags: ['domains', 'guide', 'resource']
 isPrivate: false
 ---
+
+<script>
+  import { Banner } from '$lib/components'
+
+  const options = {
+    type: 'info',
+    message: `This is my misunderstanding of how to use the Vercel CLI!
+      Me using the <code>@</code> as a name refers to the domain. I've
+      added an <a href="#update">update</a> to the end of the post to clarify this.
+    `
+  }
+</script>
 
 So, I've started using Sendinblue for my transactional emails and
 newsletter. There's the usual configuration to do with these services
@@ -71,6 +84,8 @@ vc dns add mail._domainkey.yourdomain.com @ TXT 'k=rsa;p=valueFromSendinblue'
 
 I just expected the CLI to add the hostname record for me. 😅
 
+<Banner {options} />
+
 A closer look at the output from the Vercel CLI (with the command
 `vc dns yourdomain.com`) showed that the `TXT` record was under the
 apex domain and not `mail._domainkey.yourdomain.com`.
@@ -122,6 +137,28 @@ CLI) they didn't really have a reference point to work from, so it was
 guesswork on my side.
 
 Done!
+
+## Update
+
+I didn't need to go through adding the `CNAME` record for the domain.
+
+All I needed to do was add the `TXT` record and not use the `@` and
+instead use the name of the record I wanted to add.
+
+The `@` as a name refers to the domain, so I was adding the domain
+twice and essentially adding a blank record. This explains why there
+was no name for the `TXT` record.
+
+So, the command to add the `TXT` record for the `DKIM record` should
+have been:
+
+```bash
+vc dns add yourdomain.com mail._domainkey TXT 'k=rsa;p=valueFromSendinblue'
+```
+
+Thanks.
+
+Done! Done! 😅
 
 <!-- Links -->
 
