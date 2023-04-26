@@ -88,24 +88,28 @@ export const POPULAR_POSTS = [
 
 export const SOCIAL_LINKS = [
   {
-    title: `Twitter`,
-    link: `https://ss10.dev/twitter`,
+    title: `YouTube`,
+    link: `https://ss10.dev/yt`,
   },
   {
     title: `GitHub`,
     link: `https://ss10.dev/git`,
   },
   {
-    title: `Deezer`,
-    link: `https://ss10.dev/twitter`,
+    title: `Bluesky`,
+    link: `https://ss10.dev/bluesky`,
   },
   {
-    title: `YouTube`,
-    link: `https://ss10.dev/yt`,
+    title: `Spotify`,
+    link: `https://ss10.dev/spotify`,
   },
   {
     title: `Twitch`,
     link: `https://ss10.dev/twitch`,
+  },
+  {
+    title: `Twitter`,
+    link: `https://ss10.dev/twitter`,
   },
 ]
 
