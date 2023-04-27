@@ -10,7 +10,7 @@
   <textarea
     {rows}
     bind:value={markdownContent}
-    class="border rounded-xl h-full bg-base-200 border-base-100 w-full p-2 resize-none"
+    class="border rounded-box h-full bg-base-200 border-base-100 w-full p-2 resize-none"
   />
 
   <div class="w-full">{@html markdown}</div>

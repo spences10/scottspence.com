@@ -20,7 +20,7 @@
         class="h-full"
       >
         <aside
-          class="rounded-xl font-bold h-full p-5 transition card shadow-lg hover:text-accent-focus"
+          class="rounded-box font-bold h-full p-5 transition card shadow-lg hover:text-accent-focus"
         >
           <h3 class="mb-5 text-2xl">
             {post.title}

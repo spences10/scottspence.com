@@ -35,7 +35,7 @@
 
     {#if $visitors_store.visitors && $visitors_store.visitors.total}
       <p
-        class="tracking-wide bg-secondary text-secondary-content mt-2 px-2 py-1 shadow-lg rounded-xl"
+        class="tracking-wide bg-secondary text-secondary-content mt-2 px-2 py-1 shadow-lg rounded-box"
       >
         There's currently
         <span class="font-bold">

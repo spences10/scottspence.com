@@ -27,7 +27,7 @@
     class="mx-auto text-center max-w-7xl py-12 lg:py-16 lg:px-8"
   >
     <div
-      class="bg-primary rounded-3xl py-10 lg:flex lg:p-20 lg:items-center"
+      class="bg-primary rounded-box py-10 lg:flex lg:p-20 lg:items-center"
     >
       <div class="text-primary-content lg:flex-1 lg:w-0">
         <h3 class=" font-extrabold tracking-tight text-3xl">

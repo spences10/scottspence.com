@@ -38,7 +38,7 @@
 
 <div
   role="banner"
-  class="mt-8 relative all-prose prose-a:text-info-content rounded-2xl shadow-lg {banner_classes}"
+  class="mt-8 relative all-prose prose-a:text-info-content rounded-box shadow-lg {banner_classes}"
 >
   <div
     class="{bg} rounded-full border-4 border-base-300 absolute -top-3 -left-3 p-1"
