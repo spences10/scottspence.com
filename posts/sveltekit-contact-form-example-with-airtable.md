@@ -89,9 +89,230 @@ match the code examples:
 - table fields: `name`, `email`, `message`
 - table field types: `single line text`, `email`, `long text`
 
+## Create Airtable API key
+
+Create a [Personal access token]
+
+## Create API endpoint
+
+```ts
+import {
+  AIRTABLE_API_KEY,
+  AIRTABLE_BASE_ID,
+} from '$env/static/private'
+import { json } from '@sveltejs/kit'
+
+export const POST = async ({ request }) => {
+  const { name, email, message } = await request.json()
+
+  const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/submissions`
+
+  let data = {
+    records: [
+      {
+        fields: {
+          name,
+          email,
+          message,
+        },
+      },
+    ],
+  }
+  const res = await fetch(AIRTABLE_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+
+  if (res.ok) {
+    return json({
+      message: 'success',
+    })
+  } else {
+    return json({
+      message: 'failed',
+      status: 404,
+    })
+  }
+}
+```
+
 ## With an event handler
 
+```svelte
+<script lang="ts">
+  let submission_status = ''
+  const handle_submit = async (event: Event) => {
+    submission_status = 'submitting'
+
+    const form = event.target as HTMLFormElement
+    const form_data = new FormData(form)
+    const data = Object.fromEntries(form_data)
+
+    const res = await fetch('/submit-form', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    const { message } = await res.json()
+    submission_status = message
+  }
+</script>
+
+<h2>Event handler</h2>
+
+{#if submission_status === 'submitting'}
+  <p>Submitting...</p>
+{:else if submission_status === 'failed'}
+  <p>Submission failed.</p>
+{:else if submission_status === 'success'}
+  <p>Submission success.</p>
+
+  <button
+    data-sveltekit-reload
+    on:click={() => {
+      submission_status = ''
+    }}
+  >
+    Submit another?
+  </button>
+{:else}
+  <form method="POST" on:submit|preventDefault={handle_submit}>
+    <label for="name">
+      <span>Name</span>
+    </label>
+    <input
+      type="text"
+      name="name"
+      aria-label="name"
+      placeholder="Enter your name"
+      required
+      autocomplete="off"
+    />
+    <label for="email">
+      <span>Email</span>
+    </label>
+    <input
+      type="email"
+      name="email"
+      aria-label="email"
+      placeholder="bill@hotmail.com"
+      required
+      autocomplete="off"
+    />
+    <label for="message">
+      <span>Message</span>
+    </label>
+    <textarea
+      name="message"
+      aria-label="message"
+      placeholder="Message"
+      required
+      rows="3"
+      autocomplete="off"
+    />
+    <input type="submit" value="Submit to Airtable" />
+  </form>
+{/if}
+
+<p><a href="/" data-sveltekit-reload>Back</a></p>
+```
+
 ## With an action
+
+```ts
+export const actions = {
+  default: async ({ request, fetch }) => {
+    const formData = await request.formData()
+    const data = Object.fromEntries(formData)
+    const res = await fetch('/submit-form', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    const responseJson = await res.json()
+    return {
+      body: responseJson,
+    }
+  },
+}
+```
+
+```svelte
+<script lang="ts">
+  import { enhance } from '$app/forms'
+
+  export let form
+
+  $: submissionStatus = form?.body?.message
+</script>
+
+<h2>Action</h2>
+
+{#if submissionStatus === 'submitting'}
+  <p>Submitting...</p>
+{:else if submissionStatus === 'failed'}
+  <p>Submission failed.</p>
+{:else if submissionStatus === 'success'}
+  <p>Submission success.</p>
+
+  <button
+    data-sveltekit-reload
+    on:click={() => {
+      submissionStatus = null
+    }}
+  >
+    Submit another?
+  </button>
+{:else}
+  <form method="POST" use:enhance>
+    <label for="name">
+      <span>Name</span>
+    </label>
+    <input
+      type="text"
+      name="name"
+      aria-label="name"
+      placeholder="Enter your name"
+      required
+      autocomplete="off"
+    />
+    <label for="email">
+      <span>Email</span>
+    </label>
+    <input
+      type="email"
+      name="email"
+      aria-label="email"
+      placeholder="bill@hotmail.com"
+      required
+      autocomplete="off"
+    />
+    <label for="message">
+      <span>Message</span>
+    </label>
+    <textarea
+      name="message"
+      aria-label="name"
+      placeholder="Message"
+      required
+      rows="3"
+      autocomplete="off"
+    />
+    <input type="submit" value="Submit to Airtable" />
+  </form>
+{/if}
+
+<p><a href="/" data-sveltekit-reload>Back</a></p>
+```
 
 ## Airtable automation
 
@@ -100,3 +321,4 @@ match the code examples:
 [previous post]:
   https://scottspence.com/posts/make-a-contact-form-with-sveltekit-and-airtable
 [sign up for a free account]: https://airtable.com/signup
+[Personal access token]: https://airtable.com/create/tokens
