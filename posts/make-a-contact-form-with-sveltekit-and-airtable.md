@@ -5,6 +5,19 @@ tags: ['sveltekit', 'how-to', 'svelte']
 isPrivate: false
 ---
 
+<script>
+  import { Banner } from '$lib/components'
+
+  let href = `/posts/sveltekit-contact-form-example-with-airtable`
+  const options = {
+    type: 'info',
+    message: `This post uses the legacy API keys used for Airtable, 
+      there's a more up to date post on using personal access tokens
+      <a href=${href} target="_blank" rel="noopener noreferrer">
+      here</a>.`
+  }
+</script>
+
 In this how-to I'll be walking through the process of creating a
 contact form in SvelteKit using Airtable for storing the submissions
 with no additional dependencies.
@@ -15,6 +28,8 @@ I got the inspiration for doing this when a saw a video on YouTube
 from WebJeda on [SvelteKit Contact Form using Google Forms]. Sharath's
 video is great but I'm not a fan of using Google products so thought
 I'd try the same approach with Airtable.
+
+<Banner {options} />
 
 So, time for the standard preamble of the reasoning behind why a
 contact form on your site is a good thing; Having a contact form on
