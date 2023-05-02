@@ -91,7 +91,60 @@ match the code examples:
 
 ## Create Airtable API key
 
-Create a [Personal access token]
+The be able to write data via the Airtable API I'll create a [Personal
+access token] with the following scopes and access to the
+`contact-requests` base:
+
+**Scopes**
+
+- `data.records:read` See the data in records
+- `data.records:write` Create, edit, and delete records
+- `schema.bases:read` See the structure of a base, like table names or
+  field types
+
+**Access**
+
+- `contact-requests`
+
+I'll click the 'Create token' button and copy the token value to the
+clipboard.
+
+For reference, this is what I have for the scopes and access on
+Airtable:
+
+[![airtable-create-personal-access-token]]
+[airtable-create-personal-access-token]
+
+I'll need to save the generated token into a `.env` file. I can create
+a new file for that with the following command:
+
+```bash
+touch .env
+echo "AIRTABLE_API_KEY=" >> .env
+echo "AIRTABLE_BASE_ID=" >> .env
+```
+
+I'll add the generated `AIRTABLE_API_KEY` value to the `.env` file
+there's also the `AIRTABLE_BASE_ID` value that I'll need to add to the
+`.env` file, I can get that from the Airtable API docs.
+
+The Airtable base ID detailed in the API docs for the project. The
+quickest way to get there is to click on the 'Help' link in the top
+right of the Airtable dashboard and then scroll down to the end of the
+panel that pops out and click on the 'API documentation' link under
+the 'Additional resources' section.
+
+This opens up documentation specific to the base I'm working with. The
+ID for the base is detailed in the introduction section of the docs
+with the line:
+
+**The ID of this base is appXXXXXXXXXXXXXX.**
+
+I'll copy the ID value and add it to the `.env` file for the
+`AIRTABLE_BASE_ID`.
+
+The Airtable API docs also detail how I can 'Create records' using the
+API with curl and JavaScript examples.
 
 ## Create API endpoint
 
@@ -167,61 +220,42 @@ export const POST = async ({ request }) => {
 
 <h2>Event handler</h2>
 
-{#if submission_status === 'submitting'}
-  <p>Submitting...</p>
-{:else if submission_status === 'failed'}
-  <p>Submission failed.</p>
-{:else if submission_status === 'success'}
-  <p>Submission success.</p>
-
-  <button
-    data-sveltekit-reload
-    on:click={() => {
-      submission_status = ''
-    }}
-  >
-    Submit another?
-  </button>
-{:else}
-  <form method="POST" on:submit|preventDefault={handle_submit}>
-    <label for="name">
-      <span>Name</span>
-    </label>
-    <input
-      type="text"
-      name="name"
-      aria-label="name"
-      placeholder="Enter your name"
-      required
-      autocomplete="off"
-    />
-    <label for="email">
-      <span>Email</span>
-    </label>
-    <input
-      type="email"
-      name="email"
-      aria-label="email"
-      placeholder="bill@hotmail.com"
-      required
-      autocomplete="off"
-    />
-    <label for="message">
-      <span>Message</span>
-    </label>
-    <textarea
-      name="message"
-      aria-label="message"
-      placeholder="Message"
-      required
-      rows="3"
-      autocomplete="off"
-    />
-    <input type="submit" value="Submit to Airtable" />
-  </form>
-{/if}
-
-<p><a href="/" data-sveltekit-reload>Back</a></p>
+<form method="POST" on:submit|preventDefault={handle_submit}>
+  <label for="name">
+    <span>Name</span>
+  </label>
+  <input
+    type="text"
+    name="name"
+    aria-label="name"
+    placeholder="Enter your name"
+    required
+    autocomplete="off"
+  />
+  <label for="email">
+    <span>Email</span>
+  </label>
+  <input
+    type="email"
+    name="email"
+    aria-label="email"
+    placeholder="bill@hotmail.com"
+    required
+    autocomplete="off"
+  />
+  <label for="message">
+    <span>Message</span>
+  </label>
+  <textarea
+    name="message"
+    aria-label="message"
+    placeholder="Message"
+    required
+    rows="3"
+    autocomplete="off"
+  />
+  <input type="submit" value="Submit to Airtable" />
+</form>
 ```
 
 ## With an action
@@ -247,74 +281,52 @@ export const actions = {
 ```
 
 ```svelte
-<script lang="ts">
-  import { enhance } from '$app/forms'
-
-  export let form
-
-  $: submissionStatus = form?.body?.message
-</script>
-
 <h2>Action</h2>
 
-{#if submissionStatus === 'submitting'}
-  <p>Submitting...</p>
-{:else if submissionStatus === 'failed'}
-  <p>Submission failed.</p>
-{:else if submissionStatus === 'success'}
-  <p>Submission success.</p>
-
-  <button
-    data-sveltekit-reload
-    on:click={() => {
-      submissionStatus = null
-    }}
-  >
-    Submit another?
-  </button>
-{:else}
-  <form method="POST" use:enhance>
-    <label for="name">
-      <span>Name</span>
-    </label>
-    <input
-      type="text"
-      name="name"
-      aria-label="name"
-      placeholder="Enter your name"
-      required
-      autocomplete="off"
-    />
-    <label for="email">
-      <span>Email</span>
-    </label>
-    <input
-      type="email"
-      name="email"
-      aria-label="email"
-      placeholder="bill@hotmail.com"
-      required
-      autocomplete="off"
-    />
-    <label for="message">
-      <span>Message</span>
-    </label>
-    <textarea
-      name="message"
-      aria-label="name"
-      placeholder="Message"
-      required
-      rows="3"
-      autocomplete="off"
-    />
-    <input type="submit" value="Submit to Airtable" />
-  </form>
-{/if}
-
-<p><a href="/" data-sveltekit-reload>Back</a></p>
+<form method="POST" use:enhance>
+  <label for="name">
+    <span>Name</span>
+  </label>
+  <input
+    type="text"
+    name="name"
+    aria-label="name"
+    placeholder="Enter your name"
+    required
+    autocomplete="off"
+  />
+  <label for="email">
+    <span>Email</span>
+  </label>
+  <input
+    type="email"
+    name="email"
+    aria-label="email"
+    placeholder="bill@hotmail.com"
+    required
+    autocomplete="off"
+  />
+  <label for="message">
+    <span>Message</span>
+  </label>
+  <textarea
+    name="message"
+    aria-label="name"
+    placeholder="Message"
+    required
+    rows="3"
+    autocomplete="off"
+  />
+  <input type="submit" value="Submit to Airtable" />
+</form>
 ```
 
 ## Airtable automation
+
+## Conclusion
+
+You can check out the example code for this post over on GitHib
+[sveltekit-and-airtable-contact-form-example]
 
 <!-- Links -->
 
@@ -322,3 +334,10 @@ export const actions = {
   https://scottspence.com/posts/make-a-contact-form-with-sveltekit-and-airtable
 [sign up for a free account]: https://airtable.com/signup
 [Personal access token]: https://airtable.com/create/tokens
+[sveltekit-and-airtable-contact-form-example]:
+  https://github.com/spences10/sveltekit-and-airtable-contact-form-example
+
+<!-- Images -->
+
+[airtable-create-personal-access-token]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1683010912/airtable-create-personal-access-token.png
