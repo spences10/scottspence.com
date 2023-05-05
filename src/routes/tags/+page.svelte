@@ -36,7 +36,7 @@
   />
 </div>
 
-<ul class="flex flex-wrap justify-start">
+<ul class="flex flex-wrap justify-start mb-20">
   {#each filtered_tags as tag (tag)}
     <li class="my-4 text-xl">
       <a
