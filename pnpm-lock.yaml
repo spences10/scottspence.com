@@ -26,8 +26,8 @@ devDependencies:
     specifier: ^5.56.0
     version: 5.56.0(eslint@8.39.0)(typescript@5.0.2)
   '@vitest/ui':
-    specifier: ^0.30.0
-    version: 0.30.0
+    specifier: ^0.31.0
+    version: 0.31.0(vitest@0.31.0)
   autoprefixer:
     specifier: 10.4.14
     version: 10.4.14(postcss@8.4.23)
@@ -147,7 +147,7 @@ devDependencies:
     version: 4.3.4(@types/node@18.15.11)
   vitest:
     specifier: ^0.31.0
-    version: 0.31.0(@vitest/ui@0.30.0)(jsdom@22.0.0)
+    version: 0.31.0(@vitest/ui@0.31.0)(jsdom@22.0.0)
 
 packages:
 
@@ -1166,24 +1166,19 @@ packages:
       tinyspy: 2.1.0
     dev: true
 
-  /@vitest/ui@0.30.0:
-    resolution: {integrity: sha512-kzapVRHVXsXcIbi3GR5DVQ+1y0BPcwUmyTqodCckr6l0eyhCL3ecGigR9PH255yFx27vFcwrtl07zfrUWzPOpg==}
+  /@vitest/ui@0.31.0(vitest@0.31.0):
+    resolution: {integrity: sha512-Dy86l6r3/dbJposgm7w+oqb/15UWJ0lDBbEQaS1ived3+0CTaMbT8OMkUf9vNBkSL47kvBHEBnZLa5fw5i9gUQ==}
+    peerDependencies:
+      vitest: '>=0.30.1 <1'
     dependencies:
-      '@vitest/utils': 0.30.0
+      '@vitest/utils': 0.31.0
       fast-glob: 3.2.12
       fflate: 0.7.4
       flatted: 3.2.7
       pathe: 1.1.0
       picocolors: 1.0.0
       sirv: 2.0.2
-    dev: true
-
-  /@vitest/utils@0.30.0:
-    resolution: {integrity: sha512-qFZgoOKQ+rJV9xG4BBxgOSilnLQ2gkfG4I+z1wBuuQ3AD33zQrnB88kMFfzsot1E1AbF3dNK1e4CU7q3ojahRA==}
-    dependencies:
-      concordance: 5.0.4
-      loupe: 2.3.6
-      pretty-format: 27.5.1
+      vitest: 0.31.0(@vitest/ui@0.31.0)(jsdom@22.0.0)
     dev: true
 
   /@vitest/utils@0.31.0:
@@ -5250,7 +5245,7 @@ packages:
       vite: 4.3.4(@types/node@18.15.11)
     dev: true
 
-  /vitest@0.31.0(@vitest/ui@0.30.0)(jsdom@22.0.0):
+  /vitest@0.31.0(@vitest/ui@0.31.0)(jsdom@22.0.0):
     resolution: {integrity: sha512-JwWJS9p3GU9GxkG7eBSmr4Q4x4bvVBSswaCFf1PBNHiPx00obfhHRJfgHcnI0ffn+NMlIh9QGvG75FlaIBdKGA==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -5288,7 +5283,7 @@ packages:
       '@vitest/runner': 0.31.0
       '@vitest/snapshot': 0.31.0
       '@vitest/spy': 0.31.0
-      '@vitest/ui': 0.30.0
+      '@vitest/ui': 0.31.0(vitest@0.31.0)
       '@vitest/utils': 0.31.0
       acorn: 8.8.2
       acorn-walk: 8.2.0
