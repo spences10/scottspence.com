@@ -15,7 +15,7 @@ They're an experienced international conference speaker and meetup
 presenter, connecting with and educating others in the Svelte
 community.
 
-Their blog receives around 12k visitors and 25k views monthly,
+Their blog receives around 16k visitors and 30k views monthly,
 showcasing their ability to produce engaging and informative content.
 They're always looking for ways to improve their skills and give back
 to the community.
@@ -35,7 +35,7 @@ platforms, with a focus on Svelte. They're an experienced
 international conference speaker and meetup presenter, connecting with
 and educating others in the Svelte community.
 
-Their blog receives around 12k visitors and 25k views monthly,
+Their blog receives around 16k visitors and 30k views monthly,
 showcasing their ability to produce engaging and informative content.
 With a track record of success in previous senior-level Analyst
 Developer roles specializing in Microsoft Office automation for large

@@ -16,7 +16,7 @@ As an experienced international conference speaker and meetup
 presenter, they're passionate about connecting with and educating
 others in the Svelte community.
 
-Their informative blog, (receiving around 12k visitors and 25k views
+Their informative blog, (receiving around 16k visitors and 30k views
 monthly) showcases their commitment to giving back to the community.
 
 ## Long
@@ -34,7 +34,7 @@ platforms, with a special focus on Svelte and SvelteKit. They are also
 an international conference speaker and experienced meetup presenter,
 connecting with and educating others in the Svelte community.
 
-Their blog receives around 12k visitors and 25k views monthly,
+Their blog receives around 16k visitors and 30k views monthly,
 showcasing their ability to produce engaging and informative content.
 They are always looking for new ways to give back to the Svelte
 community and share their expertise. Prior to their work as a
