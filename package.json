@@ -61,7 +61,7 @@
     "remark-reading-time": "1.0.1",
     "slugify": "1.6.6",
     "svead": "^0.0.8",
-    "svelte": "3.59.0",
+    "svelte": "3.59.1",
     "svelte-check": "^3.1.4",
     "svelte-frappe-charts": "^1.10.0",
     "svelte-preprocess": "5.0.3",
