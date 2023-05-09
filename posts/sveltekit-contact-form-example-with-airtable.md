@@ -144,9 +144,38 @@ I'll copy the ID value and add it to the `.env` file for the
 `AIRTABLE_BASE_ID`.
 
 The Airtable API docs also detail how I can 'Create records' using the
-API with curl and JavaScript examples.
+API with curl and JavaScript examples. I'll be using these to make the
+SvelteKit endpoint in the next section.
 
 ## Create API endpoint
+
+Aight, now I'll scaffold out a SvelteKit `POST` endpoint to handle the
+form submission. I've already got the `+server.ts` file I created
+earlier in the `src/routes/submit-form` folder.
+
+I'm going to base the code off of the `curl` example which looks like
+this:
+
+```bash
+curl -X POST https://api.airtable.com/v0/appXXXXXXXXXXXXXX/submissions \
+  -H "Authorization: Bearer YOUR_SECRET_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  --data '{
+  "records": [
+    {
+      "fields": {
+        "name": "Dave Davidson",
+        "email": "medaveyo@iamhim.com",
+        "message": "Yo yo yo!"
+      }
+    }
+  ]
+}'
+```
+
+So in my endpoint I need to make a `POST` request to the Airtable API
+using the `fetch` API. I'll need to add the `AIRTABLE_API_KEY` and
+`AIRTABLE_BASE_ID` values from the `.env` file to the request headers.
 
 ```ts
 import {
@@ -193,11 +222,15 @@ export const POST = async ({ request }) => {
 }
 ```
 
+Ok, now I've got the endpoint set up I can test it out.
+
 ## With an event handler
+
+In the previous post I did this, I used an event handler to handle the
+form submission. I'll use the same approach here.
 
 ```svelte
 <script lang="ts">
-  let submission_status = ''
   const handle_submit = async (event: Event) => {
     submission_status = 'submitting'
 
@@ -214,7 +247,6 @@ export const POST = async ({ request }) => {
     })
 
     const { message } = await res.json()
-    submission_status = message
   }
 </script>
 
@@ -259,6 +291,11 @@ export const POST = async ({ request }) => {
 ```
 
 ## With an action
+
+Since the last post SvelteKit implemented 'actions'. Actions are a way
+to add functionality to a component without having to add it to the
+component itself. This is useful for things like analytics, logging,
+and form submission.
 
 ```ts
 export const actions = {
