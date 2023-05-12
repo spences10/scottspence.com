@@ -10,11 +10,16 @@ site using Airtable to store the submissions and notify you when there
 is a new submission.
 
 This is an update to the [previous post] I did on this, the recent
-changes to how you interact with the Airtable API means that I get a
-chance to revisit this and make it a little more current.
+changes to how you create access keys in the Airtable API means that I
+get a chance to revisit this and make it a little more current.
 
 It will detail making a submission using an event handler and a
-default form action.
+default form action. Both of these examples will use built-in form
+validation on the client only.
+
+After those examples I'll go into setting up a similar example using
+SvelteKit Superforms which has client and server validation with
+[Zod].
 
 The previous post goes over creating a new SvelteKit project and
 setting up the Airtable base, for the sake of completeness I'll go
@@ -50,27 +55,28 @@ create-svelte version 4.1.0
 └
 ```
 
-Then I'll need two routes for the examples `action` and
-`event-handler`, I'll create the folders and files for these now along
-with the `submit-form` endpoint, I'll do these via bash, if you're
-following along create the files how you like:
+Then I'll need to create the routes for the examples, `action`,
+`event-handler`, and `super-forms`. I'll create the folders and files
+for these now along with the `submit-form` endpoint, I'll do these via
+bash, if you're following along create the files how you like:
 
 ```bash
-mkdir src/routes/{action,event-handler,submit-form}
+mkdir src/routes/{action,event-handler,submit-form,super-forms}
 ```
 
-With the folder created I'll add in the files I need for each route:
+With the folders created I'll add in the files I need for each route:
 
 ```bash
 touch src/routes/action/{+page.server.ts,+page.svelte}
 touch src/routes/event-handler/+page.svelte
 touch src/routes/submit-form/+server.ts
+touch src/routes/super-forms/{+page.server.ts,+page.svelte}
 ```
-
-## Create an Airtable base
 
 Now I 've got the files in place for the project I'll focus on getting
 the Airtable base set up.
+
+## Create an Airtable base
 
 If you're new to Airtable you can [sign up for a free account] and go
 through the onboarding process which will ask you some questions to
@@ -91,7 +97,7 @@ match the code examples:
 
 ## Create Airtable API key
 
-The be able to write data via the Airtable API I'll create a [Personal
+To be able to write data via the Airtable API I'll create a [Personal
 access token] with the following scopes and access to the
 `contact-requests` base:
 
@@ -128,7 +134,7 @@ I'll add the generated `AIRTABLE_API_KEY` value to the `.env` file
 there's also the `AIRTABLE_BASE_ID` value that I'll need to add to the
 `.env` file, I can get that from the Airtable API docs.
 
-The Airtable base ID detailed in the API docs for the project. The
+The Airtable base ID is detailed in the API docs for the project. The
 quickest way to get there is to click on the 'Help' link in the top
 right of the Airtable dashboard and then scroll down to the end of the
 panel that pops out and click on the 'API documentation' link under
@@ -173,9 +179,28 @@ curl -X POST https://api.airtable.com/v0/appXXXXXXXXXXXXXX/submissions \
 }'
 ```
 
+Really, all I need from this is the shape of the data being submitted
+which I'll put into a variable like this:
+
+```ts
+let data = {
+  records: [
+    {
+      fields: {
+        name,
+        email,
+        message,
+      },
+    },
+  ],
+}
+```
+
 So in my endpoint I need to make a `POST` request to the Airtable API
 using the `fetch` API. I'll need to add the `AIRTABLE_API_KEY` and
-`AIRTABLE_BASE_ID` values from the `.env` file to the request headers.
+`AIRTABLE_BASE_ID` values from the `.env` file to the request headers
+using the SvelteKit `$env` module and I'm going to want to return a
+message if it fails or succeeds.
 
 ```ts
 import {
@@ -222,12 +247,17 @@ export const POST = async ({ request }) => {
 }
 ```
 
-Ok, now I've got the endpoint set up I can test it out.
+Ok, now I've got the endpoint set up I can test it out. I'll with the
+event handler approach first.
 
 ## With an event handler
 
 In the previous post I did this, I used an event handler to handle the
 form submission. I'll use the same approach here.
+
+I'll create a `handle_submit` function that will be called when the
+form is submitted. I'll use the `preventDefault` modifier to prevent
+the default form submission behaviour and then I'll get the form data
 
 ```svelte
 <script lang="ts">
@@ -358,6 +388,8 @@ export const actions = {
 </form>
 ```
 
+## SvelteKit Superforms
+
 ## Airtable automation
 
 ## Conclusion
@@ -373,6 +405,7 @@ You can check out the example code for this post over on GitHib
 [Personal access token]: https://airtable.com/create/tokens
 [sveltekit-and-airtable-contact-form-example]:
   https://github.com/spences10/sveltekit-and-airtable-contact-form-example
+[zod]: https://zod.dev/
 
 <!-- Images -->
 
