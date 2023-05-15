@@ -221,6 +221,7 @@ Streamlabs
 Streamyard
 Stylelint
 Substack
+Superforms
 Svead
 sveltejs
 sveltekit
