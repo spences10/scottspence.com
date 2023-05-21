@@ -1,5 +1,5 @@
 ---
-date: 2023-04-21
+date: 2023-05-21
 title: SvelteKit Contact Form Example with Airtable
 tags: ['sveltekit', 'how-to', 'guide']
 isPrivate: true
@@ -159,8 +159,8 @@ Aight, now I'll scaffold out a SvelteKit `POST` endpoint to handle the
 form submission. I've already got the `+server.ts` file I created
 earlier in the `src/routes/submit-form` folder.
 
-I'm going to base the code off of the `curl` example which looks like
-this:
+I'm going to base the code off of the Airtable `curl` example which
+looks like this:
 
 ```bash
 curl -X POST https://api.airtable.com/v0/appXXXXXXXXXXXXXX/submissions \
@@ -255,9 +255,14 @@ event handler approach first.
 In the previous post I did this, I used an event handler to handle the
 form submission. I'll use the same approach here.
 
+The input names will need to match the field names in the Airtable
+base. I'll add the `name` attribute to the input elements in the from
+as well.
+
 I'll create a `handle_submit` function that will be called when the
 form is submitted. I'll use the `preventDefault` modifier to prevent
 the default form submission behaviour and then I'll get the form data
+and pass that onto the `submit-form` endpoint via `fetch` request.
 
 ```svelte
 <script lang="ts">
@@ -318,6 +323,94 @@ the default form submission behaviour and then I'll get the form data
   />
   <input type="submit" value="Submit to Airtable" />
 </form>
+```
+
+The message response form the endpoint can them be used for some
+conditional rendering of the form.
+
+I'll create a `submission_status` variable and set it to the response
+form the endpoint. Then I can use some Svelte if blocks to render
+different content depending on the status.
+
+```svelte
+<script lang="ts">
+  let submission_status = ''
+  const handle_submit = async (event: Event) => {
+    submission_status = 'submitting'
+
+    const form = event.target as HTMLFormElement
+    const form_data = new FormData(form)
+    const data = Object.fromEntries(form_data)
+
+    const res = await fetch('/submit-form', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    const { message } = await res.json()
+    submission_status = message
+  }
+</script>
+
+<h2>Event handler</h2>
+
+{#if submission_status === 'submitting'}
+  <p>Submitting...</p>
+{:else if submission_status === 'failed'}
+  <p>Submission failed.</p>
+{:else if submission_status === 'success'}
+  <p>Submission success.</p>
+
+  <button
+    data-sveltekit-reload
+    on:click={() => {
+      submission_status = ''
+    }}
+    class="btn btn-primary w-full"
+  >
+    Submit another?
+  </button>
+{:else}
+  <form method="POST" on:submit|preventDefault={handle_submit}>
+    <label for="name">
+      <span>Name</span>
+    </label>
+    <input
+      type="text"
+      name="name"
+      aria-label="name"
+      placeholder="Enter your name"
+      required
+      autocomplete="off"
+    />
+    <label for="email">
+      <span>Email</span>
+    </label>
+    <input
+      type="email"
+      name="email"
+      aria-label="email"
+      placeholder="bill@hotmail.com"
+      required
+      autocomplete="off"
+    />
+    <label for="message">
+      <span>Message</span>
+    </label>
+    <textarea
+      name="message"
+      aria-label="message"
+      placeholder="Message"
+      required
+      rows="3"
+      autocomplete="off"
+    />
+    <input type="submit" value="Submit to Airtable" />
+  </form>
+{/if}
 ```
 
 ## With an action
