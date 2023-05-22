@@ -24,7 +24,7 @@
 
 <h1 class="font-bold mb-5 text-5xl">Posts for {tag}</h1>
 
-<ul>
+<ul class="mb-20">
   {#each posts_by_tag[tag] as { title, slug: post_slug }}
     <li class="my-4 text-xl">
       <a
