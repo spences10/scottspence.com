@@ -138,5 +138,5 @@ SvelteKit] you might find interesting.
   https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements
 [css scrollbars]:
   https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scrollbars
-[Gradient animations with Tailwind CSS and SvelteKit]:
+[gradient animations with tailwind css and sveltekit]:
   https://scottspence.com/posts/gradient-animations-in-tailwindcss

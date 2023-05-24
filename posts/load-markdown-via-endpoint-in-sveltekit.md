@@ -249,4 +249,4 @@ SvelteKit and the way data loading works in SvelteKit.
 
 <!-- Links -->
 
-[GitHub]: https://github.com/spences10/load-markdown-via-endpoint
+[github]: https://github.com/spences10/load-markdown-via-endpoint

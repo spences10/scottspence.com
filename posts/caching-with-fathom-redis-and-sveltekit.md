@@ -535,14 +535,14 @@ caching in your own SvelteKit projects.
 
 [sveltekit-and-fathom]:
   https://github.com/spences10/sveltekit-and-fathom
-[Adding real-time analytics to my SvelteKit site with Fathom]:
+[adding real-time analytics to my sveltekit site with fathom]:
   https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom
-[Fathom Analytics with SvelteKit]:
+[fathom analytics with sveltekit]:
   https://scottspence.com/posts/fathom-analytics-with-svelte
-[Adding real-time analytics to my SvelteKit site with Fathom]:
+[adding real-time analytics to my sveltekit site with fathom]:
   https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom
-[PR]: https://github.com/spences10/sveltekit-and-fathom/pull/168
-[Building SvelteKit Applications with Serverless Redis]:
+[pr]: https://github.com/spences10/sveltekit-and-fathom/pull/168
+[building sveltekit applications with serverless redis]:
   https://upstash.com/blog/svelte-with-serverless-redis
-[Geoff Rich]: https://geoffrich.net
+[geoff rich]: https://geoffrich.net
 [ioredis]: https://github.com/luin/ioredis

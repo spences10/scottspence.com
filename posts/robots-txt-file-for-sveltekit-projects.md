@@ -63,4 +63,4 @@ added in to stop Google from crawling things I don't want it to.
 
 <!-- Links -->
 
-[Dino Kukic]: https://twitter.com/DinoKukic
+[dino kukic]: https://twitter.com/DinoKukic

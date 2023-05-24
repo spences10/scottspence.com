@@ -867,12 +867,12 @@ data with SvelteKit.
 
 <!-- Links -->
 
-[MDN reference for `export`]:
+[mdn reference for `export`]:
   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
-[Data Binding in Svelte]:
+[data binding in svelte]:
   https://scottspence.com/posts/data-binding-in-svelte
-[Coinlore API]: https://api.coinlore.com/api/tickers
-[Rick and Morty API]: https://rickandmortyapi.com/graphql
+[coinlore api]: https://api.coinlore.com/api/tickers
+[rick and morty api]: https://rickandmortyapi.com/graphql
 
 <!-- Images -->
 

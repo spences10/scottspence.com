@@ -363,16 +363,6 @@ different content depending on the status.
   <p>Submission failed.</p>
 {:else if submission_status === 'success'}
   <p>Submission success.</p>
-
-  <button
-    data-sveltekit-reload
-    on:click={() => {
-      submission_status = ''
-    }}
-    class="btn btn-primary w-full"
-  >
-    Submit another?
-  </button>
 {:else}
   <form method="POST" on:submit|preventDefault={handle_submit}>
     <label for="name">
@@ -412,6 +402,9 @@ different content depending on the status.
   </form>
 {/if}
 ```
+
+Using the `submission_status` variable I can render different content
+depending on the status of the submission.
 
 ## With an action
 
@@ -495,7 +488,7 @@ You can check out the example code for this post over on GitHib
 [previous post]:
   https://scottspence.com/posts/make-a-contact-form-with-sveltekit-and-airtable
 [sign up for a free account]: https://airtable.com/signup
-[Personal access token]: https://airtable.com/create/tokens
+[personal access token]: https://airtable.com/create/tokens
 [sveltekit-and-airtable-contact-form-example]:
   https://github.com/spences10/sveltekit-and-airtable-contact-form-example
 [zod]: https://zod.dev/

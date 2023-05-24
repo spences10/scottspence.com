@@ -133,6 +133,7 @@ src/pages/index.js
 
 **header.js**
 
+<!-- prettier-ignore -->
 ```js
 import React from 'react'
 import { Link } from 'gatsby'
@@ -172,6 +173,7 @@ export default Header
 
 **layout.js**
 
+<!-- prettier-ignore -->
 ```js
 import React from 'react'
 import PropTypes from 'prop-types'

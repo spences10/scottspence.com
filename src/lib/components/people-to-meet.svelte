@@ -16,7 +16,7 @@
   <div class="divider" />
 </div>
 
-<article class="m-0 mb-20 sm:-mx-30 lg:-mx-40 ">
+<article class="m-0 mb-20 sm:-mx-30 lg:-mx-40">
   <a
     href="#people-id-like-to-meet"
     id="people-id-like-to-meet"

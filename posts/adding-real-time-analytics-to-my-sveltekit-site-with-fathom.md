@@ -1336,14 +1336,14 @@ Finally, to prevent Google from crawling API endpoints, I added in a
 
 [referral code]: https://usefathom.com/ref/HG492L
 [analytics]: https://scottspence.com/tags/analytics
-[Fathom API documentation]: https://usefathom.com/api
-[Fathom Analytics with SvelteKit]:
+[fathom api documentation]: https://usefathom.com/api
+[fathom analytics with sveltekit]:
   https://scottspence.com/posts/fathom-analytics-with-svelte
 [the github repo]: https://github.com/spences10/sveltekit-and-fathom
 [`app.usefathom.com/api`]: https://app.usefathom.com/api
-[Robots.txt file for SvelteKit projects]:
+[robots.txt file for sveltekit projects]:
   https://scottspence.com/posts/robots-txt-file-for-sveltekit-projects
-[SvelteKit and fathom GitHub project]:
+[sveltekit and fathom github project]:
   https://github.com/spences10/sveltekit-and-fathom
 [before]:
   https://github.com/spences10/sveltekit-and-fathom/tree/ref/pre-real-time-analytics-implementation
@@ -1352,6 +1352,6 @@ Finally, to prevent Google from crawling API endpoints, I added in a
 [diff]:
   https://github.com/spences10/sveltekit-and-fathom/pull/160/files
 [`ideal-memory.com`]: https://ideal-memory.com
-[SvelteKit Environment Variables with the SvelteKit $env Module]:
+[sveltekit environment variables with the sveltekit $env module]:
   https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module
-[Stack Overflow]: https://stackoverflow.com/a/51200448
+[stack overflow]: https://stackoverflow.com/a/51200448

@@ -577,9 +577,9 @@ commerce] demo over on GitHub.
 
 ## Sarcasm
 
-I also revived the Sarcasm component on this blog after a long time
-of it not functioning after I moved the site from an MDX based blog
-over to Svelte.
+I also revived the Sarcasm component on this blog after a long time of
+it not functioning after I moved the site from an MDX based blog over
+to Svelte.
 
 This isn't using animations or transitions, but it's a good example of
 how you can use the Svelte `use:` action to manipulate the DOM.
@@ -622,20 +622,20 @@ more (a'hem) `use:`'s for it as well!
 
 <!-- Links -->
 
-[MDN Web Docs]:
+[mdn web docs]:
   https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
-[Svelte use action]:
+[svelte use action]:
   https://svelte.dev/docs#template-syntax-element-directives-use-action
 [vendure storefront demo]:
   https://sveltekit-vendure-commerce.vercel.app/
-[SvelteKit Vendure commerce]:
+[sveltekit vendure commerce]:
   https://github.com/spences10/sveltekit-vendure-commerce
 [stackoverflow answer]: https://stackoverflow.com/a/38215801
 [a11y style guide]:
   https://a11y-style-guide.com/style-guide/section-navigation.html
-[Web Animations API]:
+[web animations api]:
   https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
-[`KeyframeEffect()` constructor]:
+[`keyframeeffect()` constructor]:
   https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/KeyframeEffect#parameters
 
 <!-- Images -->

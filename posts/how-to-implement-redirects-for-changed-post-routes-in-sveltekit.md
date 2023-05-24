@@ -202,6 +202,6 @@ that I've done it.
 
 <!-- Links -->
 
-[Rodney]: https://twitter.com/askRodney
+[rodney]: https://twitter.com/askRodney
 [real time analytics]:
   https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom

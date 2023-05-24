@@ -223,7 +223,7 @@ Hope you find it useful, I know I did! 😊
 [colors section]: https://daisyui.com/docs/colors/
 [github]:
   https://github.com/spences10/scottspence.com/blob/edd5b9cf3b8a26893edb36505e2b66dc73e14923/src/app.css
-[Change Browser Scrollbar Colour with Tailwind CSS]:
+[change browser scrollbar colour with tailwind css]:
   https://scottspence.com/posts/change-scrollbar-color-tailwind-css
-[Gradient animations with Tailwind CSS and SvelteKit]:
+[gradient animations with tailwind css and sveltekit]:
   https://scottspence.com/posts/gradient-animations-in-tailwindcss

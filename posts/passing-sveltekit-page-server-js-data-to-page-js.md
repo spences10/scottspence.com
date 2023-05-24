@@ -84,5 +84,5 @@ Hope this helps anyone who comes across this.
 
 [real-time analytics to my site]:
   https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom/
-[which I've detailed it in the past]:
+[which i've detailed it in the past]:
   https://scottspence.com/posts/data-loading-in-sveltekit#two-or-more-endpoints

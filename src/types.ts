@@ -16,7 +16,7 @@ export interface Post {
 }
 
 export interface AnalyticsData {
-  visits: string 
+  visits: string
   uniques: string
   pageviews: string
   avg_duration: string | null

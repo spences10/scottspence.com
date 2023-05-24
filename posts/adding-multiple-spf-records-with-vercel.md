@@ -59,10 +59,10 @@ on my domain].
 <!-- Links -->
 
 [stackoverflow]: https://stackoverflow.com/a/51001395
-[Email Security Standards]:
+[email security standards]:
   https://www.gov.uk/government/publications/email-security-standards/sender-policy-framework-spf
-[Adding DKIM records to Vercel]:
+[adding dkim records to vercel]:
   https://scottspence.com/posts/adding-dkim-records-to-vercel
-[Can I have multiple SPF records on my domain]:
+[can i have multiple spf records on my domain]:
   https://dmarcly.com/blog/can-i-have-multiple-spf-records-on-my-domain
-[SPF record checker]: https://dmarcly.com/tools/spf-record-checker
+[spf record checker]: https://dmarcly.com/tools/spf-record-checker

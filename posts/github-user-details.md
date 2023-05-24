@@ -212,8 +212,8 @@ shift unless I add a default height to the `img` tag.
 
 ![GitHub contributions pie chart]
 
-Because this isn't being done at build time there is a noticeable delay
-in the image being served sometimes.
+Because this isn't being done at build time there is a noticeable
+delay in the image being served sometimes.
 
 There may be something I can do about it with some persisted queries
 with OneGraph, not for this post though.

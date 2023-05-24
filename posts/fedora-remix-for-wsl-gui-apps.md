@@ -13,9 +13,8 @@ As I'm all jazzed about using Cypress in WSL I thought I'd give it a
 go on Fedora.
 
 There's a few dependencies that are detailed by the Cypress CLI output
-that helps you understand what needs to be installed, there were a
-few that took a bit of searching to find but I've got it working in
-now.
+that helps you understand what needs to be installed, there were a few
+that took a bit of searching to find but I've got it working in now.
 
 Unlike the post [I did previously] on doing it with Debian based WSL
 instances like Ubuntu and Debian there's no need to set the

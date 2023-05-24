@@ -357,9 +357,9 @@ pages for this.
 
 Last section will be for visibility, you can set this to private or
 public, the default is unlisted, this means that anyone with a link
-can view it otherwise it's not publicly accessible. Once the video
-is finished uploading you can set this to public. There's also an
-option to schedule the release date.
+can view it otherwise it's not publicly accessible. Once the video is
+finished uploading you can set this to public. There's also an option
+to schedule the release date.
 
 Done! Your video will be available on YouTube.
 
