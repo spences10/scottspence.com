@@ -1,5 +1,4 @@
 import { endOfYear, startOfYear } from 'date-fns'
-import type { Post } from '../../types'
 
 interface GroupedPosts {
   [key: string]: number

@@ -4,7 +4,6 @@
   import PostCard from '$lib/components/post-card.svelte'
   import { description, name, website } from '$lib/info.js'
   import { og_image_url } from '$lib/utils'
-  import type { Post } from '../../types'
 
   export let data
   let { posts } = data

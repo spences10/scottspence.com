@@ -1,7 +1,6 @@
 import { description, name, website } from '$lib/info'
 import { get_posts } from '$lib/posts'
 import { format } from 'date-fns'
-import type { Post } from '../../types'
 
 export const prerender = true
 

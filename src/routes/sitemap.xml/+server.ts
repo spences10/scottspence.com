@@ -2,7 +2,6 @@ import { website } from '$lib/info'
 import { get_post_tags } from '$lib/post-tags'
 import { get_posts } from '$lib/posts'
 import slugify from 'slugify'
-import type { Post } from '../../types'
 
 export const prerender = true
 

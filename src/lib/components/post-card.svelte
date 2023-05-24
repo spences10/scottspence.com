@@ -1,6 +1,5 @@
 <script lang="ts">
   import { differenceInDays, format } from 'date-fns'
-  import type { Post } from '../../types'
   import EdgeGlow from './edge-glow.svelte'
 
   export let post: Post

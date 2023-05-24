@@ -1,6 +1,5 @@
 import { POPULAR_POSTS } from '$lib/info'
 import { shuffle_array, time_to_seconds } from '$lib/utils'
-import type { Post } from '../types'
 
 interface AnalyticsItem {
   visits: string
