@@ -1,7 +1,7 @@
 <script lang="ts">
-  export let sarky: string = ''
+  export let sarky = ''
 
-  let transformedText: string = ''
+  let transformedText = ''
 
   $: {
     transformedText = sarky

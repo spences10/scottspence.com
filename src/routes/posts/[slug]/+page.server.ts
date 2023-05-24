@@ -6,11 +6,10 @@ import {
   startOfMonth,
   startOfYear,
 } from 'date-fns'
-import type { AnalyticsData } from '../../../types.js'
 
 type Fetch = (url: string) => Promise<Response>
 
-function get_date_bounds(date: Date, start: boolean = true): string {
+function get_date_bounds(date: Date, start = true): string {
   const formatted_date = formatISO(date, { representation: 'date' })
   return start
     ? `${formatted_date}T00:00:00.000Z`
@@ -22,7 +21,7 @@ const fetch_visits = async (
   base_path: string,
   date_from: string,
   date_to: string,
-  date_grouping: string = '',
+  date_grouping = '',
   cache_duration: number
 ): Promise<AnalyticsData> => {
   const url = `${base_path}&date_from=${date_from}&date_to=${date_to}&date_grouping=${date_grouping}&cache_duration=${cache_duration}`

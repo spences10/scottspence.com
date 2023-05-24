@@ -1,7 +1,8 @@
-let base_url = 'https://res.cloudinary.com/defkmsrpw/image/upload'
-let square_params = 'w_800,h_800,c_fill,g_faces,q_auto,f_auto'
-let thumb_params = 'w_100,h_100,c_fill,g_faces,c_thumb,q_auto,f_auto'
-let public_id = 'scottspence.com/upscaled-media'
+const base_url = 'https://res.cloudinary.com/defkmsrpw/image/upload'
+const square_params = 'w_800,h_800,c_fill,g_faces,q_auto,f_auto'
+const thumb_params =
+  'w_100,h_100,c_fill,g_faces,c_thumb,q_auto,f_auto'
+const public_id = 'scottspence.com/upscaled-media'
 
 // Array of file names
 const fileNames = [

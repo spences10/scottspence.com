@@ -1,6 +1,6 @@
 import { tick } from 'svelte'
 
-export const get_headings = async (headings: string = 'h2') => {
+export const get_headings = async (headings = 'h2') => {
   await tick()
 
   // Clear previous headings

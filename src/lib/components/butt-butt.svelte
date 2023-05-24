@@ -41,7 +41,7 @@
 
   $: pun = random_pun()
 
-  let intersecting: boolean = false
+  let intersecting = false
 </script>
 
 <div

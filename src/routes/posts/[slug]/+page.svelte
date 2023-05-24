@@ -64,10 +64,7 @@
     show_table_of_contents = update_toc_visibility(end_of_copy, -200)
   }
 
-  const is_truthy = (
-    value: any,
-    check_month: boolean = false
-  ): boolean => {
+  const is_truthy = (value: any, check_month = false): boolean => {
     if (value === undefined || value === null) return false
     if (check_month && typeof value === 'string') {
       const month = getMonth(parseISO(value))

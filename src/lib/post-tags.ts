@@ -5,7 +5,7 @@ interface PostsByTag {
 }
 
 export const get_post_tags = async () => {
-  let posts_by_tag: PostsByTag = {}
+  const posts_by_tag: PostsByTag = {}
 
   const { posts } = await get_posts()
 

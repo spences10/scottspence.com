@@ -11,7 +11,7 @@ export const POST = async ({ request }) => {
 
   const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Contact%20Requests`
 
-  let data = {
+  const data = {
     records: [
       {
         fields: {

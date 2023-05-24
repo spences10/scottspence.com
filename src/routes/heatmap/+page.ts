@@ -48,7 +48,7 @@ function generate_heatmap_data(
 ) {
   const heatmap_data = []
   let current_week = []
-  let currentDate = new Date(year_start)
+  const currentDate = new Date(year_start)
 
   while (currentDate <= year_end) {
     const day_of_week = currentDate.getDay()

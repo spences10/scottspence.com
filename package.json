@@ -20,6 +20,7 @@
     "test:ui": "vitest --ui",
     "test:ci": "vitest run",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
+    "lint:fix": "eslint --fix",
     "format": "prettier --plugin-search-dir . --write .",
     "cspell": "cspell '**/*.md' --config cspell.json --wordsOnly"
   },

@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit'
 
 export const load = async () => {
-  let slug = 'faq'
+  const slug = 'faq'
   try {
     const Copy = await import(`../../../copy/${slug}.md`)
     return {

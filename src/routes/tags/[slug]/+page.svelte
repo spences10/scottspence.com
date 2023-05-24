@@ -6,7 +6,7 @@
   export let data
 
   const { posts_by_tag, slug: tag_slug } = data
-  const url: string = `${website}/tags/${tag_slug}`
+  const url = `${website}/tags/${tag_slug}`
 
   const tag = tag_slug ?? ''
 </script>
