@@ -1,4 +1,4 @@
-export interface Post {
+declare interface Post {
   date: string
   title: string
   tags: string[]
@@ -15,7 +15,7 @@ export interface Post {
   path: string
 }
 
-export interface AnalyticsData {
+declare interface AnalyticsData {
   visits: string
   uniques: string
   pageviews: string
