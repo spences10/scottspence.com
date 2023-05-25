@@ -408,10 +408,21 @@ depending on the status of the submission.
 
 ## With an action
 
-Since the last post SvelteKit implemented 'actions'. Actions are a way
-to add functionality to a component without having to add it to the
-component itself. This is useful for things like analytics, logging,
-and form submission.
+Since the last post form 'actions' were implemented into SvelteKit.
+Actions are a way to post data from a form to a server using the
+`<form>` element.
+
+This means that JavaScript is not required to handle the form
+submission in the browser and instead uses the default `POST` method.
+
+The form can be submitted to the server from the client (browser).
+
+In the `+page.server.ts` file I created for the `action` folder I'll
+add a `default` action to an `actions` object.
+
+In it I'm destructuring `request` and `fetch`, I can use the `request`
+object to get the form data and then use `fetch` to send the data to
+the `submit-form` endpoint.
 
 ```ts
 export const actions = {
@@ -433,10 +444,17 @@ export const actions = {
 }
 ```
 
+In the `+page.svelte` file I'll use the same markup for the name,
+email and message fields as before.
+
+In the form method, again I'll use `POST` and that's it. The form will
+be submitted to the `submit-form` endpoint via the default action in
+the `+page.server.ts` file.
+
 ```svelte
 <h2>Action</h2>
 
-<form method="POST" use:enhance>
+<form method="POST">
   <label for="name">
     <span>Name</span>
   </label>
@@ -473,6 +491,106 @@ export const actions = {
   <input type="submit" value="Submit to Airtable" />
 </form>
 ```
+
+Ok... so, what about getting some information back from the server?
+
+Much like the `data` prop that pages can use, they can also accept a
+`form` prop. You may have noticed the `body: responseJson` return in
+the `default` action in the `+page.server.ts` file.
+
+This is the response from the `submit-form` endpoint, it's the same
+response as the `fetch` call in the `handle_submit` function in the
+`+page.svelte` file. I can get the `message` from the response and use
+it again in the page to do some conditional rendering.
+
+So at the top of the `+page.svelte` file I'll add a `form` prop to the
+page component. As I'm using TypeScript I can add a type to the prop
+as well.
+
+```svelte
+<script lang="ts">
+  import type { ActionData } from './$types'
+
+  export let form: ActionData
+
+  $: submission_status = form?.body?.message
+</script>
+```
+
+This isn't strictly necessary though as SvelteKit will infer the type,
+so I can just use this:
+
+```svelte
+<script lang="ts">
+  export let form
+
+  $: submission_status = form?.body?.message
+</script>
+```
+
+This is what the full `+page.svelte` file looks like:
+
+```svelte
+<script lang="ts">
+  import { enhance } from '$app/forms'
+
+  export let form
+
+  $: submission_status = form?.body?.message
+</script>
+
+<div>
+  <h2>Action</h2>
+
+  {#if submission_status === 'submitting'}
+    <p>Submitting...</p>
+  {:else if submission_status === 'failed'}
+    <p>Submission failed.</p>
+  {:else if submission_status === 'success'}
+    <p>Submission success.</p>
+  {:else}
+    <form method="POST" use:enhance>
+      <label for="name">
+        <span>Name</span>
+      </label>
+      <input
+        type="text"
+        name="name"
+        aria-label="name"
+        placeholder="Enter your name"
+        required
+        autocomplete="off"
+      />
+      <label for="email">
+        <span>Email</span>
+      </label>
+      <input
+        type="email"
+        name="email"
+        aria-label="email"
+        placeholder="bill@hotmail.com"
+        required
+        autocomplete="off"
+      />
+      <label for="message">
+        <span>Message</span>
+      </label>
+      <textarea
+        name="message"
+        aria-label="message"
+        placeholder="Message"
+        required
+        rows="3"
+        autocomplete="off"
+      />
+      <input type="submit" value="Submit to Airtable" />
+    </form>
+  {/if}
+</div>
+```
+
+You might also have noticed the `use:enhance` in the form element.
+This is so the page doesn't refresh when the form is submitted.
 
 ## SvelteKit Superforms
 
