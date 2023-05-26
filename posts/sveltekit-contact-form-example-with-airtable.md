@@ -25,6 +25,17 @@ The previous post goes over creating a new SvelteKit project and
 setting up the Airtable base, for the sake of completeness I'll go
 over that again here.
 
+## How forms are handled in SvelteKit
+
+Because SvelteKit builds on top of the standard [Web APIs] there's not
+a great deal of difference in how you handle forms in SvelteKit over
+standard HTML form submissions.
+
+Collect data on the client &rArr; submit to the server &rArr; process
+the data &rArr; send a response back to the client.
+
+Each of the examples in this post will be following this approach.
+
 ## Create a new SvelteKit project
 
 To create the example project I'll scaffold out a new SvelteKit
@@ -594,6 +605,232 @@ This is so the page doesn't refresh when the form is submitted.
 
 ## SvelteKit Superforms
 
+A late addition to this post is the use of SvelteKit Superforms.
+
+All of the validation in the prior examples was done using the built
+in HTML attributes for the form validation. This is fine for simple
+forms but it can get a bit messy when you have more complex forms.
+
+Superforms is a package that allows you to create forms with
+validation via Zod on both the client and the server.
+
+I'll save a lot of the walkthrough for another post but I'll show you
+how to use it with the form we've been working with.
+
+So, I'll need to install SvelteKit Superforms and Zod as dependencies.
+
+```bash
+pnpm i -D sveltekit-superforms zod
+```
+
+Then in my `super-forms` folder where the `+page.server.ts` and
+`+page.svelte` files are I can define the validation schema (with Zod)
+and the default form action.
+
+The `load` function is going to return the form object wrapped in the
+`superValidate` function. This will validate the form data and return
+the form object with the validation results.
+
+```ts
+import {
+  AIRTABLE_BASE_ID,
+  AIRTABLE_API_KEY,
+} from '$env/static/private'
+import { fail } from '@sveltejs/kit'
+import { superValidate } from 'sveltekit-superforms/server'
+import { z } from 'zod'
+
+const new_contact = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  message: z.string(),
+})
+
+export const load = async event => {
+  const form = await superValidate(event, new_contact)
+  return {
+    form,
+  }
+}
+
+export const actions = {
+  default: async event => {
+    const form = await superValidate(event, new_contact)
+    if (!form.valid) fail(400, { form })
+
+    const { name, email, message } = form.data
+
+    const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/submissions`
+
+    let data = {
+      records: [
+        {
+          fields: {
+            name,
+            email,
+            message,
+          },
+        },
+      ],
+    }
+    await fetch(AIRTABLE_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    return {
+      form,
+    }
+  },
+}
+```
+
+Now in the `+page.svelte` file I can import the `superForm` function
+and destructure out the `form`, `errors` and `enhance` functions which
+can also be used to validate the form on the client.
+
+```svelte
+<script lang="ts">
+  import { superForm } from 'sveltekit-superforms/client'
+  import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte'
+  import { z } from 'zod'
+
+  export let data
+
+  let submission_status = ''
+
+  const new_contact = z.object({
+    name: z.string().min(2),
+    email: z.string().email(),
+    message: z.string().min(10),
+  })
+
+  const { form, errors, enhance } = superForm(data.form, {
+    validators: new_contact,
+    resetForm: true,
+    onSubmit: event => {
+      submission_status = 'submitting'
+    },
+    onUpdated: ({ form }) => {
+      if (form.valid) {
+        submission_status = 'success'
+      }
+      submission_status = ''
+    },
+    delayMs: 500,
+  })
+</script>
+
+<div class="mx-auto max-w-xl">
+  <h2>Super form</h2>
+
+  {#if submission_status === 'submitting'}
+    <p>Submitting...</p>
+  {:else if submission_status === 'failed'}
+    <p>Submission failed.</p>
+  {:else if submission_status === 'success'}
+    <p>Submission success.</p>
+  {:else}
+    <form method="POST" use:enhance>
+      <label for="name" class="label">
+        <span class="label-text">Name</span>
+      </label>
+      <input
+        bind:value={$form.name}
+        data-invalid={$errors.name}
+        type="text"
+        name="name"
+        aria-label="name"
+        placeholder="Enter your name"
+        required
+        autocomplete="off"
+        class="input input-bordered w-full {$errors.name
+          ? 'input-error'
+          : ''}"
+      />
+      <label for="name" class="label">
+        <span
+          class="label-text-alt {$errors.name
+            ? 'text-error'
+            : 'text-base-100'}"
+        >
+          {$errors.name}
+        </span>
+      </label>
+
+      <label for="email" class="label">
+        <span class="label-text">Email</span>
+      </label>
+      <input
+        bind:value={$form.email}
+        type="email"
+        name="email"
+        aria-label="email"
+        placeholder="bill@hotmail.com"
+        required
+        autocomplete="off"
+        class="input input-bordered w-full {$errors.email
+          ? 'input-error'
+          : ''}"
+      />
+      <label for="email" class="label">
+        <span
+          class="label-text-alt {$errors.email
+            ? 'text-error'
+            : 'text-base-100'}"
+        >
+          {$errors.email}
+        </span>
+      </label>
+
+      <label for="message" class="label">
+        <span class="label-text">Message</span>
+      </label>
+      <textarea
+        bind:value={$form.message}
+        name="message"
+        aria-label="message"
+        placeholder="Message"
+        required
+        rows="3"
+        autocomplete="off"
+        class="textarea input-bordered w-full {$errors.message
+          ? 'input-error'
+          : ''}"
+      />
+      <label for="message" class="label">
+        <span
+          class="label-text-alt {$errors.message
+            ? 'text-error'
+            : 'text-base-100'}"
+        >
+          {$errors.message}
+        </span>
+      </label>
+
+      <input
+        type="submit"
+        value="Submit to Airtable"
+        class="btn btn-primary w-full mt-10"
+      />
+    </form>
+  {/if}
+</div>
+```
+
+You cans see that I'm using a lot of conditional styling with Tailwind
+if there are errors or not. This is a really nice way to give the user
+some feedback on what they need to do to get the form to submit.
+
+This is my initial attempt at using Superforms! There's probably
+issues with this example and I'll be taking some more time to fully go
+through the SvelteKit Superforms [docs] so I'm not missing out on any
+of the features it provides.
+
 ## Airtable automation
 
 ## Conclusion
@@ -610,6 +847,8 @@ You can check out the example code for this post over on GitHib
 [sveltekit-and-airtable-contact-form-example]:
   https://github.com/spences10/sveltekit-and-airtable-contact-form-example
 [zod]: https://zod.dev/
+[web apis]: https://developer.mozilla.org/en-US/docs/Web/API
+[docs]: https://superforms.vercel.app
 
 <!-- Images -->
 
