@@ -30,6 +30,7 @@ grayscale
 iframe
 injectglobal
 isearch
+KeyframeEffect
 keyframes
 keygen
 lastmod
