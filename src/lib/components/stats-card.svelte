@@ -41,9 +41,9 @@
   const time_period_range = time_period_config.range || ''
 
   export const formatted_stats = {
-    entries: {
-      label: `Entries ${time_period_label}`,
-      value: number_crunch(stats.visits) ?? '0',
+    views: {
+      label: `Views ${time_period_label}`,
+      value: number_crunch(stats.pageviews) ?? '0',
       range: time_period_range,
     },
     visitors: {
@@ -51,9 +51,9 @@
       value: number_crunch(stats.uniques) ?? '0',
       range: time_period_range,
     },
-    views: {
-      label: `Views ${time_period_label}`,
-      value: number_crunch(stats.pageviews) ?? '0',
+    entries: {
+      label: `Entries ${time_period_label}`,
+      value: number_crunch(stats.visits) ?? '0',
       range: time_period_range,
     },
   }
