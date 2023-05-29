@@ -833,10 +833,59 @@ of the features it provides.
 
 ## Airtable automation
 
+Airtable can send you a notification email when there's a new record
+added to the table (base) this means that you're not having to check
+the table for new records.
+
+To do that there's an automations button in the top left of the Base,
+click that to open the automations panel.
+
+Down on the bottom of the automations panel there's a button to create
+a new automation, click that.
+
+Then click on the `+` button to add a new trigger, select `When record
+is created', then a properties panel will open on the right.
+
+For the configuration select the 'submissions' table, you can test the
+automation now by choosing a record from the table.
+
+In the middle section of the automation panel you can click on 'Add
+advanced logic or action' and select 'Send an email' from the list.
+
+Over in the properties panel on the right you can configure the email
+to send, you can add in the email you want the notifications sent to
+with a standard subject line.
+
+In the message section of the properties panel you can chose what data
+you want included in the email by clicking the `+` in the top right of
+the input field.
+
+I've picked the name, email and message fields to be included in the
+email. You can add in and additional message you want to be included.
+
+Once all the fields are configured you can click the 'Generate a
+preview' button at the bottom of the page to see what the email will
+look like.
+
+If you're happy with the automation and want to use it don't forget to
+toggle it on in the top left of the center panel.
+
 ## Conclusion
 
-You can check out the example code for this post over on GitHib
-[sveltekit-and-airtable-contact-form-example]
+I went through the process of creating a contact form with SvelteKit
+and used Airtable to store the form submissions.
+
+I created an endpoint to submit the data to Airtable on the server
+then demonstrated how to submit the data with an event handler, a
+SvelteKit form action and with Superforms.
+
+I hope you can take this informmation and start implementing your own
+contact forms on your projects.
+
+If you're interested, you can check out the example code for this post
+over on GitHib [sveltekit-and-airtable-contact-form-example].
+
+Thanks!
 
 <!-- Links -->
 
