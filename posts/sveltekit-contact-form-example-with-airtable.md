@@ -2,7 +2,7 @@
 date: 2023-05-21
 title: SvelteKit Contact Form Example with Airtable
 tags: ['sveltekit', 'how-to', 'guide']
-isPrivate: true
+isPrivate: false
 ---
 
 This is a how-to guide for adding a contact form to your SvelteKit
@@ -258,8 +258,8 @@ export const POST = async ({ request }) => {
 }
 ```
 
-Ok, now I've got the endpoint set up I can test it out. I'll with the
-event handler approach first.
+Ok, now I've got the endpoint set up I can test it out. I'll go with
+the event handler approach first.
 
 ## With an event handler
 
@@ -822,7 +822,7 @@ can also be used to validate the form on the client.
 </div>
 ```
 
-You cans see that I'm using a lot of conditional styling with Tailwind
+You can see that I'm using a lot of conditional styling with Tailwind
 if there are errors or not. This is a really nice way to give the user
 some feedback on what they need to do to get the form to submit.
 
@@ -843,7 +843,7 @@ click that to open the automations panel.
 Down on the bottom of the automations panel there's a button to create
 a new automation, click that.
 
-Then click on the `+` button to add a new trigger, select `When record
+Then click on the `+` button to add a new trigger, select 'When record
 is created', then a properties panel will open on the right.
 
 For the configuration select the 'submissions' table, you can test the
@@ -856,9 +856,9 @@ Over in the properties panel on the right you can configure the email
 to send, you can add in the email you want the notifications sent to
 with a standard subject line.
 
-In the message section of the properties panel you can chose what data
-you want included in the email by clicking the `+` in the top right of
-the input field.
+In the message section of the properties panel you can choose what
+data you want included in the email by clicking the `+` in the top
+right of the input field.
 
 I've picked the name, email and message fields to be included in the
 email. You can add in and additional message you want to be included.
@@ -883,7 +883,7 @@ I hope you can take this informmation and start implementing your own
 contact forms on your projects.
 
 If you're interested, you can check out the example code for this post
-over on GitHib [sveltekit-and-airtable-contact-form-example].
+over on GitHub [sveltekit-and-airtable-contact-form-example].
 
 Thanks!
 
