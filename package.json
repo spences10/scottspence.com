@@ -59,7 +59,7 @@
     "rehype-slug": "5.1.0",
     "remark-external-links": "9.0.1",
     "remark-preview": "1.0.2",
-    "remark-reading-time": "1.0.1",
+    "remark-reading-time": "2.0.1",
     "slugify": "1.6.6",
     "svead": "^0.0.8",
     "svelte": "3.59.1",
