@@ -879,7 +879,7 @@ I created an endpoint to submit the data to Airtable on the server
 then demonstrated how to submit the data with an event handler, a
 SvelteKit form action and with Superforms.
 
-I hope you can take this informmation and start implementing your own
+I hope you can take this information and start implementing your own
 contact forms on your projects.
 
 If you're interested, you can check out the example code for this post
