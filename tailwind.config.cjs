@@ -25,9 +25,7 @@ const config = {
     },
   },
   daisyui: {
-    logs: false,
-    prefix: '',
-    darkTheme: 'night',
+    themes: true,
   },
   plugins: [typography, daisyui],
 }
