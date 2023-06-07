@@ -78,14 +78,14 @@ speaking with Sean Rayment and talking about SvelteKit.
 
 ## 2022
 
-### Svelte Society London - December
+### Svelte Society London
 
 A brief overview of a project I have been working on with Vendure
 eCommerce.
 
 <YouTube youTubeId='2ijSarsHfN0' skipTo={{ h: 0, m: 15, s: 36 }} />
 
-### WeAreDevelopers - November
+### WeAreDevelopers
 
 I talked with Marc on Coffee with Developers about my role in
 organizing the Svelte London Meetup, my experiences travelling to
@@ -94,7 +94,7 @@ balance.
 
 <YouTube youTubeId='p6uWcaZ0_n4' />
 
-### Modern Frontends Live London - November
+### Modern Frontends Live London
 
 SvelteKit and the Content Layer, still not managed to get this talk
 recorded! 😂
@@ -104,18 +104,18 @@ At least this time there were some pictures!
 [![scott-at-modern-frontends-1]] [scott-at-modern-frontends-1]
 [![scott-at-modern-frontends-2]] [scott-at-modern-frontends-2]
 
-### Connect.Tech Atlanta - November
+### Connect.Tech Atlanta
 
 Building with SvelteKit! This was intended to be a workshop but turned
 into a talk about data loading in SvelteKit.
 
 <YouTube youTubeId='g-Xr6ygI0VE' />
 
-### NXT Nordics Oslo - October
+### NXT Nordics Oslo
 
 SvelteKit and the content layer
 
-### Svelte Society London - August
+### Svelte Society London
 
 Live coding example refactoring the new SvelteKit routes API changes
 at the Svelte Society London meetup.
@@ -124,7 +124,7 @@ at the Svelte Society London meetup.
 
 <YouTube youTubeId='ua6gE2zPulw' skipTo={{ h: 1, m: 16, s: 28 }} />
 
-### JSNation Workshop - June
+### JSNation Workshop
 
 Three hour workshop for [Building with SvelteKit and GraphQL].
 
@@ -132,14 +132,14 @@ Three hour workshop for [Building with SvelteKit and GraphQL].
 
 [![jsnation workshop 2022]] [jsnation workshop 2022]
 
-### Dev Journey with Tim Bourguignon - January
+### Dev Journey with Tim Bourguignon
 
 Talking with Tim Bourguignon about my career switch from VBA analyst
 developer to web developer.
 
 <Buzzsprout buzzsproutId="190346/9866589-185-scott-spence-from-vba-analyst-to-webdev" />
 
-### Developer Perspectives Episode 8 | Ale Thomas and Scott Spence - January
+### Developer Perspectives Episode 8 | Ale Thomas and Scott Spence
 
 I joined Ale for an episode of Microsoft's Developer Perspectives! A
 series championing the unique voices of the Windows community and
@@ -151,13 +151,13 @@ members from around the world.
 
 ## 2021
 
-### GraphQL Galaxy Workshop - December
+### GraphQL Galaxy Workshop
 
 [Building with SvelteKit and GraphCMS]
 
 [![GraphQL Galaxy 2021]] [GraphQL Galaxy 2021]
 
-### MMT Tech Meetup - November
+### MMT Tech Meetup
 
 SvelteKit and the Content Layer
 
@@ -165,33 +165,33 @@ SvelteKit and the Content Layer
 
 <YouTube youTubeId='LNAApZIYZUw' skipTo={{ h: 1, m: 31, s: 50 }} />
 
-### Jamstack Conf Workshop - October
+### Jamstack Conf Workshop
 
 Jamstack Conference workshop Building with Svelte and GraphQL
 
 <YouTube youTubeId='uI8am7HfWC8' />
 
-### Jamstack Explorers - October
+### Jamstack Explorers
 
 [Jamstack explorers mission on building a production ready Svelte
 project with Svelte]
 
 [![jamstack explorers]] [jamstack explorers]
 
-### Eddie Jaoude - September
+### Eddie Jaoude
 
 Live stream with Eddie Jaoude where we made a full stack CRUD app with
 Svelte.
 
 <YouTube youTubeId='aCP6sEvmYU4'/>
 
-### Developers Hangout - September
+### Developers Hangout
 
 Chatting with James Perkins about Dev Rel
 
 https://zencastr.com/z/TARGseQu
 
-### Purrfect.dev - Jul
+### Purrfect.dev
 
 Delivering Digital Content with GraphCMS
 
@@ -205,14 +205,14 @@ Delivering Digital Content with GraphCMS
 
 <!-- cSpell:ignore utkal -->
 
-### UtkalHacks 3.0 - March
+### UtkalHacks 3.0
 
 Building a blog using GatsbyJS and MDX, Build a Gatsby blog with MDX
 and Theme UI
 
 📺 [Watch it on YouTube](https://youtu.be/Mg19wDM4wS8?t=76)
 
-### MMT Tech Meet-up - Feb
+### MMT Tech Meet-up
 
 I Have a Hammer, I was invited to talk about MDX at the MMT Gatsby
 meetup.
@@ -224,7 +224,7 @@ skipTo={{ hour: 0, minute: 0, second: 553 }} />
 
 ## 2020
 
-### Scale by the Bay - November
+### Scale by the Bay
 
 Spreading the Jamstack, I was invited to talk about the jamstack at
 Scale by the Bay.
@@ -233,7 +233,7 @@ Slides here: https://ss10.dev/jam-talk
 
 <YouTube youTubeId="L7_z8rcbFPg" />
 
-### Whiskey Wednesday - October
+### Whiskey Wednesday
 
 Episode #10 - Mentioning, Finding a mentor when starting out as a
 beginner (and also after) is important and not always an easy task. In
@@ -250,7 +250,7 @@ looking for a mentor, or becoming a mentor.
   height="152px"
 />
 
-### Mintbean - Markdown Showdown, September
+### Mintbean - Markdown Showdown
 
 Markdown Showdown: all the things I know about markdown a 1 hour
 Markdown primer, which will lead into using Markdown with a Gatsby
@@ -260,7 +260,7 @@ blog with MDX.
 
 <YouTube youTubeId="VNVF7ZIUj60" />
 
-### Whiskey Wednesday - September
+### Whiskey Wednesday
 
 Episode #9 - a11y (Accessibility), Accessibility is an important part
 of every website and every developer should try implementing at least
@@ -279,7 +279,7 @@ important, and how to implement it.
   height="152px"
 />
 
-### Whiskey Wednesday - September
+### Whiskey Wednesday
 
 Episode #8 - Content Creation, Whether it's blog posts, video courses,
 live streams, or books - content creation is BIG, also for developers.
@@ -294,13 +294,13 @@ live streams, or books - content creation is BIG, also for developers.
   height="152px"
 />
 
-### Migrating Gatsby from Markdown to MDX - September
+### Migrating Gatsby from Markdown to MDX
 
 Brad Garropy (Live Stream), I joined Brad to talk him through setting
 up [MDX Embed] and ironing out some of the issues he was having after
 transitioning his site over to MDX from Markdown Remark.
 
-### Whiskey Wednesday - August
+### Whiskey Wednesday
 
 Episode #7 - Mental Well-being As A Developer, Becoming and being a
 developer is not an easy task. Many challenges await us in the daily
@@ -317,7 +317,7 @@ about common problems among developers.
   height="152px"
 />
 
-### Whiskey Wednesday - August
+### Whiskey Wednesday
 
 Episode #6 - Developer fitness, It's not always easy to stay healthy
 as a developer. Especially because you are sitting in front of a desk
@@ -333,7 +333,7 @@ developer.
   height="152px"
 />
 
-### Whiskey Wednesday - July
+### Whiskey Wednesday
 
 Episode #5 - Down the CSS rabbit hole, In this episode, we will
 discuss CSS. There are entirely different worlds of CSS out there. One
@@ -349,7 +349,7 @@ single div element (or less). We talk about all of it.
   height="152px"
 />
 
-### Whiskey Wednesday - July
+### Whiskey Wednesday
 
 Episode 4: How To Use Twitter For Yourself As A Developer, In this
 episode, we talk about how to get the most out of Twitter as a
@@ -365,7 +365,7 @@ developer and how to grow your account.
   height="152px"
 />
 
-### Whiskey Wednesday - July
+### Whiskey Wednesday
 
 Episode 3: Freelancing As A Web Developer, In this episode, we have
 some freelancing experts on the show to tell us how to get started,
@@ -382,7 +382,7 @@ freelance work.
   height="152px"
 />
 
-### Whiskey Wednesday - June
+### Whiskey Wednesday
 
 Episode 2: Learning and Unlearning How To Code, In this episode, we
 have some fantastic guests with different coding backgrounds that will
@@ -411,7 +411,7 @@ talking about the Jamstack and Gatsby JS.
   height="152px"
 />
 
-### Gatsby Recipes and MDX with James Q Quick (Live Stream) - June
+### Gatsby Recipes and MDX with James Q Quick (Live Stream)
 
 I joined James Q Quick to talk about Gatsby Recipes and MDX. We talk
 through what Recipes are, how useful they can be, and how to use them.
@@ -421,7 +421,7 @@ your Markdown.
 
 <YouTube youTubeId="eLYf3Twl00Q" />
 
-### Whiskey Wednesday - June
+### Whiskey Wednesday
 
 Episode 1: Coding Motivation, In this episode, we talk with Danny
 Thompson and Eddy Vinck about coding motivation and whether or not you
@@ -437,11 +437,11 @@ need a college degree to get a job in tech.
   height="152px"
 />
 
-### JS Roundabout - March
+### JS Roundabout
 
 <YouTube youTubeId="hZ6tO4N50Sc" />
 
-### MMT Tech Meet-up - Jan
+### MMT Tech Meet-up
 
 - [Post from Ilesh]
 
@@ -449,7 +449,7 @@ need a college degree to get a job in tech.
 
 ## 2019
 
-### API Days London - Nov
+### API Days London
 
 I was asked by [Jesse Martin] from GraphCMS if I would like to do a
 talk at API Days London so I jumped at the chance!
@@ -458,7 +458,7 @@ talk at API Days London so I jumped at the chance!
 
 [![api days london 2019]] [api days london 2019]
 
-### Internal Engineering talk - Sep
+### Internal Engineering talk
 
 I was asked to brief the Karmarama and Fjord engineering teams on what
 the Jamstack is and the advantages of using it.
