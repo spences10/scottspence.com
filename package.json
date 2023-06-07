@@ -48,7 +48,7 @@
     "husky": "8.0.3",
     "ioredis": "^5.3.2",
     "jsdom": "^22.1.0",
-    "marked": "5.0.4",
+    "marked": "5.0.5",
     "mdsvex": "0.10.6",
     "mdsvex-relative-images": "1.0.3",
     "postcss": "8.4.24",
