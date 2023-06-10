@@ -3,7 +3,10 @@
   export let markdownContent = ''
   export let rows = 3
 
-  $: markdown = marked(markdownContent)
+  $: markdown = marked(markdownContent, {
+    mangle: false,
+    headerIds: false,
+  })
 </script>
 
 <div class="mb-10 prose xs:grid xs:gap-10 xs:grid-cols-2">
