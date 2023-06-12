@@ -1,7 +1,7 @@
 <div>
   <select
     data-choose-theme
-    class="pr-9 select select-bordered select-primary select-xs"
+    class="font-sans pr-9 select select-bordered select-primary select-xs"
   >
     <option disabled selected>Theme</option>
     <option value="acid">Acid</option>
