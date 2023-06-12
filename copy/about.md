@@ -9,14 +9,13 @@
 
 ## Hi, I'm Scott
 
-I'm a developer relations engineer working with [Storyblok] to create
-content that helps remove friction and educate around the headless CMS
-space.
+I'm a developer advocate working with companies to create content that
+helps remove friction and educate around the headless CMS space.
 
 I create content written in the blog here and educational videos
 supporting the written content.
 
-I'm a second career dev that re-skilled from a VBA analyst developer
+I'm a second career dev that re-skilled from a [VBA] analyst developer
 role into web development.
 
 I have been spending a lot of time working in Svelte and SvelteKit
@@ -110,9 +109,7 @@ series covers the food delivery industry.
 
 <!-- Links -->
 
-[storyblok]: https://www.storyblok.com/
 [vba]: https://en.wikipedia.org/wiki/Visual_Basic_for_Applications
-[now]: https://zeit.co/now
 [gatsby]: https://www.gatsbyjs.com/
 [16personalities]: https://www.16personalities.com/
 [my results]: https://www.16personalities.com/profiles/ba01a67248b68
