@@ -15,14 +15,6 @@
   )
 
   let isHovering = false
-
-  function handleMouseOver() {
-    isHovering = true
-  }
-
-  function handleMouseOut() {
-    isHovering = false
-  }
 </script>
 
 <div
@@ -36,11 +28,11 @@
         src={isHovering ? ScottMugFace : MugFace}
         alt="Cartoon face Scott"
         class="rounded-full max-w-sm shadow-xl w-1/2 lg:w-full"
-        on:mouseover={handleMouseOver}
-        on:mouseout={handleMouseOut}
+        on:mouseover={() => (isHovering = !isHovering)}
+        on:mouseout={() => (isHovering = !isHovering)}
       />
       <div class="all-prose lg:mr-28">
-        <h1 class="font-bold -mb-5 text-5xl">
+        <h1 class="font-black -mb-5 text-5xl">
           <span class="block">Scott Spence</span>
           <span
             class="bg-clip-text bg-gradient-to-b from-primary to-secondary text-transparent block"

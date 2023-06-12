@@ -5,6 +5,15 @@ settings:
   excludeLinksFromLockfile: false
 
 devDependencies:
+  '@fontsource/manrope':
+    specifier: ^5.0.3
+    version: 5.0.3
+  '@fontsource/poppins':
+    specifier: ^5.0.3
+    version: 5.0.3
+  '@fontsource/victor-mono':
+    specifier: ^5.0.3
+    version: 5.0.3
   '@playwright/test':
     specifier: ^1.34.3
     version: 1.34.3
@@ -684,6 +693,18 @@ packages:
   /@eslint/js@8.42.0:
     resolution: {integrity: sha512-6SWlXpWU5AvId8Ac7zjzmIOqMOba/JWY8XZ4A7q7Gn1Vlfg/SFFIlrtHXt9nPn4op9ZPAkl91Jao+QQv3r/ukw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
+
+  /@fontsource/manrope@5.0.3:
+    resolution: {integrity: sha512-MlRhrzpIEcgAB0MFdlQ/LVD5C4XB53Pq13Wxxb3inyEAPG+gSBoHW1NKGOWwOQs22FLlengtbOkmL5br2/YASw==}
+    dev: true
+
+  /@fontsource/poppins@5.0.3:
+    resolution: {integrity: sha512-5lL2vmvmh4zbknTh1nVH9pTWyhYqAlYMHIAnkNhqo5qwMZGlr+coM1dtMwiQHRBgmHAl3ZvJ35Bj0s8cpmXZbg==}
+    dev: true
+
+  /@fontsource/victor-mono@5.0.3:
+    resolution: {integrity: sha512-VVYhtzl2rqYniLmwWSCiLAEEgNlS4J2RutdK+ghdqhNSxLwnYT/JNWQA24vBoVgbxwYaCJpniQ/YxxNSXwyGOA==}
     dev: true
 
   /@graphql-typed-document-node/core@3.2.0(graphql@16.6.0):
