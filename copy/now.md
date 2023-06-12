@@ -10,7 +10,7 @@
 
 ### Work
 
-Working with [Storyblok] as a developper relations engineer, creating
+Working with [Storyblok] as a developer relations engineer, creating
 content that helps remove friction and to educate in the headless CMS
 space.
 
