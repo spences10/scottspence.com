@@ -49,18 +49,28 @@ export const GET = async ({ url }) => {
       params,
       headers_auth
     )
-    await cache_response(cache_key, analytics_data, cache_duration)
 
-    return json(
-      {
-        analytics: analytics_data,
-      },
-      {
-        headers: {
-          'X-Robots-Tag': 'noindex, nofollow',
+    if (
+      analytics_data &&
+      'status' in analytics_data &&
+      analytics_data.status === 'OK'
+    ) {
+      await cache_response(cache_key, analytics_data, cache_duration)
+
+      return json(
+        {
+          analytics: analytics_data,
         },
-      }
-    )
+        {
+          headers: {
+            'X-Robots-Tag': 'noindex, nofollow',
+          },
+        }
+      )
+    } else {
+      console.error('Analytics API returned a bad response')
+      return json({ analytics: {} })
+    }
   } catch (error) {
     if (error instanceof Error) {
       return json({

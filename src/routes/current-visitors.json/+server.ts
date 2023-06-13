@@ -39,10 +39,8 @@ export const GET = async ({ url }) => {
     )
   }
 
-  return json({
-    error: 'Failed to fetch visitors',
-    status: 500,
-  })
+  console.error('Failed to fetch visitors from API')
+  return json({ visitors: {} })
 }
 
 const get_visitors_from_api = async (cache_duration: number) => {
@@ -56,12 +54,17 @@ const get_visitors_from_api = async (cache_duration: number) => {
       headers_auth
     )
 
-    await cache_response(
-      current_visitors_key(),
-      { visitors: data },
-      cache_duration
-    )
-    return data
+    if (data && 'status' in data && data.status === 'OK') {
+      await cache_response(
+        current_visitors_key(),
+        { visitors: data },
+        cache_duration
+      )
+      return data
+    } else {
+      console.error('Visitors API returned a bad response')
+      return null
+    }
   } catch (error) {
     console.error(`Error fetching visitors from API: ${error}`)
   }
