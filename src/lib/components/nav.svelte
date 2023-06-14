@@ -25,13 +25,13 @@
 </nav>
 
 <div
-  class="btm-nav lg:hidden border rounded-xl max-w-[95vw] mb-2 mx-auto z-10 bg-primary"
+  class="btm-nav lg:hidden border rounded-box max-w-[95vw] mb-2 mx-auto z-10 bg-primary"
 >
   {#each links as link}
     <a
       href={link}
-      class="link link-primary-content capitalize {$page.url
-        .pathname === link && `link-secondary`}"
+      class="link text-primary-content capitalize {$page.url
+        .pathname === link && `text-secondary-content`}"
     >
       {link.slice(1)}
     </a>
