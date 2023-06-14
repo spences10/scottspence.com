@@ -26,7 +26,7 @@ export const GET = async ({ url }) => {
 
   const visitors = await get_visitors_from_api(cache_duration)
 
-  if (visitors) {
+  if (visitors && visitors.visitors) {
     return json(
       {
         visitors,
@@ -37,10 +37,10 @@ export const GET = async ({ url }) => {
         },
       }
     )
+  } else {
+    console.error('Visitors API returned data in unexpected format.')
+    return json({ visitors: {} })
   }
-
-  console.error('Failed to fetch visitors from API')
-  return json({ visitors: {} })
 }
 
 const get_visitors_from_api = async (cache_duration: number) => {
@@ -54,22 +54,17 @@ const get_visitors_from_api = async (cache_duration: number) => {
       headers_auth
     )
 
-    if (data && 'status' in data && data.status === 'OK') {
-      await cache_response(
-        current_visitors_key(),
-        { visitors: data },
-        cache_duration
-      )
-      return data
-    } else {
-      console.error('Visitors API returned a bad response')
-      return null
-    }
+    await cache_response(
+      current_visitors_key(),
+      { visitors: data },
+      cache_duration
+    )
+    
+    return data
   } catch (error) {
     console.error(`Error fetching visitors from API: ${error}`)
+    return null
   }
-
-  return null
 }
 
 const get_visitors_from_cache = async () => {
