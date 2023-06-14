@@ -14,8 +14,10 @@
 
 {#if has_been_updated}
   <div class="alert alert-warning shadow-lg my-8">
-    <div>
-      <WarningTriangle />
+    <div class="flex items-center">
+      <span class="mr-5">
+        <WarningTriangle />
+      </span>
       <span>
         Hey! Thanks for stopping by! Looks like this post was updated
         <span class="font-bold italic">
@@ -32,8 +34,10 @@
   </div>
 {:else}
   <div class="alert alert-warning shadow-lg my-8">
-    <div>
-      <WarningTriangle height="24px" width="24px" />
+    <div class="flex items-center">
+      <span class="mr-5">
+        <WarningTriangle />
+      </span>
       <span>
         Hey! Thanks for stopping by! Just a word of warning, this post
         is
