@@ -13,7 +13,7 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2023-04-11" small="true" />
+  Last updated: <DateUpdated date="2023-06-15" small="true" />
 </Small>
 
 If you want me to talk about using Svelte with GraphQL, the Jamstack
@@ -25,6 +25,15 @@ Here's the list of talks, podcasts and live streams I have done
 recently.
 
 ## 2023
+
+### JSMonthly
+
+Primer on Svelte and SvelteKit and overview of loading data in
+SvelteKit.
+
+<!-- cSpell:ignore bTNFrqbFdQQ -->
+
+<YouTube youTubeId='bTNFrqbFdQQ' />
 
 ### Panel: Cloudinary Programmable Media Best Practices
 
