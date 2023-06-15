@@ -22,7 +22,6 @@
     differenceInDays,
     differenceInYears,
     format,
-    getDate,
     getMonth,
     parseISO,
   } from 'date-fns'
@@ -154,28 +153,7 @@
     <div class="divider" />
   </div>
 
-  {#if is_truthy(daily_visits)}
-    <StatsCard
-      title="Daily analytics for this post"
-      stats={daily_visits}
-      time_period="day"
-    />
-  {/if}
-  {#if is_truthy(monthly_visits) && getDate(new Date()) > 1}
-    <StatsCard
-      title="Month to date analytics for this post"
-      stats={monthly_visits}
-      time_period="month"
-    />
-  {/if}
-
-  {#if (is_truthy(yearly_visits?.date, true) && is_truthy(yearly_visits?.visits)) || (!is_truthy(monthly_visits?.visits) && is_truthy(yearly_visits?.visits))}
-    <StatsCard
-      title="Year to date analytics for this post"
-      stats={yearly_visits}
-      time_period="year"
-    />
-  {/if}
+  <StatsCard {daily_visits} {monthly_visits} {yearly_visits} />
 
   {#if is_truthy(daily_visits) || is_truthy(monthly_visits) || is_truthy(yearly_visits)}
     <div class="flex flex-col w-full mt-5 mb-10">
