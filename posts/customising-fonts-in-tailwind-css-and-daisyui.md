@@ -140,6 +140,38 @@ const config = {
 module.exports = config
 ```
 
+## Extend daisyUI theme
+
+I touched on daisyUI at the start, what I didn't mention is that it
+comes with 29 themes out of the box. All but `cyberpunk` and
+`wireframe` use a different font.
+
+Why do I bring that up? Well, with the Tailwind theme already having
+the fonts this means that it will be the same font for all the daisyUI
+themes.
+
+The default theme you get with daisyUI is `dark`, in this example I
+want to cycle through several of the themes. To do that I'll need to
+add in a theme select component and use a theme change package (also
+from the creator of daisyUI) I'll install it now:
+
+```bash
+pnpm i -D theme-change
+```
+
+I'll create a theme select component with some of the themes I want to
+cycle through. I'll keep `dark` in there also add in `light` and
+`cyberpunk`.
+
+I'll scaffold out the component as a select and add in the options for
+the theme names I want to use:
+
+```bash
+# -p created the parent directory if it doesn't exist
+mkdir src/lib/components -p
+touch src/lib/theme-select.svelte
+```
+
 <!-- Links -->
 
 [daisyUI]: https://daisyui.com/
