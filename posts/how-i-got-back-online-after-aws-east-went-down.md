@@ -1,6 +1,6 @@
 ---
 date: 2023-06-13
-updated: 2023-06-14
+updated: 2023-06-15
 title: How I got back online after AWS East went down
 tags: ['vercel', 'analytics', 'sveltekit']
 isPrivate: false
@@ -59,3 +59,15 @@ Sort of begs the question, do I really need edge rendering? I'm not
 sure, I'll see how it goes for now.
 
 Anyway, leaving this here for future reference.
+
+## References
+
+Some useful bits I found:
+
+- Vercel status page: https://www.vercel-status.com/
+- To change your Vercel function region:
+  `https://vercel.com/<vercel_user>/<project_name>/settings/functions`
+- Configuring SvelteKit fo use with Vercel edge functions:
+  https://vercel.com/docs/frameworks/sveltekit#configure-your-sveltekit-deployment
+- How to specify vercel builds location (depreciated):
+  https://github.com/orgs/vercel/discussions/1470
