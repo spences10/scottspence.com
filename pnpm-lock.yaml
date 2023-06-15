@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -51,8 +51,8 @@ devDependencies:
     specifier: 6.0.1
     version: 6.0.1(postcss@8.4.24)
   daisyui:
-    specifier: 3.0.3
-    version: 3.0.3(postcss@8.4.24)
+    specifier: 3.1.0
+    version: 3.1.0(postcss@8.4.24)
   date-fns:
     specifier: 2.30.0
     version: 2.30.0
@@ -1975,8 +1975,9 @@ packages:
       rrweb-cssom: 0.6.0
     dev: true
 
-  /daisyui@3.0.3(postcss@8.4.24):
-    resolution: {integrity: sha512-RSbXsEBj2LonvjOKEI0I64F5xFJrFrthPgxRNeAZKmACQ3NoIoP45lO6UXLW3bm8PVOUGpKf1Br2SWwc1NqnHQ==}
+  /daisyui@3.1.0(postcss@8.4.24):
+    resolution: {integrity: sha512-G4dz/bRZVvlhQ/FtezXSg0rXOXzDJ0PcnMqeLSwCYNWXxf46fNJ8LWeV5qwsYOdJbXiXoZLnwyy+BsNoWZ+Bjg==}
+    engines: {node: '>=16.9.0'}
     peerDependencies:
       postcss: ^8
     dependencies:
