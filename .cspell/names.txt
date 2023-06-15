@@ -80,6 +80,7 @@ firacode
 Fishshell
 Flexbox
 fontjoy
+Fontsource
 frappe
 freecodecamp
 Frontends
@@ -168,6 +169,7 @@ planetscale
 Pluckthun
 Pngwn
 pocketbase
+poppins
 Postma
 Pouya
 Powerline
