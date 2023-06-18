@@ -163,5 +163,5 @@ Done! Done! 😅
 <!-- Links -->
 
 [setting up fastmail with vercel]:
-  http://localhost:5174/posts/setting-up-fastmail-with-vercel
+  https://scottspence.com/posts/setting-up-fastmail-with-vercel
 [dnschecker]: https://dnschecker.org/

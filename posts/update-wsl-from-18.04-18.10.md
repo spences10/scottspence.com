@@ -125,7 +125,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [codesandbox.io]: https://codesandbox.io
 [render props]: https://reactjs.org/docs/render-props.html
 [using the react context api]:
-  http://localhost:8899/react-context-api-getting-started
+  https://scottspence.com/posts/react-context-api
 [example code]: https://codesandbox.io/s/1vnvko0zqj
 [even]: https://youtu.be/8ruJBKFrRCk?t=93
 [gatsby documentation]:

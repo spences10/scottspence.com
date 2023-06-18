@@ -261,12 +261,10 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [ask me anything]: https://github.com/spences10/ama
 [codesandbox.io]: https://codesandbox.io
 [render props]: https://reactjs.org/docs/render-props.html
-[using the react context api]:
-  http://localhost:8899/react-context-api-getting-started
+[using the react context api]:  https://scottspence.com/posts/react-context-api
 [example code]: https://codesandbox.io/s/1vnvko0zqj
 [even]: https://youtu.be/8ruJBKFrRCk?t=93
-[gatsby documentation]:
-  https://www.gatsbyjs.com/docs/use-static-query/
+[gatsby documentation]:  https://www.gatsbyjs.com/docs/use-static-query/
 
 <!-- Images -->
 
