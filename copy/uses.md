@@ -106,4 +106,4 @@ Channel.
 [wavlink usb c laptop universal docking station]:
   https://www.amazon.co.uk/gp/product/B082SR6GMB
 [making a custom config]: https://www.youtube.com/watch?v=iT47xk3F7EA
-[read the post]: http://localhost:3300/posts/windows-terminal-config
+[read the post]: https://scottspence.com/posts/windows-terminal-config

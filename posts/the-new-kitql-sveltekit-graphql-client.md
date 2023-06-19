@@ -77,6 +77,5 @@ export const houdiniClient = new HoudiniClient(fetchQuery)
 
 <!-- Links -->
 
-[getting started with kitql and graphcms]:
-  http://localhost:3000/posts/getting-started-with-kitql-and-graphcms
+[getting started with kitql and graphcms]: https://scottspence.com/posts/getting-started-with-kitql-and-graphcms
 [houdini]: https://www.houdinigraphql.com/

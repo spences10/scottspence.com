@@ -74,6 +74,6 @@ couple of PowerShell commands!
 [wsl web developer bootstrap with fedora 33]:
   https://scottspence.com/posts/fedora-bootstrap-from-scratch
 [enable guis on windows subsystem linux (wsl)]:
-  http://localhost:3300/posts/gui-with-wsl#gui-things
+  https://scottspence.com/posts/gui-with-wsl#gui-things
 [windows subsystem for linux preview]:
   https://www.microsoft.com/en-gb/p/windows-subsystem-for-linux-preview/9p9tqf7mrm4r?activetab=pivot:overviewtab
