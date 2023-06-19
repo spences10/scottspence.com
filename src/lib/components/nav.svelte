@@ -1,7 +1,13 @@
 <script lang="ts">
   import { page } from '$app/stores'
+  import { Envelope, Megaphone, News, Tag } from '$lib/icons'
 
-  let links = [`/posts`, `/tags`, `/speaking`, `/contact`]
+  let links = [
+    { href: `/posts`, title: `Posts`, icon: News },
+    { href: `/tags`, title: `Tags`, icon: Tag },
+    { href: `/speaking`, title: `Speaking`, icon: Megaphone },
+    { href: `/contact`, title: `Contact`, icon: Envelope },
+  ]
 </script>
 
 <nav
@@ -13,27 +19,40 @@
     {#each links as link}
       <li>
         <a
-          class="text-xl link link-primary capitalize {$page.url
-            .pathname === link && `link-secondary`}"
-          href={link}
+          class="flex items-center text-xl link link-primary space-x-2 {$page
+            .url.pathname === link.href && `link-secondary`}"
+          href={link.href}
         >
-          {link.slice(1)}
+          <svelte:component
+            this={link.icon}
+            height="20px"
+            width="20px"
+          />
+          <span class="inline-block align-text-bottom">
+            {link.title}
+          </span>
         </a>
       </li>
     {/each}
   </ul>
 </nav>
 
-<div
+<nav
   class="btm-nav lg:hidden border rounded-box max-w-[95vw] mb-2 mx-auto z-10 bg-primary"
 >
   {#each links as link}
-    <a
-      href={link}
-      class="link text-primary-content capitalize {$page.url
-        .pathname === link && `text-secondary-content`}"
-    >
-      {link.slice(1)}
+    <a href={link.href}>
+      <span
+        class="link text-primary-content {$page.url.pathname ===
+          link.href && `text-secondary-content`}"
+      >
+        <svelte:component
+          this={link.icon}
+          height="30px"
+          width="30px"
+        />
+        <span class="sr-only">{link.title}</span>
+      </span>
     </a>
   {/each}
-</div>
+</nav>
