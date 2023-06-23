@@ -1,7 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores'
-  import MugFace from '$lib/images/mug-face.png'
-  import ScottMugFace from '$lib/images/scott-mug-face.jpg'
+  import { ScottFace, ScottMugFace } from '$lib/assets'
   import { visitors_store } from '$lib/stores'
   import { get_current_page_visitors } from '$lib/utils'
   import { trackGoal } from 'fathom-client'
@@ -25,7 +24,7 @@
       <!-- svelte-ignore a11y-mouse-events-have-key-events -->
       <!-- svelte-ignore a11y-img-redundant-alt -->
       <img
-        src={isHovering ? ScottMugFace : MugFace}
+        src={isHovering ? ScottFace : ScottMugFace}
         alt="Cartoon face Scott"
         class="rounded-full max-w-sm shadow-xl w-1/2 lg:w-full"
         on:mouseover={() => (isHovering = !isHovering)}
@@ -67,7 +66,7 @@
         <a
           href="/contact"
           on:click={() => trackGoal(`T2YXL68Y`, 0)}
-          class="btn btn-md w-full lg:btn-lg btn-primary text-primary-content hover:text-primary-content"
+          class="btn btn-md w-full lg:btn-lg btn-primary text-primary-content hover:text-primary-content shadow-xl"
         >
           Get in Touch
         </a>

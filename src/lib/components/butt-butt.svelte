@@ -1,6 +1,6 @@
 <script lang="ts">
+  import { ButtButt } from '$lib/assets'
   import { scale_and_fade, viewport } from '$lib/utils'
-  import ButtButt from '$lib/images/buttbutt.png'
 
   export let height = '100px'
   export let width = '160px'
@@ -54,14 +54,16 @@
       Looks like you have reached the bottom of this page!
     </p>
     {#if intersecting}
-      <div class="flex justify-center mb-12">
+      <div
+        class="justify-center mb-12"
+        >
         <img
-          src={ButtButt}
-          alt="a cheeky butt"
-          {height}
-          {width}
-          class="h-full"
-          transition:scale_and_fade={{ delay: 200, duration: 400 }}
+        src={ButtButt}
+        alt="a cheeky butt"
+        {height}
+        {width}
+        class="h-full transform transition-transform duration-400 delay-200 hover:rotate-[-22deg]"
+        transition:scale_and_fade={{ delay: 200, duration: 400 }}
         />
       </div>
     {/if}

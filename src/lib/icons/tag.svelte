@@ -9,7 +9,7 @@
   viewBox="0 0 24 24"
   stroke-width="1.5"
   stroke="currentColor"
-  class="stroke-current flex-shrink-0"
+  class="text-primary-content flex-shrink-0"
   {height}
   {width}
 >
