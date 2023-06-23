@@ -18,7 +18,7 @@
       <span class="mr-5">
         <WarningTriangle />
       </span>
-      <span>
+      <span class='text-left'>
         Hey! Thanks for stopping by! Looks like this post was updated
         <span class="font-bold italic">
           <DateDistance date={new Date(updated)} /> ago.
