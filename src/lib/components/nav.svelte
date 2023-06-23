@@ -38,7 +38,7 @@
 </nav>
 
 <nav
-  class="btm-nav lg:hidden border rounded-box max-w-[95vw] mb-2 mx-auto z-10 bg-primary"
+  class="btm-nav lg:hidden rounded-box max-w-[95vw] mb-2 mx-auto z-10 bg-primary shadow-xl"
 >
   {#each links as link}
     <a href={link.href}>
