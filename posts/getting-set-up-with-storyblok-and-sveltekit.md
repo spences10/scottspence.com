@@ -65,8 +65,8 @@ These are the options I usually always pick when creating any new
 SvelteKit project. What I've picked will not impact the rest of this
 guide, especially `ESLint`, `Prettier` and `Playwright`.
 
-If you decide you want to go without `TypeScript` support then replace
-the `<script lang="ts">` tags with `<script>` in the coming examples.
+If you decide you want to go without `TypeScript` support then remove
+the `lang="ts"` from the `<script>` tag in the coming examples.
 
 If you decide to go with JavaScript with JSDoc comments then you'll
 still need to annotate for types.
@@ -119,8 +119,8 @@ from here there's a list of content, as it was a new space (start from
 scratch) there's only a home page content type shown in the main
 screen.
 
-You'll may also notice in the sidebar toward the bottom there's a
-'Switch to V2' button.
+You'll also notice in the sidebar toward the bottom there's a 'Switch
+to V2' button.
 
 [![storyblok-switch-to-v2-sidebar]] [storyblok-switch-to-v2-sidebar]
 

@@ -61,7 +61,7 @@ using shortly too!
 ```bash
 Your project is ready!
 ✔ Typescript
-  Inside Svelte components, use <script lang="ts">
+  Inside Svelte components, use lang="ts" in script tags
 ✔ ESLint
   https://github.com/sveltejs/eslint-plugin-svelte3
 ✔ Prettier
