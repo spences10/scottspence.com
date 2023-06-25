@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -87,8 +87,8 @@ devDependencies:
     specifier: 5.1.0
     version: 5.1.0
   mdsvex:
-    specifier: 0.10.6
-    version: 0.10.6(svelte@4.0.0)
+    specifier: 0.11.0
+    version: 0.11.0(svelte@4.0.0)
   mdsvex-relative-images:
     specifier: 1.0.3
     version: 1.0.3
@@ -3262,10 +3262,10 @@ packages:
       unist-util-visit: 3.1.0
     dev: true
 
-  /mdsvex@0.10.6(svelte@4.0.0):
-    resolution: {integrity: sha512-aGRDY0r5jx9+OOgFdyB9Xm3EBr9OUmcrTDPWLB7a7g8VPRxzPy4MOBmcVYgz7ErhAJ7bZ/coUoj6aHio3x/2mA==}
+  /mdsvex@0.11.0(svelte@4.0.0):
+    resolution: {integrity: sha512-gJF1s0N2nCmdxcKn8HDn0LKrN8poStqAicp6bBcsKFd/zkUBGLP5e7vnxu+g0pjBbDFOscUyI1mtHz+YK2TCDw==}
     peerDependencies:
-      svelte: 3.x
+      svelte: '>=3 <5'
     dependencies:
       '@types/unist': 2.0.6
       prism-svelte: 0.4.7
