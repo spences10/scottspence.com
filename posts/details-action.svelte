@@ -22,7 +22,7 @@
         animation.reverse()
         animation.pause()
       }
-      node.dispatchEvent(new CustomEvent('animationEnd'))
+      node.dispatchEvent(new CustomEvent('animation_end'))
     }
     return {
       update: () => {
@@ -51,7 +51,7 @@
   </button>
   <div
     use:slide={open}
-    on:animationEnd={() => {
+    on:animation_end={() => {
       console.log('=====================')
       console.log('animation ended event')
       console.log('=====================')

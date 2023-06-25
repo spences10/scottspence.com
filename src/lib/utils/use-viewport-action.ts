@@ -2,7 +2,7 @@
 
 let intersectionObserver: IntersectionObserver
 
-function ensureIntersectionObserver() {
+function ensure_intersection_observer() {
   if (intersectionObserver) return
 
   intersectionObserver = new IntersectionObserver(
@@ -10,17 +10,17 @@ function ensureIntersectionObserver() {
       entries
         .filter(({ isIntersecting }) => isIntersecting)
         .forEach(entry => {
-          entry.target.dispatchEvent(new CustomEvent('enterViewport'))
+          entry.target.dispatchEvent(new CustomEvent('enter_viewport'))
         })
     },
     {
-      rootMargin: '1000px',
+      rootMargin: '0px',
     }
   )
 }
 
 export default function viewport(element: Element) {
-  ensureIntersectionObserver()
+  ensure_intersection_observer()
 
   intersectionObserver.observe(element)
 
