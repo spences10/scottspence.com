@@ -3,7 +3,7 @@
   import { ScottFace, ScottMugFace } from '$lib/assets'
   import { visitors_store } from '$lib/stores'
   import { get_current_page_visitors } from '$lib/utils'
-  import { trackGoal } from 'fathom-client'
+  import * as Fathom from 'fathom-client'
 
   let current_path = $page.url.pathname
   let content = $visitors_store?.visitors?.content || []
@@ -65,7 +65,7 @@
         </p>
         <a
           href="/contact"
-          on:click={() => trackGoal(`T2YXL68Y`, 0)}
+          on:click={() => Fathom.trackGoal(`T2YXL68Y`, 0)}
           class="btn btn-md w-full lg:btn-lg btn-primary text-primary-content hover:text-primary-content shadow-xl"
         >
           Get in Touch

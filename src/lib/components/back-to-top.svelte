@@ -24,7 +24,7 @@
 {#if show_scroll_button}
   <button
     on:click={scroll_to_top}
-    transition:fly={{ y: 200, duration: 300 }}
+    transition:fly|global={{ y: 200, duration: 300 }}
     class="fixed bottom-20 lg:bottom-8 right-4 lg:right-8 btn btn-secondary normal-case font-normal shadow-2xl focus:outline-none focus:ring-2 focus:ring-accent"
     aria-label="Back to top"
     data-testid="back-to-top"

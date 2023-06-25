@@ -13,7 +13,7 @@
     {isOpen ? `Close` : buttonText}
   </button>
   {#if isOpen}
-    <div transition:slide>
+    <div transition:slide|global>
       <slot />
     </div>
   {/if}

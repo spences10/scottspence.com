@@ -4,7 +4,7 @@
   import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
   import { popular_posts_store, visitors_store } from '$lib/stores'
   import { number_crunch } from '$lib/utils'
-  import { trackGoal } from 'fathom-client'
+  import * as Fathom from 'fathom-client'
 </script>
 
 <footer class="footer p-10 bg-primary text-primary-content">
@@ -52,7 +52,7 @@
     {#each SITE_LINKS as link}
       <a
         href={`/${link.slug}`}
-        on:click={() => trackGoal(link.id, 0)}
+        on:click={() => Fathom.trackGoal(link.id, 0)}
         class="text-primary-content hover:opacity-50"
       >
         {link.title}

@@ -2,7 +2,7 @@
   import { page } from '$app/stores'
   import { popular_posts_store } from '$lib/stores'
   import { number_crunch } from '$lib/utils'
-  import { trackGoal } from 'fathom-client'
+  import * as Fathom from 'fathom-client'
 </script>
 
 <div class="m-0 mb-20 sm:-mx-30 lg:-mx-40">
@@ -16,7 +16,7 @@
       <a
         data-sveltekit-reload
         href={$page.url.origin + post.pathname}
-        on:click={() => trackGoal(`WKHRXHV8`, 0)}
+        on:click={() => Fathom.trackGoal(`WKHRXHV8`, 0)}
         class="h-full"
       >
         <aside

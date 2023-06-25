@@ -5,7 +5,7 @@
 
 {#if headings.length}
   <aside
-    transition:fade
+    transition:fade|global
     class="bg-base-100 rounded-box shadow-lg w-64 table-of-contents lg:block hidden"
   >
     <div class="">

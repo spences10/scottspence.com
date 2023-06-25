@@ -46,30 +46,31 @@
 
 <div
   use:viewport
-  on:enterViewport={() => (intersecting = true)}
-  on:exitViewport={() => (intersecting = false)}
+  on:enter_viewport={() => (intersecting = true)}
+  on:exit_viewport={() => (intersecting = false)}
 >
   <aside class="mb-12 text-center all-prose">
     <p class="mb-6">
       Looks like you have reached the bottom of this page!
     </p>
     {#if intersecting}
-      <div
-        class="justify-center mb-12"
-        >
+      <div class="justify-center mb-12">
         <img
-        src={ButtButt}
-        alt="a cheeky butt"
-        {height}
-        {width}
-        class="h-full transform transition-transform duration-400 delay-200 hover:rotate-[-22deg]"
-        transition:scale_and_fade={{ delay: 200, duration: 400 }}
+          src={ButtButt}
+          alt="a cheeky butt"
+          {height}
+          {width}
+          class="h-full transform transition-transform duration-400 delay-200 hover:rotate-[-22deg]"
+          transition:scale_and_fade|global={{
+            delay: 300,
+            duration: 500,
+          }}
         />
       </div>
     {/if}
     <p class="mb-6">Bummer!</p>
     <p class="mb-6">{pun}</p>
-    <button class="btn btn-xs" on:click={random_pun}>
+    <button class="btn btn-xs rounded-box" on:click={random_pun}>
       pun me up
     </button>
   </aside>

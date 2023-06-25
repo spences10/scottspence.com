@@ -9,7 +9,7 @@
 
 <div
   use:viewport
-  on:enterViewport={() => (intersecting = true)}
+  on:on:enter_viewport) => (intersecting = true)}
   on:exitViewport={() => (intersecting = false)}
 >
   {#if intersecting}

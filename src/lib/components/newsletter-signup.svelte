@@ -1,6 +1,6 @@
 <script lang="ts">
   import { scale_and_fade } from '$lib/utils'
-  import { trackGoal } from 'fathom-client'
+  import * as Fathom from 'fathom-client'
 
   let email = ''
   let success = false
@@ -42,7 +42,7 @@
 <div class="m-0 -mx-30 mb-10 max-h-96 lg:-mx-40">
   {#if success}
     <div
-      in:scale_and_fade={{ delay: 400, duration: 400 }}
+      in:scale_and_fade|global={{ delay: 400, duration: 400 }}
       class="mx-auto text-center max-w-7xl py-12 lg:py-16 lg:px-8"
     >
       <div
@@ -63,7 +63,7 @@
     </div>
   {:else}
     <div
-      out:scale_and_fade={{ delay: 200, duration: 400 }}
+      out:scale_and_fade|global={{ delay: 200, duration: 400 }}
       class="mx-auto text-primary-content max-w-7xl py-12 lg:py-16 lg:px-8"
     >
       <div
@@ -101,7 +101,7 @@
                   type="submit"
                   class="btn btn-secondary"
                   on:click={() => {
-                    trackGoal(`ZWGL5VLX`, 0)
+                    Fathom.trackGoal(`ZWGL5VLX`, 0)
                   }}
                   value="sign me up!"
                 />
