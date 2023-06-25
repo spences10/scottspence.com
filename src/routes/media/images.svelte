@@ -27,6 +27,7 @@
   <div class="flex gap-2 justify-between">
     {#each images as image}
       <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
       <div on:click={() => handleClick(image)}>
         <img
           class="cursor-pointer shadow-xl"
