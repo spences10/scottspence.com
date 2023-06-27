@@ -7,8 +7,16 @@ isPrivate: true
 
 <script>
   import {
-    DateDistance as DD
+    DateDistance as DD,
+    Banner,
   } from '$lib/components'
+
+  const options = {
+    type: 'info',
+    message: `If you have more than one handle function then you can use the
+      <a target="_blank" rel="noopener noreferrer" href='https://kit.svelte.dev/docs/modules#sveltejs-kit-hooks-sequence'>sequence helper function in SvelteKit</a>.
+    `
+  }
 </script>
 
 This guide will cover how to add a cookie-based theme selection to a
@@ -84,7 +92,96 @@ The example project now uses the approach used by [Script Raccoon]
 from their blog post [How to implement a cookie-based dark mode toggle
 in SvelteKit]. I've adapted this approach to use the daisyUI themes.
 
-## Server hooks
+I'm going to need to have a list of all the available themes so I can
+check if the user has selected a valid theme. I'm going to add this to
+a `src/lib/themes/index.ts` file.
+
+It looks a little like this:
+
+```ts
+export const themes = [
+  'acid',
+  'aqua',
+  'etc...',
+  'all-the-daisyui-themes',
+]
+```
+
+I'm mentioning this now because I'll need this file in the next
+section.
+
+You can get a [full list of the themes] from the example repo.
+
+## SvelteKit server hooks
+
+So, SvelteKit has a `hooks.server.ts` (also `hooks.client.ts`) file
+that you can effectively use as middleware, so this means you can
+intercept the request from the client to the server before the
+response from the server gets back to the client.
+
+<Banner {options} />
+
+To make sure that I'm not reloading the selected theme after the page
+has loaded and avoid the "Flash of Wrong Theme" (FOWT) I'm going to
+use the `hooks.server.ts` file to set the theme via a cookie before
+the page loads by rewriting the `data-theme` attribute.
+
+I'll import the `themes` array from the `src/lib/themes/index.ts` file
+and use it to check if the user has selected a valid theme in the
+`handle` function.
+
+```ts
+import { themes } from '$lib/themes'
+
+export const handle = async ({ event, resolve }) => {
+  const theme = event.cookies.get('theme')
+
+  if (!theme || !themes.includes(theme)) {
+    return await resolve(event)
+  }
+
+  return await resolve(event, {
+    transformPageChunk: ({ html }) => {
+      return html.replace('data-theme=""', `data-theme="${theme}"`)
+    },
+  })
+}
+```
+
+What the code is doing here is checking if the user has a cookie named
+`theme` and if it's a valid theme. If it's not a valid theme then it
+will just return the response from the original request.
+
+If the user has a valid theme then it will return the response from
+the original request but with a `transformPageChunk` function that
+will replace the `data-theme` attribute with the theme from the
+cookie.
+
+Ok, sweet! So where's that `data-theme` attribute go?
+
+The `src/app.html` file, this is where the project is built into when
+it's compiled.
+
+Here's what it looks like in the example project:
+
+```html
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>
+```
+
+You might notice that the property value is empty, this is because
+this is the default theme. This is what will be replaced by the
+`transformPageChunk` function.
 
 ## Persisting User's Theme Selection with Cookies
 
@@ -108,3 +205,7 @@ in SvelteKit]. I've adapted this approach to use the daisyUI themes.
 [How to implement a cookie-based dark mode toggle in SvelteKit]:
   https://scriptraccoon.dev/blog/darkmode-toggle-sveltekit
 [Script Raccoon]: https://scriptraccoon.dev
+[`sequence` helper function]:
+  https://kit.svelte.dev/docs/modules#sveltejs-kit-hooks-sequence
+[full list of the themes]:
+  https://github.com/spences10/sveltekit-theme-switch-example/blob/5489c1843b42bb8c3162e22760a55b88a3e7c0b0/src/lib/themes/index.ts
