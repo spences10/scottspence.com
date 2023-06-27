@@ -180,14 +180,48 @@ Here's what it looks like in the example project:
 ```
 
 You might notice that the property value is empty, this is because
-this is the default theme. This is what will be replaced by the
-`transformPageChunk` function.
+it's going to get written to each time by the hooks file with the
+`transformPageChunk` function if the theme is changed on the client.
 
-## Persisting User's Theme Selection with Cookies
+## Theme select component
 
-## Understanding the 'SameSite' Attribute Warning in Firefox
+## 'SameSite' Attribute Warning in Firefox
+
+When I was working with this in development I encountered a warning in
+Firefox stating: "Cookie does not have a proper SameSite attribute
+value".
+
+So, Firefox is saying "Cookie does not have a proper SameSite
+attribute value", it's the browser's way of asking for more
+instructions on how to use the site's cookies.
+
+Cookies are like reminders, or in this case a way of telling the
+browser the users preference. The `SameSite` attribute is a rule that
+tells the browser when and where it's okay to share this information.
+
+Firefox and other browsers want website developers to make clear rules
+for their cookies. If you don't, Firefox will make a safe but limited
+rule for you and display that warning to let you know.
 
 ## Configuring 'SameSite' Attribute for Theme Cookies
+
+So, how can I make a clear rule for my theme cookies and get rid of
+that warning? The SameSite attribute has three options: `Strict`,
+`Lax`, and `None`.
+
+- `Strict`: This is like a "keep to self" rule. The browser will only
+  use the cookies on my site and won't share them anywhere else.
+- `Lax`: This rule is a bit relaxed (hence 'Lax'). The browser can use
+  the cookies on my site and also when you click a link that takes you
+  to another site.
+- `None`: This is like a "share with everyone" rule. The browser can
+  use cookies on any site. But, because it's not very safe, it must be
+  paired with another rule that says "only share over secure
+  connections".
+
+In our case, the Lax rule is the best fit. It provides a balance of
+being able to remember the theme choice while still keeping my
+information secure.
 
 ## Elevating User Experience with Custom Theme Selection
 
