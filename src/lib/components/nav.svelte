@@ -23,11 +23,14 @@
             .url.pathname === link.href && `link-secondary`}"
           href={link.href}
         >
-          <svelte:component
-            this={link.icon}
-            height="20px"
-            width="20px"
-          />
+          <span class=''>
+            <svelte:component
+              this={link.icon}
+              height="20px"
+              width="20px"
+              classes="link link-primary"
+            />
+          </span>
           <span class="inline-block align-text-bottom">
             {link.title}
           </span>

@@ -1,6 +1,7 @@
 <script lang="ts">
   export let height = '40px'
   export let width = '40px'
+  export let classes = ''
 </script>
 
 <svg
@@ -9,7 +10,7 @@
   viewBox="0 0 24 24"
   stroke-width="1.5"
   stroke="currentColor"
-  class="text-primary-content flex-shrink-0"
+  class={classes ? classes : 'text-primary-content flex-shrink-0'}
   {height}
   {width}
 >
