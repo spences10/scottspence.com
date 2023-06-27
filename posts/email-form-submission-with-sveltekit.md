@@ -557,7 +557,7 @@ I've selected the default for all the CLI options, here's what I have:
 ```bash
 ➜ vc
 Vercel CLI 23.0.1
-? Set up and deploy “~/repos/svelte-kit-form-submission”? [Y/n] y
+? Set up and deploy "~/repos/svelte-kit-form-submission"? [Y/n] y
 ? Which scope do you want to deploy to? Scott Spence
 ? Link to existing project? [y/N] n
 ? What's your project's name? svelte-kit-form-submission

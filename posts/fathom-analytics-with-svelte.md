@@ -447,7 +447,7 @@ the defaults (hit enter) for each prompt:
 
 ```bash
 Vercel CLI 23.1.2
-? Set up and deploy “~/repos/sveltekit-and-fathom”? [Y/n] y
+? Set up and deploy "~/repos/sveltekit-and-fathom"? [Y/n] y
 ? Which scope do you want to deploy to? Scott Spence
 ? Link to existing project? [y/N] n
 ? What’s your project’s name? sveltekit-and-fathom

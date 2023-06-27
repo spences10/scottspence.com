@@ -48,7 +48,7 @@ APIs > the backend for the browser
 (pre rendered) Markup > html, css, markdown, templating languages
 
 Specifically, markup in the Jamstack terminology refers to
-“pre-rendered” markup or content served in its final form, HTML.
+"pre-rendered" markup or content served in its final form, HTML.
 
 One interesting thing to note is that none of these technologies are
 new.

@@ -8,9 +8,9 @@ isPrivate: false
 No doubt you have heard of Git or GitHub for source control, but
 **what is source control?**
 
-> “Revision control (also known as version control, source control or
+> "Revision control (also known as version control, source control or
 > (source) code management (SCM)) is the management of multiple
-> revisions of the same unit of information.”
+> revisions of the same unit of information.
 
 Cool story br0! In other words: Source control allows distributed work
 in teams of any size, at different locations, while avoiding conflicts
@@ -20,7 +20,7 @@ Really!? Thanks for clearing that up!
 
 Lets look at it this way…
 
-> In its simplest term it's like a “Save As”. You want the new file
+> In its simplest term it's like a "Save As". You want the new file
 > without getting rid of the changes on the old one. It's an everyday
 > situation, except on a software project there is the potential for a
 > lot of changes.
@@ -96,7 +96,7 @@ It can get a bit overwhelming though, especially if you get out of
 sync, i.e. forget to pull a change made on the remote then try to
 check your changes in before pulling the changes into your local
 version. I'm by no means confident if things go a bit wrong but I have
-developed a “[Commit Often Perfect Later]” approach so if you do break
+developed a "[Commit Often Perfect Later]" approach so if you do break
 something you didn't lose too much of you valuable time trying to work
 out what went wrong where.
 
@@ -116,7 +116,7 @@ In it I cover these situations:
 - Make a new project on your machine that you want to add to GitHub?
   Look here.
 - Cloning a repo from someone else's GitHub and pushing it to a repo
-  on my GitHub, or “I didn't make a fork, what do I do now!”
+  on my GitHub, or "I didn't make a fork, what do I do now!"
 - You have a fork which you need to update before making any changes.
 
 Workflow will be different for differing situations, for me as a noob
