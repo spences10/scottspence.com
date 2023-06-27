@@ -1,5 +1,5 @@
 ---
-date: 2023-06-18
+date: 2023-06-26
 title: Customising Fonts in Tailwind CSS and daisyUI
 tags: ['css', 'tailwind', 'how-to', 'daisyui', 'sveltekit']
 isPrivate: true
@@ -143,7 +143,7 @@ module.exports = config
 ## Extend daisyUI theme
 
 I touched on daisyUI at the start, what I didn't mention is that it
-comes with 29 themes out of the box. All but `cyberpunk` and
+comes with 29 themes out of the box 🤯. All but `cyberpunk` and
 `wireframe` use a different font.
 
 Why do I bring that up? Well, with the Tailwind theme already having
@@ -172,6 +172,15 @@ mkdir src/lib/components -p
 touch src/lib/theme-select.svelte
 ```
 
+## Thanks
+
+Massive thanks to [Script Raccoon] for helping me understand how to
+use a theme in the cookies! The dark mode toggle example they made,
+you can find that on their blog where they detail [How to implement a
+cookie-based dark mode toggle in SvelteKit] give it a read!
+
+## Conclusion
+
 <!-- Links -->
 
 [daisyUI]: https://daisyui.com/
@@ -186,3 +195,6 @@ touch src/lib/theme-select.svelte
   https://play.tailwindcss.com/LzYodJ0VMd?file=config
 [how to set up svelte with tailwind]:
   https://scottspence.com/posts/how-to-set-up-svelte-with-tailwind
+[How to implement a cookie-based dark mode toggle in SvelteKit]:
+  https://scriptraccoon.dev/blog/darkmode-toggle-sveltekit
+[Script Raccoon]: https://scriptraccoon.dev
