@@ -1,8 +1,8 @@
 ---
-date: 2023-06-27
+date: 2023-06-28
 title: Cookie-Based Theme Selection in SvelteKit with daisyUI
 tags: ['sveltekit', 'daisyui', 'tailwind', 'how-to']
-isPrivate: true
+isPrivate: false
 ---
 
 <script>
@@ -83,18 +83,18 @@ module.exports = config
 
 I have a [longstanding example project] that uses SvelteKit and
 daisyUI for using all the daisyUI themes. If you're interested in how
-to this was done before using cookies then check out the files [from
-this commit]. You can see I was using [`theme-change`] (again by
-[Pouya]) for setting the theme by adding a `data-theme` attribute to
-the `html` element.
+this was done before using cookies then check out the files [from this
+commit]. You can see I was using [`theme-change`] (again by [Pouya])
+for setting the theme by adding a `data-theme` attribute to the `html`
+element.
 
 The example project now uses the approach used by [Script Raccoon]
 from their blog post [How to implement a cookie-based dark mode toggle
 in SvelteKit]. I've adapted this approach to use the daisyUI themes.
 
-I'm going to need to have a list of all the available themes so I can
-check if the user has selected a valid theme. I'm going to add this to
-a `src/lib/themes/index.ts` file.
+First up I'm going to need to have a list of all the available themes
+from daisyUI so I can check if the user has selected one of the themes
+already. I'm going to add this to a `src/lib/themes/index.ts` file.
 
 It looks a little like this:
 
@@ -110,7 +110,8 @@ export const themes = [
 I'm mentioning this now because I'll need this file in the next
 section.
 
-You can get a [full list of the themes] from the example repo.
+If you're interested, you can get a [full list of the themes] from the
+example repo.
 
 ## SvelteKit server hooks
 
@@ -152,10 +153,10 @@ What the code is doing here is checking if the user has a cookie named
 `theme` and if it's a valid theme. If it's not a valid theme then it
 will just return the response from the original request.
 
-If the user has a valid theme then it will return the response from
-the original request but with a `transformPageChunk` function that
-will replace the `data-theme` attribute with the theme from the
-cookie.
+If the user has a theme in the daisyUI themes array then it will
+return the response from the original request but with a
+`transformPageChunk` function that will replace the `data-theme`
+attribute with the theme from the cookie.
 
 Ok, sweet! So where's that `data-theme` attribute go?
 
@@ -181,9 +182,145 @@ Here's what it looks like in the example project:
 
 You might notice that the property value is empty, this is because
 it's going to get written to each time by the hooks file with the
-`transformPageChunk` function if the theme is changed on the client.
+`transformPageChunk` function if the theme has been set on the client.
 
 ## Theme select component
+
+Now I can create the theme select component, for now I'll focus on
+getting the themes from the daisyUI themes array and displaying them
+in a select element.
+
+```svelte
+<script lang="ts">
+  import { themes } from './themes'
+</script>
+
+<div class="mb-8">
+  <select
+    data-choose-theme
+    class="select select-bordered select-primary w-full max-w-3xl text-xl capitalize"
+  >
+    <option disabled selected>Choose a theme</option>
+    {#each themes as theme}
+      <option value={theme} class="capitalize">{theme}</option>
+    {/each}
+  </select>
+</div>
+```
+
+Aight! Now I can select through all the themes, but I can't change the
+theme yet. So I'll need to create a function that will change the
+theme when the user selects a theme from the select box.
+
+I'll add that in now and bind the `on:change` event on the select box
+to the function.
+
+```svelte
+<script lang="ts">
+  import { themes } from './themes'
+
+  function set_theme(event: Event) {
+    const select = event.target as HTMLSelectElement
+    const theme = select.value
+    if (themes.includes(theme)) {
+      const one_year = 60 * 60 * 24 * 365
+      window.localStorage.setItem('theme', theme)
+      document.cookie = `theme=${theme}; max-age=${one_year}; path=/;`
+      document.documentElement.setAttribute('data-theme', theme)
+      current_theme = theme
+    }
+  }
+</script>
+
+<div class="mb-8">
+  <select
+    data-choose-theme
+    class="select select-bordered select-primary w-full max-w-3xl text-xl capitalize"
+    on:change={set_theme}
+  >
+    <option disabled selected> Choose a theme </option>
+    {#each themes as theme}
+      <option value={theme} class="capitalize">{theme}</option>
+    {/each}
+  </select>
+</div>
+```
+
+So the `set_theme` function is getting the value from the select box
+when it changes, checking if the theme is in the daisyUI themes array
+and if it is then it's setting the theme in the `localStorage`.
+
+Then it creates a cookie which is storing the theme name in it, it's
+also setting the `max-age` to one year, the `path` to `/` (so for the
+whole site).
+
+Lastly it's setting the `data-theme` attribute on the
+`documentElement` to the selected theme.
+
+That's great! Now when I refresh the page there's no "Flash of Wrong
+Theme" (FOWT)
+
+BUT! The selected theme isn't shown in the select box and it defaults
+back to the first item in the box. So there's no indication of what
+theme is being used.
+
+So, I'll expand on the current example by creating a variable to store
+the current theme. Once the page has loaded I'll check if the user has
+a theme set in the `localStorage` and if they do then I can update the
+current theme variable to the theme from the `localStorage`.
+
+```svelte
+<script lang="ts">
+  import { onMount } from 'svelte'
+  import { themes } from './themes'
+
+  let current_theme = ''
+
+  onMount(() => {
+    if (typeof window !== 'undefined') {
+      const theme = window.localStorage.getItem('theme')
+      if (theme && themes.includes(theme)) {
+        document.documentElement.setAttribute('data-theme', theme)
+        current_theme = theme
+      }
+    }
+  })
+
+  function set_theme(event: Event) {
+    const select = event.target as HTMLSelectElement
+    const theme = select.value
+    if (themes.includes(theme)) {
+      const one_year = 60 * 60 * 24 * 365
+      window.localStorage.setItem('theme', theme)
+      document.cookie = `theme=${theme}; max-age=${one_year}; path=/;`
+      document.documentElement.setAttribute('data-theme', theme)
+      current_theme = theme
+    }
+  }
+</script>
+
+<div class="mb-8">
+  <select
+    bind:value={current_theme}
+    data-choose-theme
+    class="select select-bordered select-primary w-full max-w-3xl text-xl capitalize"
+    on:change={set_theme}
+  >
+    <option value="" disabled={current_theme !== ''}>
+      Choose a theme
+    </option>
+    {#each themes as theme}
+      <option value={theme} class="capitalize">{theme}</option>
+    {/each}
+  </select>
+</div>
+```
+
+I can then bind the `value` of the select box to the `current_theme`
+variable and set the `disabled` attribute on the first option to
+disable it if the `current_theme` variable is not empty.
+
+Sweet!
 
 ## 'SameSite' Attribute Warning in Firefox
 
@@ -219,13 +356,51 @@ that warning? The SameSite attribute has three options: `Strict`,
   paired with another rule that says "only share over secure
   connections".
 
-In our case, the Lax rule is the best fit. It provides a balance of
+In my case, the Lax rule is the best fit. It provides a balance of
 being able to remember the theme choice while still keeping my
 information secure.
 
-## Elevating User Experience with Custom Theme Selection
+So, in the `set_theme` function I can add the `SameSite` attribute to
+where the cookie is being set.
 
-## Conclusion: The Power of Cookie-Based Theme Selection in SvelteKit with DaisyUI
+```ts
+function set_theme(event: Event) {
+  const select = event.target as HTMLSelectElement
+  const theme = select.value
+  if (themes.includes(theme)) {
+    const one_year = 60 * 60 * 24 * 365
+    window.localStorage.setItem('theme', theme)
+    document.cookie = `theme=${theme}; max-age=${one_year}; path=/; SameSite=Lax;`
+    document.documentElement.setAttribute('data-theme', theme)
+    current_theme = theme
+  }
+}
+```
+
+## Conclusion
+
+There you go! A guide to implementing cookie-based theme selection in
+SvelteKit using daisyUI.
+
+Through the use of cookies, I was able to eliminate the "Flash of
+Wrong Theme" effect, providing a more seamless transition and
+continuity across user sessions.
+
+The SameSite attribute was an interesting touch, ensuring cookies are
+used in a secure and controlled manner.
+
+Even though the cookie is non-essential, setting appropriate security
+measures is a good practice.
+
+In this guide, I leveraged various aspects of SvelteKit, including
+server hooks and lifecycle functions.
+
+## Thanks
+
+Once again thanks to [Script Raccoon] for the great article on [How to
+implement a cookie-based dark mode toggle in SvelteKit].
+
+Also thanks to [Pouya] for [daisyUI] chef kiss!
 
 <!-- Links -->
 
