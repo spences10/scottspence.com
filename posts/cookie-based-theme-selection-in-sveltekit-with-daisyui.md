@@ -267,7 +267,7 @@ theme is being used.
 So, I'll expand on the current example by creating a variable to store
 the current theme. Once the page has loaded I'll check if the user has
 a theme set in the `localStorage` and if they do then I can update the
-current theme variable to the theme from the `localStorage`.
+current theme variable to the theme from `localStorage`.
 
 ```svelte
 <script lang="ts">
@@ -328,9 +328,8 @@ When I was working with this in development I encountered a warning in
 Firefox stating: "Cookie does not have a proper SameSite attribute
 value".
 
-So, Firefox is saying "Cookie does not have a proper SameSite
-attribute value", it's the browser's way of asking for more
-instructions on how to use the site's cookies.
+So, Firefox is saying it needs more instructions on how to use the
+site's cookies.
 
 Cookies are like reminders, or in this case a way of telling the
 browser the users preference. The `SameSite` attribute is a rule that
@@ -356,9 +355,8 @@ that warning? The SameSite attribute has three options: `Strict`,
   paired with another rule that says "only share over secure
   connections".
 
-In my case, the Lax rule is the best fit. It provides a balance of
-being able to remember the theme choice while still keeping my
-information secure.
+In my case, the `Strict` rule is the best fit. It's only needed for
+this site.
 
 So, in the `set_theme` function I can add the `SameSite` attribute to
 where the cookie is being set.
@@ -370,7 +368,7 @@ function set_theme(event: Event) {
   if (themes.includes(theme)) {
     const one_year = 60 * 60 * 24 * 365
     window.localStorage.setItem('theme', theme)
-    document.cookie = `theme=${theme}; max-age=${one_year}; path=/; SameSite=Lax;`
+    document.cookie = `theme=${theme}; max-age=${one_year}; path=/; SameSite=Strict;`
     document.documentElement.setAttribute('data-theme', theme)
     current_theme = theme
   }
@@ -383,8 +381,8 @@ There you go! A guide to implementing cookie-based theme selection in
 SvelteKit using daisyUI.
 
 Through the use of cookies, I was able to eliminate the "Flash of
-Wrong Theme" effect, providing a more seamless transition and
-continuity across user sessions.
+Wrong Theme" effect, giving a seamless transition for the selected
+theme.
 
 The SameSite attribute was an interesting touch, ensuring cookies are
 used in a secure and controlled manner.
