@@ -26,7 +26,7 @@
       <img
         src={isHovering ? ScottFace : ScottMugFace}
         alt="Cartoon face Scott"
-        class="rounded-full max-w-sm shadow-xl w-1/2 lg:w-full"
+        class="rounded-full max-w-sm shadow-xl w-1/2 lg:w-full max-h-96 max-w-96"
         on:mouseover={() => (isHovering = !isHovering)}
         on:mouseout={() => (isHovering = !isHovering)}
       />
