@@ -25,6 +25,8 @@ export const GET = async () => {
     { page: `privacy-policy`, updated: `2022-08-22` },
     { page: `speaking`, updated: `2023-01-17` },
     { page: `uses`, updated: `2022-08-22` },
+    { page: `tags`, updated: `2023-04-22` },
+    { page: `media`, updated: `2022-03-13` },
   ]
 
   const body = render(pages, tags, posts_metadata)
