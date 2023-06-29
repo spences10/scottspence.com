@@ -159,6 +159,16 @@ export const SITE_LINKS = [
     slug: `media`,
     id: `HRKVII5W`,
   },
+  {
+    title: `Privacy Policy`,
+    slug: `privacy-policy`,
+    id: `O79FG7SH`,
+  },
+  {
+    title: `Cookie Policy`,
+    slug: `cookie-policy`,
+    id: `VAKLUIK7`,
+  },
 ]
 
 export const PEOPLE = [
