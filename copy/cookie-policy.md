@@ -15,7 +15,7 @@ Oi, Let's 'ave a Chat 'Bout Cookies, Shall We?
 
 Alright, on [scottspence.com](), I'm not all about the fuss, but
 there's a thing or two you should know about cookies when you're
-nipping 'round my site.
+nipping around my site.
 
 ### So, what are these cookie things anyway?
 
@@ -27,28 +27,28 @@ time you drop in. Handy, innit?
 ### How am I using them?
 
 Now, I'm keeping it simple, just how I like it. I'll only use a single
-cookie on [scottspence.com](), and here's the skinny:
+cookie on [scottspence.com](), and here's what it's for:
 
 ### Theme selection cookie:
 
 - **Name**: theme
-- **Job**: This cookie remembers your theme choice (like light or dark
-  mode) on my site. So, every time you pop by, your favourite look is
-  ready and waiting.
+- **Job**: This cookie remembers your theme choice on my site. So,
+  every time you pop by, your favourite look is ready and waiting.
 - **Shelf-life**: A year. If you don't visit again in that time it
   will expire.
 - **Type**: First-party cookie. Only for this site used nowhere else
   or shared.
 
-I don’t use cookies for ads or following you about. I respect your
-space, after all.
+I don’t use cookies for ads or following you around the internet. I
+respect your privacy. For more on that check out the
+[Privacy Policy](/privacy-policy).
 
 ### Your choices about cookies
 
 You're the boss of your cookies. You can tell your browser to accept
-them, or tell me to do one!
+my cookie, or tell me to do one!
 
-Fancy managing your cookies? Check out these guides:
+Want to know more about managing your cookies? Check out these guides:
 
 - [Google Chrome]
 - [Mozilla Firefox]
@@ -75,5 +75,5 @@ Fancy a chat about my Cookie Policy? Drop me a line at
 [Apple Safari]:
   https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac
 [yo@scottspence.dev]:
-  mailto:yo@scottspence.dev?subject=Cookie%20Concern&body=Hi%20Scott%2C%0D%0A%0D%0AI%20have%20a%20concern%20about%20my%20cookies%20on%20your%20site.
+  mailto:yo@scottspence.dev?subject=Cookie%20Concern&body=Hi%20Scott%2C%0D%0A%0D%0AI%20have%20a%20concern%20about%20cookies%20on%20your%20site.
 [contact form]: /contact
