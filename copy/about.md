@@ -1,7 +1,7 @@
 <script>
   import { Deezer, Spotify } from 'sveltekit-embed'
   import {
-    DateDistance, 
+    DateDistance as DD, 
     DateUpdated, 
     Small, 
   } from '$lib/components'
@@ -9,8 +9,12 @@
 
 ## Hi, I'm Scott
 
+<Small>
+  Last updated: <DateUpdated date="2023-06-29" small="true" />
+</Small>
+
 I'm a developer advocate working with companies to create content that
-helps remove friction and educate around the headless CMS space.
+helps remove friction and educate users.
 
 I create content written in the blog here and educational videos
 supporting the written content.
@@ -18,16 +22,18 @@ supporting the written content.
 I'm a second career dev that re-skilled from a [VBA] analyst developer
 role into web development.
 
-I have been spending a lot of time working in Svelte and SvelteKit
-for, <DateDistance date='2021-04-06' /> now, holding workshops and
-organising events in the form of the [Svelte Society London] events.
+For <DD date='2021-04-06' /> now I have been working in Svelte and
+SvelteKit, holding workshops and organising events with the other
+organisers of the [Svelte Society London] group.
 
 Check out the [speaking] section for more details about those!
 
-I'm a massive fan of the [Jamstack], with a wealth of knowledge
-working with [Gatsby] (the React framework).
+I have a wealth of knowledge working in the [Jamstack], with extensive
+experience (<DD date="2018-08-02"/>) working with it mainly using
+[Gatsby] (the React framework). My active useage of the Jamstack stops
+at around <DD date="2021-04-06" /> ago now.
 
-Also, check out the [portfolio section] for more information.
+Check out the [portfolio section] for more information.
 
 ### Sectors I have worked in:
 
@@ -36,8 +42,8 @@ organisations in Finance (Risk, Asset Management), Property, Oil & Gas
 and Lloyd's insurance market.
 
 As a web developer I've worked in government digital transformation
-and creative digital. I now work in the content management space with
-Storyblok.
+and creative digital. I now work in the content management space but
+am not restricted to it by any means.
 
 ### My personality
 
