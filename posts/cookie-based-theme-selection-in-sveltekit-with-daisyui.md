@@ -81,7 +81,7 @@ module.exports = config
 
 ## Theme change in SvelteKit
 
-I have a [longstanding example project] that uses SvelteKit and
+I have a [long-standing example project] that uses SvelteKit and
 daisyUI for using all the daisyUI themes. If you're interested in how
 this was done before using cookies then check out the files [from this
 commit]. You can see I was using [`theme-change`] (again by [Pouya])
@@ -404,7 +404,7 @@ Also thanks to [Pouya] for [daisyUI] chef kiss!
 
 [daisyui]: https://daisyui.com/
 [Pouya]: https://twitter.com/Saadeghi
-[longstanding example project]:
+[long-standing example project]:
   https://github.com/spences10/sveltekit-theme-switch-example
 [from this commit]:
   https://github.com/spences10/sveltekit-theme-switch-example/blob/1f9b4f9b5f5aa0a521f68a21dc0b17e5ec89d625/src/routes/%2Blayout.svelte
