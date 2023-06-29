@@ -8,7 +8,7 @@
 # Privacy Policy
 
 <Small>
-  Last updated: <DateUpdated date="2023-01-04" small="true" />
+  Last updated: <DateUpdated date="2023-06-29" small="true" />
 </Small>
 
 Hello, welcome to the privacy policy for scottspence.com, I want to be
@@ -53,9 +53,15 @@ will delete any emails with identifying information in them.
 
 ### What cookies, pixels, and other trackers my site uses and their purpose.
 
-I use Fathom Analytics to measure page visits to scottspence.com, no
-cookies, no trackers, you can view the Fathom Analytics privacy
-statement [here][1]
+Ok, cookies! On [scottspence.com](), I use cookies, but keep it
+simple. I only use a single cookie to remember your theme choice. It's
+like a handy helper that knows your theme preference every time you
+drop by. No fuss. You can find more about it in the
+[Cookie Policy](/cookie-policy).
+
+I use Fathom Analytics to measure page visits to [scottspence.com](),
+no cookies, no trackers, you can view the Fathom Analytics privacy
+statement [here][1].
 
 ### Any advertising networks and their methods/purposes of data collection and ad delivery.
 

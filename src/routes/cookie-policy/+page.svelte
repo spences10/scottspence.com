@@ -1,0 +1,23 @@
+<script lang="ts">
+  import { Head } from '$lib/components'
+  import { name, website } from '$lib/info'
+  import { og_image_url } from '$lib/utils'
+
+  export let data
+  let { Copy } = data
+</script>
+
+<Head
+  title={`Cookie Policy - ${name}`}
+  description={`${name} Cookie Policy page.`}
+  image={og_image_url(name, `scottspence.com`, `Cookie Policy`)}
+  url={`${website}/cookie-policy`}
+/>
+
+<div class="all-prose">
+  <svelte:component this={Copy} />
+</div>
+
+<div class="flex flex-col w-full my-10">
+  <div class="divider" />
+</div>
