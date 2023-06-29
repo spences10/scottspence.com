@@ -24,13 +24,13 @@ look at this quarterly and update it accordingly.
 </div>
 
 <!--
-Help organise 12 Svelte meetups 2
+Help organise 12 Svelte meetups 5
 Speak at 4 Svelte meetups 1
 Host 4 free Svelte community workshops 1
 Host 4 paid Svelte workshops 0
 Lose 15kg in weight from 117kg => 3.2
 Release 4 video course on building with Svelte 0
-Release 12 blog posts on building with Svelte 9
+Release 12 blog posts on building with Svelte 11
 Build site skeleton site 1
 Build auth feature 1
 Build gated content feature 1
