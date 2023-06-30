@@ -9,12 +9,12 @@
 # For recruiters - FAQ
 
 <Small>
-  Last updated: <DateUpdated date='2023-04-17' small='true' />
+  Last updated: <DateUpdated date='2023-06-30' small='true' />
 </Small>
 
 Hello friend 👋, thanks for taking an interest in me and my profile.
 
-I know I'm nothing more than a keyword match right now so let's change
+I know I'm nothing more than a keyword match right now, so let's change
 that!
 
 So, first up! I really, _really_ value my time, I have gone to the
@@ -153,15 +153,13 @@ bit more about me.
 ## Salary?
 
 As I mentioned earlier I run OES Technology where I offer consulting
-on a contract basis if you have a project in mind [get in touch] to
+on a contract basis. If you have a project in mind [get in touch] to
 discuss.
 
 Want me to come on board on a contract basis? Sweet! I'm open to that!
-Depending on the setup I'd be looking for a day rate of **€549.89**.
-
-In my next permanent role I'm looking for roles starting at
-**€135,200**. Please take note of the currency and convert it
-accordingly to currency the company pays in.
+Depending on the setup I'd be looking for a day rate of **€389.50** or
+monthly rate of **€8,179.56**. The rate has been calculated with
+holidays and public holidays built in.
 
 ---
 
@@ -261,7 +259,7 @@ my attention, gratitude and a guaranteed reply. 🙏
 
 Sure, my CV is here: [mecv.xyz].
 
-Most of the pertinent stuff you want to know is covered here really.
+Most of the pertinent stuff you want to know is covered here, really.
 
 ---
 
