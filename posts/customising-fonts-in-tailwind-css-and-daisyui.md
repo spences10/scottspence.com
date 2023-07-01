@@ -425,9 +425,206 @@ The to use the `theme-select` component I'll add it to the
 `src/routes/+layout.svelte` file so it's available to all child pages
 in the project (which is none but a good practice).
 
+```svelte
+<script>
+  import ThemeSelect from '$lib/theme-select.svelte'
+  import '../app.postcss'
+</script>
+
+<ThemeSelect />
+<main class="container max-w-3xl mx-auto px-4 prose prose-xl">
+  <slot />
+</main>
+```
+
 ## Extend the daisyUI themes
 
+Aight! Cycling though the themes now I can see that my custom font is
+being used in all the themes except `cypherpunk` and `wireframe`.
+
+Why? Well, if I take a look at the [daisyUI themes] config for
+`cyberpunk` I can see that the `fontFamily` is set to a monospace
+font.
+
+Here's a snippet from the config file:
+
+```js
+"[data-theme=cyberpunk]": {
+  "color-scheme": "light",
+  "fontFamily":
+    "ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace",
+  "primary": "#ff7598",
+  "secondary": "#75d1f0",
+  "accent": "#c07eec",
+  "neutral": "#423f00",
+  "neutral-content": "#ffee00",
+  "base-100": "#ffee00",
+  "--rounded-box": "0",
+  "--rounded-btn": "0",
+  "--rounded-badge": "0",
+  "--tab-radius": "0",
+},
+```
+
+I can override this in the `tailwind.config.js` file by amending the
+`daisyui` config. For illustration purposes I'll change the
+`cyberpunk` font to use `Comic Sans MS`.
+
+```js
+const daisyui = require('daisyui')
+const typography = require('@tailwindcss/typography')
+const tailwind_theme = require('tailwindcss/defaultTheme')
+
+/** @type {import('tailwindcss').Config}*/
+const config = {
+  content: ['./src/**/*.{html,js,svelte,ts}'],
+
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Poppins', ...tailwind_theme.fontFamily.sans],
+        mono: ['Victor Mono', ...tailwind_theme.fontFamily.mono],
+        // or name them
+        // 'victor-mono': ['Victor Mono'],
+        // poppins: ['Poppins'],
+      },
+    },
+  },
+
+  daisyui: {
+    themes: [
+      {
+        cyberpunk: {
+          ...require('daisyui/src/theming/themes')[
+            '[data-theme=cyberpunk]'
+          ],
+          fontFamily: 'Comic Sans MS',
+        },
+      },
+    ],
+  },
+
+  plugins: [typography, daisyui],
+}
+
+module.exports = config
+```
+
+I found a GitHub discussion answered by [Pouya] (daisyUI creator) that
+[details how to do this].
+
+So changing that config now makes every theme the same as the
+`cyberpunk` theme, because that's all that's configured now. Makes
+sense, right?
+
+**Wait, what?** Yeah! I'll have to add a config for each theme I want to
+use. In this example that's all 29 of them! 😱
+
+Let's take a look at that theme config again:
+
+```js
+{
+  cyberpunk: {
+    ...require('daisyui/src/theming/themes')[
+      '[data-theme=cyberpunk]'
+    ],
+    fontFamily: 'Comic Sans MS',
+  },
+},
+```
+
+Repeat that 29 times! That's going to be a lot of code duplication!
+
+## Parametrised config
+
+What I can do is create a function that takes the theme name as a
+parameter and returns the config object so I can be used in daisyUI.
+Then I can use that function to create the config object for each
+theme.
+
+As I'm only looking to change the `fontFamily` I'll add that as a
+parameter too. This can be further extended to allow for more
+customisation of the themes.
+
+So, the function will look something like this:
+
+```js
+function create_theme(theme_name, font_family) {
+  return {
+    [theme_name]: {
+      ...require('daisyui/src/theming/themes')[
+        `[data-theme=${theme_name}]`
+      ],
+      ...(font_family ? { fontFamily: font_family } : {}),
+    },
+  }
+}
+```
+
+Then pass all the themes through that function to create the config
+object, if there's no theme then it's going to fallback to the daisyUI
+default.
+
+```js
+const daisyui_themes = [
+  create_theme('acid'),
+  create_theme('aqua'),
+  create_theme('autumn'),
+  // rest of the themes
+]
+```
+
+See the full array here:
+
+<Details buttonText="daisyui_themes" styles="lowercase">
+
+```js
+const daisyui_themes = [
+  create_theme('acid'),
+  create_theme('aqua'),
+  create_theme('autumn'),
+  create_theme('black'),
+  create_theme('bumblebee'),
+  create_theme('business'),
+  create_theme('cmyk'),
+  create_theme('coffee'),
+  create_theme('corporate'),
+  create_theme('cupcake'),
+  create_theme('cyberpunk', 'Victor Mono'),
+  create_theme('dark'),
+  create_theme('dracula'),
+  create_theme('emerald'),
+  create_theme('fantasy'),
+  create_theme('forest'),
+  create_theme('garden'),
+  create_theme('halloween'),
+  create_theme('lemonade'),
+  create_theme('light'),
+  create_theme('lofi'),
+  create_theme('luxury'),
+  create_theme('night'),
+  create_theme('pastel'),
+  create_theme('retro'),
+  create_theme('synthwave'),
+  create_theme('valentine'),
+  create_theme('winter'),
+  create_theme('wireframe'),
+]
+```
+
+</Details>
+
+Then I can use that array in the `daisyui` config.
+
+```js
+daisyui: {
+  themes: daisy_themes,
+},
+```
+
 ## Thanks
+
+Thanks to [Pouya] for creating [daisyUI] and for answering my
 
 Massive thanks to [Script Raccoon] for helping me understand how to
 use a theme in the cookies! The dark mode toggle example they made,
@@ -462,3 +659,8 @@ cookie-based dark mode toggle in SvelteKit] give it a read!
 [final code]: https://github.com/spences10/sveltekit-local-fonts
 [example repo]:
   https://github.com/spences10/sveltekit-theme-switch-example/blob/5489c1843b42bb8c3162e22760a55b88a3e7c0b0/src/lib/themes/index.ts
+[daisyUI `themes`]:
+  https://github.com/saadeghi/daisyui/blob/8eb2574da4285409756f443593d0ca0a4b411c99/src/theming/themes.js#L90
+[pouya]: https://twitter.com/Saadeghi
+[details how to do this]:
+  https://github.com/saadeghi/daisyui/discussions/653#discussioncomment-2438428
