@@ -6,9 +6,11 @@ blogposts
 bootcamp
 changefreq
 chsh
+cmyk
 codegen
 color
 concat
+Consolas
 cornflowerblue
 csvparse
 darkgrey
@@ -36,6 +38,7 @@ keygen
 lastmod
 LBUFFER
 lightgray
+lofi
 maxage
 mdsvex
 mediumseagreen
