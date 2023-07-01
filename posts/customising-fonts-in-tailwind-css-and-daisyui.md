@@ -517,8 +517,8 @@ So changing that config now makes every theme the same as the
 `cyberpunk` theme, because that's all that's configured now. Makes
 sense, right?
 
-**Wait, what?** Yeah! I'll have to add a config for each theme I want to
-use. In this example that's all 29 of them! 😱
+**Wait, what?** Yeah! I'll have to add a config for each theme I want
+to use. In this example that's all 29 of them! 😱
 
 Let's take a look at that theme config again:
 
@@ -563,7 +563,7 @@ function create_theme(theme_name, font_family) {
 
 Then pass all the themes through that function to create the config
 object, if there's no theme then it's going to fallback to the daisyUI
-default.
+default same if there's no font specified.
 
 ```js
 const daisyui_themes = [
@@ -622,9 +622,98 @@ daisyui: {
 },
 ```
 
+Here's the full `tailwind.config.js` file:
+
+<Details buttonText="tailwind.config.js" styles="lowercase">
+
+```js
+const daisyui = require('daisyui')
+const typography = require('@tailwindcss/typography')
+const tailwind_theme = require('tailwindcss/defaultTheme')
+
+function create_theme(theme_name, font_family) {
+  return {
+    [theme_name]: {
+      ...require('daisyui/src/theming/themes')[
+        `[data-theme=${theme_name}]`
+      ],
+      ...(font_family ? { fontFamily: font_family } : {}),
+    },
+  }
+}
+
+const daisyui_themes = [
+  create_theme('acid'),
+  create_theme('aqua'),
+  create_theme('autumn'),
+  create_theme('black'),
+  create_theme('bumblebee'),
+  create_theme('business'),
+  create_theme('cmyk'),
+  create_theme('coffee'),
+  create_theme('corporate'),
+  create_theme('cupcake'),
+  create_theme('cyberpunk', 'Victor Mono'),
+  create_theme('dark'),
+  create_theme('dracula'),
+  create_theme('emerald'),
+  create_theme('fantasy'),
+  create_theme('forest'),
+  create_theme('garden'),
+  create_theme('halloween'),
+  create_theme('lemonade'),
+  create_theme('light'),
+  create_theme('lofi'),
+  create_theme('luxury'),
+  create_theme('night'),
+  create_theme('pastel'),
+  create_theme('retro'),
+  create_theme('synthwave'),
+  create_theme('valentine'),
+  create_theme('winter'),
+  create_theme('wireframe'),
+]
+
+/** @type {import('tailwindcss').Config}*/
+const config = {
+  content: ['./src/**/*.{html,js,svelte,ts}'],
+
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Poppins', ...tailwind_theme.fontFamily.sans],
+        mono: ['Victor Mono', ...tailwind_theme.fontFamily.mono],
+        // or name them
+        // 'victor-mono': ['Victor Mono'],
+        // poppins: ['Poppins'],
+      },
+    },
+  },
+
+  daisyui: {
+    themes: daisyui_themes,
+  },
+
+  plugins: [typography, daisyui],
+}
+
+module.exports = config
+```
+
+</Details>
+
+Now, if I select the `cyberpunk` theme, I get the `Victor Mono` font
+being used, I can now pass any specific font to any theme.
+
+As I mentioned earlier, it's not just the font that can be changed
+here, I can start modifying any of the daisyUI theme properties by
+extending the `create_theme` function.
+
 ## Thanks
 
-Thanks to [Pouya] for creating [daisyUI] and for answering my
+Thanks to [Pouya] for creating [daisyUI] I've been using it for a
+while now and it's great! It's pretty much the default I reach for now
+when starting a new project.
 
 Massive thanks to [Script Raccoon] for helping me understand how to
 use a theme in the cookies! The dark mode toggle example they made,
@@ -632,6 +721,20 @@ you can find that on their blog where they detail [How to implement a
 cookie-based dark mode toggle in SvelteKit] give it a read!
 
 ## Conclusion
+
+I've laid out and detailed how I'd go about this step-by-step. I hope
+you can get an idea on how to customize fonts in Tailwind with
+SvelteKit and daisyUI. I installed and integrated Fontsource fonts for
+local fonts to use in the project. I also demonstrated how to extend
+the Tailwind theme to incorporate theme.
+
+I then looked as extending the daisyUI themes. Them took a look at how
+to modify them to use my preferred fonts. By crafting a parameterized
+function, I avoided code duplication and provided a degree of
+customization for each theme.
+
+I hope you found this useful, if you did, please don't forget to share
+it. 🙌
 
 <!-- Links -->
 
