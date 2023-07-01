@@ -1,5 +1,5 @@
 ---
-date: 2023-06-30
+date: 2023-07-01
 title: Customising Fonts in Tailwind CSS and daisyUI
 tags: ['css', 'tailwind', 'how-to', 'daisyui', 'sveltekit']
 isPrivate: true
@@ -728,10 +728,10 @@ SvelteKit and daisyUI. I installed and integrated Fontsource fonts for
 local fonts to use in the project. I also demonstrated how to extend
 the Tailwind theme to incorporate theme.
 
-I then looked as extending the daisyUI themes. Them took a look at how
-to modify them to use my preferred fonts. By crafting a parameterized
-function, I avoided code duplication and provided a degree of
-customization for each theme.
+I then looked as extending the daisyUI themes and how to modify them
+to use my preferred fonts. By creating a parameterized function, I
+avoided code duplication and provided a degree of customisation for
+each theme.
 
 I hope you found this useful, if you did, please don't forget to share
 it. 🙌
