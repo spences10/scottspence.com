@@ -5,6 +5,10 @@ tags: ['css', 'tailwind', 'how-to', 'daisyui', 'sveltekit']
 isPrivate: true
 ---
 
+<script>
+  import { Details } from '$lib/components'
+</script>
+
 Tailwind is awesome n' all but what do you do when you want to change
 the default fonts. I've spent a bit of time customising this site to
 use local fonts above the default used in Tailwind CSS. In this post
@@ -199,7 +203,7 @@ I'll move onto doing something similar now with daisyUI.
 When I say something similar I mean that I'll be adding in different
 fonts for different themes in daisyUI.
 
-## Extend the daisyUI themes
+## Using daisyUI themes
 
 I touched on daisyUI at the start, what I didn't mention is that it
 comes with 29 themes out of the box 🤯.
@@ -238,7 +242,8 @@ const config = {
 module.exports = config
 ```
 
-The `daisyui.themes=true` is using all the daisyUI themes.
+The `daisyui.themes=true` config means that I'm using all 29 daisyUI
+themes.
 
 If I want to restrict this to just a few themes then I can use an
 array of theme names instead:
@@ -255,8 +260,9 @@ themes.
 All the daisyUI themes except Cyberpunk and Wireframe have the same
 font right now.
 
-I can change the daisyUI theme on the root `app.html` file in the
-project with the `data-theme` attribute on the `html` element.
+Once I've added in the daisyUI config I can change the daisyUI theme
+on the root `app.html` file in the project with the `data-theme`
+attribute on the `html` element.
 
 So in this example I'm using the `wireframe` theme:
 
@@ -275,22 +281,151 @@ So in this example I'm using the `wireframe` theme:
 </html>
 ```
 
+## Selecting a daisyUI theme
+
 I recently did a post on [Cookie-Based Theme Selection in SvelteKit
 with daisyUI] and I'll be using that now to cycle through the themes.
 If you need more detail on that then check out the post.
 
-I'm basically going to rip the code from the
-[`sveltekit-theme-switch-example`] repo and add it to the example I'm
-building out here.
+I'm going to rip the code from the [`sveltekit-theme-switch-example`]
+repo and add it to the example I'm building out here.
 
-I'll scaffold out the component as a select and add in the options for
-the theme names I want to use:
+I'll scaffold out the files I need to make the select component and
+the hooks file:
 
 ```bash
 # -p created the parent directory if it doesn't exist
-mkdir src/lib/components -p
+mkdir src/lib/themes -p
+touch src/lib/themes/index.ts
 touch src/lib/theme-select.svelte
+touch src/hooks.server.ts
 ```
+
+In the `src/lib/themes/index.ts` file I'll copy the themes already in
+the [example repo] you can expand out the details button for the list
+if you like.
+
+<Details buttonText="themes.ts" styles="lowercase">
+
+```ts
+export const themes = [
+  'acid',
+  'aqua',
+  'autumn',
+  'black',
+  'bumblebee',
+  'business',
+  'cmyk',
+  'coffee',
+  'corporate',
+  'cupcake',
+  'cyberpunk',
+  'dark',
+  'dracula',
+  'emerald',
+  'fantasy',
+  'forest',
+  'garden',
+  'halloween',
+  'lemonade',
+  'light',
+  'lofi',
+  'luxury',
+  'night',
+  'pastel',
+  'retro',
+  'synthwave',
+  'valentine',
+  'winter',
+  'wireframe',
+]
+```
+
+</Details>
+
+In `src/lib/theme-select.svelte` I'll copy the code from the
+[`sveltekit-theme-switch-example`] repo.
+
+<Details buttonText="theme-select.svelte" styles="lowercase">
+
+```svelte
+<script lang="ts">
+  import { onMount } from 'svelte'
+  import { themes } from './themes'
+
+  let current_theme = ''
+
+  onMount(() => {
+    if (typeof window !== 'undefined') {
+      const theme = window.localStorage.getItem('theme')
+      if (theme && themes.includes(theme)) {
+        document.documentElement.setAttribute('data-theme', theme)
+        current_theme = theme
+      }
+    }
+  })
+
+  function set_theme(event: Event) {
+    const select = event.target as HTMLSelectElement
+    const theme = select.value
+    if (themes.includes(theme)) {
+      const one_year = 60 * 60 * 24 * 365
+      window.localStorage.setItem('theme', theme)
+      document.cookie = `theme=${theme}; max-age=${one_year}; path=/; SameSite=Lax`
+      document.documentElement.setAttribute('data-theme', theme)
+      current_theme = theme
+    }
+  }
+</script>
+
+<div class="mb-8">
+  <select
+    bind:value={current_theme}
+    data-choose-theme
+    class="select select-bordered select-primary w-full max-w-3xl text-xl capitalize"
+    on:change={set_theme}
+  >
+    <option value="" disabled={current_theme !== ''}>
+      Choose a theme
+    </option>
+    {#each themes as theme}
+      <option value={theme} class="capitalize">{theme}</option>
+    {/each}
+  </select>
+</div>
+```
+
+</Details>
+
+Then add in the code for the `src/hooks.server.ts` file.
+
+<Details buttonText="hooks.server.ts" styles="lowercase">
+
+```ts
+import { themes } from '$lib/themes'
+
+export const handle = async ({ event, resolve }) => {
+  const theme = event.cookies.get('theme')
+
+  if (!theme || !themes.includes(theme)) {
+    return await resolve(event)
+  }
+
+  return await resolve(event, {
+    transformPageChunk: ({ html }) => {
+      return html.replace('data-theme=""', `data-theme="${theme}"`)
+    },
+  })
+}
+```
+
+</Details>
+
+The to use the `theme-select` component I'll add it to the
+`src/routes/+layout.svelte` file so it's available to all child pages
+in the project (which is none but a good practice).
+
+## Extend the daisyUI themes
 
 ## Thanks
 
@@ -325,3 +460,5 @@ cookie-based dark mode toggle in SvelteKit] give it a read!
 [`sveltekit-theme-switch-example`]:
   https://github.com/spences10/sveltekit-theme-switch-example
 [final code]: https://github.com/spences10/sveltekit-local-fonts
+[example repo]:
+  https://github.com/spences10/sveltekit-theme-switch-example/blob/5489c1843b42bb8c3162e22760a55b88a3e7c0b0/src/lib/themes/index.ts
