@@ -9,8 +9,8 @@
 
 <div
   use:viewport
-  on:on:enter_viewport) => (intersecting = true)}
-  on:exitViewport={() => (intersecting = false)}
+  on:enter_viewport={() => (intersecting = true)}
+  on:exit_viewport={() => (intersecting = false)}
 >
   {#if intersecting}
     <div class="flex justify-center mb-12" style={`width: ${width}`}>
