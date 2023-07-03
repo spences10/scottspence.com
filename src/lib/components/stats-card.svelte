@@ -65,7 +65,10 @@
 
   const stats_array = [
     { title: 'Daily analytics for this post', stats: daily_stats },
-    { title: 'Monthly analytics for this post', stats: monthly_stats },
+    {
+      title: 'Monthly analytics for this post',
+      stats: monthly_stats,
+    },
     { title: 'Yearly analytics for this post', stats: yearly_stats },
   ]
 </script>
