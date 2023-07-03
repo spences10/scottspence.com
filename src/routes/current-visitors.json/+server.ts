@@ -13,7 +13,7 @@ export const config: ServerlessConfig = {
   runtime: 'nodejs18.x',
 }
 
-export const GET = async ({ url }) => {
+export const GET = async ({ url }): Promise<Response> => {
   const cache_duration = parseInt(
     url.searchParams.get('cache_duration') ?? '900',
     10
@@ -59,7 +59,7 @@ const get_visitors_from_api = async (cache_duration: number) => {
       { visitors: data },
       cache_duration
     )
-    
+
     return data
   } catch (error) {
     console.error(`Error fetching visitors from API: ${error}`)
