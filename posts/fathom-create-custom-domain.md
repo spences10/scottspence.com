@@ -7,7 +7,19 @@ isPrivate: false
 
 <script>
   import { Tweet } from 'sveltekit-embed'
+  import { Banner } from '$lib/components'
+
+  let href = `https://usefathom.com/docs/script/custom-domains`
+  const options = {
+    type: 'warning',
+    message: `Custom domains are no longer offered with Fathom Analytics.
+      Check out the <a href=${href} target="_blank" rel="noopener noreferrer">
+      post</a> explaining this on the Fathom blog.
+    `
+  }
 </script>
+
+<Banner {options} />
 
 Fathom Analytics recently added a really neat feature for [custom
 domains] with their service.
