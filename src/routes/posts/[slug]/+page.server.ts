@@ -5,6 +5,7 @@ import {
   formatISO,
   startOfMonth,
   startOfYear,
+  subDays,
 } from 'date-fns'
 
 type Fetch = (url: string) => Promise<Response>
@@ -30,19 +31,12 @@ const fetch_visits = async (
   return analytics && analytics.length > 0 ? analytics[0] : null
 }
 
-export const load = async ({
-  fetch,
-  params,
-}): Promise<{
-  daily_visits: AnalyticsData
-  monthly_visits: AnalyticsData
-  yearly_visits: AnalyticsData
-}> => {
+export const load = async ({ fetch, params }) => {
   const { slug } = params
   const base_path = `../analytics.json?pathname=/posts/${slug}`
 
   const now = new Date()
-  const day_start = get_date_bounds(now)
+  const day_start = get_date_bounds(subDays(now, 1))
   const day_end = get_date_bounds(now, false)
 
   const month_start = get_date_bounds(startOfMonth(now))
@@ -59,7 +53,7 @@ export const load = async ({
         day_start,
         day_end,
         '',
-        time_to_seconds({ hours: 1 })
+        time_to_seconds({ hours: 24 })
       ),
       fetch_visits(
         fetch,
