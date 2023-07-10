@@ -65,13 +65,25 @@ export const GET = async ({ url }) => {
       )
     } else {
       console.error(
-        'Analytics API returned data in unexpected format.'
+        `Analytics API returned data in unexpected format. ${JSON.stringify(
+          params,
+          null,
+          2
+        )}`
       )
-      return json({ analytics: {} })
+      return json({
+        analytics: [],
+        message:
+          'No analytics data available for the given parameters.',
+      })
     }
   } catch (error) {
     console.error(`Error fetching analytics data: ${error}`)
-    return json({ analytics: {} })
+    return json({
+      analytics: [],
+      message:
+        'No analytics data available for the given parameters.',
+    })
   }
 }
 

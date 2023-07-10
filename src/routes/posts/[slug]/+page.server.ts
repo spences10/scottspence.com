@@ -28,7 +28,12 @@ const fetch_visits = async (
   const url = `${base_path}&date_from=${date_from}&date_to=${date_to}&date_grouping=${date_grouping}&cache_duration=${cache_duration}`
   const res = await fetch(url)
   const { analytics } = await res.json()
-  return analytics && analytics.length > 0 ? analytics[0] : null
+
+  if (Array.isArray(analytics)) {
+    return analytics.length > 0 ? analytics[0] : null
+  } else {
+    return analytics || null
+  }
 }
 
 export const load = async ({ fetch, params }) => {
