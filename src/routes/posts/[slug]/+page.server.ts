@@ -42,7 +42,7 @@ export const load = async ({ fetch, params }) => {
 
   const now = new Date()
   const day_start = get_date_bounds(subDays(now, 1))
-  const day_end = get_date_bounds(now, false)
+  const day_end = get_date_bounds(subDays(now, 1), false)
 
   const month_start = get_date_bounds(startOfMonth(now))
   const month_end = get_date_bounds(endOfMonth(now), false)
