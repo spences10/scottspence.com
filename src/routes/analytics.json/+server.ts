@@ -1,3 +1,4 @@
+import { dev } from '$app/environment'
 import { FATHOM_API_KEY } from '$env/static/private'
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
 import { page_analytics_key } from '$lib/redis'
@@ -37,10 +38,20 @@ export const GET = async ({ url }) => {
   const cached = await get_analytics_from_cache(cache_key)
 
   if (cached) {
+    if (dev) {
+      console.log('=====================')
+      console.log(`it's cached ${url}`)
+      console.log('=====================')
+    }
     return json({ analytics: cached })
   }
 
   try {
+    if (dev) {
+      console.log('=====================')
+      console.log(`it's not cached ${url}`)
+      console.log('=====================')
+    }
     const headers_auth = new Headers()
     headers_auth.append('Authorization', `Bearer ${FATHOM_API_KEY}`)
 
