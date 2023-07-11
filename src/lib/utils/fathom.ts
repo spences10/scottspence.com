@@ -6,9 +6,12 @@ export const fetch_fathom_data = async (
   headers: Headers
 ) => {
   const url = new URL(`https://api.usefathom.com/v1/${endpoint}`)
-  Object.entries(params).forEach(([key, value]) =>
-    url.searchParams.append(key, value as string)
-  )
+  Object.entries(params)
+    .sort(([key_a], [key_b]) => key_a.localeCompare(key_b))
+    .forEach(([key, value]) => {
+      const decoded_value = decodeURIComponent(value as string)
+      url.searchParams.append(key, decoded_value)
+    })
 
   const res = await fetch(url.toString(), {
     headers,
