@@ -2,7 +2,7 @@
 date: 2023-07-09
 title: SvelteKit Page Reaction Component with Upstash Redis
 tags: ['sveltekit', 'redis', 'upstash', 'how-to']
-isPrivate: false
+isPrivate: true
 ---
 
 I made a reactions component in SvelteKit that uses Upstash Redis to
