@@ -1,10 +1,13 @@
 import redis from '$lib/redis'
+const DISABLE_ANALYTICS_API = false
 
 export const fetch_fathom_data = async (
   endpoint: string,
   params: { [s: string]: unknown } | ArrayLike<unknown>,
   headers: Headers
 ) => {
+  if (DISABLE_ANALYTICS_API) return null
+
   const url = new URL(`https://api.usefathom.com/v1/${endpoint}`)
   Object.entries(params)
     .sort(([key_a], [key_b]) => key_a.localeCompare(key_b))
