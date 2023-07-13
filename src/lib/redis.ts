@@ -6,8 +6,9 @@ export function current_visitors_key(): string {
 }
 
 export function page_analytics_key(slug: string): string {
-  const encoded_slug = encodeURIComponent(slug)
-  return `slug:${encoded_slug}`
+  // Replace characters that would be URL encoded and slashes with ':'
+  const sanitised_slug = slug.replace(/[%?&=/]/g, ':')
+  return `slug:${sanitised_slug}`
 }
 
 export default REDIS_CONNECTION
