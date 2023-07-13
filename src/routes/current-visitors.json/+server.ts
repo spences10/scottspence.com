@@ -5,7 +5,7 @@ import {
   cache_response,
   fetch_fathom_data,
   get_data_from_cache,
-} from '$lib/utils/fathom'
+} from '$lib/fathom'
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { json } from '@sveltejs/kit'
 
