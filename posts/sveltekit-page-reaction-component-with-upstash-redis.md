@@ -34,8 +34,8 @@ region I'll go with `us-west-1`.
 I'll leave the rest of the options as the default and click the
 'Create' button.
 
-[![sveltekit-page-reactions-redits-details-dashboard]]
-[sveltekit-page-reactions-redits-details-dashboard]
+[![sveltekit-page-reactions-redis-details-dashboard]]
+[sveltekit-page-reactions-redis-details-dashboard]
 
 Take note of the 'REST API' section here, I'll need the
 `UPSTASH_REDIS_REST_URL` and the ` UPSTASH_REDIS_REST_TOKEN` to go
@@ -98,7 +98,7 @@ Now a quick check to see if everything is working as expected.
 pnpm run dev
 ```
 
-Sweet! So, now onto creathing the from component with the reactions.
+Sweet! So, now onto creating the from component with the reactions.
 
 ## Create the Reactions Component
 
@@ -108,7 +108,7 @@ the reactions component which I'm going to put in the
 directory if it doesn't exist.
 
 Then create additional files for configuring the component, a utils
-file for reuseable functions and another file for the Upstash Redis
+file for re-useable functions and another file for the Upstash Redis
 client.
 
 I'll do that with the following commands.
@@ -195,5 +195,5 @@ and SvelteKit on the [Upstash blog].
 
 <!-- Images -->
 
-[sveltekit-page-reactions-redits-details-dashboard]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1688893637/scottspence.com/sveltekit-page-reactions-redits-details-dashboard.png
+[sveltekit-page-reactions-redis-details-dashboard]:
+  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1688893637/scottspence.com/sveltekit-page-reactions-redis-details-dashboard.png

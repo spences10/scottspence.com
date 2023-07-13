@@ -92,6 +92,7 @@ geoffrich
 Googlebot
 googlefacts
 gradientmagic
+Grafbase
 graphcms
 GraphiQL
 GraphQL
@@ -182,6 +183,7 @@ Raae
 Radeon
 Rafa
 Rainlife
+ratelimit
 Rauch
 Rayment
 reactjs
