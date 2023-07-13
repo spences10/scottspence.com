@@ -36,7 +36,14 @@ const fetch_visits = async (
   }
 }
 
-export const load = async ({ fetch, params }) => {
+export const load = async ({
+  fetch,
+  params,
+}): Promise<{
+  daily_visits: AnalyticsData
+  monthly_visits: AnalyticsData
+  yearly_visits: AnalyticsData
+}> => {
   const { slug } = params
   const base_path = `../analytics.json?pathname=/posts/${slug}`
 
