@@ -1,12 +1,13 @@
-import redis from '$lib/redis'
-const DISABLE_ANALYTICS_API = false
+import redis from './redis'
+
+const DISABLE_FATHOM_API_FETCHING = false
 
 export const fetch_fathom_data = async (
   endpoint: string,
   params: { [s: string]: unknown } | ArrayLike<unknown>,
   headers: Headers
 ) => {
-  if (DISABLE_ANALYTICS_API) return null
+  if (DISABLE_FATHOM_API_FETCHING) return null
 
   const url = new URL(`https://api.usefathom.com/v1/${endpoint}`)
   Object.entries(params)
