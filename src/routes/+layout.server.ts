@@ -16,11 +16,14 @@ export const load = async ({ fetch }) => {
   // loop through posts and fetch data
   const popular_posts_analytics = await Promise.all(
     posts.map(async (post: Post) => {
-      const res = await fetch(
-        `../analytics.json?pathname=${
-          post.path
-        }&cache_duration=${time_to_seconds({ hours: 24 })}`
-      )
+      const url = new URL('/analytics.json', 'http://localhost')
+      const params = new URLSearchParams({
+        pathname: post.path,
+        cache_duration: time_to_seconds({ hours: 24 }).toString(),
+      })
+      url.search = params.toString()
+
+      const res = await fetch(url.pathname + url.search)
       const { analytics }: { analytics: AnalyticsItem[] } =
         await res.json()
 
@@ -38,11 +41,16 @@ export const load = async ({ fetch }) => {
   // get current visitors
   const fetch_visitors = async () => {
     try {
-      const res = await fetch(
-        `../current-visitors.json?cache_duration=${time_to_seconds({
-          minutes: 15,
-        })}`
+      const url = new URL(
+        '/current-visitors.json',
+        'http://localhost'
       )
+      const params = new URLSearchParams({
+        cache_duration: time_to_seconds({ minutes: 15 }).toString(),
+      })
+      url.search = params.toString()
+
+      const res = await fetch(url.pathname + url.search)
       const { visitors } = await res.json()
       return visitors
     } catch (error) {

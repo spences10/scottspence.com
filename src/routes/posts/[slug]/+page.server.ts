@@ -8,8 +8,6 @@ import {
   subDays,
 } from 'date-fns'
 
-type Fetch = (url: string) => Promise<Response>
-
 function get_date_bounds(date: Date, start = true): string {
   const formatted_date = formatISO(date, { representation: 'date' })
   return start
@@ -24,8 +22,15 @@ const fetch_visits = async (
   date_to: string,
   date_grouping = '',
   cache_duration: number
-): Promise<AnalyticsData> => {
-  const url = `${base_path}&date_from=${date_from}&date_to=${date_to}&date_grouping=${date_grouping}&cache_duration=${cache_duration}`
+) => {
+  const params = new URLSearchParams({
+    date_from,
+    date_to,
+    date_grouping,
+    cache_duration: cache_duration.toString(),
+  })
+  const url = `${base_path}&${params.toString()}`
+
   const res = await fetch(url)
   const { analytics } = await res.json()
 
@@ -36,14 +41,7 @@ const fetch_visits = async (
   }
 }
 
-export const load = async ({
-  fetch,
-  params,
-}): Promise<{
-  daily_visits: AnalyticsData
-  monthly_visits: AnalyticsData
-  yearly_visits: AnalyticsData
-}> => {
+export const load = async ({ fetch, params }) => {
   const { slug } = params
   const base_path = `../analytics.json?pathname=/posts/${slug}`
 

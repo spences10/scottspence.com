@@ -1,12 +1,6 @@
-import { dev } from '$app/environment'
 import { FATHOM_API_KEY } from '$env/static/private'
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
-import { page_analytics_key } from '$lib/redis'
-import {
-  cache_response,
-  fetch_fathom_data,
-  get_data_from_cache,
-} from '$lib/utils/fathom'
+import { fetch_fathom_data } from '$lib/fathom'
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { json } from '@sveltejs/kit'
 
@@ -14,7 +8,7 @@ export const config: ServerlessConfig = {
   runtime: 'nodejs18.x',
 }
 
-export const GET = async ({ url }) => {
+export const GET = async ({ url, fetch }) => {
   const pathname = url.searchParams.get('pathname') ?? '/'
   const date_grouping = url.searchParams.get('date_grouping')
   const date_from = url.searchParams.get('date_from')
@@ -34,62 +28,37 @@ export const GET = async ({ url }) => {
   const default_params = build_default_params(pathname)
   const params = { ...default_params, ...date_params }
 
-  const cache_key = page_analytics_key(`analytics.json${url.search}`)
-  const cached = await get_analytics_from_cache(cache_key)
+  const headers_auth = new Headers()
+  headers_auth.append('Authorization', `Bearer ${FATHOM_API_KEY}`)
 
-  if (cached) {
-    if (dev) {
-      console.log('=====================')
-      console.log(`it's cached ${url}`)
-      console.log('=====================')
-    }
-    return json({ analytics: cached })
-  }
+  const analytics_data = await fetch_fathom_data(
+    fetch,
+    `aggregations`,
+    params,
+    headers_auth,
+    cache_duration,
+    `page_views`
+  )
 
-  try {
-    if (dev) {
-      console.log('=====================')
-      console.log(`it's not cached ${url}`)
-      console.log('=====================')
-    }
-    const headers_auth = new Headers()
-    headers_auth.append('Authorization', `Bearer ${FATHOM_API_KEY}`)
-
-    const analytics_data = await fetch_fathom_data(
-      'aggregations',
-      params,
-      headers_auth
-    )
-
-    if (Array.isArray(analytics_data) && analytics_data.length > 0) {
-      await cache_response(cache_key, analytics_data, cache_duration)
-
-      return json(
-        {
-          analytics: analytics_data,
+  if (Array.isArray(analytics_data) && analytics_data.length > 0) {
+    return json(
+      {
+        analytics: analytics_data,
+      },
+      {
+        headers: {
+          'X-Robots-Tag': 'noindex, nofollow',
         },
-        {
-          headers: {
-            'X-Robots-Tag': 'noindex, nofollow',
-          },
-        }
-      )
-    } else {
-      console.error(
-        `Analytics API returned data in unexpected format. ${JSON.stringify(
-          params,
-          null,
-          2
-        )}`
-      )
-      return json({
-        analytics: [],
-        message:
-          'No analytics data available for the given parameters.',
-      })
-    }
-  } catch (error) {
-    console.error(`Error fetching analytics data: ${error}`)
+      }
+    )
+  } else {
+    console.error(
+      `Analytics API returned data in unexpected format. ${JSON.stringify(
+        params,
+        null,
+        2
+      )}`
+    )
     return json({
       analytics: [],
       message:
@@ -117,7 +86,3 @@ const build_default_params = (pathname: string) => ({
   field_grouping: 'pathname',
   filters: `[{"property": "pathname","operator": "is","value": "${pathname}"}]`,
 })
-
-const get_analytics_from_cache = async (cache_key: string) => {
-  return get_data_from_cache(cache_key)
-}
