@@ -24,3 +24,7 @@ declare interface AnalyticsData {
   date: string
   pathname: string
 }
+
+declare interface Fetch {
+  (input: RequestInfo, init?: RequestInit): Promise<Response>
+}
