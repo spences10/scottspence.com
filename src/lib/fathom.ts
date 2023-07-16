@@ -1,7 +1,7 @@
 // Fetch data from the Fathom Analytics API and cache the results.
 
 import crypto from 'crypto'
-import redis, { current_visitors_key } from './redis'
+import { current_visitors_key, redis } from './redis'
 
 // Disable calls to the Fathom Analytics API.
 const DISABLE_FATHOM_API_FETCHING = false
@@ -67,7 +67,7 @@ export const fetch_fathom_data = async (
 export const get_data_from_cache = async (cache_key: string) => {
   try {
     const cached = await redis.get(cache_key)
-    if (cached) return JSON.parse(cached)
+    if (cached) return cached
   } catch (e) {
     console.error(`Error fetching data from cache: ${e}`)
   }
@@ -87,12 +87,7 @@ export const cache_response = async (
   cache_duration: number
 ) => {
   try {
-    await redis.set(
-      cache_key,
-      JSON.stringify(data),
-      'EX',
-      cache_duration
-    )
+    await redis.setex(cache_key, cache_duration, JSON.stringify(data))
   } catch (e) {
     console.error(`Error caching response: ${e}`)
   }
