@@ -40,5 +40,9 @@ jobs:
           FATHOM_API_KEY: ${{ secrets.FATHOM_API_KEY }}
           REDIS_CONNECTION: ${{ secrets.REDIS_CONNECTION }}
           VISITORS_KEY: ${{ secrets.VISITORS_KEY }}
+          # prettier-ignore
+          UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+          # prettier-ignore
+          UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
       - name: Test
         run: pnpm run test:ci
