@@ -96,6 +96,10 @@ export const SOCIAL_LINKS = [
     link: `https://ss10.dev/git`,
   },
   {
+    title: `Threads`,
+    link: `https://www.threads.net/@spences10`,
+  },
+  {
     title: `Bluesky`,
     link: `https://ss10.dev/bluesky`,
   },
