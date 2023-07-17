@@ -1,8 +1,8 @@
 // Fetch data from the Fathom Analytics API and cache the results.
 
+import { building } from '$app/environment'
 import crypto from 'crypto'
 import { current_visitors_key, redis } from './redis'
-import { building } from '$app/environment'
 
 // Disable calls to the Fathom Analytics API.
 const DISABLE_FATHOM_API_FETCHING = false
@@ -24,7 +24,7 @@ export const fetch_fathom_data = async (
   params: { [s: string]: unknown } | ArrayLike<unknown>,
   headers: Headers,
   cache_duration: number,
-  base_slug: string
+  base_slug: string,
 ) => {
   if (DISABLE_FATHOM_API_FETCHING || building) return null
 
@@ -41,7 +41,7 @@ export const fetch_fathom_data = async (
     : generate_cache_key(
         base_slug,
         decodeURIComponent(url.search),
-        params
+        params,
       )
 
   const cached = await get_data_from_cache(cache_key)
@@ -54,6 +54,11 @@ export const fetch_fathom_data = async (
   }
 
   const data = await res.json()
+
+  if (Object.keys(data).length === 0) {
+    return data
+  }
+
   await cache_response(cache_key, data, cache_duration)
 
   return data
@@ -85,7 +90,7 @@ export const get_data_from_cache = async (cache_key: string) => {
 export const cache_response = async (
   cache_key: string,
   data: any,
-  cache_duration: number
+  cache_duration: number,
 ) => {
   try {
     await redis.setex(cache_key, cache_duration, JSON.stringify(data))
@@ -107,7 +112,7 @@ export const cache_response = async (
 function generate_cache_key(
   base_slug: string,
   url: string,
-  params: any
+  params: any,
 ): string {
   const hash = crypto.createHash('sha256')
   hash.update(url)
