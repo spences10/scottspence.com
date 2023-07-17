@@ -1,5 +1,5 @@
 ---
-date: 2023-07-09
+date: 2023-07-16
 title: SvelteKit Page Reaction Component with Upstash Redis
 tags: ['sveltekit', 'redis', 'upstash', 'how-to']
 isPrivate: true
@@ -98,7 +98,7 @@ Now a quick check to see if everything is working as expected.
 pnpm run dev
 ```
 
-Sweet! So, now onto creating the from component with the reactions.
+Sweet! So, now onto creating the form component with the reactions.
 
 ## Create the Reactions Component
 
@@ -119,10 +119,12 @@ mkdir src/lib/components -p
 # make the reactions component
 touch src/lib/components/reactions.svelte
 touch src/lib/{config,redis,utils}.ts
+# add the page server file fo the form action
+touch src/routes/+page.server.ts
 ```
 
 The component will be a form that will submit the reaction to the
-server via a SvelteKit from action.
+server via a SvelteKit form action.
 
 I'll scaffold out the component first then move onto the form action.
 
@@ -165,6 +167,61 @@ reactions from the config file and use them in the component.
     {/each}
   </form>
 </div>
+```
+
+I've added some Tailwind and daisyUI classes to the form for some
+basic styling.
+
+So, for now I just want to render out the emoji reaction as I've not
+wired up the count from redis yet.
+
+I have added a `POST` method to the form and a `name` and `type`
+attribute to the button. This will be used in the form action to get
+the value of the button that was clicked.
+
+If I click one of the buttons now I get a `405` error telling me that
+a `POST` method is not allowed as there are no actions for the page.
+
+I'll create the form action next.
+
+## Create the Form Action
+
+Now I want to get the forma action working so I can get the value of
+the button that was clicked and send it to the server.
+
+In the `src/routes/+page.server.ts` file I'll add in an actions
+object, in this case I'm going to need only the default action.
+
+In the default action I'll need the form data which will be `name` and
+`value` of the button that was clicked and I'll get the `reaction` out
+of the `data` object.
+
+The last thing I'll need is the `path` which will be the page the
+component is on. The prop for this isn't in the component yet so I'll
+need to add that in.
+
+For now I want to validate the action is working so I'll just log out
+the data to the console.
+
+```ts
+export const actions = {
+  default: async ({ request, url }) => {
+    const data = await request.formData()
+    const reaction = data.get('reaction')
+    const path = url.searchParams.get('path')
+
+    console.log('=====================')
+    console.log(data)
+    console.log(reaction)
+    console.log(path)
+    console.log('=====================')
+    return {}
+  },
+}
+
+export const load = async () => {
+  return {}
+}
 ```
 
 ## Example
