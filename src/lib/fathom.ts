@@ -2,6 +2,7 @@
 
 import crypto from 'crypto'
 import { current_visitors_key, redis } from './redis'
+import { building } from '$app/environment'
 
 // Disable calls to the Fathom Analytics API.
 const DISABLE_FATHOM_API_FETCHING = false
@@ -25,7 +26,7 @@ export const fetch_fathom_data = async (
   cache_duration: number,
   base_slug: string
 ) => {
-  if (DISABLE_FATHOM_API_FETCHING) return null
+  if (DISABLE_FATHOM_API_FETCHING || building) return null
 
   const url = new URL(`https://api.usefathom.com/v1/${endpoint}`)
   Object.entries(params)
