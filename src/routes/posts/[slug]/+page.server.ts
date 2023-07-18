@@ -21,7 +21,7 @@ const fetch_visits = async (
   date_from: string,
   date_to: string,
   date_grouping = '',
-  cache_duration: number
+  cache_duration: number,
 ) => {
   const params = new URLSearchParams({
     date_from,
@@ -41,7 +41,14 @@ const fetch_visits = async (
   }
 }
 
-export const load = async ({ fetch, params }) => {
+export const load = async ({
+  fetch,
+  params,
+}): Promise<{
+  daily_visits: AnalyticsData
+  monthly_visits: AnalyticsData
+  yearly_visits: AnalyticsData
+}> => {
   const { slug } = params
   const base_path = `../analytics.json?pathname=/posts/${slug}`
 
@@ -63,7 +70,7 @@ export const load = async ({ fetch, params }) => {
         day_start,
         day_end,
         '',
-        time_to_seconds({ hours: 24 })
+        time_to_seconds({ hours: 24 }),
       ),
       fetch_visits(
         fetch,
@@ -71,7 +78,7 @@ export const load = async ({ fetch, params }) => {
         month_start,
         month_end,
         'month',
-        time_to_seconds({ hours: 24 })
+        time_to_seconds({ hours: 24 }),
       ),
       fetch_visits(
         fetch,
@@ -79,7 +86,7 @@ export const load = async ({ fetch, params }) => {
         year_start,
         year_end,
         'year',
-        time_to_seconds({ hours: 24 })
+        time_to_seconds({ hours: 24 }),
       ),
     ])
 

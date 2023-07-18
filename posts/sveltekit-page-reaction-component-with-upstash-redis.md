@@ -11,9 +11,9 @@ the reaction to the server. It's a nice example of how to use Upstash
 with SvelteKit.
 
 I'll go through creating the project so you can follow along if you
-like or you can Tl;Dr and go to the [example](#example) if you like
+like or you can Tl;Dr and go to the [example](#example).
 
-## Create the Upstash Redis Database
+## Create the Upstash Redis database
 
 Upstash make it really straightforward to create a Redis database.
 
@@ -43,10 +43,10 @@ into the `.env` file in the project.
 
 Which brings me to the next step.
 
-## Create the SvelteKit Project
+## Create the SvelteKit project
 
 Aight! Now I can scaffold out the SvelteKit project. I'll add in the
-terminal commands if you want to follow along, I'll kick off the
+terminal commands if you're following along, I'll kick off the
 SvelteKit CLI with the `pnpm create` command.
 
 ```bash
@@ -100,7 +100,7 @@ pnpm run dev
 
 Sweet! So, now onto creating the form component with the reactions.
 
-## Create the Reactions Component
+## Create the reactions component
 
 I'll create the folders and files I need now for the project. First,
 the reactions component which I'm going to put in the
@@ -153,12 +153,14 @@ reactions from the config file and use them in the component.
 ```svelte
 <script lang="ts">
   import { reactions } from '$lib/config'
+
+   export let path: string | null = '/'
 </script>
 
 <div class="flex justify-center">
   <form
     method="POST"
-    action="/"
+    action="/?path={path}"
     class="grid grid-cols-2 gap-5 sm:flex"
   >
     {#each reactions as reaction}
@@ -191,6 +193,13 @@ I also added in the `action` attribute which points to where the
 action is located, in my case I'm going to create the action in the
 `src/routes/+page.server.ts` file so I'll use `/` for the route.
 
+I'll also add in a `path` prop which I'll need to identify the page
+that the reaction was submitted from, I'll default it to the index `/`
+if there's nothing passed. I can then pass the `path` to the form
+action as a query parameter, so, on the server, I can get the path
+(`url.searchParams.get('path')`) for use in identifying where the
+reaction came from.
+
 So I can see what's going on with the component as a build it out I'll
 stick the component on the index page.
 
@@ -210,7 +219,7 @@ a `POST` method is not allowed as there are no actions for the page.
 
 I'll create the form action next.
 
-## Create the Form Action
+## Create the form action
 
 Now I want to get the forma action working so I can get the value of
 the button that was clicked and send it to the server.
@@ -224,8 +233,8 @@ that was clicked. I can then get the `reaction` out of the `data`
 object.
 
 The last thing I'll need is the `path` which will be the page the
-component is on. The prop for this isn't in the component yet so I'll
-need to add that in later.
+component is on. In the previous section I added a `path` prop to the
+component currently it's defaulting to `/`.
 
 For now I want to validate the action is working so I'll just log out
 the data to the console.
@@ -261,13 +270,13 @@ where the dev server is running.
 =====================
 FormData { [Symbol(state)]: [ { name: 'reaction', value: 'likes' } ] }
 likes
-null
+/
 =====================
 ```
 
 Cool, so I now have the base of what I want to store in Redis.
 
-## Add the Redis Client
+## Add the Redis client
 
 Now I'll set up the redis client, I'll first need to create a `.env`
 file to add the Upstash API keys to. I'll create the `.env` file in
@@ -369,10 +378,9 @@ Once the key is created and the value is incremented I can return the
 data to the client. I'll return the `reaction`, `path` and the `count`
 which is the value of the key.
 
-In the component which is calling the action I can now receive the
-`data` as a prop to the component.
+I can now receive the `data` as a prop to the component.
 
-## Show the count
+## Get Redis data into component
 
 Ok, in my component/form I can now accept a `data` prop which will
 have the `reaction`, `path` and `count` from the server in it. But the
@@ -383,16 +391,15 @@ So, in my index page I'll need to accept the `data` prop coming back
 from the server (form action) which I can then pass to the component.
 
 On the index page I'll accept the `data` prop to the page and pass
-that to the component.
+that onto the component.
 
-I'll also add in a `pre` tag to help me understand the shape of the
-data.
+I'll also add in a `pre` tag to visually see the shape of the data.
 
 ```svelte
 <script lang="ts">
-	import Reactions from '$lib/components/reactions.svelte';
+  import Reactions from '$lib/components/reactions.svelte';
 
-	export let data: any;
+  export let data: any;
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -404,40 +411,233 @@ data.
 ```
 
 Now I can pass the `data` prop to the component and use it to show the
-count of the reaction.
+count of the reaction along with another `pre` tag to show the shape
+of the data.
 
 ```svelte
 <script lang="ts">
-	import { reactions } from '$lib/config';
+  import { reactions } from '$lib/config';
 
-	export let data: any;
+  export let data: any;
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
 
 <div class="flex justify-center">
-	<form
-		method="POST"
-		action="/"
-		class="grid grid-cols-2 gap-5 sm:flex"
-	>
-		{#each reactions as reaction}
-			<button
-				name="reaction"
-				type="submit"
-				value={reaction.type}
-				class="btn btn-primary shadow-xl text-3xl font-bold"
-			>
-				<span>
-					{reaction.emoji}
-				</span>
-			</button>
-		{/each}
-	</form>
+  <form
+    method="POST"
+    action="/"
+    class="grid grid-cols-2 gap-5 sm:flex"
+  >
+    {#each reactions as reaction}
+      <button
+        name="reaction"
+        type="submit"
+        value={reaction.type}
+        class="btn btn-primary shadow-xl text-3xl font-bold"
+      >
+        <span>
+          {reaction.emoji}
+        </span>
+      </button>
+    {/each}
+  </form>
 </div>
 ```
 
-Yes, I'm using an `any` type here, I'll fix that later.
+Yes, I'm using an `any` type here, I'll fix that later. For now I want
+to see the data from the server.
+
+The data for both the page and the component is showing an empty
+object at the moment because I haven't loaded the data from the server
+yet.
+
+In my `src/routes/+page.server.ts` file I'll need to get the data from
+Redis for each reaction type for the path of the page.
+
+First up I'll get my reaction types from the config file and pull out
+the `reaction.type` then use that to map over and get the data from
+Redis with a `Promise.all` and then return the data.
+
+```ts
+export const load = async ({ url: { pathname } }) => {
+  const reaction_types = reactions.map(reaction => reaction.type)
+  const promises = reaction_types.map(reaction =>
+    redis.get(`${pathname}:${reaction}`),
+  )
+  const results = await Promise.all(promises)
+
+  const count = {} as any
+  reaction_types.forEach((reaction, index) => {
+    count[reaction] = Number(results[index]) || 0
+  })
+
+  return { count }
+}
+```
+
+Again! I'll come onto the `any` type later.
+
+Checking the index page I now get the reactions data loaded on both
+the page and in the component.
+
+Clicking on a reaction button now increments the count and I can see
+the result in the `pre` tag, I can remove these now.
+
+## Show the count
+
+Now to show the count of each reaction type. I'll add a `span` tag
+inside the button and show the count there. I can pick the count out
+of the `data` prop that's being passed in for each reaction type.
+
+```svelte
+<script lang="ts">
+  import { reactions } from '$lib/config';
+
+  export let path: string | null = '/';
+  export let data: any;
+</script>
+
+<div class="flex justify-center">
+  <form
+    method="POST"
+    action="/?path={path}"
+    class="grid grid-cols-2 gap-5 sm:flex"
+  >
+    {#each reactions as reaction}
+      <button
+        name="reaction"
+        type="submit"
+        value={reaction.type}
+        class="btn btn-primary shadow-xl text-3xl font-bold"
+      >
+        <span>
+          {reaction.emoji}
+          {data?.count?.[reaction.type] || 0}
+        </span>
+      </button>
+    {/each}
+  </form>
+</div>
+```
+
+I'll sort out the `any` type now.
+
+## TypeScript types
+
+I'll address the `any` type now and add in some TypeScript types for
+the `data` prop. So I need a way to represent the Redis data, it looks
+something like this:
+
+```json
+{
+  "count": {
+    "likes": 3,
+    "hearts": 1,
+    "poops": 0,
+    "parties": 0
+  }
+}
+```
+
+Keys are strings and the values are numbers. So I'll create a
+`ReactionCount` interface to represent the count.
+
+I'll also create a `ReactionsData` interface to represent the data
+coming back from the server. This will have a `path` and a `count`
+which is the `ReactionCount` interface.
+
+```ts
+interface ReactionCount {
+  [key: string]: number
+}
+
+interface ReactionsData {
+  path: string
+  count: ReactionCount
+}
+```
+
+I'll put these into the provided `app.d.ts` file that comes with the
+SvelteKit skeleton template. The full `src/app.d.ts` file looks like
+this:
+
+```ts
+// See https://kit.svelte.dev/docs/types#app
+// for information about these interfaces
+declare global {
+  namespace App {
+    // interface Error {}
+    // interface Locals {}
+    // interface PageData {}
+    // interface Platform {}
+  }
+
+  interface ReactionCount {
+    [key: string]: number
+  }
+  interface ReactionsData {
+    path: string
+    count: ReactionCount
+  }
+}
+
+export {}
+```
+
+I'll replace the `any` type for `data` in the component and on the
+index page with the `ReactionsData` interface. Also in the `load`
+function on the `+page.server.ts` file.
+
+## Use enhance
+
+Up till now each time I click a reaction button the page reloads and
+the data is fetched from Redis. I'll use the SvelteKit `enhance`
+function so there's no page reload each time the buttons are clicked.
+
+I'll expand on the `enhance` function in the later when I rate limit
+the reactions. Here's the `reactions.svelte` component now, with the
+types and `enhance` added:
+
+```svelte
+<script lang="ts">
+  import { enhance } from '$app/forms';
+  import { reactions } from '$lib/config';
+
+  export let path: string | null = '/';
+  export let data: ReactionsData;
+</script>
+
+<div class="flex justify-center">
+  <form
+    method="POST"
+    action="/?path={path}"
+    use:enhance
+    class="grid grid-cols-2 gap-5 sm:flex"
+  >
+    {#each reactions as reaction}
+      <button
+        name="reaction"
+        type="submit"
+        value={reaction.type}
+        class="btn btn-primary shadow-xl text-3xl font-bold"
+      >
+        <span>
+          {reaction.emoji}
+          {data?.count?.[reaction.type] || 0}
+        </span>
+      </button>
+    {/each}
+  </form>
+</div>
+```
+
+Now I can spam the reaction buttons and the page doesn't reload each
+time.
+
+## Rate limit the reactions
+
+## Use the component on a different page
 
 ## Example
 
