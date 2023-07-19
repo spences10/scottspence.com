@@ -637,6 +637,194 @@ time.
 
 ## Rate limit the reactions
 
+So about that button spamming! I'll add the rate limit to the
+`src/routes/+page.server.ts` file.
+
+I'll import Upstash ratelimit which will record the responses from the
+current IP address temporarily (15 seconds) in Redis. To ge the IP
+address I'll use the `getClientAddress` function from SvelteKit.
+
+If there's more than 10 responses in that time I'll apply the rate
+limit and throw an error back to the client. I'll import the SvelteKit
+`fail` function to do this.
+
+```ts
+import { reactions } from '$lib/config.js'
+import { ratelimit, redis } from '$lib/redis.js'
+import { fail } from '@sveltejs/kit'
+
+export const actions = {
+  default: async ({ request, url, getClientAddress }) => {
+    const ip = getClientAddress()
+    const rate_limit_attempt = await ratelimit.limit(ip)
+
+    if (!rate_limit_attempt.success) {
+      const time_remaining = Math.floor(
+        (rate_limit_attempt.reset - new Date().getTime()) / 1000,
+      )
+
+      return fail(429, {
+        error: `Rate limit exceeded. Try again in ${time_remaining} seconds`,
+        time_remaining,
+      })
+    }
+
+    const data = await request.formData()
+    const reaction = data.get('reaction')
+    const path = url.searchParams.get('path')
+
+    const redisKey = `${path}:${reaction}`
+
+    const result = await redis.incr(redisKey)
+
+    return {
+      success: true,
+      status: 200,
+      reaction: reaction,
+      path: path,
+      count: result,
+    }
+  },
+}
+```
+
+Now spamming the button on the client I can add ten reactions and then
+the count stop incrementing. The only feedback I get that the rate
+limit has been applied is the error message in the network tab in the
+browser console.
+
+I'll customise the `use:enhance` function in the `reactions.svelte`
+component to get the `ActionResult` from the server. For now I'll just
+log the result to the console then choose not to reset the form.
+
+```svelte
+use:enhance={() => {
+  return ({ update, result }) => {
+    console.log(JSON.stringify(result, null, 2))
+    update({ reset: false })
+  }
+}}
+```
+
+Now if I spam a reaction button to go over the rate limit I get the
+following logged out to the browser console:
+
+```json
+{
+  "type": "failure",
+  "status": 429,
+  "data": {
+    "error": "Rate limit exceeded. Try again in 7 seconds",
+    "time_remaining": 7
+  }
+}
+```
+
+When I'm not being rate limited the output looks like this:
+
+```json
+{
+  "type": "success",
+  "status": 200,
+  "data": {
+    "success": true,
+    "status": 200,
+    "reaction": "parties",
+    "path": "/",
+    "count": 274
+  }
+}
+```
+
+So I can use the `type` property to check if the response was a
+success or failure. If it's a failure I'll disable the buttons for the
+time remaining.
+
+For the `time_remaining` that's passed from Redis ratelimit to the
+action I need a way to handle the result.
+
+I'll create a Svelte store for `button_disabled` and a `handle_result`
+function that will take in the result (`"success"` or `"failure"`) and
+set the store to true. After the timeout the store will be set back to
+true.
+
+```ts
+let button_disabled = writable(false)
+
+const handle_result = (result: ActionResult) => {
+  if (result.type === 'failure') {
+    $button_disabled = true
+    setTimeout(
+      () => {
+        $button_disabled = false
+      },
+      result?.data?.time_remaining * 1000,
+    )
+  }
+}
+```
+
+In the `use:enhance` function I'll call the `handle_result` function,
+then I can set the button `disabled` attribute to the store value.
+
+Here's the full `reactions.svelte` component now:
+
+```svelte
+<script lang="ts">
+	import { enhance } from '$app/forms';
+	import { reactions } from '$lib/config';
+	import type { ActionResult } from '@sveltejs/kit';
+	import { writable } from 'svelte/store';
+
+	export let path: string | null = '/';
+	export let data: ReactionsData;
+
+	let button_disabled = writable(false);
+
+	const handle_result = (result: ActionResult) => {
+		if (result.type === 'failure') {
+			$button_disabled = true;
+			setTimeout(() => {
+				$button_disabled = false;
+			}, result?.data?.time_remaining * 1000);
+		}
+	};
+</script>
+
+<div class="flex justify-center">
+	<form
+		method="POST"
+		action="/?path={path}"
+		use:enhance={() => {
+			return ({ update, result }) => {
+				handle_result(result);
+				console.log(JSON.stringify(result, null, 2));
+				update({ reset: false });
+			};
+		}}
+		class="grid grid-cols-2 gap-5 sm:flex"
+	>
+		{#each reactions as reaction}
+			<button
+				name="reaction"
+				type="submit"
+				value={reaction.type}
+				class="btn btn-primary shadow-xl text-3xl font-bold"
+				disabled={$button_disabled}
+			>
+				<span>
+					{reaction.emoji}
+					{data?.count?.[reaction.type] || 0}
+				</span>
+			</button>
+		{/each}
+	</form>
+</div>
+```
+
+Now spamming the reactions buttons they get daisabled and set back to
+enabled once the timeout has passed.
+
 ## Use the component on a different page
 
 ## Example
