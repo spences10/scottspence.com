@@ -935,6 +935,21 @@ export const load = async ({ url: { pathname } }) => {
 }
 ```
 
+## Conclusion
+
+I successfully created a reactions component with SvelteKit, powered
+by Upstash Redis for the data storage, and ensured its fair use with
+rate limiting.
+
+I designed this component with the flexibility so it can be added on
+any page of a SvelteKit project, this should give an indication of
+user engagement.
+
+This walkthrough, while thorough, only touches the surface of what can
+be achieved with SvelteKit and Redis. The most important takeaway for
+me is to keep exploring, experimenting and building - because that's
+where the real learning happens!
+
 ## Example
 
 Ok, I've gone through the steps to create this component. If you just
