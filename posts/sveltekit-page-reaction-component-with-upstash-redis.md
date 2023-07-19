@@ -2,7 +2,7 @@
 date: 2023-07-16
 title: SvelteKit Page Reaction Component with Upstash Redis
 tags: ['sveltekit', 'redis', 'upstash', 'how-to']
-isPrivate: true
+isPrivate: false
 ---
 
 I made a reactions component in SvelteKit that uses Upstash Redis to
@@ -154,7 +154,7 @@ reactions from the config file and use them in the component.
 <script lang="ts">
   import { reactions } from '$lib/config'
 
-   export let path: string | null = '/'
+  export let path: string | null = '/'
 </script>
 
 <div class="flex justify-center">
@@ -200,7 +200,7 @@ action as a query parameter, so, on the server, I can get the path
 (`url.searchParams.get('path')`) for use in identifying where the
 reaction came from.
 
-So I can see what's going on with the component as a build it out I'll
+So I can see what's going on with the component as I build it out I'll
 stick the component on the index page.
 
 ```svelte
@@ -221,7 +221,7 @@ I'll create the form action next.
 
 ## Create the form action
 
-Now I want to get the forma action working so I can get the value of
+Now I want to get the form action working so I can get the value of
 the button that was clicked and send it to the server.
 
 In the `src/routes/+page.server.ts` file I'll add in an actions
@@ -595,9 +595,9 @@ Up till now each time I click a reaction button the page reloads and
 the data is fetched from Redis. I'll use the SvelteKit `enhance`
 function so there's no page reload each time the buttons are clicked.
 
-I'll expand on the `enhance` function in the later when I rate limit
-the reactions. Here's the `reactions.svelte` component now, with the
-types and `enhance` added:
+I'll expand on the `enhance` function later when I rate limit the
+reactions. Here's the `reactions.svelte` component now, with the types
+and `enhance` added:
 
 ```svelte
 <script lang="ts">
@@ -637,7 +637,7 @@ time.
 
 ## Rate limit the reactions
 
-So about that button spamming! I'll add the rate limit to the
+So, about that button spamming! I'll add the rate limit to the
 `src/routes/+page.server.ts` file.
 
 I'll import Upstash ratelimit which will record the responses from the
@@ -845,11 +845,11 @@ and also the SvelteKit page store so I can get the current path.
 
 ```svelte
 <script lang="ts">
-	import { page } from '$app/stores';
-	import Reactions from '$lib/components/reactions.svelte';
+  import { page } from '$app/stores';
+  import Reactions from '$lib/components/reactions.svelte';
 
-	export let data: ReactionsData;
-	let path = $page.route.id;
+  export let data: ReactionsData;
+  let path = $page.route.id;
 </script>
 
 <Reactions {data} {path} />
@@ -879,10 +879,13 @@ export const load = async ({ url: { pathname } }) => {
 Now if I check my Redis database I can see that the reactions for the
 about page has been added.
 
-## Refactor page server load
+## Refactor page server load and reactions actions 😅
+
+Two parts to this refactor, the first is to refactor the page server
+load function, the second is to refactor the reactions actions.
 
 The `src/routes/+page.server.ts` load function is now duplicated
-across the index page and the about page, it make sense to refactor
+across the index page and the about page, it makes sense to refactor
 this into a function that can be imported into the `load` function of
 any `+page.server.ts` file you want to use it in.
 
@@ -935,6 +938,40 @@ export const load = async ({ url: { pathname } }) => {
 }
 ```
 
+The server action for adding the reactions to redis is currently on
+the index page `src/routes/index/+page.server.ts` file.
+
+I'll move this into it's own folder so it can be better identified.
+The `+page.server.ts` file can go into it's own folder, I'll make the
+folders for that to go into now:
+
+```bash
+# create the folder
+mkdir -p src/routes/api/reactions
+# copy the index +page.server.ts file into the new folder
+cp src/routes/+page.server.ts src/routes/api/reactions/+page.server.ts
+```
+
+I'm not going to need the `load` function in this file so I'll remove
+it.
+
+In the `src/routes/+page.server.ts` file I'll remove the `actions`
+object so there's just the `load` function importing the
+`get_reaction_count` from the `src/lib/utils.ts` file.
+
+```ts
+import { get_reaction_count } from '$lib/utils.js'
+
+export const load = async ({ url: { pathname } }) => {
+  const count = await get_reaction_count(pathname)
+  return { count }
+}
+```
+
+That's it, any code duplication has been taken care of and I've
+abstracted out the server action into it's own folder so it can be
+quickly identified.
+
 ## Conclusion
 
 I successfully created a reactions component with SvelteKit, powered
@@ -943,7 +980,7 @@ rate limiting.
 
 I designed this component with the flexibility so it can be added on
 any page of a SvelteKit project, this should give an indication of
-user engagement.
+user engagement for any project it's used on.
 
 This walkthrough, while thorough, only touches the surface of what can
 be achieved with SvelteKit and Redis. The most important takeaway for
@@ -965,6 +1002,9 @@ claps] repo which is a Next.js example.
 Thanks to [Geoff Rich] for his great posts on rate limiting with Redis
 and SvelteKit on the [Upstash blog].
 
+Also thanks to [Kevin Åberg Kultalahti] for feedback on the structure
+of the project.
+
 <!-- Links -->
 
 [example repo on github]:
@@ -976,6 +1016,7 @@ and SvelteKit on the [Upstash blog].
 [Geoff Rich]: https://geoffrich.net
 [Upstash blog]: https://upstash.com/blog/sveltekit-rate-limiting
 [`incr`]: https://redis.io/commands/incr
+[Kevin Åberg Kultalahti]: https://github.com/kevmodrome
 
 <!-- Images -->
 
@@ -983,3 +1024,7 @@ and SvelteKit on the [Upstash blog].
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1688893637/scottspence.com/sveltekit-page-reactions-redis-details-dashboard.png
 [sveltekit-page-reactions-redis-dashboard-env-keys]:
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1689607340/scottspence.com/sveltekit-page-reactions-redis-dashboard-env-keys.png
+
+```
+
+```
