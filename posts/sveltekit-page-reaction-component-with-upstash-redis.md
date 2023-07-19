@@ -771,54 +771,54 @@ Here's the full `reactions.svelte` component now:
 
 ```svelte
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import { reactions } from '$lib/config';
-	import type { ActionResult } from '@sveltejs/kit';
-	import { writable } from 'svelte/store';
+  import { enhance } from '$app/forms';
+  import { reactions } from '$lib/config';
+  import type { ActionResult } from '@sveltejs/kit';
+  import { writable } from 'svelte/store';
 
-	export let path: string | null = '/';
-	export let data: ReactionsData;
+  export let path: string | null = '/';
+  export let data: ReactionsData;
 
-	let button_disabled = writable(false);
+  let button_disabled = writable(false);
 
-	const handle_result = (result: ActionResult) => {
-		if (result.type === 'failure') {
-			$button_disabled = true;
-			setTimeout(() => {
-				$button_disabled = false;
-			}, result?.data?.time_remaining * 1000);
-		}
-	};
+  const handle_result = (result: ActionResult) => {
+    if (result.type === 'failure') {
+      $button_disabled = true;
+      setTimeout(() => {
+        $button_disabled = false;
+      }, result?.data?.time_remaining * 1000);
+    }
+  };
 </script>
 
 <div class="flex justify-center">
-	<form
-		method="POST"
-		action="/?path={path}"
-		use:enhance={() => {
-			return ({ update, result }) => {
-				handle_result(result);
-				console.log(JSON.stringify(result, null, 2));
-				update({ reset: false });
-			};
-		}}
-		class="grid grid-cols-2 gap-5 sm:flex"
-	>
-		{#each reactions as reaction}
-			<button
-				name="reaction"
-				type="submit"
-				value={reaction.type}
-				class="btn btn-primary shadow-xl text-3xl font-bold"
-				disabled={$button_disabled}
-			>
-				<span>
-					{reaction.emoji}
-					{data?.count?.[reaction.type] || 0}
-				</span>
-			</button>
-		{/each}
-	</form>
+  <form
+    method="POST"
+    action="/?path={path}"
+    use:enhance={() => {
+      return ({ update, result }) => {
+        handle_result(result);
+        console.log(JSON.stringify(result, null, 2));
+        update({ reset: false });
+      };
+    }}
+    class="grid grid-cols-2 gap-5 sm:flex"
+  >
+    {#each reactions as reaction}
+      <button
+        name="reaction"
+        type="submit"
+        value={reaction.type}
+        class="btn btn-primary shadow-xl text-3xl font-bold"
+        disabled={$button_disabled}
+      >
+        <span>
+          {reaction.emoji}
+          {data?.count?.[reaction.type] || 0}
+        </span>
+      </button>
+    {/each}
+  </form>
 </div>
 ```
 
@@ -826,6 +826,114 @@ Now spamming the reactions buttons they get disabled and set back to
 enabled once the timeout has passed.
 
 ## Use the component on a different page
+
+Up until now the component has just been used on the index page. The
+intention when I started out doing this is to be able to use the
+component on any page.
+
+I'll create an about page and use the component in there, I'll also
+need a `+page.server.ts` file to go with the `+page.svelte` file, I'll
+create them now with a terminal command.
+
+```bash
+mkdir -p src/routes/about
+touch src/routes/about/{+page.svelte,+page.server.ts}
+```
+
+In the `src/routes/about/+page.svelte` file I'll import the component
+and also the SvelteKit page store so I can get the current path.
+
+```svelte
+<script lang="ts">
+	import { page } from '$app/stores';
+	import Reactions from '$lib/components/reactions.svelte';
+
+	export let data: ReactionsData;
+	let path = $page.route.id;
+</script>
+
+<Reactions {data} {path} />
+```
+
+In the `src/routes/about/+page.server.ts` file I'll use the same
+`load` as what's in the `src/routes/index/+page.server.ts` file.
+
+```ts
+export const load = async ({ url: { pathname } }) => {
+  const reaction_types = reactions.map(reaction => reaction.type)
+
+  const promises = reaction_types.map(reaction =>
+    redis.get(`${pathname}:${reaction}`),
+  )
+  const results = await Promise.all(promises)
+
+  const count = {} as any
+  reaction_types.forEach((reaction, index) => {
+    count[reaction] = Number(results[index]) || 0
+  })
+
+  return { count }
+}
+```
+
+Now if I check my Redis database I can see that the reactions for the
+about page has been added.
+
+## Refactor page server load
+
+The `src/routes/+page.server.ts` load function is now duplicated
+across the index page and the about page, it make sense to refactor
+this into a function that can be imported into the `load` function of
+any `+page.server.ts` file you want to use it in.
+
+Over in the `src/lib/utils.ts` file I'll create a `get_reaction_count`
+function that will take in the `pathname` and return a `ReactionCount`
+object.
+
+```ts
+import { reactions } from './config'
+import { redis } from './redis'
+
+const reaction_types = reactions.map(reaction => reaction.type)
+
+export async function get_reaction_count(
+  pathname: string,
+): Promise<ReactionCount> {
+  const promises = reaction_types.map(reaction =>
+    redis.get(`${pathname}:${reaction}`),
+  )
+  const results = await Promise.all(promises)
+
+  const count = {} as ReactionCount
+  reaction_types.forEach((reaction, index) => {
+    count[reaction] = Number(results[index]) || 0
+  })
+
+  return count
+}
+```
+
+Then in the `+page.server.ts` files I can import the function and use
+it in the `load` function.
+
+```diff
+export const load = async ({ url: { pathname } }) => {
++  const count = await get_reaction_count(pathname)
+-  const reaction_types = reactions.map(reaction => reaction.type)
+
+-  const promises = reaction_types.map(reaction =>
+-    redis.get(`${pathname}:${reaction}`),
+-  )
+-  const results = await Promise.all(promises)
+
+-  const count = {} as any
+-  reaction_types.forEach((reaction, index) => {
+-    count[reaction] = Number(results[index]) || 0
+-  })
+
+  return { count }
+}
+```
 
 ## Example
 
