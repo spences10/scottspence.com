@@ -343,7 +343,7 @@ passing in the `path` to the form action. So when I create the key I
 can use the `path` and the `reaction` to create a unique key.
 
 If I use the component on the about page and someone clicks the like
-button the key in the Redis databse will be `about:likes`. I'm then
+button the key in the Redis database will be `about:likes`. I'm then
 using the [`incr`] method to increment the value of the key by one.
 
 ```ts
@@ -822,7 +822,7 @@ Here's the full `reactions.svelte` component now:
 </div>
 ```
 
-Now spamming the reactions buttons they get daisabled and set back to
+Now spamming the reactions buttons they get disabled and set back to
 enabled once the timeout has passed.
 
 ## Use the component on a different page
