@@ -7,7 +7,7 @@
   import { spring } from 'svelte/motion'
 
   export let count: number = 0
-  export let font_size = 'text-3xl'
+  export let font_size = 'text-2xl'
   export let emoji: string
   export let value: string
   export let disabled: boolean
@@ -45,7 +45,7 @@
   type="submit"
   {value}
   {disabled}
-  class="btn lowercase btn-primary overflow-hidden relative shadow-xl"
+  class="btn btn-primary overflow-hidden lowercase relative shadow-xl rounded-box"
   on:click={handle_click}
   style:width={button_width}
   title={count > 1000 ? `${value} ${count}` : ''}

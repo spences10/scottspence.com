@@ -20,7 +20,7 @@
   }
 </script>
 
-<div class="flex justify-center">
+<div class="flex justify-center mb-10">
   <form
     method="POST"
     action="/reactions?path={path}"
@@ -31,7 +31,7 @@
         update({ reset: false })
       }
     }}
-    class="flex flex-col gap-4 sm:flex sm:w-full sm:justify-between"
+    class="grid grid-cols-1 gap-5 sm:flex w-full sm:justify-between"
   >
     {#each reactions as reaction}
       <NumberFlip
