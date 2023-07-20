@@ -21,7 +21,7 @@ Go to https://console.upstash.com/login and create an account if you
 don't have one already.
 
 In the Redis databases section I'll click on the 'Create Database'
-button. I'm them prompted to give the database a name, I'll call it
+button. I'm then prompted to give the database a name, I'll call it
 `sveltekit-reactions`.
 
 For the type I can choose between 'Global' or 'Regional'. I'll go with
