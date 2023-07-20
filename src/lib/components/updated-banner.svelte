@@ -8,7 +8,7 @@
 
   let has_been_updated = compareDesc(
     new Date(updated),
-    new Date(date)
+    new Date(date),
   )
 </script>
 
@@ -18,7 +18,7 @@
       <span class="mr-5">
         <WarningTriangle />
       </span>
-      <span class='text-left'>
+      <span class="text-left">
         Hey! Thanks for stopping by! Looks like this post was updated
         <span class="font-bold italic">
           <DateDistance date={new Date(updated)} /> ago.
@@ -38,13 +38,13 @@
       <span class="mr-5">
         <WarningTriangle />
       </span>
-      <span>
+      <span class="text-left">
         Hey! Thanks for stopping by! Just a word of warning, this post
         is
         <span class="font-bold italic">
           <DateDistance date={new Date(date)} /> old, {differenceInYears(
             new Date(Date.now()),
-            new Date(date)
+            new Date(date),
           ) >= 4
             ? 'wow!'
             : '.'}

@@ -1,4 +1,5 @@
 import { time_to_seconds } from '$lib/utils'
+import { get_reaction_count_data } from '$lib/utils/get-reaction-count.js'
 import {
   endOfMonth,
   endOfYear,
@@ -41,14 +42,7 @@ const fetch_visits = async (
   }
 }
 
-export const load = async ({
-  fetch,
-  params,
-}): Promise<{
-  daily_visits: AnalyticsData
-  monthly_visits: AnalyticsData
-  yearly_visits: AnalyticsData
-}> => {
+export const load = async ({ fetch, params, url }) => {
   const { slug } = params
   const base_path = `../analytics.json?pathname=/posts/${slug}`
 
@@ -90,9 +84,16 @@ export const load = async ({
       ),
     ])
 
+  const count = await get_reaction_count_data(url.pathname)
+
+  // console.log('=====================')
+  // console.log(`url.pathname: ${url.pathname}`)
+  // console.log(`count: ${JSON.stringify(count)}`)
+  // console.log('=====================')
   return {
     daily_visits,
     monthly_visits,
     yearly_visits,
+    count,
   }
 }
