@@ -205,11 +205,14 @@ stick the component on the index page.
 
 ```svelte
 <script lang="ts">
-  import Reactions from '$lib/components/reactions.svelte';
+  import Reactions from '$lib/components/reactions.svelte'
 </script>
 
 <h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<p>
+  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
+  documentation
+</p>
 
 <Reactions />
 ```
@@ -397,17 +400,20 @@ I'll also add in a `pre` tag to visually see the shape of the data.
 
 ```svelte
 <script lang="ts">
-  import Reactions from '$lib/components/reactions.svelte';
+  import Reactions from '$lib/components/reactions.svelte'
 
-  export let data: any;
+  export let data: any
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
 
 <h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<p>
+  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
+  documentation
+</p>
 
-<Reactions {data}/>
+<Reactions {data} />
 ```
 
 Now I can pass the `data` prop to the component and use it to show the
@@ -416,9 +422,9 @@ of the data.
 
 ```svelte
 <script lang="ts">
-  import { reactions } from '$lib/config';
+  import { reactions } from '$lib/config'
 
-  export let data: any;
+  export let data: any
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -492,10 +498,10 @@ of the `data` prop that's being passed in for each reaction type.
 
 ```svelte
 <script lang="ts">
-  import { reactions } from '$lib/config';
+  import { reactions } from '$lib/config'
 
-  export let path: string | null = '/';
-  export let data: any;
+  export let path: string | null = '/'
+  export let data: any
 </script>
 
 <div class="flex justify-center">
@@ -601,11 +607,11 @@ and `enhance` added:
 
 ```svelte
 <script lang="ts">
-  import { enhance } from '$app/forms';
-  import { reactions } from '$lib/config';
+  import { enhance } from '$app/forms'
+  import { reactions } from '$lib/config'
 
-  export let path: string | null = '/';
-  export let data: ReactionsData;
+  export let path: string | null = '/'
+  export let data: ReactionsData
 </script>
 
 <div class="flex justify-center">
@@ -771,24 +777,24 @@ Here's the full `reactions.svelte` component now:
 
 ```svelte
 <script lang="ts">
-  import { enhance } from '$app/forms';
-  import { reactions } from '$lib/config';
-  import type { ActionResult } from '@sveltejs/kit';
-  import { writable } from 'svelte/store';
+  import { enhance } from '$app/forms'
+  import { reactions } from '$lib/config'
+  import type { ActionResult } from '@sveltejs/kit'
+  import { writable } from 'svelte/store'
 
-  export let path: string | null = '/';
-  export let data: ReactionsData;
+  export let path: string | null = '/'
+  export let data: ReactionsData
 
-  let button_disabled = writable(false);
+  let button_disabled = writable(false)
 
   const handle_result = (result: ActionResult) => {
     if (result.type === 'failure') {
-      $button_disabled = true;
+      $button_disabled = true
       setTimeout(() => {
-        $button_disabled = false;
-      }, result?.data?.time_remaining * 1000);
+        $button_disabled = false
+      }, result?.data?.time_remaining * 1000)
     }
-  };
+  }
 </script>
 
 <div class="flex justify-center">
@@ -797,10 +803,10 @@ Here's the full `reactions.svelte` component now:
     action="/?path={path}"
     use:enhance={() => {
       return ({ update, result }) => {
-        handle_result(result);
-        console.log(JSON.stringify(result, null, 2));
-        update({ reset: false });
-      };
+        handle_result(result)
+        console.log(JSON.stringify(result, null, 2))
+        update({ reset: false })
+      }
     }}
     class="grid grid-cols-2 gap-5 sm:flex"
   >
@@ -845,11 +851,11 @@ and also the SvelteKit page store so I can get the current path.
 
 ```svelte
 <script lang="ts">
-  import { page } from '$app/stores';
-  import Reactions from '$lib/components/reactions.svelte';
+  import { page } from '$app/stores'
+  import Reactions from '$lib/components/reactions.svelte'
 
-  export let data: ReactionsData;
-  let path = $page.route.id;
+  export let data: ReactionsData
+  let path = $page.route.id
 </script>
 
 <Reactions {data} {path} />
@@ -1024,7 +1030,3 @@ of the project.
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1688893637/scottspence.com/sveltekit-page-reactions-redis-details-dashboard.png
 [sveltekit-page-reactions-redis-dashboard-env-keys]:
   https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1689607340/scottspence.com/sveltekit-page-reactions-redis-dashboard-env-keys.png
-
-```
-
-```
