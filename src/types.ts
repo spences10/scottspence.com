@@ -28,3 +28,12 @@ declare interface AnalyticsData {
 declare interface Fetch {
   (input: RequestInfo, init?: RequestInit): Promise<Response>
 }
+
+declare interface ReactionCount {
+  [key: string]: number
+}
+
+declare interface ReactionsData {
+  path?: string
+  count: ReactionCount
+}

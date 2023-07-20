@@ -1,6 +1,6 @@
 export const load = async ({
   params,
-  data: { daily_visits, monthly_visits, yearly_visits },
+  data: { daily_visits, monthly_visits, yearly_visits, count },
 }) => {
   const { slug } = params
 
@@ -10,6 +10,7 @@ export const load = async ({
       daily_visits,
       monthly_visits,
       yearly_visits,
+      count,
       Content: post.default,
       meta: { ...post.metadata, slug },
     }

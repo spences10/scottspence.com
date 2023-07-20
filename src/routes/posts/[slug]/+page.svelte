@@ -10,6 +10,7 @@
     TableOfContents,
     UpdatedBanner,
   } from '$lib/components'
+  import Reactions from '$lib/components/reactions.svelte'
   import { name, website } from '$lib/info'
   import { visitors_store } from '$lib/stores'
   import {
@@ -39,9 +40,11 @@
     isPrivate,
     tags,
   } = data.meta
-  let { daily_visits, monthly_visits, yearly_visits } = data
+  let { daily_visits, monthly_visits, yearly_visits, count } = data
 
   const url = `${website}/posts/${slug}`
+
+  let path = $page.route.id
 
   let end_of_copy: HTMLElement | null
   let show_table_of_contents = true
@@ -56,7 +59,7 @@
 
   let visitors_count = get_current_page_visitors(
     current_path,
-    content
+    content,
   )
 
   const handle_scroll = () => {
@@ -152,6 +155,8 @@
   >
     <div class="divider" />
   </div>
+
+  <Reactions data={count} path={current_path} />
 
   <StatsCard {daily_visits} {monthly_visits} {yearly_visits} />
 
