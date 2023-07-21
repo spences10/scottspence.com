@@ -6,6 +6,7 @@ import {
 } from '$env/static/private'
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
+import crypto from 'crypto'
 
 let redis: Redis
 let ratelimit: Ratelimit
@@ -26,10 +27,51 @@ export function current_visitors_key(): string {
   return `current_visitors:${VISITORS_KEY}`
 }
 
-export function page_analytics_key(slug: string): string {
-  // Replace characters that would be URL encoded and slashes with ':'
-  const sanitised_slug = slug.replace(/[%?&=/]/g, ':')
-  return `slug:${sanitised_slug}`
+/**
+ * Generates a cache key for a given set of parameters.
+ * `page_views` or `current_visitors` used for `cache_key_prefix`
+ * for human readable cache key.
+ *
+ * @param cache_key_prefix - The key prefix when generating the cache key.
+ * @param url - The URL to include in the cache key.
+ * @param params - An object containing query parameters to include in the cache key.
+ * @returns The generated cache key.
+ */
+function page_views_key(
+  cache_key_prefix: string,
+  url: string,
+  params: any,
+): string {
+  const hash = crypto.createHash('sha256')
+  hash.update(url)
+  const short_hash = hash.digest('hex').substring(0, 8)
+
+  // Parse the filters property
+  const filters = JSON.parse(params.filters || '[]')
+  const pathname = filters.length > 0 ? filters[0].value : ''
+  const grouping = params.date_grouping || ''
+
+  // Extract the slug from the pathname
+  const slug = pathname.split('/').pop() || ''
+
+  // Include the slug and additional information in the cache key
+  return `${cache_key_prefix}:${slug}:${grouping}:${short_hash}`
 }
 
-export { ratelimit, redis }
+function popular_posts_key(
+  cache_key_prefix: string,
+  url: string,
+  params: any,
+): string {
+  const hash = crypto.createHash('sha256')
+  hash.update(url)
+  const short_hash = hash.digest('hex').substring(0, 8)
+
+  // Extract the period from the params
+  const period = params.period || ''
+
+  // Include the period and additional information in the cache key
+  return `${cache_key_prefix}:${period}:${short_hash}`
+}
+
+export { page_views_key, popular_posts_key, ratelimit, redis }

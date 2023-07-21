@@ -1,8 +1,7 @@
 // Fetch data from the Fathom Analytics API and cache the results.
 
 import { building } from '$app/environment'
-import crypto from 'crypto'
-import { current_visitors_key, redis } from './redis'
+import { current_visitors_key, page_views_key, popular_posts_key, redis } from './redis'
 
 // Disable calls to the Fathom Analytics API.
 const DISABLE_FATHOM_API_FETCHING = false
@@ -15,7 +14,7 @@ const DISABLE_FATHOM_API_FETCHING = false
  * @param params - An object containing query parameters to include in the API request.
  * @param headers - An object containing headers to include in the API request.
  * @param cache_duration - The number of seconds to cache the API response for.
- * @param base_slug - The base slug to use when generating the cache key.
+ * @param cache_key_prefix - The key prefix when generating the cache key.
  * @returns The data returned by the API.
  */
 export const fetch_fathom_data = async (
@@ -24,7 +23,7 @@ export const fetch_fathom_data = async (
   params: { [s: string]: unknown } | ArrayLike<unknown>,
   headers: Headers,
   cache_duration: number,
-  base_slug: string,
+  cache_key_prefix: string,
 ) => {
   if (DISABLE_FATHOM_API_FETCHING || building) return null
 
@@ -36,13 +35,28 @@ export const fetch_fathom_data = async (
       url.searchParams.append(key, decoded_value)
     })
 
-  const cache_key = endpoint.includes('current_visitors')
-    ? current_visitors_key()
-    : generate_cache_key(
-        base_slug,
+  let cache_key
+  switch (cache_key_prefix) {
+    case 'current_visitors':
+      cache_key = current_visitors_key()
+      break
+    case 'page_views':
+      cache_key = page_views_key(
+        cache_key_prefix,
         decodeURIComponent(url.search),
         params,
       )
+      break
+    case 'popular_posts':
+      cache_key = popular_posts_key(
+        cache_key_prefix,
+        decodeURIComponent(url.search),
+        params,
+      )
+      break
+    default:
+      throw new Error(`Unknown cache_key_prefix: ${cache_key_prefix}`)
+  }
 
   const cached = await get_data_from_cache(cache_key)
   if (cached) return cached
@@ -97,35 +111,4 @@ export const cache_response = async (
   } catch (e) {
     console.error(`Error caching response: ${e}`)
   }
-}
-
-/**
- * Generates a cache key for a given set of parameters.
- * `page_views` or `current_visitors` used for `base_slug`
- * for human readable cache key.
- *
- * @param base_slug - The base slug to use when generating the cache key.
- * @param url - The URL to include in the cache key.
- * @param params - An object containing query parameters to include in the cache key.
- * @returns The generated cache key.
- */
-function generate_cache_key(
-  base_slug: string,
-  url: string,
-  params: any,
-): string {
-  const hash = crypto.createHash('sha256')
-  hash.update(url)
-  const short_hash = hash.digest('hex').substring(0, 8)
-
-  // Parse the filters property
-  const filters = JSON.parse(params.filters || '[]')
-  const pathname = filters.length > 0 ? filters[0].value : ''
-  const grouping = params.date_grouping || ''
-
-  // Extract the slug from the pathname
-  const slug = pathname.split('/').pop() || ''
-
-  // Include the slug and additional information in the cache key
-  return `${base_slug}:${slug}:${grouping}:${short_hash}`
 }
