@@ -8,10 +8,10 @@ export const config: ServerlessConfig = {
   runtime: 'nodejs18.x',
 }
 
-export const GET = async ({ url, fetch }) => {
+export const GET = async ({ url, fetch }): Promise<Response> => {
   const cache_duration = parseInt(
     url.searchParams.get('cache_duration') ?? '900',
-    10
+    10,
   )
 
   const headers_auth = new Headers()
@@ -23,7 +23,7 @@ export const GET = async ({ url, fetch }) => {
     { site_id: PUBLIC_FATHOM_ID, detailed: true },
     headers_auth,
     cache_duration,
-    `current_visitors`
+    `current_visitors`,
   )
 
   if (visitors && visitors.visitors) {
@@ -35,7 +35,7 @@ export const GET = async ({ url, fetch }) => {
         headers: {
           'X-Robots-Tag': 'noindex, nofollow',
         },
-      }
+      },
     )
   } else {
     console.error('Visitors API returned data in unexpected format.')
