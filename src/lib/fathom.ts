@@ -1,7 +1,12 @@
 // Fetch data from the Fathom Analytics API and cache the results.
 
 import { building } from '$app/environment'
-import { current_visitors_key, page_views_key, popular_posts_key, redis } from './redis'
+import {
+  current_visitors_key,
+  page_views_key,
+  popular_posts_key,
+  redis,
+} from './redis'
 
 // Disable calls to the Fathom Analytics API.
 const DISABLE_FATHOM_API_FETCHING = false
@@ -24,6 +29,7 @@ export const fetch_fathom_data = async (
   headers: Headers,
   cache_duration: number,
   cache_key_prefix: string,
+  cache_key_period: string = '',
 ) => {
   if (DISABLE_FATHOM_API_FETCHING || building) return null
 
@@ -52,6 +58,7 @@ export const fetch_fathom_data = async (
         cache_key_prefix,
         decodeURIComponent(url.search),
         params,
+        cache_key_period,
       )
       break
     default:

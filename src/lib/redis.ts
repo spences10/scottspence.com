@@ -62,13 +62,11 @@ function popular_posts_key(
   cache_key_prefix: string,
   url: string,
   params: any,
+  period: string,
 ): string {
   const hash = crypto.createHash('sha256')
   hash.update(url)
   const short_hash = hash.digest('hex').substring(0, 8)
-
-  // Extract the period from the params
-  const period = params.period || ''
 
   // Include the period and additional information in the cache key
   return `${cache_key_prefix}:${period}:${short_hash}`

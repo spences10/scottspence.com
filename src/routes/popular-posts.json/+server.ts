@@ -24,6 +24,7 @@ export const GET = async ({ fetch, url }) => {
     headers_auth,
     time_to_seconds({ hours: 24 }),
     `popular_posts`,
+    period,
   )
 
   const posts_response = await fetch('posts.json')
