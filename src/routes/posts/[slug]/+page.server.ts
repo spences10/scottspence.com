@@ -86,10 +86,6 @@ export const load = async ({ fetch, params, url }) => {
 
   const count = await get_reaction_count_data(url.pathname)
 
-  // console.log('=====================')
-  // console.log(`url.pathname: ${url.pathname}`)
-  // console.log(`count: ${JSON.stringify(count)}`)
-  // console.log('=====================')
   return {
     daily_visits,
     monthly_visits,
