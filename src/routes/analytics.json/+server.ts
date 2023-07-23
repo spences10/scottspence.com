@@ -1,4 +1,3 @@
-import { FATHOM_API_KEY } from '$env/static/private'
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
 import { fetch_fathom_data } from '$lib/fathom'
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
@@ -10,34 +9,30 @@ export const config: ServerlessConfig = {
 
 export const GET = async ({ url, fetch }) => {
   const pathname = url.searchParams.get('pathname') ?? '/'
-  const date_grouping = url.searchParams.get('date_grouping')
+  const date_grouping = url.searchParams.get('date_grouping') ?? 'day'
   const date_from = url.searchParams.get('date_from')
   const date_to = url.searchParams.get('date_to')
   const sort_by = url.searchParams.get('sort_by')
   const cache_duration = parseInt(
     url.searchParams.get('cache_duration') ?? '1800',
-    10
+    10,
   )
 
   const date_params = build_date_params(
     date_from,
     date_to,
     date_grouping,
-    sort_by
+    sort_by,
   )
   const default_params = build_default_params(pathname)
   const params = { ...default_params, ...date_params }
-
-  const headers_auth = new Headers()
-  headers_auth.append('Authorization', `Bearer ${FATHOM_API_KEY}`)
 
   const analytics_data = await fetch_fathom_data(
     fetch,
     `aggregations`,
     params,
-    headers_auth,
     cache_duration,
-    `page_views`
+    `page_views_${date_grouping ? date_grouping : 'day'}`,
   )
 
   if (Array.isArray(analytics_data) && analytics_data.length > 0) {
@@ -49,15 +44,15 @@ export const GET = async ({ url, fetch }) => {
         headers: {
           'X-Robots-Tag': 'noindex, nofollow',
         },
-      }
+      },
     )
   } else {
     console.error(
       `Analytics API returned data in unexpected format. ${JSON.stringify(
         params,
         null,
-        2
-      )}`
+        2,
+      )}`,
     )
     return json({
       analytics: [],
@@ -71,7 +66,7 @@ const build_date_params = (
   date_from: string | null,
   date_to: string | null,
   date_grouping: string | null,
-  sort_by: string | null
+  sort_by: string | null,
 ) => ({
   ...(date_from && { date_from }),
   ...(date_to && { date_to }),

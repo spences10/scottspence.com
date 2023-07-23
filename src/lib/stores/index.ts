@@ -16,15 +16,11 @@ export interface VisitorsData {
   }
 }
 
-export interface PopularPost {
-  visits: number
-  uniques: number
-  pageviews: number
-  title: string
-  pathname: string
-}
-
-export const popular_posts_store = writable<PopularPost[]>([])
+export const popular_posts_store = writable<PopularPosts>({
+  popular_posts_daily: [],
+  popular_posts_monthly: [],
+  popular_posts_yearly: [],
+})
 
 export const visitors_store = writable<VisitorsData>({
   visitors: {

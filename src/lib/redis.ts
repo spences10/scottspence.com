@@ -26,10 +26,32 @@ export function current_visitors_key(): string {
   return `current_visitors:${VISITORS_KEY}`
 }
 
-export function page_analytics_key(slug: string): string {
-  // Replace characters that would be URL encoded and slashes with ':'
-  const sanitised_slug = slug.replace(/[%?&=/]/g, ':')
-  return `slug:${sanitised_slug}`
+/**
+ * Generates a cache key for a given set of parameters.
+ * `page_views` or `current_visitors` used for `cache_key_prefix`
+ * for human readable cache key.
+ *
+ * @param cache_key_prefix - The key prefix when generating the cache key.
+ * @param url - The URL to include in the cache key.
+ * @param params - An object containing query parameters to include in the cache key.
+ * @returns The generated cache key.
+ */
+function page_views_key(
+  cache_key_prefix: string,
+  params: any,
+): string {
+  // Parse the filters property
+  const filters = JSON.parse(params.filters || '[]')
+  const pathname = filters.length > 0 ? filters[0].value : ''
+
+  // Extract the slug from the pathname
+  const slug = pathname.split('/').pop() || ''
+
+  return `${cache_key_prefix}:${slug}`
 }
 
-export { ratelimit, redis }
+function popular_posts_key(cache_key_prefix: string): string {
+  return `${cache_key_prefix}`
+}
+
+export { page_views_key, popular_posts_key, ratelimit, redis }

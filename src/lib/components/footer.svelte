@@ -5,12 +5,22 @@
   import { popular_posts_store, visitors_store } from '$lib/stores'
   import { number_crunch } from '$lib/utils'
   import * as Fathom from 'fathom-client'
+
+  type PopularPostsPeriod = keyof PopularPosts
+  let selected_period: PopularPostsPeriod = 'popular_posts_yearly'
+
+  let posts: PopularPost[] = []
+
+  $: {
+    posts =
+      $popular_posts_store[selected_period as PopularPostsPeriod]
+  }
 </script>
 
 <footer class="footer p-10 bg-primary text-primary-content">
   <div>
     <span class="footer-title">Popular Posts</span>
-    {#each $popular_posts_store as post}
+    {#each posts as post}
       <p>
         <a
           data-sveltekit-reload
@@ -23,7 +33,6 @@
           class="text-primary-content font-bold tooltip relative group cursor-pointer"
           data-tip={`
           Visits: ${number_crunch(post.visits)},
-          Uniques: ${number_crunch(post.uniques)},
           Pageviews: ${number_crunch(post.pageviews)}
         `}
         >
