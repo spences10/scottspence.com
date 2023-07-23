@@ -1,6 +1,7 @@
 // Fetch data from the Fathom Analytics API and cache the results.
 
 import { building } from '$app/environment'
+import { FATHOM_API_KEY } from '$env/static/private'
 import {
   current_visitors_key,
   page_views_key,
@@ -26,10 +27,8 @@ export const fetch_fathom_data = async (
   fetch: Fetch,
   endpoint: string,
   params: { [s: string]: unknown } | ArrayLike<unknown>,
-  headers: Headers,
   cache_duration: number,
   cache_key_prefix: string,
-  cache_key_period: string = '',
 ) => {
   if (DISABLE_FATHOM_API_FETCHING || building) return null
 
@@ -41,32 +40,13 @@ export const fetch_fathom_data = async (
       url.searchParams.append(key, decoded_value)
     })
 
-  let cache_key
-  switch (cache_key_prefix) {
-    case 'current_visitors':
-      cache_key = current_visitors_key()
-      break
-    case 'page_views':
-      cache_key = page_views_key(
-        cache_key_prefix,
-        decodeURIComponent(url.search),
-        params,
-      )
-      break
-    case 'popular_posts':
-      cache_key = popular_posts_key(
-        cache_key_prefix,
-        decodeURIComponent(url.search),
-        params,
-        cache_key_period,
-      )
-      break
-    default:
-      throw new Error(`Unknown cache_key_prefix: ${cache_key_prefix}`)
-  }
+  const cache_key = get_cache_key(cache_key_prefix, params)
 
   const cached = await get_data_from_cache(cache_key)
   if (cached) return cached
+
+  const headers = new Headers()
+  headers.append('Authorization', `Bearer ${FATHOM_API_KEY}`)
 
   const res = await fetch(url.toString(), { headers })
 
@@ -117,5 +97,25 @@ export const cache_response = async (
     await redis.setex(cache_key, cache_duration, JSON.stringify(data))
   } catch (e) {
     console.error(`Error caching response: ${e}`)
+  }
+}
+
+const get_cache_key = (
+  prefix: string,
+  params: { [s: string]: unknown } | ArrayLike<unknown>,
+) => {
+  switch (prefix) {
+    case 'current_visitors':
+      return current_visitors_key()
+    case 'page_views_day':
+    case 'page_views_month':
+    case 'page_views_year':
+      return page_views_key(prefix, params)
+    case 'popular_posts_day':
+    case 'popular_posts_month':
+    case 'popular_posts_year':
+      return popular_posts_key(prefix)
+    default:
+      throw new Error(`Unknown cache_key_prefix: ${prefix}`)
   }
 }

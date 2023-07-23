@@ -1,4 +1,3 @@
-import { FATHOM_API_KEY } from '$env/static/private'
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
 import { fetch_fathom_data } from '$lib/fathom'
 import { time_to_seconds } from '$lib/utils/time-to-seconds.js'
@@ -14,17 +13,12 @@ export const GET = async ({ fetch, url }) => {
   const period = url.searchParams.get('period') ?? 'week'
   const params = build_popular_params(period)
 
-  const headers_auth = new Headers()
-  headers_auth.append('Authorization', `Bearer ${FATHOM_API_KEY}`)
-
   const analytics_data = await fetch_fathom_data(
     fetch,
     `aggregations`,
     params,
-    headers_auth,
     time_to_seconds({ hours: 24 }),
-    `popular_posts`,
-    period,
+    `popular_posts_${period}`,
   )
 
   const posts_response = await fetch('posts.json')

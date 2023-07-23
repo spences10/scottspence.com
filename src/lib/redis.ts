@@ -6,7 +6,6 @@ import {
 } from '$env/static/private'
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
-import crypto from 'crypto'
 
 let redis: Redis
 let ratelimit: Ratelimit
@@ -39,37 +38,20 @@ export function current_visitors_key(): string {
  */
 function page_views_key(
   cache_key_prefix: string,
-  url: string,
   params: any,
 ): string {
-  const hash = crypto.createHash('sha256')
-  hash.update(url)
-  const short_hash = hash.digest('hex').substring(0, 8)
-
   // Parse the filters property
   const filters = JSON.parse(params.filters || '[]')
   const pathname = filters.length > 0 ? filters[0].value : ''
-  const grouping = params.date_grouping || ''
 
   // Extract the slug from the pathname
   const slug = pathname.split('/').pop() || ''
 
-  // Include the slug and additional information in the cache key
-  return `${cache_key_prefix}:${slug}:${grouping}:${short_hash}`
+  return `${cache_key_prefix}:${slug}`
 }
 
-function popular_posts_key(
-  cache_key_prefix: string,
-  url: string,
-  params: any,
-  period: string,
-): string {
-  const hash = crypto.createHash('sha256')
-  hash.update(url)
-  const short_hash = hash.digest('hex').substring(0, 8)
-
-  // Include the period and additional information in the cache key
-  return `${cache_key_prefix}:${period}:${short_hash}`
+function popular_posts_key(cache_key_prefix: string): string {
+  return `${cache_key_prefix}`
 }
 
 export { page_views_key, popular_posts_key, ratelimit, redis }

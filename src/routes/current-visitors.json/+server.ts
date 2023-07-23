@@ -1,4 +1,3 @@
-import { FATHOM_API_KEY } from '$env/static/private'
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
 import { fetch_fathom_data } from '$lib/fathom'
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
@@ -14,14 +13,10 @@ export const GET = async ({ url, fetch }): Promise<Response> => {
     10,
   )
 
-  const headers_auth = new Headers()
-  headers_auth.append('Authorization', `Bearer ${FATHOM_API_KEY}`)
-
   const visitors = await fetch_fathom_data(
     fetch,
     `current_visitors`,
     { site_id: PUBLIC_FATHOM_ID, detailed: true },
-    headers_auth,
     cache_duration,
     `current_visitors`,
   )
