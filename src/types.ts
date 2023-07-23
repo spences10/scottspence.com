@@ -37,3 +37,16 @@ declare interface ReactionsData {
   path?: string
   count: ReactionCount
 }
+
+declare interface PopularPost {
+  visits: string
+  pageviews: string
+  pathname: string
+  title: string
+}
+
+declare interface PopularPosts {
+  popular_posts_daily: PopularPost[]
+  popular_posts_monthly: PopularPost[]
+  popular_posts_yearly: PopularPost[]
+}
