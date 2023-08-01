@@ -5,7 +5,7 @@
     Small, 
   } from '$lib/components'
   import PM from '../src/routes/lets-work-together/pricing-matrix.svelte'
-  import WS from '../src/routes/lets-work-together/workshops.svelte'
+  import WS from '../src/routes/lets-work-together/workshop.svelte'
   import VD from '../src/routes/lets-work-together/video.svelte'
   import BP from '../src/routes/lets-work-together/blog-post.svelte'
 </script>
