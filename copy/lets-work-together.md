@@ -37,7 +37,7 @@ approach can facilitate your product's adoption, visibility, and
 overall success.
 
 Whether it's delivering top-tier workshops, leading and consulting on
-projects, or advocating for your product, my skillset can drive
+projects, or advocating for your product, my skill-set can drive
 tangible results for your team and business.
 
 ## Workshops & speaking engagements
