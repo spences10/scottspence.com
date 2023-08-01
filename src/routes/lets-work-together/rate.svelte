@@ -34,6 +34,13 @@
     total_annual_rate,
     selected_currency,
   )
+
+  const on_annual_rate_input = (e: Event) => {
+    annual_rate_EUR = Math.max(
+      (e.target as HTMLInputElement).valueAsNumber,
+      ANNUAL_RATE_EUR,
+    )
+  }
 </script>
 
 <div class="flex flex-col">
@@ -41,10 +48,11 @@
     Annual rate (EUR):
     <input
       type="range"
-      min={ANNUAL_RATE_EUR}
+      min={60000}
       max={100000}
       step={5000}
       bind:value={annual_rate_EUR}
+      on:input={on_annual_rate_input}
     />
     {annual_rate_EUR}
   </label>
@@ -61,7 +69,10 @@
   </label>
   <label>
     Currency:
-    <select bind:value={selected_currency} class="select">
+    <select
+      bind:value={selected_currency}
+      class="select select-bordered select-sm text-base"
+    >
       <option value="EUR">EUR</option>
       <option value="USD">USD</option>
     </select>
@@ -69,7 +80,7 @@
 </div>
 
 <div
-  class="stats stats-vertical md:stats-horizontal shadow-lg border border-secondary w-full"
+  class="stats stats-vertical md:stats-horizontal shadow-lg border border-secondary w-full mt-10"
 >
   <div class="stat">
     <div class="stat-title">Day rate</div>

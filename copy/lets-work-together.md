@@ -4,10 +4,12 @@
     DateUpdated, 
     Small, 
   } from '$lib/components'
-  import PM from '../src/routes/lets-work-together/pricing-matrix.svelte'
-  import WS from '../src/routes/lets-work-together/workshop.svelte'
-  import VD from '../src/routes/lets-work-together/video.svelte'
-  import BP from '../src/routes/lets-work-together/blog-post.svelte'
+  import {
+    BlogPost,
+    Rate,
+    Video,
+    Workshop
+  } from '../src/routes/lets-work-together'
 </script>
 
 # What can an expert Svelte and SvelteKit Developer Advocate do for you?
@@ -108,19 +110,19 @@ to pick and choose what works best for you.
 
 **Just want a rate?**
 
-<PM />
+<Rate />
 
 **Workshops**
 
-<WS />
+<Workshop />
 
 **Video**
 
-<VD />
+<Video />
 
 **Blog post**
 
-<BP />
+<BlogPost />
 
 ## Why hire me?
 
