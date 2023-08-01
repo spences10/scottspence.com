@@ -39,3 +39,62 @@ export const convert_currency = (
 
   return amount
 }
+
+// Function to calculate price per attendee
+export const calculate_price_per_attendee = (
+  workshop_cost: number,
+  attendees: number,
+) => {
+  let discount = 0
+
+  // Apply a discount based on the number of attendees
+  if (attendees > 10) {
+    discount = 0.1 // 10% discount
+  } else if (attendees > 5) {
+    discount = 0.05 // 5% discount
+  }
+
+  let price = workshop_cost / attendees
+  price -= price * discount // Apply the discount
+
+  return price
+}
+
+// Function to calculate cost with customization
+export const calculate_cost_with_customization = (
+  base_cost: number,
+  customization_percentage: number,
+) => base_cost * (1 + customization_percentage)
+
+export const VIDEO_DURATIONS = {
+  'Short (5-10 minutes)': calculate_day_rate(ANNUAL_RATE_EUR) * 0.5,
+  'Medium (10-20 minutes)': calculate_day_rate(ANNUAL_RATE_EUR),
+  'Long (20-30 minutes)': calculate_day_rate(ANNUAL_RATE_EUR) * 1.5,
+  'Extra Long (>30 minutes)': calculate_day_rate(ANNUAL_RATE_EUR) * 2,
+}
+
+export const VIDEO_CUSTOMIZATION_PERCENTAGES = {
+  'No customization': 0,
+  'Minor customization': 0.1, // 10% extra
+  'Moderate customization': 0.2, // 20% extra
+  'Major customization': 0.3, // 30% extra
+}
+
+export const BLOG_POST_LENGTH = {
+  'Short (<1000 words)': calculate_day_rate(ANNUAL_RATE_EUR) * 0.2,
+  'Medium (1000-2000 words)':
+    calculate_day_rate(ANNUAL_RATE_EUR) * 0.4,
+  'Long (>2000 words)': calculate_day_rate(ANNUAL_RATE_EUR) * 0.6,
+}
+
+export const BLOG_POST_DEPTH = {
+  Overview: 0,
+  'In-depth': 0.1, // 10% extra
+  'Part of a series': 0.2, // 20% extra
+}
+
+// function to calculate cost with depth
+export const calculate_cost_with_depth = (
+  base_cost: number,
+  depth_percentage: number,
+) => base_cost * (1 + depth_percentage)

@@ -6,6 +6,8 @@
   } from '$lib/components'
   import PM from '../src/routes/lets-work-together/pricing-matrix.svelte'
   import WS from '../src/routes/lets-work-together/workshops.svelte'
+  import VD from '../src/routes/lets-work-together/video.svelte'
+  import BP from '../src/routes/lets-work-together/blog-post.svelte'
 </script>
 
 # What can an expert Svelte and SvelteKit Developer Advocate do for you?
@@ -89,23 +91,36 @@ Common scenarios where I deliver successful projects:
 If one of these situations describes your needs, you're in the right
 place. You can hire me to help today.
 
-## Pricing matrix
+## How much?
 
 _**Transparent pricing for flexible services**_
 
-To ensure that my services align with your budget and project
-requirements, I provide a clear and comprehensive pricing matrix. This
-matrix covers a variety of service combinations, from one-off
-workshops to long-term team collaboration. Whether you require a
-single training session, ongoing project development, or complete
-project leadership, you can find a pricing option that suits your
-needs.
+I offer a unique and interactive pricing tool that covers the breadth
+of services I provide. From one-off workshops to detailed video
+tutorials, and comprehensive blog posts, you can interact with the
+tool to align the services with your budget and project requirements.
+
+Tailor your selection by choosing the services that best cater to your
+needs. Whether you're seeking a single training workshop, detailed
+video tutorials, comprehensive blog posts, ongoing project
+development, or complete project leadership, you have the flexibility
+to pick and choose what works best for you.
 
 **Just want a rate?**
 
 <PM />
 
+**Workshops**
+
 <WS />
+
+**Video**
+
+<VD />
+
+**Blog post**
+
+<BP />
 
 ## Why hire me?
 
