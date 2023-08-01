@@ -40,25 +40,43 @@ export const convert_currency = (
   return amount
 }
 
+// workshop constants
+export const BASE_COST_5_OR_LESS =
+  calculate_day_rate(ANNUAL_RATE_EUR) * 1.5
+export const ADDITIONAL_COST_6_TO_10 =
+  calculate_day_rate(ANNUAL_RATE_EUR) * 0.2
+export const ADDITIONAL_COST_11_TO_15 = ADDITIONAL_COST_6_TO_10 * 0.9
+export const ADDITIONAL_COST_16_TO_20 = ADDITIONAL_COST_11_TO_15 * 0.9
+
+// Calculate workshop cost based on attendees
+export const calculate_workshop_cost = (attendees: number) => {
+  if (attendees <= 5) {
+    return BASE_COST_5_OR_LESS
+  } else if (attendees <= 10) {
+    return (
+      BASE_COST_5_OR_LESS + (attendees - 5) * ADDITIONAL_COST_6_TO_10
+    )
+  } else if (attendees <= 15) {
+    return (
+      BASE_COST_5_OR_LESS +
+      5 * ADDITIONAL_COST_6_TO_10 +
+      (attendees - 10) * ADDITIONAL_COST_11_TO_15
+    )
+  } else {
+    return (
+      BASE_COST_5_OR_LESS +
+      5 * ADDITIONAL_COST_6_TO_10 +
+      5 * ADDITIONAL_COST_11_TO_15 +
+      (attendees - 15) * ADDITIONAL_COST_16_TO_20
+    )
+  }
+}
+
 // Function to calculate price per attendee
 export const calculate_price_per_attendee = (
   workshop_cost: number,
   attendees: number,
-) => {
-  let discount = 0
-
-  // Apply a discount based on the number of attendees
-  if (attendees > 10) {
-    discount = 0.1 // 10% discount
-  } else if (attendees > 5) {
-    discount = 0.05 // 5% discount
-  }
-
-  let price = workshop_cost / attendees
-  price -= price * discount // Apply the discount
-
-  return price
-}
+) => workshop_cost / attendees
 
 // Function to calculate cost with customization
 export const calculate_cost_with_customization = (
