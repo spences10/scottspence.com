@@ -53,17 +53,19 @@
       step={5000}
       bind:value={annual_rate_EUR}
       on:input={on_annual_rate_input}
+      class="range range-primary"
     />
     {annual_rate_EUR}
   </label>
   <label>
-    Don't want to include holidays? (days):
+    PTO (days):
     <input
       type="range"
       min={0}
       max={40}
       step={1}
       bind:value={chosen_holidays}
+      class="range range-primary"
     />
     {chosen_holidays}
   </label>

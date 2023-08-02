@@ -6,10 +6,13 @@
     convert_currency,
   } from './pricing'
 
-  let selected_video_duration = Object.keys(VIDEO_DURATIONS)[0]
-  let selected_customization_level = Object.keys(
+  const VIDEO_DURATION_OPTIONS = Object.keys(VIDEO_DURATIONS)
+  const CUSTOMIZATION_LEVEL_OPTIONS = Object.keys(
     VIDEO_CUSTOMIZATION_PERCENTAGES,
-  )[0]
+  )
+
+  let selected_video_duration = VIDEO_DURATION_OPTIONS[0]
+  let selected_customization_level = CUSTOMIZATION_LEVEL_OPTIONS[0]
   let selected_currency = 'EUR'
 
   $: video_cost =
@@ -31,7 +34,7 @@
   <label>
     Video duration:
     <select bind:value={selected_video_duration} class="select">
-      {#each Object.keys(VIDEO_DURATIONS) as duration}
+      {#each VIDEO_DURATION_OPTIONS as duration}
         <option value={duration}>{duration}</option>
       {/each}
     </select>
@@ -39,7 +42,7 @@
   <label>
     Customization level:
     <select bind:value={selected_customization_level} class="select">
-      {#each Object.keys(VIDEO_CUSTOMIZATION_PERCENTAGES) as level}
+      {#each CUSTOMIZATION_LEVEL_OPTIONS as level}
         <option value={level}>{level}</option>
       {/each}
     </select>

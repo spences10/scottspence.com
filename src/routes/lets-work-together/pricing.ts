@@ -85,10 +85,10 @@ export const calculate_cost_with_customization = (
 ) => base_cost * (1 + customization_percentage)
 
 export const VIDEO_DURATIONS = {
-  'Short (5-10 minutes)': calculate_day_rate(ANNUAL_RATE_EUR) * 0.5,
-  'Medium (10-20 minutes)': calculate_day_rate(ANNUAL_RATE_EUR),
-  'Long (20-30 minutes)': calculate_day_rate(ANNUAL_RATE_EUR) * 1.5,
-  'Extra Long (>30 minutes)': calculate_day_rate(ANNUAL_RATE_EUR) * 2,
+  'Short (5-10 minutes)': calculate_day_rate(ANNUAL_RATE_EUR) * 1,
+  'Medium (10-20 minutes)': calculate_day_rate(ANNUAL_RATE_EUR) * 1.5,
+  'Long (20-30 minutes)': calculate_day_rate(ANNUAL_RATE_EUR) * 2,
+  'Extra Long (>30 minutes)': calculate_day_rate(ANNUAL_RATE_EUR) * 3,
 }
 
 export const VIDEO_CUSTOMIZATION_PERCENTAGES = {
