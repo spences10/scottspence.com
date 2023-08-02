@@ -1,10 +1,10 @@
 <script>
-  import {
-    DateDistance as DD, 
+ import {
+ DateDistance as DD, 
     DateUpdated, 
     Small, 
   } from '$lib/components'
-  import {
+ import {
     BlogPost,
     Rate,
     Video,
@@ -24,17 +24,18 @@ Developer Advocate, I bring a unique blend of technical and
 communication skills, and a deep understanding of Svelte and
 SvelteKit.
 
-My expertise lies not only in developing robust, high-performance
-applications but also in empowering other developers through
-education, advocacy, and guidance. I'm proficient in identifying and
-solving complex problems, simplifying technical concepts, and
-translating them into easy-to-understand terms.
+You can Tl;Dr and skip straight to see [how much](#how-much) it'll
+cost.
 
-Furthermore, as an advocate, I serve as a bridge between your team and
-the broader Svelte community, helping you keep up with the latest
-trends, best practices, and technological advancements. This proactive
-approach can facilitate your product's adoption, visibility, and
-overall success.
+My expertise lies in empowering other developers through education,
+advocacy, and guidance. I'm proficient in identifying and solving
+problems, simplifying technical concepts, and translating them into
+easy-to-understand terms.
+
+As an advocate, I serve as a bridge between your team and the broader
+Svelte community, helping you keep up with the latest trends, best
+practices, and technological advancements. This proactive approach can
+help your product's adoption, visibility, and success.
 
 Whether it's delivering top-tier workshops, leading and consulting on
 projects, or advocating for your product, my skill-set can drive
@@ -48,8 +49,8 @@ With years of experience delivering engaging and informative talks at
 events like Svelte Society London, CityJS, and Connect.Tech Atlanta, I
 have honed my skills in translating complex technical concepts into
 actionable learning experiences. My workshops aim to empower
-developers, providing them with the tools and knowledge to confidently
-navigate and utilise Svelte and SvelteKit.
+developers, providing them with the tools and knowledge to navigate
+and utilise Svelte and SvelteKit.
 
 I provide workshops that cater to a variety of experience levels,
 ranging from an introduction to Svelte and SvelteKit for beginners, to
@@ -62,15 +63,15 @@ their own projects.
 
 _**Bringing expert knowledge and leadership to your team**_
 
-In addition to offering standalone workshops, I also provide
-longer-term consulting services. These can be in the form of ongoing
-support for your team's projects, or I can step in as a team lead to
-ensure the successful delivery of high-quality SvelteKit applications.
+Besides offering standalone workshops, I also provide longer-term
+consulting services. These can be in the form of ongoing support for
+your team's projects, or I can step in as a team lead to ensure the
+successful delivery of high-quality SvelteKit applications.
 
 My approach is collaborative and adaptive, with a focus on creating a
 positive and productive working environment. I believe in the
 importance of communication and transparency in ensuring a project’s
-success, and work closely with team members to foster these values.
+success, and work with team members to foster these values.
 
 Whether your team is looking to expand its knowledge of Svelte and
 SvelteKit, or requires expert guidance on a major project, my wealth
@@ -81,10 +82,10 @@ Common scenarios where I deliver successful projects:
 
 - You are looking for a developer advocate to help increase the
   visibility and adoption of your product.
-- You require assistance with workshops, tutorials, demos, educational
-  videos, and blog posts for your platform.
-- You're looking to launch an eCommerce project using Svelte, React or
-  Gatsby and need a professional to code it.
+- You need help with workshops, tutorials, demos, educational videos,
+  and blog posts for your platform.
+- You're looking to launch an eCommerce project using Svelte and need
+  a professional to code it.
 - You'd like to leverage the power of a headless CMS platform.
 - You're looking for an experienced developer to create sample
   applications, prototypes, and code samples showcasing the power and
@@ -95,34 +96,60 @@ place. You can hire me to help today.
 
 ## How much?
 
-_**Transparent pricing for flexible services**_
+_**Transparency and flexibility**_
 
-I offer a unique and interactive pricing tool that covers the breadth
-of services I provide. From one-off workshops to detailed video
-tutorials, and comprehensive blog posts, you can interact with the
-tool to align the services with your budget and project requirements.
+I believe in straightforward, transparent pricing. After all, it's
+essential to ensure we're both on the same page before we start
+working together. To simplify this process, I've added some pricing
+widgets that cover the services I offer.
 
-Tailor your selection by choosing the services that best cater to your
-needs. Whether you're seeking a single training workshop, detailed
-video tutorials, comprehensive blog posts, ongoing project
-development, or complete project leadership, you have the flexibility
-to pick and choose what works best for you.
+Calculated on a single rate from which all services are derived. With
+this approach you can select what fits your needs best.
 
-**Just want a rate?**
+_**Currency preference and client location**_
+
+I prefer payments in EUR or USD, which aligns well with the majority
+of the international tech market. But, I am adaptable and can work
+with the local currency of your company's base location.
+
+While I'm based in the UK, I've had the privilege to work with diverse
+teams across different time zones. I've found that this global
+approach enhances the creative process, bringing together a rich array
+of ideas and perspectives.
+
+While I'm open to UK-based projects for shorter terms, my preference
+leans towards forming long-lasting relationships with international
+companies. This preference comes from past experiences that has shaped
+my approach to work, valuing the dynamics of international cooperation
+and the opportunities they present.
+
+_**I just want a quote!**_
+
+The widget here factors in holiday. But, if you're willing to provide
+PTO when hiring me or it's a short contract, you can remove that using
+the slider. This gives you an idea of the budget and helps align with
+your existing employment practices.
 
 <Rate />
+
+Now, let's delve deeper into the specifics:
 
 **Workshops**
 
 <Workshop />
 
-**Video**
+**Video Tutorials**
 
 <Video />
 
-**Blog post**
+**Blog Posts**
 
 <BlogPost />
+
+Whether you're interested in a single service or a comprehensive
+package, my aim is to provide the best value at a fair, transparent
+price. If you have any questions or need further clarification, please
+don't hesitate to reach out. I'm here to help.
 
 ## Why hire me?
 
