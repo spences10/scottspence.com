@@ -2,11 +2,11 @@
 export const ANNUAL_RATE_EUR = 85000
 export const CHOSEN_HOLIDAYS = 30
 export const PUBLIC_HOLIDAYS = 9
-export const WORKING_DAYS = 252
+export const WORKING_DAYS_IN_YEAR = 252
 
 // function to calculate day rate
 export const calculate_day_rate = (annual_rate: number) =>
-  annual_rate / WORKING_DAYS
+  annual_rate / WORKING_DAYS_IN_YEAR
 
 // function to calculate cost with holidays
 export const calculate_cost_with_holidays = (
@@ -23,7 +23,7 @@ export const calculate_total_annual_rate = (
 // function to calculate day rate including holidays
 export const calculate_day_rate_including_holidays = (
   total_annual_rate: number,
-) => total_annual_rate / WORKING_DAYS
+) => total_annual_rate / WORKING_DAYS_IN_YEAR
 
 // Function to convert EUR to USD for illustration
 export const convert_EUR_to_USD = (amount: number) => amount * 1.18
@@ -84,7 +84,7 @@ export const calculate_cost_with_customization = (
   customization_percentage: number,
 ) => base_cost * (1 + customization_percentage)
 
-export const VIDEO_DURATIONS = {
+export const VIDEO_DURATION = {
   'Short (5-10 minutes)': calculate_day_rate(ANNUAL_RATE_EUR) * 1,
   'Medium (10-20 minutes)': calculate_day_rate(ANNUAL_RATE_EUR) * 1.5,
   'Long (20-30 minutes)': calculate_day_rate(ANNUAL_RATE_EUR) * 2,

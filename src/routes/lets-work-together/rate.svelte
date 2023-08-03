@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { locale_string } from '.'
   import {
     ANNUAL_RATE_EUR,
     CHOSEN_HOLIDAYS,
@@ -45,17 +46,16 @@
 
 <div class="flex flex-col">
   <label>
-    Annual rate (EUR):
+    Annual rate (EUR) {locale_string(annual_rate_EUR)}:
     <input
       type="range"
       min={60000}
-      max={100000}
+      max={120000}
       step={5000}
       bind:value={annual_rate_EUR}
       on:input={on_annual_rate_input}
       class="range range-primary"
     />
-    {annual_rate_EUR}
   </label>
   <label>
     PTO (days):
@@ -87,11 +87,8 @@
   <div class="stat">
     <div class="stat-title">Day rate</div>
     <div class="stat-value flex">
-      {day_rate_including_holidays_in_selected_currency.toLocaleString(
-        undefined,
-        {
-          maximumFractionDigits: 0,
-        },
+      {locale_string(
+        day_rate_including_holidays_in_selected_currency,
       )}
       <span class="text-xl ml-2">
         {selected_currency}
@@ -102,9 +99,7 @@
   <div class="stat">
     <div class="stat-title">Without PTO</div>
     <div class="stat-value flex">
-      {day_rate_in_selected_currency.toLocaleString(undefined, {
-        maximumFractionDigits: 0,
-      })}
+      {locale_string(day_rate_in_selected_currency)}
       <span class="text-xl ml-2">
         {selected_currency}
       </span>
@@ -114,12 +109,7 @@
   <div class="stat">
     <div class="stat-title">Annual with PTO</div>
     <div class="stat-value flex">
-      {total_annual_rate_in_selected_currency.toLocaleString(
-        undefined,
-        {
-          maximumFractionDigits: 0,
-        },
-      )}
+      {locale_string(total_annual_rate_in_selected_currency)}
       <span class="text-xl ml-2">
         {selected_currency}
       </span>

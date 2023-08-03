@@ -1,12 +1,13 @@
 <script lang="ts">
+  import { locale_string } from '.'
   import {
     VIDEO_CUSTOMIZATION_PERCENTAGES,
-    VIDEO_DURATIONS,
+    VIDEO_DURATION,
     calculate_cost_with_customization,
     convert_currency,
   } from './pricing'
 
-  const VIDEO_DURATION_OPTIONS = Object.keys(VIDEO_DURATIONS)
+  const VIDEO_DURATION_OPTIONS = Object.keys(VIDEO_DURATION)
   const CUSTOMIZATION_LEVEL_OPTIONS = Object.keys(
     VIDEO_CUSTOMIZATION_PERCENTAGES,
   )
@@ -16,8 +17,8 @@
   let selected_currency = 'EUR'
 
   $: video_cost =
-    VIDEO_DURATIONS[
-      selected_video_duration as keyof typeof VIDEO_DURATIONS
+    VIDEO_DURATION[
+      selected_video_duration as keyof typeof VIDEO_DURATION
     ]
   $: video_cost_with_customization =
     calculate_cost_with_customization(
@@ -55,9 +56,8 @@
     </select>
   </label>
   <p>
-    Total cost: {video_cost_with_customization_in_selected_currency.toLocaleString(
-      undefined,
-      { maximumFractionDigits: 0 },
+    Total cost: {locale_string(
+      video_cost_with_customization_in_selected_currency,
     )}
     {selected_currency}
   </p>

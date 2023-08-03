@@ -30,7 +30,7 @@
   title={`Hire me! - ${name}`}
   description={`Want to work with me? Here's a breakdown of what I can do for you.`}
   image={og_image_url(name, `scottspence.com`, `Hire me!`)}
-  url={`${website}/hire-me`}
+  url={`${website}/lets-work-together`}
 />
 
 {#await headings_promise}

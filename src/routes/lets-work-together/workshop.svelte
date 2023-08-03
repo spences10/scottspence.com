@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { locale_string } from '.'
   import {
     calculate_price_per_attendee,
     calculate_workshop_cost,
@@ -43,7 +44,7 @@
 <select
   id="workshop_duration"
   bind:value={workshop_duration}
-  class="select select-bordered"
+  class="select select-bordered select-sm text-base"
 >
   {#each Object.keys(BESPOKE_PERCENTAGES) as duration}
     <option>{duration}</option>
@@ -70,7 +71,7 @@
 <select
   id="selected_currency"
   bind:value={selected_currency}
-  class="select select-bordered"
+  class="select select-bordered select-sm text-base"
 >
   <option value="EUR">EUR</option>
   <option value="USD">USD</option>
@@ -78,15 +79,42 @@
 </select>
 
 <p>
-  Workshop Cost: {workshop_cost.toLocaleString(undefined, {
-    maximumFractionDigits: 0,
-  })}
+  Workshop Cost: {locale_string(workshop_cost)}
   {selected_currency}
 </p>
 
 <p>
-  Price per Attendee: {price_per_attendee.toLocaleString(undefined, {
-    maximumFractionDigits: 0,
-  })}
+  Price per Attendee: {locale_string(price_per_attendee)}
   {selected_currency}
 </p>
+
+<div
+  class="stats stats-vertical md:stats-horizontal shadow-lg border border-secondary w-full mt-10"
+>
+  <div class="stat">
+    <div class="stat-title">Attendees</div>
+    <div class="stat-value flex">
+      {attendees}
+    </div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">Price Per Attendee</div>
+    <div class="stat-value flex">
+      {locale_string(price_per_attendee)}
+      <span class="text-xl ml-2">
+        {selected_currency}
+      </span>
+    </div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">Workshop Cost</div>
+    <div class="stat-value flex">
+      {locale_string(workshop_cost)}
+      <span class="text-xl ml-2">
+        {selected_currency}
+      </span>
+    </div>
+  </div>
+</div>

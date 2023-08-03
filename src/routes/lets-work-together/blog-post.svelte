@@ -1,7 +1,8 @@
 <script lang="ts">
+  import { locale_string } from '.'
   import {
-    BLOG_POST_LENGTH,
     BLOG_POST_DEPTH,
+    BLOG_POST_LENGTH,
     calculate_cost_with_depth,
     convert_currency,
   } from './pricing'
@@ -10,10 +11,15 @@
   let selected_post_depth = Object.keys(BLOG_POST_DEPTH)[0]
   let selected_currency = 'EUR'
 
-  $: post_cost = BLOG_POST_LENGTH[selected_post_length as keyof typeof BLOG_POST_LENGTH]
+  $: post_cost =
+    BLOG_POST_LENGTH[
+      selected_post_length as keyof typeof BLOG_POST_LENGTH
+    ]
   $: post_cost_with_depth = calculate_cost_with_depth(
     post_cost,
-    BLOG_POST_DEPTH[selected_post_depth as keyof typeof BLOG_POST_DEPTH],
+    BLOG_POST_DEPTH[
+      selected_post_depth as keyof typeof BLOG_POST_DEPTH
+    ],
   )
   $: post_cost_with_depth_in_selected_currency = convert_currency(
     post_cost_with_depth,
@@ -46,9 +52,9 @@
     </select>
   </label>
   <p>
-    Total cost: {post_cost_with_depth_in_selected_currency.toLocaleString(
-      undefined,
-      { maximumFractionDigits: 0 },
-    )} {selected_currency}
+    Total cost: {locale_string(
+      post_cost_with_depth_in_selected_currency,
+    )}
+    {selected_currency}
   </p>
 </div>
