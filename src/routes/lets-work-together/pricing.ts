@@ -91,23 +91,23 @@ export const VIDEO_DURATION = {
   },
   Medium: {
     description: '10-20 min',
-    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 2,
+    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 2.5,
   },
   Long: {
     description: '20-30 min',
-    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 3,
+    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 3.6,
   },
   'Extra Long': {
     description: '>30 min',
-    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 4,
+    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 4.8,
   },
 }
 
 export const VIDEO_CUSTOMIZATION_PERCENTAGES = {
   'None': 0,
-  'Minor': 0.1, // 10% extra
-  'Moderate': 0.2, // 20% extra
-  'Major': 0.3, // 30% extra
+  'Minor': 0.3, // 30% extra
+  'Moderate': 0.5, // 50% extra
+  'Major': 1.1, // 110% extra
 }
 
 export const BLOG_POST_LENGTH = {
