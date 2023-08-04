@@ -12,8 +12,9 @@
   let posts: PopularPost[] = []
 
   $: {
-    posts =
-      $popular_posts_store[selected_period as PopularPostsPeriod]
+    posts = $popular_posts_store[
+      selected_period as PopularPostsPeriod
+    ].slice(0, 6)
   }
 </script>
 

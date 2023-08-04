@@ -14,8 +14,8 @@
 
 Hello friend 👋, thanks for taking an interest in me and my profile.
 
-I know I'm nothing more than a keyword match right now, so let's change
-that!
+I know I'm nothing more than a keyword match right now, so let's
+change that!
 
 So, first up! I really, _really_ value my time, I have gone to the
 effort of putting this information here for _you_ to answer the usual
@@ -299,7 +299,6 @@ Feel free to [check out the rest of the site](/)
 
 <!-- Links -->
 
-[site]: https://www.styled-components.com/
 [maker's schedule]: https://www.paulgraham.com/makersschedule.html
 [jamstack]: https://jamstack.org/
 [gatsby]: https://gatsbyjs.com/

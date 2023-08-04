@@ -74,6 +74,7 @@ const config = {
   },
 
   daisyui: {
+    darkTheme: 'night',
     themes: daisy_themes,
   },
 
