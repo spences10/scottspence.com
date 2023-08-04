@@ -42,9 +42,9 @@ export const convert_currency = (
 
 // workshop constants
 export const BASE_COST_5_OR_LESS =
-  calculate_day_rate(ANNUAL_RATE_EUR) * 1.5
+  calculate_day_rate(ANNUAL_RATE_EUR) * 2
 export const ADDITIONAL_COST_6_TO_10 =
-  calculate_day_rate(ANNUAL_RATE_EUR) * 0.2
+  calculate_day_rate(ANNUAL_RATE_EUR) * 0.5
 export const ADDITIONAL_COST_11_TO_15 = ADDITIONAL_COST_6_TO_10 * 0.9
 export const ADDITIONAL_COST_16_TO_20 = ADDITIONAL_COST_11_TO_15 * 0.9
 
@@ -85,30 +85,51 @@ export const calculate_cost_with_customization = (
 ) => base_cost * (1 + customization_percentage)
 
 export const VIDEO_DURATION = {
-  'Short (5-10 minutes)': calculate_day_rate(ANNUAL_RATE_EUR) * 1,
-  'Medium (10-20 minutes)': calculate_day_rate(ANNUAL_RATE_EUR) * 1.5,
-  'Long (20-30 minutes)': calculate_day_rate(ANNUAL_RATE_EUR) * 2,
-  'Extra Long (>30 minutes)': calculate_day_rate(ANNUAL_RATE_EUR) * 3,
+  Short: {
+    description: '5-10 min',
+    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 1.5,
+  },
+  Medium: {
+    description: '10-20 min',
+    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 2,
+  },
+  Long: {
+    description: '20-30 min',
+    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 3,
+  },
+  'Extra Long': {
+    description: '>30 min',
+    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 4,
+  },
 }
 
 export const VIDEO_CUSTOMIZATION_PERCENTAGES = {
-  'No customization': 0,
-  'Minor customization': 0.1, // 10% extra
-  'Moderate customization': 0.2, // 20% extra
-  'Major customization': 0.3, // 30% extra
+  'None': 0,
+  'Minor': 0.1, // 10% extra
+  'Moderate': 0.2, // 20% extra
+  'Major': 0.3, // 30% extra
 }
 
 export const BLOG_POST_LENGTH = {
-  'Short (<1000 words)': calculate_day_rate(ANNUAL_RATE_EUR) * 0.2,
-  'Medium (1000-2000 words)':
-    calculate_day_rate(ANNUAL_RATE_EUR) * 0.4,
-  'Long (>2000 words)': calculate_day_rate(ANNUAL_RATE_EUR) * 0.6,
+  Short: {
+    description: '<1k words',
+    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 1,
+  },
+  Medium: {
+    description: '1k-2k words',
+    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 2,
+  },
+  Long: {
+    description: '>2k words',
+    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 3,
+  },
 }
+
 
 export const BLOG_POST_DEPTH = {
   Overview: 0,
-  'In-depth': 0.1, // 10% extra
-  'Part of a series': 0.2, // 20% extra
+  'In-depth': 0.5, // 50% extra
+  'Series': 0.4, // 40% extra
 }
 
 // function to calculate cost with depth

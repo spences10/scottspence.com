@@ -149,7 +149,7 @@ Now, let's delve deeper into the specifics:
 Whether you're interested in a single service or a comprehensive
 package, my aim is to provide the best value at a fair, transparent
 price. If you have any questions or need further clarification, please
-don't hesitate to reach out. I'm here to help.
+don't hesitate to [reach out]. I'm here to help.
 
 ## Why hire me?
 
@@ -185,3 +185,4 @@ Ready to start a project together?
 <!-- Links -->
 
 [get in touch]: /contact
+[reach out]: /contact
