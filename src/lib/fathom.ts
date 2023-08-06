@@ -94,7 +94,9 @@ export const cache_response = async (
   cache_duration: number,
 ) => {
   try {
-    await redis.setex(cache_key, cache_duration, JSON.stringify(data))
+    await redis.set(cache_key, JSON.stringify(data), {
+      ex: cache_duration,
+    })
   } catch (e) {
     console.error(`Error caching response: ${e}`)
   }
