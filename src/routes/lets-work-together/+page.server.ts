@@ -1,4 +1,4 @@
-import { CURRENCY_API_KEY } from '$env/static/private'
+import { EXCHANGE_RATE_API_KEY } from '$env/static/private'
 import { exchange_rates_key, redis } from '$lib/redis'
 
 export const load = async () => {
@@ -8,7 +8,7 @@ export const load = async () => {
   }
 
   const exchange_rates = await fetch(
-    `https://api.freecurrencyapi.com/v1/latest?apikey=${CURRENCY_API_KEY}&currencies=GBP%2CUSD%2CCAD&base_currency=EUR`,
+    `https://api.freecurrencyapi.com/v1/latest?apikey=${EXCHANGE_RATE_API_KEY}&currencies=GBP%2CUSD%2CCAD&base_currency=EUR`,
   )
 
   let { data } = await exchange_rates.json()
