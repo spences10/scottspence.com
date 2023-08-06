@@ -1,6 +1,6 @@
 <script>
  import {
- DateDistance as DD, 
+    DateDistance as DD, 
     DateUpdated, 
     Small, 
   } from '$lib/components'
