@@ -155,7 +155,7 @@ Here's the repo: [https://github.com/GoogleChromeLabs/proxx]
 
 ### Hot!
 
-Being in the UK we had the British weather to content with and the
+Being in the UK we had the British weather to contend with and the
 venue although fitted with A/C units in the speaker hall the venue
 outside of that was hot and sweaty! I spent the majority of my time
 between talks situated directly in front of the A/C units.
