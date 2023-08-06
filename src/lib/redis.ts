@@ -54,4 +54,14 @@ function popular_posts_key(cache_key_prefix: string): string {
   return `${cache_key_prefix}`
 }
 
-export { page_views_key, popular_posts_key, ratelimit, redis }
+function exchange_rates_key(): string {
+  return `exchange_rates:`
+}
+
+export {
+  exchange_rates_key,
+  page_views_key,
+  popular_posts_key,
+  ratelimit,
+  redis,
+}

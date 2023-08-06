@@ -25,19 +25,9 @@ export const calculate_day_rate_including_holidays = (
   total_annual_rate: number,
 ) => total_annual_rate / WORKING_DAYS_IN_YEAR
 
-// Function to convert EUR to USD for illustration
-export const convert_EUR_to_USD = (amount: number) => amount * 1.18
-
-// Function to convert currency
-export const convert_currency = (
-  amount: number,
-  currency: string,
-) => {
-  if (currency === 'USD') {
-    return convert_EUR_to_USD(amount)
-  }
-
-  return amount
+// Function to convert EUR to another currency based on a rate
+export const convert_currency = (amount: number, rate: number) => {
+  return amount * rate
 }
 
 // workshop constants

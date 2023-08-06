@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { locale_string } from '.'
+  import { exchange_rates_store, locale_string } from '.'
   import {
     VIDEO_CUSTOMIZATION_PERCENTAGES,
     VIDEO_DURATION,
@@ -32,8 +32,14 @@
         selected_customization_level as keyof typeof VIDEO_CUSTOMIZATION_PERCENTAGES
       ],
     )
+
+  $: currency_rate =
+    selected_currency === 'EUR'
+      ? 1
+      : $exchange_rates_store[selected_currency]
+
   $: video_cost_with_customization_in_selected_currency =
-    convert_currency(video_cost_with_customization, selected_currency)
+    convert_currency(video_cost_with_customization, currency_rate)
 </script>
 
 <div class="flex flex-col">
@@ -66,7 +72,9 @@
       class="select select-bordered select-sm text-base"
     >
       <option value="EUR">EUR</option>
-      <option value="USD">USD</option>
+      {#each Object.keys($exchange_rates_store || {}) as currency}
+        <option value={currency}>{currency}</option>
+      {/each}
     </select>
   </label>
   <p>

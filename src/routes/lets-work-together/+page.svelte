@@ -7,9 +7,12 @@
     update_toc_visibility,
   } from '$lib/utils'
   import { onMount } from 'svelte'
+  import { exchange_rates_store } from './'
 
   export let data
-  let { Copy } = data
+  let { Copy, exchange_rates } = data
+
+  $exchange_rates_store = exchange_rates
 
   let end_of_copy: HTMLElement | null
   let show_table_of_contents = true

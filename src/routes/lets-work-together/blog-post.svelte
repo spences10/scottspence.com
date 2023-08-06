@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { locale_string } from '.'
+  import { exchange_rates_store, locale_string } from '.'
   import {
     BLOG_POST_DEPTH,
     BLOG_POST_LENGTH,
@@ -28,9 +28,15 @@
       selected_post_depth as keyof typeof BLOG_POST_DEPTH
     ],
   )
+
+  $: currency_rate =
+    selected_currency === 'EUR'
+      ? 1
+      : $exchange_rates_store[selected_currency]
+
   $: post_cost_with_depth_in_selected_currency = convert_currency(
     post_cost_with_depth,
-    selected_currency,
+    currency_rate,
   )
 </script>
 
@@ -64,7 +70,9 @@
       class="select select-bordered select-sm text-base"
     >
       <option value="EUR">EUR</option>
-      <option value="USD">USD</option>
+      {#each Object.keys($exchange_rates_store || {}) as currency}
+        <option value={currency}>{currency}</option>
+      {/each}
     </select>
   </label>
   <p>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { locale_string } from '.'
+  import { exchange_rates_store, locale_string } from '.'
   import {
     calculate_price_per_attendee,
     calculate_workshop_cost,
@@ -16,14 +16,20 @@
   }
 
   let attendees = 5 // Minimum number of attendees
-
   let selected_currency = 'EUR'
+
   $: workshop_cost_EUR =
     calculate_workshop_cost(attendees) *
     BESPOKE_PERCENTAGES[workshop_duration]
+
+  $: currency_rate =
+    selected_currency === 'EUR'
+      ? 1
+      : $exchange_rates_store[selected_currency]
+
   $: workshop_cost = convert_currency(
     workshop_cost_EUR,
-    selected_currency,
+    currency_rate,
   )
   $: price_per_attendee = calculate_price_per_attendee(
     workshop_cost,
@@ -69,13 +75,13 @@
   <span class="label-text">Currency:</span>
 </label>
 <select
-  id="selected_currency"
   bind:value={selected_currency}
   class="select select-bordered select-sm text-base"
 >
   <option value="EUR">EUR</option>
-  <option value="USD">USD</option>
-  <!-- Add other currencies if necessary -->
+  {#each Object.keys($exchange_rates_store || {}) as currency}
+    <option value={currency}>{currency}</option>
+  {/each}
 </select>
 
 <p>

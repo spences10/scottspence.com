@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { locale_string } from '.'
+  import { exchange_rates_store, locale_string } from '.'
   import {
     ANNUAL_RATE_EUR,
     CHOSEN_HOLIDAYS,
@@ -25,15 +25,19 @@
   )
   $: day_rate_including_holidays =
     calculate_day_rate_including_holidays(total_annual_rate)
+  $: currency_rate =
+    selected_currency === 'EUR'
+      ? 1
+      : $exchange_rates_store[selected_currency]
   $: day_rate_in_selected_currency = convert_currency(
     day_rate,
-    selected_currency,
+    currency_rate,
   )
   $: day_rate_including_holidays_in_selected_currency =
-    convert_currency(day_rate_including_holidays, selected_currency)
+    convert_currency(day_rate_including_holidays, currency_rate)
   $: total_annual_rate_in_selected_currency = convert_currency(
     total_annual_rate,
-    selected_currency,
+    currency_rate,
   )
 
   const on_annual_rate_input = (e: Event) => {
@@ -76,7 +80,9 @@
       class="select select-bordered select-sm text-base"
     >
       <option value="EUR">EUR</option>
-      <option value="USD">USD</option>
+      {#each Object.keys($exchange_rates_store || {}) as currency}
+        <option value={currency}>{currency}</option>
+      {/each}
     </select>
   </label>
 </div>
