@@ -1,9 +1,11 @@
 <script lang="ts">
-  import { ButtButt } from '$lib/assets'
   import { scale_and_fade, viewport } from '$lib/utils'
 
   export let height = '100px'
   export let width = '160px'
+
+  let ButtButt =
+    'https://res.cloudinary.com/defkmsrpw/image/upload/v1691271319/scottspence.com/site-assets/butt.png'
   const puns: string[] = [
     `Ok, well, now that's behind you maybe you'd like to share this?`,
     `Is that two cheeky for you?!`,

@@ -1,6 +1,5 @@
 <script lang="ts">
   import { page } from '$app/stores'
-  import { ScottFace, ScottMugFace } from '$lib/assets'
   import { visitors_store } from '$lib/stores'
   import { get_current_page_visitors } from '$lib/utils'
   import * as Fathom from 'fathom-client'
@@ -10,10 +9,14 @@
 
   let visitors_count = get_current_page_visitors(
     current_path,
-    content
+    content,
   )
 
   let isHovering = false
+  let base_cloudinary_url =
+    'https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1691271318/scottspence.com/site-assets/'
+  let ScottFace = `${base_cloudinary_url}scott-face.jpg`
+  let ScottMugFace = `${base_cloudinary_url}scott-mug-face.png`
 </script>
 
 <div
