@@ -104,10 +104,10 @@ export const VIDEO_DURATION = {
 }
 
 export const VIDEO_CUSTOMIZATION_PERCENTAGES = {
-  'None': 0,
-  'Minor': 0.3, // 30% extra
-  'Moderate': 0.5, // 50% extra
-  'Major': 1.1, // 110% extra
+  None: 0,
+  Minor: 0.3, // 30% extra
+  Moderate: 0.5, // 50% extra
+  Major: 1.1, // 110% extra
 }
 
 export const BLOG_POST_LENGTH = {
@@ -125,11 +125,10 @@ export const BLOG_POST_LENGTH = {
   },
 }
 
-
 export const BLOG_POST_DEPTH = {
   Overview: 0,
   'In-depth': 0.5, // 50% extra
-  'Series': 0.4, // 40% extra
+  Series: 0.4, // 40% extra
 }
 
 // function to calculate cost with depth
