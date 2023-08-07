@@ -136,6 +136,14 @@ Now, let's delve deeper into the specifics:
 
 **Workshops**
 
+I offer several workshops to enhance your skill in SvelteKit. From
+creating dynamic web pages and setting up efficient backends to
+mastering the integration of an API and styling with contemporary
+tools like Tailwind and DaisyUI.
+
+These workshops offer a comprehensive insight into getting to grips
+with working with Svelte and SvelteKit.
+
 <Workshop />
 
 **Video Tutorials**
