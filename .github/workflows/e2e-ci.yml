@@ -51,3 +51,5 @@ jobs:
           # prettier-ignore
           UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
           EXCHANGE_RATE_API_KEY: ${{ secrets.EXCHANGE_RATE_API_KEY }}
+          PRICING_API_KEY: ${{ secrets.PRICING_API_KEY }}
+          PRICING_BASE_ID: ${{ secrets.PRICING_BASE_ID }}
