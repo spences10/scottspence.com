@@ -1,8 +1,7 @@
 <script lang="ts">
   import { exchange_rates_store, get_field_value } from './stores'
-
   import {
-    calculate_day_rate,
+    calculate_day_rate_without_pto,
     convert_currency,
     locale_string,
   } from './utils'
@@ -20,26 +19,34 @@
     Short: {
       description: '5-10 min',
       cost:
-        calculate_day_rate(annual_rate_EUR, working_days_in_year) *
-        1.5,
+        calculate_day_rate_without_pto(
+          annual_rate_EUR,
+          working_days_in_year,
+        ) * 1.5,
     },
     Medium: {
       description: '10-20 min',
       cost:
-        calculate_day_rate(annual_rate_EUR, working_days_in_year) *
-        2.5,
+        calculate_day_rate_without_pto(
+          annual_rate_EUR,
+          working_days_in_year,
+        ) * 2.5,
     },
     Long: {
       description: '20-30 min',
       cost:
-        calculate_day_rate(annual_rate_EUR, working_days_in_year) *
-        3.6,
+        calculate_day_rate_without_pto(
+          annual_rate_EUR,
+          working_days_in_year,
+        ) * 3.6,
     },
     'Extra Long': {
       description: '>30 min',
       cost:
-        calculate_day_rate(annual_rate_EUR, working_days_in_year) *
-        4.8,
+        calculate_day_rate_without_pto(
+          annual_rate_EUR,
+          working_days_in_year,
+        ) * 4.8,
     },
   }
 

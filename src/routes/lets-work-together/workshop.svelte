@@ -1,7 +1,7 @@
 <script lang="ts">
   import { exchange_rates_store, get_field_value } from './stores'
   import {
-    calculate_day_rate,
+    calculate_day_rate_without_pto,
     convert_currency,
     locale_string,
   } from './utils'
@@ -12,9 +12,15 @@
 
   // workshop constants
   export const BASE_COST_5_OR_LESS =
-    calculate_day_rate(annual_rate_EUR, working_days_in_year) * 2
+    calculate_day_rate_without_pto(
+      annual_rate_EUR,
+      working_days_in_year,
+    ) * 2
   export const ADDITIONAL_COST_6_TO_10 =
-    calculate_day_rate(annual_rate_EUR, working_days_in_year) * 0.5
+    calculate_day_rate_without_pto(
+      annual_rate_EUR,
+      working_days_in_year,
+    ) * 0.5
   export const ADDITIONAL_COST_11_TO_15 =
     ADDITIONAL_COST_6_TO_10 * 0.9
   export const ADDITIONAL_COST_16_TO_20 =
