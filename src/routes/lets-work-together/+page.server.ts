@@ -56,12 +56,12 @@ export const load = async () => {
       get_cached_or_fetch<ExchangeRates>(
         exchange_rates_key(),
         fetch_exchange_rates,
-        time_to_seconds({ hours: 48 }),
+        time_to_seconds({ minutes: 5 }),
       ),
       get_cached_or_fetch<PricingNumber[]>(
         pricing_numbers_key(),
         fetch_pricing_numbers,
-        time_to_seconds({ minutes: 5 }),
+        time_to_seconds({ hours: 48 }),
       ),
     ])
 

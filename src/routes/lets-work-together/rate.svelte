@@ -2,10 +2,7 @@
   import { exchange_rates_store, get_field_value } from './stores'
 
   import {
-    calculate_cost_with_holidays,
     calculate_day_rate,
-    calculate_day_rate_including_holidays,
-    calculate_total_annual_rate_with_holidays,
     convert_currency,
     locale_string,
   } from './utils'
@@ -16,6 +13,22 @@
     get_field_value('WORKING_DAYS_IN_YEAR') || 0
   let public_holidays = get_field_value('PUBLIC_HOLIDAYS') || 0
   let selected_currency = 'EUR'
+
+  const calculate_cost_with_holidays = (
+    day_rate: number,
+    holidays: number,
+    public_holidays: number,
+  ) => day_rate * (holidays + public_holidays)
+
+  const calculate_total_annual_rate_with_holidays = (
+    annual_rate: number,
+    cost_with_holidays: number,
+  ) => annual_rate + cost_with_holidays
+
+  export const calculate_day_rate_including_holidays = (
+    total_annual_rate: number,
+    working_days_in_year: number,
+  ) => total_annual_rate / working_days_in_year
 
   $: day_rate = calculate_day_rate(
     annual_rate_EUR || 0,
