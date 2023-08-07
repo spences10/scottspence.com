@@ -15,7 +15,7 @@
   let isHovering = false
   let base_cloudinary_url =
     'https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1691271318/scottspence.com/site-assets/'
-  let ScottFace = `${base_cloudinary_url}scott-face.jpg`
+  let ScottFace = `${base_cloudinary_url}scott-mug-face-no-bg.png`
   let ScottMugFace = `${base_cloudinary_url}scott-mug-face.png`
 </script>
 
