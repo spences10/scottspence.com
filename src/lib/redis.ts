@@ -58,10 +58,15 @@ function exchange_rates_key(): string {
   return `exchange_rates:`
 }
 
+function pricing_numbers_key(): string {
+  return `pricing_numbers:`
+}
+
 export {
   exchange_rates_key,
   page_views_key,
   popular_posts_key,
+  pricing_numbers_key,
   ratelimit,
   redis,
 }

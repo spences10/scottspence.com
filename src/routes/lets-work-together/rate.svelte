@@ -1,8 +1,10 @@
 <script lang="ts">
-  import { exchange_rates_store, locale_string } from '.'
   import {
-    ANNUAL_RATE_EUR,
-    CHOSEN_HOLIDAYS,
+    exchange_rates_store,
+    get_field_value,
+    locale_string,
+  } from '.'
+  import {
     calculate_cost_with_holidays,
     calculate_day_rate,
     calculate_day_rate_including_holidays,
@@ -10,11 +12,11 @@
     convert_currency,
   } from './pricing'
 
-  let annual_rate_EUR = ANNUAL_RATE_EUR
-  let chosen_holidays = CHOSEN_HOLIDAYS
+  let annual_rate_EUR = get_field_value('ANNUAL_RATE_EUR') || 0
+  let chosen_holidays = get_field_value('CHOSEN_HOLIDAYS') || 0
   let selected_currency = 'EUR'
 
-  $: day_rate = calculate_day_rate(annual_rate_EUR)
+  $: day_rate = calculate_day_rate(annual_rate_EUR || 0)
   $: cost_with_holidays = calculate_cost_with_holidays(
     day_rate,
     chosen_holidays,
@@ -43,7 +45,7 @@
   const on_annual_rate_input = (e: Event) => {
     annual_rate_EUR = Math.max(
       (e.target as HTMLInputElement).valueAsNumber,
-      ANNUAL_RATE_EUR,
+      get_field_value('ANNUAL_RATE_EUR') || 0,
     )
   }
 </script>

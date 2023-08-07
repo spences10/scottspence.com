@@ -1,6 +1,6 @@
+import { get_field_value } from '.'
+
 // constants
-export const ANNUAL_RATE_EUR = 85000
-export const CHOSEN_HOLIDAYS = 30
 export const PUBLIC_HOLIDAYS = 9
 export const WORKING_DAYS_IN_YEAR = 252
 
@@ -32,9 +32,9 @@ export const convert_currency = (amount: number, rate: number) => {
 
 // workshop constants
 export const BASE_COST_5_OR_LESS =
-  calculate_day_rate(ANNUAL_RATE_EUR) * 2
+  calculate_day_rate(get_field_value('ANNUAL_RATE_EUR') || 0) * 2
 export const ADDITIONAL_COST_6_TO_10 =
-  calculate_day_rate(ANNUAL_RATE_EUR) * 0.5
+  calculate_day_rate(get_field_value('ANNUAL_RATE_EUR') || 0) * 0.5
 export const ADDITIONAL_COST_11_TO_15 = ADDITIONAL_COST_6_TO_10 * 0.9
 export const ADDITIONAL_COST_16_TO_20 = ADDITIONAL_COST_11_TO_15 * 0.9
 
@@ -77,19 +77,27 @@ export const calculate_cost_with_customization = (
 export const VIDEO_DURATION = {
   Short: {
     description: '5-10 min',
-    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 1.5,
+    cost:
+      calculate_day_rate(get_field_value('ANNUAL_RATE_EUR') || 0) *
+      1.5,
   },
   Medium: {
     description: '10-20 min',
-    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 2.5,
+    cost:
+      calculate_day_rate(get_field_value('ANNUAL_RATE_EUR') || 0) *
+      2.5,
   },
   Long: {
     description: '20-30 min',
-    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 3.6,
+    cost:
+      calculate_day_rate(get_field_value('ANNUAL_RATE_EUR') || 0) *
+      3.6,
   },
   'Extra Long': {
     description: '>30 min',
-    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 4.8,
+    cost:
+      calculate_day_rate(get_field_value('ANNUAL_RATE_EUR') || 0) *
+      4.8,
   },
 }
 
@@ -103,15 +111,18 @@ export const VIDEO_CUSTOMIZATION_PERCENTAGES = {
 export const BLOG_POST_LENGTH = {
   Short: {
     description: '<1k words',
-    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 1,
+    cost:
+      calculate_day_rate(get_field_value('ANNUAL_RATE_EUR') || 0) * 1,
   },
   Medium: {
     description: '1k-2k words',
-    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 2,
+    cost:
+      calculate_day_rate(get_field_value('ANNUAL_RATE_EUR') || 0) * 2,
   },
   Long: {
     description: '>2k words',
-    cost: calculate_day_rate(ANNUAL_RATE_EUR) * 3,
+    cost:
+      calculate_day_rate(get_field_value('ANNUAL_RATE_EUR') || 0) * 3,
   },
 }
 

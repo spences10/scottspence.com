@@ -7,11 +7,12 @@
     update_toc_visibility,
   } from '$lib/utils'
   import { onMount } from 'svelte'
-  import { exchange_rates_store } from './'
+  import { exchange_rates_store, pricing_numbers_store } from './'
 
   export let data
-  let { Copy, exchange_rates } = data
+  let { Copy, exchange_rates, pricing_numbers } = data
 
+  $pricing_numbers_store = pricing_numbers
   $exchange_rates_store = exchange_rates
 
   let end_of_copy: HTMLElement | null
@@ -30,9 +31,13 @@
 <svelte:window on:scroll={handle_scroll} />
 
 <Head
-  title={`Hire me! - ${name}`}
+  title={`Let's work together! - ${name}`}
   description={`Want to work with me? Here's a breakdown of what I can do for you.`}
-  image={og_image_url(name, `scottspence.com`, `Hire me!`)}
+  image={og_image_url(
+    name,
+    `scottspence.com`,
+    `Let's work together!`,
+  )}
   url={`${website}/lets-work-together`}
 />
 
