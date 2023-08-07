@@ -7,7 +7,10 @@
     update_toc_visibility,
   } from '$lib/utils'
   import { onMount } from 'svelte'
-  import { exchange_rates_store, pricing_numbers_store } from './'
+  import {
+    exchange_rates_store,
+    pricing_numbers_store,
+  } from './stores'
 
   export let data
   let { Copy, exchange_rates, pricing_numbers } = data

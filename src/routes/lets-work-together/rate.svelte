@@ -1,32 +1,40 @@
 <script lang="ts">
-  import {
-    exchange_rates_store,
-    get_field_value,
-    locale_string,
-  } from '.'
+  import { exchange_rates_store, get_field_value } from './stores'
+
   import {
     calculate_cost_with_holidays,
     calculate_day_rate,
     calculate_day_rate_including_holidays,
-    calculate_total_annual_rate,
+    calculate_total_annual_rate_with_holidays,
     convert_currency,
-  } from './pricing'
+    locale_string,
+  } from './utils'
 
   let annual_rate_EUR = get_field_value('ANNUAL_RATE_EUR') || 0
   let chosen_holidays = get_field_value('CHOSEN_HOLIDAYS') || 0
+  let working_days_in_year =
+    get_field_value('WORKING_DAYS_IN_YEAR') || 0
+  let public_holidays = get_field_value('PUBLIC_HOLIDAYS') || 0
   let selected_currency = 'EUR'
 
-  $: day_rate = calculate_day_rate(annual_rate_EUR || 0)
+  $: day_rate = calculate_day_rate(
+    annual_rate_EUR || 0,
+    working_days_in_year,
+  )
   $: cost_with_holidays = calculate_cost_with_holidays(
     day_rate,
     chosen_holidays,
+    public_holidays,
   )
-  $: total_annual_rate = calculate_total_annual_rate(
+  $: total_annual_rate = calculate_total_annual_rate_with_holidays(
     annual_rate_EUR,
     cost_with_holidays,
   )
   $: day_rate_including_holidays =
-    calculate_day_rate_including_holidays(total_annual_rate)
+    calculate_day_rate_including_holidays(
+      total_annual_rate,
+      working_days_in_year,
+    )
   $: currency_rate =
     selected_currency === 'EUR'
       ? 1

@@ -1,16 +1,49 @@
 <script lang="ts">
-  import { exchange_rates_store, locale_string } from '.'
+  import { exchange_rates_store, get_field_value } from './stores'
   import {
-    BLOG_POST_DEPTH,
-    BLOG_POST_LENGTH,
-    calculate_cost_with_depth,
+    calculate_day_rate,
     convert_currency,
-  } from './pricing'
+    locale_string,
+  } from './utils'
+
+  let annual_rate_EUR = get_field_value('ANNUAL_RATE_EUR') || 0
+  let working_days_in_year =
+    get_field_value('WORKING_DAYS_IN_YEAR') || 0
+
+  export const BLOG_POST_LENGTH = {
+    Short: {
+      description: '<1k words',
+      cost:
+        calculate_day_rate(annual_rate_EUR, working_days_in_year) * 1,
+    },
+    Medium: {
+      description: '1k-2k words',
+      cost:
+        calculate_day_rate(annual_rate_EUR, working_days_in_year) * 2,
+    },
+    Long: {
+      description: '>2k words',
+      cost:
+        calculate_day_rate(annual_rate_EUR, working_days_in_year) * 3,
+    },
+  }
+
+  export const BLOG_POST_DEPTH = {
+    Overview: 0,
+    'In-depth': 0.5, // 50% extra
+    Series: 0.4, // 40% extra
+  }
 
   let selected_post_length = Object.keys(BLOG_POST_LENGTH)[0]
   let selected_post_depth = Object.keys(BLOG_POST_DEPTH)[0]
   let selected_currency = 'EUR'
   let selected_length_description = 'Short'
+
+  // function to calculate cost with depth
+  export const calculate_cost_with_depth = (
+    base_cost: number,
+    depth_percentage: number,
+  ) => base_cost * (1 + depth_percentage)
 
   $: selected_length_description =
     BLOG_POST_LENGTH[

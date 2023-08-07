@@ -1,11 +1,54 @@
 <script lang="ts">
-  import { exchange_rates_store, locale_string } from '.'
+  import { exchange_rates_store, get_field_value } from './stores'
+
   import {
-    VIDEO_CUSTOMIZATION_PERCENTAGES,
-    VIDEO_DURATION,
-    calculate_cost_with_customization,
+    calculate_day_rate,
     convert_currency,
-  } from './pricing'
+    locale_string,
+  } from './utils'
+
+  let annual_rate_EUR = get_field_value('ANNUAL_RATE_EUR') || 0
+  let working_days_in_year =
+    get_field_value('WORKING_DAYS_IN_YEAR') || 0
+
+  export const calculate_cost_with_customization = (
+    base_cost: number,
+    customization_percentage: number,
+  ) => base_cost * (1 + customization_percentage)
+
+  export const VIDEO_DURATION = {
+    Short: {
+      description: '5-10 min',
+      cost:
+        calculate_day_rate(annual_rate_EUR, working_days_in_year) *
+        1.5,
+    },
+    Medium: {
+      description: '10-20 min',
+      cost:
+        calculate_day_rate(annual_rate_EUR, working_days_in_year) *
+        2.5,
+    },
+    Long: {
+      description: '20-30 min',
+      cost:
+        calculate_day_rate(annual_rate_EUR, working_days_in_year) *
+        3.6,
+    },
+    'Extra Long': {
+      description: '>30 min',
+      cost:
+        calculate_day_rate(annual_rate_EUR, working_days_in_year) *
+        4.8,
+    },
+  }
+
+  export const VIDEO_CUSTOMIZATION_PERCENTAGES = {
+    None: 0,
+    Minor: 0.3, // 30% extra
+    Moderate: 0.5, // 50% extra
+    Major: 1.1, // 110% extra
+  }
 
   const VIDEO_DURATION_OPTIONS = Object.keys(VIDEO_DURATION)
   const CUSTOMIZATION_LEVEL_OPTIONS = Object.keys(

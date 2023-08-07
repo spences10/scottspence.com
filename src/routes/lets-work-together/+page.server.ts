@@ -9,7 +9,7 @@ import {
   redis,
 } from '$lib/redis'
 import { time_to_seconds } from '$lib/utils'
-import type { ExchangeRates, PricingNumber } from '.'
+import type { ExchangeRates, PricingNumber } from './stores'
 
 const get_cached_or_fetch = async <T>(
   key: string,
