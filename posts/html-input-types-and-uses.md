@@ -2,7 +2,7 @@
 date: 2023-08-13
 title: HTML Input Types and Uses
 tags: ['html', 'notes']
-isPrivate: true
+isPrivate: false
 ---
 
 I came across one of those infographic's today detailing a couple of
@@ -332,6 +332,13 @@ If even one person finds this useful, I'll consider it a win.
 <input type="search" name="query" placeholder="Search..." />
 ```
 
+<input
+  type="search"
+  name="query"
+  placeholder="Search..."
+  class="input input-primary border border-primary"
+/>
+
 ## `tel`
 
 - Description: For inputting telephone numbers.
@@ -346,6 +353,13 @@ If even one person finds this useful, I'll consider it a win.
 />
 ```
 
+<input
+  type="tel"
+  name="phone"
+  placeholder="Enter your phone number"
+  class="input input-primary border border-primary"
+/>
+
 ## `time`
 
 - Description: Lets users select a time (hour and minute, and
@@ -354,8 +368,14 @@ If even one person finds this useful, I'll consider it a win.
 - Example:
 
 ```html
-<input type="time" name="alarmTime" />
+<input type="time" name="alarm-time" />
 ```
+
+<input
+  type="time"
+  name="alarm-time"
+  class="input input-primary border border-primary"
+/>
 
 ## `url`
 
@@ -371,6 +391,13 @@ If even one person finds this useful, I'll consider it a win.
 />
 ```
 
+<input
+  type="url"
+  name="website"
+  placeholder="Enter your website URL"
+  class="input input-primary border border-primary"
+/>
+
 ## `week`
 
 - Description: Lets users select a week.
@@ -380,3 +407,9 @@ If even one person finds this useful, I'll consider it a win.
 ```html
 <input type="week" name="selectWeek" />
 ```
+
+<input
+  type="week"
+  name="selectWeek"
+  class="input input-primary border border-primary"
+/>
