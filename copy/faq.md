@@ -157,9 +157,9 @@ on a contract basis. If you have a project in mind [get in touch] to
 discuss.
 
 Want me to come on board on a contract basis? Sweet! I'm open to that!
-Depending on the setup I'd be looking for a day rate of **€389.50** or
-monthly rate of **€8,179.56**. The rate has been calculated with
-holidays and public holidays built in.
+Depending on the setup I'd be looking for a day rate of **€397** or
+monthly rate of **~€11,910** (day rate times 30). The rate has been
+calculated with holidays and public holidays built in.
 
 ---
 
