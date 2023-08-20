@@ -52,7 +52,7 @@
     "graphql-request": "6.1.0",
     "husky": "8.0.3",
     "jsdom": "^22.1.0",
-    "marked": "7.0.1",
+    "marked": "7.0.4",
     "mdsvex": "0.11.0",
     "mdsvex-relative-images": "1.0.3",
     "postcss": "8.4.27",
