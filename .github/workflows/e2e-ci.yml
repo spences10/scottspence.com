@@ -15,8 +15,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ~/.cache/ms-playwright
-          # prettier-ignore
-          key: Linux-playwright-${{ hashFiles('**/package-lock.json') }}
+          key: Linux-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: Linux-playwright-
       - uses: actions/cache@v3
         with:
