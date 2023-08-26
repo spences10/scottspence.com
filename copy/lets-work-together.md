@@ -125,7 +125,7 @@ and the opportunities they present.
 
 _**I just want a quote!**_
 
-The widget here factors in holiday (with 9 days public holidays as
+The widget here factors in holiday (with 8 days public holidays as
 default). But, if you're willing to provide PTO when hiring me or it's
 a short contract, you can remove that using the slider. This gives you
 an idea of the budget and helps align with your existing employment
