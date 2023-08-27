@@ -12,10 +12,10 @@
   } from '../src/routes/lets-work-together'
 </script>
 
-# What can an expert Svelte and SvelteKit Developer Advocate do for you?
+# Let's work together!
 
 <Small>
-  Last updated: <DateUpdated date='2023-07-31' small='true' />
+  Last updated: <DateUpdated date='2023-08-27' small='true' />
 </Small>
 
 In today's tech landscape, having a specialized expert on your team
@@ -26,6 +26,8 @@ SvelteKit.
 
 You can Tl;Dr and skip straight to see [how much](#how-much) it'll
 cost.
+
+## What can an expert Svelte and SvelteKit Developer Advocate do for you?
 
 My expertise lies in empowering other developers through education,
 advocacy, and guidance. I'm proficient in identifying and solving
