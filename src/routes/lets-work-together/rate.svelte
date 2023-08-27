@@ -1,5 +1,6 @@
 <script lang="ts">
   import { number_crunch } from '$lib/utils'
+  import CurrencySelect from './currency-select.svelte'
   import { exchange_rates_store, get_field_value } from './stores'
   import {
     calculate_annual_rate_with_pto,
@@ -65,7 +66,7 @@
       step={5000}
       bind:value={annual_rate_EUR}
       on:input={on_annual_rate_input}
-      class="range range-primary mb-5"
+      class="range range-primary"
     />
     <label for="pto_days" class="label">
       <span class="label-text text-base">
@@ -79,21 +80,10 @@
       max={40}
       step={1}
       bind:value={chosen_holidays}
-      class="range range-primary mb-5"
+      class="range range-primary"
     />
-    <label for="currency_select" class="label">
-      <span class="label-text text-base">Currency:</span>
-    </label>
-    <select
-      id="currency_select"
-      bind:value={selected_currency}
-      class="select select-bordered select-sm text-sm mb-5"
-    >
-      <option value="EUR">EUR</option>
-      {#each Object.keys($exchange_rates_store || {}) as currency}
-        <option value={currency}>{currency}</option>
-      {/each}
-    </select>
+
+    <CurrencySelect bind:selected_currency />
   </fieldset>
 </section>
 

@@ -123,7 +123,7 @@ companies. This preference comes from past experiences that has shaped
 my approach to work, valuing the dynamics of international cooperation
 and the opportunities they present.
 
-_**I just want a quote!**_
+## Rates
 
 The widget here factors in holiday (with 8 days public holidays as
 default). But, if you're willing to provide Paid Time Off (PTO) when
@@ -135,7 +135,7 @@ existing employment practices.
 
 Now, let's delve deeper into the specifics:
 
-**Workshops**
+## Workshops
 
 I offer several types of workshop to level-up your teams SvelteKit
 skills. From the basics through integration of an APIs and styling
@@ -146,11 +146,20 @@ with working with Svelte and SvelteKit.
 
 <Workshop />
 
-**Video Tutorials**
+## Videos
+
+My videos are designed to meet developers where they are, covering
+everything from beginner-friendly introductions to Svelte and
+SvelteKit, to deep dives into complex topics.
 
 <Video />
 
-**Blog Posts**
+## Blog Posts
+
+Posts that can be used as a go-to resource for both beginner and
+seasoned developers in the Svelte and SvelteKit space. Covering topics
+from basic concepts to advanced techniques, each post is designed to
+offer actionable insights and solutions.
 
 <BlogPost />
 

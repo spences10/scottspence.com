@@ -23,17 +23,6 @@ export const calculate_day_rate_with_pto = (
   return annual_rate / total_billable_days
 }
 
-export const calculate_day_rate_without_pto = (
-  annual_rate: number,
-  working_days_in_year: number,
-) => {
-  return annual_rate / working_days_in_year
-}
-
-export const convert_currency = (amount: number, rate: number) => {
-  return amount * rate
-}
-
 export const calculate_annual_rate_with_pto = (
   annual_rate: number,
   working_days_in_year: number,
