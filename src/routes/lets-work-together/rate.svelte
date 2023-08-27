@@ -49,54 +49,58 @@
   }
 </script>
 
-<div class="flex flex-col">
-  <label for="annual_rate" class="label">
-    <span class="label-text text-base">
-      Annual rate (EUR) {locale_string(annual_rate_EUR)}:
-    </span>
-  </label>
-  <input
-    id="annual_rate"
-    type="range"
-    min={60000}
-    max={120000}
-    step={5000}
-    bind:value={annual_rate_EUR}
-    on:input={on_annual_rate_input}
-    class="range range-primary mb-5"
-  />
-  <label for="pto_days" class="label">
-    <span class="label-text text-base">
-      PTO (days) {chosen_holidays}:
-    </span>
-  </label>
-  <input
-    id="pto_days"
-    type="range"
-    min={0}
-    max={40}
-    step={1}
-    bind:value={chosen_holidays}
-    class="range range-primary mb-5"
-  />
-  <label>
-    Currency:
+<section class="flex flex-col">
+  <fieldset>
+    <legend class="sr-only">Rate Settings</legend>
+    <label for="annual_rate" class="label">
+      <span class="label-text text-base">
+        Annual rate (EUR) {locale_string(annual_rate_EUR)}:
+      </span>
+    </label>
+    <input
+      id="annual_rate"
+      type="range"
+      min={60000}
+      max={120000}
+      step={5000}
+      bind:value={annual_rate_EUR}
+      on:input={on_annual_rate_input}
+      class="range range-primary mb-5"
+    />
+    <label for="pto_days" class="label">
+      <span class="label-text text-base">
+        PTO (days) {chosen_holidays}:
+      </span>
+    </label>
+    <input
+      id="pto_days"
+      type="range"
+      min={0}
+      max={40}
+      step={1}
+      bind:value={chosen_holidays}
+      class="range range-primary mb-5"
+    />
+    <label for="currency_select" class="label">
+      <span class="label-text text-base">Currency:</span>
+    </label>
     <select
+      id="currency_select"
       bind:value={selected_currency}
-      class="select select-bordered select-sm text-base"
+      class="select select-bordered select-sm text-sm mb-5"
     >
       <option value="EUR">EUR</option>
       {#each Object.keys($exchange_rates_store || {}) as currency}
         <option value={currency}>{currency}</option>
       {/each}
     </select>
-  </label>
-</div>
+  </fieldset>
+</section>
 
-<div
-  class="stats stats-vertical md:stats-horizontal shadow-lg border border-secondary w-full my-10"
+<section
+  class="stats stats-vertical md:stats-horizontal shadow-lg border border-secondary w-full mb-5"
 >
-  <div class="stat">
+  <article class="stat">
     <div class="stat-title">Day</div>
     <div class="stat-value flex">
       {locale_string(day_rate_with_pto * currency_rate)}
@@ -105,9 +109,9 @@
       </span>
     </div>
     <div class="stat-desc"></div>
-  </div>
+  </article>
 
-  <div class="stat">
+  <article class="stat">
     <div class="stat-title">Weekly</div>
     <div class="stat-value">
       <div
@@ -130,9 +134,9 @@
             5
           ).toFixed(2)} days PTO`}
     </div>
-  </div>
+  </article>
 
-  <div class="stat">
+  <article class="stat">
     <div class="stat-title">Monthly</div>
     <div class="stat-value">
       <div
@@ -152,9 +156,9 @@
         ? `Base`
         : `Incl. ${(chosen_holidays / 12).toFixed(1)} days PTO`}
     </div>
-  </div>
+  </article>
 
-  <div class="stat">
+  <article class="stat">
     <div class="stat-title">Annual</div>
     <div class="stat-value">
       <div
@@ -172,5 +176,5 @@
         ? `Base`
         : `Incl. ${chosen_holidays} days PTO`}
     </div>
-  </div>
-</div>
+  </article>
+</section>
