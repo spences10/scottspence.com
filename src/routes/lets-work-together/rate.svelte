@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { number_crunch } from '$lib/utils'
   import { exchange_rates_store, get_field_value } from './stores'
   import {
+    calculate_annual_rate_with_pto,
     calculate_day_rate_with_pto,
-    calculate_day_rate_without_pto,
-    convert_currency,
+    calculate_monthly_rate_with_pto,
     locale_string,
   } from './utils'
 
@@ -21,25 +22,24 @@
     public_holidays,
   )
 
-  $: day_rate_without_pto = calculate_day_rate_without_pto(
+  $: monthly_rate_with_pto = calculate_monthly_rate_with_pto(
     annual_rate_EUR || 0,
     working_days_in_year,
+    chosen_holidays,
+    public_holidays,
+  )
+
+  $: annual_rate_with_pto = calculate_annual_rate_with_pto(
+    annual_rate_EUR || 0,
+    working_days_in_year,
+    chosen_holidays,
+    public_holidays,
   )
 
   $: currency_rate =
     selected_currency === 'EUR'
       ? 1
       : $exchange_rates_store[selected_currency]
-
-  $: day_rate_with_pto_in_selected_currency = convert_currency(
-    day_rate_with_pto,
-    currency_rate,
-  )
-
-  $: day_rate_without_pto_in_selected_currency = convert_currency(
-    day_rate_without_pto,
-    currency_rate,
-  )
 
   const on_annual_rate_input = (e: Event) => {
     annual_rate_EUR = Math.max(
@@ -50,30 +50,35 @@
 </script>
 
 <div class="flex flex-col">
-  <label>
-    Annual rate (EUR) {locale_string(annual_rate_EUR)}:
-    <input
-      type="range"
-      min={60000}
-      max={120000}
-      step={5000}
-      bind:value={annual_rate_EUR}
-      on:input={on_annual_rate_input}
-      class="range range-primary"
-    />
+  <label for="annual_rate" class="label">
+    <span class="label-text text-base">
+      Annual rate (EUR) {locale_string(annual_rate_EUR)}:
+    </span>
   </label>
-  <label>
-    PTO (days):
-    <input
-      type="range"
-      min={0}
-      max={40}
-      step={1}
-      bind:value={chosen_holidays}
-      class="range range-primary"
-    />
-    {chosen_holidays}
+  <input
+    id="annual_rate"
+    type="range"
+    min={60000}
+    max={120000}
+    step={5000}
+    bind:value={annual_rate_EUR}
+    on:input={on_annual_rate_input}
+    class="range range-primary mb-5"
+  />
+  <label for="pto_days" class="label">
+    <span class="label-text text-base">
+      PTO (days) {chosen_holidays}:
+    </span>
   </label>
+  <input
+    id="pto_days"
+    type="range"
+    min={0}
+    max={40}
+    step={1}
+    bind:value={chosen_holidays}
+    class="range range-primary mb-5"
+  />
   <label>
     Currency:
     <select
@@ -89,35 +94,83 @@
 </div>
 
 <div
-  class="stats stats-vertical md:stats-horizontal shadow-lg border border-secondary w-full mt-10"
+  class="stats stats-vertical md:stats-horizontal shadow-lg border border-secondary w-full my-10"
 >
   <div class="stat">
-    <div class="stat-title">Day rate</div>
+    <div class="stat-title">Day</div>
     <div class="stat-value flex">
-      {locale_string(day_rate_with_pto_in_selected_currency)}
+      {locale_string(day_rate_with_pto * currency_rate)}
       <span class="text-xl ml-2">
         {selected_currency}
       </span>
     </div>
+    <div class="stat-desc"></div>
   </div>
 
   <div class="stat">
-    <div class="stat-title">Without PTO</div>
-    <div class="stat-value flex">
-      {locale_string(day_rate_without_pto_in_selected_currency)}
-      <span class="text-xl ml-2">
-        {selected_currency}
-      </span>
+    <div class="stat-title">Weekly</div>
+    <div class="stat-value">
+      <div
+        class="tooltip flex"
+        data-tip={locale_string(
+          day_rate_with_pto * 5 * currency_rate,
+        )}
+      >
+        {number_crunch(day_rate_with_pto * 5 * currency_rate)}
+        <span class="text-xl ml-2">
+          {selected_currency}
+        </span>
+      </div>
+    </div>
+    <div class="stat-desc">
+      {chosen_holidays === 0
+        ? `Base`
+        : `Incl. ${(
+            (chosen_holidays / working_days_in_year) *
+            5
+          ).toFixed(2)} days PTO`}
     </div>
   </div>
 
   <div class="stat">
-    <div class="stat-title">Annual with PTO</div>
-    <div class="stat-value flex">
-      {locale_string(annual_rate_EUR * currency_rate)}
-      <span class="text-xl ml-2">
-        {selected_currency}
-      </span>
+    <div class="stat-title">Monthly</div>
+    <div class="stat-value">
+      <div
+        class="tooltip flex"
+        data-tip={locale_string(
+          monthly_rate_with_pto * currency_rate,
+        )}
+      >
+        {number_crunch(monthly_rate_with_pto * currency_rate)}
+        <span class="text-xl ml-2">
+          {selected_currency}
+        </span>
+      </div>
+    </div>
+    <div class="stat-desc">
+      {chosen_holidays === 0
+        ? `Base`
+        : `Incl. ${(chosen_holidays / 12).toFixed(1)} days PTO`}
+    </div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">Annual</div>
+    <div class="stat-value">
+      <div
+        class="tooltip flex"
+        data-tip={locale_string(annual_rate_with_pto * currency_rate)}
+      >
+        {number_crunch(annual_rate_with_pto * currency_rate)}
+        <span class="text-xl ml-2">
+          {selected_currency}
+        </span>
+      </div>
+    </div>
+    <div class="stat-desc">
+      {chosen_holidays === 0
+        ? `Base`
+        : `Incl. ${chosen_holidays} days PTO`}
     </div>
   </div>
 </div>
