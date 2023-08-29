@@ -126,8 +126,8 @@ devDependencies:
     specifier: 1.6.6
     version: 1.6.6
   svead:
-    specifier: ^0.0.8
-    version: 0.0.8(svelte@4.2.0)
+    specifier: ^0.0.9
+    version: 0.0.9(svelte@4.2.0)
   svelte:
     specifier: 4.2.0
     version: 4.2.0
@@ -4837,10 +4837,10 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svead@0.0.8(svelte@4.2.0):
-    resolution: {integrity: sha512-jfCHCtAQBFOkiBgeiyrBbRuhYU3ge8OtUwBuc8GbvFuL72oJOyKJqLqSOAAMtVOobPXllMct/9/DN+2uoYIRfA==}
+  /svead@0.0.9(svelte@4.2.0):
+    resolution: {integrity: sha512-FHIfJXfx261hbNEg/nqas7Lo5JE7r1vqNkx72RlBT+oqs7pqTcK3aY5UqJ/oUTwn3NER8pD1eVhRA+zO5RV9zw==}
     peerDependencies:
-      svelte: ^3.54.0
+      svelte: ^3.54.0 || ^4.0.0
     dependencies:
       svelte: 4.2.0
     dev: true
