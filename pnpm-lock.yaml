@@ -141,8 +141,8 @@ devDependencies:
     specifier: 5.0.4
     version: 5.0.4(postcss-load-config@4.0.1)(postcss@8.4.28)(svelte@4.2.0)(typescript@5.2.2)
   sveltekit-embed:
-    specifier: 0.0.13
-    version: 0.0.13(svelte@4.2.0)
+    specifier: 0.0.14
+    version: 0.0.14(svelte@4.2.0)
   tailwindcss:
     specifier: 3.3.3
     version: 3.3.3
@@ -4975,10 +4975,10 @@ packages:
       periscopic: 3.1.0
     dev: true
 
-  /sveltekit-embed@0.0.13(svelte@4.2.0):
-    resolution: {integrity: sha512-1cMCnK3uBBqBuxya2cVTWIdtaslvV59JqyKsbE0EzUggkh3wrhxTuqURY0rYuFy2PGlUW/EEM20D5awQPmgXew==}
+  /sveltekit-embed@0.0.14(svelte@4.2.0):
+    resolution: {integrity: sha512-GhrvCcosSO36AEpbv07n134TQ9SyUY6M0O38/i1ZZ7TdFEKlwuA7Jmf5uyKu2lB0gJ7mTHgBsO5SNrYfLg1dEA==}
     peerDependencies:
-      svelte: ^3.54.0
+      svelte: ^3.54.0 || ^4.0.0
     dependencies:
       svelte: 4.2.0
     dev: true
