@@ -1,14 +1,19 @@
 <script lang="ts">
   import { images } from './images'
-  let selectedImage = images[0]
+  const get_random_image = () => {
+    const random_index = Math.floor(Math.random() * images.length)
+    return images[random_index]
+  }
 
-  function handleClick(image: {
+  let selected_image = get_random_image()
+
+  const handle_image_click = (image: {
     url: string
     square: string
     thumb: string
     alt: string
-  }) {
-    selectedImage = image
+  }) => {
+    selected_image = image
   }
 </script>
 
@@ -16,25 +21,26 @@
   <a
     target="_blank"
     rel="noopener noreferrer"
-    href={selectedImage.url}
+    href={selected_image.url}
   >
     <img
-      class="m-0 shadow-xl"
-      src={selectedImage.square}
-      alt={selectedImage.alt}
+      class="m-0 mb-5 shadow-xl"
+      src={selected_image.square}
+      alt={selected_image.alt}
     />
   </a>
-  <div class="flex gap-2 justify-between">
+  <div class="not-prose grid grid-cols-6 gap-2">
     {#each images as image}
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <!-- svelte-ignore a11y-no-static-element-interactions -->
-      <div on:click={() => handleClick(image)}>
+      <button
+        class="focus:outline-primary focus:border-primary-focus shadow-xl"
+        on:click={() => handle_image_click(image)}
+      >
         <img
           class="cursor-pointer shadow-xl"
           src={image.thumb}
           alt={image.alt}
         />
-      </div>
+      </button>
     {/each}
   </div>
 </div>
