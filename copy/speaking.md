@@ -13,7 +13,7 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2023-06-15" small="true" />
+  Last updated: <DateUpdated date="2023-08-31" small="true" />
 </Small>
 
 If you want me to talk about using Svelte with GraphQL, the Jamstack
@@ -25,6 +25,20 @@ Here's the list of talks, podcasts and live streams I have done
 recently.
 
 ## 2023
+
+### Major League Hacking
+
+The State of Developer Education with Jon Gottfried
+
+<YouTube youTubeId='kEHr3_SY7GY' />
+
+### Pixel Pioneers
+
+Svelte and SvelteKit primer talk.
+
+<!-- cSpell:ignore _r-VNi-54Gc -->
+
+<YouTube youTubeId='_r-VNi-54Gc' />
 
 ### JSMonthly
 
