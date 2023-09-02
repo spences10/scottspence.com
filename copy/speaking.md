@@ -13,11 +13,11 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2023-08-31" small="true" />
+  Last updated: <DateUpdated date="2023-09-02" small="true" />
 </Small>
 
-If you want me to talk about using Svelte with GraphQL, the Jamstack
-or anything else [get in touch].
+If you want me to talk about using Svelte and SvelteKit or anything
+else [get in touch].
 
 **Recent talks, workshops and appearances**
 
