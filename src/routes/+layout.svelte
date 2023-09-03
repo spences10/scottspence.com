@@ -1,5 +1,6 @@
 <script lang="ts">
   import { browser } from '$app/environment'
+  import { onNavigate } from '$app/navigation'
   import { page } from '$app/stores'
   import {
     PUBLIC_FATHOM_ID,
@@ -29,6 +30,18 @@
     Fathom.load(PUBLIC_FATHOM_ID, {
       url: PUBLIC_FATHOM_URL,
       excludedDomains: ['localhost'],
+    })
+  })
+
+  onNavigate(navigation => {
+    // sorry Firefox and Safari users
+    if (!(document as any).startViewTransition) return
+
+    return new Promise(resolve => {
+      ;(document as any).startViewTransition(async () => {
+        resolve()
+        await navigation.complete
+      })
     })
   })
 
