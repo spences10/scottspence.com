@@ -22,7 +22,7 @@ if (!building) {
   })
 }
 
-export const current_visitors_key = (): string => {
+export function current_visitors_key(): string {
   return `current_visitors:${VISITORS_KEY}`
 }
 
@@ -36,10 +36,10 @@ export const current_visitors_key = (): string => {
  * @param params - An object containing query parameters to include in the cache key.
  * @returns The generated cache key.
  */
-export const page_views_key = (
+function page_views_key(
   cache_key_prefix: string,
   params: any,
-): string => {
+): string {
   // Parse the filters property
   const filters = JSON.parse(params.filters || '[]')
   const pathname = filters.length > 0 ? filters[0].value : ''
@@ -50,22 +50,23 @@ export const page_views_key = (
   return `${cache_key_prefix}:${slug}`
 }
 
-export const popular_posts_key = (
-  cache_key_prefix: string,
-): string => {
+function popular_posts_key(cache_key_prefix: string): string {
   return `${cache_key_prefix}`
 }
 
-export const exchange_rates_key = (): string => {
+function exchange_rates_key(): string {
   return `exchange_rates:`
 }
 
-export const pricing_numbers_key = (): string => {
+function pricing_numbers_key(): string {
   return `pricing_numbers:`
 }
 
-export const posts_key = (): string => {
-  return `get_posts:`
+export {
+  exchange_rates_key,
+  page_views_key,
+  popular_posts_key,
+  pricing_numbers_key,
+  ratelimit,
+  redis,
 }
-
-export { ratelimit, redis }

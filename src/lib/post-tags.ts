@@ -9,7 +9,7 @@ export const get_post_tags = async () => {
 
   const { posts } = await get_posts()
 
-  posts.map((post: { tags: any; isPrivate: any }) => {
+  posts.map(post => {
     const { tags, isPrivate } = post
     if (tags && !isPrivate) {
       tags.forEach((post_tag: string) => {
