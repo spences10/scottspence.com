@@ -27,7 +27,6 @@
     use:enhance={() => {
       return ({ update, result }) => {
         handle_result(result)
-        console.log(JSON.stringify(result, null, 2))
         update({ reset: false })
       }
     }}
