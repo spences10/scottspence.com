@@ -1,8 +1,6 @@
 import { reactions } from '$lib/reactions-config.js'
 import { redis } from '$lib/redis.js'
 
-export const prerender = true
-
 const fetch_posts_data = async (fetch: Fetch): Promise<Post[]> => {
   const response = await fetch('posts.json')
   return await response.json()
