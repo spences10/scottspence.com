@@ -20,7 +20,7 @@
   }
 </script>
 
-<div class="flex justify-center mb-10">
+<section class="flex justify-center mb-10">
   <form
     method="POST"
     action="/reactions?path={path}"
@@ -46,4 +46,16 @@
       />
     {/each}
   </form>
+</section>
+
+<div class="all-prose">
+  <p>
+    There's a <a href="/reactions-leaderboard">
+      reactions leaderboard
+    </a> you can check out too.
+  </p>
+</div>
+
+<div class="flex flex-col w-full my-10">
+  <div class="divider" role="separator" />
 </div>
