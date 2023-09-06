@@ -5,7 +5,7 @@
 </script>
 
 <div class="m-0 mb-20 sm:-mx-30 lg:-mx-40">
-  <div class="grid gap-4 grid-cols-1 relative lg:grid-cols-2">
+  <div class="grid gap-4 grid-cols-1 relative md:grid-cols-2">
     {#each leaderboard as page}
       <a data-sveltekit-reload href={page.path} class="h-full">
         <aside
@@ -14,9 +14,9 @@
           <div>
             <h3 class="mb-5 text-2xl">{page.title}</h3>
           </div>
-          <div class="mt-5 space-x-4">
+          <div class="mt-5 flex flex-wrap justify-between">
             {#each reactions as reaction}
-              <span class="btn btn-primary text-xl">
+              <span class="btn btn-primary text-xl flex-1 md:flex-none min-w-[calc(50%-0.5rem)] md:min-w-0 mr-2 mb-2">
                 {reaction.emoji}
                 {!page[reaction.type] ? 0 : page[reaction.type]}
               </span>
