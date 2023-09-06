@@ -44,6 +44,7 @@ declare interface ReactionEntry {
 }
 
 declare interface ReactionPage {
+  rank?: number
   path: string
   count: number
 }

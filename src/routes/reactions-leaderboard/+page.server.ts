@@ -54,7 +54,7 @@ const transform_leaderboard = (
   )
 }
 
-const get_leaderboard = async (fetch: Fetch) => {
+const get_leaderboard_with_ranking = async (fetch: Fetch) => {
   const [posts_data, reaction_data] = await Promise.all([
     fetch_posts_data(fetch),
     fetch_reaction_data(),
@@ -62,12 +62,21 @@ const get_leaderboard = async (fetch: Fetch) => {
 
   const sorted_pages = reaction_data.sort((a, b) => b.count - a.count)
 
+  // Assign ranking numbers
+  sorted_pages.forEach((page, index) => {
+    page.rank = index + 1
+  })
+
   const leaderboard = transform_leaderboard(sorted_pages, posts_data)
-  return Object.values(leaderboard)
+
+  return Object.values(leaderboard).map((entry, index) => {
+    entry.rank = index + 1
+    return entry
+  })
 }
 
 export const load = async ({ fetch }) => {
-  const leaderboard = await get_leaderboard(fetch)
+  const leaderboard = await get_leaderboard_with_ranking(fetch)
   return {
     leaderboard,
   }

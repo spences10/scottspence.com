@@ -4,8 +4,8 @@
   export let leaderboard: ReactionEntry[]
 </script>
 
-<div class="m-0 mb-20 sm:-mx-30 lg:-mx-40">
-  <div class="grid gap-4 grid-cols-1 relative md:grid-cols-2">
+<section class="m-0 mb-20 sm:-mx-30 lg:-mx-40">
+  <div class="grid gap-8 grid-cols-1 relative md:grid-cols-2">
     {#each leaderboard as page}
       <a
         target="_blank"
@@ -14,12 +14,28 @@
         href={page.path}
         class="h-full"
       >
-        <aside
+        <article
           class="flex flex-col justify-between rounded-box font-bold h-full p-5 transition card shadow-lg hover:text-accent-focus border border-secondary"
         >
-          <div>
-            <h3 class="mb-5 text-2xl">{page.title}</h3>
-          </div>
+          <h3 class="mb-5 text-2xl">
+            {#if page.rank === 1}
+              <span class="text-3xl">🥇</span>
+            {:else if page.rank === 2}
+              <span class="text-3xl">🥈</span>
+            {:else if page.rank === 3}
+              <span class="text-3xl">🥉</span>
+            {:else if +page.rank > 3}
+              <span class="text-accent">
+                <span
+                  class="text-xs -mr-1"
+                  style="vertical-align: top;">#</span
+                >
+                {page.rank}
+              </span>
+            {/if}
+            {page.title}
+          </h3>
+
           <div class="mt-5 flex flex-wrap justify-between">
             {#each reactions as reaction}
               <span
@@ -30,8 +46,8 @@
               </span>
             {/each}
           </div>
-        </aside>
+        </article>
       </a>
     {/each}
   </div>
-</div>
+</section>
