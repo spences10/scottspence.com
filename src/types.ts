@@ -38,6 +38,16 @@ declare interface ReactionsData {
   count: ReactionCount
 }
 
+declare interface ReactionEntry {
+  path: string
+  [key: string]: number | string
+}
+
+declare interface ReactionPage {
+  path: string
+  count: number
+}
+
 declare interface PopularPost {
   visits: string
   pageviews: string
