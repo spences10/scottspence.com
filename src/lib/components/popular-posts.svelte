@@ -14,6 +14,8 @@
       selected_period as PopularPostsPeriod
     ].slice(0, 4)
   }
+
+  // cspell:ignore WKHRXHV8
 </script>
 
 {#if posts.length}

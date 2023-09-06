@@ -21,6 +21,11 @@
   {url}
 />
 
-<h1 class="font-bold mb-10 text-5xl">Reactions leaderboard</h1>
+<div class="all-prose mb-12">
+  <section aria-labelledby="leaderboard-heading">
+    <h1 id="leaderboard-heading">Reactions leaderboard</h1>
+    <p>Here's the most reacted to posts on the site.</p>
+  </section>
+</div>
 
 <ReactionsLeaderboard {leaderboard} />
