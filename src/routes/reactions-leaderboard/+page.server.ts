@@ -1,5 +1,6 @@
 import { reactions } from '$lib/reactions-config.js'
-import { redis } from '$lib/redis.js'
+import { get_reactions_leaderboard_key, redis } from '$lib/redis.js'
+import { time_to_seconds } from '$lib/utils/time-to-seconds.js'
 
 const fetch_posts_data = async (fetch: Fetch): Promise<Post[]> => {
   const response = await fetch('posts.json')
@@ -76,7 +77,32 @@ const get_leaderboard_with_ranking = async (fetch: Fetch) => {
 }
 
 export const load = async ({ fetch }) => {
+  try {
+    const cached = await redis.get(get_reactions_leaderboard_key())
+    if (cached) {
+      return {
+        leaderboard: cached,
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching from Redis:', error)
+  }
+
+  // if cache miss, fetch from API
   const leaderboard = await get_leaderboard_with_ranking(fetch)
+
+  try {
+    await redis.set(
+      get_reactions_leaderboard_key(),
+      JSON.stringify(leaderboard),
+      {
+        ex: time_to_seconds({ hours: 24 }),
+      },
+    )
+  } catch (error) {
+    console.error('Error setting to Redis:', error)
+  }
+
   return {
     leaderboard,
   }
