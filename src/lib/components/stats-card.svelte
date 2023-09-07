@@ -20,21 +20,21 @@
       label: 'This Month',
       range: `${format(
         startOfMonth(new Date()),
-        'MMM d, yyyy'
+        'MMM d, yyyy',
       )} - ${format(new Date(), 'MMM d, yyyy')}`,
     },
     year: {
       label: 'This Year',
       range: `${format(
         startOfYear(new Date()),
-        'MMM d, yyyy'
+        'MMM d, yyyy',
       )} - ${format(new Date(), 'MMM d, yyyy')}`,
     },
   }
 
   const generate_stats = (
     time_period: string,
-    stats_data: AnalyticsData | null | undefined
+    stats_data: AnalyticsData | null | undefined,
   ) => {
     if (!stats_data) return null
     const time_period_config = time_periods[time_period]
@@ -73,23 +73,32 @@
   ]
 </script>
 
-{#each stats_array as { title, stats }}
-  {#if stats}
-    <div class="mb-4">
-      <p class="mb-2 pl-1">{title}</p>
-      <div
-        class="stats stats-vertical md:stats-horizontal shadow-lg w-full border border-secondary mb-8"
-      >
-        {#each Object.entries(stats) as [key, { label, value, range }]}
-          <div class="stat">
-            <div class="stat-title">{label}</div>
-            <div class="stat-value text-2xl">{value}</div>
-            {#if range}
-              <div class="stat-desc">{range}</div>
-            {/if}
-          </div>
-        {/each}
-      </div>
-    </div>
-  {/if}
-{/each}
+<section aria-labelledby="analytics-section">
+  <h2 id="analytics-section" class="sr-only">
+    Analytics Information
+  </h2>
+  {#each stats_array as { title, stats }}
+    {#if stats}
+      <article class="mb-4">
+        <header class="mb-2 pl-1">
+          <h3>{title}</h3>
+        </header>
+        <section
+          class="stats stats-vertical md:stats-horizontal shadow-lg w-full border border-secondary mb-8"
+        >
+          {#each Object.entries(stats) as [key, { label, value, range }]}
+            <div class="stat">
+              <header class="stat-title">{label}</header>
+              <div class="stat-value text-2xl" role="status">
+                {value}
+              </div>
+              {#if range}
+                <footer class="stat-desc">{range}</footer>
+              {/if}
+            </div>
+          {/each}
+        </section>
+      </article>
+    {/if}
+  {/each}
+</section>
