@@ -56,4 +56,7 @@ export const pricing_numbers_key = (): string => `pricing_numbers:`
 
 export const get_posts_key = (): string => `get_posts:`
 
+export const get_reactions_leaderboard_key = (): string =>
+  `reactions_leaderboard:`
+
 export { ratelimit, redis }

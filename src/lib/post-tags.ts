@@ -1,7 +1,7 @@
 import { get_posts } from '$lib/posts'
 
 interface PostsByTag {
-  [tag: string]: any[]
+  [tag: string]: Post[]
 }
 
 export const get_post_tags = async () => {
@@ -9,7 +9,7 @@ export const get_post_tags = async () => {
 
   const { posts } = await get_posts()
 
-  posts.map(post => {
+  posts.map((post: Post) => {
     const { tags, isPrivate } = post
     if (tags && !isPrivate) {
       tags.forEach((post_tag: string) => {

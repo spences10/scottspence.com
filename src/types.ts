@@ -11,7 +11,7 @@ declare interface Post {
   }
   preview: string
   previewHtml: string
-  slug: string
+  slug: string | null
   path: string
 }
 
