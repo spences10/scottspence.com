@@ -1,7 +1,7 @@
 ---
 date: 2023-05-21
 title: SvelteKit Contact Form Example with Airtable
-tags: ['sveltekit', 'how-to', 'guide']
+tags: ['sveltekit', 'how-to', 'guide', 'airtable']
 isPrivate: false
 ---
 

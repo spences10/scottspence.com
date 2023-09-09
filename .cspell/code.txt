@@ -29,6 +29,7 @@ globalias
 goalid
 graphqlrc
 grayscale
+hset
 iframe
 incr
 injectglobal

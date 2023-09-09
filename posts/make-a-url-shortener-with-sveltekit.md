@@ -2,7 +2,7 @@
 date: 2022-03-09
 updated: 2023-03-04
 title: Make a URL Shortener with SvelteKit
-tags: ['how-to', 'svelte', 'guide']
+tags: ['how-to', 'svelte', 'guide', 'airtable']
 isPrivate: false
 ---
 

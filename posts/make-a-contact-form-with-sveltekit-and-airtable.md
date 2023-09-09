@@ -1,7 +1,7 @@
 ---
 date: 2022-03-02
 title: Make a Contact Form with SvelteKit and Airtable
-tags: ['sveltekit', 'how-to', 'svelte']
+tags: ['sveltekit', 'how-to', 'svelte', 'airtable']
 isPrivate: false
 ---
 
