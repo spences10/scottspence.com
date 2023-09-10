@@ -61,8 +61,8 @@
     <input
       id="annual_rate"
       type="range"
-      min={60000}
-      max={120000}
+      min={85000}
+      max={150000}
       step={5000}
       bind:value={annual_rate_EUR}
       on:input={on_annual_rate_input}

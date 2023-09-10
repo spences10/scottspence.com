@@ -1,15 +1,11 @@
-import {
-  EXCHANGE_RATE_API_KEY,
-  PRICING_API_KEY,
-  PRICING_BASE_ID,
-} from '$env/static/private'
+import { EXCHANGE_RATE_API_KEY } from '$env/static/private'
 import {
   exchange_rates_key,
   pricing_numbers_key,
   redis,
 } from '$lib/redis'
 import { time_to_seconds } from '$lib/utils'
-import type { ExchangeRates, PricingNumber } from './stores'
+import type { ExchangeRates } from './stores'
 
 const get_cached_or_fetch = async <T>(
   key: string,
@@ -37,33 +33,33 @@ const fetch_exchange_rates = async () => {
   return (await response.json()).data
 }
 
-const fetch_pricing_numbers = async () => {
-  const response = await fetch(
-    `https://api.airtable.com/v0/${PRICING_BASE_ID}/pricing-table`,
-    {
-      headers: {
-        Authorization: `Bearer ${PRICING_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-    },
-  )
-  return (await response.json()).records
+const fetch_pricing_numbers = async (): Promise<{
+  [key: string]: number
+}> => {
+  const all_fields = await redis.hgetall(pricing_numbers_key())
+
+  if (all_fields === null) {
+    throw new Error('Could not fetch pricing numbers from Redis')
+  }
+
+  const pricing_numbers_data: { [key: string]: number } = {}
+
+  for (const [key, value] of Object.entries(all_fields)) {
+    pricing_numbers_data[key] = Number(value)
+  }
+
+  return pricing_numbers_data
 }
 
 export const load = async () => {
-  const [exchange_rates_data, pricing_numbers_data] =
-    await Promise.all([
-      get_cached_or_fetch<ExchangeRates>(
-        exchange_rates_key(),
-        fetch_exchange_rates,
-        time_to_seconds({ minutes: 5 }),
-      ),
-      get_cached_or_fetch<PricingNumber[]>(
-        pricing_numbers_key(),
-        fetch_pricing_numbers,
-        time_to_seconds({ hours: 48 }),
-      ),
-    ])
+  const exchange_rates_data =
+    await get_cached_or_fetch<ExchangeRates>(
+      exchange_rates_key(),
+      fetch_exchange_rates,
+      time_to_seconds({ minutes: 5 }),
+    )
+
+  const pricing_numbers_data = await fetch_pricing_numbers()
 
   return {
     exchange_rates: exchange_rates_data,
