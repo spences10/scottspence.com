@@ -26,7 +26,9 @@ export const GET = async ({ fetch, url }) => {
 
   const posts_by_slug = posts_data.reduce(
     (acc: Record<string, Post>, post: Post) => {
-      acc[post.slug] = post
+      if (post.slug) {
+        acc[post.slug] = post
+      }
       return acc
     },
     {} as Record<string, Post>,

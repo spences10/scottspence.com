@@ -4,8 +4,8 @@
   import { name, website } from '$lib/info.js'
   import { og_image_url } from '$lib/utils/og-image-url-build.js'
 
-  export let data
-  let { leaderboard } = data
+  export let data: { leaderboard: ReactionEntry[] }
+  let { leaderboard = [] } = data
 
   const url = `${website}/reactions-leaderboard`
 </script>
