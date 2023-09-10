@@ -52,7 +52,7 @@ export const popular_posts_key = (cache_key_prefix: string): string =>
 
 export const exchange_rates_key = (): string => `exchange_rates:`
 
-export const pricing_numbers_key = (): string => `pricing_numbers:`
+export const pricing_numbers_key = (): string => `pricing_numbers`
 
 export const get_posts_key = (): string => `get_posts:`
 
