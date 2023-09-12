@@ -31,7 +31,7 @@
     "@playwright/test": "^1.37.1",
     "@sveltejs/adapter-vercel": "3.0.3",
     "@sveltejs/kit": "^1.24.0",
-    "@tailwindcss/typography": "0.5.9",
+    "@tailwindcss/typography": "0.5.10",
     "@testing-library/svelte": "^4.0.3",
     "@types/marked": "^5.0.1",
     "@typescript-eslint/eslint-plugin": "^6.5.0",
