@@ -12,25 +12,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/cache@v3
-        with:
-          path: ~/.pnpm-store
-          key:
-            # prettier-ignore
-            ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2.4.0
+      - uses: oven-sh/setup-bun@v1
         with:
-          version: 6.0.2
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
+          bun-version: latest
       - name: Install dependencies
-        run: pnpm install
+        run: bun install
       - name: Build
-        run: pnpm run build
+        run: bun run build
         env:
           PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
           PUBLIC_FATHOM_URL: ${{ secrets.PUBLIC_FATHOM_URL }}
@@ -44,4 +33,4 @@ jobs:
           UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
           EXCHANGE_RATE_API_KEY: ${{ secrets.EXCHANGE_RATE_API_KEY }}
       - name: Test
-        run: pnpm run test:ci
+        run: bun run test:ci
