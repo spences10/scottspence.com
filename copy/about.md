@@ -30,8 +30,8 @@ Check out the [speaking] section for more details about those!
 
 I have a wealth of knowledge working in the [Jamstack], with extensive
 experience (<DD date="2018-08-02"/>) working with it mainly using
-[Gatsby] (the React framework). My active usage of the Jamstack stops
-at around <DD date="2021-04-06" /> ago now.
+[Gatsby] (the React meta-framework). My active usage of the Jamstack
+stops at around <DD date="2021-04-06" /> ago now.
 
 Check out the [portfolio section] for more information.
 
