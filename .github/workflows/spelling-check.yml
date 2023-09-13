@@ -13,13 +13,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2.4.0
+
+      - uses: oven-sh/setup-bun@v1
         with:
-          version: 6.0.2
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
+          bun-version: latest
+
       - name: Install dependencies
-        run: pnpm install
+        run: bun install
+
       - name: Check spelling
-        run: pnpm run cspell
+        run: bun run cspell
