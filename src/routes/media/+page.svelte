@@ -39,7 +39,7 @@
     Bio information. If there's anything else you need let me know.
   </p>
 
-  <div class="flex items-center space-x-2">
+  <div class="flex items-center space-x-2 mb-10">
     <input
       type="checkbox"
       id="toggle-copy"
