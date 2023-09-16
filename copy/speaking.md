@@ -26,6 +26,12 @@ recently.
 
 ## 2023
 
+### ASYNC September meetup
+
+Introduction to Svelte and SvelteKit with practical examples.
+
+<YouTube youTubeId='mGb2v89I8dk' />
+
 ### Major League Hacking
 
 The State of Developer Education with Jon Gottfried
