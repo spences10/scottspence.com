@@ -1,53 +1,43 @@
 import { time_to_seconds } from '$lib/utils'
 
-const fetch_popular_posts = async (
-  fetch: Fetch,
-  period: string,
-  cache_duration: number,
-) => {
-  const url = `../popular-posts.json?period=${period}`
-  const res = await fetch(url)
-
-  const { analytics } = await res.json()
-
-  return analytics || null
-}
-
-// get current visitors
-const fetch_visitors = async (fetch: Fetch) => {
+const fetch_data = async (fetch: Fetch, url: string, key: string) => {
   try {
-    const url = '../current-visitors.json'
-
     const res = await fetch(url)
-
-    const { visitors } = await res.json()
-    return visitors
+    const data = await res.json()
+    return data[key] || null
   } catch (error) {
-    console.error(`Error fetching visitors: ${error}`)
+    console.error(`Error fetching ${key}: ${error}`)
     return null
   }
 }
 
 export const load = async ({ fetch }) => {
+  const cache_duration = time_to_seconds({ hours: 24 }).toString()
+
+  // Fetch Popular Posts
+  const popular_posts_promises = ['day', 'month', 'year'].map(
+    period =>
+      fetch_data(
+        fetch,
+        `../popular-posts.json?period=${period}&cache_duration=${cache_duration}`,
+        'analytics',
+      ),
+  )
+
+  // Fetch Visitors
+  const visitors_promise = fetch_data(
+    fetch,
+    '../current-visitors.json',
+    'visitors',
+  )
+
   const [
     popular_posts_daily,
     popular_posts_monthly,
     popular_posts_yearly,
-  ] = await Promise.all([
-    fetch_popular_posts(fetch, 'day', time_to_seconds({ hours: 24 })),
-    fetch_popular_posts(
-      fetch,
-      'month',
-      time_to_seconds({ hours: 24 }),
-    ),
-    fetch_popular_posts(
-      fetch,
-      'year',
-      time_to_seconds({ hours: 24 }),
-    ),
-  ])
+  ] = await Promise.all(popular_posts_promises)
 
-  const visitors = await fetch_visitors(fetch)
+  const visitors = await visitors_promise
 
   return {
     visitors,
