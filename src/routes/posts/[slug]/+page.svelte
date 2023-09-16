@@ -55,7 +55,7 @@
   })
 
   let current_path = $page.url.pathname
-  let content = $visitors_store?.visitors?.content || []
+  let content = $visitors_store?.content || []
 
   let visitors_count = get_current_page_visitors(
     current_path,

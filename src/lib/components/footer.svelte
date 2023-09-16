@@ -43,15 +43,15 @@
       </p>
     {/each}
 
-    {#if $visitors_store.visitors && $visitors_store.visitors.total}
+    {#if $visitors_store && $visitors_store.total}
       <p
         class="tracking-wide bg-secondary text-secondary-content mt-2 px-2 py-1 shadow-lg rounded-box"
       >
         There's currently
         <span class="font-bold">
-          {$visitors_store.visitors.total}
+          {$visitors_store.total}
         </span>
-        live {$visitors_store.visitors.total === 1
+        live {$visitors_store.total === 1
           ? 'visitor'
           : 'visitors'}
       </p>

@@ -5,7 +5,7 @@
   import * as Fathom from 'fathom-client'
 
   let current_path = $page.url.pathname
-  let content = $visitors_store?.visitors?.content || []
+  let content = $visitors_store?.content || []
 
   let visitors_count = get_current_page_visitors(
     current_path,
@@ -18,6 +18,9 @@
   let ScottFace = `${base_cloudinary_url}scott-mug-face-no-bg.png`
   let ScottMugFace = `${base_cloudinary_url}scott-mug-face.png`
 </script>
+
+<pre>{JSON.stringify($visitors_store, null, 2)}</pre>
+<pre>{JSON.stringify(content, null, 2)}</pre>
 
 <div
   class="mb-4 relative lg:-mx-40 lg:mb-44 lg:px-8 xl:-mx-64 xl:mb-[17rem] 2xl:-mx-60 2xl:mb-72"
