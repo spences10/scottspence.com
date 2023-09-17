@@ -1,5 +1,6 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
 import { fetch_fathom_data } from '$lib/fathom'
+import { time_to_seconds } from '$lib/utils/time-to-seconds.js'
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { json } from '@sveltejs/kit'
 
@@ -9,8 +10,8 @@ export const config: ServerlessConfig = {
 
 export const GET = async ({ url, fetch }): Promise<Response> => {
   const cache_duration = parseInt(
-    url.searchParams.get('cache_duration') ?? '900',
-    10,
+    url.searchParams.get('cache_duration') ??
+      time_to_seconds({ seconds: 30 }).toString(),
   )
 
   const visitors = await fetch_fathom_data(
@@ -21,7 +22,7 @@ export const GET = async ({ url, fetch }): Promise<Response> => {
     `current_visitors`,
   )
 
-  if (visitors && visitors.visitors) {
+  if (visitors && visitors.total != null && visitors.content) {
     return json(
       {
         visitors,

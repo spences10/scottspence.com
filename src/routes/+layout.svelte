@@ -7,7 +7,8 @@
     PUBLIC_FATHOM_URL,
   } from '$env/static/public'
   import { BackToTop, Footer, Header, Nav } from '$lib/components'
-  import { popular_posts_store } from '$lib/stores'
+  import { popular_posts_store, visitors_store } from '$lib/stores'
+  import { handle_mouse_move } from '$lib/utils'
   import * as Fathom from 'fathom-client'
   import { onMount } from 'svelte'
   import '../app.css'
@@ -15,16 +16,7 @@
 
   export let data
   $popular_posts_store = data?.popular_posts
-  // $popular_posts_store = data.popular_posts_analytics.flatMap(
-  //   post_wrapper =>
-  //     post_wrapper.popular_posts.analytics.map(post => ({
-  //       ...post,
-  //       visits: parseInt(post.visits, 10),
-  //       uniques: parseInt(post.uniques, 10),
-  //       pageviews: parseInt(post.pageviews, 10),
-  //     }))
-  // )
-  // $visitors_store = data.visitors
+  $visitors_store = data?.visitors
 
   onMount(() => {
     Fathom.load(PUBLIC_FATHOM_ID, {
@@ -32,6 +24,8 @@
       excludedDomains: ['localhost'],
     })
   })
+
+  $: $page.url.pathname, browser && Fathom.trackPageview()
 
   onNavigate(navigation => {
     // sorry Firefox and Safari users
@@ -44,9 +38,9 @@
       })
     })
   })
-
-  $: $page.url.pathname, browser && Fathom.trackPageview()
 </script>
+
+<svelte:window on:mousemove={handle_mouse_move} />
 
 <a
   class="transition left-0 bg-primary text-primary-content absolute p-3 m-3 -translate-y-16 focus:translate-y-0"
