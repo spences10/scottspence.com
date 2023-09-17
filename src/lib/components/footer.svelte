@@ -5,11 +5,13 @@
   import { popular_posts_store, visitors_store } from '$lib/stores'
   import { number_crunch } from '$lib/utils'
   import * as Fathom from 'fathom-client'
+  import CurrentVisitorsData from './current-visitors-data.svelte'
 
   type PopularPostsPeriod = keyof PopularPosts
   let selected_period: PopularPostsPeriod = 'popular_posts_yearly'
 
   let posts: PopularPost[] = []
+  let show_current_visitor_data = false
 
   $: {
     posts = $popular_posts_store[
@@ -42,19 +44,26 @@
         </span>
       </p>
     {/each}
-
     {#if $visitors_store && $visitors_store.total}
-      <p
-        class="tracking-wide bg-secondary text-secondary-content mt-2 px-2 py-1 shadow-lg rounded-box"
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
+      <span
+        on:mouseenter={() => (show_current_visitor_data = true)}
+        on:mouseleave={() => (show_current_visitor_data = false)}
+        class="cursor-pointer inline-block"
       >
-        There's currently
-        <span class="font-bold">
-          {$visitors_store.total}
-        </span>
-        live {$visitors_store.total === 1
-          ? 'visitor'
-          : 'visitors'}
-      </p>
+        <p
+          class="tracking-wide bg-secondary text-secondary-content mt-2 px-2 py-1 shadow-lg rounded-box"
+        >
+          There's currently
+          <span class="font-bold">
+            {$visitors_store.total}
+          </span>
+          live {$visitors_store.total === 1 ? 'visitor' : 'visitors'}
+        </p>
+        {#if show_current_visitor_data}
+          <CurrentVisitorsData />
+        {/if}
+      </span>
     {/if}
   </div>
   <div>

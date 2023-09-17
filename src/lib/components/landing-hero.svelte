@@ -3,6 +3,7 @@
   import { visitors_store } from '$lib/stores'
   import { get_current_page_visitors } from '$lib/utils'
   import * as Fathom from 'fathom-client'
+  import CurrentVisitorsData from './current-visitors-data.svelte'
 
   let current_path = $page.url.pathname
   let content = $visitors_store?.content || []
@@ -17,14 +18,11 @@
     'https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1691271318/scottspence.com/site-assets/'
   let ScottFace = `${base_cloudinary_url}scott-mug-face-no-bg.png`
   let ScottMugFace = `${base_cloudinary_url}scott-mug-face.png`
+
+  let show_current_visitor_data = false
 </script>
 
-<pre>{JSON.stringify($visitors_store, null, 2)}</pre>
-<pre>{JSON.stringify(content, null, 2)}</pre>
-
-<div
-  class="mb-4 relative lg:-mx-40 lg:mb-44 lg:px-8 xl:-mx-64 xl:mb-[17rem] 2xl:-mx-60 2xl:mb-72"
->
+<div class="mb-4 relative lg:-mx-40 lg:px-8 xl:-mx-64 2xl:-mx-60">
   <div class="hero">
     <div class="flex-col p-0 hero-content lg:flex-row-reverse">
       <!-- svelte-ignore a11y-mouse-events-have-key-events -->
@@ -72,35 +70,34 @@
         <a
           href="/contact"
           on:click={() => Fathom.trackGoal(`T2YXL68Y`, 0)}
-          class="btn btn-md w-full lg:btn-lg btn-primary text-primary-content hover:text-primary-content shadow-xl"
+          class="btn btn-md w-full lg:btn-lg btn-primary text-primary-content hover:text-primary-content shadow-xl rounded-box mb-5"
         >
           Get in Touch
         </a>
         {#if visitors_count?.total > 0}
-          <p class="text-sm mb-5">
-            There {visitors_count?.total > 1 ? `are` : `is`}
-            {visitors_count?.total}
-            {visitors_count?.total > 1 ? `people` : `person`}
-            looking at this page right now!
-          </p>
+          <!-- svelte-ignore a11y-no-static-element-interactions -->
+          <span
+            on:mouseenter={() => (show_current_visitor_data = true)}
+            on:mouseleave={() => (show_current_visitor_data = false)}
+            class="cursor-pointer inline-block"
+          >
+            <p
+              class="tracking-wide bg-secondary text-secondary-content mt-2 px-4 py-2 shadow-xl rounded-box text-sm"
+            >
+              There's currently
+              <span class="font-bold">
+                {$visitors_store.total}
+              </span>
+              live {$visitors_store.total === 1
+                ? 'visitor'
+                : 'visitors'}
+            </p>
+            {#if show_current_visitor_data}
+              <CurrentVisitorsData />
+            {/if}
+          </span>
         {/if}
       </div>
     </div>
   </div>
-
-  <!-- chevron down animated!! -->
-  <a href="#hi-im-scott" aria-label="scroll down for more">
-    <svg
-      xmlns="https://www.w3.org/2000/svg"
-      class="m-auto h-8 my-6 animate-bounce w-8 block lg:mt-20"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z"
-        clip-rule="evenodd"
-      />
-    </svg>
-  </a>
 </div>
