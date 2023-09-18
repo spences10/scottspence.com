@@ -1,17 +1,7 @@
 <script lang="ts">
-  import { page } from '$app/stores'
   import { visitors_store } from '$lib/stores'
-  import { get_current_page_visitors } from '$lib/utils'
   import * as Fathom from 'fathom-client'
   import CurrentVisitorsData from './current-visitors-data.svelte'
-
-  let current_path = $page.url.pathname
-  let content = $visitors_store?.content || []
-
-  let visitors_count = get_current_page_visitors(
-    current_path,
-    content,
-  )
 
   let isHovering = false
   let base_cloudinary_url =
@@ -74,7 +64,7 @@
         >
           Get in Touch
         </a>
-        {#if visitors_count?.total > 0}
+        {#if $visitors_store && $visitors_store.total}
           <!-- svelte-ignore a11y-no-static-element-interactions -->
           <span
             on:mouseenter={() => (show_current_visitor_data = true)}
