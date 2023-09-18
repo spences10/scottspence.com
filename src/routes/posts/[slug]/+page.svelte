@@ -10,6 +10,7 @@
     TableOfContents,
     UpdatedBanner,
   } from '$lib/components'
+  import CurrentVisitorsData from '$lib/components/current-visitors-data.svelte'
   import Reactions from '$lib/components/reactions.svelte'
   import { name, website } from '$lib/info'
   import { visitors_store } from '$lib/stores'
@@ -55,7 +56,7 @@
   })
 
   let current_path = $page.url.pathname
-  let content = $visitors_store?.visitors?.content || []
+  let content = $visitors_store?.content || []
 
   let visitors_count = get_current_page_visitors(
     current_path,
@@ -74,6 +75,8 @@
     }
     return true
   }
+
+  let show_current_visitor_data = false
 </script>
 
 <svelte:window on:scroll={handle_scroll} />
@@ -125,15 +128,26 @@
     </div>
   </div>
   {#if visitors_count?.total > 0}
-    <p class="text-sm">
-      {visitors_count.total}
-      {visitors_count.total > 1 ? `people` : `person`} viewing this page
-      live
-    </p>
-    <p class="mb-10 text-sm">
-      Read to the end of the post for more stats
-    </p>
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <span
+      on:mouseenter={() => (show_current_visitor_data = true)}
+      on:mouseleave={() => (show_current_visitor_data = false)}
+      class="text-sm cursor-pointer inline-block"
+    >
+      <p>
+        {visitors_count.total}
+        {visitors_count.total > 1 ? `people` : `person`} viewing this page
+        live
+      </p>
+      {#if show_current_visitor_data}
+        <CurrentVisitorsData />
+      {/if}
+      <p class="text-sm">
+        Read to the end of the post for more stats
+      </p>
+    </span>
   {/if}
+
   {#if isPrivate}
     <IsPrivateBanner />
   {/if}

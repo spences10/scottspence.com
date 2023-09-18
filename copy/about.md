@@ -10,11 +10,14 @@
 ## Hi, I'm Scott
 
 <Small>
-  Last updated: <DateUpdated date="2023-06-29" small="true" />
+  Last updated: <DateUpdated date="2023-09-16" small="true" />
 </Small>
 
-I'm a developer advocate working with companies to create content that
-helps remove friction and educate users.
+I'm an application team lead overseeing a large Svelte and SvelteKit
+codebase. My role revolves around leading a team of talented
+developers and ensuring best practices in the development lifecycle.
+Prior to this, I was a developer advocate, partnering with companies
+to create content that educates users and streamline their journey.
 
 I create content written in the blog here and educational videos
 supporting the written content.
@@ -22,7 +25,7 @@ supporting the written content.
 I'm a second career dev that re-skilled from a [VBA] analyst developer
 role into web development.
 
-For <DD date='2021-04-06' /> now I have been working in Svelte and
+For <DD date="2021-04-06" /> now I have been working in Svelte and
 SvelteKit, holding workshops and organising events with the other
 organisers of the [Svelte Society London] group.
 
@@ -41,9 +44,9 @@ I have over ten years of experience working for large corporate
 organisations in Finance (Risk, Asset Management), Property, Oil & Gas
 and Lloyd's insurance market.
 
-As a web developer I've worked in government digital transformation
-and creative digital. I now work in the content management space but
-am not restricted to it by any means.
+As a web developer I've worked in government digital transformation,
+creative digital and the content management space. I now work in
+outsourcing helping build remote teams.
 
 ### My personality
 
@@ -106,8 +109,7 @@ latest security news.
 
 **Land of the Giants**
 
-Stories about big tech and how it's changing the world, the latest
-series covers the food delivery industry.
+Stories about big tech and how it's changing the world.
 
 <Deezer
   frameSrc="show/679992"
