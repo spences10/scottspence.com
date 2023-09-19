@@ -48,7 +48,7 @@
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-svelte": "^2.33.0",
     "fathom-client": "3.5.0",
-    "graphql": "16.8.0",
+    "graphql": "16.8.1",
     "graphql-request": "6.1.0",
     "husky": "8.0.3",
     "jsdom": "^22.1.0",
