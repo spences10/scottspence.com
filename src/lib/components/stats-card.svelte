@@ -74,9 +74,7 @@
 </script>
 
 <section aria-labelledby="analytics-section">
-  <h2 id="analytics-section" class="sr-only">
-    Analytics Information
-  </h2>
+  <p id="analytics-section" class="sr-only">Analytics Information</p>
   {#each stats_array as { title, stats }}
     {#if stats}
       <article class="mb-4">
