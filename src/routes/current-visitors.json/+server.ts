@@ -8,11 +8,8 @@ export const config: ServerlessConfig = {
   runtime: 'nodejs18.x',
 }
 
-export const GET = async ({ url, fetch }): Promise<Response> => {
-  const cache_duration = parseInt(
-    url.searchParams.get('cache_duration') ??
-      time_to_seconds({ seconds: 30 }).toString(),
-  )
+export const GET = async ({ fetch }): Promise<Response> => {
+  const cache_duration = time_to_seconds({ minutes: 1 })
 
   const visitors = await fetch_fathom_data(
     fetch,
