@@ -17,6 +17,7 @@ const file_names = [
   'scott-at-svelte-london-aug-2023-3',
   'scott-at-pixel-pioneers-2023-1',
   'scott-at-pixel-pioneers-2023-2',
+  'scott-at-svelte-london-hyde-park',
 ]
 
 // Generate the images array
