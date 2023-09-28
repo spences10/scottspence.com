@@ -42,7 +42,7 @@
     "autoprefixer": "10.4.16",
     "cspell": "^7.3.2",
     "cssnano": "6.0.1",
-    "daisyui": "3.7.7",
+    "daisyui": "3.8.1",
     "date-fns": "2.30.0",
     "eslint": "8.50.0",
     "eslint-config-prettier": "9.0.0",
