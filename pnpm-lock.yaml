@@ -57,8 +57,8 @@ devDependencies:
     specifier: 6.0.1
     version: 6.0.1(postcss@8.4.30)
   daisyui:
-    specifier: 3.7.7
-    version: 3.7.7
+    specifier: 3.8.1
+    version: 3.8.1
   date-fns:
     specifier: 2.30.0
     version: 2.30.0
@@ -2092,8 +2092,8 @@ packages:
       rrweb-cssom: 0.6.0
     dev: true
 
-  /daisyui@3.7.7:
-    resolution: {integrity: sha512-2/nFdW/6R9MMnR8tTm07jPVyPaZwpUSkVsFAADb7Oq8N2Ynbls57laDdNqxTCUmn0QvcZi01TKl8zQbAwRfw1w==}
+  /daisyui@3.8.1:
+    resolution: {integrity: sha512-4ULfP67PScxnJed5hxV83HLOhk/nVqZYGBz7BLk5KvCTr2Ij1V+xTEhk5Ix1lhbQC4qEL6be/aio2XeEa3920g==}
     engines: {node: '>=16.9.0'}
     dependencies:
       colord: 2.9.3
