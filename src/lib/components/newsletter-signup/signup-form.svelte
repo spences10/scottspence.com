@@ -1,5 +1,6 @@
 <script lang="ts">
   import { enhance } from '$app/forms'
+  import { newsletter_subscriber_count_store } from '$lib/stores'
   import * as Fathom from 'fathom-client'
   import { button_disabled } from './index'
 
@@ -7,20 +8,20 @@
   export let handle_result: Function
 </script>
 
-<div
-  class="mx-auto text-primary-content max-w-7xl py-12 lg:py-16 lg:px-8"
->
+<div class="mx-auto text-primary-content max-w-7xl lg:px-8">
   <div
-    class="bg-primary rounded-box py-10 px-4 lg:flex lg:p-20 lg:items-center"
+    class="bg-primary rounded-box py-10 px-4 lg:flex lg:p-14 lg:items-center"
   >
     <div class="lg:flex-1 lg:w-0">
-      <h3
-        class="font-extrabold tracking-tight text-3xl text-primary-content"
-      >
+      <h3 class="font-extrabold tracking-tight text-3xl">
         Sign up for the newsletter
       </h3>
       <p class="mt-4 text-lg max-w-3xl">
         Want to keep up to date with what I'm working on?
+      </p>
+      <p class="mt-4 text-lg max-w-3xl">
+        Join {$newsletter_subscriber_count_store} other developers and
+        sign up for the newsletter.
       </p>
     </div>
     <div class="max-w-md mt-12 w-full lg:flex-1 lg:mt-0 lg:ml-8">
@@ -70,9 +71,7 @@
       </div>
       <p class="mt-3 text-sm">
         I care about the protection of your data. Read the
-        <a href="/privacy-policy" class="link text-primary-content">
-          Privacy Policy
-        </a>
+        <a href="/privacy-policy" class="link">Privacy Policy</a>
         for more info.
       </p>
     </div>
