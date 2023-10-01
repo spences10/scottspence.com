@@ -59,4 +59,7 @@ export const get_posts_key = (): string => `get_posts:`
 export const get_reactions_leaderboard_key = (): string =>
   `reactions_leaderboard:`
 
+export const get_newsletter_subscriber_count_key = (): string =>
+  `newsletter_subscriber_count:`
+
 export { ratelimit, redis }

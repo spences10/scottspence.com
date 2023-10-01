@@ -25,3 +25,7 @@ export const visitors_store = writable<VisitorsData>({
   content: [],
   referrers: [],
 })
+
+export const newsletter_subscriber_count_store = writable({
+  newsletter_subscriber_count: 0,
+})

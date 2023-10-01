@@ -31,6 +31,13 @@ export const load = async ({ fetch }) => {
     'visitors',
   )
 
+  // Fetch newsletter subscriber count
+  const subscribers_promise = fetch_data(
+    fetch,
+    '../subscribers.json',
+    'newsletter_subscriber_count',
+  )
+
   const [
     popular_posts_daily,
     popular_posts_monthly,
@@ -39,6 +46,8 @@ export const load = async ({ fetch }) => {
 
   const visitors = await visitors_promise
 
+  const newsletter_subscriber_count = await subscribers_promise
+
   return {
     visitors,
     popular_posts: {
@@ -46,5 +55,6 @@ export const load = async ({ fetch }) => {
       popular_posts_monthly,
       popular_posts_yearly,
     },
+    newsletter_subscriber_count,
   }
 }
