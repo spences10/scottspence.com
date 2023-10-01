@@ -2,7 +2,7 @@
 date: 2023-10-01
 title: Switching from Brevo to Buttondown
 tags: ['notes', 'email', 'buttondown']
-isPrivate: true
+isPrivate: false
 ---
 
 <script>
@@ -42,6 +42,12 @@ Emails are sent from the `buttondown.email` domain with my Buttondown
 username so, `spences10@buttondown.email`. I'm intentionally not
 sending from my own domain. I absolutely can send from my own domain
 if I want to but, reasons! I'll get into that in a bit.
+
+If you're on the mailing list you'll probably notice the reply email
+address is a bit weird, this is a Fastmail masked email address. I use
+it because I like to have individual email addresses for different
+services. I've seen old primary email addresses end up in too many
+data leaks to mention.
 
 ## Markdown is bae!
 
