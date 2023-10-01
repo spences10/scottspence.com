@@ -25,10 +25,12 @@ Bostian
 botwiki
 Bourguignon
 branition
+Brevo
 Brillhart
 Brittney
 Brodt
 Burk
+Buttondown
 Buzzsprout
 Bynens
 Cantarell
@@ -61,6 +63,7 @@ daysofcode
 deezer
 Dendron
 disqus
+Dittofeed
 DMARCLY
 dnschecker
 Dockerhub
@@ -119,6 +122,7 @@ Josefine
 Karan
 Kardon
 Karmarama
+Keila
 Kendal
 Keychron
 kitql
@@ -137,9 +141,11 @@ Linaria
 LinkBook
 Linktree
 Liran
+Listmonk
 Lors
 Lukaszczyk
 Mads
+Maizzle
 mapbox
 Marisa
 Matia
