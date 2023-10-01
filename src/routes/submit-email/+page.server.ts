@@ -2,7 +2,6 @@ import { BUTTONDOWN_API_KEY } from '$env/static/private'
 import { ratelimit } from '$lib/redis.js'
 import { fail } from '@sveltejs/kit'
 
-const buttondown_api_key = BUTTONDOWN_API_KEY
 const buttondown_url = 'https://api.buttondown.email'
 const buttondown_endpoint = '/v1/subscribers'
 
@@ -32,7 +31,7 @@ export const actions = {
         {
           method: 'POST',
           headers: {
-            Authorization: `Token ${buttondown_api_key}`,
+            Authorization: `Token ${BUTTONDOWN_API_KEY}`,
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ email, tags }),

@@ -23,14 +23,16 @@
     class="bg-primary rounded-box py-10 lg:flex lg:p-20 lg:items-center"
   >
     <div class="text-primary-content lg:flex-1 lg:w-0">
-      <h3 class="font-extrabold tracking-tight text-3xl">
+      <h3
+        class="font-extrabold tracking-tight text-3xl text-primary-content"
+      >
         {response_message[0]}
       </h3>
       <p class="mt-4 text-lg">
         {response_message[1]}
       </p>
       {#if response_message[2]}
-        <p class="mt-4 text-lg">
+        <p class="mt-4 text-lg prose-a:link-accent">
           {@html response_message[2]}
         </p>
       {/if}

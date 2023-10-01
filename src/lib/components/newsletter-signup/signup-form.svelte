@@ -14,7 +14,9 @@
     class="bg-primary rounded-box py-10 px-4 lg:flex lg:p-20 lg:items-center"
   >
     <div class="lg:flex-1 lg:w-0">
-      <h3 class="font-extrabold tracking-tight text-3xl">
+      <h3
+        class="font-extrabold tracking-tight text-3xl text-primary-content"
+      >
         Sign up for the newsletter
       </h3>
       <p class="mt-4 text-lg max-w-3xl">
