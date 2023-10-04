@@ -397,11 +397,6 @@ export const PEOPLE = [
     met: true,
   },
   {
-    name: `Fred K Schott`,
-    link: `https://twitter.com/FredKSchott`,
-    met: false,
-  },
-  {
     name: `Alex Naydenov`,
     link: `https://twitter.com/vremigrant`,
     met: true,
@@ -424,11 +419,6 @@ export const PEOPLE = [
   {
     name: `Chris Biscardi`,
     link: `https://twitter.com/chrisbiscardi`,
-    met: false,
-  },
-  {
-    name: `Ben Awad`,
-    link: `https://twitter.com/benawad`,
     met: false,
   },
   {
@@ -537,6 +527,11 @@ export const PEOPLE = [
     met: false,
   },
   {
+    name: `Geoff Rich`,
+    link: `https://twitter.com/geoffrich_`,
+    met: false,
+  },
+  {
     name: `JYC`,
     link: `https://twitter.com/jycouet`,
     met: true,
@@ -554,11 +549,6 @@ export const PEOPLE = [
   {
     name: `Ronak Ganatra`,
     link: `https://twitter.com/gunnyganatra`,
-    met: true,
-  },
-  {
-    name: `Joe Reeve`,
-    link: `https://twitter.com/isnit0`,
     met: true,
   },
   {
@@ -595,5 +585,20 @@ export const PEOPLE = [
     name: `Puru`,
     link: `https://twitter.com/puruvjdev`,
     met: true,
+  },
+  {
+    name: `Bert Bengtson`,
+    link: `https://twitter.com/BertBengtson`,
+    met: true,
+  },
+  {
+    name: `TiiaAurora`,
+    link: `https://twitter.com/TiiaAurora`,
+    met: false,
+  },
+  {
+    name: `Patak`,
+    link: `https://twitter.com/patak_dev`,
+    met: false,
   },
 ]
