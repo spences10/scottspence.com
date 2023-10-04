@@ -12,19 +12,19 @@
   <div
     class="bg-primary rounded-box py-10 px-4 lg:flex lg:p-14 lg:items-center"
   >
-    <div class="lg:flex-1 lg:w-0">
+    <div class="lg:flex-1 lg:w-0 text-lg">
       <h3 class="font-extrabold tracking-tight text-3xl">
         Sign up for the newsletter
       </h3>
-      <p class="mt-4 text-lg max-w-3xl">
+      <p class="mt-4 max-w-3xl">
         Want to keep up to date with what I'm working on?
       </p>
-      <p class="mt-4 text-lg max-w-3xl">
+      <p class="mt-1 max-w-3xl">
         Join {$newsletter_subscriber_count_store} other developers and
         sign up for the newsletter.
       </p>
     </div>
-    <div class="max-w-md mt-12 w-full lg:flex-1 lg:mt-0 lg:ml-8">
+    <div class="max-w-md mt-4 w-full lg:flex-1 lg:mt-0 lg:ml-8">
       <div class="form-control">
         <form
           method="POST"
