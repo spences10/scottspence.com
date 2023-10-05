@@ -8,7 +8,7 @@
 # Cookie policy
 
 <Small>
-  Last updated: <DateUpdated date="2023-06-29" small="true" />
+  Last updated: <DateUpdated date="2023-10-05" small="true" />
 </Small>
 
 Oi, Let's 'ave a Chat 'Bout Cookies, Shall We?
@@ -26,8 +26,8 @@ time you drop in. Handy, innit?
 
 ### How am I using them?
 
-Now, I'm keeping it simple, just how I like it. I'll only use a single
-cookie on [scottspence.com](), and here's what it's for:
+Now, I'm keeping it simple, just how I like it. Currently there's two
+cookies on [scottspence.com](), and here's what they're for:
 
 ### Theme selection cookie:
 
@@ -42,6 +42,17 @@ cookie on [scottspence.com](), and here's what it's for:
 I don’t use cookies for ads or following you around the internet. I
 respect your privacy. For more on that check out the
 [Privacy Policy](/privacy-policy).
+
+### Fathom analytics
+
+- **Name**: block_fathom
+- **Job**: This cookie will stop requesting analytics data, so, you
+  won't see post analytics, i.e. people that have visited/read the
+  post.
+- **Shelf-life**: A year. If you don't visit again in that time it
+  will expire.
+- **Type**: First-party cookie. Only for this site used nowhere else
+  or shared.
 
 ### Your choices about cookies
 
