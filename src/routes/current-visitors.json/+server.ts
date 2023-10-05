@@ -8,7 +8,24 @@ export const config: ServerlessConfig = {
   runtime: 'nodejs18.x',
 }
 
-export const GET = async ({ fetch }): Promise<Response> => {
+export const GET = async ({ fetch, cookies }): Promise<Response> => {
+  const block_fathom = cookies.get('block_fathom') === 'true'
+
+  if (block_fathom) {
+    // Fathom script is blocked, return early to avoid API call
+    return json(
+      {
+        visitors: {},
+        message: 'Fathom script is blocked on the client-side.',
+      },
+      {
+        headers: {
+          'X-Robots-Tag': 'noindex, nofollow',
+        },
+      },
+    )
+  }
+
   const cache_duration = time_to_seconds({ minutes: 1 })
 
   const visitors = await fetch_fathom_data(
