@@ -6,7 +6,7 @@
 {#if headings.length}
   <aside
     transition:fade|global
-    class="-z-10 bg-base-100 rounded-box shadow-lg w-64 table-of-contents lg:block hidden"
+    class="z-10 bg-base-100 rounded-box shadow-lg w-64 table-of-contents lg:block hidden"
   >
     <div class="">
       <h3
