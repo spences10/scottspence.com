@@ -1,11 +1,11 @@
 window.addEventListener('load', () => {
-  const testScript = document.createElement('script')
-  testScript.src = 'https://cdn.usefathom.com/script.js'
-  testScript.onload = () => {
+  const test_script = document.createElement('script')
+  test_script.src = 'https://cdn.usefathom.com/script.js'
+  test_script.onload = () => {
     document.cookie = 'block_fathom=false; path=/'
   }
-  testScript.onerror = () => {
+  test_script.onerror = () => {
     document.cookie = 'block_fathom=true; path=/'
   }
-  document.head.appendChild(testScript)
+  document.head.appendChild(test_script)
 })
