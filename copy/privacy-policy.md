@@ -8,12 +8,12 @@
 # Privacy Policy
 
 <Small>
-  Last updated: <DateUpdated date="2023-10-05" small="true" />
+  Last updated: <DateUpdated date="2023-10-06" small="true" />
 </Small>
 
-Hello, welcome to the privacy policy for scottspence.com, I want to be
-transparent about anything this site collects from you and what I use
-it for.
+Hello, welcome to the privacy policy for [scottspence.com](), I want
+to be transparent about anything this site collects from you and what
+I use it for.
 
 The privacy policy in this site includes these points:
 
@@ -34,7 +34,7 @@ The privacy policy in this site includes these points:
 The only piece of information I collect is your email address _if_ you
 sign up to receive email updates from me.
 
-I use Sendinblue to capture your email address when you give it
+I use Buttondown to capture your email address when you give it
 voluntarily via the email sign up form, you can see their privacy
 statement [here][0].
 
@@ -48,7 +48,7 @@ subscribers.
 
 If there is a giveaway being run where I need to send something in the
 post, like stickers. I will request your address via the email given
-in the mailing list on Sendinblue. Once the package has been sent I
+in the mailing list on Buttondown. Once the package has been sent I
 will delete any emails with identifying information in them.
 
 ### What cookies, pixels, and other trackers my site uses and their purpose.
@@ -57,21 +57,23 @@ Ok, cookies! On [scottspence.com](), I use cookies, but keep it
 simple. I use a cookie to remember your theme choice and one to
 register if you're blocking the analytics script.
 
-The theme cookie is like a handy helper that knows your theme
-preference every time you drop by. No fuss. You can find more about it
-in the [Cookie Policy](/cookie-policy).
+The **theme** cookie is like a handy helper that knows your theme
+preference every time you drop by. No fuss.
 
-The other cookie is to save me money! If you use an ad blocker (no
-judgment, I use one!) then I'll need to stop requesting analytics from
-Fathom (which shows visitor stats).
+The **block_fathom** cookie is to save me money! If you use an ad
+blocker (no judgment, I use one!) then I'll need to stop requesting
+analytics from Fathom (which shows visitor stats).
+
+You can find more about them both in the
+[Cookie Policy](/cookie-policy).
 
 I use Fathom Analytics to measure page visits to [scottspence.com](),
-no cookies, no trackers, you can view the Fathom Analytics privacy
-statement [here][1].
+they use no cookies, no trackers, you can view the Fathom Analytics
+privacy statement [here][1].
 
 ### Any advertising networks and their methods/purposes of data collection and ad delivery.
 
-I don't use any advertising networks on my site.
+I don't use any advertising networks on my site, they all suck!
 
 ### How users of this site can op-in and op-out of their data being collected and stored.
 
@@ -104,21 +106,21 @@ fathom.enableTrackingForMe()
 ### How users of this site can request their data be turned over to them and/or be deleted
 
 As I only collect email addresses for the purposes of the newsletter
-you can unsubscribe from the mail sent.
+you can unsubscribe from the mails sent anytime.
 
 If you want to contact me see [Contact information for site
 administrators] and I will personally remove your email address from
-Sendinblue.
+Buttondown.
 
 ### Contact information for site administrators
 
-If you need to get in touch, email me at [yo@scottspence.dev] or use
-the [contact form] and I'll action it straight away.
+If you need to get in touch, email me at [privacy@scottspence.dev] or
+use the [contact form] and I'll action it straight away.
 
 ### Tools
 
 If you are interested in creating your own privacy page search for
-these companies, I have affiliation with them:
+these companies, I have no affiliation with them:
 
 - Termageddon
 - TermsFeed
@@ -146,11 +148,11 @@ Read] for a simple breakdown of what the ToS actually means.
   #how-users-of-this-site-can-request-their-data-be-turned-over-to-them-andor-be-deleted
 [contact information for site administrators]:
   #contact-information-for-site-administrators
-[0]: https://www.sendinblue.com/legal/privacypolicy/
+[0]: https://buttondown.email/legal/privacy
 [1]: https://usefathom.com/privacy
-[yo@scottspence.dev]:
-  mailto:yo@scottspence.dev?subject=Privacy%20Concern&body=Hi%20Scott%2C%0D%0A%0D%0AI%20have%20a%20concern%20about%20my%20privacy%20on%20your%20site.
+[privacy@scottspence.dev]:
+  mailto:privacy@scottspence.dev?subject=Privacy%20Concern&body=Hi%20Scott%2C%0D%0A%0D%0AI%20have%20a%20concern%20about%20my%20privacy%20on%20your%20site.
 [contact form]: /contact
-[terms of service didn't read]: https://tosdr.org/
+[terms of service didn't read]: https://tosdr.org
 [contact information for site administrators]:
   #contact-information-for-site-administrators
