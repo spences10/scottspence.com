@@ -12,7 +12,7 @@ prompted to install virus protection and other sketchy apps. No
 thanks! I'll do it myself!
 
 So, I need to know what my motherboard model is so I can go find if
-theres been any BIOS updates. How do I do that? How To Geek have my
+there's been any BIOS updates. How do I do that? How To Geek have my
 back with this post [How to Check Your Motherboard Model Number on
 Your Windows PC].
 
@@ -21,6 +21,8 @@ Your Windows PC].
 There's loads of ways to do it in that post, essentially I want to
 copy the model and paste it into a search engine. I went with the
 `wmic` command:
+
+<!-- cSpell:ignore serialnumber -->
 
 ```bash
 wmic baseboard get product,Manufacturer,version,serialnumber
