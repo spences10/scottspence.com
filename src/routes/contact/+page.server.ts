@@ -1,5 +1,6 @@
 import {
   EMAIL_APP_PASSWORD,
+  EMAIL_APP_TO_ADDRESS,
   EMAIL_APP_USER,
 } from '$env/static/private'
 import { ratelimit } from '$lib/redis.js'
@@ -43,7 +44,7 @@ export const actions = {
       // Set up email data
       const mail_options = {
         from: `"${name}" <${email}>`,
-        to: 'contact@scottspence.com',
+        to: EMAIL_APP_TO_ADDRESS,
         subject: reason,
         text: message,
       }
