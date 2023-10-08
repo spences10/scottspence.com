@@ -43,5 +43,8 @@ jobs:
           UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
           EXCHANGE_RATE_API_KEY: ${{ secrets.EXCHANGE_RATE_API_KEY }}
           BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
+          EMAIL_APP_USER: ${{ secrets.EMAIL_APP_USER }}
+          EMAIL_APP_TO_ADDRESS: ${{ secrets.EMAIL_APP_TO_ADDRESS }}
       - name: Test
         run: pnpm run test:ci
