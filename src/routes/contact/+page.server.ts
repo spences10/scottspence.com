@@ -4,8 +4,13 @@ import {
   EMAIL_APP_USER,
 } from '$env/static/private'
 import { ratelimit } from '$lib/redis.js'
+import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { fail } from '@sveltejs/kit'
 import nodemailer from 'nodemailer'
+
+export const config: ServerlessConfig = {
+  runtime: 'nodejs18.x',
+}
 
 export const actions = {
   default: async ({ request, getClientAddress }) => {
