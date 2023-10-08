@@ -19,9 +19,6 @@
     use:enhance={() => {
       return ({ update, result }) => {
         handle_result(result)
-        console.log('=====================')
-        console.log(result)
-        console.log('=====================')
         update({ reset: true })
       }
     }}
@@ -69,7 +66,7 @@
         required
         class="input w-full shadow-xl text-lg active:input-secondary focus:input-secondary"
       >
-        <option disabled selected> Contact reason </option>
+        <option disabled value="">Contact reason</option>
         <option value="hi">Say hi!</option>
         <option value="collaboration">Collaboration request</option>
         <option value="speak">Speaking opportunity</option>
