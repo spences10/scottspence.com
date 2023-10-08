@@ -20,7 +20,7 @@
   </p>
   <p>
     You can fill in the contact form here or just send an email to <a
-      href="mailto:yo@scottspence.com">my email address</a
+      href="mailto:contact@scottspence.com">my email address</a
     >.
   </p>
   <ContactForm />

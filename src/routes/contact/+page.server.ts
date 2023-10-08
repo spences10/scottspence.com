@@ -45,7 +45,7 @@ export const actions = {
       const mail_options = {
         from: `"${name}" <${email}>`,
         to: EMAIL_APP_TO_ADDRESS,
-        subject: reason,
+        subject: `Contact form: ${reason}`,
         text: message,
       }
 
