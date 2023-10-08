@@ -3,8 +3,6 @@ import { get_post_tags } from '$lib/post-tags'
 import { get_posts } from '$lib/posts'
 import slugify from 'slugify'
 
-export const prerender = true
-
 export interface Page {
   page: string
   updated: string
@@ -52,7 +50,7 @@ const renderPosts = (posts_metadata: Post[]) => {
             new Date(date).toISOString().split('T')[0]
           }</lastmod>
         </url>
-        `
+        `,
     )
     .join('')
 }
@@ -65,7 +63,7 @@ const renderPages = (pages: Page[]) => {
           <loc>${website}/${page}</loc>
           <lastmod>${updated}</lastmod>
         </url>
-        `
+        `,
     )
     .join('')
 }
@@ -78,7 +76,7 @@ const renderTags = (tags: string[]) => {
           <loc>${website}/tags/${slugify(tag)}</loc>
           <priority>0.64</priority>
         </url>
-        `
+        `,
     )
     .join('')
 }
@@ -86,7 +84,7 @@ const renderTags = (tags: string[]) => {
 const render = (
   pages: Page[],
   tags: string[],
-  posts_metadata: Post[]
+  posts_metadata: Post[],
 ) => {
   const lastMod = new Date().toISOString().split('T')[0]
   return `<?xml version="1.0" encoding="UTF-8" ?>
