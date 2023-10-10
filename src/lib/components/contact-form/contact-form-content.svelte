@@ -1,11 +1,6 @@
 <script lang="ts">
   import { enhance } from '$app/forms'
 
-  export let name = ''
-  export let email = ''
-  export let reason = ''
-  export let message = ''
-
   export let handle_result: Function
 </script>
 
@@ -15,7 +10,6 @@
   <form
     method="POST"
     action="/contact"
-    enctype="multipart/form-data"
     use:enhance={() => {
       return ({ update, result }) => {
         handle_result(result)
@@ -32,7 +26,6 @@
         type="text"
         id="name"
         name="name"
-        bind:value={name}
         aria-label="name"
         placeholder="Name"
         required
@@ -47,13 +40,14 @@
         type="email"
         id="email"
         name="email"
-        bind:value={email}
         aria-label="email"
         placeholder="Email"
         required
         class="input w-full shadow-xl text-lg active:input-secondary focus:input-secondary"
       />
     </div>
+    <!-- honeypot -->
+    <input type="text" name="subject" id="subject" class="hidden" />
     <div class="space-y-2">
       <label class="label pb-0" for="reason">
         <span class="label-text text-primary-content">Reason</span>
@@ -61,7 +55,6 @@
       <select
         id="reason"
         name="reason"
-        bind:value={reason}
         aria-label="reason"
         required
         class="input w-full shadow-xl text-lg active:input-secondary focus:input-secondary"
@@ -79,7 +72,6 @@
       <textarea
         id="message"
         name="message"
-        bind:value={message}
         aria-label="message"
         placeholder="Hey! I'd love to talk about..."
         required

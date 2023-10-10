@@ -32,8 +32,18 @@ export const actions = {
       const data = await request.formData()
       const name = data.get('name')?.toString()
       const email = data.get('email')?.toString()
+      const subject = data.get('subject')?.toString()
       const reason = data.get('reason')?.toString()
       const message = data.get('message')?.toString()
+
+      if (subject) { // Honeypot
+        return {
+          status: 200,
+          body: {
+            message: 'Email sent successfully',
+          },
+        }
+      }
 
       // Create a transporter object using the nodemailer library
       const transporter = nodemailer.createTransport({
