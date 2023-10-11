@@ -76,6 +76,12 @@ const get_leaderboard_with_ranking = async (fetch: Fetch) => {
   })
 }
 
+// TODO: Should probably store the total count in Redis
+const get_total_reaction_count = async (): Promise<number> => {
+  const reaction_data = await fetch_reaction_data()
+  return reaction_data.reduce((total, page) => total + page.count, 0)
+}
+
 export const load = async ({ fetch }) => {
   try {
     const cached = await redis.get(get_reactions_leaderboard_key())
