@@ -1,10 +1,10 @@
 <script lang="ts">
   import { scale_and_fade } from '$lib/utils'
   import type { ActionResult } from '@sveltejs/kit'
-  import ContactFormContent from './contact-form-content.svelte'
-  import FailureMessage from './failure-message.svelte'
+  import ContactFormFailure from './contact-form-failure.svelte'
+  import ContactFormFields from './contact-form-fields.svelte'
+  import ContactFormSuccess from './contact-form-success.svelte'
   import { button_disabled } from './index'
-  import SuccessMessage from './success-message.svelte'
 
   let success = false
   let action_result: ActionResult
@@ -27,14 +27,14 @@
 
 {#if success}
   <div in:scale_and_fade|global={{ delay: 400, duration: 400 }}>
-    <SuccessMessage />
+    <ContactFormSuccess />
   </div>
 {:else if action_result?.type === 'failure'}
   <div in:scale_and_fade|global={{ delay: 400, duration: 400 }}>
-    <FailureMessage />
+    <ContactFormFailure />
   </div>
 {:else}
   <div out:scale_and_fade|global={{ delay: 200, duration: 400 }}>
-    <ContactFormContent {handle_result} />
+    <ContactFormFields {handle_result} />
   </div>
 {/if}

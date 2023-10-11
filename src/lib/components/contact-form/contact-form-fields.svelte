@@ -59,7 +59,7 @@
         required
         class="input w-full shadow-xl text-lg active:input-secondary focus:input-secondary"
       >
-        <option disabled value="">Contact reason</option>
+        <option disabled selected value="">Contact reason</option>
         <option value="hi">Say hi!</option>
         <option value="collaboration">Collaboration request</option>
         <option value="speak">Speaking opportunity</option>
