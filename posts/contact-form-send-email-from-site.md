@@ -191,10 +191,95 @@ The `result` object looks like this.
     "status": 200,
     "body": {
       "message": "Email sent successfully",
-      "messageId": "<05edaa60-e727-61de-f288-d8d28785c45f@scott.com>"
+      "messageId": "<jk43sfdf-a757-61fe-e288-m8d28785e45f@scott.com>"
     }
   }
 }
+```
+
+Neat! Now I can start scaffolding out the rest of the markup for the
+form. One important thing to remember when you're submitting a form to
+an action is that you need to set the `name` attribute on the inputs.
+This is so that the `request` object can pick up the values from the
+`request.formData`.
+
+This also means that unless I need to, there's no need to set
+variables for the form values in the from, I can just use the
+`request` object to get the values in the action.
+
+I'll create a `handle_result` function to handle the `result` object
+from the action. I'll also set a `success` variable to `true` if the
+email is sent successfully.
+
+```svelte
+<script lang="ts">
+  import { enhance } from '$app/forms'
+  import type { ActionResult } from '@sveltejs/kit'
+
+  const handle_result = (result: ActionResult) => {
+    action_result = result
+    if (result.type === 'success') {
+      success = true
+    } else if (result.type === 'failure') {
+      message_type = 'error'
+    }
+  }
+</script>
+
+<form
+  method="POST"
+  action="/contact"
+  enctype="multipart/form-data"
+  use:enhance={() => {
+    return ({ update, result }) => {
+      handle_result(result)
+      update({ reset: true })
+    }
+  }}
+>
+  <label for="name">
+    <span>Name</span>
+  </label>
+  <input
+    type="text"
+    id="name"
+    name="name"
+    aria-label="name"
+    placeholder="Name"
+    required
+  />
+  <label for="email">
+    <span>Email</span>
+  </label>
+  <input
+    type="email"
+    id="email"
+    name="email"
+    aria-label="email"
+    placeholder="Email"
+    required
+  />
+  <label for="reason">
+    <span>Reason</span>
+  </label>
+  <select id="reason" name="reason" aria-label="reason" required>
+    <option disabled value="">Contact reason</option>
+    <option value="hi">Say hi!</option>
+    <option value="collaboration">Collaboration request</option>
+    <option value="speak">Speaking opportunity</option>
+  </select>
+  <label for="message">
+    <span>Message</span>
+  </label>
+  <textarea
+    id="message"
+    name="message"
+    aria-label="message"
+    placeholder="Hey! I'd love to talk about..."
+    required
+  />
+  <button type="submit">Submit</button>
+</form>
 ```
 
 <!-- Links -->
