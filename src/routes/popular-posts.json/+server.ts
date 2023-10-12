@@ -36,6 +36,7 @@ export const GET = async ({ fetch, url, cookies }) => {
     params,
     time_to_seconds({ hours: 24 }),
     `popular_posts_${period}`,
+    block_fathom,
   )
 
   const posts_response = await fetch('posts.json')

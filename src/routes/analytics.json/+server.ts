@@ -50,6 +50,7 @@ export const GET = async ({ url, fetch, cookies }) => {
     params,
     cache_duration,
     `page_views_${date_grouping ? date_grouping : 'day'}`,
+    block_fathom,
   )
 
   if (Array.isArray(analytics_data) && analytics_data.length > 0) {

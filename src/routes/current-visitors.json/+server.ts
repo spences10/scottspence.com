@@ -34,6 +34,7 @@ export const GET = async ({ fetch, cookies }): Promise<Response> => {
     { site_id: PUBLIC_FATHOM_ID, detailed: true },
     cache_duration,
     `current_visitors`,
+    block_fathom,
   )
 
   if (visitors && visitors.total != null && visitors.content) {

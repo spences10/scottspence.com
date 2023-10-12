@@ -29,8 +29,14 @@ export const fetch_fathom_data = async (
   params: { [s: string]: unknown } | ArrayLike<unknown>,
   cache_duration: number,
   cache_key_prefix: string,
+  block_fathom = false,
 ) => {
-  if (DISABLE_FATHOM_API_FETCHING || building) return null
+  if (DISABLE_FATHOM_API_FETCHING || building || block_fathom)
+    return null
+
+  console.log('=====================')
+  console.log('Fetching Fathom data:', block_fathom)
+  console.log('=====================')
 
   const url = new URL(`https://api.usefathom.com/v1/${endpoint}`)
   Object.entries(params)
