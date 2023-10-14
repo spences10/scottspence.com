@@ -8,7 +8,7 @@ export const config: ServerlessConfig = {
 }
 
 export const GET = async ({ url, fetch, cookies }) => {
-  const block_fathom = cookies.get('block_fathom') === 'true'
+  const block_fathom = cookies.get('block_fathom') !== 'false'
 
   console.log('=====================')
   console.log(`Block Fathom: Analytics: `, block_fathom)
