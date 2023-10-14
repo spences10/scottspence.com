@@ -10,8 +10,11 @@ export const config: ServerlessConfig = {
 }
 
 export const GET = async ({ fetch, url, cookies }) => {
-  const block_fathom = cookies.get('block_fathom') === 'true'
+  const block_fathom = cookies.get('block_fathom') !== 'false'
 
+  console.log('=====================')
+  console.log(`Block Fathom: Popular Posts: `, block_fathom)
+  console.log('=====================')
   if (block_fathom) {
     // Fathom script is blocked, return early to avoid API call
     return json(
