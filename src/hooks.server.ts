@@ -1,6 +1,8 @@
 import { themes } from '$lib/themes'
+import type { Handle } from '@sveltejs/kit'
+import { sequence } from '@sveltejs/kit/hooks'
 
-export const handle = async ({ event, resolve }) => {
+const theme: Handle = async ({ event, resolve }) => {
   const theme = event.cookies.get('theme')
 
   if (!theme || !themes.includes(theme)) {
@@ -13,3 +15,19 @@ export const handle = async ({ event, resolve }) => {
     },
   })
 }
+
+const block_fathom: Handle = async ({ event, resolve }) => {
+  const block_fathom = event.cookies.get('block_fathom')
+  const response = await resolve(event)
+
+  event.locals.block_fathom = event.cookies.get('block_fathom')
+
+  response.headers.append(
+    'Set-Cookie',
+    `block_fathom=${block_fathom}; Path=/; SameSite=Strict`,
+  )
+
+  return response
+}
+
+export const handle = sequence(theme, block_fathom)

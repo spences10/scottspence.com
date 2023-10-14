@@ -3,7 +3,9 @@
 declare global {
   namespace App {
     // interface Error {}
-    // interface Locals {}
+    interface Locals {
+      block_fathom?: string
+    }
     // interface PageData {}
     // interface Platform {}
   }
@@ -18,3 +20,5 @@ declare namespace svelteHTML {
     'on:animation_end'?: (event: any) => any
   }
 }
+
+export {}
