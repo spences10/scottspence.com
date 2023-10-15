@@ -18,9 +18,9 @@ const DISABLE_FATHOM_API_FETCHING = false
  * @param fetch - The `fetch` function to use for making HTTP requests.
  * @param endpoint - The API endpoint to fetch data from `aggregations ` or `current_visitors`.
  * @param params - An object containing query parameters to include in the API request.
- * @param headers - An object containing headers to include in the API request.
  * @param cache_duration - The number of seconds to cache the API response for.
  * @param cache_key_prefix - The key prefix when generating the cache key.
+ * @param block_fathom - Cookie value to block Fathom.
  * @returns The data returned by the API.
  */
 export const fetch_fathom_data = async (
