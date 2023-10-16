@@ -9,3 +9,4 @@ node_modules
 .pnpm-debug.log
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+.env*.local
