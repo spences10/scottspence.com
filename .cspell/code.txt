@@ -95,6 +95,8 @@ urlset
 vars
 vbscript
 victormono
+vscodeignore
+vsix
 webm
 webp
 wireframe
