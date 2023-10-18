@@ -5,6 +5,10 @@ tags: ['reference', 'vscode', 'extension', 'robots.txt']
 isPrivate: true
 ---
 
+<script>
+  import { DateDistance as DD } from '$lib/components'
+</script>
+
 I was asking ChatGPT to read some posts from my site and summarise
 them for me, I was a bit surprised when I got the response **"I wasn't
 able to directly access the URL you provided due to restrictions on
@@ -12,7 +16,7 @@ the webpage."** from the bot. It was then that I recalled that I'd
 blocked ChatGPT in the `robots.txt` file on my site. 😅
 
 I've had all sorts of stuff added to that file over the years, and to
-be honest, this is the only time I've know for sure that it works! 😂
+be honest, this is the only time I've known for sure that it works! 😂
 
 Anyway, real quick, if you don't want ChatGPT crawling your site, add
 this to your `robots.txt` file:
@@ -26,6 +30,21 @@ Disallow: /
 So, that's fine, right, but I wanted to add some syntax highlighting
 to the file in VS Code. I had a quick look on the marketplace, and
 there's nothing there that did that one thing, so, I made one. 😁
+
+Yes, this is a post about me making a my `robots.txt` file look nice
+in my editor, and the way I went about it.
+
+## I have previous!
+
+If you check out my [publisher profile] on the Visual Studio
+Marketplace you'll see that I have done this sort of thing before. Not
+for a while though!
+
+So, <DD date="2017-02-27" /> ago was the last time I made a VS Code
+extension, and I've not done anything similar since.
+
+This is serving as a record for future me on the things I did and
+helpful to anyone else doing something similar.
 
 ## Install dependencies
 
@@ -129,17 +148,15 @@ I'll go through each file and my understanding of what it does.
 // Hover to view descriptions of existing attributes.
 // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 {
-	"version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Extension",
-            "type": "extensionHost",
-            "request": "launch",
-            "args": [
-                "--extensionDevelopmentPath=${workspaceFolder}"
-            ]
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": ["--extensionDevelopmentPath=${workspaceFolder}"]
+    }
+  ]
 }
 ```
 
@@ -151,36 +168,38 @@ to launch the extension in a new window.
 
 ```json
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "robots.txt",
-	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		}
-	],
-	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.robots-txt",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.robots-txt",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.robots-txt",
-					"match": "\\\\."
-				}
-			]
-		}
-	},
-	"scopeName": ""
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "robots.txt",
+  "patterns": [
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#strings"
+    }
+  ],
+  "repository": {
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.robots-txt",
+          "match": "\\b(if|while|for|return)\\b"
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.robots-txt",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.robots-txt",
+          "match": "\\\\."
+        }
+      ]
+    }
+  },
+  "scopeName": ""
 }
 ```
 
@@ -191,34 +210,34 @@ in the `patterns` section that are specific to a `robots.txt` file.
 
 ```json
 {
-    "comments": {
-        // symbol used for single line comment. Remove this entry if your language does not support line comments
-        "lineComment": "//",
-        // symbols used for start and end a block comment. Remove this entry if your language does not support block comments
-        "blockComment": [ "/*", "*/" ]
-    },
-    // symbols used as brackets
-    "brackets": [
-        ["{", "}"],
-        ["[", "]"],
-        ["(", ")"]
-    ],
-    // symbols that are auto closed when typing
-    "autoClosingPairs": [
-        ["{", "}"],
-        ["[", "]"],
-        ["(", ")"],
-        ["\"", "\""],
-        ["'", "'"]
-    ],
-    // symbols that can be used to surround a selection
-    "surroundingPairs": [
-        ["{", "}"],
-        ["[", "]"],
-        ["(", ")"],
-        ["\"", "\""],
-        ["'", "'"]
-    ]
+  "comments": {
+    // symbol used for single line comment. Remove this entry if your language does not support line comments
+    "lineComment": "//",
+    // symbols used for start and end a block comment. Remove this entry if your language does not support block comments
+    "blockComment": ["/*", "*/"]
+  },
+  // symbols used as brackets
+  "brackets": [
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"]
+  ],
+  // symbols that are auto closed when typing
+  "autoClosingPairs": [
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"],
+    ["\"", "\""],
+    ["'", "'"]
+  ],
+  // symbols that can be used to surround a selection
+  "surroundingPairs": [
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"],
+    ["\"", "\""],
+    ["'", "'"]
+  ]
 }
 ```
 
@@ -247,7 +266,6 @@ This is the configuration for the language, as there's not much to the
   ],
   "scopeName": "source.robots-txt"
 }
-
 ```
 
 ## Add the language configuration
@@ -264,6 +282,10 @@ This is the configuration for the language, as there's not much to the
 ```
 
 ## Package the extension
+
+```bash
+pnpm i -g @vscode/vsce
+```
 
 ```bash
 vsce package
@@ -303,11 +325,8 @@ To get to your token creation, go here:
 ```bash
 # login
 vsce login <publisher name>
-# install the things
-npm i
 # use the token created in earlier step
 vsce package
-# myExtension.vsix generated
 # bump version
 vsce publish minor # | major | patch
 # vsce publish major, minor or patch
@@ -326,3 +345,5 @@ Some good documentation on publishing with the CLI:
 
 [and pointed here]:
   https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json
+[publisher profile]:
+  https://marketplace.visualstudio.com/publishers/spences10
