@@ -43,7 +43,7 @@ like a lot of other people developing in Gatsby took [Jason
 Lengstorf]'s' lead with the example used on [Marisa's site]. I'd used
 this several times already so was familiar with how it worked. The
 example that captured my imagination however was from [LekoArts] in
-his [Gatsby Starter Prismic] example.
+his Gatsby Starter Prismic example.
 
 ## Open Graph
 
@@ -194,14 +194,10 @@ it by me.
 [great notes from andrew welch]:
   https://github.com/gatsbyjs/gatsby/pull/10780#issuecomment-451048608
 [lekoarts]: https://github.com/LekoArts
-[his own implementation]:
-  https://github.com/LekoArts/gatsby-starter-prismic/blob/master/src/components/SEO/SEO.jsx
 [jason lengstorf]: https://twitter.com/jlengstorf
 [marisa's site]:
   https://github.com/marisamorby/marisamorby.com/blob/master/packages/gatsby-theme-blog-sanity/src/components/seo.js
 [well documented]: https://www.gatsbyjs.com/docs/add-seo-component/
-[gatsby starter prismic]:
-  https://github.com/LeKoArts/gatsby-starter-prismic/blob/master/src/components/SEO/SEO.jsx
 [open graph protocol]: https://ogp.me/
 [structured data]:
   https://developers.google.com/search/docs/guides/intro-structured-data

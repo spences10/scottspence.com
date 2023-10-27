@@ -368,18 +368,16 @@ Ok, and in your newly created file were going to use the Gatsby
 import { graphql, useStaticQuery } from 'gatsby'
 
 export const useSiteMetadata = () => {
-  const { site } = useStaticQuery(
-    graphql`
-      query SITE_METADATA_QUERY {
-        site {
-          siteMetadata {
-            title
-            description
-          }
+  const { site } = useStaticQuery(graphql`
+    query SITE_METADATA_QUERY {
+      site {
+        siteMetadata {
+          title
+          description
         }
       }
-    `
-  )
+    }
+  `)
   return site.siteMetadata
 }
 ```
@@ -858,7 +856,7 @@ export default ({ data }) => {
                 <p>{excerpt}</p>
               </Link>
             </PostWrapper>
-          )
+          ),
         )}
       </IndexWrapper>
     </Layout>
@@ -939,7 +937,7 @@ const path = require(`path`)
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
   const blogPostTemplate = path.resolve(
-    'src/templates/blogPostTemplate.js'
+    'src/templates/blogPostTemplate.js',
   )
 
   return graphql(`
@@ -1156,7 +1154,7 @@ const path = require(`path`)
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
   const blogPostTemplate = path.resolve(
-    'src/templates/blogPostTemplate.js'
+    'src/templates/blogPostTemplate.js',
   )
 
   return graphql(`
@@ -2331,7 +2329,7 @@ export default ({ data }) => {
                 <p>{excerpt}</p>
               </Link>
             </PostWrapper>
-          )
+          ),
         )}
       </IndexWrapper>
     </Layout>
@@ -2399,8 +2397,8 @@ Welch] on SEO and a link to a presentation he did back in 2017.
 
 <!-- cSpell:ignore leko -->
 
-In the following comments of that PR, Gatsby's [LekoArts] details [his
-own implementation] which I have implemented [as a React component],
+In the following comments of that PR, Gatsby's [LekoArts] details his
+own implementation which I have implemented [as a React component],
 you're going to be configuring that now in this how-to.
 
 First up, install and configure, `gatsby-plugin-react-helmet` this is
@@ -2471,24 +2469,22 @@ properties:
 import { graphql, useStaticQuery } from 'gatsby'
 
 export const useSiteMetadata = () => {
-  const { site } = useStaticQuery(
-    graphql`
-      query SITE_METADATA_QUERY {
-        site {
-          siteMetadata {
-            description
-            title
-            image
-            siteUrl
-            siteLanguage
-            siteLocale
-            twitterUsername
-            authorName
-          }
+  const { site } = useStaticQuery(graphql`
+    query SITE_METADATA_QUERY {
+      site {
+        siteMetadata {
+          description
+          title
+          image
+          siteUrl
+          siteLanguage
+          siteLocale
+          twitterUsername
+          authorName
         }
       }
-    `
-  )
+    }
+  `)
   return site.siteMetadata
 }
 ```
@@ -2588,7 +2584,7 @@ export default ({ data }) => {
                 <p>{excerpt}</p>
               </Link>
             </PostWrapper>
-          )
+          ),
         )}
       </IndexWrapper>
     </Layout>
@@ -2921,17 +2917,15 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
   https://egghead.io/lessons/vue-js-introduction-to-mdx?pl=building-websites-with-mdx-and-gatsby-161e9529
 [chris biscardi]: https://twitter.com/chrisbiscardi
 [duotonedark]:
-  https://github.com/FormidableLabs/prism-react-renderer/blob/master/src/themes/duotoneDark.js
+  https://github.com/FormidableLabs/prism-react-renderer/blob/9c041dfd8580b8b71f55c2a57e61f4c63356d4f4/packages/prism-react-renderer/src/themes/duotoneDark.ts
 [nightowl]:
-  https://github.com/FormidableLabs/prism-react-renderer/blob/master/src/themes/nightOwl.js
+  https://github.com/FormidableLabs/prism-react-renderer/blob/9c041dfd8580b8b71f55c2a57e61f4c63356d4f4/packages/prism-react-renderer/src/themes/nightOwl.ts
 [the other examples]:
-  https://github.com/FormidableLabs/prism-react-renderer/blob/master/src/themes
+  https://github.com/FormidableLabs/prism-react-renderer/tree/9c041dfd8580b8b71f55c2a57e61f4c63356d4f4/packages/prism-react-renderer/src/themes
 [github pr on seo]: https://github.com/gatsbyjs/gatsby/issues/14125
 [great notes from andrew welch]:
   https://github.com/gatsbyjs/gatsby/pull/10780#issuecomment-451048608
 [lekoarts]: https://github.com/LekoArts
-[his own implementation]:
-  https://github.com/LekoArts/gatsby-starter-prismic/blob/master/src/components/SEO/SEO.jsx
 [lumen]: https://github.com/alxshelepenok/gatsby-starter-lumen
 [the essential meta tags for social media]:
   https://css-tricks.com/essential-meta-tags-social-media/
