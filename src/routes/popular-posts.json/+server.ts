@@ -10,7 +10,7 @@ export const config: ServerlessConfig = {
 }
 
 export const GET = async ({ fetch, url, cookies }) => {
-  const block_fathom = cookies.get('block_fathom') !== 'false'
+  const block_fathom = false // showing popular posts even if fathom is blocked
 
   console.log('=====================')
   console.log(`Block Fathom: Popular Posts: `, block_fathom)
