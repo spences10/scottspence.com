@@ -31,12 +31,19 @@ export const fetch_fathom_data = async (
   cache_key_prefix: string,
   block_fathom: boolean,
 ) => {
-  if (DISABLE_FATHOM_API_FETCHING || building || block_fathom)
-    return null
+  const cache_key = get_cache_key(cache_key_prefix, params)
 
-  console.log('=====================')
-  console.log('Blocking Fathom data:', block_fathom)
-  console.log('=====================')
+  const cached = await get_data_from_cache(cache_key)
+  if (cached) return cached
+
+  if (DISABLE_FATHOM_API_FETCHING || building || block_fathom) {
+    console.log('=====================')
+    console.log(
+      `Blocking Fathom, no API call! block_fathom: ${block_fathom}`,
+    )
+    console.log('=====================')
+    return null
+  }
 
   const url = new URL(`https://api.usefathom.com/v1/${endpoint}`)
   Object.entries(params)
@@ -45,11 +52,6 @@ export const fetch_fathom_data = async (
       const decoded_value = decodeURIComponent(value as string)
       url.searchParams.append(key, decoded_value)
     })
-
-  const cache_key = get_cache_key(cache_key_prefix, params)
-
-  const cached = await get_data_from_cache(cache_key)
-  if (cached) return cached
 
   const headers = new Headers()
   headers.append('Authorization', `Bearer ${FATHOM_API_KEY}`)
@@ -125,5 +127,64 @@ const get_cache_key = (
       return popular_posts_key(prefix)
     default:
       throw new Error(`Unknown cache_key_prefix: ${prefix}`)
+  }
+}
+
+/**
+ * Handles the block fathom scenario.
+ *
+ * @param data - The cached data.
+ * @param data_key - The key for the response body.
+ *
+ * @returns {Object|null} - Returns an object containing the response
+ * body and headers if the Fathom script is blocked, or null.
+ */
+export const handle_block_fathom = (data: any, data_key: string) => {
+  console.log('=====================')
+  console.log(
+    `Handle Block Fathom: ${
+      data_key.charAt(0).toUpperCase() + data_key.slice(1)
+    }`,
+  )
+  console.log('=====================')
+
+  if (
+    (Array.isArray(data) && data.length > 0) ||
+    (data && data.total != null && data.content)
+  ) {
+    // Cached data is available, return it
+    console.log('=====================')
+    console.log(
+      `Handle Block Fathom Cache Hit: ${
+        data_key.charAt(0).toUpperCase() + data_key.slice(1)
+      }`,
+    )
+    console.log('=====================')
+    return {
+      body: {
+        [data_key]: data,
+      },
+      headers: {
+        'X-Robots-Tag': 'noindex, nofollow',
+      },
+    }
+  } else {
+    // No cached data available, return empty array
+    console.log('=====================')
+    console.log(
+      `Handle Block Fathom Cache Miss: ${
+        data_key.charAt(0).toUpperCase() + data_key.slice(1)
+      }`,
+    )
+    console.log('=====================')
+    return {
+      body: {
+        [data_key]: Array.isArray(data) ? [] : {},
+        message: 'Fathom script is blocked on the client-side.',
+      },
+      headers: {
+        'X-Robots-Tag': 'noindex, nofollow',
+      },
+    }
   }
 }

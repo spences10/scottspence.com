@@ -23,6 +23,8 @@ declare interface AnalyticsData {
   bounce_rate: number
   date: string
   pathname: string
+  total?: number
+  content?: string
 }
 
 declare interface Fetch {
