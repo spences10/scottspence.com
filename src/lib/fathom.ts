@@ -26,7 +26,7 @@ const DISABLE_FATHOM_API_FETCHING = false
 export const fetch_fathom_data = async (
   fetch: Fetch,
   endpoint: string,
-  params: { [s: string]: unknown } | ArrayLike<unknown>,
+  params: Record<string, unknown>,
   cache_duration: number,
   cache_key_prefix: string,
   block_fathom: boolean,
@@ -112,7 +112,7 @@ export const cache_response = async (
 
 const get_cache_key = (
   prefix: string,
-  params: { [s: string]: unknown } | ArrayLike<unknown>,
+  params: Record<string, unknown>,
 ) => {
   switch (prefix) {
     case 'current_visitors':
