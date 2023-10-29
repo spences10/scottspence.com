@@ -1,5 +1,6 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
 import { fetch_fathom_data, handle_block_fathom } from '$lib/fathom'
+import { time_to_seconds } from '$lib/utils/time-to-seconds.js'
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { json } from '@sveltejs/kit'
 
@@ -15,10 +16,6 @@ export const GET = async ({ url, fetch, cookies }) => {
   const date_from = url.searchParams.get('date_from')
   const date_to = url.searchParams.get('date_to')
   const sort_by = url.searchParams.get('sort_by')
-  const cache_duration = parseInt(
-    url.searchParams.get('cache_duration') ?? '1800',
-    10,
-  )
 
   const date_params = build_date_params(
     date_from,
@@ -33,7 +30,7 @@ export const GET = async ({ url, fetch, cookies }) => {
     fetch,
     `aggregations`,
     params,
-    cache_duration,
+    time_to_seconds({ hours: 1 }),
     `page_views_${date_grouping ? date_grouping : 'day'}`,
     block_fathom,
   )

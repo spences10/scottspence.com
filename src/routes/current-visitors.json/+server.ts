@@ -11,13 +11,11 @@ export const config: ServerlessConfig = {
 export const GET = async ({ fetch, cookies }): Promise<Response> => {
   const block_fathom = cookies.get('block_fathom') !== 'false'
 
-  const cache_duration = time_to_seconds({ minutes: 1 })
-
   const visitors = await fetch_fathom_data(
     fetch,
     `current_visitors`,
     { site_id: PUBLIC_FATHOM_ID, detailed: true },
-    cache_duration,
+    time_to_seconds({ minutes: 1 }),
     `current_visitors`,
     block_fathom,
   )
