@@ -1,5 +1,5 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
-import { fetch_fathom_data } from '$lib/fathom'
+import { fetch_fathom_data, handle_block_fathom } from '$lib/fathom'
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { json } from '@sveltejs/kit'
 
@@ -9,24 +9,6 @@ export const config: ServerlessConfig = {
 
 export const GET = async ({ url, fetch, cookies }) => {
   const block_fathom = cookies.get('block_fathom') !== 'false'
-
-  console.log('=====================')
-  console.log(`Block Fathom: Analytics: `, block_fathom)
-  console.log('=====================')
-  if (block_fathom) {
-    // Fathom script is blocked, return early to avoid API call
-    return json(
-      {
-        analytics: [],
-        message: 'Fathom script is blocked on the client-side.',
-      },
-      {
-        headers: {
-          'X-Robots-Tag': 'noindex, nofollow',
-        },
-      },
-    )
-  }
 
   const pathname = url.searchParams.get('pathname') ?? '/'
   const date_grouping = url.searchParams.get('date_grouping') ?? 'day'
@@ -55,6 +37,14 @@ export const GET = async ({ url, fetch, cookies }) => {
     `page_views_${date_grouping ? date_grouping : 'day'}`,
     block_fathom,
   )
+
+  if (block_fathom) {
+    const response = handle_block_fathom(analytics_data, 'analytics')
+
+    if (response) {
+      return json(response.body, { headers: response.headers })
+    }
+  }
 
   if (Array.isArray(analytics_data) && analytics_data.length > 0) {
     return json(

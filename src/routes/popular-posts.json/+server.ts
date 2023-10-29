@@ -1,5 +1,5 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
-import { fetch_fathom_data } from '$lib/fathom'
+import { fetch_fathom_data, handle_block_fathom } from '$lib/fathom'
 import { time_to_seconds } from '$lib/utils/time-to-seconds.js'
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { json } from '@sveltejs/kit'
@@ -10,25 +10,7 @@ export const config: ServerlessConfig = {
 }
 
 export const GET = async ({ fetch, url, cookies }) => {
-  const block_fathom = false // showing popular posts even if fathom is blocked
-
-  console.log('=====================')
-  console.log(`Block Fathom: Popular Posts: `, block_fathom)
-  console.log('=====================')
-  if (block_fathom) {
-    // Fathom script is blocked, return early to avoid API call
-    return json(
-      {
-        analytics: [],
-        message: 'Fathom script is blocked on the client-side.',
-      },
-      {
-        headers: {
-          'X-Robots-Tag': 'noindex, nofollow',
-        },
-      },
-    )
-  }
+  const block_fathom = cookies.get('block_fathom') !== 'false'
 
   const period = url.searchParams.get('period') ?? 'week'
   const params = build_popular_params(period)
@@ -55,18 +37,29 @@ export const GET = async ({ fetch, url, cookies }) => {
     {} as Record<string, Post>,
   )
 
-  if (Array.isArray(analytics_data) && analytics_data.length > 0) {
-    const analytics_data_with_titles = analytics_data
-      .filter(data => data.pathname.startsWith('/posts/'))
-      .map(data => {
-        const post = posts_by_slug[data.pathname.slice(7)]
-        return post ? { ...data, title: post.title } : data
-      })
-      .slice(0, 10)
+  if (block_fathom) {
+    const response = handle_block_fathom(analytics_data, 'analytics')
 
+    if (response) {
+      return json(
+        {
+          analytics: analytics_data_with_titles(
+            response.body.analytics,
+            posts_by_slug,
+          ),
+        },
+        { headers: response.headers },
+      )
+    }
+  }
+
+  if (Array.isArray(analytics_data) && analytics_data.length > 0) {
     return json(
       {
-        analytics: analytics_data_with_titles,
+        analytics: analytics_data_with_titles(
+          analytics_data,
+          posts_by_slug,
+        ),
       },
       {
         headers: {
@@ -88,6 +81,21 @@ export const GET = async ({ fetch, url, cookies }) => {
         'No analytics data available for the given parameters.',
     })
   }
+}
+
+const analytics_data_with_titles = (
+  analytics_data: any,
+  posts_by_slug: Record<string, Post>,
+) => {
+  return analytics_data
+    .filter((data: { pathname: string }) =>
+      data.pathname.startsWith('/posts/'),
+    )
+    .map((data: { pathname: string }) => {
+      const post = posts_by_slug[data.pathname.slice(7)]
+      return post ? { ...data, title: post.title } : data
+    })
+    .slice(0, 10)
 }
 
 const build_popular_params = (period: string) => {
