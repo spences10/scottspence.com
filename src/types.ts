@@ -63,3 +63,13 @@ declare interface PopularPosts {
   popular_posts_monthly: PopularPost[]
   popular_posts_yearly: PopularPost[]
 }
+
+// https://stackoverflow.com/questions/73025100/svelte-svelte-kit-type-custom-action-event-with-typescript
+// https://github.com/sveltejs/language-tools/blob/master/docs/preprocessors/typescript.md#im-getting-deprecation-warnings-for-sveltejsx--i-want-to-migrate-to-the-new-typings
+declare namespace svelteHTML {
+  interface HTMLAttributes<T> {
+    'on:enter_viewport'?: (event: any) => any
+    'on:exit_viewport'?: (event: any) => any
+    'on:animation_end'?: (event: any) => any
+  }
+}
