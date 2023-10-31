@@ -24,8 +24,6 @@
     differenceInDays,
     differenceInYears,
     format,
-    getMonth,
-    parseISO,
   } from 'date-fns'
   import { onMount } from 'svelte'
 
@@ -65,15 +63,6 @@
 
   const handle_scroll = () => {
     show_table_of_contents = update_toc_visibility(end_of_copy, -200)
-  }
-
-  const is_truthy = (value: any, check_month = false): boolean => {
-    if (value === undefined || value === null) return false
-    if (check_month && typeof value === 'string') {
-      const month = getMonth(parseISO(value))
-      if (month < 0) return false
-    }
-    return true
   }
 
   let show_current_visitor_data = false
@@ -173,12 +162,6 @@
   <Reactions data={count} path={current_path} />
 
   <StatsCard {daily_visits} {monthly_visits} {yearly_visits} />
-
-  {#if is_truthy(daily_visits) || is_truthy(monthly_visits) || is_truthy(yearly_visits)}
-    <div class="flex flex-col w-full mt-5 mb-10">
-      <div class="divider" />
-    </div>
-  {/if}
 
   <div class="grid justify-items-center mb-24">
     <ShareWithTweet
