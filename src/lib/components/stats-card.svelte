@@ -71,12 +71,32 @@
     },
     { title: 'Yearly analytics for this post', stats: yearly_stats },
   ]
+
+  interface StatValue {
+    label: string
+    value: string
+    range: string
+  }
+
+  interface Stats {
+    views: StatValue
+    visitors: StatValue
+    entries: StatValue
+  }
+
+  const has_data = (stats: Stats | null): boolean => {
+    return stats
+      ? stats.views.value !== '0' ||
+          stats.visitors.value !== '0' ||
+          stats.entries.value !== '0'
+      : false
+  }
 </script>
 
 <section aria-labelledby="analytics-section">
   <p id="analytics-section" class="sr-only">Analytics Information</p>
   {#each stats_array as { title, stats }}
-    {#if stats}
+    {#if has_data(stats)}
       <article class="mb-4">
         <header class="mb-2 pl-1">
           <h3>{title}</h3>
@@ -84,17 +104,19 @@
         <section
           class="stats stats-vertical md:stats-horizontal shadow-lg w-full border border-secondary mb-8"
         >
-          {#each Object.entries(stats) as [key, { label, value, range }]}
-            <div class="stat">
-              <header class="stat-title">{label}</header>
-              <div class="stat-value text-2xl" role="status">
-                {value}
+          {#if stats}
+            {#each Object.entries(stats) as [key, { label, value, range }]}
+              <div class="stat">
+                <header class="stat-title">{label}</header>
+                <div class="stat-value text-2xl" role="status">
+                  {value}
+                </div>
+                {#if range}
+                  <footer class="stat-desc">{range}</footer>
+                {/if}
               </div>
-              {#if range}
-                <footer class="stat-desc">{range}</footer>
-              {/if}
-            </div>
-          {/each}
+            {/each}
+          {/if}
         </section>
       </article>
     {/if}
