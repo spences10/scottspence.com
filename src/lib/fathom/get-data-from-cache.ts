@@ -8,11 +8,16 @@ import { redis } from '$lib/redis'
  */
 export const get_data_from_cache = async (
   cache_key: string,
-): Promise<string | null> => {
+): Promise<AnalyticsData | null | {}> => {
   try {
     const cached = await redis.get(cache_key)
-    if (cached && typeof cached === 'string') {
-      return cached
+    if (cached) {
+      try {
+        return cached
+      } catch (e) {
+        console.error(`Error parsing cached data: ${e}`)
+        return cached // yolo!
+      }
     }
   } catch (e) {
     console.error(`Error fetching data from cache: ${e}`)
