@@ -1,5 +1,5 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
-import { fetch_fathom_data, handle_block_fathom } from '$lib/fathom'
+import { fetch_fathom_data } from '$lib/fathom'
 import { time_to_seconds } from '$lib/utils/time-to-seconds.js'
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { json } from '@sveltejs/kit'
@@ -34,14 +34,6 @@ export const GET = async ({ url, fetch, cookies }) => {
     `page_views_${date_grouping ? date_grouping : 'day'}`,
     block_fathom,
   )
-
-  if (block_fathom) {
-    const response = handle_block_fathom(analytics_data, 'analytics')
-
-    if (response) {
-      return json(response.body, { headers: response.headers })
-    }
-  }
 
   if (Array.isArray(analytics_data) && analytics_data.length > 0) {
     return json(
