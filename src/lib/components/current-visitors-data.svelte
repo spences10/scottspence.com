@@ -1,7 +1,7 @@
 <script>
   import { visitors_store } from '$lib/stores'
   import { mouse_position } from '$lib/utils'
-  
+
   let visitors = $visitors_store
 </script>
 
@@ -11,12 +11,12 @@
 >
   <h3 class="font-bold text-xl mb-2">Current Site Visitors</h3>
   <h4 class="font-bold mb-2">
-    Total Visitors: {visitors.total}
+    Total Visitors: {visitors.visitors.total}
   </h4>
   <section>
     <h4 class="font-semibold">Current Pages:</h4>
     <ul class="mb-2">
-      {#each visitors.content as { hostname, pathname, total }}
+      {#each visitors.visitors.content as { hostname, pathname, total }}
         <li>
           <a
             href={pathname}
@@ -34,7 +34,7 @@
   <section>
     <h4 class="font-semibold">Referrers:</h4>
     <ul>
-      {#each visitors.referrers as { referrer_hostname, referrer_pathname, total }}
+      {#each visitors.visitors.referrers as { referrer_hostname, referrer_pathname, total }}
         <li>
           <span class="link link-primary cursor-not-allowed">
             {referrer_hostname}{referrer_pathname}

@@ -34,7 +34,7 @@ Check out the [speaking] section for more details about those!
 I have a wealth of knowledge working in the [Jamstack], with extensive
 experience (<DD date="2018-08-02"/>) working with it mainly using
 [Gatsby] (the React meta-framework). My active usage of the Jamstack
-stops at around <DD date="2021-04-06" /> ago now.
+stopped <DD date="2021-04-06" /> ago now.
 
 Check out the [portfolio section] for more information.
 
@@ -42,7 +42,7 @@ Check out the [portfolio section] for more information.
 
 I have over ten years of experience working for large corporate
 organisations in Finance (Risk, Asset Management), Property, Oil & Gas
-and Lloyd's insurance market.
+and the Lloyd's insurance market.
 
 As a web developer I've worked in government digital transformation,
 creative digital and the content management space. I now work in
@@ -60,8 +60,8 @@ I like to think of myself as an easy to approach and friendly person.
 I'm obsessed with watching anything to do with mechanical engineering
 and restorations on YouTube.
 
-I play Borderlands 3 on Stadia, then Borderlands 1 and 2 on the
-Nintendo Switch.
+I play Borderlands 1 and 2 on the Nintendo Switch along with the other
+big titles on it, Zelda Tears of the Kingdom and now Mario Wonder.
 
 ### Music I listen to
 
