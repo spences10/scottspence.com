@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store'
 
-export interface VisitorsData {
+export interface NestedVisitorsData {
   total: number
   content: {
     hostname: string
@@ -14,6 +14,10 @@ export interface VisitorsData {
   }[]
 }
 
+export interface VisitorsData {
+  visitors: NestedVisitorsData
+}
+
 export const popular_posts_store = writable<PopularPosts>({
   popular_posts_daily: [],
   popular_posts_monthly: [],
@@ -21,9 +25,11 @@ export const popular_posts_store = writable<PopularPosts>({
 })
 
 export const visitors_store = writable<VisitorsData>({
-  total: 0,
-  content: [],
-  referrers: [],
+  visitors: {
+    total: 0,
+    content: [],
+    referrers: [],
+  },
 })
 
 export const newsletter_subscriber_count_store = writable({
