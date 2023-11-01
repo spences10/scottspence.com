@@ -1,5 +1,10 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
-import { fetch_fathom_data, handle_block_fathom } from '$lib/fathom'
+import {
+  analytics_data_with_titles,
+  fetch_fathom_data,
+  get_posts_by_slug,
+  handle_block_fathom,
+} from '$lib/fathom'
 import { time_to_seconds } from '$lib/utils/time-to-seconds.js'
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { json } from '@sveltejs/kit'
@@ -27,15 +32,7 @@ export const GET = async ({ fetch, url, cookies }) => {
   const posts_response = await fetch('posts.json')
   const posts_data = await posts_response.json()
 
-  const posts_by_slug = posts_data.reduce(
-    (acc: Record<string, Post>, post: Post) => {
-      if (post.slug) {
-        acc[post.slug] = post
-      }
-      return acc
-    },
-    {} as Record<string, Post>,
-  )
+  const posts_by_slug = get_posts_by_slug(posts_data)
 
   if (block_fathom) {
     const response = handle_block_fathom(analytics_data, 'analytics')
@@ -81,21 +78,6 @@ export const GET = async ({ fetch, url, cookies }) => {
         'No analytics data available for the given parameters.',
     })
   }
-}
-
-const analytics_data_with_titles = (
-  analytics_data: any,
-  posts_by_slug: Record<string, Post>,
-) => {
-  return analytics_data
-    .filter((data: { pathname: string }) =>
-      data.pathname.startsWith('/posts/'),
-    )
-    .map((data: { pathname: string }) => {
-      const post = posts_by_slug[data.pathname.slice(7)]
-      return post ? { ...data, title: post.title } : data
-    })
-    .slice(0, 10)
 }
 
 const build_popular_params = (period: string) => {
