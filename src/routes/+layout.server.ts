@@ -15,8 +15,12 @@ const fetch_popular_posts = async (
   const cache_key = `popular_posts_${period}`
   const cached = await get_data_from_cache(cache_key)
 
-  if (cached) {
-    return JSON.parse(cached)
+  if (cached && typeof cached === 'string') {
+    try {
+      return JSON.parse(cached)
+    } catch (e) {
+      console.error(`Error parsing cached data: ${e}`)
+    }
   }
 
   try {
