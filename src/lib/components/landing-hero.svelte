@@ -64,7 +64,7 @@
         >
           Get in Touch
         </a>
-        {#if $visitors_store && $visitors_store.total}
+        {#if $visitors_store && $visitors_store.visitors.total}
           <!-- svelte-ignore a11y-no-static-element-interactions -->
           <span
             on:mouseenter={() => (show_current_visitor_data = true)}
@@ -76,9 +76,9 @@
             >
               There's currently
               <span class="font-bold">
-                {$visitors_store.total}
+                {$visitors_store.visitors.total}
               </span>
-              live {$visitors_store.total === 1
+              live {$visitors_store.visitors.total === 1
                 ? 'visitor'
                 : 'visitors'}
             </p>
