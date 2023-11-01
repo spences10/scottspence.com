@@ -92,8 +92,12 @@
       : false
   }
 
-  const is_truthy = (value: AnalyticsData | null | undefined) =>
-    value !== null && value !== undefined
+  const is_truthy = (
+    value: AnalyticsData | null | undefined,
+  ): boolean =>
+    value !== null &&
+    value !== undefined &&
+    Object.keys(value).length > 0
 </script>
 
 <section aria-labelledby="analytics-section">
