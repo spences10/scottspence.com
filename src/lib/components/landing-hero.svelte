@@ -59,7 +59,7 @@
         </p>
         <a
           href="/contact"
-          on:click={() => Fathom.trackGoal(`T2YXL68Y`, 0)}
+          on:click={() => Fathom.trackEvent(`contact button click`)}
           class="btn btn-md w-full lg:btn-lg btn-primary text-primary-content hover:text-primary-content shadow-xl rounded-box mb-5"
         >
           Get in Touch

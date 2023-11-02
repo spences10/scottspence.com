@@ -73,7 +73,7 @@
     {#each SITE_LINKS as link}
       <a
         href={`/${link.slug}`}
-        on:click={() => Fathom.trackGoal(link.id, 0)}
+        on:click={() => Fathom.trackEvent(link.slug)}
         class="text-primary-content hover:opacity-50"
       >
         {link.title}

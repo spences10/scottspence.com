@@ -61,7 +61,7 @@
                 ? 'loading loading-spinner text-secondary'
                 : 'btn btn-secondary'}
               on:click={() => {
-                Fathom.trackGoal('ZWGL5VLX', 0)
+                Fathom.trackEvent('newsletter signup click')
               }}
               value="sign me up!"
               disabled={$button_disabled}

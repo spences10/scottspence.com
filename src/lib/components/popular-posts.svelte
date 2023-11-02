@@ -14,8 +14,6 @@
       selected_period as PopularPostsPeriod
     ].slice(0, 4)
   }
-
-  // cspell:ignore WKHRXHV8
 </script>
 
 {#if posts.length}
@@ -40,7 +38,7 @@
         <a
           data-sveltekit-reload
           href={$page.url.origin + post.pathname}
-          on:click={() => Fathom.trackGoal(`WKHRXHV8`, 0)}
+          on:click={() => Fathom.trackEvent(`popular post click: ${post.title}`)}
           class="h-full"
         >
           <aside

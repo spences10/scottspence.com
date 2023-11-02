@@ -121,57 +121,46 @@ export const SITE_LINKS = [
   {
     title: `Writing`,
     slug: `posts`,
-    id: `FJDJRF2N`,
   },
   {
     title: `About`,
     slug: `about`,
-    id: `2DRIXVSS`,
   },
   {
     title: `Now`,
     slug: `now`,
-    id: `Z8N5C2XV`,
   },
   {
     title: `Portfolio`,
     slug: `portfolio`,
-    id: `NE5JFD1S`,
   },
   {
     title: `Speaking`,
     slug: `speaking`,
-    id: `FYDDOCX1`,
   },
   {
     title: `Uses`,
     slug: `uses`,
-    id: `AALDN3U2`,
   },
   {
     title: `Newsletter`,
     slug: `newsletter`,
-    id: `4RFXKMAJ`,
   },
   {
     title: `Contact`,
     slug: `contact`,
-    id: `CM8DXERV`,
   },
   {
     title: `Media Pack`,
     slug: `media`,
-    id: `HRKVII5W`,
   },
   {
     title: `Privacy Policy`,
     slug: `privacy-policy`,
-    id: `O79FG7SH`,
   },
   {
     title: `Cookie Policy`,
     slug: `cookie-policy`,
-    id: `VAKLUIK7`,
   },
 ]
 
