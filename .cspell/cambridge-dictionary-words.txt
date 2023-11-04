@@ -66,8 +66,10 @@ Shortener
 shorteners
 signup
 signups
+snark
 stylesheet
 summarise
+suppression
 travelling
 upskill
 upskilling
