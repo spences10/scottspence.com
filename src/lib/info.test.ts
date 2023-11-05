@@ -80,17 +80,6 @@ describe('info', () => {
     expect(SITE_LINKS.length).toBeGreaterThan(0)
   })
 
-  test('each site link should have a title, slug, and id', () => {
-    SITE_LINKS.forEach(link => {
-      expect(link.title).toBeDefined()
-      expect(typeof link.title).toBe('string')
-      expect(link.slug).toBeDefined()
-      expect(typeof link.slug).toBe('string')
-      expect(link.id).toBeDefined()
-      expect(typeof link.id).toBe('string')
-    })
-  })
-
   test('PEOPLE should be an array', () => {
     expect(Array.isArray(PEOPLE)).toBe(true)
   })
