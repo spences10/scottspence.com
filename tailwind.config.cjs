@@ -76,6 +76,7 @@ const config = {
   daisyui: {
     darkTheme: 'night',
     themes: daisy_themes,
+    logs: false,
   },
 
   plugins: [typography, daisyui],
