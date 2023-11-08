@@ -16,7 +16,7 @@ export const get_data_from_cache = async (
         return cached
       } catch (e) {
         console.error(`Error parsing cached data: ${e}`)
-        return cached // yolo!
+        return JSON.parse(cached) // yolo!
       }
     }
   } catch (e) {
