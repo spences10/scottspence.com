@@ -139,12 +139,12 @@ Stay safe!
 <!-- Links -->
 
 [scottspence.com]: https://scottspence.com
-[digital garden]: /2020/04/27/a-digital-garden/
+[digital garden]: https://scottspence.com/posts/a-digital-garden
 [amazon brand solimo beans]:
   https://www.amazon.co.uk/Amazon-Brand-Solimo-Coffee-Beans/dp/B07CGXZMT3
-[coco di mama]: https://www.cocodimama.co.uk/coffee/
+[coco di mama]: https://www.cocodimama.co.uk/coffee
 [first time pc build]:
-  https://scottspence.com/posts/first-time-pc-build/
+  https://scottspence.com/posts/first-time-pc-build
 [marc backes]: https://marc.dev
 
 <!-- Images  -->
