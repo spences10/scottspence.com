@@ -101,7 +101,7 @@ Name a colour from hex: [color-hex.com]
 
 Hello Colour: [jxnblk.com/hello-color]
 
-<!-- cSpell:ignore colorbox,hihayk -->
+<!-- cSpell:ignore colorbox,hihayk,brandingcolors -->
 
 Beautiful colour scales Colour Box: [colorbox.io]
 
