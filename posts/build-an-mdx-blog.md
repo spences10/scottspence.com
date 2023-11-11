@@ -2897,7 +2897,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 <!-- Links -->
 
 [windows web-dev bootstrap]:
-  https://scottspence.com/posts/wsl-bootstrap-2019/
+  https://scottspence.com/posts/wsl-bootstrap-2019
 [ubuntu as well]: https://www.youtube.com/watch?v=eSAsdQuQ-1o
 [codesandbox.io]: https://codesandbox.io
 [gatsby-source-filesystem]:

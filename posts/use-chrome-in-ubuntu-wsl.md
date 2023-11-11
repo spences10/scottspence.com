@@ -59,10 +59,10 @@ Linux from Addictive Tips.
 
 <!-- Links -->
 
-[this post]: https://scottspence.com/posts/gui-with-wsl/
+[this post]: https://scottspence.com/posts/gui-with-wsl
 [solution untested by me]:
   https://github.com/microsoft/WSL/issues/2374#issuecomment-699110721
 [greg brisebois]:
-  https://www.gregbrisebois.com/posts/chromedriver-in-wsl2/
+  https://www.gregbrisebois.com/posts/chromedriver-in-wsl2
 [really detailed post]:
-  https://www.addictivetips.com/ubuntu-linux-tips/install-chromium-on-linux/
+  https://www.addictivetips.com/ubuntu-linux-tips/install-chromium-on-linux

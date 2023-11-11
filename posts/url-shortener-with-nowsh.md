@@ -282,7 +282,7 @@ the same project.
 [now cli]: https://vercel.com/download
 [vercel.com account]: https://vercel.com/signup
 [github account]: https://github.com/join
-[for windows]: https://scottspence.com/posts/wsl-bootstrap-2019/
+[for windows]: https://scottspence.com/posts/wsl-bootstrap-2019
 [kent c dodds example with netlify]:
   https://www.youtube.com/watch?v=HL6paXyx6hM
 [vercel's documentation]:

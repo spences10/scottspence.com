@@ -127,5 +127,5 @@ the DNS updates can be verified via Zoho.**
 [control panel settings]:
   https://mail.zoho.eu/cpanel/index.do#orgsettings/config
 [i have written a guide]:
-  https://scottspence.com/posts/wsl-bootstrap-2019/
+  https://scottspence.com/posts/wsl-bootstrap-2019
 [forever free plan]: https://workplace.zoho.eu/orgsignup.do

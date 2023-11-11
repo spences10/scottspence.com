@@ -78,21 +78,20 @@ You can sign up to the newsletter as well:
 [https://ss10.dev/nl](https://ss10.dev/nl)
 
 [streaming setup]:
-  https://scottspence.com/posts/getting-started-with-youtube/
+  https://scottspence.com/posts/getting-started-with-youtube
 [windows terminal config]:
-  https://scottspence.com/posts/windows-terminal-config/
+  https://scottspence.com/posts/windows-terminal-config
 [wsl web developer bootstrap with fedora 33]:
-  https://scottspence.com/posts/fedora-bootstrap-from-scratch/
+  https://scottspence.com/posts/fedora-bootstrap-from-scratch
 [fedora remix for wsl gui apps]:
-  https://scottspence.com/posts/fedora-remix-for-wsl-gui-apps/
+  https://scottspence.com/posts/fedora-remix-for-wsl-gui-apps
 [use chrome in ubuntu on windows subsystem linux]:
-  https://scottspence.com/posts/use-chrome-in-ubuntu-wsl/
+  https://scottspence.com/posts/use-chrome-in-ubuntu-wsl
 [enable guis on windows subsystem linux (wsl)]:
-  https://scottspence.com/posts/gui-with-wsl/
+  https://scottspence.com/posts/gui-with-wsl
 [notes on zsh and oh my zsh]:
-  https://scottspence.com/posts/zsh-and-oh-my-zsh/
-[built my first pc]:
-  https://scottspence.com/posts/first-time-pc-build/
+  https://scottspence.com/posts/zsh-and-oh-my-zsh
+[built my first pc]: https://scottspence.com/posts/first-time-pc-build
 [started a newsletter]: https://ss10.dev/nl
 [my second brain - zettelkasten]:
-  https://scottspence.com/posts/my-second-brain-zettelkasten/
+  https://scottspence.com/posts/my-second-brain-zettelkasten
