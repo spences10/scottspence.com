@@ -1,5 +1,5 @@
 import { time_to_seconds } from '$lib/utils'
-import { get_reaction_count_data } from '$lib/utils/get-reaction-count.js'
+import { get_reaction_count_data } from '$lib/utils/get-reaction-count'
 import {
   endOfMonth,
   endOfYear,
