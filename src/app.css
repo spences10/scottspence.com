@@ -23,8 +23,8 @@ html {
 }
 
 ::selection {
-  color: hsl(var(--pc));
-  background: hsl(var(--p));
+  color: oklch(var(--pc));
+  background: oklch(var(--p));
 }
 
 .table-of-contents {
@@ -45,7 +45,7 @@ html {
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: hsl(var(--s)) hsl(var(--p));
+  scrollbar-color: oklch(var(--s)) oklch(var(--p));
 }
 
 /* Chrome, Edge, and Safari */
@@ -54,21 +54,21 @@ html {
 }
 
 *::-webkit-scrollbar-track {
-  background: hsl(var(--p));
+  background: oklch(var(--p));
   border-radius: 5px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: hsl(var(--s));
+  background-color: oklch(var(--s));
   /* background: repeating-linear-gradient(
     45deg,
-    hsl(var(--s)),
-    hsl(var(--s)) 5px,
-    hsl(var(--p)) 5px,
-    hsl(var(--p)) 10px
+    oklch(var(--s)),
+    oklch(var(--s)) 5px,
+    oklch(var(--p)) 5px,
+    oklch(var(--p)) 10px
   ); */
   border-radius: 14px;
-  border: 3px solid hsl(var(--p));
+  border: 3px solid oklch(var(--p));
 }
 
 @tailwind components;
