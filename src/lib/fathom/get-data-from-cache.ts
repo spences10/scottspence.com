@@ -1,4 +1,4 @@
-import { redis } from '$lib/redis'
+import { cache_get } from '$lib/redis'
 
 /**
  * Retrieves data from the Redis cache.
@@ -10,7 +10,7 @@ export const get_data_from_cache = async (
   cache_key: string,
 ): Promise<AnalyticsData | null | {}> => {
   try {
-    const cached = await redis.get(cache_key)
+    const cached = await cache_get(cache_key)
     if (cached) {
       try {
         return cached

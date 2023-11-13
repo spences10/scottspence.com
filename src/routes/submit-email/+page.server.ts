@@ -1,5 +1,5 @@
 import { BUTTONDOWN_API_KEY } from '$env/static/private'
-import { ratelimit } from '$lib/redis.js'
+import { ratelimit } from '$lib/redis'
 import { fail } from '@sveltejs/kit'
 
 const buttondown_url = 'https://api.buttondown.email'

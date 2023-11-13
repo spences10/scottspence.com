@@ -1,5 +1,5 @@
 import { reactions } from '$lib/reactions-config.js'
-import { get_reactions_leaderboard_key, redis } from '$lib/redis.js'
+import { get_reactions_leaderboard_key, redis } from '$lib/redis'
 import { time_to_seconds } from '$lib/utils/time-to-seconds.js'
 
 const fetch_posts_data = async (fetch: Fetch): Promise<Post[]> => {

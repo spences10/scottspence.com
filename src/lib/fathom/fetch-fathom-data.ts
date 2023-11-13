@@ -1,6 +1,6 @@
 import { building } from '$app/environment'
 import { FATHOM_API_KEY } from '$env/static/private'
-import { cache_response } from './cache-response'
+import { cache_set } from '$lib/redis'
 import { get_cache_key } from './get-cache-key'
 import { get_data_from_cache } from './get-data-from-cache'
 
@@ -63,7 +63,7 @@ export const fetch_fathom_data = async (
     return data
   }
 
-  await cache_response(cache_key, data, cache_duration)
+  await cache_set(cache_key, data, cache_duration)
 
   return data
 }
