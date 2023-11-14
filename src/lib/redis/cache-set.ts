@@ -13,8 +13,8 @@ export const cache_set = async (
   cache_duration: number,
 ) => {
   try {
-    await redis.json.set(cache_key, '$', JSON.stringify(data))
-    await redis.expire(cache_key, cache_duration)
+    const serialized_data = JSON.stringify(data)
+    await redis.set(cache_key, serialized_data, { ex: cache_duration })
   } catch (e) {
     console.error(`Error caching response: ${e}`)
   }

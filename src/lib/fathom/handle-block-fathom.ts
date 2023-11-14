@@ -1,13 +1,25 @@
+type BlockFathomResponse = {
+  body: {
+    [key: string]: any
+    message?: string
+  }
+  headers: {
+    'X-Robots-Tag': string
+  }
+} | null
+
 /**
  * Handles the block fathom scenario.
  *
  * @param data - The cached data.
  * @param data_key - The key for the response body.
- *
- * @returns {Object|null} - Returns an object containing the response
+ * @returns {BlockFathomResponse} - Returns an object of type BlockFathomResponse containing the response
  * body and headers if the Fathom script is blocked, or null.
  */
-export const handle_block_fathom = (data: any, data_key: string) => {
+export const handle_block_fathom = (
+  data: any,
+  data_key: string,
+): BlockFathomResponse => {
   console.log('=====================')
   console.log(
     `Handle Block Fathom: ${

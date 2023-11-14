@@ -1,5 +1,5 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
-import { fetch_fathom_data, handle_block_fathom } from '$lib/fathom'
+import { fetch_fathom_data } from '$lib/fathom'
 import { time_to_seconds } from '$lib/utils/time-to-seconds.js'
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { json } from '@sveltejs/kit'
@@ -20,15 +20,7 @@ export const GET = async ({ fetch, cookies }): Promise<Response> => {
     block_fathom,
   )
 
-  if (block_fathom) {
-    const response = handle_block_fathom(visitors, 'visitors')
-
-    if (response) {
-      return json(response.body, { headers: response.headers })
-    }
-  }
-
-  if (visitors && visitors.total != null && visitors.content) {
+  if (visitors && 'total' in visitors && 'content' in visitors) {
     return json(
       {
         visitors,

@@ -8,10 +8,12 @@ import { redis } from './client'
  */
 export const cache_get = async (cache_key: string) => {
   try {
-    const data = await redis.json.get(cache_key, '$')
-    return data
+    const data = await redis.get(cache_key)
+    return data ? JSON.parse(data as string) : null
   } catch (e) {
-    console.error(`Error retrieving cached response: ${e}`)
+    console.error(
+      `Error retrieving cached response: ${e} Cache key: ${cache_key}`,
+    )
     return null
   }
 }
