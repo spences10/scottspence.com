@@ -7,7 +7,7 @@
 
 <EdgeGlow>
   <article
-    class="bg-base-100 mb-10 p-5 transition card hover:text-accent-focus first:pt-0"
+    class="bg-base-100 mb-10 p-5 transition card hover:text-accent first:pt-0"
   >
     <a href={`/posts/${post.slug}`}>
       <div>

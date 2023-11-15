@@ -1,49 +1,25 @@
 const tailwind_theme = require('tailwindcss/defaultTheme')
 const daisyui = require('daisyui')
 const typography = require('@tailwindcss/typography')
+const { themes } = require('./src/lib/themes')
 
 function create_theme(theme_name, font_family) {
   return {
     [theme_name]: {
-      ...require('daisyui/src/theming/themes')[
-        `[data-theme=${theme_name}]`
-      ],
+      ...require('daisyui/src/theming/themes')[theme_name],
       ...(font_family ? { fontFamily: font_family } : {}),
     },
   }
 }
 
-const daisy_themes = [
-  create_theme('acid'),
-  create_theme('aqua'),
-  create_theme('autumn'),
-  create_theme('black'),
-  create_theme('bumblebee'),
-  create_theme('business'),
-  create_theme('cmyk'),
-  create_theme('coffee'),
-  create_theme('corporate', 'Manrope'),
-  create_theme('cupcake'),
-  create_theme('cyberpunk', 'Victor Mono'),
-  create_theme('dark'),
-  create_theme('dracula'),
-  create_theme('emerald'),
-  create_theme('fantasy'),
-  create_theme('forest'),
-  create_theme('garden'),
-  create_theme('halloween'),
-  create_theme('lemonade'),
-  create_theme('light'),
-  create_theme('lofi'),
-  create_theme('luxury'),
-  create_theme('night'),
-  create_theme('pastel'),
-  create_theme('retro'),
-  create_theme('synthwave'),
-  create_theme('valentine'),
-  create_theme('winter'),
-  create_theme('wireframe'),
-]
+const custom_font = {
+  corporate: 'Manrope',
+  cyberpunk: 'Victor Mono',
+}
+
+const daisy_themes = themes.map(theme =>
+  create_theme(theme, custom_font[theme]),
+)
 
 const config = {
   content: ['./src/**/*.{html,js,svelte,ts}'],

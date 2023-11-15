@@ -15,7 +15,7 @@
         class="h-full"
       >
         <article
-          class="flex flex-col justify-between rounded-box font-bold h-full p-5 transition card shadow-lg hover:text-accent-focus border border-secondary"
+          class="flex flex-col justify-between rounded-box font-bold h-full p-5 transition card shadow-lg hover:text-accent border border-secondary"
         >
           <h3 class="mb-5 text-2xl">
             {#if page.rank === 1}
