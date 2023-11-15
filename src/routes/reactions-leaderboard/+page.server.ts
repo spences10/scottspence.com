@@ -105,7 +105,7 @@ export const load = async ({ fetch }) => {
   try {
     await cache_set(
       get_reactions_leaderboard_key(),
-      JSON.stringify(leaderboard),
+      leaderboard,
       time_to_seconds({ hours: 24 }),
     )
   } catch (error) {

@@ -3,7 +3,6 @@ import {
   analytics_data_with_titles,
   fetch_fathom_data,
   get_posts_by_slug,
-  handle_block_fathom,
 } from '$lib/fathom'
 import { time_to_seconds } from '$lib/utils/time-to-seconds.js'
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
@@ -34,22 +33,6 @@ export const GET = async ({ fetch, url, cookies }) => {
 
   const posts_by_slug = get_posts_by_slug(posts_data)
 
-  if (block_fathom) {
-    const response = handle_block_fathom(analytics_data, 'analytics')
-
-    if (response) {
-      return json(
-        {
-          analytics: analytics_data_with_titles(
-            response.body.analytics,
-            posts_by_slug,
-          ),
-        },
-        { headers: response.headers },
-      )
-    }
-  }
-
   if (Array.isArray(analytics_data) && analytics_data.length > 0) {
     return json(
       {
@@ -66,7 +49,7 @@ export const GET = async ({ fetch, url, cookies }) => {
     )
   } else {
     console.error(
-      `Analytics API returned data in unexpected format. ${JSON.stringify(
+      `popular-posts.json returned data in unexpected format. ${JSON.stringify(
         params,
         null,
         2,

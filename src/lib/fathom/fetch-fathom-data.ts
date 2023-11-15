@@ -9,6 +9,7 @@ type FathomDataResponse =
   | Post
   | PopularPosts
   | null
+  | []
 
 // Disable calls to the Fathom Analytics API.
 const DISABLE_FATHOM_API_FETCHING = false
@@ -53,7 +54,7 @@ export const fetch_fathom_data = async (
         `Blocking Fathom, no API call! block_fathom: ${block_fathom}`,
       )
       console.log('=====================')
-      return null
+      return get_empty_data_shape(cache_key_prefix)
     }
 
     const url = new URL(`https://api.usefathom.com/v1/${endpoint}`)
@@ -84,8 +85,7 @@ export const fetch_fathom_data = async (
     const data = await res.json()
 
     if (Object.keys(data).length === 0) {
-      // @ts-ignore
-      return {} // Return an empty object for empty responses
+      return []
     }
 
     await cache_set(cache_key, data, cache_duration)
@@ -95,6 +95,25 @@ export const fetch_fathom_data = async (
     // Log the error for internal tracking
     // @ts-ignore
     console.error(`Error fetching Fathom data: ${error.message}`)
-    return null // Silently fail for all errors
+    return get_empty_data_shape(cache_key_prefix)
+  }
+}
+
+const get_empty_data_shape = (
+  cache_key_prefix: string,
+): FathomDataResponse => {
+  switch (cache_key_prefix) {
+    case 'current_visitors':
+      return { content: [], referrers: [], total: 0 }
+    case 'page_views_day':
+    case 'page_views_month':
+    case 'page_views_year':
+      return []
+    case 'popular_posts_day':
+    case 'popular_posts_month':
+    case 'popular_posts_year':
+      return []
+    default:
+      return null
   }
 }

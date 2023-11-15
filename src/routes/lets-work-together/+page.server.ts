@@ -21,7 +21,7 @@ const get_cached_or_fetch = async <T>(
   }
 
   const fetched_data: T = await fetch_callback()
-  await cache_set(key, JSON.stringify(fetched_data), cache_expiry)
+  await cache_set(key, fetched_data, cache_expiry)
 
   return fetched_data
 }

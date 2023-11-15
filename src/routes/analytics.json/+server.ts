@@ -48,7 +48,7 @@ export const GET = async ({ url, fetch, cookies }) => {
     )
   } else {
     console.error(
-      `Analytics API returned data in unexpected format. ${JSON.stringify(
+      `analytics.json returned data in unexpected format. ${JSON.stringify(
         params,
         null,
         2,

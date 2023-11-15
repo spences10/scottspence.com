@@ -1,9 +1,8 @@
 import {
   analytics_data_with_titles,
-  cache_response,
-  get_data_from_cache,
   get_posts_by_slug,
 } from '$lib/fathom'
+import { cache_get, cache_set } from '$lib/redis'
 import { time_to_seconds } from '$lib/utils'
 
 const fetch_popular_posts = async (
@@ -13,15 +12,9 @@ const fetch_popular_posts = async (
   cache_duration: number,
 ) => {
   const cache_key = `popular_posts_${period}`
-  const cached = await get_data_from_cache(cache_key)
+  const cached = await cache_get(cache_key)
 
-  if (cached && typeof cached === 'string') {
-    try {
-      return JSON.parse(cached)
-    } catch (e) {
-      console.error(`Error parsing cached data: ${e}`)
-    }
-  }
+  if (cached) return cached
 
   try {
     const res = await fetch(url)
@@ -37,11 +30,7 @@ const fetch_popular_posts = async (
       posts_by_slug,
     )
 
-    await cache_response(
-      cache_key,
-      JSON.stringify(result),
-      cache_duration,
-    )
+    await cache_set(cache_key, result, cache_duration)
 
     return result
   } catch (error) {

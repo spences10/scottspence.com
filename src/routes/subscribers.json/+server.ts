@@ -47,7 +47,7 @@ export const GET = async () => {
   try {
     await cache_set(
       get_newsletter_subscriber_count_key(),
-      JSON.stringify(newsletter_subscriber_count),
+      newsletter_subscriber_count,
       time_to_seconds({ hours: 24 }),
     )
   } catch (error) {
