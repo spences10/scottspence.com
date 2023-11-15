@@ -36,7 +36,16 @@ export const fetch_fathom_data = async (
     const cache_key = get_cache_key(cache_key_prefix, params)
 
     const cached = await cache_get(cache_key)
-    if (cached) return cached
+    if (cached) {
+      console.log('=====================')
+      console.log(`Cache hit for ${cache_key}`)
+      console.log('=====================')
+      return cached
+    } else {
+      console.log('=====================')
+      console.log(`Cache miss for ${cache_key}`)
+      console.log('=====================')
+    }
 
     if (DISABLE_FATHOM_API_FETCHING || building || block_fathom) {
       console.log('=====================')
