@@ -95,7 +95,7 @@
     {/each}
   </div>
 </footer>
-<div class="divider bg-primary m-0" />
+<div class="divider divider-secondary bg-primary m-0" />
 <div class="bg-primary text-primary-content">
   <p class="text-center py-4">
     Copyright &copy; 2017 - {`${new Date().getFullYear()}`} - All rights

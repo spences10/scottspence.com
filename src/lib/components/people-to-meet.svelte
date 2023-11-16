@@ -13,14 +13,14 @@
 </script>
 
 <div class="flex flex-col w-full my-10">
-  <div class="divider" />
+  <div class="divider divider-secondary" />
 </div>
 
 <article class="m-0 mb-20 sm:-mx-30 lg:-mx-40">
   <a
     href="#people-id-like-to-meet"
     id="people-id-like-to-meet"
-    class="font-bold text-2xl link-primary hover:primary-focus transition"
+    class="font-bold text-2xl link-primary hover:primary-accent transition"
   >
     People I'd like to meet in real life (aka the meatspace).
   </a>

@@ -57,5 +57,5 @@
 </div>
 
 <div class="flex flex-col w-full my-10">
-  <div class="divider" role="separator" />
+  <div class="divider divider-secondary" role="separator" />
 </div>

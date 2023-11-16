@@ -21,5 +21,5 @@
 <NewsletterSignup />
 
 <div class="flex flex-col w-full my-10">
-  <div class="divider" />
+  <div class="divider divider-secondary" />
 </div>

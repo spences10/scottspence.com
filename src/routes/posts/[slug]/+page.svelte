@@ -156,7 +156,7 @@
     class="flex flex-col w-full mt-10 mb-5"
     bind:this={end_of_copy}
   >
-    <div class="divider" />
+    <div class="divider divider-secondary" />
   </div>
 
   <Reactions data={count} path={current_path} />

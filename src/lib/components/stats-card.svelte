@@ -132,6 +132,6 @@
 
 {#if is_truthy(daily_visits) || is_truthy(monthly_visits) || is_truthy(yearly_visits)}
   <div class="flex flex-col w-full mt-5 mb-10">
-    <div class="divider" />
+    <div class="divider divider-secondary" />
   </div>
 {/if}
