@@ -27,6 +27,33 @@ declare interface AnalyticsData {
   content?: string
 }
 
+declare interface PopularPost {
+  visits: string
+  pageviews: string
+  pathname: string
+  title: string
+}
+
+declare interface PopularPosts {
+  popular_posts_daily: PopularPost[]
+  popular_posts_monthly: PopularPost[]
+  popular_posts_yearly: PopularPost[]
+}
+
+declare interface VisitorData {
+  content: Array<{
+    hostname: string
+    pathname: string
+    total: string
+  }>
+  referrers: Array<{
+    referrer_hostname: string
+    referrer_pathname: string
+    total: string
+  }>
+  total: number
+}
+
 declare interface Fetch {
   (input: RequestInfo, init?: RequestInit): Promise<Response>
 }
@@ -51,18 +78,7 @@ declare interface ReactionPage {
   count: number
 }
 
-declare interface PopularPost {
-  visits: string
-  pageviews: string
-  pathname: string
-  title: string
-}
 
-declare interface PopularPosts {
-  popular_posts_daily: PopularPost[]
-  popular_posts_monthly: PopularPost[]
-  popular_posts_yearly: PopularPost[]
-}
 
 // https://stackoverflow.com/questions/73025100/svelte-svelte-kit-type-custom-action-event-with-typescript
 // https://github.com/sveltejs/language-tools/blob/master/docs/preprocessors/typescript.md#im-getting-deprecation-warnings-for-sveltejsx--i-want-to-migrate-to-the-new-typings

@@ -1,9 +1,9 @@
-import { get_posts_key, redis } from './redis'
+import { cache_get, cache_set, get_posts_key } from './redis'
 import { time_to_seconds } from './utils'
 
 export const get_posts = async (): Promise<{ posts: Post[] }> => {
   try {
-    const cached: Post[] | null = await redis.get(get_posts_key())
+    const cached: Post[] | null = await cache_get(get_posts_key())
     if (cached) {
       return {
         posts: cached,
@@ -24,23 +24,25 @@ export const get_posts = async (): Promise<{ posts: Post[] }> => {
     ),
   )
 
-  let sortedPosts = posts.sort(
+  let sorted_posts = posts.sort(
     (a, b) => +new Date(b.date) - +new Date(a.date),
   )
 
-  sortedPosts = sortedPosts.map(post => ({
+  sorted_posts = sorted_posts.map(post => ({
     ...post,
   }))
 
   try {
-    await redis.set(get_posts_key(), JSON.stringify(sortedPosts), {
-      ex: time_to_seconds({ hours: 24 }),
-    })
+    await cache_set(
+      get_posts_key(),
+      sorted_posts,
+      time_to_seconds({ hours: 24 }),
+    )
   } catch (error) {
     console.error('Error setting to Redis:', error)
   }
 
   return {
-    posts: sortedPosts,
+    posts: sorted_posts,
   }
 }

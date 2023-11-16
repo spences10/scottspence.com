@@ -20,7 +20,7 @@
         -1 ||
       post.tags.find(
         (tag: string) =>
-          tag.toLowerCase() === search_query.toLowerCase()
+          tag.toLowerCase() === search_query.toLowerCase(),
       ) ||
       post.preview
         .toLowerCase()

@@ -1,5 +1,7 @@
 import { EXCHANGE_RATE_API_KEY } from '$env/static/private'
 import {
+  cache_get,
+  cache_set,
   exchange_rates_key,
   pricing_numbers_key,
   redis,
@@ -12,16 +14,14 @@ const get_cached_or_fetch = async <T>(
   fetch_callback: () => Promise<T>,
   cache_expiry: number,
 ): Promise<T> => {
-  let cached_data: T | null = await redis.get(key)
+  let cached_data: T | null = await cache_get(key)
 
   if (cached_data) {
     return cached_data
   }
 
   const fetched_data: T = await fetch_callback()
-  await redis.set(key, JSON.stringify(fetched_data), {
-    ex: cache_expiry,
-  })
+  await cache_set(key, fetched_data, cache_expiry)
 
   return fetched_data
 }

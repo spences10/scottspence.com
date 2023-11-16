@@ -1,4 +1,4 @@
-import { ratelimit, redis } from '$lib/redis.js'
+import { ratelimit, redis } from '$lib/redis'
 import { fail } from '@sveltejs/kit'
 
 export const actions = {

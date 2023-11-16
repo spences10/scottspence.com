@@ -1,5 +1,10 @@
 import { reactions } from '$lib/reactions-config.js'
-import { get_reactions_leaderboard_key, redis } from '$lib/redis.js'
+import {
+  cache_get,
+  cache_set,
+  get_reactions_leaderboard_key,
+  redis,
+} from '$lib/redis'
 import { time_to_seconds } from '$lib/utils/time-to-seconds.js'
 
 const fetch_posts_data = async (fetch: Fetch): Promise<Post[]> => {
@@ -11,7 +16,7 @@ const fetch_reaction_data = async (): Promise<ReactionPage[]> => {
   const keys = await redis.keys('reactions:*')
   return await Promise.all(
     keys.map(async (key: string) => {
-      const count = await redis.get(key)
+      const count = await cache_get(key)
       return {
         path: key,
         count: parseInt(count as string, 10),
@@ -84,7 +89,7 @@ const get_total_reaction_count = async (): Promise<number> => {
 
 export const load = async ({ fetch }) => {
   try {
-    const cached = await redis.get(get_reactions_leaderboard_key())
+    const cached = await cache_get(get_reactions_leaderboard_key())
     if (cached) {
       return {
         leaderboard: cached,
@@ -98,12 +103,10 @@ export const load = async ({ fetch }) => {
   const leaderboard = await get_leaderboard_with_ranking(fetch)
 
   try {
-    await redis.set(
+    await cache_set(
       get_reactions_leaderboard_key(),
-      JSON.stringify(leaderboard),
-      {
-        ex: time_to_seconds({ hours: 24 }),
-      },
+      leaderboard,
+      time_to_seconds({ hours: 24 }),
     )
   } catch (error) {
     console.error('Error setting to Redis:', error)
