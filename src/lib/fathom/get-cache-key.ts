@@ -16,6 +16,7 @@ export const get_cache_key = (
     case 'page_views_year':
       return page_views_key(prefix, params)
     case 'popular_posts_day':
+    case 'popular_posts_week':
     case 'popular_posts_month':
     case 'popular_posts_year':
       return popular_posts_key(prefix)

@@ -1,13 +1,20 @@
 import { building } from '$app/environment'
 import { FATHOM_API_KEY } from '$env/static/private'
 import { cache_get, cache_set } from '$lib/redis'
+import { add_popular_posts_titles } from './add-popular-posts-titles'
 import { get_cache_key } from './get-cache-key'
+
+interface PopularPostsTitles {
+  pathname: string
+  title?: string
+}
 
 type FathomDataResponse =
   | VisitorData
   | AnalyticsData
   | Post
   | PopularPosts
+  | PopularPostsTitles[]
   | null
   | []
 
@@ -88,6 +95,15 @@ export const fetch_fathom_data = async (
       return []
     }
 
+    // check if popular_posts, add titles
+    if (cache_key.includes('popular_posts_')) {
+      return await add_popular_posts_titles(
+        fetch,
+        data,
+        cache_key,
+        cache_duration,
+      )
+    }
     await cache_set(cache_key, data, cache_duration)
 
     return data

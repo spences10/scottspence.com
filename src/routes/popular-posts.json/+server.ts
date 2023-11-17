@@ -1,9 +1,5 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
-import {
-  analytics_data_with_titles,
-  fetch_fathom_data,
-  get_posts_by_slug,
-} from '$lib/fathom'
+import { fetch_fathom_data } from '$lib/fathom'
 import { time_to_seconds } from '$lib/utils/time-to-seconds.js'
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { json } from '@sveltejs/kit'
@@ -28,18 +24,10 @@ export const GET = async ({ fetch, url, cookies }) => {
     block_fathom,
   )
 
-  const posts_response = await fetch('posts.json')
-  const posts_data = await posts_response.json()
-
-  const posts_by_slug = get_posts_by_slug(posts_data)
-
   if (Array.isArray(analytics_data) && analytics_data.length > 0) {
     return json(
       {
-        analytics: analytics_data_with_titles(
-          analytics_data,
-          posts_by_slug,
-        ),
+        analytics: analytics_data,
       },
       {
         headers: {

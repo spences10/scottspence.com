@@ -41,7 +41,23 @@ const fetch_popular_posts = async (
   }
 }
 
-export const load = async ({ fetch }) => {
+export const load = async ({ fetch, cookies }) => {
+  const block_fathom = cookies.get('block_fathom') !== 'false'
+
+  if (block_fathom) {
+    console.log(`Fathom data fetch blocked on +layout.server.ts`)
+    // Return default values to avoid errors in the client
+    return {
+      visitors: {},
+      popular_posts: {
+        popular_posts_daily: [],
+        popular_posts_monthly: [],
+        popular_posts_yearly: [],
+      },
+      newsletter_subscriber_count: 0,
+    }
+  }
+
   const cache_duration = time_to_seconds({ hours: 24 })
 
   // Fetch Popular Posts
