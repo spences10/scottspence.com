@@ -9,8 +9,6 @@ export const config: ServerlessConfig = {
 }
 
 export const GET = async ({ url, fetch, cookies }) => {
-  const block_fathom = cookies.get('block_fathom') !== 'false'
-
   const pathname = url.searchParams.get('pathname') ?? '/'
   const date_grouping = url.searchParams.get('date_grouping') ?? 'day'
   const date_from = url.searchParams.get('date_from')
@@ -32,7 +30,7 @@ export const GET = async ({ url, fetch, cookies }) => {
     params,
     time_to_seconds({ hours: 1 }),
     `page_views_${date_grouping ? date_grouping : 'day'}`,
-    block_fathom,
+    false,
   )
 
   if (Array.isArray(analytics_data) && analytics_data.length > 0) {

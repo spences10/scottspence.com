@@ -9,9 +9,7 @@ export const config: ServerlessConfig = {
   runtime: 'nodejs18.x',
 }
 
-export const GET = async ({ fetch, url, cookies }) => {
-  const block_fathom = cookies.get('block_fathom') !== 'false'
-
+export const GET = async ({ fetch, url }) => {
   const period = url.searchParams.get('period') ?? 'week'
   const params = build_popular_params(period)
 
@@ -21,7 +19,7 @@ export const GET = async ({ fetch, url, cookies }) => {
     params,
     time_to_seconds({ hours: 24 }),
     `popular_posts_${period}`,
-    block_fathom,
+    false, // fetch and cache
   )
 
   if (Array.isArray(analytics_data) && analytics_data.length > 0) {

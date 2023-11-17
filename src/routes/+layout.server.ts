@@ -41,9 +41,7 @@ const fetch_popular_posts = async (
   }
 }
 
-export const load = async ({ fetch, cookies }) => {
-  const block_fathom = cookies.get('block_fathom') !== 'false'
-
+export const load = async ({ fetch }) => {
   const cache_duration = time_to_seconds({ hours: 24 })
 
   // Fetch Popular Posts
