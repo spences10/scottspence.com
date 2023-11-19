@@ -8,7 +8,7 @@ export const config: ServerlessConfig = {
   runtime: 'nodejs18.x',
 }
 
-export const GET = async ({ url, fetch, cookies }) => {
+export const GET = async ({ url, fetch }) => {
   const pathname = url.searchParams.get('pathname') ?? '/'
   const date_grouping = url.searchParams.get('date_grouping') ?? 'day'
   const date_from = url.searchParams.get('date_from')
