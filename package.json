@@ -39,6 +39,7 @@
     "@typescript-eslint/parser": "^6.11.0",
     "@upstash/ratelimit": "^0.4.4",
     "@upstash/redis": "^1.25.1",
+    "@vercel/analytics": "^1.1.1",
     "@vitest/ui": "^0.34.6",
     "autoprefixer": "10.4.16",
     "cspell": "^8.0.0",
