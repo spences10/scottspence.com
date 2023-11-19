@@ -11,7 +11,7 @@
 </script>
 
 <nav
-  class="sticky top-0 z-10 backdrop-filter bg-base-100/90 backdrop-blur-xl py-4 mb-10 hidden flex-none px-2 mx-2 lg:flex"
+  class="sticky top-0 z-10 backdrop-filter bg-base-100/50 backdrop-blur-xl py-4 mb-10 hidden flex-none px-2 mx-2 lg:flex"
 >
   <ul
     class="flex px-4 justify-between items-center container max-w-3xl mx-auto"
