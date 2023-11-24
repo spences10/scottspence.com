@@ -60,8 +60,8 @@ devDependencies:
     specifier: 6.0.1
     version: 6.0.1(postcss@8.4.31)
   daisyui:
-    specifier: 4.0.7
-    version: 4.0.7(postcss@8.4.31)
+    specifier: 4.4.6
+    version: 4.4.6(postcss@8.4.31)
   date-fns:
     specifier: 2.30.0
     version: 2.30.0
@@ -2093,8 +2093,8 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dev: true
 
-  /daisyui@4.0.7(postcss@8.4.31):
-    resolution: {integrity: sha512-D84DnNDZKcamwNsxCMrwYaddyz5kC6VO6oe30nM1x67GzCAfarfd3Ar1rpLGXCIqSsEoNZUHO8EcXvX93W2ZkA==}
+  /daisyui@4.4.6(postcss@8.4.31):
+    resolution: {integrity: sha512-Zum9dWsYufduID4IfwI1h/+qQIuoXBpVaG9l/rOlLOVbCmpvE7LQK/GDYE7YOT8NDXHOH+EqMqT8uzGqlbTFig==}
     engines: {node: '>=16.9.0'}
     dependencies:
       css-selector-tokenizer: 0.8.0
