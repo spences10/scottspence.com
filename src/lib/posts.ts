@@ -1,5 +1,5 @@
+import { differenceInHours, parseISO } from 'date-fns'
 import { turso_client } from './turso'
-import { time_to_seconds } from './utils'
 
 export const get_posts = async (): Promise<{ posts: Post[] }> => {
   const client = turso_client()
@@ -17,8 +17,10 @@ export const get_posts = async (): Promise<{ posts: Post[] }> => {
 
     if (
       last_post.last_updated &&
-      new Date(last_post.last_updated).getTime() >
-        Date.now() - time_to_seconds({ hours: 24 })
+      differenceInHours(
+        new Date(),
+        parseISO(last_post.last_updated),
+      ) < 24
     ) {
       // Data is fresh enough, retrieve from Turso DB
       const cached_posts_result = await client.execute(
