@@ -1,6 +1,5 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
 import { fetch_fathom_data } from '$lib/fathom'
-import { time_to_seconds } from '$lib/utils/time-to-seconds.js'
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { json } from '@sveltejs/kit'
 import { formatISO, sub } from 'date-fns'
@@ -17,9 +16,6 @@ export const GET = async ({ fetch, url }) => {
     fetch,
     `aggregations`,
     params,
-    time_to_seconds({ hours: 24 }),
-    `popular_posts_${period}`,
-    false, // fetch and cache
   )
 
   if (Array.isArray(analytics_data) && analytics_data.length > 0) {
