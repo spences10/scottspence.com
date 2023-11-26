@@ -17,7 +17,7 @@
         <div class="mb-4 text-accent uppercase text-sm font-bold">
           <time>{format(new Date(post.date), 'MMMM d, yyyy')}</time>
           &bull;
-          <span>{post.readingTime.text}</span>
+          <span>{post.reading_time_text}</span>
           {#if differenceInDays(new Date(), new Date(post.date)) < 31}
             <span
               class="badge bg-primary hover:bg-secondary hover:text-secondary-content text-primary-content"
@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="all-prose">
-        {@html post.previewHtml}
+        {@html post.preview_html}
       </div>
     </a>
   </article>

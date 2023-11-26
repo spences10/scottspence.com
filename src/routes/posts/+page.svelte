@@ -16,15 +16,11 @@
     if (search_query === '') return true
 
     return (
-      post.title.toLowerCase().indexOf(search_query.toLowerCase()) !==
-        -1 ||
-      post.tags.find(
-        (tag: string) =>
-          tag.toLowerCase() === search_query.toLowerCase(),
+      post.title.toLowerCase().includes(search_query.toLowerCase()) ||
+      post.tags.some(
+        tag => tag.toLowerCase() === search_query.toLowerCase(),
       ) ||
-      post.preview
-        .toLowerCase()
-        .indexOf(search_query.toLowerCase()) !== -1
+      post.preview.toLowerCase().includes(search_query.toLowerCase())
     )
   })
 </script>

@@ -45,20 +45,15 @@ export const get_posts = async (): Promise<{ posts: Post[] }> => {
       ),
     )
 
-    sorted_posts = posts.sort(
-      (a, b) =>
-        new Date(b.date).getTime() - new Date(a.date).getTime(),
-    )
-
     // Insert new posts into Turso DB
-    for (const post of sorted_posts) {
+    for (const post of posts) {
       try {
         await client.execute({
           sql: `
             INSERT INTO posts (
               date, is_private, preview, preview_html, 
               reading_time_minutes, reading_time_text, 
-              reading_time_seconds, words, slug, tags, title, 
+              reading_time_seconds, reading_time_words, slug, tags, title, 
               last_updated
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT (slug) DO UPDATE SET 
@@ -69,13 +64,13 @@ export const get_posts = async (): Promise<{ posts: Post[] }> => {
               reading_time_minutes = EXCLUDED.reading_time_minutes,
               reading_time_text = EXCLUDED.reading_time_text,
               reading_time_seconds = EXCLUDED.reading_time_seconds,
-              words = EXCLUDED.words,
+              reading_time_words = EXCLUDED.reading_time_words,
               tags = EXCLUDED.tags,
               title = EXCLUDED.title,
               last_updated = EXCLUDED.last_updated;
           `,
           args: [
-            post.date,
+            new Date(post.date).toISOString(),
             post.isPrivate,
             post.preview,
             post.previewHtml,
@@ -92,6 +87,19 @@ export const get_posts = async (): Promise<{ posts: Post[] }> => {
       } catch (error) {
         console.error('Error inserting post into Turso DB:', error)
       }
+    }
+
+    // Retrieve and return the updated list of posts from the Turso DB
+    try {
+      const updated_posts_result = await client.execute(
+        'SELECT * FROM posts ORDER BY date DESC;',
+      )
+      sorted_posts = updated_posts_result.rows as unknown as Post[]
+    } catch (error) {
+      console.error(
+        'Error fetching updated posts from Turso DB:',
+        error,
+      )
     }
   }
 

@@ -9,6 +9,8 @@ declare interface Post {
     time: number
     words: number
   }
+  reading_time_text: string
+  preview_html: string
   preview: string
   previewHtml: string
   slug: string | null
