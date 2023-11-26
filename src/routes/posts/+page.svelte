@@ -16,9 +16,10 @@
 
     return (
       post.title.toLowerCase().includes(search_query.toLowerCase()) ||
-      post.tags.some(
-        tag => tag.toLowerCase() === search_query.toLowerCase(),
-      ) ||
+      (Array.isArray(post.tags) &&
+        post.tags.some(tag =>
+          tag.toLowerCase().includes(search_query.toLowerCase()),
+        )) ||
       post.preview.toLowerCase().includes(search_query.toLowerCase())
     )
   })
