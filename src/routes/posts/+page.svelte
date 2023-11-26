@@ -1,7 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores'
-  import { Head } from '$lib/components'
-  import PostCard from '$lib/components/post-card.svelte'
+  import { Head, PostCard } from '$lib/components'
   import { description, name, website } from '$lib/info.js'
   import { og_image_url } from '$lib/utils'
 
