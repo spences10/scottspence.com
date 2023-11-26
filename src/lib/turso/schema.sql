@@ -16,7 +16,7 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  IF NOT EXISTS post_analytics (
+  post_analytics (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     slug TEXT NOT NULL,
     date_grouping TEXT NOT NULL,
@@ -25,7 +25,8 @@ CREATE TABLE
     uniques INTEGER,
     avg_duration REAL,
     bounce_rate REAL,
-    last_updated INTEGER NOT NULL DEFAULT CURRENT_TIMESTAMP
+    last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (slug, date_grouping)
   );
 
 CREATE TABLE
