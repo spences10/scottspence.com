@@ -1,24 +1,4 @@
 CREATE TABLE
-  page_current_visitors (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    hostname TEXT NOT NULL,
-    pathname TEXT NOT NULL,
-    visitors_count INTEGER NOT NULL,
-    last_updated TIMESTAMP NOT NULL
-  );
-
-CREATE TABLE
-  popular_posts (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    pathname TEXT NOT NULL,
-    title TEXT NOT NULL,
-    pageviews INTEGER NOT NULL,
-    visits INTEGER NOT NULL,
-    time_frame TEXT NOT NULL CHECK (time_frame IN ('day', 'month', 'year')),
-    last_updated TIMESTAMP NOT NULL
-  );
-
-CREATE TABLE
   posts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     date TEXT NOT NULL,
@@ -36,17 +16,35 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  referrer_current_visitors (
+  IF NOT EXISTS post_analytics (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    referrer_hostname TEXT NOT NULL,
-    referrer_pathname TEXT,
-    visitors_count INTEGER NOT NULL,
-    last_updated TIMESTAMP NOT NULL
+    slug TEXT NOT NULL,
+    date_grouping TEXT NOT NULL,
+    pageviews INTEGER NOT NULL,
+    visits INTEGER NOT NULL,
+    uniques INTEGER,
+    avg_duration REAL,
+    bounce_rate REAL,
+    last_updated INTEGER NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
 
 CREATE TABLE
-  total_current_visitors (
+  popular_posts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    total INTEGER NOT NULL,
-    last_updated TIMESTAMP NOT NULL
+    pathname TEXT NOT NULL,
+    title TEXT NOT NULL,
+    pageviews INTEGER NOT NULL,
+    visits INTEGER NOT NULL,
+    last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
+
+SELECT
+  pp.id,
+  pp.pathname,
+  p.title,
+  pp.pageviews,
+  pp.visits,
+  pp.last_updated
+FROM
+  popular_posts pp
+  JOIN posts p ON pp.pathname = '/posts/' || p.slug
