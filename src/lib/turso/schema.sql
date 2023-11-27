@@ -47,7 +47,8 @@ SELECT
   p.title,
   pp.pageviews,
   pp.visits,
+  pp.date_grouping,
   pp.last_updated
 FROM
   popular_posts pp
-  JOIN posts p ON pp.pathname = '/posts/' || p.slug
+  JOIN posts p ON pp.pathname = '/posts/' || p.slug;
