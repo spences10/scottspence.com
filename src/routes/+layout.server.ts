@@ -2,7 +2,34 @@ import { PUBLIC_FATHOM_ID } from '$env/static/public'
 import { fetch_fathom_data } from '$lib/fathom/fetch-fathom-data.js'
 import { turso_client } from '$lib/turso/client.js'
 import type { Client } from '@libsql/client/http'
-import { differenceInHours, formatISO, parseISO } from 'date-fns'
+import {
+  differenceInHours,
+  endOfDay,
+  endOfMonth,
+  endOfYear,
+  formatISO,
+  parseISO,
+  startOfDay,
+  startOfMonth,
+  startOfYear,
+} from 'date-fns'
+
+const get_date_range = (period: string) => {
+  const now = new Date()
+  switch (period) {
+    case 'day':
+      return [formatISO(startOfDay(now)), formatISO(endOfDay(now))]
+    case 'month':
+      return [
+        formatISO(startOfMonth(now)),
+        formatISO(endOfMonth(now)),
+      ]
+    case 'year':
+      return [formatISO(startOfYear(now)), formatISO(endOfYear(now))]
+    default:
+      throw new Error(`Unknown period: ${period}`)
+  }
+}
 
 const insert_fathom_data_into_turso = async (
   client: Client,
@@ -59,8 +86,25 @@ const fetch_popular_posts = async (fetch: Fetch, period: string) => {
       ) < 24
     ) {
       // Data is fresh enough, retrieve from Turso DB
+      const query = `
+        SELECT
+          pp.id,
+          pp.pathname,
+          p.title,
+          pp.pageviews,
+          pp.visits,
+          pp.date_grouping,
+          pp.last_updated
+        FROM
+          popular_posts pp
+          JOIN posts p ON pp.pathname = '/posts/' || p.slug
+        WHERE
+          pp.date_grouping = ?
+        ORDER BY
+          pp.pageviews DESC;
+      `
       const cached_popular_posts_result = await client.execute({
-        sql: 'SELECT * FROM popular_posts WHERE date_grouping = ? ORDER BY pageviews DESC;',
+        sql: query,
         args: [period],
       })
 
@@ -68,9 +112,8 @@ const fetch_popular_posts = async (fetch: Fetch, period: string) => {
         cached_popular_posts_result.rows as unknown as PopularPost[]
     } else {
       // Fetch data from Fathom
-      const date_from = formatISO(new Date(), {
-        representation: 'date',
-      })
+      const [date_from, date_to] = get_date_range(period)
+
       const fathom_data = await fetch_fathom_data(
         fetch,
         'aggregations',
@@ -80,19 +123,21 @@ const fetch_popular_posts = async (fetch: Fetch, period: string) => {
           aggregates: 'visits,pageviews',
           field_grouping: 'pathname',
           date_from,
-          date_to: formatISO(new Date()),
+          date_to,
           sort_by: 'pageviews:desc',
-          limit: '15',
+          limit: '100',
         },
       )
 
       if (fathom_data && Array.isArray(fathom_data)) {
-        const transformed_data = fathom_data.map(data => ({
-          pathname: data.pathname,
-          title: 'Default Title',
-          pageviews: parseInt(data.pageviews),
-          visits: parseInt(data.visits),
-        }))
+        const transformed_data = fathom_data.map(
+          (data: PopularPost) => ({
+            pathname: data.pathname,
+            title: 'Default Title',
+            pageviews: data.pageviews,
+            visits: data.visits,
+          }),
+        )
 
         await insert_fathom_data_into_turso(
           client,
