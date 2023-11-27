@@ -2,16 +2,16 @@
   import { page } from '$app/stores'
   import {
     ButtButt,
+    CurrentVisitorsData,
     Head,
     IsPrivateBanner,
     PopularPosts,
+    Reactions,
     ShareWithTweet,
     StatsCard,
     TableOfContents,
     UpdatedBanner,
   } from '$lib/components'
-  import CurrentVisitorsData from '$lib/components/current-visitors-data.svelte'
-  import Reactions from '$lib/components/reactions.svelte'
   import { name, website } from '$lib/info'
   import { visitors_store } from '$lib/stores'
   import {
