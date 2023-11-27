@@ -36,7 +36,9 @@ CREATE TABLE
     title TEXT NOT NULL,
     pageviews INTEGER NOT NULL,
     visits INTEGER NOT NULL,
-    last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    date_grouping TEXT NOT NULL,
+    last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (pathname, date_grouping)
   );
 
 SELECT
