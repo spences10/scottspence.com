@@ -9,6 +9,8 @@ declare interface Post {
     time: number
     words: number
   }
+  reading_time_text: string
+  preview_html: string
   preview: string
   previewHtml: string
   slug: string | null
@@ -77,8 +79,6 @@ declare interface ReactionPage {
   path: string
   count: number
 }
-
-
 
 // https://stackoverflow.com/questions/73025100/svelte-svelte-kit-type-custom-action-event-with-typescript
 // https://github.com/sveltejs/language-tools/blob/master/docs/preprocessors/typescript.md#im-getting-deprecation-warnings-for-sveltejsx--i-want-to-migrate-to-the-new-typings

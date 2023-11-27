@@ -3,9 +3,7 @@
 declare global {
   namespace App {
     // interface Error {}
-    interface Locals {
-      block_fathom?: string
-    }
+    // interface Locals {}
     // interface PageData {}
     // interface Platform {}
   }

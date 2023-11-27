@@ -9,11 +9,13 @@ export const get_post_tags = async () => {
 
   const { posts } = await get_posts()
 
-  posts.map((post: Post) => {
-    const { tags, isPrivate } = post
-    if (tags && !isPrivate) {
-      tags.forEach((post_tag: string) => {
-        const tag = post_tag
+  posts.forEach((post: Post) => {
+    if (post.tags && !post.isPrivate) {
+      // Split the tags string into an array
+      // @ts-ignore
+      const split_tags = post.tags.split(',')
+
+      split_tags.forEach((tag: string) => {
         if (!posts_by_tag[tag]) {
           posts_by_tag[tag] = []
         }

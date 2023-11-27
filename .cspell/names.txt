@@ -193,8 +193,8 @@ Rafa
 Rainlife
 ratelimit
 Rauch
-Rayment
 Raycast
+Rayment
 reactjs
 Restream
 Rollup
@@ -251,6 +251,7 @@ tinyurl
 Tolinski
 Tomchak
 toolsday
+TURSO
 Upstash
 URQL
 usefathom

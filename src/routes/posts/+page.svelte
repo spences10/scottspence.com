@@ -1,7 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores'
-  import { Head } from '$lib/components'
-  import PostCard from '$lib/components/post-card.svelte'
+  import { Head, PostCard } from '$lib/components'
   import { description, name, website } from '$lib/info.js'
   import { og_image_url } from '$lib/utils'
 
@@ -16,15 +15,12 @@
     if (search_query === '') return true
 
     return (
-      post.title.toLowerCase().indexOf(search_query.toLowerCase()) !==
-        -1 ||
-      post.tags.find(
-        (tag: string) =>
-          tag.toLowerCase() === search_query.toLowerCase(),
-      ) ||
-      post.preview
-        .toLowerCase()
-        .indexOf(search_query.toLowerCase()) !== -1
+      post.title.toLowerCase().includes(search_query.toLowerCase()) ||
+      (Array.isArray(post.tags) &&
+        post.tags.some(tag =>
+          tag.toLowerCase().includes(search_query.toLowerCase()),
+        )) ||
+      post.preview.toLowerCase().includes(search_query.toLowerCase())
     )
   })
 </script>
