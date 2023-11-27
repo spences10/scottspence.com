@@ -34,26 +34,34 @@
 
   const generate_stats = (
     time_period: string,
-    stats_data: AnalyticsData | null | undefined,
+    stats_data: AnalyticsData | AnalyticsData[] | null | undefined,
   ) => {
-    if (!stats_data) return null
+    let data
+    if (Array.isArray(stats_data)) {
+      if (stats_data.length === 0) return null
+      data = stats_data[0]
+    } else {
+      data = stats_data
+    }
+
+    if (!data) return null
     const time_period_config = time_periods[time_period]
     const time_period_label = time_period_config.label
     const time_period_range = time_period_config.range || ''
     return {
       views: {
         label: `Views ${time_period_label}`,
-        value: number_crunch(stats_data.pageviews) ?? '0',
+        value: number_crunch(data.pageviews) ?? '0',
         range: time_period_range,
       },
       visitors: {
         label: `Visitors ${time_period_label}`,
-        value: number_crunch(stats_data.uniques) ?? '0',
+        value: number_crunch(data.uniques) ?? '0',
         range: time_period_range,
       },
       entries: {
         label: `Entries ${time_period_label}`,
-        value: number_crunch(stats_data.visits) ?? '0',
+        value: number_crunch(data.visits) ?? '0',
         range: time_period_range,
       },
     }
