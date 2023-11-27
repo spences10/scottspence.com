@@ -1,16 +1,10 @@
 import { FATHOM_API_KEY } from '$env/static/private'
 
-interface PopularPostsTitles {
-  pathname: string
-  title?: string
-}
-
 type FathomDataResponse =
   | VisitorData
   | AnalyticsData
   | Post
   | PopularPosts
-  | PopularPostsTitles[]
   | null
   | []
 
