@@ -9,11 +9,11 @@
     locale_string,
   } from './utils'
 
-  let annual_rate_EUR = get_field_value('ANNUAL_RATE_EUR') || 0
-  let chosen_holidays = get_field_value('CHOSEN_HOLIDAYS') || 0
+  let annual_rate_EUR = get_field_value('annual_rate_eur') || 0
+  let chosen_holidays = get_field_value('chosen_holidays') || 0
   let working_days_in_year =
-    get_field_value('WORKING_DAYS_IN_YEAR') || 0
-  let public_holidays = get_field_value('PUBLIC_HOLIDAYS') || 0
+    get_field_value('working_days_in_year') || 0
+  let public_holidays = get_field_value('public_holidays') || 0
   let selected_currency = 'EUR'
 
   $: day_rate_with_pto = calculate_day_rate_with_pto(
@@ -45,7 +45,7 @@
   const on_annual_rate_input = (e: Event) => {
     annual_rate_EUR = Math.max(
       (e.target as HTMLInputElement).valueAsNumber,
-      get_field_value('ANNUAL_RATE_EUR') || 0,
+      get_field_value('annual_rate_eur') || 0,
     )
   }
 </script>

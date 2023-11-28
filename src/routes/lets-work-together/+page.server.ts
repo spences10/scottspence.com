@@ -1,64 +1,93 @@
 import { EXCHANGE_RATE_API_KEY } from '$env/static/private'
-import {
-  cache_get,
-  cache_set,
-  exchange_rates_key,
-  pricing_numbers_key,
-  redis,
-} from '$lib/redis'
-import { time_to_seconds } from '$lib/utils'
-import type { ExchangeRates } from './stores'
+import { turso_client } from '$lib/turso'
+import type { ResultSet } from '@libsql/client/http'
+import { differenceInHours, parseISO } from 'date-fns'
+import type { ExchangeRates, PricingNumbers } from './stores'
 
-const get_cached_or_fetch = async <T>(
-  key: string,
-  fetch_callback: () => Promise<T>,
-  cache_expiry: number,
-): Promise<T> => {
-  let cached_data: T | null = await cache_get(key)
+const fetch_exchange_rates = async (): Promise<ExchangeRates> => {
+  const client = turso_client()
+  let fetch_new_rates = false
 
-  if (cached_data) {
-    return cached_data
+  // Check if the rates in the database are outdated
+  try {
+    const last_update_result = await client.execute(
+      'SELECT MAX(last_updated) as last_update FROM exchange_rates;',
+    )
+    const last_update = last_update_result.rows[0] as unknown as {
+      last_updated: string
+    }
+
+    if (
+      last_update &&
+      differenceInHours(
+        new Date(),
+        parseISO(last_update.last_updated),
+      ) < 24
+    ) {
+      fetch_new_rates = true
+    }
+  } catch (error) {
+    console.error('Error checking last updated time:', error)
+    fetch_new_rates = true
   }
 
-  const fetched_data: T = await fetch_callback()
-  await cache_set(key, fetched_data, cache_expiry)
+  // Fetch new rates if necessary and update the database
+  if (fetch_new_rates) {
+    const response = await fetch(
+      `https://api.freecurrencyapi.com/v1/latest?apikey=${EXCHANGE_RATE_API_KEY}&currencies=GBP%2CUSD%2CCAD&base_currency=EUR`,
+    )
+    const fetched_rates = (await response.json())
+      .data as ExchangeRates
 
-  return fetched_data
+    for (const [currency, rate] of Object.entries(fetched_rates)) {
+      try {
+        await client.execute({
+          sql: `INSERT INTO exchange_rates (currency_code, rate) VALUES (?, ?)
+          ON CONFLICT (currency_code) DO UPDATE SET rate = ?, last_updated = CURRENT_TIMESTAMP;`,
+          args: [currency, rate, rate],
+        })
+      } catch (error) {
+        console.error(`Error updating rate for ${currency}:`, error)
+      }
+    }
+
+    return fetched_rates
+  }
+
+  // If the rates are not outdated, fetch them from the database
+  try {
+    const result = await client.execute(
+      'SELECT currency_code, rate FROM exchange_rates;',
+    )
+    const rates: ExchangeRates = {}
+    result.rows.forEach(row => {
+      const currency_code = row['currency_code'] as string
+      const rate = row['rate'] as number
+      rates[currency_code] = rate
+    })
+    return rates
+  } catch (error) {
+    console.error('Error fetching rates from database:', error)
+    throw new Error('Failed to fetch exchange rates')
+  }
 }
 
-const fetch_exchange_rates = async () => {
-  const response = await fetch(
-    `https://api.freecurrencyapi.com/v1/latest?apikey=${EXCHANGE_RATE_API_KEY}&currencies=GBP%2CUSD%2CCAD&base_currency=EUR`,
-  )
-  return (await response.json()).data
-}
+const fetch_pricing_numbers = async () => {
+  const client = turso_client()
+  let pricing_numbers: ResultSet
 
-const fetch_pricing_numbers = async (): Promise<{
-  [key: string]: number
-}> => {
-  const all_fields = await redis.hgetall(pricing_numbers_key())
-
-  if (all_fields === null) {
-    throw new Error('Could not fetch pricing numbers from Redis')
+  try {
+    pricing_numbers = await client.execute(
+      'SELECT * FROM pricing_numbers ORDER BY last_updated DESC LIMIT 1;',
+    )
+    return pricing_numbers.rows[0] as unknown as PricingNumbers
+  } catch (error) {
+    console.error('Error fetching from Turso DB:', error)
   }
-
-  const pricing_numbers_data: { [key: string]: number } = {}
-
-  for (const [key, value] of Object.entries(all_fields)) {
-    pricing_numbers_data[key] = Number(value)
-  }
-
-  return pricing_numbers_data
 }
 
 export const load = async () => {
-  const exchange_rates_data =
-    await get_cached_or_fetch<ExchangeRates>(
-      exchange_rates_key(),
-      fetch_exchange_rates,
-      time_to_seconds({ minutes: 5 }),
-    )
-
+  const exchange_rates_data = await fetch_exchange_rates()
   const pricing_numbers_data = await fetch_pricing_numbers()
 
   return {
