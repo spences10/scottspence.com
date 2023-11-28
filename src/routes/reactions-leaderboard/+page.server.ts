@@ -1,118 +1,62 @@
 import { reactions } from '$lib/reactions-config.js'
-import {
-  cache_get,
-  cache_set,
-  get_reactions_leaderboard_key,
-  redis,
-} from '$lib/redis'
-import { time_to_seconds } from '$lib/utils/time-to-seconds.js'
-
-const fetch_posts_data = async (fetch: Fetch): Promise<Post[]> => {
-  const response = await fetch('posts.json')
-  return await response.json()
-}
+import { turso_client } from '$lib/turso/client.js'
 
 const fetch_reaction_data = async (): Promise<ReactionPage[]> => {
-  const keys = await redis.keys('reactions:*')
-  return await Promise.all(
-    keys.map(async (key: string) => {
-      const count = await cache_get(key)
-      return {
-        path: key,
-        count: parseInt(count as string, 10),
-      }
-    }),
+  const client = turso_client()
+  const result = await client.execute(
+    `
+    SELECT
+      r.post_url,
+      p.title,
+      r.reaction_type,
+      r.count,
+      total.total_count
+    FROM
+      reactions r
+      JOIN posts p ON r.post_url = '/posts/' || p.slug
+      JOIN (
+        SELECT
+          post_url,
+          SUM(count) as total_count
+        FROM
+          reactions
+        GROUP BY
+          post_url
+      ) total ON r.post_url = total.post_url
+    GROUP BY
+      r.post_url, r.reaction_type
+    ORDER BY
+      total.total_count DESC, r.post_url, r.reaction_type;
+    `,
   )
+
+  return result.rows.map(row => ({
+    path: String(row.post_url),
+    title: String(row.title),
+    reaction_type: String(row.reaction_type),
+    count: Number(row.count),
+    reaction_emoji: reactions.find(
+      r => r.type === String(row.reaction_type),
+    )?.emoji,
+  }))
 }
 
-const transform_leaderboard = (
-  pages: ReactionPage[],
-  posts_data: Post[],
-): Record<string, ReactionEntry> => {
-  return pages.reduce(
-    (acc: Record<string, ReactionEntry>, { path, count }) => {
-      const [_, post_path, reaction_type] = path.split(':')
-      const stripped_path = post_path.replace('/posts/', '')
-
-      if (!acc[post_path]) {
-        acc[post_path] = { path: post_path }
-      }
-
-      const post = posts_data.find(
-        (p: Post) => p.slug === stripped_path,
-      )
-      if (post) {
-        acc[post_path].title = post.title
-      }
-
-      acc[post_path][reaction_type] = count
-
-      const reaction_info = reactions.find(
-        r => r.type === reaction_type,
-      )
-      if (reaction_info) {
-        acc[post_path][`${reaction_type}_emoji`] = reaction_info.emoji
-      }
-
-      return acc
-    },
-    {},
-  )
-}
-
-const get_leaderboard_with_ranking = async (fetch: Fetch) => {
-  const [posts_data, reaction_data] = await Promise.all([
-    fetch_posts_data(fetch),
-    fetch_reaction_data(),
-  ])
-
-  const sorted_pages = reaction_data.sort((a, b) => b.count - a.count)
-
-  // Assign ranking numbers
-  sorted_pages.forEach((page, index) => {
-    page.rank = index + 1
-  })
-
-  const leaderboard = transform_leaderboard(sorted_pages, posts_data)
-
-  return Object.values(leaderboard).map((entry, index) => {
-    entry.rank = index + 1
-    return entry
-  })
-}
-
-// TODO: Should probably store the total count in Redis
-const get_total_reaction_count = async (): Promise<number> => {
+const get_leaderboard_with_ranking = async () => {
   const reaction_data = await fetch_reaction_data()
-  return reaction_data.reduce((total, page) => total + page.count, 0)
+
+  const leaderboard = reaction_data.sort((a, b) => b.count - a.count)
+  leaderboard.forEach((entry, index) => {
+    entry.rank = index + 1
+  })
+
+  return leaderboard
 }
 
-export const load = async ({ fetch }) => {
+export const load = async () => {
   try {
-    const cached = await cache_get(get_reactions_leaderboard_key())
-    if (cached) {
-      return {
-        leaderboard: cached,
-      }
-    }
+    const leaderboard = await get_leaderboard_with_ranking()
+    return { leaderboard }
   } catch (error) {
-    console.error('Error fetching from Redis:', error)
-  }
-
-  // if cache miss, fetch from API
-  const leaderboard = await get_leaderboard_with_ranking(fetch)
-
-  try {
-    await cache_set(
-      get_reactions_leaderboard_key(),
-      leaderboard,
-      time_to_seconds({ hours: 24 }),
-    )
-  } catch (error) {
-    console.error('Error setting to Redis:', error)
-  }
-
-  return {
-    leaderboard,
+    console.error('Error fetching leaderboard data:', error)
   }
 }

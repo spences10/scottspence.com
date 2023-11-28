@@ -2,11 +2,22 @@
   import { reactions } from '$lib/reactions-config'
 
   export let leaderboard: ReactionEntry[]
+
+  const get_reaction_count = (
+    path: string,
+    reaction_type: string,
+  ) => {
+    const entry = leaderboard.find(
+      page =>
+        page.path === path && page.reaction_type === reaction_type,
+    )
+    return entry ? entry.count : 0
+  }
 </script>
 
 <section class="m-0 mb-20 sm:-mx-30 lg:-mx-40">
   <div class="grid gap-8 grid-cols-1 relative md:grid-cols-2">
-    {#each leaderboard as page}
+    {#each leaderboard as page (page.path)}
       <a
         target="_blank"
         rel="noopener noreferrer"
@@ -35,14 +46,13 @@
             {/if}
             {page.title}
           </h3>
-
           <div class="mt-5 flex flex-wrap justify-between">
             {#each reactions as reaction}
               <span
                 class="btn btn-primary text-xl flex-1 md:flex-none min-w-[calc(50%-0.5rem)] md:min-w-0 mr-2 mb-2"
               >
                 {reaction.emoji}
-                {!page[reaction.type] ? 0 : page[reaction.type]}
+                {get_reaction_count(page.path, reaction.type)}
               </span>
             {/each}
           </div>
