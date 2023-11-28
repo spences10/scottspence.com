@@ -16,7 +16,7 @@
   let { Copy, exchange_rates, pricing_numbers } = data
 
   if (pricing_numbers) {
-    $pricing_numbers_store = pricing_numbers;
+    $pricing_numbers_store = pricing_numbers
   }
   $exchange_rates_store = exchange_rates
 
