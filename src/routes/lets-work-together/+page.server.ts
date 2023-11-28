@@ -1,13 +1,9 @@
 import { EXCHANGE_RATE_API_KEY } from '$env/static/private'
-import {
-  cache_get,
-  cache_set,
-  exchange_rates_key,
-  pricing_numbers_key,
-  redis,
-} from '$lib/redis'
+import { cache_get, cache_set, exchange_rates_key } from '$lib/redis'
+import { turso_client } from '$lib/turso'
 import { time_to_seconds } from '$lib/utils'
-import type { ExchangeRates } from './stores'
+import type { ResultSet } from '@libsql/client/http'
+import type { ExchangeRates, PricingNumbers } from './stores'
 
 const get_cached_or_fetch = async <T>(
   key: string,
@@ -33,22 +29,18 @@ const fetch_exchange_rates = async () => {
   return (await response.json()).data
 }
 
-const fetch_pricing_numbers = async (): Promise<{
-  [key: string]: number
-}> => {
-  const all_fields = await redis.hgetall(pricing_numbers_key())
+const fetch_pricing_numbers = async () => {
+  const client = turso_client()
+  let pricing_numbers: ResultSet
 
-  if (all_fields === null) {
-    throw new Error('Could not fetch pricing numbers from Redis')
+  try {
+    pricing_numbers = await client.execute(
+      'SELECT * FROM pricing_numbers ORDER BY last_updated DESC LIMIT 1;',
+    )
+    return pricing_numbers.rows[0] as unknown as PricingNumbers
+  } catch (error) {
+    console.error('Error fetching from Turso DB:', error)
   }
-
-  const pricing_numbers_data: { [key: string]: number } = {}
-
-  for (const [key, value] of Object.entries(all_fields)) {
-    pricing_numbers_data[key] = Number(value)
-  }
-
-  return pricing_numbers_data
 }
 
 export const load = async () => {

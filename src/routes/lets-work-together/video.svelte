@@ -4,9 +4,9 @@
   import { exchange_rates_store, get_field_value } from './stores'
   import { calculate_day_rate_with_pto, locale_string } from './utils'
 
-  let annual_rate_EUR = get_field_value('ANNUAL_RATE_EUR') || 0
+  let annual_rate_EUR = get_field_value('annual_rate_eur') || 0
   let working_days_in_year =
-    get_field_value('WORKING_DAYS_IN_YEAR') || 0
+    get_field_value('working_days_in_year') || 0
 
   const calculate_cost_with_customisation = (
     base_cost: number,

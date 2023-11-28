@@ -15,7 +15,9 @@
   export let data
   let { Copy, exchange_rates, pricing_numbers } = data
 
-  $pricing_numbers_store = pricing_numbers
+  if (pricing_numbers) {
+    $pricing_numbers_store = pricing_numbers;
+  }
   $exchange_rates_store = exchange_rates
 
   let end_of_copy: HTMLElement | null
