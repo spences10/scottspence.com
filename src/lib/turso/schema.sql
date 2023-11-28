@@ -51,6 +51,14 @@ CREATE TABLE
     last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
 
+CREATE TABLE
+  exchange_rates (
+    id INTEGER PRIMARY KEY,
+    currency_code TEXT NOT NULL UNIQUE,
+    rate REAL NOT NULL,
+    last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  );
+
 SELECT
   pp.id,
   pp.pathname,
