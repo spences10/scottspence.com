@@ -13,16 +13,16 @@ const fetch_exchange_rates = async (): Promise<ExchangeRates> => {
     const last_update_result = await client.execute(
       'SELECT MAX(last_updated) as last_update FROM exchange_rates;',
     )
-    const last_update = last_update_result.rows[0] as unknown as {
-      last_updated: string
+    const last_updated = last_update_result.rows[0] as unknown as {
+      last_update: string
     }
 
     if (
-      last_update &&
+      last_updated &&
       differenceInHours(
         new Date(),
-        parseISO(last_update.last_updated),
-      ) < 24
+        parseISO(last_updated.last_update),
+      ) > 1
     ) {
       fetch_new_rates = true
     }
@@ -41,6 +41,7 @@ const fetch_exchange_rates = async (): Promise<ExchangeRates> => {
 
     for (const [currency, rate] of Object.entries(fetched_rates)) {
       try {
+        // TODO: Maybe keep a history of these?
         await client.execute({
           sql: `INSERT INTO exchange_rates (currency_code, rate) VALUES (?, ?)
           ON CONFLICT (currency_code) DO UPDATE SET rate = ?, last_updated = CURRENT_TIMESTAMP;`,
