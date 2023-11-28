@@ -1,4 +1,5 @@
-import { ratelimit, redis } from '$lib/redis'
+import { ratelimit } from '$lib/redis'
+import { turso_client } from '$lib/turso/client.js'
 import { fail } from '@sveltejs/kit'
 
 export const actions = {
@@ -21,16 +22,33 @@ export const actions = {
     const reaction = data.get('reaction')
     const path = url.searchParams.get('path')
 
-    const redis_key = `reactions:${path}:${reaction}`
+    if (typeof reaction !== 'string' || typeof path !== 'string') {
+      throw new Error('Invalid reaction or path')
+    }
 
-    const result = await redis.incr(redis_key)
+    const client = turso_client()
+
+    await client.execute({
+      sql: `INSERT INTO reactions (post_url, reaction_type, count) VALUES (?, ?, 1)
+            ON CONFLICT (post_url, reaction_type)
+            DO UPDATE SET count = count + 1, last_updated = CURRENT_TIMESTAMP;`,
+      args: [path, reaction],
+    })
+
+    const result = await client.execute({
+      sql: 'SELECT count FROM reactions WHERE post_url = ? AND reaction_type = ?',
+      args: [path, reaction],
+    })
+
+    const count =
+      result.rows.length > 0 ? Number(result.rows[0]['count']) : 0
 
     return {
       success: true,
       status: 200,
       reaction: reaction,
       path: path,
-      count: result,
+      count: count,
     }
   },
 }
