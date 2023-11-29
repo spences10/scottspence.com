@@ -5,12 +5,12 @@ settings:
   excludeLinksFromLockfile: false
 
 devDependencies:
-  '@fontsource/manrope':
+  '@fontsource-variable/manrope':
     specifier: ^5.0.17
     version: 5.0.17
-  '@fontsource/poppins':
-    specifier: ^5.0.8
-    version: 5.0.8
+  '@fontsource-variable/victor-mono':
+    specifier: ^5.0.3
+    version: 5.0.3
   '@fontsource/victor-mono':
     specifier: ^5.0.11
     version: 5.0.11
@@ -753,12 +753,12 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
-  /@fontsource/manrope@5.0.17:
-    resolution: {integrity: sha512-c53GfQw+lsP7grblDfkXduECBdPtOHZ4AJWUT7x/WdP73sRWkLpGoCMCqH+2XielLXfGO3MEXoaN7tvq11eEtw==}
+  /@fontsource-variable/manrope@5.0.17:
+    resolution: {integrity: sha512-oE1dCsaV6uZ2XnibphEAQF0/gnYEls79KH4Y+UI7qItv/M0bRq67AgFz/YvU7QTVQpyH07Vfs2NproMzjmNNaw==}
     dev: true
 
-  /@fontsource/poppins@5.0.8:
-    resolution: {integrity: sha512-P8owfYWluoUY5Nyzk4gT/L6LmLmseP6ezFWhj6VBUa5pRIdnCvNJpoQ6i/vhekjtJOfqX6nKlB+LCttoUl2GQQ==}
+  /@fontsource-variable/victor-mono@5.0.3:
+    resolution: {integrity: sha512-vZWuwe0BAND2vsdTPwC+DlqifUyuWtHgX9l9jweZL+5ikfgO2SszDGBXVxbgwMtbHv4wsXwwI62cqfVOqcJj4w==}
     dev: true
 
   /@fontsource/victor-mono@5.0.11:

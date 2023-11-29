@@ -13,8 +13,8 @@ function create_theme(theme_name, font_family) {
 }
 
 const custom_font = {
-  corporate: 'Manrope',
-  cyberpunk: 'Victor Mono',
+  corporate: 'Manrope Variable',
+  cyberpunk: 'Victor Mono Variable',
 }
 
 const daisy_themes = themes.map(theme =>
