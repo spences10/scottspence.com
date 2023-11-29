@@ -90,3 +90,10 @@ CREATE TABLE
     last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     UNIQUE (post_url, reaction_type)
   );
+
+CREATE TABLE
+  newsletter_subscriber (
+    id INTEGER PRIMARY KEY,
+    count INTEGER NOT NULL,
+    last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  );
