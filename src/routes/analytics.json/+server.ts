@@ -27,6 +27,7 @@ export const GET = async ({ url, fetch }) => {
     fetch,
     `aggregations`,
     params,
+    `analytics.json_GET`,
   )
 
   if (Array.isArray(analytics_data) && analytics_data.length > 0) {

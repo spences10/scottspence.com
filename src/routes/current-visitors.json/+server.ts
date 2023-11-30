@@ -12,6 +12,7 @@ export const GET = async ({ fetch }): Promise<Response> => {
     fetch,
     `current_visitors`,
     { site_id: PUBLIC_FATHOM_ID, detailed: true },
+    `current-visitors.json_GET`,
   )
 
   if (visitors && 'total' in visitors && 'content' in visitors) {

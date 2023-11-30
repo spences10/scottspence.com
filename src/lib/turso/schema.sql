@@ -97,3 +97,12 @@ CREATE TABLE
     count INTEGER NOT NULL,
     last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
+
+CREATE TABLE
+  fathom_api_calls (
+    id INTEGER PRIMARY KEY,
+    calling_function TEXT NOT NULL,
+    endpoint TEXT NOT NULL,
+    parameters TEXT,
+    call_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  );

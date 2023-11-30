@@ -1,5 +1,5 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
-import { fetch_fathom_data } from '$lib/fathom/fetch-fathom-data.js'
+import { fetch_fathom_data } from '$lib/fathom'
 import { turso_client } from '$lib/turso/client.js'
 import type { Client } from '@libsql/client/http'
 import {
@@ -127,6 +127,7 @@ const fetch_popular_posts = async (fetch: Fetch, period: string) => {
           sort_by: 'pageviews:desc',
           limit: '100',
         },
+        `fetch_popular_posts_${period}`,
       )
 
       if (fathom_data && Array.isArray(fathom_data)) {

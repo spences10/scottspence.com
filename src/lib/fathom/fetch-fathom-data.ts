@@ -1,4 +1,5 @@
 import { FATHOM_API_KEY } from '$env/static/private'
+import { turso_client } from '$lib/turso'
 
 type FathomDataResponse =
   | VisitorData
@@ -21,7 +22,9 @@ export const fetch_fathom_data = async (
   fetch: Fetch,
   endpoint: string,
   params: Record<string, unknown>,
+  calling_function: string,
 ): Promise<FathomDataResponse> => {
+  const client = turso_client()
   try {
     const url = new URL(`https://api.usefathom.com/v1/${endpoint}`)
     Object.entries(params)
@@ -49,6 +52,11 @@ export const fetch_fathom_data = async (
     }
 
     const data = await res.json()
+
+    await client.execute({
+      sql: 'INSERT INTO fathom_api_calls (calling_function, endpoint, parameters) VALUES (?, ?, ?);',
+      args: [calling_function, endpoint, JSON.stringify(params)],
+    })
 
     return data
   } catch (error) {
