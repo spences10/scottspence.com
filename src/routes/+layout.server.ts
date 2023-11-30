@@ -186,7 +186,7 @@ export const load = async ({ fetch, params }) => {
     await subscribers_response.json()
 
   return {
-    // visitors,
+    visitors,
     popular_posts: {
       popular_posts_daily,
       popular_posts_monthly,

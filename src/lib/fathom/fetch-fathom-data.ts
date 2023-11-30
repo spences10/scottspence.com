@@ -2,7 +2,6 @@ import { FATHOM_API_KEY } from '$env/static/private'
 import { turso_client } from '$lib/turso'
 
 type FathomDataResponse =
-  | VisitorData
   | AnalyticsData
   | Post
   | PopularPosts

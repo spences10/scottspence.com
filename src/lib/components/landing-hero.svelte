@@ -1,13 +1,24 @@
 <script lang="ts">
-  import { visitors_store } from '$lib/stores'
+  import { visitors_store, type VisitorEntry } from '$lib/stores'
   import * as Fathom from 'fathom-client'
   import CurrentVisitorsData from './current-visitors-data.svelte'
 
-  let isHovering = false
+  let is_hovering = false
   let base_cloudinary_url =
     'https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1691271318/scottspence.com/site-assets/'
   let ScottFace = `${base_cloudinary_url}scott-mug-face-no-bg.png`
   let ScottMugFace = `${base_cloudinary_url}scott-mug-face.png`
+
+  let current_visitor_data: VisitorEntry | undefined | number
+
+  $: {
+    if ($visitors_store && $visitors_store.visitor_data) {
+      current_visitor_data = $visitors_store.visitor_data.reduce(
+        (total, visitor) => total + visitor.recent_visitors,
+        0,
+      )
+    }
+  }
 
   let show_current_visitor_data = false
 </script>
@@ -18,11 +29,11 @@
       <!-- svelte-ignore a11y-mouse-events-have-key-events -->
       <!-- svelte-ignore a11y-img-redundant-alt -->
       <img
-        src={isHovering ? ScottFace : ScottMugFace}
+        src={is_hovering ? ScottFace : ScottMugFace}
         alt="Cartoon face Scott"
         class="rounded-full max-w-sm shadow-xl w-1/2 lg:w-full max-h-96 max-w-96"
-        on:mouseover={() => (isHovering = !isHovering)}
-        on:mouseout={() => (isHovering = !isHovering)}
+        on:mouseover={() => (is_hovering = !is_hovering)}
+        on:mouseout={() => (is_hovering = !is_hovering)}
       />
       <div class="all-prose lg:mr-28">
         <h1 class="font-black -mb-5 text-5xl">
@@ -64,7 +75,7 @@
         >
           Get in Touch
         </a>
-        {#if $visitors_store && $visitors_store.visitors.total}
+        {#if current_visitor_data}
           <!-- svelte-ignore a11y-no-static-element-interactions -->
           <span
             on:mouseenter={() => (show_current_visitor_data = true)}
@@ -76,9 +87,9 @@
             >
               There's currently
               <span class="font-bold">
-                {$visitors_store.visitors.total}
+                {current_visitor_data}
               </span>
-              live {$visitors_store.visitors.total === 1
+              live {current_visitor_data === 1
                 ? 'visitor'
                 : 'visitors'}
             </p>

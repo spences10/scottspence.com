@@ -110,9 +110,7 @@ CREATE TABLE
 CREATE TABLE
   visitors (
     id INTEGER PRIMARY KEY,
-    client_address TEXT NOT NULL,
+    client_address TEXT,
     pathname TEXT,
-    count INTEGER NOT NULL DEFAULT 1,
-    last_visit TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE (client_address, pathname)
+    last_visit TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   );

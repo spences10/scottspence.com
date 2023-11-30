@@ -13,9 +13,8 @@
     UpdatedBanner,
   } from '$lib/components'
   import { name, website } from '$lib/info'
-  import { visitors_store } from '$lib/stores'
+  import { visitors_store, type VisitorEntry } from '$lib/stores'
   import {
-    get_current_page_visitors,
     get_headings,
     og_image_url,
     update_toc_visibility,
@@ -54,12 +53,16 @@
   })
 
   let current_path = $page.url.pathname
-  let content = $visitors_store?.visitors.content || []
 
-  let visitors_count = get_current_page_visitors(
-    current_path,
-    content,
-  )
+  let current_visitor_data: VisitorEntry | undefined
+
+  $: {
+    if ($visitors_store && $visitors_store.visitor_data) {
+      current_visitor_data = $visitors_store.visitor_data.find(
+        visitor => visitor.pathname === slug,
+      )
+    }
+  }
 
   const handle_scroll = () => {
     show_table_of_contents = update_toc_visibility(end_of_copy, -200)
@@ -116,7 +119,7 @@
       {/if}
     </div>
   </div>
-  {#if visitors_count?.total > 0}
+  {#if current_visitor_data}
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <span
       on:mouseenter={() => (show_current_visitor_data = true)}
@@ -124,9 +127,10 @@
       class="text-sm cursor-pointer inline-block"
     >
       <p>
-        {visitors_count.total}
-        {visitors_count.total > 1 ? `people` : `person`} viewing this page
-        live
+        {current_visitor_data.recent_visitors}
+        {current_visitor_data.recent_visitors > 1
+          ? `people`
+          : `person`} viewing this page live
       </p>
       {#if show_current_visitor_data}
         <CurrentVisitorsData />
