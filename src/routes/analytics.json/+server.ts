@@ -1,5 +1,6 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
 import { fetch_fathom_data } from '$lib/fathom'
+import { turso_client } from '$lib/turso/client'
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { json } from '@sveltejs/kit'
 
@@ -9,6 +10,24 @@ export const config: ServerlessConfig = {
 
 export const GET = async ({ url, fetch }) => {
   const pathname = url.searchParams.get('pathname') ?? '/'
+
+  // Extract slug from pathname, assuming it always starts with '/posts/'
+  const slug = pathname.replace('/posts/', '')
+
+  // Check if the slug exists in the posts table
+  const client = turso_client()
+  const exists = await client.execute({
+    sql: 'SELECT 1 FROM posts WHERE slug = ?',
+    args: [slug],
+  })
+
+  if (exists.rows.length === 0) {
+    return json({
+      analytics: [],
+      message: 'Post not in posts table.',
+    })
+  }
+
   const date_grouping = url.searchParams.get('date_grouping') ?? 'day'
   const date_from = url.searchParams.get('date_from')
   const date_to = url.searchParams.get('date_to')
