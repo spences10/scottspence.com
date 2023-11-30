@@ -10,7 +10,7 @@
   import {
     newsletter_subscriber_count_store,
     popular_posts_store,
-    visitors_store,
+    // visitors_store,
   } from '$lib/stores'
   import { handle_mouse_move } from '$lib/utils'
   import * as Fathom from 'fathom-client'
@@ -21,7 +21,7 @@
   export let data
 
   $popular_posts_store = data?.popular_posts
-  $visitors_store = data?.visitors
+  // $visitors_store = data?.visitors
   $newsletter_subscriber_count_store =
     data?.newsletter_subscriber_count
 

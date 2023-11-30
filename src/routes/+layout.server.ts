@@ -155,14 +155,19 @@ const fetch_popular_posts = async (fetch: Fetch, period: string) => {
   return popular_posts
 }
 
-export const load = async ({ fetch }) => {
+export const load = async ({ fetch, params }) => {
+  const { slug } = params
+
   // Fetch Popular Posts
   const popular_posts_promises = ['day', 'month', 'year'].map(
     period => fetch_popular_posts(fetch, period),
   )
 
   // Fetch Visitors
-  const visitors_promise = fetch(`../current-visitors.json`)
+  let visitors_promise
+  if (slug) {
+    visitors_promise = fetch(`../current-visitors.json?slug=${slug}`)
+  }
 
   // Fetch newsletter subscriber count
   const subscribers_promise = fetch(`../subscribers.json`)
@@ -174,14 +179,14 @@ export const load = async ({ fetch }) => {
   ] = await Promise.all(popular_posts_promises)
 
   const visitors_response = await visitors_promise
-  const visitors = await visitors_response.json()
+  const visitors = await visitors_response?.json()
 
   const subscribers_response = await subscribers_promise
   const { newsletter_subscriber_count } =
     await subscribers_response.json()
 
   return {
-    visitors,
+    // visitors,
     popular_posts: {
       popular_posts_daily,
       popular_posts_monthly,
