@@ -106,3 +106,13 @@ CREATE TABLE
     parameters TEXT,
     call_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
+
+CREATE TABLE
+  visitors (
+    id INTEGER PRIMARY KEY,
+    client_address TEXT NOT NULL,
+    pathname TEXT,
+    count INTEGER NOT NULL DEFAULT 1,
+    last_visit TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (client_address, pathname)
+  );
