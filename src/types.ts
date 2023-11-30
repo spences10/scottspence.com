@@ -42,18 +42,12 @@ declare interface PopularPosts {
   popular_posts_yearly: PopularPost[]
 }
 
-declare interface VisitorData {
-  content: Array<{
-    hostname: string
+declare interface VisitorsData {
+  visitor_data: Array<{
     pathname: string
-    total: string
+    title: string
+    recent_visitors: number
   }>
-  referrers: Array<{
-    referrer_hostname: string
-    referrer_pathname: string
-    total: string
-  }>
-  total: number
 }
 
 declare interface Fetch {

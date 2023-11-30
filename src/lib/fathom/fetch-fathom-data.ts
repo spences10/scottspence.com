@@ -2,7 +2,6 @@ import { FATHOM_API_KEY } from '$env/static/private'
 import { turso_client } from '$lib/turso'
 
 type FathomDataResponse =
-  | VisitorData
   | AnalyticsData
   | Post
   | PopularPosts
@@ -15,7 +14,7 @@ type FathomDataResponse =
  * @param fetch - The `fetch` function to use for making HTTP requests.
  * @param endpoint - The API endpoint to fetch data from `aggregations ` or `current_visitors`.
  * @param params - An object containing query parameters to include in the API request.
- * @param cache_duration - The number of seconds to cache the API response for.
+ * @param calling_function - Tracking where call are coming from.
  * @returns {Promise<FathomDataResponse>} The data returned by the API.
  */
 export const fetch_fathom_data = async (

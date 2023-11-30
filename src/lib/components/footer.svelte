@@ -18,6 +18,14 @@
       selected_period as PopularPostsPeriod
     ].slice(0, 6)
   }
+
+  let total_visitors = 0
+  $: if ($visitors_store && $visitors_store.visitor_data) {
+    total_visitors = $visitors_store.visitor_data.reduce(
+      (total, visitor) => total + visitor.recent_visitors,
+      0,
+    )
+  }
 </script>
 
 <footer class="footer p-10 bg-primary text-primary-content">
@@ -44,7 +52,8 @@
         </span>
       </p>
     {/each}
-    {#if $visitors_store && $visitors_store.visitors.total}
+
+    {#if total_visitors > 0}
       <!-- svelte-ignore a11y-no-static-element-interactions -->
       <span
         on:mouseenter={() => (show_current_visitor_data = true)}
@@ -56,11 +65,9 @@
         >
           There's currently
           <span class="font-bold">
-            {$visitors_store.visitors.total}
+            {total_visitors}
           </span>
-          live {$visitors_store.visitors.total === 1
-            ? 'visitor'
-            : 'visitors'}
+          live {total_visitors === 1 ? 'visitor' : 'visitors'}
         </p>
         {#if show_current_visitor_data}
           <CurrentVisitorsData />
