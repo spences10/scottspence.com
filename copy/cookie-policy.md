@@ -8,14 +8,14 @@
 # Cookie policy
 
 <Small>
-  Last updated: <DateUpdated date="2023-10-06" small="true" />
+  Last updated: <DateUpdated date="2023-12-01" small="true" />
 </Small>
 
 Ok! Let's have a chat about Cookies, Shall We?
 
 Alright, on [scottspence.com](), I'm not all about the fuss, but
 there's a thing or two you should know about cookies when you're
-nipping around my site.
+visiting my site.
 
 ### So, what are these cookie things anyway?
 
@@ -26,25 +26,14 @@ time you drop in. Handy, innit?
 
 ### How am I using them?
 
-Now, I'm keeping it simple, just how I like it. Currently there's two
-cookies on [scottspence.com](), and here's what they're for:
+Now, I'm keeping it simple, just how I like it. Currently there's one
+cookie on [scottspence.com](), and here's what it's for:
 
 ### Theme selection cookie:
 
 - **Name**: theme
 - **Job**: This cookie remembers your theme choice on my site. So,
   every time you pop by, your favourite look is ready and waiting.
-- **Shelf-life**: A year. If you don't visit again in that time it
-  will expire.
-- **Type**: First-party cookie. Only for this site used nowhere else
-  or shared.
-
-### Fathom analytics
-
-- **Name**: block_fathom
-- **Job**: This cookie will stop requesting analytics data, so, you
-  won't see post analytics, i.e. people that have visited/read the
-  post.
 - **Shelf-life**: A year. If you don't visit again in that time it
   will expire.
 - **Type**: First-party cookie. Only for this site used nowhere else
