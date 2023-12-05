@@ -44,7 +44,7 @@
     "autoprefixer": "10.4.16",
     "cspell": "^8.0.0",
     "cssnano": "6.0.1",
-    "daisyui": "4.4.6",
+    "daisyui": "4.4.19",
     "date-fns": "2.30.0",
     "eslint": "8.54.0",
     "eslint-config-prettier": "9.0.0",
