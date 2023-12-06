@@ -37,10 +37,9 @@ const insert_fathom_data_into_turso = async (
   period: string,
 ) => {
   const insert_query = `
-    INSERT INTO popular_posts (pathname, title, pageviews, visits, date_grouping)
-    VALUES (?, ?, ?, ?, ?)
+    INSERT INTO popular_posts (pathname, pageviews, visits, date_grouping)
+    VALUES (?, ?, ?, ?)
     ON CONFLICT(pathname, date_grouping) DO UPDATE SET
-      title = excluded.title,
       pageviews = excluded.pageviews,
       visits = excluded.visits,
       last_updated = CURRENT_TIMESTAMP;
@@ -49,8 +48,7 @@ const insert_fathom_data_into_turso = async (
     await client.execute({
       sql: insert_query,
       args: [
-        post.pathname ?? 'Default Path',
-        post.title,
+        post.pathname,
         Number.isInteger(post.pageviews)
           ? post.pageviews
           : parseInt(post.pageviews),

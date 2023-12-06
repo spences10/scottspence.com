@@ -33,7 +33,6 @@ CREATE TABLE
   popular_posts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     pathname TEXT NOT NULL,
-    title TEXT NOT NULL,
     pageviews INTEGER NOT NULL,
     visits INTEGER NOT NULL,
     date_grouping TEXT NOT NULL,
