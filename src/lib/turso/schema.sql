@@ -113,3 +113,15 @@ CREATE TABLE
     pathname TEXT,
     last_visit TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
+
+SELECT
+  SUBSTR(parameters, LENGTH(parameters)/2 + 1) AS parameters,
+  COUNT(*) as count
+FROM
+  fathom_api_calls
+WHERE
+  date (call_timestamp) = date ('now', '-1 day')
+GROUP BY
+  parameters
+HAVING
+  COUNT(*) > 1;
