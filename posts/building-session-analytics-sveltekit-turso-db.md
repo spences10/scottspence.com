@@ -2,7 +2,7 @@
 date: 2023-12-10
 title: Building Session Analytics with SvelteKit and Turso DB
 tags: ['analytics', 'turso', 'sveltekit']
-isPrivate: true
+isPrivate: false
 ---
 
 Okedokey, so, I've been playing around with Turso DB and SvelteKit and
@@ -198,42 +198,49 @@ free API key with limited requests from https://ipinfo.io/signup
 
 ## Session handling
 
-In `hooks.server.ts`, we implemented logic to handle user sessions:
+So, I hinted at this at the beginning of the post, the way I want to
+keep track of what pages are being visited are via the
+`hooks.server.ts` file. In `hooks.server.ts`, I implemented logic to
+handle user sessions which would:
 
 - Check for existing sessions.
 - Update session data or create a new session.
 - Log page visits.
+- Create a session cookie.
 
-```typescript
-// hooks.server.ts implementation
-```
+**what's the session cookie for?** Well, this is so I can effectively
+detect when a user session has ended. This means that I can update the
+`session_end` field in the `user_session` table and delete the session
+data sooner than the 24 hour period.
+
+This is done via a neat little function called `sendBeacon` which
+allows you to send data to a server without waiting for a response.
+
+I picked this up from Paulie's post on Neon and Astro:
+https://neon.tech/blog/roll-your-own-analytics-with-astro-vercel-edge-functions-and-neon
 
 ## Tracking Page Visits
 
-`update_page_visit` function was created to track page views, visits,
-and unique visits:
+This is where all the heavy lifting happend with the
+`update_page_visit` function. This could be optimised a lot, but it
+works.
 
-```typescript
-// update_page_visit.ts implementation
-```
+Essentially, selecting from the `page_analytics` table to see if the
+page has been visited before, it then updates the `page_analytics`
+table if not it'll insert a new row.
 
-## Periodic Metrics Calculation
+## Periodic metrics calculation
 
-We implemented `calculate_metrics` to periodically calculate average
-session duration and bounce rate:
+Currently the `calculate_metrics` function is called every time a page
+is visited, this is not ideal but I didn't want to set up a cron job
+to run this every hour or so. This is also where the session clean up
+is happening.
 
-```typescript
-// calculate_metrics.ts implementation
-```
+This is where there's loads of queries to calculate the metrics for
+bounce rate and average session duration.
 
-## Handling Data Clean-up
-
-To maintain efficiency, we added a clean-up routine in
-`calculate_metrics` to remove old session data:
-
-```typescript
-// Clean-up SQL query
-```
+This of course could be better implemented, but it's a proof of
+concept dammit! 😂
 
 ## Conclusion
 
@@ -242,15 +249,29 @@ session-based analytics system in a SvelteKit application,
 highlighting the importance of efficient data management and the
 utility of Turso DB.
 
+## Next steps
+
+Currently this project is hosted on Vercel, I'd like to move it to
+Fly.io and use the node adapter for SvelteKit so that I can have a
+local Turso DB instance running. If you're not aware Vercel are
+immutable deployments, so you can't run a local database instance.
+
+I think with a local it will speed things up considerably, if you
+check out the demo now you'll notice some (like six seconds 😅)
+latency. There's a post from Jamie on the Turso blog detailing this,
+here:
+https://blog.turso.tech/stop-caching-and-use-your-database-to-save-time-and-latency-16aebd3f
+
 ## References
 
-SvelteKit discussion: https://github.com/sveltejs/kit/discussions/3973
-sveltekit-user-ip-location-example:
-https://github.com/CAPTAIN320/sveltekit-user-ip-location-example My
-Tweet: https://twitter.com/spences10/status/1731036535842074808
-Paulie:
-https://neon.tech/blog/roll-your-own-analytics-with-astro-vercel-edge-functions-and-neon
-sendBeacon:
-https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon
+- SvelteKit discussion:
+  https://github.com/sveltejs/kit/discussions/3973
+- sveltekit-user-ip-location-example:
+  https://github.com/CAPTAIN320/sveltekit-user-ip-location-example My
+- Tweet: https://twitter.com/spences10/status/1731036535842074808
+- Paulie:
+  https://neon.tech/blog/roll-your-own-analytics-with-astro-vercel-edge-functions-and-neon
+- sendBeacon:
+  https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon
 
 <!-- Links -->
