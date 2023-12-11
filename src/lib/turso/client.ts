@@ -2,7 +2,7 @@ import {
   TURSO_DB_AUTH_TOKEN,
   TURSO_DB_URL,
 } from '$env/static/private'
-import { createClient, type Client } from '@libsql/client/http'
+import { createClient, type Client } from '@libsql/client/web'
 
 export const turso_client = (): Client => {
   const url = TURSO_DB_URL?.trim()
