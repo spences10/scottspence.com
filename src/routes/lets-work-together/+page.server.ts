@@ -1,8 +1,11 @@
 import { EXCHANGE_RATE_API_KEY } from '$env/static/private'
 import { turso_client } from '$lib/turso'
-import type { ResultSet } from '@libsql/client/http'
+import type { ResultSet } from '@libsql/client/web'
+import type { Config } from '@sveltejs/adapter-vercel'
 import { differenceInHours, parseISO } from 'date-fns'
 import type { ExchangeRates, PricingNumbers } from './stores'
+
+export const config: Config = { runtime: 'nodejs18.x' }
 
 const fetch_exchange_rates = async (): Promise<ExchangeRates> => {
   const client = turso_client()
