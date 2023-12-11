@@ -1,7 +1,7 @@
 ---
 date: 2022-10-02
 title: Set up a free PocketBase database with Fly.io
-tags: ['pocketbase', 'database', 'docker', 'guide']
+tags: ['pocketbase', 'database', 'flyio', 'docker', 'guide']
 isPrivate: false
 ---
 
