@@ -82,6 +82,7 @@ Fintech
 firacode
 Fishshell
 Flexbox
+flyio
 fontjoy
 Fontsource
 frappe
@@ -114,6 +115,7 @@ Holthausen
 Hygraph
 Ilesh
 imgur
+ipinfo
 jamiebradley
 Jamstack
 Jaoude

@@ -7,7 +7,7 @@ isPrivate: false
 
 Okedokey, so, I've been playing around with Turso DB and SvelteKit and
 I decided to see if I could record analytics for a project and use
-Turso to store the data. This was a bit of exploritory work, which I
+Turso to store the data. This was a bit of exploratory work, which I
 found really interesting as it's something that I've always left to a
 third party service like Fathom Analytics. By the way I still love
 Fathom and won't be moving away from it for my main site.
@@ -100,7 +100,7 @@ So, let's get started with what I did...
 
 ## Tables
 
-I created a `user_session` table to record the following schama:
+I created a `user_session` table to record the following schema:
 
 ```sql
 CREATE TABLE
@@ -193,7 +193,7 @@ CREATE TABLE
   );
 ```
 
-The data for this table is from using the ipinfo.io API, you can get a
+The data for this table is from using the IPinfo.io API, you can get a
 free API key with limited requests from https://ipinfo.io/signup
 
 ## Session handling
@@ -221,7 +221,7 @@ https://neon.tech/blog/roll-your-own-analytics-with-astro-vercel-edge-functions-
 
 ## Tracking Page Visits
 
-This is where all the heavy lifting happend with the
+This is where all the heavy lifting happened with the
 `update_page_visit` function. This could be optimised a lot, but it
 works.
 
