@@ -2,10 +2,7 @@
   import { browser } from '$app/environment'
   import { onNavigate } from '$app/navigation'
   import { page } from '$app/stores'
-  import {
-    PUBLIC_FATHOM_ID,
-    PUBLIC_FATHOM_URL,
-  } from '$env/static/public'
+  import { env } from '$env/dynamic/public'
   import { BackToTop, Footer, Header, Nav } from '$lib/components'
   import {
     newsletter_subscriber_count_store,
@@ -17,6 +14,8 @@
   import { onMount } from 'svelte'
   import '../app.css'
   import '../prism.css'
+
+  const { PUBLIC_FATHOM_ID, PUBLIC_FATHOM_URL } = env
 
   export let data
 

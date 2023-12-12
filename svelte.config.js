@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-vercel'
+import adapter from '@sveltejs/adapter-node'
 import { vitePreprocess } from '@sveltejs/kit/vite'
 import { mdsvex } from 'mdsvex'
 import mdsvexConfig from './mdsvex.config.js'
@@ -11,7 +11,7 @@ const config = {
   preprocess: [mdsvex(mdsvexConfig), vitePreprocess()],
 
   kit: {
-    adapter: adapter({ runtime: 'edge' }),
+    adapter: adapter(),
   },
 }
 

@@ -8,6 +8,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "start": "node build",
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
@@ -25,12 +26,13 @@
     "cspell": "cspell '**/*.md' --config cspell.json --wordsOnly"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.4.11",
     "@fontsource-variable/manrope": "^5.0.18",
     "@fontsource-variable/victor-mono": "^5.0.3",
     "@fontsource/victor-mono": "^5.0.11",
     "@libsql/client": "0.4.0-pre.5",
     "@playwright/test": "^1.40.1",
-    "@sveltejs/adapter-vercel": "3.1.0",
+    "@sveltejs/adapter-node": "^1.3.1",
     "@sveltejs/kit": "^1.27.7",
     "@tailwindcss/typography": "0.5.10",
     "@testing-library/svelte": "^4.0.5",

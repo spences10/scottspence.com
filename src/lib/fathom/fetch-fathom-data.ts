@@ -1,5 +1,6 @@
-import { FATHOM_API_KEY } from '$env/static/private'
+import { env } from '$env/dynamic/private'
 import { turso_client } from '$lib/turso'
+const { FATHOM_API_KEY } = env
 
 type FathomDataResponse =
   | AnalyticsData

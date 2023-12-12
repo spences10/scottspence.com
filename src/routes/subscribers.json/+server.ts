@@ -1,8 +1,9 @@
-import { BUTTONDOWN_API_KEY } from '$env/static/private'
+import { env } from '$env/dynamic/private'
 import { turso_client } from '$lib/turso/client.js'
 import { json } from '@sveltejs/kit'
 import { differenceInHours, parseISO } from 'date-fns'
 
+const { BUTTONDOWN_API_KEY } = env
 const buttondown_url = 'https://api.buttondown.email'
 const buttondown_endpoint = '/v1/subscribers'
 

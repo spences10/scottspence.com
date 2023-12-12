@@ -1,10 +1,8 @@
 import { building } from '$app/environment'
-import {
-  UPSTASH_REDIS_REST_TOKEN,
-  UPSTASH_REDIS_REST_URL,
-} from '$env/static/private'
+import { env } from '$env/dynamic/private'
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
+const { UPSTASH_REDIS_REST_TOKEN, UPSTASH_REDIS_REST_URL } = env
 
 let redis: Redis
 let ratelimit: Ratelimit

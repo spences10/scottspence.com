@@ -1,8 +1,7 @@
-import { PUBLIC_FATHOM_ID } from '$env/static/public'
+import { env } from '$env/dynamic/public'
 import { fetch_fathom_data } from '$lib/fathom'
 import { turso_client } from '$lib/turso/client.js'
 import type { Client } from '@libsql/client/web'
-import type { Config } from '@sveltejs/adapter-vercel'
 import {
   differenceInHours,
   endOfDay,
@@ -14,8 +13,7 @@ import {
   startOfMonth,
   startOfYear,
 } from 'date-fns'
-
-export const config: Config = { runtime: 'nodejs18.x' }
+const { PUBLIC_FATHOM_ID } = env
 
 const get_date_range = (period: string) => {
   const now = new Date()

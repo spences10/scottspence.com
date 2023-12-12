@@ -1,7 +1,8 @@
-import { BUTTONDOWN_API_KEY } from '$env/static/private'
+import { env } from '$env/dynamic/private'
 import { ratelimit } from '$lib/redis'
 import { fail } from '@sveltejs/kit'
 
+const { BUTTONDOWN_API_KEY } = env
 const buttondown_url = 'https://api.buttondown.email'
 const buttondown_endpoint = '/v1/subscribers'
 
