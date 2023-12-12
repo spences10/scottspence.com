@@ -1,5 +1,6 @@
 ---
 date: 2023-12-11
+updated: 2023-12-12
 title: 'SvelteKit Environment Variables with Fly.io Deployment'
 tags: ['sveltekit', 'notes', 'flyio', 'docker']
 isPrivate: false
@@ -80,6 +81,14 @@ RUN pnpm prune --prod
 ```
 
 Then deploying again (with `fly deploy`) worked!
+
+One other thing to note is that the Fly CLI doesn't seem to pick up
+the environment variables so I had to add them manually to the
+`fly deploy` command each time I want to deploy:
+
+```bash
+fly deploy --build-secret TURSO_DB_URL="secret_token" --build-secret TURSO_DB_URL="secret_token" --build-secret IPINFO_TOKEN="secret_token"
+```
 
 <!-- Links -->
 
