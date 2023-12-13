@@ -40,18 +40,6 @@ CREATE TABLE
     UNIQUE (pathname, date_grouping)
   );
 
-SELECT
-  pp.id,
-  pp.pathname,
-  p.title,
-  pp.pageviews,
-  pp.visits,
-  pp.date_grouping,
-  pp.last_updated
-FROM
-  popular_posts pp
-  JOIN posts p ON pp.pathname = '/posts/' || p.slug;
-
 CREATE TABLE
   pricing_numbers (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -61,16 +49,6 @@ CREATE TABLE
     working_days_in_year INTEGER,
     last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
-
-INSERT INTO
-  pricing_numbers (
-    annual_rate_eur,
-    chosen_holidays,
-    public_holidays,
-    working_days_in_year
-  )
-VALUES
-  (120200, 30, 8, 252);
 
 CREATE TABLE
   exchange_rates (
@@ -114,14 +92,22 @@ CREATE TABLE
     last_visit TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
 
-SELECT
-  SUBSTR(parameters, LENGTH(parameters)/2 + 1) AS parameters,
-  COUNT(*) as count
-FROM
-  fathom_api_calls
-WHERE
-  date (call_timestamp) = date ('now', '-1 day')
-GROUP BY
-  parameters
-HAVING
-  COUNT(*) > 1;
+CREATE TABLE
+  user_session (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ip_address TEXT NOT NULL,
+    session_start TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    session_end TIMESTAMP,
+    user_agent TEXT,
+    referrer TEXT,
+    session_duration INTEGER,
+    page_count INTEGER DEFAULT 0
+  );
+
+CREATE TABLE
+  current_visitors (
+    session_id INTEGER NOT NULL,
+    page_slug TEXT NOT NULL,
+    last_visit TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (session_id, page_slug)
+  );
