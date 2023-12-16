@@ -1,5 +1,5 @@
-import { reactions } from '$lib/reactions-config.js'
-import { turso_client } from '$lib/turso/client.js'
+import { reactions } from '$lib/reactions-config'
+import { turso_client } from '$lib/turso/client'
 
 const fetch_reaction_data = async (): Promise<ReactionPage[]> => {
   const client = turso_client()

@@ -9,6 +9,6 @@ export const load = async ({ data }) => {
       Copy: Copy.default,
     }
   } catch (e) {
-    throw error(404, 'Uh oh!')
+    error(404, 'Uh oh!');
   }
 }
