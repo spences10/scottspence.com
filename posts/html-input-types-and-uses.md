@@ -152,7 +152,7 @@ If even one person finds this useful, I'll consider it a win.
 <input
   type="button"
   value="Click me"
-  onclick="alert('Hello!')"
+  onclick="{() => alert('Hello!')}"
   class="btn btn-primary"
 />
 
