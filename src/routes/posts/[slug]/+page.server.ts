@@ -124,33 +124,32 @@ export const load = async ({ fetch, params, url }) => {
   const year_start = get_date_bounds(startOfYear(now))
   const year_end = get_date_bounds(endOfYear(now), false)
 
-  const [daily_visits, monthly_visits, yearly_visits] =
-    await Promise.all([
-      fetch_visits(fetch, base_path, day_start, day_end, 'day', slug),
-      fetch_visits(
-        fetch,
-        base_path,
-        month_start,
-        month_end,
-        'month',
-        slug,
-      ),
-      fetch_visits(
-        fetch,
-        base_path,
-        year_start,
-        year_end,
-        'year',
-        slug,
-      ),
-    ])
-
-  const count = await get_reaction_count_data(url.pathname)
-
+  // Return promises directly
   return {
-    daily_visits,
-    monthly_visits,
-    yearly_visits,
-    count,
+    daily_visits: fetch_visits(
+      fetch,
+      base_path,
+      day_start,
+      day_end,
+      'day',
+      slug,
+    ),
+    monthly_visits: fetch_visits(
+      fetch,
+      base_path,
+      month_start,
+      month_end,
+      'month',
+      slug,
+    ),
+    yearly_visits: fetch_visits(
+      fetch,
+      base_path,
+      year_start,
+      year_end,
+      'year',
+      slug,
+    ),
+    count: get_reaction_count_data(url.pathname),
   }
 }
