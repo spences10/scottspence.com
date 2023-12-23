@@ -11,6 +11,6 @@ export const load = async () => {
       FunCopy: funCopy.default,
     }
   } catch (e) {
-    throw error(404, 'Uh oh!')
+    error(404, 'Uh oh!');
   }
 }

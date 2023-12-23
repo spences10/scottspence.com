@@ -8,6 +8,6 @@ export const load = async () => {
       Copy: Copy.default,
     }
   } catch (e) {
-    throw error(404, 'Uh oh!')
+    error(404, 'Uh oh!');
   }
 }
