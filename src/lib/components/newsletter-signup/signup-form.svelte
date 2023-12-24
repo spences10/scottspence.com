@@ -28,7 +28,7 @@
       <div class="form-control">
         <form
           method="POST"
-          action="/submit-email"
+          action="/api/submit-email"
           use:enhance={() => {
             $button_disabled = true
             return ({ update, result }) => {

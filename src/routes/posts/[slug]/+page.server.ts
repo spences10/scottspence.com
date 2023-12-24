@@ -112,7 +112,7 @@ export const load = async ({ fetch, params, url }) => {
   const { slug } = params
   // clean any query params
   const clean_slug = slug.split('?')[0].split('&')[0]
-  const base_path = `../analytics.json?pathname=/posts/${clean_slug}`
+  const base_path = `api/analytics?pathname=/posts/${clean_slug}`
 
   const now = new Date()
   const day_start = get_date_bounds(subDays(now, 1))

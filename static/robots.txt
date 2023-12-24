@@ -1,6 +1,6 @@
 User-agent: *
 # Specific disallow rules
-Disallow: /analytics.json
+Disallow: /api/analytics
 Disallow: /current-visitors.json
 
 # Specific directives for GPTBot

@@ -1,5 +1,5 @@
 export const load = async ({ fetch }) => {
-  const res = await fetch(`/posts.json`)
+  const res = await fetch(`api/posts`)
   if (res.ok) {
     const posts = await res.json()
     return { posts }

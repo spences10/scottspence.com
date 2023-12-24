@@ -1,10 +1,14 @@
 <script lang="ts">
   import { Head, NewsletterSignup } from '$lib/components'
   import { name, website } from '$lib/info'
+  import { newsletter_subscriber_count_store } from '$lib/stores/index.js'
   import { og_image_url } from '$lib/utils'
 
   export let data
   let { Copy } = data
+
+  $newsletter_subscriber_count_store =
+    data?.newsletter_subscriber_count
 </script>
 
 <Head

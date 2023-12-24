@@ -46,7 +46,7 @@ export const GET = async ({ url, fetch }) => {
     fetch,
     `aggregations`,
     params,
-    `analytics.json_GET`,
+    `analytics_GET`,
   )
 
   if (Array.isArray(analytics_data) && analytics_data.length > 0) {
@@ -62,7 +62,7 @@ export const GET = async ({ url, fetch }) => {
     )
   } else {
     console.error(
-      `analytics.json returned data in unexpected format. ${JSON.stringify(
+      `analytics returned data in unexpected format. ${JSON.stringify(
         params,
         null,
         2,
