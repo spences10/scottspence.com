@@ -23,7 +23,7 @@
 <section class="flex justify-center mb-10">
   <form
     method="POST"
-    action="/reactions?path={path}"
+    action="/api/reactions?path={path}"
     use:enhance={() => {
       return ({ update, result }) => {
         handle_result(result)

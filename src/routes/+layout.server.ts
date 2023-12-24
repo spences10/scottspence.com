@@ -1,6 +1,6 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
 import { fetch_fathom_data } from '$lib/fathom'
-import { turso_client } from '$lib/turso/client.js'
+import { turso_client } from '$lib/turso/client'
 import type { Client } from '@libsql/client/web'
 import type { Config } from '@sveltejs/adapter-vercel'
 import {
@@ -170,8 +170,7 @@ export const load = async ({ fetch, params }) => {
     visitors_promise = fetch(`../current-visitors.json?slug=${slug}`)
   }
 
-  // Fetch newsletter subscriber count
-  const subscribers_promise = fetch(`../subscribers.json`)
+
 
   const [
     popular_posts_daily,
@@ -182,9 +181,7 @@ export const load = async ({ fetch, params }) => {
   const visitors_response = await visitors_promise
   const visitors = await visitors_response?.json()
 
-  const subscribers_response = await subscribers_promise
-  const { newsletter_subscriber_count } =
-    await subscribers_response.json()
+
 
   return {
     visitors,
@@ -193,6 +190,5 @@ export const load = async ({ fetch, params }) => {
       popular_posts_monthly,
       popular_posts_yearly,
     },
-    newsletter_subscriber_count,
   }
 }

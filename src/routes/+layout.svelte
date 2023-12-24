@@ -7,11 +7,7 @@
     PUBLIC_FATHOM_URL,
   } from '$env/static/public'
   import { BackToTop, Footer, Header, Nav } from '$lib/components'
-  import {
-    newsletter_subscriber_count_store,
-    popular_posts_store,
-    visitors_store,
-  } from '$lib/stores'
+  import { popular_posts_store, visitors_store } from '$lib/stores'
   import { handle_mouse_move } from '$lib/utils'
   import * as Fathom from 'fathom-client'
   import { onMount } from 'svelte'
@@ -22,8 +18,6 @@
 
   $popular_posts_store = data?.popular_posts
   $visitors_store = data?.visitors
-  $newsletter_subscriber_count_store =
-    data?.newsletter_subscriber_count
 
   onMount(() => {
     Fathom.load(PUBLIC_FATHOM_ID, {
