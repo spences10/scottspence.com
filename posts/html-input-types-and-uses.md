@@ -146,13 +146,17 @@ If even one person finds this useful, I'll consider it a win.
 - Example:
 
 ```html
-<input type="button" value="Click me" onclick="alert('Hello!')" />
+<input
+  type="button"
+  value="Click me"
+  onclick="{() => alert('Hello!')}"
+/>
 ```
 
 <input
   type="button"
   value="Click me"
-  onclick="alert('Hello!')"
+  onclick="{() => alert('Hello!')}"
   class="btn btn-primary"
 />
 
