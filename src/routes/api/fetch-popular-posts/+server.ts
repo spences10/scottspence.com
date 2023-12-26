@@ -5,8 +5,6 @@ import { differenceInHours, parseISO } from 'date-fns'
 const popular_posts_cache = new Map<string, any>()
 
 export const GET = async () => {
-  const t0 = performance.now()
-
   const cache_key = 'popular-posts'
   const cached_data = popular_posts_cache.get(cache_key)
 
@@ -17,8 +15,6 @@ export const GET = async () => {
       parseISO(cached_data.last_fetched),
     ) < 24
   ) {
-    const t1 = performance.now()
-    console.log(`Call to popular posts took ${t1 - t0} milliseconds.`)
     return json(cached_data.data)
   }
 
@@ -54,7 +50,7 @@ export const GET = async () => {
 
   // Construct and execute the UNION query
   const sql = `
-    WITH DayResults AS (
+    WITH day_results AS (
       SELECT 
         'day' AS period, 
         ${common_fields}
@@ -63,7 +59,7 @@ export const GET = async () => {
         pp.date_grouping = 'day'
         ${common_order_by_limit}
     ),
-    MonthResults AS (
+    month_results AS (
       SELECT 
         'month' AS period, 
         ${common_fields}
@@ -72,7 +68,7 @@ export const GET = async () => {
         pp.date_grouping = 'month'
         ${common_order_by_limit}
     ),
-    YearResults AS (
+    year_results AS (
       SELECT
         'year' AS period,
         ${common_fields}
@@ -82,11 +78,11 @@ export const GET = async () => {
         ${common_order_by_limit}
     )
 
-    SELECT * FROM DayResults
+    SELECT * FROM day_results
     UNION ALL
-    SELECT * FROM MonthResults
+    SELECT * FROM month_results
     UNION ALL
-    SELECT * FROM YearResults;
+    SELECT * FROM year_results;
   `
 
   popular_posts = {
@@ -115,9 +111,6 @@ export const GET = async () => {
     data: popular_posts,
   }
   popular_posts_cache.set(cache_key, new_data)
-
-  const t1 = performance.now()
-  console.log(`Call to popular posts took ${t1 - t0} milliseconds.`)
 
   // Return the data
   return json(popular_posts)
