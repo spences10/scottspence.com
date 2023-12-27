@@ -49,7 +49,7 @@ Yes, but, the Fathom API doesn't return the title of the post, just
 the pathname. Which means that the data, although fine in itself, is
 not useful as is.
 
-So, this was what I was getting with that query:
+So, this was the JSON I was getting with that query:
 
 ```json
 {
@@ -69,7 +69,7 @@ So, this was what I was getting with that query:
 ```
 
 I need to do a join to another table to get the title of the post so I
-can get something back like this:
+can get some JSON back like this:
 
 ```json
 {
