@@ -171,8 +171,42 @@ Common Table Expressions (CTEs) in SQLite are a way to compose
 temporary result sets that can be referenced within a SELECT, INSERT,
 UPDATE, or DELETE statement.
 
+Start a CTE with `WITH` and then give it a name and the query you want
+to run.
+
+Essentially each CTE is wrapped in parentheses and separated by a
+comma.
+
+Then you can run a query against it:
+
+```sql
+WITH cte_name AS (
+  SELECT * FROM table_name WHERE column_name = 'value' LIMIT 1
+)
+SELECT * FROM cte_name;
+```
+
 This is particularly handy for breaking down complex queries into
-simpler parts, which is sort of what I was doing.
+simpler parts, which is sort of what I was doing. I'm essentially
+doing this:
+
+```sql
+WITH cte_name_1 AS (
+  SELECT * FROM table_name WHERE column_name = 'value' LIMIT 1
+),
+cte_name_2 AS (
+  SELECT * FROM table_name2 WHERE column_name = 'value' LIMIT 1
+),
+cte_name_3 AS (
+  SELECT * FROM table_name3 WHERE column_name = 'value' LIMIT 1
+)
+
+SELECT * FROM cte_name_1
+UNION ALL
+SELECT * FROM cte_name_2
+UNION ALL
+SELECT * FROM cte_name_3;
+```
 
 This means creating temporary results for each of the periods and then
 querying them with a union query.
