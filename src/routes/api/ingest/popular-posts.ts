@@ -61,11 +61,32 @@ const insert_fathom_data_into_turso = async (
   }
 }
 
+// TODO: Broken! Needs to be updated to work!
+// was being called like this:
+/*
+  // Fetch Popular Posts
+  const popular_posts_promises = ['day', 'month', 'year'].map(
+    period => fetch_popular_posts(fetch, period),
+  )
+
+  // Fetch Visitors
+  let visitors_promise
+  if (slug) {
+    visitors_promise = fetch(`../current-visitors.json?slug=${slug}`)
+  }
+
+  const [
+    popular_posts_daily,
+    popular_posts_monthly,
+    popular_posts_yearly,
+  ] = await Promise.all(popular_posts_promises)
+*/
 export const update_popular_posts = async (
   fetch: Fetch,
   period: string,
 ) => {
   const client = turso_client()
+  let popular_posts: PopularPost[] = []
 
   try {
     // Check Turso first for data from the last 24 hours
@@ -74,16 +95,46 @@ export const update_popular_posts = async (
       args: [period],
     })
 
-    const last_update = last_update_result.rows[0]
-      ?.last_updated as string
+    const last_update = last_update_result.rows[0] as unknown as {
+      last_updated: string
+    }
 
-    // Determine if the data is older than 24 hours
     if (
-      !last_update ||
-      differenceInHours(new Date(), parseISO(last_update)) >= 24
+      last_update &&
+      differenceInHours(
+        new Date(),
+        parseISO(last_update.last_updated),
+      ) < 24
     ) {
-      // Data is older than 24 hours or not present, fetch from Fathom
+      // Data is fresh enough, retrieve from Turso DB
+      const query = `
+        SELECT
+          pp.id,
+          pp.pathname,
+          p.title,
+          pp.pageviews,
+          pp.visits,
+          pp.date_grouping,
+          pp.last_updated
+        FROM
+          popular_posts pp
+          JOIN posts p ON pp.pathname = '/posts/' || p.slug
+        WHERE
+          pp.date_grouping = ?
+        ORDER BY
+          pp.pageviews DESC;
+      `
+      const cached_popular_posts_result = await client.execute({
+        sql: query,
+        args: [period],
+      })
+
+      popular_posts =
+        cached_popular_posts_result.rows as unknown as PopularPost[]
+    } else {
+      // Fetch data from Fathom
       const [date_from, date_to] = get_date_range(period)
+
       const fathom_data = await fetch_fathom_data(
         fetch,
         'aggregations',
@@ -101,28 +152,26 @@ export const update_popular_posts = async (
       )
 
       if (fathom_data && Array.isArray(fathom_data)) {
-        const transformed_data = fathom_data.map(data => ({
-          pathname: data.pathname,
-          title: 'Default Title', // Adjust as needed
-          pageviews: data.pageviews,
-          visits: data.visits,
-        }))
+        const transformed_data = fathom_data.map(
+          (data: PopularPost) => ({
+            pathname: data.pathname,
+            title: 'Default Title',
+            pageviews: data.pageviews,
+            visits: data.visits,
+          }),
+        )
 
-        // Update Turso database with new data
         await insert_fathom_data_into_turso(
           client,
           transformed_data,
           period,
         )
+        popular_posts = transformed_data as unknown as PopularPost[]
       }
-    } else {
-      console.log(
-        `Data for period ${period} is fresh. No update needed.`,
-      )
     }
   } catch (error) {
-    console.error('Error updating popular posts:', error)
+    console.error('Error fetching from Turso DB:', error)
   }
 
-  // No return needed, as the function's purpose is just to update the database.
+  return popular_posts
 }
