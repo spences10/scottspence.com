@@ -1,6 +1,7 @@
 import { env } from '$env/dynamic/private'
 import { json } from '@sveltejs/kit'
-import { update_popular_posts } from './popular-posts.js'
+import { update_popular_posts } from './popular-posts'
+import { update_posts } from './update-posts'
 
 // curl -X POST https://yourdomain.com/api/ingest \
 // -H "Content-Type: application/json" \
@@ -12,11 +13,12 @@ type TaskFunction<TArgs = any, TResult = any> = (
 ) => Promise<TResult>
 
 // Define the type for the keys in tasks object
-type TaskKey = 'update_popular_posts' | 'additional_task'
+type TaskKey = 'update_popular_posts' | 'update_posts'
 
 // Define the type for tasks object
 interface TaskType {
-  [key: string]: TaskFunction | undefined
+  update_popular_posts: TaskFunction
+  update_posts: TaskFunction
 }
 
 // Define the type for the expected structure of request body
@@ -28,6 +30,7 @@ interface RequestBody {
 // Define a mapping from task names to functions
 const tasks: TaskType = {
   update_popular_posts,
+  update_posts,
 }
 
 export const POST = async ({ request }) => {
@@ -43,15 +46,22 @@ export const POST = async ({ request }) => {
     }
 
     // Check if the task is in the mapping object
-    if (task && tasks[task]) {
-      return json(tasks[task])
+    if (task && typeof tasks[task] === 'function') {
+      console.log(`Executing task: ${task}`)
+      const result = await tasks[task]()
+      console.log(`Task ${task} completed with result:`, result)
+      return json(result)
     } else {
       return json(
-        { message: 'Task not specified or unknown' },
+        {
+          message:
+            'Specified task does not exist or is not a function',
+        },
         { status: 400 },
       )
     }
   } catch (error) {
+    console.error('Error in POST /api/ingest:', error)
     return json(
       {
         message: 'Error processing the request',
