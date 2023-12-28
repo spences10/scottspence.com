@@ -4,9 +4,7 @@ import { turso_client } from '$lib/turso/client'
 import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { json } from '@sveltejs/kit'
 
-export const config: ServerlessConfig = {
-  runtime: 'nodejs18.x',
-}
+export const config: ServerlessConfig = { runtime: 'nodejs18.x', }
 
 export const GET = async ({ url, fetch }) => {
   const pathname = url.searchParams.get('pathname') ?? '/'

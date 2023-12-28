@@ -3,12 +3,10 @@ import { fetch_fathom_data } from '$lib/fathom'
 import { turso_client } from '$lib/turso'
 import type { Client } from '@libsql/client/web'
 import {
-  differenceInHours,
   endOfDay,
   endOfMonth,
   endOfYear,
   formatISO,
-  parseISO,
   startOfDay,
   startOfMonth,
   startOfYear,
@@ -36,6 +34,7 @@ const insert_fathom_data_into_turso = async (
   data: PopularPost[],
   period: string,
 ) => {
+  const batch_queries = []
   const insert_query = `
     INSERT INTO popular_posts (pathname, pageviews, visits, date_grouping)
     VALUES (?, ?, ?, ?)
@@ -44,94 +43,40 @@ const insert_fathom_data_into_turso = async (
       visits = excluded.visits,
       last_updated = CURRENT_TIMESTAMP;
   `
+
+  // Prepare the data for batch insertion
   for (const post of data) {
-    await client.execute({
-      sql: insert_query,
-      args: [
-        post.pathname,
-        Number.isInteger(post.pageviews)
-          ? post.pageviews
-          : parseInt(post.pageviews),
-        Number.isInteger(post.visits)
-          ? post.visits
-          : parseInt(post.visits),
-        period,
-      ],
-    })
+    const args = [
+      post.pathname,
+      Number.isInteger(post.pageviews)
+        ? post.pageviews
+        : parseInt(post.pageviews, 10),
+      Number.isInteger(post.visits)
+        ? post.visits
+        : parseInt(post.visits, 10),
+      period,
+    ]
+    batch_queries.push({ sql: insert_query, args })
+  }
+
+  // Execute all queries in a batch
+  if (batch_queries.length > 0) {
+    try {
+      await client.batch(batch_queries)
+    } catch (error) {
+      console.error('Error during batch insert into Turso DB:', error)
+    }
   }
 }
 
-// TODO: Broken! Needs to be updated to work!
-// was being called like this:
-/*
-  // Fetch Popular Posts
-  const popular_posts_promises = ['day', 'month', 'year'].map(
-    period => fetch_popular_posts(fetch, period),
-  )
-
-  // Fetch Visitors
-  let visitors_promise
-  if (slug) {
-    visitors_promise = fetch(`../current-visitors.json?slug=${slug}`)
-  }
-
-  const [
-    popular_posts_daily,
-    popular_posts_monthly,
-    popular_posts_yearly,
-  ] = await Promise.all(popular_posts_promises)
-*/
-export const update_popular_posts = async (
-  fetch: Fetch,
-  period: string,
-) => {
+export const update_popular_posts = async (fetch: Fetch) => {
   const client = turso_client()
-  let popular_posts: PopularPost[] = []
+  let all_period_popular_posts = []
 
-  try {
-    // Check Turso first for data from the last 24 hours
-    const last_update_result = await client.execute({
-      sql: 'SELECT last_updated FROM popular_posts WHERE date_grouping = ? ORDER BY last_updated DESC LIMIT 1;',
-      args: [period],
-    })
+  for (const period of ['day', 'month', 'year']) {
+    let popular_posts: PopularPost[] = []
 
-    const last_update = last_update_result.rows[0] as unknown as {
-      last_updated: string
-    }
-
-    if (
-      last_update &&
-      differenceInHours(
-        new Date(),
-        parseISO(last_update.last_updated),
-      ) < 24
-    ) {
-      // Data is fresh enough, retrieve from Turso DB
-      const query = `
-        SELECT
-          pp.id,
-          pp.pathname,
-          p.title,
-          pp.pageviews,
-          pp.visits,
-          pp.date_grouping,
-          pp.last_updated
-        FROM
-          popular_posts pp
-          JOIN posts p ON pp.pathname = '/posts/' || p.slug
-        WHERE
-          pp.date_grouping = ?
-        ORDER BY
-          pp.pageviews DESC;
-      `
-      const cached_popular_posts_result = await client.execute({
-        sql: query,
-        args: [period],
-      })
-
-      popular_posts =
-        cached_popular_posts_result.rows as unknown as PopularPost[]
-    } else {
+    try {
       // Fetch data from Fathom
       const [date_from, date_to] = get_date_range(period)
 
@@ -168,10 +113,15 @@ export const update_popular_posts = async (
         )
         popular_posts = transformed_data as unknown as PopularPost[]
       }
+    } catch (error) {
+      console.error(
+        'Error fetching from Fathom or inserting into Turso DB:',
+        error,
+      )
     }
-  } catch (error) {
-    console.error('Error fetching from Turso DB:', error)
+
+    all_period_popular_posts.push({ period, popular_posts })
   }
 
-  return popular_posts
+  return all_period_popular_posts
 }
