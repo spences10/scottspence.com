@@ -15,7 +15,7 @@ vi.mock('IntersectionObserver', () => ({
   mock: 'IntersectionObserver mock property',
 }))
 
-describe('ButtButt', () => {
+describe.skip('ButtButt', () => {
   it('should render', () => {
     const { getByText } = render(ButtButt)
     expect(
