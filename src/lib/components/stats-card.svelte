@@ -105,20 +105,13 @@
           stats.entries.value !== '0'
       : false
   }
-
-  const is_truthy = (
-    value: AnalyticsData | null | undefined,
-  ): boolean =>
-    value !== null &&
-    value !== undefined &&
-    Object.keys(value).length > 0
 </script>
 
-<section aria-labelledby="analytics-section">
+<section class="px-6 pt-6" aria-labelledby="analytics-section">
   <p id="analytics-section" class="sr-only">Analytics Information</p>
   {#each stats_array as { title, stats }}
     {#if has_data(stats)}
-      <article class="mb-4">
+      <article>
         <header class="mb-2 pl-1">
           <h3>{title}</h3>
         </header>
@@ -143,9 +136,3 @@
     {/if}
   {/each}
 </section>
-
-{#if is_truthy(daily_visits) || is_truthy(monthly_visits) || is_truthy(yearly_visits)}
-  <div class="flex flex-col w-full mt-5 mb-10">
-    <div class="divider divider-secondary" />
-  </div>
-{/if}
