@@ -2,9 +2,15 @@
   import { number_crunch } from '$lib/utils'
   import { format, startOfMonth, startOfYear } from 'date-fns'
 
-  export let daily_visits: AnalyticsData | null | undefined
-  export let monthly_visits: AnalyticsData | null | undefined
-  export let yearly_visits: AnalyticsData | null | undefined
+  type Nullable<T> = T | null | undefined
+  interface Props {
+    daily_visits: Nullable<AnalyticsData>
+    monthly_visits: Nullable<AnalyticsData>
+    yearly_visits: Nullable<AnalyticsData>
+  }
+
+  const { daily_visits, monthly_visits, yearly_visits } =
+    $props<Props>()
 
   const time_periods: {
     [key: string]: {
