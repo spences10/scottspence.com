@@ -123,5 +123,6 @@ export const update_popular_posts = async (fetch: Fetch) => {
     all_period_popular_posts.push({ period, popular_posts })
   }
 
-  return all_period_popular_posts
+  // return all_period_popular_posts
+  return { message: 'Popular posts updated' }
 }
