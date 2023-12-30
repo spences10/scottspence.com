@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { goto, preloadData, pushState } from '$app/navigation'
   import { page } from '$app/stores'
   import {
     ButtButt,
@@ -8,7 +9,6 @@
     PopularPosts,
     Reactions,
     ShareWithTweet,
-    StatsCard,
     TableOfContents,
     UpdatedBanner,
   } from '$lib/components'
@@ -24,7 +24,10 @@
     differenceInYears,
     format,
   } from 'date-fns'
+  import * as Fathom from 'fathom-client'
   import { onMount } from 'svelte'
+  import StatsPage from '../../stats/[slug]/+page.svelte'
+  import Modal from './modal.svelte'
 
   export let data
   let { Content } = data
@@ -38,7 +41,7 @@
     isPrivate,
     tags,
   } = data.meta
-  let { daily_visits, monthly_visits, yearly_visits, count } = data
+  let { count } = data
 
   const url = `${website}/posts/${slug}`
 
@@ -69,6 +72,32 @@
   }
 
   let show_current_visitor_data = false
+
+  let modal: HTMLDialogElement
+
+  const show_modal = async (
+    e: MouseEvent & { currentTarget: HTMLAnchorElement },
+  ) => {
+    if (e.metaKey || e.ctrlKey) return
+    e.preventDefault()
+    // get URL
+    const { href } = e.currentTarget as HTMLAnchorElement
+
+    // get result of `load` function
+    const result = await preloadData(href)
+
+    // create new history entry
+    if (result.type === 'loaded' && result.status === 200) {
+      pushState(href, { selected: result.data })
+      modal.showModal()
+    } else {
+      goto(href)
+    }
+  }
+
+  function close_modal() {
+    history.back()
+  }
 </script>
 
 <svelte:window on:scroll={handle_scroll} />
@@ -165,7 +194,23 @@
 
   <Reactions data={count} path={current_path} />
 
-  <StatsCard {daily_visits} {monthly_visits} {yearly_visits} />
+  <div class="flex justify-center">
+    <a
+      on:click={show_modal}
+      href="/stats/{$page.params.slug}"
+      on:click={() =>
+        Fathom.trackEvent(`analytics click: ${current_path}`)}
+      class="btn btn-primary btn-lg mb-20 shadow-lg px-10 text-xl"
+    >
+      ✨ View the stats for this post ✨
+    </a>
+  </div>
+
+  <Modal bind:modal on:close={close_modal}>
+    {#if $page.state.selected}
+      <StatsPage data={$page.state.selected} form />
+    {/if}
+  </Modal>
 
   <div class="grid justify-items-center mb-24">
     <ShareWithTweet

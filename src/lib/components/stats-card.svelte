@@ -2,9 +2,15 @@
   import { number_crunch } from '$lib/utils'
   import { format, startOfMonth, startOfYear } from 'date-fns'
 
-  export let daily_visits: AnalyticsData | null | undefined
-  export let monthly_visits: AnalyticsData | null | undefined
-  export let yearly_visits: AnalyticsData | null | undefined
+  type Nullable<T> = T | null | undefined
+  interface Props {
+    daily_visits: Nullable<AnalyticsData>
+    monthly_visits: Nullable<AnalyticsData>
+    yearly_visits: Nullable<AnalyticsData>
+  }
+
+  const { daily_visits, monthly_visits, yearly_visits } =
+    $props<Props>()
 
   const time_periods: {
     [key: string]: {
@@ -99,47 +105,44 @@
           stats.entries.value !== '0'
       : false
   }
-
-  const is_truthy = (
-    value: AnalyticsData | null | undefined,
-  ): boolean =>
-    value !== null &&
-    value !== undefined &&
-    Object.keys(value).length > 0
 </script>
 
-<section aria-labelledby="analytics-section">
-  <p id="analytics-section" class="sr-only">Analytics Information</p>
-  {#each stats_array as { title, stats }}
-    {#if has_data(stats)}
-      <article class="mb-4">
-        <header class="mb-2 pl-1">
-          <h3>{title}</h3>
-        </header>
-        <section
-          class="stats stats-vertical md:stats-horizontal shadow-lg w-full border border-secondary mb-8"
-        >
-          {#if stats}
-            {#each Object.entries(stats) as [key, { label, value, range }]}
-              <div class="stat">
-                <header class="stat-title">{label}</header>
-                <div class="stat-value text-2xl" role="status">
-                  {value}
+{#if !daily_visits && !monthly_visits && !yearly_visits}
+  <section class="p-6" aria-labelledby="analytics-section">
+    <header>
+      <h3>Sorry, no data for this post.</h3>
+    </header>
+  </section>
+{:else}
+  <section class="px-6 pt-6" aria-labelledby="analytics-section">
+    <p id="analytics-section" class="sr-only">
+      Analytics Information
+    </p>
+    {#each stats_array as { title, stats }}
+      {#if has_data(stats)}
+        <article>
+          <header class="mb-2 pl-1">
+            <h3>{title}</h3>
+          </header>
+          <section
+            class="stats stats-vertical md:stats-horizontal shadow-lg w-full border border-secondary mb-8"
+          >
+            {#if stats}
+              {#each Object.entries(stats) as [key, { label, value, range }]}
+                <div class="stat">
+                  <header class="stat-title">{label}</header>
+                  <div class="stat-value text-2xl" role="status">
+                    {value}
+                  </div>
+                  {#if range}
+                    <footer class="stat-desc">{range}</footer>
+                  {/if}
                 </div>
-                {#if range}
-                  <footer class="stat-desc">{range}</footer>
-                {/if}
-              </div>
-            {/each}
-          {/if}
-        </section>
-      </article>
-    {/if}
-  {/each}
-</section>
-
-{#if is_truthy(daily_visits) || is_truthy(monthly_visits) || is_truthy(yearly_visits)}
-  <div class="flex flex-col w-full mt-5 mb-10">
-    <div class="divider divider-secondary" />
-  </div>
+              {/each}
+            {/if}
+          </section>
+        </article>
+      {/if}
+    {/each}
+  </section>
 {/if}

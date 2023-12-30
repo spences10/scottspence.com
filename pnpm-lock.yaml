@@ -146,9 +146,6 @@ devDependencies:
   svelte-check:
     specifier: ^3.6.2
     version: 3.6.2(postcss-load-config@5.0.2)(postcss@8.4.32)(svelte@5.0.0-next.27)
-  svelte-frappe-charts:
-    specifier: ^1.10.0
-    version: 1.10.0(svelte@5.0.0-next.27)
   svelte-preprocess:
     specifier: 5.1.3
     version: 5.1.3(postcss-load-config@5.0.2)(postcss@8.4.32)(svelte@5.0.0-next.27)(typescript@5.3.3)
@@ -3220,10 +3217,6 @@ packages:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
     dev: true
 
-  /frappe-charts@1.6.2:
-    resolution: {integrity: sha512-9TC3/+YVUi84yYoEbxFiSqu+1FQ5If/ydUNj6i8FRpwynd08t6a7RkS+IRJozAk6NfdL8/LVTTE1DUOjjKZZxg==}
-    dev: true
-
   /fs-minipass@2.1.0:
     resolution: {integrity: sha512-V/JgOLFCS+R6Vcq0slCuaeWEdNC3ouDlJMNIsacH2VtALiu9mV4LPrHc5cDl8k5aw6J8jwgWWpiTo5RYhmIzvg==}
     engines: {node: '>= 8'}
@@ -5608,15 +5601,6 @@ packages:
       espree: 9.6.1
       postcss: 8.4.32
       postcss-scss: 4.0.9(postcss@8.4.32)
-      svelte: 5.0.0-next.27
-    dev: true
-
-  /svelte-frappe-charts@1.10.0(svelte@5.0.0-next.27):
-    resolution: {integrity: sha512-TkkcovOAeoieiDFFJS7p56E91WcS5qFq5lpkF+yuCBMG17HaC+7PrkT/0zzii0BBnYlOuumsfb9S5UmsDZRhdg==}
-    peerDependencies:
-      svelte: ^3.0.0
-    dependencies:
-      frappe-charts: 1.6.2
       svelte: 5.0.0-next.27
     dev: true
 
