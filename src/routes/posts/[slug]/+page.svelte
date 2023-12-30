@@ -24,6 +24,7 @@
     differenceInYears,
     format,
   } from 'date-fns'
+  import * as Fathom from 'fathom-client'
   import { onMount } from 'svelte'
   import StatsPage from '../../stats/[slug]/+page.svelte'
   import Modal from './modal.svelte'
@@ -197,6 +198,8 @@
     <a
       on:click={show_modal}
       href="/stats/{$page.params.slug}"
+      on:click={() =>
+        Fathom.trackEvent(`analytics click: ${current_path}`)}
       class="btn btn-primary btn-lg mb-20 shadow-lg px-10 text-xl"
     >
       ✨ View the stats for this post ✨
