@@ -1,26 +1,34 @@
-name: 'Ingest: Reusable Task Runner'
+name: 'Ingest: Task Runner'
 
 on:
-  workflow_call:
-    inputs:
-      task:
-        required: true
-        type: string
-      token:
-        required: true
-        type: string
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+  schedule:
+    # - cron: '0 * * * *' # Runs every hour, adjust to your needs
+    - cron: '*/15 * * * *' # Run every 15 minutes
+    # - cron: '30 * * * *' # Run every hour on the half-hour
+    # - cron: '0 */6 * * *' # Runs every 6 hours
+  workflow_dispatch: # Allows manual trigger from the GitHub UI
+
+env:
+  INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
 
 jobs:
-  run-task:
+  run-tasks:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        task: [update_posts, update_popular_posts]
     steps:
       - name: Run task
         run: |
-          task="${{ inputs.task }}"
-          token="${{ inputs.token }}"
+          task="${{ matrix.task }}"
           response=$(curl --silent --write-out "HTTPSTATUS:%{http_code}" --request POST \
             --header "Content-Type: application/json" \
-            --data "{\"task\":\"$task\",\"token\":\"$token\"}" \
+            --data "{\"task\":\"$task\",\"token\":\"${{ env.INGEST_TOKEN }}\"}" \
             https://scottspence.com/api/ingest)
           body=$(echo $response | sed -e 's/HTTPSTATUS\:.*//g')
           status=$(echo $response | tr -d '\n' | sed -e 's/.*HTTPSTATUS://')
