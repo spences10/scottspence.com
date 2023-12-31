@@ -19,22 +19,19 @@ env:
 jobs:
   define_tasks:
     runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set_matrix.outputs.matrix }}
     steps:
       - name: Set Dynamic Matrix
-        id: set_matrix
         run: |
           tasks=("update_posts" "update_popular_posts") # Add more tasks as needed
           json_array=$(printf ',{"task":"%s"}' "${tasks[@]}")
           matrix_stringified="{\"include\":[${json_array:1}]}"
-          echo "matrix=$matrix_stringified" >> $GITHUB_ENV
+          echo "MATRIX=$matrix_stringified" >> $GITHUB_ENV
 
   run_tasks:
     needs: define_tasks
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{ fromJson(needs.define_tasks.outputs.matrix) }}
+      matrix: ${{fromJson(env.MATRIX)}}
     steps:
       - name: Run task
         run: |
