@@ -17,11 +17,24 @@ env:
   INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
 
 jobs:
-  run-tasks:
+  define_tasks:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set_matrix.outputs.matrix }}
+    steps:
+      - name: Set Dynamic Matrix
+        id: set_matrix
+        run: |
+          tasks=("update_posts" "update_popular_posts")
+          json_array=$(printf ',{"task":"%s"}' "${tasks[@]}")
+          matrix_stringified="{\"include\":[${json_array:1}]}"
+          echo "::set-output name=matrix::$matrix_stringified"
+
+  run_tasks:
+    needs: define_tasks
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        task: [update_posts, update_popular_posts]
+      matrix: ${{ fromJson(needs.define_tasks.outputs.matrix) }}
     steps:
       - name: Run task
         run: |
