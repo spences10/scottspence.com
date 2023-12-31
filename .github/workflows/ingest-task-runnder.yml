@@ -13,9 +13,6 @@ on:
     # - cron: '0 */6 * * *' # Runs every 6 hours
   workflow_dispatch: # Allows manual trigger from the GitHub UI
 
-env:
-  INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
-
 jobs:
   run-update-posts:
     uses: ./.github/workflows/reusable-task-runner.yml
