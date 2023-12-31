@@ -1,0 +1,35 @@
+name: 'Ingest: Reusable Task Runner'
+
+on:
+  workflow_call:
+    inputs:
+      task:
+        required: true
+        type: string
+      token:
+        required: true
+        type: string
+
+jobs:
+  run-task:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run task
+        run: |
+          task="${{ inputs.task }}"
+          token="${{ inputs.token }}"
+          response=$(curl --silent --write-out "HTTPSTATUS:%{http_code}" --request POST \
+            --header "Content-Type: application/json" \
+            --data "{\"task\":\"$task\",\"token\":\"$token\"}" \
+            https://scottspence.com/api/ingest)
+          body=$(echo $response | sed -e 's/HTTPSTATUS\:.*//g')
+          status=$(echo $response | tr -d '\n' | sed -e 's/.*HTTPSTATUS://')
+          echo "Response body for $task: $body"
+          if [ $status -eq 200 ]; then
+            echo "Response from $task task: $body"
+            echo "$task task was successful"
+          else
+            echo "Response from $task task: $body"
+            echo "$task task failed with status $status"
+            exit 1
+          fi
