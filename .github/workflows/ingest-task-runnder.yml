@@ -1,9 +1,9 @@
-name: Ingest Task Runner
+name: 'Ingest: Task Runner'
 
 on:
   schedule:
-    - cron: '0 * * * *' # Runs every hour, adjust to your needs
-    # - cron: '*/15 * * * *' # Run every 15 minutes
+    # - cron: '0 * * * *' # Runs every hour, adjust to your needs
+    - cron: '*/15 * * * *' # Run every 15 minutes
     # - cron: '30 * * * *' # Run every hour on the half-hour
 
 env:
