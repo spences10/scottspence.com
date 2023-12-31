@@ -25,10 +25,10 @@ jobs:
       - name: Set Dynamic Matrix
         id: set_matrix
         run: |
-          tasks=("update_posts" "update_popular_posts")
+          tasks=("update_posts" "update_popular_posts") # Add more tasks as needed
           json_array=$(printf ',{"task":"%s"}' "${tasks[@]}")
           matrix_stringified="{\"include\":[${json_array:1}]}"
-          echo "::set-output name=matrix::$matrix_stringified"
+          echo "matrix=$matrix_stringified" >> $GITHUB_ENV
 
   run_tasks:
     needs: define_tasks
