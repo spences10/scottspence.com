@@ -1,0 +1,36 @@
+name: Ingest Task Runner
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Runs every hour, adjust to your needs
+    # - cron: '*/15 * * * *' # Run every 15 minutes
+    # - cron: '30 * * * *' # Run every hour on the half-hour
+
+env:
+  INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
+
+jobs:
+  run-tasks:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        task: [update_posts, update_popular_posts]
+    steps:
+      - name: Run task
+        run: |
+          task="${{ matrix.task }}"
+          response=$(curl --silent --write-out "HTTPSTATUS:%{http_code}" --request POST \
+            --header "Content-Type: application/json" \
+            --data "{\"task\":\"$task\",\"token\":\"${{ env.INGEST_TOKEN }}\"}" \
+            https://scottspence.com/api/ingest)
+          body=$(echo $response | sed -e 's/HTTPSTATUS\:.*//g')
+          status=$(echo $response | tr -d '\n' | sed -e 's/.*HTTPSTATUS://')
+          echo "Response body for $task: $body"
+          if [ $status -eq 200 ]; then
+            echo "Response from $task task: $body"
+            echo "$task task was successful"
+          else
+            echo "Response from $task task: $body"
+            echo "$task task failed with status $status"
+            exit 1
+          fi
