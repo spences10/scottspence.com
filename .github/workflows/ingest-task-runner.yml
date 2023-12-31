@@ -45,7 +45,6 @@ jobs:
             https://scottspence.com/api/ingest)
           body=$(echo $response | sed -e 's/HTTPSTATUS\:.*//g')
           status=$(echo $response | tr -d '\n' | sed -e 's/.*HTTPSTATUS://')
-          echo "Response body for $task: $body"
           if [ $status -eq 200 ]; then
             echo "Response from $task task: $body"
             echo "$task task was successful"
