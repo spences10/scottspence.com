@@ -1,6 +1,7 @@
 import { env } from '$env/dynamic/private'
 import { json } from '@sveltejs/kit'
-import { update_popular_posts } from './popular-posts'
+import { update_popular_posts } from './update-popular-posts'
+import { update_post_analytics } from './update-post-analytics'
 import { update_posts } from './update-posts'
 
 // curl -X POST https://yourdomain.com/api/ingest \
@@ -39,6 +40,10 @@ const tasks: TaskType = {
     function: update_posts,
     expects_fetch: false,
   },
+  update_post_analytics: {
+    function: update_post_analytics,
+    expects_fetch: true,
+  },
 }
 
 export const POST = async ({ request, fetch }) => {
@@ -73,10 +78,14 @@ export const POST = async ({ request, fetch }) => {
     }
   } catch (error) {
     console.error('Error in POST /api/ingest:', error)
+    const error_message =
+      error instanceof Error ? error.message : 'Unknown error'
+    const error_stack = error instanceof Error ? error.stack : ''
     return json(
       {
         message: 'Error processing the request',
-        error: JSON.stringify(error, null, 2),
+        error: error_message,
+        stack: error_stack,
       },
       { status: 500 },
     )

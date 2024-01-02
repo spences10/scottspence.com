@@ -113,5 +113,3 @@ CREATE TABLE
     pathname TEXT,
     last_visit TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
-
-

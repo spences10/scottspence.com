@@ -1,39 +1,13 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
 import { fetch_fathom_data } from '$lib/fathom'
 import { turso_client } from '$lib/turso'
-import type { Client } from '@libsql/client/web'
-import {
-  endOfDay,
-  endOfMonth,
-  endOfYear,
-  formatISO,
-  startOfDay,
-  startOfMonth,
-  startOfYear,
-} from 'date-fns'
-
-const get_date_range = (period: string) => {
-  const now = new Date()
-  switch (period) {
-    case 'day':
-      return [formatISO(startOfDay(now)), formatISO(endOfDay(now))]
-    case 'month':
-      return [
-        formatISO(startOfMonth(now)),
-        formatISO(endOfMonth(now)),
-      ]
-    case 'year':
-      return [formatISO(startOfYear(now)), formatISO(endOfYear(now))]
-    default:
-      throw new Error(`Unknown period: ${period}`)
-  }
-}
+import { get_date_range } from './utils'
 
 const insert_fathom_data_into_turso = async (
-  client: Client,
   data: PopularPost[],
   period: string,
 ) => {
+  const client = turso_client()
   const batch_queries = []
   const insert_query = `
     INSERT INTO popular_posts (pathname, pageviews, visits, date_grouping)
@@ -70,7 +44,6 @@ const insert_fathom_data_into_turso = async (
 }
 
 export const update_popular_posts = async (fetch: Fetch) => {
-  const client = turso_client()
   let all_period_popular_posts = []
 
   for (const period of ['day', 'month', 'year']) {
@@ -106,11 +79,7 @@ export const update_popular_posts = async (fetch: Fetch) => {
           }),
         )
 
-        await insert_fathom_data_into_turso(
-          client,
-          transformed_data,
-          period,
-        )
+        await insert_fathom_data_into_turso(transformed_data, period)
         popular_posts = transformed_data as unknown as PopularPost[]
       }
     } catch (error) {
