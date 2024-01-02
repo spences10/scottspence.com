@@ -14,7 +14,10 @@ type TaskFunction<TArgs = any, TResult = any> = (
 ) => Promise<TResult>
 
 // Define the type for the keys in tasks object
-type TaskKey = 'update_popular_posts' | 'update_posts'
+type TaskKey =
+  | 'update_popular_posts'
+  | 'update_posts'
+  | 'update_post_analytics'
 
 // Define the type for tasks object
 interface TaskType {
