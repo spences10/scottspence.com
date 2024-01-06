@@ -29,7 +29,7 @@
     "@fontsource-variable/manrope": "^5.0.18",
     "@fontsource-variable/victor-mono": "^5.0.3",
     "@fontsource/victor-mono": "^5.0.11",
-    "@libsql/client": "0.4.0-pre.5",
+    "@libsql/client": "0.4.0-pre.7",
     "@playwright/test": "^1.40.1",
     "@sveltejs/adapter-vercel": "4.0.3",
     "@sveltejs/kit": "^2.0.6",

@@ -15,8 +15,8 @@ devDependencies:
     specifier: ^5.0.11
     version: 5.0.11
   '@libsql/client':
-    specifier: 0.4.0-pre.5
-    version: 0.4.0-pre.5
+    specifier: 0.4.0-pre.7
+    version: 0.4.0-pre.7
   '@playwright/test':
     specifier: ^1.40.1
     version: 1.40.1
@@ -849,8 +849,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@libsql/client@0.4.0-pre.5:
-    resolution: {integrity: sha512-GyKigCBslE5uztwT7mpvp9Zn0z3iWjnufcfeTeDSFPMyXCPjSAHUOiwSLAaHii909w6EQacA692CXmYYFo/eig==}
+  /@libsql/client@0.4.0-pre.7:
+    resolution: {integrity: sha512-zqr+aHFXwpmI9Wyl3vjlRdYW8G7mHSKrSL8Qn6p50M0aBeOfgHCP2dCn/eS9RR4b4vcayASnJmPvkzaKKE3tXg==}
     dependencies:
       '@libsql/hrana-client': 0.5.5
       js-base64: 3.7.5
