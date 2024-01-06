@@ -22,7 +22,8 @@
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "lint:fix": "eslint --fix",
     "format": "prettier --plugin-search-dir . --write .",
-    "cspell": "cspell '**/*.md' --config cspell.json --wordsOnly"
+    "cspell": "cspell '**/*.md' --config cspell.json --wordsOnly",
+    "postinstall": "patch-package"
   },
   "devDependencies": {
     "@fontsource-variable/manrope": "^5.0.18",
@@ -59,6 +60,7 @@
     "mdsvex": "0.11.0",
     "mdsvex-relative-images": "1.0.3",
     "nodemailer": "^6.9.7",
+    "patch-package": "^8.0.0",
     "postcss": "8.4.32",
     "postcss-load-config": "5.0.2",
     "prettier": "3.1.1",

@@ -2,7 +2,7 @@ import { cleanup, render } from '@testing-library/svelte'
 import { afterEach, describe, expect, it } from 'vitest'
 import StatsCard from './stats-card.svelte'
 
-describe.skip('StatsCard', () => {
+describe('StatsCard', () => {
   afterEach(cleanup)
 
   function renderStatsCard(

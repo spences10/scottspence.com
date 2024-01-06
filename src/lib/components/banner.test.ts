@@ -7,7 +7,7 @@ interface BannerOptions {
   message: string
 }
 
-describe.skip('Banner', () => {
+describe('Banner', () => {
   afterEach(cleanup)
   it('should render info banner with message', () => {
     const options: BannerOptions = {
