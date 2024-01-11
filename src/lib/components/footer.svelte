@@ -89,7 +89,7 @@
   </div>
   <div>
     <span class="footer-title">Socials</span>
-    <a rel="me" href="https://mas.to/@spences10">Mastodon</a>
+    <a rel="me" href="https://moth.social/@spences10">Mastodon</a>
     {#each SOCIAL_LINKS as social}
       <a
         class="text-primary-content hover:opacity-50"
