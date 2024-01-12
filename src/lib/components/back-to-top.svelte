@@ -12,7 +12,7 @@
   }
 
   function handle_scroll() {
-    const current_scroll_top = window.pageYOffset
+    const current_scroll_top = window.scrollY
     show_scroll_button =
       current_scroll_top > last_scroll_top && current_scroll_top > 0
     last_scroll_top = current_scroll_top
