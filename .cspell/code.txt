@@ -53,6 +53,7 @@ noreferrer
 npmignore
 npmrc
 nvmrc
+ondestroy
 onmount
 PageElement
 pageviews
