@@ -6,7 +6,7 @@
 
 [![Check: Spelling](https://github.com/spences10/scottspence.com/actions/workflows/spelling-check.yml/badge.svg)](https://github.com/spences10/scottspence.com/actions/workflows/spelling-check.yml)
 
-A blog made with SvelteKit, MDSveX, Tailwind and DaisyUI.
+A blog made with SvelteKit, MDSveX, daisyUI and Tailwind.
 
 Massive thanks to [Matt Jennings] for the [initial template] which has
 some really useful features, like images in markdown, html preview and
