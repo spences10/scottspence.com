@@ -111,6 +111,7 @@ HAVIT
 Hawksworth
 Heroku
 heymeta
+Hoelzl
 Holthausen
 Hygraph
 Ilesh
