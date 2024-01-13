@@ -61,7 +61,7 @@
     "mdsvex-relative-images": "1.0.3",
     "nodemailer": "^6.9.7",
     "patch-package": "^8.0.0",
-    "postcss": "8.4.32",
+    "postcss": "8.4.33",
     "postcss-load-config": "5.0.2",
     "prettier": "3.1.1",
     "prettier-plugin-svelte": "3.1.2",
