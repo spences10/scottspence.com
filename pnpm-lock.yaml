@@ -63,8 +63,8 @@ devDependencies:
     specifier: ^8.2.3
     version: 8.3.2
   cssnano:
-    specifier: 6.0.2
-    version: 6.0.2(postcss@8.4.32)
+    specifier: 6.0.3
+    version: 6.0.3(postcss@8.4.32)
   daisyui:
     specifier: 4.4.24
     version: 4.4.24(postcss@8.4.32)
@@ -2336,8 +2336,8 @@ packages:
       postcss: 8.4.32
     dev: true
 
-  /cssnano@6.0.2(postcss@8.4.32):
-    resolution: {integrity: sha512-Tu9wv8UdN6CoiQnIVkCNvi+0rw/BwFWOJBlg2bVfEyKaadSuE3Gq/DD8tniVvggTJGwK88UjqZp7zL5sv6t1aA==}
+  /cssnano@6.0.3(postcss@8.4.32):
+    resolution: {integrity: sha512-MRq4CIj8pnyZpcI2qs6wswoYoDD1t0aL28n+41c1Ukcpm56m1h6mCexIHBGjfZfnTqtGSSCP4/fB1ovxgjBOiw==}
     engines: {node: ^14 || ^16 || >=18.0}
     peerDependencies:
       postcss: ^8.4.31
