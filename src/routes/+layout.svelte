@@ -32,13 +32,12 @@
       Fathom.load(PUBLIC_FATHOM_ID, {
         url: PUBLIC_FATHOM_URL,
       })
-
-      // Track pageview on route change
-      $effect(() => {
-        $page.url.pathname
-        Fathom.trackPageview()
-      })
     }
+  })
+
+  // Track pageview on route change
+  $effect(() => {
+    $page.url.pathname, browser && Fathom.trackPageview()
   })
 
   onNavigate(navigation => {
