@@ -49,7 +49,7 @@
 <svelte:window on:mousemove={handle_mouse_move} />
 
 <a
-  class="transition left-0 bg-primary text-primary-content absolute p-3 m-3 -translate-y-16 focus:translate-y-0"
+  class="absolute left-0 m-3 -translate-y-16 bg-primary p-3 text-primary-content transition focus:translate-y-0"
   href="#main-content"
 >
   Skip Navigation
@@ -59,10 +59,10 @@
 
 <Nav />
 
-<div class="flex flex-col min-h-screen overflow-x-hidden">
+<div class="flex min-h-screen flex-col overflow-x-hidden">
   <main
     id="main-content"
-    class="container max-w-3xl mx-auto px-4 flex-grow"
+    class="container mx-auto max-w-3xl flex-grow px-4"
   >
     <slot />
     <BackToTop />
