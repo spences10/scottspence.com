@@ -40,8 +40,10 @@ describe('BackToTop', () => {
   })
 
   it('should not render the button initially', () => {
-    const { queryByLabelText } = renderBackToTop()
-    expect(queryByLabelText('Back to top')).toBeFalsy()
+    const { queryByTestId } = renderBackToTop()
+    const button = queryByTestId('back-to-top')
+    expect(button).toBeTruthy()
+    expect(button?.classList.contains('show-button')).toBeFalsy()
   })
 
   it('should render the button when scrolling down', async () => {
@@ -53,8 +55,8 @@ describe('BackToTop', () => {
     expect(button).toBeTruthy()
   })
 
-  it.skip('should not render the button when scrolling up after scrolling down', async () => {
-    const { queryAllByLabelText } = renderBackToTop(1000)
+  it('should not render the button when scrolling up after scrolling down', async () => {
+    const { queryByTestId } = renderBackToTop(1000)
 
     fireEvent.scroll(window)
     await tick()
@@ -63,8 +65,8 @@ describe('BackToTop', () => {
     fireEvent.scroll(window)
     await tick()
 
-    const buttons = queryAllByLabelText('Back to top')
-    expect(buttons.length).toBe(0)
+    const button = queryByTestId('back-to-top')
+    expect(button?.classList.contains('show-button')).toBeFalsy()
   })
 
   it('should scroll to the top when the button is clicked', async () => {

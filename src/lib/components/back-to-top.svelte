@@ -1,17 +1,15 @@
 <script lang="ts">
-  import { fly } from 'svelte/transition'
+  let show_scroll_button = $state(false)
+  let last_scroll_top = $state(0)
 
-  let show_scroll_button = false
-  let last_scroll_top = 0
-
-  function scroll_to_top() {
+  const scroll_to_top = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     })
   }
 
-  function handle_scroll() {
+  const handle_scroll = () => {
     const current_scroll_top = window.scrollY
     show_scroll_button =
       current_scroll_top > last_scroll_top && current_scroll_top > 0
@@ -21,14 +19,60 @@
 
 <svelte:window on:scroll={handle_scroll} />
 
-{#if show_scroll_button}
-  <button
-    on:click={scroll_to_top}
-    transition:fly|global={{ y: 200, duration: 300 }}
-    class="fixed bottom-20 lg:bottom-8 right-4 lg:right-8 btn btn-secondary normal-case font-normal shadow-2xl focus:outline-none focus:ring-2 focus:ring-accent rounded-box"
-    aria-label="Back to top"
-    data-testid="back-to-top"
-  >
-    Back to top
-  </button>
-{/if}
+<button
+  on:click={scroll_to_top}
+  class="btn btn-secondary normal-case font-normal shadow-2xl focus:outline-none focus:ring-2 focus:ring-accent rounded-box back-to-top-button {show_scroll_button
+    ? 'show-button'
+    : 'hide-button'}"
+  aria-label="Back to top"
+  data-testid="back-to-top"
+>
+  Back to top
+</button>
+
+<style>
+  @keyframes flyIn {
+    0% {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes flyOut {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+  }
+
+  .back-to-top-button {
+    position: fixed;
+    right: 2rem;
+    bottom: -2rem;
+    transition: bottom 0.3s ease-in-out;
+  }
+
+  .show-button {
+    bottom: 5rem;
+    animation: flyIn 0.3s ease forwards;
+  }
+
+  @media (min-width: 1024px) {
+    /* Tailwind's 'lg' breakpoint */
+    .show-button {
+      bottom: 2rem;
+    }
+  }
+
+  .hide-button {
+    animation: flyOut 0.3s ease forwards;
+  }
+</style>
