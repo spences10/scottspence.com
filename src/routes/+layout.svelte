@@ -10,11 +10,14 @@
   import { popular_posts_store } from '$lib/stores'
   import { handle_mouse_move } from '$lib/utils'
   import * as Fathom from 'fathom-client'
-  import { onMount } from 'svelte'
   import '../app.css'
   import '../prism.css'
+  import type { LayoutData } from './$types'
 
-  export let data
+  let { data, children } = $props<{
+    data: LayoutData
+    children: any
+  }>()
 
   $popular_posts_store = data?.popular_posts || {
     popular_posts_daily: [],
@@ -24,14 +27,19 @@
   // TODO: do something with this! 😂
   // $visitors_store = data?.visitors
 
-  onMount(() => {
-    Fathom.load(PUBLIC_FATHOM_ID, {
-      url: PUBLIC_FATHOM_URL,
-      excludedDomains: ['localhost'],
-    })
-  })
+  $effect(() => {
+    if (browser) {
+      Fathom.load(PUBLIC_FATHOM_ID, {
+        url: PUBLIC_FATHOM_URL,
+      })
 
-  $: $page.url.pathname, browser && Fathom.trackPageview()
+      // Track pageview on route change
+      $effect(() => {
+        $page.url.pathname
+        Fathom.trackPageview()
+      })
+    }
+  })
 
   onNavigate(navigation => {
     // sorry Firefox and Safari users
@@ -64,7 +72,7 @@
     id="main-content"
     class="container mx-auto max-w-3xl flex-grow px-4"
   >
-    <slot />
+    {@render children()}
     <BackToTop />
   </main>
 
