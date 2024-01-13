@@ -1,15 +1,9 @@
-export const load = async ({
-  params,
-  data: { daily_visits, monthly_visits, yearly_visits, count },
-}) => {
+export const load = async ({ params, data: { count } }) => {
   const { slug } = params
 
   try {
     const post = await import(`../../../../posts/${slug}.md`)
     return {
-      daily_visits,
-      monthly_visits,
-      yearly_visits,
       count,
       Content: post.default,
       meta: { ...post.metadata, slug },
