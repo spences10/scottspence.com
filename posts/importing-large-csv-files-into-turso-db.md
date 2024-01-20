@@ -5,12 +5,26 @@ tags: ['turso', 'cli', 'sql', 'analytics', 'guide']
 isPrivate: false
 ---
 
-So, I've got these massive CSV files (some up to 23 million rows) that
-I exported from Fathom Analytics. I want to import them into the Turso
-DB I use for this site, so, eventually visitors will be able to view
-the data. I'm lot leaving Fathom, I still think Fathom is a top notch
-product I'm happy to pay for. Historical data _is_ available via the
-Fathom API but it would absolutely hammer my allowance
+<script>
+  import { Banner } from '$lib/components'
+
+  const options = {
+    type: 'info',
+    message: `I discovered the upper bound for importing CSV files 
+    into Turso DB is 20,000 rows.
+
+    If you have a CSV file with more than 20,000 rows you'll need to
+    split the file with <code>COMMIT;</code> and <code>BEGIN TRANSACTION;</code> statements.
+    `
+  }
+</script>
+
+So, I've got these massive CSV files (some up to 233 thousand rows)
+that I exported from Fathom Analytics. I want to import them into the
+Turso DB I use for this site, so, eventually visitors will be able to
+view the data. I'm lot leaving Fathom, I still think Fathom is a top
+notch product I'm happy to pay for. Historical data _is_ available via
+the Fathom API but it would absolutely hammer my allowance
 ([like I did at the start of 2023](https://scottspence.com/posts/caching-with-fathom-redis-and-sveltekit)).
 
 I spent _many_ hours trying to get the data into the database via a
@@ -82,6 +96,51 @@ to change them to `TIMESTAMP` for the timestamp and `INTEGER` for the
 
 I'll come onto that part later.
 
+## Check the validity of the data
+
+There's a couple of checks that I want to do before I import the data
+into my existing database.
+
+**Null Value Check**: Ensure that none of the columns contain
+unexpected null values.
+
+```sql
+SELECT * FROM csv_table_export
+  WHERE "Timestamp" IS NULL
+  OR "Hostname" IS NULL
+  OR "Pathname" IS NULL
+  OR "Views" IS NULL
+  OR "Uniques" IS NULL;
+```
+
+**Data Type Validation**: Since all your columns are text, I want to
+ensure that 'Views' and 'Uniques' columns contain only numeric data.
+
+```sql
+SELECT * FROM csv_table_export
+  WHERE typeof("Views") != 'text' OR typeof("Uniques") != 'text';
+```
+
+**Special Characters in Text Fields**: Check for problematic
+characters in text fields, such as unescaped single quotes.
+
+```sql
+SELECT * FROM csv_table_export
+  WHERE "Hostname" LIKE '%''%' OR "Pathname" LIKE '%''%';
+```
+
+There was a sneaky unescaped `'` in there so I had to update the
+table:
+
+```sql
+UPDATE csv_table_export
+SET Pathname = replace(Pathname, '''', '')
+WHERE Pathname LIKE '%''%';
+```
+
+Now I can create a dump of this database to import into my existing
+database.
+
 ## Dump the temp database to a file
 
 So this is the part I need to thank Jamie for, he pointed me to a
@@ -102,6 +161,8 @@ turso db shell $TEMP_DB .dump > $CSV_DUMP
 
 This will create a dump file in the current directory.
 
+<Banner {options} />
+
 If you take a look at the contents of the file you'll see something
 like this:
 
@@ -111,6 +172,27 @@ BEGIN TRANSACTION;
 CREATE TABLE IF NOT EXISTS "csv_table_export"( "Timestamp" TEXT, "Hostname" TEXT, "Pathname" TEXT, "Views" TEXT, "Uniques" TEXT );
 -- INSERT INTO csv_table_export VALUES...
 ```
+
+Inserting more than 20,000 rows into the database will silently fail.
+
+I had to break the dump file into smaller chunks, I did this by
+inserting `COMMIT;` and `BEGIN TRANSACTION;` statements into the dump
+file.
+
+Something like this:
+
+```sql
+PRAGMA foreign_keys=OFF;
+CREATE TABLE IF NOT EXISTS "csv_table_export"( "Timestamp" TEXT, "Hostname" TEXT, "Pathname" TEXT, "Views" TEXT, "Uniques" TEXT );
+
+BEGIN TRANSACTION;
+INSERT INTO csv_table_export VALUES...
+-- 19,999 more rows
+COMMIT;
+```
+
+So, for my 233 thousand row CSV file I had to split it into 12 files!
+🥲
 
 ## Import the dump into the existing database
 
@@ -184,12 +266,22 @@ Check the data is in the table:
 SELECT * FROM analytics_pages LIMIT 10;
 ```
 
-Now I'm happy with the data I can drop the imported table:
+Now I'm happy with the data I can drop the imported table from my
+existing database:
 
 ```sql
 -- Drop import table if not needed
 DROP TABLE csv_table_export;
 ```
+
+Also, I can delete the temporary database:
+
+```bash
+turso db destroy $TEMP_DB
+```
+
+That's it! I've imported the data from the CSV file into my existing
+database.
 
 ## Conclusion
 
