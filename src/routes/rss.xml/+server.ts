@@ -46,9 +46,9 @@ const render = (posts_metadata: Post[]) => {
   return `<feed xmlns="http://www.w3.org/2005/Atom">
     <title>${name}'s Blog!</title>
     <subtitle>${description}</subtitle>
-    <link rel="alternate" type="text/html" href="${website}"/>
+    <link rel="alternate" type="text/html" href="${website}/"/>
     <link rel="self" type="application/atom+xml" href="${website}/rss.xml"/>
-    <id>${website}</id>
+    <id>${website}/</id>
     <updated>${new Date().toISOString()}</updated>
     ${posts_metadata
       .map(({ title, preview, slug, date, previewHtml }) => {
@@ -64,13 +64,16 @@ const render = (posts_metadata: Post[]) => {
           add_to_cache(slug, cached_url)
         }
 
+        // Use the post's date as the 'updated' timestamp
+        const post_date = new Date(date).toISOString()
+
         return `
           <entry>
             <title>${title}</title>
             <link rel="alternate" type="text/html" href="${cached_url}"/>
             <id>${cached_url}</id>
-            <published>${new Date(date).toISOString()}</published>
-            <updated>${new Date().toISOString()}</updated>
+            <published>${post_date}</published>
+            <updated>${post_date}</updated>
             <author>
               <name>${name}</name>
             </author>
@@ -91,3 +94,4 @@ const render = (posts_metadata: Post[]) => {
       .join('')}
   </feed>`
 }
+
