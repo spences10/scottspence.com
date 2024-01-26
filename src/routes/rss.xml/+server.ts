@@ -51,7 +51,7 @@ const render = (posts_metadata: Post[]) => {
     <id>${website}/</id>
     <updated>${new Date().toISOString()}</updated>
     ${posts_metadata
-      .map(({ title, preview, slug, date, previewHtml }) => {
+      .map(({ title, preview, slug, date, preview_html }) => {
         // Check if slug is not null
         if (slug === null) {
           // Handle the null case, e.g., skip this entry
@@ -66,7 +66,6 @@ const render = (posts_metadata: Post[]) => {
 
         // Use the post's date as the 'updated' timestamp
         const post_date = new Date(date).toISOString()
-
         return `
           <entry>
             <title>${title}</title>
@@ -79,7 +78,7 @@ const render = (posts_metadata: Post[]) => {
             </author>
             <content type="html">
               <![CDATA[
-                ${previewHtml}
+                ${preview_html}
                 <div style="margin-top: 50px; font-style: italic;">
                   <strong>
                     <a href="${cached_url}">
