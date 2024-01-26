@@ -1,6 +1,6 @@
 import { description, name, website } from '$lib/info'
 import { get_posts } from '$lib/posts'
-import { addHours, format, isAfter } from 'date-fns'
+import { addHours, isAfter } from 'date-fns'
 
 interface CacheEntry {
   value: string
@@ -43,48 +43,40 @@ export const GET = async () => {
 }
 
 const render = (posts_metadata: Post[]) => {
-  return `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-      <title>
-        <![CDATA[ ${name}'s Blog! ]]>
-      </title>
-      <description>
-        <![CDATA[ ${description} ]]>
-      </description>
-      <link>${website}</link>
-      <generator>RSS for Node</generator>
-      <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-      <atom:link href="${website}/rss.xml" rel="self" type="application/rss+xml"/>
-      ${posts_metadata
-        .map(({ title, preview, slug, date, previewHtml }) => {
-          if (slug === null) {
-            // Handle the case when slug is null
-            // For example, skip this post or use a default value
-            return ''
-          }
-          const cached_url =
-            get_from_cache(slug) || `${website}/posts/${slug}/`
-          if (!get_from_cache(slug)) {
-            add_to_cache(slug, cached_url)
-          }
-          return `
-            <item>
-              <title>
-                <![CDATA[ ${title} ]]>
-              </title>
-              <description>
-                <![CDATA[ ${preview} ]]>
-              </description>
-              <link>${cached_url}</link>
-              <guid isPermaLink="false">${cached_url}</guid>
-              <dc:creator>
-                <![CDATA[ ${name} ]]>
-              </dc:creator>
-              <pubDate>
-                ${format(new Date(date), 'EEE, dd MMM yyyy HH:mm:ss O')}
-              </pubDate>
-              <content:encoded>
-                ${previewHtml} 
+  return `<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>${name}'s Blog!</title>
+    <subtitle>${description}</subtitle>
+    <link rel="alternate" type="text/html" href="${website}"/>
+    <link rel="self" type="application/atom+xml" href="${website}/rss.xml"/>
+    <id>${website}</id>
+    <updated>${new Date().toISOString()}</updated>
+    ${posts_metadata
+      .map(({ title, preview, slug, date, previewHtml }) => {
+        // Check if slug is not null
+        if (slug === null) {
+          // Handle the null case, e.g., skip this entry
+          return ''
+        }
+
+        const cached_url =
+          get_from_cache(slug) || `${website}/posts/${slug}/`
+        if (!get_from_cache(slug)) {
+          add_to_cache(slug, cached_url)
+        }
+
+        return `
+          <entry>
+            <title>${title}</title>
+            <link rel="alternate" type="text/html" href="${cached_url}"/>
+            <id>${cached_url}</id>
+            <published>${new Date(date).toISOString()}</published>
+            <updated>${new Date().toISOString()}</updated>
+            <author>
+              <name>${name}</name>
+            </author>
+            <content type="html">
+              <![CDATA[
+                ${previewHtml}
                 <div style="margin-top: 50px; font-style: italic;">
                   <strong>
                     <a href="${cached_url}">
@@ -92,11 +84,10 @@ const render = (posts_metadata: Post[]) => {
                     </a>.
                   </strong>  
                 </div>
-              </content:encoded>
-            </item>
-          `
-        })
-        .join('')}
-    </channel>
-  </rss>`
+              ]]>
+            </content>
+          </entry>`
+      })
+      .join('')}
+  </feed>`
 }
