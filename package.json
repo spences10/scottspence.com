@@ -43,7 +43,7 @@
     "@upstash/ratelimit": "^1.0.0",
     "@upstash/redis": "^1.28.0",
     "@vitest/ui": "^1.2.0",
-    "autoprefixer": "10.4.16",
+    "autoprefixer": "10.4.17",
     "cspell": "^8.3.2",
     "cssnano": "6.0.3",
     "daisyui": "4.6.0",
