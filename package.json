@@ -47,7 +47,7 @@
     "cspell": "^8.3.2",
     "cssnano": "6.0.3",
     "daisyui": "4.6.0",
-    "date-fns": "3.2.0",
+    "date-fns": "3.3.1",
     "eslint": "8.56.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-svelte": "^2.35.1",

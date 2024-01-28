@@ -69,8 +69,8 @@ devDependencies:
     specifier: 4.6.0
     version: 4.6.0(postcss@8.4.33)
   date-fns:
-    specifier: 3.2.0
-    version: 3.2.0
+    specifier: 3.3.1
+    version: 3.3.1
   eslint:
     specifier: 8.56.0
     version: 8.56.0
@@ -2406,8 +2406,8 @@ packages:
       whatwg-url: 14.0.0
     dev: true
 
-  /date-fns@3.2.0:
-    resolution: {integrity: sha512-E4KWKavANzeuusPi0jUjpuI22SURAznGkx7eZV+4i6x2A+IZxAMcajgkvuDAU1bg40+xuhW1zRdVIIM/4khuIg==}
+  /date-fns@3.3.1:
+    resolution: {integrity: sha512-y8e109LYGgoQDveiEBD3DYXKba1jWf5BA8YU1FL5Tvm0BTdEfy54WLCwnuYWZNnzzvALy/QQ4Hov+Q9RVRv+Zw==}
     dev: true
 
   /debug@4.3.4:
