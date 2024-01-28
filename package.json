@@ -31,7 +31,7 @@
     "@fontsource/victor-mono": "^5.0.11",
     "@libsql/client": "0.4.0-pre.7",
     "@playwright/test": "^1.40.1",
-    "@sveltejs/adapter-vercel": "4.0.4",
+    "@sveltejs/adapter-vercel": "5.1.0",
     "@sveltejs/kit": "^2.3.2",
     "@sveltejs/vite-plugin-svelte": "^3.0.1",
     "@tailwindcss/typography": "0.5.10",
