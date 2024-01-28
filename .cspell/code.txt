@@ -58,6 +58,7 @@ nvmrc
 ondestroy
 onmount
 PageElement
+pageview
 pageviews
 palevioletred
 pnpm

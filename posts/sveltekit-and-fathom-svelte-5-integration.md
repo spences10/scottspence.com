@@ -28,7 +28,7 @@ previous posts:
 I got this working on my site first of all before implementing here,
 essentially the changes for Fathom to work is to swap out the
 `onMount` function for a `$effect` function. Then another effect to
-track the pageview on route change.
+track the page view on route change.
 
 Here's the Svelte 4 layout:
 
@@ -91,7 +91,7 @@ And here's the Svelte 5 layout:
     }
   })
 
-  // Track pageview on route change
+  // Track page view on route change
   $effect(() => {
     $page.url.pathname, browser && Fathom.trackPageview()
   })
@@ -120,7 +120,7 @@ wrapped in a conditional that checks if the browser is available and
 loads up the Fathom script.
 
 Then another `$effect` for the `Fathom.trackPageview` function, that
-tracks the pageview on route change.
+tracks the page view on route change.
 
 ```diff
 diff --git a/src/routes/+layout.svelte b/src/routes/+layout.svelte
@@ -161,7 +161,7 @@ index 0c9da2c..cb4f77d 100644
  	})
 
 -	$: $page.url.pathname, browser && Fathom.trackPageview()
-+	// Track pageview on route change
++	// Track page view on route change
 +	$effect(() => {
 +		$page.url.pathname, browser && Fathom.trackPageview()
 +	})
@@ -179,11 +179,11 @@ That's pretty much it! For the Fathom integration anyway.
 The rest of the changes were to use Svelte 5 snippets for the
 Analytics Card.
 
-## Conculsion
+## Conclusion
 
 Simple enough, right? There were a few bumps for me on using `$effect`
 for the first loading of the Fathom script, then another one for the
-pageview tracking. But once I got my head around it, it was pretty
+page view tracking. But once I got my head around it, it was pretty
 straight forward.
 
 For the rest of the changes, I'll leave that to you to check out in
