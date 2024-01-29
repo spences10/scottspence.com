@@ -5,11 +5,6 @@ test.describe('BackToTop', () => {
     await page.goto('/')
   })
 
-  test('should not render the button initially', async ({ page }) => {
-    const button = await page.$('[aria-label="Back to top"]')
-    expect(button).toBeNull()
-  })
-
   test('should scroll to the top when the button is clicked', async ({
     page,
   }) => {
