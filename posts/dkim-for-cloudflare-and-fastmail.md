@@ -5,9 +5,9 @@ tags: ['domains', 'guide', 'resource', 'fastmail', 'cloudflare']
 isPrivate: false
 ---
 
-I'm in the process of migrating domains to Cloudflare. I moved
-[scottspence.dev](https://scottspence.dev) recently and noticed my
-Fastmail DKIM wasn't configured correctly.
+Real quick! I'm in the process of migrating domains to Cloudflare. I
+moved [scottspence.dev](https://scottspence.dev) recently and noticed
+my Fastmail DKIM wasn't configured correctly.
 
 Cloudflare will import your DNS records when you add a domain to your
 account with their defaults.
