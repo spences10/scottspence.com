@@ -1,4 +1,6 @@
 User-agent: *
+# Allow all the things
+Allow: /
 # Specific disallow rules
 # Disallow: /api/analytics
 # Disallow: /current-visitors.json
