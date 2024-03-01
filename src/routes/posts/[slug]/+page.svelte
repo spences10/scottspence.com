@@ -120,7 +120,7 @@
 {/await}
 
 <article>
-  <h1 class="font-black mb-1 text-5xl">{title}</h1>
+  <h1 class="mb-1 text-5xl font-black">{title}</h1>
   <div class="mb-3 mt-4 uppercase">
     <div class="mb-1">
       <time datetime={new Date(date).toISOString()}>
@@ -129,11 +129,11 @@
       &bull;
       <span>{readingTime.text}</span>
     </div>
-    <div class="space-x-2">
+    <div>
       {#each tags as tag}
         <a href={`/tags/${tag}`}>
           <span
-            class="badge badge-primary text-primary-content transition hover:bg-accent hover:text-secondary-content shadow-md"
+            class="badge badge-primary mr-2 text-primary-content shadow-md transition hover:bg-accent hover:text-secondary-content"
           >
             {tag}
           </span>
@@ -141,7 +141,7 @@
       {/each}
       {#if differenceInDays(new Date(), new Date(date)) < 31}
         <span
-          class="badge badge-secondary text-secondary-content font-bold transition hover:bg-accent hover:text-secondary-content cursor-pointer shadow-md"
+          class="badge badge-secondary cursor-pointer font-bold text-secondary-content shadow-md transition hover:bg-accent hover:text-secondary-content"
         >
           new
         </span>
@@ -153,7 +153,7 @@
     <span
       on:mouseenter={() => (show_current_visitor_data = true)}
       on:mouseleave={() => (show_current_visitor_data = false)}
-      class="text-sm cursor-pointer inline-block"
+      class="inline-block cursor-pointer text-sm"
     >
       <p>
         {current_visitor_data.recent_visitors}
@@ -186,7 +186,7 @@
   </div>
 
   <div
-    class="flex flex-col w-full mt-10 mb-5"
+    class="mb-5 mt-10 flex w-full flex-col"
     bind:this={end_of_copy}
   >
     <div class="divider divider-secondary" />
@@ -200,7 +200,7 @@
       href="/stats/{$page.params.slug}"
       on:click={() =>
         Fathom.trackEvent(`analytics click: ${current_path}`)}
-      class="btn btn-primary btn-lg mb-20 shadow-lg px-10 text-xl"
+      class="btn btn-primary btn-lg mb-20 px-10 text-xl shadow-lg"
     >
       ✨ View the stats for this post ✨
     </a>
@@ -212,7 +212,7 @@
     {/if}
   </Modal>
 
-  <div class="grid justify-items-center mb-24">
+  <div class="mb-24 grid justify-items-center">
     <ShareWithTweet
       buttonText="Useful? Share it on Twitter."
       tweetText={`Check out this post from @spences10, ${title}: ${url}`}
