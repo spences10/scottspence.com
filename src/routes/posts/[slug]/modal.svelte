@@ -1,7 +1,14 @@
 <script lang="ts">
-  export let modal: HTMLDialogElement
+  let { modal, children } = $props<{
+    modal: HTMLDialogElement
+    children: any
+  }>()
 </script>
 
-<dialog class="rounded-box backdrop:backdrop-filter backdrop:backdrop-blur-sm" bind:this={modal} on:close>
-  <slot />
+<dialog
+  class="rounded-box backdrop:backdrop-blur-sm backdrop:backdrop-filter"
+  bind:this={modal}
+  on:close
+>
+  {@render children()}
 </dialog>

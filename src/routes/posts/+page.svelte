@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores'
   import { Head, PostCard } from '$lib/components'
-  import { description, name, website } from '$lib/info.js'
+  import { description, name, website } from '$lib/info'
   import { og_image_url } from '$lib/utils'
 
   export let data
