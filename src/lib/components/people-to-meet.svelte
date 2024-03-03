@@ -3,35 +3,53 @@
   import PeopleToMeetCheck from './people-to-meet-check.svelte'
   import ShareWithTweet from './share-with-tweet.svelte'
 
-  // const peopleSorted = PEOPLE.sort((a, b) => {
-  //   return a.met - b.met
-  // })
+  type SortFunctionKeys = 'all' | 'met' | 'not_met'
 
-  const peopleShuffled = PEOPLE.sort(() => {
-    return 0.5 - Math.random()
-  })
+  interface Person {
+    name: string
+    link: string
+    met: boolean
+  }
+
+  let sort_mode = $state('random')
+
+  const shuffle_array = (array: Person[]) => {
+    return array.sort(() => 0.5 - Math.random())
+  }
+
+  const sort_functions: Record<SortFunctionKeys, () => Person[]> = {
+    all: () => shuffle_array(PEOPLE),
+    met: () => PEOPLE.filter(p => p.met),
+    not_met: () => PEOPLE.filter(p => !p.met),
+  }
+
+  let sorted_people: Person[] = $derived(
+    sort_functions[sort_mode as SortFunctionKeys]
+      ? sort_functions[sort_mode as SortFunctionKeys]()
+      : PEOPLE,
+  )
 </script>
 
-<div class="flex flex-col w-full my-10">
+<div class="my-10 flex w-full flex-col">
   <div class="divider divider-secondary" />
 </div>
 
-<article class="m-0 mb-20 sm:-mx-30 lg:-mx-40">
+<article class="sm:-mx-30 m-0 mb-20 lg:-mx-40">
   <a
     href="#people-id-like-to-meet"
     id="people-id-like-to-meet"
-    class="font-bold text-2xl link-primary hover:primary-accent transition"
+    class="hover:primary-accent link-primary text-2xl font-bold transition"
   >
     People I'd like to meet in real life (aka the meatspace).
   </a>
-  <p class="mb-1 -mt-1 all-prose">
+  <p class="all-prose -mt-1 mb-1">
     These are all people I'd like to share a firm handshake with.
   </p>
 
-  <p class="text-sm text-secondary mb-9">
+  <p class="mb-9 text-sm text-secondary">
     Idea totally stolen from
     <a
-      class="transition link hover:text-primary"
+      class="link transition hover:text-primary"
       rel="noreferrer noopener"
       target="_blank"
       href="https://rafa.design/"
@@ -40,14 +58,29 @@
     </a>
   </p>
 
+  <div class="mb-5">
+    <button onclick={() => (sort_mode = 'all')} class="btn btn-xs">
+      All
+    </button>
+    <button onclick={() => (sort_mode = 'met')} class="btn btn-xs">
+      Met
+    </button>
+    <button
+      onclick={() => (sort_mode = 'not_met')}
+      class="btn btn-xs"
+    >
+      Not Met
+    </button>
+  </div>
+
   <ul
-    class="mb-10 grid gap-4 grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+    class="mb-10 grid grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
   >
-    {#each peopleShuffled as { name, link, met }}
+    {#each sorted_people as { name, link, met }}
       <li class="">
-        <div class="flex text-left items-center">
+        <div class="flex items-center text-left">
           <PeopleToMeetCheck {met} />
-          <span class="hover:text-primary transition">
+          <span class="transition hover:text-primary">
             <a
               class="text-xl"
               href={link}
@@ -63,7 +96,7 @@
   </ul>
 
   <div class="md:flex md:items-center">
-    <p class="mb-3 all-prose md:mr-5 md:mb-0">
+    <p class="all-prose mb-3 md:mb-0 md:mr-5">
       Not on the list? Want to meet up?
     </p>
     <ShareWithTweet
