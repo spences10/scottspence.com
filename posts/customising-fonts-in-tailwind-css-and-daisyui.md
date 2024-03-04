@@ -15,9 +15,6 @@ use local fonts above the default used in Tailwind CSS. In this post
 I'll go over adding in new fonts for Tailwind and also extending the
 daisyUI themes.
 
-In this post I'll detail adding custom fonts to a SvelteKit project
-and also extending the daisyUI themes.
-
 If you not familiar, [daisyUI] is a plugin for Tailwind that adds a
 ton of additional utility classes component classes to enable you to
 move fast when building sites.
@@ -166,7 +163,7 @@ as well:
   import '../app.postcss'
 </script>
 
-<main class="container max-w-3xl mx-auto px-4 prose prose-xl">
+<main class="container prose prose-xl mx-auto max-w-3xl px-4">
   <slot />
 </main>
 ```
@@ -267,7 +264,7 @@ attribute on the `html` element.
 So in this example I'm using the `wireframe` theme:
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="wireframe">
   <head>
     <meta charset="utf-8" />
@@ -432,7 +429,7 @@ in the project (which is none but a good practice).
 </script>
 
 <ThemeSelect />
-<main class="container max-w-3xl mx-auto px-4 prose prose-xl">
+<main class="container prose prose-xl mx-auto max-w-3xl px-4">
   <slot />
 </main>
 ```
