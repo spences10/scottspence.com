@@ -6,6 +6,7 @@ blogposts
 bootcamp
 changefreq
 chsh
+cleanup
 cmyk
 codegen
 color
