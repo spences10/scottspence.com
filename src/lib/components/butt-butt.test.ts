@@ -1,4 +1,4 @@
-import { render } from '@testing-library/svelte'
+import { render } from '@testing-library/svelte/svelte5'
 import { describe, expect, it, vi } from 'vitest'
 import ButtButt from './butt-butt.svelte'
 
@@ -20,8 +20,8 @@ describe('ButtButt', () => {
     const { getByText } = render(ButtButt)
     expect(
       getByText(
-        'Looks like you have reached the bottom of this page!'
-      )
+        'Looks like you have reached the bottom of this page!',
+      ),
     ).toBeTruthy()
   })
 

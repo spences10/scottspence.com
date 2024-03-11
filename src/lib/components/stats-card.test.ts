@@ -1,4 +1,4 @@
-import { cleanup, render } from '@testing-library/svelte'
+import { cleanup, render } from '@testing-library/svelte/svelte5'
 import { afterEach, describe, expect, it } from 'vitest'
 import StatsCard from './stats-card.svelte'
 
@@ -8,7 +8,7 @@ describe('StatsCard', () => {
   function renderStatsCard(
     daily_visits: AnalyticsData | null | undefined,
     monthly_visits: AnalyticsData | null | undefined,
-    yearly_visits: AnalyticsData | null | undefined
+    yearly_visits: AnalyticsData | null | undefined,
   ) {
     return render(StatsCard, {
       props: {
@@ -74,7 +74,7 @@ describe('StatsCard', () => {
     const { getByText } = renderStatsCard(
       daily_visits,
       monthly_visits,
-      yearly_visits
+      yearly_visits,
     )
 
     // For daily visits

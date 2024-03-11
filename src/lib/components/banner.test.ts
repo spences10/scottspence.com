@@ -1,4 +1,4 @@
-import { cleanup, render } from '@testing-library/svelte'
+import { cleanup, render } from '@testing-library/svelte/svelte5'
 import { afterEach, describe, expect, it } from 'vitest'
 import Banner from './banner.svelte'
 

@@ -22,8 +22,7 @@
     "lint": "prettier --check . && eslint .",
     "lint:fix": "eslint --fix",
     "format": "prettier --write .",
-    "cspell": "cspell '**/*.md' --config cspell.json --wordsOnly",
-    "postinstall": "patch-package"
+    "cspell": "cspell '**/*.md' --config cspell.json --wordsOnly"
   },
   "devDependencies": {
     "@fontsource-variable/manrope": "^5.0.18",
@@ -35,7 +34,7 @@
     "@sveltejs/kit": "^2.5.2",
     "@sveltejs/vite-plugin-svelte": "^3.0.2",
     "@tailwindcss/typography": "0.5.10",
-    "@testing-library/svelte": "^4.1.0",
+    "@testing-library/svelte": "^4.2.1",
     "@types/marked": "^5.0.2",
     "@types/nodemailer": "^6.4.14",
     "@typescript-eslint/eslint-plugin": "^7.1.0",
@@ -59,7 +58,6 @@
     "mdsvex": "0.11.0",
     "mdsvex-relative-images": "1.0.3",
     "nodemailer": "^6.9.11",
-    "patch-package": "^8.0.0",
     "postcss": "8.4.35",
     "postcss-load-config": "5.0.3",
     "prettier": "3.2.5",

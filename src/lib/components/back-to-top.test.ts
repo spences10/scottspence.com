@@ -1,4 +1,8 @@
-import { cleanup, fireEvent, render } from '@testing-library/svelte'
+import {
+  cleanup,
+  fireEvent,
+  render,
+} from '@testing-library/svelte/svelte5'
 import { tick } from 'svelte'
 import {
   afterEach,

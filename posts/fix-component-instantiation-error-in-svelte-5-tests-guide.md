@@ -1,11 +1,26 @@
 ---
 date: 2024-01-12
+updated: 2024-03-11
 title:
   "Fixing 'Component Instantiation' Error in Svelte 5 Tests: A Quick
   Guide"
 tags: ['testing', 'svelte', 'guide']
 isPrivate: false
 ---
+
+<script>
+  import { Banner } from '$lib/components'
+  import { DateDistance } from '$lib/components'
+
+  const options = {
+    type: 'info',
+    message: `The testing library has been updated. If you're not
+      seeing this error in your tests, don't worry. <br> <br> Check 
+      out the <a href="#update">update</a> at the end of the post 
+      for the simpler approach.
+    `
+  }
+</script>
 
 So, you've just upgraded to Svelte 5 and are excited to test out your
 components. But wait, what's this? You run your tests and hit an error
@@ -17,6 +32,8 @@ Svelte 5. See
 https://svelte-5-preview.vercel.app/docs/breaking-changes#components-are-no-longer-classes
 for more information.
 ```
+
+<Banner {options} />
 
 Annoying, right? The solution? Good ol' patch-package. After a bit of
 searching I found an issue on the svelte-testing-library repo that
@@ -130,6 +147,28 @@ pnpm i
 The `postinstall` script will run `patch-package` and apply the patch
 to the package. Now you can run your tests and they should work as
 expected.
+
+## Update
+
+So, <DateDistance date='2024-02-16' /> ago there was an update to the
+`svelte-testing-library` package which added support for Svelte 5 on
+the `@next` tag for the package.
+
+So, install the package at the `@next` tag:
+
+```bash
+pnpm i -D @testing-library/svelte@next
+```
+
+Then in any tests that use the `svelte-testing-library` package, I can
+update the import to use `svelte5`:
+
+```diff
++import { cleanup, fireEvent, render } from '@testing-library/svelte/svelte5'
+-import { cleanup, fireEvent, render } from '@testing-library/svelte'
+```
+
+That's it, no need to patch the package anymore.
 
 ## References
 
