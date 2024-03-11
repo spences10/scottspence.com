@@ -1,13 +1,11 @@
 import { describe, expect, test } from 'vitest'
 import {
+  PEOPLE,
+  SITE_LINKS,
+  SOCIAL_LINKS,
+  description,
   name,
   website,
-  description,
-  PORTFOLIO_PROJECTS,
-  POPULAR_POSTS,
-  SOCIAL_LINKS,
-  SITE_LINKS,
-  PEOPLE,
 } from './info'
 
 describe('info', () => {
@@ -23,37 +21,7 @@ describe('info', () => {
     expect(typeof description).toBe('string')
   })
 
-  test('PORTFOLIO_PROJECTS should be an array', () => {
-    expect(Array.isArray(PORTFOLIO_PROJECTS)).toBe(true)
-  })
-
-  test('PORTFOLIO_PROJECTS should have at least one project', () => {
-    expect(PORTFOLIO_PROJECTS.length).toBeGreaterThan(0)
-  })
-
-  test('each portfolio project should have a title', () => {
-    PORTFOLIO_PROJECTS.forEach(project => {
-      expect(project.title).toBeDefined()
-      expect(typeof project.title).toBe('string')
-    })
-  })
-
-  test('POPULAR_POSTS should be an array', () => {
-    expect(Array.isArray(POPULAR_POSTS)).toBe(true)
-  })
-
-  test('POPULAR_POSTS should have at least one post', () => {
-    expect(POPULAR_POSTS.length).toBeGreaterThan(0)
-  })
-
-  test('each popular post should have a title and path', () => {
-    POPULAR_POSTS.forEach(post => {
-      expect(post.title).toBeDefined()
-      expect(typeof post.title).toBe('string')
-      expect(post.path).toBeDefined()
-      expect(typeof post.path).toBe('string')
-    })
-  })
+  // popular posts now comes from endpoint
 
   test('SOCIAL_LINKS should be an array', () => {
     expect(Array.isArray(SOCIAL_LINKS)).toBe(true)
