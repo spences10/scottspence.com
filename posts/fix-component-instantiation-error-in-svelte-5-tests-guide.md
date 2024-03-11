@@ -15,7 +15,7 @@ isPrivate: false
   const options = {
     type: 'info',
     message: `The testing library has been updated. If you're not
-      seeing this error in your tests, don't worry. <br> <br> Check 
+      seeing this error in your tests, don't worry. Check 
       out the <a href="#update">update</a> at the end of the post 
       for the simpler approach.
     `
