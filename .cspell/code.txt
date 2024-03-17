@@ -12,6 +12,7 @@ codegen
 color
 concat
 Consolas
+copr
 cornflowerblue
 csvparse
 darkgrey
@@ -22,6 +23,7 @@ dotenv
 dotfiles
 esbenp
 extrabold
+findutils
 fontSize
 frontmatter
 frontmattering
@@ -96,6 +98,7 @@ tweebot
 typeof
 uniques
 unist
+upower
 urlsearchparams
 urlset
 vars
@@ -108,4 +111,6 @@ webp
 wireframe
 wrapPageElement
 wraprootelement
+wslu
+wslutilities
 yourdomain
