@@ -1,17 +1,17 @@
 name: 'Ingest: Task Runner'
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-    types: [opened, synchronize]
-  schedule:
-    # - cron: '0 * * * *' # Runs every hour, adjust to your needs
-    - cron: '*/15 * * * *' # Run every 15 minutes
-    # - cron: '30 * * * *' # Run every hour on the half-hour
-    # - cron: '0 */6 * * *' # Runs every 6 hours
-  workflow_dispatch: # Allows manual trigger from the GitHub UI
+# on:
+#   push:
+#     branches: [main]
+#   pull_request:
+#     branches: [main]
+#     types: [opened, synchronize]
+#   schedule:
+#     # - cron: '0 * * * *' # Runs every hour, adjust to your needs
+#     - cron: '*/15 * * * *' # Run every 15 minutes
+#     # - cron: '30 * * * *' # Run every hour on the half-hour
+#     # - cron: '0 */6 * * *' # Runs every 6 hours
+#   workflow_dispatch: # Allows manual trigger from the GitHub UI
 
 env:
   INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
