@@ -24,6 +24,7 @@ dotfiles
 esbenp
 extrabold
 findutils
+flydotio
 fontSize
 frontmatter
 frontmattering
@@ -109,6 +110,7 @@ vsix
 webm
 webp
 wireframe
+WORKDIR
 wrapPageElement
 wraprootelement
 wslu
