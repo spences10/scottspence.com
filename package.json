@@ -44,7 +44,7 @@
     "@vitest/ui": "^1.4.0",
     "autoprefixer": "10.4.19",
     "cspell": "^8.6.0",
-    "cssnano": "6.1.1",
+    "cssnano": "6.1.2",
     "daisyui": "4.9.0",
     "date-fns": "3.6.0",
     "eslint": "8.57.0",
