@@ -1,8 +1,7 @@
 <script lang="ts">
   import { scale_and_fade, viewport } from '$lib/utils'
 
-  export let height = '100px'
-  export let width = '160px'
+  let { height = '100px', width = '160px' } = $props()
 
   let ButtButt =
     'https://res.cloudinary.com/defkmsrpw/image/upload/v1691271319/scottspence.com/site-assets/butt.png'
@@ -24,7 +23,7 @@
 
   const puns_copy = puns.slice()
 
-  let pun: string | null = null
+  let pun = $state<string | null>(null)
 
   const random_pun = (): string => {
     if (puns_copy.length === 0) {
@@ -41,9 +40,11 @@
     return new_pun
   }
 
-  $: pun = random_pun()
+  $effect(() => {
+    pun = random_pun()
+  })
 
-  let intersecting = false
+  let intersecting = $state(false)
 </script>
 
 <div
@@ -51,18 +52,18 @@
   on:enter_viewport={() => (intersecting = true)}
   on:exit_viewport={() => (intersecting = false)}
 >
-  <aside class="mb-12 text-center all-prose">
+  <aside class="all-prose mb-12 text-center">
     <p class="mb-6">
       Looks like you have reached the bottom of this page!
     </p>
     {#if intersecting}
-      <div class="justify-center mb-12">
+      <div class="mb-12 justify-center">
         <img
           src={ButtButt}
           alt="a cheeky butt"
           {height}
           {width}
-          class="h-full transform transition-transform duration-400 delay-200 hover:rotate-[-22deg]"
+          class="duration-400 h-full transform transition-transform delay-200 hover:rotate-[-22deg]"
           transition:scale_and_fade|global={{
             delay: 300,
             duration: 500,
@@ -72,7 +73,7 @@
     {/if}
     <p class="mb-6">Bummer!</p>
     <p class="mb-6">{pun}</p>
-    <button class="btn btn-xs rounded-box" on:click={random_pun}>
+    <button class="btn btn-xs rounded-box" onclick={random_pun}>
       pun me up
     </button>
   </aside>

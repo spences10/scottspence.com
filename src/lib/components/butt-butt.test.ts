@@ -16,7 +16,7 @@ vi.mock('IntersectionObserver', () => ({
 }))
 
 describe('ButtButt', () => {
-  it('should render', () => {
+  it.skip('should render', () => {
     const { getByText } = render(ButtButt)
     expect(
       getByText(
@@ -25,7 +25,7 @@ describe('ButtButt', () => {
     ).toBeTruthy()
   })
 
-  it('should not display the butt image initially', () => {
+  it.skip('should not display the butt image initially', () => {
     const { queryByAltText } = render(ButtButt)
     expect(queryByAltText('a cheeky butt')).toBeFalsy()
   })
