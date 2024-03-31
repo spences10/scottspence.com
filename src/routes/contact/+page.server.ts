@@ -4,13 +4,8 @@ import {
   EMAIL_APP_USER,
 } from '$env/static/private'
 import { ratelimit } from '$lib/redis'
-import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 import { fail } from '@sveltejs/kit'
 import nodemailer from 'nodemailer'
-
-export const config: ServerlessConfig = {
-  runtime: 'nodejs18.x',
-}
 
 export const actions = {
   default: async ({ request, getClientAddress }) => {
@@ -36,7 +31,8 @@ export const actions = {
       const reason = data.get('reason')?.toString()
       const message = data.get('message')?.toString()
 
-      if (subject) { // Honeypot
+      if (subject) {
+        // Honeypot
         return {
           status: 200,
           body: {
