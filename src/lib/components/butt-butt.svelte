@@ -40,7 +40,7 @@
     return new_pun
   }
 
-  $effect(() => {
+  $effect.root(() => {
     pun = random_pun()
   })
 
