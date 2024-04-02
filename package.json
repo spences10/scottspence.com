@@ -8,6 +8,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "start": "bun ./build/index.js",
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
@@ -25,12 +26,11 @@
     "cspell": "cspell '**/*.md' --config cspell.json --wordsOnly"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.5.4",
     "@fontsource-variable/manrope": "^5.0.19",
     "@fontsource-variable/victor-mono": "^5.0.4",
     "@fontsource/victor-mono": "^5.0.12",
-    "@libsql/client": "0.6.0",
     "@playwright/test": "^1.42.1",
-    "@sveltejs/adapter-vercel": "5.2.0",
     "@sveltejs/kit": "^2.5.5",
     "@sveltejs/vite-plugin-svelte": "^3.0.2",
     "@tailwindcss/typography": "0.5.12",
@@ -71,6 +71,7 @@
     "slugify": "1.6.6",
     "svead": "^0.0.9",
     "svelte": "5.0.0-next.85",
+    "svelte-adapter-bun": "^0.5.2",
     "svelte-check": "^3.6.8",
     "svelte-preprocess": "5.1.3",
     "sveltekit-embed": "0.0.14",
@@ -80,5 +81,8 @@
     "unist-util-visit": "5.0.0",
     "vite": "5.2.7",
     "vitest": "1.4.0"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.6.0"
   }
 }

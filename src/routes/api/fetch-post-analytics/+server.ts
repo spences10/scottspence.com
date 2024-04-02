@@ -1,7 +1,7 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
 import { fetch_fathom_data } from '$lib/fathom'
 import { turso_client } from '$lib/turso'
-import type { InStatement } from '@libsql/client/web'
+import type { InStatement } from '@libsql/client'
 import { json } from '@sveltejs/kit'
 import { differenceInHours, parseISO } from 'date-fns'
 import { get_date_range } from '../ingest/utils'

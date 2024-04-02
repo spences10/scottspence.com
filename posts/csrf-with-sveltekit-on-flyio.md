@@ -23,7 +23,7 @@ doing something similar.
 
 One thing to note is that I got tired of all the node build errors I
 was getting on Fly.io with this app, (mostly due to CJS/ESM
-compatability) so, I switched to Bun, which side-stepped all of that.
+compatibility) so, I switched to Bun, which side-stepped all of that.
 
 So, I have an app (this site) building on Fly.io now, got the
 deployment workflow working nicely, but, as mentioned trying to use
