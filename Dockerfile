@@ -28,7 +28,6 @@ WORKDIR /app
 # Set production environment
 ENV NODE_ENV="production"
 
-
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
@@ -56,7 +55,6 @@ RUN TURSO_DB_URL=$TURSO_DB_URL TURSO_DB_AUTH_TOKEN=$TURSO_DB_AUTH_TOKEN \
 # Remove development dependencies
 RUN rm -rf node_modules && \
     bun install --ci
-
 
 # Final stage for app image
 FROM base
