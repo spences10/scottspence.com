@@ -1,0 +1,45 @@
+name: Fly Deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    name: Deploy app
+    runs-on: ubuntu-latest
+    concurrency: deploy-group # optional: ensure only one action runs at a time
+    steps:
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run:
+          flyctl deploy --remote-only --build-arg
+          BUTTONDOWN_API_KEY=$BUTTONDOWN_API_KEY --build-arg
+          EMAIL_APP_PASSWORD=$EMAIL_APP_PASSWORD --build-arg
+          EMAIL_APP_TO_ADDRESS=$EMAIL_APP_TO_ADDRESS --build-arg
+          EMAIL_APP_USER=$EMAIL_APP_USER --build-arg
+          EXCHANGE_RATE_API_KEY=$EXCHANGE_RATE_API_KEY --build-arg
+          FATHOM_API_KEY=$FATHOM_API_KEY --build-arg
+          GITHUB_TOKEN=$GITHUB_TOKEN --build-arg
+          PUBLIC_FATHOM_ID=$PUBLIC_FATHOM_ID --build-arg
+          PUBLIC_FATHOM_URL=$PUBLIC_FATHOM_URL --build-arg
+          UPSTASH_REDIS_REST_TOKEN=$UPSTASH_REDIS_REST_TOKEN
+          --build-arg UPSTASH_REDIS_REST_URL=$UPSTASH_REDIS_REST_URL
+          --build-arg TURSO_DB_URL=$TURSO_DB_URL --build-arg
+          TURSO_DB_AUTH_TOKEN=$TURSO_DB_AUTH_TOKEN --build-arg
+          INGEST_TOKEN=$INGEST_TOKEN
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          BUTTONDOWN_API_KEY: ${{secrets.BUTTONDOWN_API_KEY}} 
+          EMAIL_APP_PASSWORD: ${{secrets.EMAIL_APP_PASSWORD}} 
+          EMAIL_APP_TO_ADDRESS: ${{secrets.EMAIL_APP_TO_ADDRESS}} 
+          EMAIL_APP_USER: ${{secrets.EMAIL_APP_USER}} 
+          EXCHANGE_RATE_API_KEY: ${{secrets.EXCHANGE_RATE_API_KEY}} 
+          FATHOM_API_KEY: ${{secrets.FATHOM_API_KEY}} 
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}} 
+          PUBLIC_FATHOM_ID: ${{secrets.PUBLIC_FATHOM_ID}} 
+          PUBLIC_FATHOM_URL: ${{secrets.PUBLIC_FATHOM_URL}} 
+          UPSTASH_REDIS_REST_TOKEN: ${{secrets.UPSTASH_REDIS_REST_TOKEN}} 
+          UPSTASH_REDIS_REST_URL: ${{secrets.UPSTASH_REDIS_REST_URL}} 
+          TURSO_DB_URL: ${{secrets.TURSO_DB_URL}} 
+          TURSO_DB_AUTH_TOKEN: ${{secrets.TURSO_DB_AUTH_TOKEN}} 
+          INGEST_TOKEN: ${{secrets.INGEST_TOKEN}}
