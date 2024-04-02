@@ -12,12 +12,8 @@
   import * as Fathom from 'fathom-client'
   import '../app.css'
   import '../prism.css'
-  import type { LayoutData } from './$types'
 
-  let { data, children } = $props<{
-    data: LayoutData
-    children: any
-  }>()
+  let { data, children } = $props()
 
   $popular_posts_store = data?.popular_posts || {
     popular_posts_daily: [],

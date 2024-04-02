@@ -1,14 +1,15 @@
 <script lang="ts">
-  let { modal, children } = $props<{
-    modal: HTMLDialogElement
-    children: any
-  }>()
+  let {
+    modal = $bindable(),
+    children,
+  }: { children: any; modal: HTMLDialogElement } = $props()
 </script>
 
 <dialog
-  class="rounded-box backdrop:backdrop-blur-sm backdrop:backdrop-filter"
+  class="max-w-2xl rounded-box"
   bind:this={modal}
   on:close
+  id="add_link_modal"
 >
   {@render children()}
 </dialog>

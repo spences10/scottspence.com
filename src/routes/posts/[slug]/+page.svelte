@@ -2,7 +2,6 @@
   import { goto, preloadData, pushState } from '$app/navigation'
   import { page } from '$app/stores'
   import {
-    ButtButt,
     CurrentVisitorsData,
     Head,
     IsPrivateBanner,
@@ -88,6 +87,7 @@
 
     // create new history entry
     if (result.type === 'loaded' && result.status === 200) {
+      // @ts-ignore
       pushState(href, { selected: result.data })
       modal.showModal()
     } else {
@@ -95,8 +95,9 @@
     }
   }
 
-  function close_modal() {
+  const close_modal = () => {
     history.back()
+    modal.close()
   }
 </script>
 
@@ -208,7 +209,7 @@
 
   <Modal bind:modal on:close={close_modal}>
     {#if $page.state.selected}
-      <StatsPage data={$page.state.selected} form />
+      <StatsPage data={$page.state.selected} />
     {/if}
   </Modal>
 
@@ -220,5 +221,5 @@
   </div>
 
   <PopularPosts />
-  <ButtButt />
+  <!-- <ButtButt /> -->
 </article>
