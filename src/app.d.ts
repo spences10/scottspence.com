@@ -8,7 +8,7 @@ declare global {
     // interface Platform {}
     interface PageState {
       selected: {
-        analytics: AnalyticsData
+        analytics: any
       }
     }
   }
