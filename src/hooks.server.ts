@@ -17,7 +17,9 @@ const csrf =
   (allowed_paths: string[]): Handle =>
   async ({ event, resolve }) => {
     const forbidden =
-      event.request.method === 'POST' &&
+      ['POST', 'PUT', 'PATCH', 'DELETE'].includes(
+        event.request.method,
+      ) &&
       event.request.headers.get('origin') !== event.url.origin &&
       is_form_content_type(event.request) &&
       !allowed_paths.includes(event.url.pathname)
