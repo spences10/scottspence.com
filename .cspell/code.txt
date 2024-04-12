@@ -4,6 +4,7 @@ bcryptjs
 bindkey
 blogposts
 bootcamp
+bunx
 changefreq
 chsh
 cleanup
@@ -43,6 +44,7 @@ isearch
 KeyframeEffect
 keyframes
 keygen
+keyup
 lastmod
 LBUFFER
 lightgray
