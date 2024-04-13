@@ -12,30 +12,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: Linux-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: Linux-playwright-
-      - uses: actions/cache@v4
-        with:
-          path: ~/.pnpm-store
-          # prettier-ignore
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-pnpm-
-      - uses: pnpm/action-setup@v3.0.0
-        with:
-          version: 8.12.1
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18.x
+      - uses: oven-sh/setup-bun@v1
       - name: Install dependencies
-        run: pnpm i
+        run: bun install
       - name: Install playwright browsers
         run: npx playwright install --with-deps
       - name: Test
-        run: pnpm run test
+        run: bun run test
         env:
           PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
           PUBLIC_FATHOM_URL: ${{ secrets.PUBLIC_FATHOM_URL }}
