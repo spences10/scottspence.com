@@ -13,14 +13,14 @@
     value,
     disabled,
     aria_label,
-  } = $props<{
+  }: {
     count: number
     font_size?: string
     emoji: string
     value: string
     disabled: boolean
     aria_label: string
-  }>()
+  } = $props()
 
   let base_width = 2
   let padding = 3
@@ -59,7 +59,7 @@
   type="submit"
   {value}
   {disabled}
-  class="btn btn-primary overflow-hidden lowercase relative shadow-xl rounded-box"
+  class="btn btn-primary relative overflow-hidden rounded-box lowercase shadow-xl"
   onclick={handle_click}
   style:width={button_width}
   title={count > 1000 ? `${value} ${count}` : ''}
@@ -88,7 +88,7 @@
       </strong>
     </div>
   </div>
-  <div class="absolute flex h-full items-center left-2">
+  <div class="absolute left-2 flex h-full items-center">
     <span class={font_size}>{emoji}</span>
   </div>
 </button>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { differenceInDays, format } from 'date-fns'
 
-  const { post } = $props<{ post: Post }>()
+  const { post }: { post: Post } = $props()
 </script>
 
 <div class="relative">

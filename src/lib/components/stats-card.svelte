@@ -9,8 +9,8 @@
     yearly_visits: Nullable<AnalyticsData>
   }
 
-  const { daily_visits, monthly_visits, yearly_visits } =
-    $props<Props>()
+  const { daily_visits, monthly_visits, yearly_visits }: Props =
+    $props()
 
   const time_periods: {
     [key: string]: {
@@ -125,7 +125,7 @@
             <h3>{title}</h3>
           </header>
           <section
-            class="stats stats-vertical md:stats-horizontal shadow-lg w-full border border-secondary mb-8"
+            class="stats stats-vertical mb-8 w-full border border-secondary shadow-lg md:stats-horizontal"
           >
             {#if stats}
               {#each Object.entries(stats) as [key, { label, value, range }]}
