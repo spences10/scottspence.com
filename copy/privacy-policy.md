@@ -8,7 +8,7 @@
 # Privacy Policy
 
 <Small>
-  Last updated: <DateUpdated date="2023-10-06" small="true" />
+  Last updated: <DateUpdated date="2024-04-14" small="true" />
 </Small>
 
 Hello, welcome to the privacy policy for [scottspence.com](), I want
@@ -54,15 +54,11 @@ will delete any emails with identifying information in them.
 ### What cookies, pixels, and other trackers my site uses and their purpose.
 
 Ok, cookies! On [scottspence.com](), I use cookies, but keep it
-simple. I use a cookie to remember your theme choice and one to
-register if you're blocking the analytics script.
+simple. I use a cookie to remember your theme choice, that's it.
 
 The **theme** cookie is like a handy helper that knows your theme
-preference every time you drop by. No fuss.
-
-The **block_fathom** cookie is to save me money! If you use an ad
-blocker (no judgment, I use one!) then I'll need to stop requesting
-analytics from Fathom (which shows visitor stats).
+preference every time you drop by. No fuss. If you don't change then
+theme then no cookie is set.
 
 You can find more about them both in the
 [Cookie Policy](/cookie-policy).
