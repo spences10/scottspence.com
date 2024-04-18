@@ -35,7 +35,7 @@
     "@sveltejs/kit": "^2.5.5",
     "@sveltejs/vite-plugin-svelte": "^3.1.0",
     "@tailwindcss/typography": "0.5.12",
-    "@testing-library/svelte": "^4.2.1",
+    "@testing-library/svelte": "^5.0.0",
     "@types/marked": "^5.0.2",
     "@types/nodemailer": "^6.4.14",
     "@typescript-eslint/eslint-plugin": "^7.6.0",
