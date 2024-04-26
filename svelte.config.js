@@ -12,6 +12,7 @@ const config = {
 
   kit: {
     adapter: adapter(),
+    // check src/hooks.server.ts for config
     csrf: { checkOrigin: false },
   },
 }
