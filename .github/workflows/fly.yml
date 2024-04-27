@@ -5,7 +5,7 @@ on:
       - main
 jobs:
   deploy:
-    name: Deploy app
+    name: Deploy app to Fly.io
     runs-on: ubuntu-latest
     concurrency: deploy-group # optional: ensure only one action runs at a time
     steps:

@@ -13,7 +13,7 @@
     UpdatedBanner,
   } from '$lib/components'
   import { name, website } from '$lib/info'
-  import { visitors_store, type VisitorEntry } from '$lib/stores'
+  import { type VisitorEntry } from '$lib/stores'
   import {
     get_headings,
     og_image_url,
@@ -25,11 +25,11 @@
     format,
   } from 'date-fns'
   import * as Fathom from 'fathom-client'
-  import { onMount } from 'svelte'
   import StatsPage from '../../stats/[slug]/+page.svelte'
   import Modal from './modal.svelte'
 
-  export let data
+  let { data } = $props()
+
   let { Content } = data
   let {
     title,
@@ -48,10 +48,12 @@
   let path = $page.route.id
 
   let end_of_copy: HTMLElement | null
-  let show_table_of_contents = true
-  let headings_promise: Promise<{ label: string; href: string }[]>
+  let show_table_of_contents = $state(true)
+  let headings_promise:
+    | Promise<{ label: string; href: string }[]>
+    | undefined = $state()
 
-  onMount(() => {
+  $effect(() => {
     headings_promise = get_headings()
   })
 
@@ -59,21 +61,21 @@
 
   let current_visitor_data: VisitorEntry | undefined
 
-  $: {
-    if ($visitors_store && $visitors_store.visitor_data) {
-      current_visitor_data = $visitors_store.visitor_data.find(
-        visitor => visitor.pathname === slug,
-      )
-    }
-  }
+  // TODO: Fix this shit
+  // $: {
+  //   if ($visitors_store && $visitors_store.visitor_data) {
+  //     current_visitor_data = $visitors_store.visitor_data.find(
+  //       visitor => visitor.pathname === slug,
+  //     )
+  //   }
+  // }
 
   const handle_scroll = () => {
     show_table_of_contents = update_toc_visibility(end_of_copy, -200)
   }
 
-  let show_current_visitor_data = false
-
-  let modal: HTMLDialogElement
+  let show_current_visitor_data = $state(false)
+  let modal = $state() as HTMLDialogElement
 
   const show_modal = async (
     e: MouseEvent & { currentTarget: HTMLAnchorElement },
@@ -88,8 +90,9 @@
 
     // create new history entry
     if (result.type === 'loaded' && result.status === 200) {
-      // @ts-ignore
-      pushState(href, { selected: result.data })
+      // Serialize the data
+      const serialized_data = JSON.parse(JSON.stringify(result.data))
+      pushState(href, { selected: serialized_data })
       modal.showModal()
     } else {
       goto(href)
