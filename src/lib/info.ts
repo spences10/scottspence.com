@@ -33,6 +33,10 @@ export const SOCIAL_LINKS = [
     title: `Twitter`,
     link: `https://ss10.dev/twitter`,
   },
+  {
+    title: `Airchat`,
+    link: `https://air.chat/spences10`,
+  },
 ]
 
 export const SITE_LINKS = [
@@ -291,6 +295,11 @@ export const PEOPLE = [
   {
     name: `Rich Harris`,
     link: `https://twitter.com/Rich_Harris`,
+    met: true,
+  },
+  {
+    name: `Tejas Kumar`,
+    link: `https://twitter.com/TejasKumar_`,
     met: true,
   },
   {
