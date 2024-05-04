@@ -17,21 +17,18 @@
   }
 </script>
 
-<svelte:window on:scroll={handle_scroll} />
+<!-- <svelte:window on:scroll={handle_scroll} /> -->
 
 <button
   on:click={scroll_to_top}
-  class="back-to-top-button btn btn-secondary z-10 rounded-box font-normal normal-case shadow-2xl focus:outline-none focus:ring-2 focus:ring-accent {show_scroll_button
-    ? 'show-button'
-    : 'hide-button'}"
+  class="fixed bottom-20 right-5 back-to-top-button btn btn-secondary z-10 rounded-box font-normal normal-case shadow-2xl focus:outline-none focus:ring-2 focus:ring-accent"
   aria-label="Back to top"
   data-testid="back-to-top"
 >
-  {last_scroll_top}
   Back to top
 </button>
 
-<style>
+<!-- <style>
   @keyframes flyIn {
     0% {
       transform: translateY(100px);
@@ -76,4 +73,4 @@
   .hide-button {
     animation: flyOut 0.3s ease forwards;
   }
-</style>
+</style> -->
