@@ -5,7 +5,7 @@
   const scroll_to_top = () => {
     window.scrollTo({
       top: 0,
-      // behavior: 'smooth',
+      behavior: 'smooth',
     })
   }
 
@@ -27,6 +27,7 @@
   aria-label="Back to top"
   data-testid="back-to-top"
 >
+  {last_scroll_top}
   Back to top
 </button>
 
