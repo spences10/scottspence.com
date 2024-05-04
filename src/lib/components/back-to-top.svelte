@@ -1,6 +1,8 @@
 <script lang="ts">
-  let show_scroll_button = $state(false)
-  let last_scroll_top = $state(0)
+  import { onMount } from 'svelte'
+
+  let show_scroll_button = false
+  let last_scroll_top = 0
 
   const scroll_to_top = () => {
     window.scrollTo({
@@ -15,20 +17,27 @@
       current_scroll_top > last_scroll_top && current_scroll_top > 0
     last_scroll_top = current_scroll_top
   }
-</script>
 
-<!-- <svelte:window on:scroll={handle_scroll} /> -->
+  onMount(() => {
+    window.addEventListener('scroll', handle_scroll)
+    return () => {
+      window.removeEventListener('scroll', handle_scroll)
+    }
+  })
+</script>
 
 <button
   on:click={scroll_to_top}
-  class="fixed bottom-20 right-5 back-to-top-button btn btn-secondary z-10 rounded-box font-normal normal-case shadow-2xl focus:outline-none focus:ring-2 focus:ring-accent"
+  class="back-to-top-button btn btn-secondary fixed bottom-20 right-5 z-10 rounded-box font-normal normal-case shadow-2xl focus:outline-none focus:ring-2 focus:ring-accent {show_scroll_button
+    ? 'show-button'
+    : 'hide-button'}"
   aria-label="Back to top"
   data-testid="back-to-top"
 >
   Back to top
 </button>
 
-<!-- <style>
+<style>
   @keyframes flyIn {
     0% {
       transform: translateY(100px);
@@ -73,4 +82,4 @@
   .hide-button {
     animation: flyOut 0.3s ease forwards;
   }
-</style> -->
+</style>
