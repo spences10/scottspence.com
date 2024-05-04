@@ -21,7 +21,7 @@
 
 <button
   on:click={scroll_to_top}
-  class="back-to-top-button btn btn-secondary rounded-box font-normal normal-case shadow-2xl focus:outline-none focus:ring-2 focus:ring-accent {show_scroll_button
+  class="back-to-top-button btn btn-secondary z-10 rounded-box font-normal normal-case shadow-2xl focus:outline-none focus:ring-2 focus:ring-accent {show_scroll_button
     ? 'show-button'
     : 'hide-button'}"
   aria-label="Back to top"
