@@ -11,7 +11,7 @@ isPrivate: false
 
 I found an opportunity to improve the npm package for the
 _`Victor Mono`_ font I like to use here and in my text editor (much to
-people horror when they see it)!
+peoples horror when they see it)!
 
 It was a simple fix to add `font-display: swap;` to the css file in
 the dist package.
