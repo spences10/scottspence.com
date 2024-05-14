@@ -9,17 +9,17 @@
 
 <div
   use:viewport
-  on:enter_viewport={() => (intersecting = true)}
-  on:exit_viewport={() => (intersecting = false)}
+  onenter_viewport={() => (intersecting = true)}
+  onexit_viewport={() => (intersecting = false)}
 >
   {#if intersecting}
-    <div class="flex justify-center mb-12" style={`width: ${width}`}>
+    <div class="mb-12 flex justify-center" style={`width: ${width}`}>
       <slot />
     </div>
   {:else}
     <div
-      class="flex justify-center mb-12"
+      class="mb-12 flex justify-center"
       style={`height:${height}px;width: 100%`}
-    />
+    ></div>
   {/if}
 </div>

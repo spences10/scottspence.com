@@ -78,8 +78,8 @@ declare interface ReactionPage {
 // https://github.com/sveltejs/language-tools/blob/master/docs/preprocessors/typescript.md#im-getting-deprecation-warnings-for-sveltejsx--i-want-to-migrate-to-the-new-typings
 declare namespace svelteHTML {
   interface HTMLAttributes<T> {
-    'on:enter_viewport'?: (event: any) => any
-    'on:exit_viewport'?: (event: any) => any
-    'on:animation_end'?: (event: any) => any
+    'onenter_viewport'?: (event: any) => any
+    'onexit_viewport'?: (event: any) => any
+    'onanimation_end'?: (event: any) => any
   }
 }
