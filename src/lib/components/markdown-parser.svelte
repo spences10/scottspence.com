@@ -6,12 +6,12 @@
   $: markdown = marked(markdownContent)
 </script>
 
-<div class="mb-10 prose xs:grid xs:gap-10 xs:grid-cols-2">
+<div class="prose mb-10 xs:grid xs:grid-cols-2 xs:gap-10">
   <textarea
     {rows}
     bind:value={markdownContent}
-    class="border rounded-box h-full bg-base-200 border-base-100 w-full p-2 resize-none"
-  />
+    class="h-full w-full resize-none rounded-box border border-base-100 bg-base-200 p-2"
+  ></textarea>
 
   <div class="w-full">{@html markdown}</div>
 </div>

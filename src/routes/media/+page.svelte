@@ -26,8 +26,8 @@
     Last updated: <DateUpdated date="2023-03-10" small="true" />
   </Small>
 
-  <div class="sm:flex lg:-mx-40 items-center">
-    <p class="sm:w-2/3 sm:px-5 sm:mb-36">
+  <div class="items-center sm:flex lg:-mx-40">
+    <p class="sm:mb-36 sm:w-2/3 sm:px-5">
       Pick any of the images of me from here and use them on your
       website or social media. You can click on the selected main
       image to get the full resolution.
@@ -39,7 +39,7 @@
     Bio information. If there's anything else you need let me know.
   </p>
 
-  <div class="flex items-center space-x-2 mb-10">
+  <div class="mb-10 flex items-center space-x-2">
     <input
       type="checkbox"
       id="toggle-copy"
@@ -58,6 +58,6 @@
   {/if}
 </div>
 
-<div class="flex flex-col w-full my-10">
-  <div class="divider divider-secondary" />
+<div class="my-10 flex w-full flex-col">
+  <div class="divider divider-secondary"></div>
 </div>

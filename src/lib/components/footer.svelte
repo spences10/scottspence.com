@@ -28,7 +28,7 @@
   }
 </script>
 
-<footer class="footer p-10 bg-primary text-primary-content">
+<footer class="footer bg-primary p-10 text-primary-content">
   <div>
     <span class="footer-title">Popular Posts</span>
     {#each posts as post}
@@ -41,7 +41,7 @@
           {post.title}
         </a>
         <span
-          class="text-primary-content font-bold tooltip relative group cursor-pointer"
+          class="group tooltip relative cursor-pointer font-bold text-primary-content"
           data-tip={`
           Visits: ${number_crunch(post.visits)},
           Pageviews: ${number_crunch(post.pageviews)}
@@ -58,10 +58,10 @@
       <span
         on:mouseenter={() => (show_current_visitor_data = true)}
         on:mouseleave={() => (show_current_visitor_data = false)}
-        class="cursor-pointer inline-block"
+        class="inline-block cursor-pointer"
       >
         <p
-          class="tracking-wide bg-secondary text-secondary-content mt-2 px-2 py-1 shadow-lg rounded-box"
+          class="mt-2 rounded-box bg-secondary px-2 py-1 tracking-wide text-secondary-content shadow-lg"
         >
           There's currently
           <span class="font-bold">
@@ -102,9 +102,9 @@
     {/each}
   </div>
 </footer>
-<div class="divider divider-secondary bg-primary m-0" />
+<div class="divider divider-secondary m-0 bg-primary"></div>
 <div class="bg-primary text-primary-content">
-  <p class="text-center py-4">
+  <p class="py-4 text-center">
     Copyright &copy; 2017 - {`${new Date().getFullYear()}`} - All rights
     reserved
     {name}

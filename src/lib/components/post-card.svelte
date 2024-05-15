@@ -7,7 +7,7 @@
 <div class="relative">
   <div
     class="absolute -inset-0 rounded-box bg-gradient-to-r from-primary to-secondary blur-sm"
-  />
+  ></div>
   <div class="relative">
     <article
       class="card mb-10 bg-base-100 p-5 transition first:pt-0 hover:text-accent"

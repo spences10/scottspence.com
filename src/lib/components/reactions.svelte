@@ -20,7 +20,7 @@
   }
 </script>
 
-<section class="flex justify-center mb-10">
+<section class="mb-10 flex justify-center">
   <form
     method="POST"
     action="/api/reactions?path={path}"
@@ -30,7 +30,7 @@
         update({ reset: false })
       }
     }}
-    class="grid grid-cols-1 gap-5 sm:flex w-full sm:justify-between"
+    class="grid w-full grid-cols-1 gap-5 sm:flex sm:justify-between"
   >
     {#each reactions as reaction}
       <NumberFlip
@@ -56,6 +56,6 @@
   </p>
 </div>
 
-<div class="flex flex-col w-full my-10">
-  <div class="divider divider-secondary" role="separator" />
+<div class="my-10 flex w-full flex-col">
+  <div class="divider divider-secondary" role="separator"></div>
 </div>

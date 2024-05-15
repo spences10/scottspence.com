@@ -18,6 +18,6 @@
   <svelte:component this={Copy} />
 </div>
 
-<div class="flex flex-col w-full my-10">
-  <div class="divider divider-secondary" />
+<div class="my-10 flex w-full flex-col">
+  <div class="divider divider-secondary"></div>
 </div>
