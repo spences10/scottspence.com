@@ -44,7 +44,7 @@ export const actions = {
       // Create a transporter object using the nodemailer library
       const transporter = nodemailer.createTransport({
         host: 'smtp.fastmail.com',
-        port: 465,
+        port: 587,
         secure: true,
         auth: {
           user: EMAIL_APP_USER,
