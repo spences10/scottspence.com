@@ -17,8 +17,8 @@
     class="progress progress-primary w-full"
     {value}
     {max}
-  />
-  <label for="progress" class="label -mt-4 -ml-1">
+  ></progress>
+  <label for="progress" class="label -ml-1 -mt-4">
     <span class="label-text text-lg font-medium">{progress}%</span>
   </label>
 </section>

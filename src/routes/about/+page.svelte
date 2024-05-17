@@ -16,12 +16,10 @@
 
 <div class="all-prose">
   <h1>About</h1>
-  <Small>
-    Last updated: <DateUpdated date="2021-08-14" small="true" />
-  </Small>
+
   <svelte:component this={Copy} />
 </div>
 
-<div class="flex flex-col w-full my-10">
-  <div class="divider divider-secondary" />
+<div class="my-10 flex w-full flex-col">
+  <div class="divider divider-secondary"></div>
 </div>

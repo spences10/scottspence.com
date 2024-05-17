@@ -5,7 +5,7 @@
 </script>
 
 <div
-  class="not-prose justify-center items-center py-14 my-5 bg-primary shadow-xl rounded-box"
+  class="not-prose my-5 items-center justify-center rounded-box bg-primary py-14 shadow-xl"
 >
   <form
     method="POST"
@@ -16,7 +16,7 @@
         update({ reset: true })
       }
     }}
-    class="w-full max-w-md mx-auto space-y-2 px-5"
+    class="mx-auto w-full max-w-md space-y-2 px-5"
   >
     <div class="space-y-2">
       <label class="label pb-0" for="name">
@@ -29,7 +29,7 @@
         aria-label="name"
         placeholder="Name"
         required
-        class="input w-full shadow-xl text-lg active:input-secondary focus:input-secondary"
+        class="input w-full text-lg shadow-xl focus:input-secondary active:input-secondary"
       />
     </div>
     <div class="space-y-2">
@@ -43,7 +43,7 @@
         aria-label="email"
         placeholder="Email"
         required
-        class="input w-full shadow-xl text-lg active:input-secondary focus:input-secondary"
+        class="input w-full text-lg shadow-xl focus:input-secondary active:input-secondary"
       />
     </div>
     <!-- honeypot -->
@@ -57,7 +57,7 @@
         name="reason"
         aria-label="reason"
         required
-        class="input w-full shadow-xl text-lg active:input-secondary focus:input-secondary"
+        class="input w-full text-lg shadow-xl focus:input-secondary active:input-secondary"
       >
         <option disabled selected value="">Contact reason</option>
         <option value="hi">Say hi!</option>
@@ -75,13 +75,13 @@
         aria-label="message"
         placeholder="Hey! I'd love to talk about..."
         required
-        class="textarea w-full shadow-xl text-lg active:input-secondary focus:input-secondary"
-      />
+        class="textarea w-full text-lg shadow-xl focus:input-secondary active:input-secondary"
+      ></textarea>
     </div>
     <div class="flex justify-center">
       <button
         type="submit"
-        class="btn btn-secondary w-full max-w-lg shadow-xl active:input-secondary focus:input-secondary"
+        class="btn btn-secondary w-full max-w-lg shadow-xl focus:input-secondary active:input-secondary"
       >
         Submit
       </button>

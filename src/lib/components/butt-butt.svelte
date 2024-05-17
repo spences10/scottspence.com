@@ -49,8 +49,8 @@
 
 <div
   use:viewport
-  on:enter_viewport={() => (intersecting = true)}
-  on:exit_viewport={() => (intersecting = false)}
+  onenter_viewport={() => (intersecting = true)}
+  onexit_viewport={() => (intersecting = false)}
 >
   <aside class="all-prose mb-12 text-center">
     <p class="mb-6">

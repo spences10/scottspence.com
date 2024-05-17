@@ -31,7 +31,7 @@
 </script>
 
 <div class="my-10 flex w-full flex-col">
-  <div class="divider divider-secondary" />
+  <div class="divider divider-secondary"></div>
 </div>
 
 <article class="sm:-mx-30 m-0 mb-20 lg:-mx-40">
