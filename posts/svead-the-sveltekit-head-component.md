@@ -9,8 +9,8 @@ isPrivate: false
   import { DateDistance } from '$lib/components'
 </script>
 
-Ok, it's high time I write about the Svelte, the Svelte head component
-I made back in
+Ok, it's high time I write about the Svelte head component I made back
+in
 [May 15, 2022](https://github.com/spences10/svead/commit/cb8062e84ee134985d35033087caf1b38a7f14b4)
 (<DateDistance date='2022-05-15' /> ago). I called it Svead because
 Svelte + Head = Svead, right? But after mentioning it to Puru he said
