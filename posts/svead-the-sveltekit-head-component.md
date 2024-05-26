@@ -115,7 +115,7 @@ the config can be composed of any number of props.
 ## Why stupid though?
 
 So, this was the right decision, right? Probably not. The amount of
-time I have now ploughed into this is is bordering on ridiculous. I've
+time I have now ploughed into this is bordering on ridiculous. I've
 hinted about the many times I have stopped and started on this and it
 wasn't until I started looking at the commit history that I noticed
 I've had the JSON-LD data on the cards for well over a couple of years
@@ -261,7 +261,7 @@ SvelteKit utilities like the `$page` store.
 
 What was I thinking though!!
 
-## Composability
+## Composeability
 
 A lot of the config for this can be a one off, added to a variable
 somewhere then spread into the `SeoConfig` config object when using it
@@ -403,7 +403,7 @@ Then there's a load of reuseable config that can be abstracted out to
 fixtures/info folders and re-used.
 
 It's also opt-in for all the JSON-LD features, so if you don't want
-all that faff then don't configure it. I will still work perfectly
+all that faff then don't configure it. It will still work perfectly
 fine as the initial metadata tool that it was originally created as.
 
 With this one config it also allows for further changes to be added
@@ -411,8 +411,8 @@ further down the line expanding the config object and it's uses.
 
 ## WIP
 
-This is still _very_ much a WIP, I'm still working on it but this this
-is a good starting point.
+This is still _very_ much a work in progress, I'm still working on it
+but this is a good starting point.
 
 If you want to start using it now `pnpm i -D svead@next` to start
 using the new API. As mentioned earlier it's fully documented and
@@ -424,8 +424,8 @@ in helping out please get in touch.
 
 ## Tools
 
-Here's some tool I've used to validate my work as I've been going
-though it.
+Here's some tools I've used to validate my work as I've been going
+through it.
 
 https://search.google.com/test/rich-results
 
