@@ -76,7 +76,7 @@ export let paymentPointer: string = '' // Web Monetisation Payment pointer
 ```
 
 This is all I needed until I saw the awesomeness Rodney was doing with
-JSON-LD data. I wanted to have the flexability to use JSON-LD data in
+JSON-LD data. I wanted to have the flexibility to use JSON-LD data in
 the component so I set about making a way to have that data passed in.
 
 Stupid me!
@@ -261,7 +261,7 @@ SvelteKit utilities like the `$page` store.
 
 What was I thinking though!!
 
-## Composeability
+## Composability
 
 A lot of the config for this can be a one off, added to a variable
 somewhere then spread into the `SeoConfig` config object when using it
@@ -399,7 +399,7 @@ const seo_config: SeoConfig = {
 }
 ```
 
-Then there's a load of reuseable config that can be abstracted out to
+Then there's a load of reusable config that can be abstracted out to
 fixtures/info folders and re-used.
 
 It's also opt-in for all the JSON-LD features, so if you don't want

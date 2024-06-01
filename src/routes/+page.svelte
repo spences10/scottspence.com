@@ -1,18 +1,23 @@
 <script lang="ts">
-  import { Head, LandingHero, PeopleToMeet } from '$lib/components'
-  import { description, name, website } from '$lib/info'
-  import { og_image_url } from '$lib/utils'
+  import { Head } from 'svead'
+
+  import { LandingHero, PeopleToMeet } from '$lib/components'
+  import { website } from '$lib/info'
+  import { default_seo_config } from '$lib/seo'
+
+  import type { SeoConfig } from 'svead'
+
+  const seo_config: SeoConfig = {
+    ...default_seo_config,
+    title: 'Hello World! Welcome to my site! Enjoy!',
+    website: website,
+  }
 
   export let data
   let { Copy } = data
 </script>
 
-<Head
-  title={`Hello World! Welcome to my site! Enjoy! - ${name}`}
-  {description}
-  image={og_image_url(name, `scottspence.com`, name)}
-  url={website}
-/>
+<Head {seo_config} />
 
 <LandingHero />
 
