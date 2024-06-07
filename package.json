@@ -55,7 +55,7 @@
     "graphql-request": "7.0.1",
     "jsdom": "^24.1.0",
     "marked": "12.0.2",
-    "mdsvex": "0.11.0",
+    "mdsvex": "0.11.2",
     "mdsvex-relative-images": "1.0.3",
     "nodemailer": "^6.9.13",
     "postcss": "8.4.38",
