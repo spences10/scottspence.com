@@ -19,7 +19,7 @@ devDependencies:
     version: 5.0.13
   '@libsql/client':
     specifier: ^0.6.1
-    version: 0.6.1
+    version: 0.6.2
   '@playwright/test':
     specifier: ^1.44.1
     version: 1.44.1
@@ -944,11 +944,11 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@libsql/client@0.6.1:
-    resolution: {integrity: sha512-j32pZMzsuKJ8bWi0rtlszrexXV7mXSxoSA/2C6DfIL7kelI7SHsFgscrQD3wHBJVguitwMklWBe2EuMMRW0img==}
+  /@libsql/client@0.6.2:
+    resolution: {integrity: sha512-xRNfRLv/dOCbV4qd+M0baQwGmvuZpMd2wG2UAPs8XmcdaPvu5ErkcaeITkxlm3hDEJVabQM1cFhMBxsugWW9fQ==}
     dependencies:
-      '@libsql/core': 0.6.1
-      '@libsql/hrana-client': 0.6.0
+      '@libsql/core': 0.6.2
+      '@libsql/hrana-client': 0.6.2
       js-base64: 3.7.7
       libsql: 0.3.18
     transitivePeerDependencies:
@@ -956,8 +956,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@libsql/core@0.6.1:
-    resolution: {integrity: sha512-xVV7w4iQcWgkhvmcJ6RZQdImlNvJGIW4Tlx1KJVWh6+l1sdAAz8hNXEXO04rYGAg6oeIXZF1j1E/AW1mwomO1g==}
+  /@libsql/core@0.6.2:
+    resolution: {integrity: sha512-c2P4M+4u/4b2L02A0KjggO3UW51rGkhxr/7fzJO0fEAqsqrWGxuNj2YtRkina/oxfYvAof6xjp8RucNoIV/Odw==}
     dependencies:
       js-base64: 3.7.7
     dev: true
@@ -978,8 +978,8 @@ packages:
     dev: true
     optional: true
 
-  /@libsql/hrana-client@0.6.0:
-    resolution: {integrity: sha512-k+fqzdjqg3IvWfKmVJK5StsbjeTcyNAXFelUbXbGNz3yH1gEVT9mZ6kmhsIXP30ZSyVV0AE1Gi25p82mxC9hwg==}
+  /@libsql/hrana-client@0.6.2:
+    resolution: {integrity: sha512-MWxgD7mXLNf9FXXiM0bc90wCjZSpErWKr5mGza7ERy2FJNNMXd7JIOv+DepBA1FQTIfI8TFO4/QDYgaQC0goNw==}
     dependencies:
       '@libsql/isomorphic-fetch': 0.2.1
       '@libsql/isomorphic-ws': 0.1.5
@@ -1397,6 +1397,12 @@ packages:
       undici-types: 5.26.5
     dev: true
 
+  /@types/node@20.14.2:
+    resolution: {integrity: sha512-xyu6WAMVwv6AKFLB+e/7ySZVr/0zLCzOa7rSpq6jNwpqOrUbcACDWC+53d4n2QHOnDou0fbIsg8wZu/sxrnI4Q==}
+    dependencies:
+      undici-types: 5.26.5
+    dev: true
+
   /@types/nodemailer@6.4.15:
     resolution: {integrity: sha512-0EBJxawVNjPkng1zm2vopRctuWVCxk34JcIlRuXSf54habUWdz1FB7wHDqOqvDa8Mtpt0Q3LTXQkAs2LNyK5jQ==}
     dependencies:
@@ -1422,7 +1428,7 @@ packages:
   /@types/ws@8.5.10:
     resolution: {integrity: sha512-vmQSUcfalpIq0R9q7uTo2lXs6eGIpt9wtnLdMv9LVpIjCA/+ufZRozlVoVelIYixx1ugCBKDhn89vnsEGOCx9A==}
     dependencies:
-      '@types/node': 20.12.12
+      '@types/node': 20.14.2
     dev: true
 
   /@typescript-eslint/eslint-plugin@7.11.0(@typescript-eslint/parser@7.11.0)(eslint@9.4.0)(typescript@5.4.5):
