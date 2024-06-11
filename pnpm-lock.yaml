@@ -108,14 +108,14 @@ devDependencies:
     specifier: 5.1.0
     version: 5.1.0(postcss@8.4.38)
   prettier:
-    specifier: 3.2.5
-    version: 3.2.5
+    specifier: 3.3.2
+    version: 3.3.2
   prettier-plugin-svelte:
     specifier: 3.2.3
-    version: 3.2.3(prettier@3.2.5)(svelte@5.0.0-next.148)
+    version: 3.2.3(prettier@3.3.2)(svelte@5.0.0-next.148)
   prettier-plugin-tailwindcss:
     specifier: ^0.6.0
-    version: 0.6.0(prettier-plugin-svelte@3.2.3)(prettier@3.2.5)
+    version: 0.6.0(prettier-plugin-svelte@3.2.3)(prettier@3.3.2)
   rehype-autolink-headings:
     specifier: 7.1.0
     version: 7.1.0
@@ -4284,17 +4284,17 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-svelte@3.2.3(prettier@3.2.5)(svelte@5.0.0-next.148):
+  /prettier-plugin-svelte@3.2.3(prettier@3.3.2)(svelte@5.0.0-next.148):
     resolution: {integrity: sha512-wJq8RunyFlWco6U0WJV5wNCM7zpBFakS76UBSbmzMGpncpK98NZABaE+s7n8/APDCEVNHXC5Mpq+MLebQtsRlg==}
     peerDependencies:
       prettier: ^3.0.0
       svelte: ^3.2.0 || ^4.0.0-next.0 || ^5.0.0-next.0
     dependencies:
-      prettier: 3.2.5
+      prettier: 3.3.2
       svelte: 5.0.0-next.148
     dev: true
 
-  /prettier-plugin-tailwindcss@0.6.0(prettier-plugin-svelte@3.2.3)(prettier@3.2.5):
+  /prettier-plugin-tailwindcss@0.6.0(prettier-plugin-svelte@3.2.3)(prettier@3.3.2):
     resolution: {integrity: sha512-l5F3iG54XbOq/2DOPP/YA+c6VE3/qXrcBccntq2v7PSxtEc+J6SwsuTyDHxoFK1+jAlcU/hECBfzn6MON6ENBg==}
     engines: {node: '>=14.21.3'}
     peerDependencies:
@@ -4346,12 +4346,12 @@ packages:
       prettier-plugin-svelte:
         optional: true
     dependencies:
-      prettier: 3.2.5
-      prettier-plugin-svelte: 3.2.3(prettier@3.2.5)(svelte@5.0.0-next.148)
+      prettier: 3.3.2
+      prettier-plugin-svelte: 3.2.3(prettier@3.3.2)(svelte@5.0.0-next.148)
     dev: true
 
-  /prettier@3.2.5:
-    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
+  /prettier@3.3.2:
+    resolution: {integrity: sha512-rAVeHYMcv8ATV5d508CFdn+8/pHPpXeIid1DdrPwXnaAdH7cqjVbpJaT5eq4yRAFU/lsbwYwSF/n5iNrdJHPQA==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
