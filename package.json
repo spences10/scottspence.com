@@ -47,7 +47,7 @@
     "cspell": "^8.8.4",
     "daisyui": "4.12.2",
     "date-fns": "3.6.0",
-    "eslint": "9.4.0",
+    "eslint": "9.5.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-svelte": "^2.39.3",
     "fathom-client": "3.6.0",
