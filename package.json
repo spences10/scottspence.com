@@ -50,7 +50,7 @@
     "eslint": "9.4.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-svelte": "^2.39.3",
-    "fathom-client": "3.6.0",
+    "fathom-client": "3.7.0",
     "graphql": "16.8.1",
     "graphql-request": "7.0.1",
     "jsdom": "^24.1.0",
