@@ -90,8 +90,8 @@ devDependencies:
     specifier: ^24.1.0
     version: 24.1.0
   marked:
-    specifier: 12.0.2
-    version: 12.0.2
+    specifier: 13.0.0
+    version: 13.0.0
   mdsvex:
     specifier: 0.11.2
     version: 0.11.2(svelte@5.0.0-next.148)
@@ -1378,7 +1378,7 @@ packages:
     resolution: {integrity: sha512-jmjpa4BwUsmhxcfsgUit/7A9KbrC48Q0q8KvnY107ogcjGgTFDlIL3RpihNpx2Mu1hM4mdFQjoVc4O6JoGKHsA==}
     deprecated: This is a stub types definition. marked provides its own type definitions, so you do not need this installed.
     dependencies:
-      marked: 12.0.2
+      marked: 13.0.0
     dev: true
 
   /@types/mdast@3.0.15:
@@ -3712,8 +3712,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /marked@12.0.2:
-    resolution: {integrity: sha512-qXUm7e/YKFoqFPYPa3Ukg9xlI5cyAtGmyEIzMfW//m6kXwCy2Ps9DYf5ioijFKQ8qyuscrHoY04iJGctu2Kg0Q==}
+  /marked@13.0.0:
+    resolution: {integrity: sha512-VTeDCd9txf4KLLljUZ0nljE/Incb9SrWuueE44QVuU0pkOdh4sfCeW1Z6lPcxyDRSVY6rm8db/0OPaN75RNUmw==}
     engines: {node: '>= 18'}
     hasBin: true
     dev: true
