@@ -81,11 +81,11 @@ devDependencies:
     specifier: 3.7.0
     version: 3.7.0
   graphql:
-    specifier: 16.8.2
-    version: 16.8.2
+    specifier: 16.9.0
+    version: 16.9.0
   graphql-request:
     specifier: 7.0.1
-    version: 7.0.1(graphql@16.8.2)
+    version: 7.0.1(graphql@16.9.0)
   jsdom:
     specifier: ^24.1.0
     version: 24.1.0
@@ -877,12 +877,12 @@ packages:
     resolution: {integrity: sha512-WdKQC1+N5Ts+3CidQ3FsRFgJ7/c8gY5zCDxXhWZWwvH5AJJmbDGHVB8XWnHtDF5+Ca7yuzixB57oK8HkuTisug==}
     dev: true
 
-  /@graphql-typed-document-node/core@3.2.0(graphql@16.8.2):
+  /@graphql-typed-document-node/core@3.2.0(graphql@16.9.0):
     resolution: {integrity: sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      graphql: 16.8.2
+      graphql: 16.9.0
     dev: true
 
   /@humanwhocodes/module-importer@1.0.1:
@@ -3051,7 +3051,7 @@ packages:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
     dev: true
 
-  /graphql-request@7.0.1(graphql@16.8.2):
+  /graphql-request@7.0.1(graphql@16.9.0):
     resolution: {integrity: sha512-hfGBZF6o6lC3C0th+aTMOFP6p8Ev+ydXn4PUlT8rvqPDUFCbaynXszjBCyu0saZIP3VGbJ67GpxW8UGK+tphSw==}
     hasBin: true
     peerDependencies:
@@ -3059,15 +3059,15 @@ packages:
     dependencies:
       '@dprint/formatter': 0.3.0
       '@dprint/typescript': 0.90.5
-      '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.2)
+      '@graphql-typed-document-node/core': 3.2.0(graphql@16.9.0)
       '@molt/command': 0.9.0
       dprint: 0.45.1
-      graphql: 16.8.2
+      graphql: 16.9.0
       zod: 3.23.8
     dev: true
 
-  /graphql@16.8.2:
-    resolution: {integrity: sha512-cvVIBILwuoSyD54U4cF/UXDh5yAobhNV/tPygI4lZhgOIJQE/WLWC4waBRb4I6bDVYb3OVx3lfHbaQOEoUD5sg==}
+  /graphql@16.9.0:
+    resolution: {integrity: sha512-GGTKBX4SD7Wdb8mqeDLni2oaRGYQWjWHGKPQ24ZMnUtKfcsVoiv4uX8+LJr1K6U5VW2Lu1BwJnj7uiori0YtRw==}
     engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
     dev: true
 
