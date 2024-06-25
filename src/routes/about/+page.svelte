@@ -16,9 +16,7 @@
 
 <div class="all-prose">
   <h1>About</h1>
-  <Small>
-    Last updated: <DateUpdated date="2021-08-14" small="true" />
-  </Small>
+
   <svelte:component this={Copy} />
 </div>
 

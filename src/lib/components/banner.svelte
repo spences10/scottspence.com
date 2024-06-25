@@ -6,15 +6,21 @@
     WarningTriangle,
   } from '$lib/icons'
 
-  export let options: BannerOptions = {
-    type: 'info',
-    message: '',
+  interface Props {
+    options?: BannerOptions
   }
 
   interface BannerOptions {
     type: 'info' | 'tip' | 'warning' | 'announcement'
     message: string
   }
+
+  let {
+    options = {
+      type: 'info',
+      message: '',
+    },
+  }: Props = $props()
 
   const ICONS = {
     info: InformationCircle,
@@ -38,10 +44,10 @@
 
 <div
   role="banner"
-  class="mt-8 relative all-prose prose-a:text-info-content rounded-box shadow-lg {banner_classes}"
+  class="all-prose relative mt-8 rounded-box shadow-lg prose-a:text-info-content {banner_classes}"
 >
   <div
-    class="{bg} rounded-full border-4 border-base-300 absolute -top-3 -left-3 p-1"
+    class="{bg} absolute -left-3 -top-3 rounded-full border-4 border-base-300 p-1"
   >
     <Icon />
   </div>

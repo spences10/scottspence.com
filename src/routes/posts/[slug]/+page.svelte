@@ -82,6 +82,10 @@
   ) => {
     if (e.metaKey || e.ctrlKey) return
     e.preventDefault()
+
+    // Track the event with Fathom
+    Fathom.trackEvent(`analytics click: ${current_path}`)
+
     // get URL
     const { href } = e.currentTarget as HTMLAnchorElement
 
@@ -154,10 +158,10 @@
     </div>
   </div>
   {#if current_visitor_data}
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <!-- svelte-ignore a11y_no_static_element_interactions -->
     <span
-      on:mouseenter={() => (show_current_visitor_data = true)}
-      on:mouseleave={() => (show_current_visitor_data = false)}
+      onmouseenter={() => (show_current_visitor_data = true)}
+      onmouseleave={() => (show_current_visitor_data = false)}
       class="inline-block cursor-pointer text-sm"
     >
       <p>
@@ -201,10 +205,8 @@
 
   <div class="flex justify-center">
     <a
-      on:click={show_modal}
+      onclick={show_modal}
       href="/stats/{$page.params.slug}"
-      on:click={() =>
-        Fathom.trackEvent(`analytics click: ${current_path}`)}
       class="btn btn-primary btn-lg mb-20 px-10 text-xl shadow-lg"
     >
       ✨ View the stats for this post ✨
