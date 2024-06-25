@@ -84,5 +84,8 @@
   },
   "dependencies": {
     "@libsql/client": "^0.7.0"
+  },
+  "engines": {
+    "node": "20"
   }
 }
