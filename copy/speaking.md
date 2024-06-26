@@ -13,7 +13,7 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2023-09-02" small="true" />
+  Last updated: <DateUpdated date="2024-06-26" small="true" />
 </Small>
 
 If you want me to talk about using Svelte and SvelteKit or anything
@@ -23,6 +23,15 @@ else [get in touch].
 
 Here's the list of talks, podcasts and live streams I have done
 recently.
+
+## 2024
+
+### Svelte Society London - June 2024
+
+Check out my junk! A tour of SvelteKit projects that I've built and
+learned from.
+
+<YouTube youTubeId='J5srLwhlBdw' skipTo={{ h: 0, m: 43, s: 21 }}/>
 
 ## 2023
 
@@ -326,8 +335,8 @@ live streams, or books - content creation is BIG, also for developers.
 ### Migrating Gatsby from Markdown to MDX
 
 Brad Garropy (Live Stream), I joined Brad to talk him through setting
-up [MDX Embed] and ironing out some of the issues he was having after
-transitioning his site over to MDX from Markdown Remark.
+up [MDX Embed] and ironing out some of the issues he was having after transitioning
+his site over to MDX from Markdown Remark.
 
 ### Whiskey Wednesday
 
@@ -480,8 +489,8 @@ need a college degree to get a job in tech.
 
 ### API Days London
 
-I was asked by [Jesse Martin] from GraphCMS if I would like to do a
-talk at API Days London so I jumped at the chance!
+I was asked by [Jesse Martin] from GraphCMS if I would like to do a talk
+at API Days London so I jumped at the chance!
 
 - [Gatsby Eats APIs (Slides)]
 
