@@ -30,7 +30,7 @@
     "@fontsource-variable/manrope": "^5.0.20",
     "@fontsource-variable/victor-mono": "^5.0.5",
     "@fontsource/victor-mono": "^5.0.13",
-    "@libsql/client": "^0.6.2",
+    "@libsql/client": "^0.7.0",
     "@playwright/test": "^1.44.1",
     "@sveltejs/kit": "^2.5.17",
     "@sveltejs/vite-plugin-svelte": "^3.1.1",
