@@ -25,7 +25,7 @@ Check it out!
   style="border:1px solid #EEE; background:transparent;"
   frameborder="0"
   scrolling="no"
-/>
+></iframe>
 
 Depending on what theme you're using this can potentially be
 acceptable, probably not though!
