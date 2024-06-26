@@ -10,6 +10,8 @@
   } from 'sveltekit-embed'
 </script>
 
+<!-- cspell:ignore J5srLwhlBdw --> 
+
 # Speaking
 
 <Small>
