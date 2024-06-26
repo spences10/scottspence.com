@@ -44,7 +44,7 @@
     "@vitest/ui": "^1.6.0",
     "autoprefixer": "10.4.19",
     "cspell": "^8.9.1",
-    "daisyui": "4.12.8",
+    "daisyui": "4.12.10",
     "date-fns": "3.6.0",
     "eslint": "9.5.0",
     "eslint-config-prettier": "9.1.0",
