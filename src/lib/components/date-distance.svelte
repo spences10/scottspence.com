@@ -8,4 +8,4 @@
   )
 </script>
 
-<span>{distance}</span>
+<span data-testid="date-distance">{distance}</span>

@@ -1,5 +1,10 @@
 <script lang="ts">
-  export let reply = false
+  import type { Snippet } from 'svelte'
+
+  let { reply = false, children } = $props<{
+    reply: boolean
+    children: Snippet
+  }>()
 </script>
 
 <div>
@@ -9,7 +14,7 @@
         ? 'chat-bubble-accent'
         : 'chat-bubble-primary'}"
     >
-      <slot />
+      {@render children()}
     </section>
   </div>
 </div>
