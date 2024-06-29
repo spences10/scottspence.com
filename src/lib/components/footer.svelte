@@ -10,22 +10,24 @@
   type PopularPostsPeriod = keyof PopularPosts
   let selected_period: PopularPostsPeriod = 'popular_posts_yearly'
 
-  let posts: PopularPost[] = []
-  let show_current_visitor_data = false
+  let posts: PopularPost[] = $state([])
+  let show_current_visitor_data = $state(false)
 
-  $: {
+  $effect(() => {
     posts = $popular_posts_store[
       selected_period as PopularPostsPeriod
     ].slice(0, 6)
-  }
+  });
 
-  let total_visitors = 0
-  $: if ($visitors_store && $visitors_store.visitor_data) {
-    total_visitors = $visitors_store.visitor_data.reduce(
-      (total, visitor) => total + visitor.recent_visitors,
-      0,
-    )
-  }
+  let total_visitors = $state(0)
+  $effect(() => {
+    if ($visitors_store && $visitors_store.visitor_data) {
+      total_visitors = $visitors_store.visitor_data.reduce(
+        (total, visitor) => total + visitor.recent_visitors,
+        0,
+      )
+    }
+  });
 </script>
 
 <footer class="footer bg-primary p-10 text-primary-content">
@@ -54,10 +56,10 @@
     {/each}
 
     {#if total_visitors > 0}
-      <!-- svelte-ignore a11y-no-static-element-interactions -->
+      <!-- svelte-ignore a11y_no_static_element_interactions -->
       <span
-        on:mouseenter={() => (show_current_visitor_data = true)}
-        on:mouseleave={() => (show_current_visitor_data = false)}
+        onmouseenter={() => (show_current_visitor_data = true)}
+        onmouseleave={() => (show_current_visitor_data = false)}
         class="inline-block cursor-pointer"
       >
         <p
@@ -80,7 +82,7 @@
     {#each SITE_LINKS as link}
       <a
         href={`/${link.slug}`}
-        on:click={() => Fathom.trackEvent(link.slug)}
+        onclick={() => Fathom.trackEvent(link.slug)}
         class="text-primary-content hover:opacity-50"
       >
         {link.title}

@@ -24,7 +24,11 @@ test('renders formatted date distance', async () => {
 
   vi.mocked(formatDistance).mockReturnValue(mockFormattedDistance)
 
-  render(DateDistance, { date: mockDate })
+  render(
+    DateDistance,
+    { date: mockDate },
+    { baseElement: document.body },
+  )
 
   const element = screen.getByTestId('date-distance')
   expect(element.textContent).toBe(mockFormattedDistance)

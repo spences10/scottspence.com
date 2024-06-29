@@ -14,7 +14,7 @@
         ? 'chat-bubble-accent'
         : 'chat-bubble-primary'}"
     >
-      {@render children()}
+      {@render children?.()}
     </section>
   </div>
 </div>

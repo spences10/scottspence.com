@@ -1,20 +1,32 @@
 <script lang="ts">
+  import type { Snippet } from 'svelte'
   import { slide } from 'svelte/transition'
-  export let buttonText = ''
-  export let isOpen = false
-  export let styles = ''
+  interface Props {
+    buttonText?: string
+    isOpen?: boolean
+    styles?: string
+    children?: Snippet
+  }
+
+  let {
+    buttonText = '',
+    isOpen = $bindable(false),
+    styles = '',
+    children,
+  }: Props = $props()
 </script>
 
 <div>
   <button
     class="btn {styles} shadow-xl"
-    on:click={() => (isOpen = !isOpen)}
+    onclick={() => (isOpen = !isOpen)}
+    data-testid="details-button"
   >
     {isOpen ? `Close` : buttonText}
   </button>
   {#if isOpen}
-    <div transition:slide|global>
-      <slot />
+    <div transition:slide|global data-testid="details-content">
+      {@render children?.()}
     </div>
   {/if}
 </div>

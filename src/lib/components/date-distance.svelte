@@ -1,10 +1,14 @@
 <script lang="ts">
   import { formatDistance } from 'date-fns'
 
-  export let date
+  interface Props {
+    date: number | string | Date
+  }
+
+  let { date }: Props = $props()
   const distance = formatDistance(
     new Date(Date.now()),
-    new Date(date)
+    new Date(date),
   )
 </script>
 
