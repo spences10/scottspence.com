@@ -2,6 +2,8 @@ import { description, name, website } from '$lib/info'
 import { get_posts } from '$lib/posts'
 import { addHours, isAfter } from 'date-fns'
 
+export const prerender = true
+
 interface CacheEntry {
   value: string
   timestamp: Date
@@ -93,4 +95,3 @@ const render = (posts_metadata: Post[]) => {
       .join('')}
   </feed>`
 }
-
