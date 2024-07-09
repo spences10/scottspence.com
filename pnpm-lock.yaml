@@ -146,8 +146,8 @@ devDependencies:
     specifier: ^3.8.4
     version: 3.8.4(postcss-load-config@6.0.1)(postcss@8.4.39)(svelte@5.0.0-next.166)
   svelte-preprocess:
-    specifier: 6.0.1
-    version: 6.0.1(postcss-load-config@6.0.1)(postcss@8.4.39)(svelte@5.0.0-next.166)(typescript@5.5.3)
+    specifier: 6.0.2
+    version: 6.0.2(postcss-load-config@6.0.1)(postcss@8.4.39)(svelte@5.0.0-next.166)(typescript@5.5.3)
   sveltekit-embed:
     specifier: ^0.0.15
     version: 0.0.15(svelte@5.0.0-next.166)
@@ -4662,8 +4662,8 @@ packages:
       typescript: 5.5.3
     dev: true
 
-  /svelte-preprocess@6.0.1(postcss-load-config@6.0.1)(postcss@8.4.39)(svelte@5.0.0-next.166)(typescript@5.5.3):
-    resolution: {integrity: sha512-vNgXoyqWwahdpEX9XbQHcAHt41TkXnf8bRDxT5PjISHbZD1dVH4b2OsJ2fVQTBb3qP05x0GuYE9iS5vhD+Dniw==}
+  /svelte-preprocess@6.0.2(postcss-load-config@6.0.1)(postcss@8.4.39)(svelte@5.0.0-next.166)(typescript@5.5.3):
+    resolution: {integrity: sha512-OvDTLfaOkkhjprbDKO0SOCkjNYuHy16dbD4SpqbIi6QiabOMHxRT4km5/dzbFFkmW1L0E2INF3MFltG2pgOyKQ==}
     engines: {node: '>= 18.0.0'}
     requiresBuild: true
     peerDependencies:
@@ -4700,10 +4700,8 @@ packages:
       typescript:
         optional: true
     dependencies:
-      detect-indent: 6.1.0
       postcss: 8.4.39
       postcss-load-config: 6.0.1(postcss@8.4.39)
-      strip-indent: 3.0.0
       svelte: 5.0.0-next.166
       typescript: 5.5.3
     dev: true
