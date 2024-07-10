@@ -80,8 +80,8 @@ devDependencies:
     specifier: ^2.41.0
     version: 2.41.0(eslint@9.6.0)(svelte@5.0.0-next.166)
   fathom-client:
-    specifier: 3.7.0
-    version: 3.7.0
+    specifier: 3.7.2
+    version: 3.7.2
   graphql:
     specifier: 16.9.0
     version: 16.9.0
@@ -2728,8 +2728,8 @@ packages:
       reusify: 1.0.4
     dev: true
 
-  /fathom-client@3.7.0:
-    resolution: {integrity: sha512-lMEyR3lSThlkK69+f/16OEyuii743iJGcZ6aIUKT5qYH9lGi7ENTYwuxh5NWWYSO6qs57we01nLxncW8kegJlw==}
+  /fathom-client@3.7.2:
+    resolution: {integrity: sha512-sWtaNivhg7uwp/q1bUuIiNj4LeQZMEZ5NXXFFpZ8le4uDedAfQG84gPOdYehtVXbl+1yX2s8lmXZ2+IQ9a/xxA==}
     dev: true
 
   /fetch-blob@3.2.0:
