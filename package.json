@@ -60,7 +60,7 @@
     "nodemailer": "^6.9.14",
     "postcss": "8.4.39",
     "postcss-load-config": "6.0.1",
-    "prettier": "3.3.2",
+    "prettier": "3.3.3",
     "prettier-plugin-svelte": "3.2.5",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "rehype-autolink-headings": "7.1.0",
