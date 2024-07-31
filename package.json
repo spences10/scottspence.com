@@ -79,7 +79,7 @@
     "typescript": "^5.5.3",
     "unist-util-visit": "5.0.0",
     "vite": "5.3.4",
-    "vitest": "2.0.3"
+    "vitest": "2.0.5"
   },
   "dependencies": {
     "@libsql/client": "^0.7.0"
