@@ -82,6 +82,6 @@
     "vitest": "2.0.5"
   },
   "dependencies": {
-    "@libsql/client": "^0.7.0"
+    "@libsql/client": "^0.8.0"
   }
 }
