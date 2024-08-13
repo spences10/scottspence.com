@@ -349,7 +349,7 @@ about common problems among developers.
 
 📺 [Watch it on YouTube](https://www.youtube.com/watch?v=0P8GTyBEUVE)
 
-<!-- cSpell:ignore xdozdWXWI,bxq -->
+<!-- cSpell:ignore 1xdozdWXWINddIIbxqZAzL -->
 
 <Spotify
   spotifyLink="episode/1xdozdWXWINddIIbxqZAzL"
