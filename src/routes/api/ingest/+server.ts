@@ -1,5 +1,6 @@
 import { env } from '$env/dynamic/private'
 import { json } from '@sveltejs/kit'
+import { index_now } from './index-now'
 import { update_popular_posts } from './update-popular-posts'
 import { update_posts } from './update-posts'
 
@@ -38,6 +39,10 @@ const tasks: TaskType = {
   update_posts: {
     function: update_posts,
     expects_fetch: false,
+  },
+  index_now: {
+    function: index_now,
+    expects_fetch: true,
   },
 }
 
