@@ -44,7 +44,7 @@
 {/await}
 
 <div class="all-prose">
-  <svelte:component this={Copy} />
+  <Copy />
 </div>
 
 <div class="mb-5 mt-10 flex w-full flex-col" bind:this={end_of_copy}>

@@ -52,9 +52,9 @@
   </div>
 
   {#if show_fun_copy}
-    <svelte:component this={FunCopy} />
+    <FunCopy />
   {:else}
-    <svelte:component this={CorporateCopy} />
+    <CorporateCopy />
   {/if}
 </div>
 

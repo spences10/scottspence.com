@@ -19,7 +19,7 @@
 />
 
 <div class="all-prose">
-  <svelte:component this={Copy} />
+  <Copy />
 </div>
 
 <NewsletterSignup />

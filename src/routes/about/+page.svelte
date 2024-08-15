@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { DateUpdated, Head, Small } from '$lib/components'
+  import { Head } from '$lib/components'
   import { name, website } from '$lib/info'
   import { og_image_url } from '$lib/utils'
 
@@ -17,7 +17,7 @@
 <div class="all-prose">
   <h1>About</h1>
 
-  <svelte:component this={Copy} />
+  <Copy />
 </div>
 
 <div class="my-10 flex w-full flex-col">
