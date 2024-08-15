@@ -11,19 +11,19 @@
 </script>
 
 <nav
-  class="sticky top-0 z-10 backdrop-filter bg-base-100/50 backdrop-blur-xl py-4 mb-10 hidden flex-none px-2 mx-2 lg:flex"
+  class="sticky top-0 z-10 mx-2 mb-10 hidden flex-none bg-base-100/50 px-2 py-4 backdrop-blur-xl backdrop-filter lg:flex"
 >
   <ul
-    class="flex px-4 justify-between items-center container max-w-3xl mx-auto"
+    class="container mx-auto flex max-w-3xl items-center justify-between px-4"
   >
     {#each links as link}
       <li>
         <a
-          class="flex items-center text-xl link link-primary space-x-2 {$page
+          class="link link-primary flex items-center space-x-2 text-xl {$page
             .url.pathname === link.href && `link-secondary`}"
           href={link.href}
         >
-          <span class=''>
+          <span class="">
             <svelte:component
               this={link.icon}
               height="20px"
@@ -41,7 +41,7 @@
 </nav>
 
 <nav
-  class="btm-nav lg:hidden rounded-box max-w-[95vw] mb-2 mx-auto z-10 bg-primary shadow-xl"
+  class="btm-nav z-10 mx-auto mb-2 max-w-[95vw] rounded-box bg-primary shadow-xl lg:hidden"
 >
   {#each links as link}
     <a href={link.href}>
