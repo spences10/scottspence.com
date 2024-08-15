@@ -22,7 +22,7 @@
 <LandingHero />
 
 <article class="all-prose mb-10">
-  <svelte:component this={Copy} />
+  <Copy />
 </article>
 
 <PeopleToMeet />

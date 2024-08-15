@@ -1,3 +1,5 @@
+// @vitest-environment node
+
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { POST } from './+server'
 import * as update_popular_posts_module from './update-popular-posts'

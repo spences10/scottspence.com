@@ -1,6 +1,14 @@
 <script lang="ts">
   import { goto, preloadData, pushState } from '$app/navigation'
   import { page } from '$app/stores'
+  import { name, website } from '$lib/info'
+  import {
+    differenceInDays,
+    differenceInYears,
+    format,
+  } from 'date-fns'
+  import * as Fathom from 'fathom-client'
+
   import {
     ButtButt,
     CurrentVisitorsData,
@@ -12,19 +20,12 @@
     TableOfContents,
     UpdatedBanner,
   } from '$lib/components'
-  import { name, website } from '$lib/info'
   import { type VisitorEntry } from '$lib/stores'
   import {
     get_headings,
     og_image_url,
     update_toc_visibility,
   } from '$lib/utils'
-  import {
-    differenceInDays,
-    differenceInYears,
-    format,
-  } from 'date-fns'
-  import * as Fathom from 'fathom-client'
   import StatsPage from '../../stats/[slug]/+page.svelte'
   import Modal from './modal.svelte'
 
@@ -51,10 +52,12 @@
   let show_table_of_contents = $state(true)
   let headings_promise:
     | Promise<{ label: string; href: string }[]>
-    | undefined = $state()
+    | undefined = $state(undefined)
 
   $effect(() => {
-    headings_promise = get_headings()
+    headings_promise = get_headings().then(headings => {
+      return headings
+    })
   })
 
   let current_path = $page.url.pathname
@@ -109,7 +112,7 @@
   }
 </script>
 
-<svelte:window on:scroll={handle_scroll} />
+<svelte:window onscroll={handle_scroll} />
 
 <Head
   title={`${title} - ${name}`}
@@ -118,15 +121,19 @@
   {url}
 />
 
-{#await headings_promise}
-  Loading...
-{:then headings}
-  {#if show_table_of_contents}
-    <TableOfContents {headings} />
-  {/if}
-{:catch error}
-  <p>Failed to load table of contents: {error.message}</p>
-{/await}
+{#if headings_promise}
+  {#await headings_promise}
+    <p>Loading table of contents...</p>
+  {:then headings}
+    {#if show_table_of_contents && headings.length > 0}
+      <TableOfContents {headings} />
+    {:else if headings.length === 0}
+      <p>No headings found</p>
+    {/if}
+  {:catch error}
+    <p>Error loading table of contents: {error.message}</p>
+  {/await}
+{/if}
 
 <article>
   <h1 class="mb-1 text-5xl font-black">{title}</h1>
@@ -191,7 +198,7 @@
   {/if}
 
   <div class="all-prose mb-10">
-    <svelte:component this={Content} />
+    <Content />
   </div>
 
   <div
