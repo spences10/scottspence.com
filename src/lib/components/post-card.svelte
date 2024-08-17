@@ -31,7 +31,9 @@
           </div>
         </div>
         <div class="all-prose">
-          {@html post.preview_html}
+          {@html post.preview}
+          <!-- wtf does this come from? -->
+          <!-- {@html post.preview_html} -->
         </div>
       </a>
     </article>
