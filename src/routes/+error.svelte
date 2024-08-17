@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores'
+  import { PopularPosts } from '$lib/components'
 </script>
 
 <svelte:head>
@@ -15,4 +16,8 @@
     Maybe check out the <a href="/posts">posts</a> page? Or go to the
     <a href="/">home</a> page.
   </p>
+
+  <p>Also 👇</p>
+
+  <PopularPosts />
 </main>
