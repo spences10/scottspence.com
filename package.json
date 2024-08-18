@@ -27,10 +27,10 @@
     "coverage": "vitest run --coverage"
   },
   "devDependencies": {
-    "@fontsource-variable/manrope": "^5.0.20",
-    "@fontsource-variable/victor-mono": "^5.0.5",
-    "@fontsource/victor-mono": "^5.0.13",
-    "@playwright/test": "^1.46.0",
+    "@fontsource-variable/manrope": "^5.0.21",
+    "@fontsource-variable/victor-mono": "^5.0.6",
+    "@fontsource/victor-mono": "^5.0.14",
+    "@playwright/test": "^1.46.1",
     "@sveltejs/adapter-node": "^5.2.2",
     "@sveltejs/kit": "^2.5.22",
     "@sveltejs/vite-plugin-svelte": "^3.1.1",
@@ -44,7 +44,7 @@
     "@vitest/coverage-v8": "^2.0.5",
     "@vitest/ui": "^2.0.5",
     "autoprefixer": "10.4.20",
-    "cspell": "^8.13.3",
+    "cspell": "^8.14.1",
     "daisyui": "4.12.10",
     "date-fns": "3.6.0",
     "eslint": "9.9.0",
@@ -78,7 +78,7 @@
     "tslib": "^2.6.3",
     "typescript": "^5.5.4",
     "unist-util-visit": "5.0.0",
-    "vite": "5.4.0",
+    "vite": "5.4.1",
     "vitest": "2.0.5"
   },
   "dependencies": {
