@@ -52,7 +52,8 @@ what I'm working on and what I'm thinking about.
 
 - [Svelte local storeage runes](https://www.reddit.com/r/sveltejs/s/mk6d48xK7c)
 
-
+- Updating Svead to use a Schema ORG JSON-LD component, like in
+  [svelte-meta-tags](https://github.com/oekazuma/svelte-meta-tags).
 
 ## Done
 
