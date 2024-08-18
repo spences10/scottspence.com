@@ -33,18 +33,22 @@
   url={`${website}/faq`}
 />
 
-{#await headings_promise}
-  Loading...
-{:then headings}
-  {#if show_table_of_contents}
-    <TableOfContents {headings} />
-  {/if}
-{:catch error}
-  <p>Failed to load table of contents: {error.message}</p>
-{/await}
+{#if headings_promise}
+  {#await headings_promise}
+    <p>Loading table of contents...</p>
+  {:then headings}
+    {#if show_table_of_contents && headings.length > 0}
+      <TableOfContents {headings} />
+    {:else if headings.length === 0}
+      <p>No headings found</p>
+    {/if}
+  {:catch error}
+    <p>Error loading table of contents: {error.message}</p>
+  {/await}
+{/if}
 
 <div class="all-prose mb-10">
-  <Copy /> 
+  <Copy />
 </div>
 
 <div class="mb-5 mt-10 flex w-full flex-col" bind:this={end_of_copy}>
