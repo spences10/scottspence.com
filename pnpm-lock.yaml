@@ -12,13 +12,13 @@ dependencies:
 devDependencies:
   '@fontsource-variable/manrope':
     specifier: ^5.0.20
-    version: 5.0.20
+    version: 5.0.21
   '@fontsource-variable/victor-mono':
     specifier: ^5.0.5
-    version: 5.0.5
+    version: 5.0.6
   '@fontsource/victor-mono':
     specifier: ^5.0.13
-    version: 5.0.13
+    version: 5.0.14
   '@playwright/test':
     specifier: ^1.46.0
     version: 1.46.0
@@ -819,16 +819,16 @@ packages:
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     dev: true
 
-  /@fontsource-variable/manrope@5.0.20:
-    resolution: {integrity: sha512-LKL0aM0DxYj8i/zUTb5Nru0mS3YoezPZaeWY7aIxEKVX1xVBLpPHlFq0NoK2iUXhL6HoD0XMYwc6KVa8I/ayKg==}
+  /@fontsource-variable/manrope@5.0.21:
+    resolution: {integrity: sha512-1/t27ShnhKYxMTIZInD0k48FuziNeFXzk3ACKdXO20aIAoG1RwLQ6l++o8DTj7k6aq0Kos7AhUn47TOQysGY9Q==}
     dev: true
 
-  /@fontsource-variable/victor-mono@5.0.5:
-    resolution: {integrity: sha512-Cnz34ZyorqWKDP/QxCq0yaYHfpeAohtOJBW6k5N1eHBdnaOl9hhqFRd4GBZ7EyjaAviJ+ze3LjHq8Ka1InqqAg==}
+  /@fontsource-variable/victor-mono@5.0.6:
+    resolution: {integrity: sha512-sp1+02DGK4BBzSLcib4A3FIipzut6JA9ROkipGGJXOEjJW/bGYipxVUtt5xKUO4+EboeO84I4jRWZWzuOZ2czQ==}
     dev: true
 
-  /@fontsource/victor-mono@5.0.13:
-    resolution: {integrity: sha512-WdKQC1+N5Ts+3CidQ3FsRFgJ7/c8gY5zCDxXhWZWwvH5AJJmbDGHVB8XWnHtDF5+Ca7yuzixB57oK8HkuTisug==}
+  /@fontsource/victor-mono@5.0.14:
+    resolution: {integrity: sha512-TMTBJTqGiHZoamjoGgAL/p2zR4G6eoTeMCmK4Guz4gzDRwyOSgBXXU3WgNyY3Zm7S+/kowVje9ziMDC8MavDRg==}
     dev: true
 
   /@graphql-typed-document-node/core@3.2.0(graphql@16.9.0):
