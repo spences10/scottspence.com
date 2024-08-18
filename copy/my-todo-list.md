@@ -2,6 +2,8 @@
   import { DateUpdated, Small } from '$lib/components'
 </script>
 
+<!-- cSpell:ignore vulf salma -->
+
 # My Todo List
 
 <Small>
@@ -22,9 +24,35 @@ what I'm working on and what I'm thinking about.
   block. I got the idea from
   [darkvisitors.com](https://darkvisitors.com/docs/analytics)
   mentioned on the 404media podcast.
+
 - Taking a look at
   [svelte-markdoc-preprocess](https://github.com/TorstenDittmann/svelte-markdoc-preprocess)
   for possible rewrite of this site.
+
+- Checking out the [Vulf](https://ohnotype.co/fonts/vulf) coding font.
+
+- Taking more time to get familiar with
+  [cURL](https://www.youtube.com/watch?v=APtOavXTv5M)
+
+- Looking into i18n details from this
+  [post](https://x.com/joshwcomeau/status/1759616073773543485?s=46&t=4RSOl8kQCdkHm0U5FcdeaA)
+  from Josh Comeau: "⚠️ Friendly reminder: If you work on
+  internationalization, please do not use the user’s location to
+  decide what language to serve your content in. Use the
+  “Accept-Language” header instead. Users can't set their IP address,
+  but they can set their OS’ language setting."
+
+- Styling RSS feeds! Salma created a
+  [post](https://github.com/whitep4nth3r/mk2-p4nth3rblog/blob/main/src/_css/rss-style.xsl)
+  about it.
+
+- Yet another email
+  [SES service](https://docs.useplunk.com/guides/setting-up-automation)
+  to check out.
+
+- [Svelte local storeage runes](https://www.reddit.com/r/sveltejs/s/mk6d48xK7c)
+
+
 
 ## Done
 
