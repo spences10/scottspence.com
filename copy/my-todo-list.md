@@ -20,6 +20,9 @@ what I'm working on and what I'm thinking about.
 
 ## Thinking about
 
+- Better analytics from the SvelteKit short URLs project to give click
+  referrers.
+
 - LLM scraper honeypot to log LLM scrapes and identify new bot's to
   block. I got the idea from
   [darkvisitors.com](https://darkvisitors.com/docs/analytics)
