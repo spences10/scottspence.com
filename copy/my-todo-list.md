@@ -2,7 +2,7 @@
   import { DateUpdated, Small } from '$lib/components'
 </script>
 
-<!-- cSpell:ignore vulf salma -->
+<!-- cSpell:ignore vulf salma darkvisitors markdoc -->
 
 # My Todo List
 
@@ -42,7 +42,7 @@ what I'm working on and what I'm thinking about.
   from Josh Comeau: "⚠️ Friendly reminder: If you work on
   internationalization, please do not use the user’s location to
   decide what language to serve your content in. Use the
-  “Accept-Language” header instead. Users can't set their IP address,
+  "Accept-Language" header instead. Users can't set their IP address,
   but they can set their OS’ language setting."
 
 - Styling RSS feeds! Salma created a
@@ -53,7 +53,7 @@ what I'm working on and what I'm thinking about.
   [SES service](https://docs.useplunk.com/guides/setting-up-automation)
   to check out.
 
-- [Svelte local storeage runes](https://www.reddit.com/r/sveltejs/s/mk6d48xK7c)
+- [Svelte local storage runes](https://www.reddit.com/r/sveltejs/s/mk6d48xK7c)
 
 ## Done
 

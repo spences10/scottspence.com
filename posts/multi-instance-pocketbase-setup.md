@@ -5,7 +5,7 @@ tags: ['pocketbase', 'database', 'caddy', 'vps', 'hetzner']
 isPrivate: false
 ---
 
-<!-- cSpell:ignore hetzner Coolify -->
+<!-- cSpell:ignore hetzner Coolify dearmor Caddyfile Rawdogging -->
 
 I've been playing around with Hetzner Cloud for a while now, mainly
 setting up this site on it using Coolify but it got me thinking about
