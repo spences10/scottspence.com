@@ -1,4 +1,5 @@
 User-agent: *
+Sitemap: https://scottspence.com/sitemap.xml
 # Allow all the things
 Allow: /
 
