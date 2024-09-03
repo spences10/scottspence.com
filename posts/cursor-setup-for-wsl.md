@@ -2,7 +2,7 @@
 date: 2024-09-03
 title: Cursor Setup for WSL
 tags: ['wsl', 'cursor', 'guide']
-isPrivate: true
+isPrivate: false
 ---
 
 <script>
