@@ -89,8 +89,8 @@ devDependencies:
     specifier: 7.1.0
     version: 7.1.0(graphql@16.9.0)
   jsdom:
-    specifier: ^24.1.1
-    version: 24.1.1
+    specifier: ^25.0.0
+    version: 25.0.0
   marked:
     specifier: 14.0.0
     version: 14.0.0
@@ -168,7 +168,7 @@ devDependencies:
     version: 5.4.2
   vitest:
     specifier: 2.0.5
-    version: 2.0.5(@vitest/ui@2.0.5)(jsdom@24.1.1)
+    version: 2.0.5(@vitest/ui@2.0.5)(jsdom@25.0.0)
 
 packages:
 
@@ -1561,7 +1561,7 @@ packages:
       '@testing-library/dom': 10.2.0
       svelte: 5.0.0-next.221
       vite: 5.4.2
-      vitest: 2.0.5(@vitest/ui@2.0.5)(jsdom@24.1.1)
+      vitest: 2.0.5(@vitest/ui@2.0.5)(jsdom@25.0.0)
     dev: true
 
   /@types/aria-query@5.0.4:
@@ -1801,7 +1801,7 @@ packages:
       std-env: 3.7.0
       test-exclude: 7.0.1
       tinyrainbow: 1.2.0
-      vitest: 2.0.5(@vitest/ui@2.0.5)(jsdom@24.1.1)
+      vitest: 2.0.5(@vitest/ui@2.0.5)(jsdom@25.0.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1854,7 +1854,7 @@ packages:
       pathe: 1.1.2
       sirv: 2.0.4
       tinyrainbow: 1.2.0
-      vitest: 2.0.5(@vitest/ui@2.0.5)(jsdom@24.1.1)
+      vitest: 2.0.5(@vitest/ui@2.0.5)(jsdom@25.0.0)
     dev: true
 
   /@vitest/utils@2.0.5:
@@ -3493,8 +3493,8 @@ packages:
       argparse: 2.0.1
     dev: true
 
-  /jsdom@24.1.1:
-    resolution: {integrity: sha512-5O1wWV99Jhq4DV7rCLIoZ/UIhyQeDR7wHVyZAHAshbrvZsLs+Xzz7gtwnlJTJDjleiTKh54F4dXrX70vJQTyJQ==}
+  /jsdom@25.0.0:
+    resolution: {integrity: sha512-OhoFVT59T7aEq75TVw9xxEfkXgacpqAhQaYgP9y/fDqWQCMB/b1H66RfmPm/MaeaAIU9nDwMOVTlPN51+ao6CQ==}
     engines: {node: '>=18'}
     peerDependencies:
       canvas: ^2.11.2
@@ -5318,7 +5318,7 @@ packages:
       vite: 5.4.2
     dev: true
 
-  /vitest@2.0.5(@vitest/ui@2.0.5)(jsdom@24.1.1):
+  /vitest@2.0.5(@vitest/ui@2.0.5)(jsdom@25.0.0):
     resolution: {integrity: sha512-8GUxONfauuIdeSl5f9GTgVEpg5BTOlplET4WEDaeY2QBiN8wSm68vxN/tb5z405OwppfoCavnwXafiaYBC/xOA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -5354,7 +5354,7 @@ packages:
       chai: 5.1.1
       debug: 4.3.5
       execa: 8.0.1
-      jsdom: 24.1.1
+      jsdom: 25.0.0
       magic-string: 0.30.10
       pathe: 1.1.2
       std-env: 3.7.0
