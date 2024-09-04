@@ -1,6 +1,35 @@
+import {
+  rejected_extensions,
+  rejected_paths,
+} from '$lib/reject-patterns'
 import { themes } from '$lib/themes'
-import { type Handle } from '@sveltejs/kit'
+import { redirect, type Handle } from '@sveltejs/kit'
 import { sequence } from '@sveltejs/kit/hooks'
+
+const reject_suspicious_requests: Handle = async ({
+  event,
+  resolve,
+}) => {
+  const pathname = event.url.pathname.toLowerCase()
+
+  if (rejected_extensions.some(ext => pathname.endsWith(ext))) {
+    console.log(
+      `Suspicious file extension request redirected: ${pathname}`,
+    )
+    throw redirect(302, 'https://www.google.com')
+  }
+
+  if (
+    rejected_paths.some(
+      path => pathname === path || pathname.startsWith(path + '/'),
+    )
+  ) {
+    console.log(`Suspicious path request redirected: ${pathname}`)
+    throw redirect(302, 'https://www.google.com')
+  }
+
+  return await resolve(event)
+}
 
 const theme: Handle = async ({ event, resolve }) => {
   const theme = event.cookies.get('theme')
@@ -16,4 +45,4 @@ const theme: Handle = async ({ event, resolve }) => {
   })
 }
 
-export const handle = sequence(theme)
+export const handle = sequence(reject_suspicious_requests, theme)
