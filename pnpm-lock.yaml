@@ -90,7 +90,7 @@ devDependencies:
     version: 7.1.0(graphql@16.9.0)
   jsdom:
     specifier: ^24.1.1
-    version: 24.1.1
+    version: 24.1.3
   marked:
     specifier: 14.0.0
     version: 14.0.0
@@ -168,7 +168,7 @@ devDependencies:
     version: 5.4.2
   vitest:
     specifier: 2.0.5
-    version: 2.0.5(@vitest/ui@2.0.5)(jsdom@24.1.1)
+    version: 2.0.5(@vitest/ui@2.0.5)(jsdom@24.1.3)
 
 packages:
 
@@ -1561,7 +1561,7 @@ packages:
       '@testing-library/dom': 10.2.0
       svelte: 5.0.0-next.221
       vite: 5.4.2
-      vitest: 2.0.5(@vitest/ui@2.0.5)(jsdom@24.1.1)
+      vitest: 2.0.5(@vitest/ui@2.0.5)(jsdom@24.1.3)
     dev: true
 
   /@types/aria-query@5.0.4:
@@ -1801,7 +1801,7 @@ packages:
       std-env: 3.7.0
       test-exclude: 7.0.1
       tinyrainbow: 1.2.0
-      vitest: 2.0.5(@vitest/ui@2.0.5)(jsdom@24.1.1)
+      vitest: 2.0.5(@vitest/ui@2.0.5)(jsdom@24.1.3)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1854,7 +1854,7 @@ packages:
       pathe: 1.1.2
       sirv: 2.0.4
       tinyrainbow: 1.2.0
-      vitest: 2.0.5(@vitest/ui@2.0.5)(jsdom@24.1.1)
+      vitest: 2.0.5(@vitest/ui@2.0.5)(jsdom@24.1.3)
     dev: true
 
   /@vitest/utils@2.0.5:
@@ -1892,7 +1892,7 @@ packages:
     resolution: {integrity: sha512-H0TSyFNDMomMNJQBn8wFV5YC/2eJ+VXECwOadZJT554xP6cODZHPX3H9QMQECxvrgiSOP1pHjy1sMWQVYJOUOA==}
     engines: {node: '>= 14'}
     dependencies:
-      debug: 4.3.5
+      debug: 4.3.6
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2465,6 +2465,18 @@ packages:
 
   /debug@4.3.5:
     resolution: {integrity: sha512-pt0bNEmneDIvdL1Xsd9oDQ/wrQRkXDT4AUWlNZNPKvW5x/jyO9VFXkJUP07vQ2upmw5PlaITaPKc31jK13V+jg==}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    dependencies:
+      ms: 2.1.2
+    dev: true
+
+  /debug@4.3.6:
+    resolution: {integrity: sha512-O/09Bd4Z1fBrU4VzkhFqVgpPzaGbw6Sm9FEkBT1A/YBXQFGuuSxa1dN2nxgxS34JmKXqYx8CZAwEVoJFImUXIg==}
     engines: {node: '>=6.0'}
     peerDependencies:
       supports-color: '*'
@@ -3273,7 +3285,7 @@ packages:
     engines: {node: '>= 14'}
     dependencies:
       agent-base: 7.1.1
-      debug: 4.3.5
+      debug: 4.3.6
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3283,7 +3295,7 @@ packages:
     engines: {node: '>= 14'}
     dependencies:
       agent-base: 7.1.1
-      debug: 4.3.5
+      debug: 4.3.6
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3493,8 +3505,8 @@ packages:
       argparse: 2.0.1
     dev: true
 
-  /jsdom@24.1.1:
-    resolution: {integrity: sha512-5O1wWV99Jhq4DV7rCLIoZ/UIhyQeDR7wHVyZAHAshbrvZsLs+Xzz7gtwnlJTJDjleiTKh54F4dXrX70vJQTyJQ==}
+  /jsdom@24.1.3:
+    resolution: {integrity: sha512-MyL55p3Ut3cXbeBEG7Hcv0mVM8pp8PBNWxRqchZnSfAiES1v1mRnMeFfaHWIPULpwsYfvO+ZmMZz5tGCnjzDUQ==}
     engines: {node: '>=18'}
     peerDependencies:
       canvas: ^2.11.2
@@ -5318,7 +5330,7 @@ packages:
       vite: 5.4.2
     dev: true
 
-  /vitest@2.0.5(@vitest/ui@2.0.5)(jsdom@24.1.1):
+  /vitest@2.0.5(@vitest/ui@2.0.5)(jsdom@24.1.3):
     resolution: {integrity: sha512-8GUxONfauuIdeSl5f9GTgVEpg5BTOlplET4WEDaeY2QBiN8wSm68vxN/tb5z405OwppfoCavnwXafiaYBC/xOA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -5354,7 +5366,7 @@ packages:
       chai: 5.1.1
       debug: 4.3.5
       execa: 8.0.1
-      jsdom: 24.1.1
+      jsdom: 24.1.3
       magic-string: 0.30.10
       pathe: 1.1.2
       std-env: 3.7.0
