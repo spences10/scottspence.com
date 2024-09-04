@@ -22,7 +22,6 @@ export const rejected_extensions = [
   '.log',
   '.env',
   '.ini',
-  '.xml',
 ]
 
 export const rejected_paths = [
