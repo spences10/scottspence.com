@@ -31,16 +31,15 @@ const reject_suspicious_requests: Handle = async ({
   return await resolve(event)
 }
 
-const theme: Handle = async ({ event, resolve }) => {
+export const theme: Handle = async ({ event, resolve }) => {
   const theme = event.cookies.get('theme')
-
-  if (!theme || !themes.includes(theme)) {
-    return await resolve(event)
-  }
 
   return await resolve(event, {
     transformPageChunk: ({ html }) => {
-      return html.replace('data-theme=""', `data-theme="${theme}"`)
+      if (theme && themes.includes(theme)) {
+        return html.replace('data-theme=""', `data-theme="${theme}"`)
+      }
+      return html
     },
   })
 }
