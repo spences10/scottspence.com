@@ -55,6 +55,8 @@ Using
 [WinGet](https://learn.microsoft.com/en-us/windows/package-manager/winget)
 I can install cursor from a PowerShell prompt:
 
+<!-- cspell:ignore Anysphere userprofile -->
+
 ```powershell
 winget install Anysphere.Cursor
 ```
