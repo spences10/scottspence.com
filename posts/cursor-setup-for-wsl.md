@@ -153,16 +153,19 @@ the `code` command.
 - fi
 ```
 
-Running the `cursor .` command with those lines enabled gave me the
-following:
+ℹ️ for the `VSCODE_PATH` `<USER_NAME>` this should be your WSL
+username if it differs from your Windows username.
+
+Running the `cursor .` command with those lines not commented out gave
+me the following:
 
 ```text
 cursor .
 ln: failed to create symbolic link '/home/<USER_NAME>/.cursor-server/bin/<CURSOR_COMMIT>/bin/remote-cli/code': File exists
 ```
 
-With that commented out I was able to run the `cursor .` command with
-no issues.
+With those lines commented out I was able to run the `cursor .`
+command with no issues.
 
 That should be it! 🎉
 
