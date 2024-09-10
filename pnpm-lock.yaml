@@ -92,8 +92,8 @@ devDependencies:
     specifier: ^25.0.0
     version: 25.0.0
   marked:
-    specifier: 14.1.1
-    version: 14.1.1
+    specifier: 14.1.2
+    version: 14.1.2
   mdsvex:
     specifier: 0.12.3
     version: 0.12.3(svelte@5.0.0-next.221)
@@ -3648,8 +3648,8 @@ packages:
       semver: 7.6.2
     dev: true
 
-  /marked@14.1.1:
-    resolution: {integrity: sha512-eS59oxof5eBVDCKTs+mJbvB/6Vq137GbimF9wkTIlto2/B2ppY5nigUUQgKVmA3bI2mPTIshUyDj5j612ZxlQQ==}
+  /marked@14.1.2:
+    resolution: {integrity: sha512-f3r0yqpz31VXiDB/wj9GaOB0a2PRLQl6vJmXiFrniNwjkKdvakqJRULhjFKJpxOchlCRiG5fcacoUZY5Xa6PEQ==}
     engines: {node: '>= 18'}
     hasBin: true
     dev: true
