@@ -71,6 +71,9 @@ Code then I'll at least need to install the
 extension. Connect to WSL, and check that the `~/.cursor-server/` is
 present.
 
+ℹ️ Once you have connected to your WSL instance keep Cursor open while
+you do the rest of the steps here...
+
 I'll need to amend my `PATH` variable to now to include the path to
 the `cursor` command.
 
@@ -210,3 +213,27 @@ steps in the [Fresh install](#fresh-install) section but remember to
 append the `cursor` command to the **end** of your `PATH` variable.
 
 That's it, I hope this helps someone else out!
+
+## Tips
+
+If you want to use the floating composer window instead of the side
+panel (as it only opens on the left and I like my panels on the right)
+then you can create a key binding for it.
+
+If you don't know what that means it's essentially where you can
+create all the keyboard shortcuts you like. Use the command prompt
+(Ctrl+Shift+p) then search for **"Preferences: Open Keyboard Shortcuts
+(JSON)"**
+
+Then add in your desired key combination to open the composer I have
+mine bound to Ctrl+Shift+l
+
+```json
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "ctrl+shift+l",
+    "command": "composer.startComposerPrompt"
+  }
+]
+```
