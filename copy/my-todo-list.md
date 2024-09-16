@@ -7,7 +7,7 @@
 # My Todo List
 
 <Small>
-  Last updated: <DateUpdated date="2024-08-18" small="true" />
+  Last updated: <DateUpdated date="2024-09-16" small="true" />
 </Small>
 
 My inbox is not my todo list! I'm going to keep this page updated with
@@ -18,15 +18,12 @@ what I'm working on and what I'm thinking about.
 - Continually making sure this site doesn't break on new Svelte 5
   releases.
 
-## Thinking about
-
-- Better analytics from the SvelteKit short URLs project to give click
-  referrers.
-
 - LLM scraper honeypot to log LLM scrapes and identify new bot's to
   block. I got the idea from
   [darkvisitors.com](https://darkvisitors.com/docs/analytics)
   mentioned on the 404media podcast.
+
+## Thinking about
 
 - Taking a look at
   [svelte-markdoc-preprocess](https://github.com/TorstenDittmann/svelte-markdoc-preprocess)
@@ -62,3 +59,6 @@ what I'm working on and what I'm thinking about.
 
 - Updating Svead to use a Schema ORG JSON-LD component, like in
   [svelte-meta-tags](https://github.com/oekazuma/svelte-meta-tags).
+
+- Better analytics from the SvelteKit short URLs project to give click
+  referrers.
