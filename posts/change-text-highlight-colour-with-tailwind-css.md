@@ -91,7 +91,7 @@ look like by clicking the button.
 
 I'm mentioning this because I was using my own CSS variables for the
 theme change. It wasn't until I messaged the massively helpful [Pouya]
-(daisyUI creator) on Twitter that I realized that I could use daisyUI
+(daisyUI creator) on Twitter that I realised that I could use daisyUI
 CSS variables.
 
 Here's how the chat went:

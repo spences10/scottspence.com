@@ -93,7 +93,7 @@ on your site for SEO purposes and also can enable rich snippets. This
 is the only reason I wanted to add it to Svead really was to have the
 slick rich search results.
 
-But, you know, I realized it was quite a separate thing. So I split it
+But, you know, I realised it was quite a separate thing. So I split it
 out into its own component. This takes in another config object. And
 this time, we use
 [`schema-dts`](https://github.com/google/schema-dts), (a types package
