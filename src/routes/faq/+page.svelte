@@ -6,16 +6,17 @@
     og_image_url,
     update_toc_visibility,
   } from '$lib/utils'
-  import { onMount } from 'svelte'
 
-  export let data
+  let { data } = $props()
   let { Copy } = data
 
-  let end_of_copy: HTMLElement | null
-  let show_table_of_contents = true
-  let headings_promise: Promise<{ label: string; href: string }[]>
+  let end_of_copy = $state<HTMLElement | null>(null)
+  let show_table_of_contents = $state(true)
+  let headings_promise = $state<
+    Promise<{ label: string; href: string }[]> | undefined
+  >(undefined)
 
-  onMount(() => {
+  $effect(() => {
     headings_promise = get_headings()
   })
 
@@ -24,7 +25,7 @@
   }
 </script>
 
-<svelte:window on:scroll={handle_scroll} />
+<svelte:window onscroll={handle_scroll} />
 
 <Head
   title={`Recruiter FAQs - ${name}`}
