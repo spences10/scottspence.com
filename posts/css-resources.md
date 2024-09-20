@@ -72,7 +72,7 @@ CodeSandbox]
 
 ## Colours
 
-<!-- cSpell:ignore colorhunt -->
+<!-- cSpell:ignore colorhunt chrisbiscardi -->
 
 Community driven colour pallets: [colorhunt.co]
 
