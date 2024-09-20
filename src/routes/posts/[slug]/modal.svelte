@@ -8,7 +8,6 @@
 <dialog
   class="max-w-2xl rounded-box"
   bind:this={modal}
-  on:close
   id="add_link_modal"
 >
   {@render children()}
