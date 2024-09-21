@@ -1,18 +1,24 @@
 <script lang="ts">
   import { goto, preloadData, pushState } from '$app/navigation'
   import { page } from '$app/stores'
-  import { name, website } from '$lib/info'
+  import {
+    language,
+    name,
+    payment_pointer,
+    twitter_handle,
+    website,
+  } from '$lib/info'
   import {
     differenceInDays,
     differenceInYears,
     format,
   } from 'date-fns'
   import * as Fathom from 'fathom-client'
+  import { Head, type SeoConfig } from 'svead'
 
   import {
     ButtButt,
     CurrentVisitorsData,
-    Head,
     IsPrivateBanner,
     PopularPosts,
     Reactions,
@@ -45,6 +51,19 @@
   let { count } = data
 
   const url = `${website}/posts/${slug}`
+
+  const seo_config: SeoConfig = {
+    title: `${title} - ${name}`,
+    description: preview,
+    url: url,
+    open_graph_image: og_image_url(name, `scottspence.com`, title),
+    website: website,
+    author_name: name,
+    language,
+    twitter_handle,
+    site_name: name,
+    payment_pointer,
+  }
 
   let path = $page.route.id
 
@@ -114,12 +133,7 @@
 
 <svelte:window onscroll={handle_scroll} />
 
-<Head
-  title={`${title} - ${name}`}
-  description={preview}
-  image={og_image_url(name, `scottspence.com`, title)}
-  {url}
-/>
+<Head {seo_config} />
 
 {#if headings_promise}
   {#await headings_promise}
