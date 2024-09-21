@@ -3,25 +3,34 @@
   import { Head, PostCard } from '$lib/components'
   import { description, name, website } from '$lib/info'
   import { og_image_url } from '$lib/utils'
+  import type { PageData } from './$types'
 
-  export let data
+  const { data } = $props<{ data: PageData }>()
   let { posts } = data
 
-  let search_query = $page.url.searchParams.get('search') || ''
+  let search_query = $state(
+    $page.url.searchParams.get('search') || '',
+  )
 
-  $: filtered_posts = posts.filter((post: Post) => {
-    if (post.isPrivate) return false
+  let filtered_posts = $derived.by(() => {
+    return posts.filter((post: Post) => {
+      if (post.isPrivate) return false
 
-    if (search_query === '') return true
+      if (search_query === '') return true
 
-    return (
-      post.title.toLowerCase().includes(search_query.toLowerCase()) ||
-      (Array.isArray(post.tags) &&
-        post.tags.some(tag =>
-          tag.toLowerCase().includes(search_query.toLowerCase()),
-        )) ||
-      post.preview.toLowerCase().includes(search_query.toLowerCase())
-    )
+      return (
+        post.title
+          .toLowerCase()
+          .includes(search_query.toLowerCase()) ||
+        (Array.isArray(post.tags) &&
+          post.tags.some(tag =>
+            tag.toLowerCase().includes(search_query.toLowerCase()),
+          )) ||
+        post.preview
+          .toLowerCase()
+          .includes(search_query.toLowerCase())
+      )
+    })
   })
 </script>
 
@@ -32,7 +41,7 @@
   url={`${website}/posts`}
 />
 
-<div class="mb-10 form-control">
+<div class="form-control mb-10">
   <label for="search" class="label">
     <span class="label-text">
       Search {filtered_posts.length} posts...
@@ -41,7 +50,7 @@
   <input
     data-testid="search"
     id="search"
-    class="input input-primary input-bordered"
+    class="input input-bordered input-primary"
     type="text"
     placeholder="Search..."
     bind:value={search_query}
