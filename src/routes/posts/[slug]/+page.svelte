@@ -54,7 +54,7 @@
 
   const seo_config: SeoConfig = {
     title: `${title} - ${name}`,
-    description: preview,
+    description: preview.slice(0, 140) + '...',
     url: url,
     open_graph_image: og_image_url(name, `scottspence.com`, title),
     website: website,
