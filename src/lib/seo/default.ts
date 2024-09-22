@@ -1,9 +1,7 @@
-import { description, name, website } from '$lib/info'
+import { description, language, name, website } from '$lib/info'
 import { og_image_url } from '$lib/utils'
 
-import type { SeoConfig } from 'svead'
-
-export const language = 'en-GB'
+import type { SchemaOrgProps, SeoConfig } from 'svead'
 
 export const same_as = [
   'https://www.twitter.com/spences10',
@@ -19,8 +17,44 @@ export const default_seo_config: SeoConfig = {
   open_graph_image: og_image_url(name, 'scottspence.com', name),
   language,
   author_name: name,
-  author_url: website,
-  publisher_name: name,
-  publisher_url: website,
-  same_as,
+  twitter_handle: '@spences10',
+  site_name: name,
 }
+
+const person = {
+  '@type': 'Person',
+  name: name,
+  url: website,
+  sameAs: same_as,
+}
+
+export const default_schema_org_config: SchemaOrgProps['schema'] = {
+  '@type': 'WebSite',
+  '@id': website,
+  url: website,
+  name: name,
+  description: description,
+  publisher: person,
+  author: person,
+}
+
+export const create_seo_config = (
+  options: Partial<SeoConfig> & { slug?: string },
+): SeoConfig => ({
+  ...default_seo_config,
+  ...options,
+  title: options.title
+    ? `${options.title} - ${name}`
+    : default_seo_config.title,
+  url: options.slug ? `${website}/${options.slug}` : website,
+  open_graph_image:
+    options.open_graph_image ||
+    og_image_url(name, 'scottspence.com', options.title || ''),
+})
+
+export const create_schema_org_config = (
+  options: Partial<SchemaOrgProps['schema']>,
+): SchemaOrgProps['schema'] => ({
+  ...default_schema_org_config,
+  ...options,
+})

@@ -2,19 +2,12 @@
   import { goto, preloadData, pushState } from '$app/navigation'
   import { page } from '$app/stores'
   import {
-    language,
-    name,
-    payment_pointer,
-    twitter_handle,
-    website,
-  } from '$lib/info'
-  import {
     differenceInDays,
     differenceInYears,
     format,
   } from 'date-fns'
   import * as Fathom from 'fathom-client'
-  import { Head, type SeoConfig } from 'svead'
+  import { Head, SchemaOrg } from 'svead'
 
   import {
     ButtButt,
@@ -26,14 +19,16 @@
     TableOfContents,
     UpdatedBanner,
   } from '$lib/components'
-  import { type VisitorEntry } from '$lib/stores'
   import {
-    get_headings,
-    og_image_url,
-    update_toc_visibility,
-  } from '$lib/utils'
+    create_schema_org_config,
+    create_seo_config,
+  } from '$lib/seo'
+  import { get_headings, update_toc_visibility } from '$lib/utils'
   import StatsPage from '../../stats/[slug]/+page.svelte'
   import Modal from './modal.svelte'
+
+  import { website } from '$lib/info'
+  import type { VisitorEntry } from '$lib/stores'
 
   let { data } = $props()
 
@@ -51,19 +46,29 @@
   let { count } = data
 
   const url = `${website}/posts/${slug}`
-
-  const seo_config: SeoConfig = {
-    title: `${title} - ${name}`,
+  const seo_config = create_seo_config({
+    title,
     description: preview.slice(0, 140) + '...',
+    slug: `posts/${slug}`,
+  })
+
+  const schema_org_config = create_schema_org_config({
+    '@type': 'BlogPosting',
+    '@id': url,
     url: url,
-    open_graph_image: og_image_url(name, `scottspence.com`, title),
-    website: website,
-    author_name: name,
-    language,
-    twitter_handle,
-    site_name: name,
-    payment_pointer,
-  }
+    headline: title,
+    name: title,
+    description: preview,
+    datePublished: format(new Date(date), "yyyy-MM-dd'T'HH:mm:ssxxx"),
+    dateModified: updated
+      ? format(new Date(updated), "yyyy-MM-dd'T'HH:mm:ssxxx")
+      : format(new Date(date), "yyyy-MM-dd'T'HH:mm:ssxxx"),
+    image: seo_config.open_graph_image,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': website,
+    },
+  })
 
   let path = $page.route.id
 
@@ -134,6 +139,7 @@
 <svelte:window onscroll={handle_scroll} />
 
 <Head {seo_config} />
+<SchemaOrg schema={schema_org_config} />
 
 {#if headings_promise}
   {#await headings_promise}
