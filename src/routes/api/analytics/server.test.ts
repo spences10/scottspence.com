@@ -24,7 +24,7 @@ describe('GET function in analytics server', () => {
   const mock_fetch = vi.fn()
   const mock_url = new URL('http://example.com/api/analytics')
   const mock_execute = vi.fn()
-  let mocked_turso_client: MockInstance<[], Client>
+  let mocked_turso_client: MockInstance
   let mocked_fetch_fathom_data: MockInstance
 
   beforeEach(() => {
