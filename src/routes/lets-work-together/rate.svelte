@@ -61,8 +61,8 @@
     <input
       id="annual_rate"
       type="range"
-      min={85000}
-      max={150000}
+      min={120000}
+      max={180000}
       step={5000}
       bind:value={annual_rate_EUR}
       on:input={on_annual_rate_input}
@@ -88,13 +88,13 @@
 </section>
 
 <section
-  class="stats stats-vertical md:stats-horizontal shadow-lg border border-secondary w-full mb-5"
+  class="stats stats-vertical mb-5 w-full border border-secondary shadow-lg md:stats-horizontal"
 >
   <article class="stat">
     <div class="stat-title">Day</div>
     <div class="stat-value flex">
       {locale_string(day_rate_with_pto * currency_rate)}
-      <span class="text-xl ml-2">
+      <span class="ml-2 text-xl">
         {selected_currency}
       </span>
     </div>
@@ -111,7 +111,7 @@
         )}
       >
         {number_crunch(day_rate_with_pto * 5 * currency_rate)}
-        <span class="text-xl ml-2">
+        <span class="ml-2 text-xl">
           {selected_currency}
         </span>
       </div>
@@ -136,7 +136,7 @@
         )}
       >
         {number_crunch(monthly_rate_with_pto * currency_rate)}
-        <span class="text-xl ml-2">
+        <span class="ml-2 text-xl">
           {selected_currency}
         </span>
       </div>
@@ -156,7 +156,7 @@
         data-tip={locale_string(annual_rate_with_pto * currency_rate)}
       >
         {number_crunch(annual_rate_with_pto * currency_rate)}
-        <span class="text-xl ml-2">
+        <span class="ml-2 text-xl">
           {selected_currency}
         </span>
       </div>
