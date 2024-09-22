@@ -7,7 +7,7 @@
 # My Todo List
 
 <Small>
-  Last updated: <DateUpdated date="2024-09-16" small="true" />
+  Last updated: <DateUpdated date="2024-09-22" small="true" />
 </Small>
 
 My inbox is not my todo list! I'm going to keep this page updated with
@@ -22,6 +22,8 @@ what I'm working on and what I'm thinking about.
   block. I got the idea from
   [darkvisitors.com](https://darkvisitors.com/docs/analytics)
   mentioned on the 404media podcast.
+
+- Implenmeting [Svead](https://svead.pages.dev) throughtout this site.
 
 ## Thinking about
 
