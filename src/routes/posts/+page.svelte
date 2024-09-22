@@ -1,8 +1,10 @@
 <script lang="ts">
   import { page } from '$app/stores'
-  import { Head, PostCard } from '$lib/components'
+  import { PostCard } from '$lib/components'
   import { description, name, website } from '$lib/info'
+  import { create_seo_config } from '$lib/seo'
   import { og_image_url } from '$lib/utils'
+  import { Head } from 'svead'
   import type { PageData } from './$types'
 
   const { data } = $props<{ data: PageData }>()
@@ -32,14 +34,21 @@
       )
     })
   })
+
+  const seo_config = create_seo_config({
+    title: `Welcome! - ${name}`,
+    description,
+    open_graph_image: og_image_url(
+      name,
+      `scottspence.com`,
+      `Thoughts Pamphlet`,
+    ),
+    url: `${website}/posts`,
+    slug: 'posts',
+  })
 </script>
 
-<Head
-  title={`Welcome! - ${name}`}
-  {description}
-  image={og_image_url(name, `scottspence.com`, `Thoughts Pamphlet`)}
-  url={`${website}/posts`}
-/>
+<Head {seo_config} />
 
 <div class="form-control mb-10">
   <label for="search" class="label">

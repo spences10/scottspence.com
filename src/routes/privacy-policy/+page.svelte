@@ -1,18 +1,26 @@
 <script lang="ts">
-  import { Head } from '$lib/components'
   import { name, website } from '$lib/info'
+  import { create_seo_config } from '$lib/seo'
   import { og_image_url } from '$lib/utils'
+  import { Head } from 'svead'
 
   export let data
   let { Copy } = data
+
+  const seo_config = create_seo_config({
+    title: `Privacy Policy - ${name}`,
+    description: `${name} Privacy Policy page.`,
+    open_graph_image: og_image_url(
+      name,
+      `scottspence.com`,
+      `Privacy Policy`,
+    ),
+    url: `${website}/privacy-policy`,
+    slug: 'privacy-policy',
+  })
 </script>
 
-<Head
-  title={`Privacy Policy - ${name}`}
-  description={`${name} Privacy Policy page.`}
-  image={og_image_url(name, `scottspence.com`, `Privacy Policy`)}
-  url={`${website}/privacy-policy`}
-/>
+<Head {seo_config} />
 
 <div class="all-prose">
   <Copy />

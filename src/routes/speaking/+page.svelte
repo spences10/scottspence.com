@@ -1,11 +1,13 @@
 <script lang="ts">
-  import { Head, TableOfContents } from '$lib/components'
+  import { TableOfContents } from '$lib/components'
   import { name, website } from '$lib/info'
+  import { create_seo_config } from '$lib/seo'
   import {
     get_headings,
     og_image_url,
     update_toc_visibility,
   } from '$lib/utils'
+  import { Head } from 'svead'
   import { onMount } from 'svelte'
 
   export let data
@@ -22,16 +24,23 @@
   const handle_scroll = () => {
     show_table_of_contents = update_toc_visibility(end_of_copy)
   }
+
+  const seo_config = create_seo_config({
+    title: `Speaking - ${name}`,
+    description: `A list of events where ${name} has held a workshop, a talk or spoken publicly.`,
+    open_graph_image: og_image_url(
+      name,
+      `scottspence.com`,
+      `Scott Speaks!`,
+    ),
+    url: `${website}/speaking`,
+    slug: 'speaking',
+  })
 </script>
 
 <svelte:window on:scroll={handle_scroll} />
 
-<Head
-  title={`Speaking - ${name}`}
-  description={`A list of events where ${name} has held a workshop, a talk or spoken publicly.`}
-  image={og_image_url(name, `scottspence.com`, `Scott Speaks!`)}
-  url={`${website}/speaking`}
-/>
+<Head {seo_config} />
 
 {#if headings_promise}
   {#await headings_promise}

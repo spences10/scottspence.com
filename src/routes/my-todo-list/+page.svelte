@@ -1,18 +1,26 @@
 <script lang="ts">
-  import { Head } from '$lib/components'
   import { name, website } from '$lib/info'
+  import { create_seo_config } from '$lib/seo'
   import { og_image_url } from '$lib/utils'
+  import { Head } from 'svead'
 
   export let data
   let { Copy } = data
+
+  const seo_config = create_seo_config({
+    title: `My Todo List - ${name}`,
+    description: `My list of todo items. Updated irregularly, check last updated date.`,
+    open_graph_image: og_image_url(
+      name,
+      `scottspence.com`,
+      `My todo list.`,
+    ),
+    url: `${website}/my-todo-list`,
+    slug: 'my-todo-list',
+  })
 </script>
 
-<Head
-  title={`My Todo List - ${name}`}
-  description={`My list of todo items. Updated irregularly, check last updated date.`}
-  image={og_image_url(name, `scottspence.com`, `My todo list.`)}
-  url={`${website}/my-todo-list`}
-/>
+<Head {seo_config} />
 
 <div class="all-prose">
   <Copy />

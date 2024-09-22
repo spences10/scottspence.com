@@ -1,11 +1,13 @@
 <script lang="ts">
-  import { Head, TableOfContents } from '$lib/components'
+  import { TableOfContents } from '$lib/components'
   import { name, website } from '$lib/info'
+  import { create_seo_config } from '$lib/seo'
   import {
     get_headings,
     og_image_url,
     update_toc_visibility,
   } from '$lib/utils'
+  import { Head } from 'svead'
 
   let { data } = $props()
   let { Copy } = data
@@ -23,16 +25,19 @@
   const handle_scroll = () => {
     show_table_of_contents = update_toc_visibility(end_of_copy)
   }
+
+  const seo_config = create_seo_config({
+    title: `Recruiter FAQs - ${name}`,
+    description: `Frequently Asked Questions for recruiters.`,
+    open_graph_image: og_image_url(name, `scottspence.com`, `FAQs`),
+    url: `${website}/faq`,
+    slug: 'faq',
+  })
 </script>
 
 <svelte:window onscroll={handle_scroll} />
 
-<Head
-  title={`Recruiter FAQs - ${name}`}
-  description={`Frequently Asked Questions for recruiters.`}
-  image={og_image_url(name, `scottspence.com`, `FAQs`)}
-  url={`${website}/faq`}
-/>
+<Head {seo_config} />
 
 {#if headings_promise}
   {#await headings_promise}

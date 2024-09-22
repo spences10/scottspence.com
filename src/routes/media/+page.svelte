@@ -1,7 +1,9 @@
 <script lang="ts">
-  import { DateUpdated, Head, Small } from '$lib/components'
+  import { DateUpdated, Small } from '$lib/components'
   import { name, website } from '$lib/info'
+  import { create_seo_config } from '$lib/seo'
   import { og_image_url } from '$lib/utils'
+  import { Head } from 'svead'
   import Images from './images.svelte'
 
   export let data
@@ -11,14 +13,21 @@
   const toggle_copy = () => {
     show_fun_copy = !show_fun_copy
   }
+
+  const seo_config = create_seo_config({
+    title: `Media - ${name}`,
+    description: `Media pack for ${name}`,
+    open_graph_image: og_image_url(
+      name,
+      `scottspence.com`,
+      `Media Pack`,
+    ),
+    url: `${website}/media`,
+    slug: 'media',
+  })
 </script>
 
-<Head
-  title={`Media - ${name}`}
-  description={`Media pack for ${name}`}
-  image={og_image_url(name, `scottspence.com`, `Media Pack`)}
-  url={`${website}/media`}
-/>
+<Head {seo_config} />
 
 <div class="all-prose">
   <h1>Media Pack</h1>
