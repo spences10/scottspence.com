@@ -52,7 +52,7 @@
     slug: `posts/${slug}`,
   })
 
-  const schema_org_config = create_schema_org_config({
+  const blog_posting = create_schema_org_config({
     '@type': 'BlogPosting',
     '@id': url,
     url: url,
@@ -69,6 +69,29 @@
       '@id': website,
     },
   })
+
+  const breadcrumb_items = [
+    { name: 'Home', item: website },
+    { name: 'Posts', item: `${website}/posts` },
+    { name: title, item: url },
+  ]
+
+  const breadcrumb_list = {
+    '@type': 'BreadcrumbList',
+    '@id': `${url}#breadcrumb`,
+    name: 'Breadcrumb',
+    itemListElement: breadcrumb_items.map((breadcrumb, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: breadcrumb.name,
+      item: breadcrumb.item,
+    })),
+  }
+
+  const schema_org_config = {
+    '@context': 'https://schema.org',
+    '@graph': [blog_posting, breadcrumb_list]
+  }
 
   let path = $page.route.id
 
