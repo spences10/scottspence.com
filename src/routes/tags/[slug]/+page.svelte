@@ -1,34 +1,28 @@
 <script lang="ts">
-  import { Head } from '$lib/components'
-  import { description, name, website } from '$lib/info'
-  import { og_image_url } from '$lib/utils'
+  import { create_seo_config } from '$lib/seo'
+  import { Head } from 'svead'
 
   export let data
 
   const { posts_by_tag, slug: tag_slug } = data
-  const url = `${website}/tags/${tag_slug}`
-
   const tag = tag_slug ?? ''
+
+  const seo_config = create_seo_config({
+    title: `Posts relating to ${tag}`,
+    description: `A collection of posts related to the tag "${tag}"`,
+    slug: `tags/${tag_slug}`,
+  })
 </script>
 
-<Head
-  title={`Posts relating to ${tag} - ${name}`}
-  {description}
-  image={og_image_url(
-    name,
-    'scottspence.com',
-    `Posts relating to ${tag}`
-  )}
-  {url}
-/>
+<Head {seo_config} />
 
-<h1 class="font-bold mb-5 text-5xl">Posts for {tag}</h1>
+<h1 class="mb-5 text-5xl font-bold">Posts for {tag}</h1>
 
 <ul class="mb-20">
   {#each posts_by_tag[tag] as { title, slug: post_slug }}
     <li class="my-4 text-xl">
       <a
-        class="mr-6 transition link hover:text-primary"
+        class="link mr-6 transition hover:text-primary"
         href={`/posts/${post_slug}`}
       >
         {title}
