@@ -19,18 +19,24 @@
 </Small>
 
 In today's rapidly evolving tech landscape, having a seasoned expert
-on your team can be the difference between success and stagnation. As
-an experienced JavaScript Developer and Developer Advocate (with
-nearly two decades experience), I bring a unique blend of technical
-prowess, leadership skills, and community influence to the table.
+on your team can be the difference between success and stagnation.
+With nearly two decades of diverse tech experience, I bring a unique
+blend of technical prowess, leadership skills, and community influence
+to the table.
 
 ## What can an expert Svelte and SvelteKit Developer Advocate do for you?
 
-With almost 19 years of experience in the tech industry, including 8
-years of hands-on JavaScript framework expertise, I offer more than
+With almost 20 years of experience in the tech industry, including 8
+years of hands-on web and fullstack development, I offer more than
 just coding skills. My proficiency lies in empowering teams, driving
 adoption, and elevating products through education, advocacy, and
 strategic guidance.
+
+With my diverse background I have honed my skills in stakeholder
+management and realistic project management, which I've successfully
+applied throughout my career. This unique combination allows me to
+bridge the gap between technical implementation and business needs
+effectively.
 
 As a Svelte ambassador and co-founder of the Svelte Society London
 events for nearly 3 years, I serve as a bridge between your team and
@@ -38,8 +44,8 @@ the broader Svelte community. This proactive approach can
 significantly boost your product's adoption, visibility, and success.
 
 Whether it's delivering top-tier workshops, leading projects, or
-advocating for your product, my skill set can drive tangible results
-for your team and business.
+advocating for your product, my diverse skill set can drive tangible
+results for your team and business.
 
 ## Workshops & speaking engagements
 
@@ -160,19 +166,30 @@ don't hesitate to [reach out]. I'm here to help.
 
 ## Why hire me?
 
-With <DD date='2018-03-14' /> years of experience in the tech
+With <DD date='2004-06-15' /> years of experience in the tech
 industry, including <DD date='2016-06-15' /> years of hands-on
-JavaScript, HTML, and CSS experience, I bring a robust skill set and
-passion for technology to the table.
+JavaScript, HTML, and CSS experience, I bring a robust and diverse
+skill set to the table. My career spans multiple phases, each
+contributing unique value to my current expertise.
 
 ## My background
 
-I have a previous experience of 10+ years as a senior-level Analyst
-Developer specialising in Microsoft Office automation for large
-financial organisations.
+My extensive experience in the tech industry has provided me with
+invaluable skills in stakeholder management, project planning, and
+delivering solutions in high-pressure environments. For the past 8
+years, I've been fully immersed in web and fullstack development,
+working on projects for start-ups, medium to large businesses, and
+international brands.
 
-Based in the UK, I have been a part of several successful projects for
-start-ups, medium to large businesses, and international brands.
+This diverse background has allowed me to develop a unique blend of
+technical and soft skills, enabling me to navigate complex project
+landscapes and deliver successful outcomes. I've seen many approaches
+to problem-solving and project management, giving me the acumen to
+identify effective strategies and avoid common pitfalls.
+
+Based in the UK, I have successfully led and contributed to numerous
+projects, leveraging my diverse background to bridge the gap between
+technical implementation and business objectives.
 
 ## My skills
 
@@ -181,6 +198,7 @@ JavaScript, HTML, CSS, and frameworks like Svelte and React. My
 expertise extends to:
 
 - Team leadership and project management
+- Stakeholder management and communication
 - Developer advocacy and community building
 - Content creation (blog posts, videos, workshops)
 - GraphQL and headless CMS integration
@@ -188,12 +206,15 @@ expertise extends to:
 - PWA development
 - Agile methodologies
 
-I'm a good communicator, reliable, autonomous, pragmatic, and happy to
-project manage myself and/or a wider team.
+I'm a good communicator, reliable, autonomous, pragmatic, and adept at
+managing both myself and wider teams. My extensive experience has
+instilled in me a strong sense of accountability and attention to
+detail, which I bring to every project.
 
 I want to partner with you on your project for the long term. From
 planning, through development, go-live, and further improvements, I'm
-committed to your success.
+committed to your success, bringing both technical expertise and
+business acumen to the table.
 
 Ready to start a project together?
 
