@@ -26,11 +26,11 @@ to the table.
 
 ## What can an expert Svelte and SvelteKit Developer Advocate do for you?
 
-With almost 20 years of experience in the tech industry, including 8
-years of hands-on web and fullstack development, I offer more than
-just coding skills. My proficiency lies in empowering teams, driving
-adoption, and elevating products through education, advocacy, and
-strategic guidance.
+With <DD date='2004-06-15' /> of experience in the tech industry,
+including <DD date='2016-06-15' /> of hands-on web and fullstack
+development, I offer more than just coding skills. My proficiency lies
+in empowering teams, driving adoption, and elevating products through
+education, advocacy, and strategic guidance.
 
 With my diverse background I have honed my skills in stakeholder
 management and realistic project management, which I've successfully
@@ -51,8 +51,8 @@ results for your team and business.
 
 _**Empowering developers through education**_
 
-With years of experience delivering engaging talks at events like
-Svelte Society London, CityJS, Connect.Tech Atlanta, and Jamstack
+With <DD date='2021-04-21' /> of experience delivering engaging talks
+at events like JSNation, CityJS, Connect.Tech Atlanta, and Jamstack
 Conf, I've honed my skills in translating complex technical concepts
 into actionable learning experiences. My workshops aim to empower
 developers, providing them with the tools and knowledge to navigate
@@ -88,7 +88,6 @@ Common scenarios where I deliver successful projects:
   adoption of your product.
 - You require assistance with workshops, tutorials, demos, educational
   videos, and blog posts for your platform.
-- You want to leverage the power of a headless CMS platform.
 - You need an experienced developer to create sample applications,
   prototypes, and code samples showcasing Svelte and SvelteKit with
   your product.
@@ -154,8 +153,8 @@ developers in the Svelte and SvelteKit space. Covering topics from
 basic concepts to advanced techniques, each post is designed to offer
 actionable insights and solutions. With a proven track record of
 content creation and examples of such content on
-[scottspence.com](https://scottspence.com) with over 30k monthly
-visitors, I deliver valuable written content for your audience.
+[scottspence.com](https://scottspence.com) (with over 30k monthly
+visitors), I deliver valuable written content for your audience.
 
 <BlogPost />
 
@@ -166,20 +165,21 @@ don't hesitate to [reach out]. I'm here to help.
 
 ## Why hire me?
 
-With <DD date='2004-06-15' /> years of experience in the tech
-industry, including <DD date='2016-06-15' /> years of hands-on
-JavaScript, HTML, and CSS experience, I bring a robust and diverse
-skill set to the table. My career spans multiple phases, each
-contributing unique value to my current expertise.
+With <DD date='2004-06-15' /> of experience in the tech industry,
+including <DD date='2016-06-15' /> of hands-on JavaScript, HTML, and
+CSS experience, I bring a robust and diverse skill set to the table.
+My career spans multiple phases, each contributing unique value to my
+current expertise.
 
 ## My background
 
 My extensive experience in the tech industry has provided me with
 invaluable skills in stakeholder management, project planning, and
-delivering solutions in high-pressure environments. For the past 8
-years, I've been fully immersed in web and fullstack development,
-working on projects for start-ups, medium to large businesses, and
-international brands.
+delivering solutions in high-pressure environments.
+
+For <DD date='2016-06-15' /> now, I've been fully immersed in web and
+fullstack development, working on projects for start-ups, medium to
+large businesses, and international brands.
 
 This diverse background has allowed me to develop a unique blend of
 technical and soft skills, enabling me to navigate complex project
@@ -201,9 +201,7 @@ expertise extends to:
 - Stakeholder management and communication
 - Developer advocacy and community building
 - Content creation (blog posts, videos, workshops)
-- GraphQL and headless CMS integration
 - CI/CD optimization
-- PWA development
 - Agile methodologies
 
 I'm a good communicator, reliable, autonomous, pragmatic, and adept at
