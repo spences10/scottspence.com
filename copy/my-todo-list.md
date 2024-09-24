@@ -23,7 +23,7 @@ what I'm working on and what I'm thinking about.
   [darkvisitors.com](https://darkvisitors.com/docs/analytics)
   mentioned on the 404media podcast.
 
-- Implenmeting [Svead](https://svead.pages.dev) throughtout this site.
+- Implementing [Svead](https://svead.pages.dev) throughout this site.
 
 ## Thinking about
 
