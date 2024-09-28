@@ -122,6 +122,7 @@ ipinfo
 jamiebradley
 Jamstack
 Jaoude
+Jeda
 josefaidt
 Josefine
 Karan
