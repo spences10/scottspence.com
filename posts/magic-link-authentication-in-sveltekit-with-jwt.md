@@ -105,6 +105,10 @@ EMAIL_FROM="Your App" <noreply@example.com>
 
 ## Set up auth lib
 
+```bash
+touch src/lib/auth.ts
+```
+
 ```ts
 // src/lib/auth.ts
 import {
@@ -185,6 +189,11 @@ export const verify_magic_link = (token: string): string | null => {
 
 ## Auth route
 
+```bash
+mkdir -p src/routes/auth/'[token]'
+touch src/routes/auth/'[token]'/+server.ts
+```
+
 ```ts
 // src/routes/auth/[token]/+server.ts
 import { verify_magic_link } from '$lib/auth'
@@ -217,6 +226,12 @@ export const GET: RequestHandler = async ({ params }) => {
 ```
 
 ## Login page
+
+```bash
+mkdir src/routes/login
+touch src/routes/login/+page.server.ts
+touch src/routes/login/+page.svelte
+```
 
 ```ts
 // src/routes/login/+page.server.ts
@@ -265,7 +280,7 @@ export const actions: Actions = {
   import { enhance } from '$app/forms'
   import type { ActionData } from './$types'
 
-  export let form: ActionData
+  const { form } = $props<{ form: ActionData }>()
 
   function handle_submit(event: SubmitEvent) {
     console.log('Form submitted')
@@ -299,6 +314,10 @@ export const actions: Actions = {
 
 ## Layout server
 
+```bash
+touch src/routes/+layout.server.ts
+```
+
 ```ts
 // src/routes/+layout.server.ts
 import { redirect } from '@sveltejs/kit'
@@ -329,6 +348,10 @@ export const load: LayoutServerLoad = async ({ cookies, url }) => {
 
 ## Page server
 
+```bash
+touch src/routes/+page.server.ts
+```
+
 ```ts
 // src/routes/+page.server.ts
 import type { Actions } from './$types'
@@ -349,7 +372,7 @@ export const actions: Actions = {
   import { enhance } from '$app/forms'
   import type { PageData } from './$types'
 
-  export let data: PageData
+  const { data } = $props<{ data: PageData }>()
 </script>
 
 <h1>Welcome to SvelteKit</h1>
@@ -417,7 +440,7 @@ Create `src/routes/login/+page.svelte`:
 
 Create `src/routes/api/auth/login/+server.js`:
 
-```javascript
+```ts
 import jwt from 'jsonwebtoken'
 import nodemailer from 'nodemailer'
 import { json } from '@sveltejs/kit'
@@ -470,7 +493,7 @@ Fastmail in another post,
 It's a very similar process for gmail and you can check out this video
 [from WebJeda on it](https://www.youtube.com/watch?v=qa-Sh0iM-kM).
 
-```javascript
+```ts
 import jwt from 'jsonwebtoken'
 import { redirect } from '@sveltejs/kit'
 
