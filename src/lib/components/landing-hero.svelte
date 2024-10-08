@@ -3,43 +3,44 @@
   import * as Fathom from 'fathom-client'
   import CurrentVisitorsData from './current-visitors-data.svelte'
 
-  let is_hovering = false
+  let is_hovering = $state(false)
   let base_cloudinary_url =
     'https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1691271318/scottspence.com/site-assets/'
   let ScottFace = `${base_cloudinary_url}scott-mug-face-no-bg.png`
   let ScottMugFace = `${base_cloudinary_url}scott-mug-face.png`
 
-  let current_visitor_data: VisitorEntry | undefined | number
+  let current_visitor_data: VisitorEntry | undefined | number =
+    $state()
 
-  $: {
+  $effect.pre(() => {
     if ($visitors_store && $visitors_store.visitor_data) {
       current_visitor_data = $visitors_store.visitor_data.reduce(
         (total, visitor) => total + visitor.recent_visitors,
         0,
       )
     }
-  }
+  })
 
-  let show_current_visitor_data = false
+  let show_current_visitor_data = $state(false)
 </script>
 
-<div class="mb-4 relative lg:-mx-40 lg:px-8 xl:-mx-64 2xl:-mx-60">
+<div class="relative mb-4 lg:-mx-40 lg:px-8 xl:-mx-64 2xl:-mx-60">
   <div class="hero">
-    <div class="flex-col p-0 hero-content lg:flex-row-reverse">
-      <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-      <!-- svelte-ignore a11y-img-redundant-alt -->
+    <div class="hero-content flex-col p-0 lg:flex-row-reverse">
+      <!-- svelte-ignore a11y_mouse_events_have_key_events -->
+      <!-- svelte-ignore a11y_img_redundant_alt -->
       <img
         src={is_hovering ? ScottFace : ScottMugFace}
         alt="Cartoon face Scott"
-        class="rounded-full max-w-sm shadow-xl w-1/2 lg:w-full max-h-96 max-w-96"
-        on:mouseover={() => (is_hovering = !is_hovering)}
-        on:mouseout={() => (is_hovering = !is_hovering)}
+        class="max-h-96 w-1/2 max-w-96 max-w-sm rounded-full shadow-xl lg:w-full"
+        onmouseover={() => (is_hovering = !is_hovering)}
+        onmouseout={() => (is_hovering = !is_hovering)}
       />
       <div class="all-prose lg:mr-28">
-        <h1 class="font-black -mb-5 text-5xl">
+        <h1 class="-mb-5 text-5xl font-black">
           <span class="block">Scott Spence</span>
           <span
-            class="bg-clip-text bg-gradient-to-b from-primary to-secondary text-transparent block"
+            class="block bg-gradient-to-b from-primary to-secondary bg-clip-text text-transparent"
           >
             Hello World!
           </span>
@@ -70,20 +71,20 @@
         </p>
         <a
           href="/contact"
-          on:click={() => Fathom.trackEvent(`contact button click`)}
-          class="btn btn-md w-full lg:btn-lg btn-primary text-primary-content hover:text-primary-content shadow-xl rounded-box mb-5"
+          onclick={() => Fathom.trackEvent(`contact button click`)}
+          class="btn btn-primary btn-md mb-5 w-full rounded-box text-primary-content shadow-xl lg:btn-lg hover:text-primary-content"
         >
           Get in Touch
         </a>
         {#if current_visitor_data}
-          <!-- svelte-ignore a11y-no-static-element-interactions -->
+          <!-- svelte-ignore a11y_no_static_element_interactions -->
           <span
-            on:mouseenter={() => (show_current_visitor_data = true)}
-            on:mouseleave={() => (show_current_visitor_data = false)}
-            class="cursor-pointer inline-block"
+            onmouseenter={() => (show_current_visitor_data = true)}
+            onmouseleave={() => (show_current_visitor_data = false)}
+            class="inline-block cursor-pointer"
           >
             <p
-              class="tracking-wide bg-secondary text-secondary-content mt-2 px-4 py-2 shadow-xl rounded-box text-sm"
+              class="mt-2 rounded-box bg-secondary px-4 py-2 text-sm tracking-wide text-secondary-content shadow-xl"
             >
               There's currently
               <span class="font-bold">

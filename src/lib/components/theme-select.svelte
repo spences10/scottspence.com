@@ -2,7 +2,7 @@
   import { themes } from '$lib/themes'
   import { onMount } from 'svelte'
 
-  let current_theme = ''
+  let current_theme = $state('')
 
   onMount(() => {
     if (typeof window !== 'undefined') {
@@ -28,17 +28,18 @@
 </script>
 
 <fieldset>
- <label for="theme-select" class="sr-only">Choose a theme:</label>
- <select
+  <label for="theme-select" class="sr-only">Choose a theme:</label>
+  <select
     id="theme-select"
     bind:value={current_theme}
-    on:change={set_theme}
-    class="font-sans pr-9 select select-bordered select-primary select-xs capitalize"
- >
-    <option value="" disabled={current_theme !== ''}>Select a theme</option>
+    onchange={set_theme}
+    class="select select-bordered select-primary select-xs pr-9 font-sans capitalize"
+  >
+    <option value="" disabled={current_theme !== ''}>
+      Select a theme
+    </option>
     {#each themes as theme}
       <option value={theme} class="capitalize">{theme}</option>
     {/each}
- </select>
+  </select>
 </fieldset>
-

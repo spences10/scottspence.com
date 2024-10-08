@@ -4,15 +4,21 @@
   import { og_image_url } from '$lib/utils'
   import { Head } from 'svead'
 
-  export let data
+  interface Props {
+    data: any
+  }
+
+  let { data }: Props = $props()
   let { tags, posts_by_tag } = data
 
-  let query = ''
+  let query = $state('')
 
-  $: filtered_tags = tags.filter((tag: string) => {
-    if (query === '') return true
-    return tag.toLowerCase().includes(query.toLowerCase())
-  })
+  let filtered_tags = $derived(
+    tags.filter((tag: string) => {
+      if (query === '') return true
+      return tag.toLowerCase().includes(query.toLowerCase())
+    }),
+  )
 
   const seo_config = create_seo_config({
     title: `Posts by tag - ${name}`,

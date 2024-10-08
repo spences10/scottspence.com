@@ -1,7 +1,15 @@
 <script lang="ts">
-  export let height = '40px'
-  export let width = '40px'
-  export let classes = ''
+  interface Props {
+    height?: string
+    width?: string
+    classes?: string
+  }
+
+  let {
+    height = '40px',
+    width = '40px',
+    classes = '',
+  }: Props = $props()
 </script>
 
 <svg
@@ -10,7 +18,7 @@
   viewBox="0 0 24 24"
   stroke-width="1.5"
   stroke="currentColor"
-  class={classes ? classes : 'text-primary-content flex-shrink-0'}
+  class={classes ? classes : 'flex-shrink-0 text-primary-content'}
   {height}
   {width}
 >

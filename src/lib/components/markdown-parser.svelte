@@ -1,9 +1,13 @@
 <script lang="ts">
   import { marked } from 'marked'
-  export let markdownContent = ''
-  export let rows = 3
+  interface Props {
+    markdownContent?: string
+    rows?: number
+  }
 
-  $: markdown = marked(markdownContent)
+  let { markdownContent = $bindable(''), rows = 3 }: Props = $props()
+
+  let markdown = $derived(marked(markdownContent))
 </script>
 
 <div class="prose mb-10 xs:grid xs:grid-cols-2 xs:gap-10">

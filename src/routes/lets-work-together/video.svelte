@@ -41,34 +41,42 @@
     VIDEO_CUSTOMISATION_PERCENTAGES,
   )
 
-  let selected_video_duration = VIDEO_DURATION_OPTIONS[0]
-  let selected_customisation_level = CUSTOMISATION_LEVEL_OPTIONS[0]
-  let selected_currency = 'EUR'
-  let selected_duration: string
+  let selected_video_duration = $state(VIDEO_DURATION_OPTIONS[0])
+  let selected_customisation_level = $state(
+    CUSTOMISATION_LEVEL_OPTIONS[0],
+  )
+  let selected_currency = $state('EUR')
+  let selected_duration: string | undefined = $state()
 
-  $: selected_duration =
+  $effect.pre(() => {
+    selected_duration =
+      VIDEO_DURATION[
+        selected_video_duration as keyof typeof VIDEO_DURATION
+      ].description
+  })
+  let video_cost = $derived(
     VIDEO_DURATION[
       selected_video_duration as keyof typeof VIDEO_DURATION
-    ].description
-  $: video_cost =
-    VIDEO_DURATION[
-      selected_video_duration as keyof typeof VIDEO_DURATION
-    ].cost
-  $: video_cost_with_customisation =
+    ].cost,
+  )
+  let video_cost_with_customisation = $derived(
     calculate_cost_with_customisation(
       video_cost,
       VIDEO_CUSTOMISATION_PERCENTAGES[
         selected_customisation_level as keyof typeof VIDEO_CUSTOMISATION_PERCENTAGES
       ],
-    )
+    ),
+  )
 
-  $: currency_rate =
+  let currency_rate = $derived(
     selected_currency === 'EUR'
       ? 1
-      : $exchange_rates_store[selected_currency]
+      : $exchange_rates_store[selected_currency],
+  )
 
-  $: video_cost_with_customisation_in_selected_currency =
-    video_cost_with_customisation * currency_rate
+  let video_cost_with_customisation_in_selected_currency = $derived(
+    video_cost_with_customisation * currency_rate,
+  )
 </script>
 
 <section class="flex flex-col">
@@ -92,7 +100,7 @@
 </section>
 
 <section
-  class="stats stats-vertical md:stats-horizontal shadow-lg border border-secondary w-full mb-5"
+  class="stats stats-vertical mb-5 w-full border border-secondary shadow-lg md:stats-horizontal"
 >
   <div class="stat">
     <div class="stat-title">Length</div>
@@ -114,7 +122,7 @@
       {locale_string(
         video_cost_with_customisation_in_selected_currency,
       )}
-      <span class="text-xl ml-2">
+      <span class="ml-2 text-xl">
         {selected_currency}
       </span>
     </div>

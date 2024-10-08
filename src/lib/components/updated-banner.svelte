@@ -3,8 +3,12 @@
   import { compareDesc, differenceInYears } from 'date-fns'
   import DateDistance from './date-distance.svelte'
 
-  export let date = new Date()
-  export let updated = new Date()
+  interface Props {
+    date?: any
+    updated?: any
+  }
+
+  let { date = new Date(), updated = new Date() }: Props = $props()
 
   let has_been_updated = compareDesc(
     new Date(updated),
@@ -13,7 +17,7 @@
 </script>
 
 {#if has_been_updated}
-  <div class="alert alert-warning shadow-lg my-8">
+  <div class="alert alert-warning my-8 shadow-lg">
     <div class="flex items-center">
       <span class="mr-5">
         <WarningTriangle />
@@ -33,7 +37,7 @@
     </div>
   </div>
 {:else}
-  <div class="alert alert-warning shadow-lg my-8">
+  <div class="alert alert-warning my-8 shadow-lg">
     <div class="flex items-center">
       <span class="mr-5">
         <WarningTriangle />

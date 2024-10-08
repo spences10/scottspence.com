@@ -8,9 +8,9 @@
   let working_days_in_year =
     get_field_value('working_days_in_year') || 0
 
-  let attendees = 5 // Minimum number of attendees
-  let selected_currency = 'EUR'
-  let workshop_duration = '90 minutes'
+  let attendees = $state(5) // Minimum number of attendees
+  let selected_currency = $state('EUR')
+  let workshop_duration = $state('90 minutes')
 
   const BESPOKE_PERCENTAGES: Record<string, number> = {
     '90 minutes': 1.2,
@@ -43,18 +43,22 @@
     )
   }
 
-  $: workshop_cost_EUR = calculate_workshop_cost(
-    annual_rate_EUR,
-    working_days_in_year,
-    attendees,
-    workshop_duration,
+  let workshop_cost_EUR = $derived(
+    calculate_workshop_cost(
+      annual_rate_EUR,
+      working_days_in_year,
+      attendees,
+      workshop_duration,
+    ),
   )
-  $: currency_rate =
+  let currency_rate = $derived(
     selected_currency === 'EUR'
       ? 1
-      : $exchange_rates_store[selected_currency]
-  $: price_per_attendee =
-    (workshop_cost_EUR * currency_rate) / attendees
+      : $exchange_rates_store[selected_currency],
+  )
+  let price_per_attendee = $derived(
+    (workshop_cost_EUR * currency_rate) / attendees,
+  )
 
   const on_attendees_input = (e: Event) => {
     attendees = Math.max(
@@ -86,7 +90,7 @@
       max="20"
       bind:value={attendees}
       class="range range-primary"
-      on:input={on_attendees_input}
+      oninput={on_attendees_input}
     />
 
     <CurrencySelect bind:selected_currency />
@@ -94,7 +98,7 @@
 
   <section
     aria-label="Workshop Statistics"
-    class="stats stats-vertical md:stats-horizontal shadow-lg border border-secondary w-full mb-5"
+    class="stats stats-vertical mb-5 w-full border border-secondary shadow-lg md:stats-horizontal"
   >
     <div class="stat">
       <div class="stat-title">Attendees</div>
@@ -107,7 +111,7 @@
       <div class="stat-title">Price Per Attendee</div>
       <div class="stat-value flex">
         {locale_string(price_per_attendee)}
-        <span class="text-xl ml-2">
+        <span class="ml-2 text-xl">
           {selected_currency}
         </span>
       </div>
@@ -117,7 +121,7 @@
       <div class="stat-title">Workshop Cost</div>
       <div class="stat-value flex">
         {locale_string(workshop_cost_EUR * currency_rate)}
-        <span class="text-xl ml-2">
+        <span class="ml-2 text-xl">
           {selected_currency}
         </span>
       </div>

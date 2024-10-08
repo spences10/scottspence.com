@@ -1,6 +1,10 @@
 <script lang="ts">
-  export let buttonText = ''
-  export let tweetText = ''
+  interface Props {
+    buttonText?: string
+    tweetText?: string
+  }
+
+  let { buttonText = '', tweetText = '' }: Props = $props()
 </script>
 
 <a
@@ -17,7 +21,7 @@
 
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class="h-5 fill-current text-primary transition w-5 block hover:text-secondary"
+      class="block h-5 w-5 fill-current text-primary transition hover:text-secondary"
       viewBox="0 0 20 20"
       fill="currentColor"
       aria-hidden="true"

@@ -1,6 +1,10 @@
 <script lang="ts">
-  export let height = '20px'
-  export let width = '20px'
+  interface Props {
+    height?: string
+    width?: string
+  }
+
+  let { height = '20px', width = '20px' }: Props = $props()
 </script>
 
 <svg
@@ -9,7 +13,7 @@
   viewBox="0 0 24 24"
   {height}
   {width}
-  class="block fill-current text-primary transition hover:text-primary-accent"
+  class="hover:text-primary-accent block fill-current text-primary transition"
 >
   <path
     d="M5 3a1 1 0 000 2c5.523 0 10 4.477 10 10a1 1 0 102 0C17 8.373 11.627 3 5 3z"

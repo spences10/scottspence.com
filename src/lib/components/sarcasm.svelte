@@ -1,14 +1,18 @@
 <script lang="ts">
-  export let sarky = ''
+  interface Props {
+    sarky?: string
+  }
 
-  let transformedText = ''
+  let { sarky = '' }: Props = $props()
 
-  $: {
+  let transformedText = $state('')
+
+  $effect.pre(() => {
     transformedText = sarky
       .split('')
       .map((char, i) => char[`to${i % 2 ? 'Upper' : 'Lower'}Case`]())
       .join('')
-  }
+  })
 </script>
 
 <span class="font-semibold">

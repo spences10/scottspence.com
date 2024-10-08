@@ -1,8 +1,12 @@
 <script lang="ts">
-  export let id: string
-  export let label: string
-  export let selected: string
-  export let options: string[]
+  interface Props {
+    id: string
+    label: string
+    selected: string
+    options: string[]
+  }
+
+  let { id, label, selected = $bindable(), options }: Props = $props()
 </script>
 
 <fieldset>
@@ -13,7 +17,7 @@
   <select
     {id}
     bind:value={selected}
-    class="select select-bordered select-sm text-sm mb-5"
+    class="select select-bordered select-sm mb-5 text-sm"
   >
     {#each options as option}
       <option value={option}>{option}</option>

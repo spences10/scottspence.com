@@ -6,8 +6,8 @@
   import ContactFormSuccess from './contact-form-success.svelte'
   import { button_disabled } from './index'
 
-  let success = false
-  let action_result: ActionResult
+  let success = $state(false)
+  let action_result: ActionResult = $state()
   let message_type: 'error' | 'success' = 'error'
 
   const handle_result = (result: ActionResult) => {

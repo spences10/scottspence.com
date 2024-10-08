@@ -10,12 +10,17 @@
   import { Head } from 'svead'
   import { onMount } from 'svelte'
 
-  export let data
+  interface Props {
+    data: any
+  }
+
+  let { data }: Props = $props()
   let { Copy } = data
 
-  let end_of_copy: HTMLElement | null
-  let show_table_of_contents = true
-  let headings_promise: Promise<{ label: string; href: string }[]>
+  let end_of_copy: HTMLElement | null = $state()
+  let show_table_of_contents = $state(true)
+  let headings_promise: Promise<{ label: string; href: string }[]> =
+    $state()
 
   onMount(() => {
     headings_promise = get_headings()
@@ -38,7 +43,7 @@
   })
 </script>
 
-<svelte:window on:scroll={handle_scroll} />
+<svelte:window onscroll={handle_scroll} />
 
 <Head {seo_config} />
 

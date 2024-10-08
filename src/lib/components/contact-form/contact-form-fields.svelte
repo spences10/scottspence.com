@@ -1,7 +1,11 @@
 <script lang="ts">
   import { enhance } from '$app/forms'
 
-  export let handle_result: Function
+  interface Props {
+    handle_result: Function
+  }
+
+  let { handle_result }: Props = $props()
 </script>
 
 <div

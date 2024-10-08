@@ -2,7 +2,11 @@
   import { create_seo_config } from '$lib/seo'
   import { Head } from 'svead'
 
-  export let data
+  interface Props {
+    data: any
+  }
+
+  let { data }: Props = $props()
 
   const { posts_by_tag, slug: tag_slug } = data
   const tag = tag_slug ?? ''

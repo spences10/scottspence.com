@@ -13,7 +13,11 @@
     website: website,
   }
 
-  export let data
+  interface Props {
+    data: any
+  }
+
+  let { data }: Props = $props()
   let { Copy } = data
 </script>
 

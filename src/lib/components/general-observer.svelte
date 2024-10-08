@@ -1,10 +1,15 @@
 <script lang="ts">
   import { viewport } from '$lib/utils'
 
-  export let height = 100
-  export let width = 100
+  interface Props {
+    height?: number
+    width?: number
+    children?: import('svelte').Snippet
+  }
 
-  let intersecting: boolean
+  let { height = 100, width = 100, children }: Props = $props()
+
+  let intersecting: boolean = $state()
 </script>
 
 <div
@@ -14,7 +19,7 @@
 >
   {#if intersecting}
     <div class="mb-12 flex justify-center" style={`width: ${width}`}>
-      <slot />
+      {@render children?.()}
     </div>
   {:else}
     <div

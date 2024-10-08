@@ -49,7 +49,7 @@
   })
 </script>
 
-<svelte:window on:mousemove={handle_mouse_move} />
+<svelte:window onmousemove={handle_mouse_move} />
 
 <a
   class="absolute left-0 m-3 -translate-y-16 bg-primary p-3 text-primary-content transition focus:translate-y-0"

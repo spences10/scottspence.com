@@ -17,7 +17,7 @@
   }
 </script>
 
-<svelte:window on:scroll={handle_scroll} />
+<svelte:window onscroll={handle_scroll} />
 
 <button
   onclick={scroll_to_top}

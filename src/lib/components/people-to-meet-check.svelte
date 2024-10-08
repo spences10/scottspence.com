@@ -1,5 +1,9 @@
 <script lang="ts">
-  export let met = false
+  interface Props {
+    met?: boolean
+  }
+
+  let { met = false }: Props = $props()
 
   let noBorder = `rounded-box flex border-1 h-5 mr-2 w-5 block relative items-center justify-start overflow-hidden`
   let border = `border border-primary ${noBorder}`
@@ -9,7 +13,7 @@
   {#if met}
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5 block fill-current bg-primary text-primary-content"
+      class="block h-5 w-5 bg-primary fill-current text-primary-content"
       viewBox="0 0 20 20"
       fill="currentColor"
     >

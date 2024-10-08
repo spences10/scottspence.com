@@ -1,8 +1,17 @@
 <script lang="ts">
-  export let value = 0
-  export let max = 100
-  export let width = `w-full`
-  export let label = ``
+  interface Props {
+    value?: number
+    max?: number
+    width?: any
+    label?: any
+  }
+
+  let {
+    value = 0,
+    max = 100,
+    width = `w-full`,
+    label = ``,
+  }: Props = $props()
   let progress = ((value / max) * 100).toFixed()
 </script>
 

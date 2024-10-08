@@ -5,7 +5,11 @@
   import { og_image_url } from '$lib/utils/og-image-url-build.js'
   import { Head } from 'svead'
 
-  export let data: { leaderboard: ReactionEntry[] }
+  interface Props {
+    data: { leaderboard: ReactionEntry[] }
+  }
+
+  let { data }: Props = $props()
   let { leaderboard = [] } = data
 
   const url = `${website}/reactions-leaderboard`

@@ -4,16 +4,20 @@
   import * as Fathom from 'fathom-client'
   import { button_disabled } from './index'
 
-  export let email: string
-  export let handle_result: Function
+  interface Props {
+    email: string
+    handle_result: Function
+  }
+
+  let { email = $bindable(), handle_result }: Props = $props()
 </script>
 
-<div class="mx-auto text-primary-content max-w-7xl lg:px-8">
+<div class="mx-auto max-w-7xl text-primary-content lg:px-8">
   <div
-    class="bg-primary rounded-box py-10 px-4 lg:flex lg:p-14 lg:items-center"
+    class="rounded-box bg-primary px-4 py-10 lg:flex lg:items-center lg:p-14"
   >
-    <div class="lg:flex-1 lg:w-0 text-lg">
-      <h3 class="font-extrabold tracking-tight text-3xl">
+    <div class="text-lg lg:w-0 lg:flex-1">
+      <h3 class="text-3xl font-extrabold tracking-tight">
         Sign up for the newsletter
       </h3>
       <p class="mt-4 max-w-3xl">
@@ -24,7 +28,7 @@
         sign up for the newsletter.
       </p>
     </div>
-    <div class="max-w-md mt-4 w-full lg:flex-1 lg:mt-0 lg:ml-8">
+    <div class="mt-4 w-full max-w-md lg:ml-8 lg:mt-0 lg:flex-1">
       <div class="form-control">
         <form
           method="POST"
@@ -38,13 +42,13 @@
           }}
         >
           <label for="email" class="label">
-            <span class="sr-only label-text">Your Email</span>
+            <span class="label-text sr-only">Your Email</span>
           </label>
           <div
-            class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2"
+            class="flex flex-col space-y-2 md:flex-row md:space-x-2 md:space-y-0"
           >
             <input
-              class="text-primary w-full input input-primary input-bordered"
+              class="input input-bordered input-primary w-full text-primary"
               id="email"
               aria-label="email"
               type="email"
@@ -60,7 +64,7 @@
               class={$button_disabled
                 ? 'loading loading-spinner text-secondary'
                 : 'btn btn-secondary'}
-              on:click={() => {
+              onclick={() => {
                 Fathom.trackEvent('newsletter signup click')
               }}
               value="sign me up!"

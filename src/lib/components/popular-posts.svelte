@@ -5,20 +5,22 @@
   import * as Fathom from 'fathom-client'
 
   type PopularPostsPeriod = keyof PopularPosts
-  let selected_period: PopularPostsPeriod = 'popular_posts_yearly'
+  let selected_period: PopularPostsPeriod = $state(
+    'popular_posts_yearly',
+  )
 
-  let posts: PopularPost[] = []
+  let posts: PopularPost[] = $state([])
 
-  $: {
+  $effect.pre(() => {
     posts = $popular_posts_store[
       selected_period as PopularPostsPeriod
     ].slice(0, 4)
-  }
+  })
 </script>
 
 {#if posts.length}
-  <div class="m-0 mb-20 sm:-mx-30 lg:-mx-40">
-    <p class="text-xl mb-8">
+  <div class="sm:-mx-30 m-0 mb-20 lg:-mx-40">
+    <p class="mb-8 text-xl">
       Take a look at some popular content from me...
       <select
         bind:value={selected_period}
@@ -32,23 +34,24 @@
     </p>
 
     <div
-      class="grid gap-4 grid-cols-1 relative md:grid-cols-2 lg:grid-cols-4"
+      class="relative grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
     >
       {#each posts as post}
         <a
           data-sveltekit-reload
           href={$page.url.origin + post.pathname}
-          on:click={() => Fathom.trackEvent(`popular post click: ${post.title}`)}
+          onclick={() =>
+            Fathom.trackEvent(`popular post click: ${post.title}`)}
           class="h-full"
         >
           <aside
-            class="rounded-box font-bold h-full p-5 transition card shadow-lg hover:text-accent border border-secondary"
+            class="card h-full rounded-box border border-secondary p-5 font-bold shadow-lg transition hover:text-accent"
           >
             <h3 class="mb-5 text-2xl">
               {post.title}
             </h3>
             <div class="mt-5">
-              <span class="text-primary mb-4 bottom-0 absolute">
+              <span class="absolute bottom-0 mb-4 text-primary">
                 Views: {number_crunch(post.pageviews)}
               </span>
             </div>

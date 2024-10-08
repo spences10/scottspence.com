@@ -41,10 +41,10 @@
     Series: 0.4, // 40% extra
   }
 
-  let selected_post_length = Object.keys(BLOG_POST_LENGTH)[0]
-  let selected_post_depth = Object.keys(BLOG_POST_DEPTH)[0]
-  let selected_currency = 'EUR'
-  let selected_length_description = 'Short'
+  let selected_post_length = $state(Object.keys(BLOG_POST_LENGTH)[0])
+  let selected_post_depth = $state(Object.keys(BLOG_POST_DEPTH)[0])
+  let selected_currency = $state('EUR')
+  let selected_length_description = $state('Short')
 
   // function to calculate cost with depth
   const calculate_cost_with_depth = (
@@ -52,30 +52,37 @@
     depth_percentage: number,
   ) => base_cost * (1 + depth_percentage)
 
-  $: selected_length_description =
+  $effect.pre(() => {
+    selected_length_description =
+      BLOG_POST_LENGTH[
+        selected_post_length as keyof typeof BLOG_POST_LENGTH
+      ].description
+  })
+
+  let post_cost = $derived(
     BLOG_POST_LENGTH[
       selected_post_length as keyof typeof BLOG_POST_LENGTH
-    ].description
-
-  $: post_cost =
-    BLOG_POST_LENGTH[
-      selected_post_length as keyof typeof BLOG_POST_LENGTH
-    ].cost
-
-  $: post_cost_with_depth = calculate_cost_with_depth(
-    post_cost,
-    BLOG_POST_DEPTH[
-      selected_post_depth as keyof typeof BLOG_POST_DEPTH
-    ],
+    ].cost,
   )
 
-  $: currency_rate =
+  let post_cost_with_depth = $derived(
+    calculate_cost_with_depth(
+      post_cost,
+      BLOG_POST_DEPTH[
+        selected_post_depth as keyof typeof BLOG_POST_DEPTH
+      ],
+    ),
+  )
+
+  let currency_rate = $derived(
     selected_currency === 'EUR'
       ? 1
-      : $exchange_rates_store[selected_currency]
+      : $exchange_rates_store[selected_currency],
+  )
 
-  $: post_cost_with_depth_in_selected_currency =
-    post_cost_with_depth * currency_rate
+  let post_cost_with_depth_in_selected_currency = $derived(
+    post_cost_with_depth * currency_rate,
+  )
 </script>
 
 <section aria-label="Blog Post Configuration">
@@ -99,7 +106,7 @@
 
 <section
   aria-label="Blog post stats"
-  class="stats stats-vertical md:stats-horizontal shadow-lg border border-secondary w-full mb-5"
+  class="stats stats-vertical mb-5 w-full border border-secondary shadow-lg md:stats-horizontal"
 >
   <div class="stat">
     <div class="stat-title">Length</div>
@@ -118,7 +125,7 @@
     <div class="stat-title">Total</div>
     <div class="stat-value flex">
       {locale_string(post_cost_with_depth_in_selected_currency)}
-      <span class="text-xl ml-2">
+      <span class="ml-2 text-xl">
         {selected_currency}
       </span>
     </div>

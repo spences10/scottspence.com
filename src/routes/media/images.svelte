@@ -5,7 +5,7 @@
     return images[random_index]
   }
 
-  let selected_image = get_random_image()
+  let selected_image = $state(get_random_image())
 
   const handle_image_click = (image: {
     url: string
@@ -32,8 +32,8 @@
   <div class="not-prose grid grid-cols-6 gap-2">
     {#each images as image}
       <button
-        class="focus:outline-primary focus:border-primary-accent shadow-xl"
-        on:click={() => handle_image_click(image)}
+        class="focus:border-primary-accent shadow-xl focus:outline-primary"
+        onclick={() => handle_image_click(image)}
       >
         <img
           class="cursor-pointer shadow-xl"

@@ -1,7 +1,11 @@
 <script lang="ts">
   import { scale_and_fade } from '$lib/utils'
 
-  export let message_type: 'error' | 'email_already_exists' = 'error'
+  interface Props {
+    message_type?: 'error' | 'email_already_exists'
+  }
+
+  let { message_type = 'error' }: Props = $props()
 
   const message_data = {
     error: [`Oops! Something went wrong.`, `Please try again later.`],
@@ -17,14 +21,14 @@
 
 <div
   in:scale_and_fade|global={{ delay: 400, duration: 400 }}
-  class="mx-auto text-center max-w-7xl lg:px-8"
+  class="mx-auto max-w-7xl text-center lg:px-8"
 >
   <div
-    class="bg-primary rounded-box py-10 lg:flex lg:p-14 lg:items-center"
+    class="rounded-box bg-primary py-10 lg:flex lg:items-center lg:p-14"
   >
-    <div class="text-primary-content lg:flex-1 lg:w-0">
+    <div class="text-primary-content lg:w-0 lg:flex-1">
       <h3
-        class="font-extrabold tracking-tight text-4xl text-primary-content"
+        class="text-4xl font-extrabold tracking-tight text-primary-content"
       >
         {response_message[0]}
       </h3>

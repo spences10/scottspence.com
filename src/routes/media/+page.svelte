@@ -6,10 +6,14 @@
   import { Head } from 'svead'
   import Images from './images.svelte'
 
-  export let data
+  interface Props {
+    data: any
+  }
+
+  let { data }: Props = $props()
   let { CorporateCopy, FunCopy } = data
 
-  let show_fun_copy = true
+  let show_fun_copy = $state(true)
   const toggle_copy = () => {
     show_fun_copy = !show_fun_copy
   }
@@ -53,7 +57,7 @@
       type="checkbox"
       id="toggle-copy"
       class="toggle"
-      on:click={toggle_copy}
+      onclick={toggle_copy}
     />
     <label class="label inline-block" for="toggle-copy">
       {show_fun_copy ? `Fun` : `Corporate`}

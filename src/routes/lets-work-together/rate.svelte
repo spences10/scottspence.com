@@ -9,38 +9,49 @@
     locale_string,
   } from './utils'
 
-  let annual_rate_EUR = get_field_value('annual_rate_eur') || 0
-  let chosen_holidays = get_field_value('chosen_holidays') || 0
+  let annual_rate_EUR = $state(
+    get_field_value('annual_rate_eur') || 0,
+  )
+  let chosen_holidays = $state(
+    get_field_value('chosen_holidays') || 0,
+  )
   let working_days_in_year =
     get_field_value('working_days_in_year') || 0
   let public_holidays = get_field_value('public_holidays') || 0
-  let selected_currency = 'EUR'
+  let selected_currency = $state('EUR')
 
-  $: day_rate_with_pto = calculate_day_rate_with_pto(
-    annual_rate_EUR || 0,
-    working_days_in_year,
-    chosen_holidays,
-    public_holidays,
+  let day_rate_with_pto = $derived(
+    calculate_day_rate_with_pto(
+      annual_rate_EUR || 0,
+      working_days_in_year,
+      chosen_holidays,
+      public_holidays,
+    ),
   )
 
-  $: monthly_rate_with_pto = calculate_monthly_rate_with_pto(
-    annual_rate_EUR || 0,
-    working_days_in_year,
-    chosen_holidays,
-    public_holidays,
+  let monthly_rate_with_pto = $derived(
+    calculate_monthly_rate_with_pto(
+      annual_rate_EUR || 0,
+      working_days_in_year,
+      chosen_holidays,
+      public_holidays,
+    ),
   )
 
-  $: annual_rate_with_pto = calculate_annual_rate_with_pto(
-    annual_rate_EUR || 0,
-    working_days_in_year,
-    chosen_holidays,
-    public_holidays,
+  let annual_rate_with_pto = $derived(
+    calculate_annual_rate_with_pto(
+      annual_rate_EUR || 0,
+      working_days_in_year,
+      chosen_holidays,
+      public_holidays,
+    ),
   )
 
-  $: currency_rate =
+  let currency_rate = $derived(
     selected_currency === 'EUR'
       ? 1
-      : $exchange_rates_store[selected_currency]
+      : $exchange_rates_store[selected_currency],
+  )
 
   const on_annual_rate_input = (e: Event) => {
     annual_rate_EUR = Math.max(
@@ -65,7 +76,7 @@
       max={180000}
       step={5000}
       bind:value={annual_rate_EUR}
-      on:input={on_annual_rate_input}
+      oninput={on_annual_rate_input}
       class="range range-primary"
     />
     <label for="pto_days" class="label">

@@ -6,7 +6,11 @@
   import { og_image_url } from '$lib/utils'
   import { Head } from 'svead'
 
-  export let data
+  interface Props {
+    data: any
+  }
+
+  let { data }: Props = $props()
   let { Copy } = data
 
   $newsletter_subscriber_count_store =
