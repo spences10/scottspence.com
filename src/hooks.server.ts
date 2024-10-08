@@ -31,6 +31,26 @@ const reject_suspicious_requests: Handle = async ({
   return await resolve(event)
 }
 
+const handle_redirects: Handle = async ({ event, resolve }) => {
+  const pathname = event.url.pathname
+
+  // Handle old URL structure redirect
+  const oldUrlMatch = pathname.match(
+    /^\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)/,
+  )
+  if (oldUrlMatch) {
+    const [, , , , slug] = oldUrlMatch
+    return redirect(301, `/posts/${slug}`)
+  }
+
+  // Handle trailing slash
+  if (pathname !== '/' && pathname.endsWith('/')) {
+    return redirect(301, pathname.slice(0, -1))
+  }
+
+  return await resolve(event)
+}
+
 export const theme: Handle = async ({ event, resolve }) => {
   const theme = event.cookies.get('theme')
 
@@ -44,4 +64,8 @@ export const theme: Handle = async ({ event, resolve }) => {
   })
 }
 
-export const handle = sequence(reject_suspicious_requests, theme)
+export const handle = sequence(
+  reject_suspicious_requests,
+  handle_redirects,
+  theme,
+)
