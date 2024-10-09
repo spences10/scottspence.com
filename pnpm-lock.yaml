@@ -65,8 +65,8 @@ devDependencies:
     specifier: ^8.14.4
     version: 8.14.4
   daisyui:
-    specifier: 4.12.12
-    version: 4.12.12(postcss@8.4.47)
+    specifier: 4.12.13
+    version: 4.12.13(postcss@8.4.47)
   date-fns:
     specifier: 3.6.0
     version: 3.6.0
@@ -2361,8 +2361,8 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dev: true
 
-  /daisyui@4.12.12(postcss@8.4.47):
-    resolution: {integrity: sha512-xmCZ4piuWOjhNyB0VDKczB5vKFCipTA7UxaZNOzCz6cT8kvWgv5BDtUo+Hk9gOFufByOlfuBdzLpfhY5GsebTQ==}
+  /daisyui@4.12.13(postcss@8.4.47):
+    resolution: {integrity: sha512-BnXyQoOByUF/7wSdIKubyhXxbtL8gxwY3u2cNMkxGP39TSVJqMmlItqtpY903fQnLI/NokC+bc+ZV+PEPsppPw==}
     engines: {node: '>=16.9.0'}
     dependencies:
       css-selector-tokenizer: 0.8.0
@@ -4881,7 +4881,7 @@ packages:
     dependencies:
       browserslist: 4.23.3
       escalade: 3.1.2
-      picocolors: 1.0.1
+      picocolors: 1.1.0
     dev: true
 
   /uri-js@4.4.1:
