@@ -2,8 +2,8 @@ import { defineMDSveXConfig as defineConfig } from 'mdsvex'
 import relativeImages from 'mdsvex-relative-images'
 import path from 'path'
 import autolinkHeadings from 'rehype-autolink-headings'
+import rehypeExternalLinks from 'rehype-external-links'
 import slugPlugin from 'rehype-slug'
-import remarkExternalLinks from 'remark-external-links'
 import preview, { htmlFormatter, textFormatter } from 'remark-preview'
 import readingTime from 'remark-reading-time'
 import { visit } from 'unist-util-visit'
@@ -29,13 +29,8 @@ const config = defineConfig({
       }),
       {
         attribute: 'previewHtml',
-      }
+      },
     ),
-    // external links open in a new tab
-    [
-      remarkExternalLinks,
-      { target: '_blank', rel: 'noopener noreferrer' },
-    ],
     posts,
     videos,
     relativeImages,
@@ -47,6 +42,10 @@ const config = defineConfig({
       {
         behavior: 'wrap',
       },
+    ],
+    [
+      rehypeExternalLinks,
+      { target: '_blank', rel: 'noopener noreferrer' },
     ],
   ],
 })
