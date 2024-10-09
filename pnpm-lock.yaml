@@ -51,7 +51,7 @@ devDependencies:
     version: 2.0.3
   '@upstash/redis':
     specifier: ^1.34.2
-    version: 1.34.2
+    version: 1.34.3
   '@vitest/coverage-v8':
     specifier: ^2.1.2
     version: 2.1.2(vitest@2.1.2)
@@ -1678,7 +1678,7 @@ packages:
     resolution: {integrity: sha512-7qJHGxpQgQr9/vmeS1PktEwvNAF7TI4iJDi8Pu2CFZ9YUGHZH4fOP5TfYlZ4aVxfopnELiE4BS4FBjyK7V1/xQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@upstash/redis': 1.34.2
+      '@upstash/redis': 1.34.3
     dev: true
 
   /@upstash/ratelimit@2.0.3:
@@ -1687,8 +1687,8 @@ packages:
       '@upstash/core-analytics': 0.0.10
     dev: true
 
-  /@upstash/redis@1.34.2:
-    resolution: {integrity: sha512-sx7GbdiRCTzvHKDYmntXSsrLXz3Oslm+jsIvCll85PCLQgv9c++Vq4pTIG8frku4zclEdCNL5Zbz83cKMb7aJQ==}
+  /@upstash/redis@1.34.3:
+    resolution: {integrity: sha512-VT25TyODGy/8ljl7GADnJoMmtmJ1F8d84UXfGonRRF8fWYJz7+2J6GzW+a6ETGtk4OyuRTt7FRSvFG5GvrfSdQ==}
     dependencies:
       crypto-js: 4.2.0
     dev: true
