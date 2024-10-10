@@ -38,10 +38,10 @@
     date,
     updated,
     preview,
-    readingTime,
     slug,
     isPrivate,
     tags,
+    reading_time,
   } = data.meta
   let { count } = data
 
@@ -90,7 +90,7 @@
 
   const schema_org_config = {
     '@context': 'https://schema.org',
-    '@graph': [blog_posting, breadcrumb_list]
+    '@graph': [blog_posting, breadcrumb_list],
   }
 
   let path = $page.route.id
@@ -186,7 +186,7 @@
         {format(new Date(date), 'MMMM d, yyyy')}
       </time>
       &bull;
-      <span>{readingTime.text}</span>
+      <span>{reading_time}</span>
     </div>
     <div>
       {#each tags as tag}

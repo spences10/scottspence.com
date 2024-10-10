@@ -5,7 +5,6 @@ import autolinkHeadings from 'rehype-autolink-headings'
 import rehypeExternalLinks from 'rehype-external-links'
 import slugPlugin from 'rehype-slug'
 import preview, { htmlFormatter, textFormatter } from 'remark-preview'
-import readingTime from 'remark-reading-time'
 import { visit } from 'unist-util-visit'
 
 const config = defineConfig({
@@ -15,9 +14,6 @@ const config = defineConfig({
     dashes: 'oldschool',
   },
   remarkPlugins: [
-    // adds a `readingTime` frontmatter attribute
-    readingTime(),
-
     // Add a text preview snippet (no formatting) so we can use it in the meta description tag
     preview(textFormatter({ length: 250, maxBlocks: 2 })),
 
@@ -63,9 +59,15 @@ function posts() {
         ? path.parse(file.filename).dir.split('/').pop()
         : parsed.name
 
+    // Calculate reading time
+    const content = file.contents.toString()
+    const words = content.split(/\s+/).length
+    const reading_time = Math.ceil(words / 230)
+
     file.data.fm = {
       ...file.data.fm,
       slug,
+      reading_time: `${reading_time} min read`,
 
       // remove timezone from parsed date
       date: file.data.fm.date
