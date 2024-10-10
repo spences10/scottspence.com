@@ -1,6 +1,6 @@
 import { defineMDSveXConfig as defineConfig } from 'mdsvex'
 import relativeImages from 'mdsvex-relative-images'
-import path from 'path'
+import path from 'node:path'
 import autolinkHeadings from 'rehype-autolink-headings'
 import rehypeExternalLinks from 'rehype-external-links'
 import slugPlugin from 'rehype-slug'
