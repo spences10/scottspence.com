@@ -240,3 +240,21 @@ mine bound to Ctrl+Shift+l
   }
 ]
 ```
+
+## Gotchas
+
+If you have multiple WSL instances then Cursor will only work with the
+default WSL instance.
+
+Make sure you have set the default WSL instance you want to use Cursor
+on, for example:
+
+```powershell
+wsl --set-default Ubuntu-24.04
+```
+
+List your available WSL instances with `wsl --list --verbose`.
+
+```powershell
+wsl --list --verbose
+```
