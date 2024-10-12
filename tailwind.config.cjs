@@ -1,25 +1,7 @@
 const tailwind_theme = require('tailwindcss/defaultTheme')
 const daisyui = require('daisyui')
 const typography = require('@tailwindcss/typography')
-const { themes } = require('./src/lib/themes')
-
-function create_theme(theme_name, font_family) {
-  return {
-    [theme_name]: {
-      ...require('daisyui/src/theming/themes')[theme_name],
-      ...(font_family ? { fontFamily: font_family } : {}),
-    },
-  }
-}
-
-const custom_font = {
-  corporate: 'Manrope Variable',
-  cyberpunk: 'Victor Mono Variable',
-}
-
-const daisy_themes = themes.map(theme =>
-  create_theme(theme, custom_font[theme]),
-)
+const { create_daisy_themes } = require('./src/lib/themes')
 
 const config = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
@@ -51,7 +33,7 @@ const config = {
 
   daisyui: {
     darkTheme: 'night',
-    themes: daisy_themes,
+    themes: create_daisy_themes(),
     logs: false,
   },
 
