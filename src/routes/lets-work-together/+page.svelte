@@ -26,10 +26,11 @@
   }
   $exchange_rates_store = exchange_rates
 
-  let end_of_copy: HTMLElement | null = $state()
+  let end_of_copy = $state<HTMLElement | null>(null)
   let show_table_of_contents = $state(true)
-  let headings_promise: Promise<{ label: string; href: string }[]> =
-    $state()
+  let headings_promise = $state<
+    Promise<{ label: string; href: string }[]> | undefined
+  >(undefined)
 
   onMount(() => {
     headings_promise = get_headings()

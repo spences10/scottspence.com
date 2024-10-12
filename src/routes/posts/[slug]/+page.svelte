@@ -95,11 +95,11 @@
 
   let path = $page.route.id
 
-  let end_of_copy: HTMLElement | null
+  let end_of_copy = $state<HTMLElement | null>(null)
   let show_table_of_contents = $state(true)
-  let headings_promise:
-    | Promise<{ label: string; href: string }[]>
-    | undefined = $state(undefined)
+  let headings_promise = $state<
+    Promise<{ label: string; href: string }[]> | undefined
+  >(undefined)
 
   $effect(() => {
     headings_promise = get_headings().then(headings => {
