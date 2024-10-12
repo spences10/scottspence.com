@@ -45,8 +45,6 @@
   {:then headings}
     {#if show_table_of_contents && headings.length > 0}
       <TableOfContents {headings} />
-    {:else if headings.length === 0}
-      <p>No headings found</p>
     {/if}
   {:catch error}
     <p>Error loading table of contents: {error.message}</p>
