@@ -11,11 +11,6 @@ const config = {
       ...tailwind_theme.screens,
     },
     extend: {
-      fontFamily: {
-        sans: ['Poppins', ...tailwind_theme.fontFamily.sans],
-        serif: ['Manrope', ...tailwind_theme.fontFamily.serif],
-        mono: ['Victor Mono', ...tailwind_theme.fontFamily.mono],
-      },
       typography: {
         DEFAULT: {
           css: {

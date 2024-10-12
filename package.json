@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@fontsource-variable/manrope": "^5.1.0",
+    "@fontsource-variable/playpen-sans": "^5.1.0",
     "@fontsource-variable/victor-mono": "^5.1.0",
     "@fontsource/victor-mono": "^5.1.0",
     "@playwright/test": "^1.48.0",

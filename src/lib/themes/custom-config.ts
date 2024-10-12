@@ -1,6 +1,9 @@
-import { themes } from "./themes"
+import { themes } from './themes'
 
-export const custom_themes: Record<string, Record<string, string>> = {
+export const custom_themes: Record<
+  string,
+  Partial<Record<string, string>>
+> = {
   wireframe: {
     primary: '#000080', // Navy Blue
     secondary: '#008080', // Teal
@@ -19,30 +22,26 @@ export const custom_themes: Record<string, Record<string, string>> = {
   // You can add more custom themes here
 }
 
-export const custom_font = {
+export const custom_font: Record<string, string> = {
   corporate: 'Manrope Variable',
   cyberpunk: 'Victor Mono Variable',
+  wireframe:
+    "'Chalkboard', 'comic sans ms', 'sans-serif', 'Playpen Sans Variable'",
 }
 
 export function create_daisy_themes() {
+  const daisy_themes = require('daisyui/src/theming/themes')
+
   return themes.map(theme => {
-    if (theme === 'wireframe') {
-      return {
-        [theme]: {
-          ...require('daisyui/src/theming/themes')[theme],
-          ...custom_themes.wireframe,
-        },
-      }
-    }
+    const base_theme = daisy_themes[theme] || {}
+    const custom_theme = custom_themes[theme] || {}
+    const font_family = custom_font[theme]
+
     return {
       [theme]: {
-        ...require('daisyui/src/theming/themes')[theme],
-        ...(custom_font[theme as keyof typeof custom_font]
-          ? {
-              fontFamily:
-                custom_font[theme as keyof typeof custom_font],
-            }
-          : {}),
+        ...base_theme,
+        ...custom_theme,
+        ...(font_family ? { fontFamily: font_family } : {}),
       },
     }
   })
