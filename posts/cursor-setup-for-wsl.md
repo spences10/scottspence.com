@@ -37,8 +37,8 @@ users that gave me enough information to get this working.
 - [Kadir Balku](https://github.com/KadirBalku) with details on
   cleaning system and resolving `PATH` issues.
 - [Daniel Wang](https://github.com/ddwang) for sharing a Gist that
-  means there's no messing around trying to get the Commit has of your
-  Cursor install.
+  means there's no messing around trying to get the Commit hash of
+  your Cursor install.
 
 Now, if you don't use the terminal to launch Cursor then you're good,
 really, but if, like me you do a lot of your navigating around
