@@ -99,8 +99,8 @@ echo -e '\n# Cursor \nexport PATH="$PATH:/mnt/c/Users/<USER_NAME>/AppData/Local/
 
 Then source the `.zshrc` file with `source ~/.zshrc`.
 
-Now I should be able to run the `cursor .` command by navigating the
-the file and running it from the terminal.
+Now I should be able to run the `cursor .` command by navigating to
+that file and running it from the terminal.
 
 I should be able to navigate to the file located at:
 
@@ -171,8 +171,8 @@ That should be it! 🎉
 
 ## Re-install start again
 
-If, like me, you've already installed Cursor things have gone tits up
-and you'll need to re-install it.
+If, like me, you've already installed Cursor and things have gone tits
+up and you'll need to re-install it.
 
 So, do that first, however you installed it either through WinGet or
 the Windows settings.
