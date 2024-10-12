@@ -10,14 +10,15 @@
 ## Hi, I'm Scott
 
 <Small>
-  Last updated: <DateUpdated date="2023-09-16" small="true" />
+  Last updated: <DateUpdated date="2024-10-12" small="true" />
 </Small>
 
 I'm an application team lead overseeing a large Svelte and SvelteKit
-codebase. My role revolves around leading a team of talented
-developers and ensuring best practices in the development lifecycle.
-Prior to this, I was a developer advocate, partnering with companies
-to create content that educates users and streamline their journey.
+codebase centred around an AI product. My role, leading a team of
+super talented developers and ensuring best practices in the
+development lifecycle. Prior to this, I was a developer advocate,
+partnering with companies to create content that educates users and
+streamline their journey.
 
 I create content written in the blog here and educational videos
 supporting the written content.
@@ -31,12 +32,14 @@ organisers of the [Svelte Society London] group.
 
 Check out the [speaking] section for more details about those!
 
-I have a wealth of knowledge working in the [Jamstack], with extensive
-experience (<DD date="2018-08-02"/>) working with it mainly using
-[Gatsby] (the React meta-framework). My active usage of the Jamstack
-stopped <DD date="2021-04-06" /> ago now.
-
-Check out the [portfolio section] for more information.
+My journey in web development has given me a strong foundation in
+modern web standards and best practices. I gained extensive experience
+(<DD date="2018-08-02"/>) working with various frameworks and
+architectures, including [Gatsby] and the [Jamstack] approach. While I
+moved away from active Jamstack usage <DD date="2021-04-06" /> ago,
+the principles of performance, security, and scalability I learned
+continue to inform my work in creating efficient, user-centric web
+applications.
 
 ### Sectors I have worked in:
 
@@ -46,7 +49,8 @@ and the Lloyd's insurance market.
 
 As a web developer I've worked in government digital transformation,
 creative digital and the content management space. I now work in
-outsourcing helping build remote teams.
+business process outsourcing, helping build smart AI agents for
+clients.
 
 ### My personality
 
@@ -60,8 +64,7 @@ I like to think of myself as an easy to approach and friendly person.
 I'm obsessed with watching anything to do with mechanical engineering
 and restorations on YouTube.
 
-I play Borderlands 1 and 2 on the Nintendo Switch along with the other
-big titles on it, Zelda Tears of the Kingdom and now Mario Wonder.
+I got a Steam Deck! Been playing Borderlands 1, 2 and 3 on it, still really like the franchise after all this time 😊
 
 ### Music I listen to
 
