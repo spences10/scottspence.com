@@ -1,6 +1,6 @@
 <script lang="ts">
-  let { data } = $props()
-  const { posts,analytics } = data
+	let { data } = $props()
+	const { posts, analytics } = data
 </script>
 
 <pre>{JSON.stringify(analytics, null, 2)}</pre>

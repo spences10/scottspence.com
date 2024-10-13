@@ -1,27 +1,27 @@
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Launch server",
-      "request": "launch",
-      "runtimeArgs": ["dev"],
-      "runtimeExecutable": "pnpm",
-      "skipFiles": ["<node_internals>/**"],
-      "type": "node",
-      "console": "externalTerminal"
-    },
-    {
-      "name": "Launch browser",
-      "request": "launch",
-      "type": "chrome",
-      "url": "http://localhost:5173",
-      "webRoot": "${workspaceFolder}"
-    }
-  ],
-  "compounds": [
-    {
-      "name": "Both",
-      "configurations": ["Launch server", "Launch browser"]
-    }
-  ]
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Launch server",
+			"request": "launch",
+			"runtimeArgs": ["dev"],
+			"runtimeExecutable": "pnpm",
+			"skipFiles": ["<node_internals>/**"],
+			"type": "node",
+			"console": "externalTerminal"
+		},
+		{
+			"name": "Launch browser",
+			"request": "launch",
+			"type": "chrome",
+			"url": "http://localhost:5173",
+			"webRoot": "${workspaceFolder}"
+		}
+	],
+	"compounds": [
+		{
+			"name": "Both",
+			"configurations": ["Launch server", "Launch browser"]
+		}
+	]
 }

@@ -5,47 +5,47 @@ import { addHours, isAfter } from 'date-fns'
 export const prerender = true
 
 interface CacheEntry {
-  value: string
-  timestamp: Date
+	value: string
+	timestamp: Date
 }
 
 const url_cache = new Map<string, CacheEntry>()
 
 function add_to_cache(slug: string, url: string) {
-  const entry: CacheEntry = {
-    value: url,
-    timestamp: new Date(),
-  }
-  url_cache.set(slug, entry)
+	const entry: CacheEntry = {
+		value: url,
+		timestamp: new Date(),
+	}
+	url_cache.set(slug, entry)
 }
 
 function get_from_cache(slug: string): string | undefined {
-  const entry = url_cache.get(slug)
-  if (entry) {
-    if (isAfter(new Date(), addHours(entry.timestamp, 1))) {
-      url_cache.delete(slug)
-      return undefined
-    }
-    return entry.value
-  }
-  return undefined
+	const entry = url_cache.get(slug)
+	if (entry) {
+		if (isAfter(new Date(), addHours(entry.timestamp, 1))) {
+			url_cache.delete(slug)
+			return undefined
+		}
+		return entry.value
+	}
+	return undefined
 }
 
 export const GET = async () => {
-  const { posts: posts_metadata } = await get_posts()
-  const body = render(posts_metadata)
+	const { posts: posts_metadata } = await get_posts()
+	const body = render(posts_metadata)
 
-  return new Response(body, {
-    headers: {
-      'content-type': 'application/xml',
-      'cache-control':
-        'public, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=3600',
-    },
-  })
+	return new Response(body, {
+		headers: {
+			'content-type': 'application/xml',
+			'cache-control':
+				'public, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=3600',
+		},
+	})
 }
 
 const render = (posts_metadata: Post[]) => {
-  return `<feed xmlns="http://www.w3.org/2005/Atom">
+	return `<feed xmlns="http://www.w3.org/2005/Atom">
     <title>${name}'s Blog!</title>
     <subtitle>${description}</subtitle>
     <link rel="alternate" type="text/html" href="${website}/"/>
@@ -53,22 +53,22 @@ const render = (posts_metadata: Post[]) => {
     <id>${website}/</id>
     <updated>${new Date().toISOString()}</updated>
     ${posts_metadata
-      .map(({ title, preview, slug, date, preview_html }) => {
-        // Check if slug is not null
-        if (slug === null) {
-          // Handle the null case, e.g., skip this entry
-          return ''
-        }
+			.map(({ title, preview, slug, date, preview_html }) => {
+				// Check if slug is not null
+				if (slug === null) {
+					// Handle the null case, e.g., skip this entry
+					return ''
+				}
 
-        const cached_url =
-          get_from_cache(slug) || `${website}/posts/${slug}/`
-        if (!get_from_cache(slug)) {
-          add_to_cache(slug, cached_url)
-        }
+				const cached_url =
+					get_from_cache(slug) || `${website}/posts/${slug}/`
+				if (!get_from_cache(slug)) {
+					add_to_cache(slug, cached_url)
+				}
 
-        // Use the post's date as the 'updated' timestamp
-        const post_date = new Date(date).toISOString()
-        return `
+				// Use the post's date as the 'updated' timestamp
+				const post_date = new Date(date).toISOString()
+				return `
           <entry>
             <title>${title}</title>
             <link rel="alternate" type="text/html" href="${cached_url}"/>
@@ -91,7 +91,7 @@ const render = (posts_metadata: Post[]) => {
               ]]>
             </content>
           </entry>`
-      })
-      .join('')}
+			})
+			.join('')}
   </feed>`
 }

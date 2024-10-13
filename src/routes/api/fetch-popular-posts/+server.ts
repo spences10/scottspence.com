@@ -5,27 +5,27 @@ import { differenceInHours, parseISO } from 'date-fns'
 const popular_posts_cache = new Map<string, any>()
 
 export const GET = async () => {
-  const cache_key = 'popular-posts'
-  const cached_data = popular_posts_cache.get(cache_key)
+	const cache_key = 'popular-posts'
+	const cached_data = popular_posts_cache.get(cache_key)
 
-  if (
-    cached_data &&
-    differenceInHours(
-      new Date(),
-      parseISO(cached_data.last_fetched),
-    ) < 24
-  ) {
-    return json(cached_data.data)
-  }
+	if (
+		cached_data &&
+		differenceInHours(
+			new Date(),
+			parseISO(cached_data.last_fetched),
+		) < 24
+	) {
+		return json(cached_data.data)
+	}
 
-  const client = turso_client()
-  let popular_posts: any = {
-    daily: null,
-    monthly: null,
-    yearly: null,
-  }
+	const client = turso_client()
+	let popular_posts: any = {
+		daily: null,
+		monthly: null,
+		yearly: null,
+	}
 
-  const common_fields = `
+	const common_fields = `
     pp.id,
     pp.pathname,
     p.title,
@@ -35,21 +35,21 @@ export const GET = async () => {
     pp.last_updated
   `
 
-  const common_from_join = `
+	const common_from_join = `
     FROM 
       popular_posts pp
     JOIN
       posts p ON pp.pathname = '/posts/' || p.slug
   `
 
-  const common_order_by_limit = `
+	const common_order_by_limit = `
     ORDER BY
       pp.pageviews DESC
     LIMIT 20
   `
 
-  // Construct and execute the UNION query
-  const sql = `
+	// Construct and execute the UNION query
+	const sql = `
     WITH day_results AS (
       SELECT 
         'day' AS period, 
@@ -85,33 +85,33 @@ export const GET = async () => {
     SELECT * FROM year_results;
   `
 
-  popular_posts = {
-    daily: [],
-    monthly: [],
-    yearly: [],
-  }
+	popular_posts = {
+		daily: [],
+		monthly: [],
+		yearly: [],
+	}
 
-  try {
-    const result = await client.execute(sql)
+	try {
+		const result = await client.execute(sql)
 
-    // Process the results
-    result.rows.forEach(row => {
-      if (row.period === 'day') popular_posts.daily.push(row)
-      if (row.period === 'month') popular_posts.monthly.push(row)
-      if (row.period === 'year') popular_posts.yearly.push(row)
-    })
-  } catch (error) {
-    console.error('Error fetching from Turso DB:', error)
-    return null
-  }
+		// Process the results
+		result.rows.forEach(row => {
+			if (row.period === 'day') popular_posts.daily.push(row)
+			if (row.period === 'month') popular_posts.monthly.push(row)
+			if (row.period === 'year') popular_posts.yearly.push(row)
+		})
+	} catch (error) {
+		console.error('Error fetching from Turso DB:', error)
+		return null
+	}
 
-  // After fetching new data, update the cache
-  const new_data = {
-    last_fetched: new Date().toISOString(),
-    data: popular_posts,
-  }
-  popular_posts_cache.set(cache_key, new_data)
+	// After fetching new data, update the cache
+	const new_data = {
+		last_fetched: new Date().toISOString(),
+		data: popular_posts,
+	}
+	popular_posts_cache.set(cache_key, new_data)
 
-  // Return the data
-  return json(popular_posts)
+	// Return the data
+	return json(popular_posts)
 }

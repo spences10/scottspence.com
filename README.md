@@ -16,6 +16,6 @@ more.
 
 [matt jennings]: https://github.com/mattjennings
 [initial template]:
-  https://github.com/mattjennings/sveltekit-blog-template
+	https://github.com/mattjennings/sveltekit-blog-template
 [markdown showdown]:
-  https://scottspence.com/posts/writing-with-markdown
+	https://scottspence.com/posts/writing-with-markdown

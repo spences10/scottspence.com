@@ -1,95 +1,95 @@
 import {
-  cleanup,
-  fireEvent,
-  render,
+	cleanup,
+	fireEvent,
+	render,
 } from '@testing-library/svelte/svelte5'
 import { tick } from 'svelte'
 import {
-  afterEach,
-  beforeAll,
-  describe,
-  expect,
-  it,
-  vi,
+	afterEach,
+	beforeAll,
+	describe,
+	expect,
+	it,
+	vi,
 } from 'vitest'
 import BackToTop from './back-to-top.svelte'
 
 function renderBackToTop(offset = 0) {
-  cleanup()
-  const component = render(BackToTop)
-  Object.defineProperty(window, 'scrollY', {
-    value: offset,
-    writable: true,
-  })
-  return component
+	cleanup()
+	const component = render(BackToTop)
+	Object.defineProperty(window, 'scrollY', {
+		value: offset,
+		writable: true,
+	})
+	return component
 }
 
 describe('BackToTop', () => {
-  afterEach(() => {
-    window.scrollY = 0
-  })
+	afterEach(() => {
+		window.scrollY = 0
+	})
 
-  beforeAll(() => {
-    // Mock the animate function
-    HTMLElement.prototype.animate = vi.fn().mockImplementation(() => {
-      return {
-        pause: vi.fn(),
-        play: vi.fn(),
-        finish: vi.fn(),
-        cancel: vi.fn(),
-        reverse: vi.fn(),
-        // Add any other methods or properties used by the animations
-      }
-    })
-  })
+	beforeAll(() => {
+		// Mock the animate function
+		HTMLElement.prototype.animate = vi.fn().mockImplementation(() => {
+			return {
+				pause: vi.fn(),
+				play: vi.fn(),
+				finish: vi.fn(),
+				cancel: vi.fn(),
+				reverse: vi.fn(),
+				// Add any other methods or properties used by the animations
+			}
+		})
+	})
 
-  it('should not render the button initially', () => {
-    const { queryByTestId } = renderBackToTop()
-    const button = queryByTestId('back-to-top')
-    expect(button).toBeTruthy()
-    expect(button?.classList.contains('show-button')).toBeFalsy()
-  })
+	it('should not render the button initially', () => {
+		const { queryByTestId } = renderBackToTop()
+		const button = queryByTestId('back-to-top')
+		expect(button).toBeTruthy()
+		expect(button?.classList.contains('show-button')).toBeFalsy()
+	})
 
-  it('should render the button when scrolling down', async () => {
-    const { queryByTestId } = renderBackToTop(100)
-    fireEvent.scroll(window)
-    await new Promise(resolve => setTimeout(resolve, 400))
+	it('should render the button when scrolling down', async () => {
+		const { queryByTestId } = renderBackToTop(100)
+		fireEvent.scroll(window)
+		await new Promise(resolve => setTimeout(resolve, 400))
 
-    const button = queryByTestId('back-to-top')
-    expect(button).toBeTruthy()
-  })
+		const button = queryByTestId('back-to-top')
+		expect(button).toBeTruthy()
+	})
 
-  it('should not render the button when scrolling up after scrolling down', async () => {
-    const { queryByTestId } = renderBackToTop(1000)
+	it('should not render the button when scrolling up after scrolling down', async () => {
+		const { queryByTestId } = renderBackToTop(1000)
 
-    fireEvent.scroll(window)
-    await tick()
+		fireEvent.scroll(window)
+		await tick()
 
-    window.scrollY = 50
-    fireEvent.scroll(window)
-    await tick()
+		window.scrollY = 50
+		fireEvent.scroll(window)
+		await tick()
 
-    const button = queryByTestId('back-to-top')
-    expect(button?.classList.contains('show-button')).toBeFalsy()
-  })
+		const button = queryByTestId('back-to-top')
+		expect(button?.classList.contains('show-button')).toBeFalsy()
+	})
 
-  it('should scroll to the top when the button is clicked', async () => {
-    const { queryByLabelText } = renderBackToTop(1000)
-    fireEvent.scroll(window)
-    await new Promise(resolve => setTimeout(resolve, 0))
+	it('should scroll to the top when the button is clicked', async () => {
+		const { queryByLabelText } = renderBackToTop(1000)
+		fireEvent.scroll(window)
+		await new Promise(resolve => setTimeout(resolve, 0))
 
-    const scrollToMock = vi.fn(options => {
-      window.scrollY = options.top
-    })
-    window.scrollTo = scrollToMock
+		const scrollToMock = vi.fn(options => {
+			window.scrollY = options.top
+		})
+		window.scrollTo = scrollToMock
 
-    const button = queryByLabelText('Back to top')
-    await fireEvent.click(button as HTMLElement)
+		const button = queryByLabelText('Back to top')
+		await fireEvent.click(button as HTMLElement)
 
-    expect(window.scrollY).toBe(0)
-    expect(scrollToMock).toHaveBeenCalledWith({
-      top: 0,
-      behavior: 'smooth',
-    })
-  })
+		expect(window.scrollY).toBe(0)
+		expect(scrollToMock).toHaveBeenCalledWith({
+			top: 0,
+			behavior: 'smooth',
+		})
+	})
 })
