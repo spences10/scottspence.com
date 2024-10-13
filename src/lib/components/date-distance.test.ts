@@ -48,7 +48,11 @@ test('updates formatted distance when date prop changes', async () => {
 	const { rerender } = render(DateDistance, { date: initialDate })
 
 	const element = screen.getByTestId('date-distance')
-	expect(element.textContent).toBe(initialFormattedDistance)
+
+	// Wait for the initial render to complete
+	await vi.waitFor(() => {
+		expect(element.textContent).toBe(initialFormattedDistance)
+	})
 
 	// Update the date prop by re-rendering the component
 	await rerender({ date: updatedDate })
