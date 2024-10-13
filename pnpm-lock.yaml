@@ -149,8 +149,8 @@ devDependencies:
     specifier: 6.0.3
     version: 6.0.3(postcss-load-config@6.0.1)(postcss@8.4.47)(svelte@5.0.0-next.221)(typescript@5.6.3)
   sveltekit-embed:
-    specifier: ^0.0.15
-    version: 0.0.15(svelte@5.0.0-next.221)
+    specifier: ^0.0.16
+    version: 0.0.16(svelte@5.0.0-next.221)
   tailwindcss:
     specifier: 3.4.13
     version: 3.4.13
@@ -4572,8 +4572,8 @@ packages:
       zimmerframe: 1.1.2
     dev: true
 
-  /sveltekit-embed@0.0.15(svelte@5.0.0-next.221):
-    resolution: {integrity: sha512-wFQyztO7XoJWqzHJ3/9ynkmpRhx53ittcbQrTBwqOfh51XXHflNS5Lv74OXbP2C1IitMdfDX3GjmPmA5KZ/tFQ==}
+  /sveltekit-embed@0.0.16(svelte@5.0.0-next.221):
+    resolution: {integrity: sha512-ahs35D7zlpKX2AXhVGZxck9lNJuB52+Ii+ECUdaLjfIW9XswTaifA/NFQN1pHa4S5YFWvfI0WjWahbzZXnOEeg==}
     peerDependencies:
       svelte: ^4.0.0 || ^5.0.0
     dependencies:
