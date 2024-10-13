@@ -24,11 +24,7 @@ test('renders formatted date distance', async () => {
 
 	vi.mocked(formatDistance).mockReturnValue(mockFormattedDistance)
 
-	render(
-		DateDistance,
-		{ date: mockDate },
-		{ baseElement: document.body },
-	)
+	render(DateDistance, { date: mockDate })
 
 	const element = screen.getByTestId('date-distance')
 	expect(element.textContent).toBe(mockFormattedDistance)
@@ -39,7 +35,7 @@ test('renders formatted date distance', async () => {
 	)
 })
 
-test.skip('updates formatted distance when date prop changes', async () => {
+test('updates formatted distance when date prop changes', async () => {
 	const initialDate = '2023-01-01'
 	const updatedDate = '2023-06-01'
 	const initialFormattedDistance = '6 months ago'
@@ -49,15 +45,13 @@ test.skip('updates formatted distance when date prop changes', async () => {
 		.mockReturnValueOnce(initialFormattedDistance)
 		.mockReturnValueOnce(updatedFormattedDistance)
 
-	const { component } = render(DateDistance, {
-		date: initialDate,
-	})
+	const { rerender } = render(DateDistance, { date: initialDate })
 
 	const element = screen.getByTestId('date-distance')
 	expect(element.textContent).toBe(initialFormattedDistance)
 
-	// Update the date prop
-	component.date = updatedDate
+	// Update the date prop by re-rendering the component
+	await rerender({ date: updatedDate })
 
 	// Wait for the component to update
 	await vi.waitFor(() => {

@@ -7,7 +7,7 @@
 	import { button_disabled } from './index'
 
 	let success = $state(false)
-	let action_result: ActionResult = $state()
+	let action_result: ActionResult | undefined = $state()
 	let message_type: 'error' | 'success' = 'error'
 
 	const handle_result = (result: ActionResult) => {

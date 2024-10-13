@@ -9,7 +9,7 @@
 	let email = ''
 	let success = $state(false)
 	let message_type: 'error' | 'email_already_exists' = $state('error')
-	let action_result: ActionResult = $state()
+	let action_result: ActionResult | undefined = $state()
 
 	const handle_result = (result: ActionResult) => {
 		action_result = result

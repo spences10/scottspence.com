@@ -261,7 +261,7 @@
 		</a>
 	</div>
 
-	<Modal bind:modal on:close={close_modal}>
+	<Modal bind:modal onclose={close_modal}>
 		{#if $page.state.selected}
 			<StatsPage data={$page.state.selected} />
 		{/if}

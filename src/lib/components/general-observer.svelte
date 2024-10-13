@@ -9,7 +9,7 @@
 
 	let { height = 100, width = 100, children }: Props = $props()
 
-	let intersecting: boolean = $state()
+	let intersecting: boolean = $state(false)
 </script>
 
 <div
