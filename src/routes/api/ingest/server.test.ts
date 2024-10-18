@@ -20,6 +20,26 @@ vi.mock('./update-posts', () => ({
 	update_posts: vi.fn(),
 }))
 
+// Mock browser-specific APIs
+global.requestAnimationFrame = vi.fn((callback: FrameRequestCallback): number => {
+    setTimeout(callback, 0)
+    return 0 // Return a dummy request ID
+}) as unknown as typeof requestAnimationFrame
+
+global.performance = {
+    now: vi.fn(() => Date.now()),
+    mark: vi.fn(),
+    measure: vi.fn(),
+    getEntriesByName: vi.fn(),
+    getEntriesByType: vi.fn(),
+    getEntries: vi.fn(),
+    clearMarks: vi.fn(),
+    clearMeasures: vi.fn(),
+    clearResourceTimings: vi.fn(),
+    setResourceTimingBufferSize: vi.fn(),
+    toJSON: vi.fn(),
+} as unknown as Performance
+
 describe('Ingest functions', () => {
 	const mock_fetch = vi.fn()
 
