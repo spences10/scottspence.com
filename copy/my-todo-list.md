@@ -2,7 +2,7 @@
   import { DateUpdated, Small } from '$lib/components'
 </script>
 
-<!-- cSpell:ignore vulf salma darkvisitors markdoc -->
+<!-- cSpell:ignore vulf salma darkvisitors markdoc findtechconferences -->
 
 # My Todo List
 
