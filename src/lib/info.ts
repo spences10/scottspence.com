@@ -12,6 +12,10 @@ export const twitter_handle = '@spences10'
 
 export const SOCIAL_LINKS = [
 	{
+		title: `Bluesky`,
+		link: `https://ss10.dev/bluesky`,
+	},
+	{
 		title: `YouTube`,
 		link: `https://ss10.dev/yt`,
 	},
@@ -20,28 +24,12 @@ export const SOCIAL_LINKS = [
 		link: `https://ss10.dev/git`,
 	},
 	{
-		title: `Threads`,
-		link: `https://www.threads.net/@spences10`,
-	},
-	{
-		title: `Bluesky`,
-		link: `https://ss10.dev/bluesky`,
-	},
-	{
 		title: `Spotify`,
 		link: `https://ss10.dev/spotify`,
 	},
 	{
 		title: `Twitch`,
 		link: `https://ss10.dev/twitch`,
-	},
-	{
-		title: `Twitter`,
-		link: `https://ss10.dev/twitter`,
-	},
-	{
-		title: `Airchat`,
-		link: `https://air.chat/spences10`,
 	},
 ]
 
