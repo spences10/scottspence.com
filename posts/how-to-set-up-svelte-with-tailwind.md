@@ -5,6 +5,20 @@ tags: ['tailwind', 'svelte', 'how-to']
 isPrivate: false
 ---
 
+<script>
+  import { Banner, DateDistance as DD } from '$lib/components'
+
+  let href = `/posts/svelte-cli-add-tailwind`
+  const options = {
+    type: 'warning',
+    message: `With the new Svelte <code>sv</code> CLI you can now add 
+      Tailwind CSS to your project with the CLI, like super simple! 
+      Check out the post on <a href=${href} target="_blank" 
+      rel="noopener noreferrer">The new Svelte (sv) CLI, adding 
+      Tailwind is simple now</a>.`
+  }
+</script>
+
 How to set up Tailwind CSS with Svelte, two examples here of adding
 Tailwind CSS to a new Svelte project.
 
@@ -16,8 +30,14 @@ I'll go through the setup on the default project from each of the
 `init` commands with both Vite and Svelte. I'll then reuse the styles
 on the index page of both projects to convert them to use Tailwind.
 
-Both examples will use the [Svelte Add] utility and I'll go through
-converting each one from the Svelte scoped CSS over to Tailwind.
+Both examples will use the [Svelte Add] utility and I'll go through converting
+each one from the Svelte scoped CSS over to Tailwind.
+
+Did you rad the banner? This post is <DD date={date} /> old now, I've
+added some more content on using the new Svelte CLI to add Tailwind.
+👇
+
+<Banner {options} />
 
 ## Prerequisites
 
@@ -346,8 +366,8 @@ Done.
 ## Conclusion
 
 I've created a couple of example projects using the `npm init` command
-for both Vite and Svelte. Added in Tailwind support using [Svelte Add]
-and replaced the index page styles on each with Tailwind styles.
+for both Vite and Svelte. Added in Tailwind support using [Svelte
+Add] and replaced the index page styles on each with Tailwind styles.
 
 <!-- Links -->
 
@@ -356,4 +376,4 @@ and replaced the index page styles on each with Tailwind styles.
 <!-- Images -->
 
 [changes-after-svelte-add-tailwind]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1641143473/scottspence.com/changes-after-svelte-add-tailwind.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1641143473/scottspence.com/changes-after-svelte-add-tailwind.png
