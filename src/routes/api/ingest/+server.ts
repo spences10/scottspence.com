@@ -60,13 +60,27 @@ export const POST = async ({ request, fetch }) => {
 		if (task && typeof task.function === 'function') {
 			console.log(`Executing task: ${task_key}`)
 
-			// Call the task function with or without fetch based on its requirement
-			const result = task.expects_fetch
-				? await task.function(fetch)
-				: await task.function()
+			try {
+				// Call the task function with or without fetch based on its requirement
+				const result = task.expects_fetch
+					? await task.function(fetch)
+					: await task.function()
 
-			console.log(`Task ${task_key} completed with result:`, result)
-			return json(result)
+				console.log(`Task ${task_key} completed with result:`, result)
+				return json(result)
+			} catch (task_error) {
+				console.error(`Error executing task ${task_key}:`, task_error)
+				return json(
+					{
+						message: `Error executing task ${task_key}`,
+						error:
+							task_error instanceof Error
+								? task_error.message
+								: 'Unknown error',
+					},
+					{ status: 500 },
+				)
+			}
 		} else {
 			return json(
 				{

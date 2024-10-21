@@ -62,12 +62,17 @@ function posts() {
 		// Calculate reading time
 		const content = file.contents.toString()
 		const words = content.split(/\s+/).length
-		const reading_time = Math.ceil(words / 230)
+		const reading_time_minutes = Math.ceil(words / 230) // 230 words per minute
 
 		file.data.fm = {
 			...file.data.fm,
 			slug,
-			reading_time: `${reading_time} min read`,
+			reading_time: {
+				minutes: reading_time_minutes,
+				text: `${reading_time_minutes} min read`,
+				time: reading_time_minutes * 60 * 1000, // milliseconds
+				words: words,
+			},
 
 			// remove timezone from parsed date
 			date: file.data.fm.date

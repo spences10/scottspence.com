@@ -184,7 +184,7 @@
 				{format(new Date(date), 'MMMM d, yyyy')}
 			</time>
 			&bull;
-			<span>{reading_time}</span>
+			<span>{reading_time.text}</span>
 		</div>
 		<div>
 			{#each tags as tag}
