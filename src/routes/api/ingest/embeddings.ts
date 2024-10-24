@@ -76,7 +76,7 @@ function cosine_similarity(a: Float32Array, b: Float32Array): number {
 
 export const get_related_posts = async (
 	post_id: string,
-	limit: number = 5,
+	limit: number = 4,
 ) => {
 	const client = turso_client()
 	try {

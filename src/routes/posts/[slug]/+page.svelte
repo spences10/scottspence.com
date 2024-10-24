@@ -15,6 +15,7 @@
 		IsPrivateBanner,
 		PopularPosts,
 		Reactions,
+		RelatedPosts,
 		ShareWithTweet,
 		TableOfContents,
 		UpdatedBanner,
@@ -29,11 +30,10 @@
 
 	import { website } from '$lib/info'
 	import type { VisitorEntry } from '$lib/stores'
-	import { onMount } from 'svelte'
 
 	let { data } = $props()
 
-	let { Content } = data
+	let { Content, related_posts } = data
 	let {
 		title,
 		date,
@@ -158,18 +158,7 @@
 		history.back()
 		modal.close()
 	}
-
-	let related_posts = $state<Post[]>([])
-
-	onMount(async () => {
-		const response = await fetch(`/api/related-posts?post_id=${slug}`)
-		if (response.ok) {
-			related_posts = await response.json()
-		}
-	})
 </script>
-
-<pre>{JSON.stringify(related_posts, null, 2)}</pre>
 
 <svelte:window onscroll={handle_scroll} />
 
@@ -288,21 +277,7 @@
 
 	<PopularPosts />
 
-	<!-- Add this section for related posts -->
-	{#if related_posts.length > 0}
-		<div class="mt-10">
-			<h2 class="mb-4 text-2xl font-bold">Related Posts</h2>
-			<ul class="space-y-2">
-				{#each related_posts as post}
-					<li>
-						<a href={post.path} class="text-primary hover:underline"
-							>{post.title}</a
-						>
-					</li>
-				{/each}
-			</ul>
-		</div>
-	{/if}
+	<RelatedPosts {related_posts} />
 
 	<ButtButt />
 </article>
