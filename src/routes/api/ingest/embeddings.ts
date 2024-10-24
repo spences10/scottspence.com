@@ -42,11 +42,16 @@ export const store_post_embedding = async (
 	const client = turso_client()
 	try {
 		const embedding = await create_embedding(content)
-		const embedding_string = JSON.stringify(embedding)
+		if (embedding.length !== 1024) {
+			throw new Error(
+				`Expected 1024 dimensions, but got ${embedding.length}`,
+			)
+		}
+		const embedding_buffer = new Float32Array(embedding).buffer
 
 		await client.execute({
 			sql: 'INSERT OR REPLACE INTO post_embeddings (post_id, embedding) VALUES (?, ?)',
-			args: [post_id, embedding_string],
+			args: [post_id, embedding_buffer],
 		})
 	} catch (error) {
 		console.error(
@@ -57,34 +62,59 @@ export const store_post_embedding = async (
 	}
 }
 
+function cosine_similarity(a: Float32Array, b: Float32Array): number {
+	let dot_product = 0
+	let norm_a = 0
+	let norm_b = 0
+	for (let i = 0; i < a.length; i++) {
+		dot_product += a[i] * b[i]
+		norm_a += a[i] * a[i]
+		norm_b += b[i] * b[i]
+	}
+	return dot_product / (Math.sqrt(norm_a) * Math.sqrt(norm_b))
+}
+
 export const get_related_posts = async (
 	post_id: string,
 	limit: number = 5,
 ) => {
 	const client = turso_client()
 	try {
-		const result = await client.execute({
-			sql: `
-        WITH query_embedding AS (
-          SELECT json_extract(embedding, '$') AS vector
-          FROM post_embeddings
-          WHERE post_id = ?
-        )
-        SELECT p.post_id,
-               json_extract(p.embedding, '$') AS embedding_vector,
-               (SELECT vector FROM query_embedding) AS query_vector
-        FROM post_embeddings p
-        WHERE p.post_id != ?
-        ORDER BY vector_cosine_similarity(
-          json_extract(p.embedding, '$'),
-          (SELECT vector FROM query_embedding)
-        ) DESC
-        LIMIT ?
-      `,
-			args: [post_id, post_id, limit],
+		// First, get the embedding for the current post
+		const current_post_result = await client.execute({
+			sql: 'SELECT embedding FROM post_embeddings WHERE post_id = ?',
+			args: [post_id],
 		})
 
-		return result.rows.map((row: any) => row.post_id)
+		if (current_post_result.rows.length === 0) {
+			throw new Error(`No embedding found for post_id: ${post_id}`)
+		}
+
+		const current_embedding = new Float32Array(
+			current_post_result.rows[0].embedding as ArrayBuffer,
+		)
+
+		// Get all other posts' embeddings
+		const all_posts_result = await client.execute({
+			sql: 'SELECT post_id, embedding FROM post_embeddings WHERE post_id != ?',
+			args: [post_id],
+		})
+
+		// Calculate similarities
+		const similarities = all_posts_result.rows.map((row: any) => ({
+			post_id: row.post_id,
+			similarity: cosine_similarity(
+				current_embedding,
+				new Float32Array(row.embedding as ArrayBuffer),
+			),
+		}))
+
+		// Sort by similarity and take top 'limit' results
+		const related_posts = similarities
+			.sort((a, b) => b.similarity - a.similarity)
+			.slice(0, limit)
+
+		return related_posts.map(post => post.post_id)
 	} catch (error) {
 		console.error('Error getting related posts:', error)
 		throw error
@@ -101,11 +131,38 @@ export const get_post_embedding = async (
 			args: [post_id],
 		})
 		if (result.rows.length > 0) {
-			return JSON.parse(result.rows[0].embedding as string)
+			const embedding = result.rows[0].embedding
+			if (embedding instanceof ArrayBuffer) {
+				return Array.from(new Float32Array(embedding))
+			}
 		}
 		return null
 	} catch (error) {
 		console.error('Error getting post embedding:', error)
 		return null
 	}
+}
+
+export const search_similar_posts = async (
+	query_embedding: number[],
+	limit: number = 5,
+) => {
+	const client = turso_client()
+	const query_embedding_array = new Float32Array(query_embedding)
+
+	const all_posts_result = await client.execute(
+		'SELECT post_id, embedding FROM post_embeddings',
+	)
+
+	const similarities = all_posts_result.rows.map((row: any) => ({
+		post_id: row.post_id,
+		similarity: cosine_similarity(
+			query_embedding_array,
+			new Float32Array(row.embedding as ArrayBuffer),
+		),
+	}))
+
+	return similarities
+		.sort((a, b) => b.similarity - a.similarity)
+		.slice(0, limit)
 }

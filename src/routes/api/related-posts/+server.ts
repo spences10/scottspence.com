@@ -1,5 +1,5 @@
+import { turso_client } from '$lib/turso'
 import { json } from '@sveltejs/kit'
-import { get_related_posts } from '../ingest/embeddings'
 
 export const GET = async ({ url }) => {
 	const post_id = url.searchParams.get('post_id')
@@ -11,25 +11,32 @@ export const GET = async ({ url }) => {
 		)
 	}
 
-	const related_post_ids = await get_related_posts(post_id)
+	const client = turso_client()
+	const result = await client.execute({
+		sql: 'SELECT related_post_ids FROM related_posts WHERE post_id = ?',
+		args: [post_id],
+	})
 
-	const related_posts = await get_posts_by_slugs(related_post_ids)
+	if (result.rows.length === 0) {
+		return json({ related_posts: [] })
+	}
 
-	return json(related_posts)
-}
+	const related_post_ids = JSON.parse(result.rows[0].related_post_ids)
 
-const get_posts_by_slugs = async (
-	slugs: string[],
-): Promise<Post[]> => {
-	const posts = await Promise.all(
-		slugs.map(async slug => {
-			const post = await import(`../../../../posts/${slug}.md`)
-			return {
-				...post.metadata,
-				slug,
-				path: `/posts/${slug}`,
-			} as Post
+	// Fetch titles for related posts
+	const related_posts_with_titles = await Promise.all(
+		related_post_ids.map(async (related_post_id: string) => {
+			const post_result = await client.execute({
+				sql: 'SELECT title FROM posts WHERE slug = ?',
+				args: [related_post_id],
+			})
+			const title =
+				post_result.rows.length > 0
+					? post_result.rows[0].title
+					: 'Unknown Title'
+			return { slug: related_post_id, title }
 		}),
 	)
-	return posts
+
+	return json({ related_posts: related_posts_with_titles })
 }
