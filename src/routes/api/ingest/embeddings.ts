@@ -42,11 +42,11 @@ export const store_post_embedding = async (
 	const client = turso_client()
 	try {
 		const embedding = await create_embedding(content)
-		const embeddingString = JSON.stringify(embedding)
+		const embedding_string = JSON.stringify(embedding)
 
 		await client.execute({
 			sql: 'INSERT OR REPLACE INTO post_embeddings (post_id, embedding) VALUES (?, ?)',
-			args: [post_id, embeddingString],
+			args: [post_id, embedding_string],
 		})
 	} catch (error) {
 		console.error(

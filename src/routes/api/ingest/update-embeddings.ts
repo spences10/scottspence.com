@@ -1,4 +1,6 @@
 import { get_posts } from '$lib/posts'
+import fs from 'node:fs/promises'
+import path from 'node:path'
 import {
 	get_post_embedding,
 	store_post_embedding,
@@ -23,8 +25,18 @@ export const update_embeddings = async () => {
 					)
 
 					if (!existing_embedding) {
-						const content = `${post.title}\n${post.content}`
-						await store_post_embedding(post.slug, content)
+						// Read the markdown file directly
+						const file_path = path.join(
+							process.cwd(),
+							'posts',
+							`${post.slug}.md`,
+						)
+						const file_contents = await fs.readFile(
+							file_path,
+							'utf-8',
+						)
+
+						await store_post_embedding(post.slug, file_contents)
 						new_embeddings++
 					} else {
 						existing_embeddings++
