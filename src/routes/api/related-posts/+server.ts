@@ -21,7 +21,11 @@ export const GET = async ({ url }) => {
 		return json({ related_posts: [] })
 	}
 
-	const related_post_ids = JSON.parse(result.rows[0].related_post_ids)
+	const related_post_ids_value = result.rows[0].related_post_ids
+	const related_post_ids =
+		typeof related_post_ids_value === 'string'
+			? JSON.parse(related_post_ids_value)
+			: []
 
 	// Fetch titles for related posts
 	const related_posts_with_titles = await Promise.all(
