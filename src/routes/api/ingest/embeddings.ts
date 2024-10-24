@@ -1,14 +1,5 @@
-import {
-	TURSO_DB_AUTH_TOKEN,
-	TURSO_DB_URL,
-	VOYAGE_AI_API_KEY,
-} from '$env/static/private'
-import { createClient } from '@libsql/client'
-
-const db = createClient({
-	url: TURSO_DB_URL,
-	authToken: TURSO_DB_AUTH_TOKEN,
-})
+import { VOYAGE_AI_API_KEY } from '$env/static/private'
+import { turso_client } from '$lib/turso'
 
 const create_embedding = async (text: string): Promise<number[]> => {
 	try {
@@ -48,11 +39,12 @@ export const store_post_embedding = async (
 	post_id: string,
 	content: string,
 ) => {
+	const client = turso_client()
 	try {
 		const embedding = await create_embedding(content)
 		const embeddingString = JSON.stringify(embedding)
 
-		await db.execute({
+		await client.execute({
 			sql: 'INSERT OR REPLACE INTO post_embeddings (post_id, embedding) VALUES (?, ?)',
 			args: [post_id, embeddingString],
 		})
@@ -69,8 +61,9 @@ export const get_related_posts = async (
 	post_id: string,
 	limit: number = 5,
 ) => {
+	const client = turso_client()
 	try {
-		const result = await db.execute({
+		const result = await client.execute({
 			sql: `
         WITH query_embedding AS (
           SELECT json_extract(embedding, '$') AS vector
@@ -101,8 +94,9 @@ export const get_related_posts = async (
 export const get_post_embedding = async (
 	post_id: string,
 ): Promise<number[] | null> => {
+	const client = turso_client()
 	try {
-		const result = await db.execute({
+		const result = await client.execute({
 			sql: 'SELECT embedding FROM post_embeddings WHERE post_id = ?',
 			args: [post_id],
 		})

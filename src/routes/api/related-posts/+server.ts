@@ -1,5 +1,5 @@
-import { get_related_posts } from '$lib/server/embeddings'
 import { json } from '@sveltejs/kit'
+import { get_related_posts } from '../ingest/embeddings'
 
 export const GET = async ({ url }) => {
 	const post_id = url.searchParams.get('post_id')
