@@ -1,8 +1,10 @@
 import { env } from '$env/dynamic/private'
 import { json } from '@sveltejs/kit'
 import { index_now } from './index-now'
+import { update_embeddings } from './update-embeddings'
 import { update_popular_posts } from './update-popular-posts'
 import { update_posts } from './update-posts'
+import { update_related_posts_table } from './update-related-posts'
 
 // curl -X POST https://yourdomain.com/api/ingest \
 // -H "Content-Type: application/json" \
@@ -14,7 +16,12 @@ type TaskFunction<TArgs = any, TResult = any> = (
 ) => Promise<TResult>
 
 // Define the type for the keys in tasks object
-type TaskKey = 'update_popular_posts' | 'update_posts'
+type TaskKey =
+	| 'update_popular_posts'
+	| 'update_posts'
+	| 'update_related_posts'
+	| 'index_now'
+	| 'update_embeddings'
 
 // Define the type for tasks object
 interface TaskType {
@@ -43,6 +50,14 @@ const tasks: TaskType = {
 	index_now: {
 		function: index_now,
 		expects_fetch: true,
+	},
+	update_embeddings: {
+		function: update_embeddings,
+		expects_fetch: false,
+	},
+	update_related_posts: {
+		function: update_related_posts_table,
+		expects_fetch: false,
 	},
 }
 

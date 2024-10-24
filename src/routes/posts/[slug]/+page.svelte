@@ -15,6 +15,7 @@
 		IsPrivateBanner,
 		PopularPosts,
 		Reactions,
+		RelatedPosts,
 		ShareWithTweet,
 		TableOfContents,
 		UpdatedBanner,
@@ -32,7 +33,7 @@
 
 	let { data } = $props()
 
-	let { Content } = data
+	let { Content, related_posts } = data
 	let {
 		title,
 		date,
@@ -275,5 +276,8 @@
 	</div>
 
 	<PopularPosts />
+
+	<RelatedPosts {related_posts} />
+
 	<ButtButt />
 </article>
