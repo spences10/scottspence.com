@@ -18,7 +18,9 @@ export const GET = async ({ url }) => {
 	return json(related_posts)
 }
 
-async function get_posts_by_slugs(slugs: string[]): Promise<Post[]> {
+const get_posts_by_slugs = async (
+	slugs: string[],
+): Promise<Post[]> => {
 	const posts = await Promise.all(
 		slugs.map(async slug => {
 			const post = await import(`../../../../posts/${slug}.md`)

@@ -1,6 +1,6 @@
-import fs from 'fs/promises'
-import path from 'path'
-import { fileURLToPath } from 'url'
+import fs from 'node:fs/promises'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import {
 	get_post_embedding,
 	store_post_embedding,
@@ -20,7 +20,7 @@ async function get_posts(): Promise<Post[]> {
 				const slug = file.replace('.md', '')
 				const filePath = path.join(POSTS_DIRECTORY, file)
 				const content = await fs.readFile(filePath, 'utf-8')
-				const { attributes, body } = parseFrontmatter(content)
+				const { attributes, body } = parse_frontmatter(content)
 				return {
 					title: attributes.title || '',
 					slug,
@@ -33,16 +33,16 @@ async function get_posts(): Promise<Post[]> {
 	return posts
 }
 
-function parseFrontmatter(content: string): {
+function parse_frontmatter(content: string): {
 	attributes: Record<string, string>
 	body: string
 } {
-	const frontmatterRegex = /---\s*([\s\S]*?)\s*---/
-	const match = frontmatterRegex.exec(content)
+	const frontmatter_regex = /---\s*([\s\S]*?)\s*---/
+	const match = frontmatter_regex.exec(content)
 	if (!match) return { attributes: {}, body: content }
 
 	const frontmatter = match[1]
-	const body = content.replace(frontmatterRegex, '').trim()
+	const body = content.replace(frontmatter_regex, '').trim()
 	const attributes: Record<string, string> = {}
 	frontmatter.split('\n').forEach(line => {
 		const [key, ...rest] = line.split(':')

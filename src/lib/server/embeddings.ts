@@ -1,7 +1,7 @@
 import {
 	TURSO_DB_AUTH_TOKEN,
 	TURSO_DB_URL,
-	VOYAGEAI_API_KEY,
+	VOYAGE_AI_API_KEY,
 } from '$env/static/private'
 import { createClient } from '@libsql/client'
 
@@ -18,7 +18,7 @@ const create_embedding = async (text: string): Promise<number[]> => {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: `Bearer ${VOYAGEAI_API_KEY}`,
+					Authorization: `Bearer ${VOYAGE_AI_API_KEY}`,
 				},
 				body: JSON.stringify({
 					model: 'voyage-3',
