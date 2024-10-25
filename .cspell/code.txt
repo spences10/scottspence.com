@@ -61,6 +61,7 @@ NOTNULL
 npmignore
 npmrc
 nvmrc
+oklch
 ondestroy
 onmount
 PageElement
