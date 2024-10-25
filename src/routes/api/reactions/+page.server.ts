@@ -1,6 +1,9 @@
+import { reactions } from '$lib/reactions-config'
 import { ratelimit } from '$lib/redis'
-import { turso_client } from '$lib/turso/client.js'
+import { turso_client } from '$lib/turso/client'
 import { fail } from '@sveltejs/kit'
+
+const allowed_reactions = reactions.map(r => r.type)
 
 export const actions = {
 	default: async ({ request, url, getClientAddress }) => {
@@ -23,7 +26,17 @@ export const actions = {
 		const path = url.searchParams.get('path')
 
 		if (typeof reaction !== 'string' || typeof path !== 'string') {
-			throw new Error('Invalid reaction or path')
+			return fail(400, { error: 'Invalid reaction or path' })
+		}
+
+		// Validate reaction type
+		if (!allowed_reactions.includes(reaction)) {
+			return fail(400, { error: 'Invalid reaction type' })
+		}
+
+		// Validate path
+		if (!/^\/posts\/[\w-]+$/.test(path)) {
+			return fail(400, { error: 'Invalid path' })
 		}
 
 		const client = turso_client()

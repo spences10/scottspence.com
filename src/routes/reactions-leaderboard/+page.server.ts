@@ -1,62 +1,83 @@
-import { reactions } from '$lib/reactions-config.js'
 import { turso_client } from '$lib/turso/client.js'
 
-const fetch_reaction_data = async (): Promise<ReactionPage[]> => {
-	const client = turso_client()
-	const result = await client.execute(
-		`
-    SELECT
-      r.post_url,
-      p.title,
-      r.reaction_type,
-      r.count,
-      total.total_count
-    FROM
-      reactions r
-      JOIN posts p ON r.post_url = '/posts/' || p.slug
-      JOIN (
-        SELECT
-          post_url,
-          SUM(count) as total_count
-        FROM
-          reactions
-        GROUP BY
-          post_url
-      ) total ON r.post_url = total.post_url
-    GROUP BY
-      r.post_url, r.reaction_type
-    ORDER BY
-      total.total_count DESC, r.post_url, r.reaction_type;
-    `,
-	)
-
-	return result.rows.map(row => ({
-		path: String(row.post_url),
-		title: String(row.title),
-		reaction_type: String(row.reaction_type),
-		count: Number(row.count),
-		reaction_emoji: reactions.find(
-			r => r.type === String(row.reaction_type),
-		)?.emoji,
-	}))
+interface ReactionData {
+	path: string
+	title: string
+	reaction_type: string
+	count: number
+	total_count: number
 }
 
-const get_leaderboard_with_ranking = async () => {
-	const reaction_data = await fetch_reaction_data()
+const fetch_reaction_data = async (): Promise<ReactionData[]> => {
+	const client = turso_client()
+	try {
+		const result = await client.execute(`
+			SELECT
+				r.post_url as path,
+				p.title,
+				r.reaction_type,
+				r.count,
+				total.total_count
+			FROM
+				reactions r
+				JOIN posts p ON r.post_url = '/posts/' || p.slug
+				JOIN (
+					SELECT
+						post_url,
+						SUM(count) as total_count
+					FROM
+						reactions
+					GROUP BY
+						post_url
+				) total ON r.post_url = total.post_url
+			ORDER BY
+				total.total_count DESC, r.post_url, r.reaction_type;
+		`)
 
-	const leaderboard = reaction_data.sort((a, b) => b.count - a.count)
-	leaderboard.forEach((entry, index) => {
-		entry.rank = index + 1
+		return result.rows.map(row => ({
+			path: String(row.path),
+			title: String(row.title),
+			reaction_type: String(row.reaction_type),
+			count: Number(row.count),
+			total_count: Number(row.total_count),
+		}))
+	} catch (error) {
+		console.error('Error fetching reaction data:', error)
+		throw error
+	}
+}
+
+const process_leaderboard_data = (data: ReactionData[]) => {
+	const leaderboard = new Map<string, any>()
+
+	data.forEach(item => {
+		if (!leaderboard.has(item.path)) {
+			leaderboard.set(item.path, {
+				path: item.path,
+				title: item.title,
+				total_count: item.total_count,
+				likes: 0,
+				hearts: 0,
+				poops: 0,
+				parties: 0,
+			})
+		}
+		const entry = leaderboard.get(item.path)
+		entry[item.reaction_type] = item.count
 	})
 
-	return leaderboard
+	return Array.from(leaderboard.values())
+		.sort((a, b) => b.total_count - a.total_count)
+		.map((entry, index) => ({ ...entry, rank: index + 1 }))
 }
 
 export const load = async () => {
 	try {
-		const leaderboard = await get_leaderboard_with_ranking()
+		const reaction_data = await fetch_reaction_data()
+		const leaderboard = process_leaderboard_data(reaction_data)
 		return { leaderboard }
 	} catch (error) {
 		console.error('Error fetching leaderboard data:', error)
+		return { error: 'Failed to load leaderboard data' }
 	}
 }

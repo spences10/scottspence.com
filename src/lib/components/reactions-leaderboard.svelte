@@ -1,25 +1,72 @@
 <script lang="ts">
 	import { reactions } from '$lib/reactions-config'
 
+	interface LeaderboardEntry {
+		path: string
+		title: string
+		rank: number
+		likes: number
+		hearts: number
+		poops: number
+		parties: number
+		total_count: number
+		[key: string]: string | number
+	}
+
 	interface Props {
-		leaderboard: ReactionEntry[]
+		leaderboard: LeaderboardEntry[]
 	}
 
 	let { leaderboard }: Props = $props()
 
-	const get_reaction_count = (
-		path: string,
-		reaction_type: string,
+	let sort_by = $state<keyof LeaderboardEntry>('total_count')
+	let sort_order = $state<'asc' | 'desc'>('asc')
+
+	$effect(() => {
+		leaderboard = [...leaderboard].sort((a, b) => {
+			const order = sort_order === 'desc' ? -1 : 1
+			return order * ((b[sort_by] as number) - (a[sort_by] as number))
+		})
+	})
+
+	const handle_sort_change = (
+		new_sort_by: keyof LeaderboardEntry,
 	) => {
-		const entry = leaderboard.find(
-			page =>
-				page.path === path && page.reaction_type === reaction_type,
-		)
-		return entry ? entry.count : 0
+		sort_by = new_sort_by
+	}
+
+	const toggle_sort_order = () => {
+		sort_order = sort_order === 'desc' ? 'asc' : 'desc'
 	}
 </script>
 
 <section class="sm:-mx-30 m-0 mb-20 lg:-mx-40">
+	<div class="mb-4 flex items-center justify-end">
+		<select
+			class="select select-bordered select-sm mr-2"
+			bind:value={sort_by}
+			onchange={e =>
+				handle_sort_change(
+					(e?.target as HTMLSelectElement)
+						?.value as keyof LeaderboardEntry,
+				)}
+		>
+			<option value="total_count">Total Reactions</option>
+			{#each reactions as reaction}
+				<option value={reaction.type}>
+					{reaction.emoji}
+					{reaction.type}
+				</option>
+			{/each}
+		</select>
+		<button
+			class="btn btn-outline btn-sm"
+			onclick={toggle_sort_order}
+		>
+			{sort_order === 'desc' ? '▼' : '▲'}
+		</button>
+	</div>
+
 	<div class="relative grid grid-cols-1 gap-8 md:grid-cols-2">
 		{#each leaderboard as page (page.path)}
 			<a
@@ -56,7 +103,7 @@
 								class="btn btn-primary mb-2 mr-2 min-w-[calc(50%-0.5rem)] flex-1 text-xl md:min-w-0 md:flex-none"
 							>
 								{reaction.emoji}
-								{get_reaction_count(page.path, reaction.type)}
+								{page[reaction.type]}
 							</span>
 						{/each}
 					</div>
