@@ -17,12 +17,6 @@ export const update_posts = async () => {
 
 	// Prepare batch statements
 	const batch_statements = posts.map(post => {
-		// Check if readingTime exists and has the expected properties
-		const reading_time_minutes = post.readingTime?.minutes ?? 0
-		const reading_time_text = post.readingTime?.text ?? ''
-		const reading_time_seconds = post.readingTime?.time ?? 0
-		const reading_time_words = post.readingTime?.words ?? 0
-
 		return {
 			sql: `
 				INSERT INTO posts (
@@ -49,10 +43,10 @@ export const update_posts = async () => {
 				post.isPrivate ?? false,
 				post.preview ?? '',
 				post.previewHtml ?? '',
-				reading_time_minutes,
-				reading_time_text,
-				reading_time_seconds,
-				reading_time_words,
+				post.reading_time.minutes,
+				post.reading_time.text,
+				post.reading_time.time / 1000,
+				post.reading_time.words,
 				post.slug,
 				post.tags?.join(',') ?? '',
 				post.title ?? '',

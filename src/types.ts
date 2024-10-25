@@ -3,7 +3,7 @@ declare interface Post {
 	title: string
 	tags: string[]
 	isPrivate: boolean
-	readingTime: {
+	reading_time: {
 		text: string
 		minutes: number
 		time: number
