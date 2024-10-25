@@ -16,7 +16,7 @@
 
 	let filtered_posts = $derived.by(() => {
 		return posts.filter((post: Post) => {
-			if (post.isPrivate) return false
+			if (post.is_private) return false
 
 			if (search_query === '') return true
 

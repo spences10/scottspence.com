@@ -40,7 +40,7 @@ export const update_posts = async () => {
 			`,
 			args: [
 				new Date(post.date).toISOString(),
-				post.isPrivate ?? false,
+				post.is_private ?? false,
 				post.preview ?? '',
 				post.previewHtml ?? '',
 				post.reading_time.minutes,

@@ -10,7 +10,7 @@ export const get_post_tags = async () => {
 	const { posts } = await get_posts()
 
 	posts.forEach((post: Post) => {
-		if (post.tags && !post.isPrivate) {
+		if (post.tags && !post.is_private) {
 			// Split the tags string into an array
 			// @ts-ignore
 			const split_tags = post.tags.split(',')

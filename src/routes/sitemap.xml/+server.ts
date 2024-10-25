@@ -41,7 +41,7 @@ export const GET = async () => {
 
 const renderPosts = (posts_metadata: Post[]) => {
 	return posts_metadata
-		.filter(({ isPrivate }) => !isPrivate)
+		.filter(({ is_private }) => !is_private)
 		.map(
 			({ slug, date }) => `
         <url>
