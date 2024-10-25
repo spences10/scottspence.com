@@ -1,4 +1,4 @@
-import { turso_client } from '$lib/turso/client.js'
+import { turso_client } from '$lib/turso/client'
 
 interface ReactionData {
 	path: string
@@ -47,7 +47,9 @@ const fetch_reaction_data = async (): Promise<ReactionData[]> => {
 	}
 }
 
-const process_leaderboard_data = (data: ReactionData[]) => {
+const process_leaderboard_data = (
+	data: ReactionData[],
+): ReactionEntry[] => {
 	const leaderboard = new Map<string, any>()
 
 	data.forEach(item => {
@@ -74,7 +76,8 @@ const process_leaderboard_data = (data: ReactionData[]) => {
 export const load = async () => {
 	try {
 		const reaction_data = await fetch_reaction_data()
-		const leaderboard = process_leaderboard_data(reaction_data)
+		const leaderboard: ReactionEntry[] =
+			process_leaderboard_data(reaction_data)
 		return { leaderboard }
 	} catch (error) {
 		console.error('Error fetching leaderboard data:', error)

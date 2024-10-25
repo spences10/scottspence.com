@@ -1,26 +1,14 @@
 <script lang="ts">
 	import { reactions } from '$lib/reactions-config'
 
-	interface LeaderboardEntry {
-		path: string
-		title: string
-		rank: number
-		likes: number
-		hearts: number
-		poops: number
-		parties: number
-		total_count: number
-		[key: string]: string | number
-	}
-
 	interface Props {
-		leaderboard: LeaderboardEntry[]
+		leaderboard: ReactionEntry[]
 	}
 
 	let { leaderboard }: Props = $props()
 
-	let sort_by = $state<keyof LeaderboardEntry>('total_count')
-	let sort_order = $state<'asc' | 'desc'>('asc')
+	let sort_by = $state<keyof ReactionEntry>('total_count')
+	let sort_order = $state<'asc' | 'desc'>('desc')
 
 	$effect(() => {
 		leaderboard = [...leaderboard].sort((a, b) => {
@@ -29,9 +17,7 @@
 		})
 	})
 
-	const handle_sort_change = (
-		new_sort_by: keyof LeaderboardEntry,
-	) => {
+	const handle_sort_change = (new_sort_by: keyof ReactionEntry) => {
 		sort_by = new_sort_by
 	}
 
@@ -48,7 +34,7 @@
 			onchange={e =>
 				handle_sort_change(
 					(e?.target as HTMLSelectElement)
-						?.value as keyof LeaderboardEntry,
+						?.value as keyof ReactionEntry,
 				)}
 		>
 			<option value="total_count">Total Reactions</option>
@@ -86,7 +72,7 @@
 							<span class="text-3xl">🥈</span>
 						{:else if page.rank === 3}
 							<span class="text-3xl">🥉</span>
-						{:else if +page.rank > 3}
+						{:else if page.rank && +page.rank > 3}
 							<span class="text-accent">
 								<span
 									class="-mr-1 text-xs"
