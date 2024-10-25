@@ -8,7 +8,7 @@
 	let { leaderboard }: Props = $props()
 
 	let sort_by = $state<keyof ReactionEntry>('total_count')
-	let sort_order = $state<'asc' | 'desc'>('desc')
+	let sort_order = $state<'asc' | 'desc'>('asc')
 
 	$effect(() => {
 		leaderboard = [...leaderboard].sort((a, b) => {
