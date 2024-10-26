@@ -32,7 +32,7 @@
 			<img
 				src={is_hovering ? ScottFace : ScottMugFace}
 				alt="Cartoon face Scott"
-				class="max-h-96 w-1/2 max-w-96 max-w-sm rounded-full shadow-xl lg:w-full"
+				class="max-h-96 w-1/2 max-w-sm rounded-full shadow-xl lg:w-full"
 				onmouseover={() => (is_hovering = !is_hovering)}
 				onmouseout={() => (is_hovering = !is_hovering)}
 			/>

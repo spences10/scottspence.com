@@ -42,7 +42,7 @@ Scrollbar styles:
 	scrollbar-width auto | thin | none
 */
 * {
-	scrollbar-width: auto;
+	scrollbar-width: thin;
 	scrollbar-color: oklch(var(--s)) oklch(var(--p)) !important;
 }
 
