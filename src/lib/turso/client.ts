@@ -18,7 +18,14 @@ export const turso_client = (): Client => {
 	}
 
 	return createClient({
-		url: TURSO_DB_URL as string,
+		url: 'file:db-file.db',
 		authToken: TURSO_DB_AUTH_TOKEN as string,
+		syncUrl: TURSO_DB_URL as string,
+		syncInterval: 60 * 15,
 	})
+
+	// return createClient({
+	// 	url: TURSO_DB_URL as string,
+	// 	authToken: TURSO_DB_AUTH_TOKEN as string,
+	// })
 }
