@@ -345,12 +345,12 @@ Then adding in the Tailwind classes to the HTML elements:
 
   <Counter />
 
-+  <p class="mx-auto max-w-none my-4 max-w-56 md:leading-5">
++  <p class="mx-auto my-4 max-w-56 md:leading-5">
     Visit <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte
     apps.
   </p>
 
-+  <p class="mx-auto max-w-none my-4 max-w-56 md:leading-5">
++  <p class="mx-auto my-4 max-w-56 md:leading-5">
     Check out <a
 +      class="underline underline-dark-500"
       href="https://github.com/sveltejs/kit#readme">SvelteKit</a
