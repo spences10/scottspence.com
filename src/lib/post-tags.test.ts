@@ -11,11 +11,11 @@ test('get_post_tags returns correct tags and posts_by_tag', async () => {
 	// Mock the return value of get_posts
 	;(get_posts as any).mockResolvedValue({
 		posts: [
-			{ title: 'Post 1', tags: 'tag1,tag2', isPrivate: false },
-			{ title: 'Post 2', tags: 'tag2,tag3', isPrivate: false },
-			{ title: 'Post 3', tags: 'tag1,tag3', isPrivate: true },
-			{ title: 'Post 4', tags: 'tag1', isPrivate: false },
-			{ title: 'Post 5', isPrivate: false }, // No tags
+			{ title: 'Post 1', tags: 'tag1,tag2', is_private: false }, // Changed isPrivate to is_private
+			{ title: 'Post 2', tags: 'tag2,tag3', is_private: false },
+			{ title: 'Post 3', tags: 'tag1,tag3', is_private: true },
+			{ title: 'Post 4', tags: 'tag1', is_private: false },
+			{ title: 'Post 5', is_private: false }, // No tags
 		],
 	})
 
@@ -27,19 +27,19 @@ test('get_post_tags returns correct tags and posts_by_tag', async () => {
 	// Check if posts_by_tag is correct
 	expect(result.posts_by_tag).toEqual({
 		tag1: [
-			{ title: 'Post 1', tags: 'tag1,tag2', isPrivate: false },
-			{ title: 'Post 4', tags: 'tag1', isPrivate: false },
+			{ title: 'Post 1', tags: 'tag1,tag2', is_private: false },
+			{ title: 'Post 4', tags: 'tag1', is_private: false },
 		],
 		tag2: [
-			{ title: 'Post 1', tags: 'tag1,tag2', isPrivate: false },
-			{ title: 'Post 2', tags: 'tag2,tag3', isPrivate: false },
+			{ title: 'Post 1', tags: 'tag1,tag2', is_private: false },
+			{ title: 'Post 2', tags: 'tag2,tag3', is_private: false },
 		],
-		tag3: [{ title: 'Post 2', tags: 'tag2,tag3', isPrivate: false }],
+		tag3: [{ title: 'Post 2', tags: 'tag2,tag3', is_private: false }],
 	})
 
 	// Check if private posts are excluded
 	expect(result.posts_by_tag.tag1).not.toContainEqual(
-		expect.objectContaining({ title: 'Post 3', isPrivate: true }),
+		expect.objectContaining({ title: 'Post 3', is_private: true }),
 	)
 
 	// Check if posts without tags are excluded
