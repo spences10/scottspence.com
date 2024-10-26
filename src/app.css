@@ -35,15 +35,15 @@ html {
 
 @tailwind utilities;
 
-/* Scrollbar styles for modern browsers */
+/* 
+Scrollbar styles:
+	scrollbar-color Two valid colors. thumb and track
+	scrollbar-gutter padding when there's no scrollbar
+	scrollbar-width auto | thin | none
+*/
 * {
-	scrollbar-width: thin;
+	scrollbar-width: auto;
 	scrollbar-color: oklch(var(--s)) oklch(var(--p)) !important;
-}
-
-/* Webkit browsers (Chrome, Edge, Safari) for compatibility */
-::-webkit-scrollbar {
-	width: 15px;
 }
 
 ::-webkit-scrollbar-track {
@@ -52,6 +52,4 @@ html {
 
 ::-webkit-scrollbar-thumb {
 	background-color: oklch(var(--s));
-	border-radius: 14px;
-	border: 3px solid oklch(var(--p));
 }
