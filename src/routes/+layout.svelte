@@ -37,11 +37,10 @@
 	})
 
 	onNavigate(navigation => {
-		// sorry Firefox and Safari users
-		if (!(document as any).startViewTransition) return
+		if (!browser || !document.startViewTransition) return
 
 		return new Promise(resolve => {
-			;(document as any).startViewTransition(async () => {
+			document.startViewTransition(async () => {
 				resolve()
 				await navigation.complete
 			})
