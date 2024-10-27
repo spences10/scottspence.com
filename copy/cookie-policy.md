@@ -8,14 +8,12 @@
 # Cookie policy
 
 <Small>
-  Last updated: <DateUpdated date="2023-12-01" small="true" />
+  Last updated: <DateUpdated date="2024-10-27" small="true" />
 </Small>
 
-Ok! Let's have a chat about Cookies, Shall We?
-
-Alright, on [scottspence.com](), I'm not all about the fuss, but
-there's a thing or two you should know about cookies when you're
-visiting my site.
+Ok, cookies! All you need to know about how they are being used on
+this site. **Tl;Dr**: You're not being tracked, so no need to worry. I
+slap one on here for theme selection.
 
 ### So, what are these cookie things anyway?
 
@@ -26,8 +24,8 @@ time you drop in. Handy, innit?
 
 ### How am I using them?
 
-Now, I'm keeping it simple, just how I like it. Currently there's one
-cookie on [scottspence.com](), and here's what it's for:
+If you noticed the theme selector, where you can play around with the
+themes on the site, that's using a cookie.
 
 ### Theme selection cookie:
 
@@ -69,11 +67,11 @@ Fancy a chat about my Cookie Policy? Drop me a line at
 
 [google chrome]: https://support.google.com/chrome/answer/95647
 [Mozilla Firefox]:
-  https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences
+	https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences
 [Microsoft Edge]:
-  https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09
+	https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09
 [Apple Safari]:
-  https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac
+	https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac
 [cookies@scottspence.dev]:
-  mailto:cookies@scottspence.dev?subject=Cookie%20Concern&body=Hi%20Scott%2C%0D%0A%0D%0AI%20have%20a%20concern%20about%20cookies%20on%20your%20site.
+	mailto:cookies@scottspence.dev?subject=Cookie%20Concern&body=Hi%20Scott%2C%0D%0A%0D%0AI%20have%20a%20concern%20about%20cookies%20on%20your%20site.
 [contact form]: /contact
