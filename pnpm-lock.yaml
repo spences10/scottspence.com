@@ -128,8 +128,8 @@ devDependencies:
     specifier: 6.0.0
     version: 6.0.0
   remark-preview:
-    specifier: 1.0.2
-    version: 1.0.2
+    specifier: 1.0.3
+    version: 1.0.3
   slugify:
     specifier: 1.6.6
     version: 1.6.6
@@ -4093,8 +4093,8 @@ packages:
       unist-util-visit: 5.0.0
     dev: true
 
-  /remark-preview@1.0.2:
-    resolution: {integrity: sha512-WZMGLHpRD9P0ko2TTaGPpEkz1aVaCUuM/Ofcuc2vb8P/nomfokIVUKTVypzmedWtvMYbb8XQlwQr56dksckS4g==}
+  /remark-preview@1.0.3:
+    resolution: {integrity: sha512-XT1qrNgB3JjawguQGknlT0O2z6TbJO/MdR3pBbLWz7aPbfgrba4YgANkNO4DbV4fSlLzrqok48pKmd3TwlkHZw==}
     dependencies:
       hast-util-sanitize: 4.1.0
       hast-util-to-html: 8.0.4
