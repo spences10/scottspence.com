@@ -442,7 +442,7 @@ export const PEOPLE = [
 		met: true,
 	},
 	{
-		name: `Jess`,
+		name: `Jessica Sacks`,
 		link: `https://bsky.app/profile/jess.sh`,
 		met: true,
 	},
