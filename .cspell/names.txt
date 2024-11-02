@@ -62,6 +62,7 @@ Darnes
 daysofcode
 deezer
 Dendron
+Deno
 disqus
 Dittofeed
 DMARCLY
@@ -204,6 +205,7 @@ Raycast
 Rayment
 reactjs
 Restream
+Ricciuti
 Rollup
 Ronak
 Rufo
