@@ -15,16 +15,16 @@
 
 	const shuffle_array = (array: Person[]) => {
 		for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
+			const j = Math.floor(Math.random() * (i + 1))
+			;[array[i], array[j]] = [array[j], array[i]]
+		}
+		return array
 	}
 
 	const sort_functions: Record<SortFunctionKeys, () => Person[]> = {
 		all: () => shuffle_array(PEOPLE),
-		met: () => PEOPLE.filter(p => p.met),
-		not_met: () => PEOPLE.filter(p => !p.met),
+		met: () => shuffle_array(PEOPLE.filter(p => p.met)),
+		not_met: () => shuffle_array(PEOPLE.filter(p => !p.met)),
 	}
 
 	let sorted_people: Person[] = $derived(
