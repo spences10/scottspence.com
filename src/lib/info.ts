@@ -412,18 +412,13 @@ export const PEOPLE = [
 		met: true,
 	},
 	{
-		name: `Ro`,
-		link: `https://twitter.com/rothecoder`,
-		met: false,
-	},
-	{
 		name: `Brittney Postma`,
 		link: `https://twitter.com/BrittneyPostma`,
 		met: true,
 	},
 	{
 		name: `Antony Jones`,
-		link: `https://twitter.com/antony`,
+		link: `https://bsky.app/profile/antony.is`,
 		met: true,
 	},
 	{
@@ -433,12 +428,12 @@ export const PEOPLE = [
 	},
 	{
 		name: `Geoff Rich`,
-		link: `https://twitter.com/geoffrich_`,
+		link: `https://bsky.app/profile/geoffrich.net`,
 		met: false,
 	},
 	{
 		name: `JYC`,
-		link: `https://twitter.com/jycouet`,
+		link: `https://bsky.app/profile/jyc.dev`,
 		met: true,
 	},
 	{
@@ -458,7 +453,7 @@ export const PEOPLE = [
 	},
 	{
 		name: `Jon Hilton`,
-		link: `https://twitter.com/jonhilt`,
+		link: `https://bsky.app/profile/jonhilton.net`,
 		met: false,
 	},
 	{
@@ -473,12 +468,12 @@ export const PEOPLE = [
 	},
 	{
 		name: `Willow (GHOST)`,
-		link: `https://twitter.com/onlyspaceghost`,
+		link: `https://bsky.app/profile/willow.sh`,
 		met: true,
 	},
 	{
 		name: `Mike Karan`,
-		link: `https://twitter.com/htmleverything`,
+		link: `https://bsky.app/profile/mikek.me`,
 		met: false,
 	},
 	{
@@ -488,7 +483,7 @@ export const PEOPLE = [
 	},
 	{
 		name: `Puru`,
-		link: `https://twitter.com/puruvjdev`,
+		link: `https://bsky.app/profile/puruvj.dev`,
 		met: true,
 	},
 	{
@@ -498,12 +493,12 @@ export const PEOPLE = [
 	},
 	{
 		name: `TiiaAurora`,
-		link: `https://twitter.com/TiiaAurora`,
+		link: `https://bsky.app/profile/tiiaaurora.bsky.social`,
 		met: false,
 	},
 	{
 		name: `Patak`,
-		link: `https://twitter.com/patak_dev`,
+		link: `https://bsky.app/profile/patak.dev`,
 		met: false,
 	},
 ]
