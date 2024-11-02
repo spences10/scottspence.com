@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Bluesky from '$lib/icons/bluesky.svelte'
-	
+
 	interface Props {
 		buttonText?: string
 		postText?: string
@@ -18,6 +18,6 @@
 >
 	<div class="flex items-center" role="presentation">
 		<span class="mr-3">{buttonText}</span>
-		<Bluesky height="20px" width="22.6px" />
+		<Bluesky />
 	</div>
 </a>
