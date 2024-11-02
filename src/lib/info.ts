@@ -437,16 +437,6 @@ export const PEOPLE = [
 		met: true,
 	},
 	{
-		name: `Daniel Roe`,
-		link: `https://bsky.app/profile/danielroe.dev`,
-		met: true,
-	},
-	{
-		name: `Jessica Sacks`,
-		link: `https://bsky.app/profile/jess.sh`,
-		met: true,
-	},
-	{
 		name: `Lors`,
 		link: `https://twitter.com/miss_lorsx`,
 		met: false,
