@@ -15,7 +15,7 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2024-06-26" small="true" />
+  Last updated: <DateUpdated date="2024-10-31" small="true" />
 </Small>
 
 If you want me to talk about using Svelte and SvelteKit or anything
