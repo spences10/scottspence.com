@@ -37,10 +37,6 @@ what I'm working on and what I'm thinking about.
   embeddings in a Turso (libsql) database with vectors, and then using
   the embeddings to power a search functionality on a site.
 
-- Creating something to curl tasks for me as existing ones on Val.town
-  are timing out because they take too long, probably going to chuck
-  it on a VPS somewhere.
-
 - Taking a look at
   [svelte-markdoc-preprocess](https://github.com/TorstenDittmann/svelte-markdoc-preprocess)
   for possible rewrite of this site.
@@ -81,3 +77,5 @@ what I'm working on and what I'm thinking about.
 
 - Added related posts to the bottom of each post using Turso with
   vector search via Voyage AI embeddings.
+
+- cURL tasks using Deno on a VPS.
