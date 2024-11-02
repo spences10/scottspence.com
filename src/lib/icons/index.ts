@@ -1,3 +1,4 @@
+export { default as Bluesky } from './bluesky.svelte'
 export { default as Envelope } from './envelope.svelte'
 export { default as Eye } from './eye.svelte'
 export { default as InformationCircle } from './information-circle.svelte'

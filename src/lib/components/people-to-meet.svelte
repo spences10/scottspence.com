@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { PEOPLE } from '$lib/info'
 	import PeopleToMeetCheck from './people-to-meet-check.svelte'
-	import ShareWithTweet from './share-with-tweet.svelte'
+	import PostOnBlueSky from './post-on-bluesky.svelte'
 
 	type SortFunctionKeys = 'all' | 'met' | 'not_met'
 
@@ -99,9 +99,9 @@
 		<p class="all-prose mb-3 md:mb-0 md:mr-5">
 			Not on the list? Want to meet up?
 		</p>
-		<ShareWithTweet
-			tweetText="Yo! @spences10, I think we should totally meet IRL."
-			buttonText="Hit me up on Twitter!"
+		<PostOnBlueSky
+			postText="Yo! @scottspence.dev, I think we should totally meet IRL. Add me to that list!!"
+			buttonText="Hit me up on Bluesky!"
 		/>
 	</div>
 </article>
