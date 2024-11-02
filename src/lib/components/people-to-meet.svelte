@@ -14,7 +14,11 @@
 	let sort_mode = $state('random')
 
 	const shuffle_array = (array: Person[]) => {
-		return array.sort(() => 0.5 - Math.random())
+		for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
 	}
 
 	const sort_functions: Record<SortFunctionKeys, () => Person[]> = {
