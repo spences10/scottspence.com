@@ -10,8 +10,8 @@ Vercel, this is mainly the CLI commands that are needed to get set up
 with ProtonMail and Vercel.
 
 I've decided to give ProtonMail a shot, I have lost faith in Google
-being a force for good and coming round to the notion that [I have
-been their product] for the last 15 years or so. 😬
+being a force for good and coming round to the notion that [I
+have been their product] for the last 15 years or so. 😬
 
 <!-- cSpell:ignore nomoregoogle -->
 
@@ -116,4 +116,4 @@ so I've left well alone for now!
 
 [nomoregoogle.com]: https://nomoregoogle.com/
 [i have been their product]:
-  https://quoteinvestigator.com/2017/07/16/product/
+	https://quoteinvestigator.com/2017/07/16/product/

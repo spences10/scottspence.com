@@ -5,11 +5,11 @@ tags: ['gatsby', 'mdx', 'learning']
 isPrivate: false
 ---
 
-The Gatsby File System Route API was [announced recently] and I have
-been having a play around with it. If you're not familiar with it,
-it's something like the [dynamic routing you get with Next.js]. If
-you're not familiar with that either then it's a way to generate your
-page routes from data.
+The Gatsby File System Route API was [announced recently] and I have been
+having a play around with it. If you're not familiar with it, it's something
+like the [dynamic routing you get with Next.js]. If you're not
+familiar with that either then it's a way to generate your page routes
+from data.
 
 This approach means that there's no need to use the Gatsby
 `gatsby-node.js` file and related APIs to create your project pages
@@ -155,16 +155,16 @@ slug, here's the GraphQL query:
 
 ```graphql
 {
-  allMdx {
-    nodes {
-      id
-      slug
-      frontmatter {
-        date
-        title
-      }
-    }
-  }
+	allMdx {
+		nodes {
+			id
+			slug
+			frontmatter {
+				date
+				title
+			}
+		}
+	}
 }
 ```
 
@@ -200,15 +200,15 @@ to take the `slug`, it'll look something like this:
 
 ```graphql
 query PostBySlug($slug: String!) {
-  mdx(slug: { eq: $slug }) {
-    id
-    slug
-    # body
-    frontmatter {
-      date
-      title
-    }
-  }
+	mdx(slug: { eq: $slug }) {
+		id
+		slug
+		# body
+		frontmatter {
+			date
+			title
+		}
+	}
 }
 ```
 
@@ -221,7 +221,7 @@ or the query wont run:
 
 ```json
 {
-  "slug": "09/02/how-to-monetise-your-content/"
+	"slug": "09/02/how-to-monetise-your-content/"
 }
 ```
 
@@ -235,9 +235,8 @@ leaving it in there as I'll be using it in a page query very soon.
 Now that I know that the data for the MDX content I've added is
 available via the Graph<em>i</em>QL explorer I need to create
 
-To use the File System Route API, I'll use some [curly bois] `{}` in
-my filename to signify dynamic URL parts that relate to a field within
-a node.
+To use the File System Route API, I'll use some [curly bois] `{}` in my
+filename to signify dynamic URL parts that relate to a field within a node.
 
 Clear as mud?
 
@@ -245,9 +244,9 @@ Remember the query I made to select a single MDX page??
 
 ```graphql
 query PostBySlug($slug: String!) {
-  mdx(slug: { eq: $slug }) {
-    slug
-  }
+	mdx(slug: { eq: $slug }) {
+		slug
+	}
 }
 ```
 
@@ -306,11 +305,11 @@ component:
 import React from 'react'
 
 export default function PostPage() {
-  return (
-    <>
-      <h1>Yo!</h1>
-    </>
-  )
+	return (
+		<>
+			<h1>Yo!</h1>
+		</>
+	)
 }
 ```
 
@@ -325,28 +324,28 @@ import { graphql } from 'gatsby'
 import React from 'react'
 
 export default function PostPage({ data }) {
-  console.log('=====================')
-  console.log(data)
-  console.log('=====================')
-  return (
-    <>
-      <h1>Yo!</h1>
-    </>
-  )
+	console.log('=====================')
+	console.log(data)
+	console.log('=====================')
+	return (
+		<>
+			<h1>Yo!</h1>
+		</>
+	)
 }
 
 export const query = graphql`
-  query PostBySlug($slug: String) {
-    mdx(slug: { eq: $slug }) {
-      id
-      slug
-      body
-      frontmatter {
-        date
-        title
-      }
-    }
-  }
+	query PostBySlug($slug: String) {
+		mdx(slug: { eq: $slug }) {
+			id
+			slug
+			body
+			frontmatter {
+				date
+				title
+			}
+		}
+	}
 `
 ```
 
@@ -380,30 +379,30 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React from 'react'
 
 export default function PostPage({ data }) {
-  const {
-    body,
-    frontmatter: { title },
-  } = data.mdx
-  return (
-    <>
-      <Text fontSize="4xl">{title}</Text>
-      <MDXRenderer>{body}</MDXRenderer>
-    </>
-  )
+	const {
+		body,
+		frontmatter: { title },
+	} = data.mdx
+	return (
+		<>
+			<Text fontSize="4xl">{title}</Text>
+			<MDXRenderer>{body}</MDXRenderer>
+		</>
+	)
 }
 
 export const query = graphql`
-  query PostBySlug($slug: String) {
-    mdx(slug: { eq: $slug }) {
-      id
-      slug
-      body
-      frontmatter {
-        date
-        title
-      }
-    }
-  }
+	query PostBySlug($slug: String) {
+		mdx(slug: { eq: $slug }) {
+			id
+			slug
+			body
+			frontmatter {
+				date
+				title
+			}
+		}
+	}
 `
 ```
 
@@ -511,9 +510,9 @@ Gatsby [File System Route Starter] I made.
 
 [announced recently]: https://www.gatsbyjs.com/blog/fs-route-api/
 [dynamic routing you get with next.js]:
-  https://nextjs.org/blog/next-9#dynamic-route-segments
+	https://nextjs.org/blog/next-9#dynamic-route-segments
 [getting started chakra ui gatsby]:
-  https://scottspence.com/posts/getting-started-chakra-ui-gatsby/
+	https://scottspence.com/posts/getting-started-chakra-ui-gatsby/
 [file system route starter]:
-  https://github.com/spences10/gatsby-starter-file-system-route-api-mdx
+	https://github.com/spences10/gatsby-starter-file-system-route-api-mdx
 [curly bois]: https://twitter.com/spences10/status/1329335632041299971

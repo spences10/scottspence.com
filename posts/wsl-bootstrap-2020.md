@@ -126,8 +126,8 @@ Check that you can open Ubuntu, open it from the Windows start panel.
 
 If there's a message along the lines of
 `WSLRegisterDistribution failed with error: xxxx` (which is what I
-got) then there's more information on enabling [some additional
-features] for the WSL 2 kernel, run that.
+got) then there's more information on enabling [some
+additional features] for the WSL 2 kernel, run that.
 
 Reboot again!
 
@@ -169,9 +169,9 @@ files for things like `.gitconfig` and `.ssh` in a shared location.
 This allows file permissions to be persisted see this [great
 explanation from Brian Turek] detailing it.
 
-I followed the documentation on the Microsoft docs to [configure per
-distro launch settings with `wsl.conf`], my `wsl.conf` file looks like
-this:
+I followed the documentation on the Microsoft docs to [configure
+per distro launch settings with `wsl.conf`], my `wsl.conf` file looks
+like this:
 
 <!-- cSpell:ignore fmask,automount,windir -->
 
@@ -290,9 +290,9 @@ sudo apt install -y build-essential
 I like [Hyper], but I've decided to use the [Microsoft Terminal] for a
 while, so far I really like it.
 
-Once I found out how to customise it via the [Windows Terminal
-documentation] and found a pretty sweet site for [Windows Terminal
-Themes].
+Once I found out how to customise it via the [Windows
+Terminal documentation] and found a pretty sweet site for [Windows
+Terminal Themes].
 
 ## Shell, Fish Shell
 
@@ -334,8 +334,8 @@ omf install nvm
 ```
 
 Now I can add my aliases to fish, I have a list that I always use from
-my [Cheat Sheets] site. This is shortening things like `git` to `g`
-(yes) and `yarn add` to `ya`.
+my [Cheat Sheets] site. This is shortening things like `git` to `g` (yes)
+and `yarn add` to `ya`.
 
 ## Change default shell
 
@@ -489,10 +489,10 @@ instances of a Linux distro on your machine.
 <!-- cSpell:ignore pengwin -->
 
 There's several for Ubuntu, with Ubuntu (20.04), Ubuntu 20.04 LTS and
-Ubuntu 18.04 LTS then on top of that there are [another several
-distros] recommended by Microsoft with additional ones on top of that
-like [Pengwin] (which is a great extension on what's already available
-in the recommended distros from Microsoft).
+Ubuntu 18.04 LTS then on top of that there are [another
+several distros] recommended by Microsoft with additional ones on top
+of that like [Pengwin] (which is a great extension on what's already
+available in the recommended distros from Microsoft).
 
 **What does that have to do with symlinks though?** Well, if you think
 about each one of these instances as their own isolated operating
@@ -502,8 +502,8 @@ Each one with it's own set of configurations, it will get pretty
 tedious keeping them all current.
 
 The majority of my settings on these instances will be for Git,
-`.gitconfig` and SSH settings for [authenticating with GitHub via
-SSH].
+`.gitconfig` and SSH settings for [authenticating with GitHub
+via SSH].
 
 Rather than have several differing SSH keys I have the one key in a
 shared location for all the WSL instances that need to use it.
@@ -511,8 +511,8 @@ shared location for all the WSL instances that need to use it.
 ## Config Git
 
 So I have had to install WSL enough times to know that I'm going to be
-losing my dotfiles at some point, that's why I made a [dotfiles repo]
-to store this information for the next time.
+losing my dotfiles at some point, that's why I made a [dotfiles repo] to
+store this information for the next time.
 
 This is where the symlinks come into play, I have my `.gitconfig` in a
 separate location on my computer to my WSL install.
@@ -533,9 +533,9 @@ Coolio!
 I want to be able to use Git with GitHub and not have to authenticate
 on each pull/push to a GitHub repo, to do that I use SSH!
 
-I'll follow my own instructions I've made for myself in [Cheat Sheets
-again], as this is the first time authenticating with GitHub the
-`.ssh` folder containing the `rsa` files will be created on my WSL
+I'll follow my own instructions I've made for myself in [Cheat
+Sheets again], as this is the first time authenticating with GitHub
+the `.ssh` folder containing the `rsa` files will be created on my WSL
 instance. I'll need to move the contents of the created `.ssh` folder
 to the location on my C drive for safe keeping.
 
@@ -567,8 +567,8 @@ Ok I'm ready to use VS Code, configuring VS Code is another topic in
 itself the one thing I want to for Git to work with VS Code is to pick
 the default shell I want to use with VS Code.
 
-On first opening VS Code I'm prompted in install the [Remote WSL]
-extension this will integrate VS Code with my WSL instance.
+On first opening VS Code I'm prompted in install the [Remote WSL] extension
+this will integrate VS Code with my WSL instance.
 
 I'll pop out the terminal pane in VS Code with the shortcut Ctrl+j (or
 Ctrl+') then in the top of the panel there's a drop down box with the
@@ -601,9 +601,9 @@ Time to touch on [WSLGit] again, now that I've got VS Code pointing to
 my WSL terminal I should see any changes under source control (Git)
 appear in the Git VS Code panel.
 
-I mentioned previously in the past I [had to install Git on windows]
-with WSLGit installed via Chocolatey any issues I had in the past are
-forgotten (for now).
+I mentioned previously in the past I [had to install Git on windows] with
+WSLGit installed via Chocolatey any issues I had in the past are forgotten
+(for now).
 
 Now any code changes that are made in VS Code are forwarded to the WSL
 Git instance so there's no need to install Git in Windows!
@@ -618,8 +618,7 @@ environment.
 
 - Nicky Meuleman: [WSL2, zsh, and docker. Linux through Windows.]
 
-- The Microsoft Docs: [Set up your development environment on Windows
-  10]
+- The Microsoft Docs: [Set up your development environment on Windows 10]
 
 - Scott Hanselman: [Developing on Windows with WSL2 (Subsystem for
   Linux), VS Code, Docker, and the Terminal]
@@ -704,43 +703,43 @@ try.
 <!-- Links -->
 
 [windows subsystem linux setup]:
-  https://scottspence.com/posts/wsl-bootstrap/
+	https://scottspence.com/posts/wsl-bootstrap/
 [windows web-dev bootstrap]:
-  https://scottspence.com/posts/wsl-bootstrap-2019
+	https://scottspence.com/posts/wsl-bootstrap-2019
 [this comment on a wsl issue]:
-  https://github.com/microsoft/WSL/issues/5078#issuecomment-613384302
+	https://github.com/microsoft/WSL/issues/5078#issuecomment-613384302
 [symbolic links]: https://en.wikipedia.org/wiki/Symbolic_link
 [a linux distro from the ms store]: https://aka.ms/wslstore
 [another several distros]: https://aka.ms/wslstore
 [pengwin]: https://www.whitewaterfoundry.com/
 [wsl2, zsh, and docker. linux through windows.]:
-  https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker
+	https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker
 [authenticating with github via ssh]:
-  https://cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh
+	https://cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh
 [cygwin]: https://cygwin.com/packages/summary/bash.html
 [chocolatey]: chocolatey.org/
 [guide]: #prerequisites
 [windows terminal documentation]:
-  https://github.com/microsoft/terminal/blob/master/doc/user-docs/UsingJsonSettings.md
+	https://github.com/microsoft/terminal/blob/master/doc/user-docs/UsingJsonSettings.md
 [windows terminal themes]: https://atomcorp.github.io/themes/
 [guide on how to use themes]:
-  https://github.com/atomcorp/themes#how-to-use-the-themes
+	https://github.com/atomcorp/themes#how-to-use-the-themes
 [wsl git workaround]: https://github.com/Microsoft/vscode/issues/9502
 [this line]:
-  https://github.com/yarnpkg/yarn/issues/5353#issuecomment-593307861
+	https://github.com/yarnpkg/yarn/issues/5353#issuecomment-593307861
 [windows wsl install]:
-  https://docs.microsoft.com/en-us/windows/wsl/install-win10
+	https://docs.microsoft.com/en-us/windows/wsl/install-win10
 [some additional features]: https://aka.ms/wsl2kernel
 [great explanation from brian turek]:
-  https://www.turek.dev/post/fix-wsl-file-permissions/
+	https://www.turek.dev/post/fix-wsl-file-permissions/
 [configure per distro launch settings with `wsl.conf`]:
-  https://docs.microsoft.com/en-us/windows/wsl/wsl-config#configure-per-distro-launch-settings-with-wslconf
+	https://docs.microsoft.com/en-us/windows/wsl/wsl-config#configure-per-distro-launch-settings-with-wslconf
 [ridicurious]:
-  https://ridicurious.com/2019/07/25/setup-wsl-launch-configuration-wsl-conf/
+	https://ridicurious.com/2019/07/25/setup-wsl-launch-configuration-wsl-conf/
 [chocolatey]: https://chocolatey.org/
 [get started]: https://chocolatey.org/install
 [had to install git on windows]:
-  https://scottspence.com/posts/wsl-bootstrap-2019/#install-windows-git
+	https://scottspence.com/posts/wsl-bootstrap-2019/#install-windows-git
 [using node version manager]: https://github.com/nvm-sh/nvm
 [n]: https://www.npmjs.com/package/n#installation
 [fnm]: https://github.com/Schniz/fnm#using-a-script
@@ -753,19 +752,19 @@ try.
 [cheat sheets]: https://cheatsheets.xyz/fish/#list-out-added-aliases
 [earlier]: #enable-file-permissions-for-symlinks
 [dotfiles repo]:
-  https://github.com/spences10/dotfiles/blob/master/Windows/.gitconfig
+	https://github.com/spences10/dotfiles/blob/master/Windows/.gitconfig
 [cheat sheets again]:
-  https://cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh
+	https://cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh
 [brittney]: https://twitter.com/brittneypostma
 [party corgi discord]: https://discord.gg/MzC3kr
 [wslgit]: https://github.com/andy-5/wslgit
 [set up your development environment on windows 10]:
-  https://docs.microsoft.com/en-us/windows/dev-environment/overview
+	https://docs.microsoft.com/en-us/windows/dev-environment/overview
 [developing on windows with wsl2 (subsystem for linux), vs code, docker, and the terminal]:
-  https://www.youtube.com/watch?v=A0eqZujVfYU&feature=emb_title
+	https://www.youtube.com/watch?v=A0eqZujVfYU&feature=emb_title
 [remote wsl]:
-  https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl
+	https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl
 [windows 10 home]:
-  https://docs.microsoft.com/en-us/windows/wsl/wsl2-faq#does-wsl-2-use-hyper-v-will-it-be-available-on-windows-10-home
+	https://docs.microsoft.com/en-us/windows/wsl/wsl2-faq#does-wsl-2-use-hyper-v-will-it-be-available-on-windows-10-home
 [switching to manjaro from ubuntu]:
-  https://scottspence.com/posts/switching-to-manjaro-from-ubuntu/#yarn
+	https://scottspence.com/posts/switching-to-manjaro-from-ubuntu/#yarn

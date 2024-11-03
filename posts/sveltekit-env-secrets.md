@@ -82,14 +82,14 @@ in their example it's a `svelte.config.js` change:
 
 ```js
 const config = {
-  kit: {
-    // ...
-    vite: {
-      define: {
-        'process.env': process.env,
-      },
-    },
-  },
+	kit: {
+		// ...
+		vite: {
+			define: {
+				'process.env': process.env,
+			},
+		},
+	},
 }
 
 export default config
@@ -107,10 +107,10 @@ this!
 
 [vite]: https://vitejs.dev/
 [env variables and modes]:
-  https://vitejs.dev/guide/env-and-mode.html#env-variables
+	https://vitejs.dev/guide/env-and-mode.html#env-variables
 [env-cmd]: https://www.npmjs.com/package/env-cmd
 [dotenv]: https://www.npmjs.com/package/dotenv
 [blog by hideckies]:
-  https://blog.hdks.org/Environment-Variables-in-SvelteKit-and-Vercel/
+	https://blog.hdks.org/Environment-Variables-in-SvelteKit-and-Vercel/
 [sveltekit environment variables with the sveltekit $env module]:
-  https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module
+	https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module

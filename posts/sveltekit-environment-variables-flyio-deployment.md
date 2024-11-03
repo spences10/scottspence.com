@@ -9,8 +9,8 @@ isPrivate: false
 Real quick! I'm going to go through what I did to get a SvelteKit
 project deployed to Fly.io and how to set up environment variables.
 The back story is that I wasn't getting the best response times from
-the project I deployed to Vercel for [Building Session Analytics with
-SvelteKit and Turso DB]. It was an experiment but still, waiting 6
+the project I deployed to Vercel for [Building Session Analytics
+with SvelteKit and Turso DB]. It was an experiment but still, waiting 6
 seconds for a response from the server is not good.
 
 I decide to try out Fly.io and see if I could get better result.
@@ -167,4 +167,4 @@ fly deploy --build-arg TURSO_DB_URL=$TURSO_DB_URL --build-arg TURSO_DB_AUTH_TOKE
 <!-- Links -->
 
 [Building Session Analytics with SvelteKit and Turso DB]:
-  https://scottspence.com/posts/building-session-analytics-sveltekit-turso-db
+	https://scottspence.com/posts/building-session-analytics-sveltekit-turso-db

@@ -27,14 +27,14 @@ The data was in a massive table with each `td` having a `data-label`
 
 ```html
 <td class="email" data-label="Email">
-  <span>
-    <a
-      class="data-table__cell-link"
-      href="/app/lists/654321/members/987654321"
-    >
-      someemail@hotmail.com
-    </a>
-  </span>
+	<span>
+		<a
+			class="data-table__cell-link"
+			href="/app/lists/654321/members/987654321"
+		>
+			someemail@hotmail.com
+		</a>
+	</span>
 </td>
 ```
 
@@ -54,7 +54,7 @@ element text (`el.innerText`).
 
 ```js
 Array.prototype.forEach.call(dataLabels, el => {
-  console.log(el.innerText)
+	console.log(el.innerText)
 })
 ```
 
@@ -100,10 +100,10 @@ the element id and the text.
 let ids = document.querySelectorAll('[id]')
 
 Array.prototype.forEach.call(ids, el => {
-  if (el.localName.includes(`h2`)) {
-    console.log(`#${el.id}`)
-    console.log(el.innerText)
-  }
+	if (el.localName.includes(`h2`)) {
+		console.log(`#${el.id}`)
+		console.log(el.innerText)
+	}
 })
 ```
 
@@ -115,4 +115,4 @@ Thanks.
 <!-- Links -->
 
 [lighthouse metrics]:
-  https://lighthouse-metrics.com/lighthouse/checks/4fad27cb-2c64-456c-bacf-73dee564c945
+	https://lighthouse-metrics.com/lighthouse/checks/4fad27cb-2c64-456c-bacf-73dee564c945

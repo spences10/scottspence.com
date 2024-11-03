@@ -15,7 +15,8 @@ couple of projects now and I think it's great!
 I first came across this post from the creator of Houdini ([Alec
 Aivazis]) over on Dev.to for [Building an Application with GraphQL and
 SvelteKit]. A great post on getting set up with Houdini using the [The
-Rick and Morty API].
+Rick
+and Morty API].
 
 You can see the [example I made] following along over on GitHub and
 the [example site] deployed to Vercel.
@@ -95,27 +96,27 @@ import path from 'path'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  preprocess: [houdini()],
-  kit: {
-    adapter: adapter(),
+	preprocess: [houdini()],
+	kit: {
+		adapter: adapter(),
 
-    // hydrate the <div id="svelte"> element in src/app.html
-    target: '#svelte',
-    vite: {
-      resolve: {
-        alias: {
-          $houdini: path.resolve('.', '$houdini'),
-        },
-      },
-      server: {
-        fs: {
-          // Allow serving files from one level up to the project root
-          // https://vitejs.dev/config/#server-fs-allow
-          allow: ['..'],
-        },
-      },
-    },
-  },
+		// hydrate the <div id="svelte"> element in src/app.html
+		target: '#svelte',
+		vite: {
+			resolve: {
+				alias: {
+					$houdini: path.resolve('.', '$houdini'),
+				},
+			},
+			server: {
+				fs: {
+					// Allow serving files from one level up to the project root
+					// https://vitejs.dev/config/#server-fs-allow
+					allow: ['..'],
+				},
+			},
+		},
+	},
 }
 
 export default config
@@ -129,10 +130,10 @@ touch src/routes/__layout.svelte
 
 ```svelte
 <script context="module">
-  import { setEnvironment } from '$houdini'
-  import environment from '../environment'
+	import { setEnvironment } from '$houdini'
+	import environment from '../environment'
 
-  setEnvironment(environment)
+	setEnvironment(environment)
 </script>
 
 <slot />
@@ -142,28 +143,28 @@ touch src/routes/__layout.svelte
 
 ```svelte
 <script>
-  import { graphql, query } from '$houdini'
-  const { data } = query(graphql`
-    query AllPosts {
-      posts {
-        title
-        slug
-        date
-        excerpt
-        tags
-        coverImage {
-          url(
-            transformation: {
-              image: {
-                resize: { width: 400, height: 400, fit: clip }
-              }
-            }
-          )
-        }
-      }
-    }
-  `)
-  const { posts } = $data
+	import { graphql, query } from '$houdini'
+	const { data } = query(graphql`
+		query AllPosts {
+			posts {
+				title
+				slug
+				date
+				excerpt
+				tags
+				coverImage {
+					url(
+						transformation: {
+							image: {
+								resize: { width: 400, height: 400, fit: clip }
+							}
+						}
+					)
+				}
+			}
+		}
+	`)
+	const { posts } = $data
 </script>
 
 <pre>{JSON.stringify(posts, null, 2)}</pre>
@@ -185,26 +186,26 @@ Edit the Houdini config file with the custom scalar
 /** @type {import('houdini').ConfigFile} */
 
 const config = {
-  schemaPath: './schema.graphql',
-  sourceGlob: 'src/**/*.svelte',
-  module: 'esm',
-  framework: 'kit',
-  scalars: {
-    // the name of the scalar we are configuring
-    Date: {
-      // the corresponding typescript type (what the typedef generator leaves behind in the response and operation inputs)
-      type: 'Date',
-      // turn the api's response into that type
-      unmarshal(val) {
-        const date = new Date(val).toISOString()
-        return date
-      },
-      // turn the value into something the API can use
-      marshal(date) {
-        return date.getTime()
-      },
-    },
-  },
+	schemaPath: './schema.graphql',
+	sourceGlob: 'src/**/*.svelte',
+	module: 'esm',
+	framework: 'kit',
+	scalars: {
+		// the name of the scalar we are configuring
+		Date: {
+			// the corresponding typescript type (what the typedef generator leaves behind in the response and operation inputs)
+			type: 'Date',
+			// turn the api's response into that type
+			unmarshal(val) {
+				const date = new Date(val).toISOString()
+				return date
+			},
+			// turn the value into something the API can use
+			marshal(date) {
+				return date.getTime()
+			},
+		},
+	},
 }
 
 export default config
@@ -238,12 +239,12 @@ Add Houdini generate command to the `package.json` scripts
 
 [alec aivazis]: https://github.com/AlecAivazis
 [building an application with graphql and sveltekit]:
-  https://dev.to/alecaivazis/building-an-application-with-graphql-and-sveltekit-3heb
+	https://dev.to/alecaivazis/building-an-application-with-graphql-and-sveltekit-3heb
 [the rick and morty api]: https://github.com/afuh/rick-and-morty-api
 [short post on it here]: https://afuh.dev/the-rick-and-morty-api
 [example i made]:
-  https://github.com/spences10/houdini-with-svelte-example
+	https://github.com/spences10/houdini-with-svelte-example
 [example site]: https://houdini-with-svelte-example.vercel.app/
 [blog example using houdini]:
-  https://github.com/spences10/houdini-with-sveltekit-and-graphcms
+	https://github.com/spences10/houdini-with-sveltekit-and-graphcms
 [pnpm]: https://pnpm.io/

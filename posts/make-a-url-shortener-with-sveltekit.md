@@ -75,10 +75,10 @@ redirected to the `destination`.
 
 ```ts
 export const get = async () => {
-  return {
-    headers: { Location: '/' },
-    status: 301,
-  }
+	return {
+		headers: { Location: '/' },
+		status: 301,
+	}
 }
 ```
 
@@ -109,18 +109,18 @@ want, I'll add some example one here.
 
 ```ts
 export const urls = [
-  {
-    source: '/me',
-    destination: 'https://scottspence.com',
-  },
-  {
-    source: '/twitter',
-    destination: 'https://twitter.com/spences10',
-  },
-  {
-    source: '/git',
-    destination: 'https://github.com/spences10',
-  },
+	{
+		source: '/me',
+		destination: 'https://scottspence.com',
+	},
+	{
+		source: '/twitter',
+		destination: 'https://twitter.com/spences10',
+	},
+	{
+		source: '/git',
+		destination: 'https://github.com/spences10',
+	},
 ]
 ```
 
@@ -138,11 +138,11 @@ object.
 
 ```ts
 export const get = async ctx => {
-  console.log(ctx)
-  return {
-    headers: { Location: '/' },
-    status: 301,
-  }
+	console.log(ctx)
+	return {
+		headers: { Location: '/' },
+		status: 301,
+	}
 }
 ```
 
@@ -231,10 +231,10 @@ file.
 import { urls } from '$lib/urls-list'
 
 export const get = async ({ url }) => {
-  return {
-    headers: { Location: '/' },
-    status: 301,
-  }
+	return {
+		headers: { Location: '/' },
+		status: 301,
+	}
 }
 ```
 
@@ -250,14 +250,14 @@ out the results:
 import { urls } from '$lib/urls-list'
 
 export const get = async ({ url }) => {
-  const [redirect] = urls.filter(item => {
-    console.log(item)
-  })
+	const [redirect] = urls.filter(item => {
+		console.log(item)
+	})
 
-  return {
-    headers: { Location: '/' },
-    status: 301,
-  }
+	return {
+		headers: { Location: '/' },
+		status: 301,
+	}
 }
 ```
 
@@ -281,19 +281,19 @@ from the `urls` array.
 import { urls } from '$lib/urls-list'
 
 export const get = async ({ url }) => {
-  const [redirect] = urls.filter(item => item.source === url.pathname)
+	const [redirect] = urls.filter(item => item.source === url.pathname)
 
-  if (redirect) {
-    return {
-      headers: { Location: redirect.destination },
-      status: 301,
-    }
-  } else if (!redirect && url.pathname.length > 1) {
-    return {
-      headers: { Location: '/' },
-      status: 301,
-    }
-  } else return {}
+	if (redirect) {
+		return {
+			headers: { Location: redirect.destination },
+			status: 301,
+		}
+	} else if (!redirect && url.pathname.length > 1) {
+		return {
+			headers: { Location: '/' },
+			status: 301,
+		}
+	} else return {}
 }
 ```
 
@@ -329,12 +329,12 @@ of `HEAD` (as I'm only interested in the header of the request). Also
 thanks to Jordan (also on the Svelte Discord) for giving me this handy
 MDN link for [Redirections in HTTP].
 
-Also [Dana Woodman on Dev.to] for using redirects in SvelteKit
-endpoints. I was using `redirect` instead of setting the headers.
+Also [Dana Woodman on Dev.to] for using redirects in SvelteKit endpoints.
+I was using `redirect` instead of setting the headers.
 
 <!-- Links -->
 
 [redirections in http]:
-  https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections#permanent_redirections
+	https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections#permanent_redirections
 [dana woodman on dev.to]:
-  https://dev.to/danawoodman/how-to-redirect-in-sveltekit-endpoints-1im3
+	https://dev.to/danawoodman/how-to-redirect-in-sveltekit-endpoints-1im3

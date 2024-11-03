@@ -6,10 +6,9 @@ isPrivate: true
 ---
 
 Since publishing my last post on this [Chris Biscardi] has released an
-awesome [MDX egghead.io course] that goes over using MDX in a Gatsby
-application. If you want to see how the pros do it then take a look at
-the play list, it's an egghead community resource so you can watch it
-for free.
+awesome [MDX egghead.io course] that goes over using MDX in a Gatsby application.
+If you want to see how the pros do it then take a look at the play list,
+it's an egghead community resource so you can watch it for free.
 
 ## What's new in this guide
 
@@ -123,9 +122,9 @@ Replace the `dangerouslySetInnerHTML` prop with a normal `<p>` tag:
 
 ```jsx
 <p
-  dangerouslySetInnerHTML={{
-    __html: node.frontmatter.description || node.excerpt,
-  }}
+	dangerouslySetInnerHTML={{
+		__html: node.frontmatter.description || node.excerpt,
+	}}
 />
 ```
 
@@ -191,9 +190,9 @@ component:
 import styled from 'styled-components'
 
 export const Butt = styled.button`
-  background-color: red;
-  height: 40px;
-  width: 80px;
+	background-color: red;
+	height: 40px;
+	width: 80px;
 `
 ```
 
@@ -268,15 +267,15 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 <!-- Links -->
 
 [mdx egghead.io course]:
-  https://egghead.io/playlists/building-websites-with-mdx-and-gatsby-161e9529
+	https://egghead.io/playlists/building-websites-with-mdx-and-gatsby-161e9529
 [twitter]: https://twitter.com/spences10
 [ask me anything]: https://github.com/spences10/ama
 [example code]:
-  https://codesandbox.io/s/gatsby-starter-blog-mdx-part-two-8iut4
+	https://codesandbox.io/s/gatsby-starter-blog-mdx-part-two-8iut4
 [gatsby starter blog]: https://github.com/gatsbyjs/gatsby-starter-blog
 [codesandbox import wizard]: https://codesandbox.io/s/github
 [codesandbox docs for importing projects]:
-  https://codesandbox.io/docs/importing
+	https://codesandbox.io/docs/importing
 [chris biscardi]: https://twitter.com/chrisbiscardi
 [here]:
-  https://scottspence.com/posts/convert-gatsby-default-blog-to-mdx
+	https://scottspence.com/posts/convert-gatsby-default-blog-to-mdx

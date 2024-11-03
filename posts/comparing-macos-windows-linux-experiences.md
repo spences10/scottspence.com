@@ -141,8 +141,8 @@ Windows, the most boring of them all. Loved by large enterprises and
 corporates. Used absolutely everywhere and the most supported
 platform.
 
-Again, bring your own hardware or buy a pre-built machine! I [built my
-own machine] <DD date="2020-05-30" /> ago and it's still going strong.
+Again, bring your own hardware or buy a pre-built machine! I [built
+my own machine] <DD date="2020-05-30" /> ago and it's still going strong.
 
 **Development Environment Setup**
 
@@ -217,4 +217,4 @@ check out the tags for them:
 <!-- Links -->
 
 [built my own machine]:
-  https://www.scottspence.com/posts/first-time-pc-build
+	https://www.scottspence.com/posts/first-time-pc-build

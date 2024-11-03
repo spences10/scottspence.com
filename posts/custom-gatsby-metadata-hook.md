@@ -34,8 +34,8 @@ hook for getting site metadata in Gatsby.
 <!-- cSpell:ignore Xwbk -->
 <YouTube youTubeId="qWay-LjXwbk" />
 
-The `StaticQuery` component uses the [render props] pattern, which
-means it takes in a function and returns/renders based off of that.
+The `StaticQuery` component uses the [render props] pattern, which means
+it takes in a function and returns/renders based off of that.
 
 I have detailed this pattern before in a post about [using the react
 context api], it's a component that you pass a function to, to render
@@ -58,7 +58,7 @@ like this.
 
 ```jsx
 <WrappingComponent>
-  {args => <ComponentToRender propsForComponent={args.propNeeded} />}
+	{args => <ComponentToRender propsForComponent={args.propNeeded} />}
 </WrappingComponent>
 ```
 
@@ -69,26 +69,26 @@ I've taken out the styling to make it a bit shorter:
 
 ```js
 const Layout = ({ children }) => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `}
-    render={data => (
-      <>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <div>
-          <main>{children}</main>
-          <footer />
-        </div>
-      </>
-    )}
-  />
+	<StaticQuery
+		query={graphql`
+			query SiteTitleQuery {
+				site {
+					siteMetadata {
+						title
+					}
+				}
+			}
+		`}
+		render={data => (
+			<>
+				<Header siteTitle={data.site.siteMetadata.title} />
+				<div>
+					<main>{children}</main>
+					<footer />
+				</div>
+			</>
+		)}
+	/>
 )
 
 export default Layout
@@ -104,28 +104,28 @@ the `StaticQuery` separately. Like this:
 
 ```js
 const Layout = ({ children, data }) => (
-  <>
-    <Header siteTitle={data.site.siteMetadata.title} />
-    <div>
-      <main>{children}</main>
-      <footer />
-    </div>
-  </>
+	<>
+		<Header siteTitle={data.site.siteMetadata.title} />
+		<div>
+			<main>{children}</main>
+			<footer />
+		</div>
+	</>
 )
 
 export default props => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `}
-    render={data => <Layout data={data} {...props} />}
-  />
+	<StaticQuery
+		query={graphql`
+			query SiteTitleQuery {
+				site {
+					siteMetadata {
+						title
+					}
+				}
+			}
+		`}
+		render={data => <Layout data={data} {...props} />}
+	/>
 )
 ```
 
@@ -149,9 +149,9 @@ You can also check out the [example code].
 
 ---
 
-The [Gatsby documentation] covers the use of it and also how to make
-your own custom react hook to use `useStaticQuery`, here's the one I
-use in the video.
+The [Gatsby documentation] covers the use of it and also how to make your
+own custom react hook to use `useStaticQuery`, here's the one I use in
+the video.
 
 _useSiteMetadata.js_
 
@@ -159,20 +159,18 @@ _useSiteMetadata.js_
 import { graphql, useStaticQuery } from 'gatsby'
 
 const useSiteMetadata = () => {
-  const { site } = useStaticQuery(
-    graphql`
-      query SITE_METADATA_QUERY {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-      }
-    `
-  )
-  return site.siteMetadata
+	const { site } = useStaticQuery(graphql`
+		query SITE_METADATA_QUERY {
+			site {
+				siteMetadata {
+					title
+					description
+					author
+				}
+			}
+		}
+	`)
+	return site.siteMetadata
 }
 
 export default useSiteMetadata
@@ -203,23 +201,23 @@ import Header from './header'
 import './layout.css'
 
 const Layout = ({ children }) => {
-  const { title } = useSiteMetadata()
-  return (
-    <>
-      <Header siteTitle={title} />
-      <div>
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div>
-    </>
-  )
+	const { title } = useSiteMetadata()
+	return (
+		<>
+			<Header siteTitle={title} />
+			<div>
+				<main>{children}</main>
+				<footer>
+					© {new Date().getFullYear()}, Built with
+					{` `}
+					<a href="https://www.gatsbyjs.com">Gatsby</a>
+				</footer>
+			</div>
+		</>
+	)
 }
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+	children: PropTypes.node.isRequired,
 }
 
 export default Layout
@@ -261,14 +259,16 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [ask me anything]: https://github.com/spences10/ama
 [codesandbox.io]: https://codesandbox.io
 [render props]: https://reactjs.org/docs/render-props.html
-[using the react context api]:  https://scottspence.com/posts/react-context-api
+[using the react context api]:
+	https://scottspence.com/posts/react-context-api
 [example code]: https://codesandbox.io/s/1vnvko0zqj
 [even]: https://youtu.be/8ruJBKFrRCk?t=93
-[gatsby documentation]:  https://www.gatsbyjs.com/docs/use-static-query/
+[gatsby documentation]:
+	https://www.gatsbyjs.com/docs/use-static-query/
 
 <!-- Images -->
 
 [comparelayout]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/compareLayout-ea4dd0fb5890ca0f00a8d98e9f57a0df.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/compareLayout-ea4dd0fb5890ca0f00a8d98e9f57a0df.png
 [compareseo]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/compareSEO-0e2968ec8991f7a0c3f41e1b64986288.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/compareSEO-0e2968ec8991f7a0c3f41e1b64986288.png

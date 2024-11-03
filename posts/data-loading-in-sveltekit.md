@@ -119,9 +119,9 @@ A `+page.svelte` file can have a sibling `+page.js` file that runs a
 ```js
 /** @type {import('./$types').PageLoad} */
 export const load = async () => {
-  return {
-    greeting: 'Hello world!',
-  }
+	return {
+		greeting: 'Hello world!',
+	}
 }
 ```
 
@@ -131,8 +131,8 @@ props are received into components with `export let`.
 
 ```svelte
 <script>
-  /** @type {import('./$types').PageData} */
-  export let data
+	/** @type {import('./$types').PageData} */
+	export let data
 </script>
 
 <p>{data.greeting}</p>
@@ -141,10 +141,10 @@ props are received into components with `export let`.
 Ok, so that data defined locally now I'll take a look at getting some
 external data.
 
-In the following example I'm using the [CoinLore API] to get the top
-100 cryptocurrencies (which is the default request). It's a fun API to
-play around with but for this example all I really need is some data
-from an external source.
+In the following example I'm using the [CoinLore API] to get the top 100
+cryptocurrencies (which is the default request). It's a fun API to play
+around with but for this example all I really need is some data from an
+external source.
 
 SvelteKit builds on top of the [Standard Web APIs] and makes them
 available in the load function. You can see in the example here I'm
@@ -154,11 +154,11 @@ is available to the `load` function.
 ```js
 /** @type {import('./$types').PageLoad} */
 export const load = async ({ fetch }) => {
-  const res = await fetch('https://api.coinlore.com/api/tickers/')
-  const { data } = await res.json()
-  return {
-    currencies: data,
-  }
+	const res = await fetch('https://api.coinlore.com/api/tickers/')
+	const { data } = await res.json()
+	return {
+		currencies: data,
+	}
 }
 ```
 
@@ -167,8 +167,8 @@ the data being passed to `+page.svelte`.
 
 ```svelte
 <script>
-  /** @type {import('./$types').PageData} */
-  export let data
+	/** @type {import('./$types').PageData} */
+	export let data
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -180,20 +180,20 @@ Resulting data being displayed on the page is something like this:
 
 ```json
 {
-  "currencies": [
-    {
-      "id": "90",
-      "symbol": "BTC",
-      "name": "Bitcoin",
-      "nameid": "bitcoin"
-    },
-    {
-      "id": "80",
-      "symbol": "ETH",
-      "name": "Ethereum",
-      "nameid": "ethereum"
-    }
-  ]
+	"currencies": [
+		{
+			"id": "90",
+			"symbol": "BTC",
+			"name": "Bitcoin",
+			"nameid": "bitcoin"
+		},
+		{
+			"id": "80",
+			"symbol": "ETH",
+			"name": "Ethereum",
+			"nameid": "ethereum"
+		}
+	]
 }
 ```
 
@@ -264,27 +264,28 @@ import { SECRET_TOKEN } from '$env/static/private'
 
 /** @type {import('./$types').PageServerLoad} */
 export const load = async ({ fetch }) => {
-  // this is only logged out on the server
-  console.log('=====================')
-  console.log(SECRET_TOKEN)
-  console.log('=====================')
-  const fetchCoins = async () => {
-    const res = await fetch('https://api.coinlore.com/api/tickers/')
-    const { data } = await res.json()
-    return data
-  }
+	// this is only logged out on the server
+	console.log('=====================')
+	console.log(SECRET_TOKEN)
+	console.log('=====================')
+	const fetchCoins = async () => {
+		const res = await fetch('https://api.coinlore.com/api/tickers/')
+		const { data } = await res.json()
+		return data
+	}
 
-  return {
-    currencies: fetchCoins(),
-  }
+	return {
+		currencies: fetchCoins(),
+	}
 }
 ```
 
 The CoinLore API doesn't require a key so I'm just using a dummy token
 defined in my `.env` file.
 
-You can find out more about that in the [SvelteKit Environment
-Variables with the SvelteKit $env Module] post I did a while back.
+You can find out more about that in the [SvelteKit
+Environment Variables with the SvelteKit $env Module] post I did a while
+back.
 
 ## Conclusion
 
@@ -306,7 +307,7 @@ That's it for this post, I hope you found it useful.
 [fetch]: https://kit.svelte.dev/docs/web-standards#fetch-apis
 [standard web apis]: https://kit.svelte.dev/docs/web-standards
 [fetch data from two or more endpoints in sveltekit]:
-  https://scottspence.com/posts/fetch-data-from-two-or-more-endpoints-in-svelte
+	https://scottspence.com/posts/fetch-data-from-two-or-more-endpoints-in-svelte
 [rick and morty graphql api]: https://rickandmortyapi.com/graphql/
 [sveltekit environment variables with the sveltekit $env module]:
-  https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module
+	https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module

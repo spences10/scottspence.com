@@ -176,7 +176,7 @@ friends. I can't wait until the next one.
 [@jamiebradley234]: https://twitter.com/jamiebradley234
 [codesandbox.io]: https://codesandbox.io
 [https://github.com/googlechromelabs/proxx]:
-  https://github.com/GoogleChromeLabs/proxx
+	https://github.com/GoogleChromeLabs/proxx
 [https://extra-css.netlify.com/]: https://extra-css.netlify.com/
 [now open source]:
-  https://www.sanity.io/blog/we-re-open-sourcing-groq-a-query-language-for-json-documents
+	https://www.sanity.io/blog/we-re-open-sourcing-groq-a-query-language-for-json-documents

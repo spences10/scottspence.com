@@ -19,9 +19,9 @@ that wasn't going to sell off the browsing data of my sites visitors
 like Google does.
 
 _If you're not already signed up you can get a $10 credit by signing
-up with my [referral link]. Yes I get a kick back from this, it's an
-awesome product and if you're interested in using it using the link
-would really help me out._
+up with my [referral link]. Yes I get a kick back from this, it's an awesome
+product and if you're interested in using it using the link would really
+help me out._
 
 <!-- cSpell:ignore CCPA,PECR -->
 
@@ -208,28 +208,28 @@ In the `+layout.svelte` file I'll add this:
 
 ```svelte
 <script lang="ts">
-  import { browser } from '$app/environment'
-  import { page } from '$app/stores'
-  import {
-    PUBLIC_FATHOM_ID,
-    PUBLIC_FATHOM_URL,
-  } from '$env/static/public'
-  import * as Fathom from 'fathom-client'
-  import { onMount } from 'svelte'
+	import { browser } from '$app/environment'
+	import { page } from '$app/stores'
+	import {
+		PUBLIC_FATHOM_ID,
+		PUBLIC_FATHOM_URL,
+	} from '$env/static/public'
+	import * as Fathom from 'fathom-client'
+	import { onMount } from 'svelte'
 
-  onMount(async () => {
-    Fathom.load(PUBLIC_FATHOM_ID, {
-      url: PUBLIC_FATHOM_URL,
-    })
-  })
+	onMount(async () => {
+		Fathom.load(PUBLIC_FATHOM_ID, {
+			url: PUBLIC_FATHOM_URL,
+		})
+	})
 
-  $: $page.url.pathname, browser && Fathom.trackPageview()
+	$: $page.url.pathname, browser && Fathom.trackPageview()
 </script>
 
 <ul>
-  <a href="/">Home</a>
-  <a href="/about">About</a>
-  <a href="/services">Services</a>
+	<a href="/">Home</a>
+	<a href="/about">About</a>
+	<a href="/services">Services</a>
 </ul>
 
 <slot />
@@ -251,9 +251,8 @@ site ID.
 
 If you're not familiar with Svelte the the `$:` might look a bit
 funky, you can learn more about it on the [Svelte
-Reactivity/Declarations] tutorial. The `&&` is a short circuit
-evaluation to if there's no `browser` then `Fathom.trackPageview()`
-wont run.
+Reactivity/Declarations] tutorial. The `&&` is a short circuit evaluation
+to if there's no `browser` then `Fathom.trackPageview()` wont run.
 
 ℹ️ As a side note here I will be using the Fathom `SiteID` and script
 URL in an `.env` file so that it's not visible when I commit the code
@@ -265,9 +264,9 @@ this:
 
 ```js
 onMount(async () => {
-  Fathom.load(PUBLIC_FATHOM_ID, {
-    url: PUBLIC_FATHOM_URL,
-  })
+	Fathom.load(PUBLIC_FATHOM_ID, {
+		url: PUBLIC_FATHOM_URL,
+	})
 })
 ```
 
@@ -289,9 +288,9 @@ private browser window to validate it's working.
 pnpm run dev
 ```
 
-Going over to my [Fathom dashboard] now I can check out that the
-client is working as expected, here I've gone to the `services` page
-and the page view is being tracked.
+Going over to my [Fathom dashboard] now I can check out that the client
+is working as expected, here I've gone to the `services` page and the page
+view is being tracked.
 
 [![fathom-validate-visitor]] [fathom-validate-visitor]
 
@@ -322,17 +321,17 @@ this button in the `src/routes/+page.svelte` file for now.
 
 ```svelte
 <script lang="ts">
-  import { trackGoal } from 'fathom-client'
+	import { trackGoal } from 'fathom-client'
 </script>
 
 <h1>Welcome to SvelteKit</h1>
 <p>
-  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
-  documentation
+	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
+	documentation
 </p>
 
 <button on:click={() => trackGoal(`H1CCQXUL`, 100)}>
-  Don't Click This Button!!
+	Don't Click This Button!!
 </button>
 ```
 
@@ -353,7 +352,7 @@ click.
 
 ```svelte
 <button on:click={() => trackGoal(`H1CCQXUL`, 100)}>
-  Don't Click This Button!!
+	Don't Click This Button!!
 </button>
 ```
 
@@ -364,28 +363,28 @@ home page link.
 
 ```svelte
 <script lang="ts">
-  import { browser } from '$app/environment'
-  import { page } from '$app/stores'
-  import {
-    PUBLIC_FATHOM_ID,
-    PUBLIC_FATHOM_URL,
-  } from '$env/static/public'
-  import * as Fathom from 'fathom-client'
-  import { onMount } from 'svelte'
+	import { browser } from '$app/environment'
+	import { page } from '$app/stores'
+	import {
+		PUBLIC_FATHOM_ID,
+		PUBLIC_FATHOM_URL,
+	} from '$env/static/public'
+	import * as Fathom from 'fathom-client'
+	import { onMount } from 'svelte'
 
-  onMount(async () => {
-    Fathom.load(PUBLIC_FATHOM_ID, {
-      url: PUBLIC_FATHOM_URL,
-    })
-  })
+	onMount(async () => {
+		Fathom.load(PUBLIC_FATHOM_ID, {
+			url: PUBLIC_FATHOM_URL,
+		})
+	})
 
-  $: $page.url.pathname, browser && Fathom.trackPageview()
+	$: $page.url.pathname, browser && Fathom.trackPageview()
 </script>
 
 <ul>
-  <a href="/" on:click={() => Fathom.trackGoal(`KWOYX0PK`)}>Home</a>
-  <a href="/about">About</a>
-  <a href="/services">Services</a>
+	<a href="/" on:click={() => Fathom.trackGoal(`KWOYX0PK`)}>Home</a>
+	<a href="/about">About</a>
+	<a href="/services">Services</a>
 </ul>
 
 <slot />
@@ -400,9 +399,8 @@ So last up I want to use a custom domain for my project!
 Fathom use dynamic CNAME values which means that ad blockers can't
 search for a specific domain to block.
 
-To read more about this you can read the [linked docs] from Fathom on
-why they do this and a great run-down of how to set up a custom
-domain.
+To read more about this you can read the [linked docs] from Fathom on why
+they do this and a great run-down of how to set up a custom domain.
 
 If I go back to the settings for the site (`ideal-memory`) I've been
 configuring on Fathom there's an option to add a domain!
@@ -534,14 +532,14 @@ GitHub repo]!
 [referral link]: https://usefathom.com/ref/HG492L
 [settings]: https://app.usefathom.com/#/settings/sites
 [`ideal-memory`]:
-  https://app.usefathom.com/share/nymdtplm/ideal-memory
+	https://app.usefathom.com/share/nymdtplm/ideal-memory
 [`fathom-client`]: https://github.com/derrickreimer/fathom-client
 [`$app-environment`]:
-  https://kit.svelte.dev/docs/modules#$app-environment
+	https://kit.svelte.dev/docs/modules#$app-environment
 [`$app/stores`]: https://kit.svelte.dev/docs/modules#$app-stores
 [`onmount`]: https://svelte.dev/docs#onMount
 [svelte reactivity/declarations]:
-  https://svelte.dev/tutorial/reactive-declarations
+	https://svelte.dev/tutorial/reactive-declarations
 [stackblitz]: https://node.new/sveltekit
 [fathom dashboard]: https://app.usefathom.com/#/
 [linked docs]: https://usefathom.com/docs/script/custom-domains
@@ -551,28 +549,28 @@ GitHub repo]!
 <!-- Images -->
 
 [fathom-create-new-site-section]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1642153115/scottspence.com/fathom-create-new-site-section.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1642153115/scottspence.com/fathom-create-new-site-section.png
 [fathom-new-site-configuration]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1642153887/scottspence.com/fathom-new-site-configuration.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1642153887/scottspence.com/fathom-new-site-configuration.png
 [fathom-validate-visitor]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643735520/scottspence.com/fathom-validate-visitor.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643735520/scottspence.com/fathom-validate-visitor.png
 [fathom-events]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643737368/scottspence.com/fathom-events.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643737368/scottspence.com/fathom-events.png
 [fathom-create-event]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643737369/scottspence.com/fathom-create-event.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643737369/scottspence.com/fathom-create-event.png
 [fathom-event-code]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643737369/scottspence.com/fathom-event-code.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643737369/scottspence.com/fathom-event-code.png
 [fathom-event-confirm]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643738739/scottspence.com/fathom-event-confirm.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643738739/scottspence.com/fathom-event-confirm.png
 [fathom-domain-add]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643745239/scottspence.com/fathom-domain-add.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643745239/scottspence.com/fathom-domain-add.png
 [fathom-domain-cname-dialogue]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643746516/scottspence.com/fathom-domain-cname-dialogue.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643746516/scottspence.com/fathom-domain-cname-dialogue.png
 [fathom-vercel-git-connect]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643747388/scottspence.com/fathom-vercel-git-connect.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643747388/scottspence.com/fathom-vercel-git-connect.png
 [fathom-vercel-domain-add]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643747585/scottspence.com/fathom-vercel-domain-add.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643747585/scottspence.com/fathom-vercel-domain-add.png
 [fathom-vercel-domain-nameservers-added]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643748495/scottspence.com/fathom-vercel-domain-nameservers-added.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643748495/scottspence.com/fathom-vercel-domain-nameservers-added.png
 [fathom-vercel-updated-embed-code]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643749178/scottspence.com/fathom-vercel-updated-embed-code.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643749178/scottspence.com/fathom-vercel-updated-embed-code.png

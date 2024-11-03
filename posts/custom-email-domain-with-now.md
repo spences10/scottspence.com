@@ -14,8 +14,8 @@ with Vercel's Now platform using the Now CLI.
 
 I'll be primarily covering the steps you take after setting up an
 account with an email provider, the email provider I'm using is [Zoho
-Mail] if you don't use either of these services then this guide may
-not be much use to you.
+Mail] if you don't use either of these services then this guide may not
+be much use to you.
 
 ## What you'll need
 
@@ -46,9 +46,9 @@ Pretty good right!
 
 ## Create an admin super user
 
-When you sign up with [Zoho Mail] you will be prompted to create a
-super admin user for your zoho account and you're given the
-opportunity to set up two factor authentication (2fa).
+When you sign up with [Zoho Mail] you will be prompted to create a super
+admin user for your zoho account and you're given the opportunity to set
+up two factor authentication (2fa).
 
 Zoho will even tell you about their authenticator app, which is only
 for authenticating with Zoho. Use this is you like, I use a 2fa app
@@ -125,7 +125,7 @@ the DNS updates can be verified via Zoho.**
 [now cli]: https://vercel.com/download
 [pricing]: https://www.zoho.com/mail/zohomail-pricing.html
 [control panel settings]:
-  https://mail.zoho.eu/cpanel/index.do#orgsettings/config
+	https://mail.zoho.eu/cpanel/index.do#orgsettings/config
 [i have written a guide]:
-  https://scottspence.com/posts/wsl-bootstrap-2019
+	https://scottspence.com/posts/wsl-bootstrap-2019
 [forever free plan]: https://workplace.zoho.eu/orgsignup.do

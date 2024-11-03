@@ -26,8 +26,8 @@ I have come across this set-up a few times now and implemented it for
 myself.
 
 You'll need to create a `config` file in the `.ssh` folder in your
-home directory (Windows, Ubuntu or both if you use a [WSL set-up])
-check with:
+home directory (Windows, Ubuntu or both if you use a [WSL set-up]) check
+with:
 
 ```bash
 ll ~/.ssh/
@@ -139,9 +139,9 @@ Work specific config `~/work/.gitconfig`
 
 [ss10.me/cheat-sheets]: https://github.com/spences10/cheat-sheets
 [how to authenticate with github using ssh]:
-  https://cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh
+	https://cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh
 [use multiple ssh keys]:
-  https://cheatsheets.xyz/git/#use-multiple-ssh-keys
+	https://cheatsheets.xyz/git/#use-multiple-ssh-keys
 [re use ssh keys from one machine to another]:
-  https://cheatsheets.xyz/git/#re-use-ssh-keys-from-one-machine-to-another
+	https://cheatsheets.xyz/git/#re-use-ssh-keys-from-one-machine-to-another
 [wsl set-up]: https://scottspence.com/posts/wsl-bootstrap-2019

@@ -19,10 +19,9 @@ The privacy policy in this site includes these points:
 
 - [How I collect your information]
 - [What I do with collected information]
-- [What cookies, pixels, and other trackers my site uses and their
-  purpose]
-- [Any advertising networks and their methods/purposes of data
-  collection and ad delivery]
+- [What cookies, pixels, and other trackers my site uses and their purpose]
+- [Any advertising networks and their methods/purposes of
+  data collection and ad delivery]
 - [How users of this site can op-in and op-out of their data being
   collected and stored]
 - [How users of this site can request their data be turned over to
@@ -104,9 +103,9 @@ fathom.enableTrackingForMe()
 As I only collect email addresses for the purposes of the newsletter
 you can unsubscribe from the mails sent anytime.
 
-If you want to contact me see [Contact information for site
-administrators] and I will personally remove your email address from
-Buttondown.
+If you want to contact me see [Contact information for
+site administrators] and I will personally remove your email address
+from Buttondown.
 
 ### Contact information for site administrators
 
@@ -125,30 +124,30 @@ these companies, I have no affiliation with them:
 ### Privacy policies simplified
 
 For a way to get to the right information about what the large sites
-mean in their Terms of Service check out [Terms of Service Didn't
-Read] for a simple breakdown of what the ToS actually means.
+mean in their Terms of Service check out [Terms of Service
+Didn't Read] for a simple breakdown of what the ToS actually means.
 
 <!-- Links -->
 <!-- cSpell:ignore methodspurposes,andor -->
 
 [how i collect your information]: #how-i-collect-your-information
 [what i do with collected information]:
-  #what-i-do-with-collected-information
+	#what-i-do-with-collected-information
 [what cookies, pixels, and other trackers my site uses and their purpose]:
-  #what-cookies-pixels-and-other-trackers-my-site-uses-and-their-purpose
+	#what-cookies-pixels-and-other-trackers-my-site-uses-and-their-purpose
 [any advertising networks and their methods/purposes of data collection and ad delivery]:
-  #any-advertising-networks-and-their-methodspurposes-of-data-collection-and-ad-delivery
+	#any-advertising-networks-and-their-methodspurposes-of-data-collection-and-ad-delivery
 [how users of this site can op-in and op-out of their data being collected and stored]:
-  #how-users-of-this-site-can-op-in-and-op-out-of-their-data-being-collected-and-stored
+	#how-users-of-this-site-can-op-in-and-op-out-of-their-data-being-collected-and-stored
 [how users of this site can request their data be turned over to them and/or be deleted]:
-  #how-users-of-this-site-can-request-their-data-be-turned-over-to-them-andor-be-deleted
+	#how-users-of-this-site-can-request-their-data-be-turned-over-to-them-andor-be-deleted
 [contact information for site administrators]:
-  #contact-information-for-site-administrators
+	#contact-information-for-site-administrators
 [0]: https://buttondown.email/legal/privacy
 [1]: https://usefathom.com/privacy
 [privacy@scottspence.dev]:
-  mailto:privacy@scottspence.dev?subject=Privacy%20Concern&body=Hi%20Scott%2C%0D%0A%0D%0AI%20have%20a%20concern%20about%20my%20privacy%20on%20your%20site.
+	mailto:privacy@scottspence.dev?subject=Privacy%20Concern&body=Hi%20Scott%2C%0D%0A%0D%0AI%20have%20a%20concern%20about%20my%20privacy%20on%20your%20site.
 [contact form]: /contact
 [terms of service didn't read]: https://tosdr.org
 [contact information for site administrators]:
-  #contact-information-for-site-administrators
+	#contact-information-for-site-administrators

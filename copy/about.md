@@ -64,7 +64,8 @@ I like to think of myself as an easy to approach and friendly person.
 I'm obsessed with watching anything to do with mechanical engineering
 and restorations on YouTube.
 
-I got a Steam Deck! Been playing Borderlands 1, 2 and 3 on it, still really like the franchise after all this time 😊
+I got a Steam Deck! Been playing Borderlands 1, 2 and 3 on it, still
+really like the franchise after all this time 😊
 
 ### Music I listen to
 
@@ -128,4 +129,4 @@ Stories about big tech and how it's changing the world.
 [portfolio section]: /portfolio
 [speaking]: /speaking
 [svelte society london]:
-  https://beta.guild.host/svelte-society-london/events
+	https://beta.guild.host/svelte-society-london/events

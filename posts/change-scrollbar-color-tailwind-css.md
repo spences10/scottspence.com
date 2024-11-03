@@ -53,8 +53,8 @@ the scrollbars you'd need to add it between `@tailwind base;` and
 
 /* Firefox */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: var(--secondary) var(--primary);
+	scrollbar-width: thin;
+	scrollbar-color: var(--secondary) var(--primary);
 }
 
 @tailwind components;
@@ -67,8 +67,8 @@ colours of the scrollbar. These would typically be defined in a
 
 ```css
 :root {
-  --primary: rebeccapurple;
-  --secondary: cornflowerblue;
+	--primary: rebeccapurple;
+	--secondary: cornflowerblue;
 }
 ```
 
@@ -79,24 +79,24 @@ For Chrome, Edge, and Safari, use the vendor prefix pseudo-elements:
 
 /* Firefox */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: var(--secondary) var(--primary);
+	scrollbar-width: thin;
+	scrollbar-color: var(--secondary) var(--primary);
 }
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 15px;
+	width: 15px;
 }
 
 *::-webkit-scrollbar-track {
-  background: var(--primary);
-  border-radius: 5px;
+	background: var(--primary);
+	border-radius: 5px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: var(--secondary);
-  border-radius: 14px;
-  border: 3px solid var(--primary);
+	background-color: var(--secondary);
+	border-radius: 14px;
+	border: 3px solid var(--primary);
 }
 
 @tailwind components;
@@ -119,11 +119,11 @@ colour, you could have a stripey scrollbar:
 
 ```css
 background: repeating-linear-gradient(
-  45deg,
-  var(--secondary),
-  var(--secondary) 5px,
-  var(--primary) 5px,
-  var(--primary) 10px
+	45deg,
+	var(--secondary),
+	var(--secondary) 5px,
+	var(--primary) 5px,
+	var(--primary) 10px
 );
 ```
 
@@ -142,12 +142,12 @@ and SvelteKit] you might find interesting.
 <!-- Links -->
 
 [change text highlight color with tailwind css]:
-  https://scottspence.com/posts/change-text-highlight-colour-with-tailwind-css
+	https://scottspence.com/posts/change-text-highlight-colour-with-tailwind-css
 [vendor prefixes]:
-  https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix
+	https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix
 [pseudo-elements]:
-  https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements
+	https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements
 [css scrollbars]:
-  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scrollbars
+	https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scrollbars
 [gradient animations with tailwind css and sveltekit]:
-  https://scottspence.com/posts/gradient-animations-in-tailwindcss
+	https://scottspence.com/posts/gradient-animations-in-tailwindcss

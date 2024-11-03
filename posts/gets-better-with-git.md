@@ -154,7 +154,7 @@ Many thanks.
 <!-- LINKS -->
 
 [commit often perfect later]:
-  https://gist.github.com/SethRobertson/1540906/68feeabfe906ec1eb893e4fa45f402795ed6e62c#commit
+	https://gist.github.com/SethRobertson/1540906/68feeabfe906ec1eb893e4fa45f402795ed6e62c#commit
 [gist]:
-  https://gist.github.com/spences10/5c492e197e95158809a83650ff97fc3a#useful-git-commands
+	https://gist.github.com/spences10/5c492e197e95158809a83650ff97fc3a#useful-git-commands
 [repo]: https://github.com/spences10/cheat-sheets

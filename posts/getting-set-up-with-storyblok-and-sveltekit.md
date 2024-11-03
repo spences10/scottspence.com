@@ -172,11 +172,11 @@ import basicSsl from '@vitejs/plugin-basic-ssl'
 
 /** @type {import('vite').UserConfig} */
 const config = {
-  plugins: [sveltekit(), basicSsl()],
-  server: {
-    port: 3000,
-    https: true,
-  },
+	plugins: [sveltekit(), basicSsl()],
+	server: {
+		port: 3000,
+		https: true,
+	},
 }
 
 export default config
@@ -353,8 +353,8 @@ If I wanted to create builds locally I'd also need to create a
 ## SvelteKit layout file
 
 A [layout file in SvelteKit] is a way to persist elements across route
-changes, like a navbar and footer. This is also the place to
-initialise Storyblok for use across the project.
+changes, like a navbar and footer. This is also the place to initialise
+Storyblok for use across the project.
 
 To load data before the page loads I'll use the
 `<script context="module">` script tags to initialise the Storyblok
@@ -366,28 +366,28 @@ the components needed for use in the `storyblokInit` function from the
 
 ```svelte
 <script context="module">
-  import Feature from '$lib/components/feature.svelte'
-  import Grid from '$lib/components/grid.svelte'
-  import Page from '$lib/components/page.svelte'
-  import Teaser from '$lib/components/teaser.svelte'
-  import { STORYBLOK_ACCESS_TOKEN } from '$lib/env-vars'
-  import { apiPlugin, storyblokInit } from '@storyblok/svelte'
-  import '../app.css'
+	import Feature from '$lib/components/feature.svelte'
+	import Grid from '$lib/components/grid.svelte'
+	import Page from '$lib/components/page.svelte'
+	import Teaser from '$lib/components/teaser.svelte'
+	import { STORYBLOK_ACCESS_TOKEN } from '$lib/env-vars'
+	import { apiPlugin, storyblokInit } from '@storyblok/svelte'
+	import '../app.css'
 
-  storyblokInit({
-    accessToken: STORYBLOK_ACCESS_TOKEN,
-    use: [apiPlugin],
-    components: {
-      feature: Feature,
-      grid: Grid,
-      page: Page,
-      teaser: Teaser,
-    },
-  })
+	storyblokInit({
+		accessToken: STORYBLOK_ACCESS_TOKEN,
+		use: [apiPlugin],
+		components: {
+			feature: Feature,
+			grid: Grid,
+			page: Page,
+			teaser: Teaser,
+		},
+	})
 </script>
 
 <main class="prose prose-xl">
-  <slot />
+	<slot />
 </main>
 ```
 
@@ -398,9 +398,9 @@ Josefine Schaefer and her [example code on GitHub].
 
 <!-- cSpell:ignore blok -->
 
-The page component (`page.svelte`) is a [root block] content type and
-uses a Svelte action in `storyblokEditable` to use the prop being
-passed to it (`export let blok`).
+The page component (`page.svelte`) is a [root block] content type and uses
+a Svelte action in `storyblokEditable` to use the prop being passed to
+it (`export let blok`).
 
 Using a Svelte each expression I can loop through the `blok.body` and
 pass the `blok` to the `StoryblokComponent` as props.
@@ -410,18 +410,18 @@ the `StoryData` type.
 
 ```svelte
 <script lang="ts">
-  import {
-    StoryblokComponent,
-    storyblokEditable,
-  } from '@storyblok/svelte'
+	import {
+		StoryblokComponent,
+		storyblokEditable,
+	} from '@storyblok/svelte'
 
-  export let blok: any
+	export let blok: any
 </script>
 
 <div use:storyblokEditable={blok} class="px-6">
-  {#each blok.body as blok}
-    <StoryblokComponent {blok} />
-  {/each}
+	{#each blok.body as blok}
+		<StoryblokComponent {blok} />
+	{/each}
 </div>
 ```
 
@@ -430,20 +430,20 @@ except I'm checking for a columns property and looping over that.
 
 ```svelte
 <script lang="ts">
-  import {
-    StoryblokComponent,
-    storyblokEditable,
-  } from '@storyblok/svelte'
+	import {
+		StoryblokComponent,
+		storyblokEditable,
+	} from '@storyblok/svelte'
 
-  export let blok: any
+	export let blok: any
 </script>
 
-<div use:storyblokEditable={blok} class="flex py-8 mb-6">
-  {#each blok.columns as blok}
-    <div class="flex-auto px-6">
-      <StoryblokComponent {blok} />
-    </div>
-  {/each}
+<div use:storyblokEditable={blok} class="mb-6 flex py-8">
+	{#each blok.columns as blok}
+		<div class="flex-auto px-6">
+			<StoryblokComponent {blok} />
+		</div>
+	{/each}
 </div>
 ```
 
@@ -458,12 +458,12 @@ this:
 
 ```js
 columns: [
-  {
-    _uid: 'eb32fb87-721d-4834-8523-73ea81cbb6f7',
-    name: 'Feature 1',
-    component: 'feature',
-    _editable: '<!--#storyblok#{"name": "feature"} -->',
-  },
+	{
+		_uid: 'eb32fb87-721d-4834-8523-73ea81cbb6f7',
+		name: 'Feature 1',
+		component: 'feature',
+		_editable: '<!--#storyblok#{"name": "feature"} -->',
+	},
 ]
 ```
 
@@ -487,13 +487,13 @@ component passing in the `blok` prop and render out a div with the
 
 ```svelte
 <script lang="ts">
-  import { storyblokEditable } from '@storyblok/svelte'
+	import { storyblokEditable } from '@storyblok/svelte'
 
-  export let blok: any
+	export let blok: any
 </script>
 
 <div use:storyblokEditable={blok} class="py-2">
-  <div class="text-lg">{blok.name}</div>
+	<div class="text-lg">{blok.name}</div>
 </div>
 ```
 
@@ -503,13 +503,13 @@ wrap the `blok.name` in a `h1` tag.
 
 ```svelte
 <script lang="ts">
-  import { storyblokEditable } from '@storyblok/svelte'
+	import { storyblokEditable } from '@storyblok/svelte'
 
-  export let blok: any
+	export let blok: any
 </script>
 
 <div use:storyblokEditable={blok}>
-  {blok.headline}
+	{blok.headline}
 </div>
 ```
 
@@ -534,40 +534,40 @@ from the context module.
 
 ```svelte
 <script context="module">
-  import { STORYBLOK_STAGE } from '$lib/env-vars'
-  import { useStoryblokApi } from '@storyblok/svelte'
+	import { STORYBLOK_STAGE } from '$lib/env-vars'
+	import { useStoryblokApi } from '@storyblok/svelte'
 
-  export const load = async () => {
-    const storyblokApi = useStoryblokApi()
-    const {
-      data: { story },
-    } = await storyblokApi.get('cdn/stories/home', {
-      version: STORYBLOK_STAGE,
-    })
-    return {
-      props: { story },
-    }
-  }
+	export const load = async () => {
+		const storyblokApi = useStoryblokApi()
+		const {
+			data: { story },
+		} = await storyblokApi.get('cdn/stories/home', {
+			version: STORYBLOK_STAGE,
+		})
+		return {
+			props: { story },
+		}
+	}
 </script>
 
 <script lang="ts">
-  import {
-    StoryblokComponent,
-    useStoryblokBridge,
-  } from '@storyblok/svelte'
-  import { onMount } from 'svelte'
+	import {
+		StoryblokComponent,
+		useStoryblokBridge,
+	} from '@storyblok/svelte'
+	import { onMount } from 'svelte'
 
-  export let story: any
+	export let story: any
 
-  onMount(() => {
-    useStoryblokBridge(story.id, newStory => (story = newStory))
-  })
+	onMount(() => {
+		useStoryblokBridge(story.id, newStory => (story = newStory))
+	})
 </script>
 
 <div>
-  {#if story}
-    <StoryblokComponent blok={story.content} />
-  {/if}
+	{#if story}
+		<StoryblokComponent blok={story.content} />
+	{/if}
 </div>
 ```
 
@@ -604,8 +604,8 @@ field.
 
 Clicking on that will take me to the edit field options where I can
 select the field type. I'm going to keep it as a text field, I could
-go into using the [Storyblok `RichTextResolver`] but I think I'll
-leave that for another post.
+go into using the [Storyblok `RichTextResolver`] but I think I'll leave
+that for another post.
 
 [![storyblok-edit-block-schema-edit-field]]
 [storyblok-edit-block-schema-edit-field]
@@ -622,14 +622,14 @@ the `feature.svelte` file to include the `blok.body` content.
 
 ```svelte
 <script lang="ts">
-  import { storyblokEditable } from '@storyblok/svelte'
+	import { storyblokEditable } from '@storyblok/svelte'
 
-  export let blok: any
+	export let blok: any
 </script>
 
 <div use:storyblokEditable={blok} class="py-2">
-  <div class="text-lg">{blok.name}</div>
-  <div class="text-lg">{blok.body}</div>
+	<div class="text-lg">{blok.name}</div>
+	<div class="text-lg">{blok.body}</div>
 </div>
 ```
 
@@ -662,49 +662,49 @@ https://www.storyblok.com/docs/Guides/root-blocks
 [sveltekit]: https://kit.svelte.dev
 [svelte.dev/tutorial]: https://svelte.dev/tutorial/basics
 [learn.svelte.dev]:
-  https://learn.svelte.dev/tutorial/welcome-to-svelte
+	https://learn.svelte.dev/tutorial/welcome-to-svelte
 [sign up for one]: https://app.storyblok.com/#!/signup
 [`@storyblok/svelte`]: https://github.com/storyblok/storyblok-svelte
 [add a headless cms to svelte in 5 minutes]:
-  https://www.storyblok.com/tp/add-a-headless-cms-to-svelte-in-5-minutes#one-last-thing
+	https://www.storyblok.com/tp/add-a-headless-cms-to-svelte-in-5-minutes#one-last-thing
 [sveltekit .env secrets]:
-  https://scottspence.com/posts/sveltekit-env-secrets
+	https://scottspence.com/posts/sveltekit-env-secrets
 [svelte add]: https://github.com/svelte-add/tailwindcss
 [layout file in sveltekit]:
-  https://kit.svelte.dev/docs/routing#layout-layout-svelte
+	https://kit.svelte.dev/docs/routing#layout-layout-svelte
 [example code on github]:
-  https://github.com/josefineschaefer/Storyblok-SvelteKit
+	https://github.com/josefineschaefer/Storyblok-SvelteKit
 [root block]: https://www.storyblok.com/docs/Guides/root-blocks
 [nestable block]:
-  https://www.storyblok.com/docs/Guides/nestable-blocks
+	https://www.storyblok.com/docs/Guides/nestable-blocks
 [storyblok `richtextresolver`]:
-  https://github.com/storyblok/storyblok-js-client
+	https://github.com/storyblok/storyblok-js-client
 
 <!-- Images -->
 
 [storyblok-create-new-space]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658756723/scottspence.com/storyblok-create-new-space.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658756723/scottspence.com/storyblok-create-new-space.png
 [storyblok-switch-to-v2-sidebar]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658758071/scottspence.com/storyblok-switch-to-v2-sidebar.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658758071/scottspence.com/storyblok-switch-to-v2-sidebar.png
 [storyblok-welcome-to-the-visual-editor]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658759454/scottspence.com/storyblok-welcome-to-the-visual-editor.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658759454/scottspence.com/storyblok-welcome-to-the-visual-editor.png
 [storyblok-your-connection-isnt-private]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-your-connection-isnt-private.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-your-connection-isnt-private.png
 [storyblok-your-connection-isnt-private-advanced]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-your-connection-isnt-private-advanced.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-your-connection-isnt-private-advanced.png
 [storyblok-not-secure]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-not-secure.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-not-secure.png
 [storyblok-set-visual-editor-real-path]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658763198/scottspence.com/storyblok-set-visual-editor-real-path.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658763198/scottspence.com/storyblok-set-visual-editor-real-path.png
 [storyblok-connect-to-local-host-success]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658763672/scottspence.com/storyblok-connect-to-local-host-success.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658763672/scottspence.com/storyblok-connect-to-local-host-success.png
 [storyblok-settings-access-tokens]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658779775/scottspence.com/storyblok-settings-access-tokens.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658779775/scottspence.com/storyblok-settings-access-tokens.png
 [storyblok-edit-block-schema-menu]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658865559/scottspence.com/storyblok-edit-block-schema-menu.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658865559/scottspence.com/storyblok-edit-block-schema-menu.png
 [storyblok-edit-block-schema-add-field]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1658865559/scottspence.com/storyblok-edit-block-schema-add-field.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/v1658865559/scottspence.com/storyblok-edit-block-schema-add-field.png
 [storyblok-edit-block-schema-field-added]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1658865559/scottspence.com/storyblok-edit-block-schema-field-added.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/v1658865559/scottspence.com/storyblok-edit-block-schema-field-added.png
 [storyblok-edit-block-schema-edit-field]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1658866411/scottspence.com/storyblok-edit-block-schema-edit-field.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/v1658866411/scottspence.com/storyblok-edit-block-schema-edit-field.png

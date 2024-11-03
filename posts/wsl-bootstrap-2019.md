@@ -71,9 +71,8 @@ first half of the install the second will be when you open the app.
 
 ## Enable WSL on your machine
 
-The [official guidance] covers it very well, but I'm going to add in
-the shortcut keys here if you don't want to be clicking around with
-the mouse.
+The [official guidance] covers it very well, but I'm going to add in the
+shortcut keys here if you don't want to be clicking around with the mouse.
 
 Before that however, if you haven't selected PowerShell as your
 default Command Prompt you can select it from the Taskbar settings
@@ -226,11 +225,11 @@ so we're going to need a text editor, and there's nothing out there at
 the moment that comes close to VS Code, if you already have a text
 editor installed then skip to the next part.
 
-Install the Windows version of VS Code from the [Download section]
-once installed we can enable WSL in the settings, the quickest way to
-do this is to open the integrated terminal in VS Code with the
-shortcut keys Ctrl+' 👈 that's and apostrophe. You will be prompted to
-select your default terminal, select WSL Bash.
+Install the Windows version of VS Code from the [Download section] once
+installed we can enable WSL in the settings, the quickest way to do this
+is to open the integrated terminal in VS Code with the shortcut keys Ctrl+'
+👈 that's and apostrophe. You will be prompted to select your default terminal,
+select WSL Bash.
 
 ![vscode config]
 
@@ -330,14 +329,14 @@ Here's what I changed:
 
 ```js
 module.exports = {
-  config: {
-    fontSize: 18,
-    fontFamily: '"Dank Mono",...',
-    cursorShape: 'BEAM',
-    cursorBlink: true,
-    copyOnSelect: true,
-    plugins: ['hyper-altair'],
-  },
+	config: {
+		fontSize: 18,
+		fontFamily: '"Dank Mono",...',
+		cursorShape: 'BEAM',
+		cursorBlink: true,
+		copyOnSelect: true,
+		plugins: ['hyper-altair'],
+	},
 }
 ```
 
@@ -686,78 +685,78 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [twitter]: https://twitter.com/spences10
 [ask me anything]: https://github.com/spences10/ama
 [the microsoft store]:
-  https://www.microsoft.com/en-gb/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab
+	https://www.microsoft.com/en-gb/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab
 [ubuntu 16.04 lts]:
-  https://www.microsoft.com/en-gb/p/ubuntu-1604-lts/9pjn388hp8c9?activetab=pivot:overviewtab
+	https://www.microsoft.com/en-gb/p/ubuntu-1604-lts/9pjn388hp8c9?activetab=pivot:overviewtab
 [ubuntu 18.04 lts]:
-  https://www.microsoft.com/en-gb/p/ubuntu-1804-lts/9n9tngvndl3q?activetab=pivot:overviewtab
+	https://www.microsoft.com/en-gb/p/ubuntu-1804-lts/9n9tngvndl3q?activetab=pivot:overviewtab
 [my guide from the start of 2018]:
-  https://scottspence.com/posts/wsl-bootstrap/
+	https://scottspence.com/posts/wsl-bootstrap/
 [official guidance]:
-  https://docs.microsoft.com/en-us/windows/wsl/install-win10
+	https://docs.microsoft.com/en-us/windows/wsl/install-win10
 [windows keyboard shortcuts]:
-  https://support.microsoft.com/en-gb/help/12445/windows-keyboard-shortcuts
+	https://support.microsoft.com/en-gb/help/12445/windows-keyboard-shortcuts
 [build-essential]: https://packages.ubuntu.com/bionic/build-essential
 [node version manager]: https://github.com/creationix/nvm
 [wsl github issue detailing it]:
-  https://github.com/Microsoft/WSL/issues/776
+	https://github.com/Microsoft/WSL/issues/776
 [pros of using n]:
-  https://github.com/Microsoft/WSL/issues/776#issuecomment-266112578
+	https://github.com/Microsoft/WSL/issues/776#issuecomment-266112578
 [n-install]: https://github.com/mklement0/n-install
 [hyper]: https://hyper.is
 [firacode]: https://github.com/tonsky/FiraCode
 [git support for vs code]:
-  https://github.com/Microsoft/vscode/issues/9502
+	https://github.com/Microsoft/vscode/issues/9502
 [wslgit]: https://github.com/andy-5/wslgit
 [git-scm.com]: https://git-scm.com/download/win
 [cheat-sheets]: https://github.com/spences10/cheat-sheets
 [npx]:
-  https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b
+	https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b
 [new ssh key]: https://github.com/settings/ssh/new
 [cheat-sheet for fish]:
-  https://github.com/spences10/cheat-sheets/blob/master/fish.md
+	https://github.com/spences10/cheat-sheets/blob/master/fish.md
 [dotfiles]: https://github.com/spences10/dotfiles
 [download section]: https://code.visualstudio.com/download
 
 <!-- Images -->
 
 [powershell activation]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/powershell.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/powershell.gif
 [show file extensions]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/show-extensions.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/show-extensions.gif
 [lsb_release]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/lsb_release.png
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/lsb_release.png
 [vscode config]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/vscode-wsl-config.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/vscode-wsl-config.gif
 [windows git setup]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/install-git.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/install-git.gif
 [basic hyper]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/basic_hyper.png
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/basic_hyper.png
 [default-file-type]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/default-file-type.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/default-file-type.gif
 [hyper config]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/hyper-config.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/hyper-config.gif
 [final hyper config]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/hyper-final-config.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/hyper-final-config.gif
 [install fish]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/install-fish.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/install-fish.gif
 [install omf]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/install-omf.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/install-omf.gif
 [omf one]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/omf-install-one.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/omf-install-one.gif
 [alias fish in .bashrc]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/alias-fish.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/alias-fish.gif
 [npx cra]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/npx-cra.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/npx-cra.gif
 [cra change]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/cra-change.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/cra-change.gif
 [make repo]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/make-repo.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/make-repo.gif
 [ssh config wsl]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/ssh-config-wsl.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/ssh-config-wsl.gif
 [ssh config wsl]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/ssh-config-wsl.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/ssh-config-wsl.gif
 [ssh config win]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/ssh-config-win.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/ssh-config-win.gif
 [final push github]:
-  https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/final-push-github.gif
+	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/final-push-github.gif

@@ -15,9 +15,9 @@ Barton] as a simple one click set up.
 
 <!-- cSpell:ignore Avneesh -->
 
-This was part inspired from a post from [Avneesh Agarwal] and from
-some work Jamie had done a while ago. Avneesh's post on [Hashnode]
-details making it with the NextJS framework.
+This was part inspired from a post from [Avneesh Agarwal] and from some
+work Jamie had done a while ago. Avneesh's post on [Hashnode] details making
+it with the NextJS framework.
 
 This example is a full jamstack lightweight example using
 Handlebars.js and Tailwind CSS.
@@ -108,7 +108,7 @@ Thanks for reading!
 
 [avneesh agarwal]: https://avneesh0612.hashnode.dev/
 [hashnode]:
-  https://avneesh0612.hashnode.dev/stop-using-linktree-build-your-own
+	https://avneesh0612.hashnode.dev/stop-using-linktree-build-your-own
 [jamie barton]: https://twitter.com/notrab
 [linktree]: https://linktr.ee/
 [contactinbio]: https://contactinbio.com/
@@ -118,20 +118,20 @@ Thanks for reading!
 <!-- Images -->
 
 [netlify-connect-github]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-connect-github.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-connect-github.png
 [netlify-configure-env-vars]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881281/scottspence.com/netlify-configure-env-vars.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881281/scottspence.com/netlify-configure-env-vars.png
 [netlify-configure-env-vars-example]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-configure-env-vars-example.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-configure-env-vars-example.png
 [netlify-production-deploy-section]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-production-deploy-section.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-production-deploy-section.png
 [netlify-production-preview-button]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-production-preview-button.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-production-preview-button.png
 [vercel-pick-git-provider]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-pick-git-provider.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-pick-git-provider.png
 [vercel-create-private-repo]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-create-private-repo.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-create-private-repo.png
 [vercel-configure-env-vars-example]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-configure-env-vars-example.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-configure-env-vars-example.png
 [vercel-congratulations]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-congratulations.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-congratulations.png

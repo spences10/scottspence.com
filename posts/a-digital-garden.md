@@ -6,14 +6,14 @@ isPrivate: false
 ---
 
 I spent a couple of days now questioning how and what I write after
-reading a [post from Richard Haines]. In his post he mentioned how he
-stumbled across the Digital Garden idea.
+reading a [post from Richard Haines]. In his post he mentioned how he stumbled
+across the Digital Garden idea.
 
 Richard's post led me to [Chris Biscardi's thoughts] on that and in
 turn [Joel Hooks] and his thoughts on it.
 
-Both Joel and Chris mention a post from [Amy Hoy] (who I've just
-realised I follow on Twitter) in the post Amy talks about the [How the
+Both Joel and Chris mention a post from [Amy Hoy] (who I've just realised
+I follow on Twitter) in the post Amy talks about the [How the
 Blog Broke the Web]
 
 All of this was quite thought provoking!
@@ -80,8 +80,8 @@ Sometimes migrating all your local assets to a CDN and adding a theme
 switcher on your projects can generate quite a lot of ideas and you
 can learn a lot from it.
 
-This site now has [styled scrollbars], serverless OG images and a
-theme switcher all thanks to me reading one post!
+This site now has [styled scrollbars], serverless OG images and a theme
+switcher all thanks to me reading one post!
 
 I've never been so busy with taking notes and documenting how I've
 done a thing or what I've learned after doing that thing.
@@ -90,8 +90,8 @@ done a thing or what I've learned after doing that thing.
 
 I'm still in the midst of what I'm going to do, but I am doing away
 with the `.blog` TLD, I did like the idea of an `.io` TLD but have
-since found that it's origins have quite a [sinister background] that
-I really want no part of.
+since found that it's origins have quite a [sinister background] that I
+really want no part of.
 
 I do like the idea of the site's name and I guess I had grand ideas of
 having guests come and write posts on here too. Let's face it though,
@@ -112,19 +112,19 @@ Get it down then get it done!
 [post from richard haines]: https://richardhaines.dev/on-my-mind/
 [joel hooks]: https://joelhooks.com/digital-garden
 [chris biscardi's thoughts]:
-  https://www.christopherbiscardi.com/what-is-a-digital-garden
+	https://www.christopherbiscardi.com/what-is-a-digital-garden
 [amy hoy]: https://twitter.com/amyhoy
 [how the blog broke the web]:
-  https://stackingthebricks.com/how-blogs-broke-the-web/
+	https://stackingthebricks.com/how-blogs-broke-the-web/
 [building a digital garden]:
-  https://tomcritchlow.com/2019/02/17/building-digital-garden/
+	https://tomcritchlow.com/2019/02/17/building-digital-garden/
 [moving from now to netlify then back to now]:
-  https://scottspence.com/posts/moving-from-now-to-netlify/
+	https://scottspence.com/posts/moving-from-now-to-netlify/
 [moving large markdown assets to a cdn]:
-  https://scottspence.com/posts/large-md-assets-to-cdn/
+	https://scottspence.com/posts/large-md-assets-to-cdn/
 [generated with a serverless function]:
-  https://scottspence.com/posts/serverless-og-images/
+	https://scottspence.com/posts/serverless-og-images/
 [sinister background]:
-  https://gigaom.com/2014/06/30/the-dark-side-of-io-how-the-u-k-is-making-web-domain-profits-from-a-shady-cold-war-land-deal/
+	https://gigaom.com/2014/06/30/the-dark-side-of-io-how-the-u-k-is-making-web-domain-profits-from-a-shady-cold-war-land-deal/
 [styled scrollbars]:
-  https://css-tricks.com/the-current-state-of-styling-scrollbars/
+	https://css-tricks.com/the-current-state-of-styling-scrollbars/

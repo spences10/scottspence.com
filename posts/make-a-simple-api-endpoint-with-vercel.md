@@ -12,10 +12,11 @@ isPrivate: false
 Create a simple Node API on Vercel Serverless functions in under 20
 minutes. But first some preamble!
 
-A while back (3 years ago now!) I made a [Positivity API], it was a
-really simple array of positive quotes that's used in the
-[#100DaysOfCode twitter bot] which is [still in use today]! I
-contributed a lot to that bot [back in the day]!
+A while back (3 years ago now!) I made a [Positivity API], it was a really
+simple array of positive quotes that's used in the [#100DaysOfCode
+twitter
+bot] which is [still in use today]! I contributed a lot to that bot
+[back in the day]!
 
 This time around I've made some random words that are going to be used
 to make blog a name!
@@ -46,11 +47,10 @@ pamphlet whatever!
 ## In the beginning it was a simple site
 
 First up, this was a collection of words I got from Googling [another
-word for blog], put them all into several arrays of adjectives, verbs
-and nouns then randomly create a phrase from that. Initially this was
-all in a `.js` file on [a simple project] I put together quickly to
-have a little fun with. It's now going to be a submission for the
-Gatsby silly site challenge.
+word for blog], put them all into several arrays of adjectives, verbs and
+nouns then randomly create a phrase from that. Initially this was all in
+a `.js` file on [a simple project] I put together quickly to have a little
+fun with. It's now going to be a submission for the Gatsby silly site challenge.
 
 I decided that I wanted to have this in my personal site as well so
 when someone navigates to the posts they'll be presented with a random
@@ -69,8 +69,8 @@ give you a response like this:
 
 ```json
 {
-  "name": "script fierce magnificent datebook",
-  "slug": "script-fierce-magnificent-datebook"
+	"name": "script fierce magnificent datebook",
+	"slug": "script-fierce-magnificent-datebook"
 }
 ```
 
@@ -132,7 +132,7 @@ In the `api/index.ts` file add in the classic "hello world"!
 import { NowRequest, NowResponse } from '@vercel/node'
 
 export default (req: NowRequest, res: NowResponse) => {
-  return res.json({ message: 'Hello World' })
+	return res.json({ message: 'Hello World' })
 }
 ```
 
@@ -168,28 +168,28 @@ brevity here:
 
 ```ts
 export function random(arr: string[]) {
-  return arr[Math.floor(Math.random() * arr.length)]
+	return arr[Math.floor(Math.random() * arr.length)]
 }
 
 export function getFunPassword() {
-  const adjectives = [
-    'adorable',
-    // rest
-  ]
+	const adjectives = [
+		'adorable',
+		// rest
+	]
 
-  const verbs = [
-    'correct',
-    //  rest
-  ]
+	const verbs = [
+		'correct',
+		//  rest
+	]
 
-  const nouns = [
-    'women',
-    // rest
-  ]
+	const nouns = [
+		'women',
+		// rest
+	]
 
-  return `${random(verbs)} ${random(adjectives)} ${random(
-    adjectives
-  )} ${random(nouns)}`
+	return `${random(verbs)} ${random(adjectives)} ${random(
+		adjectives,
+	)} ${random(nouns)}`
 }
 ```
 
@@ -201,7 +201,7 @@ import { NowRequest, NowResponse } from '@vercel/node'
 import { getFunPassword } from '../src/random-password'
 
 export default (_req: NowRequest, res: NowResponse) => {
-  return res.json({ password: getFunPassword() })
+	return res.json({ password: getFunPassword() })
 }
 ```
 
@@ -242,41 +242,41 @@ Time to use it!
 ## Use it in another project
 
 Time to use it in another project, for brevity I've added this to an
-[example CodeSandbox] it's a example of getting data from an endpoint
-and displaying it in a project.
+[example CodeSandbox] it's a example of getting data from an endpoint and
+displaying it in a project.
 
 I'm using axios to get the data, and storing the returned result in
 some state:
 
 ```jsx
 export default function Home() {
-  const [blogNameObj, blogNameObjSet] = useState({
-    name: `Your password`,
-  })
-  const getBlogName = async () => {
-    await axios
-      .get(`https://random-password-generator-ten.vercel.app/api`)
-      .then(res => {
-        blogNameObjSet(res.data)
-      })
-      .catch(err => {
-        console.error(err)
-      })
-  }
+	const [blogNameObj, blogNameObjSet] = useState({
+		name: `Your password`,
+	})
+	const getBlogName = async () => {
+		await axios
+			.get(`https://random-password-generator-ten.vercel.app/api`)
+			.then(res => {
+				blogNameObjSet(res.data)
+			})
+			.catch(err => {
+				console.error(err)
+			})
+	}
 
-  return (
-    <div>
-      <h1>Generate Password</h1>
-      <h2>{blogNameObj.password}</h2>
-      <button
-        onClick={() => {
-          blogNameObjSet(getBlogName())
-        }}
-      >
-        Get Name
-      </button>
-    </div>
-  )
+	return (
+		<div>
+			<h1>Generate Password</h1>
+			<h2>{blogNameObj.password}</h2>
+			<button
+				onClick={() => {
+					blogNameObjSet(getBlogName())
+				}}
+			>
+				Get Name
+			</button>
+		</div>
+	)
 }
 ```
 
@@ -294,8 +294,8 @@ a [CORS] error, so that needs to be enabled before I go any further!
 
 ## Enable CORS
 
-There's a great knowledge base resource on Vercel.com on [how to
-enable CORS]! For my use case I've set the headers:
+There's a great knowledge base resource on Vercel.com on [how
+to enable CORS]! For my use case I've set the headers:
 
 ```ts
 res.setHeader('Access-Control-Allow-Credentials', `true`)
@@ -317,30 +317,31 @@ process...
 
 ## Code examples
 
-There's [example code on GitHub] for the serverless function and an
-[example CodeSandbox] with the implementation.
+There's [example code on GitHub] for the serverless function and an [example
+CodeSandbox]
+with the implementation.
 
 <!-- Links -->
 
 [positivity api]: https://github.com/spences10/positivity-api
 [still in use today]:
-  https://github.com/freeCodeCamp/100DaysOfCode-twitter-bot/blob/master/package.json#L48
+	https://github.com/freeCodeCamp/100DaysOfCode-twitter-bot/blob/master/package.json#L48
 [#100daysofcode twitter bot]: https://twitter.com/_100DaysOfCode
 [back in the day]:
-  https://github.com/freeCodeCamp/100DaysOfCode-twitter-bot/graphs/contributors
+	https://github.com/freeCodeCamp/100DaysOfCode-twitter-bot/graphs/contributors
 [a digital garden]: https://scottspence.com/posts/a-digital-garden/
 [paul]: https://twitter.com/PaulieScanlon
 [rich]: https://twitter.com/studio_hungry
 [random blog name]: https://github.com/spences10/random-blog-name
 [another word for blog]:
-  https://www.wordhippo.com/what-is/another-word-for/blog.html
+	https://www.wordhippo.com/what-is/another-word-for/blog.html
 [a simple project]:
-  https://github.com/spences10/blog-name-generator/blob/bc39bf3b98/script.js
+	https://github.com/spences10/blog-name-generator/blob/bc39bf3b98/script.js
 [characters from password]:
-  https://github.com/spences10/characters-from-password
+	https://github.com/spences10/characters-from-password
 [example codesandbox]:
-  https://codesandbox.io/s/zealous-lake-ep54i?file=/src/App.js
+	https://codesandbox.io/s/zealous-lake-ep54i?file=/src/App.js
 [example code on github]:
-  https://github.com/spences10/random-password-generator
+	https://github.com/spences10/random-password-generator
 [cors]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 [how to enable cors]: https://vercel.com/knowledge/how-to-enable-cors

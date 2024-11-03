@@ -34,9 +34,9 @@ No more Markdown comments, MDX doesn't support the html comments you
 could add into my MDX files so they had to go.
 
 I mainly used html comments to organise my links in my posts, see the
-[Markdown Showdown] for more on that if you're interested. I means
-that the links I'd have at the bottom of a post wouldn't be labelled
-links, resources, images, etc.
+[Markdown Showdown] for more on that if you're interested. I means that
+the links I'd have at the bottom of a post wouldn't be labelled links,
+resources, images, etc.
 
 ```html
 <!-- Links -->
@@ -86,7 +86,7 @@ learning experience for me
 
 [toast]: https://github.com/toastdotdev
 [markdown showdown]:
-  https://scottspence.com/posts/writing-with-markdown/
+	https://scottspence.com/posts/writing-with-markdown/
 [intro to toast]: https://www.mikeallanson.com/intro-to-toast
 [benjamin lannon's portfolio]: https://github.com/lannonbr
 [tony alves template]: https://github.com/talves/toast-template
@@ -95,4 +95,4 @@ learning experience for me
 [toast starters]: https://github.com/toastdotdev/starters
 [snowpack]: https://www.snowpack.dev/
 [esm]:
-  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import

@@ -25,9 +25,9 @@ First the `+page.server.ts` file:
 import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async () => {
-  return {
-    page_server_data: { message: 'hello world' },
-  }
+	return {
+		page_server_data: { message: 'hello world' },
+	}
 }
 ```
 
@@ -37,12 +37,12 @@ Then the `+page.ts` file:
 import type { PageLoad } from './$types'
 
 export const load: PageLoad = async ({ parent, data }) => {
-  await parent()
-  let { page_server_data } = data
-  return {
-    page_server_data,
-    page_data: { message: 'hello world' },
-  }
+	await parent()
+	let { page_server_data } = data
+	return {
+		page_server_data,
+		page_data: { message: 'hello world' },
+	}
 }
 ```
 
@@ -54,9 +54,9 @@ On the `+page.svelte` file we can access the data from both files:
 
 ```svelte
 <script lang="ts">
-  import type { PageData } from './$types'
+	import type { PageData } from './$types'
 
-  export let data: PageData
+	export let data: PageData
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -66,12 +66,12 @@ Output:
 
 ```json
 {
-  "page_server_data": {
-    "message": "hello world"
-  },
-  "page_data": {
-    "message": "hello world"
-  }
+	"page_server_data": {
+		"message": "hello world"
+	},
+	"page_data": {
+		"message": "hello world"
+	}
 }
 ```
 
@@ -83,6 +83,6 @@ Hope this helps anyone who comes across this.
 <!-- Links -->
 
 [real-time analytics to my site]:
-  https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom/
+	https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom/
 [which i've detailed it in the past]:
-  https://scottspence.com/posts/data-loading-in-sveltekit#two-or-more-endpoints
+	https://scottspence.com/posts/data-loading-in-sveltekit#two-or-more-endpoints

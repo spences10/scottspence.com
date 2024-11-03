@@ -16,32 +16,32 @@ call to the GraphQL endpoint.
 
 ```svelte
 <script context="module">
-  export const load = async ({ fetch, page: { params } }) => {
-    const slug = params
-    const res = await fetch('https://mygraphqlendpoint/graphql', {
-      method: 'POST',
-      body: JSON.stringify({
-        query: `
+	export const load = async ({ fetch, page: { params } }) => {
+		const slug = params
+		const res = await fetch('https://mygraphqlendpoint/graphql', {
+			method: 'POST',
+			body: JSON.stringify({
+				query: `
             query Post($slug: String!) {
               post(where: { slug: $slug }) {
                 title
               }
             }
           `,
-        variables: { slug },
-      }),
-    })
-    if (res.ok) {
-      const post = await res.json()
-      return {
-        props: { post },
-      }
-    }
-  }
+				variables: { slug },
+			}),
+		})
+		if (res.ok) {
+			const post = await res.json()
+			return {
+				props: { post },
+			}
+		}
+	}
 </script>
 
 <script>
-  export let post
+	export let post
 </script>
 
 <pre>{JSON.stringify(post, null, 2)}</pre>
@@ -57,34 +57,34 @@ SvelteKit.
 
 ```svelte
 <script>
-  const getGraphQlQuery = async () => {
-    const res = await fetch('https://mygraphqlendpoint/graphql', {
-      method: 'POST',
-      body: JSON.stringify({
-        query: `
+	const getGraphQlQuery = async () => {
+		const res = await fetch('https://mygraphqlendpoint/graphql', {
+			method: 'POST',
+			body: JSON.stringify({
+				query: `
               query Post($slug: String!) {
                 post(where: { slug: $slug }) {
                   title
                 }
               }
             `,
-        variables: { slug: 'my-query-slug' },
-      }),
-    })
-    if (res.ok) {
-      const post = await res.json()
-      return { post }
-    }
-  }
-  let post = getGraphQlQuery()
+				variables: { slug: 'my-query-slug' },
+			}),
+		})
+		if (res.ok) {
+			const post = await res.json()
+			return { post }
+		}
+	}
+	let post = getGraphQlQuery()
 </script>
 
 {#await post}
-  <p>...waiting</p>
+	<p>...waiting</p>
 {:then { post }}
-  <pre>{JSON.stringify(post, null, 2)}</pre>
+	<pre>{JSON.stringify(post, null, 2)}</pre>
 {:catch error}
-  <p style="color: red">{error.message}</p>
+	<p style="color: red">{error.message}</p>
 {/await}
 ```
 
@@ -95,12 +95,12 @@ The `variables` property is optional and can be left empty.
 
 ```js
 JSON.stringify({
-  query: `
+	query: `
     query MyQuery($slug: String!) {
       post(where: { slug: $slug }) {
         title
       }
     }`,
-  variables: { slug: 'my-query-slug' },
+	variables: { slug: 'my-query-slug' },
 })
 ```

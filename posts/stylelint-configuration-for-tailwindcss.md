@@ -24,23 +24,23 @@ project:
 
 ```js
 module.exports = {
-  extends: ['stylelint-config-standard'],
-  rules: {
-    'at-rule-no-unknown': [
-      true,
-      {
-        ignoreAtRules: [
-          'tailwind',
-          'apply',
-          'variants',
-          'responsive',
-          'screen',
-        ],
-      },
-    ],
-    'declaration-block-trailing-semicolon': null,
-    'no-descending-specificity': null,
-  },
+	extends: ['stylelint-config-standard'],
+	rules: {
+		'at-rule-no-unknown': [
+			true,
+			{
+				ignoreAtRules: [
+					'tailwind',
+					'apply',
+					'variants',
+					'responsive',
+					'screen',
+				],
+			},
+		],
+		'declaration-block-trailing-semicolon': null,
+		'no-descending-specificity': null,
+	},
 }
 ```
 
@@ -75,40 +75,39 @@ configuration as a JSON object or add it directly to the
 
 ```json
 {
-  "name": "project-using-stylelint",
-  "scripts": {},
-  "dependencies": {},
-  "devDependencies": {},
-  "stylelint": {
-    "extends": ["stylelint-config-standard"],
-    "rules": {
-      "at-rule-no-unknown": [
-        true,
-        {
-          "ignoreAtRules": [
-            "tailwind",
-            "apply",
-            "variants",
-            "responsive",
-            "screen"
-          ]
-        }
-      ],
-      "declaration-block-trailing-semicolon": null,
-      "no-descending-specificity": null
-    }
-  }
+	"name": "project-using-stylelint",
+	"scripts": {},
+	"dependencies": {},
+	"devDependencies": {},
+	"stylelint": {
+		"extends": ["stylelint-config-standard"],
+		"rules": {
+			"at-rule-no-unknown": [
+				true,
+				{
+					"ignoreAtRules": [
+						"tailwind",
+						"apply",
+						"variants",
+						"responsive",
+						"screen"
+					]
+				}
+			],
+			"declaration-block-trailing-semicolon": null,
+			"no-descending-specificity": null
+		}
+	}
 }
 ```
 
 With the `module.exports` syntax Toast will derp, see the SO question
-for configuration: [How to solve semi-colon expected
-css(css-semicolonexpected)]
+for configuration: [How to solve semi-colon expected css(css-semicolonexpected)]
 
 [stylelint]: https://stylelint.io/
 [how to solve semi-colon expected css(css-semicolonexpected)]:
-  https://stackoverflow.com/a/63784195/1138354
+	https://stackoverflow.com/a/63784195/1138354
 [stylelint]:
-  https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint
+	https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint
 [tailwind css intellisense]:
-  https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
+	https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss

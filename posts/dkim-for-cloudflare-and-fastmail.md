@@ -28,6 +28,6 @@ That's it, now my DKIM is configured correctly.
 <!-- Images -->
 
 [proxied-dkim-records]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1706816043/scottspence.com/proxied-dkim-records.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1706816043/scottspence.com/proxied-dkim-records.png
 [proxy-status-dns-only]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1706816043/scottspence.com/proxy-status-dns-only.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1706816043/scottspence.com/proxy-status-dns-only.png

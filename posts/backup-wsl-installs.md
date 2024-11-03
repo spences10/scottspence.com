@@ -15,8 +15,8 @@ I can start up again where I left off as long as I have committed and
 pushed my code that is!
 
 I've covered getting set up with a WSL instance that isn't on the
-Microsoft store before with a [WSL Web Developer Bootstrap with Fedora
-33].
+Microsoft store before with a [WSL Web Developer Bootstrap with
+Fedora 33].
 
 That covered importing the distribution from a `rootfs` (root file
 system) image and configuring it from scratch.
@@ -145,4 +145,4 @@ wsl --unregister Fedora-test
 ```
 
 [wsl web developer bootstrap with fedora 33]:
-  https://scottspence.com/posts/fedora-bootstrap-from-scratch/
+	https://scottspence.com/posts/fedora-bootstrap-from-scratch/

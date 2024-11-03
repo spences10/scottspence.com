@@ -9,21 +9,19 @@ isPrivate: false
 
 What a catchy title! So, I thought it'd be a good idea to completely
 move away from using Airtable. I used Airtable for my short URL
-service I created and for various config options for the [Let's Work
-Together] page on my site. I moved them all to Upstash Redis except
-for the contact form.
+service I created and for various config options for the [Let's
+Work Together] page on my site. I moved them all to Upstash Redis
+except for the contact form.
 
 I have several posts on setting up a contact form with SvelteKit which
-[I have done in the past]. This time I'll be using `nodemailer` and
-Fastmail. I've been a Fastmail user for a while now and I wanted to
-drop the Airtable automation and use Fastmail to send the email from
-the contact form on my site to me. If you're interested in checking
-out Fastmail you can use my [referral link] to get 10% off your first
-year.
+[I have done in the past]. This time I'll be using `nodemailer` and Fastmail.
+I've been a Fastmail user for a while now and I wanted to drop the Airtable
+automation and use Fastmail to send the email from the contact form on
+my site to me. If you're interested in checking out Fastmail you can use
+my [referral link] to get 10% off your first year.
 
-The inspiration for this comes from a [WebJeda video], Sharath is a
-great educator for Svelte with a lot of content on his YouTube
-channel.
+The inspiration for this comes from a [WebJeda video], Sharath is a great
+educator for Svelte with a lot of content on his YouTube channel.
 
 I absolutely love Fastmail! There's a [tag for it] on it on the site
 if you want to see some more content from me on it!
@@ -87,56 +85,56 @@ something via a button click on a form.
 
 ```ts
 import {
-  EMAIL_APP_PASSWORD,
-  EMAIL_APP_TO_ADDRESS,
-  EMAIL_APP_USER,
+	EMAIL_APP_PASSWORD,
+	EMAIL_APP_TO_ADDRESS,
+	EMAIL_APP_USER,
 } from '$env/static/private'
 import { fail } from '@sveltejs/kit'
 import nodemailer from 'nodemailer'
 
 export const actions = {
-  default: async () => {
-    try {
-      const name = 'scott'
-      const email = 'scott@scott.com'
-      const reason = 'laptop'
-      const message = 'laptop pls'
+	default: async () => {
+		try {
+			const name = 'scott'
+			const email = 'scott@scott.com'
+			const reason = 'laptop'
+			const message = 'laptop pls'
 
-      // Create a transporter object using the nodemailer library
-      const transporter = nodemailer.createTransport({
-        host: 'smtp.fastmail.com',
-        port: 465,
-        secure: true,
-        auth: {
-          user: EMAIL_APP_USER,
-          pass: EMAIL_APP_PASSWORD,
-        },
-      })
+			// Create a transporter object using the nodemailer library
+			const transporter = nodemailer.createTransport({
+				host: 'smtp.fastmail.com',
+				port: 465,
+				secure: true,
+				auth: {
+					user: EMAIL_APP_USER,
+					pass: EMAIL_APP_PASSWORD,
+				},
+			})
 
-      // Set up email data
-      const mail_options = {
-        from: `"${name}" <${email}>`,
-        to: EMAIL_APP_TO_ADDRESS,
-        subject: reason,
-        text: message,
-      }
+			// Set up email data
+			const mail_options = {
+				from: `"${name}" <${email}>`,
+				to: EMAIL_APP_TO_ADDRESS,
+				subject: reason,
+				text: message,
+			}
 
-      // Send email
-      const info = await transporter.sendMail(mail_options)
+			// Send email
+			const info = await transporter.sendMail(mail_options)
 
-      return {
-        status: 200,
-        body: {
-          message: 'Email sent successfully',
-          messageId: info.messageId,
-        },
-      }
-    } catch (error) {
-      return fail(500, {
-        error: 'Internal server error',
-      })
-    }
-  },
+			return {
+				status: 200,
+				body: {
+					message: 'Email sent successfully',
+					messageId: info.messageId,
+				},
+			}
+		} catch (error) {
+			return fail(500, {
+				error: 'Internal server error',
+			})
+		}
+	},
 }
 ```
 
@@ -156,22 +154,22 @@ something like this.
 
 ```svelte
 <script lang="ts">
-  import { enhance } from '$app/forms'
+	import { enhance } from '$app/forms'
 </script>
 
 <form
-  method="POST"
-  action="/contact"
-  use:enhance={() => {
-    return ({ update, result }) => {
-      console.log('=====================')
-      console.log(result)
-      console.log('=====================')
-      update({ reset: true })
-    }
-  }}
+	method="POST"
+	action="/contact"
+	use:enhance={() => {
+		return ({ update, result }) => {
+			console.log('=====================')
+			console.log(result)
+			console.log('=====================')
+			update({ reset: true })
+		}
+	}}
 >
-  <input type="submit" value="test!" />
+	<input type="submit" value="test!" />
 </form>
 ```
 
@@ -185,15 +183,15 @@ The `result` object looks like this.
 
 ```json
 {
-  "type": "success",
-  "status": 200,
-  "data": {
-    "status": 200,
-    "body": {
-      "message": "Email sent successfully",
-      "messageId": "<jk43sfdf-a757-61fe-e288-m8d28785e45f@scott.com>"
-    }
-  }
+	"type": "success",
+	"status": 200,
+	"data": {
+		"status": 200,
+		"body": {
+			"message": "Email sent successfully",
+			"messageId": "<jk43sfdf-a757-61fe-e288-m8d28785e45f@scott.com>"
+		}
+	}
 }
 ```
 
@@ -213,76 +211,76 @@ email is sent successfully.
 
 ```svelte
 <script lang="ts">
-  import { enhance } from '$app/forms'
-  import type { ActionResult } from '@sveltejs/kit'
+	import { enhance } from '$app/forms'
+	import type { ActionResult } from '@sveltejs/kit'
 
-  let action_result: ActionResult
-  let success = false
-  let message_type: 'error' | 'success' = 'error'
+	let action_result: ActionResult
+	let success = false
+	let message_type: 'error' | 'success' = 'error'
 
-  const handle_result = (result: ActionResult) => {
-    action_result = result
-    if (result.type === 'success') {
-      success = true
-    } else if (result.type === 'failure') {
-      message_type = 'error'
-    }
-  }
+	const handle_result = (result: ActionResult) => {
+		action_result = result
+		if (result.type === 'success') {
+			success = true
+		} else if (result.type === 'failure') {
+			message_type = 'error'
+		}
+	}
 </script>
 
 <form
-  method="POST"
-  action="/contact"
-  enctype="multipart/form-data"
-  use:enhance={() => {
-    return ({ update, result }) => {
-      handle_result(result)
-      update({ reset: true })
-    }
-  }}
+	method="POST"
+	action="/contact"
+	enctype="multipart/form-data"
+	use:enhance={() => {
+		return ({ update, result }) => {
+			handle_result(result)
+			update({ reset: true })
+		}
+	}}
 >
-  <label for="name">
-    <span>Name</span>
-  </label>
-  <input
-    type="text"
-    id="name"
-    name="name"
-    aria-label="name"
-    placeholder="Name"
-    required
-  />
-  <label for="email">
-    <span>Email</span>
-  </label>
-  <input
-    type="email"
-    id="email"
-    name="email"
-    aria-label="email"
-    placeholder="Email"
-    required
-  />
-  <label for="reason">
-    <span>Reason</span>
-  </label>
-  <select id="reason" name="reason" aria-label="reason" required>
-    <option disabled value="">Contact reason</option>
-    <option value="hi">Say hi!</option>
-    <option value="collaboration">Collaboration request</option>
-    <option value="speak">Speaking opportunity</option>
-  </select>
-  <label for="message">
-    <span>Message</span>
-  </label>
-  <textarea
-    id="message"
-    name="message"
-    aria-label="message"
-    placeholder="Hey! I'd love to talk about..."
-    required
-  />
-  <button type="submit">Submit</button>
+	<label for="name">
+		<span>Name</span>
+	</label>
+	<input
+		type="text"
+		id="name"
+		name="name"
+		aria-label="name"
+		placeholder="Name"
+		required
+	/>
+	<label for="email">
+		<span>Email</span>
+	</label>
+	<input
+		type="email"
+		id="email"
+		name="email"
+		aria-label="email"
+		placeholder="Email"
+		required
+	/>
+	<label for="reason">
+		<span>Reason</span>
+	</label>
+	<select id="reason" name="reason" aria-label="reason" required>
+		<option disabled value="">Contact reason</option>
+		<option value="hi">Say hi!</option>
+		<option value="collaboration">Collaboration request</option>
+		<option value="speak">Speaking opportunity</option>
+	</select>
+	<label for="message">
+		<span>Message</span>
+	</label>
+	<textarea
+		id="message"
+		name="message"
+		aria-label="message"
+		placeholder="Hey! I'd love to talk about..."
+		required
+	/>
+	<button type="submit">Submit</button>
 </form>
 ```
 
@@ -368,61 +366,60 @@ so that I can use the `success` variable to conditionally render the
 success or failure components.
 
 I've added in a `spin` transition to the success and failure that was
-taken straight from the [learn.svelte.dev tutorial for custom CSS
-transitions].
+taken straight from the [learn.svelte.dev tutorial for custom CSS transitions].
 
 ```svelte
 <script lang="ts">
-  import type { ActionResult } from '@sveltejs/kit'
-  import { elasticOut } from 'svelte/easing'
-  import { fade } from 'svelte/transition'
-  import ContactFormFailure from './contact-form-failure.svelte'
-  import ContactFormFields from './contact-form-fields.svelte'
-  import ContactFormSuccess from './contact-form-success.svelte'
+	import type { ActionResult } from '@sveltejs/kit'
+	import { elasticOut } from 'svelte/easing'
+	import { fade } from 'svelte/transition'
+	import ContactFormFailure from './contact-form-failure.svelte'
+	import ContactFormFields from './contact-form-fields.svelte'
+	import ContactFormSuccess from './contact-form-success.svelte'
 
-  let action_result: ActionResult
-  let success = false
-  let message_type: 'error' | 'success' = 'error'
+	let action_result: ActionResult
+	let success = false
+	let message_type: 'error' | 'success' = 'error'
 
-  const handle_result = (result: ActionResult) => {
-    action_result = result
-    if (result.type === 'success') {
-      success = true
-    } else if (result.type === 'failure') {
-      message_type = 'error'
-    }
-  }
+	const handle_result = (result: ActionResult) => {
+		action_result = result
+		if (result.type === 'success') {
+			success = true
+		} else if (result.type === 'failure') {
+			message_type = 'error'
+		}
+	}
 
-  // https://learn.svelte.dev/tutorial/custom-css-transitions
-  export const spin = (
-    node: HTMLDivElement,
-    { delay, duration }: { delay: number; duration: number },
-  ) => {
-    return {
-      delay,
-      duration,
-      css: (t: any) => {
-        const eased = elasticOut(t)
-        return `
+	// https://learn.svelte.dev/tutorial/custom-css-transitions
+	export const spin = (
+		node: HTMLDivElement,
+		{ delay, duration }: { delay: number; duration: number },
+	) => {
+		return {
+			delay,
+			duration,
+			css: (t: any) => {
+				const eased = elasticOut(t)
+				return `
           transform: scale(${eased}) rotate(${eased * 360}deg);
           `
-      },
-    }
-  }
+			},
+		}
+	}
 </script>
 
 {#if success}
-  <div in:spin={{ delay: 900, duration: 1400 }}>
-    <ContactFormSuccess />
-  </div>
+	<div in:spin={{ delay: 900, duration: 1400 }}>
+		<ContactFormSuccess />
+	</div>
 {:else if action_result?.type === 'failure'}
-  <div in:spin={{ delay: 900, duration: 1400 }}>
-    <ContactFormFailure />
-  </div>
+	<div in:spin={{ delay: 900, duration: 1400 }}>
+		<ContactFormFailure />
+	</div>
 {:else}
-  <div out:fade={{ delay: 200, duration: 400 }}>
-    <ContactFormFields {handle_result} />
-  </div>
+	<div out:fade={{ delay: 200, duration: 400 }}>
+		<ContactFormFields {handle_result} />
+	</div>
 {/if}
 ```
 
@@ -430,71 +427,71 @@ The `contact-form-fields.svelte` file looks like this now:
 
 ```svelte
 <script lang="ts">
-  import { enhance } from '$app/forms'
-  export let handle_result: Function
+	import { enhance } from '$app/forms'
+	export let handle_result: Function
 </script>
 
 <form
-  method="POST"
-  action="/contact"
-  enctype="multipart/form-data"
-  use:enhance={() => {
-    return ({ update, result }) => {
-      handle_result(result)
-      update({ reset: true })
-    }
-  }}
+	method="POST"
+	action="/contact"
+	enctype="multipart/form-data"
+	use:enhance={() => {
+		return ({ update, result }) => {
+			handle_result(result)
+			update({ reset: true })
+		}
+	}}
 >
-  <label for="name">
-    <span>Name</span>
-  </label>
-  <input
-    type="text"
-    id="name"
-    name="name"
-    aria-label="name"
-    placeholder="Name"
-    required
-  />
-  <label for="email">
-    <span>Email</span>
-  </label>
-  <input
-    type="email"
-    id="email"
-    name="email"
-    aria-label="email"
-    placeholder="Email"
-    required
-  />
-  <!-- honeypot -->
-  <input
-    type="text"
-    name="subject"
-    id="subject"
-    class="hidden"
-    value=""
-  />
-  <label for="reason">
-    <span>Reason</span>
-  </label>
-  <select id="reason" name="reason" aria-label="reason" required>
-    <option disabled selected value="">Contact reason</option>
-    <option value="hi">Say hi!</option>
-    <option value="collaboration">Collaboration request</option>
-    <option value="speak">Speaking opportunity</option>
-  </select>
-  <label for="message">
-    <span>Message</span>
-  </label>
-  <textarea
-    id="message"
-    name="message"
-    aria-label="message"
-    placeholder="Hey! I'd love to talk about..."
-    required
-  />
-  <button type="submit">Submit</button>
+	<label for="name">
+		<span>Name</span>
+	</label>
+	<input
+		type="text"
+		id="name"
+		name="name"
+		aria-label="name"
+		placeholder="Name"
+		required
+	/>
+	<label for="email">
+		<span>Email</span>
+	</label>
+	<input
+		type="email"
+		id="email"
+		name="email"
+		aria-label="email"
+		placeholder="Email"
+		required
+	/>
+	<!-- honeypot -->
+	<input
+		type="text"
+		name="subject"
+		id="subject"
+		class="hidden"
+		value=""
+	/>
+	<label for="reason">
+		<span>Reason</span>
+	</label>
+	<select id="reason" name="reason" aria-label="reason" required>
+		<option disabled selected value="">Contact reason</option>
+		<option value="hi">Say hi!</option>
+		<option value="collaboration">Collaboration request</option>
+		<option value="speak">Speaking opportunity</option>
+	</select>
+	<label for="message">
+		<span>Message</span>
+	</label>
+	<textarea
+		id="message"
+		name="message"
+		aria-label="message"
+		placeholder="Hey! I'd love to talk about..."
+		required
+	/>
+	<button type="submit">Submit</button>
 </form>
 ```
 
@@ -528,13 +525,13 @@ status code and success message.
 
 ```ts
 if (subject) {
-  // Honeypot
-  return {
-    status: 200,
-    body: {
-      message: 'Email sent successfully',
-    },
-  }
+	// Honeypot
+	return {
+		status: 200,
+		body: {
+			message: 'Email sent successfully',
+		},
+	}
 }
 ```
 
@@ -544,68 +541,68 @@ The full `+page.server.ts` file looks like this:
 
 ```ts
 import {
-  EMAIL_APP_PASSWORD,
-  EMAIL_APP_TO_ADDRESS,
-  EMAIL_APP_USER,
+	EMAIL_APP_PASSWORD,
+	EMAIL_APP_TO_ADDRESS,
+	EMAIL_APP_USER,
 } from '$env/static/private'
 import { fail } from '@sveltejs/kit'
 import nodemailer from 'nodemailer'
 
 export const actions = {
-  default: async ({ request }) => {
-    try {
-      const data = await request.formData()
-      const name = data.get('name')?.toString()
-      const email = data.get('email')?.toString()
-      const subject = data.get('subject')?.toString()
-      const reason = data.get('reason')?.toString()
-      const message = data.get('message')?.toString()
+	default: async ({ request }) => {
+		try {
+			const data = await request.formData()
+			const name = data.get('name')?.toString()
+			const email = data.get('email')?.toString()
+			const subject = data.get('subject')?.toString()
+			const reason = data.get('reason')?.toString()
+			const message = data.get('message')?.toString()
 
-      if (subject) {
-        // Honeypot
-        return {
-          status: 200,
-          body: {
-            message: 'Email sent successfully',
-          },
-        }
-      }
+			if (subject) {
+				// Honeypot
+				return {
+					status: 200,
+					body: {
+						message: 'Email sent successfully',
+					},
+				}
+			}
 
-      // Create a transporter object using the nodemailer library
-      const transporter = nodemailer.createTransport({
-        host: 'smtp.fastmail.com',
-        port: 465,
-        secure: true,
-        auth: {
-          user: EMAIL_APP_USER,
-          pass: EMAIL_APP_PASSWORD,
-        },
-      })
+			// Create a transporter object using the nodemailer library
+			const transporter = nodemailer.createTransport({
+				host: 'smtp.fastmail.com',
+				port: 465,
+				secure: true,
+				auth: {
+					user: EMAIL_APP_USER,
+					pass: EMAIL_APP_PASSWORD,
+				},
+			})
 
-      // Set up email data
-      const mail_options = {
-        from: `"${name}" <${email}>`,
-        to: EMAIL_APP_TO_ADDRESS,
-        subject: reason,
-        text: message,
-      }
+			// Set up email data
+			const mail_options = {
+				from: `"${name}" <${email}>`,
+				to: EMAIL_APP_TO_ADDRESS,
+				subject: reason,
+				text: message,
+			}
 
-      // Send email
-      const info = await transporter.sendMail(mail_options)
+			// Send email
+			const info = await transporter.sendMail(mail_options)
 
-      return {
-        status: 200,
-        body: {
-          message: 'Email sent successfully',
-          messageId: info.messageId,
-        },
-      }
-    } catch (error) {
-      return fail(500, {
-        error: 'Internal server error',
-      })
-    }
-  },
+			return {
+				status: 200,
+				body: {
+					message: 'Email sent successfully',
+					messageId: info.messageId,
+				},
+			}
+		} catch (error) {
+			return fail(500, {
+				error: 'Internal server error',
+			})
+		}
+	},
 }
 ```
 
@@ -617,18 +614,19 @@ the `+page.server.ts` file.
 
 ```ts
 export const config: ServerlessConfig = {
-  runtime: 'nodejs18.x',
+	runtime: 'nodejs18.x',
 }
 ```
 
-Otherwise you should be golden, the [example repo] uses
-`@sveltejs/adapter-auto` and works fine.
+Otherwise you should be golden, the [example repo] uses `@sveltejs/adapter-auto`
+and works fine.
 
 ## Example repo
 
-I've created an [example repo] for this post, you can check out the
-[demo on Vercel], it doesn't submit anywhere. You want to reach out
-then please use the [contact form] here.
+I've created an [example repo] for this post, you can check out the [demo
+on
+Vercel], it doesn't submit anywhere. You want to reach out then please
+use the [contact form] here.
 
 ## Conclusion
 
@@ -653,13 +651,13 @@ site.
 [tag for it]: https://scottspence.com/tags/fastmail
 [referral link]: https://ref.fm/u27421800
 [Switching from Brevo to Buttondown]:
-  https://scottspence.com/posts/switching-from-brevo-to-buttondown
+	https://scottspence.com/posts/switching-from-brevo-to-buttondown
 [I have done in the past]:
-  https://scottspence.com/posts?search=contact%20form
+	https://scottspence.com/posts?search=contact%20form
 [webjeda video]: https://www.youtube.com/watch?v=qa-Sh0iM-kM
 [example repo]:
-  https://github.com/spences10/sveltekit-contact-form-example
+	https://github.com/spences10/sveltekit-contact-form-example
 [demo on Vercel]: https://sveltekit-contact-form-example.vercel.app
 [contact form]: /contact
 [learn.svelte.dev tutorial for custom CSS transitions]:
-  https://learn.svelte.dev/tutorial/custom-css-transitions
+	https://learn.svelte.dev/tutorial/custom-css-transitions

@@ -9,9 +9,8 @@ isPrivate: false
   import { Tweet } from 'sveltekit-embed'
 </script>
 
-I recently released a [head component] that can be used in Svelte
-projects and I wanted to add tests to it to make sure that it's
-working as expected.
+I recently released a [head component] that can be used in Svelte projects
+and I wanted to add tests to it to make sure that it's working as expected.
 
 I decided to use Playwright to test the component as it comes with the
 SvelteKit CLI as a config option.
@@ -38,8 +37,8 @@ simple test:
 
 ```ts
 test('index page has h1', async ({ page }) => {
-  await page.goto('/')
-  expect(await page.textContent('h1')).toBe('Welcome to Svead')
+	await page.goto('/')
+	expect(await page.textContent('h1')).toBe('Welcome to Svead')
 })
 ```
 
@@ -47,15 +46,15 @@ I'll keep that in the file.
 
 Then the first thing I'll want to check after that would be the
 `canonical`. I found how to do this with a combination of the
-Playwright documentation and the Cypress tests on the [Astro SEO]
-component which has been really helpful in helping me identify where
-there may be some gaps in my own component.
+Playwright documentation and the Cypress tests on the [Astro SEO] component
+which has been really helpful in helping me identify where there may be
+some gaps in my own component.
 
 ```ts
 test('head has canonical', async ({ page }) => {
-  await page.goto('/')
-  const metaDescription = page.locator('link[rel="canonical"]')
-  await expect(metaDescription).toHaveAttribute('href', pageURL)
+	await page.goto('/')
+	const metaDescription = page.locator('link[rel="canonical"]')
+	await expect(metaDescription).toHaveAttribute('href', pageURL)
 })
 ```
 
@@ -63,12 +62,12 @@ Then for the `description` tag:
 
 ```ts
 test('head has description', async ({ page }) => {
-  await page.goto('/')
-  const metaDescription = page.locator('meta[name="description"]')
-  await expect(metaDescription).toHaveAttribute(
-    'content',
-    'Svead, a component that allows you to set head meta information.'
-  )
+	await page.goto('/')
+	const metaDescription = page.locator('meta[name="description"]')
+	await expect(metaDescription).toHaveAttribute(
+		'content',
+		'Svead, a component that allows you to set head meta information.',
+	)
 })
 ```
 
@@ -79,8 +78,8 @@ If you want to see the full suite of tests then check out the [tests]
 over on the GitHub repo.
 
 This is by no means a complete test suite and I'll be taking more
-pointers from the really well written [Astro SEO] component tests by
-[Jonas Schumacher].
+pointers from the really well written [Astro SEO] component tests by [Jonas
+Schumacher].
 
 ## The CI
 
@@ -108,17 +107,17 @@ Like I mentioned this isn't a complete suite of tests but enough to
 give me the confidence it's functioning as it should. I'll be adding
 in more tests to cover the other optional meta tags.
 
-If you want to contribute feel free to open a PR on the [Svead GitHub]
-repo.
+If you want to contribute feel free to open a PR on the [Svead
+GitHub] repo.
 
 <!-- Links -->
 
 [head component]: https://github.com/spences10/svead
 [astro seo]: https://github.com/jonasmerlin/astro-seo/
 [playwright vs code extension]:
-  https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright
+	https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright
 [tests]: https://github.com/spences10/svead/blob/main/tests/test.ts
 [jonas schumacher]: https://github.com/jonasmerlin
 [svead github]: https://github.com/spences10/svead
 [`.github/workflows` folder]:
-  https://github.com/spences10/svead/blob/main/.github/workflows/e2e-ci.yml
+	https://github.com/spences10/svead/blob/main/.github/workflows/e2e-ci.yml

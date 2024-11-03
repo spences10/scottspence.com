@@ -108,8 +108,8 @@ first blog. But I could only run it on Cloud9 because I couldn't get
 Ruby running on my computer. 😅
 
 Hugo uses Go, <Sarcasm sarky="but where's the JavaScript!!?!1" /> see
-this is where the [name change] comes in where there's no hard fast
-rules on the technologies that make up a jamstack site.
+this is where the [name change] comes in where there's no hard fast rules
+on the technologies that make up a jamstack site.
 
 ## Jamstack core philosophy
 
@@ -166,8 +166,7 @@ No > Jamstack
 
 High performing sites retain visitors more than low performing ones.
 
-Here's some information from Google's web.dev blog on [Why does speed
-matter].
+Here's some information from Google's web.dev blog on [Why does speed matter].
 
 Pinterest reduced perceived wait times by 40% and this increased
 search engine traffic and sign-ups by 15%.
@@ -195,9 +194,9 @@ on business goals. For example, the BBC found they lost an additional
 [404pagefound.com]: https://www.404pagefound.com/)
 [jamstack.wtf]: https://jamstack.wtf/)
 [how-mobile-latency-impacts-publisher-revenue]:
-  https://www.thinkwithgoogle.com/intl/en-154/insights-inspiration/research-data/need-mobile-speed-how-mobile-latency-impacts-publisher-revenue/
+	https://www.thinkwithgoogle.com/intl/en-154/insights-inspiration/research-data/need-mobile-speed-how-mobile-latency-impacts-publisher-revenue/
 [mobile-page-speed-new-industry-benchmarks]:
-  https://www.thinkwithgoogle.com/marketing-resources/data-measurement/mobile-page-speed-new-industry-benchmarks/
+	https://www.thinkwithgoogle.com/marketing-resources/data-measurement/mobile-page-speed-new-industry-benchmarks/
 [cook]: https://www.cookfood.net/
 [why does speed matter]: https://web.dev/why-speed-matters/
 [name change]: https://github.com/jamstack/jamstack.org/issues/279

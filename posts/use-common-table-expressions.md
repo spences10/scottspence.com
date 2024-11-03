@@ -21,13 +21,13 @@ I was doing something like this:
 ```ts
 // Fetch Popular Posts
 const popular_posts_promises = ['day', 'month', 'year'].map(period =>
-  fetch_popular_posts(fetch, period),
+	fetch_popular_posts(fetch, period),
 )
 
 const [
-  popular_posts_daily,
-  popular_posts_monthly,
-  popular_posts_yearly,
+	popular_posts_daily,
+	popular_posts_monthly,
+	popular_posts_yearly,
 ] = await Promise.all(popular_posts_promises)
 ```
 
@@ -53,18 +53,18 @@ So, this was the JSON I was getting with that query:
 
 ```json
 {
-  "daily": [
-    {
-      "period": "day",
-      "id": 1,
-      "pathname": "/posts/use-chrome-in-ubuntu-wsl",
-      "pageviews": 90,
-      "visits": 22,
-      "date_grouping": "day",
-      "last_updated": "2023-12-26 11:44:33"
-    }
-    // rest of the posts...
-  ]
+	"daily": [
+		{
+			"period": "day",
+			"id": 1,
+			"pathname": "/posts/use-chrome-in-ubuntu-wsl",
+			"pageviews": 90,
+			"visits": 22,
+			"date_grouping": "day",
+			"last_updated": "2023-12-26 11:44:33"
+		}
+		// rest of the posts...
+	]
 }
 ```
 
@@ -73,19 +73,19 @@ can get some JSON back like this:
 
 ```json
 {
-  "daily": [
-    {
-      "period": "day",
-      "id": 1,
-      "pathname": "/posts/use-chrome-in-ubuntu-wsl",
-      "title": "Use Google Chrome in Ubuntu on Windows Subsystem Linux",
-      "pageviews": 90,
-      "visits": 22,
-      "date_grouping": "day",
-      "last_updated": "2023-12-26 11:44:33"
-    }
-    // rest of the posts...
-  ]
+	"daily": [
+		{
+			"period": "day",
+			"id": 1,
+			"pathname": "/posts/use-chrome-in-ubuntu-wsl",
+			"title": "Use Google Chrome in Ubuntu on Windows Subsystem Linux",
+			"pageviews": 90,
+			"visits": 22,
+			"date_grouping": "day",
+			"last_updated": "2023-12-26 11:44:33"
+		}
+		// rest of the posts...
+	]
 }
 ```
 

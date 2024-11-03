@@ -70,13 +70,13 @@ Here's an example of what using the Head component looks like now:
 
 ```svelte
 <script lang="ts">
-  import { Head, type SeoConfig } from 'svead'
+	import { Head, type SeoConfig } from 'svead'
 
-  const seo_config: SeoConfig = {
-    title: 'Welcome to My Site',
-    description: 'This is a simple web page example.',
-    url: 'https://example.com/welcome',
-  }
+	const seo_config: SeoConfig = {
+		title: 'Welcome to My Site',
+		description: 'This is a simple web page example.',
+		url: 'https://example.com/welcome',
+	}
 </script>
 
 <Head {seo_config} />
@@ -122,18 +122,18 @@ Here's an example using it:
 
 ```svelte
 <script lang="ts">
-  import { SchemaOrg, type SchemaOrgProps } from 'svead'
+	import { SchemaOrg, type SchemaOrgProps } from 'svead'
 
-  const schema_org: SchemaOrgProps['schema'] = {
-    '@type': 'BlogPosting',
-    headline: 'My First Blog Post',
-    description: 'This is an example of a blog post using svead.',
-    author: {
-      '@type': 'Person',
-      name: 'John Doe',
-    },
-    datePublished: '2023-08-22T10:00:00Z',
-  }
+	const schema_org: SchemaOrgProps['schema'] = {
+		'@type': 'BlogPosting',
+		headline: 'My First Blog Post',
+		description: 'This is an example of a blog post using svead.',
+		author: {
+			'@type': 'Person',
+			name: 'John Doe',
+		},
+		datePublished: '2023-08-22T10:00:00Z',
+	}
 </script>
 
 <SchemaOrg schema={schema_org} />
@@ -144,41 +144,41 @@ flexibility to the user:
 
 ```svelte
 <script lang="ts">
-  import { page } from '$app/stores'
-  import {
-    Head,
-    SchemaOrg,
-    type SeoConfig,
-    type SchemaOrgProps,
-  } from 'svead'
+	import { page } from '$app/stores'
+	import {
+		Head,
+		SchemaOrg,
+		type SeoConfig,
+		type SchemaOrgProps,
+	} from 'svead'
 
-  const seo_config: SeoConfig = {
-    title: 'My Blog Post',
-    description: 'This is an example blog post using Svead.',
-    url: $page.url.href,
-    author_name: 'John Doe',
-    site_name: 'My Awesome Blog',
-  }
+	const seo_config: SeoConfig = {
+		title: 'My Blog Post',
+		description: 'This is an example blog post using Svead.',
+		url: $page.url.href,
+		author_name: 'John Doe',
+		site_name: 'My Awesome Blog',
+	}
 
-  const schema_org: SchemaOrgProps['schema'] = {
-    '@type': 'BlogPosting',
-    headline: seo_config.title,
-    description: seo_config.description,
-    author: {
-      '@type': 'Person',
-      name: seo_config.author_name,
-    },
-    datePublished: new Date().toISOString(),
-  }
+	const schema_org: SchemaOrgProps['schema'] = {
+		'@type': 'BlogPosting',
+		headline: seo_config.title,
+		description: seo_config.description,
+		author: {
+			'@type': 'Person',
+			name: seo_config.author_name,
+		},
+		datePublished: new Date().toISOString(),
+	}
 </script>
 
 <Head {seo_config} />
 <SchemaOrg schema={schema_org} />
 
 <article>
-  <h1>{seo_config.title}</h1>
-  <p>{seo_config.description}</p>
-  <!-- Rest of your blog post content -->
+	<h1>{seo_config.title}</h1>
+	<p>{seo_config.description}</p>
+	<!-- Rest of your blog post content -->
 </article>
 ```
 
@@ -188,58 +188,58 @@ an example for a "WebPage", with additional nested types like
 
 ```svelte
 <script lang="ts">
-  import { page } from '$app/stores'
-  import { SchemaOrg, type SchemaOrgProps } from 'svead'
+	import { page } from '$app/stores'
+	import { SchemaOrg, type SchemaOrgProps } from 'svead'
 
-  const get_current_iso_date = () => new Date().toISOString()
+	const get_current_iso_date = () => new Date().toISOString()
 
-  const schema_org: SchemaOrgProps['schema'] = {
-    '@type': 'WebPage',
-    '@id': $page.url.href,
-    url: $page.url.href,
-    name: 'How to Use Structured Data in SvelteKit',
-    description:
-      'Learn how to implement structured data in your SvelteKit project for better SEO.',
-    inLanguage: 'en',
-    datePublished: get_current_iso_date(),
-    dateModified: get_current_iso_date(),
-    author: {
-      '@type': 'Person',
-      name: 'Jane Doe',
-    },
-    mainEntity: {
-      '@type': 'BlogPosting',
-      '@id': `${$page.url.href}#article`,
-      headline: 'How to Use Structured Data in SvelteKit',
-      description:
-        'Learn how to implement structured data in your SvelteKit project for better SEO.',
-      datePublished: get_current_iso_date(),
-      dateModified: get_current_iso_date(),
-      author: {
-        '@type': 'Person',
-        name: 'Jane Doe',
-      },
-      publisher: {
-        '@type': 'Organization',
-        name: 'SvelteKit SEO Guide',
-      },
-      mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': $page.url.href,
-      },
-      inLanguage: 'en',
-    },
-  }
+	const schema_org: SchemaOrgProps['schema'] = {
+		'@type': 'WebPage',
+		'@id': $page.url.href,
+		url: $page.url.href,
+		name: 'How to Use Structured Data in SvelteKit',
+		description:
+			'Learn how to implement structured data in your SvelteKit project for better SEO.',
+		inLanguage: 'en',
+		datePublished: get_current_iso_date(),
+		dateModified: get_current_iso_date(),
+		author: {
+			'@type': 'Person',
+			name: 'Jane Doe',
+		},
+		mainEntity: {
+			'@type': 'BlogPosting',
+			'@id': `${$page.url.href}#article`,
+			headline: 'How to Use Structured Data in SvelteKit',
+			description:
+				'Learn how to implement structured data in your SvelteKit project for better SEO.',
+			datePublished: get_current_iso_date(),
+			dateModified: get_current_iso_date(),
+			author: {
+				'@type': 'Person',
+				name: 'Jane Doe',
+			},
+			publisher: {
+				'@type': 'Organization',
+				name: 'SvelteKit SEO Guide',
+			},
+			mainEntityOfPage: {
+				'@type': 'WebPage',
+				'@id': $page.url.href,
+			},
+			inLanguage: 'en',
+		},
+	}
 </script>
 
 <SchemaOrg schema={schema_org} />
 
 <article>
-  <h1>How to Use Structured Data in SvelteKit</h1>
-  <p>
-    Learn how to implement structured data in your SvelteKit project
-    for better SEO.
-  </p>
+	<h1>How to Use Structured Data in SvelteKit</h1>
+	<p>
+		Learn how to implement structured data in your SvelteKit project
+		for better SEO.
+	</p>
 </article>
 ```
 

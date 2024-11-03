@@ -30,8 +30,9 @@ section for WSL].
 - My computer is a [Ryzen 5 Mini ITX build], my [first time PC
   building a PC].
 - Desk chair is a [HÅG Capisco Puls]
-- I run two [HP EliteDisplay's E232 58,4 cm (23")] Monitors through a
-  [WAVLINK USB C Laptop Universal Docking Station].
+- I run two [HP EliteDisplay's E232 58,4 cm (23")] Monitors through a [WAVLINK
+  USB
+  C Laptop Universal Docking Station].
 - Keyboard is a [Keychron Q1].
 - Mouse, Logitech MX Master 3 (wheel goes brrrrrrrrrr)
 - Microphone, a Shure MV7.
@@ -48,7 +49,8 @@ Channel.
 ### Editor + Terminal
 
 - Microsoft [Visual Studio Code] with [Sarah Drasner]'s awesome [Night
-  Owl] 🦉 theme
+  Owl]
+  🦉 theme
 - Terminal of choice is [Windows Terminal Preview]. Check out the
   video on [making a custom config] or [read the post].
 - [Victor Mono] font for both text editor and terminal.
@@ -74,7 +76,8 @@ Channel.
 ### Editor + Terminal
 
 - Microsoft [Visual Studio Code] with [Sarah Drasner]'s awesome [Night
-  Owl] 🦉 theme
+  Owl]
+  🦉 theme
 - [Windows Terminal Preview]
 
 ### Desktop apps
@@ -91,19 +94,19 @@ Channel.
 [sarah drasner]: https://github.com/sdras/
 [night owl]: https://github.com/sdras/night-owl-vscode-theme
 [keychron q1]:
-  https://scottspence.com/posts/keychron-q1-first-impressions
+	https://scottspence.com/posts/keychron-q1-first-impressions
 [visual studio code]: https://code.visualstudio.com/
 [windows terminal preview]:
-  https://www.microsoft.com/en-gb/p/windows-terminal-preview/9n8g5rfz9xk3
+	https://www.microsoft.com/en-gb/p/windows-terminal-preview/9n8g5rfz9xk3
 [shotcut]: https://shotcut.org/
 [winget]:
-  https://docs.microsoft.com/en-us/windows/package-manager/winget/
+	https://docs.microsoft.com/en-us/windows/package-manager/winget/
 [ryzen 5 mini itx build]: https://uk.pcpartpicker.com/list/pHkrCL
 [first time pc building a pc]:
-  https://scottspence.com/posts/first-time-pc-build
+	https://scottspence.com/posts/first-time-pc-build
 [made some notes]: https://scottspence.com/posts/logitech-g915
 [tags section for wsl]: https://scottspence.com/tags/wsl
 [wavlink usb c laptop universal docking station]:
-  https://www.amazon.co.uk/gp/product/B082SR6GMB
+	https://www.amazon.co.uk/gp/product/B082SR6GMB
 [making a custom config]: https://www.youtube.com/watch?v=iT47xk3F7EA
 [read the post]: https://scottspence.com/posts/windows-terminal-config

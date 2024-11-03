@@ -5,8 +5,7 @@ tags: ['css', 'css-in-js', 'linaria']
 isPrivate: false
 ---
 
-This is a follow up on the post I did about [Getting Started with
-Linaria]
+This is a follow up on the post I did about [Getting Started with Linaria]
 
 The starter I worked on last time I made into a template so it can be
 used as the base of this project.
@@ -19,8 +18,7 @@ gatsby new gatsby-linaria-starter-with-theme https://github.com/spences10/gatsby
 
 ## Defaults
 
-In this example I'm using the [defaults from Tailwind CSS] for the
-theme.
+In this example I'm using the [defaults from Tailwind CSS] for the theme.
 
 With this as a base I can then add my own theme on top of that. An
 example of why I would want to do that would be with the Tailwind
@@ -72,7 +70,7 @@ import { defaults } from './theme-defaults'
 const { theme: themeDefaults } = defaults
 
 export const theme = {
-  ...themeDefaults,
+	...themeDefaults,
 }
 ```
 
@@ -80,8 +78,8 @@ export const theme = {
 
 <!-- cSpell:ignore Callstack -->
 
-If I wanted to I could create my own theme with Linaria [using CSS
-custom properties] (variables) but instead I'm going to be using the
+If I wanted to I could create my own theme with Linaria [using
+CSS custom properties] (variables) but instead I'm going to be using the
 [Callstack theme provider] which has a hook I can use in `useTheme`.
 
 ```bash
@@ -113,16 +111,16 @@ the Linaria `styled` component `theme` prop.
 
 ```jsx {2,4}
 const Header = ({ siteTitle }) => {
-  const theme = useTheme()
-  return (
-    <StyledHeader theme={theme}>
-      <div>
-        <h1>
-          <Link to="/">{siteTitle}</Link>
-        </h1>
-      </div>
-    </StyledHeader>
-  )
+	const theme = useTheme()
+	return (
+		<StyledHeader theme={theme}>
+			<div>
+				<h1>
+					<Link to="/">{siteTitle}</Link>
+				</h1>
+			</div>
+		</StyledHeader>
+	)
 }
 ```
 
@@ -131,20 +129,20 @@ values. In the Header component I'll change the `background` to blue:
 
 ```js {2}
 const StyledHeader = styled.header`
-  background: ${({ theme }) => theme.colors.blue[500]};
-  margin-bottom: 1.45rem;
-  div {
-    margin: 0 auto;
-    max-width: 960px;
-    padding: 1.45rem 1.0875rem;
-    h1 {
-      margin: 0;
-      a {
-        color: white;
-        text-decoration: none;
-      }
-    }
-  }
+	background: ${({ theme }) => theme.colors.blue[500]};
+	margin-bottom: 1.45rem;
+	div {
+		margin: 0 auto;
+		max-width: 960px;
+		padding: 1.45rem 1.0875rem;
+		h1 {
+			margin: 0;
+			a {
+				color: white;
+				text-decoration: none;
+			}
+		}
+	}
 `
 ```
 
@@ -178,21 +176,21 @@ import { defaults } from './theme-defaults'
 const { theme: themeDefaults } = defaults
 
 export const theme = {
-  ...themeDefaults,
-  colors: {
-    primary: {
-      100: '#aa7fd4',
-      200: '#9966cc',
-      300: '#884cc3',
-      400: '#773bb2',
-      500: '#663399',
-      600: '#552b80',
-      700: '#442266',
-      800: '#331a4d',
-      900: '#221133',
-    },
-    ...themeDefaults.colors,
-  },
+	...themeDefaults,
+	colors: {
+		primary: {
+			100: '#aa7fd4',
+			200: '#9966cc',
+			300: '#884cc3',
+			400: '#773bb2',
+			500: '#663399',
+			600: '#552b80',
+			700: '#442266',
+			800: '#331a4d',
+			900: '#221133',
+		},
+		...themeDefaults.colors,
+	},
 }
 ```
 
@@ -213,11 +211,11 @@ needs.
 <!-- Links -->
 
 [getting started with linaria]:
-  https://scottspence.com/posts/linaria-getting-started/
+	https://scottspence.com/posts/linaria-getting-started/
 [defaults from tailwind css]:
-  https://github.com/tailwindcss/designing-with-tailwindcss/blob/master/01-getting-up-and-running/07-customizing-your-design-system/tailwind-full.config.js
+	https://github.com/tailwindcss/designing-with-tailwindcss/blob/master/01-getting-up-and-running/07-customizing-your-design-system/tailwind-full.config.js
 [callstack theme provider]:
-  https://github.com/callstack/react-theme-provider
+	https://github.com/callstack/react-theme-provider
 [using css custom properties]:
-  https://github.com/callstack/linaria/blob/master/docs/THEMING.md#css-custom-properties
+	https://github.com/callstack/linaria/blob/master/docs/THEMING.md#css-custom-properties
 [0to255.com]: https://0to255.com

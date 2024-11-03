@@ -63,17 +63,17 @@ const daisyui = require('daisyui')
 
 /** @type {import('tailwindcss').Config}*/
 const config = {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
+	content: ['./src/**/*.{html,js,svelte,ts}'],
 
-  theme: {
-    extend: {},
-  },
+	theme: {
+		extend: {},
+	},
 
-  daisyui: {
-    themes: ['light', 'dark', 'cupcake'],
-  },
+	daisyui: {
+		themes: ['light', 'dark', 'cupcake'],
+	},
 
-  plugins: [daisyui],
+	plugins: [daisyui],
 }
 
 module.exports = config
@@ -83,13 +83,13 @@ module.exports = config
 
 I have a [long-standing example project] that uses SvelteKit and
 daisyUI for using all the daisyUI themes. If you're interested in how
-this was done before using cookies then check out the files [from this
-commit]. You can see I was using [`theme-change`] (again by [Pouya])
-for setting the theme by adding a `data-theme` attribute to the `html`
-element.
+this was done before using cookies then check out the files [from
+this commit]. You can see I was using [`theme-change`] (again by
+[Pouya]) for setting the theme by adding a `data-theme` attribute to
+the `html` element.
 
-The example project now uses the approach used by [Script Raccoon]
-from their blog post [How to implement a cookie-based dark mode toggle
+The example project now uses the approach used by [Script Raccoon] from
+their blog post [How to implement a cookie-based dark mode toggle
 in SvelteKit]. I've adapted this approach to use the daisyUI themes.
 
 First up I'm going to need to have a list of all the available themes
@@ -100,10 +100,10 @@ It looks a little like this:
 
 ```ts
 export const themes = [
-  'acid',
-  'aqua',
-  'etc...',
-  'all-the-daisyui-themes',
+	'acid',
+	'aqua',
+	'etc...',
+	'all-the-daisyui-themes',
 ]
 ```
 
@@ -135,17 +135,17 @@ and use it to check if the user has selected a valid theme in the
 import { themes } from '$lib/themes'
 
 export const handle = async ({ event, resolve }) => {
-  const theme = event.cookies.get('theme')
+	const theme = event.cookies.get('theme')
 
-  if (!theme || !themes.includes(theme)) {
-    return await resolve(event)
-  }
+	if (!theme || !themes.includes(theme)) {
+		return await resolve(event)
+	}
 
-  return await resolve(event, {
-    transformPageChunk: ({ html }) => {
-      return html.replace('data-theme=""', `data-theme="${theme}"`)
-    },
-  })
+	return await resolve(event, {
+		transformPageChunk: ({ html }) => {
+			return html.replace('data-theme=""', `data-theme="${theme}"`)
+		},
+	})
 }
 ```
 
@@ -166,17 +166,17 @@ it's compiled.
 Here's what it looks like in the example project:
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
 </html>
 ```
 
@@ -192,19 +192,19 @@ in a select element.
 
 ```svelte
 <script lang="ts">
-  import { themes } from './themes'
+	import { themes } from './themes'
 </script>
 
 <div class="mb-8">
-  <select
-    data-choose-theme
-    class="select select-bordered select-primary w-full max-w-3xl text-xl capitalize"
-  >
-    <option disabled selected>Choose a theme</option>
-    {#each themes as theme}
-      <option value={theme} class="capitalize">{theme}</option>
-    {/each}
-  </select>
+	<select
+		data-choose-theme
+		class="select select-bordered select-primary w-full max-w-3xl text-xl capitalize"
+	>
+		<option disabled selected>Choose a theme</option>
+		{#each themes as theme}
+			<option value={theme} class="capitalize">{theme}</option>
+		{/each}
+	</select>
 </div>
 ```
 
@@ -217,32 +217,32 @@ to the function.
 
 ```svelte
 <script lang="ts">
-  import { themes } from './themes'
+	import { themes } from './themes'
 
-  function set_theme(event: Event) {
-    const select = event.target as HTMLSelectElement
-    const theme = select.value
-    if (themes.includes(theme)) {
-      const one_year = 60 * 60 * 24 * 365
-      window.localStorage.setItem('theme', theme)
-      document.cookie = `theme=${theme}; max-age=${one_year}; path=/;`
-      document.documentElement.setAttribute('data-theme', theme)
-      current_theme = theme
-    }
-  }
+	function set_theme(event: Event) {
+		const select = event.target as HTMLSelectElement
+		const theme = select.value
+		if (themes.includes(theme)) {
+			const one_year = 60 * 60 * 24 * 365
+			window.localStorage.setItem('theme', theme)
+			document.cookie = `theme=${theme}; max-age=${one_year}; path=/;`
+			document.documentElement.setAttribute('data-theme', theme)
+			current_theme = theme
+		}
+	}
 </script>
 
 <div class="mb-8">
-  <select
-    data-choose-theme
-    class="select select-bordered select-primary w-full max-w-3xl text-xl capitalize"
-    on:change={set_theme}
-  >
-    <option disabled selected> Choose a theme </option>
-    {#each themes as theme}
-      <option value={theme} class="capitalize">{theme}</option>
-    {/each}
-  </select>
+	<select
+		data-choose-theme
+		class="select select-bordered select-primary w-full max-w-3xl text-xl capitalize"
+		on:change={set_theme}
+	>
+		<option disabled selected> Choose a theme </option>
+		{#each themes as theme}
+			<option value={theme} class="capitalize">{theme}</option>
+		{/each}
+	</select>
 </div>
 ```
 
@@ -271,48 +271,48 @@ current theme variable to the theme from `localStorage`.
 
 ```svelte
 <script lang="ts">
-  import { onMount } from 'svelte'
-  import { themes } from './themes'
+	import { onMount } from 'svelte'
+	import { themes } from './themes'
 
-  let current_theme = ''
+	let current_theme = ''
 
-  onMount(() => {
-    if (typeof window !== 'undefined') {
-      const theme = window.localStorage.getItem('theme')
-      if (theme && themes.includes(theme)) {
-        document.documentElement.setAttribute('data-theme', theme)
-        current_theme = theme
-      }
-    }
-  })
+	onMount(() => {
+		if (typeof window !== 'undefined') {
+			const theme = window.localStorage.getItem('theme')
+			if (theme && themes.includes(theme)) {
+				document.documentElement.setAttribute('data-theme', theme)
+				current_theme = theme
+			}
+		}
+	})
 
-  function set_theme(event: Event) {
-    const select = event.target as HTMLSelectElement
-    const theme = select.value
-    if (themes.includes(theme)) {
-      const one_year = 60 * 60 * 24 * 365
-      window.localStorage.setItem('theme', theme)
-      document.cookie = `theme=${theme}; max-age=${one_year}; path=/;`
-      document.documentElement.setAttribute('data-theme', theme)
-      current_theme = theme
-    }
-  }
+	function set_theme(event: Event) {
+		const select = event.target as HTMLSelectElement
+		const theme = select.value
+		if (themes.includes(theme)) {
+			const one_year = 60 * 60 * 24 * 365
+			window.localStorage.setItem('theme', theme)
+			document.cookie = `theme=${theme}; max-age=${one_year}; path=/;`
+			document.documentElement.setAttribute('data-theme', theme)
+			current_theme = theme
+		}
+	}
 </script>
 
 <div class="mb-8">
-  <select
-    bind:value={current_theme}
-    data-choose-theme
-    class="select select-bordered select-primary w-full max-w-3xl text-xl capitalize"
-    on:change={set_theme}
-  >
-    <option value="" disabled={current_theme !== ''}>
-      Choose a theme
-    </option>
-    {#each themes as theme}
-      <option value={theme} class="capitalize">{theme}</option>
-    {/each}
-  </select>
+	<select
+		bind:value={current_theme}
+		data-choose-theme
+		class="select select-bordered select-primary w-full max-w-3xl text-xl capitalize"
+		on:change={set_theme}
+	>
+		<option value="" disabled={current_theme !== ''}>
+			Choose a theme
+		</option>
+		{#each themes as theme}
+			<option value={theme} class="capitalize">{theme}</option>
+		{/each}
+	</select>
 </div>
 ```
 
@@ -363,15 +363,15 @@ where the cookie is being set.
 
 ```ts
 function set_theme(event: Event) {
-  const select = event.target as HTMLSelectElement
-  const theme = select.value
-  if (themes.includes(theme)) {
-    const one_year = 60 * 60 * 24 * 365
-    window.localStorage.setItem('theme', theme)
-    document.cookie = `theme=${theme}; max-age=${one_year}; path=/; SameSite=Strict;`
-    document.documentElement.setAttribute('data-theme', theme)
-    current_theme = theme
-  }
+	const select = event.target as HTMLSelectElement
+	const theme = select.value
+	if (themes.includes(theme)) {
+		const one_year = 60 * 60 * 24 * 365
+		window.localStorage.setItem('theme', theme)
+		document.cookie = `theme=${theme}; max-age=${one_year}; path=/; SameSite=Strict;`
+		document.documentElement.setAttribute('data-theme', theme)
+		current_theme = theme
+	}
 }
 ```
 
@@ -405,14 +405,14 @@ Also thanks to [Pouya] for [daisyUI] chef kiss!
 [daisyui]: https://daisyui.com/
 [Pouya]: https://twitter.com/Saadeghi
 [long-standing example project]:
-  https://github.com/spences10/sveltekit-theme-switch-example
+	https://github.com/spences10/sveltekit-theme-switch-example
 [from this commit]:
-  https://github.com/spences10/sveltekit-theme-switch-example/blob/1f9b4f9b5f5aa0a521f68a21dc0b17e5ec89d625/src/routes/%2Blayout.svelte
+	https://github.com/spences10/sveltekit-theme-switch-example/blob/1f9b4f9b5f5aa0a521f68a21dc0b17e5ec89d625/src/routes/%2Blayout.svelte
 [`theme-change`]: https://github.com/saadeghi/theme-change
 [How to implement a cookie-based dark mode toggle in SvelteKit]:
-  https://scriptraccoon.dev/blog/darkmode-toggle-sveltekit
+	https://scriptraccoon.dev/blog/darkmode-toggle-sveltekit
 [Script Raccoon]: https://scriptraccoon.dev
 [`sequence` helper function]:
-  https://kit.svelte.dev/docs/modules#sveltejs-kit-hooks-sequence
+	https://kit.svelte.dev/docs/modules#sveltejs-kit-hooks-sequence
 [full list of the themes]:
-  https://github.com/spences10/sveltekit-theme-switch-example/blob/5489c1843b42bb8c3162e22760a55b88a3e7c0b0/src/lib/themes/index.ts
+	https://github.com/spences10/sveltekit-theme-switch-example/blob/5489c1843b42bb8c3162e22760a55b88a3e7c0b0/src/lib/themes/index.ts

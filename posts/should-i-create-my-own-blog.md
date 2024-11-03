@@ -21,8 +21,8 @@ Svelte components added in for use in the Markdown. This is a feature
 not supported by any blogging platform and reasoning for me to build
 my own blog.
 
-For an example of what I mean, take a look at the [Writing with
-Markdown] post I did a while back for the interactive elements on
+For an example of what I mean, take a look at the [Writing
+with Markdown] post I did a while back for the interactive elements on
 there.
 
 ## Let's compare
@@ -441,11 +441,11 @@ windowsill 😂.
 
 [since 2016 here]: https://scottspence.com/posts/hello-world
 [matt jennings' sveltekit blog template]:
-  https://github.com/mattjennings/sveltekit-blog-template
+	https://github.com/mattjennings/sveltekit-blog-template
 [mehdi vasigh's sveltekit mdsvex blog]:
-  https://github.com/mvasigh/sveltekit-mdsvex-blog
+	https://github.com/mvasigh/sveltekit-mdsvex-blog
 [writing with markdown]:
-  https://scottspence.com/posts/writing-with-markdown#markdown-headings
+	https://scottspence.com/posts/writing-with-markdown#markdown-headings
 [let me know]: mailto:yo@scottspence.com
 
 []:https://startafuckingblog.com/#posse-every-fucking-thing
@@ -453,4 +453,4 @@ windowsill 😂.
 <!-- Images -->
 
 [spam-messages-on-hashnode]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1673703390/scottspence.com/spam-messages-on-hashnode.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1673703390/scottspence.com/spam-messages-on-hashnode.jpg

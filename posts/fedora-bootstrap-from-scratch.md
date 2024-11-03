@@ -14,8 +14,8 @@ initial install of Fedora 33 right through to running GUI tools like
 Cypress and Puppeteer!
 
 There's a great resource I found in [Fedora Magazine] and another post
-in [Dev.to], the Dev.to one I haven't tried as the first guide does
-all I need it to do so it's there for reference if needed.
+in [Dev.to], the Dev.to one I haven't tried as the first guide does all
+I need it to do so it's there for reference if needed.
 
 This is my bootstrap for getting set up with Fedora 33 and all the
 related bits of software I'll need for wed development with it.
@@ -422,10 +422,11 @@ vercel login
 
 ## Set the `$DISPLAY` variable
 
-Unlike with the [Fedora Remix for WSL] the display variable needs to
-be set in Fedora 33, so I'll go through the same process as I did in
-my [Enable GUIs WSL] post. Credit to Nicky Muleman and [his post] that
-give me the initial details.
+Unlike with the [Fedora Remix for WSL] the display variable needs to be
+set in Fedora 33, so I'll go through the same process as I did in my [Enable
+GUIs
+WSL] post. Credit to Nicky Muleman and [his post] that give me the
+initial details.
 
 <!-- cSpell:ignore resolv -->
 
@@ -481,29 +482,29 @@ on my Windows machine and configured it for use in web development.
 
 [fedora magazine]: https://fedoramagazine.org/wsl-fedora-33/
 [dev.to]:
-  https://dev.to/bowmanjd/install-fedora-on-windows-subsystem-for-linux-wsl-4b26
+	https://dev.to/bowmanjd/install-fedora-on-windows-subsystem-for-linux-wsl-4b26
 [zsh-syntax-highlighting]:
-  https://github.com/zsh-users/zsh-syntax-highlighting
+	https://github.com/zsh-users/zsh-syntax-highlighting
 [zsh-autosuggestions]:
-  https://github.com/zsh-users/zsh-autosuggestions
+	https://github.com/zsh-users/zsh-autosuggestions
 [spaceship zsh]: https://github.com/denysdovhan/spaceship-prompt
 [yarn docs]:
-  https://classic.yarnpkg.com/en/docs/install/#centos-stable
+	https://classic.yarnpkg.com/en/docs/install/#centos-stable
 [fedora remix for wsl]:
-  https://www.microsoft.com/en-us/p/fedora-remix-for-wsl/9n6gdm4k2hnc?activetab=pivot:overviewtab
+	https://www.microsoft.com/en-us/p/fedora-remix-for-wsl/9n6gdm4k2hnc?activetab=pivot:overviewtab
 [his post]:
-  https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#the-display-variable
+	https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#the-display-variable
 [enable guis wsl]:
-  https://scottspence.com/posts/gui-with-wsl/#gui-things
+	https://scottspence.com/posts/gui-with-wsl/#gui-things
 [this one from github]:
-  https://github.com/fedora-cloud/docker-brew-fedora/tree/33/x86_64
+	https://github.com/fedora-cloud/docker-brew-fedora/tree/33/x86_64
 [official guidance from microsoft]:
-  https://docs.microsoft.com/en-us/windows/wsl/install-win10
+	https://docs.microsoft.com/en-us/windows/wsl/install-win10
 [nicky muleman's post on it]:
-  https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker
+	https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker
 [jim perrin]: https://fedoramagazine.org/author/jperrin/
 [x410]:
-  https://www.microsoft.com/en-gb/p/x410/9nlp712zmn9q?activetab=pivot:overviewtab
+	https://www.microsoft.com/en-gb/p/x410/9nlp712zmn9q?activetab=pivot:overviewtab
 [nicky's post on getting it set up]:
-  https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#vcxsrv
+	https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#vcxsrv
 [copr]: https://docs.pagure.org/copr.copr/index.html

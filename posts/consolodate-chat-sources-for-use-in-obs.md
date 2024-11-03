@@ -12,9 +12,9 @@ Elements. These involve configuring the panel you want in their
 service and copying a URL to use as a browser source in Open
 Broadcaster Software (OBS).
 
-I've just found out about this awesome tool from [Steve Seguin] on
-GitHub called [Social Stream]. It's a browser extension that allows
-you to consolidate chat sources from different platforms like YouTube,
+I've just found out about this awesome tool from [Steve Seguin] on GitHub
+called [Social Stream]. It's a browser extension that allows you to
+consolidate chat sources from different platforms like YouTube,
 Twitch, Facebook and the like.
 
 ## Who's this for then?
@@ -38,8 +38,8 @@ Because the extension isn't on the Chrome store, you'll need to
 install it manually. The zip file will need to be extracted out into
 it's own folder.
 
-There's a great guide on the GitHub repo explaining [how to do this
-for Chrome].
+There's a great guide on the GitHub repo explaining [how to do
+this for Chrome].
 
 I'm using Edge, so I'll need to go to [`edge://extensions/`] and
 toggle the 'Developer mode' option.
@@ -184,23 +184,23 @@ that out over on [YouTube]!
 [steve seguin]: https://github.com/steveseguin
 [social stream]: https://github.com/steveseguin/social_stream
 [here]:
-  https://github.com/steveseguin/social_stream/archive/refs/heads/main.zip
+	https://github.com/steveseguin/social_stream/archive/refs/heads/main.zip
 [how to do this for chrome]:
-  https://github.com/steveseguin/social_stream#to-install
+	https://github.com/steveseguin/social_stream#to-install
 [`edge://extensions/`]: edge://extensions/
 [youtube]: https://www.youtube.com/watch?v=X_11Np2JHNU
 
 <!-- Images -->
 
 [edge-developer-mode-toggle]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645804438/scottspence.com/edge-developer-mode-toggle.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645804438/scottspence.com/edge-developer-mode-toggle.png
 [edge-load-unpacked-extension]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645804996/scottspence.com/edge-load-unpacked-extension.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645804996/scottspence.com/edge-load-unpacked-extension.png
 [social-stream-ninja-browser-extension-options]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645805384/scottspence.com/social-stream-ninja-browser-extension-options.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645805384/scottspence.com/social-stream-ninja-browser-extension-options.png
 [social-stream-ninja-browser-extension-options-selected]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645806059/scottspence.com/social-stream-ninja-browser-extension-options-selected.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645806059/scottspence.com/social-stream-ninja-browser-extension-options-selected.png
 [obs-add-browser-source]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645809147/scottspence.com/obs-add-browser-source.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645809147/scottspence.com/obs-add-browser-source.png
 [obs-browser-source-properties-dialogue]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645809699/scottspence.com/obs-browser-source-properties-dialogue.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645809699/scottspence.com/obs-browser-source-properties-dialogue.png

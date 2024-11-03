@@ -15,8 +15,8 @@ an intermediary release before Ubuntu 20.04 is released on 2020
 April 23.
 
 I have documented [this process in the past] for moving from Ubuntu
-version 18.04 to 18.10. You can see [my comments] as I went through
-the process back then.
+version 18.04 to 18.10. You can see [my comments] as I went through the
+process back then.
 
 ## 📺 Here's a video detailing the process.
 
@@ -79,9 +79,9 @@ Now the `release-upgrades` file is set to `normal` I can do the
 
 ![release-upgrade-for-realsies]
 
-You may be aware of an [lxd error] that occurs on the Ubuntu 18.04 to
-Ubuntu 18.10 upgrade. This is where there is a prompt saying ["Your
-system is unable to reach the snap store"].
+You may be aware of an [lxd error] that occurs on the Ubuntu 18.04 to Ubuntu
+18.10 upgrade. This is where there is a prompt saying ["Your system
+is unable to reach the snap store"].
 
 I'm going to skip this during the upgrade but you can _**optionally**_
 run this when doing this for yourself, here's the command:
@@ -195,42 +195,42 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [twitter]: https://twitter.com/spences10
 [ask me anything]: https://github.com/spences10/ama
 [this process in the past]:
-  https://scottspence.com/posts/update-wsl-from-18.04-18.10
+	https://scottspence.com/posts/update-wsl-from-18.04-18.10
 [my comments]: https://dev.to/spences10/comment/9n19
 [do-release-upgrade]:
-  https://help.ubuntu.com/lts/serverguide/installing-upgrading.html
+	https://help.ubuntu.com/lts/serverguide/installing-upgrading.html
 [nano]: https://help.ubuntu.com/community/Nano
 [lxd error]: https://dev.to/spences10/comment/9n3j
 ["your system is unable to reach the snap store"]:
-  https://askubuntu.com/questions/1119301/your-system-is-unable-to-reach-the-snap-store
+	https://askubuntu.com/questions/1119301/your-system-is-unable-to-reach-the-snap-store
 
 <!-- Images -->
 
 [current-version]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858536/scottspence.com/01.current-version-56f1518727b9d6339ef9cbc2f7813813.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858536/scottspence.com/01.current-version-56f1518727b9d6339ef9cbc2f7813813.png
 [do-release-upgrade]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/02.do-release-upgrade-805fa66fa97906724e4644eceacbae5b.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/02.do-release-upgrade-805fa66fa97906724e4644eceacbae5b.png
 [release-upgrades-normal]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/03.release-upgrades-normal-396a67aa70e77081cacb71f123e08cad.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/03.release-upgrades-normal-396a67aa70e77081cacb71f123e08cad.png
 [release-upgrade-for-realsies]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/04.release-upgrade-for-realsies-a48e73b6af82c743301d46ca098e03d1.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/04.release-upgrade-for-realsies-a48e73b6af82c743301d46ca098e03d1.png
 [upgrade-confirmation]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/05.upgrade-confirmation-d4e06ebd5c9d732cffeaf9c8d0273841.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/05.upgrade-confirmation-d4e06ebd5c9d732cffeaf9c8d0273841.png
 [config-libc6]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/06.config-libc6-1cc150556cfed1f2b15fa369dbaacb46.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/06.config-libc6-1cc150556cfed1f2b15fa369dbaacb46.png
 [lxd-warning]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858536/scottspence.com/07.lxd-warning-c71b11ddfc5f0f3d0c8827901b8cdef0.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858536/scottspence.com/07.lxd-warning-c71b11ddfc5f0f3d0c8827901b8cdef0.png
 [openssh-servier-config]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/08.openssh-servier-config-bfad8f011380589631f7857a44b4e99e.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/08.openssh-servier-config-bfad8f011380589631f7857a44b4e99e.png
 [release-upgrades-config]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/09.release-upgrades-config-5c27fb195ae859a7575b1376cd6132f3.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/09.release-upgrades-config-5c27fb195ae859a7575b1376cd6132f3.png
 [finish-up-install]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/10.finish-up-install-be96c886864a0920396fcffe2c546315.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/10.finish-up-install-be96c886864a0920396fcffe2c546315.png
 [restart-prompt]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858536/scottspence.com/11.restart-prompt-f720e506166f0f6898567559fbca187d.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858536/scottspence.com/11.restart-prompt-f720e506166f0f6898567559fbca187d.png
 [finish-upgrade]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/12.finish-upgrade-3f0a6842f37baa0f0e96b0468168a9e6.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/12.finish-upgrade-3f0a6842f37baa0f0e96b0468168a9e6.png
 [press-x]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/13.press-x-49c154256be46d63b6dc1298907787f8.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/13.press-x-49c154256be46d63b6dc1298907787f8.png
 [done]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/14.done-c0cac6ec5e1203fba1cdd7becdcd5391.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/14.done-c0cac6ec5e1203fba1cdd7becdcd5391.png

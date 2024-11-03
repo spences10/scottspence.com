@@ -10,8 +10,8 @@ isPrivate: true
 </script>
 
 I've written about this [in the past] and more recently how I've
-turned what can seem like a massive drain on your resources it [into a
-dev project].
+turned what can seem like a massive drain on your resources it [into
+a dev project].
 
 These are my opinions but ones that I know are shared by the rest of
 the tech community as a whole.
@@ -127,7 +127,7 @@ time.
 
 [in the past]: https://scottspence.com/posts/job-hunting/
 [into a dev project]:
-  https://scottspence.com/posts/job-hunt-dev-project/
+	https://scottspence.com/posts/job-hunt-dev-project/
 [1]: https://twitter.com/spences10/status/1286744623742955520
 [2]: https://twitter.com/spences10/status/1286948087408267264
 [3]: https://twitter.com/BekahHW/status/1251918165338198018

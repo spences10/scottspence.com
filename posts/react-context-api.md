@@ -23,19 +23,18 @@ This is what it will look like by the end of this post:
 ## But first, some **context**! 🤣
 
 Ok terrible puns aside let's have a look at what the React Context API
-is for and what it does. There's a great one liner from the [React
-docs]...
+is for and what it does. There's a great one liner from the [React docs]...
 
 > Context provides a way to pass data through the component tree
 > without having to pass props down manually at every level.
 
 Or in other words, you can use the React Context API to avoid [prop
-drilling] if you need more detail on the concept then please do check
-out the links provided.
+drilling] if you need more detail on the concept then please do check out
+the links provided.
 
 I've previously gone over implementing the React Context API in [my
-Gatsby blog] which I documented as I did it; you can see [how that
-went here].
+Gatsby blog] which I documented as I did it; you can see [how
+that went here].
 
 > ### Explain the Context API to me.
 >
@@ -84,15 +83,14 @@ So let's go over theming the basic create react app again, this time
 instead of adding state into to the component we will use the React
 Context API to manage the state for us. There will be people that will
 argue that this is a bit overkill for a theme switch but it is given
-as an example of [when to use the Context API] in the React
-documentation so I will let you decide on the validity of that point.
-For this example, I hope it will give you a clearer picture of how to
-use the Context API in an application.
+as an example of [when to use the Context API] in the React documentation
+so I will let you decide on the validity of that point. For this example,
+I hope it will give you a clearer picture of how to use the Context API
+in an application.
 
 ### Dependencies
 
-[Open a React CodeSandbox] and add `styled-components` as a
-dependency:
+[Open a React CodeSandbox] and add `styled-components` as a dependency:
 
 ![codesandbox initial]
 
@@ -162,36 +160,36 @@ styling in the [styled-components getting started] post which is the
 
 ```css
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+	animation: App-logo-spin infinite 20s linear;
+	height: 80px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+	background-color: #222;
+	height: 150px;
+	padding: 20px;
+	color: white;
 }
 
 .App-title {
-  font-size: 1.5em;
+	font-size: 1.5em;
 }
 
 .App-intro {
-  font-size: large;
+	font-size: large;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
 ```
 
@@ -246,29 +244,29 @@ call it `globalStyle.js` and add in the following:
 import { injectGlobal } from 'styled-components'
 
 export const themes = {
-  theme1: {
-    primary: '#ff0198',
-    secondary: '#01c1d6',
-    danger: '#e50000',
-    fontHeader: 'Old Standard TT, sans, sans-serif',
-    fontBody: 'Nunito, sans-serif',
-  },
+	theme1: {
+		primary: '#ff0198',
+		secondary: '#01c1d6',
+		danger: '#e50000',
+		fontHeader: 'Old Standard TT, sans, sans-serif',
+		fontBody: 'Nunito, sans-serif',
+	},
 
-  theme2: {
-    primary: '#6e27c5',
-    secondary: '#ffb617',
-    danger: '#ff1919',
-    fontHeader: 'Enriqueta, sans-serif',
-    fontBody: 'Exo 2, sans, sans-serif',
-  },
+	theme2: {
+		primary: '#6e27c5',
+		secondary: '#ffb617',
+		danger: '#ff1919',
+		fontHeader: 'Enriqueta, sans-serif',
+		fontBody: 'Exo 2, sans, sans-serif',
+	},
 
-  theme3: {
-    primary: '#f16623',
-    secondary: '#2e2e86',
-    danger: '#cc0000',
-    fontHeader: 'Kaushan Script, sans, sans-serif',
-    fontBody: 'Headland One, sans-serif',
-  },
+	theme3: {
+		primary: '#f16623',
+		secondary: '#2e2e86',
+		danger: '#cc0000',
+		fontHeader: 'Kaushan Script, sans, sans-serif',
+		fontBody: 'Headland One, sans-serif',
+	},
 }
 
 injectGlobal`
@@ -309,10 +307,10 @@ We can do this now with the `AppHeader` which is a styled div:
 
 ```js
 const AppHeader = styled.div`
-  height: 12rem;
-  padding: 1rem;
-  color: ${({ theme }) => theme.dark};
-  background-color: ${({ theme }) => theme.primary};
+	height: 12rem;
+	padding: 1rem;
+	color: ${({ theme }) => theme.dark};
+	background-color: ${({ theme }) => theme.primary};
 `
 ```
 
@@ -329,7 +327,7 @@ there won't be any change until the `ThemeProvider` is passed the
 
 ```js
 const AppTitle = styled.h1`
-  font-family: ${({ theme }) => theme.fontHeader};
+	font-family: ${({ theme }) => theme.fontHeader};
 `
 ```
 
@@ -358,11 +356,11 @@ const rotate360 = keyframes`
 `
 
 const AppLogo = styled.img`
-  animation: ${rotate360} infinite 5s linear;
-  height: 80px;
-  &:hover {
-    animation: ${rotate360} infinite 1s linear;
-  }
+	animation: ${rotate360} infinite 5s linear;
+	height: 80px;
+	&:hover {
+		animation: ${rotate360} infinite 1s linear;
+	}
 `
 ```
 
@@ -370,10 +368,10 @@ const AppLogo = styled.img`
 
 ### Shared components
 
-Shared components are covered in the [styled-components getting
-started] guide if you need more information, for this example we're
-going to bring in the final couple of components as shared ones for
-the `StyledHyperLink` and `Button` in `src/Shared.js` add the
+Shared components are covered in the [styled-components
+getting started] guide if you need more information, for this example
+we're going to bring in the final couple of components as shared ones
+for the `StyledHyperLink` and `Button` in `src/Shared.js` add the
 following:
 
 **`src/Shared.js`**
@@ -382,51 +380,51 @@ following:
 import styled, { css } from 'styled-components'
 
 export const Button = styled.button`
-  padding: 0.5rem 1rem;
-  margin: 0.5rem 1rem;
-  color: ${({ theme }) => theme.primary};
-  font-size: 1rem;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  border: 2px solid ${props => props.border};
-  background-color: Transparent;
-  text-transform: uppercase;
-  border-radius: 4px;
-  transition: all 0.1s;
-  &:hover {
-    transform: translateY(1px);
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
-  }
-  ${props =>
-    props.primary &&
-    css`
-      background: ${({ theme }) => theme.primary};
-      border: 2px solid ${({ theme }) => theme.primary};
-      color: white;
-    `};
-  ${props =>
-    props.danger &&
-    css`
-      background: ${({ theme }) => theme.danger};
-      border: 2px solid ${({ theme }) => theme.danger};
-      color: white;
-    `};
-  &:hover {
-    transform: translateY(2px);
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
-  }
+	padding: 0.5rem 1rem;
+	margin: 0.5rem 1rem;
+	color: ${({ theme }) => theme.primary};
+	font-size: 1rem;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	border: 2px solid ${props => props.border};
+	background-color: Transparent;
+	text-transform: uppercase;
+	border-radius: 4px;
+	transition: all 0.1s;
+	&:hover {
+		transform: translateY(1px);
+		box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+	}
+	${props =>
+		props.primary &&
+		css`
+			background: ${({ theme }) => theme.primary};
+			border: 2px solid ${({ theme }) => theme.primary};
+			color: white;
+		`};
+	${props =>
+		props.danger &&
+		css`
+			background: ${({ theme }) => theme.danger};
+			border: 2px solid ${({ theme }) => theme.danger};
+			color: white;
+		`};
+	&:hover {
+		transform: translateY(2px);
+		box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+	}
 `
 
 export const StyledHyperLink = styled.a`
-  cursor: pointer;
-  &:visited,
-  &:active {
-    color: ${({ theme }) => theme.primary};
-  }
-  &:hover {
-    color: ${({ theme }) => theme.secondary};
-  }
-  color: ${({ theme }) => theme.primary};
+	cursor: pointer;
+	&:visited,
+	&:active {
+		color: ${({ theme }) => theme.primary};
+	}
+	&:hover {
+		color: ${({ theme }) => theme.secondary};
+	}
+	color: ${({ theme }) => theme.primary};
 `
 ```
 
@@ -439,22 +437,22 @@ The last three components for now, `AppIntro`, `Underline` and
 
 ```js
 const AppIntro = styled.p`
-  color: ${({ theme }) => theme.dark};
-  font-size: large;
-  code {
-    font-size: 1.3rem;
-  }
-  font-family: ${({ theme }) => theme.fontBody};
+	color: ${({ theme }) => theme.dark};
+	font-size: large;
+	code {
+		font-size: 1.3rem;
+	}
+	font-family: ${({ theme }) => theme.fontBody};
 `
 
 const Underline = styled.span`
-  border-bottom: 4px solid ${({ theme }) => theme.secondary};
+	border-bottom: 4px solid ${({ theme }) => theme.secondary};
 `
 
 const StyledHyperLink = SHL.extend`
-  text-decoration: none;
-  font-family: ${({ theme }) => theme.fontBody};
-  color: ${({ theme }) => theme.fontDark};
+	text-decoration: none;
+	font-family: ${({ theme }) => theme.fontBody};
+	color: ${({ theme }) => theme.fontDark};
 `
 ```
 
@@ -537,14 +535,13 @@ Now for the main event! Here we're going to cover:
 
 So, passing state needlessly through components is what we can use the
 Context API to avoid. If we take a look at the [styled-components
-getting started example] we can see the state being managed in the
-`App.js` component and the `handleThemeChange` function has to be
-passed to the `ThemeSelect` component much the same way as any props
-would need to be passed down. That is a simplified example but it's
-quite easy to imagine if that component lived on a footer component or
-a menu item there would be several other components that would need to
-have the state passed through them that would not actually need that
-state or props. Make sense?
+getting started example] we can see the state being managed in the `App.js`
+component and the `handleThemeChange` function has to be passed to the
+`ThemeSelect` component much the same way as any props would need to be
+passed down. That is a simplified example but it's quite easy to imagine
+if that component lived on a footer component or a menu item there would
+be several other components that would need to have the state passed through
+them that would not actually need that state or props. Make sense?
 
 **example**
 
@@ -628,21 +625,21 @@ import { themes } from '../theme/globalStyle'
 export const SiteThemeContext = React.createContext()
 
 export class SiteThemeProvider extends React.Component {
-  state = {
-    theme: themes['theme1'],
-  }
+	state = {
+		theme: themes['theme1'],
+	}
 
-  render() {
-    return (
-      <SiteThemeContext.Provider
-        value={{
-          ...this.state,
-        }}
-      >
-        {this.props.children}
-      </SiteThemeContext.Provider>
-    )
-  }
+	render() {
+		return (
+			<SiteThemeContext.Provider
+				value={{
+					...this.state,
+				}}
+			>
+				{this.props.children}
+			</SiteThemeContext.Provider>
+		)
+	}
 }
 ```
 
@@ -660,9 +657,9 @@ value:
 
 ```js
 handleThemeChange = e => {
-  const key = e.target.value
-  const theme = themes[key]
-  this.setState({ theme })
+	const key = e.target.value
+	const theme = themes[key]
+	this.setState({ theme })
 }
 ```
 
@@ -678,28 +675,28 @@ import { themes } from '../theme/globalStyle'
 export const SiteThemeContext = React.createContext()
 
 export class SiteThemeProvider extends React.Component {
-  state = {
-    theme: themes['theme1'],
-  }
+	state = {
+		theme: themes['theme1'],
+	}
 
-  handleThemeChange = e => {
-    const key = e.target.value
-    const theme = themes[key]
-    this.setState({ theme })
-  }
+	handleThemeChange = e => {
+		const key = e.target.value
+		const theme = themes[key]
+		this.setState({ theme })
+	}
 
-  render() {
-    return (
-      <SiteThemeContext.Provider
-        value={{
-          ...this.state,
-          handleThemeChange: this.handleThemeChange,
-        }}
-      >
-        {this.props.children}
-      </SiteThemeContext.Provider>
-    )
-  }
+	render() {
+		return (
+			<SiteThemeContext.Provider
+				value={{
+					...this.state,
+					handleThemeChange: this.handleThemeChange,
+				}}
+			>
+				{this.props.children}
+			</SiteThemeContext.Provider>
+		)
+	}
 }
 ```
 
@@ -749,38 +746,38 @@ import styled from 'styled-components'
 import { themes } from '../theme/globalStyle'
 
 const SelectWrapper = styled.div`
-  margin: 0rem 0.5rem 0rem 0.25rem;
-  padding: 0rem 0.5rem 0rem 0.25rem;
+	margin: 0rem 0.5rem 0rem 0.25rem;
+	padding: 0rem 0.5rem 0rem 0.25rem;
 `
 
 const Select = styled.select`
-  margin: 1.5rem 0.5rem;
-  padding: 0.25rem 0.5rem;
-  font-family: ${({ theme }) => theme.fontBody};
-  border: 2px solid ${({ theme }) => theme.secondary};
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
-  background: ${({ theme }) => theme.foreground};
-  border-radius: 4px;
+	margin: 1.5rem 0.5rem;
+	padding: 0.25rem 0.5rem;
+	font-family: ${({ theme }) => theme.fontBody};
+	border: 2px solid ${({ theme }) => theme.secondary};
+	box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+	background: ${({ theme }) => theme.foreground};
+	border-radius: 4px;
 `
 
 export const SelectOpt = styled.option`
-  font-family: ${({ theme }) => theme.fontBody};
+	font-family: ${({ theme }) => theme.fontBody};
 `
 
 const ThemeSelect = props => {
-  return (
-    <SelectWrapper>
-      <Select>
-        {Object.keys(themes).map((theme, index) => {
-          return (
-            <SelectOpt key={index} value={theme}>
-              Theme {index + 1}
-            </SelectOpt>
-          )
-        })}
-      </Select>
-    </SelectWrapper>
-  )
+	return (
+		<SelectWrapper>
+			<Select>
+				{Object.keys(themes).map((theme, index) => {
+					return (
+						<SelectOpt key={index} value={theme}>
+							Theme {index + 1}
+						</SelectOpt>
+					)
+				})}
+			</Select>
+		</SelectWrapper>
+	)
 }
 
 export default ThemeSelect
@@ -852,7 +849,8 @@ As mentioned at the start of this article a great resource is
 [great use case] for the React Context API.
 
 There's also the [React community on spectrum] and [styled-components
-on spectrum].
+on
+spectrum].
 
 [Example code] of the walkthrough is available on [CodeSandbox].
 
@@ -867,79 +865,79 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 
 [how that went here]: https://scottspence.com/posts/react-context-api/
 [styled-components getting started]:
-  https://scottspence.com/posts/styled-components/
+	https://scottspence.com/posts/styled-components/
 [example]: https://codesandbox.io/s/7wwr706nz0
 [react docs]: https://reactjs.org/docs/context.html
 [prop drilling]:
-  https://blog.kentcdodds.com/prop-drilling-bb62e02cb691
+	https://blog.kentcdodds.com/prop-drilling-bb62e02cb691
 [@leighchalliday]: https://twitter.com/leighchalliday
 [great use case]: https://www.youtube.com/watch?v=yzQ_XulhQFw
 [codesandbox]: https://codesandbox.io
 [coding straight away]: https://codesandbox.io/s/new
 [open a react codesandbox]: https://codesandbox.io/s/new
 [when to use the context api]:
-  https://reactjs.org/docs/context.html#when-to-use-context
+	https://reactjs.org/docs/context.html#when-to-use-context
 [bikeshedding]: https://en.wiktionary.org/wiki/bikeshedding
 [styled-components getting started]:
-  https://medium.com/styled-components/styled-components-getting-started-c9818acbcbbd
+	https://medium.com/styled-components/styled-components-getting-started-c9818acbcbbd
 [styled-components getting started example]:
-  https://codesandbox.io/s/x26q7l9vyq
+	https://codesandbox.io/s/x26q7l9vyq
 [`themeprovider`]:
-  https://www.styled-components.com/docs/advanced#theming
+	https://www.styled-components.com/docs/advanced#theming
 [stateless functional component]:
-  https://reactjs.org/docs/state-and-lifecycle.html#the-data-flows-down
+	https://reactjs.org/docs/state-and-lifecycle.html#the-data-flows-down
 [should be used once]: https://stackoverflow.com/a/42899789/1138354
 [copy pasta]:
-  https://www.urbandictionary.com/define.php?term=copypasta
+	https://www.urbandictionary.com/define.php?term=copypasta
 [scaffold]:
-  https://github.com/spences10/settings/blob/35ba1ca3e9871c3ea6344ca2274ebbd327a18bed/globalVs.code-snippets#L74-L112
+	https://github.com/spences10/settings/blob/35ba1ca3e9871c3ea6344ca2274ebbd327a18bed/globalVs.code-snippets#L74-L112
 [version from walkthrough]: https://codesandbox.io/s/lpvr771q59
 [version 2 from walkthrough]: https://codesandbox.io/s/zqw67wpm94#
 [example code]: https://codesandbox.io/s/5vl16n5oxp
 [styled-components on spectrum]:
-  https://spectrum.chat/styled-components
+	https://spectrum.chat/styled-components
 [react community on spectrum]: https://spectrum.chat/react
 [twitter]: https://twitter.com/spences10
 [ask me anything]: https://github.com/spences10/ama
 [his youtube channel]:
-  https://www.youtube.com/channel/UCWPY8W-FAZ2HdDiJp2RC_sQ
+	https://www.youtube.com/channel/UCWPY8W-FAZ2HdDiJp2RC_sQ
 [example code]: https://codesandbox.io/s/5vl16n5oxp
 
 <!-- Images -->
 
 [theme switching in react app]:
-  https://thepracticaldev.s3.amazonaws.com/i/zmp2k4r128poj1gsws61.gif
+	https://thepracticaldev.s3.amazonaws.com/i/zmp2k4r128poj1gsws61.gif
 [codesandbox initial]:
-  https://thepracticaldev.s3.amazonaws.com/i/d49drafvtvz3ws2br9vs.gif
+	https://thepracticaldev.s3.amazonaws.com/i/d49drafvtvz3ws2br9vs.gif
 [codesandbox 1]:
-  https://thepracticaldev.s3.amazonaws.com/i/oyxpggt00q754iv1azp0.gif
+	https://thepracticaldev.s3.amazonaws.com/i/oyxpggt00q754iv1azp0.gif
 [codesandbox 2]:
-  https://thepracticaldev.s3.amazonaws.com/i/yyne3q36jc0zca2ld89u.gif
+	https://thepracticaldev.s3.amazonaws.com/i/yyne3q36jc0zca2ld89u.gif
 [codesandbox 3]:
-  https://thepracticaldev.s3.amazonaws.com/i/uc08zkkf4ay1hq8pkt3w.gif
+	https://thepracticaldev.s3.amazonaws.com/i/uc08zkkf4ay1hq8pkt3w.gif
 [codesandbox 4]:
-  https://thepracticaldev.s3.amazonaws.com/i/qnxbteccbaw92jbwsq9c.gif
+	https://thepracticaldev.s3.amazonaws.com/i/qnxbteccbaw92jbwsq9c.gif
 [codesandbox 5]:
-  https://thepracticaldev.s3.amazonaws.com/i/nuyaw29uoex6qcluf8va.gif
+	https://thepracticaldev.s3.amazonaws.com/i/nuyaw29uoex6qcluf8va.gif
 [codesandbox 6]:
-  https://thepracticaldev.s3.amazonaws.com/i/pxe3fb5zqvprvtjthq5b.gif
+	https://thepracticaldev.s3.amazonaws.com/i/pxe3fb5zqvprvtjthq5b.gif
 [codesandbox 7]:
-  https://thepracticaldev.s3.amazonaws.com/i/ipi1kdmy83ieiw6sppog.gif
+	https://thepracticaldev.s3.amazonaws.com/i/ipi1kdmy83ieiw6sppog.gif
 [codesandbox 8]:
-  https://thepracticaldev.s3.amazonaws.com/i/smm6hpg2w71sxm6nf3ln.gif
+	https://thepracticaldev.s3.amazonaws.com/i/smm6hpg2w71sxm6nf3ln.gif
 [codesandbox 9]:
-  https://thepracticaldev.s3.amazonaws.com/i/zfcnihvmyvb9my5dn11x.gif
+	https://thepracticaldev.s3.amazonaws.com/i/zfcnihvmyvb9my5dn11x.gif
 [codesandbox 10]:
-  https://thepracticaldev.s3.amazonaws.com/i/n2qbxs7cbf7w5opqcri2.gif
+	https://thepracticaldev.s3.amazonaws.com/i/n2qbxs7cbf7w5opqcri2.gif
 [codesandbox 11]:
-  https://thepracticaldev.s3.amazonaws.com/i/y6n32p1gshah5ex747mu.gif
+	https://thepracticaldev.s3.amazonaws.com/i/y6n32p1gshah5ex747mu.gif
 [codesandbox 12]:
-  https://thepracticaldev.s3.amazonaws.com/i/3bh3bwi4ekb24uowvm65.gif
+	https://thepracticaldev.s3.amazonaws.com/i/3bh3bwi4ekb24uowvm65.gif
 [codesandbox 13]:
-  https://thepracticaldev.s3.amazonaws.com/i/p8nibx8ecfildi92jscm.gif
+	https://thepracticaldev.s3.amazonaws.com/i/p8nibx8ecfildi92jscm.gif
 [codesandbox 14]:
-  https://thepracticaldev.s3.amazonaws.com/i/43e15llsi8uhlmi1z1ut.gif
+	https://thepracticaldev.s3.amazonaws.com/i/43e15llsi8uhlmi1z1ut.gif
 [codesandbox 15]:
-  https://thepracticaldev.s3.amazonaws.com/i/1qq4hc2zqa50t0t2vi5v.gif
+	https://thepracticaldev.s3.amazonaws.com/i/1qq4hc2zqa50t0t2vi5v.gif
 [codesandbox 16]:
-  https://thepracticaldev.s3.amazonaws.com/i/jn5u8bzuvufpa56c9ta7.gif
+	https://thepracticaldev.s3.amazonaws.com/i/jn5u8bzuvufpa56c9ta7.gif

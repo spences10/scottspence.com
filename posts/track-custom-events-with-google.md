@@ -27,49 +27,49 @@ import React, { useContext, useEffect } from 'react'
 const AnalyticsContext = React.createContext({})
 
 export const AnalyticsProvider = ({ children }) => {
-  useEffect(() => {
-    if (typeof window.ga === 'undefined') {
-      window.ga = (x, y) => {
-        console.log(`I'm a fake GA`, x, y)
-      }
-    }
-  }, [])
+	useEffect(() => {
+		if (typeof window.ga === 'undefined') {
+			window.ga = (x, y) => {
+				console.log(`I'm a fake GA`, x, y)
+			}
+		}
+	}, [])
 
-  const events = {
-    logButtonPress: e => {
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'buttonPress',
-        eventAction: 'click',
-        eventLabel: e.target.innerText,
-      })
-    },
-    logSocial: socialMediaPlatform => {
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'socialShareClicks',
-        eventAction: 'click',
-        eventLabel: socialMediaPlatform,
-      })
-    },
-    logNavigation: navItem => {
-      window.ga('send', {
-        hitType: 'event',
-        eventCategory: 'navigationClicks',
-        eventAction: 'click',
-        eventLabel: navItem,
-      })
-    },
-  }
-  return (
-    <AnalyticsContext.Provider value={events}>
-      {children}
-    </AnalyticsContext.Provider>
-  )
+	const events = {
+		logButtonPress: e => {
+			window.ga('send', {
+				hitType: 'event',
+				eventCategory: 'buttonPress',
+				eventAction: 'click',
+				eventLabel: e.target.innerText,
+			})
+		},
+		logSocial: socialMediaPlatform => {
+			window.ga('send', {
+				hitType: 'event',
+				eventCategory: 'socialShareClicks',
+				eventAction: 'click',
+				eventLabel: socialMediaPlatform,
+			})
+		},
+		logNavigation: navItem => {
+			window.ga('send', {
+				hitType: 'event',
+				eventCategory: 'navigationClicks',
+				eventAction: 'click',
+				eventLabel: navItem,
+			})
+		},
+	}
+	return (
+		<AnalyticsContext.Provider value={events}>
+			{children}
+		</AnalyticsContext.Provider>
+	)
 }
 
 export const useAnalytics = () => {
-  return useContext(AnalyticsContext)
+	return useContext(AnalyticsContext)
 }
 ```
 
@@ -83,11 +83,11 @@ Then use in the areas you Want
 
 ```js
 export const ButtonComponent = props => {
-  const analytics = useAnalytics()
-  return (
-    <button onClick={analytics.logButtonPress} {...props}>
-      {props.children}
-    </button>
-  )
+	const analytics = useAnalytics()
+	return (
+		<button onClick={analytics.logButtonPress} {...props}>
+			{props.children}
+		</button>
+	)
 }
 ```

@@ -34,7 +34,7 @@ to a `<Child />` component:
 ```html
 <!-- App.svelte -->
 <script>
-  import Child from './Child.svelte'
+	import Child from './Child.svelte'
 </script>
 
 <Child propValue="Pass this to the child!" />
@@ -52,7 +52,7 @@ so it can be interpreted and read out by JavaScript.
 ```html
 <!-- Child.svelte -->
 <script>
-  export let propValue
+	export let propValue
 </script>
 
 <p>I'm taking this from the parent: {propValue}</p>
@@ -77,7 +77,7 @@ shortest example:
 ```html
 <!-- Input.svelte -->
 <script>
-  let value = ''
+	let value = ''
 </script>
 
 <input bind:value />
@@ -91,7 +91,7 @@ further:
 ```html
 <!-- Input.svelte -->
 <script>
-  let descriptiveVariableName = ''
+	let descriptiveVariableName = ''
 </script>
 
 <input bind:value="{descriptiveVariableName}" />
@@ -113,7 +113,7 @@ from `Input.svelte` to `Child.svelte`:
 ```html
 <!-- Child.svelte -->
 <script>
-  export let value = ''
+	export let value = ''
 </script>
 
 <input bind:value />
@@ -126,8 +126,8 @@ case and pass that to the child:
 ```html
 <!-- App.svelte -->
 <script>
-  import Child from './Child.svelte'
-  let inputValue = ''
+	import Child from './Child.svelte'
+	let inputValue = ''
 </script>
 
 <Child bind:value="{inputValue}" />
@@ -148,7 +148,7 @@ variable and try the same:
 ```html
 <!-- Child.svelte -->
 <script>
-  export let descriptiveVariableName = ''
+	export let descriptiveVariableName = ''
 </script>
 
 <input bind:value="{descriptiveVariableName}" />
@@ -162,7 +162,7 @@ aren't coming back to the parent:
 ```html
 <!-- Child.svelte -->
 <script>
-  export let descriptiveVariableName = ''
+	export let descriptiveVariableName = ''
 </script>
 
 <input bind:value="{descriptiveVariableName}" />
@@ -184,9 +184,9 @@ with adding a callback function. Here an `onChange` is defined in the
 ```html
 <!-- Child.svelte -->
 <script>
-  export let onChange
-  let value = ''
-  $: onChange(value)
+	export let onChange
+	let value = ''
+	$: onChange(value)
 </script>
 
 <input type="text" bind:value />
@@ -203,13 +203,15 @@ parent:
 ```html
 <!-- App.svelte -->
 <script>
-  import Child from './Child.svelte'
-  let inputBoxValue = ''
+	import Child from './Child.svelte'
+	let inputBoxValue = ''
 </script>
 
-<Child onChange={newValue => inputBoxValue = newValue} />
+<Child onChange="{newValue" ="">
+	inputBoxValue = newValue} />
 
-<p>Input box value is: {inputBoxValue}</p>
+	<p>Input box value is: {inputBoxValue}</p></Child
+>
 ```
 
 This doesn't have to be bound to the value of an input though; another
@@ -220,8 +222,8 @@ can happen.
 ```html
 <!-- Child.svelte -->
 <script>
-  export let value = ''
-  export let onBlur
+	export let value = ''
+	export let onBlur
 </script>
 
 <input bind:value on:blur="{onBlur}" />
@@ -234,12 +236,12 @@ added a `parentValidation` function to be triggered in this example:
 ```html
 <!-- App.svelte -->
 <script>
-  import Child from './Child.svelte'
-  let inputBoxValue = ''
-  const parentValidation = () => {
-    // validation here
-    alert(inputBoxValue)
-  }
+	import Child from './Child.svelte'
+	let inputBoxValue = ''
+	const parentValidation = () => {
+		// validation here
+		alert(inputBoxValue)
+	}
 </script>
 
 <Child bind:value="{inputBoxValue}" onBlur="{parentValidation}" />
@@ -275,17 +277,17 @@ trigger the `parentValidation`:
 ```html
 <!-- App.svelte -->
 <script>
-  import Child from './Child.svelte'
-  let inputBoxValue = ''
-  const parentValidation = ({ detail }) => {
-    // validation here
-    alert(detail)
-  }
+	import Child from './Child.svelte'
+	let inputBoxValue = ''
+	const parentValidation = ({ detail }) => {
+		// validation here
+		alert(detail)
+	}
 </script>
 
 <Child
-  bind:value="{inputBoxValue}"
-  on:child-blur="{parentValidation}"
+	bind:value="{inputBoxValue}"
+	on:child-blur="{parentValidation}"
 />
 
 <p>Input box value is: {inputBoxValue}</p>
@@ -316,12 +318,12 @@ can play around with them if you're so inclined:
 [repl]: https://svelte.dev/repl/
 [svelte.dev]: https://svelte.dev/
 [bubble]:
-  https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_bubbling_and_capture
+	https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_bubbling_and_capture
 [passing props down to a child]:
-  https://svelte.dev/repl/b350218ccfa146fca65e766f05dfd235?version=3.38.2
+	https://svelte.dev/repl/b350218ccfa146fca65e766f05dfd235?version=3.38.2
 [using `bind:value`]:
-  https://svelte.dev/repl/116ab042341d48bda2232eae2b6f41a6?version=3
+	https://svelte.dev/repl/116ab042341d48bda2232eae2b6f41a6?version=3
 [using a callback]:
-  https://svelte.dev/repl/5f4a327999cd49e5a79e91f6fbe994c8?version=3
+	https://svelte.dev/repl/5f4a327999cd49e5a79e91f6fbe994c8?version=3
 [event forwarding / dispatching an action]:
-  https://svelte.dev/repl/47e44c5f8fd648a586333d953260664d?version=3
+	https://svelte.dev/repl/47e44c5f8fd648a586333d953260664d?version=3

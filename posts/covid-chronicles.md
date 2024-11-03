@@ -67,8 +67,8 @@ extra cash.
 Right at this time was when my trusty ASUS Transformer Pro T304UA
 decided that was the time for the internal fan to start grinding.
 
-It was a [first time PC build] and there is still areas for
-improvement on it but I am really happy with the outcome.
+It was a [first time PC build] and there is still areas for improvement
+on it but I am really happy with the outcome.
 
 ## My Wife Became a Hairdresser
 
@@ -106,8 +106,8 @@ I made a first time appearance on a Podcast
 
 ## Started Whiskey Wednesday
 
-Whisky Wednesday was started by my friend [Marc Backes] from our
-mutual appreciation of Whiskey.
+Whisky Wednesday was started by my friend [Marc Backes] from our mutual
+appreciation of Whiskey.
 
 I think this is when we first discovered we both appreciated a tipple!
 
@@ -141,15 +141,15 @@ Stay safe!
 [scottspence.com]: https://scottspence.com
 [digital garden]: https://scottspence.com/posts/a-digital-garden
 [amazon brand solimo beans]:
-  https://www.amazon.co.uk/Amazon-Brand-Solimo-Coffee-Beans/dp/B07CGXZMT3
+	https://www.amazon.co.uk/Amazon-Brand-Solimo-Coffee-Beans/dp/B07CGXZMT3
 [coco di mama]: https://www.cocodimama.co.uk/coffee
 [first time pc build]:
-  https://scottspence.com/posts/first-time-pc-build
+	https://scottspence.com/posts/first-time-pc-build
 [marc backes]: https://marc.dev
 
 <!-- Images  -->
 
 [before haircut]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/hair-before-1de64d3df31333fcc2f33b47ce6f592d.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/hair-before-1de64d3df31333fcc2f33b47ce6f592d.jpg
 [after haircut]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/hair-after-348b184b399231f119669c6f5aae250d.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/hair-after-348b184b399231f119669c6f5aae250d.jpg

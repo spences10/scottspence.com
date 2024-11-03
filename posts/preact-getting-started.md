@@ -35,8 +35,8 @@ link `<link rel="stylesheet" href="./assets/fonts/fonts.css" />`
 
 ```css
 @font-face {
-  font-family: 'My Local Font';
-  src: url('./MyLocalFont.ttf') format('truetype');
+	font-family: 'My Local Font';
+	src: url('./MyLocalFont.ttf') format('truetype');
 }
 ```
 
@@ -46,53 +46,53 @@ If you're using multiple font files then take a look at the [CSS
 Tricks post] on it.
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title><% preact.title %></title>
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1"
-    />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="stylesheet" href="./assets/fonts/fonts.css" />
-    <% preact.headEnd %>
-  </head>
-  <body>
-    <% preact.bodyEnd %>
-  </body>
+	<head>
+		<meta charset="utf-8" />
+		<title><% preact.title %></title>
+		<meta
+			name="viewport"
+			content="width=device-width,initial-scale=1"
+		/>
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<link rel="stylesheet" href="./assets/fonts/fonts.css" />
+		<% preact.headEnd %>
+	</head>
+	<body>
+		<% preact.bodyEnd %>
+	</body>
 </html>
 ```
 
 This can also do this with Google fonts, something like this:
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title><% preact.title %></title>
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1"
-    />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;700&family=BioRhyme+Expanded:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <% preact.headEnd %>
-  </head>
-  <body>
-    <% preact.bodyEnd %>
-  </body>
+	<head>
+		<meta charset="utf-8" />
+		<title><% preact.title %></title>
+		<meta
+			name="viewport"
+			content="width=device-width,initial-scale=1"
+		/>
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;700&family=BioRhyme+Expanded:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<% preact.headEnd %>
+	</head>
+	<body>
+		<% preact.bodyEnd %>
+	</body>
 </html>
 ```
 
 <!-- Links -->
 
 [css tricks post]:
-  https://css-tricks.com/snippets/css/using-font-face/
+	https://css-tricks.com/snippets/css/using-font-face/

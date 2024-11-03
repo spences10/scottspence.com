@@ -67,9 +67,8 @@ landing page!
 ## Add TailwindCSS
 
 There's a really useful GitHub project that adds additional
-functionality to your Svelte projects with [Svelte Add] in this case
-I'm going to add Tailwind with the Just In Time (JIT) compiler
-enabled:
+functionality to your Svelte projects with [Svelte Add] in this case I'm
+going to add Tailwind with the Just In Time (JIT) compiler enabled:
 
 ```bash
 npx svelte-add tailwindcss  --jit
@@ -109,12 +108,12 @@ now along with the required slot:
 
 ```html
 <script>
-  import '../app.css'
+	import '../app.css'
 </script>
 
 <nav>
-  <a href="/">Home</a>
-  <a href="/about">About</a>
+	<a href="/">Home</a>
+	<a href="/about">About</a>
 </nav>
 
 <slot />
@@ -141,32 +140,32 @@ query from my project:
 import { gql, GraphQLClient } from 'graphql-request'
 
 export async function load() {
-  const graphcms = new GraphQLClient(
-    import.meta.env.VITE_GRAPHCMS_URL,
-    {
-      headers: {},
-    }
-  )
+	const graphcms = new GraphQLClient(
+		import.meta.env.VITE_GRAPHCMS_URL,
+		{
+			headers: {},
+		},
+	)
 
-  const query = gql`
-    query Posts {
-      posts {
-        id
-        title
-        slug
-        date
-        excerpt
-      }
-    }
-  `
+	const query = gql`
+		query Posts {
+			posts {
+				id
+				title
+				slug
+				date
+				excerpt
+			}
+		}
+	`
 
-  const { posts } = await graphcms.request(query)
+	const { posts } = await graphcms.request(query)
 
-  return {
-    props: {
-      posts,
-    },
-  }
+	return {
+		props: {
+			posts,
+		},
+	}
 }
 ```
 
@@ -203,55 +202,55 @@ when the page is loaded and the posts can be loaded ahead of the page
 
 ```html
 <script context="module">
-  import { gql, GraphQLClient } from 'graphql-request'
+	import { gql, GraphQLClient } from 'graphql-request'
 
-  export async function load() {
-    const graphcms = new GraphQLClient(
-      import.meta.env.VITE_GRAPHCMS_URL,
-      {
-        headers: {},
-      }
-    )
+	export async function load() {
+	  const graphcms = new GraphQLClient(
+	    import.meta.env.VITE_GRAPHCMS_URL,
+	    {
+	      headers: {},
+	    }
+	  )
 
-    const query = gql`
-      query Posts {
-        posts {
-          id
-          title
-          slug
-          date
-          excerpt
-        }
-      }
-    `
+	  const query = gql`
+	    query Posts {
+	      posts {
+	        id
+	        title
+	        slug
+	        date
+	        excerpt
+	      }
+	    }
+	  `
 
-    const { posts } = await graphcms.request(query)
+	  const { posts } = await graphcms.request(query)
 
-    return {
-      props: {
-        posts,
-      },
-    }
-  }
+	  return {
+	    props: {
+	      posts,
+	    },
+	  }
+	}
 </script>
 
 <script>
-  export let posts
+	export let posts
 </script>
 
 <svelte:head>
-  <title>SvelteKit starter blog</title>
+	<title>SvelteKit starter blog</title>
 </svelte:head>
 
 <h1 class="text-3xl">SvelteKit starter blog</h1>
 <ul>
-  {#each posts as post}
-  <li>
-    <a class="text-blue-600 underline" href="/post/{post.slug}">
-      {post.title}
-    </a>
-  </li>
-  {/each}
+	{#each posts as post}
+	<li>
+		<a class="text-blue-600 underline" href="/post/{post.slug}">
+			{post.title}
+		</a>
+	</li>
+	{/each}
 </ul>
 ```
 
@@ -261,7 +260,7 @@ then accepted as props to the page with:
 
 ```html
 <script>
-  export let posts
+	export let posts
 </script>
 ```
 
@@ -286,19 +285,19 @@ Then add in the error message and status:
 
 ```html
 <script context="module">
-  export function load({ error, status }) {
-    return {
-      props: { error, status },
-    }
-  }
+	export function load({ error, status }) {
+		return {
+			props: { error, status },
+		}
+	}
 </script>
 
 <script>
-  export let error, status
+	export let error, status
 </script>
 
 <svelte:head>
-  <title>{status}</title>
+	<title>{status}</title>
 </svelte:head>
 
 <h1>{status}: {error.message}</h1>
@@ -327,18 +326,18 @@ The query looks like this:
 
 ```graphql
 query PostPageQuery($slug: String!) {
-  post(where: { slug: $slug }) {
-    title
-    date
-    content {
-      html
-    }
-    tags
-    author {
-      id
-      name
-    }
-  }
+	post(where: { slug: $slug }) {
+		title
+		date
+		content {
+			html
+		}
+		tags
+		author {
+			id
+			name
+		}
+	}
 }
 ```
 
@@ -361,53 +360,53 @@ add to the variables object for the `graphql-request`.
 
 ```html
 <script context="module">
-  import { gql, GraphQLClient } from 'graphql-request'
+	import { gql, GraphQLClient } from 'graphql-request'
 
-  export async function load(context) {
-    const graphcms = new GraphQLClient(
-      import.meta.env.VITE_GRAPHCMS_URL,
-      {
-        headers: {},
-      }
-    )
+	export async function load(context) {
+	  const graphcms = new GraphQLClient(
+	    import.meta.env.VITE_GRAPHCMS_URL,
+	    {
+	      headers: {},
+	    }
+	  )
 
-    const query = gql`
-      query PostPageQuery($slug: String!) {
-        post(where: { slug: $slug }) {
-          title
-          date
-          content {
-            html
-          }
-          tags
-          author {
-            id
-            name
-          }
-        }
-      }
-    `
+	  const query = gql`
+	    query PostPageQuery($slug: String!) {
+	      post(where: { slug: $slug }) {
+	        title
+	        date
+	        content {
+	          html
+	        }
+	        tags
+	        author {
+	          id
+	          name
+	        }
+	      }
+	    }
+	  `
 
-    const variables = {
-      slug: context.page.params.slug,
-    }
+	  const variables = {
+	    slug: context.page.params.slug,
+	  }
 
-    const { post } = await graphcms.request(query, variables)
+	  const { post } = await graphcms.request(query, variables)
 
-    return {
-      props: {
-        post,
-      },
-    }
-  }
+	  return {
+	    props: {
+	      post,
+	    },
+	  }
+	}
 </script>
 
 <script>
-  export let post
+	export let post
 </script>
 
 <svelte:head>
-  <title>{post.title}</title>
+	<title>{post.title}</title>
 </svelte:head>
 
 <h1>{post.title}</h1>
@@ -458,8 +457,8 @@ Ghost, Sanity or whatever else fits your fancy.
 [svelte add]: https://github.com/svelte-add/svelte-add
 [slots]: https://scottspence.com/posts/notes-on-svelte/#slots
 [nextjs dynamic routes]:
-  https://nextjs.org/docs/routing/dynamic-routes
+	https://nextjs.org/docs/routing/dynamic-routes
 [prisma labs example]:
-  https://github.com/prisma-labs/graphql-request#authentication-via-http-header
+	https://github.com/prisma-labs/graphql-request#authentication-via-http-header
 [sveltekit faq]: https://kit.svelte.dev/faq#env-vars
 [tailblocks]: https://tailblocks.cc/

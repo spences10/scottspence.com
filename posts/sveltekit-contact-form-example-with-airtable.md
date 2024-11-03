@@ -9,9 +9,9 @@ This is a how-to guide for adding a contact form to your SvelteKit
 site using Airtable to store the submissions and notify you when there
 is a new submission.
 
-This is an update to the [previous post] I did on this, the recent
-changes to how you create access keys in the Airtable API means that I
-get a chance to revisit this and make it a little more current.
+This is an update to the [previous post] I did on this, the recent changes
+to how you create access keys in the Airtable API means that I get a chance
+to revisit this and make it a little more current.
 
 It will detail making a submission using an event handler and a
 default form action. Both of these examples will use built-in form
@@ -28,8 +28,8 @@ over that again here.
 ## How forms are handled in SvelteKit
 
 Because SvelteKit builds on top of the standard [Web APIs] there's not
-a great deal of difference in how you handle forms in SvelteKit over
-standard HTML form submissions.
+a great deal of difference in how you handle forms in SvelteKit over standard
+HTML form submissions.
 
 Collect data on the client &rArr; submit to the server &rArr; process
 the data &rArr; send a response back to the client.
@@ -89,9 +89,9 @@ the Airtable base set up.
 
 ## Create an Airtable base
 
-If you're new to Airtable you can [sign up for a free account] and go
-through the onboarding process which will ask you some questions to
-get set up with a new base.
+If you're new to Airtable you can [sign up for a free account] and go through
+the onboarding process which will ask you some questions to get set up
+with a new base.
 
 I want a base that will store the submission from the contact form, I
 have an Airtable account already so I'll create a new base from the
@@ -195,15 +195,15 @@ which I'll put into a variable like this:
 
 ```ts
 let data = {
-  records: [
-    {
-      fields: {
-        name,
-        email,
-        message,
-      },
-    },
-  ],
+	records: [
+		{
+			fields: {
+				name,
+				email,
+				message,
+			},
+		},
+	],
 }
 ```
 
@@ -215,46 +215,46 @@ message if it fails or succeeds.
 
 ```ts
 import {
-  AIRTABLE_API_KEY,
-  AIRTABLE_BASE_ID,
+	AIRTABLE_API_KEY,
+	AIRTABLE_BASE_ID,
 } from '$env/static/private'
 import { json } from '@sveltejs/kit'
 
 export const POST = async ({ request }) => {
-  const { name, email, message } = await request.json()
+	const { name, email, message } = await request.json()
 
-  const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/submissions`
+	const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/submissions`
 
-  let data = {
-    records: [
-      {
-        fields: {
-          name,
-          email,
-          message,
-        },
-      },
-    ],
-  }
-  const res = await fetch(AIRTABLE_URL, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${AIRTABLE_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  })
+	let data = {
+		records: [
+			{
+				fields: {
+					name,
+					email,
+					message,
+				},
+			},
+		],
+	}
+	const res = await fetch(AIRTABLE_URL, {
+		method: 'POST',
+		headers: {
+			Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(data),
+	})
 
-  if (res.ok) {
-    return json({
-      message: 'success',
-    })
-  } else {
-    return json({
-      message: 'failed',
-      status: 404,
-    })
-  }
+	if (res.ok) {
+		return json({
+			message: 'success',
+		})
+	} else {
+		return json({
+			message: 'failed',
+			status: 404,
+		})
+	}
 }
 ```
 
@@ -277,62 +277,62 @@ and pass that onto the `submit-form` endpoint via `fetch` request.
 
 ```svelte
 <script lang="ts">
-  const handle_submit = async (event: Event) => {
-    submission_status = 'submitting'
+	const handle_submit = async (event: Event) => {
+		submission_status = 'submitting'
 
-    const form = event.target as HTMLFormElement
-    const form_data = new FormData(form)
-    const data = Object.fromEntries(form_data)
+		const form = event.target as HTMLFormElement
+		const form_data = new FormData(form)
+		const data = Object.fromEntries(form_data)
 
-    const res = await fetch('/submit-form', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
+		const res = await fetch('/submit-form', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		})
 
-    const { message } = await res.json()
-  }
+		const { message } = await res.json()
+	}
 </script>
 
 <h2>Event handler</h2>
 
 <form method="POST" on:submit|preventDefault={handle_submit}>
-  <label for="name">
-    <span>Name</span>
-  </label>
-  <input
-    type="text"
-    name="name"
-    aria-label="name"
-    placeholder="Enter your name"
-    required
-    autocomplete="off"
-  />
-  <label for="email">
-    <span>Email</span>
-  </label>
-  <input
-    type="email"
-    name="email"
-    aria-label="email"
-    placeholder="bill@hotmail.com"
-    required
-    autocomplete="off"
-  />
-  <label for="message">
-    <span>Message</span>
-  </label>
-  <textarea
-    name="message"
-    aria-label="message"
-    placeholder="Message"
-    required
-    rows="3"
-    autocomplete="off"
-  />
-  <input type="submit" value="Submit to Airtable" />
+	<label for="name">
+		<span>Name</span>
+	</label>
+	<input
+		type="text"
+		name="name"
+		aria-label="name"
+		placeholder="Enter your name"
+		required
+		autocomplete="off"
+	/>
+	<label for="email">
+		<span>Email</span>
+	</label>
+	<input
+		type="email"
+		name="email"
+		aria-label="email"
+		placeholder="bill@hotmail.com"
+		required
+		autocomplete="off"
+	/>
+	<label for="message">
+		<span>Message</span>
+	</label>
+	<textarea
+		name="message"
+		aria-label="message"
+		placeholder="Message"
+		required
+		rows="3"
+		autocomplete="off"
+	/>
+	<input type="submit" value="Submit to Airtable" />
 </form>
 ```
 
@@ -345,72 +345,72 @@ different content depending on the status.
 
 ```svelte
 <script lang="ts">
-  let submission_status = ''
-  const handle_submit = async (event: Event) => {
-    submission_status = 'submitting'
+	let submission_status = ''
+	const handle_submit = async (event: Event) => {
+		submission_status = 'submitting'
 
-    const form = event.target as HTMLFormElement
-    const form_data = new FormData(form)
-    const data = Object.fromEntries(form_data)
+		const form = event.target as HTMLFormElement
+		const form_data = new FormData(form)
+		const data = Object.fromEntries(form_data)
 
-    const res = await fetch('/submit-form', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
+		const res = await fetch('/submit-form', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		})
 
-    const { message } = await res.json()
-    submission_status = message
-  }
+		const { message } = await res.json()
+		submission_status = message
+	}
 </script>
 
 <h2>Event handler</h2>
 
 {#if submission_status === 'submitting'}
-  <p>Submitting...</p>
+	<p>Submitting...</p>
 {:else if submission_status === 'failed'}
-  <p>Submission failed.</p>
+	<p>Submission failed.</p>
 {:else if submission_status === 'success'}
-  <p>Submission success.</p>
+	<p>Submission success.</p>
 {:else}
-  <form method="POST" on:submit|preventDefault={handle_submit}>
-    <label for="name">
-      <span>Name</span>
-    </label>
-    <input
-      type="text"
-      name="name"
-      aria-label="name"
-      placeholder="Enter your name"
-      required
-      autocomplete="off"
-    />
-    <label for="email">
-      <span>Email</span>
-    </label>
-    <input
-      type="email"
-      name="email"
-      aria-label="email"
-      placeholder="bill@hotmail.com"
-      required
-      autocomplete="off"
-    />
-    <label for="message">
-      <span>Message</span>
-    </label>
-    <textarea
-      name="message"
-      aria-label="message"
-      placeholder="Message"
-      required
-      rows="3"
-      autocomplete="off"
-    />
-    <input type="submit" value="Submit to Airtable" />
-  </form>
+	<form method="POST" on:submit|preventDefault={handle_submit}>
+		<label for="name">
+			<span>Name</span>
+		</label>
+		<input
+			type="text"
+			name="name"
+			aria-label="name"
+			placeholder="Enter your name"
+			required
+			autocomplete="off"
+		/>
+		<label for="email">
+			<span>Email</span>
+		</label>
+		<input
+			type="email"
+			name="email"
+			aria-label="email"
+			placeholder="bill@hotmail.com"
+			required
+			autocomplete="off"
+		/>
+		<label for="message">
+			<span>Message</span>
+		</label>
+		<textarea
+			name="message"
+			aria-label="message"
+			placeholder="Message"
+			required
+			rows="3"
+			autocomplete="off"
+		/>
+		<input type="submit" value="Submit to Airtable" />
+	</form>
 {/if}
 ```
 
@@ -437,21 +437,21 @@ the `submit-form` endpoint.
 
 ```ts
 export const actions = {
-  default: async ({ request, fetch }) => {
-    const formData = await request.formData()
-    const data = Object.fromEntries(formData)
-    const res = await fetch('/submit-form', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-    const responseJson = await res.json()
-    return {
-      body: responseJson,
-    }
-  },
+	default: async ({ request, fetch }) => {
+		const formData = await request.formData()
+		const data = Object.fromEntries(formData)
+		const res = await fetch('/submit-form', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		})
+		const responseJson = await res.json()
+		return {
+			body: responseJson,
+		}
+	},
 }
 ```
 
@@ -466,40 +466,40 @@ the `+page.server.ts` file.
 <h2>Action</h2>
 
 <form method="POST">
-  <label for="name">
-    <span>Name</span>
-  </label>
-  <input
-    type="text"
-    name="name"
-    aria-label="name"
-    placeholder="Enter your name"
-    required
-    autocomplete="off"
-  />
-  <label for="email">
-    <span>Email</span>
-  </label>
-  <input
-    type="email"
-    name="email"
-    aria-label="email"
-    placeholder="bill@hotmail.com"
-    required
-    autocomplete="off"
-  />
-  <label for="message">
-    <span>Message</span>
-  </label>
-  <textarea
-    name="message"
-    aria-label="name"
-    placeholder="Message"
-    required
-    rows="3"
-    autocomplete="off"
-  />
-  <input type="submit" value="Submit to Airtable" />
+	<label for="name">
+		<span>Name</span>
+	</label>
+	<input
+		type="text"
+		name="name"
+		aria-label="name"
+		placeholder="Enter your name"
+		required
+		autocomplete="off"
+	/>
+	<label for="email">
+		<span>Email</span>
+	</label>
+	<input
+		type="email"
+		name="email"
+		aria-label="email"
+		placeholder="bill@hotmail.com"
+		required
+		autocomplete="off"
+	/>
+	<label for="message">
+		<span>Message</span>
+	</label>
+	<textarea
+		name="message"
+		aria-label="name"
+		placeholder="Message"
+		required
+		rows="3"
+		autocomplete="off"
+	/>
+	<input type="submit" value="Submit to Airtable" />
 </form>
 ```
 
@@ -520,11 +520,11 @@ as well.
 
 ```svelte
 <script lang="ts">
-  import type { ActionData } from './$types'
+	import type { ActionData } from './$types'
 
-  export let form: ActionData
+	export let form: ActionData
 
-  $: submission_status = form?.body?.message
+	$: submission_status = form?.body?.message
 </script>
 ```
 
@@ -533,9 +533,9 @@ so I can just use this:
 
 ```svelte
 <script lang="ts">
-  export let form
+	export let form
 
-  $: submission_status = form?.body?.message
+	$: submission_status = form?.body?.message
 </script>
 ```
 
@@ -543,60 +543,60 @@ This is what the full `+page.svelte` file looks like:
 
 ```svelte
 <script lang="ts">
-  import { enhance } from '$app/forms'
+	import { enhance } from '$app/forms'
 
-  export let form
+	export let form
 
-  $: submission_status = form?.body?.message
+	$: submission_status = form?.body?.message
 </script>
 
 <div>
-  <h2>Action</h2>
+	<h2>Action</h2>
 
-  {#if submission_status === 'submitting'}
-    <p>Submitting...</p>
-  {:else if submission_status === 'failed'}
-    <p>Submission failed.</p>
-  {:else if submission_status === 'success'}
-    <p>Submission success.</p>
-  {:else}
-    <form method="POST" use:enhance>
-      <label for="name">
-        <span>Name</span>
-      </label>
-      <input
-        type="text"
-        name="name"
-        aria-label="name"
-        placeholder="Enter your name"
-        required
-        autocomplete="off"
-      />
-      <label for="email">
-        <span>Email</span>
-      </label>
-      <input
-        type="email"
-        name="email"
-        aria-label="email"
-        placeholder="bill@hotmail.com"
-        required
-        autocomplete="off"
-      />
-      <label for="message">
-        <span>Message</span>
-      </label>
-      <textarea
-        name="message"
-        aria-label="message"
-        placeholder="Message"
-        required
-        rows="3"
-        autocomplete="off"
-      />
-      <input type="submit" value="Submit to Airtable" />
-    </form>
-  {/if}
+	{#if submission_status === 'submitting'}
+		<p>Submitting...</p>
+	{:else if submission_status === 'failed'}
+		<p>Submission failed.</p>
+	{:else if submission_status === 'success'}
+		<p>Submission success.</p>
+	{:else}
+		<form method="POST" use:enhance>
+			<label for="name">
+				<span>Name</span>
+			</label>
+			<input
+				type="text"
+				name="name"
+				aria-label="name"
+				placeholder="Enter your name"
+				required
+				autocomplete="off"
+			/>
+			<label for="email">
+				<span>Email</span>
+			</label>
+			<input
+				type="email"
+				name="email"
+				aria-label="email"
+				placeholder="bill@hotmail.com"
+				required
+				autocomplete="off"
+			/>
+			<label for="message">
+				<span>Message</span>
+			</label>
+			<textarea
+				name="message"
+				aria-label="message"
+				placeholder="Message"
+				required
+				rows="3"
+				autocomplete="off"
+			/>
+			<input type="submit" value="Submit to Airtable" />
+		</form>
+	{/if}
 </div>
 ```
 
@@ -633,59 +633,59 @@ the form object with the validation results.
 
 ```ts
 import {
-  AIRTABLE_BASE_ID,
-  AIRTABLE_API_KEY,
+	AIRTABLE_BASE_ID,
+	AIRTABLE_API_KEY,
 } from '$env/static/private'
 import { fail } from '@sveltejs/kit'
 import { superValidate } from 'sveltekit-superforms/server'
 import { z } from 'zod'
 
 const new_contact = z.object({
-  name: z.string(),
-  email: z.string().email(),
-  message: z.string(),
+	name: z.string(),
+	email: z.string().email(),
+	message: z.string(),
 })
 
 export const load = async event => {
-  const form = await superValidate(event, new_contact)
-  return {
-    form,
-  }
+	const form = await superValidate(event, new_contact)
+	return {
+		form,
+	}
 }
 
 export const actions = {
-  default: async event => {
-    const form = await superValidate(event, new_contact)
-    if (!form.valid) fail(400, { form })
+	default: async event => {
+		const form = await superValidate(event, new_contact)
+		if (!form.valid) fail(400, { form })
 
-    const { name, email, message } = form.data
+		const { name, email, message } = form.data
 
-    const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/submissions`
+		const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/submissions`
 
-    let data = {
-      records: [
-        {
-          fields: {
-            name,
-            email,
-            message,
-          },
-        },
-      ],
-    }
-    await fetch(AIRTABLE_URL, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${AIRTABLE_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
+		let data = {
+			records: [
+				{
+					fields: {
+						name,
+						email,
+						message,
+					},
+				},
+			],
+		}
+		await fetch(AIRTABLE_URL, {
+			method: 'POST',
+			headers: {
+				Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		})
 
-    return {
-      form,
-    }
-  },
+		return {
+			form,
+		}
+	},
 }
 ```
 
@@ -695,130 +695,130 @@ can also be used to validate the form on the client.
 
 ```svelte
 <script lang="ts">
-  import { superForm } from 'sveltekit-superforms/client'
-  import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte'
-  import { z } from 'zod'
+	import { superForm } from 'sveltekit-superforms/client'
+	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte'
+	import { z } from 'zod'
 
-  export let data
+	export let data
 
-  let submission_status = ''
+	let submission_status = ''
 
-  const new_contact = z.object({
-    name: z.string().min(2),
-    email: z.string().email(),
-    message: z.string().min(10),
-  })
+	const new_contact = z.object({
+		name: z.string().min(2),
+		email: z.string().email(),
+		message: z.string().min(10),
+	})
 
-  const { form, errors, enhance } = superForm(data.form, {
-    validators: new_contact,
-    resetForm: true,
-    onSubmit: event => {
-      submission_status = 'submitting'
-    },
-    onUpdated: ({ form }) => {
-      if (form.valid) {
-        submission_status = 'success'
-      }
-      submission_status = ''
-    },
-    delayMs: 500,
-  })
+	const { form, errors, enhance } = superForm(data.form, {
+		validators: new_contact,
+		resetForm: true,
+		onSubmit: event => {
+			submission_status = 'submitting'
+		},
+		onUpdated: ({ form }) => {
+			if (form.valid) {
+				submission_status = 'success'
+			}
+			submission_status = ''
+		},
+		delayMs: 500,
+	})
 </script>
 
 <div class="mx-auto max-w-xl">
-  <h2>Super form</h2>
+	<h2>Super form</h2>
 
-  {#if submission_status === 'submitting'}
-    <p>Submitting...</p>
-  {:else if submission_status === 'failed'}
-    <p>Submission failed.</p>
-  {:else if submission_status === 'success'}
-    <p>Submission success.</p>
-  {:else}
-    <form method="POST" use:enhance>
-      <label for="name" class="label">
-        <span class="label-text">Name</span>
-      </label>
-      <input
-        bind:value={$form.name}
-        data-invalid={$errors.name}
-        type="text"
-        name="name"
-        aria-label="name"
-        placeholder="Enter your name"
-        required
-        autocomplete="off"
-        class="input input-bordered w-full {$errors.name
-          ? 'input-error'
-          : ''}"
-      />
-      <label for="name" class="label">
-        <span
-          class="label-text-alt {$errors.name
-            ? 'text-error'
-            : 'text-base-100'}"
-        >
-          {$errors.name}
-        </span>
-      </label>
+	{#if submission_status === 'submitting'}
+		<p>Submitting...</p>
+	{:else if submission_status === 'failed'}
+		<p>Submission failed.</p>
+	{:else if submission_status === 'success'}
+		<p>Submission success.</p>
+	{:else}
+		<form method="POST" use:enhance>
+			<label for="name" class="label">
+				<span class="label-text">Name</span>
+			</label>
+			<input
+				bind:value={$form.name}
+				data-invalid={$errors.name}
+				type="text"
+				name="name"
+				aria-label="name"
+				placeholder="Enter your name"
+				required
+				autocomplete="off"
+				class="input input-bordered w-full {$errors.name
+					? 'input-error'
+					: ''}"
+			/>
+			<label for="name" class="label">
+				<span
+					class="label-text-alt {$errors.name
+						? 'text-error'
+						: 'text-base-100'}"
+				>
+					{$errors.name}
+				</span>
+			</label>
 
-      <label for="email" class="label">
-        <span class="label-text">Email</span>
-      </label>
-      <input
-        bind:value={$form.email}
-        type="email"
-        name="email"
-        aria-label="email"
-        placeholder="bill@hotmail.com"
-        required
-        autocomplete="off"
-        class="input input-bordered w-full {$errors.email
-          ? 'input-error'
-          : ''}"
-      />
-      <label for="email" class="label">
-        <span
-          class="label-text-alt {$errors.email
-            ? 'text-error'
-            : 'text-base-100'}"
-        >
-          {$errors.email}
-        </span>
-      </label>
+			<label for="email" class="label">
+				<span class="label-text">Email</span>
+			</label>
+			<input
+				bind:value={$form.email}
+				type="email"
+				name="email"
+				aria-label="email"
+				placeholder="bill@hotmail.com"
+				required
+				autocomplete="off"
+				class="input input-bordered w-full {$errors.email
+					? 'input-error'
+					: ''}"
+			/>
+			<label for="email" class="label">
+				<span
+					class="label-text-alt {$errors.email
+						? 'text-error'
+						: 'text-base-100'}"
+				>
+					{$errors.email}
+				</span>
+			</label>
 
-      <label for="message" class="label">
-        <span class="label-text">Message</span>
-      </label>
-      <textarea
-        bind:value={$form.message}
-        name="message"
-        aria-label="message"
-        placeholder="Message"
-        required
-        rows="3"
-        autocomplete="off"
-        class="textarea input-bordered w-full {$errors.message
-          ? 'input-error'
-          : ''}"
-      />
-      <label for="message" class="label">
-        <span
-          class="label-text-alt {$errors.message
-            ? 'text-error'
-            : 'text-base-100'}"
-        >
-          {$errors.message}
-        </span>
-      </label>
+			<label for="message" class="label">
+				<span class="label-text">Message</span>
+			</label>
+			<textarea
+				bind:value={$form.message}
+				name="message"
+				aria-label="message"
+				placeholder="Message"
+				required
+				rows="3"
+				autocomplete="off"
+				class="textarea input-bordered w-full {$errors.message
+					? 'input-error'
+					: ''}"
+			/>
+			<label for="message" class="label">
+				<span
+					class="label-text-alt {$errors.message
+						? 'text-error'
+						: 'text-base-100'}"
+				>
+					{$errors.message}
+				</span>
+			</label>
 
-      <input
-        type="submit"
-        value="Submit to Airtable"
-        class="btn btn-primary w-full mt-10"
-      />
-    </form>
-  {/if}
+			<input
+				type="submit"
+				value="Submit to Airtable"
+				class="btn btn-primary mt-10 w-full"
+			/>
+		</form>
+	{/if}
 </div>
 ```
 
@@ -890,11 +890,11 @@ Thanks!
 <!-- Links -->
 
 [previous post]:
-  https://scottspence.com/posts/make-a-contact-form-with-sveltekit-and-airtable
+	https://scottspence.com/posts/make-a-contact-form-with-sveltekit-and-airtable
 [sign up for a free account]: https://airtable.com/signup
 [personal access token]: https://airtable.com/create/tokens
 [sveltekit-and-airtable-contact-form-example]:
-  https://github.com/spences10/sveltekit-and-airtable-contact-form-example
+	https://github.com/spences10/sveltekit-and-airtable-contact-form-example
 [zod]: https://zod.dev/
 [web apis]: https://developer.mozilla.org/en-US/docs/Web/API
 [docs]: https://superforms.vercel.app
@@ -902,4 +902,4 @@ Thanks!
 <!-- Images -->
 
 [airtable-create-personal-access-token]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1683010912/airtable-create-personal-access-token.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1683010912/airtable-create-personal-access-token.png

@@ -12,14 +12,14 @@ that there is new content available is by making your content
 available via an RSS feed.
 
 I made an RSS feed for my [blog] using SvelteKit routes. I did this
-much like the [Sitemap Generation for Dynamic Routes In NextJS with
-the Sanity Client] post I did back in February.
+much like the [Sitemap Generation for Dynamic Routes In NextJS
+with the Sanity Client] post I did back in February.
 
 ## RSS on `scottspence.com`
 
 As I mentioned already as my blog is a SvelteKit project I can use the
-SvelteKit [routing endpoints] to define the data type I want returned
-from that endpoint.
+SvelteKit [routing endpoints] to define the data type I want returned from
+that endpoint.
 
 RSS feeds are expected in XML format and I want my endpoint to be
 [`https://scottspence.com/rss.xml`] so I've defined a file in my
@@ -28,8 +28,8 @@ of the project, so the full path would be `src/routes/rss.xml.js`.
 
 ## RSS route
 
-For this guide I'll using the great [template from Matt Jennings]
-(which this blog is based off of) as an example of how to do it.
+For this guide I'll using the great [template from Matt Jennings] (which
+this blog is based off of) as an example of how to do it.
 
 I'm using the template as it's the most basic example to use and there
 won't be any additional project specific routes that will need to be
@@ -87,19 +87,19 @@ Now if I go to `localhost:3000/rss.xml` I get a 404.
 
 In the `rss.xml.js` file I'll create a `get()` function which will
 need to return the RSS XML and the headers for the endpoint, the XML
-is inside [template literals] so I can add in the dynamic data I want
-to return later in this post:
+is inside [template literals] so I can add in the dynamic data I want to
+return later in this post:
 
 ```js
 export async function get() {
-  const headers = {
-    'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml',
-  }
-  return {
-    headers,
-    body: `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0"></rss>`,
-  }
+	const headers = {
+		'Cache-Control': 'max-age=0, s-maxage=3600',
+		'Content-Type': 'application/xml',
+	}
+	return {
+		headers,
+		body: `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0"></rss>`,
+	}
 }
 ```
 
@@ -122,20 +122,20 @@ I'll import these and hardcode in a description for now.
 import { name, website } from '$lib/info'
 
 export async function get() {
-  const headers = {
-    'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml',
-  }
-  return {
-    headers,
-    body: `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
+	const headers = {
+		'Cache-Control': 'max-age=0, s-maxage=3600',
+		'Content-Type': 'application/xml',
+	}
+	return {
+		headers,
+		body: `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
       <channel>
         <title>${name}</title>
         <link>${website}</link>
         <description>A blog built with SvelteKit about tech and stuff!</description>
       </channel>
     </rss>`,
-  }
+	}
 }
 ```
 
@@ -154,15 +154,15 @@ The code for get posts is:
 
 ```js
 export async function getPosts() {
-  const posts = await Object.entries(
-    import.meta.globEager('/posts/**/*.md'),
-  )
-    // get post metadata
-    .map(([, post]) => post.metadata)
-    // sort by date
-    .sort((a, b) => (a.date < b.date ? 1 : -1))
+	const posts = await Object.entries(
+		import.meta.globEager('/posts/**/*.md'),
+	)
+		// get post metadata
+		.map(([, post]) => post.metadata)
+		// sort by date
+		.sort((a, b) => (a.date < b.date ? 1 : -1))
 
-  return posts
+	return posts
 }
 ```
 
@@ -177,21 +177,21 @@ import { getPosts } from '$lib/get-posts'
 import { name, website } from '$lib/info'
 
 export async function get() {
-  const posts = await getPosts()
-  const body = xml(posts)
+	const posts = await getPosts()
+	const body = xml(posts)
 
-  const headers = {
-    'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml',
-  }
-  return {
-    headers,
-    body,
-  }
+	const headers = {
+		'Cache-Control': 'max-age=0, s-maxage=3600',
+		'Content-Type': 'application/xml',
+	}
+	return {
+		headers,
+		body,
+	}
 }
 
 const xml =
-  posts => `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
+	posts => `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>${name}</title>
     <link>${website}</link>
@@ -211,29 +211,29 @@ import { getPosts } from '$lib/get-posts'
 import { name, website } from '$lib/info'
 
 export async function get() {
-  const posts = await getPosts()
-  const body = xml(posts)
+	const posts = await getPosts()
+	const body = xml(posts)
 
-  const headers = {
-    'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml',
-  }
-  return {
-    headers,
-    body,
-  }
+	const headers = {
+		'Cache-Control': 'max-age=0, s-maxage=3600',
+		'Content-Type': 'application/xml',
+	}
+	return {
+		headers,
+		body,
+	}
 }
 
 const xml =
-  posts => `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
+	posts => `<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>${name}</title>
     <link>${website}</link>
     <description>A blog built with SvelteKit about tech and stuff!</description>
     ${posts
-      .map(
-        post =>
-          `
+			.map(
+				post =>
+					`
         <item>
           <title>${post.title}</title>
           <description>A blog built with SvelteKit about tech and stuff!</description>
@@ -250,8 +250,8 @@ const xml =
           </content:encoded>
         </item>
       `,
-      )
-      .join('')}
+			)
+			.join('')}
   </channel>
 </rss>`
 ```
@@ -276,14 +276,14 @@ project.
 
 [blog]: https://scottspence.com/posts
 [sitemap generation for dynamic routes in nextjs with the sanity client]:
-  https://scottspence.com/posts/dynamic-sitemap-generation-with-nextjs-and-sanity
+	https://scottspence.com/posts/dynamic-sitemap-generation-with-nextjs-and-sanity
 [routing endpoints]: https://kit.svelte.dev/docs#routing-endpoints
 [`https://scottspence.com/rss.xml`]: https://scottspence.com/rss.xml
 [template from matt jennings]:
-  https://github.com/mattjennings/sveltekit-blog-template
+	https://github.com/mattjennings/sveltekit-blog-template
 [expiration]:
-  https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#expiration
+	https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#expiration
 [w3c feed validation service]:
-  https://validator.w3.org/feed/docs/rss2.html
+	https://validator.w3.org/feed/docs/rss2.html
 [template literals]:
-  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals

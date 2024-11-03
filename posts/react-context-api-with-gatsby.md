@@ -11,9 +11,9 @@ get to use it the other day at work, I also [made a snippet] to
 scaffold out a component for it.
 
 I had followed a couple of guides explaining how to use it and neither
-of them as good as this great explanation of [how to use it] from
-[@leighchalliday], thank you Leigh 🙏 It's a great use case which
-helped me understand how to use it.
+of them as good as this great explanation of [how to use it] from [@leighchalliday],
+thank you Leigh 🙏 It's a great use case which helped me understand how
+to use it.
 
 So, after doing this in a CRA project I decided to use it on one of my
 Gatsby projects. With Gatsby the layout is slightly different where
@@ -59,8 +59,8 @@ For illustration I'll go over it here now, you add the `ThemeProvider`
 at the highest level in the application structure so that all
 descendants/children of the app can access it.
 
-I have already done this for my [personal site] and now I'm going to
-do it [here] so let's go through it together.
+I have already done this for my [personal site] and now I'm going to do
+it [here] so let's go through it together.
 
 ## Let's make a component!
 
@@ -100,30 +100,30 @@ import React from 'react'
 export const BlogThemeContext = React.createContext()
 
 export class BlogThemeProvider extends React.Component {
-  state = {
-    item1: 1,
-    item2: 2,
-  }
+	state = {
+		item1: 1,
+		item2: 2,
+	}
 
-  // add function here
-  functionHere = () => {
-    this.setState({
-      item1: 2,
-      item2: 3,
-    })
-  }
-  render() {
-    return (
-      <BlogThemeContext.Provider
-        value={{
-          ...this.state,
-          functionHere: this.functionHere,
-        }}
-      >
-        {this.props.children}
-      </BlogThemeContext.Provider>
-    )
-  }
+	// add function here
+	functionHere = () => {
+		this.setState({
+			item1: 2,
+			item2: 3,
+		})
+	}
+	render() {
+		return (
+			<BlogThemeContext.Provider
+				value={{
+					...this.state,
+					functionHere: this.functionHere,
+				}}
+			>
+				{this.props.children}
+			</BlogThemeContext.Provider>
+		)
+	}
 }
 ```
 
@@ -144,14 +144,14 @@ component here.
 
 ```js
 const TemplateWrapper = ({ children }) => (
-  <ThemeProvider theme={theme}>
-    <PageContainer>
-      <Helmet title={nameContent} meta={siteMeta} />
-      <Header />
-      <Main>{children()}</Main>
-      <Footer />
-    </PageContainer>
-  </ThemeProvider>
+	<ThemeProvider theme={theme}>
+		<PageContainer>
+			<Helmet title={nameContent} meta={siteMeta} />
+			<Header />
+			<Main>{children()}</Main>
+			<Footer />
+		</PageContainer>
+	</ThemeProvider>
 )
 ```
 
@@ -173,33 +173,33 @@ import { theme } from '../../theme/globalStyle'
 export const BlogThemeContext = React.createContext()
 
 export class BlogThemeProvider extends React.Component {
-  state = {
-    theme,
-  }
+	state = {
+		theme,
+	}
 
-  // add function here
-  functionHere = () => {
-    this.setState({
-      item1: 2,
-      item2: 3,
-    })
-  }
-  render() {
-    return (
-      <BlogThemeContext.Provider
-        value={{
-          ...this.state,
-          functionHere: this.functionHere,
-        }}
-      >
-        {this.props.children}
-      </BlogThemeContext.Provider>
-    )
-  }
+	// add function here
+	functionHere = () => {
+		this.setState({
+			item1: 2,
+			item2: 3,
+		})
+	}
+	render() {
+		return (
+			<BlogThemeContext.Provider
+				value={{
+					...this.state,
+					functionHere: this.functionHere,
+				}}
+			>
+				{this.props.children}
+			</BlogThemeContext.Provider>
+		)
+	}
 }
 
 BlogThemeProvider.propTypes = {
-  children: PropTypes.any,
+	children: PropTypes.any,
 }
 ```
 
@@ -216,31 +216,31 @@ import { theme1, theme2 } from '../../theme/globalStyle'
 export const BlogThemeContext = React.createContext()
 
 export class BlogThemeProvider extends React.Component {
-  state = {
-    theme,
-  }
+	state = {
+		theme,
+	}
 
-  handleThemeChange = e => {
-    let theme = e.target.value
-    theme === 'theme1' ? (theme = theme1) : (theme = theme2)
-    this.setState({ theme })
-  }
-  render() {
-    return (
-      <BlogThemeContext.Provider
-        value={{
-          ...this.state,
-          handleThemeChange: this.handleThemeChange,
-        }}
-      >
-        {this.props.children}
-      </BlogThemeContext.Provider>
-    )
-  }
+	handleThemeChange = e => {
+		let theme = e.target.value
+		theme === 'theme1' ? (theme = theme1) : (theme = theme2)
+		this.setState({ theme })
+	}
+	render() {
+		return (
+			<BlogThemeContext.Provider
+				value={{
+					...this.state,
+					handleThemeChange: this.handleThemeChange,
+				}}
+			>
+				{this.props.children}
+			</BlogThemeContext.Provider>
+		)
+	}
 }
 
 BlogThemeProvider.propTypes = {
-  children: PropTypes.any,
+	children: PropTypes.any,
 }
 ```
 
@@ -257,7 +257,7 @@ being returned like you would with a normal React component like this:
 
 ```js
 <Wrapper>
-  <Child />
+	<Child />
 </Wrapper>
 ```
 
@@ -280,20 +280,20 @@ the import from `globalStyle`.
 
 ```js
 const TemplateWrapper = ({ children }) => (
-  <BlogThemeProvider>
-    <BlogThemeContext.Consumer>
-      {({ theme }) => (
-        <ThemeProvider theme={theme}>
-          <PageContainer>
-            <Helmet title={nameContent} meta={siteMeta} />
-            <Header />
-            <Main>{children()}</Main>
-            <Footer />
-          </PageContainer>
-        </ThemeProvider>
-      )}
-    </BlogThemeContext.Consumer>
-  </BlogThemeProvider>
+	<BlogThemeProvider>
+		<BlogThemeContext.Consumer>
+			{({ theme }) => (
+				<ThemeProvider theme={theme}>
+					<PageContainer>
+						<Helmet title={nameContent} meta={siteMeta} />
+						<Header />
+						<Main>{children()}</Main>
+						<Footer />
+					</PageContainer>
+				</ThemeProvider>
+			)}
+		</BlogThemeContext.Consumer>
+	</BlogThemeProvider>
 )
 ```
 
@@ -349,11 +349,11 @@ a Context consumer to access the method:
 
 ```js
 <BlogThemeContext.Consumer>
-  {({ handleThemeChange }) => (
-    <ThemeSelectWrapper>
-      <ThemeSelect handleThemeChange={handleThemeChange} />
-    </ThemeSelectWrapper>
-  )}
+	{({ handleThemeChange }) => (
+		<ThemeSelectWrapper>
+			<ThemeSelect handleThemeChange={handleThemeChange} />
+		</ThemeSelectWrapper>
+	)}
 </BlogThemeContext.Consumer>
 ```
 
@@ -370,13 +370,14 @@ Ok, success 💯 now onto the background switching/transition thingy.
 <!-- cSpell:ignore Schoger,rando -->
 
 So, right now to switch between [Steve Schoger]'s awesome [hero
-patterns] I have a function sitting in the `globalStyle` module which
-returns a random HERO pattern:
+patterns]
+I have a function sitting in the `globalStyle` module which returns a
+random HERO pattern:
 
 ```js
 export const randoHero = () => {
-  const keys = Object.keys(HERO)
-  return HERO[keys[(keys.length * Math.random()) << 0]]
+	const keys = Object.keys(HERO)
+	return HERO[keys[(keys.length * Math.random()) << 0]]
 }
 ```
 
@@ -459,22 +460,22 @@ If you have any feedback [please get in touch].
 
 [react context api]: https://reactjs.org/docs/context.html
 [made a snippet]:
-  https://github.com/spences10/settings/blob/35ba1ca3e9871c3ea6344ca2274ebbd327a18bed/globalVs.code-snippets#L74-L112
+	https://github.com/spences10/settings/blob/35ba1ca3e9871c3ea6344ca2274ebbd327a18bed/globalVs.code-snippets#L74-L112
 [how to use it]: https://www.youtube.com/watch?v=yzQ_XulhQFw
 [@leighchalliday]: https://twitter.com/leighchalliday
 [styled-components 💅 getting started]:
-  https://scottspence.com/posts/styled-components
+	https://scottspence.com/posts/styled-components
 [personal site]: https://scottspence.me
 [here]: https://scottspence.com
 [vs code snippet]:
-  https://github.com/spences10/settings/blob/71dc76fb8e11c176f4517431be57c021fb72411a/globalVs.code-snippets#L74-L111
+	https://github.com/spences10/settings/blob/71dc76fb8e11c176f4517431be57c021fb72411a/globalVs.code-snippets#L74-L111
 [please get in touch]: /contact
 [here's the source]:
-  https://github.com/spences10/scottspence.me/blob/master/src/components/ThemeSelect.js
+	https://github.com/spences10/scottspence.me/blob/master/src/components/ThemeSelect.js
 [steve schoger]: https://twitter.com/steveschoger
 [hero patterns]: https://www.heropatterns.com/
 
 <!-- Images -->
 
 [theme switching]:
-  https://thepracticaldev.s3.amazonaws.com/i/r1b8qgu6lm5xjjondse7.gif
+	https://thepracticaldev.s3.amazonaws.com/i/r1b8qgu6lm5xjjondse7.gif

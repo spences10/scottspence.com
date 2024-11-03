@@ -11,9 +11,9 @@ isPrivate: false
 </script>
 
 I'm going to go over globally styling the Gatsby Default Starter with
-styled-components v5, I've done this in the [past with
-styled-components v4] but I've changed my approach and want to
-document it.
+styled-components v5, I've done this in the [past
+with styled-components v4] but I've changed my approach and want to document
+it.
 
 I'll be swapping out the styles included with a CSS reset and adding
 in global style with the styled-components `createGlobalStyle` helper
@@ -132,8 +132,8 @@ Ok, cool, looks pretty reset to me!
 ## Create the new browser base styles
 
 Time to add in some more styles to the global style. First, the
-`box-sizing` reset, take a look at the CSS Tricks post on [Box Sizing]
-for a great explanation of why we do this.
+`box-sizing` reset, take a look at the CSS Tricks post on [Box
+Sizing] for a great explanation of why we do this.
 
 ```jsx {7-12}
 import { createGlobalStyle } from 'styled-components'
@@ -204,10 +204,10 @@ import Layout from './src/components/layout'
 import { GlobalStyle } from './src/theme/global-style'
 
 export const wrapRootElement = ({ element }) => (
-  <>
-    <GlobalStyle />
-    <Layout>{element}</Layout>
-  </>
+	<>
+		<GlobalStyle />
+		<Layout>{element}</Layout>
+	</>
 )
 ```
 
@@ -234,10 +234,10 @@ export const wrapRootElement = wrap
 
 ## Global fonts with `gatsby-plugin-google-fonts`
 
-Onto the main reason for this post, with the [v5 release] of
-styled-components the use of `@imports` in `createGlobalStyle` isn't
-working, (that approach is [detailed here]) it's recommended that you
-embed these into your HTML index file, etc.
+Onto the main reason for this post, with the [v5 release] of styled-components
+the use of `@imports` in `createGlobalStyle` isn't working, (that approach
+is [detailed here]) it's recommended that you embed these into your
+HTML index file, etc.
 
 > NOTE: At this time we recommend not using @import inside of
 > `createGlobalStyle`. We're working on better behavior for this
@@ -299,11 +299,11 @@ import { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
 
 export const theme = {
-  font: {
-    sans: 'Cambay, sans-serif',
-    serif: 'Arvo, sans',
-    monospace: '"Ubuntu Mono", monospace',
-  },
+	font: {
+		sans: 'Cambay, sans-serif',
+		serif: 'Arvo, sans',
+		monospace: '"Ubuntu Mono", monospace',
+	},
 }
 
 export const GlobalStyle = createGlobalStyle`
@@ -338,10 +338,10 @@ import Layout from './src/components/layout'
 import { GlobalStyle, theme } from './src/theme/global-style'
 
 export const wrapRootElement = ({ element }) => (
-  <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <Layout>{element}</Layout>
-  </ThemeProvider>
+	<ThemeProvider theme={theme}>
+		<GlobalStyle />
+		<Layout>{element}</Layout>
+	</ThemeProvider>
 )
 ```
 
@@ -381,34 +381,34 @@ import { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
 
 export const theme = {
-  font: {
-    sans: 'Cambay, sans-serif',
-    serif: 'Arvo, sans',
-    monospace: '"Ubuntu Mono", monospace',
-  },
-  fontSize: {
-    xs: '0.75rem',
-    sm: '0.875rem',
-    base: '1rem',
-    lg: '1.125rem',
-    xl: '1.25rem',
-    '2xl': '1.5rem',
-    '3xl': '1.875rem',
-    '4xl': '2.25rem',
-    '5xl': '3rem',
-    '6xl': '4rem',
-  },
-  fontWeight: {
-    hairline: '100',
-    thin: '200',
-    light: '300',
-    normal: '400',
-    medium: '500',
-    semibold: '600',
-    bold: '700',
-    extrabold: '800',
-    black: '900',
-  },
+	font: {
+		sans: 'Cambay, sans-serif',
+		serif: 'Arvo, sans',
+		monospace: '"Ubuntu Mono", monospace',
+	},
+	fontSize: {
+		xs: '0.75rem',
+		sm: '0.875rem',
+		base: '1rem',
+		lg: '1.125rem',
+		xl: '1.25rem',
+		'2xl': '1.5rem',
+		'3xl': '1.875rem',
+		'4xl': '2.25rem',
+		'5xl': '3rem',
+		'6xl': '4rem',
+	},
+	fontWeight: {
+		hairline: '100',
+		thin: '200',
+		light: '300',
+		normal: '400',
+		medium: '500',
+		semibold: '600',
+		bold: '700',
+		extrabold: '800',
+		black: '900',
+	},
 }
 
 export const GlobalStyle = createGlobalStyle`
@@ -478,10 +478,10 @@ And add some base styles to those for `h1`:
 import styled from 'styled-components'
 
 export const H1 = styled.h1`
-  font-size: ${({ theme }) => theme.fontSize['4xl']};
-  font-family: ${({ theme }) => theme.font.serif};
-  margin-top: ${({ theme }) => theme.spacing[8]};
-  line-height: ${({ theme }) => theme.lineHeight.none};
+	font-size: ${({ theme }) => theme.fontSize['4xl']};
+	font-family: ${({ theme }) => theme.font.serif};
+	margin-top: ${({ theme }) => theme.spacing[8]};
+	line-height: ${({ theme }) => theme.lineHeight.none};
 `
 ```
 
@@ -491,14 +491,14 @@ And the same sort of thing for the `p`:
 import styled from 'styled-components'
 
 export const P = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.base};
-  margin-top: ${({ theme }) => theme.spacing[3]};
-  strong {
-    font-weight: bold;
-  }
-  em {
-    font-style: italic;
-  }
+	font-size: ${({ theme }) => theme.fontSize.base};
+	margin-top: ${({ theme }) => theme.spacing[3]};
+	strong {
+		font-weight: bold;
+	}
+	em {
+		font-style: italic;
+	}
 `
 ```
 
@@ -516,16 +516,16 @@ import { P } from '../components/page-elements/p'
 import SEO from '../components/seo'
 
 const IndexPage = () => (
-  <>
-    <SEO title="Home" />
-    <H1>Hi people</H1>
-    <P>Welcome to your new Gatsby site.</P>
-    <P>Now go build something great.</P>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </>
+	<>
+		<SEO title="Home" />
+		<H1>Hi people</H1>
+		<P>Welcome to your new Gatsby site.</P>
+		<P>Now go build something great.</P>
+		<div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+			<Image />
+		</div>
+		<Link to="/page-2/">Go to page 2</Link>
+	</>
 )
 
 export default IndexPage
@@ -588,33 +588,33 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 <!-- Links -->
 
 [past with styled-components v4]:
-  https://scottspence.com/posts/gatsby-starter-to-styled-components/
+	https://scottspence.com/posts/gatsby-starter-to-styled-components/
 [wraprootelement]:
-  https://www.gatsbyjs.com/docs/browser-apis/#wrapRootElement
+	https://www.gatsbyjs.com/docs/browser-apis/#wrapRootElement
 [v5 release]: https://styled-components.com/releases#v5.0.0
 [detailed here]:
-  https://scottspence.com/posts/gatsby-starter-to-styled-components/#3-global-style
+	https://scottspence.com/posts/gatsby-starter-to-styled-components/#3-global-style
 [box sizing]: https://css-tricks.com/box-sizing/#article-header-id-3
 [styled-components themeprovider]:
-  https://styled-components.com/docs/api#themeprovider
+	https://styled-components.com/docs/api#themeprovider
 [introduction to tailwind and the utility first workflow]:
-  https://egghead.io/playlists/introduction-to-tailwind-and-the-utility-first-workflow-0b697b10
+	https://egghead.io/playlists/introduction-to-tailwind-and-the-utility-first-workflow-0b697b10
 [design and implement common tailwind components]:
-  https://egghead.io/playlists/design-and-implement-common-tailwind-components-8fbb9b19
+	https://egghead.io/playlists/design-and-implement-common-tailwind-components-8fbb9b19
 [build a responsive navbar with tailwind]:
-  https://egghead.io/playlists/build-a-responsive-navbar-with-tailwind-4d328a35
+	https://egghead.io/playlists/build-a-responsive-navbar-with-tailwind-4d328a35
 [build and style a dropdown in tailwind]:
-  https://egghead.io/playlists/build-and-style-a-dropdown-in-tailwind-7f34fead
+	https://egghead.io/playlists/build-and-style-a-dropdown-in-tailwind-7f34fead
 [i wrote about]:
-  https://scottspence.com/posts/react-advanced-london-2019/#siddharth-kshetrapal---design-systems-design-system
+	https://scottspence.com/posts/react-advanced-london-2019/#siddharth-kshetrapal---design-systems-design-system
 [design systems design system - siddharth kshetrapal]:
-  https://www.youtube.com/watch?v=Dd-Y9K7IKmk&feature=emb_title
+	https://www.youtube.com/watch?v=Dd-Y9K7IKmk&feature=emb_title
 [tailwind full config]:
-  https://github.com/tailwindcss/designing-with-tailwindcss/blob/master/01-getting-up-and-running/07-customizing-your-design-system/tailwind-full.config.js
+	https://github.com/tailwindcss/designing-with-tailwindcss/blob/master/01-getting-up-and-running/07-customizing-your-design-system/tailwind-full.config.js
 [twitter]: https://twitter.com/spences10
 [ask me anything]: https://github.com/spences10/ama
 
 <!-- Images -->
 
 [reset page]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/reset-page-39c26fbeac89322ffc9491b0efa0ad13.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/reset-page-39c26fbeac89322ffc9491b0efa0ad13.png

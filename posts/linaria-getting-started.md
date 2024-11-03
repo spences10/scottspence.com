@@ -17,8 +17,8 @@ Linaria is like styled-components but different as in there's no
 runtime cost and some other gotchas I've found along the way.
 
 What does that mean though? I'm going to take the headings from the
-[Linaria Docs for benefits] and list them here, for more detail on
-them I suggest checking the links in the list.
+[Linaria Docs for benefits] and list them here, for more detail on them
+I suggest checking the links in the list.
 
 ## Advantages Over other CSS-in-JS solutions
 
@@ -56,8 +56,8 @@ yarn add linaria@next gatsby-plugin-linaria
 
 > Error: Cannot find module 'core-js/...'
 
-I'm using `@next` because there's a [known issue] between Linaria and
-Gatsby's version of core-js.
+I'm using `@next` because there's a [known issue] between Linaria and Gatsby's
+version of core-js.
 
 I'll add the `.linaria-cache` folder to bottom of the `.gitignore`
 file as that's not needed in source control.
@@ -121,22 +121,22 @@ with a bit of contrast so that I can see the styles have been applied.
 import { css } from 'linaria'
 
 export const globals = css`
-  :global() {
-    html {
-      box-sizing: border-box;
-    }
+	:global() {
+		html {
+			box-sizing: border-box;
+		}
 
-    *,
-    *:before,
-    *:after {
-      box-sizing: inherit;
-    }
+		*,
+		*:before,
+		*:after {
+			box-sizing: inherit;
+		}
 
-    body {
-      margin: 0;
-      background: red;
-    }
-  }
+		body {
+			margin: 0;
+			background: red;
+		}
+	}
 `
 ```
 
@@ -179,26 +179,26 @@ those to the `globals` file:
 import { css } from 'linaria'
 
 export const globals = css`
-  :global() {
-    html {
-      box-sizing: border-box;
-      font-family: sans-serif;
-      -ms-text-size-adjust: 100%;
-      -webkit-text-size-adjust: 100%;
-    }
+	:global() {
+		html {
+			box-sizing: border-box;
+			font-family: sans-serif;
+			-ms-text-size-adjust: 100%;
+			-webkit-text-size-adjust: 100%;
+		}
 
-    *,
-    *:before,
-    *:after {
-      box-sizing: inherit;
-    }
+		*,
+		*:before,
+		*:after {
+			box-sizing: inherit;
+		}
 
-    body {
-      margin: 0;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-  }
+		body {
+			margin: 0;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+	}
 `
 ```
 
@@ -231,20 +231,20 @@ is an `a` element) like this:
 
 ```js
 const StyledHeader = styled.header`
-  background: rebeccapurple;
-  margin-bottom: 1.45rem;
-  div {
-    margin: 0 auto;
-    max-width: 960px;
-    padding: 1.45rem 1.0875rem;
-  }
-  h1 {
-    margin: 0;
-  }
-  a {
-    color: white;
-    text-decoration: none;
-  }
+	background: rebeccapurple;
+	margin-bottom: 1.45rem;
+	div {
+		margin: 0 auto;
+		max-width: 960px;
+		padding: 1.45rem 1.0875rem;
+	}
+	h1 {
+		margin: 0;
+	}
+	a {
+		color: white;
+		text-decoration: none;
+	}
 `
 ```
 
@@ -253,13 +253,13 @@ Now the component is cleaner with all the inline styling moved to the
 
 ```jsx
 const Header = ({ siteTitle }) => (
-  <StyledHeader>
-    <div>
-      <h1 style={{ margin: 0 }}>
-        <Link to="/">{siteTitle}</Link>
-      </h1>
-    </div>
-  </StyledHeader>
+	<StyledHeader>
+		<div>
+			<h1 style={{ margin: 0 }}>
+				<Link to="/">{siteTitle}</Link>
+			</h1>
+		</div>
+	</StyledHeader>
 )
 ```
 
@@ -277,11 +277,11 @@ the `div` on this component:
 
 ```js
 const StyledLayout = styled.main`
-  .page-wrapper {
-    margin: 0 auto;
-    max-width: 960px;
-    padding: 0 1.0875rem 1.45rem;
-  }
+	.page-wrapper {
+		margin: 0 auto;
+		max-width: 960px;
+		padding: 0 1.0875rem 1.45rem;
+	}
 `
 ```
 
@@ -290,17 +290,17 @@ wrapping the components `children`:
 
 ```jsx {4-5}
 return (
-  <StyledLayout className={globals}>
-    <Header siteTitle={data.site.siteMetadata.title} />
-    <div className="page-wrapper">
-      <>{children}</>
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>
-      </footer>
-    </div>
-  </StyledLayout>
+	<StyledLayout className={globals}>
+		<Header siteTitle={data.site.siteMetadata.title} />
+		<div className="page-wrapper">
+			<>{children}</>
+			<footer>
+				© {new Date().getFullYear()}, Built with
+				{` `}
+				<a href="https://www.gatsbyjs.com">Gatsby</a>
+			</footer>
+		</div>
+	</StyledLayout>
 )
 ```
 
@@ -323,36 +323,36 @@ Here's a video of me detailing the process.
 
 Here's some resources on CSS-in-JS performance I found interesting.
 
-- [The unseen performance costs of modern CSS-in-JS libraries in React
-  apps]
+- [The unseen performance costs of modern CSS-in-JS libraries in
+  React apps]
 - [CSS-in-JS Performance Cost - Mitigating Strategies]
 
 <!-- Links -->
 <!-- cSpell:ignore Callstack -->
 
 [the unseen performance costs of modern css-in-js libraries in react apps]:
-  https://calendar.perfplanet.com/2019/the-unseen-performance-costs-of-css-in-js-in-react-apps/
+	https://calendar.perfplanet.com/2019/the-unseen-performance-costs-of-css-in-js-in-react-apps/
 [css-in-js performance cost - mitigating strategies]:
-  https://www.infoq.com/news/2020/01/css-cssinjs-performance-cost/
+	https://www.infoq.com/news/2020/01/css-cssinjs-performance-cost/
 [https://www.freecodecamp.org/news/the-tradeoffs-of-css-in-js-bee5cf926fdb/]:
-  https://www.freecodecamp.org/news/the-tradeoffs-of-css-in-js-bee5cf926fdb/
+	https://www.freecodecamp.org/news/the-tradeoffs-of-css-in-js-bee5cf926fdb/
 [linaria docs for benefits]:
-  https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md
+	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md
 [css is downloaded and parsed separately from js]:
-  https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#1-css-is-downloaded-and-parsed-separately-from-js
+	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#1-css-is-downloaded-and-parsed-separately-from-js
 [no extra parsing needed for css]:
-  https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#2-no-extra-parsing-needed-for-css
+	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#2-no-extra-parsing-needed-for-css
 [no style duplication on ssr]:
-  https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#3-no-style-duplication-on-ssr
+	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#3-no-style-duplication-on-ssr
 [catch errors early due to build-time evaluation]:
-  https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#4-catch-errors-early-due-to-build-time-evaluation
+	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#4-catch-errors-early-due-to-build-time-evaluation
 [familiar css syntax]:
-  https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#5-familiar-css-syntax
+	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#5-familiar-css-syntax
 [works without javascript]:
-  https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#6-works-without-javascript
+	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#6-works-without-javascript
 [jack the example]:
-  https://github.com/callstack/linaria/blob/master/docs/BASICS.md#adding-global-styles
+	https://github.com/callstack/linaria/blob/master/docs/BASICS.md#adding-global-styles
 [brevity]: https://dictionary.cambridge.org/dictionary/english/brevity
 [known issue]:
-  https://github.com/silvenon/gatsby-plugin-linaria#error-cannot-find-module-core-jsmodulespolyfill
+	https://github.com/silvenon/gatsby-plugin-linaria#error-cannot-find-module-core-jsmodulespolyfill
 [tl;dr to the video]: #video-detailing-the-process

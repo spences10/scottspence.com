@@ -97,6 +97,6 @@ like this:
 
 ```svelte
 <Form action="/orders" method="post" let:loading>
-  <button disabled={loading}>Submit</button>
+	<button disabled={loading}>Submit</button>
 </Form>
 ```

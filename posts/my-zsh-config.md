@@ -264,8 +264,8 @@ YouTube!
 Check it out! More details on the [Zsh and Oh My Zsh] post I did at
 the end of 2020.
 
-I have a list of global aliases I like to use in my [dotfiles on
-github].
+I have a list of global aliases I like to use in my [dotfiles
+on github].
 
 ## Wrapping up
 
@@ -278,18 +278,18 @@ found it useful then that's a massive win for me! Thank you 🙏
 [fish]: https://fishshell.com/
 [oh my zsh]: https://ohmyz.sh/
 [installing zsh and oh my zsh on fedora]:
-  https://scottspence.com/posts/wsl-web-developer-setup-with-fedora-35#install-zsh-and-oh-my-zsh
+	https://scottspence.com/posts/wsl-web-developer-setup-with-fedora-35#install-zsh-and-oh-my-zsh
 [default `.zshrc` file]:
-  https://github.com/ohmyzsh/ohmyzsh/blob/master/templates/zshrc.zsh-template
+	https://github.com/ohmyzsh/ohmyzsh/blob/master/templates/zshrc.zsh-template
 [`zsh-syntax-highlighting`]:
-  https://github.com/zsh-users/zsh-syntax-highlighting
+	https://github.com/zsh-users/zsh-syntax-highlighting
 [`zsh-autosuggestions`]:
-  https://github.com/zsh-users/zsh-autosuggestions
+	https://github.com/zsh-users/zsh-autosuggestions
 [`spaceship`]: https://github.com/spaceship-prompt/spaceship-prompt
 [miguel alex cantu]:
-  http://blog.miguelalexcantu.com/2020/12/fixing-upower-warning-wslzshspaceship.html
+	http://blog.miguelalexcantu.com/2020/12/fixing-upower-warning-wslzshspaceship.html
 [video from gotbletu]: https://www.youtube.com/watch?v=WTTIGjZAMGg
 [zsh and oh my zsh]:
-  https://scottspence.com/posts/zsh-and-oh-my-zsh#abbreviations
+	https://scottspence.com/posts/zsh-and-oh-my-zsh#abbreviations
 [dotfiles on github]:
-  https://github.com/spences10/dotfiles/blob/main/.zsh_aliases
+	https://github.com/spences10/dotfiles/blob/main/.zsh_aliases

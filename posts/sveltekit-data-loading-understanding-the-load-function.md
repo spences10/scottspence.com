@@ -97,7 +97,7 @@ In the following example, the `name` prop is declared and set to
 
 ```svelte
 <script lang="ts">
-  export let name = 'World'
+	export let name = 'World'
 </script>
 
 <p>Hello, {name}!</p>
@@ -108,7 +108,7 @@ In the parent, be that a Svelte component or a SvelteKit
 
 ```svelte
 <script lang="ts">
-  import Greeting from './Greeting.svelte'
+	import Greeting from './Greeting.svelte'
 </script>
 
 <Greeting name="Svelte" />
@@ -193,9 +193,9 @@ a title property in the `src/routes/about/+page.ts` file:
 
 ```ts
 export const load = () => {
-  return {
-    title: 'This data is from the load function',
-  }
+	return {
+		title: 'This data is from the load function',
+	}
 }
 ```
 
@@ -211,7 +211,7 @@ data:
 
 ```svelte
 <script lang="ts">
-  export let data
+	export let data
 </script>
 
 <h1>This is the about page</h1>
@@ -223,7 +223,7 @@ Then I can use the data in the page and access the `title` property:
 
 ```svelte
 <script lang="ts">
-  export let data
+	export let data
 </script>
 
 <h1>This is the about page</h1>
@@ -240,8 +240,8 @@ Ok, now onto some practical examples of using the `load` function.
 
 So the most common use case for the `load` function is to fetch data
 from an external source, like an API. I'll be using two APIs in the
-following examples, the [Coinlore API] (REST) and the [Rick and Morty
-API] (GraphQL).
+following examples, the [Coinlore API] (REST) and the [Rick and
+Morty API] (GraphQL).
 
 In the following sections I'll go through various examples of fetching
 data from an API on the server and client.
@@ -272,11 +272,11 @@ SvelteKit `fetch` and create a response variable to store the data.
 
 ```ts
 export const load = async ({ fetch }) => {
-  const response = await fetch(
-    'https://api.coinlore.com/api/tickers/'
-  )
-  const currencies = await response.json()
-  return currencies
+	const response = await fetch(
+		'https://api.coinlore.com/api/tickers/',
+	)
+	const currencies = await response.json()
+	return currencies
 }
 ```
 
@@ -285,19 +285,19 @@ error handling:
 
 ```ts
 export const load = async ({ fetch }) => {
-  try {
-    const response = await fetch(
-      'https://api.coinlore.com/api/tickers/'
-    )
-    if (!response.ok) {
-      throw new Error(`HTTP error: ${response.status}`)
-    }
-    const currencies = await response.json()
-    return { currencies }
-  } catch (error) {
-    console.error(error)
-    return { error: 'Unable to fetch currencies' }
-  }
+	try {
+		const response = await fetch(
+			'https://api.coinlore.com/api/tickers/',
+		)
+		if (!response.ok) {
+			throw new Error(`HTTP error: ${response.status}`)
+		}
+		const currencies = await response.json()
+		return { currencies }
+	} catch (error) {
+		console.error(error)
+		return { error: 'Unable to fetch currencies' }
+	}
 }
 ```
 
@@ -310,7 +310,7 @@ the data:
 
 ```svelte
 <script lang="ts">
-  export let data
+	export let data
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -320,17 +320,17 @@ That gives me an output similar to this on the page:
 
 ```json
 {
-  "currencies": {
-    "data": [
-      {
-        "id": "90",
-        "symbol": "BTC",
-        "name": "Bitcoin",
-        "nameid": "bitcoin",
-        "rank": 1
-      }
-    ]
-  }
+	"currencies": {
+		"data": [
+			{
+				"id": "90",
+				"symbol": "BTC",
+				"name": "Bitcoin",
+				"nameid": "bitcoin",
+				"rank": 1
+			}
+		]
+	}
 }
 ```
 
@@ -339,21 +339,21 @@ iterate over the data and render it on the page with a Svelte each.
 
 ```svelte
 <script lang="ts">
-  export let data
+	export let data
 </script>
 
 <h1>Top 100 Cryptocurrencies</h1>
 
 <ul>
-  {#each data.currencies.data as coin}
-    <li>{coin.name}</li>
-  {/each}
+	{#each data.currencies.data as coin}
+		<li>{coin.name}</li>
+	{/each}
 </ul>
 ```
 
 Now, say I have data from another API I want to fetch on the client.
-I'll use the [Rick and Morty API] in the next example along with the
-Coinlore API.
+I'll use the [Rick and Morty API] in the next example along with the Coinlore
+API.
 
 ## Fetching page data from multiple sources
 
@@ -363,7 +363,7 @@ a post method on the request and returning stringified JSON data.
 
 ```ts
 export const load = async ({ fetch }) => {
-  const query = `query AllCharacters {
+	const query = `query AllCharacters {
     characters {
       results {
         name
@@ -373,28 +373,28 @@ export const load = async ({ fetch }) => {
     }
   }`
 
-  try {
-    const response = await fetch(
-      'https://rickandmortyapi.com/graphql/',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ query }),
-      }
-    )
+	try {
+		const response = await fetch(
+			'https://rickandmortyapi.com/graphql/',
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ query }),
+			},
+		)
 
-    if (!response.ok) {
-      throw new Error(`HTTP error: ${response.status}`)
-    }
+		if (!response.ok) {
+			throw new Error(`HTTP error: ${response.status}`)
+		}
 
-    const { data } = await response.json()
-    return { characters: data.characters.results }
-  } catch (error) {
-    console.error(error)
-    return { error: 'Unable to fetch characters' }
-  }
+		const { data } = await response.json()
+		return { characters: data.characters.results }
+	} catch (error) {
+		console.error(error)
+		return { error: 'Unable to fetch characters' }
+	}
 }
 ```
 
@@ -410,7 +410,7 @@ Morty API.
 
 ```ts
 export const load = async ({ fetch }) => {
-  const query = `query AllCharacters {
+	const query = `query AllCharacters {
     characters {
       results {
         name
@@ -420,39 +420,39 @@ export const load = async ({ fetch }) => {
     }
   }`
 
-  try {
-    const response = await fetch(
-      'https://rickandmortyapi.com/graphql/',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ query }),
-      }
-    )
+	try {
+		const response = await fetch(
+			'https://rickandmortyapi.com/graphql/',
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ query }),
+			},
+		)
 
-    if (!response.ok) {
-      throw new Error(`HTTP error: ${response.status}`)
-    }
+		if (!response.ok) {
+			throw new Error(`HTTP error: ${response.status}`)
+		}
 
-    const { data } = await response.json()
+		const { data } = await response.json()
 
-    const fetchCoins = async () => {
-      const response = await fetch(
-        'https://api.coinlore.com/api/tickers/'
-      )
-      const { data } = await response.json()
-      return data
-    }
+		const fetchCoins = async () => {
+			const response = await fetch(
+				'https://api.coinlore.com/api/tickers/',
+			)
+			const { data } = await response.json()
+			return data
+		}
 
-    const currencies = await fetchCoins()
+		const currencies = await fetchCoins()
 
-    return { characters: data.characters.results, currencies }
-  } catch (error) {
-    console.error(error)
-    return { error: 'Unable to fetch data' }
-  }
+		return { characters: data.characters.results, currencies }
+	} catch (error) {
+		console.error(error)
+		return { error: 'Unable to fetch data' }
+	}
 }
 ```
 
@@ -471,7 +471,7 @@ the promise from each will be resolved at the same time:
 
 ```ts
 export const load = async ({ fetch }) => {
-  const query = `query AllCharacters {
+	const query = `query AllCharacters {
     characters {
       results {
         name
@@ -481,47 +481,47 @@ export const load = async ({ fetch }) => {
     }
   }`
 
-  try {
-    const fetchCharacters = async () => {
-      const res = await fetch(
-        'https://rickandmortyapi.com/graphql/',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ query }),
-        }
-      )
+	try {
+		const fetchCharacters = async () => {
+			const res = await fetch(
+				'https://rickandmortyapi.com/graphql/',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ query }),
+				},
+			)
 
-      if (!res.ok) {
-        throw new Error(`HTTP error: ${res.status}`)
-      }
+			if (!res.ok) {
+				throw new Error(`HTTP error: ${res.status}`)
+			}
 
-      const { data } = await res.json()
-      return data.characters.results
-    }
+			const { data } = await res.json()
+			return data.characters.results
+		}
 
-    const fetchCoins = async () => {
-      const response = await fetch(
-        'https://api.coinlore.com/api/tickers/'
-      )
+		const fetchCoins = async () => {
+			const response = await fetch(
+				'https://api.coinlore.com/api/tickers/',
+			)
 
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`)
-      }
-      const { data } = await response.json()
-      return data
-    }
+			if (!response.ok) {
+				throw new Error(`HTTP error: ${response.status}`)
+			}
+			const { data } = await response.json()
+			return data
+		}
 
-    return {
-      characters: fetchCharacters(),
-      currencies: fetchCoins(),
-    }
-  } catch (error) {
-    console.error(error)
-    return { error: 'Unable to fetch data' }
-  }
+		return {
+			characters: fetchCharacters(),
+			currencies: fetchCoins(),
+		}
+	} catch (error) {
+		console.error(error)
+		return { error: 'Unable to fetch data' }
+	}
 }
 ```
 
@@ -529,7 +529,7 @@ Alternatively I can use a `Promise.all` to resolve both promises:
 
 ```ts
 export const load = async ({ fetch }) => {
-  const query = `query AllCharacters {
+	const query = `query AllCharacters {
     characters {
       results {
         name
@@ -539,38 +539,38 @@ export const load = async ({ fetch }) => {
     }
   }`
 
-  try {
-    const [charactersResponse, currenciesResponse] =
-      await Promise.all([
-        fetch('https://rickandmortyapi.com/graphql/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ query }),
-        }),
-        fetch('https://api.coinlore.com/api/tickers/'),
-      ])
+	try {
+		const [charactersResponse, currenciesResponse] =
+			await Promise.all([
+				fetch('https://rickandmortyapi.com/graphql/', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ query }),
+				}),
+				fetch('https://api.coinlore.com/api/tickers/'),
+			])
 
-    if (!charactersResponse.ok) {
-      throw new Error(`HTTP error: ${charactersResponse.status}`)
-    }
+		if (!charactersResponse.ok) {
+			throw new Error(`HTTP error: ${charactersResponse.status}`)
+		}
 
-    if (!currenciesResponse.ok) {
-      throw new Error(`HTTP error: ${currenciesResponse.status}`)
-    }
+		if (!currenciesResponse.ok) {
+			throw new Error(`HTTP error: ${currenciesResponse.status}`)
+		}
 
-    const charactersData = await charactersResponse.json()
-    const currenciesData = await currenciesResponse.json()
+		const charactersData = await charactersResponse.json()
+		const currenciesData = await currenciesResponse.json()
 
-    const characters = charactersData.data.characters.results
-    const currencies = currenciesData.data
+		const characters = charactersData.data.characters.results
+		const currencies = currenciesData.data
 
-    return { characters, currencies }
-  } catch (error) {
-    console.error(error)
-    return { error: 'Unable to fetch data' }
-  }
+		return { characters, currencies }
+	} catch (error) {
+		console.error(error)
+		return { error: 'Unable to fetch data' }
+	}
 }
 ```
 
@@ -627,18 +627,18 @@ I'll add the same code to the `+page.server.ts` file:
 import { SECRET_TOKEN } from '$env/static/private'
 
 export const load = async () => {
-  console.log('=====================')
-  console.log(SECRET_TOKEN)
-  console.log('=====================')
-  const fetchCoins = async () => {
-    const req = await fetch('https://api.coinlore.com/api/tickers/')
-    const { data } = await req.json()
-    return data
-  }
+	console.log('=====================')
+	console.log(SECRET_TOKEN)
+	console.log('=====================')
+	const fetchCoins = async () => {
+		const req = await fetch('https://api.coinlore.com/api/tickers/')
+		const { data } = await req.json()
+		return data
+	}
 
-  return {
-    currenciesServer: fetchCoins(),
-  }
+	return {
+		currenciesServer: fetchCoins(),
+	}
 }
 ```
 
@@ -651,15 +651,15 @@ and re-label the return value to `currenciesClient`:
 
 ```ts
 export const load = async () => {
-  const fetchCoins = async () => {
-    const req = await fetch('https://api.coinlore.com/api/tickers/')
-    const { data } = await req.json()
-    return data
-  }
+	const fetchCoins = async () => {
+		const req = await fetch('https://api.coinlore.com/api/tickers/')
+		const { data } = await req.json()
+		return data
+	}
 
-  return {
-    currenciesClient: fetchCoins(),
-  }
+	return {
+		currenciesClient: fetchCoins(),
+	}
 }
 ```
 
@@ -677,7 +677,7 @@ being passed to the page from the `load` function:
 
 ```svelte
 <script lang="ts">
-  export let data
+	export let data
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -700,16 +700,16 @@ and merge it with the `+page.ts` `data`:
 
 ```ts
 export const load = async ({ data }) => {
-  const fetchCoins = async () => {
-    const req = await fetch('https://api.coinlore.com/api/tickers/')
-    const { data } = await req.json()
-    return data
-  }
+	const fetchCoins = async () => {
+		const req = await fetch('https://api.coinlore.com/api/tickers/')
+		const { data } = await req.json()
+		return data
+	}
 
-  return {
-    ...data,
-    currenciesClient: fetchCoins(),
-  }
+	return {
+		...data,
+		currenciesClient: fetchCoins(),
+	}
 }
 ```
 
@@ -733,15 +733,15 @@ I'll delete the `+page.server.ts` file and rename the return from the
 
 ```ts
 export const load = async () => {
-  const fetchCoins = async () => {
-    const req = await fetch('https://api.coinlore.com/api/tickers/')
-    const { data } = await req.json()
-    return data
-  }
+	const fetchCoins = async () => {
+		const req = await fetch('https://api.coinlore.com/api/tickers/')
+		const { data } = await req.json()
+		return data
+	}
 
-  return {
-    currencies: fetchCoins(),
-  }
+	return {
+		currencies: fetchCoins(),
+	}
 }
 ```
 
@@ -759,15 +759,15 @@ characters from the Rick and Morty API:
 
 ```ts
 export const load = async ({ fetch }) => {
-  const reqCharacters = await fetch(
-    'https://rickandmortyapi.com/graphql/',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: `
+	const reqCharacters = await fetch(
+		'https://rickandmortyapi.com/graphql/',
+		{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				query: `
           query AllCharacters {
             characters {
               results {
@@ -778,18 +778,18 @@ export const load = async ({ fetch }) => {
             }
           }
       `,
-      }),
-    }
-  )
-  const {
-    data: {
-      characters: { results },
-    },
-  } = await reqCharacters.json()
+			}),
+		},
+	)
+	const {
+		data: {
+			characters: { results },
+		},
+	} = await reqCharacters.json()
 
-  return {
-    characters: results,
-  }
+	return {
+		characters: results,
+	}
 }
 ```
 
@@ -801,7 +801,7 @@ out the `data` prop:
 
 ```svelte
 <script lang="ts">
-  export let data
+	export let data
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -824,7 +824,7 @@ to dump out the `data` prop the same way I did for the index page:
 
 ```svelte
 <script lang="ts">
-  export let data
+	export let data
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -868,15 +868,15 @@ data with SvelteKit.
 <!-- Links -->
 
 [mdn reference for `export`]:
-  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
+	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
 [data binding in svelte]:
-  https://scottspence.com/posts/data-binding-in-svelte
+	https://scottspence.com/posts/data-binding-in-svelte
 [coinlore api]: https://api.coinlore.com/api/tickers
 [rick and morty api]: https://rickandmortyapi.com/graphql
 
 <!-- Images -->
 
 [sveltekit-data-loading-understanding-the-load-function-waterfall]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1681633125/sveltekit-data-loading-understanding-the-load-function-waterfall.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1681633125/sveltekit-data-loading-understanding-the-load-function-waterfall.png
 [sveltekit-data-loading-understanding-the-load-function-parallel]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1681638359/sveltekit-data-loading-understanding-the-load-function-parallel.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1681638359/sveltekit-data-loading-understanding-the-load-function-parallel.png

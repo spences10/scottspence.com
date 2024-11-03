@@ -18,9 +18,9 @@ The only real plus for having a cover image was to that I could get
 the sweet preview cards you get when sharing on social platforms like
 Twitter and LinkedIn.
 
-I followed the awesome video content and [blog post] from Leigh
-Halliday to build my own. I now have a way to generate social sharing
-cards without having to add a cover image to every post I do.
+I followed the awesome video content and [blog post] from Leigh Halliday
+to build my own. I now have a way to generate social sharing cards without
+having to add a cover image to every post I do.
 
 Check out the [interactive example] to have a play with and understand
 how the card in generated.
@@ -158,29 +158,29 @@ generate an image:
 
 ```js react-live
 const params = {
-  author: `Scott Spence`,
-  website: `scottspence.com`,
-  title: `Serverless OG Image Example Card`,
-  image: `https://scottspence.me/favicon.png`,
+	author: `Scott Spence`,
+	website: `scottspence.com`,
+	title: `Serverless OG Image Example Card`,
+	image: `https://scottspence.me/favicon.png`,
 }
 
 const objectToQueryParams = obj => {
-  const params = Object.entries(obj).map(
-    ([key, value]) => `${key}=${value}`
-  )
-  return '?' + params.join('&')
+	const params = Object.entries(obj).map(
+		([key, value]) => `${key}=${value}`,
+	)
+	return '?' + params.join('&')
 }
 
 const Image = () => {
-  return (
-    <img
-      alt={params.title}
-      style={{ width: '100%' }}
-      src={`https://image-og.now.sh/og.jpg${objectToQueryParams(
-        params
-      )}`}
-    />
-  )
+	return (
+		<img
+			alt={params.title}
+			style={{ width: '100%' }}
+			src={`https://image-og.now.sh/og.jpg${objectToQueryParams(
+				params,
+			)}`}
+		/>
+	)
 }
 
 render(Image)
@@ -198,10 +198,10 @@ from the site metadata.
 
 ```js
 const ogImageUrl = buildURL('https://image-og.now.sh/og.jpg', {
-  author: authorName,
-  website: 'scottspence.com',
-  title: title.length > 55 ? `${title.substring(0, 55)}...` : title,
-  image: 'https://scottspence.me/favicon.png',
+	author: authorName,
+	website: 'scottspence.com',
+	title: title.length > 55 ? `${title.substring(0, 55)}...` : title,
+	image: 'https://scottspence.me/favicon.png',
 })
 ```
 
@@ -209,11 +209,11 @@ This is what `buildURL` looks like:
 
 ```js
 const buildURL = (url, obj) => {
-  const query = Object.entries(obj)
-    .map(pair => pair.map(encodeURIComponent).join('='))
-    .join('&')
+	const query = Object.entries(obj)
+		.map(pair => pair.map(encodeURIComponent).join('='))
+		.join('&')
 
-  return `${url}?${query}`
+	return `${url}?${query}`
 }
 ```
 
@@ -222,8 +222,8 @@ corresponding meta tags for the Open Graph images.
 
 ```jsx
 <Helmet encodeSpecialCharacters={false}>
-  <meta property="og:image" content={ogImageUrl} />
-  <meta name="twitter:image:src" content={ogImageUrl} />
+	<meta property="og:image" content={ogImageUrl} />
+	<meta name="twitter:image:src" content={ogImageUrl} />
 </Helmet>
 ```
 
@@ -263,8 +263,8 @@ But it works if you share the link on Twitter or LinkedIn, so, like I
 said, I'm not entirely sure what is going on there.
 
 Check out the videos from Leigh, the source for his project is
-available [here], and you can see the implementation of his [OG Image
-function] in his site.
+available [here], and you can see the implementation of his [OG
+Image function] in his site.
 
 Mine are pretty much the same, except for different styling on the
 card, here's source for my [Generate OG Image] and also how I'm
@@ -275,17 +275,17 @@ implementing it [into this site].
 [blog post]: https://www.leighhalliday.com/serverless-og-image
 [here]: https://github.com/leighhalliday/og-image
 [og image function]:
-  https://github.com/abnormalstudio/leighhalliday/blob/master/src/templates/article.tsx#L73
+	https://github.com/abnormalstudio/leighhalliday/blob/master/src/templates/article.tsx#L73
 [generate og image]: https://github.com/spences10/generate-og-image
 [into this site]:
-  https://github.com/spences10/thelocalhost/blob/master/src/templates/post-template.js#L157
+	https://github.com/spences10/thelocalhost/blob/master/src/templates/post-template.js#L157
 [interactive example]: #interactive-example
 
 <!-- Images -->
 
 [no tsc config error]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858542/scottspence.com/no-tsc-config-e9f31650c9c030db545f53eee91277a2.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858542/scottspence.com/no-tsc-config-e9f31650c9c030db545f53eee91277a2.png
 [page source url]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858542/scottspence.com/page-source-image-url-d3f732295bfea040414f963976b7287f.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858542/scottspence.com/page-source-image-url-d3f732295bfea040414f963976b7287f.png
 [undefined og]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/undefined-og-image-63cb64d032a31d5ffa730e5e4d5ed10d.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/undefined-og-image-63cb64d032a31d5ffa730e5e4d5ed10d.jpg

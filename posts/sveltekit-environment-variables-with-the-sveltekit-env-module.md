@@ -32,8 +32,8 @@ your environment variables. I made a post about this in the past in
 SvelteKit now has a `$env` module that you can use to access public
 and private `.env` file variables.
 
-It was [Geoff Rich] (Svelte maintainer) that brought this to my
-attention with a tweet:
+It was [Geoff Rich] (Svelte maintainer) that brought this to my attention
+with a tweet:
 
 <Tweet tweetLink="geoffrich_/status/1553035835351543808" />
 
@@ -56,7 +56,7 @@ Example, using a public variable in a `.svelte` file:
 
 ```svelte
 <script>
-  import { env } from '$env/static/public'
+	import { env } from '$env/static/public'
 </script>
 
 {env.PUBLIC_VARIABLE}
@@ -69,11 +69,11 @@ import { env as private_env } from '$env/static/private'
 import { env as public_env } from '$env/static/public'
 
 export const GET = async () => {
-  console.log('=====================')
-  console.log(private_env.SECRET_VARIABLE)
-  console.log(public_env.PUBLIC_VARIABLE)
-  console.log('=====================')
-  return {}
+	console.log('=====================')
+	console.log(private_env.SECRET_VARIABLE)
+	console.log(public_env.PUBLIC_VARIABLE)
+	console.log('=====================')
+	return {}
 }
 ```
 
@@ -91,6 +91,6 @@ Check out the documentation for each implementation:
 
 [`env-cmd`]: https://www.npmjs.com/package/env-cmd
 [sveltekit .env secrets]:
-  https://scottspence.com/posts/sveltekit-env-secrets
+	https://scottspence.com/posts/sveltekit-env-secrets
 [geoff rich]: https://twitter.com/geoffrich_
 [pr here]: https://github.com/spences10/scottspence.com/pull/323/files

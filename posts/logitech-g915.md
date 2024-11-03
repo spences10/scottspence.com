@@ -123,8 +123,8 @@ num pad.
 <!-- Images -->
 
 [spanish legends]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1615188902/scottspence.com/spanish-legends-2c9ffb19704555e761d1d2d83ffe7a33.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1615188902/scottspence.com/spanish-legends-2c9ffb19704555e761d1d2d83ffe7a33.jpg
 [keycaps]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/keycaps-d4f3e414fa34853047761ab600d9bebf.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/keycaps-d4f3e414fa34853047761ab600d9bebf.jpg
 [g915 against the g815]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1615238186/scottspence.com/chonka-cable-af6436ccf3dfc4d4654c0305367b3b67.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1615238186/scottspence.com/chonka-cable-af6436ccf3dfc4d4654c0305367b3b67.jpg

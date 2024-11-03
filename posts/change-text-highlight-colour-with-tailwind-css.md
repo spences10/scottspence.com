@@ -22,7 +22,7 @@ In the selector I can add in the colour that I want to use.
 
 ```css
 ::selection {
-  background: red;
+	background: red;
 }
 ```
 
@@ -46,13 +46,13 @@ look like by clicking the button.
   for the scroll bar colours 
 */
 :root {
-  /* Default is Dark */
-  --primary: #793ef9;
-  --secondary: #f000b8;
+	/* Default is Dark */
+	--primary: #793ef9;
+	--secondary: #f000b8;
 }
 [data-theme='acid'] {
-  --primary: #ff00f4;
-  --secondary: #ff7400;
+	--primary: #ff00f4;
+	--secondary: #ff7400;
 }
 /* 
   every other daisyUI theme name
@@ -63,24 +63,24 @@ look like by clicking the button.
 
 /* Firefox */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: var(--secondary) var(--primary);
+	scrollbar-width: thin;
+	scrollbar-color: var(--secondary) var(--primary);
 }
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 15px;
+	width: 15px;
 }
 
 *::-webkit-scrollbar-track {
-  background: var(--primary);
-  border-radius: 5px;
+	background: var(--primary);
+	border-radius: 5px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: var(--secondary);
-  border-radius: 14px;
-  border: 3px solid var(--primary);
+	background-color: var(--secondary);
+	border-radius: 14px;
+	border: 3px solid var(--primary);
 }
 
 @tailwind components;
@@ -148,8 +148,8 @@ in my `app.css` file. The CSS looks like this for it now:
 
 ```css
 ::selection {
-  color: hsl(var(--pc));
-  background: hsl(var(--p));
+	color: hsl(var(--pc));
+	background: hsl(var(--p));
 }
 ```
 
@@ -168,37 +168,37 @@ some additional CSS removed. Or you can check out the file over on
 @tailwind base;
 
 html {
-  scroll-behavior: smooth;
-  word-break: break-word;
+	scroll-behavior: smooth;
+	word-break: break-word;
 }
 
 ::selection {
-  color: hsl(var(--pc));
-  background: hsl(var(--p));
+	color: hsl(var(--pc));
+	background: hsl(var(--p));
 }
 
 /* Scrollbar styles */
 
 /* Firefox */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: hsl(var(--s)) hsl(var(--p));
+	scrollbar-width: thin;
+	scrollbar-color: hsl(var(--s)) hsl(var(--p));
 }
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 15px;
+	width: 15px;
 }
 
 *::-webkit-scrollbar-track {
-  background: hsl(var(--p));
-  border-radius: 5px;
+	background: hsl(var(--p));
+	border-radius: 5px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: hsl(var(--s));
-  border-radius: 14px;
-  border: 3px solid hsl(var(--p));
+	background-color: hsl(var(--s));
+	border-radius: 14px;
+	border: 3px solid hsl(var(--p));
 }
 
 @tailwind components;
@@ -212,8 +212,8 @@ That's it!
 If you want to [Change Browser Scrollbar Colour with Tailwind CSS]
 then check out the post where I go into more detail about that.
 
-Also there's a post on [Gradient animations with Tailwind CSS and
-SvelteKit] that you can check out.
+Also there's a post on [Gradient animations with Tailwind CSS
+and SvelteKit] that you can check out.
 
 Hope you find it useful, I know I did! 😊
 
@@ -222,8 +222,8 @@ Hope you find it useful, I know I did! 😊
 [pouya]: https://twitter.com/Saadeghi
 [colors section]: https://daisyui.com/docs/colors/
 [github]:
-  https://github.com/spences10/scottspence.com/blob/edd5b9cf3b8a26893edb36505e2b66dc73e14923/src/app.css
+	https://github.com/spences10/scottspence.com/blob/edd5b9cf3b8a26893edb36505e2b66dc73e14923/src/app.css
 [change browser scrollbar colour with tailwind css]:
-  https://scottspence.com/posts/change-scrollbar-color-tailwind-css
+	https://scottspence.com/posts/change-scrollbar-color-tailwind-css
 [gradient animations with tailwind css and sveltekit]:
-  https://scottspence.com/posts/gradient-animations-in-tailwindcss
+	https://scottspence.com/posts/gradient-animations-in-tailwindcss

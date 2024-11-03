@@ -53,16 +53,16 @@ on the SPF checker and it was all good.
 I chose the most restrictive qualifier for the "all" mechanism. In my
 case, I used `~all` (soft fail) instead of `?all` (neutral).
 
-You can find the post on DMARCLY for [Can I have multiple SPF records
-on my domain].
+You can find the post on DMARCLY for [Can I have multiple SPF
+records on my domain].
 
 <!-- Links -->
 
 [stackoverflow]: https://stackoverflow.com/a/51001395
 [email security standards]:
-  https://www.gov.uk/government/publications/email-security-standards/sender-policy-framework-spf
+	https://www.gov.uk/government/publications/email-security-standards/sender-policy-framework-spf
 [adding dkim records to vercel]:
-  https://scottspence.com/posts/adding-dkim-records-to-vercel
+	https://scottspence.com/posts/adding-dkim-records-to-vercel
 [can i have multiple spf records on my domain]:
-  https://dmarcly.com/blog/can-i-have-multiple-spf-records-on-my-domain
+	https://dmarcly.com/blog/can-i-have-multiple-spf-records-on-my-domain
 [spf record checker]: https://dmarcly.com/tools/spf-record-checker

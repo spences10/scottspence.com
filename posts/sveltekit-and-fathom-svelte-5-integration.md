@@ -34,32 +34,32 @@ Here's the Svelte 4 layout:
 
 ```svelte
 <script lang="ts">
-  import { browser } from '$app/environment'
-  import { page } from '$app/stores'
-  import {
-    PUBLIC_FATHOM_ID,
-    PUBLIC_FATHOM_URL,
-  } from '$env/static/public'
-  import Nav from '$lib/components/nav.svelte'
-  import * as Fathom from 'fathom-client'
-  import { onMount } from 'svelte'
-  import '../app.css'
-  import type { PageData } from './$types'
+	import { browser } from '$app/environment'
+	import { page } from '$app/stores'
+	import {
+		PUBLIC_FATHOM_ID,
+		PUBLIC_FATHOM_URL,
+	} from '$env/static/public'
+	import Nav from '$lib/components/nav.svelte'
+	import * as Fathom from 'fathom-client'
+	import { onMount } from 'svelte'
+	import '../app.css'
+	import type { PageData } from './$types'
 
-  export let data: PageData
+	export let data: PageData
 
-  onMount(async () => {
-    Fathom.load(PUBLIC_FATHOM_ID, {
-      url: PUBLIC_FATHOM_URL,
-    })
-  })
+	onMount(async () => {
+		Fathom.load(PUBLIC_FATHOM_ID, {
+			url: PUBLIC_FATHOM_URL,
+		})
+	})
 
-  $: $page.url.pathname, browser && Fathom.trackPageview()
+	$: $page.url.pathname, browser && Fathom.trackPageview()
 </script>
 
 <Nav visitors={data?.visitors?.total || 0} />
 <main class="container mx-auto mb-20 max-w-3xl px-4">
-  <slot />
+	<slot />
 </main>
 ```
 
@@ -67,39 +67,39 @@ And here's the Svelte 5 layout:
 
 ```svelte
 <script lang="ts">
-  import { browser } from '$app/environment'
-  import { page } from '$app/stores'
-  import { env } from '$env/dynamic/public'
-  import { Nav } from '$lib/components'
-  import * as Fathom from 'fathom-client'
-  import type { Snippet } from 'svelte'
-  import '../app.css'
-  import type { LayoutData } from './$types'
+	import { browser } from '$app/environment'
+	import { page } from '$app/stores'
+	import { env } from '$env/dynamic/public'
+	import { Nav } from '$lib/components'
+	import * as Fathom from 'fathom-client'
+	import type { Snippet } from 'svelte'
+	import '../app.css'
+	import type { LayoutData } from './$types'
 
-  const { PUBLIC_FATHOM_ID, PUBLIC_FATHOM_URL } = env
+	const { PUBLIC_FATHOM_ID, PUBLIC_FATHOM_URL } = env
 
-  let { data, children } = $props<{
-    data: LayoutData
-    children: Snippet
-  }>()
+	let { data, children } = $props<{
+		data: LayoutData
+		children: Snippet
+	}>()
 
-  $effect(() => {
-    if (browser) {
-      Fathom.load(PUBLIC_FATHOM_ID, {
-        url: PUBLIC_FATHOM_URL,
-      })
-    }
-  })
+	$effect(() => {
+		if (browser) {
+			Fathom.load(PUBLIC_FATHOM_ID, {
+				url: PUBLIC_FATHOM_URL,
+			})
+		}
+	})
 
-  // Track page view on route change
-  $effect(() => {
-    $page.url.pathname, browser && Fathom.trackPageview()
-  })
+	// Track page view on route change
+	$effect(() => {
+		$page.url.pathname, browser && Fathom.trackPageview()
+	})
 </script>
 
 <Nav visitors={data?.visitors?.total || 0} />
 <main class="container mx-auto mb-20 max-w-3xl px-4">
-  {@render children()}
+	{@render children()}
 </main>
 ```
 

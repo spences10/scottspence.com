@@ -28,17 +28,19 @@ on YouTube.
 
 <YouTube youTubeId='zH2qG9YwN3s'/>
 
-A complete guide for creating your own developer [portfolio with
-SvelteKit and GraphCMS] over on the freeCodeCamp news publication.
+A complete guide for creating your own developer [portfolio
+with SvelteKit and GraphCMS] over on the freeCodeCamp news
+publication.
 
-I conducted a workshop at Jamstack conf to "[Build with SvelteKit and
-GraphQL]".
+I conducted a workshop at Jamstack conf to "[Build with SvelteKit
+and GraphQL]".
 
 There's also a Jamstack explorers guide on "[Building with SvelteKit
 and GraphCMS]" you can check out for free!
 
-A walkthrough of all the example projects in the [GraphCMS Examples
-Monorepo]. Check out the playlist on the GraphCMS YouTube account. 👇
+A walkthrough of all the example projects in the [GraphCMS
+Examples Monorepo]. Check out the playlist on the GraphCMS YouTube
+account. 👇
 
 <!-- cSpell:ignore Svzog, Szqw -->
 <YouTube listId='PL5SvzogSTpeH1Szqw4tPi9ZfgXDbY8GU-'/>
@@ -57,12 +59,12 @@ the first to know.
 <!-- Links -->
 
 [graphcms examples monorepo]:
-  https://github.com/GraphCMS/graphcms-examples
+	https://github.com/GraphCMS/graphcms-examples
 [graphcms blog]:
-  https://graphcms.com/blog/build-a-personal-timeline-with-graphcms-and-sveltekit
+	https://graphcms.com/blog/build-a-personal-timeline-with-graphcms-and-sveltekit
 [portfolio with sveltekit and graphcms]:
-  https://www.freecodecamp.org/news/build-your-developer-portfolio-from-scratch-with-sveltekit-and-graphcms/
+	https://www.freecodecamp.org/news/build-your-developer-portfolio-from-scratch-with-sveltekit-and-graphcms/
 [build with sveltekit and graphql]:
-  https://scottspence.com/speaking#jamstack-conf-workshop---2021-october
+	https://scottspence.com/speaking#jamstack-conf-workshop---2021-october
 [building with sveltekit and graphcms]:
-  https://scottspence.com/speaking#jamstack-explorers---2021-october
+	https://scottspence.com/speaking#jamstack-explorers---2021-october

@@ -68,8 +68,9 @@ the Markdown.
 
 I sent out a tweet asking for recommendations and got a few replies,
 my old GraphCMS colleague [Frederik Eychenié] suggested that [sending
-from your own platform has become nearly impossible] which was an
-interesting read.
+from
+your own platform has become nearly impossible] which was an interesting
+read.
 
 <Tweet tweetLink="spences10/status/1705661419369185746" />
 
@@ -110,8 +111,8 @@ Svelte Society London events.
 
 ## Interested in Buttondown?
 
-If you're interested in Buttondown you can sign up with [my referral
-link], you get $9 off your first month! 🎉
+If you're interested in Buttondown you can sign up with [my
+referral link], you get $9 off your first month! 🎉
 
 ## Conclusion
 
@@ -138,15 +139,15 @@ Thanks for reading, I hope you found this useful.
 <!-- Links -->
 
 [setting up DKIM records]:
-  https://scottspence.com/posts/adding-dkim-records-to-vercel
+	https://scottspence.com/posts/adding-dkim-records-to-vercel
 [geoff rich]: https://geoffrich.net
 [check out the changes over on GitHub]:
-  https://github.com/spences10/scottspence.com/pull/665/files
+	https://github.com/spences10/scottspence.com/pull/665/files
 [my referral link]: https://buttondown.email/refer/spences10
 [creating my own platform]:
-  https://scottspence.com/posts/should-i-create-my-own-blog
+	https://scottspence.com/posts/should-i-create-my-own-blog
 [Frederik Eychenié]: https://twitter.com/feychenie
 [sending from your own platform has become nearly impossible]:
-  https://cfenollosa.com/blog/after-self-hosting-my-email-for-twenty-three-years-i-have-thrown-in-the-towel-the-oligopoly-has-won.html
+	https://cfenollosa.com/blog/after-self-hosting-my-email-for-twenty-three-years-i-have-thrown-in-the-towel-the-oligopoly-has-won.html
 [resend]: https://resend.com
 [kev]: https://twitter.com/kevmodrome

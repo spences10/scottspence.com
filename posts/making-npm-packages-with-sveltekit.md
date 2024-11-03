@@ -11,9 +11,9 @@ maintaining them in several places.
 
 Here I'm going to go through the process I followed to develop the
 package locally then publish it to npm. So first I should tell you
-about the project. I recently published [SvelteKit Embed] on npm and
-it's a package of components to embed 3rd party media like YouTube
-videos, Tweets and some other embeds into a Svelte project.
+about the project. I recently published [SvelteKit Embed] on npm and it's
+a package of components to embed 3rd party media like YouTube videos, Tweets
+and some other embeds into a Svelte project.
 
 ## Setting up the project
 

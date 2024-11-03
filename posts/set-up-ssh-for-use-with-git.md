@@ -115,8 +115,8 @@ time I want to push a commit to GitHub!
 ## SSH keys with passwords
 
 If you add a password to your SSH key you will find yourself entering
-the password to authenticate on each [pull, push] operation. This can
-get tedious, especially if you have a long password in your keys.
+the password to authenticate on each [pull, push] operation. This can get
+tedious, especially if you have a long password in your keys.
 
 Add the following line to your `~/.ssh/config/` file:
 

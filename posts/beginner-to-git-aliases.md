@@ -18,9 +18,8 @@ requests or pushing your changes if you have the requisite
 permissions.
 
 So still used by me on a daily basis, and everyone else that uses git
-[I presume] is the `git add .` command, then
-`git commit -m 'my awesome feature'` and `git push` or
-`git push origin <branch>`
+[I presume] is the `git add .` command, then `git commit -m 'my awesome feature'`
+and `git push` or `git push origin <branch>`
 
 In my short time using Git I have always just typed out the full
 commands [usually with [my cheat sheet] close to hand] and thought

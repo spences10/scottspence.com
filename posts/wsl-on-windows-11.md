@@ -11,8 +11,7 @@ reset it and start over on a fresh Windows 11 machine!
 
 In the past getting set up with Windows Subsystem for Linux (WSL) has
 had it's challenges but now with Windows 11 it's as simple as
-installing the [Windows Subsystem for Linux] app from the Windows
-Store.
+installing the [Windows Subsystem for Linux] app from the Windows Store.
 
 ## GUIs
 
@@ -27,8 +26,8 @@ installed and some configuration of the display. I go into detail in
 This is all unnecessary now with Windows 11 however!
 
 If you want to install Chrome on Ubuntu however there's still the same
-manual install needed for that. See my post on [Use Chrome in Ubuntu
-on Windows Subsystem Linux] for more info on how to do that.
+manual install needed for that. See my post on [Use Chrome in
+Ubuntu on Windows Subsystem Linux] for more info on how to do that.
 
 ## Third party apps with winget
 
@@ -66,14 +65,14 @@ couple of PowerShell commands!
 <!-- Links -->
 
 [windows subsystem for linux]:
-  https://www.microsoft.com/en-gb/p/windows-subsystem-for-linux-preview/9p9tqf7mrm4r
+	https://www.microsoft.com/en-gb/p/windows-subsystem-for-linux-preview/9p9tqf7mrm4r
 [use chrome in ubuntu on windows subsystem linux]:
-  https://scottspence.com/posts/use-chrome-in-ubuntu-wsl
+	https://scottspence.com/posts/use-chrome-in-ubuntu-wsl
 [github gist]:
-  https://gist.github.com/spences10/8fd4bb1581cfa234e7a72d5c63ee247b
+	https://gist.github.com/spences10/8fd4bb1581cfa234e7a72d5c63ee247b
 [wsl web developer bootstrap with fedora 33]:
-  https://scottspence.com/posts/fedora-bootstrap-from-scratch
+	https://scottspence.com/posts/fedora-bootstrap-from-scratch
 [enable guis on windows subsystem linux (wsl)]:
-  https://scottspence.com/posts/gui-with-wsl#gui-things
+	https://scottspence.com/posts/gui-with-wsl#gui-things
 [windows subsystem for linux preview]:
-  https://www.microsoft.com/en-gb/p/windows-subsystem-for-linux-preview/9p9tqf7mrm4r?activetab=pivot:overviewtab
+	https://www.microsoft.com/en-gb/p/windows-subsystem-for-linux-preview/9p9tqf7mrm4r?activetab=pivot:overviewtab

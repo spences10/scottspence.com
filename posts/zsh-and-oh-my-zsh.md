@@ -83,9 +83,10 @@ out of the box!
 ## Themes
 
 One theme I really liked with Fih shell was [Spacefish] and I spent a
-lot longer than I should have done looking through the [Zsh Wiki
-Themes] before discovering there's also [external themes for Zsh]
-where I found [Spaceship ZSH], which looks identical to Spacefish!
+lot longer than I should have done looking through the [Zsh
+Wiki Themes] before discovering there's also [external themes for
+Zsh] where I found [Spaceship ZSH], which looks identical to
+Spacefish!
 
 I did find [powerlevel10k] which looked really intriguing and I'm
 probably going to try once I have finished writing this!
@@ -157,8 +158,8 @@ expand that out into the full command and run it.
 <!-- cSpell:ignore gotbletu -->
 
 I was quite keen to find something like that in Zsh and I did in the
-form of a [video from gotbletu] with accompanying [GitHub repo] for
-the code example.
+form of a [video from gotbletu] with accompanying [GitHub repo] for the
+code example.
 
 I added that to my `.zshrc` file, like so:
 
@@ -208,16 +209,16 @@ pretty swish!
 [spaceship zsh]: https://github.com/denysdovhan/spaceship-prompt
 [zsh wiki themes]: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 [external themes for zsh]:
-  https://github.com/ohmyzsh/ohmyzsh/wiki/External-themes
+	https://github.com/ohmyzsh/ohmyzsh/wiki/External-themes
 [powerlevel10k]: https://github.com/romkatv/powerlevel10k
 [oh my zsh]: https://github.com/ohmyzsh/ohmyzsh
 [linux on windows wsl2 zsh docker]:
-  https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker#zsh
+	https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker#zsh
 [zsh-syntax-highlighting]:
-  https://github.com/zsh-users/zsh-syntax-highlighting
+	https://github.com/zsh-users/zsh-syntax-highlighting
 [zsh-autosuggestions]:
-  https://github.com/zsh-users/zsh-autosuggestions
+	https://github.com/zsh-users/zsh-autosuggestions
 [video from gotbletu]: https://www.youtube.com/watch?v=WTTIGjZAMGg
 [github repo]:
-  https://github.com/gotbletu/shownotes/blob/master/zsh_global_alias_expansion.md
+	https://github.com/gotbletu/shownotes/blob/master/zsh_global_alias_expansion.md
 [`dotfiles`]: https://github.com/spences10/dotfiles

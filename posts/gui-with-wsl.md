@@ -14,8 +14,8 @@ isPrivate: false
 So this post started off with me getting GUI apps running on my
 Windows WSL install of [Pengwin], but has now turned into doing it
 without the need to fork over [the readies] for Pengwin as now you can
-do it with Ubuntu or Debian (possibly others) which are free to
-download on the Microsoft store.
+do it with Ubuntu or Debian (possibly others) which are free to download
+on the Microsoft store.
 
 Pengwin is a pretty powerful Linux distro based off of Debian you can
 pick it up in the Windows store for £16.74 if you want all the
@@ -27,10 +27,12 @@ options to enable GUI usage on there but (like most of my WSL
 instances) I trashed the install and couldn't recreate what I had done
 before. This post stayed shelved since the start of October but now
 I'm picking it up again thanks to [Nicky Meuleman]'s guide on [Using
-Graphical User Interfaces like Cypress' in WSL2] and his other post on
-[Linux on windows WSL2 ZSH Docker] that post also spawned the last
-post I did on my [Notes on Zsh and Oh My Zsh] with the great section
-he did on [setting up Zsh].
+Graphical
+User Interfaces like Cypress' in WSL2] and his other post on [Linux
+on windows WSL2 ZSH Docker] that post also spawned the last post I did
+on my [Notes on Zsh and Oh My Zsh] with the great section he did on [setting
+up
+Zsh].
 
 So, what am I doing in this post? Ripping off Nicky's content? Pretty
 much!
@@ -61,9 +63,9 @@ end for a [video detailing the process](#video-detailing-the-process).
 Ok, so first up why do I want to be able to run [GUI]s (Graphical User
 Interface) on my Linux instances?
 
-Solely for testing software like [Cypress], [QA Wolf] and browser
-automation tools [Microsoft's Playwright]; these all need to run from
-the WSL instance which isn't set up by default to run GUIs.
+Solely for testing software like [Cypress], [QA Wolf] and browser automation
+tools [Microsoft's Playwright]; these all need to run from the WSL
+instance which isn't set up by default to run GUIs.
 
 There is talk of the WSL team [Adding Linux GUI app support to WSL]
 but this is slated for an update in the holidays (Christmas??).
@@ -74,8 +76,8 @@ release.
 
 If you absolutely must have this functionality yourself then I'd
 suggest giving [Windows insiders] a try. I've been on Windows insiders
-in the past and would prefer to stay on the normal release schedule
-for now.
+in the past and would prefer to stay on the normal release schedule for
+now.
 
 There's a some things I'll need up front, an [X-server] I already have
 [X410] which I got on offer from the Windows store, it retails around
@@ -412,37 +414,37 @@ Boom! GUI running in WSL!!
 [x410]: https://www.microsoft.com/en-gb/p/x410/9nlp712zmn9q
 [pengwin]: https://www.microsoft.com/en-gb/p/pengwin/9nv1gv1pxz6p
 [the readies]:
-  https://dictionary.cambridge.org/dictionary/english/readies
+	https://dictionary.cambridge.org/dictionary/english/readies
 [linux on windows wsl2 zsh docker]:
-  https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker
+	https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker
 [setting up zsh]:
-  https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker#zsh
+	https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker#zsh
 [using graphical user interfaces like cypress' in wsl2]:
-  https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress
+	https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress
 [nicky meuleman]: https://twitter.com/NMeuleman
 [debian]: https://www.microsoft.com/en-gb/p/debian/9msvkqc78pk6
 [notes on zsh and oh my zsh]:
-  https://scottspence.com/posts/zsh-and-oh-my-zsh/
+	https://scottspence.com/posts/zsh-and-oh-my-zsh/
 [gui]: https://en.wikipedia.org/wiki/Graphical_user_interface
 [microsoft's playwright]: https://github.com/microsoft/playwright
 [qa wolf]: https://github.com/qawolf/qawolf
 [cypress]: https://www.cypress.io/
 [x-server]: https://en.wikipedia.org/wiki/X_server
 [adding linux gui app support to wsl]:
-  https://devblogs.microsoft.com/commandline/the-windows-subsystem-for-linux-build-2020-summary/#wsl-gui
+	https://devblogs.microsoft.com/commandline/the-windows-subsystem-for-linux-build-2020-summary/#wsl-gui
 [windows insiders]: https://insider.windows.com/en-gb/for-developers
 [vcxsrv]:
-  https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#vcxsrv
+	https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#vcxsrv
 [wsl bootstrap 2020]:
-  https://scottspence.com/posts/wsl-bootstrap-2020/
+	https://scottspence.com/posts/wsl-bootstrap-2020/
 [stack overflow answer]: https://stackoverflow.com/a/60016407/1138354
 [`explorer.exe`]:
-  https://devblogs.microsoft.com/commandline/whats-new-for-wsl-in-windows-10-version-1903/#accessing-linux-files-from-windows
+	https://devblogs.microsoft.com/commandline/whats-new-for-wsl-in-windows-10-version-1903/#accessing-linux-files-from-windows
 [explains brilliantly]:
-  https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#the-display-variable
+	https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#the-display-variable
 [d-bus]: https://en.wikipedia.org/wiki/D-Bus
 [`build-essential`]:
-  https://packages.ubuntu.com/xenial/build-essential
+	https://packages.ubuntu.com/xenial/build-essential
 [yarn install docs]:
-  https://classic.yarnpkg.com/en/docs/install/#debian-stable
+	https://classic.yarnpkg.com/en/docs/install/#debian-stable
 [playwright]: https://github.com/microsoft/playwright

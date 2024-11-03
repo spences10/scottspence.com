@@ -13,8 +13,8 @@ thanks! I'll do it myself!
 
 So, I need to know what my motherboard model is so I can go find if
 there's been any BIOS updates. How do I do that? How To Geek have my
-back with this post [How to Check Your Motherboard Model Number on
-Your Windows PC].
+back with this post [How to Check Your Motherboard Model Number
+on Your Windows PC].
 
 ## Get the motherboard model
 
@@ -73,4 +73,4 @@ That's it, future Scott! I hope you find this useful!
 <!-- Links -->
 
 [How to Check Your Motherboard Model Number on Your Windows PC]:
-  https://www.howtogeek.com/208420/how-to-check-your-motherboard-model-number-on-your-windows-pc/
+	https://www.howtogeek.com/208420/how-to-check-your-motherboard-model-number-on-your-windows-pc/

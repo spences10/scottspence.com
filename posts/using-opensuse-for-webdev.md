@@ -5,8 +5,8 @@ tags: ['linux', 'learning', 'guide']
 isPrivate: false
 ---
 
-So I had a play around with the openSUSE Leap 15.2 you can get [on the
-Windows store] and after familiarising myself with it decided to see
+So I had a play around with the openSUSE Leap 15.2 you can get [on
+the Windows store] and after familiarising myself with it decided to see
 if I could use it for web development.
 
 Well, yeah, you can, that's it, that's the post!
@@ -37,8 +37,8 @@ Ubuntu/Debian and `up` or `update` in openSUSE are equivalent to
 
 ## Install dev tools
 
-I've recently become a fan of using Zsh over Fish, I made [notes on
-it] and also done a stream on a [full customisation].
+I've recently become a fan of using Zsh over Fish, I made [notes
+on it] and also done a stream on a [full customisation].
 
 I'll start with adding in Zsh:
 
@@ -142,6 +142,6 @@ Thanks for reading 🙌
 
 [install yarn]: https://www.osradar.com/install-yarn-opensuse-15-1/
 [on the windows store]:
-  https://www.microsoft.com/en-us/p/opensuse-leap-152/9mzd0n9z4m4h?activetab=pivot:overviewtabb
+	https://www.microsoft.com/en-us/p/opensuse-leap-152/9mzd0n9z4m4h?activetab=pivot:overviewtabb
 [notes on it]: https://scottspence.com/posts/zsh-and-oh-my-zsh/
 [full customisation]: https://www.youtube.com/watch?v=4cp-GcZxB-g

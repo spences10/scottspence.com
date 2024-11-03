@@ -74,8 +74,8 @@ with the Now CLI.
 Domain management with Vercel Now CLI is something that I have always
 been _ok_ managing. I did find the Netlify console just as
 straightforward to use but if you find the terminal a bit daunting for
-something like this then Vercel now have a [DNS integration] that
-makes it a lot more visual.
+something like this then Vercel now have a [DNS integration] that makes
+it a lot more visual.
 
 <!-- LINKS -->
 
@@ -84,5 +84,5 @@ makes it a lot more visual.
 [greenkeeper.io]: https://greenkeeper.io
 [images.weserv.nl]: https://images.weserv.nl/docs/quick-reference.html
 [with no downtime]:
-  https://vercel.com/guides/zero-downtime-domain-migration
+	https://vercel.com/guides/zero-downtime-domain-migration
 [dns integration]: https://vercel.com/integrations/dns

@@ -25,8 +25,8 @@ Fathom Analytics recently added a really neat feature for [custom
 domains] with their service.
 
 What does that mean then? Well it's for bypassing ad-blocking
-extensions, not that Fathom wants to collect all your data, [far from
-it].
+extensions, not that Fathom wants to collect all your data, [far
+from it].
 
 The purpose of this post is to cover setting up my custom domain as I
 have a specific domain provider and I'm using Vercel's now.sh and
@@ -58,8 +58,8 @@ find any good examples so I reached out to Fathom with a tweet:
 
 <Tweet tweetLink="spences10/status/1250786419536277505" />
 
-After I sent that I found [this gist] which detailed the command for
-adding the sub-domain which made sense to me.
+After I sent that I found [this gist] which detailed the command for adding
+the sub-domain which made sense to me.
 
 ## Add DNS record in Vercel's now.sh
 
@@ -122,8 +122,8 @@ then I picked the custom domain like I did in the previous step.
 Fathom have now added instructions for adding the Fathom tracking
 snippet [to your Gatsby site].
 
-This involves customising the Gatsby [`default-html.js` file] and
-adding the snippet before the `<head>` starts.
+This involves customising the Gatsby [`default-html.js` file] and adding
+the snippet before the `<head>` starts.
 
 So for me, following the Fathom instructions, copy the
 `default-html.js` file from the `.cache` directory to the `src`
@@ -177,13 +177,13 @@ Done!
 [documentation]: https://usefathom.com/support/custom-domains
 [godaddy]: https://ca.godaddy.com/help/add-a-cname-record-19236
 [cloudflare]:
-  https://support.cloudflare.com/hc/en-us/articles/360020615111-Configuring-a-CNAME-setup
+	https://support.cloudflare.com/hc/en-us/articles/360020615111-Configuring-a-CNAME-setup
 [hover]:
-  https://help.hover.com/hc/en-us/articles/217282457-Managing-DNS-records-#h_5eab4aa7-b044-4cc6-a3c0-5869f583edc8
+	https://help.hover.com/hc/en-us/articles/217282457-Managing-DNS-records-#h_5eab4aa7-b044-4cc6-a3c0-5869f583edc8
 [namecheap]:
-  https://www.namecheap.com/support/knowledgebase/article.aspx/9646/2237/how-to-create-a-cname-record-for-your-domain
+	https://www.namecheap.com/support/knowledgebase/article.aspx/9646/2237/how-to-create-a-cname-record-for-your-domain
 [this gist]:
-  https://gist.github.com/jaydenseric/f4147d7d9788d1f46b30e4ac7b57e6b2
+	https://gist.github.com/jaydenseric/f4147d7d9788d1f46b30e4ac7b57e6b2
 [dns editor for vercel domains]: https://vercel.com/integrations/dns
 [to your gatsby site]: https://usefathom.com/integrations/gatsbyjs
 [`default-html.js` file]: https://www.gatsbyjs.com/docs/custom-html/
@@ -191,8 +191,8 @@ Done!
 <!-- Images -->
 
 [create new dns record netlify]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/create-new-dns-record-netlify-388b4824b94966a449b57c7fd59f5fa8.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/create-new-dns-record-netlify-388b4824b94966a449b57c7fd59f5fa8.png
 [pick custom domain in site settings]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/pick-custom-domain-in-site-settings-3af1a934a7a66f45d754f3cfa36bb80e.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/pick-custom-domain-in-site-settings-3af1a934a7a66f45d754f3cfa36bb80e.png
 [fathom dns record for a site]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/fathom-dns-record-for-site-918a662955a145472c8b3a65061649e2.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/fathom-dns-record-for-site-918a662955a145472c8b3a65061649e2.png

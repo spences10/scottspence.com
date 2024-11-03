@@ -168,9 +168,9 @@ component:
 import styled from 'styled-components'
 
 export const Butt = styled.button`
-  background-color: red;
-  height: 40px;
-  width: 80px;
+	background-color: red;
+	height: 40px;
+	width: 80px;
 `
 ```
 
@@ -235,23 +235,23 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [example code]: https://codesandbox.io/s/lqp6p647q
 [gatsby starter blog]: https://github.com/gatsbyjs/gatsby-starter-blog
 [codesandbox docs for importing projects]:
-  https://codesandbox.io/docs/importing
+	https://codesandbox.io/docs/importing
 
 <!-- Images -->
 
 [initial gatsby node changes]:
-  https://now-images-wine.now.sh/2019/convert-gatsby-default-blog-to-mdx/initialGatsbyNode.png
+	https://now-images-wine.now.sh/2019/convert-gatsby-default-blog-to-mdx/initialGatsbyNode.png
 [last gatsby node changes]:
-  https://now-images-wine.now.sh/2019/convert-gatsby-default-blog-to-mdx/lastGatsbyNode.png
+	https://now-images-wine.now.sh/2019/convert-gatsby-default-blog-to-mdx/lastGatsbyNode.png
 [replace transformer remark with gatsby-mdx]:
-  https://now-images-wine.now.sh/2019/convert-gatsby-default-blog-to-mdx/gatsbyConfig.png
+	https://now-images-wine.now.sh/2019/convert-gatsby-default-blog-to-mdx/gatsbyConfig.png
 [replace all markdown edges]:
-  https://now-images-wine.now.sh/2019/convert-gatsby-default-blog-to-mdx/indexPageEdges.png
+	https://now-images-wine.now.sh/2019/convert-gatsby-default-blog-to-mdx/indexPageEdges.png
 [index page query]:
-  https://now-images-wine.now.sh/2019/convert-gatsby-default-blog-to-mdx/indexPageQuery.png
+	https://now-images-wine.now.sh/2019/convert-gatsby-default-blog-to-mdx/indexPageQuery.png
 [mdx renderer]:
-  https://now-images-wine.now.sh/2019/convert-gatsby-default-blog-to-mdx/importMdxRenderer.png
+	https://now-images-wine.now.sh/2019/convert-gatsby-default-blog-to-mdx/importMdxRenderer.png
 [replace dangerously set html]:
-  https://now-images-wine.now.sh/2019/convert-gatsby-default-blog-to-mdx/replaceDangerHtml.png
+	https://now-images-wine.now.sh/2019/convert-gatsby-default-blog-to-mdx/replaceDangerHtml.png
 [blog post query]:
-  https://now-images-wine.now.sh/2019/convert-gatsby-default-blog-to-mdx/blogPostQuery.png
+	https://now-images-wine.now.sh/2019/convert-gatsby-default-blog-to-mdx/blogPostQuery.png

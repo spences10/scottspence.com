@@ -7,8 +7,8 @@ isPrivate: false
 
 Quick guide to getting Debian WSL set up for web development.
 
-You can install Debian from the [Windows Store] and get started
-straight away with using it, but there's a few things missing.
+You can install Debian from the [Windows Store] and get started straight
+away with using it, but there's a few things missing.
 
 For me one of the first things I like to do is get set up with my
 preferred shell Zsh with Oh My Zsh. I've documented [My Zsh Setup]
@@ -57,6 +57,6 @@ against this! 😊
 <!-- Links -->
 
 [windows store]:
-  https://www.microsoft.com/store/productId/9MSVKQC78PK6
+	https://www.microsoft.com/store/productId/9MSVKQC78PK6
 [`build-essential`]: https://packages.debian.org/sid/build-essential
 [my zsh setup]: https://scottspence.com/posts/my-zsh-config

@@ -26,8 +26,8 @@ with no additional dependencies.
 
 I got the inspiration for doing this when a saw a video on YouTube
 from WebJeda on [SvelteKit Contact Form using Google Forms]. Sharath's
-video is great but I'm not a fan of using Google products so thought
-I'd try the same approach with Airtable.
+video is great but I'm not a fan of using Google products so thought I'd
+try the same approach with Airtable.
 
 <Banner {options} />
 
@@ -128,37 +128,37 @@ share a **full example later**.
 
 ```html
 <form>
-  <label for="name">
-    <span>Name</span>
-  </label>
-  <input
-    type="text"
-    name="name"
-    aria-label="name"
-    placeholder="Enter your name"
-    required
-  />
-  <label for="email">
-    <span>Email</span>
-  </label>
-  <input
-    type="email"
-    name="email"
-    aria-label="email"
-    placeholder="bill@hotmail.com"
-    required
-  />
-  <label for="message">
-    <span>Message</span>
-  </label>
-  <textarea
-    name="message"
-    aria-label="name"
-    placeholder="Message"
-    required
-    rows="3"
-  />
-  <input type="submit" />
+	<label for="name">
+		<span>Name</span>
+	</label>
+	<input
+		type="text"
+		name="name"
+		aria-label="name"
+		placeholder="Enter your name"
+		required
+	/>
+	<label for="email">
+		<span>Email</span>
+	</label>
+	<input
+		type="email"
+		name="email"
+		aria-label="email"
+		placeholder="bill@hotmail.com"
+		required
+	/>
+	<label for="message">
+		<span>Message</span>
+	</label>
+	<textarea
+		name="message"
+		aria-label="name"
+		placeholder="Message"
+		required
+		rows="3"
+	/>
+	<input type="submit" />
 </form>
 ```
 
@@ -167,13 +167,13 @@ home page (`src/routes/index.svelte`) at the moment I'll add it there.
 
 ```svelte
 <script>
-  import ContactForm from '$lib/contact-form.svelte'
+	import ContactForm from '$lib/contact-form.svelte'
 </script>
 
 <h1>Welcome to SvelteKit</h1>
 <p>
-  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
-  documentation
+	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
+	documentation
 </p>
 
 <ContactForm />
@@ -192,11 +192,11 @@ the form data to validate.
 
 ```js
 const handleSubmit = async data => {
-  const formData = new FormData(data.currentTarget)
+	const formData = new FormData(data.currentTarget)
 
-  console.log(formData.get('name'))
-  console.log(formData.get('email'))
-  console.log(formData.get('message'))
+	console.log(formData.get('name'))
+	console.log(formData.get('email'))
+	console.log(formData.get('message'))
 }
 ```
 
@@ -213,47 +213,47 @@ Here's what the component looks like now:
 
 ```svelte
 <script>
-  const handleSubmit = async data => {
-    const formData = new FormData(data.currentTarget)
+	const handleSubmit = async data => {
+		const formData = new FormData(data.currentTarget)
 
-    console.log(formData.get('name'))
-    console.log(formData.get('email'))
-    console.log(formData.get('message'))
-  }
+		console.log(formData.get('name'))
+		console.log(formData.get('email'))
+		console.log(formData.get('message'))
+	}
 </script>
 
 <form on:submit|preventDefault={handleSubmit}>
-  <label for="name">
-    <span>Name</span>
-  </label>
-  <input
-    type="text"
-    name="name"
-    aria-label="name"
-    placeholder="Enter your name"
-    required
-  />
-  <label for="email">
-    <span>Email</span>
-  </label>
-  <input
-    type="email"
-    name="email"
-    aria-label="email"
-    placeholder="bill@hotmail.com"
-    required
-  />
-  <label for="message">
-    <span>Message</span>
-  </label>
-  <textarea
-    name="message"
-    aria-label="name"
-    placeholder="Message"
-    required
-    rows="3"
-  />
-  <input type="submit" />
+	<label for="name">
+		<span>Name</span>
+	</label>
+	<input
+		type="text"
+		name="name"
+		aria-label="name"
+		placeholder="Enter your name"
+		required
+	/>
+	<label for="email">
+		<span>Email</span>
+	</label>
+	<input
+		type="email"
+		name="email"
+		aria-label="email"
+		placeholder="bill@hotmail.com"
+		required
+	/>
+	<label for="message">
+		<span>Message</span>
+	</label>
+	<textarea
+		name="message"
+		aria-label="name"
+		placeholder="Message"
+		required
+		rows="3"
+	/>
+	<input type="submit" />
 </form>
 ```
 
@@ -338,20 +338,20 @@ the data to the endpoint, first in
 
 ```js
 export const post = async ({ request }) => {
-  const fd = await request.formData()
+	const fd = await request.formData()
 
-  const name = fd.get('name')
-  const email = fd.get('email')
-  const message = fd.get('message')
+	const name = fd.get('name')
+	const email = fd.get('email')
+	const message = fd.get('message')
 
-  console.log('name:', name)
-  console.log('email:', email)
-  console.log('message:', message)
+	console.log('name:', name)
+	console.log('email:', email)
+	console.log('message:', message)
 
-  return {
-    status: 200,
-    body: { message: 'success' },
-  }
+	return {
+		status: 200,
+		body: { message: 'success' },
+	}
 }
 ```
 
@@ -363,18 +363,18 @@ Now in the contact form `<script>` tags I'll add in a request to the
 
 ```svelte
 <script>
-  const handleSubmit = async data => {
-    const formData = new FormData(data.currentTarget)
+	const handleSubmit = async data => {
+		const formData = new FormData(data.currentTarget)
 
-    const res = await fetch('/contact-form.json', {
-      method: 'POST',
-      body: formData,
-    })
+		const res = await fetch('/contact-form.json', {
+			method: 'POST',
+			body: formData,
+		})
 
-    const { message } = await res.json()
+		const { message } = await res.json()
 
-    console.log(message)
-  }
+		console.log(message)
+	}
 </script>
 ```
 
@@ -425,15 +425,15 @@ documentation and add it to a variable:
 
 ```js
 let data = {
-  records: [
-    {
-      fields: {
-        name,
-        email,
-        message,
-      },
-    },
-  ],
+	records: [
+		{
+			fields: {
+				name,
+				email,
+				message,
+			},
+		},
+	],
 }
 ```
 
@@ -448,12 +448,12 @@ specifying the content type as `application/json` and passing in the
 
 ```js
 const res = await fetch(AIRTABLE_URL, {
-  method: 'POST',
-  headers: {
-    Authorization: `Bearer ${AIRTABLE_TOKEN}`,
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(data),
+	method: 'POST',
+	headers: {
+		Authorization: `Bearer ${AIRTABLE_TOKEN}`,
+		'Content-Type': 'application/json',
+	},
+	body: JSON.stringify(data),
 })
 ```
 
@@ -462,19 +462,19 @@ checking the `res.ok` status in an if statement:
 
 ```js
 if (res.ok) {
-  return {
-    status: 200,
-    body: {
-      message: 'success',
-    },
-  }
+	return {
+		status: 200,
+		body: {
+			message: 'success',
+		},
+	}
 } else {
-  return {
-    status: 404,
-    body: {
-      message: 'failed',
-    },
-  }
+	return {
+		status: 404,
+		body: {
+			message: 'failed',
+		},
+	}
 }
 ```
 
@@ -486,51 +486,51 @@ Anyway, if you're interested, here's what the full
 
 ```js
 export const post = async ({ request }) => {
-  const fd = await request.formData()
+	const fd = await request.formData()
 
-  const name = fd.get('name')
-  const email = fd.get('email')
-  const message = fd.get('message')
+	const name = fd.get('name')
+	const email = fd.get('email')
+	const message = fd.get('message')
 
-  const AIRTABLE_BASE_ID = import.meta.env.VITE_AIRTABLE_BASE_ID
-  const AIRTABLE_TOKEN = import.meta.env.VITE_AIRTABLE_TOKEN
-  const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/submissions`
+	const AIRTABLE_BASE_ID = import.meta.env.VITE_AIRTABLE_BASE_ID
+	const AIRTABLE_TOKEN = import.meta.env.VITE_AIRTABLE_TOKEN
+	const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/submissions`
 
-  let data = {
-    records: [
-      {
-        fields: {
-          name,
-          email,
-          message,
-        },
-      },
-    ],
-  }
-  const res = await fetch(AIRTABLE_URL, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${AIRTABLE_TOKEN}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  })
+	let data = {
+		records: [
+			{
+				fields: {
+					name,
+					email,
+					message,
+				},
+			},
+		],
+	}
+	const res = await fetch(AIRTABLE_URL, {
+		method: 'POST',
+		headers: {
+			Authorization: `Bearer ${AIRTABLE_TOKEN}`,
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(data),
+	})
 
-  if (res.ok) {
-    return {
-      status: 200,
-      body: {
-        message: 'success',
-      },
-    }
-  } else {
-    return {
-      status: 404,
-      body: {
-        message: 'failed',
-      },
-    }
-  }
+	if (res.ok) {
+		return {
+			status: 200,
+			body: {
+				message: 'success',
+			},
+		}
+	} else {
+		return {
+			status: 404,
+			body: {
+				message: 'failed',
+			},
+		}
+	}
 }
 ```
 
@@ -559,13 +559,13 @@ messages that can be returned from the endpoint.
 
 ```svelte
 {#if submissionStatus === 'submitting'}
-  <p>Submitting...</p>
+	<p>Submitting...</p>
 {:else if submissionStatus === 'failed'}
-  <p>Submission failed.</p>
+	<p>Submission failed.</p>
 {:else if submissionStatus === 'success'}
-  <p>Submission success.</p>
+	<p>Submission success.</p>
 {:else}
-  <!-- form goes here! -->
+	<!-- form goes here! -->
 {/if}
 ```
 
@@ -574,61 +574,61 @@ Another code wall warning! Here's the full
 
 ```svelte
 <script>
-  let submissionStatus = ''
-  const handleSubmit = async data => {
-    submissionStatus = 'submitting'
-    const formData = new FormData(data.currentTarget)
+	let submissionStatus = ''
+	const handleSubmit = async data => {
+		submissionStatus = 'submitting'
+		const formData = new FormData(data.currentTarget)
 
-    const res = await fetch('/contact-form.json', {
-      method: 'POST',
-      body: formData,
-    })
+		const res = await fetch('/contact-form.json', {
+			method: 'POST',
+			body: formData,
+		})
 
-    const { message } = await res.json()
-    submissionStatus = message
-  }
+		const { message } = await res.json()
+		submissionStatus = message
+	}
 </script>
 
 {#if submissionStatus === 'submitting'}
-  <p>Submitting...</p>
+	<p>Submitting...</p>
 {:else if submissionStatus === 'failed'}
-  <p>Submission failed.</p>
+	<p>Submission failed.</p>
 {:else if submissionStatus === 'success'}
-  <p>Submission success.</p>
+	<p>Submission success.</p>
 {:else}
-  <form on:submit|preventDefault={handleSubmit}>
-    <label for="name">
-      <span>Name</span>
-    </label>
-    <input
-      type="text"
-      name="name"
-      aria-label="name"
-      placeholder="Enter your name"
-      required
-    />
-    <label for="email">
-      <span>Email</span>
-    </label>
-    <input
-      type="email"
-      name="email"
-      aria-label="email"
-      placeholder="bill@hotmail.com"
-      required
-    />
-    <label for="message">
-      <span>Message</span>
-    </label>
-    <textarea
-      name="message"
-      aria-label="name"
-      placeholder="Message"
-      required
-      rows="3"
-    />
-    <input type="submit" />
-  </form>
+	<form on:submit|preventDefault={handleSubmit}>
+		<label for="name">
+			<span>Name</span>
+		</label>
+		<input
+			type="text"
+			name="name"
+			aria-label="name"
+			placeholder="Enter your name"
+			required
+		/>
+		<label for="email">
+			<span>Email</span>
+		</label>
+		<input
+			type="email"
+			name="email"
+			aria-label="email"
+			placeholder="bill@hotmail.com"
+			required
+		/>
+		<label for="message">
+			<span>Message</span>
+		</label>
+		<textarea
+			name="message"
+			aria-label="name"
+			placeholder="Message"
+			required
+			rows="3"
+		/>
+		<input type="submit" />
+	</form>
 {/if}
 ```
 
@@ -724,30 +724,30 @@ button, thanks!
 <!-- Links -->
 
 [sveltekit contact form using google forms]:
-  https://www.youtube.com/watch?v=mBXEnakkUIM
+	https://www.youtube.com/watch?v=mBXEnakkUIM
 [sign up]: https://airtable.com/signup
 [github]:
-  https://github.com/spences10/svelte-and-airtable-contact-form-example
+	https://github.com/spences10/svelte-and-airtable-contact-form-example
 
 <!-- Images -->
 
 [airtable-untitled-base]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646207112/scottspence.com/airtable-untitled-base.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646207112/scottspence.com/airtable-untitled-base.png
 [airtable-customise-field]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646207766/scottspence.com/airtable-customise-field.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646207766/scottspence.com/airtable-customise-field.png
 [airtable-help-panel]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646246246/scottspence.com/airtable-help-panel.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646246246/scottspence.com/airtable-help-panel.png
 [airtable-api-documentation-create-record]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646246824/scottspence.com/airtable-api-documentation-create-record.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646246824/scottspence.com/airtable-api-documentation-create-record.png
 [airtable-add-dummy-data]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646247312/scottspence.com/airtable-add-dummy-data.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646247312/scottspence.com/airtable-add-dummy-data.png
 [airtable-api-documentation-dummy-data]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646247538/scottspence.com/airtable-api-documentation-dummy-data.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646247538/scottspence.com/airtable-api-documentation-dummy-data.png
 [airtable-automations-panel]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1646254724/scottspence.com/airtable-automations-panel.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/v1646254724/scottspence.com/airtable-automations-panel.png
 [airtable-automations-flow]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1646255090/scottspence.com/airtable-automations-flow.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/v1646255090/scottspence.com/airtable-automations-flow.png
 [airtable-automations-run-action]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1646255540/scottspence.com/airtable-automations-run-action.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/v1646255540/scottspence.com/airtable-automations-run-action.png
 [airtable-automations-configure-email]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1646256042/scottspence.com/airtable-automations-configure-email.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/v1646256042/scottspence.com/airtable-automations-configure-email.png

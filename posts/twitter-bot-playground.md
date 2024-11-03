@@ -75,15 +75,15 @@ look something like this:
 
 ```json
 {
-  "name": "tweebot-play",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "Scott Spence <spences10apps@gmail.com> (https://spences10.github.io/)",
-  "license": "MIT",
-  "dependencies": {
-    "dotenv": "^4.0.0",
-    "twit": "^2.2.5"
-  }
+	"name": "tweebot-play",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "Scott Spence <spences10apps@gmail.com> (https://spences10.github.io/)",
+	"license": "MIT",
+	"dependencies": {
+		"dotenv": "^4.0.0",
+		"twit": "^2.2.5"
+	}
 }
 ```
 
@@ -100,18 +100,18 @@ It should look something like this now:
 
 ```json
 {
-  "name": "tweebot-play",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "author": "Scott Spence <spences10apps@gmail.com> (https://spences10.github.io/)",
-  "license": "MIT",
-  "dependencies": {
-    "dotenv": "^4.0.0",
-    "twit": "^2.2.5"
-  }
+	"name": "tweebot-play",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"author": "Scott Spence <spences10apps@gmail.com> (https://spences10.github.io/)",
+	"license": "MIT",
+	"dependencies": {
+		"dotenv": "^4.0.0",
+		"twit": "^2.2.5"
+	}
 }
 ```
 
@@ -174,10 +174,10 @@ the following:
 require('dotenv').config()
 
 module.exports = {
-  consumer_key: process.env.CONSUMER_KEY,
-  consumer_secret: process.env.CONSUMER_SECRET,
-  access_token: process.env.ACCESS_TOKEN,
-  access_token_secret: process.env.ACCESS_TOKEN_SECRET,
+	consumer_key: process.env.CONSUMER_KEY,
+	consumer_secret: process.env.CONSUMER_SECRET,
+	access_token: process.env.ACCESS_TOKEN,
+	access_token_secret: process.env.ACCESS_TOKEN_SECRET,
 }
 ```
 
@@ -210,17 +210,17 @@ a hello world! status.
 
 ```js
 bot.post(
-  'statuses/update',
-  {
-    status: 'hello world!',
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(`${data.text} tweeted!`)
-    }
-  }
+	'statuses/update',
+	{
+		status: 'hello world!',
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log(`${data.text} tweeted!`)
+		}
+	},
 )
 ```
 
@@ -233,18 +233,18 @@ like. We can then log them out to the console in this example.
 
 ```js
 bot.get(
-  'followers/ids',
-  {
-    screen_name: 'DroidScott',
-    count: 5,
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(data)
-    }
-  }
+	'followers/ids',
+	{
+		screen_name: 'DroidScott',
+		count: 5,
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log(data)
+		}
+	},
 )
 ```
 
@@ -257,20 +257,20 @@ Here we print off a list of `user.screen_name`'s up to 200 per call.
 
 ```js
 bot.get(
-  'followers/list',
-  {
-    screen_name: 'DroidScott',
-    count: 200,
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      data.users.forEach(user => {
-        console.log(user.screen_name)
-      })
-    }
-  }
+	'followers/list',
+	{
+		screen_name: 'DroidScott',
+		count: 200,
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			data.users.forEach(user => {
+				console.log(user.screen_name)
+			})
+		}
+	},
 )
 ```
 
@@ -283,17 +283,17 @@ here the bot is following back the user `MarcGuberti`
 
 ```js
 bot.post(
-  'friendships/create',
-  {
-    screen_name: 'MarcGuberti',
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(data)
-    }
-  }
+	'friendships/create',
+	{
+		screen_name: 'MarcGuberti',
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log(data)
+		}
+	},
 )
 ```
 
@@ -302,17 +302,17 @@ following back.
 
 ```js
 bot.get(
-  'friends/ids',
-  {
-    screen_name: 'DroidScott',
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(data)
-    }
-  }
+	'friends/ids',
+	{
+		screen_name: 'DroidScott',
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log(data)
+		}
+	},
 )
 ```
 
@@ -320,17 +320,17 @@ And also a detailed list.
 
 ```js
 bot.get(
-  'friends/list',
-  {
-    screen_name: 'DroidScott',
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(data)
-    }
-  }
+	'friends/list',
+	{
+		screen_name: 'DroidScott',
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log(data)
+		}
+	},
 )
 ```
 
@@ -344,17 +344,17 @@ Let's take a look at the relation between our bot and
 
 ```js
 bot.get(
-  'friendships/lookup',
-  {
-    screen_name: 'spences10',
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(data)
-    }
-  }
+	'friendships/lookup',
+	{
+		screen_name: 'spences10',
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log(data)
+		}
+	},
 )
 ```
 
@@ -395,18 +395,18 @@ Direct Message a user with `bot.post('direct_messages/new'...`
 
 ```js
 bot.post(
-  'direct_messages/new',
-  {
-    screen_name: 'spences10',
-    text: 'Hello from bot!',
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(data)
-    }
-  }
+	'direct_messages/new',
+	{
+		screen_name: 'spences10',
+		text: 'Hello from bot!',
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log(data)
+		}
+	},
 )
 ```
 
@@ -417,17 +417,17 @@ To get a list of tweets in the bots time line use
 
 ```js
 bot.get(
-  'statuses/home_timeline',
-  {
-    count: 1,
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(data)
-    }
-  }
+	'statuses/home_timeline',
+	{
+		count: 1,
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log(data)
+		}
+	},
 )
 ```
 
@@ -436,22 +436,22 @@ tweet.
 
 ```js
 bot.get(
-  'statuses/home_timeline',
-  {
-    count: 5,
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      data.forEach(t => {
-        console.log(t.text)
-        console.log(t.user.screen_name)
-        console.log(t.id_str)
-        console.log('\n')
-      })
-    }
-  }
+	'statuses/home_timeline',
+	{
+		count: 5,
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			data.forEach(t => {
+				console.log(t.text)
+				console.log(t.user.screen_name)
+				console.log(t.id_str)
+				console.log('\n')
+			})
+		}
+	},
 )
 ```
 
@@ -460,17 +460,17 @@ id to retweet.
 
 ```js
 bot.post(
-  'statuses/retweet/:id',
-  {
-    id: '860828247944253440',
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(`${data.text} retweet success!`)
-    }
-  }
+	'statuses/retweet/:id',
+	{
+		id: '860828247944253440',
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log(`${data.text} retweet success!`)
+		}
+	},
 )
 ```
 
@@ -480,17 +480,17 @@ To unretweet just use `.post('statuses/unretweet/:id'...`
 
 ```js
 bot.post(
-  'statuses/unretweet/:id',
-  {
-    id: '860828247944253440',
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(`${data.text} unretweet success!`)
-    }
-  }
+	'statuses/unretweet/:id',
+	{
+		id: '860828247944253440',
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log(`${data.text} unretweet success!`)
+		}
+	},
 )
 ```
 
@@ -500,17 +500,17 @@ To like a tweet use `.post('favorites/create'...`
 
 ```js
 bot.post(
-  'favorites/create',
-  {
-    id: '860897020726435840',
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(`${data.text} tweet liked!`)
-    }
-  }
+	'favorites/create',
+	{
+		id: '860897020726435840',
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log(`${data.text} tweet liked!`)
+		}
+	},
 )
 ```
 
@@ -520,17 +520,17 @@ To unlike a post use `.post('favorites/destroy'...`
 
 ```js
 bot.post(
-  'favorites/destroy',
-  {
-    id: '860897020726435840',
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(`${data.text} tweet unliked!`)
-    }
-  }
+	'favorites/destroy',
+	{
+		id: '860897020726435840',
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log(`${data.text} tweet unliked!`)
+		}
+	},
 )
 ```
 
@@ -541,18 +541,18 @@ replying to.
 
 ```js
 bot.post(
-  'statuses/update',
-  {
-    status: '@spences10 I reply to you yes!',
-    in_reply_to_status_id: '860900406381211649',
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(`${data.text} tweeted!`)
-    }
-  }
+	'statuses/update',
+	{
+		status: '@spences10 I reply to you yes!',
+		in_reply_to_status_id: '860900406381211649',
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log(`${data.text} tweeted!`)
+		}
+	},
 )
 ```
 
@@ -562,17 +562,17 @@ delete.
 
 ```js
 bot.post(
-  'statuses/destroy/:id',
-  {
-    id: '860900437993676801',
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(`${data.text} tweet deleted!`)
-    }
-  }
+	'statuses/destroy/:id',
+	{
+		id: '860900437993676801',
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log(`${data.text} tweet deleted!`)
+		}
+	},
 )
 ```
 
@@ -587,18 +587,18 @@ the count to in the example:
 
 ```js
 bot.get(
-  'search/tweets',
-  {
-    q: 'mango',
-    count: 5,
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(data.statuses)
-    }
-  }
+	'search/tweets',
+	{
+		q: 'mango',
+		count: 5,
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log(data.statuses)
+		}
+	},
 )
 ```
 
@@ -607,22 +607,22 @@ Like we did with the timeline we will pull out specific items from the
 
 ```js
 bot.get(
-  'search/tweets',
-  {
-    q: 'mango',
-    count: 5,
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      data.statuses.forEach(s => {
-        console.log(s.text)
-        console.log(s.user.screen_name)
-        console.log('\n')
-      })
-    }
-  }
+	'search/tweets',
+	{
+		q: 'mango',
+		count: 5,
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			data.statuses.forEach(s => {
+				console.log(s.text)
+				console.log(s.user.screen_name)
+				console.log('\n')
+			})
+		}
+	},
 )
 ```
 
@@ -657,22 +657,22 @@ If you want tweets from a certain website you can specify with the
 
 ```js
 bot.get(
-  'search/tweets',
-  {
-    q: 'from:@dan_abramov url:facebook filter:images since:2017-01-01',
-    count: 5,
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      data.statuses.forEach(s => {
-        console.log(s.text)
-        console.log(s.user.screen_name)
-        console.log('\n')
-      })
-    }
-  }
+	'search/tweets',
+	{
+		q: 'from:@dan_abramov url:facebook filter:images since:2017-01-01',
+		count: 5,
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			data.statuses.forEach(s => {
+				console.log(s.text)
+				console.log(s.user.screen_name)
+				console.log('\n')
+			})
+		}
+	},
 )
 ```
 
@@ -684,23 +684,23 @@ radius in miles `'51.5033640,-0.1276250,1mi'` example:
 
 ```js
 bot.get(
-  'search/tweets',
-  {
-    q: 'bacon',
-    geocode: '51.5033640,-0.1276250,1mi',
-    count: 5,
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      data.statuses.forEach(s => {
-        console.log(s.text)
-        console.log(s.user.screen_name)
-        console.log('\n')
-      })
-    }
-  }
+	'search/tweets',
+	{
+		q: 'bacon',
+		geocode: '51.5033640,-0.1276250,1mi',
+		count: 5,
+	},
+	(err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			data.statuses.forEach(s => {
+				console.log(s.text)
+				console.log(s.user.screen_name)
+				console.log('\n')
+			})
+		}
+	},
 )
 ```
 
@@ -713,7 +713,7 @@ There are two ways to use the Stream API first there's
 const stream = bot.stream('statuses/sample')
 
 stream.on('tweet', t => {
-  console.log(`${t.text}\n`)
+	console.log(`${t.text}\n`)
 })
 ```
 
@@ -724,11 +724,11 @@ pass some parameters, use `track:` to specify a search string:
 
 ```js
 var stream = bot.stream('statuses/filter', {
-  track: 'bot',
+	track: 'bot',
 })
 
 stream.on('tweet', function (t) {
-  console.log(t.text + '\n')
+	console.log(t.text + '\n')
 })
 ```
 
@@ -737,11 +737,11 @@ get you results with either `twitter` or `bot` in them.
 
 ```js
 const stream = bot.stream('statuses/filter', {
-  track: 'twitter, bot',
+	track: 'twitter, bot',
 })
 
 stream.on('tweet', t => {
-  console.log(`${t.text}\n`)
+	console.log(`${t.text}\n`)
 })
 ```
 
@@ -753,11 +753,11 @@ of specific users, example:
 
 ```js
 const stream = bot.stream('statuses/filter', {
-  follow: '4897735439',
+	follow: '4897735439',
 })
 
 stream.on('tweet', t => {
-  console.log(`${t.text}\n`)
+	console.log(`${t.text}\n`)
 })
 ```
 
@@ -788,13 +788,13 @@ passed to the node HTTP client `request` for the image:
 
 ```js
 function getPhoto() {
-  const parameters = {
-    url: 'https://api.nasa.gov/planetary/apod',
-    qs: {
-      api_key: process.env.NASA_KEY,
-    },
-    encoding: 'binary',
-  }
+	const parameters = {
+		url: 'https://api.nasa.gov/planetary/apod',
+		qs: {
+			api_key: process.env.NASA_KEY,
+		},
+		encoding: 'binary',
+	}
 }
 ```
 
@@ -824,17 +824,17 @@ Now to use the `request` to get the image:
 
 ```js
 function getPhoto() {
-  const parameters = {
-    url: 'https://api.nasa.gov/planetary/apod',
-    qs: {
-      api_key: process.env.NASA_KEY,
-    },
-    encoding: 'binary',
-  }
-  request.get(parameters, (err, response, body) => {
-    body = JSON.parse(body)
-    saveFile(body, 'nasa.jpg')
-  })
+	const parameters = {
+		url: 'https://api.nasa.gov/planetary/apod',
+		qs: {
+			api_key: process.env.NASA_KEY,
+		},
+		encoding: 'binary',
+	}
+	request.get(parameters, (err, response, body) => {
+		body = JSON.parse(body)
+		saveFile(body, 'nasa.jpg')
+	})
 }
 ```
 
@@ -844,17 +844,17 @@ now:
 
 ```js
 function saveFile(body, fileName) {
-  const file = fs.createWriteStream(fileName)
-  request(body)
-    .pipe(file)
-    .on('close', err => {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log('Media saved!')
-        console.log(body)
-      }
-    })
+	const file = fs.createWriteStream(fileName)
+	request(body)
+		.pipe(file)
+		.on('close', err => {
+			if (err) {
+				console.log(err)
+			} else {
+				console.log('Media saved!')
+				console.log(body)
+			}
+		})
 }
 ```
 
@@ -871,18 +871,18 @@ Two parts to this, first save the file.
 
 ```js
 function saveFile(body, fileName) {
-  const file = fs.createWriteStream(fileName)
-  request(body)
-    .pipe(file)
-    .on('close', err => {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log('Media saved!')
-        const descriptionText = body.title
-        uploadMedia(descriptionText, fileName)
-      }
-    })
+	const file = fs.createWriteStream(fileName)
+	request(body)
+		.pipe(file)
+		.on('close', err => {
+			if (err) {
+				console.log(err)
+			} else {
+				console.log('Media saved!')
+				const descriptionText = body.title
+				uploadMedia(descriptionText, fileName)
+			}
+		})
 }
 ```
 
@@ -904,24 +904,24 @@ Complete function here:
 
 ```js
 function uploadMedia(descriptionText, fileName) {
-  console.log(`uploadMedia: file PATH ${fileName}`)
-  bot.postMediaChunked(
-    {
-      file_path: fileName,
-    },
-    (err, data, response) => {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log(data)
-        const params = {
-          status: descriptionText,
-          media_ids: data.media_id_string,
-        }
-        postStatus(params)
-      }
-    }
-  )
+	console.log(`uploadMedia: file PATH ${fileName}`)
+	bot.postMediaChunked(
+		{
+			file_path: fileName,
+		},
+		(err, data, response) => {
+			if (err) {
+				console.log(err)
+			} else {
+				console.log(data)
+				const params = {
+					status: descriptionText,
+					media_ids: data.media_id_string,
+				}
+				postStatus(params)
+			}
+		},
+	)
 }
 ```
 
@@ -930,13 +930,13 @@ straightforward `.post('statuses/update'...`
 
 ```js
 function postStatus(params) {
-  bot.post('statuses/update', params, (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log('Status posted!')
-    }
-  })
+	bot.post('statuses/update', params, (err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log('Status posted!')
+		}
+	})
 }
 ```
 
@@ -956,64 +956,64 @@ const path = require('path')
 const bot = new Twit(config)
 
 function getPhoto() {
-  const parameters = {
-    url: 'https://api.nasa.gov/planetary/apod',
-    qs: {
-      api_key: process.env.NASA_KEY,
-    },
-    encoding: 'binary',
-  }
-  request.get(parameters, (err, response, body) => {
-    body = JSON.parse(body)
-    saveFile(body, 'nasa.jpg')
-  })
+	const parameters = {
+		url: 'https://api.nasa.gov/planetary/apod',
+		qs: {
+			api_key: process.env.NASA_KEY,
+		},
+		encoding: 'binary',
+	}
+	request.get(parameters, (err, response, body) => {
+		body = JSON.parse(body)
+		saveFile(body, 'nasa.jpg')
+	})
 }
 
 function saveFile(body, fileName) {
-  const file = fs.createWriteStream(fileName)
-  request(body)
-    .pipe(file)
-    .on('close', err => {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log('Media saved!')
-        const descriptionText = body.title
-        uploadMedia(descriptionText, fileName)
-      }
-    })
+	const file = fs.createWriteStream(fileName)
+	request(body)
+		.pipe(file)
+		.on('close', err => {
+			if (err) {
+				console.log(err)
+			} else {
+				console.log('Media saved!')
+				const descriptionText = body.title
+				uploadMedia(descriptionText, fileName)
+			}
+		})
 }
 
 function uploadMedia(descriptionText, fileName) {
-  const filePath = path.join(__dirname, `../${fileName}`)
-  console.log(`file PATH ${filePath}`)
-  bot.postMediaChunked(
-    {
-      file_path: filePath,
-    },
-    (err, data, response) => {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log(data)
-        const params = {
-          status: descriptionText,
-          media_ids: data.media_id_string,
-        }
-        postStatus(params)
-      }
-    }
-  )
+	const filePath = path.join(__dirname, `../${fileName}`)
+	console.log(`file PATH ${filePath}`)
+	bot.postMediaChunked(
+		{
+			file_path: filePath,
+		},
+		(err, data, response) => {
+			if (err) {
+				console.log(err)
+			} else {
+				console.log(data)
+				const params = {
+					status: descriptionText,
+					media_ids: data.media_id_string,
+				}
+				postStatus(params)
+			}
+		},
+	)
 }
 
 function postStatus(params) {
-  bot.post('statuses/update', params, (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log('Status posted!')
-    }
-  })
+	bot.post('statuses/update', params, (err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log('Status posted!')
+		}
+	})
 }
 
 getPhoto()
@@ -1048,15 +1048,15 @@ Use `fs` to set up a read stream...
 const filePath = path.join(__dirname, './twitter-archive/tweets.csv')
 
 const tweetData = fs
-  .createReadStream(filePath)
-  .pipe(
-    csvparse({
-      delimiter: ',',
-    })
-  )
-  .on('data', row => {
-    console.log(row[5])
-  })
+	.createReadStream(filePath)
+	.pipe(
+		csvparse({
+			delimiter: ',',
+		}),
+	)
+	.on('data', row => {
+		console.log(row[5])
+	})
 ```
 
 When you run this from the console you should get the output from your
@@ -1072,10 +1072,10 @@ out the stop words then `.join(' ')` back together with a space and
 
 ```js
 function cleanText(text) {
-  return rita.RiTa.tokenize(text, ' ')
-    .filter(hasNoStopWords)
-    .join(' ')
-    .trim()
+	return rita.RiTa.tokenize(text, ' ')
+		.filter(hasNoStopWords)
+		.join(' ')
+		.trim()
 }
 ```
 
@@ -1084,8 +1084,8 @@ to be sanitized for use in `tweetData`
 
 ```js
 function hasNoStopWords(token) {
-  const stopwords = ['@', 'http', 'RT']
-  return stopwords.every(sw => !token.includes(sw))
+	const stopwords = ['@', 'http', 'RT']
+	return stopwords.every(sw => !token.includes(sw))
 }
 ```
 
@@ -1228,8 +1228,8 @@ const Tabletop = require('tabletop')
 const bot = new Twit(config)
 ```
 
-On your [`Google spreadsheet`] you'll need to have a header defined
-and then add your links, we'll use the following for an example:
+On your [`Google spreadsheet`] you'll need to have a header defined and
+then add your links, we'll use the following for an example:
 
 ```
 | links                        |
@@ -1250,14 +1250,14 @@ example here:
 
 ```js
 const spreadsheetUrl =
-  'https://docs.google.com/spreadsheets/d/1842GC9JS9qDWHc-9leZoEn9Q_-jcPUcuDvIqd_MMPZQ/pubhtml'
+	'https://docs.google.com/spreadsheets/d/1842GC9JS9qDWHc-9leZoEn9Q_-jcPUcuDvIqd_MMPZQ/pubhtml'
 
 Tabletop.init({
-  key: spreadsheetUrl,
-  callback(data, tabletop) {
-    console.log(data)
-  },
-  simpleSheet: true,
+	key: spreadsheetUrl,
+	callback(data, tabletop) {
+		console.log(data)
+	},
+	simpleSheet: true,
 })
 ```
 
@@ -1276,26 +1276,26 @@ So now we can tweet them using `.post('statuses/update',...` with a
 
 ```js
 Tabletop.init({
-  key: spreadsheetUrl,
-  callback(data, tabletop) {
-    data.forEach(d => {
-      const status = `${d.links} a link from a Google spreadsheet`
-      bot.post(
-        'statuses/update',
-        {
-          status,
-        },
-        (err, response, data) => {
-          if (err) {
-            console.log(err)
-          } else {
-            console.log('Post success!')
-          }
-        }
-      )
-    })
-  },
-  simpleSheet: true,
+	key: spreadsheetUrl,
+	callback(data, tabletop) {
+		data.forEach(d => {
+			const status = `${d.links} a link from a Google spreadsheet`
+			bot.post(
+				'statuses/update',
+				{
+					status,
+				},
+				(err, response, data) => {
+					if (err) {
+						console.log(err)
+					} else {
+						console.log('Post success!')
+					}
+				},
+			)
+		})
+	},
+	simpleSheet: true,
 })
 ```
 
@@ -1316,30 +1316,30 @@ const Tabletop = require('tabletop')
 const bot = new Twit(config)
 
 const spreadsheetUrl =
-  'https://docs.google.com/spreadsheets/d/1842GC9JS9qDWHc-9leZoEn9Q_-jcPUcuDvIqd_MMPZQ/pubhtml'
+	'https://docs.google.com/spreadsheets/d/1842GC9JS9qDWHc-9leZoEn9Q_-jcPUcuDvIqd_MMPZQ/pubhtml'
 
 Tabletop.init({
-  key: spreadsheetUrl,
-  callback(data, tabletop) {
-    data.forEach(d => {
-      const status = `${d.links} a link from a Google spreadsheet`
-      console.log(status)
-      bot.post(
-        'statuses/update',
-        {
-          status,
-        },
-        (err, response, data) => {
-          if (err) {
-            console.log(err)
-          } else {
-            console.log('Post success!')
-          }
-        }
-      )
-    })
-  },
-  simpleSheet: true,
+	key: spreadsheetUrl,
+	callback(data, tabletop) {
+		data.forEach(d => {
+			const status = `${d.links} a link from a Google spreadsheet`
+			console.log(status)
+			bot.post(
+				'statuses/update',
+				{
+					status,
+				},
+				(err, response, data) => {
+					if (err) {
+						console.log(err)
+					} else {
+						console.log('Post success!')
+					}
+				},
+			)
+		})
+	},
+	simpleSheet: true,
 })
 ```
 
@@ -1368,17 +1368,17 @@ we're going to make the following changes, to `getPhoto`:
 
 ```js
 const getPhoto = () => {
-  const parameters = {
-    url: 'https://api.nasa.gov/planetary/apod',
-    qs: {
-      api_key: process.env.NASA_KEY,
-    },
-    encoding: 'binary',
-  }
-  request.get(parameters, (err, response, body) => {
-    body = JSON.parse(body)
-    saveFile(body, 'nasa.jpg')
-  })
+	const parameters = {
+		url: 'https://api.nasa.gov/planetary/apod',
+		qs: {
+			api_key: process.env.NASA_KEY,
+		},
+		encoding: 'binary',
+	}
+	request.get(parameters, (err, response, body) => {
+		body = JSON.parse(body)
+		saveFile(body, 'nasa.jpg')
+	})
 }
 ```
 
@@ -1456,33 +1456,33 @@ going to make the following changes:
 
 ```js
 const tweetData = () => {
-  fs.createReadStream(filePath)
-    .pipe(
-      csvparse({
-        delimiter: ',',
-      })
-    )
-    .on('data', row => {
-      inputText = `${inputText} ${cleanText(row[5])}`
-    })
-    .on('end', () => {
-      const markov = new rita.RiMarkov(10)
-      markov.loadText(inputText).toString().substring(0, 140)
-      const sentence = markov.generateSentences(1)
-      bot.post(
-        'statuses/update',
-        {
-          status: sentence,
-        },
-        (err, data, response) => {
-          if (err) {
-            console.log(err)
-          } else {
-            console.log('Markov status tweeted!', sentence)
-          }
-        }
-      )
-    })
+	fs.createReadStream(filePath)
+		.pipe(
+			csvparse({
+				delimiter: ',',
+			}),
+		)
+		.on('data', row => {
+			inputText = `${inputText} ${cleanText(row[5])}`
+		})
+		.on('end', () => {
+			const markov = new rita.RiMarkov(10)
+			markov.loadText(inputText).toString().substring(0, 140)
+			const sentence = markov.generateSentences(1)
+			bot.post(
+				'statuses/update',
+				{
+					status: sentence,
+				},
+				(err, data, response) => {
+					if (err) {
+						console.log(err)
+					} else {
+						console.log('Markov status tweeted!', sentence)
+					}
+				},
+			)
+		})
 }
 ```
 
@@ -1537,29 +1537,29 @@ like this:
 
 ```js
 const link = () => {
-  Tabletop.init({
-    key: spreadsheetUrl,
-    callback(data, tabletop) {
-      data.forEach(d => {
-        const status = `${d.links} a link from a Google spreadsheet`
-        console.log(status)
-        bot.post(
-          'statuses/update',
-          {
-            status,
-          },
-          (err, response, data) => {
-            if (err) {
-              console.log(err)
-            } else {
-              console.log('Post success!')
-            }
-          }
-        )
-      })
-    },
-    simpleSheet: true,
-  })
+	Tabletop.init({
+		key: spreadsheetUrl,
+		callback(data, tabletop) {
+			data.forEach(d => {
+				const status = `${d.links} a link from a Google spreadsheet`
+				console.log(status)
+				bot.post(
+					'statuses/update',
+					{
+						status,
+					},
+					(err, response, data) => {
+						if (err) {
+							console.log(err)
+						} else {
+							console.log('Post success!')
+						}
+					},
+				)
+			})
+		},
+		simpleSheet: true,
+	})
 }
 
 module.exports = link
@@ -1789,32 +1789,32 @@ video:
 
 ```js
 function saveFile(body) {
-  const fileName =
-    body.media_type === 'image/jpeg' ? 'nasa.jpg' : 'nasa.mp4'
-  const filePath = path.join(tmpDir + `/${fileName}`)
+	const fileName =
+		body.media_type === 'image/jpeg' ? 'nasa.jpg' : 'nasa.mp4'
+	const filePath = path.join(tmpDir + `/${fileName}`)
 
-  console.log(`saveFile: file PATH ${filePath}`)
-  if (fileName === 'nasa.mp4') {
-    // tweet the link
-    const params = {
-      status: 'NASA video link: ' + body.url,
-    }
-    postStatus(params)
-    return
-  }
-  const file = fs.createWriteStream(filePath)
+	console.log(`saveFile: file PATH ${filePath}`)
+	if (fileName === 'nasa.mp4') {
+		// tweet the link
+		const params = {
+			status: 'NASA video link: ' + body.url,
+		}
+		postStatus(params)
+		return
+	}
+	const file = fs.createWriteStream(filePath)
 
-  request(body)
-    .pipe(file)
-    .on('close', err => {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log('Media saved!')
-        const descriptionText = body.title
-        uploadMedia(descriptionText, filePath)
-      }
-    })
+	request(body)
+		.pipe(file)
+		.on('close', err => {
+			if (err) {
+				console.log(err)
+			} else {
+				console.log('Media saved!')
+				const descriptionText = body.title
+				uploadMedia(descriptionText, filePath)
+			}
+		})
 }
 ```
 
@@ -1836,77 +1836,77 @@ const os = require('os')
 const tmpDir = os.tmpdir()
 
 const getPhoto = () => {
-  const parameters = {
-    url: 'https://api.nasa.gov/planetary/apod',
-    qs: {
-      api_key: process.env.NASA_KEY,
-    },
-    encoding: 'binary',
-  }
-  request.get(parameters, (err, response, body) => {
-    body = JSON.parse(body)
-    saveFile(body)
-  })
+	const parameters = {
+		url: 'https://api.nasa.gov/planetary/apod',
+		qs: {
+			api_key: process.env.NASA_KEY,
+		},
+		encoding: 'binary',
+	}
+	request.get(parameters, (err, response, body) => {
+		body = JSON.parse(body)
+		saveFile(body)
+	})
 }
 
 function saveFile(body) {
-  const fileName =
-    body.media_type === 'image/jpeg' ? 'nasa.jpg' : 'nasa.mp4'
-  const filePath = path.join(tmpDir + `/${fileName}`)
+	const fileName =
+		body.media_type === 'image/jpeg' ? 'nasa.jpg' : 'nasa.mp4'
+	const filePath = path.join(tmpDir + `/${fileName}`)
 
-  console.log(`saveFile: file PATH ${filePath}`)
-  if (fileName === 'nasa.mp4') {
-    // tweet the link
-    const params = {
-      status: 'NASA video link: ' + body.url,
-    }
-    postStatus(params)
-    return
-  }
-  const file = fs.createWriteStream(filePath)
+	console.log(`saveFile: file PATH ${filePath}`)
+	if (fileName === 'nasa.mp4') {
+		// tweet the link
+		const params = {
+			status: 'NASA video link: ' + body.url,
+		}
+		postStatus(params)
+		return
+	}
+	const file = fs.createWriteStream(filePath)
 
-  request(body)
-    .pipe(file)
-    .on('close', err => {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log('Media saved!')
-        const descriptionText = body.title
-        uploadMedia(descriptionText, filePath)
-      }
-    })
+	request(body)
+		.pipe(file)
+		.on('close', err => {
+			if (err) {
+				console.log(err)
+			} else {
+				console.log('Media saved!')
+				const descriptionText = body.title
+				uploadMedia(descriptionText, filePath)
+			}
+		})
 }
 
 function uploadMedia(descriptionText, fileName) {
-  console.log(`uploadMedia: file PATH ${fileName}`)
-  bot.postMediaChunked(
-    {
-      file_path: fileName,
-    },
-    (err, data, response) => {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log(data)
-        const params = {
-          status: descriptionText,
-          media_ids: data.media_id_string,
-        }
-        postStatus(params)
-      }
-    }
-  )
+	console.log(`uploadMedia: file PATH ${fileName}`)
+	bot.postMediaChunked(
+		{
+			file_path: fileName,
+		},
+		(err, data, response) => {
+			if (err) {
+				console.log(err)
+			} else {
+				console.log(data)
+				const params = {
+					status: descriptionText,
+					media_ids: data.media_id_string,
+				}
+				postStatus(params)
+			}
+		},
+	)
 }
 
 function postStatus(params) {
-  bot.post('statuses/update', params, (err, data, response) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log('Status posted!')
-    }
-  })
+	bot.post('statuses/update', params, (err, data, response) => {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log('Status posted!')
+		}
+	})
 }
 
 module.exports = getPhoto
@@ -1978,46 +1978,46 @@ Copyright (c) 2017, Scott Spence. All rights reserved.
 <!--links-->
 
 [license-badge]:
-  https://img.shields.io/github/license/mashape/apistatus.svg
+	https://img.shields.io/github/license/mashape/apistatus.svg
 [license-url]: https://opensource.org/licenses/MIT
 [gitter-url]:
-  https://gitter.im/awesome-twitter-bots/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+	https://gitter.im/awesome-twitter-bots/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 [npm]: https://www.npmjs.com/
 [twit]: https://www.npmjs.com/package/twit
 [twitter-bot-bootstrap-readme]:
-  https://github.com/spences10/twitter-bot-bootstrap#twitter-bot-bootstrap
+	https://github.com/spences10/twitter-bot-bootstrap#twitter-bot-bootstrap
 [twitter-bot-bootstrap]:
-  https://github.com/spences10/twitter-bot-bootstrap
+	https://github.com/spences10/twitter-bot-bootstrap
 [aman-github-profile]: https://github.com/amandeepmittal
 [awesome-twitter-bots]:
-  https://github.com/amandeepmittal/awesome-twitter-bots
+	https://github.com/amandeepmittal/awesome-twitter-bots
 [twitter-app]: https://apps.twitter.com/app/new
 [dotenv]: https://www.npmjs.com/package/dotenv
 [scottbot]: https://twitter.com/DroidScott
 [scotttwit]: https://twitter.com/spences10
 [egghead-media-files]:
-  https://egghead.io/lessons/node-js-tweet-media-files-with-twit-js
+	https://egghead.io/lessons/node-js-tweet-media-files-with-twit-js
 [hannah-davis]: https://egghead.io/instructors/hannah-davis
 [nasa-iotd]: https://www.nasa.gov/multimedia/imagegallery/iotd.html
 [api-apply]: https://api.nasa.gov/index.html#apply-for-an-api-key
 [egghead-markov]:
-  https://egghead.io/lessons/node-js-make-a-bot-that-sounds-like-you-with-rita-js?series=create-your-own-twitter-bots
+	https://egghead.io/lessons/node-js-make-a-bot-that-sounds-like-you-with-rita-js?series=create-your-own-twitter-bots
 [rita-npm]: https://www.npmjs.com/package/rita
 [tweet-archive]: https://support.twitter.com/articles/20170160
 [npm-tabletop]: https://www.npmjs.com/package/tabletop
 [egghead-tabletop]:
-  https://egghead.io/lessons/node-js-retrieve-and-tweet-information-from-google-spreadsheets
+	https://egghead.io/lessons/node-js-retrieve-and-tweet-information-from-google-spreadsheets
 [`google spreadsheet`]: https:/sheets.google.com
 [zeit-login]: https://zeit.co/login
 [now]: https://zeit.co/now
 [now-getting-started-cli]:
-  https://zeit.co/docs/getting-started/installing-now#cli-with-npm
+	https://zeit.co/docs/getting-started/installing-now#cli-with-npm
 [now-first-deploy]:
-  https://zeit.co/docs/getting-started/your-first-deployments#deploying-node
+	https://zeit.co/docs/getting-started/your-first-deployments#deploying-node
 [github-issue]:
-  https://github.com/spences10/twitter-bot-playground/issues/new
+	https://github.com/spences10/twitter-bot-playground/issues/new
 [immutable-deployment]:
-  https://blog.codeship.com/immutable-deployments/
+	https://blog.codeship.com/immutable-deployments/
 [tim]: https://github.com/timneutkens
 [ternary]:
-  https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator
+	https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator

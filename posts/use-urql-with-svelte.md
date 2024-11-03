@@ -14,9 +14,9 @@ SvelteKit] for an up to date reference**
 
 Use the Universal React Query Library (URQL) in Svelte!
 
-Yeah, React and Svelte! Well, not really! There are [Svelte bindings
-in URQL] now! So I'm going to take a look at configuring it for use in
-a Svelte project. If you're wondering if URQL is right for your
+Yeah, React and Svelte! Well, not really! There are [Svelte
+bindings in URQL] now! So I'm going to take a look at configuring it for
+use in a Svelte project. If you're wondering if URQL is right for your
 project you can check out the [features by comparison].
 
 So, standard guide fodder now, spin up a new project and configure the
@@ -101,23 +101,23 @@ read up on hiding [env secrets] with SvelteKit for more information.
 ```svelte
 <!-- src/routes/__layout.svelte -->
 <script>
-  import { initClient } from '@urql/svelte'
-  initClient({
-    url: import.meta.env.VITE_GRAPHQL_URL,
-  })
+	import { initClient } from '@urql/svelte'
+	initClient({
+		url: import.meta.env.VITE_GRAPHQL_URL,
+	})
 </script>
 
 <main>
-  <slot />
+	<slot />
 </main>
 
 <style>
-  main {
-    position: relative;
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
+	main {
+		position: relative;
+		max-width: 640px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
 </style>
 ```
 
@@ -132,19 +132,19 @@ URQL `query` to create a subscription for `posts`:
 ```svelte
 <!-- src/routes/index.svelte -->
 <script>
-  // urql initialization
-  import { gql, operationStore, query } from '@urql/svelte'
-  const postsQuery = gql`
-    query Posts {
-      posts {
-        title
-        slug
-      }
-    }
-  `
-  // request policy is cache-first (default)
-  const posts = operationStore(postsQuery)
-  query(posts)
+	// urql initialization
+	import { gql, operationStore, query } from '@urql/svelte'
+	const postsQuery = gql`
+		query Posts {
+			posts {
+				title
+				slug
+			}
+		}
+	`
+	// request policy is cache-first (default)
+	const posts = operationStore(postsQuery)
+	query(posts)
 </script>
 ```
 
@@ -159,19 +159,19 @@ directive to loop through the results of the data from endpoint:
 
 ```svelte
 {#if $posts.fetching}
-  <p>Loading...</p>
+	<p>Loading...</p>
 {:else if $posts.error}
-  <p>Oopsie! {$posts.error.message}</p>
+	<p>Oopsie! {$posts.error.message}</p>
 {:else}
-  <ul>
-    {#each $posts.data.posts as post}
-      <li>
-        <a href={`/posts/${post.slug}`}>
-          <p>{post.title}</p>
-        </a>
-      </li>
-    {/each}
-  </ul>
+	<ul>
+		{#each $posts.data.posts as post}
+			<li>
+				<a href={`/posts/${post.slug}`}>
+					<p>{post.title}</p>
+				</a>
+			</li>
+		{/each}
+	</ul>
 {/if}
 ```
 
@@ -179,42 +179,42 @@ Here's the full `src/routes/index.svelte` file:
 
 ```svelte
 <script>
-  // urql initialization
-  import { gql, operationStore, query } from '@urql/svelte'
-  const postsQuery = gql`
-    query Posts {
-      posts {
-        title
-        slug
-      }
-    }
-  `
-  // request policy is cache-first (default)
-  const posts = operationStore(postsQuery)
-  query(posts)
+	// urql initialization
+	import { gql, operationStore, query } from '@urql/svelte'
+	const postsQuery = gql`
+		query Posts {
+			posts {
+				title
+				slug
+			}
+		}
+	`
+	// request policy is cache-first (default)
+	const posts = operationStore(postsQuery)
+	query(posts)
 </script>
 
 {#if $posts.fetching}
-  <p>Loading...</p>
+	<p>Loading...</p>
 {:else if $posts.error}
-  <p>Oopsie! {$posts.error.message}</p>
+	<p>Oopsie! {$posts.error.message}</p>
 {:else}
-  <ul>
-    {#each $posts.data.posts as post}
-      <li>
-        <a href={`/posts/${post.slug}`}>
-          <p>{post.title}</p>
-        </a>
-      </li>
-    {/each}
-  </ul>
+	<ul>
+		{#each $posts.data.posts as post}
+			<li>
+				<a href={`/posts/${post.slug}`}>
+					<p>{post.title}</p>
+				</a>
+			</li>
+		{/each}
+	</ul>
 {/if}
 
 <style>
-  li {
-    list-style: none;
-    margin-bottom: 5rem;
-  }
+	li {
+		list-style: none;
+		margin-bottom: 5rem;
+	}
 </style>
 ```
 
@@ -242,14 +242,14 @@ this will look a little something like this:
 
 ```graphql
 query Post($slug: String!) {
-  post(where: { slug: $slug }) {
-    title
-    date
-    tags
-    content {
-      html
-    }
-  }
+	post(where: { slug: $slug }) {
+		title
+		date
+		tags
+		content {
+			html
+		}
+	}
 }
 ```
 
@@ -271,10 +271,10 @@ function:
 
 ```svelte
 <script context="module">
-  export const load = async ({ page: { params } }) => {
-    const { slug } = params
-    return { props: { slug } }
-  }
+	export const load = async ({ page: { params } }) => {
+		const { slug } = params
+		return { props: { slug } }
+	}
 </script>
 ```
 
@@ -288,22 +288,22 @@ file passing in that query:
 
 ```svelte
 <script>
-  export let slug
-  import { gql, operationStore, query } from '@urql/svelte'
-  const productQuery = gql`
-    query Post($slug: String!) {
-      post(where: { slug: $slug }) {
-        title
-        date
-        tags
-        content {
-          html
-        }
-      }
-    }
-  `
-  const post = operationStore(productQuery, { slug })
-  query(post)
+	export let slug
+	import { gql, operationStore, query } from '@urql/svelte'
+	const productQuery = gql`
+		query Post($slug: String!) {
+			post(where: { slug: $slug }) {
+				title
+				date
+				tags
+				content {
+					html
+				}
+			}
+		}
+	`
+	const post = operationStore(productQuery, { slug })
+	query(post)
 </script>
 ```
 
@@ -321,29 +321,29 @@ Here's the full file:
 
 ```svelte
 <script context="module">
-  export const load = async ({ page: { params } }) => {
-    const { slug } = params
-    return { props: { slug } }
-  }
+	export const load = async ({ page: { params } }) => {
+		const { slug } = params
+		return { props: { slug } }
+	}
 </script>
 
 <script>
-  export let slug
-  import { gql, operationStore, query } from '@urql/svelte'
-  const productQuery = gql`
-    query Post($slug: String!) {
-      post(where: { slug: $slug }) {
-        title
-        date
-        tags
-        content {
-          html
-        }
-      }
-    }
-  `
-  const post = operationStore(productQuery, { slug })
-  query(post)
+	export let slug
+	import { gql, operationStore, query } from '@urql/svelte'
+	const productQuery = gql`
+		query Post($slug: String!) {
+			post(where: { slug: $slug }) {
+				title
+				date
+				tags
+				content {
+					html
+				}
+			}
+		}
+	`
+	const post = operationStore(productQuery, { slug })
+	query(post)
 </script>
 
 <pre>{JSON.stringify($post, null, 2)}</pre>
@@ -355,11 +355,11 @@ markup the same way as in the index file.
 <!-- Links -->
 
 [features by comparison]:
-  https://formidable.com/open-source/urql/docs/comparison/
+	https://formidable.com/open-source/urql/docs/comparison/
 [repo on github]: https://github.com/spences10/sveltekit-with-urql/
 [svelte bindings in urql]:
-  https://formidable.com/open-source/urql/docs/basics/svelte/
+	https://formidable.com/open-source/urql/docs/basics/svelte/
 [env secrets]: https://scottspence.com/posts/sveltekit-env-secrets
 [building on the example]: #building-on-the-example
 [use urql with sveltekit]:
-  https://scottspence.com/posts/use-urql-with-sveltekit
+	https://scottspence.com/posts/use-urql-with-sveltekit

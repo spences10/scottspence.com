@@ -64,8 +64,8 @@ it?"
 For me it's mainly code, some streaming and video editing. That helps
 determine the hardware you'll need.
 
-Massive thanks to my Twitter friend [James McAllister] for helping me
-fine tune my final selection of parts.
+Massive thanks to my Twitter friend [James McAllister] for helping me fine
+tune my final selection of parts.
 
 ## What type of aesthetic do you want?
 
@@ -81,9 +81,9 @@ Enter [PC Part Picker] this site is a MASSIVE help when it comes to
 picking compatible parts for your PC build.
 
 This was my guide when I came to picking parts and building my system.
-There are _loads_ of [completed builds] where enthusiasts and
-beginners just like myself would post their completed builds and
-corresponding parts list on PC Part Picker.
+There are _loads_ of [completed builds] where enthusiasts and beginners
+just like myself would post their completed builds and corresponding parts
+list on PC Part Picker.
 
 If there is a specific system you have in mind chances are someone has
 already built it and posted their completed build here.
@@ -117,10 +117,10 @@ From watching YouTube a _lot_ I found that AMD was leading the way in
 CPU performance per £ and the Ryzen chips where where it's at right
 now.
 
-The **CPU** I chose was the [Ryzen 5 2600 3.4 GHz AF] the AF although
-is not officially listed (you have to look for "bb af box" in the
-listing) this means that it's the previous generation of one of the
-higher end chips in the range.
+The **CPU** I chose was the [Ryzen 5 2600 3.4 GHz AF] the AF although is
+not officially listed (you have to look for "bb af box" in the listing)
+this means that it's the previous generation of one of the higher end chips
+in the range.
 
 The CPU is a healthy 6 cores (12 threads) quite a bump from the last
 one!
@@ -136,22 +136,21 @@ with the [Asus ROG Strix B450-I Gaming] motherboard which has a memory
 max of 64GB.
 
 Speaking of **memory** I went with some [Corsair Vengeance LPX 32 GB
-(2 x 16 GB) DDR4-3200 CL16 Memory] which is double the 16GB I had
-prior.
+(2 x 16 GB) DDR4-3200 CL16 Memory] which is double the 16GB I had prior.
 
-The video card **(GPU)** was a [XFX Radeon RX 570 8 GB Video Card]
-which [benchmarked well against a GTX 960] and was reasonably priced.
+The video card **(GPU)** was a [XFX Radeon RX 570 8 GB Video Card] which
+[benchmarked well against a GTX 960] and was reasonably priced.
 
-For the **storage** I went with a [Samsung 970 Evo 500 GB M.2-2280
-NVME Solid State Drive], Samsung is renowned for their memory and this
-drive (M.2) screws directly to the motherboard, which has two M.2
-slots available.
+For the **storage** I went with a [Samsung 970 Evo 500 GB
+M.2-2280 NVME Solid State Drive], Samsung is renowned for their memory
+and this drive (M.2) screws directly to the motherboard, which has two
+M.2 slots available.
 
 The **case**, although toward the end of the list here was really what
 dictated the parts I could use. The standout case for me was the
-[Fractal Design Node 202 HTPC Case w/450 W Power Supply] this really
-appealed to me due to the small form factor and the amount of people
-building with it.
+[Fractal Design Node 202 HTPC Case w/450 W Power Supply] this really appealed
+to me due to the small form factor and the amount of people building with
+it.
 
 You can also get the Node 202 without a power supply but for the extra
 £70 I decided to go with the 450w power supply for now.
@@ -162,14 +161,14 @@ I watched a butt load of people building PCs on YouTube, channels I'd
 recommend are [Paul's Hardware], [Bitwit] and of course [Linus Tech
 Tips] all with good starter guides on building PCs.
 
-First up is a good build guide on Paul's Hardware on [How To Build a
-$550 Gaming PC in 2020!] not related to the parts I wanted to use but
-I did get the tip here about the AF version for the CPU.
+First up is a good build guide on Paul's Hardware on [How To Build
+a $550 Gaming PC in 2020!] not related to the parts I wanted to use
+but I did get the tip here about the AF version for the CPU.
 
 There's also another build guide from Bitwit on [How to Build a PC!
-Step-by-step], not related to the parts I wanted to use again but
-searching YouTube for "[Bitwit Node 202]" shows several builds using
-the case I wanted to use.
+Step-by-step], not related to the parts I wanted to use again but searching
+YouTube for "[Bitwit Node 202]" shows several builds using the case I wanted
+to use.
 
 This guide really helped by pointing out that there was a video card
 assembly, which you attach the video card to before inserting it into
@@ -314,8 +313,8 @@ best due to the height giving less than optimal airflow.
 
 <!-- cSpell:ignore noctua -->
 
-What I have eyed up for a future improvement is the [Noctua NH-L9a-AM4
-33.84 CFM CPU Cooler].
+What I have eyed up for a future improvement is the [Noctua
+NH-L9a-AM4 33.84 CFM CPU Cooler].
 
 The fan also comes packaged with thermal paste which I could use to
 replace the stock paste that cam pre applied to the Ryzen fan.
@@ -324,8 +323,8 @@ The case PSU cables are ugly, and there's a lot of redundant cables in
 there taking up precious space.
 
 Currently the only storage on there is the 500GB Samsung M.2 drive.
-Ideally I'd like to add more storage with a [Samsung 860 Evo 1 TB 2.5"
-Solid State Drive]
+Ideally I'd like to add more storage with a [Samsung 860 Evo 1 TB
+2.5" Solid State Drive]
 
 Finally better RAM speed, currently I have 3200 but could go to 3600,
 but if I'm going to upgrade the RAM I may as well bump it from 32GB up
@@ -351,81 +350,81 @@ for that sort of price, believe me I've looked.
 
 [james mcallister]: https://twitter.com/rb30
 [asus transformer pro t304ua]:
-  https://www.asus.com/2-in-1-PCs/ASUS-Transformer-Pro-T304UA/
+	https://www.asus.com/2-in-1-PCs/ASUS-Transformer-Pro-T304UA/
 [pc part picker]: https://uk.pcpartpicker.com/
 [completed builds]: https://uk.pcpartpicker.com/builds/
 [scan]: https://www.scan.co.uk/
 [ccl]: https://www.cclonline.com/
 [noctua nh-l9a-am4 33.84 cfm cpu cooler]:
-  https://uk.pcpartpicker.com/product/DZfhP6/noctua-nh-l9a-am4-338-cfm-cpu-cooler-nh-l9a-am4
+	https://uk.pcpartpicker.com/product/DZfhP6/noctua-nh-l9a-am4-338-cfm-cpu-cooler-nh-l9a-am4
 [samsung 860 evo 1 tb 2.5" solid state drive]:
-  https://uk.pcpartpicker.com/product/yzfhP6/samsung-860-evo-1tb-25-solid-state-drive-mz-76e1t0bam
+	https://uk.pcpartpicker.com/product/yzfhP6/samsung-860-evo-1tb-25-solid-state-drive-mz-76e1t0bam
 
 <!-- Parts list -->
 
 [ryzen 5 2600 3.4 ghz af]:
-  https://uk.pcpartpicker.com/product/jLF48d/amd-ryzen-5-2600-34ghz-6-core-processor-yd2600bbafbox
+	https://uk.pcpartpicker.com/product/jLF48d/amd-ryzen-5-2600-34ghz-6-core-processor-yd2600bbafbox
 [asus rog strix b450-i gaming]:
-  https://uk.pcpartpicker.com/product/kbx2FT/asus-rog-strix-b450-i-gaming-mini-itx-am4-motherboard-strix-b450-i-gaming
+	https://uk.pcpartpicker.com/product/kbx2FT/asus-rog-strix-b450-i-gaming-mini-itx-am4-motherboard-strix-b450-i-gaming
 [corsair vengeance lpx 32 gb (2 x 16 gb) ddr4-3200 cl16 memory]:
-  https://uk.pcpartpicker.com/product/6rrcCJ/corsair-memory-cmk32gx4m2b3200c16
+	https://uk.pcpartpicker.com/product/6rrcCJ/corsair-memory-cmk32gx4m2b3200c16
 [xfx radeon rx 570 8 gb video card]:
-  https://uk.pcpartpicker.com/product/kJkj4D/xfx-radeon-rx-570-8gb-video-card-rx-570p8dfd6
+	https://uk.pcpartpicker.com/product/kJkj4D/xfx-radeon-rx-570-8gb-video-card-rx-570p8dfd6
 [benchmarked well against a gtx 960]:
-  https://www.videocardbenchmark.net/compare/GeForce-GTX-960-vs-Radeon-RX-570/3114vs3741
+	https://www.videocardbenchmark.net/compare/GeForce-GTX-960-vs-Radeon-RX-570/3114vs3741
 [samsung 970 evo 500 gb m.2-2280 nvme solid state drive]:
-  https://uk.pcpartpicker.com/product/P4ZFf7/samsung-970-evo-500gb-m2-2280-solid-state-drive-mz-v7e500bw
+	https://uk.pcpartpicker.com/product/P4ZFf7/samsung-970-evo-500gb-m2-2280-solid-state-drive-mz-v7e500bw
 [fractal design node 202 htpc case w/450 w power supply]:
-  https://uk.pcpartpicker.com/product/XbKhP6/fractal-design-case-fdmcanode202aaus
+	https://uk.pcpartpicker.com/product/XbKhP6/fractal-design-case-fdmcanode202aaus
 [motherboards]: https://uk.pcpartpicker.com/list/3w2Vkd
 [gpus]: https://uk.pcpartpicker.com/list/pnvfQZ
 
 <!-- PC Builds on YouTube -->
 
 [paul's hardware]:
-  https://www.youtube.com/channel/UCvWWf-LYjaujE50iYai8WgQ
+	https://www.youtube.com/channel/UCvWWf-LYjaujE50iYai8WgQ
 [bitwit]: https://www.youtube.com/channel/UCftcLVz-jtPXoH3cWUUDwYw
 [linus tech tips]:
-  https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw
+	https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw
 [how to build a $550 gaming pc in 2020!]:
-  https://www.youtube.com/watch?v=PubJxQBKBio
+	https://www.youtube.com/watch?v=PubJxQBKBio
 [how to build a pc! step-by-step]:
-  https://www.youtube.com/watch?v=IhX0fOUYd8Q
+	https://www.youtube.com/watch?v=IhX0fOUYd8Q
 [bitwit node 202]:
-  https://www.youtube.com/results?search_query=bitwit+node+202
+	https://www.youtube.com/results?search_query=bitwit+node+202
 
 <!-- Resources -->
 
 [i built my own xbox series x]:
-  https://www.youtube.com/watch?v=JC7YlA3ANzM
+	https://www.youtube.com/watch?v=JC7YlA3ANzM
 [list of amd ryzen microprocessors]:
-  https://en.wikipedia.org/wiki/List_of_AMD_Ryzen_microprocessors
+	https://en.wikipedia.org/wiki/List_of_AMD_Ryzen_microprocessors
 [crazy small pc build on ltt]:
-  https://www.youtube.com/watch?v=tFmb5h1lN-w
+	https://www.youtube.com/watch?v=tFmb5h1lN-w
 
 <!-- Images -->
 
 [the empty case]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858548/scottspence.com/case-with-power-faf69a26264d7fd5f99a53071669ee9c.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858548/scottspence.com/case-with-power-faf69a26264d7fd5f99a53071669ee9c.jpg
 [cpu fan clearance]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858544/scottspence.com/cpu-fan-clearance-8ff552c0bd8c66159487186119de3dcc.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858544/scottspence.com/cpu-fan-clearance-8ff552c0bd8c66159487186119de3dcc.jpg
 [fan covering memory slots]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858544/scottspence.com/fan-covering-memory-d72cdcea00af9dd34d6f0aa36bd5cd45.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858544/scottspence.com/fan-covering-memory-d72cdcea00af9dd34d6f0aa36bd5cd45.jpg
 [case screws]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858547/scottspence.com/case-screws-e4129b6c6bfac904a0eb322163bc3903.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858547/scottspence.com/case-screws-e4129b6c6bfac904a0eb322163bc3903.jpg
 [cables]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/cables-31127d7cbe4678eecdf989424ad122d9.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/cables-31127d7cbe4678eecdf989424ad122d9.jpg
 [gpu assembly]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/gpu-assembly-85e7c5f9718d4733ee86439f4d289853.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/gpu-assembly-85e7c5f9718d4733ee86439f4d289853.jpg
 [case front with gpu installed]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/gpu-installed-2d7956962b127bafa994bdaaf3fefcb2.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/gpu-installed-2d7956962b127bafa994bdaaf3fefcb2.jpg
 [case back gpu installed]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858547/scottspence.com/gpu-fan-side-68a687d00ad79aebcaa658bd0e40359a.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858547/scottspence.com/gpu-fan-side-68a687d00ad79aebcaa658bd0e40359a.jpg
 [motherboard front panel headers]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/case-headers-c91e915482db72e7780a8540272cc7bc.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/case-headers-c91e915482db72e7780a8540272cc7bc.jpg
 [motherboard wired]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858545/scottspence.com/motherboard-wired-9f43dde89286b528cd3d364482bb20da.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858545/scottspence.com/motherboard-wired-9f43dde89286b528cd3d364482bb20da.jpg
 [ready to close]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/ready-to-close-37d3aac59fe95afdf9fb0790446d058b.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/ready-to-close-37d3aac59fe95afdf9fb0790446d058b.jpg
 [closed case]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858547/scottspence.com/closed-case-e8b7093f6cd0a6c70733f8d492c30774.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858547/scottspence.com/closed-case-e8b7093f6cd0a6c70733f8d492c30774.jpg

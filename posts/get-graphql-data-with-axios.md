@@ -19,19 +19,19 @@ import axios from 'axios'
 import query from './query'
 
 export async function getGitHubData() {
-  const gitHubCall = await axios.post(
-    `https://api.github.com/graphql`,
-    {
-      query,
-    },
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'token ' + process.env.GITHUB_TOKEN,
-      },
-    }
-  )
-  return gitHubCall.data.data
+	const gitHubCall = await axios.post(
+		`https://api.github.com/graphql`,
+		{
+			query,
+		},
+		{
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'token ' + process.env.GITHUB_TOKEN,
+			},
+		},
+	)
+	return gitHubCall.data.data
 }
 ```
 
@@ -71,10 +71,10 @@ To consume the data somewhere else in your codebase:
 import { getGitHubData } from './github-query'
 
 async function dataGet() {
-  const data = await getGitHubData()
-  console.log('=====================')
-  console.log(data)
-  console.log('=====================')
+	const data = await getGitHubData()
+	console.log('=====================')
+	console.log(data)
+	console.log('=====================')
 }
 ```
 
@@ -87,25 +87,25 @@ import axios from 'axios'
 import query from './query'
 
 export async function getGitHubData() {
-  const gitHubCall = await axios.post(
-    `https://api.github.com/graphql`,
-    {
-      // query using ES6+ shorthand
-      // query can be like query: query,
-      query,
-      variables: {
-        username: 'spences10',
-      },
-    },
+	const gitHubCall = await axios.post(
+		`https://api.github.com/graphql`,
+		{
+			// query using ES6+ shorthand
+			// query can be like query: query,
+			query,
+			variables: {
+				username: 'spences10',
+			},
+		},
 
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'token ' + process.env.GITHUB_TOKEN,
-      },
-    }
-  )
-  return gitHubCall.data.data
+		{
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'token ' + process.env.GITHUB_TOKEN,
+			},
+		},
+	)
+	return gitHubCall.data.data
 }
 ```
 
@@ -125,4 +125,4 @@ query BIO_QUERY($username: String!) {
 <!-- Links -->
 
 [so]:
-  https://stackoverflow.com/questions/52816623/graphql-post-request-in-axios
+	https://stackoverflow.com/questions/52816623/graphql-post-request-in-axios

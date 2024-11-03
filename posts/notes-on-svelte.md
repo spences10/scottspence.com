@@ -11,8 +11,8 @@ me and hopefully others.
 
 I've found a lot of the examples here on [Svelte Mastery]
 
-There's also the Svelte docs with [interactive tutorials] which I'm
-going through.
+There's also the Svelte docs with [interactive tutorials] which I'm going
+through.
 
 As Svelte looks really similar to html styling is done pretty much the
 same way.
@@ -26,25 +26,25 @@ A simple Svelte component could look something like this:
 <!-- Simple component -->
 <!-- Circle.svelte -->
 <script>
-  // use export so that text can be accepted as a prop
-  export let text = 'hello world'
+	// use export so that text can be accepted as a prop
+	export let text = 'hello world'
 </script>
 
 <div>{text}</div>
 
 <style>
-  div {
-    height: 200px;
-    width: 200px;
-    margin: 20px;
-    font-size: 2rem;
-    background-color: #663399;
-    color: #fff;
-    border-radius: 9999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+	div {
+		height: 200px;
+		width: 200px;
+		margin: 20px;
+		font-size: 2rem;
+		background-color: #663399;
+		color: #fff;
+		border-radius: 9999px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 </style>
 ```
 
@@ -53,11 +53,11 @@ Then that can be used by `App.svelte` like this:
 ```html
 <!-- App.svelte -->
 <script>
-  import Circle from './Circle.svelte'
+	import Circle from './Circle.svelte'
 </script>
 
 <main>
-  <Circle />
+	<Circle />
 </main>
 ```
 
@@ -68,11 +68,11 @@ defaulted to `hello world` but I can pass in my own prop to the
 ```html
 <!-- App.svelte -->
 <script>
-  import Circle from './Circle.svelte'
+	import Circle from './Circle.svelte'
 </script>
 
 <main>
-  <Circle text="wheeeeee" />
+	<Circle text="wheeeeee" />
 </main>
 ```
 
@@ -86,11 +86,11 @@ as a component:
 ```html
 <!-- App.svelte -->
 <script>
-  import Goat from './Goat.svelte'
+	import Goat from './Goat.svelte'
 </script>
 
 <main>
-  <Goat />
+	<Goat />
 </main>
 ```
 
@@ -99,14 +99,14 @@ The `Goat` component is an image tag with some styles scoped to it:
 ```html
 <!-- Goat.svelte -->
 <img
-  alt="adorable goat"
-  src="https://images.unsplash.com/photo-1533318087102-b3ad366ed041"
+	alt="adorable goat"
+	src="https://images.unsplash.com/photo-1533318087102-b3ad366ed041"
 />
 
 <style>
-  img {
-    height: 200px;
-  }
+	img {
+		height: 200px;
+	}
 </style>
 ```
 
@@ -116,21 +116,21 @@ be affected is the wrapping element for it:
 
 ```html
 <script>
-  import Goat from './Goat.svelte'
+	import Goat from './Goat.svelte'
 </script>
 
 <!-- This only affects the wrapping div -->
 <main>
-  <div class="goat-wrapper">
-    <Goat />
-  </div>
+	<div class="goat-wrapper">
+		<Goat />
+	</div>
 </main>
 
 <style>
-  .goat-wrapper {
-    height: 400px;
-    background-color: cornflowerblue;
-  }
+	.goat-wrapper {
+		height: 400px;
+		background-color: cornflowerblue;
+	}
 </style>
 ```
 
@@ -139,24 +139,24 @@ anything in the class matching that element:
 
 ```html {17-19}
 <script>
-  import Goat from './Goat.svelte'
+	import Goat from './Goat.svelte'
 </script>
 
 <!-- This only affects the wrapping div -->
 <main>
-  <div class="goat-wrapper">
-    <Goat />
-  </div>
+	<div class="goat-wrapper">
+		<Goat />
+	</div>
 </main>
 
 <style>
-  .goat-wrapper {
-    height: 400px;
-    background-color: cornflowerblue;
-  }
-  .goat-wrapper :global(img) {
-    height: 400px;
-  }
+	.goat-wrapper {
+		height: 400px;
+		background-color: cornflowerblue;
+	}
+	.goat-wrapper :global(img) {
+		height: 400px;
+	}
 </style>
 ```
 
@@ -171,19 +171,19 @@ If I take the `Circle` component and add a `slot` to it:
 <div><slot /></div>
 
 <style>
-  div {
-    overflow: hidden;
-    height: 200px;
-    width: 200px;
-    margin: 20px;
-    font-size: 2rem;
-    background-color: #663399;
-    color: #fff;
-    border-radius: 9999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+	div {
+		overflow: hidden;
+		height: 200px;
+		width: 200px;
+		margin: 20px;
+		font-size: 2rem;
+		background-color: #663399;
+		color: #fff;
+		border-radius: 9999px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 </style>
 ```
 
@@ -191,27 +191,27 @@ Then I can nest other components in it:
 
 ```html {10}
 <script>
-  import Circle from './Circle.svelte'
-  import Goat from './Goat.svelte'
+	import Circle from './Circle.svelte'
+	import Goat from './Goat.svelte'
 </script>
 
 <main>
-  <div class="goat-wrapper">
-    <Goat />
-    <Circle>
-      <Goat />
-    </Circle>
-  </div>
+	<div class="goat-wrapper">
+		<Goat />
+		<Circle>
+			<Goat />
+		</Circle>
+	</div>
 </main>
 
 <style>
-  .goat-wrapper {
-    height: 400px;
-    background-color: cornflowerblue;
-  }
-  .goat-wrapper :global(img) {
-    height: 400px;
-  }
+	.goat-wrapper {
+		height: 400px;
+		background-color: cornflowerblue;
+	}
+	.goat-wrapper :global(img) {
+		height: 400px;
+	}
 </style>
 ```
 
@@ -222,16 +222,16 @@ cycling through some goat pics on click:
 
 ```html
 <script>
-  const goats = [
-    `https://images.unsplash.com/photo-1533318087102-b3ad366ed041`,
-    `https://images.unsplash.com/photo-1585082868368-58be13852617`,
-    `https://images.unsplash.com/photo-1540392015439-4cc83fc3c1cf`,
-  ]
-  export let goatsIndex = 0
-  export function nextGoat() {
-    if (goatsIndex + 1 === goats.length) goatsIndex = 0
-    goatsIndex += 1
-  }
+	const goats = [
+		`https://images.unsplash.com/photo-1533318087102-b3ad366ed041`,
+		`https://images.unsplash.com/photo-1585082868368-58be13852617`,
+		`https://images.unsplash.com/photo-1540392015439-4cc83fc3c1cf`,
+	]
+	export let goatsIndex = 0
+	export function nextGoat() {
+		if (goatsIndex + 1 === goats.length) goatsIndex = 0
+		goatsIndex += 1
+	}
 </script>
 
 <img alt="adorable goat" src="{goats[goatsIndex]}" />
@@ -239,9 +239,9 @@ cycling through some goat pics on click:
 <!-- Alternatively to pass the event to the function -->
 <!-- <button on:click={(e) => nextGoat(e)}>Next Goat</button> -->
 <style>
-  img {
-    height: 200px;
-  }
+	img {
+		height: 200px;
+	}
 </style>
 ```
 
@@ -253,18 +253,18 @@ notation used.
 
 ```html
 <script>
-  import Goat from './Goat.svelte'
-  import Sloth from './Sloth.svelte'
+	import Goat from './Goat.svelte'
+	import Sloth from './Sloth.svelte'
 
-  let animal = 'sloth'
+	let animal = 'sloth'
 </script>
 
 <main>
-  {#if animal === "sloth"}
-  <Sloth />
-  {:else if animal === "goat"}
-  <Goat />
-  {:else} No animal {/if}
+	{#if animal === "sloth"}
+	<Sloth />
+	{:else if animal === "goat"}
+	<Goat />
+	{:else} No animal {/if}
 </main>
 ```
 
@@ -275,13 +275,13 @@ format to the `#if` directive.
 
 ```html
 <script>
-  const cats = [{ name: `Boris` }, { name: `Leo` }, { name: `Darcy` }]
+	const cats = [{ name: `Boris` }, { name: `Leo` }, { name: `Darcy` }]
 </script>
 
 <main>
-  {#each cats as cat}
-  <div>{cat.name}</div>
-  {/each}
+	{#each cats as cat}
+	<div>{cat.name}</div>
+	{/each}
 </main>
 ```
 
@@ -299,21 +299,21 @@ Check out the `App.svelte` example here:
 
 ```html
 <script>
-  import { setContext } from 'svelte'
-  import Goat from './Goat.svelte'
-  import Sloth from './Sloth.svelte'
+	import { setContext } from 'svelte'
+	import Goat from './Goat.svelte'
+	import Sloth from './Sloth.svelte'
 
-  setContext('sloth', incrementSloth)
+	setContext('sloth', incrementSloth)
 
-  let slothCount = 0
-  function incrementSloth() {
-    slothCount++
-  }
+	let slothCount = 0
+	function incrementSloth() {
+		slothCount++
+	}
 </script>
 
 <main>
-  <Sloth {slothCount} />
-  <Goat />
+	<Sloth {slothCount} />
+	<Goat />
 </main>
 ```
 
@@ -322,24 +322,24 @@ function from `App.svelte`:
 
 ```html
 <script>
-  import { getContext } from 'svelte'
+	import { getContext } from 'svelte'
 
-  let incrementSloth = getContext('sloth')
-  export let slothCount
+	let incrementSloth = getContext('sloth')
+	export let slothCount
 </script>
 
 <img
-  alt="adorable sloth"
-  src="https://images.unsplash.com/photo-1576612119302-7b7e8f824e5f"
+	alt="adorable sloth"
+	src="https://images.unsplash.com/photo-1576612119302-7b7e8f824e5f"
 />
 
 {slothCount}
 <button on:click="{incrementSloth}">Bump Sloth</button>
 
 <style>
-  img {
-    height: 200px;
-  }
+	img {
+		height: 200px;
+	}
 </style>
 ```
 
@@ -356,16 +356,16 @@ Here's the example take from the [Svelte.dev tutorial site]:
 
 ```html
 <script>
-  let count = 0
-  $: doubled = count * 2
+	let count = 0
+	$: doubled = count * 2
 
-  function handleClick() {
-    count += 1
-  }
+	function handleClick() {
+		count += 1
+	}
 </script>
 
 <button on:click="{handleClick}">
-  Clicked {count} {count === 1 ? 'time' : 'times'}
+	Clicked {count} {count === 1 ? 'time' : 'times'}
 </button>
 
 <p>{count} doubled is {doubled}</p>
@@ -380,15 +380,15 @@ Take a look at the following example from the React documentation for
 import React, { useState } from 'react'
 
 function Example() {
-  // Declare a new state variable, which we'll call "count"
-  const [count, setCount] = useState(0)
+	// Declare a new state variable, which we'll call "count"
+	const [count, setCount] = useState(0)
 
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>Click me</button>
-    </div>
-  )
+	return (
+		<div>
+			<p>You clicked {count} times</p>
+			<button onClick={() => setCount(count + 1)}>Click me</button>
+		</div>
+	)
 }
 ```
 
@@ -400,9 +400,7 @@ Now take a look at the same example in Svelte:
 </script>
 
 <p>You clicked {count} times</p>
-<button on:click={() => count++}>
-	Click me
-</button>
+<button on:click="{()" ="">count++}> Click me</button>
 ```
 
 They both do the same thing and the Svelte one is a little shorter and
@@ -414,9 +412,9 @@ Check out [Svelte Mastery] for all these examples and more
 
 [interactive tutorials]: https://svelte.dev/tutorial/basics
 [svelte mastery]:
-  https://www.youtube.com/channel/UCg6SQd5jnWo5Y70rZD9SQFA
+	https://www.youtube.com/channel/UCg6SQd5jnWo5Y70rZD9SQFA
 [svelte.dev tutorial site]:
-  https://svelte.dev/tutorial/reactive-declarations
+	https://svelte.dev/tutorial/reactive-declarations
 [introducing hooks]: https://reactjs.org/docs/hooks-intro.html
 [svelte mastery]:
-  https://www.youtube.com/channel/UCg6SQd5jnWo5Y70rZD9SQFA
+	https://www.youtube.com/channel/UCg6SQd5jnWo5Y70rZD9SQFA

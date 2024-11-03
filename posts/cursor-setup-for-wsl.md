@@ -234,10 +234,10 @@ mine bound to Ctrl+Shift+l
 ```json
 // Place your key bindings in this file to override the defaults
 [
-  {
-    "key": "ctrl+shift+l",
-    "command": "composer.startComposerPrompt"
-  }
+	{
+		"key": "ctrl+shift+l",
+		"command": "composer.startComposerPrompt"
+	}
 ]
 ```
 

@@ -144,27 +144,27 @@ import React, { createContext, useContext, useEffect } from 'react'
 const AnalyticsContext = createContext({})
 
 export const AnalyticsProvider = ({ children }) => {
-  useEffect(() => {
-    if (typeof window.fathom === 'undefined') {
-      window.fathom = (x, y, z) => {
-        console.log(`I'm a fake Fathom`, x, y, z)
-      }
-    }
-  }, [])
+	useEffect(() => {
+		if (typeof window.fathom === 'undefined') {
+			window.fathom = (x, y, z) => {
+				console.log(`I'm a fake Fathom`, x, y, z)
+			}
+		}
+	}, [])
 
-  const logClicks = goalId => {
-    window.fathom('trackGoal', goalId, 0)
-  }
+	const logClicks = goalId => {
+		window.fathom('trackGoal', goalId, 0)
+	}
 
-  return (
-    <AnalyticsContext.Provider value={logClicks}>
-      {children}
-    </AnalyticsContext.Provider>
-  )
+	return (
+		<AnalyticsContext.Provider value={logClicks}>
+			{children}
+		</AnalyticsContext.Provider>
+	)
 }
 
 export const useAnalytics = () => {
-  return useContext(AnalyticsContext)
+	return useContext(AnalyticsContext)
 }
 ```
 
@@ -191,20 +191,20 @@ Then use in the areas I want to track a goal I'll use the
 
 ```js
 const NavBar = ({ toggleNavbar, isActive }) => {
-  const fa = useAnalytics()
-  return (
-    // other wrapping elements
-    <Link
-      onClick={() => {
-        fa('CDDZY97C')
-      }}
-      className="navbar-item"
-      to="/about"
-    >
-      About
-    </Link>
-    // other wrapping elements
-  )
+	const fa = useAnalytics()
+	return (
+		// other wrapping elements
+		<Link
+			onClick={() => {
+				fa('CDDZY97C')
+			}}
+			className="navbar-item"
+			to="/about"
+		>
+			About
+		</Link>
+		// other wrapping elements
+	)
 }
 ```
 
@@ -241,12 +241,12 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 
 [fathom analytics]: https://usefathom.com/
 [you'll get a $10 discount on your first invoice]:
-  https://usefathom.com/ref/HG492L
+	https://usefathom.com/ref/HG492L
 [my unique code]: https://usefathom.com/ref/HG492L
 [gatsby plugin for fathom]:
-  https://www.gatsbyjs.com/packages/gatsby-plugin-fathom/
+	https://www.gatsbyjs.com/packages/gatsby-plugin-fathom/
 [fathom dashboard]: https://app.usefathom.com/#/settings/sites
 [gatsby-starter-business]:
-  https://github.com/v4iv/gatsby-starter-business
+	https://github.com/v4iv/gatsby-starter-business
 [twitter]: https://twitter.com/spences10
 [ask me anything]: https://github.com/spences10/ama

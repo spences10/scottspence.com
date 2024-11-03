@@ -102,8 +102,8 @@ more time" vocoder example! Dope!
 Bonkers talk from Sean where he recreated React with Hooks and React
 Concurrency (Fibre) in a [CodeSandbox.io] session.
 
-The talk was a sequel to a previous talk on [React hooks from scratch]
-in 29 lines. He started with "we're going to re-create concurrent
+The talk was a sequel to a previous talk on [React hooks from
+scratch] in 29 lines. He started with "we're going to re-create concurrent
 React in 130 lines of code!".
 
 At blazing fast speed he covered many concepts, a lot I was unfamiliar
@@ -123,10 +123,10 @@ First, the POJO! (Plain Old JavaScript Object):
 
 ```js
 const element = {
-  type: 'h1',
-  props: {
-    children: 'Hello world',
-  },
+	type: 'h1',
+	props: {
+		children: 'Hello world',
+	},
 }
 ```
 
@@ -135,17 +135,17 @@ POJO:
 
 ```js
 const element = {
-  type: 'h1',
-  props: {
-    children: 'Hello world',
-  },
-  dom: domNode,
-  parent: parentFiber,
-  child: childFiber,
-  sibling: null,
-  alternate: currentFiber,
-  effectTag: PLACEMENT,
-  hooks: [],
+	type: 'h1',
+	props: {
+		children: 'Hello world',
+	},
+	dom: domNode,
+	parent: parentFiber,
+	child: childFiber,
+	sibling: null,
+	alternate: currentFiber,
+	effectTag: PLACEMENT,
+	hooks: [],
 }
 ```
 
@@ -317,10 +317,10 @@ some nice touches for that:
 import styled from 'styled-components'
 
 const FormLabel = styled.label(
-  props => `
+	props => `
   color: ${props.theme.colors.text.subtle}
   font-size: ${props.theme.fontSizes[2]}
-`
+`,
 )
 ```
 
@@ -332,10 +332,10 @@ import styled from 'styled-components'
 import css from '@styled-system/css'
 
 const FormLabel = styled.label(
-  css({
-    color: 'text.subtle',
-    fontSize: 2,
-  })
+	css({
+		color: 'text.subtle',
+		fontSize: 2,
+	}),
 )
 ```
 
@@ -370,12 +370,12 @@ https://twitter.com/search?q=spences10%20reactadvanced&f=live
 [react hooks from scratch]: https://www.swyx.io/speaking/react-hooks/
 [react movable]: https://github.com/tajo/react-movable
 [here]:
-  https://www.youtube.com/playlist?list=PLNBNS7NRGKMH7yfpYQD4TrFV25SMOCIPM
+	https://www.youtube.com/playlist?list=PLNBNS7NRGKMH7yfpYQD4TrFV25SMOCIPM
 [hashtag]: https://twitter.com/hashtag/ReactAdvanced
 [my coverage]:
-  https://twitter.com/search?q=reactadvanced%20spences10&f=live
+	https://twitter.com/search?q=reactadvanced%20spences10&f=live
 
 <!-- Images -->
 
 [anything acronym]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/anything-a5977c43c2e8140e1898ffb67e75234f.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/anything-a5977c43c2e8140e1898ffb67e75234f.png

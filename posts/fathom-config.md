@@ -9,15 +9,15 @@ Fathom Analytics, a great tool to use for your site analytics without
 the compromise of giving your visitors data to Google.
 
 I've written about [How to Track Custom Events with Fathom] in the
-past but since then Fathom have [changed their tracking/embed code],
-which means the config is slightly different.
+past but since then Fathom have [changed their tracking/embed code], which
+means the config is slightly different.
 
 ## Install
 
-With the new embed code there's a guide on how to [use the code with
-Gatsby] on Fathom's blog. It involves modifying the Gatsby `html.js`
-file which I'm not too keen on doing, although it works fine, it's not
-recommended.
+With the new embed code there's a guide on how to [use the code
+with Gatsby] on Fathom's blog. It involves modifying the Gatsby
+`html.js` file which I'm not too keen on doing, although it works
+fine, it's not recommended.
 
 I've gone with using React Helmet to add the embed code to the head of
 my Gatsby projects.
@@ -43,19 +43,19 @@ the `html.js` file.
 
 ```jsx
 export const wrapPageElement = ({ element }) => (
-  <>
-    <Helmet>
-      <script
-        src={`${process.env.GATSBY_FATHOM_TRACKING_URL}/script.js`}
-        spa="auto"
-        site={process.env.GATSBY_FATHOM_TRACKING_ID}
-        defer
-      ></script>
-    </Helmet>
-    <MDXProvider components={components}>
-      <Layout>{element}</Layout>
-    </MDXProvider>
-  </>
+	<>
+		<Helmet>
+			<script
+				src={`${process.env.GATSBY_FATHOM_TRACKING_URL}/script.js`}
+				spa="auto"
+				site={process.env.GATSBY_FATHOM_TRACKING_ID}
+				defer
+			></script>
+		</Helmet>
+		<MDXProvider components={components}>
+			<Layout>{element}</Layout>
+		</MDXProvider>
+	</>
 )
 ```
 
@@ -70,19 +70,19 @@ import React, { createContext, useContext } from 'react'
 const AnalyticsContext = createContext({})
 
 export const AnalyticsProvider = ({ children }) => {
-  const logClicks = goalId => {
-    window.fathom.trackGoal(goalId, 0)
-  }
+	const logClicks = goalId => {
+		window.fathom.trackGoal(goalId, 0)
+	}
 
-  return (
-    <AnalyticsContext.Provider value={logClicks}>
-      {children}
-    </AnalyticsContext.Provider>
-  )
+	return (
+		<AnalyticsContext.Provider value={logClicks}>
+			{children}
+		</AnalyticsContext.Provider>
+	)
 }
 
 export const useAnalytics = () => {
-  return useContext(AnalyticsContext)
+	return useContext(AnalyticsContext)
 }
 ```
 
@@ -119,50 +119,50 @@ a variable.
 
 ```jsx
 export const A = props => {
-  const fa = useAnalytics()
-  const containsGoalId = props.href?.includes(`goalId`)
-  const [goalId, setGoalId] = useState(``)
-  const [newHref, setNewHref] = useState(``)
+	const fa = useAnalytics()
+	const containsGoalId = props.href?.includes(`goalId`)
+	const [goalId, setGoalId] = useState(``)
+	const [newHref, setNewHref] = useState(``)
 
-  useEffect(() => {
-    if (containsGoalId) {
-      const url = new URL(props.href)
-      setGoalId(url.searchParams.get(`goalId`))
-      url.searchParams.delete(`goalId`)
-      setNewHref(url.href)
-    }
-  }, [containsGoalId, props.href])
+	useEffect(() => {
+		if (containsGoalId) {
+			const url = new URL(props.href)
+			setGoalId(url.searchParams.get(`goalId`))
+			url.searchParams.delete(`goalId`)
+			setNewHref(url.href)
+		}
+	}, [containsGoalId, props.href])
 
-  const onClick = () => {
-    if (goalId) {
-      fa(goalId, 0)
-    }
-  }
-  return (
-    <StyledA
-      {...props}
-      href={containsGoalId ? newHref : props.href}
-      onClick={onClick}
-    >
-      {props.children}
-    </StyledA>
-  )
+	const onClick = () => {
+		if (goalId) {
+			fa(goalId, 0)
+		}
+	}
+	return (
+		<StyledA
+			{...props}
+			href={containsGoalId ? newHref : props.href}
+			onClick={onClick}
+		>
+			{props.children}
+		</StyledA>
+	)
 }
 ```
 
-I've written before on how to [Add Analytics Tracking Links to your
-Markdown] this still stands apart from there's no need to include
+I've written before on how to [Add Analytics Tracking Links to
+your Markdown] this still stands apart from there's no need to include
 quotes (`""`) around the `goalId`.
 
 <!-- Links -->
 
 [how to track custom events with fathom]:
-  https://scottspence.com/posts/track-custom-events-with-fathom-analytics
+	https://scottspence.com/posts/track-custom-events-with-fathom-analytics
 [changed their tracking/embed code]:
-  https://usefathom.com/support/tracking
+	https://usefathom.com/support/tracking
 [use the code with gatsby]:
-  https://usefathom.com/integrations/gatsbyjs
+	https://usefathom.com/integrations/gatsbyjs
 [`gatsby-plugin-fathom`]:
-  https://www.gatsbyjs.com/packages/gatsby-plugin-fathom/
+	https://www.gatsbyjs.com/packages/gatsby-plugin-fathom/
 [add analytics tracking links to your markdown]:
-  https://scottspence.com/posts/add-tracking-links-to-your-markdown/
+	https://scottspence.com/posts/add-tracking-links-to-your-markdown/

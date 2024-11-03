@@ -70,13 +70,13 @@ to do the data loading in one file.
 
 ```svelte
 <script context="module">
-  export async function load({ page }) {
-    const { slug } = page.params
-    return {
-      status: 301,
-      redirect: `/posts/${slug}`,
-    }
-  }
+	export async function load({ page }) {
+		const { slug } = page.params
+		return {
+			status: 301,
+			redirect: `/posts/${slug}`,
+		}
+	}
 </script>
 ```
 
@@ -90,8 +90,8 @@ the `params` and then redirect to the new URL.
 import { redirect } from '@sveltejs/kit'
 
 export const load = async ({ params }) => {
-  const { slug } = params
-  throw redirect(301, `/posts/${slug}`)
+	const { slug } = params
+	throw redirect(301, `/posts/${slug}`)
 }
 ```
 
@@ -186,8 +186,8 @@ import { redirect } from '@sveltejs/kit'
 
 /** @type {import('./$types').RequestHandler} */
 export const GET = async ({ params }) => {
-  const { slug } = params
-  throw redirect(301, `/posts/${slug}`)
+	const { slug } = params
+	throw redirect(301, `/posts/${slug}`)
 }
 ```
 
@@ -204,4 +204,4 @@ that I've done it.
 
 [rodney]: https://twitter.com/askRodney
 [real time analytics]:
-  https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom
+	https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom

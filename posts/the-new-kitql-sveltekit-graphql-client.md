@@ -7,10 +7,10 @@ isPrivate: true
 
 The latest version of KitQL dropped yesterday!
 
-I've written about [Getting Started with KitQL and GraphCMS] in the
-past and there's a few things that have changed between the two
-versions. Most notable to those are that KitQL has merged with
-[Houdini]. There's migrations guides for both!
+I've written about [Getting Started with KitQL and GraphCMS] in the past
+and there's a few things that have changed between the two versions. Most
+notable to those are that KitQL has merged with [Houdini]. There's migrations
+guides for both!
 
 ## Get set up
 
@@ -48,28 +48,28 @@ import type { RequestHandlerArgs } from '$houdini'
 import { HoudiniClient } from '$houdini'
 
 async function fetchQuery({
-  fetch,
-  text = '',
-  variables = {},
-  session,
-  metadata,
+	fetch,
+	text = '',
+	variables = {},
+	session,
+	metadata,
 }: RequestHandlerArgs) {
-  const url =
-    import.meta.env.VITE_GRAPHQL_ENDPOINT ||
-    'https://rickandmortyapi.com/graphql'
+	const url =
+		import.meta.env.VITE_GRAPHQL_ENDPOINT ||
+		'https://rickandmortyapi.com/graphql'
 
-  const result = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: text,
-      variables,
-    }),
-  })
+	const result = await fetch(url, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			query: text,
+			variables,
+		}),
+	})
 
-  return await result.json()
+	return await result.json()
 }
 
 export const houdiniClient = new HoudiniClient(fetchQuery)
@@ -77,5 +77,6 @@ export const houdiniClient = new HoudiniClient(fetchQuery)
 
 <!-- Links -->
 
-[getting started with kitql and graphcms]: https://scottspence.com/posts/getting-started-with-kitql-and-graphcms
+[getting started with kitql and graphcms]:
+	https://scottspence.com/posts/getting-started-with-kitql-and-graphcms
 [houdini]: https://www.houdinigraphql.com/

@@ -7,8 +7,8 @@ isPrivate: false
 
 Cliffs/TL;DR
 
-I made a [recruiter FAQ] on my personal site for recruiters and
-created an [online CV].
+I made a [recruiter FAQ] on my personal site for recruiters and created
+an [online CV].
 
 ## Preamble
 
@@ -97,10 +97,10 @@ have them crawl through my mostly irrelevant job history they could
 get the answers to the questions they wanted answering. The [CV] was
 there if they wanted more detail on me, all they had to do was READ!
 
-In my mind the [personal portfolio] and the [CV] site were a good
-indication of my current skill level with styling and preferred stack,
-in reality no one cares as long as it looks nice and recruiters even
-less so because it doesn't answer the questions they want to ask.
+In my mind the [personal portfolio] and the [CV] site were a good indication
+of my current skill level with styling and preferred stack, in reality
+no one cares as long as it looks nice and recruiters even less so because
+it doesn't answer the questions they want to ask.
 
 ![build-it](https://thepracticaldev.s3.amazonaws.com/i/ptve31bchle6hgg6wuaq.gif)
 
@@ -133,9 +133,9 @@ pick up the phone than READ the information provided.
 
 [json resume schema]: https://jsonresume.org/schema/
 [bot]:
-  https://dev.to/whokilledkevin/how-i-created-a-bot-that-talked-to-recruiters-for-me-54n5
+	https://dev.to/whokilledkevin/how-i-created-a-bot-that-talked-to-recruiters-for-me-54n5
 [poll]:
-  https://dev.to/whokilledkevin/8-things-i-hate-in-recruitment-letters-8ke
+	https://dev.to/whokilledkevin/8-things-i-hate-in-recruitment-letters-8ke
 [dry]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
 [my portfolio]: https://scottspence.com
 [personal portfolio]: https://scottspence.com/#portfolio
@@ -149,4 +149,4 @@ pick up the phone than READ the information provided.
 <!-- Images -->
 
 [jobsite-cv]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/jobsite-cv-11a27b76e59cb7c0015d28592c76c4c8.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/jobsite-cv-11a27b76e59cb7c0015d28592c76c4c8.jpg

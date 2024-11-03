@@ -30,8 +30,8 @@ Many one to one video calls.
 
 ## May recap
 
-After my onboarding one of the first things I did was [create a
-SvelteKit example project] that used the GraphCMS eCommerce example
+After my onboarding one of the first things I did was [create
+a SvelteKit example project] that used the GraphCMS eCommerce example
 project. All the examples in the GraphCMS examples repos use the
 GraphCMS eCommerce example.
 
@@ -47,12 +47,12 @@ GraphCMS on the [CodingCat.dev podcast]. This was released in July
 />
 
 I was well on my way down the Svelte and SvelteKit rabbit hole by this
-time and started to put out some more written content. [Data Binding
-in Svelte] was a refreshing look at how two way data binding worked
+time and started to put out some more written content. [Data
+Binding in Svelte] was a refreshing look at how two way data binding worked
 with Svelte and how little code you have to write to get it to work.
 
-I went a bit further toward the end of May with a [SvelteKit Starter
-Blog with GraphCMS], using the GraphCMS blog schema template.
+I went a bit further toward the end of May with a [SvelteKit
+Starter Blog with GraphCMS], using the GraphCMS blog schema template.
 
 ## June recap
 
@@ -117,14 +117,13 @@ can see I have been quite busy!
 <!-- cSpell:ignore Pranshu,Khanna -->
 
 I have had periods of overwhelming imposter syndrome, at points like
-this I have had colleagues like [Pranshu Khanna] highlight some of my
-past achievements, which is one of the reasons I've put this post
-together.
+this I have had colleagues like [Pranshu Khanna] highlight some of my past
+achievements, which is one of the reasons I've put this post together.
 
 Which brings me to my team! I'm thankful for is a really supportive
-team and manager ([Jamie Barton]) that believes in me and the content
-I'm producing. Before I started at GraphCMS I never thought I'd be
-putting out the amount of content I have produced.
+team and manager ([Jamie Barton]) that believes in me and the content I'm
+producing. Before I started at GraphCMS I never thought I'd be putting
+out the amount of content I have produced.
 
 What I have listed here is actual content and doesn't include all the
 planning and co-ordination with the rest of the team. Helping out with
@@ -137,25 +136,25 @@ I'm doing now. I really feel like I'm only just getting started!!
 <!-- Links -->
 
 [create a sveltekit example project]:
-  https://github.com/GraphCMS/graphcms-examples/tree/master/with-sveltekit
+	https://github.com/GraphCMS/graphcms-examples/tree/master/with-sveltekit
 [sveltekit starter blog with graphcms]:
-  https://graphcms.com/blog/sveltekit-starter-blog-with-graphcms
+	https://graphcms.com/blog/sveltekit-starter-blog-with-graphcms
 [graphcms examples]: https://github.com/GraphCMS/graphcms-examples/
 [codingcat.dev podcast]:
-  https://codingcat.dev/podcast/1-31-delivering-digital-content-with-graphcms
+	https://codingcat.dev/podcast/1-31-delivering-digital-content-with-graphcms
 [data binding in svelte]:
-  https://graphcms.com/blog/data-binding-in-svelte
+	https://graphcms.com/blog/data-binding-in-svelte
 [jamstack linktree clone]:
-  https://scottspence.com/posts/once-click-links-page
+	https://scottspence.com/posts/once-click-links-page
 [examples video series]:
-  https://graphcms.com/blog/graphcms-examples-series
+	https://graphcms.com/blog/graphcms-examples-series
 [building a personal timeline with graphcms and sveltekit]:
-  https://graphcms.com/blog/build-a-personal-timeline-with-graphcms-and-sveltekit
+	https://graphcms.com/blog/build-a-personal-timeline-with-graphcms-and-sveltekit
 [jamstack explorers mission]:
-  https://explorers.netlify.com/learn/building-with-sveltekit-and-graphcms
+	https://explorers.netlify.com/learn/building-with-sveltekit-and-graphcms
 [announced by netlify]:
-  https://twitter.com/Netlify/status/1439974131290755078
+	https://twitter.com/Netlify/status/1439974131290755078
 [with a blog post]:
-  https://graphcms.com/blog/build-with-sveltekit-and-graphcms
+	https://graphcms.com/blog/build-with-sveltekit-and-graphcms
 [jamie barton]: https://twitter.com/notrab
 [pranshu khanna]: https://twitter.com/inmypranshoes

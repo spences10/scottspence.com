@@ -197,8 +197,7 @@ nvm install 14
 ## Install yarn
 
 Lastly there are projects I work on that use Yarn so I'll need to
-install that too, in this case it's the instructions from the [Yarn
-site].
+install that too, in this case it's the instructions from the [Yarn site].
 
 ```bash
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -220,11 +219,11 @@ Thanks 👍
 <!-- Links -->
 
 [omf themes markdown doc]:
-  https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md
+	https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md
 [extensive list]:
-  https://github.com/oh-my-fish/packages-main/tree/master/packages
+	https://github.com/oh-my-fish/packages-main/tree/master/packages
 [oh my fish]: https://github.com/oh-my-fish/oh-my-fish
 [the v3 package]:
-  https://github.com/fish-shell/fish-shell#packages-for-linux
+	https://github.com/fish-shell/fish-shell#packages-for-linux
 [yarn site]:
-  https://classic.yarnpkg.com/en/docs/install/#debian-stable
+	https://classic.yarnpkg.com/en/docs/install/#debian-stable

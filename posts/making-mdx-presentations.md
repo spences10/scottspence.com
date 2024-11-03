@@ -48,9 +48,9 @@ The first two are the same really with using Gatsby shadowing (theme)
 for MDX Deck in Gatsby Theme MDX Deck.
 
 For a _really_ good example of using MDX Deck as a theme inside of a
-Gatsby project check out [Sam Larsen-Disney]'s site, [sld.codes] and
-the [presentations] pages inside there. Each presentation is it's own
-MDX Deck slide deck. 🤯
+Gatsby project check out [Sam Larsen-Disney]'s site, [sld.codes] and the
+[presentations] pages inside there. Each presentation is it's own MDX Deck
+slide deck. 🤯
 
 ## The OG!
 
@@ -65,8 +65,8 @@ wonder if it was [still supported].
 
 We get it, Jackson's a busy guy and OSS is, well OSS. So after I was
 lined up to do talk about [Spreading the jamstack] at [Scale By the
-Bay] I opted for something with a touch more features to use, this is
-when I discovered Next MDX Deck when [Monica Powell] did a talk at MDX
+Bay] I opted for something with a touch more features to use, this is when
+I discovered Next MDX Deck when [Monica Powell] did a talk at MDX
 conf.
 
 ## Next MDX Deck
@@ -75,8 +75,8 @@ Next MDX Deck had the `MDXProvider` exposed which means that I could
 fold in components at a high level rather than have to import them on
 the slide level.
 
-This means that I can use [MDX Embed] and throw in Tweets, CodePens
-and YouTube videos to my hearts content.
+This means that I can use [MDX Embed] and throw in Tweets, CodePens and
+YouTube videos to my hearts content.
 
 In the process of me doing the slides I need to do for [Tuesday] I
 found I'm not the only one that procrastinates a touch when it comes
@@ -153,21 +153,21 @@ import MDXPresentation from './presentation.mdx'
 import theme from './theme/theme'
 
 const Index = () => {
-  return (
-    <Zoom
-      maxWidth={1000}
-      width={1000}
-      aspectRatio={16 / 9}
-      sx={{ maxWidth: '100vw', maxHeight: '100vh' }}
-    >
-      <Deck
-        components={{ ...components, ...deckComponents }}
-        theme={theme}
-      >
-        <MDXPresentation />
-      </Deck>
-    </Zoom>
-  )
+	return (
+		<Zoom
+			maxWidth={1000}
+			width={1000}
+			aspectRatio={16 / 9}
+			sx={{ maxWidth: '100vw', maxHeight: '100vh' }}
+		>
+			<Deck
+				components={{ ...components, ...deckComponents }}
+				theme={theme}
+			>
+				<MDXPresentation />
+			</Deck>
+		</Zoom>
+	)
 }
 
 ReactDOM.render(<Index />, document.getElementById('root'))
@@ -186,10 +186,10 @@ import CodeHighlight from './components/code'
 import { Tweet, CodePen, YouTube } from 'mdx-embed'
 
 export default {
-  CodeHighlight,
-  Tweet,
-  CodePen,
-  YouTube,
+	CodeHighlight,
+	Tweet,
+	CodePen,
+	YouTube,
 }
 ```
 
@@ -228,11 +228,11 @@ all the available components and concepts.
 [presentations]: https://sld.codes/presentations
 [mdx embed]: https://www.mdx-embed.com/
 [tuesday]:
-  https://www.linkedin.com/events/mmttechmeetup-gatsbyjs-feb20216762857247988031488/
+	https://www.linkedin.com/events/mmttechmeetup-gatsbyjs-feb20216762857247988031488/
 [mmt tech meetup]:
-  https://www.linkedin.com/events/mmttechmeetup-gatsbyjs-feb20216762857247988031488/
+	https://www.linkedin.com/events/mmttechmeetup-gatsbyjs-feb20216762857247988031488/
 [sara vieira's slides]: https://vue-apollo-magic.now.sh/#0
 [called mdx deck]: https://github.com/SaraVieira/vue-graphql-love
 [example mdxp slides]:
-  https://0phoff.github.io/MDXP/examples/demo/#/normal/1/1
+	https://0phoff.github.io/MDXP/examples/demo/#/normal/1/1
 [documentation]: https://0phoff.github.io/MDXP/

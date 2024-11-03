@@ -9,8 +9,7 @@ isPrivate: false
 
 Tailwind is cool, right? Really configurable as well, I wanted to add
 some gradient animation to a project of mine. So did a search and
-found this awesome post by [Victor Yoalli] on how to do it! Thanks
-Victor!
+found this awesome post by [Victor Yoalli] on how to do it! Thanks Victor!
 
 I've basically taken Victor's code and adjusted it for use with daisUI
 to apply to the effect to some text rather than to a div as with
@@ -130,51 +129,51 @@ config from this post to the `tailwind.config.js` file.
 const daisyui = require('daisyui')
 
 const config = {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
+	content: ['./src/**/*.{html,js,svelte,ts}'],
 
-  theme: {
-    extend: {
-      animation: {
-        'gradient-x': 'gradient-x 5s ease infinite',
-        'gradient-y': 'gradient-y 5s ease infinite',
-        'gradient-xy': 'gradient-xy 5s ease infinite',
-      },
-      keyframes: {
-        'gradient-y': {
-          '0%, 100%': {
-            'background-size': '400% 400%',
-            'background-position': 'center top',
-          },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'center center',
-          },
-        },
-        'gradient-x': {
-          '0%, 100%': {
-            'background-size': '200% 200%',
-            'background-position': 'left center',
-          },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center',
-          },
-        },
-        'gradient-xy': {
-          '0%, 100%': {
-            'background-size': '400% 400%',
-            'background-position': 'left center',
-          },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center',
-          },
-        },
-      },
-    },
-  },
+	theme: {
+		extend: {
+			animation: {
+				'gradient-x': 'gradient-x 5s ease infinite',
+				'gradient-y': 'gradient-y 5s ease infinite',
+				'gradient-xy': 'gradient-xy 5s ease infinite',
+			},
+			keyframes: {
+				'gradient-y': {
+					'0%, 100%': {
+						'background-size': '400% 400%',
+						'background-position': 'center top',
+					},
+					'50%': {
+						'background-size': '200% 200%',
+						'background-position': 'center center',
+					},
+				},
+				'gradient-x': {
+					'0%, 100%': {
+						'background-size': '200% 200%',
+						'background-position': 'left center',
+					},
+					'50%': {
+						'background-size': '200% 200%',
+						'background-position': 'right center',
+					},
+				},
+				'gradient-xy': {
+					'0%, 100%': {
+						'background-size': '400% 400%',
+						'background-position': 'left center',
+					},
+					'50%': {
+						'background-size': '200% 200%',
+						'background-position': 'right center',
+					},
+				},
+			},
+		},
+	},
 
-  plugins: [daisyui],
+	plugins: [daisyui],
 }
 
 module.exports = config
@@ -204,19 +203,19 @@ theme.
 
 ```svelte
 <h1
-  class="bg-clip-text text-transparent bg-gradient-to-tr from-primary to-secondary via-accent animate-gradient-xy"
+	class="from-primary to-secondary via-accent animate-gradient-xy bg-gradient-to-tr bg-clip-text text-transparent"
 >
-  Tailwind Gradient Text
+	Tailwind Gradient Text
 </h1>
 <p
-  class="bg-clip-text text-transparent bg-gradient-to-br from-primary to-secondary via-accent animate-gradient-y"
+	class="from-primary to-secondary via-accent animate-gradient-y bg-gradient-to-br bg-clip-text text-transparent"
 >
-  This animation is on the vertical axis
+	This animation is on the vertical axis
 </p>
 <p
-  class="bg-clip-text text-transparent bg-gradient-to-tl from-primary to-secondary via-accent animate-gradient-x"
+	class="from-primary to-secondary via-accent animate-gradient-x bg-gradient-to-tl bg-clip-text text-transparent"
 >
-  This animation is on the horizontal axis
+	This animation is on the horizontal axis
 </p>
 ```
 
@@ -224,22 +223,22 @@ Then finally, I'll can add in a wrapping element and add in some font
 styles.
 
 ```svelte
-<div class="flex flex-col items-center justify-center h-screen">
-  <h1
-    class="bg-clip-text text-transparent bg-gradient-to-tr from-primary to-secondary via-accent animate-gradient-xy font-extrabold text-6xl md:text-9xl py-8"
-  >
-    Tailwind Gradient Text
-  </h1>
-  <p
-    class="bg-clip-text text-transparent bg-gradient-to-br from-primary to-secondary via-accent animate-gradient-y font-extrabold text-3xl md:text-6xl py-8"
-  >
-    This animation is on the vertical axis
-  </p>
-  <p
-    class="bg-clip-text text-transparent bg-gradient-to-tl from-primary to-secondary via-accent animate-gradient-x font-extrabold text-3xl md:text-6xl py-8"
-  >
-    This animation is on the horizontal axis
-  </p>
+<div class="flex h-screen flex-col items-center justify-center">
+	<h1
+		class="from-primary to-secondary via-accent animate-gradient-xy bg-gradient-to-tr bg-clip-text py-8 text-6xl font-extrabold text-transparent md:text-9xl"
+	>
+		Tailwind Gradient Text
+	</h1>
+	<p
+		class="from-primary to-secondary via-accent animate-gradient-y bg-gradient-to-br bg-clip-text py-8 text-3xl font-extrabold text-transparent md:text-6xl"
+	>
+		This animation is on the vertical axis
+	</p>
+	<p
+		class="from-primary to-secondary via-accent animate-gradient-x bg-gradient-to-tl bg-clip-text py-8 text-3xl font-extrabold text-transparent md:text-6xl"
+	>
+		This animation is on the horizontal axis
+	</p>
 </div>
 ```
 
@@ -256,11 +255,11 @@ please consider sharing it on the socials! 😊
 <!-- Links -->
 
 [victor yoalli]:
-  https://victoryoalli.me/how-to-create-an-animated-gradient-using-tailwin-css
+	https://victoryoalli.me/how-to-create-an-animated-gradient-using-tailwin-css
 [`svelte-add`]: https://github.com/svelte-add/svelte-adders
 [github]: https://github.com/spences10/gradient-animation-example
 
 <!-- Images -->
 
 [sveltekit-skeleton-project-with-svelte-add-tailwind-changes]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1673023278/scottspence.com/sveltekit-skeleton-project-with-svelte-add-tailwind-changes.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1673023278/scottspence.com/sveltekit-skeleton-project-with-svelte-add-tailwind-changes.png

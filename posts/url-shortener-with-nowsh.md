@@ -64,8 +64,8 @@ https://www.youtube.com/c/ScottSpencePlease, but it's case sensitive.
 
 ## Do I have to use Vercel? 🤔
 
-No, you can use Netlify as well. There's a great [Kent C Dodds example
-with Netlify] that I used before moving to Vercel.
+No, you can use Netlify as well. There's a great [Kent C Dodds
+example with Netlify] that I used before moving to Vercel.
 
 You don't have to use Netlify either, you do you. 😸
 
@@ -80,8 +80,8 @@ examples earlier, give a path to your URL then use a redirect rule.
 
 ```json
 {
-  "source": "/yt",
-  "destination": "https://www.youtube.com/channel/UCnngLXpLSFsKkDhFoO9Ct3w"
+	"source": "/yt",
+	"destination": "https://www.youtube.com/channel/UCnngLXpLSFsKkDhFoO9Ct3w"
 }
 ```
 
@@ -141,13 +141,13 @@ want my domain to default to.
 
 ```json
 {
-  "version": 2,
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "https://scottspence.me"
-    }
-  ]
+	"version": 2,
+	"redirects": [
+		{
+			"source": "/",
+			"destination": "https://scottspence.me"
+		}
+	]
 }
 ```
 
@@ -284,23 +284,23 @@ the same project.
 [github account]: https://github.com/join
 [for windows]: https://scottspence.com/posts/wsl-bootstrap-2019
 [kent c dodds example with netlify]:
-  https://www.youtube.com/watch?v=HL6paXyx6hM
+	https://www.youtube.com/watch?v=HL6paXyx6hM
 [vercel's documentation]:
-  https://vercel.com/docs/configuration#project/redirects
+	https://vercel.com/docs/configuration#project/redirects
 [github project]: https://github.com/spences10/now-short-urls
 [use commons host]:
-  https://dev.to/commonshost/build-your-own-url-shortener-in-15-minutes-279n
+	https://dev.to/commonshost/build-your-own-url-shortener-in-15-minutes-279n
 [vercel for github]: https://vercel.com/github
 [new repository]: https://github.com/new
 [here]: https://vercel.com/docs/v2/git-integrations/vercel-for-github
 [gitlab]:
-  https://vercel.com/docs/v2/git-integrations/vercel-for-gitlab
+	https://vercel.com/docs/v2/git-integrations/vercel-for-gitlab
 [bitbucket]:
-  https://vercel.com/docs/v2/git-integrations/vercel-for-bitbucket
+	https://vercel.com/docs/v2/git-integrations/vercel-for-bitbucket
 
 <!-- Images -->
 
 [vercel project overview]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/vercel-project-overview-920be865823e277d7de4076c16bf0cef.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/vercel-project-overview-920be865823e277d7de4076c16bf0cef.png
 [vercel domains settings]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/vercel-domains-settings-1a61d18a56f360b8fc4d92ed3767365b.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/vercel-domains-settings-1a61d18a56f360b8fc4d92ed3767365b.png

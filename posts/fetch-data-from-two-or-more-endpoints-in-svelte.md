@@ -16,22 +16,22 @@ means it runs before the page is loaded.
 
 ```svelte
 <script context="module">
-  export async function load({ fetch }) {
-    const [pagesReq, postsReq] = await Promise.all([
-      fetch('/pages.json'),
-      fetch('/posts.json'),
-    ])
-    if (pagesReq.ok && postsReq.ok) {
-      const { pages } = await pagesReq.json()
-      const { posts } = await postsReq.json()
-      return {
-        props: {
-          pages,
-          posts,
-        },
-      }
-    }
-  }
+	export async function load({ fetch }) {
+		const [pagesReq, postsReq] = await Promise.all([
+			fetch('/pages.json'),
+			fetch('/posts.json'),
+		])
+		if (pagesReq.ok && postsReq.ok) {
+			const { pages } = await pagesReq.json()
+			const { posts } = await postsReq.json()
+			return {
+				props: {
+					pages,
+					posts,
+				},
+			}
+		}
+	}
 </script>
 ```
 
@@ -40,42 +40,42 @@ Full file looks a little like this example:
 ```svelte
 <!-- src/routes/index.svelte -->
 <script context="module">
-  export async function load({ fetch }) {
-    const [pagesReq, postsReq] = await Promise.all([
-      fetch('/pages.json'),
-      fetch('/posts.json'),
-    ])
-    if (pagesReq.ok && postsReq.ok) {
-      const { pages } = await pagesReq.json()
-      const { posts } = await postsReq.json()
-      return {
-        props: {
-          pages,
-          posts,
-        },
-      }
-    }
-  }
+	export async function load({ fetch }) {
+		const [pagesReq, postsReq] = await Promise.all([
+			fetch('/pages.json'),
+			fetch('/posts.json'),
+		])
+		if (pagesReq.ok && postsReq.ok) {
+			const { pages } = await pagesReq.json()
+			const { posts } = await postsReq.json()
+			return {
+				props: {
+					pages,
+					posts,
+				},
+			}
+		}
+	}
 </script>
 
 <script>
-  import PagesList from '$lib/nav.svelte'
-  export let pages, posts
+	import PagesList from '$lib/nav.svelte'
+	export let pages, posts
 </script>
 
 <PagesList {pages} />
 
 <h1>Welcome to SvelteKit</h1>
 <p>
-  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
-  documentation
+	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
+	documentation
 </p>
 
 {#each posts as { title, slug, excerpt }}
-  <a href={`/posts/${slug}`}>
-    <p>{title}</p>
-    <p>{excerpt}</p>
-  </a>
+	<a href={`/posts/${slug}`}>
+		<p>{title}</p>
+		<p>{excerpt}</p>
+	</a>
 {/each}
 ```
 

@@ -33,8 +33,8 @@ previous version.
 
 <!-- cSpell:ignore rudyzeinoun -->
 
-Thanks to [this comment] from [rudyzeinoun] which details the Windows
-PowerShell commands to do this.
+Thanks to [this comment] from [rudyzeinoun] which details the Windows PowerShell
+commands to do this.
 
 Before running the commands, you'll need to download the previous
 version of WSL from the [releases page] on GitHub.
@@ -84,11 +84,11 @@ me and the next time I need to do this!!
 
 [releases page]: https://github.com/microsoft/WSL/releases
 [port forwarding repeated failure on wsl 1.1.0]:
-  https://github.com/microsoft/WSL/issues/9508
+	https://github.com/microsoft/WSL/issues/9508
 [some network connections hang (timed out) under wsl]:
-  https://github.com/microsoft/WSL/issues/7326
+	https://github.com/microsoft/WSL/issues/7326
 [ssh to remote causes disconnect with client_loop: send disconnect: broken pipe]:
-  https://github.com/microsoft/WSL/issues/7966
+	https://github.com/microsoft/WSL/issues/7966
 [this comment]:
-  https://github.com/microsoft/WSL/issues/9508#issuecomment-1396866615
+	https://github.com/microsoft/WSL/issues/9508#issuecomment-1396866615
 [rudyzeinoun]: https://github.com/rudyzeinoun

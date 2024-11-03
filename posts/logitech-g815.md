@@ -9,9 +9,9 @@ isPrivate: false
   import { YouTube } from 'sveltekit-embed'
 </script>
 
-My beloved [HAVIT KB395L] keyboard left Ctrl key has started cutting
-out intermittently. As a developer all my coding revolves around that
-key saving changes and copy pasting.
+My beloved [HAVIT KB395L] keyboard left Ctrl key has started cutting out
+intermittently. As a developer all my coding revolves around that key saving
+changes and copy pasting.
 
 This means that my code now breaks with a random `s` in there where I
 thought I'd saved something, or where I've replaced a code block with
@@ -130,8 +130,8 @@ typing.
 
 ## Lighting configuration on Ubuntu
 
-Logitech have management software for the G815 with the [Logitech G
-Hub] which is available for Windows and macOS users, but as I'm a
+Logitech have management software for the G815 with the [Logitech
+G Hub] which is available for Windows and macOS users, but as I'm a
 Linux users that's no help to me! 🙃
 
 This was nearly a deal breaker for me but I found a [Reddit post] with
@@ -180,8 +180,8 @@ harder to scan the board visually to find them.
 
 ## Dem G keys
 
-From reading up on the issue linked on the [Reddit post] it does seem
-like I can assign different keys or nothing to the G keys.
+From reading up on the issue linked on the [Reddit post] it does seem like
+I can assign different keys or nothing to the G keys.
 
 For now at least I think I'll try live with them as is, although the
 G5 key is mapped to F5 so it may get annoying.
@@ -191,20 +191,20 @@ G5 key is mapped to F5 so it may get annoying.
 [havit kb395l]: https://www.amazon.co.uk/gp/product/B0767YQQTQ
 [ruminating]: https://en.wikipedia.org/wiki/Rumination_(psychology)
 [logitech g hub]:
-  https://www.logitechg.com/en-gb/innovation/g-hub.html
+	https://www.logitechg.com/en-gb/innovation/g-hub.html
 [reddit post]:
-  https://www.reddit.com/r/linux4noobs/comments/eqkotk/logitech_g815_keyboard_controls/
+	https://www.reddit.com/r/linux4noobs/comments/eqkotk/logitech_g815_keyboard_controls/
 [libratbag]: https://github.com/libratbag/libratbag
 [add a ppa]:
-  https://launchpad.net/~libratbag-piper/+archive/ubuntu/piper-libratbag-git
+	https://launchpad.net/~libratbag-piper/+archive/ubuntu/piper-libratbag-git
 
 <!-- Images -->
 
 [box comparison]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/box-comparison-7e4831de6c91f0502ba6d2118ab18302.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/box-comparison-7e4831de6c91f0502ba6d2118ab18302.jpg
 [boards comparison]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858548/scottspence.com/boards-comparison-91ea724edce1f0b60656eecc5af09480.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858548/scottspence.com/boards-comparison-91ea724edce1f0b60656eecc5af09480.jpg
 [rainbow cycle lights]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858548/scottspence.com/rainbow-cycle-lights-b6b3b5f54b383db6328804ad822b858a.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858548/scottspence.com/rainbow-cycle-lights-b6b3b5f54b383db6328804ad822b858a.jpg
 [preferred-colour]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858547/scottspence.com/preferred-colour-25622ecd01126ad8d50122b6df2e52cc.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858547/scottspence.com/preferred-colour-25622ecd01126ad8d50122b6df2e52cc.jpg

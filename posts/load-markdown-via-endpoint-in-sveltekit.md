@@ -114,25 +114,25 @@ import { marked } from 'marked'
 import type { RequestHandler } from './$types'
 
 export const GET: RequestHandler = async () => {
-  const getMarkdown = () => {
-    return new Promise((resolve, reject) => {
-      readFile(`src/lib/copy/intro.md`, 'utf8', (err, data) => {
-        if (err) {
-          reject(err)
-        }
-        resolve(data)
-      })
-    })
-  }
+	const getMarkdown = () => {
+		return new Promise((resolve, reject) => {
+			readFile(`src/lib/copy/intro.md`, 'utf8', (err, data) => {
+				if (err) {
+					reject(err)
+				}
+				resolve(data)
+			})
+		})
+	}
 
-  let markdown = (await getMarkdown()) as string
-  let html = marked(markdown)
+	let markdown = (await getMarkdown()) as string
+	let html = marked(markdown)
 
-  return new Response(html, {
-    headers: {
-      'content-type': 'text/html',
-    },
-  })
+	return new Response(html, {
+		headers: {
+			'content-type': 'text/html',
+		},
+	})
 }
 ```
 
@@ -166,27 +166,27 @@ import { marked } from 'marked'
 import type { RequestHandler } from './$types'
 
 export const GET: RequestHandler = async ({ url }) => {
-  let file = url.searchParams.get('file')
+	let file = url.searchParams.get('file')
 
-  const getMarkdown = () => {
-    return new Promise((resolve, reject) => {
-      readFile(`src/lib/copy/${file}.md`, 'utf8', (err, data) => {
-        if (err) {
-          reject(err)
-        }
-        resolve(data)
-      })
-    })
-  }
+	const getMarkdown = () => {
+		return new Promise((resolve, reject) => {
+			readFile(`src/lib/copy/${file}.md`, 'utf8', (err, data) => {
+				if (err) {
+					reject(err)
+				}
+				resolve(data)
+			})
+		})
+	}
 
-  let markdown = (await getMarkdown()) as string
-  let html = marked(markdown)
+	let markdown = (await getMarkdown()) as string
+	let html = marked(markdown)
 
-  return new Response(html, {
-    headers: {
-      'content-type': 'text/html',
-    },
-  })
+	return new Response(html, {
+		headers: {
+			'content-type': 'text/html',
+		},
+	})
 }
 ```
 
@@ -215,9 +215,9 @@ I'll create a `html` variable and return that as the `data` from the
 import type { PageLoad } from './$types'
 
 export const load: PageLoad = async ({ fetch }) => {
-  const res = await fetch(`parse-markdown?file=intro`)
-  const html = await res.text()
-  return { html }
+	const res = await fetch(`parse-markdown?file=intro`)
+	const html = await res.text()
+	return { html }
 }
 ```
 
@@ -231,13 +231,13 @@ out the HTML using the Svelte `@html` directive.
 
 ```svelte
 <script lang="ts">
-  import type { PageData } from './$types'
+	import type { PageData } from './$types'
 
-  export let data: PageData
+	export let data: PageData
 </script>
 
 <div class="prose">
-  {@html data.html}
+	{@html data.html}
 </div>
 ```
 

@@ -55,8 +55,7 @@ mkdir -p posts/toc-example
 touch posts/toc-example/index.mdx
 ```
 
-I'll paste in some content, I'll take from the [markdown from this
-post!]
+I'll paste in some content, I'll take from the [markdown from this post!]
 
 ## Configure the project to use MDX
 
@@ -95,11 +94,11 @@ explorer (`localhost:8000/___graphql`).
 
 ```graphql
 {
-  allMdx {
-    nodes {
-      excerpt
-    }
-  }
+	allMdx {
+		nodes {
+			excerpt
+		}
+	}
 }
 ```
 
@@ -113,15 +112,15 @@ currently it's only `gatsby-toc-example`. I'll do that with
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-  if (node.internal.type === `Mdx`) {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
-  }
+	const { createNodeField } = actions
+	if (node.internal.type === `Mdx`) {
+		const value = createFilePath({ node, getNode })
+		createNodeField({
+			name: `slug`,
+			node,
+			value,
+		})
+	}
 }
 ```
 
@@ -133,13 +132,13 @@ fields are being created.
 
 ```graphql
 {
-  allMdx {
-    nodes {
-      fields {
-        slug
-      }
-    }
-  }
+	allMdx {
+		nodes {
+			fields {
+				slug
+			}
+		}
+	}
 }
 ```
 
@@ -163,11 +162,11 @@ validate the page was created by Gatsby node.
 import React from 'react'
 
 export default () => {
-  return (
-    <>
-      <h1>Hello template</h1>
-    </>
-  )
+	return (
+		<>
+			<h1>Hello template</h1>
+		</>
+	)
 }
 ```
 
@@ -179,48 +178,48 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 const path = require(`path`)
 
 exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions
-  const postTemplate = path.resolve('src/templates/post-template.js')
+	const { createPage } = actions
+	const postTemplate = path.resolve('src/templates/post-template.js')
 
-  return graphql(`
-    {
-      allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
-        nodes {
-          fields {
-            slug
-          }
-        }
-      }
-    }
-  `).then(result => {
-    if (result.errors) {
-      throw result.errors
-    }
+	return graphql(`
+		{
+			allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+				nodes {
+					fields {
+						slug
+					}
+				}
+			}
+		}
+	`).then(result => {
+		if (result.errors) {
+			throw result.errors
+		}
 
-    const posts = result.data.allMdx.nodes
+		const posts = result.data.allMdx.nodes
 
-    posts.forEach((post, index) => {
-      createPage({
-        path: post.fields.slug,
-        component: postTemplate,
-        context: {
-          slug: post.fields.slug,
-        },
-      })
-    })
-  })
+		posts.forEach((post, index) => {
+			createPage({
+				path: post.fields.slug,
+				component: postTemplate,
+				context: {
+					slug: post.fields.slug,
+				},
+			})
+		})
+	})
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-  if (node.internal.type === `Mdx`) {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
-  }
+	const { createNodeField } = actions
+	if (node.internal.type === `Mdx`) {
+		const value = createFilePath({ node, getNode })
+		createNodeField({
+			name: `slug`,
+			node,
+			value,
+		})
+	}
 }
 ```
 
@@ -255,19 +254,19 @@ from `createPage` in `gatsby-node.js`.
 
 ```graphql
 query PostBySlug($slug: String!) {
-  mdx(fields: { slug: { eq: $slug } }) {
-    frontmatter {
-      title
-      date(formatString: "YYYY MMMM Do")
-    }
-    body
-    excerpt
-    tableOfContents
-    timeToRead
-    fields {
-      slug
-    }
-  }
+	mdx(fields: { slug: { eq: $slug } }) {
+		frontmatter {
+			title
+			date(formatString: "YYYY MMMM Do")
+		}
+		body
+		excerpt
+		tableOfContents
+		timeToRead
+		fields {
+			slug
+		}
+	}
 }
 ```
 
@@ -284,32 +283,32 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React from 'react'
 
 export default ({ data }) => {
-  const { body, frontmatter } = data.mdx
-  return (
-    <>
-      <h1>{frontmatter.title}</h1>
-      <p>{frontmatter.date}</p>
-      <MDXRenderer>{body}</MDXRenderer>
-    </>
-  )
+	const { body, frontmatter } = data.mdx
+	return (
+		<>
+			<h1>{frontmatter.title}</h1>
+			<p>{frontmatter.date}</p>
+			<MDXRenderer>{body}</MDXRenderer>
+		</>
+	)
 }
 
 export const query = graphql`
-  query PostBySlug($slug: String!) {
-    mdx(fields: { slug: { eq: $slug } }) {
-      frontmatter {
-        title
-        date(formatString: "YYYY MMMM Do")
-      }
-      body
-      excerpt
-      tableOfContents
-      timeToRead
-      fields {
-        slug
-      }
-    }
-  }
+	query PostBySlug($slug: String!) {
+		mdx(fields: { slug: { eq: $slug } }) {
+			frontmatter {
+				title
+				date(formatString: "YYYY MMMM Do")
+			}
+			body
+			excerpt
+			tableOfContents
+			timeToRead
+			fields {
+				slug
+			}
+		}
+	}
 `
 ```
 
@@ -330,14 +329,14 @@ import React from 'react'
 import styled from 'styled-components'
 
 export const StyledH1 = styled.h1`
-  font-size: ${({ theme }) => theme.fontSize['4xl']};
-  font-family: ${({ theme }) => theme.font.serif};
-  margin-top: ${({ theme }) => theme.spacing[8]};
-  line-height: ${({ theme }) => theme.lineHeight.none};
+	font-size: ${({ theme }) => theme.fontSize['4xl']};
+	font-family: ${({ theme }) => theme.font.serif};
+	margin-top: ${({ theme }) => theme.spacing[8]};
+	line-height: ${({ theme }) => theme.lineHeight.none};
 `
 
 export const H1 = props => {
-  return <StyledH1 {...props}>{props.children}</StyledH1>
+	return <StyledH1 {...props}>{props.children}</StyledH1>
 }
 ```
 
@@ -349,14 +348,14 @@ import React from 'react'
 import styled from 'styled-components'
 
 export const StyledH2 = styled.h2`
-  font-size: ${({ theme }) => theme.fontSize['3xl']};
-  font-family: ${({ theme }) => theme.font.serif};
-  margin-top: ${({ theme }) => theme.spacing[6]};
-  line-height: ${({ theme }) => theme.lineHeight.none};
+	font-size: ${({ theme }) => theme.fontSize['3xl']};
+	font-family: ${({ theme }) => theme.font.serif};
+	margin-top: ${({ theme }) => theme.spacing[6]};
+	line-height: ${({ theme }) => theme.lineHeight.none};
 `
 
 export const H2 = props => {
-  return <StyledH2 {...props}>{props.children}</StyledH2>
+	return <StyledH2 {...props}>{props.children}</StyledH2>
 }
 ```
 
@@ -377,18 +376,18 @@ import React from 'react'
 import styled from 'styled-components'
 
 export const StyledP = styled.p`
-  margin-top: ${({ theme }) => theme.spacing[3]};
-  strong {
-    font-weight: bold;
-  }
-  em {
-    font-style: italic;
-  }
+	margin-top: ${({ theme }) => theme.spacing[3]};
+	strong {
+		font-weight: bold;
+	}
+	em {
+		font-style: italic;
+	}
 `
 
 export const P = props => {
-  const { children, ...rest } = props
-  return <StyledP {...rest}>{children}</StyledP>
+	const { children, ...rest } = props
+	return <StyledP {...rest}>{children}</StyledP>
 }
 ```
 
@@ -411,18 +410,18 @@ import { H1, H2, P } from './src/components/page-elements'
 import { GlobalStyle, theme } from './src/theme/global-style'
 
 const components = {
-  h1: props => <H1 {...props} />,
-  h2: props => <H2 {...props} />,
-  p: props => <P {...props} />,
+	h1: props => <H1 {...props} />,
+	h2: props => <H2 {...props} />,
+	p: props => <P {...props} />,
 }
 
 export const wrapPageElement = ({ element }) => (
-  <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <MDXProvider components={components}>
-      <Layout>{element}</Layout>
-    </MDXProvider>
-  </ThemeProvider>
+	<ThemeProvider theme={theme}>
+		<GlobalStyle />
+		<MDXProvider components={components}>
+			<Layout>{element}</Layout>
+		</MDXProvider>
+	</ThemeProvider>
 )
 ```
 
@@ -496,15 +495,15 @@ import styled from 'styled-components'
 import { AutoLink } from './linked-headers'
 
 export const StyledH2 = styled.h2`
-  font-size: ${({ theme }) => theme.fontSize['3xl']};
-  font-family: ${({ theme }) => theme.font.serif};
-  margin-top: ${({ theme }) => theme.spacing[6]};
-  line-height: ${({ theme }) => theme.lineHeight.none};
-  ${AutoLink}
+	font-size: ${({ theme }) => theme.fontSize['3xl']};
+	font-family: ${({ theme }) => theme.font.serif};
+	margin-top: ${({ theme }) => theme.spacing[6]};
+	line-height: ${({ theme }) => theme.lineHeight.none};
+	${AutoLink}
 `
 
 export const H2 = props => {
-  return <StyledH2 {...props}>{props.children}</StyledH2>
+	return <StyledH2 {...props}>{props.children}</StyledH2>
 }
 ```
 
@@ -536,21 +535,21 @@ positioning and create a scrollable div to use inside of that.
 
 ```jsx
 const Toc = styled.ul`
-  position: fixed;
-  left: calc(50% + 400px);
-  top: 110px;
-  max-height: 70vh;
-  width: 310px;
-  display: flex;
-  li {
-    line-height: ${({ theme }) => theme.lineHeight.tight};
-    margin-top: ${({ theme }) => theme.spacing[3]};
-  }
+	position: fixed;
+	left: calc(50% + 400px);
+	top: 110px;
+	max-height: 70vh;
+	width: 310px;
+	display: flex;
+	li {
+		line-height: ${({ theme }) => theme.lineHeight.tight};
+		margin-top: ${({ theme }) => theme.spacing[3]};
+	}
 `
 
 const InnerScroll = styled.div`
-  overflow: hidden;
-  overflow-y: scroll;
+	overflow: hidden;
+	overflow-y: scroll;
 `
 ```
 
@@ -567,20 +566,20 @@ Time to map over the `tableOfContents` object:
 
 ```jsx
 {
-  typeof tableOfContents.items === 'undefined' ? null : (
-    <Toc>
-      <InnerScroll>
-        <H2>Table of contents</H2>
-        {tableOfContents.items.map(i => (
-          <li key={i.url}>
-            <a href={i.url} key={i.url}>
-              {i.title}
-            </a>
-          </li>
-        ))}
-      </InnerScroll>
-    </Toc>
-  )
+	typeof tableOfContents.items === 'undefined' ? null : (
+		<Toc>
+			<InnerScroll>
+				<H2>Table of contents</H2>
+				{tableOfContents.items.map(i => (
+					<li key={i.url}>
+						<a href={i.url} key={i.url}>
+							{i.title}
+						</a>
+					</li>
+				))}
+			</InnerScroll>
+		</Toc>
+	)
 }
 ```
 
@@ -595,64 +594,64 @@ import styled from 'styled-components'
 import { H1, H2, P } from '../components/page-elements'
 
 const Toc = styled.ul`
-  position: fixed;
-  left: calc(50% + 400px);
-  top: 110px;
-  max-height: 70vh;
-  width: 310px;
-  display: flex;
-  li {
-    line-height: ${({ theme }) => theme.lineHeight.tight};
-    margin-top: ${({ theme }) => theme.spacing[3]};
-  }
+	position: fixed;
+	left: calc(50% + 400px);
+	top: 110px;
+	max-height: 70vh;
+	width: 310px;
+	display: flex;
+	li {
+		line-height: ${({ theme }) => theme.lineHeight.tight};
+		margin-top: ${({ theme }) => theme.spacing[3]};
+	}
 `
 
 const InnerScroll = styled.div`
-  overflow: hidden;
-  overflow-y: scroll;
+	overflow: hidden;
+	overflow-y: scroll;
 `
 
 export default ({ data }) => {
-  const { body, frontmatter, tableOfContents } = data.mdx
-  return (
-    <>
-      <H1>{frontmatter.title}</H1>
-      <P>{frontmatter.date}</P>
-      {typeof tableOfContents.items === 'undefined' ? null : (
-        <Toc>
-          <InnerScroll>
-            <H2>Table of contents</H2>
-            {tableOfContents.items.map(i => (
-              <li key={i.url}>
-                <a href={i.url} key={i.url}>
-                  {i.title}
-                </a>
-              </li>
-            ))}
-          </InnerScroll>
-        </Toc>
-      )}
-      <MDXRenderer>{body}</MDXRenderer>
-    </>
-  )
+	const { body, frontmatter, tableOfContents } = data.mdx
+	return (
+		<>
+			<H1>{frontmatter.title}</H1>
+			<P>{frontmatter.date}</P>
+			{typeof tableOfContents.items === 'undefined' ? null : (
+				<Toc>
+					<InnerScroll>
+						<H2>Table of contents</H2>
+						{tableOfContents.items.map(i => (
+							<li key={i.url}>
+								<a href={i.url} key={i.url}>
+									{i.title}
+								</a>
+							</li>
+						))}
+					</InnerScroll>
+				</Toc>
+			)}
+			<MDXRenderer>{body}</MDXRenderer>
+		</>
+	)
 }
 
 export const query = graphql`
-  query PostBySlug($slug: String!) {
-    mdx(fields: { slug: { eq: $slug } }) {
-      frontmatter {
-        title
-        date(formatString: "YYYY MMMM Do")
-      }
-      body
-      excerpt
-      tableOfContents
-      timeToRead
-      fields {
-        slug
-      }
-    }
-  }
+	query PostBySlug($slug: String!) {
+		mdx(fields: { slug: { eq: $slug } }) {
+			frontmatter {
+				title
+				date(formatString: "YYYY MMMM Do")
+			}
+			body
+			excerpt
+			tableOfContents
+			timeToRead
+			fields {
+				slug
+			}
+		}
+	}
 `
 ```
 
@@ -708,35 +707,35 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [twitter]: https://twitter.com/spences10
 [ask me anything]: https://github.com/spences10/ama
 [4pine's blog]:
-  https://johno.com/mdx-table-of-contents-components-in-gatsby
+	https://johno.com/mdx-table-of-contents-components-in-gatsby
 [theme ui guide]: https://theme-ui.com/mdx/linked-headings
 [gatsby mdx repo issue 396]:
-  https://github.com/ChristopherBiscardi/gatsby-mdx/issues/396
+	https://github.com/ChristopherBiscardi/gatsby-mdx/issues/396
 [gatsby mdx repo issue 140]:
-  https://github.com/ChristopherBiscardi/gatsby-mdx/issues/140
+	https://github.com/ChristopherBiscardi/gatsby-mdx/issues/140
 [gatsby mdx repo issue 204]:
-  https://github.com/ChristopherBiscardi/gatsby-mdx/issues/204
+	https://github.com/ChristopherBiscardi/gatsby-mdx/issues/204
 [remark-slug repo]: https://github.com/remarkjs/remark-slug
 [mdx js repo issue 810]: https://github.com/mdx-js/mdx/issues/810
 [previous post]:
-  https://scottspence.com/posts/globally-style-gatsby-styled-components/
+	https://scottspence.com/posts/globally-style-gatsby-styled-components/
 [build a coding blog from scratch with gatsby and mdx]:
-  https://scottspence.com/posts/build-an-mdx-blog
+	https://scottspence.com/posts/build-an-mdx-blog
 [index page posts query]:
-  https://scottspence.com/posts/build-an-mdx-blog/#index-page-posts-query
+	https://scottspence.com/posts/build-an-mdx-blog/#index-page-posts-query
 [slugs and paths]:
-  https://scottspence.com/posts/build-an-mdx-blog/#slugs-and-paths
+	https://scottspence.com/posts/build-an-mdx-blog/#slugs-and-paths
 [link paths]:
-  https://scottspence.com/posts/build-an-mdx-blog/#link-paths
+	https://scottspence.com/posts/build-an-mdx-blog/#link-paths
 [adding a blog post template]:
-  https://scottspence.com/posts/build-an-mdx-blog/#adding-a-blog-post-template
+	https://scottspence.com/posts/build-an-mdx-blog/#adding-a-blog-post-template
 [build out blog post template]:
-  https://scottspence.com/posts/build-an-mdx-blog/#build-out-blog-post-template
+	https://scottspence.com/posts/build-an-mdx-blog/#build-out-blog-post-template
 [markdown from this post!]:
-  https://raw.githubusercontent.com/spences10/scottspence.com/authoring/2020/02/13/smooth-scroll-toc-gatsby/index.mdx
+	https://raw.githubusercontent.com/spences10/scottspence.com/authoring/2020/02/13/smooth-scroll-toc-gatsby/index.mdx
 [mdx table of components]:
-  https://mdxjs.com/getting-started#table-of-components
+	https://mdxjs.com/getting-started#table-of-components
 [gatsby-remark-autolink-headers]:
-  https://www.gatsbyjs.com/packages/gatsby-remark-autolink-headers/
+	https://www.gatsbyjs.com/packages/gatsby-remark-autolink-headers/
 [being addressed by the gatsby team]:
-  https://github.com/gatsbyjs/gatsby/issues/25554
+	https://github.com/gatsbyjs/gatsby/issues/25554

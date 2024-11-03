@@ -13,8 +13,8 @@ For as long as I have been learning web development (<DateDistance
 date="2016-06-15" />) I have been taking notes. Partly notes to help
 clarify my understanding of something and partly for future me.
 
-That's why I have my [digital garden], an online collection of my
-learning over the years.
+That's why I have my [digital garden], an online collection of my learning
+over the years.
 
 What is in my garden is not the full extent of the notes I have taken
 however, there's partly formed musings and one-liners that will help
@@ -22,8 +22,8 @@ me if I ever come across this one particular thing which took a while
 to fix/resolve in the past.
 
 Stuff like that doesn't really warrant going into a post so I have
-[Cheat Sheets] where that will get added to and grouped with the
-relevant information.
+[Cheat Sheets] where that will get added to and grouped with the relevant
+information.
 
 It's not been until recently that I have come to learn of the
 [Zettelkasten] method, which translates from German to note box.
@@ -47,11 +47,11 @@ history going back to [the start of 2017].
 
 As this list started to grow I also had other areas that I needed to
 keep these little one-liners to hand, git being the largest but other
-things like [how to screen snip] on macOS and [kill a process] with
-bash, all started adding up.
+things like [how to screen snip] on macOS and [kill a process] with bash,
+all started adding up.
 
-I moved them all into [one repository] for ease of access for me.
-These later were added to [Cheat Sheets].xyz
+I moved them all into [one repository] for ease of access for me. These
+later were added to [Cheat Sheets].xyz
 
 ## Notion
 
@@ -139,12 +139,12 @@ cheated when I couldn't select a tab or move lines around.
 
 ## Foam
 
-So, Foam! [Foam is a VS Code extension] that enables the features of
-Obsidian but with the editing power of VS Code, so no brainier, right?
+So, Foam! [Foam is a VS Code extension] that enables the features of Obsidian
+but with the editing power of VS Code, so no brainier, right?
 
-Foam are the first to admit that [things may be a little rough] as
-it's still in preview. But I _really_ like working with my Markdown in
-VS Code so I'm prepared for the teething issues.
+Foam are the first to admit that [things may be a little rough] as it's
+still in preview. But I _really_ like working with my Markdown in VS Code
+so I'm prepared for the teething issues.
 
 There's a [super welcoming Discord] to join and talk to other users
 and the developers.
@@ -164,13 +164,13 @@ I'm super excited following the progress of this!
 [cheat sheets]: https://cheatsheets.xyz
 [zettelkasten]: https://zettelkasten.de/
 [to a gist]:
-  https://gist.github.com/spences10/5c492e197e95158809a83650ff97fc3a
+	https://gist.github.com/spences10/5c492e197e95158809a83650ff97fc3a
 [the start of 2017]:
-  https://gist.github.com/spences10/5c492e197e95158809a83650ff97fc3a/revisions?page=2#diff-0517f094a4805e87e00d10b2891d99e4
+	https://gist.github.com/spences10/5c492e197e95158809a83650ff97fc3a/revisions?page=2#diff-0517f094a4805e87e00d10b2891d99e4
 [how to screen snip]: https://cheatsheets.xyz/mac/#screen-snip
 [kill a process]: https://cheatsheets.xyz/bash/#kill-process-on-port
 [one repository]: https://github.com/spences10/cheat-sheets
 [foam is a vs code extension]: https://github.com/foambubble/foam
 [things may be a little rough]:
-  https://foambubble.github.io/foam/#getting-started
+	https://foambubble.github.io/foam/#getting-started
 [super welcoming discord]: https://discord.gg/rtdZKgj

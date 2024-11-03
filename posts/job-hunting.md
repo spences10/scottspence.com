@@ -69,10 +69,9 @@ progressed with my FCC certification.
 Things I have learned, most of the time the job doesn't exist (lead
 generation) If it does exist and you match one of the skills on the
 spec you will have every recruiter in the country [and abroad] calling
-you for the role. Wild salary ranges £40k-£80k that's a pretty big
-range, these ads usually come with every skill imaginable so it's safe
-to say that they don't really know what they want or the role doesn't
-really exist.
+you for the role. Wild salary ranges £40k-£80k that's a pretty big range,
+these ads usually come with every skill imaginable so it's safe to say
+that they don't really know what they want or the role doesn't really exist.
 
 ## Recruiters
 
@@ -152,8 +151,7 @@ this post:
 LinkedIn:
 
 - ["Recruitment industry will die in 2018."]
-- ["If a Recruiter Sh\*ts in the woods and nobody is around to hear
-  it?"]
+- ["If a Recruiter Sh\*ts in the woods and nobody is around to hear it?"]
 
 Medium:
 
@@ -164,15 +162,15 @@ Medium:
 [ats']: https://lmgtfy.com/?q=what+is+an+ats
 [freecodecamp]: https://www.freecodecamp.com
 ["recruitment industry will die in 2018."]:
-  https://www.linkedin.com/pulse/recruitment-industry-die-2018-oleg-vishnepolsky
+	https://www.linkedin.com/pulse/recruitment-industry-die-2018-oleg-vishnepolsky
 ["if a recruiter sh\*ts in the woods and nobody is around to hear it?"]:
-  https://www.linkedin.com/pulse/recruiter-shts-woods-nobody-around-hear-tim-chattaway
+	https://www.linkedin.com/pulse/recruiter-shts-woods-nobody-around-hear-tim-chattaway
 [lessons from my post-bootcamp job search in london]:
-  https://medium.freecodecamp.com/lessons-from-my-post-bootcamp-job-search-in-london-cb37ea12ec2f#.ckpg5lkpa
+	https://medium.freecodecamp.com/lessons-from-my-post-bootcamp-job-search-in-london-cb37ea12ec2f#.ckpg5lkpa
 
 <!-- Images -->
 
 [stress-office]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930931/scottspence.com/stress-office-76b7f4c70276388a047bbf68a48a19a5.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930931/scottspence.com/stress-office-76b7f4c70276388a047bbf68a48a19a5.jpg
 [shady-recruiter-middle-man]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930935/scottspence.com/shady-recruiter-middle-man-39c169147b3806bbb9898f3b553bf0a6.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930935/scottspence.com/shady-recruiter-middle-man-39c169147b3806bbb9898f3b553bf0a6.jpg

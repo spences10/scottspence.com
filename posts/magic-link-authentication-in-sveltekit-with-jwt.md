@@ -112,14 +112,14 @@ touch src/lib/auth.ts
 ```ts
 // src/lib/auth.ts
 import {
-  APPROVED_EMAILS,
-  EMAIL_FROM,
-  EMAIL_HOST,
-  EMAIL_PASS,
-  EMAIL_PORT,
-  EMAIL_SECURE,
-  EMAIL_USER,
-  JWT_SECRET,
+	APPROVED_EMAILS,
+	EMAIL_FROM,
+	EMAIL_HOST,
+	EMAIL_PASS,
+	EMAIL_PORT,
+	EMAIL_SECURE,
+	EMAIL_USER,
+	JWT_SECRET,
 } from '$env/static/private'
 import jwt from 'jsonwebtoken'
 import nodemailer from 'nodemailer'
@@ -127,63 +127,63 @@ import nodemailer from 'nodemailer'
 const approved_emails = APPROVED_EMAILS.split(',')
 
 export const is_approved_email = (email: string): boolean => {
-  return approved_emails.includes(email.toLowerCase())
+	return approved_emails.includes(email.toLowerCase())
 }
 
 export const generate_magic_link = async (
-  email: string,
-  base_url: URL,
+	email: string,
+	base_url: URL,
 ): Promise<string> => {
-  const expires_in = 3600 // 1 hour
-  const payload = {
-    email,
-    exp: Math.floor(Date.now() / 1000) + expires_in,
-  }
-  const token = jwt.sign(payload, JWT_SECRET)
-  return `${base_url.origin}/auth/${token}`
+	const expires_in = 3600 // 1 hour
+	const payload = {
+		email,
+		exp: Math.floor(Date.now() / 1000) + expires_in,
+	}
+	const token = jwt.sign(payload, JWT_SECRET)
+	return `${base_url.origin}/auth/${token}`
 }
 
 export const send_magic_link_email = async (
-  email: string,
-  magic_link: string,
+	email: string,
+	magic_link: string,
 ) => {
-  console.log('Sending magic link email')
-  const transporter = nodemailer.createTransport({
-    host: EMAIL_HOST,
-    port: parseInt(EMAIL_PORT),
-    secure: EMAIL_SECURE === 'true',
-    auth: {
-      user: EMAIL_USER,
-      pass: EMAIL_PASS,
-    },
-  })
+	console.log('Sending magic link email')
+	const transporter = nodemailer.createTransport({
+		host: EMAIL_HOST,
+		port: parseInt(EMAIL_PORT),
+		secure: EMAIL_SECURE === 'true',
+		auth: {
+			user: EMAIL_USER,
+			pass: EMAIL_PASS,
+		},
+	})
 
-  try {
-    await transporter.sendMail({
-      from: EMAIL_FROM,
-      to: email,
-      subject: 'Your Magic Link',
-      html: `
+	try {
+		await transporter.sendMail({
+			from: EMAIL_FROM,
+			to: email,
+			subject: 'Your Magic Link',
+			html: `
         <h1>Welcome to Your App</h1>
         <p>Click the link below to access your account:</p>
         <a href="${magic_link}">Access Your Account</a>
         <p>This link will expire in 1 hour.</p>
       `,
-    })
-    console.log('Email sent successfully')
-  } catch (error) {
-    console.error('Error sending email:', error)
-    throw error // Re-throw the error so it's caught in the action
-  }
+		})
+		console.log('Email sent successfully')
+	} catch (error) {
+		console.error('Error sending email:', error)
+		throw error // Re-throw the error so it's caught in the action
+	}
 }
 
 export const verify_magic_link = (token: string): string | null => {
-  try {
-    const payload = jwt.verify(token, JWT_SECRET) as { email: string }
-    return payload.email
-  } catch (error) {
-    return null
-  }
+	try {
+		const payload = jwt.verify(token, JWT_SECRET) as { email: string }
+		return payload.email
+	} catch (error) {
+		return null
+	}
 }
 ```
 
@@ -201,27 +201,27 @@ import { redirect } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 
 export const GET: RequestHandler = async ({ params }) => {
-  const { token } = params
-  const email = verify_magic_link(token)
+	const { token } = params
+	const email = verify_magic_link(token)
 
-  if (email) {
-    const session_data = {
-      email,
-      expires: Date.now() + 60 * 60 * 1000, // 1 hour from now
-    }
+	if (email) {
+		const session_data = {
+			email,
+			expires: Date.now() + 60 * 60 * 1000, // 1 hour from now
+		}
 
-    const session_cookie = `session=${JSON.stringify(session_data)}; Path=/; HttpOnly; SameSite=Strict; Max-Age=3600${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
+		const session_cookie = `session=${JSON.stringify(session_data)}; Path=/; HttpOnly; SameSite=Strict; Max-Age=3600${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
 
-    return new Response(null, {
-      status: 302,
-      headers: {
-        'Set-Cookie': session_cookie,
-        Refresh: '0; url=/',
-      },
-    })
-  } else {
-    redirect(302, '/login?error=invalid_token')
-  }
+		return new Response(null, {
+			status: 302,
+			headers: {
+				'Set-Cookie': session_cookie,
+				Refresh: '0; url=/',
+			},
+		})
+	} else {
+		redirect(302, '/login?error=invalid_token')
+	}
 }
 ```
 
@@ -236,79 +236,79 @@ touch src/routes/login/+page.svelte
 ```ts
 // src/routes/login/+page.server.ts
 import {
-  generate_magic_link,
-  is_approved_email,
-  send_magic_link_email,
+	generate_magic_link,
+	is_approved_email,
+	send_magic_link_email,
 } from '$lib/auth'
 import { fail } from '@sveltejs/kit'
 import type { Actions } from './$types'
 
 export const actions: Actions = {
-  default: async ({ request, url }) => {
-    console.log('Login action started')
-    const data = await request.formData()
-    const email = data.get('email')
+	default: async ({ request, url }) => {
+		console.log('Login action started')
+		const data = await request.formData()
+		const email = data.get('email')
 
-    console.log('Email received:', email)
+		console.log('Email received:', email)
 
-    if (typeof email !== 'string' || !is_approved_email(email)) {
-      console.log('Email invalid or not approved')
-      return fail(400, { email, invalid: true })
-    }
+		if (typeof email !== 'string' || !is_approved_email(email)) {
+			console.log('Email invalid or not approved')
+			return fail(400, { email, invalid: true })
+		}
 
-    console.log('Generating magic link')
-    const magic_link = await generate_magic_link(email, url)
-    console.log('Magic link generated:', magic_link)
+		console.log('Generating magic link')
+		const magic_link = await generate_magic_link(email, url)
+		console.log('Magic link generated:', magic_link)
 
-    console.log('Sending magic link email')
-    try {
-      await send_magic_link_email(email, magic_link)
-      console.log('Magic link email sent successfully')
-    } catch (error) {
-      console.error('Error sending magic link email:', error)
-      return fail(500, { email, error: 'Failed to send magic link' })
-    }
+		console.log('Sending magic link email')
+		try {
+			await send_magic_link_email(email, magic_link)
+			console.log('Magic link email sent successfully')
+		} catch (error) {
+			console.error('Error sending magic link email:', error)
+			return fail(500, { email, error: 'Failed to send magic link' })
+		}
 
-    return { success: true }
-  },
+		return { success: true }
+	},
 }
 ```
 
 ```svelte
 <!-- src/routes/login/+page.svelte -->
 <script lang="ts">
-  import { enhance } from '$app/forms'
-  import type { ActionData } from './$types'
+	import { enhance } from '$app/forms'
+	import type { ActionData } from './$types'
 
-  const { form } = $props<{ form: ActionData }>()
+	const { form } = $props<{ form: ActionData }>()
 
-  function handle_submit(event: SubmitEvent) {
-    console.log('Form submitted')
-    // You can remove this prevent default later, it's just for testing
-    event.preventDefault()
-    const form = event.target as HTMLFormElement
-    const email = form.email.value
-    console.log('Email submitted:', email)
-  }
+	function handle_submit(event: SubmitEvent) {
+		console.log('Form submitted')
+		// You can remove this prevent default later, it's just for testing
+		event.preventDefault()
+		const form = event.target as HTMLFormElement
+		const email = form.email.value
+		console.log('Email submitted:', email)
+	}
 </script>
 
 <h1>Login</h1>
 <form method="POST" use:enhance onsubmit={handle_submit}>
-  <input
-    type="email"
-    name="email"
-    placeholder="Enter your email"
-    required
-  />
-  <button type="submit">Send Magic Link</button>
+	<input
+		type="email"
+		name="email"
+		placeholder="Enter your email"
+		required
+	/>
+	<button type="submit">Send Magic Link</button>
 </form>
 
 {#if form?.success}
-  <p>Magic link sent! Check your email.</p>
+	<p>Magic link sent! Check your email.</p>
 {:else if form?.invalid}
-  <p>Invalid email. Please try again.</p>
+	<p>Invalid email. Please try again.</p>
 {:else if form?.error}
-  <p>{form.error}</p>
+	<p>{form.error}</p>
 {/if}
 ```
 
@@ -324,25 +324,25 @@ import { redirect } from '@sveltejs/kit'
 import type { LayoutServerLoad } from './$types'
 
 export const load: LayoutServerLoad = async ({ cookies, url }) => {
-  const session = cookies.get('session')
+	const session = cookies.get('session')
 
-  // Check if the user is already authenticated and trying to access the login page
-  if (session && url.pathname === '/login') {
-    throw redirect(302, '/')
-  }
+	// Check if the user is already authenticated and trying to access the login page
+	if (session && url.pathname === '/login') {
+		throw redirect(302, '/')
+	}
 
-  // Check if the user is trying to access a protected route
-  if (
-    !session &&
-    url.pathname !== '/login' &&
-    !url.pathname.startsWith('/auth/')
-  ) {
-    throw redirect(302, '/login')
-  }
+	// Check if the user is trying to access a protected route
+	if (
+		!session &&
+		url.pathname !== '/login' &&
+		!url.pathname.startsWith('/auth/')
+	) {
+		throw redirect(302, '/login')
+	}
 
-  return {
-    user: session ? JSON.parse(session).email : null,
-  }
+	return {
+		user: session ? JSON.parse(session).email : null,
+	}
 }
 ```
 
@@ -357,10 +357,10 @@ touch src/routes/+page.server.ts
 import type { Actions } from './$types'
 
 export const actions: Actions = {
-  logout: async ({ cookies }) => {
-    cookies.delete('session', { path: '/' })
-    return { success: true }
-  },
+	logout: async ({ cookies }) => {
+		cookies.delete('session', { path: '/' })
+		return { success: true }
+	},
 }
 ```
 
@@ -369,25 +369,25 @@ export const actions: Actions = {
 ```svelte
 <!-- src/routes/+page.svelte -->
 <script lang="ts">
-  import { enhance } from '$app/forms'
-  import type { PageData } from './$types'
+	import { enhance } from '$app/forms'
+	import type { PageData } from './$types'
 
-  const { data } = $props<{ data: PageData }>()
+	const { data } = $props<{ data: PageData }>()
 </script>
 
 <h1>Welcome to SvelteKit</h1>
 <p>
-  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
-  documentation
+	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
+	documentation
 </p>
 
 {#if data.user}
-  <p>Logged in as: {data.user}</p>
-  <form action="?/logout" method="POST" use:enhance>
-    <button type="submit">Logout</button>
-  </form>
+	<p>Logged in as: {data.user}</p>
+	<form action="?/logout" method="POST" use:enhance>
+		<button type="submit">Logout</button>
+	</form>
 {:else}
-  <p>Not logged in. <a href="/login">Login here</a></p>
+	<p>Not logged in. <a href="/login">Login here</a></p>
 {/if}
 ```
 

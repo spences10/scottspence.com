@@ -15,8 +15,7 @@ Using a short URL now gives a much faster response time, so that's a
 win!
 
 If you wanted to use Airtable for your URL shortener then you can
-follow the guide I wrote for [SvelteKit Contact Form Example with
-Airtable].
+follow the guide I wrote for [SvelteKit Contact Form Example with Airtable].
 
 Ok, so, I hope the preamble was enough reasoning, but, if not, here's
 a list of reasons why I switched from Airtable to Upstash Redis.
@@ -47,19 +46,19 @@ The JSON data from Airtable looked like this.
 
 ```ts
 export const airtable_json_data = [
-  {
-    id: 'rec03P0YflWl1x1x1',
-    createdTime: '2022-07-21T18:40:13.000Z',
-    fields: {
-      destination: 'https://ten-facts.now.sh',
-      source: '/10facts',
-      position: 1,
-      description: '10 Facts About Me',
-      clicks: 3,
-      visible: true,
-    },
-  },
-  // rest of the data
+	{
+		id: 'rec03P0YflWl1x1x1',
+		createdTime: '2022-07-21T18:40:13.000Z',
+		fields: {
+			destination: 'https://ten-facts.now.sh',
+			source: '/10facts',
+			position: 1,
+			description: '10 Facts About Me',
+			clicks: 3,
+			visible: true,
+		},
+	},
+	// rest of the data
 ]
 ```
 
@@ -69,15 +68,15 @@ data like this.
 
 ```ts
 export const airtable_json_data = [
-  {
-    destination: 'https://ten-facts.now.sh',
-    source: '10facts',
-    position: 1,
-    description: '10 Facts About Me',
-    clicks: 3,
-    visible: true,
-  },
-  // rest of the data
+	{
+		destination: 'https://ten-facts.now.sh',
+		source: '10facts',
+		position: 1,
+		description: '10 Facts About Me',
+		clicks: 3,
+		visible: true,
+	},
+	// rest of the data
 ]
 ```
 
@@ -90,31 +89,31 @@ values).
 
 ```ts
 const import_data_to_redis = async () => {
-  for (const record of airtable_json_data) {
-    const {
-      destination,
-      source,
-      position,
-      description,
-      clicks,
-      visible,
-    } = record
-    const redis_key = `short_url:${source}`
+	for (const record of airtable_json_data) {
+		const {
+			destination,
+			source,
+			position,
+			description,
+			clicks,
+			visible,
+		} = record
+		const redis_key = `short_url:${source}`
 
-    // Import each record to Redis using hset
-    await redis.hset(redis_key, [
-      'destination',
-      destination,
-      'position',
-      position,
-      'description',
-      description,
-      'clicks',
-      clicks,
-      'visible',
-      visible,
-    ])
-  }
+		// Import each record to Redis using hset
+		await redis.hset(redis_key, [
+			'destination',
+			destination,
+			'position',
+			position,
+			'description',
+			description,
+			'clicks',
+			clicks,
+			'visible',
+			visible,
+		])
+	}
 }
 
 // Execute the function
@@ -177,5 +176,5 @@ Redis, it's not as nice as Airtable but it's not too bad.
 <!-- Links -->
 
 [SvelteKit Contact Form Example with Airtable]:
-  https://scottspence.com/posts/sveltekit-contact-form-example-with-airtable
+	https://scottspence.com/posts/sveltekit-contact-form-example-with-airtable
 [PR]: https://github.com/spences10/sveltekit-short-urls/pull/265

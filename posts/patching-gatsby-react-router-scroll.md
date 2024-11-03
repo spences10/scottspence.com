@@ -121,8 +121,7 @@ changes in the `.patch` file will be applied to the
 
 ## Watch me do it on Twitch
 
-Here's a [live stream] of me applying the changes with bonus happy
-dance!
+Here's a [live stream] of me applying the changes with bonus happy dance!
 
 ## Done!
 
@@ -144,13 +143,13 @@ can get updates when I [go live] and release new content.
 
 [documented]: https://github.com/gatsbyjs/gatsby/issues/25778
 [resolutions to my `package.json` file]:
-  https://scottspence.com/posts/smooth-scroll-toc-gatsby/#not-scrolling-to-id
+	https://scottspence.com/posts/smooth-scroll-toc-gatsby/#not-scrolling-to-id
 [comment]:
-  https://github.com/gatsbyjs/gatsby/issues/25778#issuecomment-696950384
+	https://github.com/gatsbyjs/gatsby/issues/25778#issuecomment-696950384
 [lukekarrys]: https://github.com/lukekarrys
 [in the past]: https://scottspence.com/posts/patching-packages/
 [specifically for yarn]:
-  https://www.npmjs.com/package/patch-package#why-use-postinstall-postinstall-with-yarn
+	https://www.npmjs.com/package/patch-package#why-use-postinstall-postinstall-with-yarn
 [live stream]: https://www.twitch.tv/videos/777497800?t=00h29m52s
 [subscribe]: https://ss10.dev/yt?sub_confirmation=1
 [go live]: https://ss10.dev/twitch

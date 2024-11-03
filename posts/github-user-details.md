@@ -19,14 +19,14 @@ do something I've been meaning to do for a wile now, that's to make a
 serverless function that will return the GitHub stats from my GitHub
 profile.
 
-Me doing this came up in conversation with my friend [Paul Scanlon]
-and he decided to do something similar but with the GitHub REST API,
-so we are making notes on how things are going!!
+Me doing this came up in conversation with my friend [Paul Scanlon] and
+he decided to do something similar but with the GitHub REST API, so we
+are making notes on how things are going!!
 
 ## What is it you're doing though?
 
-What I'm doing is based off of several [Leigh Halliday] videos on
-using the GitHub GraphQL API and adding that data to a pie chart.
+What I'm doing is based off of several [Leigh Halliday] videos on using
+the GitHub GraphQL API and adding that data to a pie chart.
 
 My current site has a similar pie chart in the about section which
 created at build time. This chart is created at request time from the
@@ -78,27 +78,27 @@ The GitHub GraphQL API query looks like this:
 
 ```graphql
 query GITHUB_USER_DATA_QUERY($username: String!) {
-  user(login: $username) {
-    repositories(
-      last: 100
-      isFork: false
-      orderBy: { field: UPDATED_AT, direction: ASC }
-      privacy: PUBLIC
-    ) {
-      nodes {
-        name
-        description
-        url
-        updatedAt
-        languages(first: 5) {
-          nodes {
-            color
-            name
-          }
-        }
-      }
-    }
-  }
+	user(login: $username) {
+		repositories(
+			last: 100
+			isFork: false
+			orderBy: { field: UPDATED_AT, direction: ASC }
+			privacy: PUBLIC
+		) {
+			nodes {
+				name
+				description
+				url
+				updatedAt
+				languages(first: 5) {
+					nodes {
+						color
+						name
+					}
+				}
+			}
+		}
+	}
 }
 ```
 
@@ -109,28 +109,28 @@ Here's what the response from the GraphQL query looks like:
 
 ```json
 {
-  "data": {
-    "user": {
-      "repositories": {
-        "nodes": [
-          {
-            "name": "scottspence.com",
-            "description": "My Letter Beautiful Mysterious Notebook.",
-            "url": "https://github.com/spences10/scottspence.com",
-            "updatedAt": "2021-01-18T17:35:19Z",
-            "languages": {
-              "nodes": [
-                {
-                  "color": "#f1e05a",
-                  "name": "JavaScript"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  }
+	"data": {
+		"user": {
+			"repositories": {
+				"nodes": [
+					{
+						"name": "scottspence.com",
+						"description": "My Letter Beautiful Mysterious Notebook.",
+						"url": "https://github.com/spences10/scottspence.com",
+						"updatedAt": "2021-01-18T17:35:19Z",
+						"languages": {
+							"nodes": [
+								{
+									"color": "#f1e05a",
+									"name": "JavaScript"
+								}
+							]
+						}
+					}
+				]
+			}
+		}
+	}
 }
 ```
 
@@ -139,9 +139,8 @@ Here's what the response from the GraphQL query looks like:
 The JSON data from the GraphQL call is then transformed so it will go
 into the data shape the pie chart is expecting.
 
-Check out the [data transform] module on the repo for more detail and
-also Leigh's video [Map, Reduce, Filter, and Pie Charts] is super
-helpful.
+Check out the [data transform] module on the repo for more detail and also
+Leigh's video [Map, Reduce, Filter, and Pie Charts] is super helpful.
 
 ## Charts
 
@@ -149,9 +148,9 @@ I went with [Google chart library] first as it had what I needed
 (Pie/Doughnut and Heatmap) but it's not responsive. This isn't a big
 deal as the chart is being returned as an image.
 
-To work with the chart locally I used the [live server] VS Code
-extension and a added the chart to an `index.html` file to get an idea
-of how it will look.
+To work with the chart locally I used the [live server] VS Code extension
+and a added the chart to an `index.html` file to get an idea of how it
+will look.
 
 This really helped with getting the data from the API response to fit
 with what the graph was expecting changing the data transform function
@@ -164,33 +163,33 @@ the data it's expecting:
 
 ```html
 <script type="text/javascript">
-  google.charts.load('current', { packages: ['corechart'] })
-  google.charts.setOnLoadCallback(drawChart)
-  function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Languages', 'Languages Count'],
-      ['JavaScript', 37],
-      ['TypeScript', 13],
-      ['CSS', 12],
-      ['HTML', 7],
-    ])
+	google.charts.load('current', { packages: ['corechart'] })
+	google.charts.setOnLoadCallback(drawChart)
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+			['Languages', 'Languages Count'],
+			['JavaScript', 37],
+			['TypeScript', 13],
+			['CSS', 12],
+			['HTML', 7],
+		])
 
-    var options = {
-      // title: 'My Languages Split',
-      colors: ['#f1e05a', '#2b7489', '#563d7c', '#e34c26'],
-      chartArea: {
-        left: 0,
-        top: 30,
-        width: '100%',
-        height: '90%',
-      },
-    }
+		var options = {
+			// title: 'My Languages Split',
+			colors: ['#f1e05a', '#2b7489', '#563d7c', '#e34c26'],
+			chartArea: {
+				left: 0,
+				top: 30,
+				width: '100%',
+				height: '90%',
+			},
+		}
 
-    var chart = new google.visualization.PieChart(
-      document.getElementById('doughnut')
-    )
-    chart.draw(data, options)
-  }
+		var chart = new google.visualization.PieChart(
+			document.getElementById('doughnut'),
+		)
+		chart.draw(data, options)
+	}
 </script>
 ```
 
@@ -227,13 +226,13 @@ example here:
 const user = `spences10`
 
 const Image = () => {
-  return (
-    <img
-      alt="GitHub user language split"
-      style={{ width: '100%', height: '315px' }}
-      src={`https://ghui.vercel.app/pie.png?username=${user}`}
-    />
-  )
+	return (
+		<img
+			alt="GitHub user language split"
+			style={{ width: '100%', height: '315px' }}
+			src={`https://ghui.vercel.app/pie.png?username=${user}`}
+		/>
+	)
 }
 
 render(Image)
@@ -299,8 +298,7 @@ be the same amount of latency.
 
 - [Map, Reduce, Filter, and Pie Charts]
 - [How to use GraphQL with React]
-- [Serverless OG Image - Part 1 - Deploying our first serverless
-  function]
+- [Serverless OG Image - Part 1 - Deploying our first serverless function]
 - [Serverless OG Image - Part 2 - Parsing Request]
 - [Serverless OG Image - Part 3 - Temporary File]
 - [Serverless OG Image - Part 4 - Taking Screenshot]
@@ -309,37 +307,37 @@ be the same amount of latency.
 
 [paul scanlon]: https://twitter.com/PaulieScanlon
 [serverless open graph image]:
-  https://scottspence.com/posts/serverless-og-images/
+	https://scottspence.com/posts/serverless-og-images/
 [leigh halliday]: https://www.youtube.com/user/leighhalliday
 [map, reduce, filter, and pie charts]:
-  https://www.youtube.com/watch?v=28StAxSjyIU
+	https://www.youtube.com/watch?v=28StAxSjyIU
 [how to use graphql with react]:
-  https://www.youtube.com/watch?v=AUiUZ29pae4
+	https://www.youtube.com/watch?v=AUiUZ29pae4
 [serverless og image - part 1 - deploying our first serverless function]:
-  https://www.youtube.com/watch?v=Al3tCJKOydY
+	https://www.youtube.com/watch?v=Al3tCJKOydY
 [serverless og image - part 2 - parsing request]:
-  https://www.youtube.com/watch?v=ANedwsfXpO0
+	https://www.youtube.com/watch?v=ANedwsfXpO0
 [serverless og image - part 3 - temporary file]:
-  https://www.youtube.com/watch?v=KlLgjuUQoJs
+	https://www.youtube.com/watch?v=KlLgjuUQoJs
 [serverless og image - part 4 - taking screenshot]:
-  https://www.youtube.com/watch?v=ZjGCiBpDZ7g
+	https://www.youtube.com/watch?v=ZjGCiBpDZ7g
 [my affiliate link]:
-  https://courses.leighhalliday.com/next-level-next-js?coupon=SCOTT
+	https://courses.leighhalliday.com/next-level-next-js?coupon=SCOTT
 [graphql query in axios]:
-  https://scottspence.com/posts/get-graphql-data-with-axios/
+	https://scottspence.com/posts/get-graphql-data-with-axios/
 [data transform]:
-  https://github.com/spences10/github-user-information/blob/main/src/data-transform.ts
+	https://github.com/spences10/github-user-information/blob/main/src/data-transform.ts
 [interactive example]: #interactive-example
 [live server]:
-  https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
+	https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
 [google chart library]:
-  https://developers.google.com/chart/interactive/docs/gallery
+	https://developers.google.com/chart/interactive/docs/gallery
 [contrast-color-generator]:
-  https://www.npmjs.com/package/contrast-color-generator
+	https://www.npmjs.com/package/contrast-color-generator
 [great write up]:
-  https://paulie.dev/posts/2021/01/gatsby-netliyf-github-rest/
+	https://paulie.dev/posts/2021/01/gatsby-netliyf-github-rest/
 
 <!-- Images -->
 
 [github contributions pie chart]:
-  https://ghui.vercel.app/pie.png?username=spences10
+	https://ghui.vercel.app/pie.png?username=spences10

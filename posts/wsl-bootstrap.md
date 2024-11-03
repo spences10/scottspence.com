@@ -141,8 +141,8 @@ set up now, I have been using SSH over HTTPS for a while now on WSL.
 > omit this and go full Git via the terminal but I really like the VS
 > Code git integration.
 
-To get SSH set up on your machine take a look at this [handy SSH
-setup]. I say SSH instead of HTTPS 1. because I had all sorts of
+To get SSH set up on your machine take a look at this [handy
+SSH setup]. I say SSH instead of HTTPS 1. because I had all sorts of
 issues with the Git credential manager and the keyring manager in the
 end it was actually quicker to create an SSH key and authenticate with
 GitHub - the guide I linked walks you through it.
@@ -221,20 +221,20 @@ global npm packages you want for development now.
 [slowbash]: https://github.com/Microsoft/WSL/issues/776
 [wslmsstore]: https://www.microsoft.com/store/productId/9NBLGGH4MSV6
 [usen]:
-  https://github.com/Microsoft/WSL/issues/776#issuecomment-266112578
+	https://github.com/Microsoft/WSL/issues/776#issuecomment-266112578
 [settingsrepo]: https://github.com/spences10/settings
 [dotfiles]: https://github.com/spences10/dotfiles
 [handy ssh setup]:
-  https://github.com/spences10/cheat-sheets/blob/master/git.md#how-to-authenticate-with-github-using-ssh
+	https://github.com/spences10/cheat-sheets/blob/master/git.md#how-to-authenticate-with-github-using-ssh
 [rsync]:
-  https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/
+	https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/
 [n-install]: https://github.com/mklement0/n-install
 
 <!-- Images -->
 
 [upgrade message]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/upgrade-yes-d9fdf06ee6eadf39561e9293149c669e.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/upgrade-yes-d9fdf06ee6eadf39561e9293149c669e.png
 [bash files wrong permissions]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/bash-wrong-perms-7499ad1ca9beabe2915014e11a7368d4.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/bash-wrong-perms-7499ad1ca9beabe2915014e11a7368d4.png
 [bash files permissions]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930929/scottspence.com/bash-dotfiles-dad0b2d87dfb1eba5a9fc5320da452ce.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930929/scottspence.com/bash-dotfiles-dad0b2d87dfb1eba5a9fc5320da452ce.png

@@ -12,11 +12,11 @@ isPrivate: false
 Here's some of the issues I faced when deploying a SvelteKit project
 using Prisma to Vercel.
 
-I was following along with the [awesome guide] put together by
-[Matia], on authentication with SvelteKit using cookies. By far the
-most comprehensive guide covering it with SvelteKit I have found.
-There's also a [video playlist] covering it as well if you want to
-check that out.
+I was following along with the [awesome guide] put together by [Matia],
+on authentication with SvelteKit using cookies. By far the most comprehensive
+guide covering it with SvelteKit I have found. There's also a [video
+playlist]
+covering it as well if you want to check that out.
 
 If you're just here for the **"how'd you get it working on Vercel
 dammit??!1"** then you can skip to the [TL;DR](#scripts). 😊
@@ -251,8 +251,7 @@ So, it was at that point I sent the tweet mentioned earlier and I had
 ## Scripts
 
 So this is the secret sauce that got it working! These two scripts
-were what cleared it all up! This is what was in the post [Josef
-shared].
+were what cleared it all up! This is what was in the post [Josef shared].
 
 ```json
 "scripts": {
@@ -298,19 +297,19 @@ was `bcrypt` I know for the future.
 <!-- Links -->
 
 [awesome guide]:
-  https://joyofcode.xyz/sveltekit-authentication-using-cookies
+	https://joyofcode.xyz/sveltekit-authentication-using-cookies
 [matia]: https://twitter.com/joyofcodedev
 [video playlist]:
-  https://www.youtube.com/playlist?list=PLA9WiRZ-IS_zKrDzhOhV5RGKKTHNIyTDO
+	https://www.youtube.com/playlist?list=PLA9WiRZ-IS_zKrDzhOhV5RGKKTHNIyTDO
 [how to set up a free postgresql database on heroku]:
-  https://dev.to/prisma/how-to-setup-a-free-postgresql-database-on-heroku-1dc1
+	https://dev.to/prisma/how-to-setup-a-free-postgresql-database-on-heroku-1dc1
 [planetscale]: https://planetscale.com
 [prisma with planetscale quickstart]:
-  https://docs.planetscale.com/tutorials/prisma-quickstart
+	https://docs.planetscale.com/tutorials/prisma-quickstart
 [@josefaidt]: https://twitter.com/josefaidt
 [sveltekit-prisma]:
-  https://github.com/mikenikles/sveltekit-prisma/blob/main/package.json#L13
+	https://github.com/mikenikles/sveltekit-prisma/blob/main/package.json#L13
 [@mikenikles]: https://twitter.com/mikenikles
 [stackoverflow question]: https://stackoverflow.com/q/70097108/1138354
 [josef shared]:
-  https://josef.dev/posts/svelte-kit-planetscale-and-prisma-on-vercel
+	https://josef.dev/posts/svelte-kit-planetscale-and-prisma-on-vercel

@@ -30,15 +30,15 @@ they have done it:
 const client = require('../../client')
 const sm = require('sitemap')
 const defaultUrls = [
-  { url: '/', changefreq: 'daily', priority: 1 },
-  { url: '/pricing', priority: 0.5 },
-  { url: '/pricing/compare', priority: 0.5 },
-  { url: '/docs', priority: 0.7 },
-  { url: '/community', priority: 0.7 },
-  { url: '/blog/', changefreq: 'weekly', priority: 0.7 },
+	{ url: '/', changefreq: 'daily', priority: 1 },
+	{ url: '/pricing', priority: 0.5 },
+	{ url: '/pricing/compare', priority: 0.5 },
+	{ url: '/docs', priority: 0.7 },
+	{ url: '/community', priority: 0.7 },
+	{ url: '/blog/', changefreq: 'weekly', priority: 0.7 },
 ]
 async function getSitemap() {
-  const { routes, blogposts } = await client.fetch(`
+	const { routes, blogposts } = await client.fetch(`
   {
     "routes": *[_type == "route" && includeInSitemap],
     "blogposts": *[_type == 'post' && includeInSitemap == true && publishedAt < $now] | order(publishedAt desc) {
@@ -46,39 +46,39 @@ async function getSitemap() {
     }
   }
   `)
-  const urls = routes
-    .filter(({ slug = {} }) => slug.current)
-    .reduce(
-      (acc, route) => [
-        ...acc,
-        {
-          url: route.slug.current,
-          priority: route.sitemapPriority || 0.5,
-        },
-      ],
-      defaultUrls
-    )
-  const blogUrls = blogposts
-    .filter(({ slug = {} }) => slug.current)
-    .map(post => {
-      return {
-        url: `/blog/${post.slug.current}`,
-        priority: 0.5,
-      }
-    })
-  return sm.createSitemap({
-    hostname: 'https://www.sanity.io',
-    cacheTime: 600000,
-    urls: urls.concat(blogUrls),
-  })
+	const urls = routes
+		.filter(({ slug = {} }) => slug.current)
+		.reduce(
+			(acc, route) => [
+				...acc,
+				{
+					url: route.slug.current,
+					priority: route.sitemapPriority || 0.5,
+				},
+			],
+			defaultUrls,
+		)
+	const blogUrls = blogposts
+		.filter(({ slug = {} }) => slug.current)
+		.map(post => {
+			return {
+				url: `/blog/${post.slug.current}`,
+				priority: 0.5,
+			}
+		})
+	return sm.createSitemap({
+		hostname: 'https://www.sanity.io',
+		cacheTime: 600000,
+		urls: urls.concat(blogUrls),
+	})
 }
 module.exports = function sitemapXML(req, res, next) {
-  res.setHeader('Content-Type', 'application/xml')
-  getSitemap()
-    .then(result => {
-      res.send(result.toString())
-    })
-    .catch(next)
+	res.setHeader('Content-Type', 'application/xml')
+	getSitemap()
+		.then(result => {
+			res.send(result.toString())
+		})
+		.catch(next)
 }
 ```
 
@@ -100,44 +100,44 @@ import groq from 'groq'
 import sanityClient from '../sanity-client'
 
 export default function SiteMap() {
-  return <div>loading</div>
+	return <div>loading</div>
 }
 
 export async function getServerSideProps({ res }) {
-  const baseUrl = `https://myawesomesite.com`
-  const query = groq`{
+	const baseUrl = `https://myawesomesite.com`
+	const query = groq`{
       "countries": *[_type == 'country']{slug},
     }`
-  const urls = await sanityClient.fetch(query)
-  const countries = urls.countries.map(page => {
-    const slug =
-      page.slug.current === '/' ? '/' : `/${page.slug.current}`
-    return `
+	const urls = await sanityClient.fetch(query)
+	const countries = urls.countries.map(page => {
+		const slug =
+			page.slug.current === '/' ? '/' : `/${page.slug.current}`
+		return `
       <loc>${baseUrl}${slug}</loc>
       <changefreq>daily</changefreq>
       <priority>0.7</priority>
     `
-  })
+	})
 
-  const locations = [...countries]
-  const createSitemap = () => `<?xml version="1.0" encoding="UTF-8"?>
+	const locations = [...countries]
+	const createSitemap = () => `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         ${locations
-          .map(location => {
-            return `<url>
+					.map(location => {
+						return `<url>
                       ${location}
                     </url>
                   `
-          })
-          .join('')}
+					})
+					.join('')}
     </urlset>
     `
-  res.setHeader('Content-Type', 'text/xml')
-  res.write(createSitemap())
-  res.end()
-  return {
-    props: {},
-  }
+	res.setHeader('Content-Type', 'text/xml')
+	res.write(createSitemap())
+	res.end()
+	return {
+		props: {},
+	}
 }
 ```
 
@@ -156,10 +156,10 @@ with being mentioned, thanks James. 🙏
 <!-- Images -->
 
 [slack message asking about site map]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/slack-message-asking-about-site-map-eb4b170b1db4454e381d622f3374b6cd.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/slack-message-asking-about-site-map-eb4b170b1db4454e381d622f3374b6cd.png
 [knut slack reply]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/knut-slack-reply-09be06278ce5133cf55987bd7be2a328.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/knut-slack-reply-09be06278ce5133cf55987bd7be2a328.png
 [james weis reply headers to text/xml]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/james-weis-reply-headers-to-text-xml-38b5a75fc9ea820d41bc3cf287eae85f.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/james-weis-reply-headers-to-text-xml-38b5a75fc9ea820d41bc3cf287eae85f.png
 [asking for permission to add this content to my blog]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/credit-james-4b96034fad83ad2aab9b4d85238a7260.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/credit-james-4b96034fad83ad2aab9b4d85238a7260.png

@@ -56,8 +56,8 @@ sharing the output from the two devices.
 
 ## Another way
 
-It was only after a totally delightful conversation with [Kevin Lewis]
-(hit him up for board game ideas any time) that I discovered I could
+It was only after a totally delightful conversation with [Kevin
+Lewis] (hit him up for board game ideas any time) that I discovered I could
 have done this a _lot_ simpler with Streamyard.
 
 Streamyard if you're not familiar with it is a web based streaming
@@ -79,5 +79,5 @@ Lesson learned.
 [ndi]: https://ndi.tv/
 [twitter]: https://twitter.com/spences10/status/1387412287330430978
 [obs fix display capture not working]:
-  https://scottspence.com/posts/obs-display-capture-not-working/
+	https://scottspence.com/posts/obs-display-capture-not-working/
 [kevin lewis]: https://twitter.com/_phzn

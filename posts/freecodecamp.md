@@ -16,10 +16,9 @@ real world situation course where you go over some basics first then
 apply them, once you have learnt enough you then have to complete
 projects using the skills you have just learned.
 
-So far I have made a tribute page [DJ Hype] and created a personal
-[Portfolio] page on [CODEPEN.io] there's some great examples on
-CODEPEN.io to help you get started and so far I have really enjoyed
-them.
+So far I have made a tribute page [DJ Hype] and created a personal [Portfolio]
+page on [CODEPEN.io] there's some great examples on CODEPEN.io to help
+you get started and so far I have really enjoyed them.
 
 So now onto JavaScript!
 

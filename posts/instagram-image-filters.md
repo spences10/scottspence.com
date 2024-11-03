@@ -15,15 +15,15 @@ to see what effect they have.
 I got the idea from [this repo], which in turn got the idea from [Una
 Kravets].
 
-Essentially, it applies the [CSS filter] class to the image using one
-of the filters from the [list], like this:
+Essentially, it applies the [CSS filter] class to the image using one of
+the filters from the [list], like this:
 
 ```html
 <figure class="filter-1977">
-  <img
-    src="https://picsum.photos/400/400"
-    alt="random picsum asset"
-  />
+	<img
+		src="https://picsum.photos/400/400"
+		alt="random picsum asset"
+	/>
 </figure>
 ```
 
@@ -42,14 +42,14 @@ and use the CSS filter class names in a `figure` element.
 
 ```svelte
 <script>
-  import '../instagram.css'
+	import '../instagram.css'
 </script>
 
 <figure class="filter-1977">
-  <img
-    src="https://picsum.photos/400/400"
-    alt="random picsum asset"
-  />
+	<img
+		src="https://picsum.photos/400/400"
+		alt="random picsum asset"
+	/>
 </figure>
 ```
 
@@ -61,15 +61,15 @@ the `option` element using the Svelte `{each}` loop.
 
 ```svelte
 <script>
-  let filtersList = ['looooong', 'list', 'of', 'filters']
+	let filtersList = ['looooong', 'list', 'of', 'filters']
 </script>
 
 <select>
-  {#each filtersList as filter}
-    <option value={filter}>
-      <span>{filter}</span>
-    </option>
-  {/each}
+	{#each filtersList as filter}
+		<option value={filter}>
+			<span>{filter}</span>
+		</option>
+	{/each}
 </select>
 ```
 
@@ -78,15 +78,15 @@ Cool, so, now I have a list of filters, I'll idd that into my
 
 ```svelte
 <script lang="ts">
-  import Filters from '$lib/components/filters.svelte'
-  import '../instagram.css'
+	import Filters from '$lib/components/filters.svelte'
+	import '../instagram.css'
 </script>
 
 <figure class="filter-1977">
-  <img
-    src="https://picsum.photos/400/400"
-    alt="random picsum asset"
-  />
+	<img
+		src="https://picsum.photos/400/400"
+		alt="random picsum asset"
+	/>
 </figure>
 
 <Filters />
@@ -102,8 +102,8 @@ By using data binding!
 
 ## Bind the select value to a variable
 
-I did a post about [Data Binding in Svelte] a while back if you want
-to get a full understanding of what's going on here.
+I did a post about [Data Binding in Svelte] a while back if you want to
+get a full understanding of what's going on here.
 
 What I need to do is create a variable in the `filters.svelte` file to
 bind the value of the select to.
@@ -113,16 +113,16 @@ the component.
 
 ```svelte
 <script>
-  let filtersList = ['looooong', 'list', 'of', 'filters']
-  export let value = ''
+	let filtersList = ['looooong', 'list', 'of', 'filters']
+	export let value = ''
 </script>
 
 <select bind:value>
-  {#each filtersList as filter}
-    <option value={filter}>
-      <span>{filter}</span>
-    </option>
-  {/each}
+	{#each filtersList as filter}
+		<option value={filter}>
+			<span>{filter}</span>
+		</option>
+	{/each}
 </select>
 ```
 
@@ -137,13 +137,13 @@ using some backticks to apply the class.
 
 ```svelte
 <script lang="ts">
-  import Filters from '$lib/components/filters.svelte'
-  import '../instagram.css'
-  let optionValue = ''
+	import Filters from '$lib/components/filters.svelte'
+	import '../instagram.css'
+	let optionValue = ''
 </script>
 
 <figure class={`filter-${optionValue}`}>
-  <img src="https://picsum.photos/400/400" alt="" />
+	<img src="https://picsum.photos/400/400" alt="" />
 </figure>
 
 <Filters bind:value={optionValue} />
@@ -171,37 +171,37 @@ needed.
 
 ```svelte
 <div class="figure-group">
-  {#each filtersList as item}
-    <figure class={`styled-figure filter-${item}`}>
-      <img
-        src="https://picsum.photos/400/400"
-        alt="random picsum asset"
-      />
-      <p>{item}</p>
-    </figure>
-  {/each}
+	{#each filtersList as item}
+		<figure class={`styled-figure filter-${item}`}>
+			<img
+				src="https://picsum.photos/400/400"
+				alt="random picsum asset"
+			/>
+			<p>{item}</p>
+		</figure>
+	{/each}
 </div>
 
 <style>
-  .styled-figure {
-    height: 100%;
-  }
-  .figure-group {
-    margin: 0 auto;
-    display: grid;
-    gap: 0.5rem;
-  }
+	.styled-figure {
+		height: 100%;
+	}
+	.figure-group {
+		margin: 0 auto;
+		display: grid;
+		gap: 0.5rem;
+	}
 
-  @media (min-width: 1000px) {
-    .figure-group {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (min-width: 1450px) {
-    .figure-group {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
+	@media (min-width: 1000px) {
+		.figure-group {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+	@media (min-width: 1450px) {
+		.figure-group {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
 </style>
 ```
 
@@ -218,8 +218,8 @@ Thanks for reading!
 [una kravets]: https://una.im/CSSgram/
 [css filter]: https://developer.mozilla.org/en-US/docs/Web/CSS/filter
 [list]:
-  https://github.com/picturepan2/instagram.css/blob/master/dist/instagram.css
+	https://github.com/picturepan2/instagram.css/blob/master/dist/instagram.css
 [data binding in svelte]:
-  https://scottspence.com/posts/data-binding-in-svelte
+	https://scottspence.com/posts/data-binding-in-svelte
 [github]:
-  https://github.com/spences10/insta-styled/blob/main/src/routes/%2Bpage.svelte
+	https://github.com/spences10/insta-styled/blob/main/src/routes/%2Bpage.svelte

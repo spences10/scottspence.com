@@ -28,9 +28,9 @@ I have my GitHub project set up with two branches `master` and
 then pushed into `development` then up to `master` once I'm happy the
 change is ok to go to production.
 
-Using [Zeit's now] you can define a different url for each of your
-environments. I have a `.now.sh` url for `development` and a
-sub-domain of my `scottspence.me` domain for `master`/production.
+Using [Zeit's now] you can define a different url for each of your environments.
+I have a `.now.sh` url for `development` and a sub-domain of my `scottspence.me`
+domain for `master`/production.
 
 ### The set-up
 
@@ -39,11 +39,10 @@ repository to https://travis-ci.org/ then adding your `NOW_TOKEN` from
 https://zeit.co/account/tokens to the repository settings page on
 Travis-ci
 
-The [guide here] covers it for using now, the part I found
-particularly painful was generating the secure variable for the
-`.travis.yml` file because I don't have Ruby installed and I struggled
-to set it up on my openSUSE WSL install, so instead I used a Cloud9
-machine in the end.
+The [guide here] covers it for using now, the part I found particularly
+painful was generating the secure variable for the `.travis.yml` file because
+I don't have Ruby installed and I struggled to set it up on my openSUSE
+WSL install, so instead I used a Cloud9 machine in the end.
 
 #### the flow
 

@@ -14,13 +14,13 @@ Don't save the yak! But put in the work so you're not wasting time.
 
 <!-- cSpell:ignore Biletska,godin -->
 
-[Marina Biletska] told me about this expression when we were working
-on our [Chingu collabs] project together.
+[Marina Biletska] told me about this expression when we were working on
+our [Chingu collabs] project together.
 
 This initially came up in an issue I raised on the project we were
 working on together ([grad.then()]) where I was having issues with
-[ESLint line-break style] and Marina left a link to a [Seth Godin
-article].
+[ESLint line-break style] and Marina left a link to a [Seth
+Godin article].
 
 ## What's shaving the yak?
 
@@ -99,17 +99,17 @@ it.
 <!-- Links -->
 
 [seth godin article]:
-  https://sethgodin.typepad.com/seths_blog/2005/03/dont_shave_that.html
+	https://sethgodin.typepad.com/seths_blog/2005/03/dont_shave_that.html
 [chingu collabs]: https://chingu.io/
 [marina biletska]: https://github.com/mar-bi
 [grad.then()]: https://github.com/chingu-voyage6/grad.then/issues/191
 [eslint line-break style]:
-  https://github.com/chingu-voyage6/grad.then/issues/118#issuecomment-353569629
+	https://github.com/chingu-voyage6/grad.then/issues/118#issuecomment-353569629
 [update dependencies]:
-  https://github.com/chingu-voyage6/grad.then/issues/191
+	https://github.com/chingu-voyage6/grad.then/issues/191
 [wd-40]: https://en.wikipedia.org/wiki/WD-40
 [seth godin - don't shave that yak!]:
-  https://seths.blog/2005/03/dont_shave_that/
+	https://seths.blog/2005/03/dont_shave_that/
 [wiktionary - ren and stimpy reference]:
-  https://en.wiktionary.org/wiki/yak_shaving
+	https://en.wiktionary.org/wiki/yak_shaving
 [jason lengstorf - meta-work]: https://www.jason.af/yak-shaving

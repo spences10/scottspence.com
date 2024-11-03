@@ -31,7 +31,7 @@ From **Adam Wathan:**
 
 ```css
 * {
-  outline: 1px solid red !important;
+	outline: 1px solid red !important;
 }
 ```
 
@@ -65,8 +65,8 @@ Gradient maker: [cssgradient.io/gradient-backgrounds]
 
 Nice Gradient Swatches: [gradientmagic.com]
 
-Animated gradients, via Chris Biscardi, example: [animated gradients
-CodeSandbox]
+Animated gradients, via Chris Biscardi, example: [animated
+gradients CodeSandbox]
 
 <Tweet tweetLink="chrisbiscardi/status/1259606045858467840" />
 
@@ -129,9 +129,9 @@ the dev console:
 
 ```js
 ;[
-  ...document.querySelectorAll(
-    '.named-color-table [id^="valdef-color-"]',
-  ),
+	...document.querySelectorAll(
+		'.named-color-table [id^="valdef-color-"]',
+	),
 ].map(element => element.textContent)
 ```
 
@@ -173,16 +173,16 @@ New CSS Logical Properties!: [medium post]
 <!-- Links -->
 
 [cssgradient.io/gradient-backgrounds]:
-  https://cssgradient.io/gradient-backgrounds/
+	https://cssgradient.io/gradient-backgrounds/
 [gradientmagic.com]: https://www.gradientmagic.com/#
 [https://cssgradient.io]: https://cssgradient.io/
 [neumorphism.io]: https://neumorphism.io/#55b9f3
 [medium post]:
-  https://medium.com/@elad/new-css-logical-properties-bc6945311ce7
+	https://medium.com/@elad/new-css-logical-properties-bc6945311ce7
 [css-tricks.com/glitch-effect-text-images-svg]:
-  https://css-tricks.com/glitch-effect-text-images-svg/
+	https://css-tricks.com/glitch-effect-text-images-svg/
 [`font-variant-numeric`]:
-  https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric
+	https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric
 [mycolor.space]: https://mycolor.space/?hex=%23663399&sub=1
 [color.adobe.com]: https://color.adobe.com
 [palx.jxnblk.com]: https://palx.jxnblk.com/
@@ -190,7 +190,7 @@ New CSS Logical Properties!: [medium post]
 [0to255.com]: https://www.0to255.com/
 [color-hex.com]: https://www.color-hex.com/
 [jxnblk.com/hello-color]:
-  https://jxnblk.github.io/hello-color/?c=795ada
+	https://jxnblk.github.io/hello-color/?c=795ada
 [colorbox.io]: https://www.colorbox.io/
 [hihayk.github.io/scale]: https://hihayk.github.io/scale
 [eggradients.com]: https://www.eggradients.com/
@@ -198,12 +198,12 @@ New CSS Logical Properties!: [medium post]
 [worldvectorlogo.com]: https://worldvectorlogo.com/search/GraphQL
 [layoutit.com/build]: https://www.layoutit.com/build
 [9elements.github.io/fancy-border-radius]:
-  https://9elements.github.io/fancy-border-radius
+	https://9elements.github.io/fancy-border-radius
 [mathias bynens]: https://twitter.com/mathias
 [the css3 spec]: https://drafts.csswg.org/css-color/#named-colors
 [tanaguru contrast finder]: https://contrast-finder.tanaguru.com/
 [animated gradients codesandbox]:
-  https://codesandbox.io/s/muddy-sun-gp0el
+	https://codesandbox.io/s/muddy-sun-gp0el
 [a most excellent hsl color picker]: https://hslpicker.com/
 [colorhunt.co]: https://colorhunt.co/
 [brandingcolors.net]: https://brandingcolors.net
@@ -211,6 +211,6 @@ New CSS Logical Properties!: [medium post]
 <!-- Images -->
 
 [desaturating images]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/desaturatingImages-e8f3e086004f22ace2e1f29cf08c706b.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/desaturatingImages-e8f3e086004f22ace2e1f29cf08c706b.jpg
 [circle images]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/circleImages-30b19bb25510c6ba66ef181a3023ebac.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/circleImages-30b19bb25510c6ba66ef181a3023ebac.jpg

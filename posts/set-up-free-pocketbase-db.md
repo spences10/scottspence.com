@@ -6,8 +6,7 @@ isPrivate: false
 ---
 
 I was playing around with Linode recently to try set up a PocketBase
-instance then I came across [this guide] on the PocketBase GitHub
-discussions.
+instance then I came across [this guide] on the PocketBase GitHub discussions.
 
 The whole thing took around ten minutes and I now have a SQLite
 database I can read/write to.
@@ -72,8 +71,8 @@ directory.
 
 ## Set up Fly.io
 
-I'll follow the Fly.io [install guide], I use Windows Subsystem for
-Linux (WSL) with Ubuntu so I'll use the Linux install instructions.
+I'll follow the Fly.io [install guide], I use Windows Subsystem for Linux
+(WSL) with Ubuntu so I'll use the Linux install instructions.
 
 ```bash
 curl -L https://fly.io/install.sh | sh
@@ -203,8 +202,8 @@ I can now start creating collections and adding users!
 
 ## Next steps
 
-I'll be playing around with the PocketBase [JavaScript SDK] to use in
-an as yet undetermined SvelteKit project.
+I'll be playing around with the PocketBase [JavaScript SDK] to use in an
+as yet undetermined SvelteKit project.
 
 There's still the backup and downloading of data I need to check out,
 but for a quick and easy way to get a PocketBase instance up and

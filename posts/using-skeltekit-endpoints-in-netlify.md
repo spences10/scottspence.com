@@ -18,23 +18,23 @@ import preprocess from 'svelte-preprocess'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  kit: {
-    // hydrate the <div id="svelte"> element in src/app.html
-    target: '#svelte',
-    adapter: adapter(),
-    prerender: {
-      crawl: true,
-      enabled: true,
-      onError: 'continue',
-      pages: ['*'],
-    },
-  },
+	kit: {
+		// hydrate the <div id="svelte"> element in src/app.html
+		target: '#svelte',
+		adapter: adapter(),
+		prerender: {
+			crawl: true,
+			enabled: true,
+			onError: 'continue',
+			pages: ['*'],
+		},
+	},
 
-  preprocess: [
-    preprocess({
-      postcss: true,
-    }),
-  ],
+	preprocess: [
+		preprocess({
+			postcss: true,
+		}),
+	],
 }
 
 export default config
@@ -45,7 +45,7 @@ any page that uses an endpoint:
 
 ```html
 <script context="module">
-  export const prerender = true
-  // rest of the code for the endpoint
+	export const prerender = true
+	// rest of the code for the endpoint
 </script>
 ```

@@ -23,9 +23,9 @@ gives the ability to override rendering of links.
 
 ## The problem 🤔
 
-I'd like to add a [Fathom goal] to a link in my Markdown, to do this
-I'll need to get the goal ID I've created in Fathom to the link so
-that when it's clicked it's logged with Fathom.
+I'd like to add a [Fathom goal] to a link in my Markdown, to do this I'll
+need to get the goal ID I've created in Fathom to the link so that when
+it's clicked it's logged with Fathom.
 
 So I can add an `onClick` event to the `a` tag using the MDXProvider
 and pass that ID to the analytics provider.
@@ -41,18 +41,18 @@ component I'm using to override the links in the Markdown.
 
 ```js {2,7}
 export const A = props => {
-  const fa = useAnalytics()
-  return (
-    <a
-      {...props}
-      id={props.id}
-      onClick={() => fa(props.goal)}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {props.children}
-    </a>
-  )
+	const fa = useAnalytics()
+	return (
+		<a
+			{...props}
+			id={props.id}
+			onClick={() => fa(props.goal)}
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			{props.children}
+		</a>
+	)
 }
 ```
 
@@ -101,8 +101,8 @@ document, like this:
 ```md
 # My awesome Markdown
 
-Fathom Analytics recently added a feature for [custom domains] with
-their service.
+Fathom Analytics recently added a feature for [custom domains] with their
+service.
 
 <!-- Links -->
 
@@ -124,13 +124,13 @@ In the Markdown I add the goal ID to the URL, on line 9:
 ```md {8-9}
 # My awesome Markdown
 
-Fathom Analytics recently added a feature for [custom domains] with
-their service.
+Fathom Analytics recently added a feature for [custom domains] with their
+service.
 
 <!-- Links -->
 
 [custom domains]:
-  https://usefathom.com/blog/bypass-adblockers?goalId="IBQBRDPP"
+	https://usefathom.com/blog/bypass-adblockers?goalId="IBQBRDPP"
 ```
 
 This way the structure of the Markdown is unchanged making a much
@@ -146,19 +146,19 @@ Using the `URL(props.href).searchParams` means that I can pull out the
 
 ```js {3-8}
 export const A = props => {
-  const fa = useAnalytics()
-  const onClick = () => {
-    if (props.href.includes(`goalId`)) {
-      const params = new URL(props.href).searchParams
-      fa(params.get(`goalId`))
-    }
-  }
+	const fa = useAnalytics()
+	const onClick = () => {
+		if (props.href.includes(`goalId`)) {
+			const params = new URL(props.href).searchParams
+			fa(params.get(`goalId`))
+		}
+	}
 
-  return (
-    <a {...props} onClick={onClick}>
-      {props.children}
-    </a>
-  )
+	return (
+		<a {...props} onClick={onClick}>
+			{props.children}
+		</a>
+	)
 }
 ```
 
@@ -171,8 +171,8 @@ I didn't really like the way this looked, especially if someone was
 going to share that link after clicking it.
 
 So reading into the URL API a bit more and reading up on some
-[StackOverflow posts] I found that I could delete the parameter after
-using it.
+[StackOverflow posts] I found that I could delete the parameter after using
+it.
 
 In the next block of code here, on line 3, I'm checking if the
 `props.href` contains a `goalId` parameter.
@@ -187,35 +187,35 @@ to the `a` tag in the props, on line 25.
 
 ```js {3-5,7-14,17-19,25}
 export const A = props => {
-  const fa = useAnalytics()
-  const containsGoalId = props.href.includes(`goalId`)
-  const [goalId, setGoalId] = useState(``)
-  const [newHref, setNewHref] = useState(``)
+	const fa = useAnalytics()
+	const containsGoalId = props.href.includes(`goalId`)
+	const [goalId, setGoalId] = useState(``)
+	const [newHref, setNewHref] = useState(``)
 
-  useEffect(() => {
-    if (containsGoalId) {
-      const url = new URL(props.href)
-      setGoalId(url.searchParams.get(`goalId`))
-      url.searchParams.delete(`goalId`)
-      setNewHref(url.href)
-    }
-  }, [containsGoalId, props.href])
+	useEffect(() => {
+		if (containsGoalId) {
+			const url = new URL(props.href)
+			setGoalId(url.searchParams.get(`goalId`))
+			url.searchParams.delete(`goalId`)
+			setNewHref(url.href)
+		}
+	}, [containsGoalId, props.href])
 
-  const onClick = () => {
-    if (goalId) {
-      fa(goalId)
-    }
-  }
+	const onClick = () => {
+		if (goalId) {
+			fa(goalId)
+		}
+	}
 
-  return (
-    <a
-      {...props}
-      href={containsGoalId ? newHref : props.href}
-      onClick={onClick}
-    >
-      {props.children}
-    </a>
-  )
+	return (
+		<a
+			{...props}
+			href={containsGoalId ? newHref : props.href}
+			onClick={onClick}
+		>
+			{props.children}
+		</a>
+	)
 }
 ```
 
@@ -244,20 +244,20 @@ These resources helped me along the way.
 
 [my affiliate link]: https://usefathom.com/ref/HG492L
 [track custom events]:
-  https://scottspence.com/posts/track-custom-events-with-fathom-analytics/
+	https://scottspence.com/posts/track-custom-events-with-fathom-analytics/
 [fathom goal]: https://usefathom.com/support/goals
 [stackoverflow posts]: https://stackoverflow.com/a/12151322/1138354
 [mdn url api]: https://developer.mozilla.org/en-US/docs/Web/API/URL
 [mdn searchparams delete]:
-  https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/delete
+	https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/delete
 [so get query string values]:
-  https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+	https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 [so remove query string values]:
-  https://stackoverflow.com/questions/22753052/remove-url-parameters-without-refreshing-page
+	https://stackoverflow.com/questions/22753052/remove-url-parameters-without-refreshing-page
 [google urlsearchparams]:
-  https://developers.google.com/web/updates/2016/01/urlsearchparams
+	https://developers.google.com/web/updates/2016/01/urlsearchparams
 
 <!-- Images -->
 
 [url with goalid showing]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/url-with-goalid-showing-a8b55efd542a1abaf4905a646549dea6.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/url-with-goalid-showing-a8b55efd542a1abaf4905a646549dea6.png

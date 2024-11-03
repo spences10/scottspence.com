@@ -11,8 +11,8 @@ I was directed to direnv by Chris Biscardi when I was trying to use
 some environment variables in my Toast site.
 
 In the past I have always reached for dotenv so taking a look at other
-[Toast sites] I couldn't find any that used it so I reached out to
-Chris and he mentioned direnv.
+[Toast sites] I couldn't find any that used it so I reached out to Chris
+and he mentioned direnv.
 
 I found a really useful video from [Vlad] detailing the setup which
 I've adopted and started using.
@@ -70,5 +70,6 @@ available.
 
 [toast sites]: https://scottspence.com/posts/notes-on-toast/#resources
 [vlad]: https://www.youtube.com/watch?v=YkxoGRpHcVQ
-[supported platforms]: https://direnv.net/docs/installation.html#from-system-packages
+[supported platforms]:
+	https://direnv.net/docs/installation.html#from-system-packages
 [hook from the documentation]: https://direnv.net/docs/hook.html

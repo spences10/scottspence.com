@@ -30,16 +30,16 @@ Here's what the skip to content looks like for this site:
 
 ```svelte
 <a
-  class="transition left-0 bg-primary text-primary-content absolute p-3 m-3 -translate-y-16 focus:translate-y-0"
-  href="#main-content">Skip Navigation</a
+	class="bg-primary text-primary-content absolute left-0 m-3 -translate-y-16 p-3 transition focus:translate-y-0"
+	href="#main-content">Skip Navigation</a
 >
 <Header />
 <Nav />
 <main
-  id="main-content"
-  class="container max-w-3xl mx-auto px-4 mb-20"
+	id="main-content"
+	class="container mx-auto mb-20 max-w-3xl px-4"
 >
-  <slot />
+	<slot />
 </main>
 
 <Footer />
@@ -60,30 +60,30 @@ Here's the most basic example of how it could look:
 
 ```html
 <body>
-  <header>
-    <a class="skip-to-content" href="#main-content">
-      Skip to content
-    </a>
+	<header>
+		<a class="skip-to-content" href="#main-content">
+			Skip to content
+		</a>
 
-    <nav>
-      <ul>
-        <li>
-          <a href="#">Home</a>
-        </li>
-        <li>
-          <a href="#">About</a>
-        </li>
-        <li>
-          <a href="#">Stuff</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  <div>
-    <p class="hero-content">Skip to Content example</p>
-    <p class="hero-content">Use Tab to show link</p>
-  </div>
-  <main id="main-content">Main content here...</main>
+		<nav>
+			<ul>
+				<li>
+					<a href="#">Home</a>
+				</li>
+				<li>
+					<a href="#">About</a>
+				</li>
+				<li>
+					<a href="#">Stuff</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<div>
+		<p class="hero-content">Skip to Content example</p>
+		<p class="hero-content">Use Tab to show link</p>
+	</div>
+	<main id="main-content">Main content here...</main>
 </body>
 ```
 
@@ -98,8 +98,8 @@ So I can use a bit of CSS to hide it.
 
 ```css
 .skip-to-content {
-  position: absolute;
-  transform: translateY(-150%);
+	position: absolute;
+	transform: translateY(-150%);
 }
 ```
 
@@ -117,13 +117,13 @@ So I'll add a transition to the class and reset the transform back to
 
 ```css
 .skip-to-content {
-  position: absolute;
-  transform: translateY(-150%);
-  transition: transform 150ms ease-in;
+	position: absolute;
+	transform: translateY(-150%);
+	transition: transform 150ms ease-in;
 }
 
 .skip-to-content:focus {
-  transform: translateY(0);
+	transform: translateY(0);
 }
 ```
 

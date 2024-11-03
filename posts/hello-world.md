@@ -6,8 +6,8 @@ isPrivate: false
 ---
 
 My first post using Jekyll, all I have done really is fork the awesome
-[jekyll-now] repo from [Barry Clark] and rename the repo and adjusted
-the `_config.yml` file.
+[jekyll-now] repo from [Barry Clark] and rename the repo and adjusted the
+`_config.yml` file.
 
 <!-- Links -->
 

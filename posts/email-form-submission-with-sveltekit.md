@@ -61,8 +61,7 @@ Scroll to the bottom and look for something like this:
 
 Your API key is `2f09ecd9-6a64-4d5b-9c77-a5587cedbcf7`.
 
-Usage of the API must follow Revue's [Terms of Service] and [Privacy
-Policy].
+Usage of the API must follow Revue's [Terms of Service] and [Privacy Policy].
 
 <br />
 </div>
@@ -77,10 +76,10 @@ this:
 
 ```json
 {
-  "email": "spences10apps+test@gmail.com",
-  "first_name": "",
-  "last_name": "",
-  "double_opt_in": false
+	"email": "spences10apps+test@gmail.com",
+	"first_name": "",
+	"last_name": "",
+	"double_opt_in": false
 }
 ```
 
@@ -95,12 +94,12 @@ preview reply looking something like this:
 
 ```json
 {
-  "id": 5654821249,
-  "list_id": 216568,
-  "email": "spences10apps+test@gmail.com",
-  "first_name": "",
-  "last_name": "",
-  "last_changed": "2021-08-31T20:10:24.197Z"
+	"id": 5654821249,
+	"list_id": 216568,
+	"email": "spences10apps+test@gmail.com",
+	"first_name": "",
+	"last_name": "",
+	"last_changed": "2021-08-31T20:10:24.197Z"
 }
 ```
 
@@ -144,22 +143,22 @@ import mdsvexConfig from './mdsvex.config.js'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  extensions: ['.svelte', ...mdsvexConfig.extensions],
-  // Consult https://github.com/sveltejs/svelte-preprocess
-  // for more information about preprocessors
-  preprocess: [
-    mdsvex(mdsvexConfig),
-    [
-      preprocess({
-        postcss: true,
-      }),
-    ],
-  ],
+	extensions: ['.svelte', ...mdsvexConfig.extensions],
+	// Consult https://github.com/sveltejs/svelte-preprocess
+	// for more information about preprocessors
+	preprocess: [
+		mdsvex(mdsvexConfig),
+		[
+			preprocess({
+				postcss: true,
+			}),
+		],
+	],
 
-  kit: {
-    target: '#svelte',
-    adapter: adapter(),
-  },
+	kit: {
+		target: '#svelte',
+		adapter: adapter(),
+	},
 }
 
 export default config
@@ -193,8 +192,8 @@ Although the code for an endpoint runs on the server and adding the
 _shouldn't_ be exposed to the client **but** I prefer to use
 `process.env` to access the variables.
 
-I've made a short post on how to use [`.env` secrets in SvelteKit] if
-you need a bit more detail on that.
+I've made a short post on how to use [`.env` secrets in SvelteKit] if you
+need a bit more detail on that.
 
 I'm going to install `env-cmd` and add that to the dev script, first
 up install the package:
@@ -235,48 +234,48 @@ working.
 
 ```js
 export async function post() {
-  const REVUE_API_KEY = process.env['REVUE_API_KEY']
-  try {
-    const res = await fetch(
-      'https://www.getrevue.co/api/v2/subscribers',
-      {
-        method: 'POST',
-        headers: {
-          Authorization: `Token ${REVUE_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: 'spences10apps+test@gmail.com',
-          first_name: '',
-          last_name: '',
-          double_opt_in: false,
-        }),
-      }
-    )
-    if (res.ok) {
-      return {
-        status: 200,
-        body: JSON.stringify({
-          message: 'email sent!',
-        }),
-      }
-    }
-    if (res.status !== 200) {
-      return {
-        status: 400,
-        body: JSON.stringify({
-          message: 'bad request',
-        }),
-      }
-    }
-  } catch (error) {
-    return {
-      status: 500,
-      body: JSON.stringify({
-        message: 'something went wrong with the email submit!',
-      }),
-    }
-  }
+	const REVUE_API_KEY = process.env['REVUE_API_KEY']
+	try {
+		const res = await fetch(
+			'https://www.getrevue.co/api/v2/subscribers',
+			{
+				method: 'POST',
+				headers: {
+					Authorization: `Token ${REVUE_API_KEY}`,
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					email: 'spences10apps+test@gmail.com',
+					first_name: '',
+					last_name: '',
+					double_opt_in: false,
+				}),
+			},
+		)
+		if (res.ok) {
+			return {
+				status: 200,
+				body: JSON.stringify({
+					message: 'email sent!',
+				}),
+			}
+		}
+		if (res.status !== 200) {
+			return {
+				status: 400,
+				body: JSON.stringify({
+					message: 'bad request',
+				}),
+			}
+		}
+	} catch (error) {
+		return {
+			status: 500,
+			body: JSON.stringify({
+				message: 'something went wrong with the email submit!',
+			}),
+		}
+	}
 }
 ```
 
@@ -299,10 +298,10 @@ hardcoded in here:
 
 ```js
 body: JSON.stringify({
-  email: 'spences10apps+test@gmail.com',
-  first_name: '',
-  last_name: '',
-  double_opt_in: false,
+	email: 'spences10apps+test@gmail.com',
+	first_name: '',
+	last_name: '',
+	double_opt_in: false,
 })
 ```
 
@@ -329,32 +328,32 @@ Then add the following script to the component:
 
 ```svelte
 <script>
-  let email = ''
-  let showMessage = false
-  let responseMessage = ''
+	let email = ''
+	let showMessage = false
+	let responseMessage = ''
 
-  async function submitForm() {
-    const submit = await fetch('/email-submit.json', {
-      method: 'POST',
-      body: JSON.stringify({ email }),
-    })
-    const data = await submit.json()
+	async function submitForm() {
+		const submit = await fetch('/email-submit.json', {
+			method: 'POST',
+			body: JSON.stringify({ email }),
+		})
+		const data = await submit.json()
 
-    if (data.message === 'bad request') {
-      showMessage = true
-      responseMessage = `That looks like a bad request`
-    }
-    if (data.message === 'email sent!') {
-      showMessage = true
-      responseMessage = `Sweet! You're signed up!`
-    }
-    if (
-      data.message === 'something went wrong with the email submit!'
-    ) {
-      showMessage = false
-      // deal with failed response from server
-    }
-  }
+		if (data.message === 'bad request') {
+			showMessage = true
+			responseMessage = `That looks like a bad request`
+		}
+		if (data.message === 'email sent!') {
+			showMessage = true
+			responseMessage = `Sweet! You're signed up!`
+		}
+		if (
+			data.message === 'something went wrong with the email submit!'
+		) {
+			showMessage = false
+			// deal with failed response from server
+		}
+	}
 </script>
 ```
 
@@ -367,33 +366,33 @@ the project uses Tailwind so I've added some minimal styles:
 
 ```svelte
 <div class="mb-10">
-  {#if success}
-    <div class="text-center">
-      <h3 class="font-extrabold text-3xl">{responseMessage}</h3>
-    </div>
-  {:else}
-    <div class="text-center">
-      <h3 class="font-extrabold text-3xl">
-        Sign up for the newsletter
-      </h3>
-      <form class="" on:submit|preventDefault={submitForm}>
-        <label for="email" class="label">
-          <span class="sr-only">Your Email</span>
-        </label>
-        <input
-          id="email"
-          aria-label="email"
-          type="email"
-          name="email"
-          autocomplete="email"
-          placeholder="your@email.com"
-          required
-          bind:value={email}
-        />
-        <input type="submit" />
-      </form>
-    </div>
-  {/if}
+	{#if success}
+		<div class="text-center">
+			<h3 class="text-3xl font-extrabold">{responseMessage}</h3>
+		</div>
+	{:else}
+		<div class="text-center">
+			<h3 class="text-3xl font-extrabold">
+				Sign up for the newsletter
+			</h3>
+			<form class="" on:submit|preventDefault={submitForm}>
+				<label for="email" class="label">
+					<span class="sr-only">Your Email</span>
+				</label>
+				<input
+					id="email"
+					aria-label="email"
+					type="email"
+					name="email"
+					autocomplete="email"
+					placeholder="your@email.com"
+					required
+					bind:value={email}
+				/>
+				<input type="submit" />
+			</form>
+		</div>
+	{/if}
 </div>
 ```
 
@@ -412,62 +411,62 @@ Full code from the component here if you need it.
 
 ```svelte
 <script>
-  let email = ''
-  let showMessage = false
-  let responseMessage = ''
+	let email = ''
+	let showMessage = false
+	let responseMessage = ''
 
-  async function submitForm() {
-    const submit = await fetch('/email-submit.json', {
-      method: 'POST',
-      body: JSON.stringify({ email }),
-    })
-    const data = await submit.json()
+	async function submitForm() {
+		const submit = await fetch('/email-submit.json', {
+			method: 'POST',
+			body: JSON.stringify({ email }),
+		})
+		const data = await submit.json()
 
-    if (data.message === 'bad request') {
-      showMessage = true
-      responseMessage = `That looks like a bad request`
-    }
-    if (data.message === 'email sent!') {
-      showMessage = true
-      responseMessage = `Sweet! You're signed up!`
-    }
-    if (
-      data.message === 'something went wrong with the email submit!'
-    ) {
-      showMessage = false
-      // deal with failed response from server
-    }
-  }
+		if (data.message === 'bad request') {
+			showMessage = true
+			responseMessage = `That looks like a bad request`
+		}
+		if (data.message === 'email sent!') {
+			showMessage = true
+			responseMessage = `Sweet! You're signed up!`
+		}
+		if (
+			data.message === 'something went wrong with the email submit!'
+		) {
+			showMessage = false
+			// deal with failed response from server
+		}
+	}
 </script>
 
 <div class="mb-10">
-  {#if success}
-    <div class="text-center">
-      <h3 class="font-extrabold text-3xl">{responseMessage}</h3>
-    </div>
-  {:else}
-    <div class="text-center">
-      <h3 class="font-extrabold text-3xl">
-        Sign up for the newsletter
-      </h3>
-      <form class="" on:submit|preventDefault={submitForm}>
-        <label for="email" class="label">
-          <span class="sr-only">Your Email</span>
-        </label>
-        <input
-          id="email"
-          aria-label="email"
-          type="email"
-          name="email"
-          autocomplete="email"
-          placeholder="your@email.com"
-          required
-          bind:value={email}
-        />
-        <input type="submit" />
-      </form>
-    </div>
-  {/if}
+	{#if success}
+		<div class="text-center">
+			<h3 class="text-3xl font-extrabold">{responseMessage}</h3>
+		</div>
+	{:else}
+		<div class="text-center">
+			<h3 class="text-3xl font-extrabold">
+				Sign up for the newsletter
+			</h3>
+			<form class="" on:submit|preventDefault={submitForm}>
+				<label for="email" class="label">
+					<span class="sr-only">Your Email</span>
+				</label>
+				<input
+					id="email"
+					aria-label="email"
+					type="email"
+					name="email"
+					autocomplete="email"
+					placeholder="your@email.com"
+					required
+					bind:value={email}
+				/>
+				<input type="submit" />
+			</form>
+		</div>
+	{/if}
 </div>
 ```
 
@@ -509,8 +508,8 @@ Now I can enter an email address and hit submit! It doesn't matter
 what the email is because it's hardcoded into the endpoint at the
 moment!
 
-I'll hit submit and I'll go over to my Revue [subscribers list] and
-check to see if the email is there!
+I'll hit submit and I'll go over to my Revue [subscribers list] and check
+to see if the email is there!
 
 ![revue-subscribers-list-search]
 
@@ -592,18 +591,18 @@ I can now use this pattern in other projects!
 <!-- Links -->
 
 [sveltekit blog template]:
-  https://github.com/mattjennings/sveltekit-blog-template
+	https://github.com/mattjennings/sveltekit-blog-template
 [documentation]: https://www.getrevue.co/api#get-/v2/lists
 [integrations]: https://www.getrevue.co/app/integrations
 [terms of service]: https://www.getrevue.co/terms
 [privacy policy]: https://www.getrevue.co/privacy/platform
 [vite]: https://vitejs.dev/
 [`.env` secrets in sveltekit]:
-  https://scottspence.com/posts/sveltekit-env-secrets
+	https://scottspence.com/posts/sveltekit-env-secrets
 [subscribers list]: https://www.getrevue.co/app/lists
 [receive email in endpoint]: #receive-email-in-endpoint
 
 <!-- Images -->
 
 [revue-subscribers-list-search]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881311/scottspence.com/revue-subscribers-list-search.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881311/scottspence.com/revue-subscribers-list-search.png

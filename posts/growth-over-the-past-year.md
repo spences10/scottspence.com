@@ -25,8 +25,7 @@ site.
 In June I started co-hosting Whiskey Wednesday with Marc Backes and
 met with and spoke to a load of cool people on there.
 
-I documented my [streaming setup] so others could get started
-themselves.
+I documented my [streaming setup] so others could get started themselves.
 
 I did a load of work with Windows Subsystem for Linux, documented a
 load of stuff relating to that:
@@ -37,8 +36,8 @@ load of stuff relating to that:
 - [Use Chrome in Ubuntu on Windows Subsystem Linux]
 - [Enable GUIs on Windows Subsystem Linux (WSL)]
 
-I [built my first PC] as well, as my Surface clone couldn't hack it
-any more.
+I [built my first PC] as well, as my Surface clone couldn't hack it any
+more.
 
 Made posts on ZSH and how I switched from Fish to ZSH which is now my
 default shell, got a retweet from Robby Russel for that!
@@ -78,20 +77,20 @@ You can sign up to the newsletter as well:
 [https://ss10.dev/nl](https://ss10.dev/nl)
 
 [streaming setup]:
-  https://scottspence.com/posts/getting-started-with-youtube
+	https://scottspence.com/posts/getting-started-with-youtube
 [windows terminal config]:
-  https://scottspence.com/posts/windows-terminal-config
+	https://scottspence.com/posts/windows-terminal-config
 [wsl web developer bootstrap with fedora 33]:
-  https://scottspence.com/posts/fedora-bootstrap-from-scratch
+	https://scottspence.com/posts/fedora-bootstrap-from-scratch
 [fedora remix for wsl gui apps]:
-  https://scottspence.com/posts/fedora-remix-for-wsl-gui-apps
+	https://scottspence.com/posts/fedora-remix-for-wsl-gui-apps
 [use chrome in ubuntu on windows subsystem linux]:
-  https://scottspence.com/posts/use-chrome-in-ubuntu-wsl
+	https://scottspence.com/posts/use-chrome-in-ubuntu-wsl
 [enable guis on windows subsystem linux (wsl)]:
-  https://scottspence.com/posts/gui-with-wsl
+	https://scottspence.com/posts/gui-with-wsl
 [notes on zsh and oh my zsh]:
-  https://scottspence.com/posts/zsh-and-oh-my-zsh
+	https://scottspence.com/posts/zsh-and-oh-my-zsh
 [built my first pc]: https://scottspence.com/posts/first-time-pc-build
 [started a newsletter]: https://ss10.dev/nl
 [my second brain - zettelkasten]:
-  https://scottspence.com/posts/my-second-brain-zettelkasten
+	https://scottspence.com/posts/my-second-brain-zettelkasten

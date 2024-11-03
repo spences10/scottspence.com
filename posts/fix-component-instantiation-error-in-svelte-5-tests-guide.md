@@ -53,9 +53,9 @@ Then to configure it, add `patch-package` to run on your project on
 
 ```json
 {
-  "scripts": {
-    "postinstall": "patch-package"
-  }
+	"scripts": {
+		"postinstall": "patch-package"
+	}
 }
 ```
 

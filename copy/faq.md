@@ -314,6 +314,6 @@ Feel free to [check out the rest of the site](/)
 [two weeks]: https://www.youtube.com/watch?v=9v-33jcEDk4
 [15 minute chat]: https://ss10.dev/15min
 [if it's not a hell yes, it's a no]:
-  https://lifehacker.com/if-its-not-a-hell-yes-its-a-no-1723393142
+	https://lifehacker.com/if-its-not-a-hell-yes-its-a-no-1723393142
 [get in touch]: /contact
 [speaking]: /speaking

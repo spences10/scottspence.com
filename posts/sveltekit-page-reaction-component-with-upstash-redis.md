@@ -137,10 +137,10 @@ this later)
 
 ```ts
 export const reactions = [
-  { type: 'likes', emoji: '👍' },
-  { type: 'hearts', emoji: '❤️' },
-  { type: 'poops', emoji: '💩' },
-  { type: 'parties', emoji: '🎉' },
+	{ type: 'likes', emoji: '👍' },
+	{ type: 'hearts', emoji: '❤️' },
+	{ type: 'poops', emoji: '💩' },
+	{ type: 'parties', emoji: '🎉' },
 ]
 
 export const limit_requests = 10
@@ -152,30 +152,30 @@ reactions from the config file and use them in the component.
 
 ```svelte
 <script lang="ts">
-  import { reactions } from '$lib/config'
+	import { reactions } from '$lib/config'
 
-  export let path: string | null = '/'
+	export let path: string | null = '/'
 </script>
 
 <div class="flex justify-center">
-  <form
-    method="POST"
-    action="/?path={path}"
-    class="grid grid-cols-2 gap-5 sm:flex"
-  >
-    {#each reactions as reaction}
-      <button
-        name="reaction"
-        type="submit"
-        value={reaction.type}
-        class="btn btn-primary shadow-xl text-3xl font-bold"
-      >
-        <span>
-          {reaction.emoji}
-        </span>
-      </button>
-    {/each}
-  </form>
+	<form
+		method="POST"
+		action="/?path={path}"
+		class="grid grid-cols-2 gap-5 sm:flex"
+	>
+		{#each reactions as reaction}
+			<button
+				name="reaction"
+				type="submit"
+				value={reaction.type}
+				class="btn btn-primary text-3xl font-bold shadow-xl"
+			>
+				<span>
+					{reaction.emoji}
+				</span>
+			</button>
+		{/each}
+	</form>
 </div>
 ```
 
@@ -205,13 +205,13 @@ stick the component on the index page.
 
 ```svelte
 <script lang="ts">
-  import Reactions from '$lib/components/reactions.svelte'
+	import Reactions from '$lib/components/reactions.svelte'
 </script>
 
 <h1>Welcome to SvelteKit</h1>
 <p>
-  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
-  documentation
+	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
+	documentation
 </p>
 
 <Reactions />
@@ -244,22 +244,22 @@ the data to the console.
 
 ```ts
 export const actions = {
-  default: async ({ request, url }) => {
-    const data = await request.formData()
-    const reaction = data.get('reaction')
-    const path = url.searchParams.get('path')
+	default: async ({ request, url }) => {
+		const data = await request.formData()
+		const reaction = data.get('reaction')
+		const path = url.searchParams.get('path')
 
-    console.log('=====================')
-    console.log(data)
-    console.log(reaction)
-    console.log(path)
-    console.log('=====================')
-    return {}
-  },
+		console.log('=====================')
+		console.log(data)
+		console.log(reaction)
+		console.log(path)
+		console.log('=====================')
+		return {}
+	},
 }
 
 export const load = async () => {
-  return {}
+	return {}
 }
 ```
 
@@ -303,8 +303,8 @@ the config for the Upstash `Ratelimit.slidingWindow` here as well.
 ```ts
 import { building } from '$app/environment'
 import {
-  UPSTASH_REDIS_REST_TOKEN,
-  UPSTASH_REDIS_REST_URL,
+	UPSTASH_REDIS_REST_TOKEN,
+	UPSTASH_REDIS_REST_URL,
 } from '$env/static/private'
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
@@ -314,15 +314,15 @@ let redis: Redis
 let ratelimit: Ratelimit
 
 if (!building) {
-  redis = new Redis({
-    url: UPSTASH_REDIS_REST_URL,
-    token: UPSTASH_REDIS_REST_TOKEN,
-  })
+	redis = new Redis({
+		url: UPSTASH_REDIS_REST_URL,
+		token: UPSTASH_REDIS_REST_TOKEN,
+	})
 
-  ratelimit = new Ratelimit({
-    redis,
-    limiter: Ratelimit.slidingWindow(limit_requests, limit_window),
-  })
+	ratelimit = new Ratelimit({
+		redis,
+		limiter: Ratelimit.slidingWindow(limit_requests, limit_window),
+	})
 }
 
 export { ratelimit, redis }
@@ -353,27 +353,27 @@ using the [`incr`] method to increment the value of the key by one.
 import { redis } from '$lib/redis.js'
 
 export const actions = {
-  default: async ({ request, url }) => {
-    const data = await request.formData()
-    const reaction = data.get('reaction')
-    const path = url.searchParams.get('path')
+	default: async ({ request, url }) => {
+		const data = await request.formData()
+		const reaction = data.get('reaction')
+		const path = url.searchParams.get('path')
 
-    const redis_key = `${path}:${reaction}`
+		const redis_key = `${path}:${reaction}`
 
-    const result = await redis.incr(redis_key)
+		const result = await redis.incr(redis_key)
 
-    return {
-      success: true,
-      status: 200,
-      reaction: reaction,
-      path: path,
-      count: result,
-    }
-  },
+		return {
+			success: true,
+			status: 200,
+			reaction: reaction,
+			path: path,
+			count: result,
+		}
+	},
 }
 
 export const load = async () => {
-  return {}
+	return {}
 }
 ```
 
@@ -400,17 +400,17 @@ I'll also add in a `pre` tag to visually see the shape of the data.
 
 ```svelte
 <script lang="ts">
-  import Reactions from '$lib/components/reactions.svelte'
+	import Reactions from '$lib/components/reactions.svelte'
 
-  export let data: any
+	export let data: any
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
 
 <h1>Welcome to SvelteKit</h1>
 <p>
-  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
-  documentation
+	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
+	documentation
 </p>
 
 <Reactions {data} />
@@ -422,32 +422,32 @@ of the data.
 
 ```svelte
 <script lang="ts">
-  import { reactions } from '$lib/config'
+	import { reactions } from '$lib/config'
 
-  export let data: any
+	export let data: any
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
 
 <div class="flex justify-center">
-  <form
-    method="POST"
-    action="/"
-    class="grid grid-cols-2 gap-5 sm:flex"
-  >
-    {#each reactions as reaction}
-      <button
-        name="reaction"
-        type="submit"
-        value={reaction.type}
-        class="btn btn-primary shadow-xl text-3xl font-bold"
-      >
-        <span>
-          {reaction.emoji}
-        </span>
-      </button>
-    {/each}
-  </form>
+	<form
+		method="POST"
+		action="/"
+		class="grid grid-cols-2 gap-5 sm:flex"
+	>
+		{#each reactions as reaction}
+			<button
+				name="reaction"
+				type="submit"
+				value={reaction.type}
+				class="btn btn-primary text-3xl font-bold shadow-xl"
+			>
+				<span>
+					{reaction.emoji}
+				</span>
+			</button>
+		{/each}
+	</form>
 </div>
 ```
 
@@ -467,18 +467,18 @@ Redis with a `Promise.all` and then return the data.
 
 ```ts
 export const load = async ({ url: { pathname } }) => {
-  const reaction_types = reactions.map(reaction => reaction.type)
-  const promises = reaction_types.map(reaction =>
-    redis.get(`${pathname}:${reaction}`),
-  )
-  const results = await Promise.all(promises)
+	const reaction_types = reactions.map(reaction => reaction.type)
+	const promises = reaction_types.map(reaction =>
+		redis.get(`${pathname}:${reaction}`),
+	)
+	const results = await Promise.all(promises)
 
-  const count = {} as any
-  reaction_types.forEach((reaction, index) => {
-    count[reaction] = Number(results[index]) || 0
-  })
+	const count = {} as any
+	reaction_types.forEach((reaction, index) => {
+		count[reaction] = Number(results[index]) || 0
+	})
 
-  return { count }
+	return { count }
 }
 ```
 
@@ -498,32 +498,32 @@ of the `data` prop that's being passed in for each reaction type.
 
 ```svelte
 <script lang="ts">
-  import { reactions } from '$lib/config'
+	import { reactions } from '$lib/config'
 
-  export let path: string | null = '/'
-  export let data: any
+	export let path: string | null = '/'
+	export let data: any
 </script>
 
 <div class="flex justify-center">
-  <form
-    method="POST"
-    action="/?path={path}"
-    class="grid grid-cols-2 gap-5 sm:flex"
-  >
-    {#each reactions as reaction}
-      <button
-        name="reaction"
-        type="submit"
-        value={reaction.type}
-        class="btn btn-primary shadow-xl text-3xl font-bold"
-      >
-        <span>
-          {reaction.emoji}
-          {data?.count?.[reaction.type] || 0}
-        </span>
-      </button>
-    {/each}
-  </form>
+	<form
+		method="POST"
+		action="/?path={path}"
+		class="grid grid-cols-2 gap-5 sm:flex"
+	>
+		{#each reactions as reaction}
+			<button
+				name="reaction"
+				type="submit"
+				value={reaction.type}
+				class="btn btn-primary text-3xl font-bold shadow-xl"
+			>
+				<span>
+					{reaction.emoji}
+					{data?.count?.[reaction.type] || 0}
+				</span>
+			</button>
+		{/each}
+	</form>
 </div>
 ```
 
@@ -537,12 +537,12 @@ something like this:
 
 ```json
 {
-  "count": {
-    "likes": 3,
-    "hearts": 1,
-    "poops": 0,
-    "parties": 0
-  }
+	"count": {
+		"likes": 3,
+		"hearts": 1,
+		"poops": 0,
+		"parties": 0
+	}
 }
 ```
 
@@ -555,12 +555,12 @@ which is the `ReactionCount` interface.
 
 ```ts
 interface ReactionCount {
-  [key: string]: number
+	[key: string]: number
 }
 
 interface ReactionsData {
-  path: string
-  count: ReactionCount
+	path: string
+	count: ReactionCount
 }
 ```
 
@@ -572,20 +572,20 @@ this:
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
 declare global {
-  namespace App {
-    // interface Error {}
-    // interface Locals {}
-    // interface PageData {}
-    // interface Platform {}
-  }
+	namespace App {
+		// interface Error {}
+		// interface Locals {}
+		// interface PageData {}
+		// interface Platform {}
+	}
 
-  interface ReactionCount {
-    [key: string]: number
-  }
-  interface ReactionsData {
-    path: string
-    count: ReactionCount
-  }
+	interface ReactionCount {
+		[key: string]: number
+	}
+	interface ReactionsData {
+		path: string
+		count: ReactionCount
+	}
 }
 
 export {}
@@ -607,34 +607,34 @@ and `enhance` added:
 
 ```svelte
 <script lang="ts">
-  import { enhance } from '$app/forms'
-  import { reactions } from '$lib/config'
+	import { enhance } from '$app/forms'
+	import { reactions } from '$lib/config'
 
-  export let path: string | null = '/'
-  export let data: ReactionsData
+	export let path: string | null = '/'
+	export let data: ReactionsData
 </script>
 
 <div class="flex justify-center">
-  <form
-    method="POST"
-    action="/?path={path}"
-    use:enhance
-    class="grid grid-cols-2 gap-5 sm:flex"
-  >
-    {#each reactions as reaction}
-      <button
-        name="reaction"
-        type="submit"
-        value={reaction.type}
-        class="btn btn-primary shadow-xl text-3xl font-bold"
-      >
-        <span>
-          {reaction.emoji}
-          {data?.count?.[reaction.type] || 0}
-        </span>
-      </button>
-    {/each}
-  </form>
+	<form
+		method="POST"
+		action="/?path={path}"
+		use:enhance
+		class="grid grid-cols-2 gap-5 sm:flex"
+	>
+		{#each reactions as reaction}
+			<button
+				name="reaction"
+				type="submit"
+				value={reaction.type}
+				class="btn btn-primary text-3xl font-bold shadow-xl"
+			>
+				<span>
+					{reaction.emoji}
+					{data?.count?.[reaction.type] || 0}
+				</span>
+			</button>
+		{/each}
+	</form>
 </div>
 ```
 
@@ -660,37 +660,37 @@ import { ratelimit, redis } from '$lib/redis.js'
 import { fail } from '@sveltejs/kit'
 
 export const actions = {
-  default: async ({ request, url, getClientAddress }) => {
-    const ip = getClientAddress()
-    const rate_limit_attempt = await ratelimit.limit(ip)
+	default: async ({ request, url, getClientAddress }) => {
+		const ip = getClientAddress()
+		const rate_limit_attempt = await ratelimit.limit(ip)
 
-    if (!rate_limit_attempt.success) {
-      const time_remaining = Math.floor(
-        (rate_limit_attempt.reset - new Date().getTime()) / 1000,
-      )
+		if (!rate_limit_attempt.success) {
+			const time_remaining = Math.floor(
+				(rate_limit_attempt.reset - new Date().getTime()) / 1000,
+			)
 
-      return fail(429, {
-        error: `Rate limit exceeded. Try again in ${time_remaining} seconds`,
-        time_remaining,
-      })
-    }
+			return fail(429, {
+				error: `Rate limit exceeded. Try again in ${time_remaining} seconds`,
+				time_remaining,
+			})
+		}
 
-    const data = await request.formData()
-    const reaction = data.get('reaction')
-    const path = url.searchParams.get('path')
+		const data = await request.formData()
+		const reaction = data.get('reaction')
+		const path = url.searchParams.get('path')
 
-    const redisKey = `${path}:${reaction}`
+		const redisKey = `${path}:${reaction}`
 
-    const result = await redis.incr(redisKey)
+		const result = await redis.incr(redisKey)
 
-    return {
-      success: true,
-      status: 200,
-      reaction: reaction,
-      path: path,
-      count: result,
-    }
-  },
+		return {
+			success: true,
+			status: 200,
+			reaction: reaction,
+			path: path,
+			count: result,
+		}
+	},
 }
 ```
 
@@ -705,10 +705,10 @@ log the result to the console then choose not to reset the form.
 
 ```svelte
 use:enhance={() => {
-  return ({ update, result }) => {
-    console.log(JSON.stringify(result, null, 2))
-    update({ reset: false })
-  }
+	return ({ update, result }) => {
+		console.log(JSON.stringify(result, null, 2))
+		update({ reset: false })
+	}
 }}
 ```
 
@@ -717,12 +717,12 @@ following logged out to the browser console:
 
 ```json
 {
-  "type": "failure",
-  "status": 429,
-  "data": {
-    "error": "Rate limit exceeded. Try again in 7 seconds",
-    "time_remaining": 7
-  }
+	"type": "failure",
+	"status": 429,
+	"data": {
+		"error": "Rate limit exceeded. Try again in 7 seconds",
+		"time_remaining": 7
+	}
 }
 ```
 
@@ -730,15 +730,15 @@ When I'm not being rate limited the output looks like this:
 
 ```json
 {
-  "type": "success",
-  "status": 200,
-  "data": {
-    "success": true,
-    "status": 200,
-    "reaction": "parties",
-    "path": "/",
-    "count": 274
-  }
+	"type": "success",
+	"status": 200,
+	"data": {
+		"success": true,
+		"status": 200,
+		"reaction": "parties",
+		"path": "/",
+		"count": 274
+	}
 }
 ```
 
@@ -758,15 +758,12 @@ true.
 let button_disabled = writable(false)
 
 const handle_result = (result: ActionResult) => {
-  if (result.type === 'failure') {
-    $button_disabled = true
-    setTimeout(
-      () => {
-        $button_disabled = false
-      },
-      result?.data?.time_remaining * 1000,
-    )
-  }
+	if (result.type === 'failure') {
+		$button_disabled = true
+		setTimeout(() => {
+			$button_disabled = false
+		}, result?.data?.time_remaining * 1000)
+	}
 }
 ```
 
@@ -777,54 +774,54 @@ Here's the full `reactions.svelte` component now:
 
 ```svelte
 <script lang="ts">
-  import { enhance } from '$app/forms'
-  import { reactions } from '$lib/config'
-  import type { ActionResult } from '@sveltejs/kit'
-  import { writable } from 'svelte/store'
+	import { enhance } from '$app/forms'
+	import { reactions } from '$lib/config'
+	import type { ActionResult } from '@sveltejs/kit'
+	import { writable } from 'svelte/store'
 
-  export let path: string | null = '/'
-  export let data: ReactionsData
+	export let path: string | null = '/'
+	export let data: ReactionsData
 
-  let button_disabled = writable(false)
+	let button_disabled = writable(false)
 
-  const handle_result = (result: ActionResult) => {
-    if (result.type === 'failure') {
-      $button_disabled = true
-      setTimeout(() => {
-        $button_disabled = false
-      }, result?.data?.time_remaining * 1000)
-    }
-  }
+	const handle_result = (result: ActionResult) => {
+		if (result.type === 'failure') {
+			$button_disabled = true
+			setTimeout(() => {
+				$button_disabled = false
+			}, result?.data?.time_remaining * 1000)
+		}
+	}
 </script>
 
 <div class="flex justify-center">
-  <form
-    method="POST"
-    action="/?path={path}"
-    use:enhance={() => {
-      return ({ update, result }) => {
-        handle_result(result)
-        console.log(JSON.stringify(result, null, 2))
-        update({ reset: false })
-      }
-    }}
-    class="grid grid-cols-2 gap-5 sm:flex"
-  >
-    {#each reactions as reaction}
-      <button
-        name="reaction"
-        type="submit"
-        value={reaction.type}
-        class="btn btn-primary shadow-xl text-3xl font-bold"
-        disabled={$button_disabled}
-      >
-        <span>
-          {reaction.emoji}
-          {data?.count?.[reaction.type] || 0}
-        </span>
-      </button>
-    {/each}
-  </form>
+	<form
+		method="POST"
+		action="/?path={path}"
+		use:enhance={() => {
+			return ({ update, result }) => {
+				handle_result(result)
+				console.log(JSON.stringify(result, null, 2))
+				update({ reset: false })
+			}
+		}}
+		class="grid grid-cols-2 gap-5 sm:flex"
+	>
+		{#each reactions as reaction}
+			<button
+				name="reaction"
+				type="submit"
+				value={reaction.type}
+				class="btn btn-primary text-3xl font-bold shadow-xl"
+				disabled={$button_disabled}
+			>
+				<span>
+					{reaction.emoji}
+					{data?.count?.[reaction.type] || 0}
+				</span>
+			</button>
+		{/each}
+	</form>
 </div>
 ```
 
@@ -851,11 +848,11 @@ and also the SvelteKit page store so I can get the current path.
 
 ```svelte
 <script lang="ts">
-  import { page } from '$app/stores'
-  import Reactions from '$lib/components/reactions.svelte'
+	import { page } from '$app/stores'
+	import Reactions from '$lib/components/reactions.svelte'
 
-  export let data: ReactionsData
-  let path = $page.route.id
+	export let data: ReactionsData
+	let path = $page.route.id
 </script>
 
 <Reactions {data} {path} />
@@ -866,19 +863,19 @@ In the `src/routes/about/+page.server.ts` file I'll use the same
 
 ```ts
 export const load = async ({ url: { pathname } }) => {
-  const reaction_types = reactions.map(reaction => reaction.type)
+	const reaction_types = reactions.map(reaction => reaction.type)
 
-  const promises = reaction_types.map(reaction =>
-    redis.get(`${pathname}:${reaction}`),
-  )
-  const results = await Promise.all(promises)
+	const promises = reaction_types.map(reaction =>
+		redis.get(`${pathname}:${reaction}`),
+	)
+	const results = await Promise.all(promises)
 
-  const count = {} as any
-  reaction_types.forEach((reaction, index) => {
-    count[reaction] = Number(results[index]) || 0
-  })
+	const count = {} as any
+	reaction_types.forEach((reaction, index) => {
+		count[reaction] = Number(results[index]) || 0
+	})
 
-  return { count }
+	return { count }
 }
 ```
 
@@ -906,19 +903,19 @@ import { redis } from './redis'
 const reaction_types = reactions.map(reaction => reaction.type)
 
 export async function get_reaction_count(
-  pathname: string,
+	pathname: string,
 ): Promise<ReactionCount> {
-  const promises = reaction_types.map(reaction =>
-    redis.get(`${pathname}:${reaction}`),
-  )
-  const results = await Promise.all(promises)
+	const promises = reaction_types.map(reaction =>
+		redis.get(`${pathname}:${reaction}`),
+	)
+	const results = await Promise.all(promises)
 
-  const count = {} as ReactionCount
-  reaction_types.forEach((reaction, index) => {
-    count[reaction] = Number(results[index]) || 0
-  })
+	const count = {} as ReactionCount
+	reaction_types.forEach((reaction, index) => {
+		count[reaction] = Number(results[index]) || 0
+	})
 
-  return count
+	return count
 }
 ```
 
@@ -969,8 +966,8 @@ object so there's just the `load` function importing the
 import { get_reaction_count } from '$lib/utils.js'
 
 export const load = async ({ url: { pathname } }) => {
-  const count = await get_reaction_count(pathname)
-  return { count }
+	const count = await get_reaction_count(pathname)
+	return { count }
 }
 ```
 
@@ -1014,10 +1011,10 @@ of the project.
 <!-- Links -->
 
 [example repo on github]:
-  https://github.com/spences10/sveltekit-reactions
+	https://github.com/spences10/sveltekit-reactions
 [live demo]: https://sveltekit-reactions.vercel.app
 [grafbase]:
-  https://grafbase.com/guides/add-reactions-to-your-sveltekit-pages-with-graphql-and-form-actions
+	https://grafbase.com/guides/add-reactions-to-your-sveltekit-pages-with-graphql-and-form-actions
 [upstash claps]: https://github.com/upstash/claps
 [Geoff Rich]: https://geoffrich.net
 [Upstash blog]: https://upstash.com/blog/sveltekit-rate-limiting
@@ -1027,6 +1024,6 @@ of the project.
 <!-- Images -->
 
 [sveltekit-page-reactions-redis-details-dashboard]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1688893637/scottspence.com/sveltekit-page-reactions-redis-details-dashboard.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1688893637/scottspence.com/sveltekit-page-reactions-redis-details-dashboard.png
 [sveltekit-page-reactions-redis-dashboard-env-keys]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1689607340/scottspence.com/sveltekit-page-reactions-redis-dashboard-env-keys.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1689607340/scottspence.com/sveltekit-page-reactions-redis-dashboard-env-keys.png

@@ -11,12 +11,12 @@ faulty one I was using. This time around it was more of a
 sustainability decision than a replacement.
 
 I'll do a quick run-down of the history of the keyboards I've had that
-got me to this point! I got the [Logitech G815] because I had issues
-with the Ctrl key on the [HAVIT KB395L].
+got me to this point! I got the [Logitech G815] because I had issues with
+the Ctrl key on the [HAVIT KB395L].
 
-I got the [Logitech G915] as it seemed like a logical next step from
-there for me because I didn't really vibe with the Logitech macro keys
-on the far left of the board.
+I got the [Logitech G915] as it seemed like a logical next step from there
+for me because I didn't really vibe with the Logitech macro keys on the
+far left of the board.
 
 The G915 was (and still is) a really nice board to type on.
 
@@ -74,8 +74,8 @@ But not a lot to choose from if you want an ISO keyboard!
 I still really like the ISO keyboard layout (large enter key) and
 there's surprisingly few boards out there that I could choose from.
 
-The two candidates I found after searching was the [Keychron Q1] and
-the [GMMK Pro].
+The two candidates I found after searching was the [Keychron Q1] and the
+[GMMK Pro].
 
 <!-- cSpell:ignore gmmk -->
 
@@ -266,27 +266,27 @@ where you an swap out any parts which are causing issues.
 [logitech g915]: https://scottspence.com/posts/logitech-g915
 [havit kb395l]: https://www.amazon.co.uk/gp/product/B0767YQQTQ
 [logitech g915 disassembly]:
-  https://www.youtube.com/watch?v=qLvvMJYUWdE
+	https://www.youtube.com/watch?v=qLvvMJYUWdE
 [logitech g815 disassembly]:
-  https://www.youtube.com/watch?v=C32VZ6SDTCE
+	https://www.youtube.com/watch?v=C32VZ6SDTCE
 [keychron q1]:
-  https://www.keychron.com/products/keychron-q1?variant=39406901362777
+	https://www.keychron.com/products/keychron-q1?variant=39406901362777
 [gmmk pro]:
-  https://www.pcgamingrace.com/products/glorious-gmmk-pro-75-barebone-iso-black-slate
+	https://www.pcgamingrace.com/products/glorious-gmmk-pro-75-barebone-iso-black-slate
 
 <!-- Images -->
 
 [keychron-q1-keycap-sets]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685653/scottspence.com/keychron-q1-keycap-sets.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685653/scottspence.com/keychron-q1-keycap-sets.jpg
 [keychron-q1-backplate-and-pcb]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685405/scottspence.com/keychron-q1-backplate-and-pcb.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685405/scottspence.com/keychron-q1-backplate-and-pcb.jpg
 [size-comparison-keychron-q1-ligitech-g915]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685392/scottspence.com/size-comparison-keychron-q1-ligitech-g915.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685392/scottspence.com/size-comparison-keychron-q1-ligitech-g915.jpg
 [keychron-q1-backplate-with-tape]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685356/scottspence.com/keychron-q1-backplate-with-tape.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685356/scottspence.com/keychron-q1-backplate-with-tape.jpg
 [elevation-comparison-keychron-q1-ligitech-g915]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685355/scottspence.com/elevation-comparison-keychron-q1-ligitech-g915.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685355/scottspence.com/elevation-comparison-keychron-q1-ligitech-g915.jpg
 [via-function-layer]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685101/scottspence.com/via-function-layer.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685101/scottspence.com/via-function-layer.png
 [keychron-q1-keyboard]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640686830/scottspence.com/keychron-q1-keyboard.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640686830/scottspence.com/keychron-q1-keyboard.jpg

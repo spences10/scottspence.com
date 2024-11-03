@@ -1,13 +1,22 @@
-.DS_Store
+test-results
 node_modules
-.svelte-kit
+
+# Output
+.output
 .vercel
+/.svelte-kit
 /build
-/public
-.vercel_build_output
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
 .env
-.pnpm-debug.log
+.env.*
+!.env.example
+!.env.test
+
+# Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
-.env*.local
-coverage

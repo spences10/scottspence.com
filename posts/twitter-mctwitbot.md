@@ -9,11 +9,11 @@ I must say this was great to do and a nice little introduction to node
 and npm.
 
 I got to doing this from finding it on [GitHub] I think I was looking
-for the Twitter icon in bootstrap whilst working on my [Random Quote
-Generator] I stumbled across the [twitter-bot-bootstrap] (as you do)
-so after stalling with my progress on the freeCodeCamp(🔥) zipline for
-a Wikipedia viewer I decided to give the Twitter bot a try and managed
-to create it and add it to [Heroku] 🎉"
+for the Twitter icon in bootstrap whilst working on my [Random
+Quote Generator] I stumbled across the [twitter-bot-bootstrap] (as you
+do) so after stalling with my progress on the freeCodeCamp(🔥) zipline
+for a Wikipedia viewer I decided to give the Twitter bot a try and
+managed to create it and add it to [Heroku] 🎉"
 
 ![twitter logo]
 
@@ -22,8 +22,7 @@ to take a look at [@amanhimself]'s Twitter bot he had created for the
 [#100DaysOfCode] challenge, which I just happen to be taking part in.
 
 So with his great documentation [here], [and here] I managed to cobble
-together my own Twitter-bot which I use on my [@spences10] Twitter
-account.
+together my own Twitter-bot which I use on my [@spences10] Twitter account.
 
 > If you're wondering about the post name [check here]
 
@@ -46,8 +45,8 @@ I already had this installed on my c9 environment so I just had to
 
 I didn't really get what Heroku was until I started this project but
 once I'd read the guides it was quite straightforward and the [Heroku
-CLI] was already installed on c9 I checked with `heroku --version`
-before attempting to install it.
+CLI] was already installed on c9 I checked with `heroku --version` before
+attempting to install it.
 
 ### GitHub
 
@@ -58,8 +57,8 @@ repository somewhere and GitHub is widely used.
 
 ### Twitter
 
-You will need to set up a Twitter application from the [Twitter dev
-portal]
+You will need to set up a Twitter application from the [Twitter
+dev portal]
 
 ---
 
@@ -132,13 +131,13 @@ below.
 
 ```js
 var queryList = [
-  '100daysofcode',
-  'freecodecamp',
-  'github',
-  'vscode',
-  'node.js',
-  'vue.js',
-  'inferno.js',
+	'100daysofcode',
+	'freecodecamp',
+	'github',
+	'vscode',
+	'node.js',
+	'vue.js',
+	'inferno.js',
 ]
 var randomNumber = Math.floor(Math.random() * queryList.length)
 var queryString = queryList[randomNumber]
@@ -148,8 +147,8 @@ This worked, for a while then the same errors started creeping in, I
 then noticed that the `retweet` and `favouriteTweet` were on a timer
 but using the same random text from the `queryString` which was about
 as much use as the previous piece of code as it was a one time
-initialisation [or initialization] so the same string was being used
-multiple times causing the errors.
+initialisation [or initialization] so the same string was being used multiple
+times causing the errors.
 
 So after some head scratching and playing around with the code, [and
 tweeting [@amanhimself] numerous times] Aman suggested that I use the
@@ -166,18 +165,18 @@ Built the query string:
 
 ```js
 var queryString = uniqueRandomArray([
-  '100daysofcode',
-  'freecodecamp',
-  'github',
-  'vscode',
-  'visual studio code',
-  'nodejs',
-  'node.js',
-  'vuejs',
-  'vue.js',
-  'inferno_js',
-  'inferno.js',
-  'jekyll',
+	'100daysofcode',
+	'freecodecamp',
+	'github',
+	'vscode',
+	'visual studio code',
+	'nodejs',
+	'node.js',
+	'vuejs',
+	'vue.js',
+	'inferno_js',
+	'inferno.js',
+	'jekyll',
 ])
 ```
 
@@ -215,18 +214,18 @@ better replies.
 [github]: https://github.com
 [random quote generator]: https://codepen.io/spences10/full/dOaYbP/
 [twitter-bot-bootstrap]:
-  https://github.com/mobeets/twitter-bot-bootstrap
+	https://github.com/mobeets/twitter-bot-bootstrap
 [heroku]: https://heroku.com
 [@amanhimself]: https://twitter.com/amanhimself
 [#100daysofcode]:
-  https://medium.freecodecamp.com/start-2017-with-the-100daysofcode-improved-and-updated-18ce604b237b
+	https://medium.freecodecamp.com/start-2017-with-the-100daysofcode-improved-and-updated-18ce604b237b
 [here]:
-  https://hackernoon.com/create-a-simple-twitter-bot-with-node-js-5b14eb006c08
+	https://hackernoon.com/create-a-simple-twitter-bot-with-node-js-5b14eb006c08
 [and here]:
-  https://community.risingstack.com/how-to-make-a-twitter-bot-with-node-js/
+	https://community.risingstack.com/how-to-make-a-twitter-bot-with-node-js/
 [@spences10]: https://twitter.com/spences10
 [check here]:
-  https://en.wikipedia.org/wiki/RRS_Sir_David_Attenborough#Boaty_McBoatface_Naming_Controversy
+	https://en.wikipedia.org/wiki/RRS_Sir_David_Attenborough#Boaty_McBoatface_Naming_Controversy
 [c9]: https://c9.io/?redirect=0
 [heroku cli]: https://devcenter.heroku.com/articles/heroku-cli
 [twitter dev portal]: https://apps.twitter.com/app/new
@@ -234,15 +233,15 @@ better replies.
 [@amanhimself]: https://twitter.com/amanhimself
 [off-piste]: https://en.oxforddictionaries.com/definition/us/off-piste
 [unique-random-array]:
-  https://www.npmjs.com/package/unique-random-array
+	https://www.npmjs.com/package/unique-random-array
 
 <!-- Images -->
 
 [twitter logo]:
-  https://now-images-wine.now.sh/2017/twitter-mctwitbot/twitter-bird.png
+	https://now-images-wine.now.sh/2017/twitter-mctwitbot/twitter-bird.png
 [heroku-build]:
-  https://now-images-wine.now.sh/2017/twitter-mctwitbot/heroku-build.png
+	https://now-images-wine.now.sh/2017/twitter-mctwitbot/heroku-build.png
 [heroku-error-output]:
-  https://now-images-wine.now.sh/2017/twitter-mctwitbot/heroku-error-output.png
+	https://now-images-wine.now.sh/2017/twitter-mctwitbot/heroku-error-output.png
 [yes-tweet-yourself]:
-  https://now-images-wine.now.sh/2017/twitter-mctwitbot/yes-tweet-yourself.png
+	https://now-images-wine.now.sh/2017/twitter-mctwitbot/yes-tweet-yourself.png
