@@ -8,18 +8,22 @@
 	import type { PageData } from './$types'
 
 	const { data } = $props<{ data: PageData }>()
-	let { posts } = data
+	const posts = $state(data.posts)
 
 	let search_query = $state(
 		$page.url.searchParams.get('search') || '',
 	)
 
 	let filtered_posts = $derived.by(() => {
-		return posts.filter((post: Post) => {
-			if (post.is_private) return false
+		// First filter out private posts
+		const public_posts = posts.filter(
+			(post: { is_private: boolean }) => !post.is_private,
+		)
 
-			if (search_query === '') return true
+		// Then apply search filter if there's a search query
+		if (search_query === '') return public_posts
 
+		return public_posts.filter((post: Post) => {
 			return (
 				post.title
 					.toLowerCase()
