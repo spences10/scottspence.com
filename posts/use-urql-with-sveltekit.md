@@ -2,7 +2,7 @@
 date: 2022-10-01
 title: Use URQL with SvelteKit
 tags: ['sveltekit', 'how-to', 'svelte']
-isPrivate: false
+is_private: false
 ---
 
 In this guide I'll be going through getting set up with the Universal

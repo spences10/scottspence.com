@@ -2,7 +2,7 @@
 date: 2020-12-31
 title: Create a Simple Auth Form in HTML, CSS and JavaScript
 tags: ['learning', 'guide']
-isPrivate: true
+is_private: true
 ---
 
 <script>

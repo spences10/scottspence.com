@@ -2,7 +2,7 @@
 date: 2023-12-10
 title: Building Session Analytics with SvelteKit and Turso DB
 tags: ['analytics', 'turso', 'sveltekit']
-isPrivate: false
+is_private: false
 ---
 
 Okedokey, so, I've been playing around with Turso DB and SvelteKit and

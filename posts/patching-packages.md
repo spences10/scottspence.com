@@ -2,7 +2,7 @@
 date: 2020-05-04
 title: Patching Packages with patch-package
 tags: ['learning', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 <script>

@@ -3,7 +3,7 @@ date: 2021-11-03
 updated: 2023-02-09
 title: Fathom Analytics with SvelteKit
 tags: ['analytics', 'svelte', 'sveltekit']
-isPrivate: false
+is_private: false
 ---
 
 In this guide I'll go through the configuration needed to get set up

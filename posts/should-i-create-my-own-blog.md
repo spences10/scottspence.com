@@ -2,7 +2,7 @@
 date: 2023-01-14
 title: Should I create my own blog?
 tags: ['writing', 'seo', 'analytics', 'notes']
-isPrivate: false
+is_private: false
 ---
 
 There were a couple of Tweets I saw in quick succession today along

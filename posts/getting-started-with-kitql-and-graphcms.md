@@ -2,7 +2,7 @@
 date: 2022-03-18
 title: Getting Started with KitQL and GraphCMS
 tags: ['svelte', 'sveltekit', 'graphql', 'graphcms']
-isPrivate: false
+is_private: false
 ---
 
 <script>

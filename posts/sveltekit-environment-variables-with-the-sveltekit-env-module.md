@@ -3,7 +3,7 @@ date: 2022-08-07
 updated: 2023-02-05
 title: SvelteKit Environment Variables with the SvelteKit $env Module
 tags: ['sveltekit', 'notes']
-isPrivate: false
+is_private: false
 ---
 
 <script>

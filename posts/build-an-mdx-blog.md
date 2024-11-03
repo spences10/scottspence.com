@@ -2,7 +2,7 @@
 date: 2019-10-31
 title: Build a coding blog from scratch with Gatsby and MDX
 tags: ['learning', 'gatsby', 'guide', 'mdx', 'markdown']
-isPrivate: false
+is_private: false
 ---
 
 <script>

@@ -2,7 +2,7 @@
 date: 2023-01-06
 title: Get document elements from a page
 tags: ['how-to', 'browser', 'javascript']
-isPrivate: false
+is_private: false
 ---
 
 Two situations over the last couple of days I've needed to do this and

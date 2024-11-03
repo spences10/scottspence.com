@@ -3,7 +3,7 @@ date: 2023-01-09
 updated: 2023-04-25
 title: Adding DKIM records to Vercel
 tags: ['domains', 'guide', 'resource']
-isPrivate: false
+is_private: false
 ---
 
 <script>

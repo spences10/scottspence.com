@@ -2,7 +2,7 @@
 date: 2023-04-14
 title: SvelteKit Data Loading, Understanding the load function
 tags: ['sveltekit', 'resource', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 <script>

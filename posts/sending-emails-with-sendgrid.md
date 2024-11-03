@@ -2,7 +2,7 @@
 date: 2021-02-14
 title: Sending Emails With Twilio SendGrid
 tags: ['guide', 'domains', 'email']
-isPrivate: true
+is_private: true
 ---
 
 <script>

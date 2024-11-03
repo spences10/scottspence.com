@@ -2,7 +2,7 @@
 date: 2023-10-07
 title: Contact Form Send Email From Site with Fastmail
 tags: ['fastmail', 'guide', 'resource', 'email']
-isPrivate: false
+is_private: false
 ---
 
 <!-- cSpell:ignore jmap, smtps, reqd, rcpt, webjeda -->

@@ -2,7 +2,7 @@
 date: 2021-04-28
 title: OBS Fix Display Capture not Working
 tags: ['how-to', 'obs']
-isPrivate: false
+is_private: false
 ---
 
 <script>

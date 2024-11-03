@@ -2,7 +2,7 @@
 date: 2019-04-09
 title: Convert the Gatsby default starter blog to use MDX
 tags: ['learning', 'gatsby', 'guide', 'mdx', 'markdown']
-isPrivate: false
+is_private: false
 ---
 
 <script>

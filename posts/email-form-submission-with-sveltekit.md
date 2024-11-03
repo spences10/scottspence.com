@@ -2,7 +2,7 @@
 date: 2021-08-30
 title: Make an Email Form Submission with SvelteKit
 tags: ['sveltekit', 'how-to', 'svelte']
-isPrivate: false
+is_private: false
 ---
 
 <script>

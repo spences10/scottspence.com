@@ -2,7 +2,7 @@
 date: 2019-03-09
 title: Testing MDX
 tags: ['learning', 'gatsby', 'mdx']
-isPrivate: false
+is_private: false
 ---
 
 Moving to the new hotness!!

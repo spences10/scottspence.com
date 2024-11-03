@@ -2,7 +2,7 @@
 date: 2020-12-27
 title: Make a Simple API Endpoint with Vercel Serverless Functions
 tags: ['api', 'vercel', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 <script>

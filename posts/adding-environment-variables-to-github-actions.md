@@ -2,7 +2,7 @@
 date: 2022-12-08
 title: Adding Environment Variables to GitHub Actions
 tags: ['ci-cd', 'github', 'e2e']
-isPrivate: false
+is_private: false
 ---
 
 In this post, go over how to add environment variables to your GitHub

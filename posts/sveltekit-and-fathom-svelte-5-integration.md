@@ -2,7 +2,7 @@
 date: 2024-01-28
 title: SvelteKit and Fathom Svelte 5 Integration
 tags: ['analytics', 'svelte', 'sveltekit', 'fathom']
-isPrivate: false
+is_private: false
 ---
 
 This is a post that will go over some of the specifics needed to

@@ -2,7 +2,7 @@
 date: 2024-02-01
 title: DKIM for Cloudflare and Fastmail
 tags: ['domains', 'guide', 'resource', 'fastmail', 'cloudflare']
-isPrivate: false
+is_private: false
 ---
 
 Real quick! I'm in the process of migrating domains to Cloudflare. I

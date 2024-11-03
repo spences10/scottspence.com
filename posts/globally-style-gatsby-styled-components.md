@@ -3,7 +3,7 @@ date: 2020-02-06
 title:
   Globally Style the Gatsby Default Starter with styled-components v5
 tags: ['learning', 'gatsby', 'guide', 'mdx', 'markdown']
-isPrivate: false
+is_private: false
 ---
 
 <script>

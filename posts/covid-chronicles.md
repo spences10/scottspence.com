@@ -2,7 +2,7 @@
 date: 2020-06-25
 title: The COVID Chronicles - My Life In Lockdown
 tags: ['habits', 'career']
-isPrivate: false
+is_private: false
 ---
 
 <script>

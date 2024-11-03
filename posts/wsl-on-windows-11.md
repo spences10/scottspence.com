@@ -2,7 +2,7 @@
 date: 2021-10-14
 title: Windows Subsystem for Linux on Windows 11
 tags: ['wsl', 'windows', 'ubuntu']
-isPrivate: false
+is_private: false
 ---
 
 Now that Windows 11 has been released I decided to switch from my

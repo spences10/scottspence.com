@@ -2,7 +2,7 @@
 date: 2020-05-30
 title: My First PC Build
 tags: ['hello-world', 'ubuntu', 'learning', 'hardware']
-isPrivate: false
+is_private: false
 ---
 
 <script>

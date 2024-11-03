@@ -2,7 +2,7 @@
 date: 2021-03-28
 title: Growth over the Past Year
 tags: ['notes']
-isPrivate: false
+is_private: false
 ---
 
 <script>

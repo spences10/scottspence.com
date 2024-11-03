@@ -2,7 +2,7 @@
 date: 2023-01-17
 title: Using the Svelte use action for animations
 tags: ['svelte', 'css', 'animation']
-isPrivate: false
+is_private: false
 ---
 
 <script>

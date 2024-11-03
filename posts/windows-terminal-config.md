@@ -2,7 +2,7 @@
 date: 2021-01-14
 title: Windows Terminal Config - Make it Your Own
 tags: ['windows', 'resource', 'notes']
-isPrivate: false
+is_private: false
 ---
 
 <script>

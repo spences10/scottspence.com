@@ -2,7 +2,7 @@
 date: 2024-10-20
 title: The new Svelte (sv) CLI, adding Tailwind is simple now
 tags: ['tailwind', 'svelte', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 Aight! With Svelte Summit Fall 2024 done with we got a load of cool

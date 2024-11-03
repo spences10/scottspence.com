@@ -2,7 +2,7 @@
 date: 2020-12-13
 title: WSL openSUSE for web dev
 tags: ['linux', 'learning', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 So I had a play around with the openSUSE Leap 15.2 you can get [on the

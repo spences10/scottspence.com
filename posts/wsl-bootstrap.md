@@ -2,7 +2,7 @@
 date: 2018-01-13
 title: Windows Subsystem Linux setup
 tags: ['guide', 'wsl', 'n', 'node']
-isPrivate: false
+is_private: false
 ---
 
 <!-- cSpell:ignore beardy, fixanycomputer -->

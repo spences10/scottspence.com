@@ -2,7 +2,7 @@
 date: 2024-03-23
 title: Deploying SvelteKit Apps on Fly.io
 tags: ['sveltekit', 'flyio', 'docker', 'notes', 'turso']
-isPrivate: false
+is_private: false
 ---
 
 Ok, so I went over this in this in a

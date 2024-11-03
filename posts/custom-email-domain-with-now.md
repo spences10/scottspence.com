@@ -2,7 +2,7 @@
 date: 2020-04-25
 title: Configure Custom Domain Email with Zoho and Now
 tags: ['guide', 'domains']
-isPrivate: false
+is_private: false
 ---
 
 <script>

@@ -2,7 +2,7 @@
 date: 2020-06-22
 title: My Top Ten Visual Studio Code Extensions 2020
 tags: ['vscode', 'extension']
-isPrivate: false
+is_private: false
 ---
 
 My list of VS Code extensions I use in my daily development workflow.

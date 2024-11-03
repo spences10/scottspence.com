@@ -2,7 +2,7 @@
 date: 2023-06-28
 title: Cookie-Based Theme Selection in SvelteKit with daisyUI
 tags: ['sveltekit', 'daisyui', 'tailwind', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 <script>

@@ -2,7 +2,7 @@
 date: 2024-08-17
 title: Multi-instance PocketBase setup
 tags: ['pocketbase', 'database', 'caddy', 'vps', 'hetzner']
-isPrivate: false
+is_private: false
 ---
 
 <!-- cSpell:ignore hetzner Coolify dearmor Caddyfile Rawdogging -->

@@ -2,7 +2,7 @@
 date: 2020-08-26
 title: Windows Subsystem Linux Bootstrap 2020
 tags: ['learning', 'guide', 'wsl']
-isPrivate: false
+is_private: false
 ---
 
 <script>

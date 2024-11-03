@@ -2,7 +2,7 @@
 date: 2020-04-16
 title: Create a Custom Domain for Fathom Analytics
 tags: ['analytics', 'learning', 'guide', 'fathom']
-isPrivate: false
+is_private: false
 ---
 
 <script>

@@ -2,7 +2,7 @@
 date: 2020-10-08
 title: Getting Started with Creating YouTube Videos
 tags: ['getting-started', 'guide', 'resource']
-isPrivate: false
+is_private: false
 ---
 
 <script>

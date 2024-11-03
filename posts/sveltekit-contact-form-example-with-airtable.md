@@ -2,7 +2,7 @@
 date: 2023-05-21
 title: SvelteKit Contact Form Example with Airtable
 tags: ['sveltekit', 'how-to', 'guide', 'airtable']
-isPrivate: false
+is_private: false
 ---
 
 This is a how-to guide for adding a contact form to your SvelteKit

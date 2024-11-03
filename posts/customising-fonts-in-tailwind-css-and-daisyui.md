@@ -2,7 +2,7 @@
 date: 2023-07-01
 title: Customising Fonts in Tailwind CSS and daisyUI
 tags: ['css', 'tailwind', 'how-to', 'daisyui', 'sveltekit']
-isPrivate: false
+is_private: false
 ---
 
 <script>

@@ -2,7 +2,7 @@
 date: 2020-01-02
 title: Track Custom Events With Fathom Analytics
 tags: ['analytics', 'learning', 'guide', 'hooks', 'react', 'fathom']
-isPrivate: false
+is_private: false
 ---
 
 <script>

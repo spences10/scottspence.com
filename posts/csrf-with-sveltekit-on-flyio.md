@@ -2,7 +2,7 @@
 date: 2024-04-02
 title: CSRF with SvelteKit on Fly.io
 tags: ['flyio', 'sveltekit', 'docker', 'notes']
-isPrivate: false
+is_private: false
 ---
 
 Aight! I've spent the weekend working out the migration of this site

@@ -3,7 +3,7 @@ date: 2022-01-18
 title:
   Upgrade Ubuntu on Windows Subsystem for Linux from 20.04 to 22.04
 tags: ['wsl', 'guide', 'ubuntu']
-isPrivate: false
+is_private: false
 ---
 
 <script>

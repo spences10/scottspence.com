@@ -2,7 +2,7 @@
 date: 2021-01-20
 title: QA Wolf v2 Getting Started
 tags: ['ci-cd', 'testing', 'e2e']
-isPrivate: false
+is_private: false
 ---
 
 I'm a bug writing machine, all developers are! We're only human after

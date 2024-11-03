@@ -2,7 +2,7 @@
 date: 2022-05-13
 title: GraphQL Code Generator with SvelteKit and TypeScript Example
 tags: ['typescript', 'svelte', 'sveltekit', 'graphql', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 I've started using TypeScript on every new project I start with

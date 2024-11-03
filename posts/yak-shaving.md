@@ -2,7 +2,7 @@
 date: 2018-09-01
 title: Shaving the Yak!
 tags: ['productivity']
-isPrivate: false
+is_private: false
 ---
 
 <script>

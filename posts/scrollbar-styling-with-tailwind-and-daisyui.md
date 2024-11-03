@@ -2,7 +2,7 @@
 date: 2024-10-25
 title: Scrollbar Styling with Tailwind and daisyUI
 tags: ['css', 'tailwind', 'daisyui', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 <script>

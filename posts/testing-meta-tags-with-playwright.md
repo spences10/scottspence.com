@@ -2,7 +2,7 @@
 date: 2022-11-03
 title: Testing meta tags with Playwright
 tags: ['ci-cd', 'testing', 'e2e', 'playwright']
-isPrivate: false
+is_private: false
 ---
 
 <script>

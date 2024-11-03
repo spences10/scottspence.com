@@ -2,7 +2,7 @@
 date: 2020-04-30
 title: Open Graph Images with Gatsby and Now
 tags: ['guide', 'markdown']
-isPrivate: false
+is_private: false
 ---
 
 <script>

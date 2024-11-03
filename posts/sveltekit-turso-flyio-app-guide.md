@@ -2,7 +2,7 @@
 date: 2024-04-12
 title: SvelteKit Turso Fly.io App Guide
 tags: ['sveltekit', 'flyio', 'turso', 'docker', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 I've been doing more stuff with Fly.io and Turso with SvelteKit. If

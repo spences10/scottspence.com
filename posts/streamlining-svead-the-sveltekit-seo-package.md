@@ -2,7 +2,7 @@
 date: 2024-09-14
 title: Streamlining Svead the SvelteKit SEO package
 tags: ['seo', 'sveltekit', 'learning', 'notes']
-isPrivate: false
+is_private: false
 ---
 
 I totally changed up the Svead package again. Svead the SvelteKit head

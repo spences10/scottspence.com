@@ -2,7 +2,7 @@
 date: 2020-05-09
 title: CSS Resources From Around the Web
 tags: ['css', 'resource']
-isPrivate: false
+is_private: false
 ---
 
 <script>

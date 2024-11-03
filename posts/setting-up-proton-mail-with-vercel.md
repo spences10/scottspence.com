@@ -2,7 +2,7 @@
 date: 2021-02-26
 title: Setting up ProtonMail with Vercel
 tags: ['domains', 'guide', 'resource']
-isPrivate: false
+is_private: false
 ---
 
 In this post I'm detailing how I set up my domain with ProtonMail and

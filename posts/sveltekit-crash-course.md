@@ -2,7 +2,7 @@
 date: 2021-09-20
 title: SvelteKit Crash Course
 tags: ['svelte', 'sveltekit']
-isPrivate: true
+is_private: true
 ---
 
 <script>

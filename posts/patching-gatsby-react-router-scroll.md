@@ -2,7 +2,7 @@
 date: 2020-11-01
 title: Patching Gatsby React Router Scroll with patch-package
 tags: ['learning', 'guide', 'resource']
-isPrivate: false
+is_private: false
 ---
 
 This is a very specific issue myself and anyone that uses Gatsby and

@@ -2,7 +2,7 @@
 date: 2021-11-11
 title: Setting up Fastmail with Vercel
 tags: ['domains', 'guide', 'resource', 'fastmail']
-isPrivate: false
+is_private: false
 ---
 
 I've started using Fastmail, here's how I set it up with Vercel for

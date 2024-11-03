@@ -4,7 +4,7 @@ title:
   Sitemap Generation for Dynamic Routes In NextJS with the Sanity
   Client
 tags: ['nextjs', 'seo', 'notes']
-isPrivate: false
+is_private: false
 ---
 
 A sitemap is an important for Search Engine Optimisation (SEO) because

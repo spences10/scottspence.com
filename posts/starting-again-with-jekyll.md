@@ -2,7 +2,7 @@
 date: 2016-12-17
 title: Starting again with Jekyll
 tags: ['learning']
-isPrivate: false
+is_private: false
 ---
 
 Since setting up this blog I haven't really bothered with Jekyll any

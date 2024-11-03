@@ -2,7 +2,7 @@
 date: 2020-04-27
 title: Continuous Deployments on Non Essential Projects
 tags: ['learning']
-isPrivate: false
+is_private: false
 ---
 
 Quite a while ago now I was introduced to dependency update tools like

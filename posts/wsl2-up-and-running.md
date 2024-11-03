@@ -2,7 +2,7 @@
 date: 2020-06-18
 title: Windows Subsystem Linux 2 (WSL) - Up and Running
 tags: ['learning', 'guide', 'wsl', 'n', 'node', 'react']
-isPrivate: false
+is_private: false
 ---
 
 Now that Windows Subsystem Linux has finally arrived I think it's time

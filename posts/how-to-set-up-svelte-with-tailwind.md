@@ -2,7 +2,7 @@
 date: 2021-11-16
 title: How to Set Up Svelte with Tailwind CSS
 tags: ['tailwind', 'svelte', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 <script>

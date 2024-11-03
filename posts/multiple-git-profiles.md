@@ -2,7 +2,7 @@
 date: 2019-01-27
 title: Setting up multiple Git providers
 tags: ['learning', 'guide', 'wsl', 'git']
-isPrivate: false
+is_private: false
 ---
 
 Over the past couple of weeks now I have set up several development

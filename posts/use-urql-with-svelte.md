@@ -2,7 +2,7 @@
 date: 2021-10-22
 title: Use URQL with Svelte
 tags: ['sveltekit', 'how-to', 'svelte']
-isPrivate: false
+is_private: false
 ---
 
 <script>

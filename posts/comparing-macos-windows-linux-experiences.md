@@ -2,7 +2,7 @@
 date: 2023-11-04
 title: Comparing macOS, Windows, and Linux Experiences
 tags: ['macos', 'windows', 'linux', 'notes']
-isPrivate: false
+is_private: false
 ---
 
 <script>

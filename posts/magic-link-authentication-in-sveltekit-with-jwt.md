@@ -4,7 +4,7 @@ title:
   Building a Secure Magic Link Authentication Flow in Sveltekit with
   JWT
 tags: ['sveltekit', 'jwt', 'authentication', 'security']
-isPrivate: true
+is_private: true
 ---
 
 I recently implemented a magic link flow for a work project and

@@ -2,7 +2,7 @@
 date: 2020-04-19
 title: Make a simple, personal, URL shortener with Now.sh
 tags: ['learning', 'guide', 'domains']
-isPrivate: false
+is_private: false
 ---
 
 <script>

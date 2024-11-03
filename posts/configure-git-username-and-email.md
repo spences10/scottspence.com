@@ -2,7 +2,7 @@
 date: 2022-04-17
 title: How to Configure Git Username and Email
 tags: ['git', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 The Git username and email are the bare minimum needed for when

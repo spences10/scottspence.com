@@ -2,7 +2,7 @@
 date: 2024-05-26
 title: Svead the SvelteKit SEO Head Component
 tags: ['seo', 'sveltekit', 'learning', 'notes']
-isPrivate: false
+is_private: false
 ---
 
 <script>

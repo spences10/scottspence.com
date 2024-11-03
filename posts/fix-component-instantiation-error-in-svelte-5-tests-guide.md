@@ -5,7 +5,7 @@ title:
   "Fixing 'Component Instantiation' Error in Svelte 5 Tests: A Quick
   Guide"
 tags: ['testing', 'svelte', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 <script>

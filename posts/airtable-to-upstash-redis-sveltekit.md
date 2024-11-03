@@ -2,7 +2,7 @@
 date: 2023-09-09
 title: Airtable to Upstash Redis with SvelteKit
 tags: ['sveltekit', 'redis', 'upstash']
-isPrivate: false
+is_private: false
 ---
 
 Yesterday I switched my [URL link shortener](https://ss10.dev/links)

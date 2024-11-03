@@ -2,7 +2,7 @@
 date: 2024-05-11
 title: Patching packages with pnpm patch
 tags: ['learning', 'guide', 'pnpm', 'patch']
-isPrivate: false
+is_private: false
 ---
 
 I'm currently looking into upgrading a large app where I'm working, to

@@ -2,7 +2,7 @@
 date: 2023-01-22
 title: WSL Dev Server Not Working on v1.1.0? Try this!
 tags: ['wsl', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 If, like me, you're on the Windows Insider Programme Dev channel and

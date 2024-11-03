@@ -2,7 +2,7 @@
 date: 2021-05-20
 title: Data Binding in Svelte
 tags: ['svelte', 'sveltekit']
-isPrivate: false
+is_private: false
 ---
 
 Over the last few weeks, I have been getting familiar with Svelte and

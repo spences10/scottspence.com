@@ -2,7 +2,7 @@
 date: 2022-07-12
 title: Change Browser Scrollbar Colour with Tailwind CSS
 tags: ['css', 'tailwind', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 <script>

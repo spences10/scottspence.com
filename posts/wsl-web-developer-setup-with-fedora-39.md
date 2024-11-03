@@ -2,7 +2,7 @@
 date: 2024-03-17
 title: WSL Web Developer Setup with Fedora 39
 tags: ['fedora', 'linux', 'wsl']
-isPrivate: false
+is_private: false
 ---
 
 A couple of years ago I wrote a guide on setting up a web development

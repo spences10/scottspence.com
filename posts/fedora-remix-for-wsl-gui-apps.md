@@ -2,7 +2,7 @@
 date: 2021-01-05
 title: Fedora Remix for WSL GUI Apps
 tags: ['linux', 'notes', 'wsl']
-isPrivate: false
+is_private: false
 ---
 
 [Fedora Remix for WSL] was on sale for £2.51 so I thought I'd have a

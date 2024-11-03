@@ -2,7 +2,7 @@
 date: 2020-01-28
 title: Upgrade Windows Subsystem Linux - Ubuntu 18.04 to Ubuntu 19.10
 tags: ['wsl', 'guide', 'ubuntu']
-isPrivate: false
+is_private: false
 ---
 
 <script>

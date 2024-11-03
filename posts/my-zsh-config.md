@@ -2,7 +2,7 @@
 date: 2022-04-14
 title: My Zsh Config
 tags: ['zsh', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 I've always bundled in my Zsh config with other guides I've done in

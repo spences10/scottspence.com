@@ -2,7 +2,7 @@
 date: 2021-04-06
 title: Notes on Svelte
 tags: ['notes', 'svelte']
-isPrivate: false
+is_private: false
 ---
 
 I had a play around with Svelte the other day and wanted to make a few

@@ -2,7 +2,7 @@
 date: 2022-02-25
 title: Consolidate Chat Sources for Use in OBS with Social Stream
 tags: ['obs', 'how-to', 'streaming']
-isPrivate: false
+is_private: false
 ---
 
 Do you ever watch a live stream and wonder how the chat is shown? If

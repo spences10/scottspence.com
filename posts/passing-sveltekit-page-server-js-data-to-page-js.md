@@ -2,7 +2,7 @@
 date: 2023-02-25
 title: Passing SvelteKit +page.server.ts data to +page.ts
 tags: ['sveltekit', 'resource', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 I came across this issue when adding [real-time analytics to my site],

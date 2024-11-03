@@ -2,7 +2,7 @@
 date: 2020-07-17
 title: My Second Brain - Zettelkasten
 tags: ['habits', 'notes', 'vscode', 'resource', 'tools']
-isPrivate: false
+is_private: false
 ---
 
 <script>

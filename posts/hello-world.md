@@ -2,7 +2,7 @@
 date: 2016-10-24
 title: Hello World!
 tags: ['hello-world', 'getting-started']
-isPrivate: false
+is_private: false
 ---
 
 My first post using Jekyll, all I have done really is fork the awesome

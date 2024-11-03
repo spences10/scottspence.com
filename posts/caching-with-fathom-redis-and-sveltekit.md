@@ -2,7 +2,7 @@
 date: 2023-03-17
 title: Caching with Fathom, Redis, and SvelteKit
 tags: ['analytics', 'sveltekit', 'fathom', 'redis', 'caching']
-isPrivate: false
+is_private: false
 ---
 
 <script>

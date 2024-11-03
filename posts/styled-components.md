@@ -2,7 +2,7 @@
 date: 2018-04-03
 title: styled-components 💅 getting started
 tags: ['guide', 'styled-components', 'css-in-js']
-isPrivate: false
+is_private: false
 ---
 
 <script>

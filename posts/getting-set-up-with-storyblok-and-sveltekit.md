@@ -2,7 +2,7 @@
 date: 2022-07-19
 title: Getting set up with Storyblok and SvelteKit
 tags: ['sveltekit', 'storyblok', 'how-to', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 <script>

@@ -2,7 +2,7 @@
 date: 2024-10-08
 title: Updating SvelteKit Redirects - A More Robust Approach
 tags: ['sveltekit', 'seo', 'guide', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 <script>

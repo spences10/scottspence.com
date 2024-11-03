@@ -2,7 +2,7 @@
 date: 2023-08-13
 title: HTML Input Types and Uses
 tags: ['html', 'notes']
-isPrivate: false
+is_private: false
 ---
 
 I came across one of those infographic's today detailing a couple of

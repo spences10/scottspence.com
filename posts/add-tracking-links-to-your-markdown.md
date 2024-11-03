@@ -2,7 +2,7 @@
 date: 2020-04-18
 title: Add Analytics Tracking Links to your Markdown
 tags: ['analytics', 'learning', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 <script>

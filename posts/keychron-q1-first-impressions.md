@@ -2,7 +2,7 @@
 date: 2021-12-27
 title: Keychron Q1 - First Impressions
 tags: ['hardware']
-isPrivate: false
+is_private: false
 ---
 
 I've now gone through quite a few mechanical keyboards in a relatively

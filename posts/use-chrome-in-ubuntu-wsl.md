@@ -2,7 +2,7 @@
 date: 2021-01-05
 title: Use Google Chrome in Ubuntu on Windows Subsystem Linux
 tags: ['guide', 'linux', 'ubuntu', 'wsl']
-isPrivate: false
+is_private: false
 ---
 
 <script>

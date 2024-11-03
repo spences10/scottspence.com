@@ -2,7 +2,7 @@
 date: 2024-01-20
 title: Importing Large CSV Files into Turso DB
 tags: ['turso', 'cli', 'sql', 'analytics', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 <script>

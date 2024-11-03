@@ -2,7 +2,7 @@
 date: 2024-03-01
 title: Handling Multi-Select Form Data
 tags: ['javascript', 'sveltekit', 'how-to', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 How to get the array of selected values from a multi-select form

@@ -2,7 +2,7 @@
 date: 2023-12-26
 title: Use Common Table Expressions
 tags: ['sql', 'turso', 'sveltekit']
-isPrivate: false
+is_private: false
 ---
 
 I have the popular posts on this site which are stored in a Turso

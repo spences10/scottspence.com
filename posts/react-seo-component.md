@@ -2,7 +2,7 @@
 date: 2020-05-04
 title: Why Make a React SEO Component
 tags: ['learning', 'react', 'seo']
-isPrivate: false
+is_private: false
 ---
 
 <script>

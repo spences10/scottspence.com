@@ -2,7 +2,7 @@
 date: 2020-12-31
 title: Getting started with Preact and the Preact CLI
 tags: ['learning', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 For the past couple of weeks now I have been getting familiar with

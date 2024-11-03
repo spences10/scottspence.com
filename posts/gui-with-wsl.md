@@ -2,7 +2,7 @@
 date: 2020-12-09
 title: Enable GUIs on Windows Subsystem Linux (WSL)
 tags: ['wsl', 'testing', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 <script>

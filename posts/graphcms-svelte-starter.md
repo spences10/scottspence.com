@@ -2,7 +2,7 @@
 date: 2021-05-06
 title: SvelteKit starter blog with GraphCMS
 tags: ['svelte', 'sveltekit', 'vite', 'graphcms']
-isPrivate: false
+is_private: false
 ---
 
 I made a starter blog with SvelteKit and GraphCMS, I've been doing a

@@ -2,7 +2,7 @@
 date: 2021-08-09
 title: Make an RSS Feed for your SvelteKit Project
 tags: ['svelte', 'sveltekit', 'rss', 'guide', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 The indie web is alive and well and there are more and more people

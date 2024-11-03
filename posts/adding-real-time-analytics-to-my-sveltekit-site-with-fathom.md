@@ -2,7 +2,7 @@
 date: 2023-02-21
 title: Adding real-time analytics to my SvelteKit site with Fathom
 tags: ['analytics', 'svelte', 'sveltekit', 'fathom']
-isPrivate: false
+is_private: false
 ---
 
 <script>

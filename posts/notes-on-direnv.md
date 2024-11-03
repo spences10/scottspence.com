@@ -2,7 +2,7 @@
 date: 2021-03-13
 title: Notes on direnv
 tags: ['tools', 'cli', 'notes']
-isPrivate: false
+is_private: false
 ---
 
 <!-- cSpell:ignore direnv,vlad,envrc -->

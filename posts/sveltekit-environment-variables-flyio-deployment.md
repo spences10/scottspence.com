@@ -3,7 +3,7 @@ date: 2023-12-11
 updated: 2024-03-22
 title: 'SvelteKit Environment Variables with Fly.io Deployment'
 tags: ['sveltekit', 'notes', 'flyio', 'docker']
-isPrivate: false
+is_private: false
 ---
 
 Real quick! I'm going to go through what I did to get a SvelteKit

@@ -2,7 +2,7 @@
 date: 2020-09-24
 title: Testing
 tags: ['testing']
-isPrivate: true
+is_private: true
 ---
 
 <script>

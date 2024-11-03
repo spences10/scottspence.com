@@ -2,7 +2,7 @@
 date: 2024-05-12
 title: Setting up my VPS on Hetzner
 tags: ['notes', 'guide', 'vps', 'hetzner']
-isPrivate: false
+is_private: false
 ---
 
 <!-- cSpell:ignore hetzner, Coolify, Loginno, adduser, usermod, publickey, publickey -->
