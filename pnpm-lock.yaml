@@ -62,7 +62,7 @@ devDependencies:
     specifier: 10.4.20
     version: 10.4.20(postcss@8.4.47)
   cspell:
-    specifier: ^8.15.5
+    specifier: ^8.15.7
     version: 8.15.7
   daisyui:
     specifier: 4.12.14
@@ -86,8 +86,8 @@ devDependencies:
     specifier: 16.9.0
     version: 16.9.0
   graphql-request:
-    specifier: 7.1.1
-    version: 7.1.1(graphql@16.9.0)
+    specifier: 7.1.2
+    version: 7.1.2(graphql@16.9.0)
   jsdom:
     specifier: ^25.0.1
     version: 25.0.1
@@ -2905,8 +2905,8 @@ packages:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
     dev: true
 
-  /graphql-request@7.1.1(graphql@16.9.0):
-    resolution: {integrity: sha512-bFrwPQwJjx5uU28j0JDnejNW2UzD85S9V6O0POdjgohFMyzhfOQMJBCSKTMAAjImN5q3hmfa1yUCG/3nmNGCKw==}
+  /graphql-request@7.1.2(graphql@16.9.0):
+    resolution: {integrity: sha512-+XE3iuC55C2di5ZUrB4pjgwe+nIQBuXVIK9J98wrVwojzDW3GMdSBZfxUk8l4j9TieIpjpggclxhNEU9ebGF8w==}
     peerDependencies:
       graphql: 14 - 16
     dependencies:
