@@ -40,7 +40,7 @@
 		updated,
 		preview,
 		slug,
-		isPrivate,
+		is_private,
 		tags,
 		reading_time,
 	} = data.meta
@@ -228,7 +228,7 @@
 		</span>
 	{/if}
 
-	{#if isPrivate}
+	{#if is_private}
 		<IsPrivateBanner />
 	{/if}
 
