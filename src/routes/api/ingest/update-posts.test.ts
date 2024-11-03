@@ -20,7 +20,7 @@ vi.mock('../../../../posts/**/*.md', () => ({
 		Promise.resolve({
 			metadata: {
 				date: '2023-01-01',
-				isPrivate: false,
+				is_private: false,
 				preview: 'Test preview 1',
 				previewHtml: '<p>Test preview 1</p>',
 				readingTime: {
@@ -37,7 +37,7 @@ vi.mock('../../../../posts/**/*.md', () => ({
 		Promise.resolve({
 			metadata: {
 				date: '2023-01-02',
-				isPrivate: true,
+				is_private: true,
 				preview: 'Test preview 2',
 				previewHtml: '<p>Test preview 2</p>',
 				readingTime: {
