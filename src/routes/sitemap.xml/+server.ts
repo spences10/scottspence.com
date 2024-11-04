@@ -1,34 +1,73 @@
 import { website } from '$lib/info'
 import { get_post_tags } from '$lib/post-tags'
 import { get_posts } from '$lib/posts'
+import fs from 'node:fs/promises'
+import path from 'node:path'
 import slugify from 'slugify'
 
-export interface Page {
-	page: string
-	updated: string
+interface PageInfo {
+	path: string
+	last_mod: string
+	priority: number
+}
+
+async function discover_pages(
+	root_dir: string = 'src/routes',
+): Promise<PageInfo[]> {
+	const pages: PageInfo[] = []
+
+	async function scan_directory(dir: string, base_path: string = '') {
+		const entries = await fs.readdir(dir, { withFileTypes: true })
+
+		for (const entry of entries) {
+			const full_path = path.join(dir, entry.name)
+			const route_path = path.join(base_path, entry.name)
+
+			if (entry.isDirectory()) {
+				// Skip api routes, private routes (starting with _), and special SvelteKit routes
+				if (
+					!entry.name.startsWith('api') &&
+					!entry.name.startsWith('_') &&
+					!entry.name.startsWith('[')
+				) {
+					await scan_directory(full_path, route_path)
+				}
+			} else if (entry.name === '+page.svelte') {
+				const stats = await fs.stat(full_path)
+				const normalized_path = base_path
+					.replace(/\\/g, '/') // Convert Windows paths
+					.replace(/^\/?/, '') // Remove leading slash
+
+				// Skip dynamic routes and the root page
+				if (
+					!normalized_path.includes('[') &&
+					normalized_path !== ''
+				) {
+					pages.push({
+						path: normalized_path,
+						last_mod: stats.mtime.toISOString().split('T')[0],
+						// Assign priority based on path depth
+						priority:
+							0.8 - (normalized_path.split('/').length - 1) * 0.1,
+					})
+				}
+			}
+		}
+	}
+
+	await scan_directory(root_dir)
+	return pages
 }
 
 export const GET = async () => {
-	const { posts: posts_metadata }: { posts: Post[] } =
-		await get_posts()
-	const { tags }: { tags: string[] } = await get_post_tags()
+	const [{ posts: posts_metadata }, { tags }, pages] =
+		await Promise.all([
+			get_posts(),
+			get_post_tags(),
+			discover_pages(),
+		])
 
-	const pages = [
-		{ page: `about`, updated: `2022-08-22` },
-		{ page: `contact`, updated: `2022-03-01` },
-		{ page: `faq`, updated: `2022-08-22` },
-		{ page: `newsletter`, updated: `2022-08-22` },
-		{ page: `now`, updated: `2022-08-22` },
-		{ page: `portfolio`, updated: `2022-08-22` },
-		{ page: `privacy-policy`, updated: `2023-06-29` },
-		{ page: `cookie-policy`, updated: `2023-06-29` },
-		{ page: `speaking`, updated: `2023-01-17` },
-		{ page: `uses`, updated: `2022-08-22` },
-		{ page: `tags`, updated: `2023-04-22` },
-		{ page: `media`, updated: `2022-03-13` },
-	]
-
-	const body = render(pages, tags, posts_metadata)
+	const body = render_sitemap(pages, tags, posts_metadata)
 
 	return new Response(body, {
 		headers: {
@@ -39,72 +78,66 @@ export const GET = async () => {
 	})
 }
 
-const renderPosts = (posts_metadata: Post[]) => {
+const render_pages = (pages: PageInfo[]) => {
+	return pages
+		.map(
+			({ path, last_mod, priority }) => `
+        <url>
+          <loc>${website}${path ? `/${path}` : ''}</loc>
+          <lastmod>${last_mod}</lastmod>
+          <priority>${priority}</priority>
+        </url>
+      `,
+		)
+		.join('')
+}
+
+const render_posts = (posts_metadata: Post[]) => {
 	return posts_metadata
 		.filter(({ is_private }) => !is_private)
 		.map(
 			({ slug, date }) => `
         <url>
           <loc>${website}/posts/${slug}</loc>
-          <lastmod>${
-						new Date(date).toISOString().split('T')[0]
-					}</lastmod>
+          <lastmod>${new Date(date).toISOString().split('T')[0]}</lastmod>
+          <priority>0.7</priority>
         </url>
-        `,
+      `,
 		)
 		.join('')
 }
 
-const renderPages = (pages: Page[]) => {
-	return pages
-		.map(
-			({ page, updated }) => `
-        <url>
-          <loc>${website}/${page}</loc>
-          <lastmod>${updated}</lastmod>
-        </url>
-        `,
-		)
-		.join('')
-}
-
-const renderTags = (tags: string[]) => {
+const render_tags = (tags: string[]) => {
 	return tags
 		.map(
 			(tag: string) => `
         <url>
           <loc>${website}/tags/${slugify(tag)}</loc>
-          <priority>0.64</priority>
+          <priority>0.5</priority>
         </url>
-        `,
+      `,
 		)
 		.join('')
 }
 
-const render = (
-	pages: Page[],
+const render_sitemap = (
+	pages: PageInfo[],
 	tags: string[],
 	posts_metadata: Post[],
 ) => {
-	const lastMod = new Date().toISOString().split('T')[0]
 	return `<?xml version="1.0" encoding="UTF-8" ?>
-  <urlset 
-    xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
-    xmlns:xhtml="https://www.w3.org/1999/xhtml"
-    xmlns:mobile="https://www.google.com/schemas/sitemap-mobile/1.0"
-    xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
-    xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
-  >
-    <url>
-      <loc>${website}</loc>
-      <lastmod>${lastMod}</lastmod>
-    </url>
-    ${renderPosts(posts_metadata)}
-    ${renderPages(pages)}
-    ${renderTags(tags)}
-  </urlset>
-`
+    <urlset 
+      xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
+      xmlns:xhtml="https://www.w3.org/1999/xhtml"
+      xmlns:mobile="https://www.google.com/schemas/sitemap-mobile/1.0"
+      xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
+      xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
+    >
+      ${render_pages(pages)}
+      ${render_posts(posts_metadata)}
+      ${render_tags(tags)}
+    </urlset>`
 }
 
 // looks like changefreq isn't used by Google any more
