@@ -262,11 +262,6 @@ export const PEOPLE = [
 		met: true,
 	},
 	{
-		name: `Guillermo Rauch`,
-		link: `https://bsky.app/profile/rauchg.blue`,
-		met: false,
-	},
-	{
 		name: `Steve Schoger`,
 		link: `https://twitter.com/steveschoger`,
 		met: false,
