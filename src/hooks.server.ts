@@ -64,8 +64,21 @@ export const theme: Handle = async ({ event, resolve }) => {
 	})
 }
 
+// thanks Khromov https://www.youtube.com/watch?v=O_oXb3JSyrI
+const handle_preload: Handle = async ({ event, resolve }) => {
+	return await resolve(event, {
+		preload: ({ type }) => {
+			if (type === 'css' || type === 'font' || type === 'js') {
+				return true
+			}
+			return false
+		}
+	})
+}
+
 export const handle = sequence(
 	reject_suspicious_requests,
 	handle_redirects,
 	theme,
+	handle_preload
 )
