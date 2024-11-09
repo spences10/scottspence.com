@@ -7,13 +7,16 @@
 # My Todo List
 
 <Small>
-  Last updated: <DateUpdated date="2024-10-18" small="true" />
+  Last updated: <DateUpdated date="2024-11-09" small="true" />
 </Small>
 
 My inbox is not my todo list! I'm going to keep this page updated with
 what I'm working on and what I'm thinking about.
 
 ## Working on
+
+- Building [skykit.blue](https://skykit.blue) 😅 A stats page for
+  Bluesky users.
 
 - Continually making sure this site doesn't break on new Svelte 5
   releases.
