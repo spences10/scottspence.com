@@ -113,11 +113,11 @@ devDependencies:
     specifier: 3.3.3
     version: 3.3.3
   prettier-plugin-svelte:
-    specifier: 3.2.7
-    version: 3.2.7(prettier@3.3.3)(svelte@5.1.13)
+    specifier: 3.2.8
+    version: 3.2.8(prettier@3.3.3)(svelte@5.1.13)
   prettier-plugin-tailwindcss:
     specifier: ^0.6.8
-    version: 0.6.8(prettier-plugin-svelte@3.2.7)(prettier@3.3.3)
+    version: 0.6.8(prettier-plugin-svelte@3.2.8)(prettier@3.3.3)
   rehype-autolink-headings:
     specifier: 7.1.0
     version: 7.1.0
@@ -3863,8 +3863,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-svelte@3.2.7(prettier@3.3.3)(svelte@5.1.13):
-    resolution: {integrity: sha512-/Dswx/ea0lV34If1eDcG3nulQ63YNr5KPDfMsjbdtpSWOxKKJ7nAc2qlVuYwEvCr4raIuredNoR7K4JCkmTGaQ==}
+  /prettier-plugin-svelte@3.2.8(prettier@3.3.3)(svelte@5.1.13):
+    resolution: {integrity: sha512-PAHmmU5cGZdnhW4mWhmvxuG2PVbbHIxUuPOdUKvfE+d4Qt2d29iU5VWrPdsaW5YqVEE0nqhlvN4eoKmVMpIF3Q==}
     peerDependencies:
       prettier: ^3.0.0
       svelte: ^3.2.0 || ^4.0.0-next.0 || ^5.0.0-next.0
@@ -3873,7 +3873,7 @@ packages:
       svelte: 5.1.13
     dev: true
 
-  /prettier-plugin-tailwindcss@0.6.8(prettier-plugin-svelte@3.2.7)(prettier@3.3.3):
+  /prettier-plugin-tailwindcss@0.6.8(prettier-plugin-svelte@3.2.8)(prettier@3.3.3):
     resolution: {integrity: sha512-dGu3kdm7SXPkiW4nzeWKCl3uoImdd5CTZEJGxyypEPL37Wj0HT2pLqjrvSei1nTeuQfO4PUfjeW5cTUNRLZ4sA==}
     engines: {node: '>=14.21.3'}
     peerDependencies:
@@ -3929,7 +3929,7 @@ packages:
         optional: true
     dependencies:
       prettier: 3.3.3
-      prettier-plugin-svelte: 3.2.7(prettier@3.3.3)(svelte@5.1.13)
+      prettier-plugin-svelte: 3.2.8(prettier@3.3.3)(svelte@5.1.13)
     dev: true
 
   /prettier@3.3.3:
