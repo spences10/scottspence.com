@@ -104,8 +104,8 @@
 			Not on the list? Want to meet up?
 		</p>
 		<PostOnBlueSky
-			postText="Yo! @scottspence.dev, I think we should totally meet IRL. Add me to that list!!"
-			buttonText="Hit me up on Bluesky!"
+			post_text="Yo! @scottspence.dev, I think we should totally meet IRL. Add me to that list!!"
+			button_text="Hit me up on Bluesky!"
 		/>
 	</div>
 </article>

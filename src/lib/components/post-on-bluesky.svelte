@@ -2,22 +2,20 @@
 	import Bluesky from '$lib/icons/bluesky.svelte'
 
 	interface Props {
-		buttonText?: string
-		postText?: string
+		button_text?: string
+		post_text?: string
 	}
 
-	let { buttonText = '', postText = '' }: Props = $props()
+	let { button_text = '', post_text = '' }: Props = $props()
 </script>
 
 <a
-	class="btn btn-lg"
+	class="btn btn-lg inline-flex items-center gap-2"
 	rel="noreferrer noopener"
 	target="_blank"
-	href={`https://bsky.app/intent/compose?text=${encodeURI(postText)}`}
-	aria-label={`Post on Bluesky: ${postText}`}
+	href={`https://bsky.app/intent/compose?text=${encodeURI(post_text)}`}
+	aria-label={`Post on Bluesky: ${post_text}`}
 >
-	<div class="flex items-center" role="presentation">
-		<span class="mr-3">{buttonText}</span>
-		<Bluesky />
-	</div>
+	<span>{button_text}</span>
+	<Bluesky flutter={true} />
 </a>
