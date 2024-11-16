@@ -20,6 +20,7 @@ Biscardi
 bitwarden
 Bitwit
 Blackfriars
+Bluesky
 Bongers
 Bostian
 botwiki
@@ -225,6 +226,7 @@ Sevenoaks
 Sharath
 Shotcut
 Shure
+skykit
 smartypants
 smashingmagazine
 Snagit
