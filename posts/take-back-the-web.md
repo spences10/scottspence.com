@@ -153,9 +153,10 @@ But you don't have to do everything at once. Start small:
 2. Set up an RSS reader and subscribe to some independent blogs
 3. Question whether "free" services are really serving your needs
 
-Remember: "if you're not paying for the product, you are the product."
-But the good news is that there are increasingly more options for
-those willing to pay for services that respect their privacy.
+Remember: <mark class='text-primary-content bg-primary'>**"if you're
+not paying for the product, you are the product."**</mark> But the
+good news is that there are increasingly more options for those
+willing to pay for services that respect their privacy.
 
 ![if you're not paying for the product you are the product](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1732134525/scottspence.com/if-youre-not-paying-for-the-product-you-are-the-product.png)
 
