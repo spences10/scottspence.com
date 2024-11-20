@@ -23,8 +23,8 @@ First though, preamble!
 that too. When you're using a "free" service, it feels like you're
 gaming the system – getting something for nothing while others pay for
 premium features. But here's the rub: these services aren't free.
-You're paying in a different currency – your personal data, your
-attention and your digital autonomy.
+You're paying in a different currency – your personal data and your
+attention.
 
 Chrome's recent move to manifest v3 meaning ad blockers will cease to
 be as effective is the perfect example of how "free" services (like
@@ -58,8 +58,10 @@ I can create a unique email address for every service I sign up for.
 When a service gets compromised or starts spamming, I can disable or
 delete that specific address without affecting my main email.
 
-I had a short stint with ProtonMail and Zoho mail, more on that in
+I did have a short stint with ProtonMail and Zoho mail, more on that
+in
 [Why Fastmail over Proton Mail](https://scottspence.com/posts/why-fastmail-over-proton-mail)
+if you're interested.
 
 ## Analytics: Fathom
 
@@ -67,26 +69,27 @@ Google analytics, free yay! Well, what do you think they are doing
 with all that data they're slurping up from your site's users?
 
 As a developer, I need analytics to understand how people use my
-websites. But that doesn't mean I need to track them across the web.
-Fathom Analytics provides the insights I need while respecting user
-privacy. No cookie banners required, no personal data collected. You
-can check out the [privacy](https://scottspence.com/privacy-policy)
-and [cookie](https://scottspence.com/cookie-policy) policies here for
-more on that.
+websites. But that doesn't mean I (or Google) need to track them
+across the web. Fathom Analytics provides the insights I need while
+respecting user privacy. No cookie banners required, no personal data
+collected. This site uses Fathom, you can check out the
+[privacy](https://scottspence.com/privacy-policy) and
+[cookie](https://scottspence.com/cookie-policy) policies to see where
+you stand.
 
 ## Search: Kagi
 
 I switched to Kagi because, it gives me better search results than
-Google. While DuckDuckGo offers a good free privacy-focused
-alternative, I personally find Kagi's results more relevant for my
-needs. Since Kagi is not driven by an ad-based business model, the
-results feel more neutral - you get what matches your search, not what
-someone paid to rank for. For me, that's worth paying for.
+Google. While DuckDuckGo is a good free privacy-focused alternative, I
+personally find Kagi's results more relevant for my needs. Since Kagi
+is not driven by an ad-based business model, the results feel more
+neutral - you get what matches your search, not what someone paid to
+rank for. For me, that's worth paying for.
 
 ## VPN: Mullvad
 
 I was previously using Mozilla VPN, but switched to Mullvad because of
-it's privacy focus, not that Mozilla wasn't the Mullvad VPN is
+it's privacy focus, (not that Mozilla wasn't) the Mullvad VPN is
 completely anonymous in how you set up and use the service, no email
 or payment details on file, just a ID number.
 
@@ -95,17 +98,17 @@ their VPN service with a high focus on privacy.
 
 ## Making informed choices
 
-So these are choices I have made, you do you. Do your own research and
-make your own choices that make sense for you. How do you know which
-services to trust though? This is where independent tech journalism
-comes in.
+So these are some of the choices I have made over the years, you do
+you though. Do your own research and make your own choices that make
+sense for you. How do you know which services to trust though?
 
 ## The rise of independent tech journalism
 
 There's been an increase in independent journalist like 404 media, and
-podcast like Grumpy old Geeks, and Better Offline that don't idolise
+podcasts like Grumpy old Geeks, and Better Offline that don't idolise
 these companies and instead cut through that because the're not afraid
-of losing access to a CEO if they ask the hard questions.
+of losing access to a CEO for an interview if they ask the hard
+questions.
 
 This kind of independent journalism doesn't just help us stay
 informed - it helps us make better choices about the tools and
@@ -118,7 +121,7 @@ like an expense and more like an investment, right?
 But what can I do? The indie web isn't just a throwback to the "old
 internet" – it's the future. As AI-generated content floods the
 mainstream web, human-created content on independent platforms becomes
-more valuable than ever.
+more and more valuable.
 
 RSS feeds might seem old-school, but they offer the ability to curate
 your own information diet. Instead of letting algorithms decide what
