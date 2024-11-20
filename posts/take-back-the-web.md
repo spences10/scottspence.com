@@ -13,7 +13,7 @@ want to take back some control over your online experience and
 privacy.
 
 I'm no privacy expert, these are some steps I have taken to reduce the
-amount of data I give to big companies.
+amount of data I give to big tech companies.
 
 First though, preamble!
 
@@ -38,7 +38,7 @@ and more sponsored links.
 Whenever privacy comes up in conversation, someone inevitably says, "I
 have nothing to hide." But this misses the point entirely. Privacy
 isn't about hiding dark secrets – it's about maintaining control over
-your digital life.
+your digital footprint.
 
 Another common response is "they know everything about me already."
 People don't like change, I get it, but the "this is how I've always
@@ -47,15 +47,16 @@ done it, why should I change?" is what big tech companies depend on.
 ## Practical steps to digital independence
 
 Here's a few services I have been using with a high level overview of
-why I chose them.
+why I chose them. There's other alternitives, some I mentioned, some
+I'm sure you'll find out for yourself.
 
 ## Email: Fastmail
 
 After using Gmail for years, I made the switch to Fastmail in 2021.
 The killer feature? (for me) Masked emails. Integrated with 1Password,
 I can create a unique email address for every service I sign up for.
-When a service gets compromised or starts spamming, I can simply
-disable that specific address without affecting my main email.
+When a service gets compromised or starts spamming, I can disable or
+delete that specific address without affecting my main email.
 
 I had a short stint with ProtonMail and Zoho mail, more on that in
 [Why Fastmail over Proton Mail](https://scottspence.com/posts/why-fastmail-over-proton-mail)
@@ -68,18 +69,19 @@ with all that data they're slurping up from your site's users?
 As a developer, I need analytics to understand how people use my
 websites. But that doesn't mean I need to track them across the web.
 Fathom Analytics provides the insights I need while respecting user
-privacy. No cookie banners required, no personal data collected. It's
-proof that you can have useful analytics without surveillance.
+privacy. No cookie banners required, no personal data collected. You
+can check out the [privacy](https://scottspence.com/privacy-policy)
+and [cookie](https://scottspence.com/cookie-policy) policies here for
+more on that.
 
 ## Search: Kagi
 
-I switched to Kagi because, simply put, it gives me better search
-results than Google. While DuckDuckGo offers a good free
-privacy-focused alternative, I personally find Kagi's results more
-relevant for my needs. Since they're not driven by an ad-based
-business model, the results feel more neutral - you get what matches
-your search, not what someone paid to rank for. For me, that's worth
-paying for.
+I switched to Kagi because, it gives me better search results than
+Google. While DuckDuckGo offers a good free privacy-focused
+alternative, I personally find Kagi's results more relevant for my
+needs. Since Kagi is not driven by an ad-based business model, the
+results feel more neutral - you get what matches your search, not what
+someone paid to rank for. For me, that's worth paying for.
 
 ## VPN: Mullvad
 
@@ -87,6 +89,9 @@ I was previously using Mozilla VPN, but switched to Mullvad because of
 it's privacy focus, not that Mozilla wasn't the Mullvad VPN is
 completely anonymous in how you set up and use the service, no email
 or payment details on file, just a ID number.
+
+There's also a Firefox based Mullvad browser that integrates with
+their VPN service with a high focus on privacy.
 
 ## Making informed choices
 
@@ -115,24 +120,25 @@ internet" – it's the future. As AI-generated content floods the
 mainstream web, human-created content on independent platforms becomes
 more valuable than ever.
 
-RSS feeds might seem old-school, but they offer something precious:
-the ability to curate your own information diet. Instead of letting
-algorithms decide what you should see, you choose your sources and
-consume content on your own terms.
+RSS feeds might seem old-school, but they offer the ability to curate
+your own information diet. Instead of letting algorithms decide what
+you should see, you choose your sources and consume content on your
+own terms.
 
 ## Social doesn't have to be algorithmically driven
 
 Platforms like Mastodon and Bluesky are not algorithmically driven.
 Posts are chronologically ordered, so you can follow the people you
-want to see and curate your own feed.
+want to see and with Bluesky you can curate your own feed.
 
 New to Bluesky? Well, ther's starter packs, find your community and
 bulk follow them with a click.
 
 Bluesky is built on an open protocol, so you can use any client you
 want. Hack on it and make your own client if you like! I made
-[skykit](https://skykit.blue) over a weekend, it's in my opinion the
-spiritual home for developers to congregate.
+[skykit](https://skykit.blue) over a weekend, Bluesky in my opinion
+the spiritual home for developers to congregate online, share cool
+ideas and meet like minded individuals.
 
 ## A call to action
 
@@ -144,7 +150,7 @@ But you don't have to do everything at once. Start small:
 2. Set up an RSS reader and subscribe to some independent blogs
 3. Question whether "free" services are really serving your needs
 
-Remember: if you're not paying for the product, you are the product.
+Remember: "if you're not paying for the product, you are the product."
 But the good news is that there are increasingly more options for
 those willing to pay for services that respect their privacy.
 
