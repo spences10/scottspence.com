@@ -127,6 +127,7 @@ Jaoude
 Jeda
 josefaidt
 Josefine
+Kagi
 Karan
 Kardon
 Karmarama
@@ -166,6 +167,7 @@ Mintbean
 Mittal
 Morty
 Muleman
+Mullvad
 Namecheap
 Naydenov
 NCSC
