@@ -651,7 +651,7 @@ site.
 
 [let's work together]: https://scottspence.com/lets-work-together
 [tag for it]: https://scottspence.com/tags/fastmail
-[referral link]: https://ref.fm/u27421800
+[referral link]: https://join.fastmail.com/9283c1fd
 [Switching from Brevo to Buttondown]:
   https://scottspence.com/posts/switching-from-brevo-to-buttondown
 [I have done in the past]:

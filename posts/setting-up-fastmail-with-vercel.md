@@ -60,4 +60,4 @@ can take a few minutes so be patient.
 
 <!-- Links -->
 
-[my referral code]: https://ref.fm/u27421800
+[my referral code]: https://join.fastmail.com/9283c1fd
