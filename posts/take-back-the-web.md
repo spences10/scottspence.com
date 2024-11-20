@@ -106,7 +106,7 @@ This kind of independent journalism doesn't just help us stay
 informed - it helps us make better choices about the tools and
 services we use. When you understand how your data is being used (or
 misused), those paid privacy-focused alternatives start looking less
-like an expense and more like an investment in your digital autonomy.
+like an expense and more like an investment, right?
 
 ## Building a better web
 
@@ -119,6 +119,20 @@ RSS feeds might seem old-school, but they offer something precious:
 the ability to curate your own information diet. Instead of letting
 algorithms decide what you should see, you choose your sources and
 consume content on your own terms.
+
+## Social doesn't have to be algorithmically driven
+
+Platforms like Mastodon and Bluesky are not algorithmically driven.
+Posts are chronologically ordered, so you can follow the people you
+want to see and curate your own feed.
+
+New to Bluesky? Well, ther's starter packs, find your community and
+bulk follow them with a click.
+
+Bluesky is built on an open protocol, so you can use any client you
+want. Hack on it and make your own client if you like! I made
+[skykit](https://skykit.blue) over a weekend, it's in my opinion the
+spiritual home for developers to congregate.
 
 ## A call to action
 
@@ -137,4 +151,4 @@ those willing to pay for services that respect their privacy.
 ![if you're not paying for the product you are the product](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1732134525/scottspence.com/if-youre-not-paying-for-the-product-you-are-the-product.png)
 
 The web we want still exists – we just have to be willing to support
-it.
+it and help build it.
