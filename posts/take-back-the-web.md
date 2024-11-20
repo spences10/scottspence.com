@@ -1,6 +1,6 @@
 ---
 date: 2024-11-20
-title: Taking Back the Web, A Practical Guide to Digital Independence
+title: Take Back the Web! A Practical Guide to Digital Independence
 tags: ['notes', 'privacy', 'security']
 is_private: true
 ---
