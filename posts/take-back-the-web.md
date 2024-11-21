@@ -2,7 +2,7 @@
 date: 2024-11-20
 title: Take Back the Web! A Practical Guide to Digital Independence
 tags: ['notes', 'privacy', 'security']
-is_private: true
+is_private: false
 ---
 
 Ok, I don't usually do a post like this, this site is usually around
@@ -28,10 +28,11 @@ attention.
 
 Chrome's recent move to manifest v3 meaning ad blockers will cease to
 be as effective is the perfect example of how "free" services (like
-YouTube) eventually degrade so much that you pay for premium features.
+YouTube) eventually degrade so much that you end up paying for premium
+features.
 
-Google search becoming worse over time so you use it more and see more
-and more sponsored links.
+Google search becoming less effective over time so you use it more and
+see more and more sponsored links.
 
 ## "But I have nothing to hide"
 
@@ -47,8 +48,8 @@ done it, why should I change?" is what big tech companies depend on.
 ## Practical steps to digital independence
 
 Here's a few services I have been using with a high level overview of
-why I chose them. There's other alternitives, some I mentioned, some
-I'm sure you'll find out for yourself.
+why I chose them. There's other alternitives, some I mention, some I'm
+sure you'll find out for yourself.
 
 ## Email: Fastmail
 
@@ -63,6 +64,10 @@ in
 [Why Fastmail over Proton Mail](https://scottspence.com/posts/why-fastmail-over-proton-mail)
 if you're interested.
 
+If you're interested in Fastmail, I have
+[an affiliate link](https://join.fastmail.com/9283c1fd), you can use
+to get a 10% discount on your first year and I get a $10 credit.
+
 ## Analytics: Fathom
 
 Google analytics, free yay! Well, what do you think they are doing
@@ -76,6 +81,10 @@ collected. This site uses Fathom, you can check out the
 [privacy](https://scottspence.com/privacy-policy) and
 [cookie](https://scottspence.com/cookie-policy) policies to see where
 you stand.
+
+I have [an affiliate link](https://usefathom.com/ref/HG492L) for
+Fathom as well, you can use to get a $10 credit on your first month.
+There's a 25% commission kickback in it for me too.
 
 ## Search: Kagi
 
@@ -102,12 +111,18 @@ So these are some of the choices I have made over the years, you do
 you though. Do your own research and make your own choices that make
 sense for you. How do you know which services to trust though?
 
+The affiliate links are an incentive for me of course, but I wouldn't
+be recommending them if I didn't use them and think they were worth
+sharing.
+
 ## The rise of independent tech journalism
 
-There's been an increase in independent journalist like 404 media, and
-podcasts like Grumpy old Geeks, and Better Offline that don't idolise
-these companies and instead cut through that because the're not afraid
-of losing access to a CEO for an interview if they ask the hard
+There's been an increase in independent journalist like
+[404 media](https://www.404media.co/), and podcasts like
+[Better Offline](https://pca.st/j9gj91ao) and
+[Grumpy Old Geeks](https://pca.st/e3rk) that don't idolise these
+companies and instead cut through that because the're not afraid of
+losing access to a CEO for an interview if they ask the hard
 questions.
 
 This kind of independent journalism doesn't just help us stay
@@ -116,9 +131,10 @@ services we use. When you understand how your data is being used (or
 misused), those paid privacy-focused alternatives start looking less
 like an expense and more like an investment, right?
 
-## Building a better web
+## Curate your information
 
-But what can I do? The indie web isn't just a throwback to the "old
+But what can I do? The [indie web](https://indieweb.org/) is a great
+example of owning your content. It's not a throwback to the "old
 internet" – it's the future. As AI-generated content floods the
 mainstream web, human-created content on independent platforms becomes
 more and more valuable.
@@ -130,9 +146,10 @@ own terms.
 
 ## Social doesn't have to be algorithmically driven
 
-Platforms like Mastodon and Bluesky are not algorithmically driven.
-Posts are chronologically ordered, so you can follow the people you
-want to see and with Bluesky you can curate your own feed.
+Platforms like [Mastodon](https://joinmastodon.org) and
+[Bluesky](https://bsky.social) are not algorithmically driven. Posts
+are chronologically ordered, so you can follow the people you want to
+see and with Bluesky you can curate your own feed.
 
 New to Bluesky? Well, ther's starter packs, find your community and
 bulk follow them with a click.
@@ -153,12 +170,13 @@ But you don't have to do everything at once. Start small:
 2. Set up an RSS reader and subscribe to some independent blogs
 3. Question whether "free" services are really serving your needs
 
-Remember: <mark class='text-primary-content bg-primary'>**"if you're
-not paying for the product, you are the product."**</mark> But the
-good news is that there are increasingly more options for those
-willing to pay for services that respect their privacy.
+Remember: _**"if you're not paying for the product, you are the
+product."**_
 
-![if you're not paying for the product you are the product](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1732134525/scottspence.com/if-youre-not-paying-for-the-product-you-are-the-product.png)
+[![if you're not paying for the product you are the product](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1732134525/scottspence.com/if-youre-not-paying-for-the-product-you-are-the-product.png)](https://twitter.com/timoreilly/status/22823381903)
+
+But the good news is that there are increasingly more options for
+those willing to pay for services that respect their privacy.
 
 The web we want still exists – we just have to be willing to support
 it and help build it.
