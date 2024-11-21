@@ -14,9 +14,9 @@
 		CurrentVisitorsData,
 		IsPrivateBanner,
 		PopularPosts,
+		PostOnBlueSky,
 		Reactions,
 		RelatedPosts,
-		ShareWithTweet,
 		TableOfContents,
 		UpdatedBanner,
 	} from '$lib/components'
@@ -252,6 +252,14 @@
 
 	<Reactions data={count} path={current_path} />
 
+	<div class="mb-24 grid justify-items-center">
+		<PostOnBlueSky
+			post_text={`Check out this post from @scottspence.dev, ${title}: ${url}`}
+			button_text="Useful? Share it on Bluesky."
+			button_class="btn-secondary"
+		/>
+	</div>
+
 	<div class="flex justify-center">
 		<a
 			onclick={show_modal}
@@ -267,13 +275,6 @@
 			<StatsPage data={$page.state.selected} />
 		{/if}
 	</Modal>
-
-	<div class="mb-24 grid justify-items-center">
-		<ShareWithTweet
-			buttonText="Useful? Share it on Twitter."
-			tweetText={`Check out this post from @spences10, ${title}: ${url}`}
-		/>
-	</div>
 
 	<PopularPosts />
 

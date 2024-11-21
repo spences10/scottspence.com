@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition'
+	
 	interface Props {
 		headings?: { label: string; href: string }[]
 	}
