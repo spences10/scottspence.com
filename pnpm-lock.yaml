@@ -141,7 +141,7 @@ devDependencies:
     version: 5.1.15
   svelte-check:
     specifier: ^4.0.7
-    version: 4.0.7(svelte@5.1.15)(typescript@5.6.3)
+    version: 4.1.0(svelte@5.1.15)(typescript@5.6.3)
   svelte-preprocess:
     specifier: 6.0.3
     version: 6.0.3(postcss-load-config@6.0.1)(postcss@8.4.49)(svelte@5.1.15)(typescript@5.6.3)
@@ -4267,8 +4267,8 @@ packages:
       svelte: 5.1.15
     dev: true
 
-  /svelte-check@4.0.7(svelte@5.1.15)(typescript@5.6.3):
-    resolution: {integrity: sha512-24hwo+D5L35HOXsh3Z2sU4WhdDLavlHquYaJhrEqAt+mV1xOVzoMVYThW80n99osDJxyuH+vxjNFkNRL4EvwTg==}
+  /svelte-check@4.1.0(svelte@5.1.15)(typescript@5.6.3):
+    resolution: {integrity: sha512-AflEZYqI578KuDZcpcorPSf597LStxlkN7XqXi38u09zlHODVKd7c+7OuubGzbhgGRUqNTdQCZ+Ga96iRXEf2g==}
     engines: {node: '>= 18.0.0'}
     hasBin: true
     peerDependencies:
