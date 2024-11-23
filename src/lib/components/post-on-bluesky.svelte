@@ -15,7 +15,7 @@
 </script>
 
 <a
-	class="btn btn-lg inline-flex items-center gap-2 {button_class}"
+	class="btn btn-lg inline-flex items-center gap-2 shadow-lg {button_class}"
 	rel="noreferrer noopener"
 	target="_blank"
 	href={`https://bsky.app/intent/compose?text=${encodeURI(post_text)}`}
