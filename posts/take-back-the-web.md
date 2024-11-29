@@ -48,7 +48,7 @@ done it, why should I change?" is what big tech companies depend on.
 ## Practical steps to digital independence
 
 Here's a few services I have been using with a high level overview of
-why I chose them. There's other alternitives, some I mention, some I'm
+why I chose them. There's other alternatives, some I mention, some I'm
 sure you'll find out for yourself.
 
 ## Email: Fastmail
@@ -151,7 +151,7 @@ Platforms like [Mastodon](https://joinmastodon.org) and
 are chronologically ordered, so you can follow the people you want to
 see and with Bluesky you can curate your own feed.
 
-New to Bluesky? Well, ther's starter packs, find your community and
+New to Bluesky? Well, there's starter packs, find your community and
 bulk follow them with a click.
 
 Bluesky is built on an open protocol, so you can use any client you
