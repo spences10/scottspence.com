@@ -33,7 +33,7 @@
 		"@playwright/test": "^1.49.0",
 		"@sveltejs/adapter-node": "^5.2.9",
 		"@sveltejs/kit": "^2.8.2",
-		"@sveltejs/vite-plugin-svelte": "4.0.1",
+		"@sveltejs/vite-plugin-svelte": "5.0.1",
 		"@tailwindcss/typography": "0.5.15",
 		"@testing-library/svelte": "^5.2.6",
 		"@types/eslint": "^9.6.1",

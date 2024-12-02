@@ -30,10 +30,10 @@ devDependencies:
     version: 5.2.9(@sveltejs/kit@2.8.2)
   '@sveltejs/kit':
     specifier: ^2.8.2
-    version: 2.8.2(@sveltejs/vite-plugin-svelte@4.0.1)(svelte@5.2.7)(vite@5.4.11)
+    version: 2.8.2(@sveltejs/vite-plugin-svelte@5.0.1)(svelte@5.2.7)(vite@5.4.11)
   '@sveltejs/vite-plugin-svelte':
-    specifier: 4.0.1
-    version: 4.0.1(svelte@5.2.7)(vite@5.4.11)
+    specifier: 5.0.1
+    version: 5.0.1(svelte@5.2.7)(vite@5.4.11)
   '@tailwindcss/typography':
     specifier: 0.5.15
     version: 0.5.15(tailwindcss@3.4.15)
@@ -1312,11 +1312,11 @@ packages:
       '@rollup/plugin-commonjs': 28.0.1(rollup@4.24.3)
       '@rollup/plugin-json': 6.1.0(rollup@4.24.3)
       '@rollup/plugin-node-resolve': 15.3.0(rollup@4.24.3)
-      '@sveltejs/kit': 2.8.2(@sveltejs/vite-plugin-svelte@4.0.1)(svelte@5.2.7)(vite@5.4.11)
+      '@sveltejs/kit': 2.8.2(@sveltejs/vite-plugin-svelte@5.0.1)(svelte@5.2.7)(vite@5.4.11)
       rollup: 4.24.3
     dev: true
 
-  /@sveltejs/kit@2.8.2(@sveltejs/vite-plugin-svelte@4.0.1)(svelte@5.2.7)(vite@5.4.11):
+  /@sveltejs/kit@2.8.2(@sveltejs/vite-plugin-svelte@5.0.1)(svelte@5.2.7)(vite@5.4.11):
     resolution: {integrity: sha512-c9My0AnojYtaa96XDAcxcMUdMd3iIhWfrj6BLNtOFz55lMtA/Jima54ZLcYcvfMqei3c86fGRXYa2aIHO+vzFg==}
     engines: {node: '>=18.13'}
     hasBin: true
@@ -1326,7 +1326,7 @@ packages:
       svelte: ^4.0.0 || ^5.0.0-next.0
       vite: ^5.0.3
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 4.0.1(svelte@5.2.7)(vite@5.4.11)
+      '@sveltejs/vite-plugin-svelte': 5.0.1(svelte@5.2.7)(vite@5.4.11)
       '@types/cookie': 0.6.0
       cookie: 0.6.0
       devalue: 5.1.1
@@ -1343,15 +1343,15 @@ packages:
       vite: 5.4.11
     dev: true
 
-  /@sveltejs/vite-plugin-svelte-inspector@3.0.1(@sveltejs/vite-plugin-svelte@4.0.1)(svelte@5.2.7)(vite@5.4.11):
-    resolution: {integrity: sha512-2CKypmj1sM4GE7HjllT7UKmo4Q6L5xFRd7VMGEWhYnZ+wc6AUVU01IBd7yUi6WnFndEwWoMNOd6e8UjoN0nbvQ==}
+  /@sveltejs/vite-plugin-svelte-inspector@4.0.1(@sveltejs/vite-plugin-svelte@5.0.1)(svelte@5.2.7)(vite@5.4.11):
+    resolution: {integrity: sha512-J/Nmb2Q2y7mck2hyCX4ckVHcR5tu2J+MtBEQqpDrrgELZ2uvraQcK/ioCV61AqkdXFgriksOKIceDcQmqnGhVw==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22}
     peerDependencies:
-      '@sveltejs/vite-plugin-svelte': ^4.0.0-next.0||^4.0.0
-      svelte: ^5.0.0-next.96 || ^5.0.0
-      vite: ^5.0.0
+      '@sveltejs/vite-plugin-svelte': ^5.0.0
+      svelte: ^5.0.0
+      vite: ^6.0.0
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 4.0.1(svelte@5.2.7)(vite@5.4.11)
+      '@sveltejs/vite-plugin-svelte': 5.0.1(svelte@5.2.7)(vite@5.4.11)
       debug: 4.3.7
       svelte: 5.2.7
       vite: 5.4.11
@@ -1359,18 +1359,18 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.2.7)(vite@5.4.11):
-    resolution: {integrity: sha512-prXoAE/GleD2C4pKgHa9vkdjpzdYwCSw/kmjw6adIyu0vk5YKCfqIztkLg10m+kOYnzZu3bb0NaPTxlWre2a9Q==}
+  /@sveltejs/vite-plugin-svelte@5.0.1(svelte@5.2.7)(vite@5.4.11):
+    resolution: {integrity: sha512-D5l5+STmywGoLST07T9mrqqFFU+xgv5fqyTWM+VbxTvQ6jujNn4h3lQNCvlwVYs4Erov8i0K5Rwr3LQtmBYmBw==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22}
     peerDependencies:
-      svelte: ^5.0.0-next.96 || ^5.0.0
-      vite: ^5.0.0
+      svelte: ^5.0.0
+      vite: ^6.0.0
     dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 3.0.1(@sveltejs/vite-plugin-svelte@4.0.1)(svelte@5.2.7)(vite@5.4.11)
+      '@sveltejs/vite-plugin-svelte-inspector': 4.0.1(@sveltejs/vite-plugin-svelte@5.0.1)(svelte@5.2.7)(vite@5.4.11)
       debug: 4.3.7
       deepmerge: 4.3.1
       kleur: 4.1.5
-      magic-string: 0.30.12
+      magic-string: 0.30.14
       svelte: 5.2.7
       vite: 5.4.11
       vitefu: 1.0.3(vite@5.4.11)
@@ -3410,6 +3410,12 @@ packages:
 
   /magic-string@0.30.12:
     resolution: {integrity: sha512-Ea8I3sQMVXr8JhN4z+H/d8zwo+tYDgHE9+5G4Wnrwhs0gaK9fXTKx0Tw5Xwsd/bCPTTZNRAdpyzvoeORe9LYpw==}
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.5.0
+    dev: true
+
+  /magic-string@0.30.14:
+    resolution: {integrity: sha512-5c99P1WKTed11ZC0HMJOj6CDIue6F8ySu+bJL+85q1zBEIY8IklrJ1eiKC2NDRh3Ct3FcvmJPyQHb9erXMTJNw==}
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
     dev: true
