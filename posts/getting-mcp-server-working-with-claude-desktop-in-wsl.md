@@ -89,6 +89,40 @@ are the path to the Node executable and the MCP server, that's in two
 parts, the first is the node binary the second is the path to the MCP
 server.
 
+## Passing Environment Variables
+
+If your MCP tool requires environment variables, you can pass them
+directly in the command line arguments instead of using the `env`
+property in the configuration. I do it this way because the Claude
+desktop app was throwing an error when I tried to set environment
+variables in the `env` section.
+
+Here's an example config that uses an environment variable:
+
+```json
+{
+	"mcpServers": {
+		"tool-with-env-vars": {
+			"command": "wsl.exe",
+			"args": [
+				"bash",
+				"-c",
+				"MY_API_KEY=generated_key_goes_here /home/scott/.nvm/versions/node/v20.12.1/bin/node /home/scott/Documents/Cline/MCP/tool-with-env-vars/build/index.js"
+			]
+		}
+	}
+}
+```
+
+In this configuration, the `MY_API_KEY` is set directly in the command
+string before calling the Node executable. This way, the environment
+variable is available when it runs.
+
+Make sure to replace `generated_key_goes_here` with your actual API
+key. This method ensures that your MCP tool can access the necessary
+environment variables without causing errors in the Claude desktop
+app.
+
 ## Testing the Setup
 
 After updating the configuration, I restarted the Claude desktop app
