@@ -2,7 +2,9 @@
 @import '@fontsource-variable/manrope';
 @import '@fontsource-variable/playpen-sans';
 
-@tailwind base;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 html {
 	scroll-behavior: smooth;
@@ -27,13 +29,9 @@ html {
 	line-height: 1.75rem;
 }
 
-@tailwind components;
-
 .all-prose {
-	@apply prose prose-lg lg:prose-xl prose-headings:scroll-mt-16 prose-a:text-primary prose-a:transition hover:prose-a:text-accent;
+	@apply prose-a:text-primary hover:prose-a:text-accent prose prose-lg lg:prose-xl prose-headings:scroll-mt-16 prose-a:transition;
 }
-
-@tailwind utilities;
 
 /* 
 Scrollbar styles:

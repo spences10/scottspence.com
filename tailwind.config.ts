@@ -1,10 +1,12 @@
-const tailwind_theme = require('tailwindcss/defaultTheme')
-const daisyui = require('daisyui')
-const typography = require('@tailwindcss/typography')
-const { create_daisy_themes } = require('./src/lib/themes')
+import typography from '@tailwindcss/typography';
+import daisyui from 'daisyui';
+import type { Config } from 'tailwindcss';
+import tailwind_theme from 'tailwindcss/defaultTheme';
+import { create_daisy_themes } from './src/lib/themes';
 
-const config = {
+export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
+
 	theme: {
 		screens: {
 			xs: '475px',
@@ -33,6 +35,4 @@ const config = {
 	},
 
 	plugins: [typography, daisyui],
-}
-
-module.exports = config
+} satisfies Config;
