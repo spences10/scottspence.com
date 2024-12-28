@@ -72,7 +72,7 @@
 				<a
 					href="/contact"
 					onclick={() => Fathom.trackEvent(`contact button click`)}
-					class="btn btn-primary btn-md mb-5 w-full rounded-box text-primary-content shadow-xl lg:btn-lg hover:text-primary-content"
+					class="btn btn-primary btn-md mb-5 w-full rounded-box !text-primary-content shadow-xl lg:btn-lg hover:text-primary-content"
 				>
 					Get in Touch
 				</a>
