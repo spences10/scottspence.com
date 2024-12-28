@@ -5,6 +5,8 @@ tags: ['mcp', 'claude', 'cline', 'wsl', 'guide']
 is_private: false
 ---
 
+<!-- cSpell:ignore modelcontextprotocol userprofile -->
+
 In this post, I'll go through the process of getting a Model Context
 Protocol (MCP) tool up and running with the Claude desktop app using
 Node in Windows Subsystem for Linux (WSL).
