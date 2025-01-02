@@ -137,8 +137,8 @@ devDependencies:
     specifier: ^4.1.1
     version: 4.1.1(svelte@5.16.0)(typescript@5.7.2)
   sveltekit-embed:
-    specifier: ^0.0.16
-    version: 0.0.16(svelte@5.16.0)
+    specifier: ^0.0.18
+    version: 0.0.18(svelte@5.16.0)
   tailwindcss:
     specifier: ^3.4.17
     version: 3.4.17
@@ -4539,8 +4539,8 @@ packages:
       zimmerframe: 1.1.2
     dev: true
 
-  /sveltekit-embed@0.0.16(svelte@5.16.0):
-    resolution: {integrity: sha512-ahs35D7zlpKX2AXhVGZxck9lNJuB52+Ii+ECUdaLjfIW9XswTaifA/NFQN1pHa4S5YFWvfI0WjWahbzZXnOEeg==}
+  /sveltekit-embed@0.0.18(svelte@5.16.0):
+    resolution: {integrity: sha512-/uj5pjQPH22G99x+adgD2EydXjkkdQNg84aByPmxeZ7HE3cjk5IXUYF8CJqV5IQWBGVKSNta4k8KOqjtlig8/g==}
     peerDependencies:
       svelte: ^4.0.0 || ^5.0.0
     dependencies:
