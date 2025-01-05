@@ -20,12 +20,12 @@
 	let selected_month = $state(current_month);
 
 	const seo_config = create_seo_config({
-		title: `Site Analytics - ${name}`,
-		description: `View analytics and statistics for ${name}'s blog posts and articles`,
+		title: `Site Stats - ${name}`,
+		description: `View stats for ${name}'s blog posts and articles`,
 		open_graph_image: og_image_url(
 			name,
 			'scottspence.com',
-			'Site Analytics',
+			'Site Stats',
 		),
 		url: `${website}/stats`,
 		slug: 'stats',
