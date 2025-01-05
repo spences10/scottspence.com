@@ -4,15 +4,15 @@
 		LightBulb,
 		Megaphone,
 		WarningTriangle,
-	} from '$lib/icons'
+	} from '$lib/icons';
 
 	interface Props {
-		options?: BannerOptions
+		options?: BannerOptions;
 	}
 
 	interface BannerOptions {
-		type: 'info' | 'tip' | 'warning' | 'announcement'
-		message: string
+		type: 'info' | 'tip' | 'warning' | 'announcement';
+		message: string;
 	}
 
 	let {
@@ -20,26 +20,26 @@
 			type: 'info',
 			message: '',
 		},
-	}: Props = $props()
+	}: Props = $props();
 
 	const ICONS = {
 		info: InformationCircle,
 		tip: LightBulb,
 		warning: WarningTriangle,
 		announcement: Megaphone,
-	}
+	};
 
 	const COLORS = {
-		info: { bg: 'bg-info', text: 'text-info-content' },
-		tip: { bg: 'bg-info', text: 'text-info-content' },
-		warning: { bg: 'bg-warning', text: 'text-warning-content' },
-		announcement: { bg: 'bg-success', text: 'text-success-content' },
-		promotion: { bg: 'bg-success', text: 'text-success-content' },
-	}
+		info: { bg: 'bg-info', text: '!text-info-content' },
+		tip: { bg: 'bg-info', text: '!text-info-content' },
+		warning: { bg: 'bg-warning', text: '!text-warning-content' },
+		announcement: { bg: 'bg-success', text: '!text-success-content' },
+		promotion: { bg: 'bg-success', text: '!text-success-content' },
+	};
 
-	const { bg, text } = COLORS[options.type] ?? COLORS['info']
-	const banner_classes = `${bg} ${text} px-12 py-4`
-	const Icon = ICONS[options.type] ?? InformationCircle
+	const { bg, text } = COLORS[options.type] ?? COLORS['info'];
+	const banner_classes = `${bg} ${text} px-12 py-4`;
+	const Icon = ICONS[options.type] ?? InformationCircle;
 </script>
 
 <div
