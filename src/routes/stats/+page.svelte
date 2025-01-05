@@ -1,10 +1,35 @@
 <script lang="ts">
-	let { data } = $props();
+	import { Head } from 'svead';
+	import { name, website } from '$lib/info';
+	import { create_seo_config } from '$lib/seo';
+	import { og_image_url } from '$lib/utils';
+
+	interface Props {
+		data: {
+			site_stats: any[];
+			current_month: string;
+			current_year: number;
+		};
+	}
+
+	let { data } = $props<Props>();
 	const { site_stats, current_month, current_year } = data;
 
-	let selected_period = $state('all_time'); // 'all_time', 'yearly', 'monthly'
+	let selected_period = $state('all_time');
 	let selected_year = $state(current_year);
 	let selected_month = $state(current_month);
+
+	const seo_config = create_seo_config({
+		title: `Site Analytics - ${name}`,
+		description: `View analytics and statistics for ${name}'s blog posts and articles`,
+		open_graph_image: og_image_url(
+			name,
+			'scottspence.com',
+			'Site Analytics',
+		),
+		url: `${website}/stats`,
+		slug: 'stats',
+	});
 
 	let filtered_analytics = $derived.by(() => {
 		// First map the data with appropriate stats
@@ -39,6 +64,8 @@
 			.sort((a, b) => b.current_stats.views - a.current_stats.views);
 	});
 </script>
+
+<Head {seo_config} />
 
 <!-- <pre>{JSON.stringify(data.site_stats, null, 2)}</pre> -->
 
