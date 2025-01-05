@@ -58,7 +58,9 @@
 				bind:value={selected_year}
 				class="select select-bordered w-full max-w-xs"
 			>
-				{#each [...new Set(site_stats.flatMap( (p) => p.yearly_stats.map((y) => y.year), ))]
+				{#each [...new Set(site_stats.flatMap((p) => p.yearly_stats
+								.filter((y) => y.year < current_year)
+								.map((y) => y.year)))]
 					.sort()
 					.reverse() as year}
 					<option value={year}>{year}</option>
@@ -71,7 +73,14 @@
 				bind:value={selected_month}
 				class="select select-bordered w-full max-w-xs"
 			>
-				{#each [...new Set(site_stats.flatMap( (p) => p.monthly_stats.map((m) => m.year_month), ))]
+				{#each [...new Set(site_stats.flatMap((p) => p.monthly_stats
+								.filter((m) => {
+									const [year, month] = m.year_month
+										.split('-')
+										.map(Number);
+									return year < current_year || (year === current_year && month < current_month);
+								})
+								.map((m) => m.year_month)))]
 					.sort()
 					.reverse() as month}
 					<option value={month}>{month}</option>
