@@ -123,6 +123,33 @@ key. This method ensures that your MCP tool can access the necessary
 environment variables without causing errors in the Claude desktop
 app.
 
+## Using a npm package
+
+If you want to use one of the
+[MCP servers](https://github.com/modelcontextprotocol/servers) it's a
+similar process.
+
+For example, to use the `server-filesystem` server, you can add the
+following to your `claude_desktop_config.json` file:
+
+```json
+{
+	"mcpServers": {
+		"filesystem": {
+			"command": "wsl.exe",
+			"args": [
+				"bash",
+				"-c",
+				"npx -y @modelcontextprotocol/server-filesystem /home/scott/Documents/folder-allowed-access-to"
+			]
+		}
+	}
+}
+```
+
+This (for some reason) doesn't need to know the path to the Node
+executable.
+
 ## Testing the Setup
 
 After updating the configuration, I restarted the Claude desktop app
