@@ -135,7 +135,7 @@ devDependencies:
     version: 5.16.0
   svelte-check:
     specifier: ^4.1.1
-    version: 4.1.1(svelte@5.16.0)(typescript@5.7.2)
+    version: 4.1.3(svelte@5.16.0)(typescript@5.7.2)
   sveltekit-embed:
     specifier: ^0.0.16
     version: 0.0.16(svelte@5.16.0)
@@ -2052,8 +2052,8 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /chokidar@4.0.1:
-    resolution: {integrity: sha512-n8enUVCED/KVRQlab1hr3MVpcVMvxtZjmEa956u+4YijlmQED223XMSYj2tLuKvr4jcCTzNNMpQDUer72MMmzA==}
+  /chokidar@4.0.3:
+    resolution: {integrity: sha512-Qgzu8kfBvo+cA4962jnP1KkS6Dop5NS6g7R5LFYJr4b8Ub94PPQXUksCw9PvXoeXPRRddRNC5C1JQUR2SMGtnA==}
     engines: {node: '>= 14.16.0'}
     dependencies:
       readdirp: 4.0.2
@@ -4259,8 +4259,8 @@ packages:
       svelte: 5.16.0
     dev: true
 
-  /svelte-check@4.1.1(svelte@5.16.0)(typescript@5.7.2):
-    resolution: {integrity: sha512-NfaX+6Qtc8W/CyVGS/F7/XdiSSyXz+WGYA9ZWV3z8tso14V2vzjfXviKaTFEzB7g8TqfgO2FOzP6XT4ApSTUTw==}
+  /svelte-check@4.1.3(svelte@5.16.0)(typescript@5.7.2):
+    resolution: {integrity: sha512-IEMoQDH+TrPKwKeIyJim+PU8FxnzQMXsFHR/ldErkHpPXEGHCujHUXiR8jg6qDMqzsif5BbDOUFORltu87ex7g==}
     engines: {node: '>= 18.0.0'}
     hasBin: true
     peerDependencies:
@@ -4268,7 +4268,7 @@ packages:
       typescript: '>=5.0.0'
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
-      chokidar: 4.0.1
+      chokidar: 4.0.3
       fdir: 6.4.2(picomatch@4.0.2)
       picocolors: 1.1.1
       sade: 1.8.1
