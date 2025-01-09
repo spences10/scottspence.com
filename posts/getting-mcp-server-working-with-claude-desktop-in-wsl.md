@@ -147,8 +147,46 @@ following to your `claude_desktop_config.json` file:
 }
 ```
 
-This (for some reason) doesn't need to know the path to the Node
-executable.
+This example was what I got working on a Linux instance that used
+Volta for the node version management. This was the simplest way!
+
+I tried something similar with the `sequential-thinking` server on
+another machine that used `nvm` instead and it was a bit more
+involved!
+
+```json
+{
+	"sequential-thinking": {
+		"command": "wsl.exe",
+		"args": [
+			"bash",
+			"-c",
+			"source ~/.nvm/nvm.sh && /home/scott/.nvm/versions/node/v20.12.1/bin/npx @modelcontextprotocol/server-sequential-thinking"
+		]
+	}
+}
+```
+
+The key difference is that with nvm, I needed to source the nvm
+environment first with `source ~/.nvm/nvm.sh` to ensure the Node
+environment is properly set up.
+
+Similar if you want to use pnpm dlx:
+
+```json
+{
+	"sequential-thinking": {
+		"command": "wsl.exe",
+		"args": [
+			"bash",
+			"-c",
+			"source ~/.nvm/nvm.sh && /home/scott/.local/share/pnpm/pnpm dlx @modelcontextprotocol/server-sequential-thinking"
+		]
+	}
+}
+```
+
+Fiddly but it works! No need to install Node in Windows!
 
 ## Testing the Setup
 
