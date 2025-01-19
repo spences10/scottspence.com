@@ -139,8 +139,8 @@ importers:
         specifier: ^4.1.4
         version: 4.1.4(picomatch@4.0.2)(svelte@5.19.0)(typescript@5.7.3)
       sveltekit-embed:
-        specifier: ^0.0.16
-        version: 0.0.16(svelte@5.19.0)
+        specifier: ^0.0.18
+        version: 0.0.18(svelte@5.19.0)
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.17
@@ -1958,6 +1958,7 @@ packages:
 
   libsql@0.4.7:
     resolution: {integrity: sha512-T9eIRCs6b0J1SHKYIvD8+KCJMcWZ900iZyxdnSCdqxN12Z1ijzT+jY5nrk72Jw4B0HGzms2NgpryArlJqvc3Lw==}
+    cpu: [x64, arm64, wasm32]
     os: [darwin, linux, win32]
 
   lilconfig@2.1.0:
@@ -2538,8 +2539,8 @@ packages:
     resolution: {integrity: sha512-qvd2GvvYnJxS/MteQKFSMyq8cQrAAut28QZ39ySv9k3ggmhw4Au4Rfcsqva74i0xMys//OhbhVCNfXPrDzL/Bg==}
     engines: {node: '>=18'}
 
-  sveltekit-embed@0.0.16:
-    resolution: {integrity: sha512-ahs35D7zlpKX2AXhVGZxck9lNJuB52+Ii+ECUdaLjfIW9XswTaifA/NFQN1pHa4S5YFWvfI0WjWahbzZXnOEeg==}
+  sveltekit-embed@0.0.18:
+    resolution: {integrity: sha512-/uj5pjQPH22G99x+adgD2EydXjkkdQNg84aByPmxeZ7HE3cjk5IXUYF8CJqV5IQWBGVKSNta4k8KOqjtlig8/g==}
     peerDependencies:
       svelte: ^4.0.0 || ^5.0.0
 
@@ -5265,7 +5266,7 @@ snapshots:
       magic-string: 0.30.17
       zimmerframe: 1.1.2
 
-  sveltekit-embed@0.0.16(svelte@5.19.0):
+  sveltekit-embed@0.0.18(svelte@5.19.0):
     dependencies:
       svelte: 5.19.0
 
