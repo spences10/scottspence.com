@@ -20,9 +20,9 @@ type TaskFunction<TArgs = any, TResult = any> = (
 type TaskKey =
 	| 'update_popular_posts'
 	| 'update_posts'
+	| 'update_embeddings'
 	| 'update_related_posts'
 	| 'index_now'
-	| 'update_embeddings'
 	| 'update_stats';
 
 // Define the type for tasks object
