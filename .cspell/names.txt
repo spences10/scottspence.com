@@ -97,6 +97,7 @@ Garropy
 gatsbyjs
 geoff
 geoffrich
+Glama
 Googlebot
 googlefacts
 gradientmagic
@@ -125,6 +126,7 @@ jamiebradley
 Jamstack
 Jaoude
 Jeda
+Jina
 josefaidt
 Josefine
 Kagi
@@ -258,6 +260,7 @@ Swanley
 Tailblocks
 tailwind
 tailwindcss
+Tavily
 Tejas
 Termageddon
 thelocalhost

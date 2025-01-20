@@ -42,6 +42,7 @@ iframe
 incr
 injectglobal
 isearch
+jinaai
 KeyframeEffect
 keyframes
 keygen
