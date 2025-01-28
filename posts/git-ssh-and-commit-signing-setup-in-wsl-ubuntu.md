@@ -2,7 +2,7 @@
 date: 2025-01-28
 title: Git SSH and Commit Signing Setup in WSL Ubuntu
 tags: ['git', 'ssh', 'wsl', 'ubuntu']
-is_private: true
+is_private: false
 ---
 
 <script>
