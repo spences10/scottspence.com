@@ -26,6 +26,16 @@ else [get in touch].
 Here's the list of talks, podcasts and live streams I have done
 recently.
 
+## 2025
+
+### Svelte Society London - January 2025
+
+Staying current with Svelte using AI tools.
+
+<!-- cSpell:ignore ketkcywX -->
+
+<YouTube youTubeId='ketkcywX-qQ' skipTo={{ h: 0, m: 25, s: 8 }} />
+
 ## 2024
 
 ### Svelte Society London - October 2024
@@ -343,8 +353,8 @@ live streams, or books - content creation is BIG, also for developers.
 ### Migrating Gatsby from Markdown to MDX
 
 Brad Garropy (Live Stream), I joined Brad to talk him through setting
-up [MDX Embed] and ironing out some of the issues he was having after transitioning
-his site over to MDX from Markdown Remark.
+up [MDX Embed] and ironing out some of the issues he was having after
+transitioning his site over to MDX from Markdown Remark.
 
 ### Whiskey Wednesday
 
@@ -497,8 +507,8 @@ need a college degree to get a job in tech.
 
 ### API Days London
 
-I was asked by [Jesse Martin] from GraphCMS if I would like to do a talk
-at API Days London so I jumped at the chance!
+I was asked by [Jesse Martin] from GraphCMS if I would like to do a
+talk at API Days London so I jumped at the chance!
 
 - [Gatsby Eats APIs (Slides)]
 
