@@ -77,7 +77,7 @@ you do the rest of the steps here...
 I'll need to amend my `PATH` variable to now to include the path to
 the `cursor` command.
 
-<!-- cSpell:ignore printenv -->
+<!-- cSpell:ignore printenv localappdata -->
 
 Log out my path variables with `printenv PATH` copy the output into a
 text editor.
