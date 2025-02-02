@@ -77,6 +77,8 @@
 		"vitest": "^3.0.4"
 	},
 	"dependencies": {
-		"@libsql/client": "^0.14.0"
+		"@libsql/client": "^0.14.0",
+		"@types/flexsearch": "^0.7.6",
+		"flexsearch": "^0.7.43"
 	}
 }

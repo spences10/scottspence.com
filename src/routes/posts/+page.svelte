@@ -1,42 +1,32 @@
 <script lang="ts">
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	import { PostCard } from '$lib/components'
 	import { description, name, website } from '$lib/info'
 	import { create_seo_config } from '$lib/seo'
 	import { og_image_url } from '$lib/utils'
+	import { create_posts_index, search_posts } from '$lib/utils/search'
 	import { Head } from 'svead'
+	import { onMount } from 'svelte'
 	import type { PageData } from './$types'
 
-	const { data } = $props<{ data: PageData }>()
+	let { data } = $props<{ data: PageData }>()
 	const posts = $state(data.posts)
 
-	let search_query = $state(
-		$page.url.searchParams.get('search') || '',
-	)
+	let search_query = $state(page.url.searchParams.get('search') || '')
+	let search_results = $state(data.posts)
+	let search_status = $state<'loading' | 'ready'>('loading')
 
-	let filtered_posts = $derived.by(() => {
-		// First filter out private posts
-		const public_posts = posts.filter(
-			(post: { is_private: boolean }) => !post.is_private,
-		)
+	onMount(() => {
+		create_posts_index(data.posts)
+		search_status = 'ready'
+	})
 
-		// Then apply search filter if there's a search query
-		if (search_query === '') return public_posts
-
-		return public_posts.filter((post: Post) => {
-			return (
-				post.title
-					.toLowerCase()
-					.includes(search_query.toLowerCase()) ||
-				(Array.isArray(post.tags) &&
-					post.tags.some(tag =>
-						tag.toLowerCase().includes(search_query.toLowerCase()),
-					)) ||
-				post.preview
-					.toLowerCase()
-					.includes(search_query.toLowerCase())
-			)
-		})
+	$effect(() => {
+		if (search_status === 'ready' && search_query) {
+			search_results = search_posts(search_query)
+		} else {
+			search_results = data.posts
+		}
 	})
 
 	const seo_config = create_seo_config({
@@ -57,7 +47,7 @@
 <div class="form-control mb-10">
 	<label for="search" class="label">
 		<span class="label-text">
-			Search {filtered_posts.length} posts...
+			Search {search_results.length} posts...
 		</span>
 	</label>
 	<input
@@ -67,9 +57,11 @@
 		type="text"
 		placeholder="Search..."
 		bind:value={search_query}
+		autocomplete="off"
+		spellcheck="false"
 	/>
 </div>
 
-{#each filtered_posts as post (post.slug)}
+{#each search_results as post (post.slug)}
 	<PostCard {post} />
 {/each}
