@@ -180,6 +180,14 @@ Then tell Git about the allowed signers file:
 git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
 ```
 
+The last command will add the reference to the allowed signers file to
+enable commit signing.
+
+```bash
+[gpg "ssh"]
+  allowedSignersFile = /home/scott/.ssh/allowed_signers
+```
+
 ## Testing Commit Signing
 
 To test that everything's working:
