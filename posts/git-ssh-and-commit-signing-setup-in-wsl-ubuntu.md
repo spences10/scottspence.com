@@ -185,7 +185,7 @@ enable commit signing.
 
 ```bash
 [gpg "ssh"]
-  allowedSignersFile = /home/scott/.ssh/allowed_signers
+  allowedSignersFile = /home/username/.ssh/allowed_signers
 ```
 
 ## Testing Commit Signing
