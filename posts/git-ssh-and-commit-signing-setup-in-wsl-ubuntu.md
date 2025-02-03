@@ -126,7 +126,7 @@ using for a while now:
 [user]
   name = username
   email = username@example.com
-  signingkey = ssh-ed25519 X_KEY_GOES_HERE_X
+  signingkey = /home/username/.ssh/id_ed25519
 
 # Help with typos
 [help]
@@ -157,8 +157,7 @@ using for a while now:
   gpgsign = true
 ```
 
-The `signingkey` is the public key (`id_ed25519.pub`) generated, I've
-copy pasted this from 1Password.
+The `signingkey` is pointing to the private key location.
 
 ## Setting up SSH Signing
 
