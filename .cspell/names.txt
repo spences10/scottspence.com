@@ -182,6 +182,7 @@ notrab
 Nunito
 Nuxt
 Ocel
+Ollama
 openshot
 Otander
 Paulie

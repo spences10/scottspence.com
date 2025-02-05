@@ -29,7 +29,7 @@ zprof
 
 This give a load of output, but it's a good starting point.
 
-I had no idea this existed so massive shoutout to
+I had no idea this existed so massive shout out to
 [Jacek's Blog](https://blog.askesis.pl/post/2017/04/how-to-debug-zsh-startup-time.html)
 for this tip!
 
@@ -322,7 +322,7 @@ There were other things out there, like:
 
 But, honestly? If you're happy with your current setup (and I am) and
 it's fast enough, stick with it! This was me going on a little side
-quest because I was curious. My curiosity was rewarded with a markably
+quest because I was curious. My curiosity was rewarded with a much
 faster shell!
 
 That's it! Hope this helps if you were having similar issues!
