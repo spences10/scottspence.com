@@ -8,17 +8,22 @@ import { get_date_range } from '../ingest/utils'
 
 const analytics_cache = new Map<string, any>()
 
+// Add cache duration constants
+const CACHE_DURATIONS = {
+	day: 5, // 5 minutes
+	month: 24 * 60, // 24 hours in minutes
+	year: 24 * 60, // 24 hours in minutes
+}
+
 export const GET = async ({ url, fetch }) => {
 	const slug = url.searchParams.get('slug')
 	if (!slug) {
 		return new Response('No slug provided', { status: 400 })
 	}
 
-	if (await stale_data(slug)) {
-		const periods = ['day', 'month', 'year']
-		const fathom_data_batches = []
-
-		for (const period of periods) {
+	// Check each period individually for staleness
+	for (const period of ['day', 'month', 'year']) {
+		if (await stale_data(slug, period)) {
 			const [date_from, date_to] = get_date_range(period)
 			const fathom_data = await get_fathom_data(
 				slug,
@@ -28,12 +33,10 @@ export const GET = async ({ url, fetch }) => {
 				fetch,
 			)
 			if (fathom_data) {
-				fathom_data_batches.push({ period, data: fathom_data })
+				await insert_fathom_data(slug, [
+					{ period, data: fathom_data },
+				])
 			}
-		}
-
-		if (fathom_data_batches.length > 0) {
-			await insert_fathom_data(slug, fathom_data_batches)
 		}
 	}
 
@@ -50,87 +53,93 @@ const fetch_visits = async (slug: string) => {
 	const cache_key = `analytics-${slug}`
 	let cached_data = analytics_cache.get(cache_key)
 
-	// Check if cached data exists and is not older than 24 hours
-	if (
-		cached_data &&
-		differenceInHours(
-			new Date(),
-			parseISO(cached_data.last_fetched),
-		) < 24
-	) {
+	// Check if cached data exists and if any period needs updating
+	const needs_update =
+		!cached_data ||
+		Object.entries(CACHE_DURATIONS).some(([period, duration]) => {
+			if (!cached_data || !cached_data.last_fetched) return true
+			const minutes_diff =
+				differenceInHours(
+					new Date(),
+					parseISO(cached_data.last_fetched),
+				) * 60
+			return minutes_diff >= duration
+		})
+
+	if (!needs_update) {
 		return cached_data.data
-	} else {
-		// If cache is stale or doesn't exist, fetch new data
-		const client = turso_client()
-		let page_analytics: any = {
-			daily: null,
-			monthly: null,
-			yearly: null,
-		}
-
-		// Construct and execute the UNION query
-		const sql = `
-      SELECT 'day' AS period, * FROM post_analytics WHERE date_grouping = 'day' AND slug = ?
-      UNION
-      SELECT 'month' AS period, * FROM post_analytics WHERE date_grouping = 'month' AND slug = ?
-      UNION
-      SELECT 'year' AS period, * FROM post_analytics WHERE date_grouping = 'year' AND slug = ?;
-    `
-
-		try {
-			const result = await client.execute({
-				sql,
-				args: [slug, slug, slug],
-			})
-
-			// Process the results
-			result.rows.forEach(row => {
-				if (row.period === 'day') page_analytics.daily = row
-				if (row.period === 'month') page_analytics.monthly = row
-				if (row.period === 'year') page_analytics.yearly = row
-			})
-		} catch (error) {
-			console.error('Error fetching from Turso DB:', error)
-			return null
-		}
-
-		// After fetching new data, update the cache
-		const new_data = {
-			last_fetched: new Date().toISOString(),
-			data: page_analytics,
-		}
-		analytics_cache.set(cache_key, new_data)
-
-		// Return the data
-		return page_analytics
 	}
+
+	// If cache is stale or doesn't exist, fetch new data
+	const client = turso_client()
+	let page_analytics: any = {
+		daily: null,
+		monthly: null,
+		yearly: null,
+	}
+
+	// Construct and execute the UNION query
+	const sql = `
+    SELECT 'day' AS period, * FROM post_analytics WHERE date_grouping = 'day' AND slug = ?
+    UNION
+    SELECT 'month' AS period, * FROM post_analytics WHERE date_grouping = 'month' AND slug = ?
+    UNION
+    SELECT 'year' AS period, * FROM post_analytics WHERE date_grouping = 'year' AND slug = ?;
+  `
+
+	try {
+		const result = await client.execute({
+			sql,
+			args: [slug, slug, slug],
+		})
+
+		// Process the results
+		result.rows.forEach((row) => {
+			if (row.period === 'day') page_analytics.daily = row
+			if (row.period === 'month') page_analytics.monthly = row
+			if (row.period === 'year') page_analytics.yearly = row
+		})
+	} catch (error) {
+		console.error('Error fetching from Turso DB:', error)
+		return null
+	}
+
+	// After fetching new data, update the cache
+	const new_data = {
+		last_fetched: new Date().toISOString(),
+		data: page_analytics,
+	}
+	analytics_cache.set(cache_key, new_data)
+
+	// Return the data
+	return page_analytics
 }
 
-const stale_data = async (slug: string) => {
+const stale_data = async (slug: string, period: string) => {
 	const sql = `
-    SELECT MAX(last_updated) as last_updated
+    SELECT last_updated
     FROM post_analytics
-    WHERE slug = ?;
+    WHERE slug = ? AND date_grouping = ?;
   `
 	const client = turso_client()
 	try {
 		const result = await client.execute({
 			sql,
-			args: [slug],
+			args: [slug, period],
 		})
 		const last_updated = result.rows[0]?.last_updated
 
 		if (last_updated) {
-			const hours_difference = differenceInHours(
-				new Date(),
-				parseISO(String(last_updated)),
-			)
+			const minutes_difference =
+				differenceInHours(
+					new Date(),
+					parseISO(String(last_updated)),
+				) * 60
 
-			if (hours_difference > 24) {
-				return true
-			} else {
-				return false
-			}
+			return (
+				minutes_difference >=
+				CACHE_DURATIONS[period as keyof typeof CACHE_DURATIONS]
+			)
 		} else {
 			console.log(
 				'No last updated date found, assuming data is stale.',
