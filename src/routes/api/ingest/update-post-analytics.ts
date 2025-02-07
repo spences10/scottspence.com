@@ -6,56 +6,73 @@ import { differenceInHours } from 'date-fns'
 import { get_date_range } from './utils'
 
 const delay = (ms: number | undefined) =>
-	new Promise(resolve => setTimeout(resolve, ms))
+	new Promise((resolve) => setTimeout(resolve, ms))
+
+// Add update frequency constants
+const UPDATE_FREQUENCIES = {
+	day: 5, // 5 minutes
+	month: 24 * 60, // 24 hours in minutes
+	year: 24 * 60, // 24 hours in minutes
+}
 
 export const update_post_analytics = async (fetch: Fetch) => {
 	try {
 		const get_last_updated_query = `
-      SELECT MAX(last_updated) as last_updated
-      FROM post_analytics;
+      SELECT date_grouping, MAX(last_updated) as last_updated
+      FROM post_analytics
+      GROUP BY date_grouping;
     `
 		const client = turso_client()
 		const last_updated_query_result = await client.execute(
 			get_last_updated_query,
 		)
 
-		if (
-			last_updated_query_result.rows.length > 0 &&
-			last_updated_query_result.rows[0].last_updated
-		) {
-			const last_updated_value =
-				last_updated_query_result.rows[0].last_updated
-			const last_updated_time = new Date(
-				typeof last_updated_value === 'number' ||
-				typeof last_updated_value === 'string'
-					? last_updated_value
-					: 0,
-			)
-			const current_time = new Date()
-			const hours_diff = differenceInHours(
-				current_time,
-				last_updated_time,
-			)
+		const { posts } = await get_posts()
+		const slugs = posts
+			.map((post) => post.slug)
+			.filter((slug): slug is string => typeof slug === 'string')
 
-			// If the most recent update was in the last 24 hours, exit early
-			if (hours_diff < 24) {
-				return {
-					message:
-						'Post analytics update exited early as a post was updated within the last 24 hours.',
-				}
+		// Create a map of periods that need updating
+		const periods_to_update = ['day', 'month', 'year'].filter(
+			(period) => {
+				const last_updated = last_updated_query_result.rows.find(
+					(row) => row.date_grouping === period,
+				)
+
+				if (!last_updated || !last_updated.last_updated) return true
+
+				const last_updated_time = new Date(
+					typeof last_updated.last_updated === 'number' ||
+					typeof last_updated.last_updated === 'string'
+						? last_updated.last_updated
+						: 0,
+				)
+				const current_time = new Date()
+				const minutes_diff =
+					differenceInHours(current_time, last_updated_time) * 60
+
+				return (
+					minutes_diff >=
+					UPDATE_FREQUENCIES[
+						period as keyof typeof UPDATE_FREQUENCIES
+					]
+				)
+			},
+		)
+
+		if (periods_to_update.length === 0) {
+			return {
+				message: 'No periods need updating at this time.',
 			}
 		}
 
-		const { posts } = await get_posts()
-		const slugs = posts
-			.map(post => post.slug)
-			.filter((slug): slug is string => typeof slug === 'string')
-
-		for (const period of ['day', 'month', 'year']) {
+		for (const period of periods_to_update) {
 			await process_period(fetch, period, slugs)
 		}
 
-		return { message: 'Post analytics updated' }
+		return {
+			message: `Post analytics updated for periods: ${periods_to_update.join(', ')}`,
+		}
 	} catch (error) {
 		console.error('Error during post analytics update:', error)
 		return {

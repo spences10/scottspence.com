@@ -4,16 +4,21 @@ import { differenceInHours, parseISO } from 'date-fns'
 
 const popular_posts_cache = new Map<string, any>()
 
+const CACHE_DURATION_MINUTES = 5
+
 export const GET = async () => {
 	const cache_key = 'popular-posts'
 	const cached_data = popular_posts_cache.get(cache_key)
 
+	// Check if cache is still valid (within last 5 minutes)
 	if (
 		cached_data &&
 		differenceInHours(
 			new Date(),
 			parseISO(cached_data.last_fetched),
-		) < 24
+		) *
+			60 <
+			CACHE_DURATION_MINUTES
 	) {
 		return json(cached_data.data)
 	}
@@ -95,13 +100,13 @@ export const GET = async () => {
 		const result = await client.execute(sql)
 
 		// Process the results
-		result.rows.forEach(row => {
+		result.rows.forEach((row) => {
 			if (row.period === 'day') popular_posts.daily.push(row)
 			if (row.period === 'month') popular_posts.monthly.push(row)
 			if (row.period === 'year') popular_posts.yearly.push(row)
 		})
 	} catch (error) {
-		console.error('Error fetching from Turso DB:', error)
+		console.error('❌ Error fetching from Turso DB:', error)
 		return null
 	}
 
