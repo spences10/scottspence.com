@@ -57,13 +57,13 @@
 			Looks like you have reached the bottom of this page!
 		</p>
 		{#if intersecting}
-			<div class="mb-12 justify-center">
+			<div class="mb-12 flex justify-center">
 				<img
 					src={ButtButt}
 					alt="a cheeky butt"
 					{height}
 					{width}
-					class="duration-400 h-full transform transition-transform delay-200 hover:rotate-[-22deg]"
+					class="h-full transform transition delay-200 duration-400 hover:rotate-[-22deg]"
 					transition:scale_and_fade|global={{
 						delay: 300,
 						duration: 500,
@@ -73,7 +73,7 @@
 		{/if}
 		<p class="mb-6">Bummer!</p>
 		<p class="mb-6">{pun}</p>
-		<button class="btn btn-xs rounded-box" onclick={random_pun}>
+		<button class="btn btn-xs rounded-lg" onclick={random_pun}>
 			pun me up
 		</button>
 	</aside>

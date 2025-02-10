@@ -67,7 +67,7 @@ Thanks Phil!
 	:global(.btn:hover) .bluesky-flutter {
 		transform: rotate(-5deg);
 		transition: 500ms;
-		color: var(--color-secondary-content);
+		color: var(--color-primary-content);
 	}
 
 	.left {
