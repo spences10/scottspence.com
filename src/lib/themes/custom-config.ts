@@ -30,7 +30,7 @@ export const custom_font: Record<string, string> = {
 }
 
 export function create_daisy_themes() {
-	const daisy_themes = require('daisyui/src/theming/themes')
+	const daisy_themes = require('daisyui/themes')
 
 	return themes.map(theme => {
 		const base_theme = daisy_themes[theme] || {}

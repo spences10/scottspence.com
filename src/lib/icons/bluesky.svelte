@@ -41,7 +41,7 @@ Thanks Phil!
 {:else}
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
-		class="block fill-current text-primary transition hover:text-secondary"
+		class="text-primary hover:text-secondary block fill-current transition"
 		{width}
 		{height}
 		viewBox="0 0 256 226"
@@ -59,7 +59,7 @@ Thanks Phil!
 	.bluesky-flutter {
 		transition: 200ms;
 		fill: currentColor;
-		color: var(--color-primary);
+		color: var(--color-primary-content);
 	}
 
 	/* Handle both direct hover and button hover */
@@ -67,7 +67,7 @@ Thanks Phil!
 	:global(.btn:hover) .bluesky-flutter {
 		transform: rotate(-5deg);
 		transition: 500ms;
-		color: var(--color-secondary);
+		color: var(--color-secondary-content);
 	}
 
 	.left {

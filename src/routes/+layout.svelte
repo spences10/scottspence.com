@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
 	import { onNavigate } from '$app/navigation'
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	import {
 		PUBLIC_FATHOM_ID,
 		PUBLIC_FATHOM_URL,
@@ -33,13 +33,13 @@
 
 	// Track pageview on route change
 	$effect(() => {
-		$page.url.pathname, browser && Fathom.trackPageview()
+		page.url.pathname, browser && Fathom.trackPageview()
 	})
 
-	onNavigate(navigation => {
+	onNavigate((navigation) => {
 		if (!browser || !document.startViewTransition) return
 
-		return new Promise(resolve => {
+		return new Promise((resolve) => {
 			document.startViewTransition(async () => {
 				resolve()
 				await navigation.complete
@@ -51,7 +51,7 @@
 <svelte:window onmousemove={handle_mouse_move} />
 
 <a
-	class="absolute left-0 m-3 -translate-y-16 bg-primary p-3 text-primary-content transition focus:translate-y-0"
+	class="bg-primary text-primary-content absolute left-0 m-3 -translate-y-16 p-3 transition focus:translate-y-0"
 	href="#main-content"
 >
 	Skip Navigation

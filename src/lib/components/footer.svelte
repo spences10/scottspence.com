@@ -30,24 +30,26 @@
 	})
 </script>
 
-<footer class="footer bg-primary p-10 text-primary-content">
-	<div>
-		<span class="footer-title">Popular Posts</span>
+<footer
+	class="footer sm:footer-horizontal bg-primary text-primary-content p-10"
+>
+	<nav>
+		<h6 class="footer-title">Popular Posts</h6>
 		{#each posts as post}
 			<p>
 				<a
 					data-sveltekit-reload
-					class="text-primary-content hover:opacity-50"
+					class="link link-hover text-primary-content"
 					href={$page.url.origin + post.pathname}
 				>
 					{post.title}
 				</a>
 				<span
-					class="group tooltip relative cursor-pointer font-bold text-primary-content"
+					class="tooltip tooltip-secondary text-primary-content relative cursor-pointer font-bold"
 					data-tip={`
-          Visits: ${number_crunch(post.visits)},
-          Pageviews: ${number_crunch(post.pageviews)}
-        `}
+                    Visits: ${number_crunch(post.visits)},
+                    Pageviews: ${number_crunch(post.pageviews)}
+                    `}
 				>
 					<Eye />
 					{number_crunch(post.pageviews)}
@@ -56,14 +58,14 @@
 		{/each}
 
 		{#if total_visitors > 0}
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 			<span
 				onmouseenter={() => (show_current_visitor_data = true)}
 				onmouseleave={() => (show_current_visitor_data = false)}
 				class="inline-block cursor-pointer"
 			>
 				<p
-					class="mt-2 rounded-box bg-secondary px-2 py-1 tracking-wide text-secondary-content shadow-lg"
+					class="bg-secondary text-secondary-content mt-2 rounded-lg px-4 py-2 tracking-wide shadow-lg"
 				>
 					There's currently
 					<span class="font-bold">
@@ -76,25 +78,31 @@
 				{/if}
 			</span>
 		{/if}
-	</div>
-	<div>
-		<span class="footer-title">Site Links</span>
+	</nav>
+
+	<nav>
+		<h6 class="footer-title">Site Links</h6>
 		{#each SITE_LINKS as link}
 			<a
 				href={`/${link.slug}`}
 				onclick={() => Fathom.trackEvent(link.slug)}
-				class="text-primary-content hover:opacity-50"
+				class="link link-hover text-primary-content"
 			>
 				{link.title}
 			</a>
 		{/each}
-	</div>
-	<div>
-		<span class="footer-title">Socials</span>
-		<a rel="me" href="https://moth.social/@spences10">Mastodon</a>
+	</nav>
+
+	<nav>
+		<h6 class="footer-title">Socials</h6>
+		<a
+			rel="me"
+			href="https://moth.social/@spences10"
+			class="link link-hover">Mastodon</a
+		>
 		{#each SOCIAL_LINKS as social}
 			<a
-				class="text-primary-content hover:opacity-50"
+				class="link link-hover text-primary-content"
 				href={social.link}
 				target="_blank"
 				rel="noopener noreferrer"
@@ -102,11 +110,11 @@
 				{social.title}
 			</a>
 		{/each}
-	</div>
+	</nav>
 </footer>
-<div class="divider divider-secondary m-0 bg-primary"></div>
-<div class="bg-primary text-primary-content">
-	<p class="py-4 text-center">
+<div class="divider divider-secondary bg-primary m-0"></div>
+<div class="bg-primary text-primary-content p-4">
+	<p class="text-center">
 		Copyright &copy; 2017 - {`${new Date().getFullYear()}`} - All rights
 		reserved
 		{name}

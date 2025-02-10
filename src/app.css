@@ -1,53 +1,60 @@
+/* Import fonts */
 @import '@fontsource-variable/victor-mono';
 @import '@fontsource-variable/manrope';
 @import '@fontsource-variable/playpen-sans';
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+/* Import Tailwind and plugins */
+@import 'tailwindcss';
 
-html {
-	scroll-behavior: smooth;
-	word-break: break-word;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    word-break: break-word;
+  }
+
+	::selection {
+			color: var(--color-primary-content);
+			background: var(--color-primary);
+	}
+
+  /* Scrollbar styles using modern syntax */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-secondary) var(--color-primary) !important;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-primary) !important;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-secondary) !important;
+  }
 }
 
-::selection {
-	color: oklch(var(--pc));
-	background: oklch(var(--p));
-}
+/* Custom screen sizes */
+@custom-media --xs (min-width: 475px);
+@custom-media --sm (min-width: 640px);
+@custom-media --md (min-width: 768px);
+@custom-media --lg (min-width: 1024px);
+@custom-media --xl (min-width: 1280px);
+@custom-media --2xl (min-width: 1536px);
 
-.table-of-contents {
-	z-index: 1;
-	position: fixed;
-	left: calc(50% + 400px);
-	top: 18rem;
-	max-height: 50vh;
-	width: 310px;
-	padding: 0.75rem;
-	margin: 0.75rem 0;
-	font-size: 1rem;
-	line-height: 1.75rem;
-}
+/* Custom components */
+@layer components {
+  .table-of-contents {
+    @apply fixed z-10 left-[calc(50%+400px)] top-72 max-h-[50vh] w-[310px] p-3 my-3 text-base leading-7;
+  }
 
 .all-prose {
-	@apply prose-a:text-primary hover:prose-a:text-accent prose prose-lg lg:prose-xl prose-headings:scroll-mt-16 prose-a:transition;
+    @apply prose prose-lg lg:prose-xl max-w-none prose-headings:scroll-mt-16 prose-a:text-primary prose-a:transition hover:prose-a:text-accent;
+  }
 }
 
-/* 
-Scrollbar styles:
-	scrollbar-color Two valid colors. thumb and track
-	scrollbar-gutter padding when there's no scrollbar
-	scrollbar-width auto | thin | none
-*/
-* {
-	scrollbar-width: thin;
-	scrollbar-color: oklch(var(--s)) oklch(var(--p)) !important;
+/* Plugin configurations */
+@plugin "@tailwindcss/typography";
+@plugin "daisyui" {
+  themes: all;
 }
 
-::-webkit-scrollbar-track {
-	background: oklch(var(--p));
-}
 
-::-webkit-scrollbar-thumb {
-	background-color: oklch(var(--s));
-}

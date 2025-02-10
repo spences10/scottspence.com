@@ -106,7 +106,7 @@
 		<PostOnBlueSky
 			post_text="Yo! @scottspence.dev, I think we should totally meet IRL. Add me to that list!!"
 			button_text="Hit me up on Bluesky!"
-			button_class="btn-primary"
+			button_class="btn-primary btn-lg p-8"
 		/>
 	</div>
 </article>
