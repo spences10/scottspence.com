@@ -7,29 +7,29 @@
 @import 'tailwindcss';
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-    word-break: break-word;
-  }
-
-	::selection {
-			color: var(--color-primary-content);
-			background: var(--color-primary);
+	html {
+		scroll-behavior: smooth;
+		word-break: break-word;
 	}
 
-  /* Scrollbar styles using modern syntax */
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-secondary) var(--color-primary) !important;
-  }
+	::selection {
+		color: var(--color-primary-content);
+		background: var(--color-primary);
+	}
 
-  ::-webkit-scrollbar-track {
-    background: var(--color-primary) !important;
-  }
+	/* Scrollbar styles using modern syntax */
+	* {
+		scrollbar-width: thin;
+		scrollbar-color: var(--color-secondary) var(--color-primary) !important;
+	}
 
-  ::-webkit-scrollbar-thumb {
-    background-color: var(--color-secondary) !important;
-  }
+	::-webkit-scrollbar-track {
+		background: var(--color-primary) !important;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background-color: var(--color-secondary) !important;
+	}
 }
 
 /* Custom screen sizes */
@@ -42,19 +42,17 @@
 
 /* Custom components */
 @layer components {
-  .table-of-contents {
-    @apply fixed z-10 left-[calc(50%+400px)] top-72 max-h-[50vh] w-[310px] p-3 my-3 text-base leading-7;
-  }
+	.table-of-contents {
+		@apply fixed top-72 left-[calc(50%+400px)] z-10 my-3 max-h-[50vh] w-[310px] p-3 text-base leading-7;
+	}
 
-.all-prose {
-    @apply prose prose-lg lg:prose-xl max-w-none prose-headings:scroll-mt-16 prose-a:text-primary prose-a:transition hover:prose-a:text-accent;
-  }
+	.all-prose {
+		@apply prose prose-lg lg:prose-xl prose-headings:scroll-mt-16 prose-a:text-primary prose-a:transition prose-a:hover:text-accent max-w-none;
+	}
 }
 
 /* Plugin configurations */
 @plugin "@tailwindcss/typography";
 @plugin "daisyui" {
-  themes: all;
+	themes: all;
 }
-
-
