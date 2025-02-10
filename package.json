@@ -53,7 +53,7 @@
 		"fathom-client": "3.7.2",
 		"globals": "^15.14.0",
 		"jsdom": "^26.0.0",
-		"marked": "15.0.6",
+		"marked": "15.0.7",
 		"mdsvex": "^0.12.3",
 		"mdsvex-relative-images": "1.0.3",
 		"nodemailer": "^6.10.0",
