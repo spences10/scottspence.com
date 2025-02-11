@@ -14,7 +14,7 @@
 		page.url.pathname.startsWith(path + '/')
 </script>
 
-<!-- Desktop Navigation (unchanged) -->
+<!-- Desktop Navigation -->
 <nav
 	class="bg-base-100/50 sticky top-0 z-10 mx-2 mb-10 hidden flex-none px-2 py-4 backdrop-blur-xl lg:flex"
 >

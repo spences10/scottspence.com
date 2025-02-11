@@ -14,7 +14,7 @@
 </script>
 
 {#if related_posts.length}
-	<div class="sm:-mx-30 m-0 mb-20 lg:-mx-40">
+	<div class="xs:-mx-30 m-0 mb-20 lg:-mx-40">
 		<p class="mb-8 text-xl">Related posts...</p>
 
 		<div
