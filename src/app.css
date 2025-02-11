@@ -59,26 +59,26 @@
 
 @plugin "daisyui/theme" {
 	name: 'wireframe';
-	--color-primary: #000080; /* Navy - Windows 95 active title bar */
-	--color-primary-content: #ffffff; /* White - Title bar text */
-	--color-secondary: #808080; /* Gray - Button shadow */
-	--color-secondary-content: #000000; /* Black - Button text */
-	--color-accent: #008080; /* Teal - Classic Win95 accent */
-	--color-accent-content: #ffffff; /* White */
-	--color-neutral: #c0c0c0; /* Silver - Classic Win95 button face */
-	--color-neutral-content: #000000; /* Black */
-	--color-base-100: #c0c0c0; /* Silver - Classic Win95 background */
-	--color-base-200: #a0a0a0; /* Darker silver - 3D effects */
-	--color-base-300: #808080; /* Gray - Shadow effects */
-	--color-base-content: #000000; /* Black - Default text */
-	--color-info: #000080; /* Navy */
-	--color-info-content: #ffffff; /* White */
-	--color-success: #008000; /* Green */
-	--color-success-content: #ffffff; /* White */
-	--color-warning: #808000; /* Olive */
-	--color-warning-content: #ffffff; /* White */
-	--color-error: #800000; /* Maroon */
-	--color-error-content: #ffffff; /* White */
+	--color-primary: oklch(32.37% 0.177 264.06);				/* Navy */
+	--color-primary-content: oklch(100% 0 0);						/* White */
+	--color-secondary: oklch(54.02% 0 0);								/* Gray */
+	--color-secondary-content: oklch(0% 0 0);						/* Black */
+	--color-accent: oklch(50.12% 0.156 196.63);					/* Teal */
+	--color-accent-content: oklch(100% 0 0);						/* White */
+	--color-neutral: oklch(78.57% 0 0);									/* Silver */
+	--color-neutral-content: oklch(0% 0 0);							/* Black */
+	--color-base-100: oklch(78.57% 0 0);								/* Silver */
+	--color-base-200: oklch(67.28% 0 0);								/* Darker silver */
+	--color-base-300: oklch(54.02% 0 0);								/* Gray */
+	--color-base-content: oklch(0% 0 0);								/* Black */
+	--color-info: oklch(32.37% 0.177 264.06);						/* Navy */
+	--color-info-content: oklch(100% 0 0);							/* White */
+	--color-success: oklch(46.37% 0.156 142.50);				/* Green */
+	--color-success-content: oklch(100% 0 0);						/* White */
+	--color-warning: oklch(52.19% 0.125 102.85);				/* Olive */
+	--color-warning-content: oklch(100% 0 0);						/* White */
+	--color-error: oklch(37.47% 0.156 29.23);						/* Maroon */
+	--color-error-content: oklch(100% 0 0);							/* White */
 	--radius-box: 0;
 	--radius-field: 0;
 	--radius-selector: 0;
