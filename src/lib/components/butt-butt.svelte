@@ -73,7 +73,7 @@
 		{/if}
 		<p class="mb-6">Bummer!</p>
 		<p class="mb-6">{pun}</p>
-		<button class="btn btn-xs rounded-lg" onclick={random_pun}>
+		<button class="btn btn-xs rounded-box" onclick={random_pun}>
 			pun me up
 		</button>
 	</aside>

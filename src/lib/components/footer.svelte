@@ -58,14 +58,14 @@
 		{/each}
 
 		{#if total_visitors > 0}
-			<!-- svelte-ignore a11y-mouse-events-have-key-events -->
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<span
 				onmouseenter={() => (show_current_visitor_data = true)}
 				onmouseleave={() => (show_current_visitor_data = false)}
 				class="inline-block cursor-pointer"
 			>
 				<p
-					class="bg-secondary text-secondary-content mt-2 rounded-lg px-4 py-2 tracking-wide shadow-lg"
+					class="bg-secondary text-secondary-content rounded-box mt-2 px-4 py-2 tracking-wide shadow-lg"
 				>
 					There's currently
 					<span class="font-bold">
