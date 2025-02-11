@@ -191,7 +191,7 @@
 			{#each tags as tag}
 				<a href={`/tags/${tag}`}>
 					<span
-						class="badge badge-primary mr-2 text-primary-content shadow-md transition hover:bg-accent hover:text-secondary-content"
+						class="badge badge-primary mr-2 text-primary-content shadow-md transition hover:bg-accent hover:text-accetn-content"
 					>
 						{tag}
 					</span>
@@ -199,7 +199,7 @@
 			{/each}
 			{#if differenceInDays(new Date(), new Date(date)) < 31}
 				<span
-					class="badge badge-secondary cursor-pointer font-bold text-secondary-content shadow-md transition hover:bg-accent hover:text-secondary-content"
+					class="badge badge-secondary cursor-pointer font-bold text-secondary-content shadow-md transition hover:bg-accent hover:text-accent-content"
 				>
 					new
 				</span>
