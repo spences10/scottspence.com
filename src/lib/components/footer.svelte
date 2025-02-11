@@ -95,11 +95,6 @@
 
 	<nav>
 		<h6 class="footer-title">Socials</h6>
-		<a
-			rel="me"
-			href="https://moth.social/@spences10"
-			class="link link-hover">Mastodon</a
-		>
 		{#each SOCIAL_LINKS as social}
 			<a
 				class="link link-hover text-primary-content"

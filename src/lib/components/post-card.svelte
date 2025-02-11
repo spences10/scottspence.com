@@ -6,24 +6,24 @@
 
 <div class="relative">
 	<div
-		class="absolute -inset-0 rounded-box bg-gradient-to-r from-primary to-secondary blur-sm"
+		class="rounded-box from-primary to-secondary absolute -inset-0 bg-gradient-to-r blur-sm"
 	></div>
 	<div class="relative">
 		<article
-			class="card mb-10 bg-base-100 p-5 transition first:pt-0 hover:text-accent"
+			class="card bg-base-100 hover:text-accent mb-10 p-5 transition first:pt-0"
 		>
 			<a href={`/posts/${post.slug}`}>
 				<div>
-					<h2 class="mb-1 mt-5 text-3xl font-black">
+					<h2 class="mt-5 mb-2 text-3xl font-black">
 						{post.title}
 					</h2>
-					<div class="mb-4 text-sm font-bold uppercase text-accent">
+					<div class="text-accent mb-4 text-sm font-bold uppercase">
 						<time>{format(new Date(post.date), 'MMMM d, yyyy')}</time>
 						&bull;
 						<span>{post.reading_time_text}</span>
 						{#if differenceInDays(new Date(), new Date(post.date)) < 31}
 							<span
-								class="badge bg-primary text-primary-content hover:bg-secondary hover:text-secondary-content"
+								class="badge badge-sm bg-primary text-primary-content hover:bg-secondary hover:text-secondary-content relative -top-[2px] ml-1"
 							>
 								new
 							</span>
