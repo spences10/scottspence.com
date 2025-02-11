@@ -9,7 +9,7 @@
 </script>
 
 <div
-	class="not-prose bg-primary my-5 items-center justify-center rounded-lg p-10 shadow-lg"
+	class="not-prose bg-primary my-5 items-center justify-center rounded-box p-10 shadow-lg"
 >
 	<form
 		method="POST"
