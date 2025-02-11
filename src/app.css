@@ -48,6 +48,29 @@
 
 	.all-prose {
 		@apply prose prose-lg lg:prose-xl prose-headings:scroll-mt-16 prose-a:text-primary prose-a:transition prose-a:hover:text-accent max-w-none;
+
+		/* remove derp backticks from prose */
+		:where(code):not(:where([class~='not-prose'] *, pre *)) {
+			font-family: 'Victor Mono Variable', monospace;
+			padding: 1px 8px;
+			border-radius: var(--radius-selector);
+			font-weight: initial;
+			background-color: var(
+				--fallback-bc,
+				color-mix(
+					in oklab,
+					var(--color-base-content),
+					transparent 90%
+				)
+			);
+		}
+
+		/* Remove code markers */
+		:where(code):not(:where([class~='not-prose'] *, pre *))::before,
+		:where(code):not(:where([class~='not-prose'] *, pre *))::after {
+			content: '' !important;
+			display: none !important;
+		}
 	}
 }
 
@@ -59,26 +82,26 @@
 
 @plugin "daisyui/theme" {
 	name: 'wireframe';
-	--color-primary: oklch(32.37% 0.177 264.06);				/* Navy */
-	--color-primary-content: oklch(100% 0 0);						/* White */
-	--color-secondary: oklch(54.02% 0 0);								/* Gray */
-	--color-secondary-content: oklch(0% 0 0);						/* Black */
-	--color-accent: oklch(50.12% 0.156 196.63);					/* Teal */
-	--color-accent-content: oklch(100% 0 0);						/* White */
-	--color-neutral: oklch(78.57% 0 0);									/* Silver */
-	--color-neutral-content: oklch(0% 0 0);							/* Black */
-	--color-base-100: oklch(78.57% 0 0);								/* Silver */
-	--color-base-200: oklch(67.28% 0 0);								/* Darker silver */
-	--color-base-300: oklch(54.02% 0 0);								/* Gray */
-	--color-base-content: oklch(0% 0 0);								/* Black */
-	--color-info: oklch(32.37% 0.177 264.06);						/* Navy */
-	--color-info-content: oklch(100% 0 0);							/* White */
-	--color-success: oklch(46.37% 0.156 142.50);				/* Green */
-	--color-success-content: oklch(100% 0 0);						/* White */
-	--color-warning: oklch(52.19% 0.125 102.85);				/* Olive */
-	--color-warning-content: oklch(100% 0 0);						/* White */
-	--color-error: oklch(37.47% 0.156 29.23);						/* Maroon */
-	--color-error-content: oklch(100% 0 0);							/* White */
+	--color-primary: oklch(32.37% 0.177 264.06); /* Navy */
+	--color-primary-content: oklch(100% 0 0); /* White */
+	--color-secondary: oklch(54.02% 0 0); /* Gray */
+	--color-secondary-content: oklch(0% 0 0); /* Black */
+	--color-accent: oklch(50.12% 0.156 196.63); /* Teal */
+	--color-accent-content: oklch(100% 0 0); /* White */
+	--color-neutral: oklch(78.57% 0 0); /* Silver */
+	--color-neutral-content: oklch(0% 0 0); /* Black */
+	--color-base-100: oklch(78.57% 0 0); /* Silver */
+	--color-base-200: oklch(67.28% 0 0); /* Darker silver */
+	--color-base-300: oklch(54.02% 0 0); /* Gray */
+	--color-base-content: oklch(0% 0 0); /* Black */
+	--color-info: oklch(32.37% 0.177 264.06); /* Navy */
+	--color-info-content: oklch(100% 0 0); /* White */
+	--color-success: oklch(46.37% 0.156 142.5); /* Green */
+	--color-success-content: oklch(100% 0 0); /* White */
+	--color-warning: oklch(52.19% 0.125 102.85); /* Olive */
+	--color-warning-content: oklch(100% 0 0); /* White */
+	--color-error: oklch(37.47% 0.156 29.23); /* Maroon */
+	--color-error-content: oklch(100% 0 0); /* White */
 	--radius-box: 0;
 	--radius-field: 0;
 	--radius-selector: 0;
