@@ -42,6 +42,15 @@ export const GET = async ({ url, fetch }) => {
 
 	const visits = await fetch_visits(slug)
 
+	// Handle null visits case
+	if (!visits) {
+		return json({
+			daily_visits: null,
+			monthly_visits: null,
+			yearly_visits: null,
+		})
+	}
+
 	return json({
 		daily_visits: visits.daily,
 		monthly_visits: visits.monthly,
