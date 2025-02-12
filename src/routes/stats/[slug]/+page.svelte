@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	import { StatsCard } from '$lib/components'
 	import { name } from '$lib/info'
 	import { create_seo_config } from '$lib/seo'
@@ -16,7 +16,7 @@
 			`scottspence.com`,
 			`Page stats for ${data.analytics.yearly_visits.slug}`,
 		),
-		url: $page.url.toString(),
+		url: page.url.toString(),
 		slug: `stats/${data.analytics.yearly_visits.slug}`,
 	})
 </script>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	import { PostCard } from '$lib/components'
 	import { description, name, website } from '$lib/info'
 	import { create_seo_config } from '$lib/seo'
@@ -10,9 +10,7 @@
 	const { data } = $props<{ data: PageData }>()
 	const posts = $state(data.posts)
 
-	let search_query = $state(
-		$page.url.searchParams.get('search') || '',
-	)
+	let search_query = $state(page.url.searchParams.get('search') || '')
 
 	let filtered_posts = $derived.by(() => {
 		// First filter out private posts
@@ -29,7 +27,7 @@
 					.toLowerCase()
 					.includes(search_query.toLowerCase()) ||
 				(Array.isArray(post.tags) &&
-					post.tags.some(tag =>
+					post.tags.some((tag) =>
 						tag.toLowerCase().includes(search_query.toLowerCase()),
 					)) ||
 				post.preview
@@ -54,8 +52,8 @@
 
 <Head {seo_config} />
 
-<div class="form-control mb-10">
-	<label for="search" class="label">
+<div class="mb-10">
+	<label for="search" class="label mb-2 text-sm">
 		<span class="label-text">
 			Search {filtered_posts.length} posts...
 		</span>
@@ -63,7 +61,7 @@
 	<input
 		data-testid="search"
 		id="search"
-		class="input input-bordered input-primary"
+		class="input input-bordered input-primary input-lg w-full"
 		type="text"
 		placeholder="Search..."
 		bind:value={search_query}

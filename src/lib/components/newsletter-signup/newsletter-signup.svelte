@@ -31,7 +31,7 @@
 </script>
 
 <div
-	class="-mx-30 not-prose m-0 mb-56 max-h-96 xs:mb-36 sm:mb-0 lg:-mx-40"
+	class="not-prose m-0 mb-56 max-h-96 xs:mb-36 sm:mb-0 lg:-mx-40"
 >
 	{#if success}
 		<div in:scale_and_fade|global={{ delay: 400, duration: 400 }}>

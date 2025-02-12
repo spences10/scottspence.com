@@ -5,6 +5,8 @@ tags: ['zsh', 'guide', 'notes']
 is_private: false
 ---
 
+<!-- cspell:ignore robbyrussell,COMPFIX,compinit,zcompdump,precmd -->
+
 So, this is my updated Zsh config! To be honest there's little that's
 changed over the years since I originally posted about this a good
 three years ago now in

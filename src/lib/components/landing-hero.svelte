@@ -37,7 +37,7 @@
 				onmouseout={() => (is_hovering = !is_hovering)}
 			/>
 			<div class="all-prose lg:mr-28">
-				<h1 class="-mb-5 text-5xl font-black">
+				<h1 class="text-6xl font-black">
 					<span class="block">Scott Spence</span>
 					<span
 						class="block bg-gradient-to-b from-primary to-secondary bg-clip-text text-transparent"

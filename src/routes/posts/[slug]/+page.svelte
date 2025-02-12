@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto, preloadData, pushState } from '$app/navigation'
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	import {
 		differenceInDays,
 		differenceInYears,
@@ -94,7 +94,7 @@
 		'@graph': [blog_posting, breadcrumb_list],
 	}
 
-	let path = $page.route.id
+	let path = page.route.id
 
 	let end_of_copy = $state<HTMLElement | null>(null)
 	let show_table_of_contents = $state(true)
@@ -108,7 +108,7 @@
 		})
 	})
 
-	let current_path = $page.url.pathname
+	let current_path = page.url.pathname
 
 	let current_visitor_data: VisitorEntry | undefined
 
@@ -191,7 +191,7 @@
 			{#each tags as tag}
 				<a href={`/tags/${tag}`}>
 					<span
-						class="badge badge-primary mr-2 text-primary-content shadow-md transition hover:bg-accent hover:text-secondary-content"
+						class="badge badge-sm badge-primary mr-2 text-primary-content shadow-md transition hover:bg-accent hover:text-accetn-content"
 					>
 						{tag}
 					</span>
@@ -199,7 +199,7 @@
 			{/each}
 			{#if differenceInDays(new Date(), new Date(date)) < 31}
 				<span
-					class="badge badge-secondary cursor-pointer font-bold text-secondary-content shadow-md transition hover:bg-accent hover:text-secondary-content"
+					class="badge badge-sm badge-secondary cursor-pointer font-bold text-secondary-content shadow-md transition hover:bg-accent hover:text-accent-content"
 				>
 					new
 				</span>
@@ -263,7 +263,7 @@
 	<div class="flex justify-center">
 		<a
 			onclick={show_modal}
-			href="/stats/{$page.params.slug}"
+			href="/stats/{page.params.slug}"
 			class="btn btn-primary btn-lg mb-20 px-10 text-xl shadow-lg"
 		>
 			✨ View the stats for this post ✨
@@ -271,8 +271,8 @@
 	</div>
 
 	<Modal bind:modal onclose={close_modal}>
-		{#if $page.state.selected}
-			<StatsPage data={$page.state.selected} />
+		{#if page.state.selected}
+			<StatsPage data={page.state.selected} />
 		{/if}
 	</Modal>
 

@@ -33,24 +33,24 @@
 
 <h1 class="mb-5 text-5xl font-bold">Posts by Tag</h1>
 
-<div class="form-control mb-10">
-	<label for="search" class="label">
-		<span class="label-text">Search tags...</span>
-	</label>
-	<input
-		type="text"
-		bind:value={query}
-		id="search"
-		placeholder="Search"
-		class="input input-bordered input-primary"
-	/>
-</div>
+<fieldset class="mb-10">
+	<label class="label-text" for="search">Search tags...</label>
+	<div class="validator">
+		<input
+			type="text"
+			bind:value={query}
+			id="search"
+			placeholder="Search"
+			class="input input-bordered input-primary w-full"
+		/>
+	</div>
+</fieldset>
 
 <ul class="mb-20 flex flex-wrap justify-start">
 	{#each filtered_tags as tag (tag)}
 		<li class="my-4 text-xl">
 			<a
-				class="link mr-6 transition hover:text-primary"
+				class="link hover:text-primary mr-6 transition"
 				href={`tags/${tag}`}
 			>
 				{tag} ({posts_by_tag[tag].length})

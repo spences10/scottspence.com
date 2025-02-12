@@ -21,7 +21,7 @@
 
 <button
 	onclick={scroll_to_top}
-	class="back-to-top-button btn btn-secondary rounded-box font-normal normal-case shadow-2xl focus:outline-none focus:ring-2 focus:ring-accent {show_scroll_button
+	class="back-to-top-button btn btn-secondary text-secondary-content rounded-box fixed right-5 bottom-[-2rem] font-normal normal-case {show_scroll_button
 		? 'show-button'
 		: 'hide-button'}"
 	aria-label="Back to top"
@@ -53,20 +53,12 @@
 		}
 	}
 
-	.back-to-top-button {
-		position: fixed;
-		right: 2rem;
-		bottom: -2rem;
-		transition: bottom 0.3s ease-in-out;
-	}
-
 	.show-button {
 		bottom: 5rem;
 		animation: flyIn 0.3s ease forwards;
 	}
 
 	@media (min-width: 1024px) {
-		/* Tailwind's 'lg' breakpoint */
 		.show-button {
 			bottom: 2rem;
 		}

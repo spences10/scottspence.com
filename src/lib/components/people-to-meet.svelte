@@ -23,8 +23,8 @@
 
 	const sort_functions: Record<SortFunctionKeys, () => Person[]> = {
 		all: () => shuffle_array(PEOPLE),
-		met: () => shuffle_array(PEOPLE.filter(p => p.met)),
-		not_met: () => shuffle_array(PEOPLE.filter(p => !p.met)),
+		met: () => shuffle_array(PEOPLE.filter((p) => p.met)),
+		not_met: () => shuffle_array(PEOPLE.filter((p) => !p.met)),
 	}
 
 	let sorted_people: Person[] = $derived(
@@ -38,11 +38,11 @@
 	<div class="divider divider-secondary"></div>
 </div>
 
-<article class="sm:-mx-30 m-0 mb-20 lg:-mx-40">
+<article class="m-0 mb-20 xs:-mx-30 lg:-mx-40">
 	<a
 		href="#people-id-like-to-meet"
 		id="people-id-like-to-meet"
-		class="hover:primary-accent link-primary text-2xl font-bold transition"
+		class="link-primary hover:text-accent text-2xl font-bold transition"
 	>
 		People I'd like to meet in real life (aka the meatspace).
 	</a>
@@ -50,10 +50,10 @@
 		These are all people I'd like to share a firm handshake with.
 	</p>
 
-	<p class="mb-9 text-sm text-secondary">
+	<p class="text-secondary mb-9 text-sm">
 		Idea totally stolen from
 		<a
-			class="link transition hover:text-primary"
+			class="link hover:text-primary transition"
 			rel="noreferrer noopener"
 			target="_blank"
 			href="https://rafa.design/"
@@ -62,29 +62,36 @@
 		</a>
 	</p>
 
-	<div class="mb-5">
-		<button onclick={() => (sort_mode = 'all')} class="btn btn-xs">
+	<div class="join mb-5">
+		<!-- Changed to join for button group -->
+		<button
+			onclick={() => (sort_mode = 'all')}
+			class="join-item btn btn-sm"
+		>
 			All
 		</button>
-		<button onclick={() => (sort_mode = 'met')} class="btn btn-xs">
+		<button
+			onclick={() => (sort_mode = 'met')}
+			class="join-item btn btn-sm"
+		>
 			Met
 		</button>
 		<button
 			onclick={() => (sort_mode = 'not_met')}
-			class="btn btn-xs"
+			class="join-item btn btn-sm"
 		>
 			Not Met
 		</button>
 	</div>
 
 	<ul
-		class="mb-10 grid grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+		class="sm:grid-cols-2 mb-10 grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4"
 	>
 		{#each sorted_people as { name, link, met }}
-			<li class="">
+			<li>
 				<div class="flex items-center text-left">
 					<PeopleToMeetCheck {met} />
-					<span class="transition hover:text-primary">
+					<span class="hover:text-primary transition">
 						<a
 							class="text-xl"
 							href={link}
@@ -100,13 +107,13 @@
 	</ul>
 
 	<div class="md:flex md:items-center">
-		<p class="all-prose mb-3 md:mb-0 md:mr-5">
+		<p class="all-prose mb-3 md:mr-5 md:mb-0">
 			Not on the list? Want to meet up?
 		</p>
 		<PostOnBlueSky
 			post_text="Yo! @scottspence.dev, I think we should totally meet IRL. Add me to that list!!"
 			button_text="Hit me up on Bluesky!"
-			button_class="btn-primary"
+			button_class="btn-primary btn-lg"
 		/>
 	</div>
 </article>

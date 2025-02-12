@@ -19,12 +19,12 @@
 </script>
 
 {#if posts.length}
-	<div class="sm:-mx-30 m-0 mb-20 lg:-mx-40">
+	<div class="xs:-mx-30 m-0 mb-20 lg:-mx-40">
 		<p class="mb-8 text-xl">
 			Take a look at some popular content from me...
 			<select
 				bind:value={selected_period}
-				class="select select-sm border border-secondary"
+				class="select select-sm border-secondary w-40 border"
 			>
 				<option value="popular_posts_daily">Views today</option>
 				<option value="popular_posts_monthly">Views this month</option
@@ -45,13 +45,13 @@
 					class="h-full"
 				>
 					<aside
-						class="card h-full rounded-box border border-secondary p-5 font-bold shadow-lg transition hover:text-accent"
+						class="card rounded-box border-secondary hover:text-accent h-full border p-5 font-bold shadow-lg transition"
 					>
 						<h3 class="mb-5 text-2xl">
 							{post.title}
 						</h3>
 						<div class="mt-5">
-							<span class="absolute bottom-0 mb-4 text-primary">
+							<span class="text-primary absolute bottom-0 mb-4">
 								Views: {number_crunch(post.pageviews)}
 							</span>
 						</div>
