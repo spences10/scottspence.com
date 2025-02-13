@@ -76,8 +76,8 @@ importers:
         specifier: ^8.17.3
         version: 8.17.3
       daisyui:
-        specifier: 5.0.0-beta.7
-        version: 5.0.0-beta.7
+        specifier: 5.0.0-beta.8
+        version: 5.0.0-beta.8
       date-fns:
         specifier: 4.1.0
         version: 4.1.0
@@ -112,14 +112,14 @@ importers:
         specifier: ^6.10.0
         version: 6.10.0
       prettier:
-        specifier: ^3.5.0
-        version: 3.5.0
+        specifier: ^3.5.1
+        version: 3.5.1
       prettier-plugin-svelte:
         specifier: ^3.3.3
-        version: 3.3.3(prettier@3.5.0)(svelte@5.20.0)
+        version: 3.3.3(prettier@3.5.1)(svelte@5.20.0)
       prettier-plugin-tailwindcss:
         specifier: ^0.6.11
-        version: 0.6.11(prettier-plugin-svelte@3.3.3(prettier@3.5.0)(svelte@5.20.0))(prettier@3.5.0)
+        version: 0.6.11(prettier-plugin-svelte@3.3.3(prettier@3.5.1)(svelte@5.20.0))(prettier@3.5.1)
       rehype-autolink-headings:
         specifier: 7.1.0
         version: 7.1.0
@@ -1449,8 +1449,8 @@ packages:
     resolution: {integrity: sha512-9+vem03dMXG7gDmZ62uqmRiMRNtinIZ9ZyuF6BdxzfOD+FdN5hretzynkn0ReS2DO2GSw76RWHs0UmJPI2zUjw==}
     engines: {node: '>=18'}
 
-  daisyui@5.0.0-beta.7:
-    resolution: {integrity: sha512-AW158KxukhyWwU9HTlfNkjAa9nPcfUZilITK7Taa3pqwVH/Suq31+1FHVcw7zLVRRw5jBUKrJ76xBQJOcRiKgQ==}
+  daisyui@5.0.0-beta.8:
+    resolution: {integrity: sha512-jSokqm5i+Pv1jG80wliNzMHjmcF+iMx5xRUpk0/QExVoVNyQNWeCsaWJQubPvUq7bt9nzSsQTR2uIZBoyIIoaA==}
 
   data-uri-to-buffer@4.0.1:
     resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
@@ -2377,8 +2377,8 @@ packages:
       prettier-plugin-svelte:
         optional: true
 
-  prettier@3.5.0:
-    resolution: {integrity: sha512-quyMrVt6svPS7CjQ9gKb3GLEX/rl3BCL2oa/QkNcXv4YNVBC9olt3s+H7ukto06q7B1Qz46PbrKLO34PR6vXcA==}
+  prettier@3.5.1:
+    resolution: {integrity: sha512-hPpFQvHwL3Qv5AdRvBFMhnKo4tYxp0ReXiPn2bxkiohEX6mBeBwEpBSQTkD458RaaDKQMYSp4hX4UtfUTA5wDw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -4172,7 +4172,7 @@ snapshots:
       '@asamuzakjp/css-color': 2.8.3
       rrweb-cssom: 0.8.0
 
-  daisyui@5.0.0-beta.7: {}
+  daisyui@5.0.0-beta.8: {}
 
   data-uri-to-buffer@4.0.1: {}
 
@@ -5058,18 +5058,18 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-svelte@3.3.3(prettier@3.5.0)(svelte@5.20.0):
+  prettier-plugin-svelte@3.3.3(prettier@3.5.1)(svelte@5.20.0):
     dependencies:
-      prettier: 3.5.0
+      prettier: 3.5.1
       svelte: 5.20.0
 
-  prettier-plugin-tailwindcss@0.6.11(prettier-plugin-svelte@3.3.3(prettier@3.5.0)(svelte@5.20.0))(prettier@3.5.0):
+  prettier-plugin-tailwindcss@0.6.11(prettier-plugin-svelte@3.3.3(prettier@3.5.1)(svelte@5.20.0))(prettier@3.5.1):
     dependencies:
-      prettier: 3.5.0
+      prettier: 3.5.1
     optionalDependencies:
-      prettier-plugin-svelte: 3.3.3(prettier@3.5.0)(svelte@5.20.0)
+      prettier-plugin-svelte: 3.3.3(prettier@3.5.1)(svelte@5.20.0)
 
-  prettier@3.5.0: {}
+  prettier@3.5.1: {}
 
   pretty-format@27.5.1:
     dependencies:
