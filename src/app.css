@@ -106,8 +106,8 @@
 	--radius-field: 0;
 	--radius-selector: 0;
 	font-family:
-		'Chalkboard', 'comic sans ms', 'sans-serif',
-		'Playpen Sans Variable';
+		'Chalkboard', 'comic sans ms', 'Playpen Sans Variable',
+		'sans-serif';
 }
 
 @plugin "daisyui/theme" {
