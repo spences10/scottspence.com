@@ -8,7 +8,9 @@
 </script>
 
 <div>
-	<div class="flex {reply ? 'chat-start' : 'chat-end justify-end'}">
+	<div
+		class="chat flex {reply ? 'chat-start' : 'chat-end justify-end'}"
+	>
 		<section
 			class="chat-bubble mb-8 {reply
 				? 'chat-bubble-accent'
