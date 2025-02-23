@@ -1,9 +1,24 @@
 ---
 date: 2022-04-14
+updated: 2025-02-23
 title: My Zsh Config
 tags: ['zsh', 'guide']
 is_private: false
 ---
+
+<script>
+  import { Banner } from '$lib/components'
+
+  const options = {
+    type: 'info',
+    message: `If you want to get the latest config on this with my 
+      preferred tooling then check out the post I did recently on 
+      <a href="https://scottspence.com/posts/my-updated-zsh-config-2025">
+      My Updated ZSH Config 2025</a> to have a super speedy shell 
+      with a very similar config to this!
+    `
+  }
+</script>
 
 I've always bundled in my Zsh config with other guides I've done in
 the past and never a stand alone post. So I'm making this now for my
@@ -13,6 +28,8 @@ I switched to Zsh around two years ago after being a long time [Fish]
 shell user. The reason for the switch? I found Zsh to be a bit simpler
 to configure. I'm by no means a power user but I like to have my own
 preferred configuration.
+
+<Banner {options} />
 
 ## Install Zsh
 
