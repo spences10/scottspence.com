@@ -123,9 +123,6 @@
 
 @plugin "daisyui/theme" {
   name: "tealix";
-  default: false;
-  prefersdark: true;
-  color-scheme: "dark";
   --color-base-100: oklch(27% 0.046 192.524);
   --color-base-200: oklch(38% 0.063 188.416);
   --color-base-300: oklch(43% 0.078 188.216);
