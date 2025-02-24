@@ -2,6 +2,7 @@
 @import '@fontsource-variable/victor-mono';
 @import '@fontsource-variable/manrope';
 @import '@fontsource-variable/playpen-sans';
+@import '@fontsource/comic-neue';
 
 /* Import Tailwind and plugins */
 @import 'tailwindcss';
@@ -105,7 +106,7 @@
 	--radius-box: 0;
 	--radius-field: 0;
 	--radius-selector: 0;
-	font-family: 'Chalkboard', 'comic sans ms', cursive;
+	font-family: 'Comic Neue', 'Chalkboard', 'comic sans ms', cursive;
 }
 
 @plugin "daisyui/theme" {

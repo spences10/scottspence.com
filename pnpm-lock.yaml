@@ -27,6 +27,9 @@ importers:
       '@fontsource-variable/victor-mono':
         specifier: ^5.1.1
         version: 5.1.1
+      '@fontsource/comic-neue':
+        specifier: ^5.1.1
+        version: 5.1.1
       '@fontsource/victor-mono':
         specifier: ^5.1.1
         version: 5.1.1
@@ -655,6 +658,9 @@ packages:
 
   '@fontsource-variable/victor-mono@5.1.1':
     resolution: {integrity: sha512-zqmK0OMc10EqSoMtMwkdn6hXiXPHt+3zNMZ3U4Bj11S9gbX36AdcZ5ZkyLjc43R4+1k7SbhnIrEjuMtV2Jm5jA==}
+
+  '@fontsource/comic-neue@5.1.1':
+    resolution: {integrity: sha512-uBn45nwhH2g7XiX7yaNQc8j5SPPsb0T+/3S9K877xg8jvAZ2KjPxevFsyXRcHDm6xjQCyC/hjq5xlCdvMQnigw==}
 
   '@fontsource/victor-mono@5.1.1':
     resolution: {integrity: sha512-hcKeS1lC6tzvwTdM/KixXM644xDNS3E4pWPoxQx/ooHp4HkyN0Ku9sVQKhysBJC5hW0zMWRoBYPL0pZUEAdnVA==}
@@ -3325,6 +3331,8 @@ snapshots:
   '@fontsource-variable/playpen-sans@5.1.1': {}
 
   '@fontsource-variable/victor-mono@5.1.1': {}
+
+  '@fontsource/comic-neue@5.1.1': {}
 
   '@fontsource/victor-mono@5.1.1': {}
 

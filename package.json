@@ -31,6 +31,7 @@
 		"@fontsource-variable/manrope": "^5.1.1",
 		"@fontsource-variable/playpen-sans": "^5.1.1",
 		"@fontsource-variable/victor-mono": "^5.1.1",
+		"@fontsource/comic-neue": "^5.1.1",
 		"@fontsource/victor-mono": "^5.1.1",
 		"@playwright/test": "^1.50.1",
 		"@sveltejs/adapter-node": "^5.2.12",
