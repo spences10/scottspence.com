@@ -44,7 +44,7 @@
 /* Custom components */
 @layer components {
 	.table-of-contents {
-		@apply fixed left-[calc(50%+400px)] top-72 z-10 my-3 max-h-[50vh] w-[310px] p-3 text-base leading-7;
+		@apply fixed top-72 left-[calc(50%+400px)] z-10 my-3 max-h-[50vh] w-[310px] p-3 text-base leading-7;
 	}
 
 	.all-prose {
@@ -106,7 +106,7 @@
 	--radius-box: 0;
 	--radius-field: 0;
 	--radius-selector: 0;
-	font-family: 'Comic Neue', 'Chalkboard', 'comic sans ms';
+	font-family: 'Comic Neue';
 }
 
 @plugin "daisyui/theme" {
