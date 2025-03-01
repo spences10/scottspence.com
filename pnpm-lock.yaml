@@ -19,20 +19,17 @@ importers:
         specifier: ^9.21.0
         version: 9.21.0
       '@fontsource-variable/manrope':
-        specifier: ^5.1.1
-        version: 5.1.1
-      '@fontsource-variable/playpen-sans':
-        specifier: ^5.1.1
-        version: 5.1.1
+        specifier: ^5.2.0
+        version: 5.2.0
       '@fontsource-variable/victor-mono':
-        specifier: ^5.1.1
-        version: 5.1.1
+        specifier: ^5.2.0
+        version: 5.2.0
       '@fontsource/comic-neue':
-        specifier: ^5.1.1
-        version: 5.1.1
+        specifier: ^5.2.0
+        version: 5.2.0
       '@fontsource/victor-mono':
-        specifier: ^5.1.1
-        version: 5.1.1
+        specifier: ^5.2.0
+        version: 5.2.0
       '@playwright/test':
         specifier: ^1.50.1
         version: 1.50.1
@@ -79,8 +76,8 @@ importers:
         specifier: ^8.17.5
         version: 8.17.5
       daisyui:
-        specifier: 5.0.0-beta.8
-        version: 5.0.0-beta.8
+        specifier: 5.0.0
+        version: 5.0.0
       date-fns:
         specifier: 4.1.0
         version: 4.1.0
@@ -650,20 +647,17 @@ packages:
     resolution: {integrity: sha512-JubJ5B2pJ4k4yGxaNLdbjrnk9d/iDz6/q8wOilpIowd6PJPgaxCuHBnBszq7Ce2TyMrywm5r4PnKm6V3iiZF+g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@fontsource-variable/manrope@5.1.1':
-    resolution: {integrity: sha512-bJTED5u+nlztikeRJwCgK3ij3qMVsivP4xTxpcrfQ15crvZuW9hjM5f61CgYF3ryL0rJwkjzOpZjB4CwL/pnBw==}
+  '@fontsource-variable/manrope@5.2.0':
+    resolution: {integrity: sha512-Hxa0Rx4lM+RBTGsHS8qxrTcuW6LkcJm6wPM9r778I4brxmuuYUkdTn6jow4pC0bIc1A+xIl5qPWswRmGd05J3Q==}
 
-  '@fontsource-variable/playpen-sans@5.1.1':
-    resolution: {integrity: sha512-uM0JuMDXHuZpu9HZt/VPDEfZKfsrE2qvnfsIiAyCFZ9AKmd93O56PRF2VzWc3si/ly4Yn+3p+mk1VKd3jrWMNA==}
+  '@fontsource-variable/victor-mono@5.2.0':
+    resolution: {integrity: sha512-eI4OCIlDvxOJIjkapOwJkUTSzCIoxtp9Y1JPuDfrdKDyVeSAWEI3nAnDIwhwqZC0m4jQLITCGnBb+LGsQFhCEw==}
 
-  '@fontsource-variable/victor-mono@5.1.1':
-    resolution: {integrity: sha512-zqmK0OMc10EqSoMtMwkdn6hXiXPHt+3zNMZ3U4Bj11S9gbX36AdcZ5ZkyLjc43R4+1k7SbhnIrEjuMtV2Jm5jA==}
+  '@fontsource/comic-neue@5.2.0':
+    resolution: {integrity: sha512-XHhSrBzaLUKGXtr9+7apsrp0u5/NNbG/RakJShd2i/m9EBKakY7g3ZRYqJcJOQb1tDRc7ENx9Zbm54wLHz+hPg==}
 
-  '@fontsource/comic-neue@5.1.1':
-    resolution: {integrity: sha512-uBn45nwhH2g7XiX7yaNQc8j5SPPsb0T+/3S9K877xg8jvAZ2KjPxevFsyXRcHDm6xjQCyC/hjq5xlCdvMQnigw==}
-
-  '@fontsource/victor-mono@5.1.1':
-    resolution: {integrity: sha512-hcKeS1lC6tzvwTdM/KixXM644xDNS3E4pWPoxQx/ooHp4HkyN0Ku9sVQKhysBJC5hW0zMWRoBYPL0pZUEAdnVA==}
+  '@fontsource/victor-mono@5.2.0':
+    resolution: {integrity: sha512-A/zVxjjEwwRb6fyI1yL7aBWJzeUYjg1xhAhwZmQ/CIoNgKIXYcivSpY+WBRfFKZVMsjlfe+8+N2HgYwVQkgE1A==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1451,8 +1445,8 @@ packages:
     resolution: {integrity: sha512-9+vem03dMXG7gDmZ62uqmRiMRNtinIZ9ZyuF6BdxzfOD+FdN5hretzynkn0ReS2DO2GSw76RWHs0UmJPI2zUjw==}
     engines: {node: '>=18'}
 
-  daisyui@5.0.0-beta.8:
-    resolution: {integrity: sha512-jSokqm5i+Pv1jG80wliNzMHjmcF+iMx5xRUpk0/QExVoVNyQNWeCsaWJQubPvUq7bt9nzSsQTR2uIZBoyIIoaA==}
+  daisyui@5.0.0:
+    resolution: {integrity: sha512-U0K9Bac3Bi3zZGm6ojrw12F0vBHTpEgf46zv/BYxLe07hF0Xnx7emIQliwaRBgJuYhY0BhwQ6wSnq5cJXHA2yA==}
 
   data-uri-to-buffer@4.0.1:
     resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
@@ -3313,15 +3307,13 @@ snapshots:
       '@eslint/core': 0.12.0
       levn: 0.4.1
 
-  '@fontsource-variable/manrope@5.1.1': {}
+  '@fontsource-variable/manrope@5.2.0': {}
 
-  '@fontsource-variable/playpen-sans@5.1.1': {}
+  '@fontsource-variable/victor-mono@5.2.0': {}
 
-  '@fontsource-variable/victor-mono@5.1.1': {}
+  '@fontsource/comic-neue@5.2.0': {}
 
-  '@fontsource/comic-neue@5.1.1': {}
-
-  '@fontsource/victor-mono@5.1.1': {}
+  '@fontsource/victor-mono@5.2.0': {}
 
   '@humanfs/core@0.19.1': {}
 
@@ -4167,7 +4159,7 @@ snapshots:
       '@asamuzakjp/css-color': 2.8.3
       rrweb-cssom: 0.8.0
 
-  daisyui@5.0.0-beta.8: {}
+  daisyui@5.0.0: {}
 
   data-uri-to-buffer@4.0.1: {}
 
