@@ -36,7 +36,7 @@ Buttondown
 Buzzsprout
 Bynens
 Cantarell
-Capisco 
+Capisco
 Catalin
 Chakra
 cheatsheet
@@ -44,6 +44,7 @@ cheatsheets
 chingu
 christopherbiscardi
 Cloudinary
+Codeium
 Codepen
 codesandbox
 Codespaces
@@ -62,6 +63,7 @@ danfascia
 Darknet
 Darnes
 daysofcode
+deepgram
 deezer
 Dendron
 Deno
@@ -184,6 +186,7 @@ Nunito
 Nuxt
 Ocel
 Ollama
+omnisearch
 openshot
 Otander
 Paulie
