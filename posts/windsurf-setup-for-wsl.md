@@ -29,9 +29,9 @@ Aight! **Tl;Dr links**:
 - [if you're here to get Windsurf opening from the terminal](#launch-windsurf-from-the-terminal)
 - [if you're wanting to change the market place](#extension-marketplace-difference)
 
-I've known about Codeium, well, ([VSCodeium](https://vscodium.com))
-for a while actually, I mean, before Windsurf was a thing, I used to
-use it when I was full on with Linux as a daily driver (not just WSL).
+I've known about Codium, well, ([VSCodium](https://vscodium.com)) for
+a while actually, I mean, before Windsurf was a thing, I used to use
+it when I was full on with Linux as a daily driver (not just WSL).
 Windsurf was released
 [November last year](https://codeium.com/blog/windsurf-launch). I did
 take a look back then but there was no WSL support, so I left it

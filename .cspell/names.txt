@@ -49,6 +49,7 @@ Codepen
 codesandbox
 Codespaces
 codingcat
+Codium
 coinlore
 collinsworth's
 Comeau
