@@ -7,6 +7,17 @@ is_private: false
 
 <script>
   import { Gist } from 'sveltekit-embed'
+  import { Banner } from '$lib/components'
+
+  const options = {
+    type: 'info',
+    message: `Just a heads up! I've since found Windsurf to be a much
+      better alternative to Cursor for use in WSL. Check out my guide
+      on <a href="https://scottspence.com/posts/windsurf-setup-for-wsl" 
+      target="_blank" rel="noopener noreferrer"> Windsurf Setup for 
+      WSL</a> for a better development experience!
+    `
+  }
 </script>
 
 The WSL Cursor setup, debugging your setup before you even code! I
@@ -19,6 +30,8 @@ before I had to try it out again. Guess what? It was exactly the same
 issue from the last time I tried using it. This time I gave it a good
 shake trying to se it up and running and with some digging around on
 the Cursor GitHub issues I found a solution.
+
+<Banner {options} />
 
 This is a guide referencing all the those helpful people on the Cursor
 GitHub issues that commented with their solutions. I pieced together
