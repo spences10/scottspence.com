@@ -11,7 +11,7 @@ is_private: false
 
 The WSL Cursor setup, debugging your setup before you even code! I
 initially tried Cursor around 18 months ago when I saw something from
-[Catalin](https://catalins.tech/) about it. At the time I couldn't get
+[Catalin](https://catalins.tech) about it. At the time I couldn't get
 past launching it with the `cursor .` command.
 
 With all the hype going around about it, it was only a matter of time
