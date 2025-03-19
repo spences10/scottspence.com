@@ -54,13 +54,13 @@ the start from scratch option. I did check the option to add Windsurf
 to my PATH and allow access to public **AND** private networks.
 
 So at this point, Windsurf is throwing errors saying it can't find git
-installed, go install it, and I'm like "we got git at home", home
+installed, go install it, and I'm like "we got git at home!", home
 being WSL! I'll come onto this in the next section, for now I'm just
 getting the settings sorted.
 
 Ctrl+, to open the Windsurf Settings tab, scroll to the bottom of the
 page and select the Other Settings, View Settings option, this opens
-the `settings.json` file. Copy paste in my settings then the first
+the `settings.json` file. Copy paste in my settings, then the first
 thing I notice is that the marketplace is different, (more on that in
 the
 [Extension Marketplace Difference](#extension-marketplace-difference)
@@ -106,7 +106,7 @@ Make it executable:
 chmod +x windsurf-launcher.sh
 ```
 
-In my aliases file and in the alias!
+In my aliases file add in the alias!
 
 ```bash
 alias -g wf="~/windsurf-launcher.sh ."
@@ -156,7 +156,8 @@ keyboard shortcut while working with the composer, I'd have to
 manually click outside the composer first, breaking my flow.
 
 In Windsurf keyboard shortcuts work! I can switch into the file
-explorer or anything else after working in the composer.
+explorer or anything else after working in the composer with any valid
+keyboard shortcut.
 
 ## Extension marketplace difference
 
@@ -165,8 +166,8 @@ Cursor uses the Microsoft extension marketplace, Windsurf opts for its
 own extension marketplace.
 
 To configure the extension marketplace in Windsurf, I can modify the
-settings.json file. By default, Windsurf uses its own marketplace, but
-if I want to switch to the Microsoft marketplace, I can use this
+`settings.json` file. By default, Windsurf uses its own marketplace,
+but if I want to switch to the Microsoft marketplace, I can use this
 configuration:
 
 ```json
