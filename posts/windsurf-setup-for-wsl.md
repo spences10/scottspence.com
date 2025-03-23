@@ -101,13 +101,19 @@ CURRENT_PATH=$(readlink -f "$1")
 windsurf --folder-uri "vscode-remote://wsl+Ubuntu$CURRENT_PATH"
 ```
 
-Make it executable:
+ℹ️ **Note:** That `"vscode-remote://wsl+Ubuntu$CURRENT_PATH"` the
+**Ubuntu** part is my default WSL instance! To check what your default
+WSL instance is, in Powershell use the `wsl -l` to list your installed
+distros! So, if `Ubuntu-24.04` was my default then the it would be
+`"vscode-remote://wsl+Ubuntu-24.04$CURRENT_PATH"`.
+
+Make the script executable:
 
 ```bash
 chmod +x windsurf-launcher.sh
 ```
 
-In my aliases file add in the alias!
+Then in my aliases file, add in the alias!
 
 ```bash
 alias -g wf="~/windsurf-launcher.sh ."
