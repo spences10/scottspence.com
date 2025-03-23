@@ -27,7 +27,8 @@ post for more details.
 Aight! **Tl;Dr links**:
 
 - [if you're here to get Windsurf opening from the terminal](#launch-windsurf-from-the-terminal)
-- [if you're wanting to change the market place](#extension-marketplace-difference)
+- [if you're wanting to change the marketplace](#extension-marketplace-difference)
+- [if you want to help me out use my referral link](https://codeium.com/refer?referral_code=h614xrra4wre57bd)
 
 I've known about Codium, well, ([VSCodium](https://vscodium.com)) for
 a while actually, I mean, before Windsurf was a thing, I used to use
@@ -189,6 +190,14 @@ I can also use the Open VSX Registry if I prefer:
 Being able to configure which marketplace to use means I can access
 different extension ecosystems, which is a flexibility that Cursor
 doesn't currently offer.
+
+## Try Windsurf with free credits
+
+I should mention that Windsurf offers a referral program that's pretty
+generous. If you're interested in trying out Windsurf sign up using
+[my referral link](https://codeium.com/refer?referral_code=h614xrra4wre57bd),
+both you and I get 500 credits - that's essentially a free month of
+premium credits!
 
 ## The verdict (for now)
 
