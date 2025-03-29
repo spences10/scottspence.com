@@ -39,7 +39,9 @@
 			Select a theme
 		</option>
 		{#each themes as theme}
-			<option value={theme} class="capitalize">{theme}</option>
+			<option value={theme} class="text-base-content capitalize">
+				{theme}
+			</option>
 		{/each}
 	</select>
 </fieldset>

@@ -86,9 +86,9 @@
 							oninput={on_annual_rate_input}
 							class="range range-primary flex-1"
 						/>
-						<span class="badge badge-primary badge-lg"
-							>{locale_string(annual_rate_EUR)}</span
-						>
+						<span class="badge badge-primary badge-lg">
+							{locale_string(annual_rate_EUR)}
+						</span>
 					</div>
 				</div>
 

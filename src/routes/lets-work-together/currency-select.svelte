@@ -13,8 +13,10 @@
 	bind:value={selected_currency}
 	class="select select-sm rounded-box w-full text-sm"
 >
-	<option value="EUR">EUR</option>
+	<option class="text-base-content" value="EUR">EUR</option>
 	{#each Object.keys($exchange_rates_store || {}) as currency}
-		<option value={currency}>{currency}</option>
+		<option class="text-base-content" value={currency}>
+			{currency}
+		</option>
 	{/each}
 </select>
