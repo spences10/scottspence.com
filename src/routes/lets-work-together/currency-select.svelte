@@ -6,12 +6,12 @@
 
 <legend class="sr-only">Currency Selection</legend>
 <label for="selected_currency" class="label">
-	<span class="label-text text-base">Currency:</span>
+	<span class="text-base font-medium">Currency:</span>
 </label>
 <select
 	id="selected_currency"
 	bind:value={selected_currency}
-	class="select select-bordered select-sm mb-5 text-sm"
+	class="select select-sm rounded-box w-full text-sm"
 >
 	<option value="EUR">EUR</option>
 	{#each Object.keys($exchange_rates_store || {}) as currency}

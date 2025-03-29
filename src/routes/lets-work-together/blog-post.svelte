@@ -85,49 +85,76 @@
 	)
 </script>
 
-<section aria-label="Blog Post Configuration">
-	<fieldset>
-		<Select
-			id="post_duration"
-			label="Blog Post Length:"
-			bind:selected={selected_post_length}
-			options={Object.keys(BLOG_POST_LENGTH)}
-		/>
-		<Select
-			id="post_depth"
-			label="Blog Post Depth:"
-			bind:selected={selected_post_depth}
-			options={Object.keys(BLOG_POST_DEPTH)}
-		/>
+<div class="card bg-base-100 shadow-xl">
+	<div class="card-body">
+		<h2 class="card-title text-primary mb-4">Blog Post Calculator</h2>
 
-		<CurrencySelect bind:selected_currency />
-	</fieldset>
-</section>
+		<div class="grid gap-6">
+			<fieldset class="grid gap-4">
+				<legend class="sr-only">Blog Post Configuration</legend>
 
-<section
-	aria-label="Blog post stats"
-	class="stats stats-vertical mb-5 w-full border border-secondary shadow-lg md:stats-horizontal"
->
-	<div class="stat">
-		<div class="stat-title">Length</div>
-		<div class="stat-value flex">
-			{selected_length_description}
+				<div class="mb-4">
+					<Select
+						id="post_duration"
+						label="Blog Post Length:"
+						bind:selected={selected_post_length}
+						options={Object.keys(BLOG_POST_LENGTH)}
+					/>
+				</div>
+
+				<div class="mb-4">
+					<Select
+						id="post_depth"
+						label="Blog Post Depth:"
+						bind:selected={selected_post_depth}
+						options={Object.keys(BLOG_POST_DEPTH)}
+					/>
+				</div>
+
+				<div class="mb-4">
+					<CurrencySelect bind:selected_currency />
+				</div>
+			</fieldset>
+
+			<div
+				aria-label="Blog post stats"
+				class="stats stats-vertical border-base-300 bg-base-100 md:stats-horizontal w-full border shadow"
+			>
+				<div class="stat">
+					<div class="stat-title font-medium">Length</div>
+					<div class="stat-value text-primary flex items-center">
+						{selected_length_description}
+					</div>
+					<div class="stat-desc">Word count range</div>
+				</div>
+
+				<div class="stat">
+					<div class="stat-title font-medium">Depth</div>
+					<div class="stat-value text-secondary flex items-center">
+						{selected_post_depth}
+					</div>
+					<div class="stat-desc">
+						{#if selected_post_depth === 'Overview'}
+							Basic coverage
+						{:else if selected_post_depth === 'In-depth'}
+							Detailed analysis (+50%)
+						{:else}
+							Multiple connected posts (+40%)
+						{/if}
+					</div>
+				</div>
+
+				<div class="stat">
+					<div class="stat-title font-medium">Total</div>
+					<div class="stat-value text-accent flex items-center">
+						{locale_string(post_cost_with_depth_in_selected_currency)}
+						<span class="ml-2 text-xl">
+							{selected_currency}
+						</span>
+					</div>
+					<div class="stat-desc">Final price</div>
+				</div>
+			</div>
 		</div>
 	</div>
-
-	<div class="stat">
-		<div class="stat-title">Depth</div>
-		<div class="stat-value flex">
-			{selected_post_depth}
-		</div>
-	</div>
-	<div class="stat">
-		<div class="stat-title">Total</div>
-		<div class="stat-value flex">
-			{locale_string(post_cost_with_depth_in_selected_currency)}
-			<span class="ml-2 text-xl">
-				{selected_currency}
-			</span>
-		</div>
-	</div>
-</section>
+</div>

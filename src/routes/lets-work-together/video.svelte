@@ -79,52 +79,81 @@
 	)
 </script>
 
-<section class="flex flex-col">
-	<fieldset>
-		<Select
-			id="duration"
-			label="Video duration:"
-			bind:selected={selected_video_duration}
-			options={VIDEO_DURATION_OPTIONS}
-		/>
+<div class="card bg-base-100 shadow-xl">
+	<div class="card-body">
+		<h2 class="card-title text-primary mb-4">
+			Video Production Calculator
+		</h2>
 
-		<Select
-			id="customisation_level"
-			label="Customisation level:"
-			bind:selected={selected_customisation_level}
-			options={CUSTOMISATION_LEVEL_OPTIONS}
-		/>
+		<div class="grid gap-6">
+			<fieldset class="grid gap-4">
+				<legend class="sr-only">Video Configuration</legend>
 
-		<CurrencySelect bind:selected_currency />
-	</fieldset>
-</section>
+				<div class="mb-4">
+					<Select
+						id="duration"
+						label="Video duration:"
+						bind:selected={selected_video_duration}
+						options={VIDEO_DURATION_OPTIONS}
+					/>
+				</div>
 
-<section
-	class="stats stats-vertical mb-5 w-full border border-secondary shadow-lg md:stats-horizontal"
->
-	<div class="stat">
-		<div class="stat-title">Length</div>
-		<div class="stat-value flex">
-			{selected_duration}
+				<div class="mb-4">
+					<Select
+						id="customisation_level"
+						label="Customisation level:"
+						bind:selected={selected_customisation_level}
+						options={CUSTOMISATION_LEVEL_OPTIONS}
+					/>
+				</div>
+
+				<div class="mb-4">
+					<CurrencySelect bind:selected_currency />
+				</div>
+			</fieldset>
+
+			<div
+				class="stats stats-vertical border-base-300 bg-base-100 md:stats-horizontal w-full border shadow"
+			>
+				<div class="stat">
+					<div class="stat-title font-medium">Length</div>
+					<div class="stat-value text-primary flex items-center">
+						{selected_duration}
+					</div>
+					<div class="stat-desc">Video duration</div>
+				</div>
+
+				<div class="stat">
+					<div class="stat-title font-medium">Customisation</div>
+					<div class="stat-value text-secondary flex items-center">
+						{selected_customisation_level}
+					</div>
+					<div class="stat-desc">
+						{#if selected_customisation_level === 'None'}
+							Standard format
+						{:else if selected_customisation_level === 'Minor'}
+							Light customisation (+30%)
+						{:else if selected_customisation_level === 'Moderate'}
+							Medium customisation (+50%)
+						{:else}
+							Heavy customisation (+110%)
+						{/if}
+					</div>
+				</div>
+
+				<div class="stat">
+					<div class="stat-title font-medium">Total</div>
+					<div class="stat-value text-accent flex items-center">
+						{locale_string(
+							video_cost_with_customisation_in_selected_currency,
+						)}
+						<span class="ml-2 text-xl">
+							{selected_currency}
+						</span>
+					</div>
+					<div class="stat-desc">Final price</div>
+				</div>
+			</div>
 		</div>
 	</div>
-
-	<div class="stat">
-		<div class="stat-title">Customisation</div>
-		<div class="stat-value flex">
-			{selected_customisation_level}
-		</div>
-	</div>
-
-	<div class="stat">
-		<div class="stat-title">Total</div>
-		<div class="stat-value flex">
-			{locale_string(
-				video_cost_with_customisation_in_selected_currency,
-			)}
-			<span class="ml-2 text-xl">
-				{selected_currency}
-			</span>
-		</div>
-	</div>
-</section>
+</div>
