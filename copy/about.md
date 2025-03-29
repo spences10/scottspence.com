@@ -18,7 +18,10 @@ codebase centred around an AI product. My role, leading a team of
 super talented developers and ensuring best practices in the
 development lifecycle. Prior to this, I was a developer advocate,
 partnering with companies to create content that educates users and
-streamline their journey.
+streamline their journey. For specialized Svelte consulting services,
+visit [svelteconsulting.dev](https://svelteconsulting.dev). I'm also
+the founder of [OES Technology](https://oestechnology.co.uk), where we
+provide scalable Svelte solutions for businesses.
 
 I create content written in the blog here and educational videos
 supporting the written content.
@@ -64,7 +67,8 @@ I like to think of myself as an easy to approach and friendly person.
 I'm obsessed with watching anything to do with mechanical engineering
 and restorations on YouTube.
 
-I got a Steam Deck! Been playing Borderlands 1, 2 and 3 on it, still really like the franchise after all this time 😊
+I got a Steam Deck! Been playing Borderlands 1, 2 and 3 on it, still
+really like the franchise after all this time 😊
 
 ### Music I listen to
 
@@ -128,4 +132,4 @@ Stories about big tech and how it's changing the world.
 [portfolio section]: /portfolio
 [speaking]: /speaking
 [svelte society london]:
-  https://beta.guild.host/svelte-society-london/events
+	https://guild.host/svelte-society-london/events

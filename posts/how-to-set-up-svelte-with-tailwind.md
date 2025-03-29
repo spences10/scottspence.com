@@ -30,10 +30,10 @@ I'll go through the setup on the default project from each of the
 `init` commands with both Vite and Svelte. I'll then reuse the styles
 on the index page of both projects to convert them to use Tailwind.
 
-Both examples will use the [Svelte Add] utility and I'll go through converting
-each one from the Svelte scoped CSS over to Tailwind.
+Both examples will use the [Svelte Add] utility and I'll go through
+converting each one from the Svelte scoped CSS over to Tailwind.
 
-Did you rad the banner? This post is <DD date={date} /> old now, I've
+Did you read the banner? This post is <DD date={date} /> old now, I've
 added some more content on using the new Svelte CLI to add Tailwind.
 👇
 
@@ -366,8 +366,13 @@ Done.
 ## Conclusion
 
 I've created a couple of example projects using the `npm init` command
-for both Vite and Svelte. Added in Tailwind support using [Svelte
-Add] and replaced the index page styles on each with Tailwind styles.
+for both Vite and Svelte. Added in Tailwind support using [Svelte Add]
+and replaced the index page styles on each with Tailwind styles.
+
+Need help implementing Svelte and Tailwind in your business projects?
+Visit [OES Technology](https://oestechnology.co.uk) where we provide
+scalable Svelte solutions with modern styling approaches like Tailwind
+CSS.
 
 <!-- Links -->
 

@@ -71,7 +71,10 @@ Beyond standalone workshops, I offer long-term consulting services and
 project leadership. As the current Application Team Lead at XtendOps,
 overseeing a large SvelteKit monorepo codebase, I bring valuable
 experience in leading multi-national remote teams and ensuring best
-practices throughout the development lifecycle.
+practices throughout the development lifecycle. For specialized Svelte
+consulting services, visit
+[Svelte Consulting](https://svelteconsulting.dev) or
+[OES Technology](https://oestechnology.co.uk).
 
 My approach is collaborative and adaptive, focusing on creating a
 positive and productive working environment. I believe in the

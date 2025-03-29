@@ -19,7 +19,8 @@
 </Small>
 
 If you want me to talk about using Svelte and SvelteKit or anything
-else [get in touch].
+else [get in touch]. I offer similar workshops for teams through
+[my consulting services](https://svelteconsulting.dev/services/workshops).
 
 **Recent talks, workshops and appearances**
 

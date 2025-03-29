@@ -8,8 +8,6 @@ export const payment_pointer = '$ilp.uphold.com/bzPBWkMBzLmN'
 
 export const language = 'en-GB'
 
-export const twitter_handle = '@spences10'
-
 export const SOCIAL_LINKS = [
 	{
 		title: `Bluesky`,
@@ -35,10 +33,6 @@ export const SOCIAL_LINKS = [
 
 export const SITE_LINKS = [
 	{
-		title: `Writing`,
-		slug: `posts`,
-	},
-	{
 		title: `About`,
 		slug: `about`,
 	},
@@ -51,10 +45,6 @@ export const SITE_LINKS = [
 		slug: `portfolio`,
 	},
 	{
-		title: `Speaking`,
-		slug: `speaking`,
-	},
-	{
 		title: `Uses`,
 		slug: `uses`,
 	},
@@ -63,12 +53,12 @@ export const SITE_LINKS = [
 		slug: `newsletter`,
 	},
 	{
-		title: `Contact`,
-		slug: `contact`,
-	},
-	{
 		title: `Media Pack`,
 		slug: `media`,
+	},
+	{
+		title: `Let's work together`,
+		slug: `lets-work-together`,
 	},
 	{
 		title: `Privacy Policy`,
