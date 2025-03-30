@@ -164,7 +164,7 @@ Super open ended! But specific enough for the LLM to know what to do.
 Notice that I still had to correct the LLM for Svelte 5 events though?
 Cline would regularly get it wrong, using the `on:click` syntax.
 
-```markdown
+```text
 ✔️ Task Completed I've created a task prioritisation demo that
 showcases key Svelte 5 features:
 
