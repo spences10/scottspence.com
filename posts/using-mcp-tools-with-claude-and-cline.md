@@ -131,7 +131,7 @@ read the docs for that feature and create a focused demo about it.
 
 So, with some prompting in Claude Desktop I got to this:
 
-```markdown
+```text
 Use sequential thinking to help me create a Svelte 5 demo app:
 
 1. Feature Discovery: a. Use Jina.ai reader to parse
