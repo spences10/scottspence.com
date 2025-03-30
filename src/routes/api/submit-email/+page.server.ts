@@ -34,7 +34,14 @@ export const actions = {
 						Authorization: `Token ${BUTTONDOWN_API_KEY}`,
 						'Content-Type': 'application/json',
 					},
-					body: JSON.stringify({ email, tags }),
+					body: JSON.stringify({
+						email,
+						tags,
+						metadata: {
+							source_ip: ip,
+							submission_source: 'scottspence.com',
+						},
+					}),
 				},
 			)
 
