@@ -60,6 +60,8 @@ had to do with Claude Desktop.
 The `.claude.json` file contains a a bit more than just MCP server
 configurations. Here's a simplified overview of what I found in mine:
 
+<!-- cSpell:ignore daltonized -->
+
 ```json
 {
 	"numStartups": 34,
@@ -140,6 +142,8 @@ manage multiple API keys and configurations. That's why I created
 combines all these search tools into a single MCP server.
 
 Here's how to configure it:
+
+<!-- cSpell:ignore firecrawl -->
 
 ```json
 {
