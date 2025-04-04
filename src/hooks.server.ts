@@ -1,3 +1,4 @@
+import { building } from '$app/environment'
 import {
 	rejected_extensions,
 	rejected_paths,
@@ -10,6 +11,11 @@ const reject_suspicious_requests: Handle = async ({
 	event,
 	resolve,
 }) => {
+	// Skip during prerendering/building
+	if (building) {
+		return await resolve(event)
+	}
+
 	const pathname = event.url.pathname.toLowerCase()
 
 	// Get the real client IP address from headers
