@@ -7,7 +7,12 @@ const buttondown_endpoint = '/v1/subscribers'
 
 export const actions = {
 	default: async ({ request, getClientAddress }) => {
-		const ip = getClientAddress()
+		// Get the real client IP address from headers
+		const ip =
+			request.headers.get('x-forwarded-for')?.split(',')[0] ||
+			request.headers.get('x-real-ip') ||
+			getClientAddress()
+
 		const rate_limit_attempt = await ratelimit.limit(ip)
 
 		if (!rate_limit_attempt.success) {

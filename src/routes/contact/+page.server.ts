@@ -24,7 +24,7 @@ const contains_sql_injection = (input: string): boolean => {
 		/DBMS_PIPE\.RECEIVE_MESSAGE/i,
 	]
 
-	return patterns.some(pattern => pattern.test(input))
+	return patterns.some((pattern) => pattern.test(input))
 }
 
 // sanitize input
@@ -40,7 +40,12 @@ const sanitize_input = (input: string): string => {
 
 export const actions = {
 	default: async ({ request, getClientAddress }) => {
-		const ip = getClientAddress()
+		// Get the real client IP address from headers
+		const ip =
+			request.headers.get('x-forwarded-for')?.split(',')[0] ||
+			request.headers.get('x-real-ip') ||
+			getClientAddress()
+
 		const rate_limit_attempt = await ratelimit.limit(ip)
 
 		if (!rate_limit_attempt.success) {

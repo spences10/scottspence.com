@@ -12,19 +12,27 @@ const reject_suspicious_requests: Handle = async ({
 }) => {
 	const pathname = event.url.pathname.toLowerCase()
 
-	if (rejected_extensions.some(ext => pathname.endsWith(ext))) {
+	// Get the real client IP address from headers
+	const client_ip =
+		event.request.headers.get('x-forwarded-for')?.split(',')[0] ||
+		event.request.headers.get('x-real-ip') ||
+		event.getClientAddress()
+
+	if (rejected_extensions.some((ext) => pathname.endsWith(ext))) {
 		console.log(
-			`Suspicious file extension request redirected: ${pathname}`,
+			`Suspicious file extension request redirected from IP ${client_ip}: ${pathname}`,
 		)
 		throw redirect(302, 'https://www.google.com')
 	}
 
 	if (
 		rejected_paths.some(
-			path => pathname === path || pathname.startsWith(path + '/'),
+			(path) => pathname === path || pathname.startsWith(path + '/'),
 		)
 	) {
-		console.log(`Suspicious path request redirected: ${pathname}`)
+		console.log(
+			`Suspicious path request redirected from IP ${client_ip}: ${pathname}`,
+		)
 		throw redirect(302, 'https://www.google.com')
 	}
 
@@ -72,7 +80,7 @@ const handle_preload: Handle = async ({ event, resolve }) => {
 				return true
 			}
 			return false
-		}
+		},
 	})
 }
 
@@ -80,5 +88,5 @@ export const handle = sequence(
 	reject_suspicious_requests,
 	handle_redirects,
 	theme,
-	handle_preload
+	handle_preload,
 )
