@@ -34,16 +34,17 @@
 	let { data } = $props()
 
 	let { Content, related_posts } = data
+	const meta = data.meta ?? {}
 	let {
-		title,
-		date,
-		updated,
-		preview,
-		slug,
-		is_private,
-		tags,
-		reading_time,
-	} = data.meta
+		title = 'Post not found',
+		date = new Date().toISOString(),
+		updated = date,
+		preview = 'This post could not be loaded',
+		slug = '',
+		is_private = false,
+		tags = [],
+		reading_time = 0,
+	} = meta
 	let { count } = data
 
 	const url = `${website}/posts/${slug}`
@@ -103,7 +104,7 @@
 	>(undefined)
 
 	$effect(() => {
-		headings_promise = get_headings().then(headings => {
+		headings_promise = get_headings().then((headings) => {
 			return headings
 		})
 	})
@@ -179,7 +180,7 @@
 
 <article>
 	<h1 class="mb-1 text-5xl font-black">{title}</h1>
-	<div class="mb-3 mt-4 uppercase">
+	<div class="mt-4 mb-3 uppercase">
 		<div class="mb-1">
 			<time datetime={new Date(date).toISOString()}>
 				{format(new Date(date), 'MMMM d, yyyy')}
@@ -191,7 +192,7 @@
 			{#each tags as tag}
 				<a href={`/tags/${tag}`}>
 					<span
-						class="badge badge-sm badge-primary mr-2 text-primary-content shadow-md transition hover:bg-accent hover:text-accetn-content"
+						class="badge badge-sm badge-primary text-primary-content hover:bg-accent hover:text-accetn-content mr-2 shadow-md transition"
 					>
 						{tag}
 					</span>
@@ -199,7 +200,7 @@
 			{/each}
 			{#if differenceInDays(new Date(), new Date(date)) < 31}
 				<span
-					class="badge badge-sm badge-secondary cursor-pointer font-bold text-secondary-content shadow-md transition hover:bg-accent hover:text-accent-content"
+					class="badge badge-sm badge-secondary text-secondary-content hover:bg-accent hover:text-accent-content cursor-pointer font-bold shadow-md transition"
 				>
 					new
 				</span>
@@ -244,7 +245,7 @@
 	</div>
 
 	<div
-		class="mb-5 mt-10 flex w-full flex-col"
+		class="mt-10 mb-5 flex w-full flex-col"
 		bind:this={end_of_copy}
 	>
 		<div class="divider divider-secondary"></div>
