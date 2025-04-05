@@ -1,3 +1,5 @@
+import { error } from '@sveltejs/kit'
+
 export const load = async ({
 	params,
 	data: { count, related_posts },
@@ -13,9 +15,8 @@ export const load = async ({
 			meta: { ...post.metadata, slug },
 		}
 	} catch (err) {
-		return {
-			status: 404,
-			error: err,
-		}
+		error(404, {
+			message: 'Post not found',
+		})
 	}
 }

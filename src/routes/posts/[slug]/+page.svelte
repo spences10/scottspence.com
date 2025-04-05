@@ -33,19 +33,17 @@
 
 	let { data } = $props()
 
-	let { Content, related_posts } = data
-	const meta = data.meta ?? {}
-	let {
-		title = 'Post not found',
-		date = new Date().toISOString(),
-		updated = date,
-		preview = 'This post could not be loaded',
-		slug = '',
-		is_private = false,
-		tags = [],
-		reading_time = 0,
+	let { Content, related_posts, meta, count } = data
+	const {
+		title,
+		date,
+		updated,
+		preview,
+		slug,
+		is_private,
+		tags,
+		reading_time,
 	} = meta
-	let { count } = data
 
 	const url = `${website}/posts/${slug}`
 	const seo_config = create_seo_config({

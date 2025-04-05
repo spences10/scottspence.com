@@ -1,23 +1,40 @@
 <script lang="ts">
-	import { Head } from 'svead';
-	import { name, website } from '$lib/info';
-	import { create_seo_config } from '$lib/seo';
-	import { og_image_url } from '$lib/utils';
+	import { name, website } from '$lib/info'
+	import { create_seo_config } from '$lib/seo'
+	import { og_image_url } from '$lib/utils'
+	import { Head } from 'svead'
 
-	interface Props {
-		data: {
-			site_stats: any[];
-			current_month: string;
-			current_year: number;
-		};
+	interface Stats {
+		views: number
+		unique_visitors: number
 	}
 
-	let { data } = $props<Props>();
-	const { site_stats, current_month, current_year } = data;
+	interface MonthlyStats extends Stats {
+		year_month: string
+	}
 
-	let selected_period = $state('all_time');
-	let selected_year = $state(current_year);
-	let selected_month = $state(current_month);
+	interface YearlyStats extends Stats {
+		year: number
+	}
+
+	interface SiteStat {
+		title: string
+		slug: string
+		monthly_stats: MonthlyStats[]
+		yearly_stats: YearlyStats[]
+		all_time_stats: Stats
+	}
+
+	interface StatsWithCurrent extends SiteStat {
+		current_stats: Stats
+	}
+
+	let { data } = $props()
+	const { site_stats, current_month, current_year } = data
+
+	let selected_period = $state('all_time')
+	let selected_year = $state<number>(Number(current_year))
+	let selected_month = $state(current_month)
 
 	const seo_config = create_seo_config({
 		title: `Site Stats - ${name}`,
@@ -29,30 +46,34 @@
 		),
 		url: `${website}/stats`,
 		slug: 'stats',
-	});
+	})
 
 	let filtered_analytics = $derived.by(() => {
 		// First map the data with appropriate stats
-		const mapped_data = site_stats.map((post) => {
-			let current_stats;
+		const mapped_data = site_stats.map((post): StatsWithCurrent => {
+			let current_stats: Stats
 
 			if (selected_period === 'monthly') {
 				current_stats = post.monthly_stats.find(
 					(m) => m.year_month === selected_month,
-				) || { views: 0, unique_visitors: 0 };
+				) || { views: 0, unique_visitors: 0 }
 			} else if (selected_period === 'yearly') {
 				current_stats = post.yearly_stats.find(
-					(y) => y.year === selected_year,
-				) || { views: 0, unique_visitors: 0 };
+					(y) => Number(y.year) === selected_year,
+				) || { views: 0, unique_visitors: 0 }
 			} else {
-				current_stats = post.all_time_stats;
+				current_stats = post.all_time_stats
 			}
 
 			return {
 				...post,
 				current_stats,
-			};
-		});
+				yearly_stats: post.yearly_stats.map((y) => ({
+					...y,
+					year: Number(y.year),
+				})),
+			} as StatsWithCurrent
+		})
 
 		// Filter out items with no views and sort by views descending
 		return mapped_data
@@ -61,8 +82,8 @@
 					post.current_stats.views > 0 ||
 					post.current_stats.unique_visitors > 0,
 			)
-			.sort((a, b) => b.current_stats.views - a.current_stats.views);
-	});
+			.sort((a, b) => b.current_stats.views - a.current_stats.views)
+	})
 </script>
 
 <Head {seo_config} />
@@ -86,8 +107,8 @@
 				class="select select-bordered w-full max-w-xs"
 			>
 				{#each [...new Set(site_stats.flatMap((p) => p.yearly_stats
-								.filter((y) => y.year < current_year)
-								.map((y) => y.year)))]
+								.filter((y) => Number(y.year) < Number(current_year))
+								.map((y) => Number(y.year))))]
 					.sort()
 					.reverse() as year}
 					<option value={year}>{year}</option>
@@ -104,8 +125,11 @@
 								.filter((m) => {
 									const [year, month] = m.year_month
 										.split('-')
-										.map(Number);
-									return year < current_year || (year === current_year && month < current_month);
+										.map(Number)
+									const [current_year_num, current_month_num] = current_month
+											.split('-')
+											.map(Number)
+									return year < current_year_num || (year === current_year_num && month < current_month_num)
 								})
 								.map((m) => m.year_month)))]
 					.sort()
@@ -117,7 +141,7 @@
 	</div>
 
 	<div class="overflow-x-auto">
-		<table class="table table-zebra">
+		<table class="table-zebra table">
 			<thead>
 				<tr>
 					<th>Title</th>
