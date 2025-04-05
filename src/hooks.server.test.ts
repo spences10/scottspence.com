@@ -23,9 +23,15 @@ vi.mock('$lib/reject-patterns', () => ({
 // Helper function to create a mock event
 const createMockEvent = (pathname: string, theme?: string) => ({
 	url: new URL(`https://example.com${pathname}`),
+	request: new Request(`https://example.com${pathname}`, {
+		headers: new Headers({
+			'x-forwarded-for': '127.0.0.1',
+		}),
+	}),
 	cookies: {
 		get: vi.fn().mockReturnValue(theme),
 	},
+	getClientAddress: () => '127.0.0.1',
 })
 
 // Helper function to create a mock resolve function
