@@ -1,5 +1,11 @@
 [phases.setup]
-nixPkgs = [
-  "nodejs_22_13",
-  "pnpm-10_x"
-]
+packages = ["nodejs_18", "pnpm-9_x", "curl", "wget"]
+
+[phases.install]
+cmds = ["pnpm i --frozen-lockfile"]
+
+[phases.build]
+cmds = ["pnpm run build"]
+
+[start]
+cmd = "pnpm run start"
