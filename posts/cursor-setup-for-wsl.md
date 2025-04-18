@@ -277,7 +277,7 @@ wsl --list --verbose
 I had this happen recently, installed Cursor, no issues, but, trying
 to use the `code` command would open Cursor instead. A quick search
 found this from [Nam Vũ](https://namvu.net/)
-[Cursor stole your ‘code’ command? Here’s how to revert it](https://namvu.net/2025/01/cursor-stole-your-code-command-heres-how-to-revert-it/)
+[Cursor stole your ‘code' command? Here's how to revert it](https://namvu.net/2025/01/cursor-stole-your-code-command-heres-how-to-revert-it/)
 
 Open this folder `%localappdata%\Programs\cursor\resources\app\bin`
 

@@ -35,13 +35,13 @@ query is this:
 
 ```graphql
 query AllCharacters {
-  characters {
-    results {
-      name
-      id
-      image
-    }
-  }
+	characters {
+		results {
+			name
+			id
+			image
+		}
+	}
 }
 ```
 
@@ -59,19 +59,19 @@ add in the following query:
 
 ```graphql
 query GetCharacter($id: ID!) {
-  character(id: $id) {
-    name
-    image
-    status
-    species
-    location {
-      name
-      type
-    }
-    episode {
-      name
-    }
-  }
+	character(id: $id) {
+		name
+		image
+		status
+		species
+		location {
+			name
+			type
+		}
+		episode {
+			name
+		}
+	}
 }
 ```
 
@@ -137,7 +137,7 @@ Because the the URQL client uses the [Svelte Context API] to
 `setContextClient` and `getContextClient` there's no opinion as far as
 I know where it should go. Typically I'll create a client it in a
 place accessible by other pages so the most logical place (to me) is
-to use the client in a Svelte layout page, I’ll need to create that:
+to use the client in a Svelte layout page, I'll need to create that:
 
 ```bash
 touch src/routes/+layout.svelte
@@ -149,17 +149,17 @@ Then I can initialise the client in the layout file using the URQL
 
 ```svelte
 <script>
-  import { createClient, setContextClient } from '@urql/svelte'
+	import { createClient, setContextClient } from '@urql/svelte'
 
-  const client = createClient({
-    url: `https://rickandmortyapi.com/graphql`,
-  })
+	const client = createClient({
+		url: `https://rickandmortyapi.com/graphql`,
+	})
 
-  setContextClient(client)
+	setContextClient(client)
 </script>
 
 <main>
-  <slot />
+	<slot />
 </main>
 ```
 
@@ -191,22 +191,22 @@ in a pre tag for now to validate it's working:
 
 ```svelte
 <script>
-  import { getContextClient, gql, queryStore } from '@urql/svelte'
+	import { getContextClient, gql, queryStore } from '@urql/svelte'
 
-  const charactersQueryStore = queryStore({
-    client: getContextClient(),
-    query: gql`
-      query AllCharacters {
-        characters {
-          results {
-            name
-            id
-            image
-          }
-        }
-      }
-    `,
-  })
+	const charactersQueryStore = queryStore({
+		client: getContextClient(),
+		query: gql`
+			query AllCharacters {
+				characters {
+					results {
+						name
+						id
+						image
+					}
+				}
+			}
+		`,
+	})
 </script>
 
 <pre>{JSON.stringify($charactersQueryStore, null, 2)}</pre>
@@ -223,39 +223,39 @@ render them.
 
 ```svelte
 <script>
-  import { getContextClient, gql, queryStore } from '@urql/svelte'
+	import { getContextClient, gql, queryStore } from '@urql/svelte'
 
-  const charactersQueryStore = queryStore({
-    client: getContextClient(),
-    query: gql`
-      query AllCharacters {
-        characters {
-          results {
-            name
-            id
-            image
-          }
-        }
-      }
-    `,
-  })
+	const charactersQueryStore = queryStore({
+		client: getContextClient(),
+		query: gql`
+			query AllCharacters {
+				characters {
+					results {
+						name
+						id
+						image
+					}
+				}
+			}
+		`,
+	})
 </script>
 
 <h1>The World of Rick and Morty</h1>
 
 <div>
-  {#if $charactersQueryStore.fetching}
-    <p>Loading...</p>
-  {:else if $charactersQueryStore.error}
-    <p>Oopsie! {$charactersQueryStore.error.message}</p>
-  {:else}
-    {#each $charactersQueryStore.data.characters.results as character}
-      <section>
-        <img src={character?.image} alt={character?.name} />
-        <h2>{character?.name}</h2>
-      </section>
-    {/each}
-  {/if}
+	{#if $charactersQueryStore.fetching}
+		<p>Loading...</p>
+	{:else if $charactersQueryStore.error}
+		<p>Oopsie! {$charactersQueryStore.error.message}</p>
+	{:else}
+		{#each $charactersQueryStore.data.characters.results as character}
+			<section>
+				<img src={character?.image} alt={character?.name} />
+				<h2>{character?.name}</h2>
+			</section>
+		{/each}
+	{/if}
 </div>
 ```
 
@@ -284,10 +284,10 @@ now:
 
 ```svelte
 <section>
-  <a data-sveltekit-prefetch href={`/character/${character?.id}`}>
-    <img src={character?.image} alt={character?.name} />
-    <h2>{character?.name}</h2>
-  </a>
+	<a data-sveltekit-prefetch href={`/character/${character?.id}`}>
+		<img src={character?.image} alt={character?.name} />
+		<h2>{character?.name}</h2>
+	</a>
 </section>
 ```
 
@@ -295,44 +295,44 @@ Here's what the page looks like now:
 
 ```svelte
 <script>
-  import { getContextClient, gql, queryStore } from '@urql/svelte'
+	import { getContextClient, gql, queryStore } from '@urql/svelte'
 
-  const charactersQueryStore = queryStore({
-    client: getContextClient(),
-    query: gql`
-      query AllCharacters {
-        characters {
-          results {
-            name
-            id
-            image
-          }
-        }
-      }
-    `,
-  })
+	const charactersQueryStore = queryStore({
+		client: getContextClient(),
+		query: gql`
+			query AllCharacters {
+				characters {
+					results {
+						name
+						id
+						image
+					}
+				}
+			}
+		`,
+	})
 </script>
 
 <h1>The World of Rick and Morty</h1>
 
 <div>
-  {#if $charactersQueryStore.fetching}
-    <p>Loading...</p>
-  {:else if $charactersQueryStore.error}
-    <p>Oopsie! {$charactersQueryStore.error.message}</p>
-  {:else}
-    {#each $charactersQueryStore.data.characters.results as character}
-      <section>
-        <a
-          data-sveltekit-prefetch
-          href={`/character/${character?.id}`}
-        >
-          <img src={character?.image} alt={character?.name} />
-          <h2>{character?.name}</h2>
-        </a>
-      </section>
-    {/each}
-  {/if}
+	{#if $charactersQueryStore.fetching}
+		<p>Loading...</p>
+	{:else if $charactersQueryStore.error}
+		<p>Oopsie! {$charactersQueryStore.error.message}</p>
+	{:else}
+		{#each $charactersQueryStore.data.characters.results as character}
+			<section>
+				<a
+					data-sveltekit-prefetch
+					href={`/character/${character?.id}`}
+				>
+					<img src={character?.image} alt={character?.name} />
+					<h2>{character?.name}</h2>
+				</a>
+			</section>
+		{/each}
+	{/if}
 </div>
 ```
 
@@ -374,10 +374,10 @@ that the `id` is there:
 /** @type {import('@sveltejs/kit').Load} */
 
 export const load = async ({ params }) => {
-  console.log('=====================')
-  console.log(params)
-  console.log('=====================')
-  return {}
+	console.log('=====================')
+	console.log(params)
+	console.log('=====================')
+	return {}
 }
 ```
 
@@ -388,8 +388,8 @@ return that for the `+page.svelte` file to use:
 /** @type {import('@sveltejs/kit').Load} */
 
 export const load = async ({ params }) => {
-  const { id } = params
-  return { id }
+	const { id } = params
+	return { id }
 }
 ```
 
@@ -398,31 +398,31 @@ In the `+page.svelte` file I can now use the `id` to pass to the
 
 ```svelte
 <script>
-  export let data
-  let { id } = data
+	export let data
+	let { id } = data
 
-  import { getContextClient, gql, queryStore } from '@urql/svelte'
-  const characterQueryStore = queryStore({
-    client: getContextClient(),
-    variables: { id },
-    query: gql`
-      query GetCharacter($id: ID!) {
-        character(id: $id) {
-          name
-          image
-          status
-          species
-          location {
-            name
-            type
-          }
-          episode {
-            name
-          }
-        }
-      }
-    `,
-  })
+	import { getContextClient, gql, queryStore } from '@urql/svelte'
+	const characterQueryStore = queryStore({
+		client: getContextClient(),
+		variables: { id },
+		query: gql`
+			query GetCharacter($id: ID!) {
+				character(id: $id) {
+					name
+					image
+					status
+					species
+					location {
+						name
+						type
+					}
+					episode {
+						name
+					}
+				}
+			}
+		`,
+	})
 </script>
 
 <pre>{JSON.stringify($characterQueryStore, null, 2)}</pre>
@@ -453,12 +453,12 @@ my [GitHub account].
 <!-- Links -->
 
 [documentation]:
-  https://formidable.com/open-source/urql/docs/basics/svelte/
+	https://formidable.com/open-source/urql/docs/basics/svelte/
 [post on this]: https://scottspence.com/posts/use-urql-with-svelte/
 [things have changed slightly]:
-  https://github.com/sveltejs/kit/discussions/5774
+	https://github.com/sveltejs/kit/discussions/5774
 [rick and morty graphql api]:
-  https://rickandmortyapi.com/documentation/
+	https://rickandmortyapi.com/documentation/
 [graphql endpoint]: https://rickandmortyapi.com/graphql
 [example code]: https://github.com/spences10/sveltekit-with-urql
 [svelte context api]: https://svelte.dev/tutorial/context-api
@@ -467,6 +467,6 @@ my [GitHub account].
 <!-- Images -->
 
 [rickandmortyapi-graphiql]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1664657798/scottspence.com/rickandmortyapi-graphiql.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1664657798/scottspence.com/rickandmortyapi-graphiql.png
 [rickandmortyapi-graphql-single-character]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1664658680/scottspence.com/rickandmortyapi-graphql-single-character.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1664658680/scottspence.com/rickandmortyapi-graphql-single-character.png

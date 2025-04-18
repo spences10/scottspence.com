@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { formatDistance } from 'date-fns'
+	import { formatDistanceStrict } from 'date-fns'
 
 	let { date } = $props<{ date: number | string | Date }>()
 
 	let distance = $derived.by(() =>
-		formatDistance(new Date(Date.now()), new Date(date)),
+		formatDistanceStrict(new Date(Date.now()), new Date(date)),
 	)
 </script>
 

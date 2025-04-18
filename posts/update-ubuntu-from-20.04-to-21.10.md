@@ -10,7 +10,7 @@ is_private: false
   import { YouTube } from 'sveltekit-embed'
 </script>
 
-In this guide I’m going to detail upgrading Ubuntu on Windows
+In this guide I'm going to detail upgrading Ubuntu on Windows
 Subsystem for Linux (WSL) from the current version 20.04 to 22.04 this
 the development build of Ubuntu 22.04 which is due to be released on
 2022 April 21.
@@ -214,14 +214,14 @@ I hope you found useful and I'll see you in the next one!
 <!-- Links -->
 
 [documented the process]:
-  https://scottspence.com/posts/update-wsl-ubuntu-from-18.10-to-19.10
+	https://scottspence.com/posts/update-wsl-ubuntu-from-18.10-to-19.10
 [`-d`]: https://ubuntu.com/server/docs/upgrade-introduction
 
 <!-- Images -->
 
 [configure-ubuntu-mail-server-initial]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643235369/scottspence.com/configure-ubuntu-mail-server-initial.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643235369/scottspence.com/configure-ubuntu-mail-server-initial.png
 [configure-ubuntu-mail-server-no-config]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1643235370/scottspence.com/configure-ubuntu-mail-server-no-config.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/v1643235370/scottspence.com/configure-ubuntu-mail-server-no-config.png
 [configure-ubuntu-mail-server-ok]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/v1643235369/scottspence.com/configure-ubuntu-mail-server-ok.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/v1643235369/scottspence.com/configure-ubuntu-mail-server-ok.png

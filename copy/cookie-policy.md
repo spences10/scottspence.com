@@ -37,7 +37,7 @@ themes on the site, that's using a cookie.
 - **Type**: First-party cookie. Only for this site used nowhere else
   or shared.
 
-I don’t use cookies for selling ads or following you around the
+I don't use cookies for selling ads or following you around the
 internet. I respect your privacy. For more on that check out the
 [Privacy Policy](/privacy-policy).
 

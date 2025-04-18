@@ -234,7 +234,7 @@ The error message looks something like this:
 (upower:185): UPower-WARNING **: 18:38:44.618: Cannot connect to upowerd: Could not connect: No such file or directory
 ```
 
-There’s a post on [Miguel Alex Cantu]’s blog about this and there’s a
+There's a post on [Miguel Alex Cantu]'s blog about this and there's a
 spaceship config option for it.
 
 ```bash
@@ -295,18 +295,18 @@ found it useful then that's a massive win for me! Thank you 🙏
 [fish]: https://fishshell.com/
 [oh my zsh]: https://ohmyz.sh/
 [installing zsh and oh my zsh on fedora]:
-  https://scottspence.com/posts/wsl-web-developer-setup-with-fedora-35#install-zsh-and-oh-my-zsh
+	https://scottspence.com/posts/wsl-web-developer-setup-with-fedora-35#install-zsh-and-oh-my-zsh
 [default `.zshrc` file]:
-  https://github.com/ohmyzsh/ohmyzsh/blob/master/templates/zshrc.zsh-template
+	https://github.com/ohmyzsh/ohmyzsh/blob/master/templates/zshrc.zsh-template
 [`zsh-syntax-highlighting`]:
-  https://github.com/zsh-users/zsh-syntax-highlighting
+	https://github.com/zsh-users/zsh-syntax-highlighting
 [`zsh-autosuggestions`]:
-  https://github.com/zsh-users/zsh-autosuggestions
+	https://github.com/zsh-users/zsh-autosuggestions
 [`spaceship`]: https://github.com/spaceship-prompt/spaceship-prompt
 [miguel alex cantu]:
-  http://blog.miguelalexcantu.com/2020/12/fixing-upower-warning-wslzshspaceship.html
+	http://blog.miguelalexcantu.com/2020/12/fixing-upower-warning-wslzshspaceship.html
 [video from gotbletu]: https://www.youtube.com/watch?v=WTTIGjZAMGg
 [zsh and oh my zsh]:
-  https://scottspence.com/posts/zsh-and-oh-my-zsh#abbreviations
+	https://scottspence.com/posts/zsh-and-oh-my-zsh#abbreviations
 [dotfiles on github]:
-  https://github.com/spences10/dotfiles/blob/main/.zsh_aliases
+	https://github.com/spences10/dotfiles/blob/main/.zsh_aliases

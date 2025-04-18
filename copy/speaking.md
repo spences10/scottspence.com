@@ -112,7 +112,7 @@ CityJS, 2hr community workshop on building with Svelte and SvelteKit
 ### Modern Web Podcast
 
 Jesse Tomchak and I dive into the ins and outs of Svelte, ramping up
-from React, what’s it like to a second career developer, and the
+from React, what's it like to a second career developer, and the
 importance of paying it forward to developers who are new to the
 community.
 

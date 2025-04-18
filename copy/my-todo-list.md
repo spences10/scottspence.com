@@ -52,10 +52,10 @@ what I'm working on and what I'm thinking about.
 - Looking into i18n details from this
   [post](https://x.com/joshwcomeau/status/1759616073773543485?s=46&t=4RSOl8kQCdkHm0U5FcdeaA)
   from Josh Comeau: "⚠️ Friendly reminder: If you work on
-  internationalization, please do not use the user’s location to
+  internationalization, please do not use the user's location to
   decide what language to serve your content in. Use the
   "Accept-Language" header instead. Users can't set their IP address,
-  but they can set their OS’ language setting."
+  but they can set their OS' language setting."
 
 - Styling RSS feeds! Salma created a
   [post](https://github.com/whitep4nth3r/mk2-p4nth3rblog/blob/main/src/_css/rss-style.xsl)
