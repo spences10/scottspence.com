@@ -57,7 +57,7 @@
 		"jsdom": "^26.1.0",
 		"marked": "15.0.8",
 		"mdsvex": "^0.12.3",
-		"mdsvex-relative-images": "1.0.3",
+		"mdsvex-relative-images": "2.0.0",
 		"nodemailer": "^6.10.1",
 		"prettier": "^3.5.3",
 		"prettier-plugin-svelte": "^3.3.3",
