@@ -1,8 +1,4 @@
-import {
-	cleanup,
-	render,
-	screen,
-} from '@testing-library/svelte/svelte5'
+import { cleanup, render, screen } from '@testing-library/svelte'
 import { format } from 'date-fns'
 import { afterEach, expect, test, vi } from 'vitest'
 import DateUpdated from './date-updated.svelte'

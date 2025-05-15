@@ -1,15 +1,11 @@
-import {
-	cleanup,
-	render,
-	screen,
-} from '@testing-library/svelte/svelte5'
-import { formatDistance } from 'date-fns'
+import { cleanup, render, screen } from '@testing-library/svelte'
+import { formatDistanceStrict } from 'date-fns'
 import { afterEach, expect, test, vi } from 'vitest'
 import DateDistance from './date-distance.svelte'
 
-// Mock date-fns formatDistance function
+// Mock date-fns formatDistanceStrict function
 vi.mock('date-fns', () => ({
-	formatDistance: vi.fn(),
+	formatDistanceStrict: vi.fn(),
 }))
 
 // Clean up after each test
@@ -22,14 +18,14 @@ test('renders formatted date distance', async () => {
 	const mockDate = '2023-01-01'
 	const mockFormattedDistance = '2 months ago'
 
-	vi.mocked(formatDistance).mockReturnValue(mockFormattedDistance)
+	vi.mocked(formatDistanceStrict).mockReturnValue(mockFormattedDistance)
 
 	render(DateDistance, { date: mockDate })
 
 	const element = screen.getByTestId('date-distance')
 	expect(element.textContent).toBe(mockFormattedDistance)
 
-	expect(formatDistance).toHaveBeenCalledWith(
+	expect(formatDistanceStrict).toHaveBeenCalledWith(
 		expect.any(Date),
 		new Date(mockDate),
 	)
@@ -41,7 +37,7 @@ test('updates formatted distance when date prop changes', async () => {
 	const initialFormattedDistance = '6 months ago'
 	const updatedFormattedDistance = '1 month ago'
 
-	vi.mocked(formatDistance)
+	vi.mocked(formatDistanceStrict)
 		.mockReturnValueOnce(initialFormattedDistance)
 		.mockReturnValueOnce(updatedFormattedDistance)
 
@@ -62,13 +58,13 @@ test('updates formatted distance when date prop changes', async () => {
 		expect(element.textContent).toBe(updatedFormattedDistance)
 	})
 
-	expect(formatDistance).toHaveBeenCalledTimes(2)
-	expect(formatDistance).toHaveBeenNthCalledWith(
+	expect(formatDistanceStrict).toHaveBeenCalledTimes(2)
+	expect(formatDistanceStrict).toHaveBeenNthCalledWith(
 		1,
 		expect.any(Date),
 		new Date(initialDate),
 	)
-	expect(formatDistance).toHaveBeenNthCalledWith(
+	expect(formatDistanceStrict).toHaveBeenNthCalledWith(
 		2,
 		expect.any(Date),
 		new Date(updatedDate),

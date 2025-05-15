@@ -1,4 +1,4 @@
-import { render } from '@testing-library/svelte/svelte5'
+import { render } from '@testing-library/svelte'
 import { describe, expect, it, vi } from 'vitest'
 import ButtButt from './butt-butt.svelte'
 

@@ -2,7 +2,7 @@ import {
 	cleanup,
 	fireEvent,
 	render,
-} from '@testing-library/svelte/svelte5'
+} from '@testing-library/svelte'
 import { tick } from 'svelte'
 import {
 	afterEach,
