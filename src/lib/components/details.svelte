@@ -2,15 +2,15 @@
 	import type { Snippet } from 'svelte'
 	import { slide } from 'svelte/transition'
 	interface Props {
-		buttonText?: string
-		isOpen?: boolean
+		button_text?: string
+		is_open?: boolean
 		styles?: string
 		children?: Snippet
 	}
 
 	let {
-		buttonText = '',
-		isOpen = $bindable(false),
+		button_text = '',
+		is_open = $bindable(false),
 		styles = '',
 		children,
 	}: Props = $props()
@@ -19,12 +19,12 @@
 <div>
 	<button
 		class="btn {styles} shadow-xl"
-		onclick={() => (isOpen = !isOpen)}
+		onclick={() => (is_open = !is_open)}
 		data-testid="details-button"
 	>
-		{isOpen ? `Close` : buttonText}
+		{is_open ? `Close` : button_text}
 	</button>
-	{#if isOpen}
+	{#if is_open}
 		<div transition:slide|global data-testid="details-content">
 			{@render children?.()}
 		</div>

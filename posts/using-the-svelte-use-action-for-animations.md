@@ -27,7 +27,7 @@ got to do with this?
 First up! Sorry if you're on a slow internet connection! This image is
 a whopper! But it explains what I wanted to achieve!
 
-<Details buttonText="Click to load up the image!">
+<Details button_text="Click to load up the image!">
   <img src="https://res.cloudinary.com/defkmsrpw/video/upload/f_webp,fl_animated,fl_awebp/e_loop/v1674149984/scottspence.com/http-codes-dev-accordion-animation.mp4" alt="http-codes-dev-accordion-animation"/>
 </Details>
 
@@ -60,18 +60,18 @@ Example code:
 
 ```html
 <details>
-  <summary>
-    HTTP response status codes indicate whether a specific HTTP
-    request has been successfully completed. Responses are grouped in
-    five classes:
-  </summary>
-  <ol>
-    <li>Informational responses (100 - 199)</li>
-    <li>Successful responses (200 - 299)</li>
-    <li>Redirection messages (300 - 399)</li>
-    <li>Client error responses (400 - 499)</li>
-    <li>Server error responses (500 - 599)</li>
-  </ol>
+	<summary>
+		HTTP response status codes indicate whether a specific HTTP
+		request has been successfully completed. Responses are grouped in
+		five classes:
+	</summary>
+	<ol>
+		<li>Informational responses (100 - 199)</li>
+		<li>Successful responses (200 - 299)</li>
+		<li>Redirection messages (300 - 399)</li>
+		<li>Client error responses (400 - 499)</li>
+		<li>Server error responses (500 - 599)</li>
+	</ol>
 </details>
 ```
 
@@ -91,36 +91,36 @@ So this is the component:
 
 ```svelte
 <script>
-  import { slide } from 'svelte/transition'
-  export let buttonText = ''
-  export let open = false
+	import { slide } from 'svelte/transition'
+	export let buttonText = ''
+	export let open = false
 </script>
 
 <section class="border">
-  <button
-    on:click={() => {
-      open = !open
-    }}
-  >
-    <div class="flex items-center text-left">
-      <span style="margin:0 1rem;" class="transition" class:open>
-        ▶
-      </span>
-      <p>{buttonText}</p>
-    </div>
-  </button>
-  {#if open}
-    <div transition:slide class="prose-ol:pl-20">
-      <slot />
-    </div>
-  {/if}
+	<button
+		on:click={() => {
+			open = !open
+		}}
+	>
+		<div class="flex items-center text-left">
+			<span style="margin:0 1rem;" class="transition" class:open>
+				▶
+			</span>
+			<p>{buttonText}</p>
+		</div>
+	</button>
+	{#if open}
+		<div transition:slide class="prose-ol:pl-20">
+			<slot />
+		</div>
+	{/if}
 </section>
 
 <style>
-  .open {
-    transform: rotate(90deg);
-    transform-origin: center;
-  }
+	.open {
+		transform: rotate(90deg);
+		transform-origin: center;
+	}
 </style>
 ```
 
@@ -131,17 +131,17 @@ Then it's used like this:
 
 ```svelte
 <DetailsTransition
-  buttonText={`HTTP response status codes indicate whether a specific HTTP
+	buttonText={`HTTP response status codes indicate whether a specific HTTP
     request has been successfully completed. Responses are grouped
     in five classes:`}
 >
-  <ol>
-    <li>Informational responses (100 - 199)</li>
-    <li>Successful responses (200 - 299)</li>
-    <li>Redirection messages (300 - 399)</li>
-    <li>Client error responses (400 - 499)</li>
-    <li>Server error responses (500 - 599)</li>
-  </ol>
+	<ol>
+		<li>Informational responses (100 - 199)</li>
+		<li>Successful responses (200 - 299)</li>
+		<li>Redirection messages (300 - 399)</li>
+		<li>Client error responses (400 - 499)</li>
+		<li>Server error responses (500 - 599)</li>
+	</ol>
 </DetailsTransition>
 ```
 
@@ -186,28 +186,28 @@ the action is the element that has the `use:` added to it.
 
 ```svelte
 <script>
-  export let buttonText = ''
-  export let open = false
+	export let buttonText = ''
+	export let open = false
 
-  // custom slide animation
-  const slide = (node, open) => {
-    console.log('node', node)
-    console.log('open', open)
-  }
+	// custom slide animation
+	const slide = (node, open) => {
+		console.log('node', node)
+		console.log('open', open)
+	}
 </script>
 
 <button
-  on:click={() => {
-    open = !open
-  }}
+	on:click={() => {
+		open = !open
+	}}
 >
-  <div>
-    <p>{buttonText}</p>
-  </div>
+	<div>
+		<p>{buttonText}</p>
+	</div>
 </button>
 
 <div use:slide={open}>
-  <slot />
+	<slot />
 </div>
 ```
 
@@ -215,14 +215,14 @@ So from here I can set some initial defaults for the node.
 
 ```svelte
 <script>
-  export let buttonText = ''
-  export let open = false
+	export let buttonText = ''
+	export let open = false
 
-  // custom slide animation
-  const slide = (node, open) => {
-    node.style.height = open ? `auto` : '0px'
-    node.style.overflow = 'hidden'
-  }
+	// custom slide animation
+	const slide = (node, open) => {
+		node.style.height = open ? `auto` : '0px'
+		node.style.overflow = 'hidden'
+	}
 </script>
 ```
 
@@ -233,15 +233,15 @@ I can use the `update` method to respond to the button being pressed.
 
 ```js
 const slide = (node, open) => {
-  let initialHeight = node.offsetHeight
-  node.style.height = open ? `auto` : '0px'
-  node.style.overflow = 'hidden'
+	let initialHeight = node.offsetHeight
+	node.style.height = open ? `auto` : '0px'
+	node.style.overflow = 'hidden'
 
-  return {
-    update: open => {
-      node.style.height = open ? `auto` : '0px'
-    },
-  }
+	return {
+		update: (open) => {
+			node.style.height = open ? `auto` : '0px'
+		},
+	}
 }
 ```
 
@@ -317,9 +317,9 @@ animation is paused.
 
 ```js
 animation.onfinish = () => {
-  if (animation.currentTime === 0) {
-    animation.pause()
-  }
+	if (animation.currentTime === 0) {
+		animation.pause()
+	}
 }
 ```
 
@@ -329,10 +329,10 @@ to reverse before it's paused!
 
 ```js
 animation.onfinish = ({ currentTime }) => {
-  if (currentTime === 0) {
-    animation.reverse()
-    animation.pause()
-  }
+	if (currentTime === 0) {
+		animation.reverse()
+		animation.pause()
+	}
 }
 ```
 
@@ -342,9 +342,9 @@ playing or not and either reverse it or play it.
 
 ```js
 return {
-  update: () => {
-    animation.currentTime ? animation.reverse() : animation.play()
-  },
+	update: () => {
+		animation.currentTime ? animation.reverse() : animation.play()
+	},
 }
 ```
 
@@ -352,59 +352,59 @@ So, with that all being said, here's the full component:
 
 ```svelte
 <script>
-  export let buttonText = ''
-  export let open = false
+	export let buttonText = ''
+	export let open = false
 
-  // custom slide animation
-  const slide = (node, open) => {
-    let initialHeight = node.offsetHeight
-    node.style.height = open ? `auto` : '0px'
-    node.style.overflow = 'hidden'
-    let animation = node.animate(
-      [{ height: '0px' }, { height: `${initialHeight}px` }],
-      {
-        duration: 200,
-        easing: 'ease-in-out',
-        fill: 'both',
-        direction: open ? 'reverse' : 'normal',
-      }
-    )
-    animation.pause()
-    animation.onfinish = ({ currentTime }) => {
-      if (currentTime === 0) {
-        animation.reverse()
-        animation.pause()
-      }
-    }
-    return {
-      update: () => {
-        animation.currentTime ? animation.reverse() : animation.play()
-      },
-    }
-  }
+	// custom slide animation
+	const slide = (node, open) => {
+		let initialHeight = node.offsetHeight
+		node.style.height = open ? `auto` : '0px'
+		node.style.overflow = 'hidden'
+		let animation = node.animate(
+			[{ height: '0px' }, { height: `${initialHeight}px` }],
+			{
+				duration: 200,
+				easing: 'ease-in-out',
+				fill: 'both',
+				direction: open ? 'reverse' : 'normal',
+			},
+		)
+		animation.pause()
+		animation.onfinish = ({ currentTime }) => {
+			if (currentTime === 0) {
+				animation.reverse()
+				animation.pause()
+			}
+		}
+		return {
+			update: () => {
+				animation.currentTime ? animation.reverse() : animation.play()
+			},
+		}
+	}
 </script>
 
 <section>
-  <button
-    on:click={() => {
-      open = !open
-    }}
-  >
-    <div>
-      <span class="transition" class:open> ▶ </span>
-      <p>{buttonText}</p>
-    </div>
-  </button>
-  <div use:slide={open}>
-    <slot />
-  </div>
+	<button
+		on:click={() => {
+			open = !open
+		}}
+	>
+		<div>
+			<span class="transition" class:open> ▶ </span>
+			<p>{buttonText}</p>
+		</div>
+	</button>
+	<div use:slide={open}>
+		<slot />
+	</div>
 </section>
 
 <style>
-  .open {
-    transform: rotate(90deg);
-    transform-origin: center;
-  }
+	.open {
+		transform: rotate(90deg);
+		transform-origin: center;
+	}
 </style>
 ```
 
@@ -429,11 +429,11 @@ So, in the `animation.onfinish` event add in my custom event.
 
 ```js
 animation.onfinish = ({ currentTime }) => {
-  if (currentTime === 0) {
-    animation.reverse()
-    animation.pause()
-  }
-  node.dispatchEvent(new CustomEvent('animationEnd'))
+	if (currentTime === 0) {
+		animation.reverse()
+		animation.pause()
+	}
+	node.dispatchEvent(new CustomEvent('animationEnd'))
 }
 ```
 
@@ -442,12 +442,12 @@ the event and then do something with it.
 
 ```svelte
 <div
-  use:slide={open}
-  on:animationEnd={() => {
-    // do something
-  }}
+	use:slide={open}
+	on:animationEnd={() => {
+		// do something
+	}}
 >
-  <slot />
+	<slot />
 </div>
 ```
 
@@ -468,26 +468,26 @@ done via props.
 
 ```svelte
 <section>
-  <button
-    aria-controls="accordion__content_2"
-    aria-expanded={open}
-    tabindex="0"
-    id="accordion__title_2"
-    on:click={() => {
-      open = !open
-    }}
-  >
-    <p>{buttonText}</p>
-  </button>
-  <div
-    use:slide={open}
-    id="accordion__content_2"
-    role="region"
-    aria-hidden={!open}
-    aria-labelledby="accordion__title_2"
-  >
-    <slot />
-  </div>
+	<button
+		aria-controls="accordion__content_2"
+		aria-expanded={open}
+		tabindex="0"
+		id="accordion__title_2"
+		on:click={() => {
+			open = !open
+		}}
+	>
+		<p>{buttonText}</p>
+	</button>
+	<div
+		use:slide={open}
+		id="accordion__content_2"
+		role="region"
+		aria-hidden={!open}
+		aria-labelledby="accordion__title_2"
+	>
+		<slot />
+	</div>
 </section>
 ```
 
@@ -508,23 +508,23 @@ Here's the action:
 // https://svelte.dev/repl/0ace7a508bd843b798ae599940a91783?version=3.16.7
 /** Dispatch event on click outside of node */
 export const clickOutside = (node: any) => {
-  const handleClick = (event: any) => {
-    if (
-      node &&
-      !node.contains(event.target) &&
-      !event.defaultPrevented
-    ) {
-      node.dispatchEvent(new CustomEvent('click_outside', node))
-    }
-  }
+	const handleClick = (event: any) => {
+		if (
+			node &&
+			!node.contains(event.target) &&
+			!event.defaultPrevented
+		) {
+			node.dispatchEvent(new CustomEvent('click_outside', node))
+		}
+	}
 
-  document.addEventListener('click', handleClick, true)
+	document.addEventListener('click', handleClick, true)
 
-  return {
-    destroy() {
-      document.removeEventListener('click', handleClick, true)
-    },
-  }
+	return {
+		destroy() {
+			document.removeEventListener('click', handleClick, true)
+		},
+	}
 }
 ```
 
@@ -532,33 +532,33 @@ Then it's implemented like this:
 
 ```svelte
 <script lang="ts">
-  import { clickOutside } from '$lib/utils'
-  import { cartOpen } from '$stores/cart'
-  import { fly } from 'svelte/transition'
+	import { clickOutside } from '$lib/utils'
+	import { cartOpen } from '$stores/cart'
+	import { fly } from 'svelte/transition'
 
-  const handleClickOutside = () => {
-    $cartOpen = !$cartOpen
-  }
+	const handleClickOutside = () => {
+		$cartOpen = !$cartOpen
+	}
 </script>
 
 {#if $cartOpen}
-  <section
-    use:clickOutside
-    on:click_outside={handleClickOutside}
-    in:fly={{ x: 200, duration: 150 }}
-    out:fly={{ x: 400, duration: 150 }}
-  >
-    <div>
-      <button
-        on:click={() => {
-          $cartOpen = !$cartOpen
-        }}
-      >
-        &#10799;
-      </button>
-      <p>Cart</p>
-    </div>
-  </section>
+	<section
+		use:clickOutside
+		on:click_outside={handleClickOutside}
+		in:fly={{ x: 200, duration: 150 }}
+		out:fly={{ x: 400, duration: 150 }}
+	>
+		<div>
+			<button
+				on:click={() => {
+					$cartOpen = !$cartOpen
+				}}
+			>
+				&#10799;
+			</button>
+			<p>Cart</p>
+		</div>
+	</section>
 {/if}
 ```
 
@@ -586,20 +586,20 @@ how you can use the Svelte `use:` action to manipulate the DOM.
 
 ```svelte
 <script>
-  let children = ''
+	let children = ''
 
-  const sarky = node => {
-    children = node.childNodes[0].nodeValue
+	const sarky = (node) => {
+		children = node.childNodes[0].nodeValue
 
-    node.childNodes[0].nodeValue = children
-      .split('')
-      .map((char, i) => char[`to${i % 2 ? 'Upper' : 'Lower'}Case`]())
-      .join('')
-  }
+		node.childNodes[0].nodeValue = children
+			.split('')
+			.map((char, i) => char[`to${i % 2 ? 'Upper' : 'Lower'}Case`]())
+			.join('')
+	}
 </script>
 
 <span class="font-semibold" use:sarky>
-  <slot />
+	<slot />
 </span>
 ```
 
@@ -623,22 +623,22 @@ more (a'hem) `use:`'s for it as well!
 <!-- Links -->
 
 [mdn web docs]:
-  https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+	https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 [svelte use action]:
-  https://svelte.dev/docs#template-syntax-element-directives-use-action
+	https://svelte.dev/docs#template-syntax-element-directives-use-action
 [vendure storefront demo]:
-  https://sveltekit-vendure-commerce.vercel.app/
+	https://sveltekit-vendure-commerce.vercel.app/
 [sveltekit vendure commerce]:
-  https://github.com/spences10/sveltekit-vendure-commerce
+	https://github.com/spences10/sveltekit-vendure-commerce
 [stackoverflow answer]: https://stackoverflow.com/a/38215801
 [a11y style guide]:
-  https://a11y-style-guide.com/style-guide/section-navigation.html
+	https://a11y-style-guide.com/style-guide/section-navigation.html
 [web animations api]:
-  https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
+	https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
 [`keyframeeffect()` constructor]:
-  https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/KeyframeEffect#parameters
+	https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/KeyframeEffect#parameters
 
 <!-- Images -->
 
 [http-codes-dev-accordion-animation]:
-  https://res.cloudinary.com/defkmsrpw/video/upload/f_webp,fl_animated,fl_awebp/e_loop/v1674149984/scottspence.com/http-codes-dev-accordion-animation.mp4
+	https://res.cloudinary.com/defkmsrpw/video/upload/f_webp,fl_animated,fl_awebp/e_loop/v1674149984/scottspence.com/http-codes-dev-accordion-animation.mp4

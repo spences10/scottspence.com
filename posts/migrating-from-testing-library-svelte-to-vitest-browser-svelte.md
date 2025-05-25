@@ -38,7 +38,7 @@ get back to work! 😂 It good!
 Let me paint you a picture of what testing looked like before. Here's
 what the setup file used to look like:
 
-<Details buttonText="Expand to take a look! 👀">
+<Details button_text="Expand to take a look! 👀">
 
 ```typescript
 // vitest-setup-client.ts

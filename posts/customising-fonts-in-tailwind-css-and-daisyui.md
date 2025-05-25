@@ -95,21 +95,21 @@ add in the `fontFamily` object defining the added fonts.
 
 ```js
 const config = {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
+	content: ['./src/**/*.{html,js,svelte,ts}'],
 
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Poppins', ...tailwind_theme.fontFamily.sans],
-        mono: ['Victor Mono', ...tailwind_theme.fontFamily.mono],
-        // or name them
-        // 'victor-mono': ['Victor Mono'],
-        // poppins: ['Poppins'],
-      },
-    },
-  },
+	theme: {
+		extend: {
+			fontFamily: {
+				sans: ['Poppins', ...tailwind_theme.fontFamily.sans],
+				mono: ['Victor Mono', ...tailwind_theme.fontFamily.mono],
+				// or name them
+				// 'victor-mono': ['Victor Mono'],
+				// poppins: ['Poppins'],
+			},
+		},
+	},
 
-  plugins: [typography, daisyui],
+	plugins: [typography, daisyui],
 }
 ```
 
@@ -134,21 +134,21 @@ const tailwind_theme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config}*/
 const config = {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
+	content: ['./src/**/*.{html,js,svelte,ts}'],
 
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Poppins', ...tailwind_theme.fontFamily.sans],
-        mono: ['Victor Mono', ...tailwind_theme.fontFamily.mono],
-        // or name them
-        // 'victor-mono': ['Victor Mono'],
-        // poppins: ['Poppins'],
-      },
-    },
-  },
+	theme: {
+		extend: {
+			fontFamily: {
+				sans: ['Poppins', ...tailwind_theme.fontFamily.sans],
+				mono: ['Victor Mono', ...tailwind_theme.fontFamily.mono],
+				// or name them
+				// 'victor-mono': ['Victor Mono'],
+				// poppins: ['Poppins'],
+			},
+		},
+	},
 
-  plugins: [typography, daisyui],
+	plugins: [typography, daisyui],
 }
 
 module.exports = config
@@ -160,11 +160,11 @@ as well:
 
 ```svelte
 <script>
-  import '../app.postcss'
+	import '../app.postcss'
 </script>
 
-<main class="container prose prose-xl mx-auto max-w-3xl px-4">
-  <slot />
+<main class="prose prose-xl container mx-auto max-w-3xl px-4">
+	<slot />
 </main>
 ```
 
@@ -174,12 +174,12 @@ using the `sans` and `mono` font families:
 ```svelte
 <h1>Local Fonts with SvelteKit</h1>
 <p>
-  Using <a href="https://fontsource.org/"><code>@fontsource</code></a>
-  to add local fonts.
+	Using <a href="https://fontsource.org/"><code>@fontsource</code></a>
+	to add local fonts.
 </p>
 
 <code>
-  <pre>Also added mono-space font for code blocks.</pre>
+	<pre>Also added mono-space font for code blocks.</pre>
 </code>
 ```
 
@@ -215,25 +215,25 @@ const tailwind_theme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config}*/
 const config = {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
+	content: ['./src/**/*.{html,js,svelte,ts}'],
 
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Poppins', ...tailwind_theme.fontFamily.sans],
-        mono: ['Victor Mono', ...tailwind_theme.fontFamily.mono],
-        // or name them
-        // 'victor-mono': ['Victor Mono'],
-        // poppins: ['Poppins'],
-      },
-    },
-  },
+	theme: {
+		extend: {
+			fontFamily: {
+				sans: ['Poppins', ...tailwind_theme.fontFamily.sans],
+				mono: ['Victor Mono', ...tailwind_theme.fontFamily.mono],
+				// or name them
+				// 'victor-mono': ['Victor Mono'],
+				// poppins: ['Poppins'],
+			},
+		},
+	},
 
-  daisyui: {
-    themes: true,
-  },
+	daisyui: {
+		themes: true,
+	},
 
-  plugins: [typography, daisyui],
+	plugins: [typography, daisyui],
 }
 
 module.exports = config
@@ -266,15 +266,15 @@ So in this example I'm using the `wireframe` theme:
 ```html
 <!doctype html>
 <html lang="en" data-theme="wireframe">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width" />
-    %sveltekit.head%
-  </head>
-  <body data-sveltekit-preload-data="hover">
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
 </html>
 ```
 
@@ -302,39 +302,39 @@ In the `src/lib/themes/index.ts` file I'll copy the themes already in
 the [example repo] you can expand out the details button for the list
 if you like.
 
-<Details buttonText="themes.ts" styles="lowercase">
+<Details button_text="themes.ts" styles="lowercase">
 
 ```ts
 export const themes = [
-  'acid',
-  'aqua',
-  'autumn',
-  'black',
-  'bumblebee',
-  'business',
-  'cmyk',
-  'coffee',
-  'corporate',
-  'cupcake',
-  'cyberpunk',
-  'dark',
-  'dracula',
-  'emerald',
-  'fantasy',
-  'forest',
-  'garden',
-  'halloween',
-  'lemonade',
-  'light',
-  'lofi',
-  'luxury',
-  'night',
-  'pastel',
-  'retro',
-  'synthwave',
-  'valentine',
-  'winter',
-  'wireframe',
+	'acid',
+	'aqua',
+	'autumn',
+	'black',
+	'bumblebee',
+	'business',
+	'cmyk',
+	'coffee',
+	'corporate',
+	'cupcake',
+	'cyberpunk',
+	'dark',
+	'dracula',
+	'emerald',
+	'fantasy',
+	'forest',
+	'garden',
+	'halloween',
+	'lemonade',
+	'light',
+	'lofi',
+	'luxury',
+	'night',
+	'pastel',
+	'retro',
+	'synthwave',
+	'valentine',
+	'winter',
+	'wireframe',
 ]
 ```
 
@@ -343,52 +343,52 @@ export const themes = [
 In `src/lib/theme-select.svelte` I'll copy the code from the
 [`sveltekit-theme-switch-example`] repo.
 
-<Details buttonText="theme-select.svelte" styles="lowercase">
+<Details button_text="theme-select.svelte" styles="lowercase">
 
 ```svelte
 <script lang="ts">
-  import { onMount } from 'svelte'
-  import { themes } from './themes'
+	import { onMount } from 'svelte'
+	import { themes } from './themes'
 
-  let current_theme = ''
+	let current_theme = ''
 
-  onMount(() => {
-    if (typeof window !== 'undefined') {
-      const theme = window.localStorage.getItem('theme')
-      if (theme && themes.includes(theme)) {
-        document.documentElement.setAttribute('data-theme', theme)
-        current_theme = theme
-      }
-    }
-  })
+	onMount(() => {
+		if (typeof window !== 'undefined') {
+			const theme = window.localStorage.getItem('theme')
+			if (theme && themes.includes(theme)) {
+				document.documentElement.setAttribute('data-theme', theme)
+				current_theme = theme
+			}
+		}
+	})
 
-  function set_theme(event: Event) {
-    const select = event.target as HTMLSelectElement
-    const theme = select.value
-    if (themes.includes(theme)) {
-      const one_year = 60 * 60 * 24 * 365
-      window.localStorage.setItem('theme', theme)
-      document.cookie = `theme=${theme}; max-age=${one_year}; path=/; SameSite=Lax`
-      document.documentElement.setAttribute('data-theme', theme)
-      current_theme = theme
-    }
-  }
+	function set_theme(event: Event) {
+		const select = event.target as HTMLSelectElement
+		const theme = select.value
+		if (themes.includes(theme)) {
+			const one_year = 60 * 60 * 24 * 365
+			window.localStorage.setItem('theme', theme)
+			document.cookie = `theme=${theme}; max-age=${one_year}; path=/; SameSite=Lax`
+			document.documentElement.setAttribute('data-theme', theme)
+			current_theme = theme
+		}
+	}
 </script>
 
 <div class="mb-8">
-  <select
-    bind:value={current_theme}
-    data-choose-theme
-    class="select select-bordered select-primary w-full max-w-3xl text-xl capitalize"
-    on:change={set_theme}
-  >
-    <option value="" disabled={current_theme !== ''}>
-      Choose a theme
-    </option>
-    {#each themes as theme}
-      <option value={theme} class="capitalize">{theme}</option>
-    {/each}
-  </select>
+	<select
+		bind:value={current_theme}
+		data-choose-theme
+		class="select select-bordered select-primary w-full max-w-3xl text-xl capitalize"
+		on:change={set_theme}
+	>
+		<option value="" disabled={current_theme !== ''}>
+			Choose a theme
+		</option>
+		{#each themes as theme}
+			<option value={theme} class="capitalize">{theme}</option>
+		{/each}
+	</select>
 </div>
 ```
 
@@ -396,23 +396,23 @@ In `src/lib/theme-select.svelte` I'll copy the code from the
 
 Then add in the code for the `src/hooks.server.ts` file.
 
-<Details buttonText="hooks.server.ts" styles="lowercase">
+<Details button_text="hooks.server.ts" styles="lowercase">
 
 ```ts
 import { themes } from '$lib/themes'
 
 export const handle = async ({ event, resolve }) => {
-  const theme = event.cookies.get('theme')
+	const theme = event.cookies.get('theme')
 
-  if (!theme || !themes.includes(theme)) {
-    return await resolve(event)
-  }
+	if (!theme || !themes.includes(theme)) {
+		return await resolve(event)
+	}
 
-  return await resolve(event, {
-    transformPageChunk: ({ html }) => {
-      return html.replace('data-theme=""', `data-theme="${theme}"`)
-    },
-  })
+	return await resolve(event, {
+		transformPageChunk: ({ html }) => {
+			return html.replace('data-theme=""', `data-theme="${theme}"`)
+		},
+	})
 }
 ```
 
@@ -424,13 +424,13 @@ in the project (which is none but a good practice).
 
 ```svelte
 <script>
-  import ThemeSelect from '$lib/theme-select.svelte'
-  import '../app.postcss'
+	import ThemeSelect from '$lib/theme-select.svelte'
+	import '../app.postcss'
 </script>
 
 <ThemeSelect />
-<main class="container prose prose-xl mx-auto max-w-3xl px-4">
-  <slot />
+<main class="prose prose-xl container mx-auto max-w-3xl px-4">
+	<slot />
 </main>
 ```
 
@@ -474,34 +474,34 @@ const tailwind_theme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config}*/
 const config = {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
+	content: ['./src/**/*.{html,js,svelte,ts}'],
 
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Poppins', ...tailwind_theme.fontFamily.sans],
-        mono: ['Victor Mono', ...tailwind_theme.fontFamily.mono],
-        // or name them
-        // 'victor-mono': ['Victor Mono'],
-        // poppins: ['Poppins'],
-      },
-    },
-  },
+	theme: {
+		extend: {
+			fontFamily: {
+				sans: ['Poppins', ...tailwind_theme.fontFamily.sans],
+				mono: ['Victor Mono', ...tailwind_theme.fontFamily.mono],
+				// or name them
+				// 'victor-mono': ['Victor Mono'],
+				// poppins: ['Poppins'],
+			},
+		},
+	},
 
-  daisyui: {
-    themes: [
-      {
-        cyberpunk: {
-          ...require('daisyui/src/theming/themes')[
-            '[data-theme=cyberpunk]'
-          ],
-          fontFamily: 'Comic Sans MS',
-        },
-      },
-    ],
-  },
+	daisyui: {
+		themes: [
+			{
+				cyberpunk: {
+					...require('daisyui/src/theming/themes')[
+						'[data-theme=cyberpunk]'
+					],
+					fontFamily: 'Comic Sans MS',
+				},
+			},
+		],
+	},
 
-  plugins: [typography, daisyui],
+	plugins: [typography, daisyui],
 }
 
 module.exports = config
@@ -547,14 +547,14 @@ So, the function will look something like this:
 
 ```js
 function create_theme(theme_name, font_family) {
-  return {
-    [theme_name]: {
-      ...require('daisyui/src/theming/themes')[
-        `[data-theme=${theme_name}]`
-      ],
-      ...(font_family ? { fontFamily: font_family } : {}),
-    },
-  }
+	return {
+		[theme_name]: {
+			...require('daisyui/src/theming/themes')[
+				`[data-theme=${theme_name}]`
+			],
+			...(font_family ? { fontFamily: font_family } : {}),
+		},
+	}
 }
 ```
 
@@ -564,48 +564,48 @@ default same if there's no font specified.
 
 ```js
 const daisyui_themes = [
-  create_theme('acid'),
-  create_theme('aqua'),
-  create_theme('autumn'),
-  // rest of the themes
+	create_theme('acid'),
+	create_theme('aqua'),
+	create_theme('autumn'),
+	// rest of the themes
 ]
 ```
 
 See the full array here:
 
-<Details buttonText="daisyui_themes" styles="lowercase">
+<Details button_text="daisyui_themes" styles="lowercase">
 
 ```js
 const daisyui_themes = [
-  create_theme('acid'),
-  create_theme('aqua'),
-  create_theme('autumn'),
-  create_theme('black'),
-  create_theme('bumblebee'),
-  create_theme('business'),
-  create_theme('cmyk'),
-  create_theme('coffee'),
-  create_theme('corporate'),
-  create_theme('cupcake'),
-  create_theme('cyberpunk', 'Victor Mono'),
-  create_theme('dark'),
-  create_theme('dracula'),
-  create_theme('emerald'),
-  create_theme('fantasy'),
-  create_theme('forest'),
-  create_theme('garden'),
-  create_theme('halloween'),
-  create_theme('lemonade'),
-  create_theme('light'),
-  create_theme('lofi'),
-  create_theme('luxury'),
-  create_theme('night'),
-  create_theme('pastel'),
-  create_theme('retro'),
-  create_theme('synthwave'),
-  create_theme('valentine'),
-  create_theme('winter'),
-  create_theme('wireframe'),
+	create_theme('acid'),
+	create_theme('aqua'),
+	create_theme('autumn'),
+	create_theme('black'),
+	create_theme('bumblebee'),
+	create_theme('business'),
+	create_theme('cmyk'),
+	create_theme('coffee'),
+	create_theme('corporate'),
+	create_theme('cupcake'),
+	create_theme('cyberpunk', 'Victor Mono'),
+	create_theme('dark'),
+	create_theme('dracula'),
+	create_theme('emerald'),
+	create_theme('fantasy'),
+	create_theme('forest'),
+	create_theme('garden'),
+	create_theme('halloween'),
+	create_theme('lemonade'),
+	create_theme('light'),
+	create_theme('lofi'),
+	create_theme('luxury'),
+	create_theme('night'),
+	create_theme('pastel'),
+	create_theme('retro'),
+	create_theme('synthwave'),
+	create_theme('valentine'),
+	create_theme('winter'),
+	create_theme('wireframe'),
 ]
 ```
 
@@ -621,7 +621,7 @@ daisyui: {
 
 Here's the full `tailwind.config.js` file:
 
-<Details buttonText="tailwind.config.js" styles="lowercase">
+<Details button_text="tailwind.config.js" styles="lowercase">
 
 ```js
 const daisyui = require('daisyui')
@@ -629,69 +629,69 @@ const typography = require('@tailwindcss/typography')
 const tailwind_theme = require('tailwindcss/defaultTheme')
 
 function create_theme(theme_name, font_family) {
-  return {
-    [theme_name]: {
-      ...require('daisyui/src/theming/themes')[
-        `[data-theme=${theme_name}]`
-      ],
-      ...(font_family ? { fontFamily: font_family } : {}),
-    },
-  }
+	return {
+		[theme_name]: {
+			...require('daisyui/src/theming/themes')[
+				`[data-theme=${theme_name}]`
+			],
+			...(font_family ? { fontFamily: font_family } : {}),
+		},
+	}
 }
 
 const daisyui_themes = [
-  create_theme('acid'),
-  create_theme('aqua'),
-  create_theme('autumn'),
-  create_theme('black'),
-  create_theme('bumblebee'),
-  create_theme('business'),
-  create_theme('cmyk'),
-  create_theme('coffee'),
-  create_theme('corporate'),
-  create_theme('cupcake'),
-  create_theme('cyberpunk', 'Victor Mono'),
-  create_theme('dark'),
-  create_theme('dracula'),
-  create_theme('emerald'),
-  create_theme('fantasy'),
-  create_theme('forest'),
-  create_theme('garden'),
-  create_theme('halloween'),
-  create_theme('lemonade'),
-  create_theme('light'),
-  create_theme('lofi'),
-  create_theme('luxury'),
-  create_theme('night'),
-  create_theme('pastel'),
-  create_theme('retro'),
-  create_theme('synthwave'),
-  create_theme('valentine'),
-  create_theme('winter'),
-  create_theme('wireframe'),
+	create_theme('acid'),
+	create_theme('aqua'),
+	create_theme('autumn'),
+	create_theme('black'),
+	create_theme('bumblebee'),
+	create_theme('business'),
+	create_theme('cmyk'),
+	create_theme('coffee'),
+	create_theme('corporate'),
+	create_theme('cupcake'),
+	create_theme('cyberpunk', 'Victor Mono'),
+	create_theme('dark'),
+	create_theme('dracula'),
+	create_theme('emerald'),
+	create_theme('fantasy'),
+	create_theme('forest'),
+	create_theme('garden'),
+	create_theme('halloween'),
+	create_theme('lemonade'),
+	create_theme('light'),
+	create_theme('lofi'),
+	create_theme('luxury'),
+	create_theme('night'),
+	create_theme('pastel'),
+	create_theme('retro'),
+	create_theme('synthwave'),
+	create_theme('valentine'),
+	create_theme('winter'),
+	create_theme('wireframe'),
 ]
 
 /** @type {import('tailwindcss').Config}*/
 const config = {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
+	content: ['./src/**/*.{html,js,svelte,ts}'],
 
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Poppins', ...tailwind_theme.fontFamily.sans],
-        mono: ['Victor Mono', ...tailwind_theme.fontFamily.mono],
-        // or name them
-        // 'victor-mono': ['Victor Mono'],
-        // poppins: ['Poppins'],
-      },
-    },
-  },
+	theme: {
+		extend: {
+			fontFamily: {
+				sans: ['Poppins', ...tailwind_theme.fontFamily.sans],
+				mono: ['Victor Mono', ...tailwind_theme.fontFamily.mono],
+				// or name them
+				// 'victor-mono': ['Victor Mono'],
+				// poppins: ['Poppins'],
+			},
+		},
+	},
 
-  daisyui: {
-    themes: daisyui_themes,
-  },
+	daisyui: {
+		themes: daisyui_themes,
+	},
 
-  plugins: [typography, daisyui],
+	plugins: [typography, daisyui],
 }
 
 module.exports = config
@@ -737,30 +737,30 @@ it. 🙌
 
 [daisyUI]: https://daisyui.com/
 [sveltekit-local-fonts]:
-  https://github.com/spences10/sveltekit-local-fonts
+	https://github.com/spences10/sveltekit-local-fonts
 [fontsource]: https://fontsource.org
 [daisyUI themes]:
-  https://github.com/saadeghi/daisyui/blob/498f6af3a9723b940ed0f119a7b29049ef3c45a9/src/theming/themes.js
+	https://github.com/saadeghi/daisyui/blob/498f6af3a9723b940ed0f119a7b29049ef3c45a9/src/theming/themes.js
 [discussion pouya answered]:
-  https://github.com/saadeghi/daisyui/discussions/653#discussioncomment-2438428
+	https://github.com/saadeghi/daisyui/discussions/653#discussioncomment-2438428
 [tailwind play example]:
-  https://play.tailwindcss.com/LzYodJ0VMd?file=config
+	https://play.tailwindcss.com/LzYodJ0VMd?file=config
 [how to set up svelte with tailwind]:
-  https://scottspence.com/posts/how-to-set-up-svelte-with-tailwind
+	https://scottspence.com/posts/how-to-set-up-svelte-with-tailwind
 [How to implement a cookie-based dark mode toggle in SvelteKit]:
-  https://scriptraccoon.dev/blog/darkmode-toggle-sveltekit
+	https://scriptraccoon.dev/blog/darkmode-toggle-sveltekit
 [Script Raccoon]: https://scriptraccoon.dev
 [here]:
-  https://scottspence.com/posts/cookie-based-theme-selection-in-sveltekit-with-daisyui
+	https://scottspence.com/posts/cookie-based-theme-selection-in-sveltekit-with-daisyui
 [Cookie-Based Theme Selection in SvelteKit with daisyUI]:
-  https://scottspence.com/posts/cookie-based-theme-selection-in-sveltekit-with-daisyui
+	https://scottspence.com/posts/cookie-based-theme-selection-in-sveltekit-with-daisyui
 [`sveltekit-theme-switch-example`]:
-  https://github.com/spences10/sveltekit-theme-switch-example
+	https://github.com/spences10/sveltekit-theme-switch-example
 [final code]: https://github.com/spences10/sveltekit-local-fonts
 [example repo]:
-  https://github.com/spences10/sveltekit-theme-switch-example/blob/5489c1843b42bb8c3162e22760a55b88a3e7c0b0/src/lib/themes/index.ts
+	https://github.com/spences10/sveltekit-theme-switch-example/blob/5489c1843b42bb8c3162e22760a55b88a3e7c0b0/src/lib/themes/index.ts
 [daisyUI `themes`]:
-  https://github.com/saadeghi/daisyui/blob/8eb2574da4285409756f443593d0ca0a4b411c99/src/theming/themes.js#L90
+	https://github.com/saadeghi/daisyui/blob/8eb2574da4285409756f443593d0ca0a4b411c99/src/theming/themes.js#L90
 [pouya]: https://twitter.com/Saadeghi
 [details how to do this]:
-  https://github.com/saadeghi/daisyui/discussions/653#discussioncomment-2438428
+	https://github.com/saadeghi/daisyui/discussions/653#discussioncomment-2438428

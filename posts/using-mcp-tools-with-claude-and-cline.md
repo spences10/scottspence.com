@@ -202,41 +202,41 @@ organization, filtering, and real-time statistics.
 Here's the demo, take a look, one page, one shot (after initial
 prompting in Claude Desktop):
 
-<Details buttonText="+page.svelte" styles="lowercase">
+<Details button_text="+page.svelte" styles="lowercase">
 
 ```svelte
 <script lang="ts">
 	interface Task {
-		id: string;
-		text: string;
-		priority: 'high' | 'medium' | 'low';
-		created_at: Date;
+		id: string
+		text: string
+		priority: 'high' | 'medium' | 'low'
+		created_at: Date
 	}
 
-	type Priority = Task['priority'] | 'all';
+	type Priority = Task['priority'] | 'all'
 
 	// Task state
-	let tasks = $state<Task[]>([]);
-	let new_task = $state('');
-	let priority_filter = $state('all');
+	let tasks = $state<Task[]>([])
+	let new_task = $state('')
+	let priority_filter = $state('all')
 
 	// Derived values
 	let filtered_tasks = $derived(
 		priority_filter === 'all'
 			? tasks
 			: tasks.filter((t) => t.priority === priority_filter),
-	);
+	)
 
 	let task_stats = $derived({
 		total: tasks.length,
 		high: tasks.filter((t) => t.priority === 'high').length,
 		medium: tasks.filter((t) => t.priority === 'medium').length,
 		low: tasks.filter((t) => t.priority === 'low').length,
-	});
+	})
 
 	// Event handlers
 	function add_task() {
-		if (!new_task.trim()) return;
+		if (!new_task.trim()) return
 		tasks = [
 			...tasks,
 			{
@@ -245,16 +245,16 @@ prompting in Claude Desktop):
 				priority: 'medium',
 				created_at: new Date(),
 			},
-		];
-		new_task = '';
+		]
+		new_task = ''
 	}
 
 	function delete_task(id: string) {
-		tasks = tasks.filter((t) => t.id !== id);
+		tasks = tasks.filter((t) => t.id !== id)
 	}
 
 	function update_priority(id: string, priority: Task['priority']) {
-		tasks = tasks.map((t) => (t.id === id ? { ...t, priority } : t));
+		tasks = tasks.map((t) => (t.id === id ? { ...t, priority } : t))
 	}
 </script>
 
@@ -371,7 +371,7 @@ prompting in Claude Desktop):
 		{/each}
 
 		{#if filtered_tasks.length === 0}
-			<div class="rounded-lg bg-base-200 p-8 text-center">
+			<div class="bg-base-200 rounded-lg p-8 text-center">
 				<p class="text-xl opacity-50">No tasks to show</p>
 			</div>
 		{/if}
