@@ -10,35 +10,22 @@ jobs:
   tests-e2e:
     name: Run end-to-end tests
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.52.0-noble
+      options: --user 1001
 
     steps:
-      - uses: actions/cache@v4
-        id: playwright-cache
-        with:
-          path: ~/.cache/ms-playwright
-          key:
-            Linux-playwright-chromium-${{
-            hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: Linux-playwright-chromium-
-      - uses: actions/cache@v4
-        with:
-          path: ~/.pnpm-store
-          # prettier-ignore
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-pnpm-
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4.1.0
         with:
           version: 8.12.1
-      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22.x
+          cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm i
-      - name: Install playwright browsers
-        run: pnpm exec playwright install chromium --with-deps
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
-      - name: Test
+        run: pnpm install
+      - name: Run tests
         run: pnpm run test:e2e
         env:
           PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
