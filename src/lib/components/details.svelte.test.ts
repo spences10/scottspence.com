@@ -1,19 +1,27 @@
-import { fireEvent, render, screen } from '@testing-library/svelte'
 import { describe, expect, test } from 'vitest'
+import { render } from 'vitest-browser-svelte'
 import Details from './details.svelte'
 
 describe('Details', () => {
 	test('renders with default props', async () => {
-		render(Details)
-		const button = screen.getByTestId('details-button')
-		expect(button.textContent?.trim()).toBe('')
-		expect(screen.queryByTestId('details-content')).toBeNull()
+		const { container } = render(Details)
+		const button = container.querySelector(
+			'[data-testid="details-button"]',
+		)
+		expect(button?.textContent?.trim()).toBe('')
+		expect(
+			container.querySelector('[data-testid="details-content"]'),
+		).toBeNull()
 	})
 
 	test('renders with custom button text', async () => {
-		render(Details, { props: { buttonText: 'Show Details' } })
-		const button = screen.getByTestId('details-button')
-		expect(button.textContent?.trim()).toBe('Show Details')
+		const { container } = render(Details, {
+			props: { buttonText: 'Show Details' },
+		})
+		const button = container.querySelector(
+			'[data-testid="details-button"]',
+		)
+		expect(button?.textContent?.trim()).toBe('Show Details')
 	})
 
 	test.skip('opens and closes details', async () => {
@@ -28,26 +36,40 @@ describe('Details', () => {
 		console.log(container.innerHTML)
 		console.log('=====================')
 
-		const button = screen.getByTestId('details-button')
-		expect(screen.queryByTestId('details-content')).toBeNull()
+		const button = container.querySelector(
+			'[data-testid="details-button"]',
+		) as HTMLElement
+		expect(
+			container.querySelector('[data-testid="details-content"]'),
+		).toBeNull()
 
 		// Open details
-		await fireEvent.click(button)
-		const content = screen.getByTestId('details-content')
+		button.click()
+		flushSync()
+		const content = container.querySelector(
+			'[data-testid="details-content"]',
+		)
 		expect(content).toBeDefined()
-		expect(content.textContent).toContain('Test Content')
+		expect(content?.textContent).toContain('Test Content')
 		expect(button.textContent?.trim()).toBe('Close')
 
 		// Close details
-		await fireEvent.click(button)
-		expect(screen.queryByTestId('details-content')).toBeNull()
+		button.click()
+		flushSync()
+		expect(
+			container.querySelector('[data-testid="details-content"]'),
+		).toBeNull()
 		expect(button.textContent?.trim()).toBe('Show Details')
 	})
 
 	test('applies custom styles', async () => {
-		render(Details, { props: { styles: 'custom-class' } })
-		const button = screen.getByTestId('details-button')
-		expect(button.classList.contains('custom-class')).toBe(true)
+		const { container } = render(Details, {
+			props: { styles: 'custom-class' },
+		})
+		const button = container.querySelector(
+			'[data-testid="details-button"]',
+		)
+		expect(button?.classList.contains('custom-class')).toBe(true)
 	})
 
 	test.skip('renders children when open', async () => {
@@ -58,11 +80,16 @@ describe('Details', () => {
 			},
 		})
 
-		const button = screen.getByTestId('details-button')
-		await fireEvent.click(button)
+		const button = container.querySelector(
+			'[data-testid="details-button"]',
+		) as HTMLElement
+		button.click()
+		flushSync()
 
-		const content = screen.getByTestId('details-content')
-		expect(content.textContent).toContain('Test Content')
+		const content = container.querySelector(
+			'[data-testid="details-content"]',
+		)
+		expect(content?.textContent).toContain('Test Content')
 	})
 
 	test.skip('respects initial isOpen prop', async () => {
@@ -74,10 +101,14 @@ describe('Details', () => {
 			},
 		})
 
-		const content = screen.getByTestId('details-content')
-		expect(content.textContent).toContain('Test Content')
+		const content = container.querySelector(
+			'[data-testid="details-content"]',
+		)
+		expect(content?.textContent).toContain('Test Content')
 		expect(
-			screen.getByTestId('details-button').textContent?.trim(),
+			container
+				.querySelector('[data-testid="details-button"]')
+				?.textContent?.trim(),
 		).toBe('Close')
 	})
 })

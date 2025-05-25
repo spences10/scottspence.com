@@ -29,6 +29,8 @@ jobs:
           node-version: 22.x
       - name: Install dependencies
         run: pnpm install
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps
       - name: Build
         run: pnpm run build
         env:

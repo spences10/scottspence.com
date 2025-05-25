@@ -1,6 +1,5 @@
 import { sveltekit } from '@sveltejs/kit/vite'
 import tailwindcss from '@tailwindcss/vite'
-import { svelteTesting } from '@testing-library/svelte/vite'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -15,12 +14,20 @@ export default defineConfig({
 	test: {
 		workspace: [
 			{
+				// Client-side tests (Svelte components)
 				extends: './vite.config.ts',
-				plugins: [svelteTesting()],
-
 				test: {
 					name: 'client',
-					environment: 'jsdom',
+					environment: 'browser',
+					browser: {
+						enabled: true,
+						provider: 'playwright',
+						instances: [
+							{
+								browser: 'chromium',
+							},
+						],
+					},
 					clearMocks: true,
 					include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
 					exclude: ['src/lib/server/**'],
@@ -28,8 +35,17 @@ export default defineConfig({
 				},
 			},
 			{
+				// SSR tests (Server-side rendering)
 				extends: './vite.config.ts',
-
+				test: {
+					name: 'ssr',
+					environment: 'node',
+					include: ['src/**/*.ssr.{test,spec}.{js,ts}'],
+				},
+			},
+			{
+				// Server-side tests (Node.js utilities)
+				extends: './vite.config.ts',
 				test: {
 					name: 'server',
 					environment: 'node',
