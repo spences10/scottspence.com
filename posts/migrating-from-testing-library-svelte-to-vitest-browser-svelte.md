@@ -1,5 +1,5 @@
 ---
-date: 2025-01-25
+date: 2025-05-25
 title: Migrating from @testing-library/svelte to vitest-browser-svelte
 tags: ['svelte', 'sveltekit', 'testing']
 is_private: false
