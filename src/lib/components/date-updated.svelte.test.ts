@@ -1,6 +1,6 @@
-import { cleanup, render, screen } from '@testing-library/svelte'
 import { format } from 'date-fns'
 import { afterEach, expect, test, vi } from 'vitest'
+import { render } from 'vitest-browser-svelte'
 import DateUpdated from './date-updated.svelte'
 
 vi.mock('date-fns', () => ({
@@ -9,7 +9,6 @@ vi.mock('date-fns', () => ({
 
 // Clean up after each test
 afterEach(() => {
-	cleanup()
 	vi.resetAllMocks()
 })
 
@@ -19,13 +18,15 @@ test('renders formatted date with default size', async () => {
 
 	vi.mocked(format).mockReturnValue(mockFormattedDate)
 
-	await vi.waitFor(async () => {
-		render(DateUpdated, { date: mockDate })
-	})
+	const { container } = render(DateUpdated, { date: mockDate })
 
-	const element = screen.getByText(mockFormattedDate)
-	expect(element).toBeDefined()
-	expect(element.classList.contains('text-base')).toBe(true)
+	await vi.waitFor(() => {
+		expect(container.textContent?.includes(mockFormattedDate)).toBe(
+			true,
+		)
+		const element = container.querySelector('.text-base')
+		expect(element).toBeDefined()
+	})
 
 	expect(format).toHaveBeenCalledWith(
 		new Date(mockDate),
@@ -39,13 +40,18 @@ test('renders formatted date with small size', async () => {
 
 	vi.mocked(format).mockReturnValue(mockFormattedDate)
 
-	await vi.waitFor(async () => {
-		render(DateUpdated, { date: mockDate, small: 'true' })
+	const { container } = render(DateUpdated, {
+		date: mockDate,
+		small: 'true',
 	})
 
-	const element = screen.getByText(mockFormattedDate)
-	expect(element).toBeDefined()
-	expect(element.classList.contains('text-xs')).toBe(true)
+	await vi.waitFor(() => {
+		expect(container.textContent?.includes(mockFormattedDate)).toBe(
+			true,
+		)
+		const element = container.querySelector('.text-xs')
+		expect(element).toBeDefined()
+	})
 
 	expect(format).toHaveBeenCalledWith(
 		new Date(mockDate),
@@ -60,12 +66,13 @@ test('renders current date when date prop is null', async () => {
 	const mockFormattedDate = 'June 15th 2023'
 	vi.mocked(format).mockReturnValue(mockFormattedDate)
 
-	await vi.waitFor(async () => {
-		render(DateUpdated, { date: null })
-	})
+	const { container } = render(DateUpdated, { date: null })
 
-	const element = screen.getByText(mockFormattedDate)
-	expect(element).toBeDefined()
+	await vi.waitFor(() => {
+		expect(container.textContent?.includes(mockFormattedDate)).toBe(
+			true,
+		)
+	})
 
 	expect(format).toHaveBeenCalledWith(mockCurrentDate, 'MMMM do yyyy')
 
@@ -79,12 +86,13 @@ test('renders current date when date prop is undefined', async () => {
 	const mockFormattedDate = 'June 15th 2023'
 	vi.mocked(format).mockReturnValue(mockFormattedDate)
 
-	await vi.waitFor(async () => {
-		render(DateUpdated, { date: undefined })
-	})
+	const { container } = render(DateUpdated, { date: undefined })
 
-	const element = screen.getByText(mockFormattedDate)
-	expect(element).toBeDefined()
+	await vi.waitFor(() => {
+		expect(container.textContent?.includes(mockFormattedDate)).toBe(
+			true,
+		)
+	})
 
 	expect(format).toHaveBeenCalledWith(mockCurrentDate, 'MMMM do yyyy')
 

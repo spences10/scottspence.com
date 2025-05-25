@@ -3,7 +3,11 @@ import { update_toc_visibility } from './update-toc-visibility'
 
 describe('update_toc_visibility', () => {
 	it('should return true when window.scrollY is less than end_of_copy.offsetTop + offset', () => {
-		global.window.scrollY = 100
+		// Set window.scrollY using Object.defineProperty since it's read-only
+		Object.defineProperty(window, 'scrollY', {
+			value: 100,
+			writable: true,
+		})
 		const end_of_copy = { offsetTop: 200 }
 		const offset = 100
 
@@ -16,7 +20,11 @@ describe('update_toc_visibility', () => {
 	})
 
 	it('should return false when window.scrollY is greater than or equal to end_of_copy.offsetTop + offset', () => {
-		global.window.scrollY = 300
+		// Set window.scrollY using Object.defineProperty since it's read-only
+		Object.defineProperty(window, 'scrollY', {
+			value: 300,
+			writable: true,
+		})
 		const end_of_copy = { offsetTop: 200 }
 		const offset = 0
 

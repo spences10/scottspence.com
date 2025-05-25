@@ -1,10 +1,8 @@
-import { cleanup, render } from '@testing-library/svelte'
-import { afterEach, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
+import { render } from 'vitest-browser-svelte'
 import StatsCard from './stats-card.svelte'
 
 describe('StatsCard', () => {
-	afterEach(cleanup)
-
 	function renderStatsCard(
 		daily_visits: AnalyticsData | null | undefined,
 		monthly_visits: AnalyticsData | null | undefined,
@@ -30,14 +28,20 @@ describe('StatsCard', () => {
 			pathname: '/',
 		}
 
-		const { getByText } = renderStatsCard(daily_visits, null, null)
+		const { container } = renderStatsCard(daily_visits, null, null)
 
-		expect(getByText('Entries Today')).toBeTruthy()
-		expect(getByText('100')).toBeTruthy()
-		expect(getByText('Visitors Today')).toBeTruthy()
-		expect(getByText('50')).toBeTruthy()
-		expect(getByText('Views Today')).toBeTruthy()
-		expect(getByText('200')).toBeTruthy()
+		expect(
+			container.textContent?.includes('Entries Today'),
+		).toBeTruthy()
+		expect(container.textContent?.includes('100')).toBeTruthy()
+		expect(
+			container.textContent?.includes('Visitors Today'),
+		).toBeTruthy()
+		expect(container.textContent?.includes('50')).toBeTruthy()
+		expect(
+			container.textContent?.includes('Views Today'),
+		).toBeTruthy()
+		expect(container.textContent?.includes('200')).toBeTruthy()
 	})
 
 	it('should render stats for different time periods', () => {
@@ -71,34 +75,52 @@ describe('StatsCard', () => {
 			pathname: '/',
 		}
 
-		const { getByText } = renderStatsCard(
+		const { container } = renderStatsCard(
 			daily_visits,
 			monthly_visits,
 			yearly_visits,
 		)
 
 		// For daily visits
-		expect(getByText('Entries Today')).toBeTruthy()
-		expect(getByText('100')).toBeTruthy()
-		expect(getByText('Visitors Today')).toBeTruthy()
-		expect(getByText('50')).toBeTruthy()
-		expect(getByText('Views Today')).toBeTruthy()
-		expect(getByText('200')).toBeTruthy()
+		expect(
+			container.textContent?.includes('Entries Today'),
+		).toBeTruthy()
+		expect(container.textContent?.includes('100')).toBeTruthy()
+		expect(
+			container.textContent?.includes('Visitors Today'),
+		).toBeTruthy()
+		expect(container.textContent?.includes('50')).toBeTruthy()
+		expect(
+			container.textContent?.includes('Views Today'),
+		).toBeTruthy()
+		expect(container.textContent?.includes('200')).toBeTruthy()
 
 		// For monthly visits
-		expect(getByText('Entries This Month')).toBeTruthy()
-		expect(getByText('1k')).toBeTruthy()
-		expect(getByText('Visitors This Month')).toBeTruthy()
-		expect(getByText('500')).toBeTruthy()
-		expect(getByText('Views This Month')).toBeTruthy()
-		expect(getByText('2k')).toBeTruthy()
+		expect(
+			container.textContent?.includes('Entries This Month'),
+		).toBeTruthy()
+		expect(container.textContent?.includes('1k')).toBeTruthy()
+		expect(
+			container.textContent?.includes('Visitors This Month'),
+		).toBeTruthy()
+		expect(container.textContent?.includes('500')).toBeTruthy()
+		expect(
+			container.textContent?.includes('Views This Month'),
+		).toBeTruthy()
+		expect(container.textContent?.includes('2k')).toBeTruthy()
 
 		// For yearly visits
-		expect(getByText('Entries This Year')).toBeTruthy()
-		expect(getByText('10k')).toBeTruthy()
-		expect(getByText('Visitors This Year')).toBeTruthy()
-		expect(getByText('5k')).toBeTruthy()
-		expect(getByText('Views This Year')).toBeTruthy()
-		expect(getByText('20k')).toBeTruthy()
+		expect(
+			container.textContent?.includes('Entries This Year'),
+		).toBeTruthy()
+		expect(container.textContent?.includes('10k')).toBeTruthy()
+		expect(
+			container.textContent?.includes('Visitors This Year'),
+		).toBeTruthy()
+		expect(container.textContent?.includes('5k')).toBeTruthy()
+		expect(
+			container.textContent?.includes('Views This Year'),
+		).toBeTruthy()
+		expect(container.textContent?.includes('20k')).toBeTruthy()
 	})
 })

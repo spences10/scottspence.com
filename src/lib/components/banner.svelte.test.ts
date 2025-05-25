@@ -1,5 +1,5 @@
-import { cleanup, render } from '@testing-library/svelte'
-import { afterEach, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
+import { render } from 'vitest-browser-svelte'
 import Banner from './banner.svelte'
 
 interface BannerOptions {
@@ -8,21 +8,22 @@ interface BannerOptions {
 }
 
 describe('Banner', () => {
-	afterEach(cleanup)
 	it('should render info banner with message', () => {
 		const options: BannerOptions = {
 			type: 'info',
 			message: 'This is an info message',
 		}
 
-		const { getByText, getByRole } = render(Banner, {
+		const { container } = render(Banner, {
 			props: {
 				options,
 			},
 		})
 
-		expect(getByText('This is an info message')).toBeTruthy()
-		expect(getByRole('banner')).toBeTruthy()
+		expect(
+			container.textContent?.includes('This is an info message'),
+		).toBeTruthy()
+		expect(container.querySelector('[role="banner"]')).toBeTruthy()
 	})
 
 	it('should render warning banner with message', () => {
@@ -31,14 +32,16 @@ describe('Banner', () => {
 			message: 'This is a warning message',
 		}
 
-		const { getByText, getByRole } = render(Banner, {
+		const { container } = render(Banner, {
 			props: {
 				options,
 			},
 		})
 
-		expect(getByText('This is a warning message')).toBeTruthy()
-		expect(getByRole('banner')).toBeTruthy()
+		expect(
+			container.textContent?.includes('This is a warning message'),
+		).toBeTruthy()
+		expect(container.querySelector('[role="banner"]')).toBeTruthy()
 	})
 
 	it('should render announcement banner with message', () => {
@@ -47,14 +50,18 @@ describe('Banner', () => {
 			message: 'This is a announcement message',
 		}
 
-		const { getByText, getByRole } = render(Banner, {
+		const { container } = render(Banner, {
 			props: {
 				options,
 			},
 		})
 
-		expect(getByText('This is a announcement message')).toBeTruthy()
-		expect(getByRole('banner')).toBeTruthy()
+		expect(
+			container.textContent?.includes(
+				'This is a announcement message',
+			),
+		).toBeTruthy()
+		expect(container.querySelector('[role="banner"]')).toBeTruthy()
 	})
 
 	it('should render tip banner with message', () => {
@@ -63,13 +70,15 @@ describe('Banner', () => {
 			message: 'This is a tip message',
 		}
 
-		const { getByText, getByRole } = render(Banner, {
+		const { container } = render(Banner, {
 			props: {
 				options,
 			},
 		})
 
-		expect(getByText('This is a tip message')).toBeTruthy()
-		expect(getByRole('banner')).toBeTruthy()
+		expect(
+			container.textContent?.includes('This is a tip message'),
+		).toBeTruthy()
+		expect(container.querySelector('[role="banner"]')).toBeTruthy()
 	})
 })

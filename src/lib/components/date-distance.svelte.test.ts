@@ -1,6 +1,6 @@
-import { cleanup, render, screen } from '@testing-library/svelte'
 import { formatDistanceStrict } from 'date-fns'
 import { afterEach, expect, test, vi } from 'vitest'
+import { render } from 'vitest-browser-svelte'
 import DateDistance from './date-distance.svelte'
 
 // Mock date-fns formatDistanceStrict function
@@ -10,7 +10,6 @@ vi.mock('date-fns', () => ({
 
 // Clean up after each test
 afterEach(() => {
-	cleanup()
 	vi.resetAllMocks()
 })
 
@@ -18,12 +17,16 @@ test('renders formatted date distance', async () => {
 	const mockDate = '2023-01-01'
 	const mockFormattedDistance = '2 months ago'
 
-	vi.mocked(formatDistanceStrict).mockReturnValue(mockFormattedDistance)
+	vi.mocked(formatDistanceStrict).mockReturnValue(
+		mockFormattedDistance,
+	)
 
-	render(DateDistance, { date: mockDate })
+	const { container } = render(DateDistance, { date: mockDate })
 
-	const element = screen.getByTestId('date-distance')
-	expect(element.textContent).toBe(mockFormattedDistance)
+	const element = container.querySelector(
+		'[data-testid="date-distance"]',
+	)
+	expect(element?.textContent).toBe(mockFormattedDistance)
 
 	expect(formatDistanceStrict).toHaveBeenCalledWith(
 		expect.any(Date),
@@ -41,13 +44,17 @@ test('updates formatted distance when date prop changes', async () => {
 		.mockReturnValueOnce(initialFormattedDistance)
 		.mockReturnValueOnce(updatedFormattedDistance)
 
-	const { rerender } = render(DateDistance, { date: initialDate })
+	const { container, rerender } = render(DateDistance, {
+		date: initialDate,
+	})
 
-	const element = screen.getByTestId('date-distance')
+	const element = container.querySelector(
+		'[data-testid="date-distance"]',
+	)
 
 	// Wait for the initial render to complete
 	await vi.waitFor(() => {
-		expect(element.textContent).toBe(initialFormattedDistance)
+		expect(element?.textContent).toBe(initialFormattedDistance)
 	})
 
 	// Update the date prop by re-rendering the component
@@ -55,7 +62,7 @@ test('updates formatted distance when date prop changes', async () => {
 
 	// Wait for the component to update
 	await vi.waitFor(() => {
-		expect(element.textContent).toBe(updatedFormattedDistance)
+		expect(element?.textContent).toBe(updatedFormattedDistance)
 	})
 
 	expect(formatDistanceStrict).toHaveBeenCalledTimes(2)
