@@ -14,6 +14,7 @@ export default defineConfig({
 	test: {
 		workspace: [
 			{
+				// Client-side tests (Svelte components)
 				extends: './vite.config.ts',
 				test: {
 					name: 'client',
@@ -34,6 +35,16 @@ export default defineConfig({
 				},
 			},
 			{
+				// SSR tests (Server-side rendering)
+				extends: './vite.config.ts',
+				test: {
+					name: 'ssr',
+					environment: 'node',
+					include: ['src/**/*.ssr.{test,spec}.{js,ts}'],
+				},
+			},
+			{
+				// Server-side tests (Node.js utilities)
 				extends: './vite.config.ts',
 				test: {
 					name: 'server',
