@@ -13,6 +13,14 @@ jobs:
 
     steps:
       - uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key:
+            Linux-playwright-chromium-${{
+            hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: Linux-playwright-chromium-
+      - uses: actions/cache@v4
         with:
           path: ~/.pnpm-store
           key:
@@ -30,7 +38,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Install Playwright browsers
-        run: pnpm exec playwright install --with-deps
+        run: pnpm exec playwright install chromium --with-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
       - name: Build
         run: pnpm run build
         env:

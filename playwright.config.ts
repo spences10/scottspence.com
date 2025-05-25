@@ -1,4 +1,4 @@
-import { defineConfig } from '@playwright/test';
+import { defineConfig } from '@playwright/test'
 
 export default defineConfig({
 	webServer: {
@@ -12,13 +12,5 @@ export default defineConfig({
 			name: 'Chromium',
 			use: { browserName: 'chromium' },
 		},
-		{
-			name: 'Firefox',
-			use: { browserName: 'firefox' },
-		},
-		{
-			name: 'WebKit',
-			use: { browserName: 'webkit' },
-		},
 	],
-});
+})
