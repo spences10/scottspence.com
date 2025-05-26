@@ -205,6 +205,7 @@
 			<select
 				bind:value={selected_period}
 				class="select select-bordered w-full max-w-xs"
+				aria-label="Select time period:"
 			>
 				<option value="all_time">All Time</option>
 				<option value="yearly">Yearly</option>
@@ -215,6 +216,7 @@
 				<select
 					bind:value={selected_year}
 					class="select select-bordered w-full max-w-xs"
+					aria-label="Select year:"
 				>
 					{#each [...new Set(site_stats.flatMap((p) => p.yearly_stats
 									.filter((y) => Number(y.year) < Number(current_year))
@@ -230,6 +232,7 @@
 				<select
 					bind:value={selected_month}
 					class="select select-bordered w-full max-w-xs"
+					aria-label="Select month:"
 				>
 					{#each [...new Set(site_stats.flatMap((p) => p.monthly_stats
 									.filter((m) => {
