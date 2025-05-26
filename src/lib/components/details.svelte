@@ -18,6 +18,7 @@
 
 <div>
 	<button
+		type="button"
 		class="btn {styles} shadow-xl"
 		onclick={() => (is_open = !is_open)}
 		data-testid="details-button"

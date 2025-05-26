@@ -20,8 +20,9 @@
 <svelte:window onscroll={handle_scroll} />
 
 <button
+	type="button"
 	onclick={scroll_to_top}
-	class="back-to-top-button btn btn-secondary text-secondary-content rounded-box fixed right-5 bottom-[-2rem] font-normal normal-case {show_scroll_button
+	class="btn btn-circle btn-primary fixed right-4 bottom-4 {show_scroll_button
 		? 'show-button'
 		: 'hide-button'}"
 	aria-label="Back to top"
