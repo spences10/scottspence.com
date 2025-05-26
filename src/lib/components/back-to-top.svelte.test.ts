@@ -4,6 +4,19 @@ import { describe, expect, test } from 'vitest'
 import { render } from 'vitest-browser-svelte'
 import BackToTop from './back-to-top.svelte'
 
+// Helper function to wait for button to be visible and clickable
+async function waitForButtonToBeClickable(button: any) {
+	// Wait for show-button class
+	await expect.element(button).toHaveClass('show-button')
+
+	// Wait for animation to complete (0.3s + buffer)
+	await new Promise((resolve) => setTimeout(resolve, 400))
+
+	// Verify button is actually visible and enabled
+	await expect.element(button).toBeVisible()
+	await expect.element(button).toBeEnabled()
+}
+
 describe('BackToTop Component', () => {
 	describe('Initial Rendering', () => {
 		test('renders button with correct initial state', async () => {
@@ -426,7 +439,8 @@ describe('BackToTop Component', () => {
 			window.dispatchEvent(new Event('scroll'))
 			flushSync()
 
-			await expect.element(button).toHaveClass('show-button')
+			// Wait for button to be properly visible and clickable
+			await waitForButtonToBeClickable(button)
 
 			// Mock scrollTo to track calls
 			const originalScrollTo = window.scrollTo
@@ -447,7 +461,7 @@ describe('BackToTop Component', () => {
 				}
 			}) as typeof window.scrollTo
 
-			// Click the button with force to handle animation stability
+			// Click the button with force to handle any remaining animation instability
 			await button.click({ force: true })
 
 			// Check that scrollTo was called with correct parameters
@@ -606,7 +620,8 @@ describe('BackToTop Component', () => {
 			window.dispatchEvent(new Event('scroll'))
 			flushSync()
 
-			await expect.element(button).toHaveClass('show-button')
+			// Wait for button to be properly visible and clickable
+			await waitForButtonToBeClickable(button)
 
 			// Hide button again
 			window.scrollTo({ top: 100, behavior: 'instant' })
@@ -626,10 +641,13 @@ describe('BackToTop Component', () => {
 
 			await expect.element(button).toHaveClass('hide-button')
 
+			// Wait for hide animation to complete
+			await new Promise((resolve) => setTimeout(resolve, 400))
+
 			// Clean up
 			document.body.removeChild(tallElement)
 			window.scrollTo({ top: 0, behavior: 'instant' })
-		})
+		}, 10000) // Increase timeout to 10 seconds
 	})
 
 	describe('Responsive Behavior', () => {
