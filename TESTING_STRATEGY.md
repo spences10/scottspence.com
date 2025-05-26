@@ -747,6 +747,41 @@ test('derived state updates correctly', () => {
 })
 ```
 
+### 7. Avoid Over-Mocking in Browser Environment
+
+When using `vitest-browser-svelte` with Playwright, prefer real
+browser APIs over mocks:
+
+```typescript
+// ❌ Unnecessary mocking in browser environment
+beforeEach(() => {
+	vi.mock('IntersectionObserver', () => ({
+		observe: vi.fn(),
+		unobserve: vi.fn(),
+		disconnect: vi.fn(),
+	}))
+})
+
+// ✅ Let real browser APIs work
+beforeEach(() => {
+	// No mocking needed - real browser environment
+})
+```
+
+**When to mock**:
+
+- External API calls
+- File system operations
+- Date/time functions for deterministic tests
+- Third-party libraries with side effects
+
+**When NOT to mock**:
+
+- Browser APIs (IntersectionObserver, ResizeObserver, etc.)
+- DOM manipulation
+- CSS animations and transitions
+- Viewport and scroll behavior
+
 ## Common Patterns
 
 ### Testing Forms
@@ -931,7 +966,30 @@ pnpm vitest src/lib/utils/
 
 ### Common Issues
 
-#### 1. "global is not defined" Error
+#### 1. Over-Mocking in Browser Environment
+
+**Problem**: Mocking browser APIs like `IntersectionObserver` when
+using real browser testing.
+
+**Solution**: In `vitest-browser-svelte` with Playwright, use real
+browser APIs instead of mocks:
+
+```typescript
+// ❌ Don't mock in real browser environment
+vi.mock('IntersectionObserver', () => ({
+	observe: vi.fn(),
+	unobserve: vi.fn(),
+	disconnect: vi.fn(),
+}))
+
+// ✅ Let real browser APIs work
+// No mocking needed - IntersectionObserver works natively in Playwright
+```
+
+**Why**: Real browser testing eliminates the need for complex mocks
+and provides more accurate test results.
+
+#### 2. "global is not defined" Error
 
 **Problem**: Using `global.window` in browser environment tests.
 
@@ -1011,6 +1069,32 @@ expect(untrack(() => derivedValue)).toBe(expectedValue)
 reactive context (like in test assertions) only capture their initial
 values and generate warnings. `untrack` allows you to access the
 current value without creating reactive dependencies.
+
+#### 6. Multiple Element Matches in Locators
+
+**Problem**: Locators matching multiple elements causing "strict mode
+violation" errors.
+
+**Solution**: Use `.first()`, `.last()`, or `.nth()` to specify which
+element:
+
+```typescript
+// ❌ Matches multiple elements
+const element = page.getByText(/common-word/)
+
+// ✅ Specify which element you want
+const element = page.getByText(/common-word/).first()
+const element = page.getByText(/common-word/).last()
+const element = page.getByText(/common-word/).nth(1)
+```
+
+**Alternative**: Use more specific locators:
+
+```typescript
+// ✅ More specific selector
+const element = page.getByTestId('specific-element')
+const element = page.getByRole('button', { name: 'Specific Button' })
+```
 
 ### Debugging Tips
 
