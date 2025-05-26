@@ -8,6 +8,9 @@
 	},
 	"version": "0.0.1",
 	"type": "module",
+	"engines": {
+		"node": ">=20"
+	},
 	"scripts": {
 		"start": "node ./build/index.js",
 		"dev": "vite dev",

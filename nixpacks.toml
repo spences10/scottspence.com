@@ -1,5 +1,5 @@
 [phases.setup]
-packages = ["nodejs_18", "pnpm-9_x", "curl", "wget"]
+packages = ["nodejs_20", "pnpm-9_x", "curl", "wget"]
 
 [phases.install]
 cmds = ["pnpm i --frozen-lockfile"]
