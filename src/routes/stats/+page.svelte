@@ -2,7 +2,7 @@
 	import { InformationCircle } from '$lib/icons'
 	import { name, website } from '$lib/info'
 	import { create_seo_config } from '$lib/seo'
-	import { og_image_url } from '$lib/utils'
+	import { number_crunch, og_image_url } from '$lib/utils'
 	import { Head } from 'svead'
 
 	interface Stats {
@@ -115,6 +115,31 @@
 			.sort((a, b) => b.stats.views - a.stats.views),
 	)
 
+	// Calculate summary statistics
+	let summary_stats = $derived.by(() => {
+		const total_views = filtered_stats.reduce(
+			(sum, post) => sum + post.stats.views,
+			0,
+		)
+		const total_visitors = filtered_stats.reduce(
+			(sum, post) => sum + post.stats.unique_visitors,
+			0,
+		)
+		const total_posts = filtered_stats.length
+		const avg_views =
+			total_posts > 0 ? Math.round(total_views / total_posts) : 0
+		const avg_visitors =
+			total_posts > 0 ? Math.round(total_visitors / total_posts) : 0
+
+		return {
+			total_views,
+			total_visitors,
+			total_posts,
+			avg_views,
+			avg_visitors,
+		}
+	})
+
 	// Calculate date range for display
 	let date_range = $derived.by(() => {
 		if (selected_period === 'all_time') {
@@ -136,6 +161,38 @@
 			return selected_month
 		}
 		return ''
+	})
+
+	// Generate trend data for top 3 posts
+	let trend_data = $derived.by(() => {
+		if (selected_period === 'all_time') return []
+
+		const top_posts = filtered_stats.slice(0, 3)
+		return top_posts.map((post) => {
+			let data_points: { period: string; views: number }[] = []
+
+			if (selected_period === 'yearly') {
+				data_points = post.yearly_stats
+					.filter((y) => Number(y.year) < Number(current_year))
+					.sort((a, b) => a.year.localeCompare(b.year))
+					.map((y) => ({ period: y.year, views: y.views }))
+			} else if (selected_period === 'monthly') {
+				data_points = post.monthly_stats
+					.filter((m) => {
+						const [year] = m.year_month.split('-').map(Number)
+						return year < Number(current_year)
+					})
+					.sort((a, b) => a.year_month.localeCompare(b.year_month))
+					.slice(-12) // Last 12 months
+					.map((m) => ({ period: m.year_month, views: m.views }))
+			}
+
+			return {
+				title: post.title,
+				slug: post.slug,
+				data_points,
+			}
+		})
 	})
 </script>
 
@@ -255,6 +312,90 @@
 			</div>
 		</div>
 
+		<!-- Summary Statistics Cards -->
+		<div
+			class="stats stats-vertical border-secondary md:stats-horizontal mb-8 w-full border shadow-lg"
+		>
+			<div class="stat">
+				<div class="stat-title">Total Views</div>
+				<div class="stat-value text-primary">
+					{number_crunch(summary_stats.total_views)}
+				</div>
+				<div class="stat-desc">
+					Across {summary_stats.total_posts} posts
+				</div>
+			</div>
+
+			<div class="stat">
+				<div class="stat-title">Total Visitors</div>
+				<div class="stat-value text-secondary">
+					{number_crunch(summary_stats.total_visitors)}
+				</div>
+				<div class="stat-desc">Unique visitors</div>
+			</div>
+
+			<div class="stat">
+				<div class="stat-title">Average Views</div>
+				<div class="stat-value text-accent">
+					{number_crunch(summary_stats.avg_views)}
+				</div>
+				<div class="stat-desc">Per post</div>
+			</div>
+
+			<div class="stat">
+				<div class="stat-title">Average Visitors</div>
+				<div class="stat-value text-info">
+					{number_crunch(summary_stats.avg_visitors)}
+				</div>
+				<div class="stat-desc">Per post</div>
+			</div>
+		</div>
+
+		<!-- Simple Trend Visualization for Top Posts -->
+		{#if trend_data.length > 0 && selected_period !== 'all_time'}
+			<div class="mb-8">
+				<h3 class="mb-4 text-xl font-bold">
+					Trend Overview - Top 3 Posts
+				</h3>
+				<div class="grid gap-4 md:grid-cols-1 lg:grid-cols-3">
+					{#each trend_data as post_trend}
+						<div class="card bg-base-200 h-48 shadow-lg">
+							<div class="card-body flex h-full flex-col p-4">
+								<h4
+									class="card-title line-clamp-2 flex-shrink-0 text-sm"
+								>
+									{post_trend.title}
+								</h4>
+								<div
+									class="mt-auto mb-2 flex h-16 flex-grow items-end gap-1"
+								>
+									{#each post_trend.data_points as point, i}
+										{@const max_views = Math.max(
+											...post_trend.data_points.map((p) => p.views),
+										)}
+										{@const height =
+											max_views > 0
+												? (point.views / max_views) * 100
+												: 0}
+										<div
+											class="bg-primary hover:bg-accent tooltip tooltip-accent tooltip-top min-h-[4px] flex-1 rounded-t transition-colors duration-200"
+											style="height: {Math.max(height, 6)}%"
+											data-tip="{point.period}: {point.views} views"
+										></div>
+									{/each}
+								</div>
+								<div
+									class="text-base-content/70 flex-shrink-0 text-xs"
+								>
+									{post_trend.data_points.length} data points
+								</div>
+							</div>
+						</div>
+					{/each}
+				</div>
+			</div>
+		{/if}
+
 		<div class="overflow-x-auto">
 			<table class="table-zebra table">
 				<thead>
@@ -265,18 +406,29 @@
 					</tr>
 				</thead>
 				<tbody>
-					{#each filtered_stats as post}
+					{#each filtered_stats as post, index}
+						{@const ratio =
+							post.stats.unique_visitors > 0
+								? (
+										post.stats.views / post.stats.unique_visitors
+									).toFixed(1)
+								: 'N/A'}
 						<tr class="hover">
 							<td>
 								<a href="/posts/{post.slug}" class="link-hover link">
 									{post.title}
 								</a>
 							</td>
-							<td class="text-right">
-								{post.stats.views.toLocaleString()}
+							<td class="text-right font-mono">
+								<div
+									class="tooltip tooltip-accent tooltip-top"
+									data-tip="Views/Visitors Ratio: {ratio}"
+								>
+									{number_crunch(post.stats.views)}
+								</div>
 							</td>
-							<td class="text-right">
-								{post.stats.unique_visitors.toLocaleString()}
+							<td class="text-right font-mono">
+								{number_crunch(post.stats.unique_visitors)}
 							</td>
 						</tr>
 					{/each}
@@ -285,3 +437,12 @@
 		</div>
 	</div>
 {/if}
+
+<style>
+	.line-clamp-2 {
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+</style>
