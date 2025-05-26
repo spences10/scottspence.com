@@ -172,7 +172,7 @@ test('handles click events', async () => {
 	const button = page.getByRole('button')
 
 	await button.click()
-	flushSync() // Ensure Svelte updates are applied
+	// No flushSync() needed - locators automatically retry!
 
 	const result = page.getByText('Clicked')
 	await expect.element(result).toBeInTheDocument()
@@ -190,7 +190,7 @@ test('reactive state updates', async () => {
 	await expect.element(counter).toHaveTextContent('0')
 
 	props.count = 5
-	flushSync()
+	// No flushSync() needed - locators automatically wait for updates!
 
 	await expect.element(counter).toHaveTextContent('5')
 })
@@ -358,7 +358,7 @@ test('should test complex reactive logic', async () => {
 	componentState.previousValue = componentState.currentValue
 	componentState.currentValue = 'updated'
 	componentState.changeCount++
-	flushSync()
+	flushSync() // Still needed for immediate derived state evaluation
 
 	expect(untrack(() => hasChanged)).toBe(true)
 	expect(untrack(() => isValid)).toBe(true)
@@ -415,6 +415,17 @@ The modern approach uses **locators** from the `page` object instead
 of manual DOM queries. This provides better reliability and follows
 testing best practices.
 
+#### Why Locators Are Superior
+
+**Automatic Retrying**: Locators automatically retry assertions until
+elements are updated, eliminating the need for `flushSync()` and
+`tick()` in most cases. As noted by Vladimir from the Vitest team:
+"You shouldn't even need flushSync and tick anymore now because
+locators retry the assertion" and "flushSync is also useful only when
+your whole test is sync, but all Vitest locators and matchers are
+async to make sure the elements received all the updates before making
+the assertion."
+
 #### Locator Methods
 
 ```typescript
@@ -443,6 +454,8 @@ page.getByAltText('Profile picture') // Find by alt text (images)
    `data-testid="user-profile-edit-button"`
 4. **Combine locators**:
    `page.getByRole('dialog').getByRole('button', { name: 'Close' })`
+5. **No manual waiting needed**: Locators handle waiting for DOM
+   updates automatically
 
 #### Migration from Container Queries
 
@@ -477,6 +490,46 @@ test('maintains proper DOM structure', () => {
 	const wrapper = container.firstElementChild
 	expect(wrapper?.tagName).toBe('DIV')
 	expect(wrapper?.children.length).toBe(2)
+})
+```
+
+#### When `flushSync()` Is Still Needed
+
+While locators eliminate the need for `flushSync()` in most cases, you
+may still need it when:
+
+1. **Testing synchronous code paths**: When your entire test is
+   synchronous
+2. **Testing non-DOM state**: When testing reactive state that doesn't
+   immediately affect the DOM
+3. **Complex derived state**: When testing `$derived` values that need
+   immediate evaluation
+
+```typescript
+// ✅ Still need flushSync for testing derived state directly
+test('derived state logic', async () => {
+	let scrollState = $state({ current: 0, previous: 0 })
+	let shouldShow = $derived(
+		scrollState.current > scrollState.previous,
+	)
+
+	expect(untrack(() => shouldShow)).toBe(false)
+
+	scrollState.current = 100
+	flushSync() // Needed for immediate derived state evaluation
+
+	expect(untrack(() => shouldShow)).toBe(true)
+})
+
+// ✅ No flushSync needed when testing DOM updates with locators
+test('component updates DOM', async () => {
+	render(MyComponent)
+	const button = page.getByRole('button')
+
+	await button.click()
+	// Locators automatically wait for DOM updates
+
+	await expect.element(page.getByText('Updated')).toBeInTheDocument()
 })
 ```
 
@@ -934,6 +987,41 @@ beforeEach(() => {
 - CSS animations and transitions
 - Viewport and scroll behavior
 
+### 8. Embrace Locator Auto-Retry Behavior
+
+**Key Insight**: Locators automatically retry assertions, eliminating
+the need for manual synchronization in most cases.
+
+```typescript
+// ❌ Old pattern with manual synchronization
+test('updates after click', async () => {
+	render(MyComponent)
+	const button = page.getByRole('button')
+
+	await button.click()
+	flushSync() // Usually not needed!
+
+	await expect.element(page.getByText('Updated')).toBeInTheDocument()
+})
+
+// ✅ New pattern - let locators handle waiting
+test('updates after click', async () => {
+	render(MyComponent)
+	const button = page.getByRole('button')
+
+	await button.click()
+	// Locators automatically wait for DOM updates
+
+	await expect.element(page.getByText('Updated')).toBeInTheDocument()
+})
+```
+
+**When you still need `flushSync()`**:
+
+- Testing derived state directly (not DOM updates)
+- Synchronous test patterns
+- Non-DOM reactive state testing
+
 ## Common Patterns
 
 ### Testing Forms
@@ -1162,12 +1250,18 @@ Object.defineProperty(window, 'scrollY', {
 
 **Problem**: Elements not found after interactions.
 
-**Solution**: Use `flushSync()` to ensure Svelte updates:
+**Solution**: Use locators instead of manual DOM queries - they
+automatically retry:
 
 ```typescript
+// ❌ Old approach - manual DOM queries need flushSync
 button.click()
 flushSync() // Ensure DOM updates are applied
 expect(container.querySelector('[data-testid="result"]')).toBeTruthy()
+
+// ✅ New approach - locators automatically wait
+await button.click()
+await expect.element(page.getByTestId('result')).toBeInTheDocument()
 ```
 
 #### 3. Async Test Issues

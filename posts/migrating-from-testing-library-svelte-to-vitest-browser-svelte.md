@@ -322,7 +322,7 @@ test('toggles details', async () => {
 
 	const summary = page.getByRole('button', { name: 'Test' })
 	await summary.click()
-	flushSync()
+	// No flushSync() needed - locators automatically retry!
 
 	const details = page.getByRole('group')
 	await expect.element(details).toHaveAttribute('open')
@@ -351,6 +351,23 @@ calls.
 
 <Bluesky
 	post_id="did:plc:x7cbjcbvndpjb3vyndsqgpsi/app.bsky.feed.post/3lpzm7ynvzs2o"
+	iframe_styles="border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
+/>
+
+Also a couple more bits I'm really appreciative to Vladimir for taking
+the time to correct me on.
+
+For `flushSync()` and `tick`:
+
+<Bluesky
+	post_id="did:plc:x7cbjcbvndpjb3vyndsqgpsi/app.bsky.feed.post/3lq2ypghyrk2p"
+	iframe_styles="border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
+/>
+
+And...
+
+<Bluesky
+	post_id="did:plc:x7cbjcbvndpjb3vyndsqgpsi/app.bsky.feed.post/3lq2yv3uzjc2p"
 	iframe_styles="border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
 />
 
@@ -386,6 +403,8 @@ test('renders button', async () => {
    `await expect.element(locator).toBeInTheDocument()`
 4. **No container destructuring needed**: Just call
    `render(Component)` directly
+5. **No `flushSync()` or `tick()` needed**: Locators automatically
+   retry assertions until elements are updated
 
 **Available locator methods:**
 
@@ -395,8 +414,74 @@ test('renders button', async () => {
 - `page.getByLabel('Email')` - Find by label text
 - `page.getByPlaceholder('Enter email')` - Find by placeholder
 
+**Locator chaining limitations:**
+
+Unlike Playwright's native locators, `vitest-browser-svelte` doesn't
+support chaining locators (like
+`page.getByRole('article').getByText('Hello')`). You'll need to use
+more specific selectors or combine multiple approaches when targeting
+nested elements.
+
+**Why locators are better:**
+
+Locators automatically retry assertions, which means you don't need
+`flushSync()` and `tick()` anymore! Again thanks to Vladimir for
+pointing this out 🙏
+
 This approach is more reliable and follows modern testing best
 practices by focusing on how users interact with your components.
+
+## When `flushSync()` is still needed
+
+While locators eliminate the need for `flushSync()` in most cases,
+there are still specific scenarios where you'll need it:
+
+**Testing effects and derived state:**
+
+When testing code that uses `$effect` or complex `$derived` state
+outside of component rendering, you may need `flushSync()` to ensure
+synchronous execution:
+
+```typescript
+test('Effect runs synchronously', () => {
+	const cleanup = $effect.root(() => {
+		let count = $state(0)
+		let log = logger(() => count)
+
+		// Effects normally run after a microtask
+		flushSync() // Force synchronous execution
+		expect(log.value).toEqual([0])
+
+		count = 1
+		flushSync() // Still needed for immediate derived state evaluation
+		expect(log.value).toEqual([0, 1])
+	})
+
+	cleanup()
+})
+```
+
+**Testing immediate state transitions:**
+
+When you need to test the immediate result of state changes before the
+next render cycle:
+
+```typescript
+test('immediate state evaluation', () => {
+	let count = $state(0)
+	let doubled = $derived(count * 2)
+
+	count = 5
+	flushSync() // Needed for immediate derived state evaluation
+
+	expect(doubled).toBe(10)
+})
+```
+
+**Key takeaway:** Use `flushSync()` only when your entire test is
+synchronous and you need immediate state evaluation. For component
+testing with locators, it's rarely needed since locators automatically
+wait for DOM updates.
 
 ## The three testing environments
 
@@ -469,7 +554,8 @@ test('reactive state with $state and $derived', async () => {
 	await expect.element(doubledDisplay).toHaveTextContent('0')
 
 	count = 5
-	flushSync()
+	// flushSync() only needed if testing synchronously
+	// Locators will automatically wait for updates!
 
 	await expect.element(countDisplay).toHaveTextContent('5')
 	await expect.element(doubledDisplay).toHaveTextContent('10')
@@ -576,8 +662,7 @@ describe('Details Component', () => {
 
 		// Click to open
 		await button.click()
-		flushSync()
-		await tick()
+		// No flushSync() or tick() needed with locators!
 
 		const content = page.getByTestId('details-content')
 		await expect.element(content).toBeInTheDocument()
@@ -614,10 +699,13 @@ This test is:
 
 This makes it crystal clear what environment each test runs in.
 
-**`flushSync()`**
+**`flushSync()` and `tick()` - mostly not needed!**
 
-After any interaction that should trigger Svelte reactivity, call
-`flushSync()` to ensure updates are applied before making assertions.
+When using locators, you typically don't need `flushSync()` or
+`tick()` because locators automatically retry assertions until
+elements are updated. Only use `flushSync()` when your entire test is
+synchronous, but since all Vitest locators and matchers are async,
+they handle waiting for updates automatically.
 
 **Use real browser APIs**
 
@@ -761,6 +849,12 @@ opportunities to use this approach elsewhere! The new setup is:
 
 Plus, the three-environment approach means I can test the environments
 on an individual basis!
+
+A huge thanks to
+[Vladimir (@erus.dev)](https://bsky.app/profile/erus.dev) for his
+invaluable feedback on locators, `flushSync()`, and testing best
+practices. His corrections and insights really put me on the right
+track and made this post much more accurate and helpful! 🙏
 
 See the
 [files for this change in this PR](https://github.com/spences10/scottspence.com/pull/1092/files).
