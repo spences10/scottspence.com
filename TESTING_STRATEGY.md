@@ -257,6 +257,71 @@ test('applies custom CSS classes', async () => {
 })
 ```
 
+### Testing Scroll Behavior in Real Browser Environment
+
+When testing scroll-related functionality in vitest-browser-svelte,
+you're working with a real browser environment. This requires
+different approaches than mocking scroll in jsdom:
+
+```typescript
+test('handles scroll events correctly', async () => {
+	// Create scrollable content - essential for real scroll testing
+	const tallElement = document.createElement('div')
+	tallElement.style.height = '2000px'
+	document.body.appendChild(tallElement)
+
+	render(ScrollComponent)
+
+	// Use real browser scrolling with instant behavior
+	window.scrollTo({ top: 500, behavior: 'instant' })
+
+	// Wait for scroll to complete in real browser
+	await new Promise((resolve) => {
+		const checkScroll = () => {
+			if (window.scrollY >= 500) {
+				resolve(undefined)
+			} else {
+				requestAnimationFrame(checkScroll)
+			}
+		}
+		checkScroll()
+	})
+
+	// Now test your scroll-dependent behavior
+	const button = page.getByTestId('scroll-button')
+	await expect.element(button).toHaveClass('visible')
+
+	// Clean up
+	document.body.removeChild(tallElement)
+	window.scrollTo({ top: 0, behavior: 'instant' })
+})
+```
+
+**Key principles for scroll testing:**
+
+1. **Create actual scrollable content**: The test iframe needs
+   sufficient height to enable scrolling
+2. **Use real scroll APIs**: `window.scrollTo()` works in the real
+   browser environment
+3. **Wait for scroll completion**: Use `requestAnimationFrame` to
+   ensure scroll position is set
+4. **Clean up after tests**: Reset scroll position and remove test
+   elements
+5. **Use `behavior: 'instant'`**: Avoids animation delays in tests
+
+**Don't mock scroll in browser environment:**
+
+```typescript
+// ❌ Don't mock window.scrollY in real browser tests
+Object.defineProperty(window, 'scrollY', { value: 100 })
+
+// ✅ Use real scrolling with proper setup
+const tallElement = document.createElement('div')
+tallElement.style.height = '2000px'
+document.body.appendChild(tallElement)
+window.scrollTo({ top: 100, behavior: 'instant' })
+```
+
 ### Comprehensive Component Testing Patterns
 
 Based on real-world testing experience, here are comprehensive
@@ -1410,7 +1475,59 @@ semantic query methods that work globally on the page.
 3. Test the overall behavior rather than specific DOM hierarchy
 4. Focus on user-facing functionality over implementation details
 
-#### 8. Reactive State Testing with Runes
+#### 8. Scroll Testing in Real Browser Environment
+
+**Problem**: Scroll tests failing because `window.scrollY` doesn't
+update or scroll events don't trigger properly.
+
+**Solution**: Create actual scrollable content and wait for scroll
+completion:
+
+```typescript
+// ❌ Common mistake - no scrollable content
+test('scroll test fails', async () => {
+	render(ScrollComponent)
+	window.scrollTo({ top: 500 }) // Fails - nothing to scroll!
+	expect(window.scrollY).toBe(500) // Will be 0
+})
+
+// ✅ Correct approach - create scrollable content
+test('scroll test works', async () => {
+	// Essential: Create content that enables scrolling
+	const tallElement = document.createElement('div')
+	tallElement.style.height = '2000px'
+	document.body.appendChild(tallElement)
+
+	render(ScrollComponent)
+
+	window.scrollTo({ top: 500, behavior: 'instant' })
+
+	// Wait for scroll to complete
+	await new Promise((resolve) => {
+		const checkScroll = () => {
+			if (window.scrollY >= 500) {
+				resolve(undefined)
+			} else {
+				requestAnimationFrame(checkScroll)
+			}
+		}
+		checkScroll()
+	})
+
+	// Now scroll-dependent behavior will work
+	expect(window.scrollY).toBe(500)
+
+	// Clean up
+	document.body.removeChild(tallElement)
+	window.scrollTo({ top: 0, behavior: 'instant' })
+})
+```
+
+**Why this happens**: The test iframe starts with no scrollable
+content, so `window.scrollTo()` has no effect. You must create actual
+scrollable content for scroll APIs to work.
+
+#### 9. Reactive State Testing with Runes
 
 **Problem**: Testing complex reactive state logic with `$derived` and
 `$state` runes can be challenging.
