@@ -447,8 +447,8 @@ describe('BackToTop Component', () => {
 				}
 			}) as typeof window.scrollTo
 
-			// Click the button
-			await button.click()
+			// Click the button with force to handle animation stability
+			await button.click({ force: true })
 
 			// Check that scrollTo was called with correct parameters
 			expect(scrollToCalled).toBe(true)
