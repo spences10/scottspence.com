@@ -194,6 +194,31 @@
 			}
 		})
 	})
+
+	// Generate all-time yearly visitor data for chart
+	let all_time_yearly_visitors = $derived.by(() => {
+		if (selected_period !== 'all_time') return []
+
+		// Aggregate visitors by year across all posts
+		const yearly_totals = new Map<string, number>()
+
+		site_stats.forEach((post) => {
+			post.yearly_stats
+				.filter((y) => Number(y.year) < Number(current_year))
+				.forEach((yearly_stat) => {
+					const current_total =
+						yearly_totals.get(yearly_stat.year) || 0
+					yearly_totals.set(
+						yearly_stat.year,
+						current_total + yearly_stat.unique_visitors,
+					)
+				})
+		})
+
+		return Array.from(yearly_totals.entries())
+			.map(([year, visitors]) => ({ year, visitors }))
+			.sort((a, b) => a.year.localeCompare(b.year))
+	})
 </script>
 
 <Head {seo_config} />
@@ -258,7 +283,7 @@
 	</div>
 
 	<div class="mb-12 space-y-6 p-4">
-		<div class="flex flex-wrap gap-4">
+		<div class="flex flex-wrap justify-between gap-4">
 			<select
 				bind:value={selected_period}
 				class="select select-bordered w-full max-w-xs"
@@ -350,6 +375,48 @@
 				<div class="stat-desc">Per post</div>
 			</div>
 		</div>
+
+		<!-- All-Time Yearly Visitors Chart -->
+		{#if selected_period === 'all_time' && all_time_yearly_visitors.length > 0}
+			<div class="mb-8">
+				<h3 class="mb-4 text-xl font-bold">Total Visitors by Year</h3>
+				<div class="card bg-base-200 shadow-lg">
+					<div class="card-body p-6">
+						<div class="mb-4 flex h-64 items-end gap-2">
+							{#each all_time_yearly_visitors as year_data}
+								{@const max_visitors = Math.max(
+									...all_time_yearly_visitors.map((y) => y.visitors),
+								)}
+								{@const height_px =
+									max_visitors > 0
+										? Math.max(
+												(year_data.visitors / max_visitors) * 240,
+												8,
+											)
+										: 8}
+								<div class="flex flex-1 flex-col items-center gap-2">
+									<div
+										class="bg-secondary hover:bg-accent tooltip tooltip-accent tooltip-top w-full rounded-t transition-all duration-300 hover:scale-105"
+										style="height: {height_px}px"
+										data-tip="{year_data.year}: {number_crunch(
+											year_data.visitors,
+										)} visitors"
+									></div>
+									<div class="text-base-content/70 font-mono text-xs">
+										{year_data.year}
+									</div>
+								</div>
+							{/each}
+						</div>
+						<div class="text-center">
+							<div class="text-base-content/70 text-sm">
+								Hover over bars to see exact visitor counts
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		{/if}
 
 		<!-- Simple Trend Visualization for Top Posts -->
 		{#if trend_data.length > 0 && selected_period !== 'all_time'}
