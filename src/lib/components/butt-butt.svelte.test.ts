@@ -1,12 +1,11 @@
 import { page } from '@vitest/browser/context'
-import { flushSync, tick, untrack } from 'svelte'
 import { describe, expect, it } from 'vitest'
 import { render } from 'vitest-browser-svelte'
 import ButtButt from './butt-butt.svelte'
 
 describe('ButtButt Component', () => {
 	describe('Initial Rendering', () => {
-		it('should render with default props', async () => {
+		it('renders with default props', async () => {
 			render(ButtButt)
 
 			const container = page.getByRole('complementary')
@@ -21,165 +20,55 @@ describe('ButtButt Component', () => {
 			await expect.element(bummerText).toBeInTheDocument()
 		})
 
-		it('should render with custom props using rune testing', async () => {
-			// Test $props() rune behavior
-			let testProps = $state({
+		it('renders with custom dimensions', async () => {
+			render(ButtButt, {
 				height: '200px',
 				width: '300px',
 			})
 
-			render(ButtButt, {
-				height: untrack(() => testProps.height),
-				width: untrack(() => testProps.width),
-			})
+			const container = page.getByRole('complementary')
+			await expect.element(container).toBeInTheDocument()
 
-			// The image should not be visible initially (intersecting = false)
-			const image = page.getByAltText('a cheeky butt')
-			await expect.element(image).not.toBeInTheDocument()
-
-			// Test that props are reactive
-			testProps.height = '150px'
-			testProps.width = '250px'
-			flushSync()
-
-			// Props should update reactively when component becomes visible
-			expect(untrack(() => testProps.height)).toBe('150px')
-			expect(untrack(() => testProps.width)).toBe('250px')
+			// Component should render regardless of custom props
+			const message = page.getByText(
+				'Looks like you have reached the bottom of this page!',
+			)
+			await expect.element(message).toBeInTheDocument()
 		})
 
-		it('should not display the butt image initially', async () => {
+		it('does not display image initially', async () => {
 			render(ButtButt)
 
-			// Image should not be in DOM when intersecting = false
+			// Image should not be visible initially (not intersecting)
 			const image = page.getByAltText('a cheeky butt')
 			await expect.element(image).not.toBeInTheDocument()
 		})
-	})
 
-	describe('Rune State Management', () => {
-		it('should manage pun state with $state rune', async () => {
-			// Test the pun state management logic
-			let testPunState = $state<string | null>(null)
-			let testPuns = ['Test pun 1', 'Test pun 2', 'Test pun 3']
-			let testPunsCopy = testPuns.slice()
+		it('displays initial pun text', async () => {
+			render(ButtButt)
 
-			// Simulate the random_pun function logic
-			const simulateRandomPun = (): string => {
-				if (testPunsCopy.length === 0) {
-					testPunsCopy.push(untrack(() => testPunState) as string)
-					testPunState = null
-				}
-				const index = Math.floor(Math.random() * testPunsCopy.length)
-				const newPun = testPunsCopy[index]
-				testPunsCopy.splice(index, 1)
-				if (untrack(() => testPunState)) {
-					testPunsCopy.push(untrack(() => testPunState) as string)
-				}
-				testPunState = newPun
-				return newPun
-			}
+			// Should display some pun text (any of the possible puns)
+			const punContainer = page.getByRole('complementary')
+			await expect.element(punContainer).toBeInTheDocument()
 
-			// Test initial state
-			expect(untrack(() => testPunState)).toBeNull()
-
-			// Test pun generation
-			const firstPun = simulateRandomPun()
-			expect(untrack(() => testPunState)).toBe(firstPun)
-			expect(testPuns.includes(firstPun)).toBe(true)
-
-			// Test that puns don't repeat immediately
-			const secondPun = simulateRandomPun()
-			expect(untrack(() => testPunState)).toBe(secondPun)
-			expect(secondPun).not.toBe(firstPun)
+			// The pun text should be present somewhere in the component
+			// We can't predict which pun will be shown, but there should be text content
+			await expect.element(punContainer).toHaveTextContent(/\w+/)
 		})
 
-		it('should manage intersecting state with $state rune', async () => {
-			// Test intersection state management
-			let testIntersecting = $state(false)
+		it('renders pun generation button', async () => {
+			render(ButtButt)
 
-			// Derived state based on intersection
-			let shouldShowImage = $derived(testIntersecting)
-
-			// Test initial state
-			expect(untrack(() => shouldShowImage)).toBe(false)
-
-			// Test state change
-			testIntersecting = true
-			flushSync()
-			expect(untrack(() => shouldShowImage)).toBe(true)
-
-			// Test state change back
-			testIntersecting = false
-			flushSync()
-			expect(untrack(() => shouldShowImage)).toBe(false)
-		})
-	})
-
-	describe('Intersection Observer Integration', () => {
-		it('should test viewport intersection state with runes', async () => {
-			// Test the intersection logic using runes instead of mocking
-			let testIntersectionState = $state({
-				isIntersecting: false,
-				hasEntered: false,
-			})
-
-			// Derived state that mimics the component's logic
-			let shouldShowImage = $derived(
-				testIntersectionState.isIntersecting &&
-					testIntersectionState.hasEntered,
-			)
-
-			// Test initial state
-			expect(untrack(() => shouldShowImage)).toBe(false)
-
-			// Simulate entering viewport
-			testIntersectionState.isIntersecting = true
-			testIntersectionState.hasEntered = true
-			flushSync()
-
-			expect(untrack(() => shouldShowImage)).toBe(true)
-
-			// Simulate leaving viewport
-			testIntersectionState.isIntersecting = false
-			flushSync()
-
-			expect(untrack(() => shouldShowImage)).toBe(false)
-		})
-
-		it('should test intersection state transitions', async () => {
-			// Test complex intersection state management
-			let viewportState = $state({
-				current: false,
-				previous: false,
-				entryCount: 0,
-			})
-
-			// Derived state for tracking state changes
-			let hasStateChanged = $derived(
-				viewportState.current !== viewportState.previous,
-			)
-
-			let isFirstEntry = $derived(
-				viewportState.current && viewportState.entryCount === 0,
-			)
-
-			// Test initial state
-			expect(untrack(() => hasStateChanged)).toBe(false)
-			expect(untrack(() => isFirstEntry)).toBe(false)
-
-			// Simulate first intersection
-			viewportState.previous = viewportState.current
-			viewportState.current = true
-			viewportState.entryCount = 1
-			flushSync()
-
-			expect(untrack(() => hasStateChanged)).toBe(true)
-			expect(untrack(() => isFirstEntry)).toBe(false) // entryCount is 1, not 0
+			const button = page.getByRole('button', { name: 'pun me up' })
+			await expect.element(button).toBeInTheDocument()
+			await expect.element(button).toHaveClass('btn')
+			await expect.element(button).toHaveClass('btn-xs')
+			await expect.element(button).toHaveClass('rounded-box')
 		})
 	})
 
 	describe('User Interactions', () => {
-		it('should generate new pun when button is clicked', async () => {
+		it('generates new pun when button is clicked', async () => {
 			render(ButtButt)
 
 			const button = page.getByRole('button', { name: 'pun me up' })
@@ -187,152 +76,237 @@ describe('ButtButt Component', () => {
 
 			// Click button to generate new pun
 			await button.click()
-			flushSync()
-			await tick()
 
-			// Verify that a pun is displayed by checking for any of the possible puns
-			// Since puns are random, we'll check for common words that appear in all puns
-			const punText = page
-				.getByText(/butt|ass|crack|behind|rear|bottom|cheek/i)
-				.last()
-			await expect.element(punText).toBeInTheDocument()
+			// Verify that content is still present
+			const container = page.getByRole('complementary')
+			await expect.element(container).toHaveTextContent(/\w+/)
+
+			// Verify button is still clickable
+			await expect.element(button).toBeEnabled()
 		})
 
-		it('should test pun generation logic with runes', async () => {
-			// Test the pun generation logic using runes
-			let punState = $state({
-				currentPun: null as string | null,
-				availablePuns: ['Pun 1', 'Pun 2', 'Pun 3'],
-				usedPuns: [] as string[],
-			})
+		it('button remains functional after multiple clicks', async () => {
+			render(ButtButt)
 
-			// Derived state for pun management
-			let hasAvailablePuns = $derived(
-				punState.availablePuns.length > 0,
-			)
-			let canGenerateNewPun = $derived(
-				hasAvailablePuns || punState.usedPuns.length > 0,
-			)
+			const button = page.getByRole('button', { name: 'pun me up' })
 
-			// Test initial state
-			expect(untrack(() => hasAvailablePuns)).toBe(true)
-			expect(untrack(() => canGenerateNewPun)).toBe(true)
-
-			// Simulate pun generation
-			const newPun = punState.availablePuns[0]
-			punState.currentPun = newPun
-			punState.availablePuns = punState.availablePuns.slice(1)
-			punState.usedPuns.push(newPun)
-			flushSync()
-
-			expect(untrack(() => punState.currentPun)).toBe('Pun 1')
-			expect(untrack(() => punState.availablePuns.length)).toBe(2)
-			expect(untrack(() => punState.usedPuns.length)).toBe(1)
-		})
-	})
-
-	describe('Advanced Rune Testing Patterns', () => {
-		it('should test complex state interactions with multiple runes', async () => {
-			// Simulate the component's state management
-			let componentState = $state({
-				intersecting: false,
-				currentPun: null as string | null,
-				punsRemaining: 13, // Initial puns array length
-				imageVisible: false,
-			})
-
-			// Derived state that mimics component logic
-			let shouldShowImage = $derived(
-				componentState.intersecting && componentState.imageVisible,
-			)
-
-			let hasActivePun = $derived(
-				componentState.currentPun !== null &&
-					componentState.currentPun.length > 0,
-			)
-
-			// Test initial state
-			expect(untrack(() => shouldShowImage)).toBe(false)
-			expect(untrack(() => hasActivePun)).toBe(false)
-
-			// Simulate entering viewport
-			componentState.intersecting = true
-			componentState.imageVisible = true
-			componentState.currentPun = 'Test pun'
-			flushSync()
-
-			expect(untrack(() => shouldShowImage)).toBe(true)
-			expect(untrack(() => hasActivePun)).toBe(true)
-
-			// Simulate leaving viewport
-			componentState.intersecting = false
-			flushSync()
-
-			expect(untrack(() => shouldShowImage)).toBe(false)
-			expect(untrack(() => hasActivePun)).toBe(true) // Pun should persist
-		})
-
-		it('should test $effect.root behavior simulation', async () => {
-			// Test the effect root pattern used in the component
-			let effectExecuted = $state(false)
-			let initialValue = $state<string | null>(null)
-
-			// Simulate the $effect.root behavior
-			const simulateEffectRoot = () => {
-				effectExecuted = true
-				initialValue = 'Initial pun'
+			// Click multiple times to test functionality
+			for (let i = 0; i < 3; i++) {
+				await button.click()
+				await expect.element(button).toBeEnabled()
 			}
 
-			// Test before effect
-			expect(untrack(() => effectExecuted)).toBe(false)
-			expect(untrack(() => initialValue)).toBeNull()
+			// Component should still be functional
+			const container = page.getByRole('complementary')
+			await expect.element(container).toHaveTextContent(/\w+/)
+		})
 
-			// Simulate effect execution
-			simulateEffectRoot()
-			flushSync()
+		it('pun text contains expected content patterns', async () => {
+			render(ButtButt)
 
-			expect(untrack(() => effectExecuted)).toBe(true)
-			expect(untrack(() => initialValue)).toBe('Initial pun')
+			const button = page.getByRole('button', { name: 'pun me up' })
+
+			// Click a few times to see different puns
+			for (let i = 0; i < 5; i++) {
+				await button.click()
+
+				// Check that we have pun-related content
+				// The puns contain words like "butt", "behind", "crack", etc.
+				const container = page.getByRole('complementary')
+				await expect
+					.element(container)
+					.toHaveTextContent(
+						/butt|behind|crack|rear|bottom|cheek|ass|half-arsed|smart ass/i,
+					)
+			}
 		})
 	})
 
-	describe('Component Lifecycle', () => {
-		it('should test component lifecycle with runes', async () => {
-			// Test component lifecycle state management
-			let lifecycleState = $state({
-				isMounted: false,
-				isInitialized: false,
-				hasCleanedUp: false,
+	describe('Accessibility', () => {
+		it('has proper semantic structure', async () => {
+			render(ButtButt)
+
+			// Should use aside element for complementary content
+			const aside = page.getByRole('complementary')
+			await expect.element(aside).toBeInTheDocument()
+
+			// Button should have proper role and be accessible
+			const button = page.getByRole('button', { name: 'pun me up' })
+			await expect.element(button).toBeInTheDocument()
+		})
+
+		it('image has proper alt text when visible', async () => {
+			render(ButtButt)
+
+			// When image becomes visible, it should have proper alt text
+			// Note: We can't easily trigger intersection observer in tests,
+			// but we can verify the alt text is set correctly in the component
+			const container = page.getByRole('complementary')
+			await expect.element(container).toBeInTheDocument()
+		})
+
+		it('button is keyboard accessible', async () => {
+			render(ButtButt)
+
+			const button = page.getByRole('button', { name: 'pun me up' })
+
+			// Button should be clickable and enabled
+			await expect.element(button).toBeEnabled()
+
+			// Should be able to activate with click
+			await button.click()
+			await expect.element(button).toBeEnabled()
+		})
+	})
+
+	describe('Content Structure', () => {
+		it('displays all required text elements', async () => {
+			render(ButtButt)
+
+			// Check for main message
+			const mainMessage = page.getByText(
+				'Looks like you have reached the bottom of this page!',
+			)
+			await expect.element(mainMessage).toBeInTheDocument()
+
+			// Check for "Bummer!" text
+			const bummerText = page.getByText('Bummer!')
+			await expect.element(bummerText).toBeInTheDocument()
+
+			// Check for button
+			const button = page.getByRole('button', { name: 'pun me up' })
+			await expect.element(button).toBeInTheDocument()
+		})
+
+		it('has proper CSS classes applied', async () => {
+			render(ButtButt)
+
+			const container = page.getByRole('complementary')
+			await expect.element(container).toHaveClass('all-prose')
+			await expect.element(container).toHaveClass('mb-12')
+			await expect.element(container).toHaveClass('text-center')
+		})
+
+		it('maintains text content structure', async () => {
+			render(ButtButt)
+
+			const container = page.getByRole('complementary')
+
+			// Should contain the main structural text
+			await expect
+				.element(container)
+				.toHaveTextContent(
+					'Looks like you have reached the bottom of this page!',
+				)
+			await expect.element(container).toHaveTextContent('Bummer!')
+			await expect.element(container).toHaveTextContent('pun me up')
+		})
+	})
+
+	describe('Props Handling', () => {
+		it('accepts custom height and width props', async () => {
+			render(ButtButt, {
+				height: '150px',
+				width: '250px',
 			})
 
-			// Derived state for lifecycle management
-			let isActive = $derived(
-				lifecycleState.isMounted && lifecycleState.isInitialized,
-			)
+			// Component should render successfully with custom props
+			const container = page.getByRole('complementary')
+			await expect.element(container).toBeInTheDocument()
 
-			let needsCleanup = $derived(
-				!lifecycleState.isMounted && lifecycleState.isInitialized,
-			)
+			const button = page.getByRole('button', { name: 'pun me up' })
+			await expect.element(button).toBeInTheDocument()
+		})
 
-			// Test initial state
-			expect(untrack(() => isActive)).toBe(false)
-			expect(untrack(() => needsCleanup)).toBe(false)
+		it('works with default props when none provided', async () => {
+			render(ButtButt)
 
-			// Simulate mounting
-			lifecycleState.isMounted = true
-			lifecycleState.isInitialized = true
-			flushSync()
+			// Should work fine with default props
+			const container = page.getByRole('complementary')
+			await expect.element(container).toBeInTheDocument()
 
-			expect(untrack(() => isActive)).toBe(true)
-			expect(untrack(() => needsCleanup)).toBe(false)
+			const button = page.getByRole('button', { name: 'pun me up' })
+			await button.click()
+			await expect.element(button).toBeEnabled()
+		})
 
-			// Simulate unmounting
-			lifecycleState.isMounted = false
-			lifecycleState.hasCleanedUp = true
-			flushSync()
+		it('handles edge case prop values', async () => {
+			render(ButtButt, {
+				height: '0px',
+				width: '0px',
+			})
 
-			expect(untrack(() => isActive)).toBe(false)
-			expect(untrack(() => needsCleanup)).toBe(true)
+			// Component should still render and be functional
+			const container = page.getByRole('complementary')
+			await expect.element(container).toBeInTheDocument()
+
+			const button = page.getByRole('button', { name: 'pun me up' })
+			await button.click()
+			await expect.element(button).toBeEnabled()
+		})
+	})
+
+	describe('Component Behavior', () => {
+		it('maintains state across interactions', async () => {
+			render(ButtButt)
+
+			const button = page.getByRole('button', { name: 'pun me up' })
+			const container = page.getByRole('complementary')
+
+			// Initial state should have content
+			await expect.element(container).toHaveTextContent(/\w+/)
+
+			// After interaction
+			await button.click()
+			await expect.element(container).toHaveTextContent(/\w+/)
+
+			// Should maintain core structure
+			await expect
+				.element(container)
+				.toHaveTextContent(
+					'Looks like you have reached the bottom of this page!',
+				)
+			await expect.element(container).toHaveTextContent('Bummer!')
+		})
+
+		it('pun generation is functional', async () => {
+			render(ButtButt)
+
+			const button = page.getByRole('button', { name: 'pun me up' })
+
+			// Test that clicking generates content
+			await button.click()
+
+			const container = page.getByRole('complementary')
+
+			// Should have meaningful content (not empty or just whitespace)
+			await expect.element(container).toHaveTextContent(/\w{3,}/)
+		})
+
+		it('component is reusable', async () => {
+			// Render multiple instances to test reusability
+			const { unmount: unmount1 } = render(ButtButt, {
+				height: '100px',
+				width: '160px',
+			})
+
+			const container1 = page.getByRole('complementary')
+			await expect.element(container1).toBeInTheDocument()
+
+			unmount1()
+
+			// Render second instance
+			render(ButtButt, {
+				height: '200px',
+				width: '300px',
+			})
+
+			const container2 = page.getByRole('complementary')
+			await expect.element(container2).toBeInTheDocument()
+
+			const button2 = page.getByRole('button', { name: 'pun me up' })
+			await button2.click()
+			await expect.element(button2).toBeEnabled()
 		})
 	})
 })

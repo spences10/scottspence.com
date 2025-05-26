@@ -1,12 +1,12 @@
 import { page } from '@vitest/browser/context'
 import { createRawSnippet, flushSync } from 'svelte'
-import { describe, expect, test } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { render } from 'vitest-browser-svelte'
 import Details from './details.svelte'
 
 describe('Details Component', () => {
 	describe('Initial Rendering', () => {
-		test('renders with default props', async () => {
+		it('renders with default props', async () => {
 			render(Details)
 			const button = page.getByTestId('details-button')
 
@@ -19,7 +19,7 @@ describe('Details Component', () => {
 				.not.toBeInTheDocument()
 		})
 
-		test('renders with custom button text', async () => {
+		it('renders with custom button text', async () => {
 			render(Details, {
 				button_text: 'Show Details',
 			})
@@ -28,7 +28,7 @@ describe('Details Component', () => {
 			await expect.element(button).toHaveTextContent('Show Details')
 		})
 
-		test('renders with empty button text', async () => {
+		it('renders with empty button text', async () => {
 			render(Details, {
 				button_text: '',
 			})
@@ -37,7 +37,7 @@ describe('Details Component', () => {
 			await expect.element(button).toHaveTextContent('')
 		})
 
-		test('renders with whitespace-only button text', async () => {
+		it('renders with whitespace-only button text', async () => {
 			render(Details, {
 				button_text: '   ',
 			})
@@ -46,7 +46,7 @@ describe('Details Component', () => {
 			await expect.element(button).toHaveTextContent('')
 		})
 
-		test('applies custom styles', async () => {
+		it('applies custom styles', async () => {
 			render(Details, {
 				styles: 'custom-class another-class',
 			})
@@ -58,7 +58,7 @@ describe('Details Component', () => {
 			await expect.element(button).toHaveClass('shadow-xl')
 		})
 
-		test('handles undefined styles gracefully', async () => {
+		it('handles undefined styles gracefully', async () => {
 			render(Details, {
 				styles: undefined,
 			})
@@ -70,7 +70,7 @@ describe('Details Component', () => {
 	})
 
 	describe('Initial State Control', () => {
-		test('respects initial is_open: false', async () => {
+		it('respects initial is_open: false', async () => {
 			render(Details, {
 				button_text: 'Show Details',
 				is_open: false,
@@ -83,7 +83,7 @@ describe('Details Component', () => {
 				.not.toBeInTheDocument()
 		})
 
-		test('respects initial is_open: true', async () => {
+		it('respects initial is_open: true', async () => {
 			const testSnippet = createRawSnippet(() => ({
 				render: () => '<p>Test Content</p>',
 				setup: () => {},
@@ -105,7 +105,7 @@ describe('Details Component', () => {
 	})
 
 	describe('User Interactions', () => {
-		test('opens details when button is clicked', async () => {
+		it('opens details when button is clicked', async () => {
 			const testSnippet = createRawSnippet(() => ({
 				render: () => '<p>Test Content</p>',
 				setup: () => {},
@@ -127,16 +127,19 @@ describe('Details Component', () => {
 
 			// Click to open
 			await button.click()
-			flushSync() // Ensure state updates are applied immediately
+			flushSync()
+
+			// Wait for button text to change first (immediate)
+			await expect.element(button).toHaveTextContent('Close')
 
 			// Wait for transition to complete and content to appear
 			const content = page.getByTestId('details-content')
 			await expect.element(content).toBeInTheDocument()
+			await expect.element(content).toBeVisible()
 			await expect.element(content).toHaveTextContent('Test Content')
-			await expect.element(button).toHaveTextContent('Close')
 		})
 
-		test('closes details when button is clicked again', async () => {
+		it('closes details when button is clicked again', async () => {
 			const testSnippet = createRawSnippet(() => ({
 				render: () => '<p>Test Content</p>',
 				setup: () => {},
@@ -158,7 +161,6 @@ describe('Details Component', () => {
 
 			// Click to close
 			await button.click()
-			// Locators automatically wait for DOM updates
 
 			await expect
 				.element(page.getByTestId('details-content'))
@@ -166,7 +168,7 @@ describe('Details Component', () => {
 			await expect.element(button).toHaveTextContent('Show Details')
 		})
 
-		test('toggles multiple times correctly', async () => {
+		it('toggles multiple times correctly', async () => {
 			const testSnippet = createRawSnippet(() => ({
 				render: () => '<p>Test Content</p>',
 				setup: () => {},
@@ -184,30 +186,28 @@ describe('Details Component', () => {
 			await button.click()
 			flushSync()
 			await expect.element(button).toHaveTextContent('Close')
-			await expect
-				.element(page.getByTestId('details-content'))
-				.toBeInTheDocument()
+
+			const content = page.getByTestId('details-content')
+			await expect.element(content).toBeInTheDocument()
+			await expect.element(content).toBeVisible()
 
 			// Close
 			await button.click()
 			flushSync()
 			await expect.element(button).toHaveTextContent('Toggle Details')
-			await expect
-				.element(page.getByTestId('details-content'))
-				.not.toBeInTheDocument()
+			await expect.element(content).not.toBeInTheDocument()
 
 			// Open again
 			await button.click()
 			flushSync()
 			await expect.element(button).toHaveTextContent('Close')
-			await expect
-				.element(page.getByTestId('details-content'))
-				.toBeInTheDocument()
+			await expect.element(content).toBeInTheDocument()
+			await expect.element(content).toBeVisible()
 		})
 	})
 
 	describe('Content Rendering', () => {
-		test('renders snippet content correctly', async () => {
+		it('renders snippet content correctly', async () => {
 			const testSnippet = createRawSnippet(() => ({
 				render: () => '<div><h3>Title</h3><p>Description</p></div>',
 				setup: () => {},
@@ -225,7 +225,7 @@ describe('Details Component', () => {
 			await expect.element(content).toHaveTextContent('Description')
 		})
 
-		test('handles empty content gracefully', async () => {
+		it('handles empty content gracefully', async () => {
 			const emptySnippet = createRawSnippet(() => ({
 				render: () => '<div></div>',
 				setup: () => {},
@@ -240,10 +240,41 @@ describe('Details Component', () => {
 			const content = page.getByTestId('details-content')
 			await expect.element(content).toBeInTheDocument()
 		})
+
+		it('handles complex nested content', async () => {
+			const complexSnippet = createRawSnippet(() => ({
+				render: () => `
+					<div>
+						<h2>Main Title</h2>
+						<ul>
+							<li>Item 1</li>
+							<li>Item 2</li>
+						</ul>
+						<p>Some <strong>bold</strong> text</p>
+					</div>
+				`,
+				setup: () => {},
+			}))
+
+			render(Details, {
+				button_text: 'Show Complex Content',
+				is_open: true,
+				children: complexSnippet,
+			})
+
+			const content = page.getByTestId('details-content')
+			await expect.element(content).toBeInTheDocument()
+			await expect.element(content).toHaveTextContent('Main Title')
+			await expect.element(content).toHaveTextContent('Item 1')
+			await expect.element(content).toHaveTextContent('Item 2')
+			await expect
+				.element(content)
+				.toHaveTextContent('Some bold text')
+		})
 	})
 
 	describe('Accessibility', () => {
-		test('button has correct accessibility attributes', async () => {
+		it('button has correct accessibility attributes', async () => {
 			render(Details, {
 				button_text: 'Show Details',
 			})
@@ -252,7 +283,7 @@ describe('Details Component', () => {
 			await expect.element(button).toHaveAttribute('type', 'button')
 		})
 
-		test('content is properly associated with button', async () => {
+		it('content is properly associated with button', async () => {
 			const testSnippet = createRawSnippet(() => ({
 				render: () => '<p>Test Content</p>',
 				setup: () => {},
@@ -266,6 +297,131 @@ describe('Details Component', () => {
 
 			const content = page.getByTestId('details-content')
 			await expect.element(content).toBeInTheDocument()
+		})
+
+		it('button is keyboard accessible', async () => {
+			const testSnippet = createRawSnippet(() => ({
+				render: () => '<p>Test Content</p>',
+				setup: () => {},
+			}))
+
+			render(Details, {
+				button_text: 'Show Details',
+				is_open: false,
+				children: testSnippet,
+			})
+
+			const button = page.getByTestId('details-button')
+
+			// Button should be clickable and enabled
+			await expect.element(button).toBeEnabled()
+
+			// Should be able to activate with click
+			await button.click()
+			flushSync()
+
+			await expect.element(button).toHaveTextContent('Close')
+			const content = page.getByTestId('details-content')
+			await expect.element(content).toBeInTheDocument()
+		})
+	})
+
+	describe('Edge Cases', () => {
+		it('handles rapid button clicks gracefully', async () => {
+			const testSnippet = createRawSnippet(() => ({
+				render: () => '<p>Test Content</p>',
+				setup: () => {},
+			}))
+
+			render(Details, {
+				button_text: 'Toggle Details',
+				is_open: false,
+				children: testSnippet,
+			})
+
+			const button = page.getByTestId('details-button')
+
+			// Initial state
+			await expect.element(button).toHaveTextContent('Toggle Details')
+
+			// Rapid clicks with flushSync after each to ensure state updates
+			await button.click()
+			flushSync()
+			await button.click()
+			flushSync()
+			await button.click()
+			flushSync()
+
+			// After 3 clicks (odd number), should be in open state
+			await expect.element(button).toHaveTextContent('Close')
+			await expect
+				.element(page.getByTestId('details-content'))
+				.toBeInTheDocument()
+
+			// One more click to close
+			await button.click()
+			flushSync()
+
+			// Now should be closed
+			await expect.element(button).toHaveTextContent('Toggle Details')
+			await expect
+				.element(page.getByTestId('details-content'))
+				.not.toBeInTheDocument()
+		})
+
+		it('works without children prop', async () => {
+			render(Details, {
+				button_text: 'Show Details',
+				is_open: true,
+			})
+
+			const button = page.getByTestId('details-button')
+			await expect.element(button).toHaveTextContent('Close')
+
+			const content = page.getByTestId('details-content')
+			await expect.element(content).toBeInTheDocument()
+		})
+
+		it('handles very long button text', async () => {
+			const longText =
+				'This is a very long button text that might cause layout issues or overflow problems in some scenarios'
+
+			render(Details, {
+				button_text: longText,
+				is_open: false,
+			})
+
+			const button = page.getByTestId('details-button')
+			await expect.element(button).toHaveTextContent(longText)
+			await expect.element(button).toBeEnabled()
+		})
+
+		it('maintains state consistency across prop changes', async () => {
+			const testSnippet = createRawSnippet(() => ({
+				render: () => '<p>Test Content</p>',
+				setup: () => {},
+			}))
+
+			const { rerender } = render(Details, {
+				button_text: 'Initial Text',
+				is_open: false,
+				children: testSnippet,
+			})
+
+			const button = page.getByTestId('details-button')
+			await expect.element(button).toHaveTextContent('Initial Text')
+
+			// Change button text while keeping state
+			rerender({
+				button_text: 'Updated Text',
+				is_open: false,
+				children: testSnippet,
+			})
+
+			await expect.element(button).toHaveTextContent('Updated Text')
+			await expect
+				.element(page.getByTestId('details-content'))
+				.not.toBeInTheDocument()
 		})
 	})
 })

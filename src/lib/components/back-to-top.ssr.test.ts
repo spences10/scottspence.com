@@ -15,11 +15,11 @@ describe('BackToTop.svelte SSR', () => {
 		const { body } = render(BackToTop)
 
 		expect(body).toContain('btn')
-		expect(body).toContain('btn-circle')
-		expect(body).toContain('btn-primary')
+		expect(body).toContain('btn-secondary')
+		expect(body).toContain('text-secondary-content')
+		expect(body).toContain('rounded-box')
 		expect(body).toContain('fixed')
-		expect(body).toContain('bottom-4')
-		expect(body).toContain('right-4')
+		expect(body).toContain('right-5')
 	})
 
 	test('renders with initial hidden state', () => {
@@ -64,8 +64,8 @@ describe('BackToTop.svelte SSR', () => {
 	test('includes all positioning classes', () => {
 		const { body } = render(BackToTop)
 
-		expect(body).toContain('right-4')
-		expect(body).toContain('bottom-4')
+		expect(body).toContain('right-5')
+		expect(body).toContain('bottom-[-2rem]')
 		expect(body).toContain('fixed')
 	})
 })
