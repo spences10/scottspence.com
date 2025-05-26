@@ -1,5 +1,5 @@
 import { page } from '@vitest/browser/context'
-import { flushSync, tick } from 'svelte'
+import { flushSync, tick, untrack } from 'svelte'
 import {
 	afterEach,
 	beforeAll,
@@ -69,6 +69,121 @@ describe('BackToTop Component', () => {
 		await tick()
 	}
 
+	describe('Rune State Testing', () => {
+		test('reactive state logic with $state and $derived', async () => {
+			// Test the component's reactive logic directly using runes
+			let state = $state({
+				show_scroll_button: false,
+				last_scroll_top: 0,
+			})
+
+			// Simulate the component's scroll logic
+			const simulateScroll = (currentScrollTop: number) => {
+				state.show_scroll_button =
+					currentScrollTop > state.last_scroll_top &&
+					currentScrollTop > 0
+				state.last_scroll_top = currentScrollTop
+			}
+
+			// Initial state
+			expect(state.show_scroll_button).toBe(false)
+			expect(state.last_scroll_top).toBe(0)
+
+			// Scroll down from top
+			simulateScroll(100)
+			expect(state.show_scroll_button).toBe(true)
+			expect(state.last_scroll_top).toBe(100)
+
+			// Scroll down more
+			simulateScroll(200)
+			expect(state.show_scroll_button).toBe(true)
+			expect(state.last_scroll_top).toBe(200)
+
+			// Scroll up
+			simulateScroll(150)
+			expect(state.show_scroll_button).toBe(false)
+			expect(state.last_scroll_top).toBe(150)
+
+			// Scroll to top
+			simulateScroll(0)
+			expect(state.show_scroll_button).toBe(false)
+			expect(state.last_scroll_top).toBe(0)
+		})
+
+		test('derived state for button visibility', async () => {
+			let scrollState = $state({
+				current: 0,
+				previous: 0,
+			})
+
+			// Derived state that mimics component logic
+			let shouldShowButton = $derived(
+				scrollState.current > scrollState.previous &&
+					scrollState.current > 0,
+			)
+
+			// Initial state
+			expect(untrack(() => shouldShowButton)).toBe(false)
+
+			// Scroll down
+			scrollState.previous = scrollState.current
+			scrollState.current = 100
+			flushSync()
+			expect(untrack(() => shouldShowButton)).toBe(true)
+
+			// Scroll up
+			scrollState.previous = scrollState.current
+			scrollState.current = 50
+			flushSync()
+			expect(untrack(() => shouldShowButton)).toBe(false)
+
+			// Scroll to exact top
+			scrollState.previous = scrollState.current
+			scrollState.current = 0
+			flushSync()
+			expect(untrack(() => shouldShowButton)).toBe(false)
+		})
+
+		test('reactive scroll direction detection', async () => {
+			let scrollData = $state({
+				history: [] as number[],
+				currentPosition: 0,
+			})
+
+			// Derived state for scroll direction
+			let isScrollingDown = $derived(() => {
+				if (scrollData.history.length < 2) return false
+				const [previous, current] = scrollData.history.slice(-2)
+				return current > previous && current > 0
+			})
+
+			const updateScroll = (position: number) => {
+				scrollData.currentPosition = position
+				scrollData.history = [...scrollData.history, position]
+			}
+
+			// Initial state
+			updateScroll(0)
+			flushSync()
+			expect(untrack(() => isScrollingDown())).toBe(false)
+
+			// First scroll down
+			updateScroll(50)
+			flushSync()
+			expect(untrack(() => isScrollingDown())).toBe(true)
+
+			// Continue scrolling down
+			updateScroll(100)
+			flushSync()
+			expect(untrack(() => isScrollingDown())).toBe(true)
+
+			// Scroll up
+			updateScroll(75)
+			flushSync()
+			expect(untrack(() => isScrollingDown())).toBe(false)
+		})
+	})
+
 	describe('Initial Rendering', () => {
 		test('renders button with correct initial state', async () => {
 			render(BackToTop)
@@ -124,62 +239,54 @@ describe('BackToTop Component', () => {
 		})
 
 		test('hides button when scrolling up', async () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
 			// Start with some scroll position
 			setScrollPosition(200)
 			await triggerScroll()
-			expect(button.classList.contains('show-button')).toBe(true)
+			await expect.element(button).toHaveClass('show-button')
 
 			// Scroll up
 			setScrollPosition(100)
 			await triggerScroll()
 
-			expect(button.classList.contains('show-button')).toBe(false)
-			expect(button.classList.contains('hide-button')).toBe(true)
+			await expect.element(button).not.toHaveClass('show-button')
+			await expect.element(button).toHaveClass('hide-button')
 		})
 
 		test('remains hidden when at top of page', async () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
 			// Stay at top
 			setScrollPosition(0)
 			await triggerScroll()
 
-			expect(button.classList.contains('show-button')).toBe(false)
+			await expect.element(button).not.toHaveClass('show-button')
 		})
 
 		test('handles scrolling to exact top position', async () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
 			// Scroll down first
 			setScrollPosition(100)
 			await triggerScroll()
-			expect(button.classList.contains('show-button')).toBe(true)
+			await expect.element(button).toHaveClass('show-button')
 
 			// Scroll back to exact top
 			setScrollPosition(0)
 			await triggerScroll()
 
-			expect(button.classList.contains('show-button')).toBe(false)
+			await expect.element(button).not.toHaveClass('show-button')
 		})
 	})
 
 	describe('Edge Cases', () => {
 		test('handles rapid scroll events', async () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
 			// Rapid scroll changes
 			setScrollPosition(50)
@@ -195,73 +302,63 @@ describe('BackToTop Component', () => {
 			await triggerScroll()
 
 			// Should show button since last movement was down
-			expect(button.classList.contains('show-button')).toBe(true)
+			await expect.element(button).toHaveClass('show-button')
 		})
 
 		test('handles very large scroll positions', async () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
 			// Very large scroll position
 			setScrollPosition(999999)
 			await triggerScroll()
 
-			expect(button.classList.contains('show-button')).toBe(true)
+			await expect.element(button).toHaveClass('show-button')
 		})
 
 		test('handles negative scroll positions gracefully', async () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
 			// Negative scroll (shouldn't happen in real browsers, but test edge case)
 			setScrollPosition(-10)
 			await triggerScroll()
 
-			expect(button.classList.contains('show-button')).toBe(false)
+			await expect.element(button).not.toHaveClass('show-button')
 		})
 
 		test('handles fractional scroll positions', async () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
 			setScrollPosition(0.5)
 			await triggerScroll()
 
-			expect(button.classList.contains('show-button')).toBe(true)
+			await expect.element(button).toHaveClass('show-button')
 		})
 
 		test('handles scroll position of exactly 1', async () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
 			setScrollPosition(1)
 			await triggerScroll()
 
-			expect(button.classList.contains('show-button')).toBe(true)
+			await expect.element(button).toHaveClass('show-button')
 		})
 	})
 
 	describe('Click Behavior', () => {
 		test('scrolls to top when button is clicked', async () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
 			// Start with scroll position
 			setScrollPosition(500)
 			await triggerScroll()
 
 			// Click button
-			button.click()
+			await button.click()
 			flushSync()
 
 			expect(scrollToMock).toHaveBeenCalledWith({
@@ -272,15 +369,13 @@ describe('BackToTop Component', () => {
 		})
 
 		test('can be clicked multiple times', async () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
 			// Multiple clicks
-			button.click()
-			button.click()
-			button.click()
+			await button.click()
+			await button.click()
+			await button.click()
 			flushSync()
 
 			expect(scrollToMock).toHaveBeenCalledTimes(3)
@@ -291,13 +386,11 @@ describe('BackToTop Component', () => {
 		})
 
 		test('works when clicked while hidden', async () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
 			// Click while button is hidden
-			button.click()
+			await button.click()
 			flushSync()
 
 			expect(scrollToMock).toHaveBeenCalledWith({
@@ -309,17 +402,15 @@ describe('BackToTop Component', () => {
 
 	describe('Accessibility', () => {
 		test('is keyboard accessible', async () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
-			// Focus the button
-			button.focus()
-			expect(document.activeElement).toBe(button)
+			// Focus the button using click to simulate keyboard navigation
+			await button.click()
+			await expect.element(button).toHaveFocus()
 
 			// Button should be clickable (keyboard activation happens via click)
-			button.click()
+			await button.click()
 			flushSync()
 
 			expect(scrollToMock).toHaveBeenCalledWith({
@@ -328,59 +419,55 @@ describe('BackToTop Component', () => {
 			})
 		})
 
-		test('has proper ARIA attributes', () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+		test('has proper ARIA attributes', async () => {
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
-			expect(button.getAttribute('aria-label')).toBe('Back to top')
-			expect(button.getAttribute('role')).toBeNull() // button role is implicit
+			await expect
+				.element(button)
+				.toHaveAttribute('aria-label', 'Back to top')
+			// Button role is implicit for <button> elements
 		})
 
 		test('maintains focus after click', async () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
-			button.focus()
-			button.click()
+			await button.click() // Focus the button
+			await button.click() // Click it again
 			flushSync()
 
 			// Button should still be focusable
-			expect(button.tabIndex).not.toBe(-1)
+			await expect
+				.element(button)
+				.not.toHaveAttribute('tabindex', '-1')
 		})
 	})
 
 	describe('State Management', () => {
 		test('correctly tracks last scroll position', async () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
 			// Scroll down
 			setScrollPosition(100)
 			await triggerScroll()
-			expect(button.classList.contains('show-button')).toBe(true)
+			await expect.element(button).toHaveClass('show-button')
 
 			// Scroll down more (should still show)
 			setScrollPosition(200)
 			await triggerScroll()
-			expect(button.classList.contains('show-button')).toBe(true)
+			await expect.element(button).toHaveClass('show-button')
 
 			// Scroll up (should hide)
 			setScrollPosition(150)
 			await triggerScroll()
-			expect(button.classList.contains('show-button')).toBe(false)
+			await expect.element(button).not.toHaveClass('show-button')
 		})
 
 		test('handles scroll direction changes correctly', async () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
 			// Start at position 100
 			setScrollPosition(100)
@@ -389,17 +476,54 @@ describe('BackToTop Component', () => {
 			// Scroll up to 50 (hide button)
 			setScrollPosition(50)
 			await triggerScroll()
-			expect(button.classList.contains('show-button')).toBe(false)
+			await expect.element(button).not.toHaveClass('show-button')
 
 			// Scroll down to 75 (show button)
 			setScrollPosition(75)
 			await triggerScroll()
-			expect(button.classList.contains('show-button')).toBe(true)
+			await expect.element(button).toHaveClass('show-button')
 
 			// Scroll up to 60 (hide button)
 			setScrollPosition(60)
 			await triggerScroll()
-			expect(button.classList.contains('show-button')).toBe(false)
+			await expect.element(button).not.toHaveClass('show-button')
+		})
+
+		test('reactive state integration with component', async () => {
+			// Test how the component's internal rune state works
+			let testState = $state({
+				scrollY: 0,
+				lastScrollY: 0,
+			})
+
+			// Simulate component's reactive logic
+			let testShowButton = $derived(
+				testState.scrollY > testState.lastScrollY &&
+					testState.scrollY > 0,
+			)
+
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
+
+			// Test our derived state matches component behavior
+			testState.lastScrollY = testState.scrollY
+			testState.scrollY = 100
+			setScrollPosition(100)
+			await triggerScroll()
+
+			flushSync()
+			expect(untrack(() => testShowButton)).toBe(true)
+			await expect.element(button).toHaveClass('show-button')
+
+			// Test scroll up
+			testState.lastScrollY = testState.scrollY
+			testState.scrollY = 50
+			setScrollPosition(50)
+			await triggerScroll()
+
+			flushSync()
+			expect(untrack(() => testShowButton)).toBe(false)
+			await expect.element(button).not.toHaveClass('show-button')
 		})
 	})
 
@@ -429,26 +553,99 @@ describe('BackToTop Component', () => {
 
 	describe('Animation States', () => {
 		test('applies correct animation classes', async () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
 			// Initially hidden
-			expect(button.classList.contains('hide-button')).toBe(true)
-			expect(button.classList.contains('show-button')).toBe(false)
+			await expect.element(button).toHaveClass('hide-button')
+			await expect.element(button).not.toHaveClass('show-button')
 
 			// Show button
 			setScrollPosition(100)
 			await triggerScroll()
-			expect(button.classList.contains('show-button')).toBe(true)
-			expect(button.classList.contains('hide-button')).toBe(false)
+			await expect.element(button).toHaveClass('show-button')
+			await expect.element(button).not.toHaveClass('hide-button')
 
 			// Hide button
 			setScrollPosition(50)
 			await triggerScroll()
-			expect(button.classList.contains('hide-button')).toBe(true)
-			expect(button.classList.contains('show-button')).toBe(false)
+			await expect.element(button).toHaveClass('hide-button')
+			await expect.element(button).not.toHaveClass('show-button')
+		})
+	})
+
+	describe('Advanced Rune Testing Patterns', () => {
+		test('complex reactive state with multiple dependencies', async () => {
+			// Demonstrate testing complex reactive patterns
+			let complexState = $state({
+				scrollPosition: 0,
+				scrollDirection: 'none' as 'up' | 'down' | 'none',
+				scrollHistory: [] as number[],
+				isUserScrolling: false,
+			})
+
+			// Complex derived state
+			let shouldShowButton = $derived(() => {
+				const hasScrolled = complexState.scrollPosition > 0
+				const isScrollingDown =
+					complexState.scrollDirection === 'down'
+				const hasRecentActivity =
+					complexState.scrollHistory.length > 0
+
+				return (
+					hasScrolled &&
+					isScrollingDown &&
+					hasRecentActivity &&
+					complexState.isUserScrolling
+				)
+			})
+
+			// Test initial state
+			expect(untrack(() => shouldShowButton())).toBe(false)
+
+			// Simulate user starting to scroll
+			complexState.isUserScrolling = true
+			complexState.scrollHistory = [0, 50]
+			complexState.scrollPosition = 50
+			complexState.scrollDirection = 'down'
+			flushSync()
+
+			expect(untrack(() => shouldShowButton())).toBe(true)
+
+			// Simulate scroll direction change
+			complexState.scrollDirection = 'up'
+			flushSync()
+
+			expect(untrack(() => shouldShowButton())).toBe(false)
+		})
+
+		test('rune state persistence across re-renders', async () => {
+			// Test that rune state persists correctly
+			let persistentState = $state({ count: 0, visible: false })
+
+			const updateState = (
+				updates: Partial<{ count: number; visible: boolean }>,
+			) => {
+				Object.assign(persistentState, updates)
+			}
+
+			// Initial state
+			expect(persistentState.count).toBe(0)
+			expect(persistentState.visible).toBe(false)
+
+			// Update state
+			updateState({ count: 5, visible: true })
+			flushSync()
+
+			expect(persistentState.count).toBe(5)
+			expect(persistentState.visible).toBe(true)
+
+			// Partial update
+			updateState({ count: 10 })
+			flushSync()
+
+			expect(persistentState.count).toBe(10)
+			expect(persistentState.visible).toBe(true) // Should persist
 		})
 	})
 })

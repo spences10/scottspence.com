@@ -196,6 +196,54 @@ test('reactive state updates', async () => {
 })
 ```
 
+#### Testing $derived Runes and Avoiding Warnings
+
+When testing `$derived` runes in test files, you may encounter
+warnings about "state referenced locally". To resolve these warnings,
+use the `untrack` function from Svelte:
+
+```typescript
+import { flushSync, untrack } from 'svelte'
+
+test('derived state logic', async () => {
+	let scrollState = $state({
+		current: 0,
+		previous: 0,
+	})
+
+	// Derived state that mimics component logic
+	let shouldShowButton = $derived(
+		scrollState.current > scrollState.previous &&
+			scrollState.current > 0,
+	)
+
+	// Use untrack to access derived values without warnings
+	expect(untrack(() => shouldShowButton)).toBe(false)
+
+	// Update state
+	scrollState.previous = scrollState.current
+	scrollState.current = 100
+	flushSync()
+
+	expect(untrack(() => shouldShowButton)).toBe(true)
+})
+```
+
+**Why use `untrack`?**
+
+- Prevents "state_referenced_locally" warnings when accessing
+  `$derived` values in tests
+- Allows you to test reactive logic without creating unwanted reactive
+  dependencies
+- Essential for testing complex derived state patterns outside of
+  component context
+
+**When to use `untrack`:**
+
+- Accessing `$derived` values in test assertions
+- Testing reactive logic that uses `$derived.by()` functions
+- Any time you get "state referenced locally" warnings in test files
+
 ### Testing with Custom Styles
 
 ```typescript
@@ -677,6 +725,28 @@ afterEach(() => {
 })
 ```
 
+### 6. Use `untrack` for Derived Values in Tests
+
+When testing `$derived` runes, always use `untrack` to avoid warnings
+and ensure you're testing the current value:
+
+```typescript
+import { untrack } from 'svelte'
+
+// ✅ Proper way to test derived values
+test('derived state updates correctly', () => {
+	let count = $state(0)
+	let doubled = $derived(count * 2)
+
+	expect(untrack(() => doubled)).toBe(0)
+
+	count = 5
+	flushSync()
+
+	expect(untrack(() => doubled)).toBe(10)
+})
+```
+
 ## Common Patterns
 
 ### Testing Forms
@@ -919,6 +989,28 @@ vi.mock('./module', () => ({
 }))
 import { myFunction } from './module'
 ```
+
+#### 5. Svelte 5 Rune Warnings in Tests
+
+**Problem**: Getting "state referenced locally" warnings when using
+`$derived` in test files.
+
+**Solution**: Use `untrack` to access derived values:
+
+```typescript
+import { untrack } from 'svelte'
+
+// ❌ Direct access causes warnings
+expect(derivedValue).toBe(expectedValue)
+
+// ✅ Use untrack to avoid warnings
+expect(untrack(() => derivedValue)).toBe(expectedValue)
+```
+
+**Why this happens**: `$derived` values accessed outside of Svelte's
+reactive context (like in test assertions) only capture their initial
+values and generate warnings. `untrack` allows you to access the
+current value without creating reactive dependencies.
 
 ### Debugging Tips
 
