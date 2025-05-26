@@ -1,5 +1,7 @@
 # Testing Strategy & Best Practices
 
+<!-- cspell:ignore dialog -->
+
 This document outlines the comprehensive testing strategy for this
 SvelteKit project, covering both client-side Svelte component testing
 and server-side Node.js testing.
