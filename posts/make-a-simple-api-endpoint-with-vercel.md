@@ -5,6 +5,8 @@ tags: ['api', 'vercel', 'guide']
 is_private: false
 ---
 
+<!-- cspell:ignore Righty -->
+
 <script>
   import { YouTube } from 'sveltekit-embed'
 </script>

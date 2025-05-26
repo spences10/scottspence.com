@@ -171,7 +171,7 @@ these questions:
 - Set up and deploy project?: y
 - Which scope (this is my user account): Scott Spence
 - Link to an existing project?: n
-- Whats your project name (hit return): short-urls
+- What's your project name (hit return): short-urls
 - In which directory is your code located (hit return)?: /
 - Want to override the settings?: n
 ```

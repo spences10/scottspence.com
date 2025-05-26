@@ -283,7 +283,7 @@ Check out the short video detailing adding filters to your mic input.
 
 ## Editing
 
-Editing, whats that then? 😂
+Editing, what's that then? 😂
 
 Seriously, time is a factor for me when recording videos, I'm super
 limited on the amount of time I can take. I've found it simpler to do

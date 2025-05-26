@@ -68,7 +68,7 @@ buried in the settings.
 
 **Window Management**
 
-Window management (with the keyboard) on macOS is non existant and you
+Window management (with the keyboard) on macOS is non-existent and you
 have to rely on third party software.
 
 I was using Raycast for moving windows with keyboard shortcuts for a

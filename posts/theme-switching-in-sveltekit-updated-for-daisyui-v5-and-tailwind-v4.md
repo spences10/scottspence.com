@@ -245,7 +245,7 @@ touch src/lib/themes.ts
 
 Then add in all the themes!
 
-<!-- cspell:ignore caramellatte -->
+<!-- cspell:ignore caramellatte nord -->
 
 ```ts
 export const themes = [
