@@ -69,7 +69,7 @@
 		"svead": "^0.0.13",
 		"svelte": "^5.33.2",
 		"svelte-check": "^4.2.1",
-		"sveltekit-embed": "^0.0.20",
+		"sveltekit-embed": "^0.0.21",
 		"tailwindcss": "^4.1.7",
 		"typescript": "^5.8.3",
 		"typescript-eslint": "^8.32.1",
