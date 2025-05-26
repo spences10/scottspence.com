@@ -1087,6 +1087,64 @@ test('updates after click', async () => {
 - Synchronous test patterns
 - Non-DOM reactive state testing
 
+### 9. Handle CSS Animations and Element Stability
+
+**Problem**: Elements with CSS animations can cause "element not
+stable" errors during interactions because the element is moving or
+transitioning.
+
+**Solution**: Use the `force: true` option when clicking elements that
+may be animating:
+
+```typescript
+// ❌ May fail with "element not stable" during animations
+test('clicks animated button', async () => {
+	render(AnimatedComponent)
+	const button = page.getByTestId('animated-button')
+
+	await button.click() // May fail if button is animating
+})
+
+// ✅ Force click to handle animation stability
+test('clicks animated button', async () => {
+	render(AnimatedComponent)
+	const button = page.getByTestId('animated-button')
+
+	await button.click({ force: true }) // Works even during animations
+})
+```
+
+**When to use `force: true`**:
+
+- Elements with CSS transitions or animations
+- Buttons that appear/disappear with animations
+- Elements that move during hover states
+- Any interactive element that may be unstable during rendering
+
+**Alternative approaches**:
+
+```typescript
+// Wait for animations to complete before interacting
+await page.waitForFunction(() => {
+	const element = document.querySelector(
+		'[data-testid="animated-button"]',
+	)
+	return (
+		element &&
+		getComputedStyle(element).animationPlayState === 'paused'
+	)
+})
+
+// Or wait for element to be stable
+await expect.element(button).toBeVisible()
+await expect.element(button).toBeEnabled()
+await button.click()
+```
+
+**Why this works**: The `force: true` option bypasses Playwright's
+actionability checks, allowing interactions with elements that are
+technically visible and enabled but may be moving due to animations.
+
 ## Common Patterns
 
 ### Testing Forms
@@ -1527,7 +1585,70 @@ test('scroll test works', async () => {
 content, so `window.scrollTo()` has no effect. You must create actual
 scrollable content for scroll APIs to work.
 
-#### 9. Reactive State Testing with Runes
+#### 9. Element Not Stable During Animations
+
+**Problem**: Tests failing with "element not stable" or "element is
+intercepted by" errors when clicking elements with CSS animations.
+
+**Solution**: Use `force: true` option to bypass stability checks:
+
+```typescript
+// ❌ Fails with "element not stable" during animations
+test('clicks animated button', async () => {
+	render(BackToTopComponent)
+	const button = page.getByTestId('back-to-top')
+
+	// Scroll to show button (triggers animation)
+	window.scrollTo({ top: 200, behavior: 'instant' })
+
+	await button.click() // Fails - button is animating
+})
+
+// ✅ Use force click to handle animations
+test('clicks animated button', async () => {
+	render(BackToTopComponent)
+	const button = page.getByTestId('back-to-top')
+
+	// Scroll to show button (triggers animation)
+	window.scrollTo({ top: 200, behavior: 'instant' })
+
+	await button.click({ force: true }) // Works during animations
+})
+```
+
+**Why this happens**: CSS transitions and animations cause elements to
+be "unstable" from Playwright's perspective, even though they're
+visually clickable.
+
+**When to use `force: true`**:
+
+- Elements with CSS transitions (opacity, transform, etc.)
+- Buttons that slide in/out with animations
+- Elements that change position during hover states
+- Any element that may be moving when the test runs
+
+**Alternative solutions**:
+
+```typescript
+// Wait for animation to complete
+await page.waitForFunction(() => {
+	const element = document.querySelector('[data-testid="button"]')
+	return (
+		element &&
+		getComputedStyle(element).animationPlayState === 'paused'
+	)
+})
+
+// Or disable animations globally (not recommended for real browser testing)
+await page.addStyleTag({
+	content: `*, *:before, *:after {
+		animation-duration: 0s !important;
+		transition-duration: 0s !important;
+	}`,
+})
+```
+
+#### 10. Reactive State Testing with Runes
 
 **Problem**: Testing complex reactive state logic with `$derived` and
 `$state` runes can be challenging.
