@@ -10,7 +10,7 @@ is_private: false
 	import { Bluesky } from 'sveltekit-embed'
 </script>
 
-<!-- cspell:ignore Dominik unobserve -->
+<!-- cspell:ignore Dominik unobserve cbjcbvndpjb vyndsqgpsi lpzm ynvzs -->
 
 I first heard about `vitest-browser-svelte` at Svelte Summit from a
 talk by [Dominik G](https://github.com/dominikg), one of the core
