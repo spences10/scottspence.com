@@ -7,6 +7,7 @@ is_private: false
 
 <script>
   import { Details } from '$lib/components'
+	import { Bluesky } from 'sveltekit-embed'
 </script>
 
 <!-- cspell:ignore Dominik unobserve -->
@@ -311,26 +312,91 @@ test('toggles details', async () => {
 
 ```typescript
 import { render } from 'vitest-browser-svelte'
+import { page } from '@vitest/browser/context'
 import { flushSync } from 'svelte'
 
-test('toggles details', () => {
-	const { container } = render(Details, {
+test('toggles details', async () => {
+	render(Details, {
 		props: { summary: 'Test' },
 	})
 
-	const summary = container.querySelector('summary') as HTMLElement
-	summary.click()
+	const summary = page.getByRole('button', { name: 'Test' })
+	await summary.click()
 	flushSync()
 
-	const details = container.querySelector('details')
-	expect(details?.hasAttribute('open')).toBe(true)
+	const details = page.getByRole('group')
+	await expect.element(details).toHaveAttribute('open')
 })
 ```
 
-The new version is actually more explicit about what it's doing. We're
-directly calling `.click()` on the element (like a real user would),
-and using `flushSync()` to ensure Svelte's reactivity updates are
-applied.
+The new version uses **locators** instead of manual DOM queries and
+all `expect.element()` calls must be awaited. Locators are more
+reliable because they:
+
+- Use semantic queries (like `getByRole`) that match how users
+  interact with elements
+- Automatically wait for elements to be available
+- Provide better error messages when elements aren't found
+- Are more resilient to DOM structure changes
+
+## Using locators instead of container queries
+
+Thanks to
+[Vladimir on Bluesky](https://bsky.app/profile/erus.dev/post/3lpzm7ynvzs2o)
+for pointing this out!
+
+One important improvement in the new approach is using **locators**
+from the `page` object instead of manual `container.querySelector()`
+calls.
+
+<Bluesky
+	post_id="did:plc:x7cbjcbvndpjb3vyndsqgpsi/app.bsky.feed.post/3lpzm7ynvzs2o"
+	iframe_styles="border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
+/>
+
+Here's the difference:
+
+**Old approach (container queries):**
+
+```typescript
+test('renders button', () => {
+	const { container } = render(MyComponent)
+	const button = container.querySelector('[data-testid="my-button"]')
+	expect(button?.textContent).toBe('Click me')
+})
+```
+
+**New approach (locators):**
+
+```typescript
+test('renders button', async () => {
+	render(MyComponent)
+	const button = page.getByTestId('my-button')
+	await expect.element(button).toHaveTextContent('Click me')
+})
+```
+
+**Key differences:**
+
+1. **Import the page object**:
+   `import { page } from '@vitest/browser/context'`
+2. **Use semantic queries**: `page.getByRole()`, `page.getByTestId()`,
+   `page.getByText()`
+3. **Await all assertions**:
+   `await expect.element(locator).toBeInTheDocument()`
+4. **No container destructuring needed**: Just call
+   `render(Component)` directly
+
+**Available locator methods:**
+
+- `page.getByRole('button')` - Find by ARIA role
+- `page.getByTestId('my-id')` - Find by test ID
+- `page.getByText('Click me')` - Find by text content
+- `page.getByLabel('Email')` - Find by label text
+- `page.getByPlaceholder('Enter email')` - Find by placeholder
+
+This approach is more reliable and follows modern testing best
+practices by focusing on how users interact with your components.
 
 ## The three testing environments
 
@@ -385,22 +451,28 @@ reactive state is now possible.
 
 ```typescript
 // some-file.svelte.test.ts
-test('reactive state with $state and $derived', () => {
+import { page } from '@vitest/browser/context'
+import { flushSync } from 'svelte'
+
+test('reactive state with $state and $derived', async () => {
 	let count = $state(0)
 	let doubled = $derived(count * 2)
 
-	const { container } = render(Counter, {
+	render(Counter, {
 		props: { count, doubled },
 	})
 
-	expect(container.textContent?.includes('0')).toBe(true)
-	expect(container.textContent?.includes('0')).toBe(true) // doubled
+	const countDisplay = page.getByTestId('count-display')
+	const doubledDisplay = page.getByTestId('doubled-display')
+
+	await expect.element(countDisplay).toHaveTextContent('0')
+	await expect.element(doubledDisplay).toHaveTextContent('0')
 
 	count = 5
 	flushSync()
 
-	expect(container.textContent?.includes('5')).toBe(true)
-	expect(container.textContent?.includes('10')).toBe(true) // doubled
+	await expect.element(countDisplay).toHaveTextContent('5')
+	await expect.element(doubledDisplay).toHaveTextContent('10')
 })
 ```
 
@@ -466,55 +538,61 @@ have a `Details` component that handles collapsible content:
 
 ```typescript
 // details.svelte.test.ts
+import { page } from '@vitest/browser/context'
+import { createRawSnippet, flushSync, tick } from 'svelte'
 import { describe, expect, test } from 'vitest'
 import { render } from 'vitest-browser-svelte'
-import { flushSync } from 'svelte'
-import { Details } from '$lib/components'
+import Details from './details.svelte'
 
 describe('Details Component', () => {
-	test('renders with summary text', () => {
-		const { container } = render(Details, {
-			props: { summary: 'Click me' },
+	test('renders with button text', async () => {
+		render(Details, {
+			button_text: 'Show Details',
 		})
 
-		const summary = container.querySelector('summary')
-		expect(summary?.textContent?.trim()).toBe('Click me')
+		const button = page.getByTestId('details-button')
+		await expect.element(button).toHaveTextContent('Show Details')
 	})
 
-	test('toggles open state when clicked', () => {
-		const { container } = render(Details, {
-			props: { summary: 'Toggle me' },
+	test('toggles open state when clicked', async () => {
+		const testSnippet = createRawSnippet(() => ({
+			render: () => '<p>Test Content</p>',
+			setup: () => {},
+		}))
+
+		render(Details, {
+			button_text: 'Show Details',
+			is_open: false,
+			children: testSnippet,
 		})
 
-		const details = container.querySelector(
-			'details',
-		) as HTMLDetailsElement
-		const summary = container.querySelector('summary') as HTMLElement
+		const button = page.getByTestId('details-button')
 
 		// Initially closed
-		expect(details.open).toBe(false)
+		await expect.element(button).toHaveTextContent('Show Details')
+		await expect
+			.element(page.getByTestId('details-content'))
+			.not.toBeInTheDocument()
 
 		// Click to open
-		summary.click()
+		await button.click()
 		flushSync()
-		expect(details.open).toBe(true)
+		await tick()
 
-		// Click to close
-		summary.click()
-		flushSync()
-		expect(details.open).toBe(false)
+		const content = page.getByTestId('details-content')
+		await expect.element(content).toBeInTheDocument()
+		await expect.element(content).toHaveTextContent('Test Content')
+		await expect.element(button).toHaveTextContent('Close')
 	})
 
-	test('applies custom styles', () => {
-		const { container } = render(Details, {
-			props: {
-				summary: 'Styled',
-				styles: 'custom-class',
-			},
+	test('applies custom styles', async () => {
+		render(Details, {
+			styles: 'custom-class',
 		})
 
-		const details = container.querySelector('details')
-		expect(details?.classList.contains('custom-class')).toBe(true)
+		const button = page.getByTestId('details-button')
+		await expect.element(button).toHaveClass('custom-class')
+		await expect.element(button).toHaveClass('btn')
 	})
 })
 ```
@@ -590,6 +668,61 @@ them, no need to wait for other tests to run!
 
 Yes, migrating was work (for Claude 😅). But the productivity gains
 and better developer experience make it totally worth it.
+
+## CI with Playwright containers
+
+Another thing I discovered when doing this migration is that there's a
+Playwright Docker container you can use in your CI!
+
+So, in the case of this site (~150 tests) by using the official
+Playwright Docker container I managed to save 30 seconds, the
+container still needs to spn up, but I'm not downloading binaries each
+time! My CI run time dropped from 2 minutes to 1 minute 30 seconds,
+so, nearly a 30% reduction!
+
+Here's the key configuration in my `.github/workflows/unit-test.yml`
+file:
+
+```yaml
+jobs:
+  unit-tests:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.52.0-noble
+      options: --user 1001
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4.1.0
+      - uses: actions/setup-node@v4
+      - name: Install dependencies
+        run: pnpm install
+      - name: Test
+        run: pnpm run test:ci
+```
+
+**Why this is faster:**
+
+1. **Pre-installed browsers**: The Playwright container comes with
+   Chromium already installed
+2. **Optimized environment**: Container is specifically tuned for
+   browser testing
+3. **No browser download**: Skips the time-consuming browser
+   installation step
+4. **Better resource allocation**: Container resources are optimized
+   for testing workloads
+
+**For larger projects**, the time savings would be even more
+significant. If you're running hundreds or thousands of browser tests,
+this optimization alone could save substantial CI minutes and costs.
+
+**Important notes:**
+
+- Use `--user 1001` to avoid permission issues
+- Match the Playwright version in your container with your project
+  dependencies
+- The container approach works great for both unit tests and E2E tests
 
 ## Should you make the switch?
 

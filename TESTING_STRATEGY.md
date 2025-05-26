@@ -133,16 +133,15 @@ Svelte component tests use the `.svelte.test.ts` extension:
 ```typescript
 import { describe, expect, test } from 'vitest'
 import { render } from 'vitest-browser-svelte'
+import { page } from '@vitest/browser/context'
 import { flushSync } from 'svelte'
 import MyComponent from './MyComponent.svelte'
 
 describe('MyComponent', () => {
-	test('renders with default props', () => {
-		const { container } = render(MyComponent)
-		const element = container.querySelector(
-			'[data-testid="my-element"]',
-		)
-		expect(element?.textContent?.trim()).toBe('Expected Text')
+	test('renders with default props', async () => {
+		render(MyComponent)
+		const element = page.getByTestId('my-element')
+		await expect.element(element).toHaveTextContent('Expected Text')
 	})
 })
 ```
@@ -150,60 +149,132 @@ describe('MyComponent', () => {
 ### Testing Component Props
 
 ```typescript
-test('renders with custom props', () => {
-	const { container } = render(MyComponent, {
+test('renders with custom props', async () => {
+	render(MyComponent, {
 		props: {
 			title: 'Custom Title',
 			isVisible: true,
 		},
 	})
 
-	expect(container.textContent?.includes('Custom Title')).toBe(true)
+	const titleElement = page.getByText('Custom Title')
+	await expect.element(titleElement).toBeInTheDocument()
 })
 ```
 
 ### Testing User Interactions
 
 ```typescript
-test('handles click events', () => {
-	const { container } = render(MyComponent)
-	const button = container.querySelector('button') as HTMLElement
+test('handles click events', async () => {
+	render(MyComponent)
+	const button = page.getByRole('button')
 
-	button.click()
+	await button.click()
 	flushSync() // Ensure Svelte updates are applied
 
-	expect(container.textContent?.includes('Clicked')).toBe(true)
+	const result = page.getByText('Clicked')
+	await expect.element(result).toBeInTheDocument()
 })
 ```
 
 ### Testing Reactive State (Svelte 5 Runes)
 
 ```typescript
-test('reactive state updates', () => {
+test('reactive state updates', async () => {
 	const props = $state({ count: 0 })
-	const { container } = render(Counter, { props })
+	render(Counter, { props })
 
-	expect(container.textContent?.includes('0')).toBe(true)
+	const counter = page.getByTestId('counter')
+	await expect.element(counter).toHaveTextContent('0')
 
 	props.count = 5
 	flushSync()
 
-	expect(container.textContent?.includes('5')).toBe(true)
+	await expect.element(counter).toHaveTextContent('5')
 })
 ```
 
 ### Testing with Custom Styles
 
 ```typescript
-test('applies custom CSS classes', () => {
-	const { container } = render(MyComponent, {
+test('applies custom CSS classes', async () => {
+	render(MyComponent, {
 		props: { styles: 'custom-class' },
 	})
 
-	const element = container.querySelector(
-		'[data-testid="styled-element"]',
-	)
-	expect(element?.classList.contains('custom-class')).toBe(true)
+	const element = page.getByTestId('styled-element')
+	await expect.element(element).toHaveClass('custom-class')
+})
+```
+
+### Using Locators vs Container Queries
+
+The modern approach uses **locators** from the `page` object instead
+of manual DOM queries. This provides better reliability and follows
+testing best practices.
+
+#### Locator Methods
+
+```typescript
+// Semantic queries (preferred)
+page.getByRole('button') // Find by ARIA role
+page.getByRole('button', { name: 'Submit' }) // Find by role and accessible name
+page.getByLabel('Email address') // Find by associated label
+page.getByPlaceholder('Enter your email') // Find by placeholder text
+page.getByText('Welcome') // Find by text content
+
+// Test ID queries (when semantic queries aren't possible)
+page.getByTestId('submit-button') // Find by data-testid attribute
+
+// Other useful queries
+page.getByTitle('Close dialog') // Find by title attribute
+page.getByAltText('Profile picture') // Find by alt text (images)
+```
+
+#### Locator Best Practices
+
+1. **Prefer semantic queries**: Use `getByRole`, `getByLabel`, etc.
+   over `getByTestId`
+2. **Always await assertions**:
+   `await expect.element(locator).toBeInTheDocument()`
+3. **Use descriptive test IDs**:
+   `data-testid="user-profile-edit-button"`
+4. **Combine locators**:
+   `page.getByRole('dialog').getByRole('button', { name: 'Close' })`
+
+#### Migration from Container Queries
+
+```typescript
+// ❌ Old approach (container queries)
+test('finds button', () => {
+	const { container } = render(MyComponent)
+	const button = container.querySelector('[data-testid="submit"]')
+	expect(button?.textContent).toBe('Submit')
+})
+
+// ✅ New approach (locators)
+test('finds button', async () => {
+	render(MyComponent)
+	const button = page.getByTestId('submit')
+	await expect.element(button).toHaveTextContent('Submit')
+})
+```
+
+#### When to Use Container Queries
+
+While locators are preferred, container queries are still useful for:
+
+- Testing DOM structure and hierarchy
+- Accessing elements that don't have semantic meaning
+- Complex CSS selector requirements
+- Testing implementation details (use sparingly)
+
+```typescript
+test('maintains proper DOM structure', () => {
+	const { container } = render(MyComponent)
+	const wrapper = container.firstElementChild
+	expect(wrapper?.tagName).toBe('DIV')
+	expect(wrapper?.children.length).toBe(2)
 })
 ```
 
@@ -610,45 +681,40 @@ afterEach(() => {
 
 ```typescript
 test('validates form input', async () => {
-	const { container } = render(ContactForm)
+	render(ContactForm)
 
-	const emailInput = container.querySelector(
-		'[data-testid="email"]',
-	) as HTMLInputElement
-	const submitButton = container.querySelector(
-		'[data-testid="submit"]',
-	) as HTMLElement
+	const emailInput = page.getByLabel('Email address')
+	const submitButton = page.getByRole('button', { name: 'Submit' })
 
 	// Test invalid email
-	emailInput.value = 'invalid-email'
-	submitButton.click()
+	await emailInput.fill('invalid-email')
+	await submitButton.click()
 	flushSync()
 
-	expect(container.textContent?.includes('Invalid email')).toBe(true)
+	const errorMessage = page.getByText('Invalid email')
+	await expect.element(errorMessage).toBeInTheDocument()
 })
 ```
 
 ### Testing Conditional Rendering
 
 ```typescript
-test('shows content when condition is met', () => {
-	const { container } = render(ConditionalComponent, {
+test('shows content when condition is met', async () => {
+	render(ConditionalComponent, {
 		props: { showContent: true },
 	})
 
-	expect(
-		container.querySelector('[data-testid="content"]'),
-	).toBeTruthy()
+	const content = page.getByTestId('content')
+	await expect.element(content).toBeInTheDocument()
 })
 
-test('hides content when condition is not met', () => {
-	const { container } = render(ConditionalComponent, {
+test('hides content when condition is not met', async () => {
+	render(ConditionalComponent, {
 		props: { showContent: false },
 	})
 
-	expect(
-		container.querySelector('[data-testid="content"]'),
-	).toBeFalsy()
+	const content = page.getByTestId('content')
+	await expect.element(content).not.toBeInTheDocument()
 })
 ```
 
@@ -665,6 +731,79 @@ test('loads data asynchronously', async () => {
 
 	expect(container.textContent?.includes('Data loaded')).toBe(true)
 })
+```
+
+## CI/CD Integration
+
+### Playwright Container Optimization
+
+For optimal CI performance, use the official Playwright Docker
+container. This provides significant speed improvements by eliminating
+browser installation time.
+
+#### GitHub Actions Configuration
+
+```yaml
+# .github/workflows/unit-test.yml
+jobs:
+  unit-tests:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.52.0-noble
+      options: --user 1001
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4.1.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Test
+        run: pnpm run test:ci
+```
+
+#### Performance Benefits
+
+- **30% faster execution**: Pre-installed browsers eliminate download
+  time
+- **Optimized environment**: Container tuned specifically for browser
+  testing
+- **Better resource allocation**: Efficient memory and CPU usage for
+  testing workloads
+- **Consistent environment**: Same browser versions across all CI runs
+
+#### Important Notes
+
+- Use `--user 1001` to avoid permission issues with file system access
+- Match Playwright container version with your project dependencies
+- Container approach works for both unit tests and E2E tests
+- Larger projects see even more significant time savings
+
+#### Alternative CI Configurations
+
+For other CI providers, similar container approaches can be used:
+
+```yaml
+# GitLab CI
+test:
+  image: mcr.microsoft.com/playwright:v1.52.0-noble
+  script:
+    - npm ci
+    - npm run test:ci
+
+# CircleCI
+jobs:
+  test:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
+    steps:
+      - checkout
+      - run: npm ci
+      - run: npm run test:ci
 ```
 
 ## Running Tests

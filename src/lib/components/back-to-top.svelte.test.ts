@@ -1,3 +1,4 @@
+import { page } from '@vitest/browser/context'
 import { flushSync, tick } from 'svelte'
 import {
 	afterEach,
@@ -69,64 +70,57 @@ describe('BackToTop Component', () => {
 	}
 
 	describe('Initial Rendering', () => {
-		test('renders button with correct initial state', () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+		test('renders button with correct initial state', async () => {
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
-			expect(button).toBeTruthy()
-			expect(button.textContent?.trim()).toBe('Back to top')
-			expect(button.classList.contains('hide-button')).toBe(true)
-			expect(button.classList.contains('show-button')).toBe(false)
+			await expect.element(button).toBeInTheDocument()
+			await expect.element(button).toHaveTextContent('Back to top')
+			await expect.element(button).toHaveClass('hide-button')
+			await expect.element(button).not.toHaveClass('show-button')
 		})
 
-		test('has correct accessibility attributes', () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+		test('has correct accessibility attributes', async () => {
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
-			expect(button.tagName).toBe('BUTTON')
-			expect(button.getAttribute('aria-label')).toBe('Back to top')
-			expect(button.getAttribute('data-testid')).toBe('back-to-top')
+			await expect
+				.element(button)
+				.toHaveAttribute('aria-label', 'Back to top')
+			await expect
+				.element(button)
+				.toHaveAttribute('data-testid', 'back-to-top')
 		})
 
-		test('has correct CSS classes', () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+		test('has correct CSS classes', async () => {
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
-			expect(button.classList.contains('back-to-top-button')).toBe(
-				true,
-			)
-			expect(button.classList.contains('btn')).toBe(true)
-			expect(button.classList.contains('btn-secondary')).toBe(true)
-			expect(
-				button.classList.contains('text-secondary-content'),
-			).toBe(true)
-			expect(button.classList.contains('rounded-box')).toBe(true)
-			expect(button.classList.contains('fixed')).toBe(true)
+			await expect.element(button).toHaveClass('back-to-top-button')
+			await expect.element(button).toHaveClass('btn')
+			await expect.element(button).toHaveClass('btn-secondary')
+			await expect
+				.element(button)
+				.toHaveClass('text-secondary-content')
+			await expect.element(button).toHaveClass('rounded-box')
+			await expect.element(button).toHaveClass('fixed')
 		})
 	})
 
 	describe('Scroll Behavior', () => {
 		test('shows button when scrolling down from top', async () => {
-			const { container } = render(BackToTop)
-			const button = container.querySelector(
-				'[data-testid="back-to-top"]',
-			) as HTMLButtonElement
+			render(BackToTop)
+			const button = page.getByTestId('back-to-top')
 
 			// Initial state - button hidden
-			expect(button.classList.contains('show-button')).toBe(false)
+			await expect.element(button).not.toHaveClass('show-button')
 
 			// Scroll down
 			setScrollPosition(100)
 			await triggerScroll()
 
-			expect(button.classList.contains('show-button')).toBe(true)
-			expect(button.classList.contains('hide-button')).toBe(false)
+			await expect.element(button).toHaveClass('show-button')
+			await expect.element(button).not.toHaveClass('hide-button')
 		})
 
 		test('hides button when scrolling up', async () => {
