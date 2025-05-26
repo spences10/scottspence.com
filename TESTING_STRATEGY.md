@@ -257,6 +257,158 @@ test('applies custom CSS classes', async () => {
 })
 ```
 
+### Comprehensive Component Testing Patterns
+
+Based on real-world testing experience, here are comprehensive
+patterns for testing Svelte components:
+
+#### 1. Complete Test Coverage Structure
+
+```typescript
+describe('Component Name', () => {
+	describe('Initial Rendering', () => {
+		// Test all component variants and default states
+		it('should render with default props', async () => {})
+		it('should render with custom props', async () => {})
+		it('should handle missing props gracefully', async () => {})
+	})
+
+	describe('Rune State Management', () => {
+		// Test reactive state patterns with Svelte 5 runes
+		it('should manage state with $state rune', async () => {})
+		it('should test state transitions', async () => {})
+		it('should handle derived state correctly', async () => {})
+	})
+
+	describe('CSS Classes and Styling', () => {
+		// Test styling logic and conditional classes
+		it('should apply correct CSS classes for each variant', async () => {})
+		it('should test CSS class derivation logic', async () => {})
+	})
+
+	describe('User Interactions', () => {
+		// Test click, hover, keyboard interactions
+		it('should handle click events', async () => {})
+		it('should respond to keyboard input', async () => {})
+	})
+
+	describe('Content Rendering', () => {
+		// Test different content types and edge cases
+		it('should render HTML content', async () => {})
+		it('should handle plain text', async () => {})
+		it('should handle empty content', async () => {})
+		it('should handle special characters', async () => {})
+	})
+
+	describe('Edge Cases', () => {
+		// Test boundary conditions and error states
+		it('should handle empty props', async () => {})
+		it('should handle very long content', async () => {})
+		it('should handle invalid data gracefully', async () => {})
+	})
+
+	describe('Accessibility', () => {
+		// Test ARIA attributes, semantic structure
+		it('should have proper ARIA roles', async () => {})
+		it('should be keyboard accessible', async () => {})
+		it('should maintain semantic structure', async () => {})
+	})
+
+	describe('Component Structure', () => {
+		// Test DOM structure and layout
+		it('should have correct DOM structure', async () => {})
+		it('should maintain consistent spacing', async () => {})
+	})
+
+	describe('Advanced Patterns', () => {
+		// Test complex reactive patterns and lifecycle
+		it('should handle complex state interactions', async () => {})
+		it('should manage component lifecycle correctly', async () => {})
+	})
+})
+```
+
+#### 2. Rune Testing Best Practices
+
+```typescript
+// ✅ Comprehensive rune testing pattern
+test('should test complex reactive logic', async () => {
+	// Set up reactive state
+	let componentState = $state({
+		currentValue: 'initial',
+		previousValue: null,
+		changeCount: 0,
+	})
+
+	// Create derived state that mimics component logic
+	let hasChanged = $derived(
+		componentState.currentValue !== componentState.previousValue,
+	)
+
+	let isValid = $derived(
+		componentState.currentValue.length > 0 &&
+			componentState.changeCount >= 0,
+	)
+
+	// Test initial state
+	expect(untrack(() => hasChanged)).toBe(true) // null !== 'initial'
+	expect(untrack(() => isValid)).toBe(true)
+
+	// Test state transitions
+	componentState.previousValue = componentState.currentValue
+	componentState.currentValue = 'updated'
+	componentState.changeCount++
+	flushSync()
+
+	expect(untrack(() => hasChanged)).toBe(true)
+	expect(untrack(() => isValid)).toBe(true)
+	expect(componentState.changeCount).toBe(1)
+})
+```
+
+#### 3. Testing Component Variants
+
+```typescript
+// ✅ Test all component variants systematically
+const componentVariants = [
+	{ type: 'info', expectedClass: 'bg-info' },
+	{ type: 'warning', expectedClass: 'bg-warning' },
+	{ type: 'success', expectedClass: 'bg-success' },
+	{ type: 'error', expectedClass: 'bg-error' },
+]
+
+componentVariants.forEach(({ type, expectedClass }) => {
+	test(`should render ${type} variant correctly`, async () => {
+		render(Component, { props: { type } })
+
+		const element = page.getByRole('alert')
+		await expect.element(element).toHaveClass(expectedClass)
+	})
+})
+```
+
+#### 4. Testing HTML Content Safely
+
+```typescript
+// ✅ Test HTML content rendering with proper expectations
+test('should render HTML content correctly', async () => {
+	render(Component, {
+		props: {
+			message:
+				'Text with <strong>bold</strong> and <a href="#">link</a>',
+		},
+	})
+
+	// Test semantic elements rather than exact HTML structure
+	const strongElement = page.getByText('bold')
+	const linkElement = page.getByRole('link')
+
+	await expect.element(strongElement).toBeInTheDocument()
+	await expect.element(linkElement).toBeInTheDocument()
+	await expect.element(linkElement).toHaveAttribute('href', '#')
+})
+```
+
 ### Using Locators vs Container Queries
 
 The modern approach uses **locators** from the `page` object instead
@@ -1096,6 +1248,133 @@ const element = page.getByTestId('specific-element')
 const element = page.getByRole('button', { name: 'Specific Button' })
 ```
 
+#### 7. Locator Chaining Not Supported
+
+**Problem**: Attempting to chain `.locator()` method on existing
+locators causes TypeScript errors.
+
+**Solution**: Use alternative approaches for finding nested elements:
+
+```typescript
+// ❌ Chaining locators (not supported in vitest-browser-svelte)
+const banner = page.getByRole('banner')
+const link = banner.locator('a') // Error: Property 'locator' does not exist
+
+// ✅ Use semantic queries from page object
+const banner = page.getByRole('banner')
+const link = page.getByRole('link') // Find link anywhere on page
+
+// ✅ Use more specific selectors
+const link = page.getByRole('link', { name: 'specific link text' })
+
+// ✅ Use test IDs for complex nested structures
+const link = page.getByTestId('banner-link')
+```
+
+**Why this happens**: The vitest-browser-svelte API doesn't support
+Playwright's `.locator()` chaining method. Instead, it provides
+semantic query methods that work globally on the page.
+
+**Best practices for nested elements**:
+
+1. Use semantic queries with specific names/text
+2. Add test IDs to complex nested structures
+3. Test the overall behavior rather than specific DOM hierarchy
+4. Focus on user-facing functionality over implementation details
+
+#### 7. Locator Chaining Not Supported
+
+**Problem**: Attempting to chain `.locator()` method on existing
+locators causes TypeScript errors.
+
+**Solution**: Use alternative approaches for finding nested elements:
+
+```typescript
+// ❌ Chaining locators (not supported in vitest-browser-svelte)
+const banner = page.getByRole('banner')
+const link = banner.locator('a') // Error: Property 'locator' does not exist
+
+// ✅ Use semantic queries from page object
+const banner = page.getByRole('banner')
+const link = page.getByRole('link') // Find link anywhere on page
+
+// ✅ Use more specific selectors
+const link = page.getByRole('link', { name: 'specific link text' })
+
+// ✅ Use test IDs for complex nested structures
+const link = page.getByTestId('banner-link')
+```
+
+**Why this happens**: The vitest-browser-svelte API doesn't support
+Playwright's `.locator()` chaining method. Instead, it provides
+semantic query methods that work globally on the page.
+
+**Best practices for nested elements**:
+
+1. Use semantic queries with specific names/text
+2. Add test IDs to complex nested structures
+3. Test the overall behavior rather than specific DOM hierarchy
+4. Focus on user-facing functionality over implementation details
+
+#### 8. Reactive State Testing with Runes
+
+**Problem**: Testing complex reactive state logic with `$derived` and
+`$state` runes can be challenging.
+
+**Solution**: Use comprehensive rune testing patterns:
+
+```typescript
+// ✅ Test reactive state transitions
+test('should test banner type state transitions', async () => {
+	let bannerState = $state({
+		currentType: 'info' as BannerOptions['type'],
+		previousType: null as BannerOptions['type'] | null,
+		changeCount: 0,
+	})
+
+	// Derived state for tracking changes
+	let hasTypeChanged = $derived(
+		bannerState.currentType !== bannerState.previousType,
+	)
+
+	// Test initial state
+	expect(untrack(() => hasTypeChanged)).toBe(true)
+
+	// Simulate state change
+	bannerState.previousType = bannerState.currentType
+	bannerState.currentType = 'warning'
+	bannerState.changeCount++
+	flushSync()
+
+	expect(untrack(() => hasTypeChanged)).toBe(true)
+})
+
+// ✅ Test derived state that doesn't update properly
+test('should re-derive classes after state change', async () => {
+	let styleState = $state({ bannerType: 'info' })
+	let currentColors = $derived(COLORS[styleState.bannerType])
+
+	// Test type changes - create new derived after state change
+	styleState.bannerType = 'warning'
+	flushSync()
+
+	// Re-derive the classes after state change for testing
+	let updatedClasses = $derived(
+		`${untrack(() => currentColors).bg} ${untrack(() => currentColors).text}`,
+	)
+
+	expect(untrack(() => updatedClasses)).toContain('bg-warning')
+})
+```
+
+**Key insights**:
+
+- Always use `untrack()` when accessing `$derived` values in tests
+- Use `flushSync()` after state changes to ensure updates are applied
+- For complex derived state, sometimes you need to re-derive after
+  state changes in tests
+- Test the reactive logic patterns, not just the component rendering
+
 ### Debugging Tips
 
 1. **Use `console.log(container.innerHTML)`** to inspect rendered HTML
@@ -1104,6 +1383,10 @@ const element = page.getByRole('button', { name: 'Specific Button' })
 3. **Check browser dev tools** when running tests with `--ui` flag
 4. **Use `test.only()`** to run single tests during debugging
 5. **Use `vi.waitFor()`** for timing-sensitive assertions
+6. **Test string lengths carefully** - HTML content may have different
+   character counts than expected
+7. **Use semantic queries over DOM structure** - focus on user-facing
+   elements rather than implementation details
 
 ## Migration Notes
 
