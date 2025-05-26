@@ -56,7 +56,7 @@
 		"marked": "15.0.12",
 		"mdsvex": "^0.12.3",
 		"mdsvex-relative-images": "1.0.3",
-		"nodemailer": "^6.10.1",
+		"nodemailer": "^7.0.0",
 		"playwright": "^1.52.0",
 		"prettier": "^3.5.3",
 		"prettier-plugin-svelte": "^3.4.0",
