@@ -43,5 +43,14 @@ jobs:
           TURSO_DB_URL: ${{ secrets.TURSO_DB_URL }}
           TURSO_DB_AUTH_TOKEN: ${{ secrets.TURSO_DB_AUTH_TOKEN }}
           VOYAGE_AI_API_KEY: ${{ secrets.VOYAGE_AI_API_KEY }}
+      - name: Verify Playwright versions match
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').devDependencies.playwright.replace('^', '')")
+          CONTAINER_VERSION="1.52.0"  # Extract this from your container image
+          if [ "$PACKAGE_VERSION" != "$CONTAINER_VERSION" ]; then
+            echo "Warning: Playwright versions don't match!"
+            echo "Package.json: $PACKAGE_VERSION"
+            echo "Container: $CONTAINER_VERSION"
+          fi
       - name: Test
         run: pnpm run test:ci
