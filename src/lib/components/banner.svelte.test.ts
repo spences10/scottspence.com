@@ -12,9 +12,7 @@ describe('Banner', () => {
 		}
 
 		render(Banner, {
-			props: {
-				options,
-			},
+			options,
 		})
 
 		const banner = page.getByRole('banner')
@@ -31,9 +29,7 @@ describe('Banner', () => {
 		}
 
 		render(Banner, {
-			props: {
-				options,
-			},
+			options,
 		})
 
 		const banner = page.getByRole('banner')
@@ -50,9 +46,7 @@ describe('Banner', () => {
 		}
 
 		render(Banner, {
-			props: {
-				options,
-			},
+			options,
 		})
 
 		const banner = page.getByRole('banner')
@@ -69,9 +63,7 @@ describe('Banner', () => {
 		}
 
 		render(Banner, {
-			props: {
-				options,
-			},
+			options,
 		})
 
 		const banner = page.getByRole('banner')

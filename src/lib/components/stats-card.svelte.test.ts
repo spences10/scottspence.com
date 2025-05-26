@@ -9,11 +9,9 @@ describe('StatsCard', () => {
 		yearly_visits: AnalyticsData | null | undefined,
 	) {
 		return render(StatsCard, {
-			props: {
-				daily_visits,
-				monthly_visits,
-				yearly_visits,
-			},
+			daily_visits,
+			monthly_visits,
+			yearly_visits,
 		})
 	}
 
