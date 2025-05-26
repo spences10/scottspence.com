@@ -1,6 +1,6 @@
 # Testing Strategy & Best Practices
 
-<!-- cspell:ignore dialog -->
+<!-- cspell:ignore dialog unobserve -->
 
 This document outlines the comprehensive testing strategy for this
 SvelteKit project, covering both client-side Svelte component testing
