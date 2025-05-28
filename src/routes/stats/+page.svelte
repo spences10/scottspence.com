@@ -272,11 +272,15 @@
 
 	<div class="alert alert-info mb-6">
 		<InformationCircle />
-		<div class="prose prose-md">
-			<h3 class="font-bold">Looking for current year data?</h3>
+		<div class="prose prose-md text-info-content">
+			<h3 class="text-info-content font-bold">
+				Looking for current year data?
+			</h3>
 			<div>
 				Visit any post and click the
-				<strong> "✨ View the stats for this post ✨" </strong>
+				<strong class="text-info-content">
+					"✨ View the stats for this post ✨"
+				</strong>
 				button, or check the site footer for current analytics!
 			</div>
 		</div>
