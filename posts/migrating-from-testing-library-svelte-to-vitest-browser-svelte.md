@@ -857,4 +857,9 @@ practices. His corrections and insights really put me on the right
 track and made this post much more accurate and helpful! 🙏
 
 See the
-[files for this change in this PR](https://github.com/spences10/scottspence.com/pull/1092/files).
+[files for this change in this PR](https://github.com/spences10/scottspence.com/pull/1092/files)
+if you want to see how the migration went.
+
+I've also been compiling a
+[TESTING_STRATEGY.md](https://github.com/spences10/scottspence.com/blob/52199eceb130deac2022b2bc6fda2e3ee0c79683/TESTING_STRATEGY.md)
+file as I've been going along as a reference!
