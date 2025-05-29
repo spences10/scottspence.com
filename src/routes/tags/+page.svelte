@@ -215,69 +215,69 @@
 <div
 	class="mb-20 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
 >
-	{#each sorted_tags as tag, index (tag.name)}
-		{@const percentage =
-			summary_stats.max_posts > 0
-				? (tag.count / summary_stats.max_posts) * 100
-				: 0}
+	{#if filtered_tags.length === 0}
 		<div
-			class="card bg-base-100 tag-card shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
-			in:scale={{
-				duration: 300,
-				delay: index * 50,
-				easing: quintOut,
-			}}
-			out:scale={{ duration: 200, easing: quintOut }}
+			class="alert alert-info col-span-full mb-20"
+			in:fade={{ duration: 300, delay: 200 }}
 		>
-			<div class="card-body p-4">
-				<div class="mb-2 flex items-center justify-between">
-					<h3 class="card-title text-lg">
-						<a
-							class="link hover:text-primary transition-colors duration-200"
-							href={`tags/${tag.name}`}
+			<InformationCircle />
+			<span>
+				No tags found matching "{query}". Try a different search term.
+			</span>
+		</div>
+	{:else}
+		{#each sorted_tags as tag, index (tag.name)}
+			{@const percentage =
+				summary_stats.max_posts > 0
+					? (tag.count / summary_stats.max_posts) * 100
+					: 0}
+			<div
+				class="card bg-base-100 tag-card shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+				in:scale={{
+					duration: 300,
+					delay: index * 50,
+					easing: quintOut,
+				}}
+				out:scale={{ duration: 200, easing: quintOut }}
+			>
+				<div class="card-body p-4">
+					<div class="mb-2 flex items-center justify-between">
+						<h3 class="card-title text-lg">
+							<a
+								class="link hover:text-primary transition-colors duration-200"
+								href={`tags/${tag.name}`}
+							>
+								{tag.name}
+							</a>
+						</h3>
+						<div
+							class="badge badge-secondary font-mono transition-transform duration-200 hover:scale-110"
 						>
-							{tag.name}
-						</a>
-					</h3>
+							{tag.count}
+						</div>
+					</div>
+
+					<!-- Visual indicator of tag popularity -->
 					<div
-						class="badge badge-secondary font-mono transition-transform duration-200 hover:scale-110"
+						class="bg-base-200 mb-2 h-2 w-full overflow-hidden rounded-full"
+					>
+						<div
+							class="bg-primary progress-bar h-2 rounded-full"
+							style="width: {Math.max(percentage, 5)}%"
+						></div>
+					</div>
+
+					<div
+						class="text-base-content/70 text-sm transition-colors duration-200"
 					>
 						{tag.count}
+						{tag.count === 1 ? 'post' : 'posts'}
 					</div>
 				</div>
-
-				<!-- Visual indicator of tag popularity -->
-				<div
-					class="bg-base-200 mb-2 h-2 w-full overflow-hidden rounded-full"
-				>
-					<div
-						class="bg-primary progress-bar h-2 rounded-full"
-						style="width: {Math.max(percentage, 5)}%"
-					></div>
-				</div>
-
-				<div
-					class="text-base-content/70 text-sm transition-colors duration-200"
-				>
-					{tag.count}
-					{tag.count === 1 ? 'post' : 'posts'}
-				</div>
 			</div>
-		</div>
-	{/each}
+		{/each}
+	{/if}
 </div>
-
-{#if filtered_tags.length === 0}
-	<div
-		class="alert alert-info mb-20"
-		in:fade={{ duration: 300, delay: 200 }}
-	>
-		<InformationCircle />
-		<span>
-			No tags found matching "{query}". Try a different search term.
-		</span>
-	</div>
-{/if}
 
 <style>
 	.tag-card {
