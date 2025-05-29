@@ -79,7 +79,7 @@ export const PEOPLE = [
 	{
 		name: `Zeu`,
 		link: `https://bsky.app/profile/zeu.dev`,
-		met: false,
+		met: true,
 	},
 	{
 		name: `David Darnes`,
@@ -174,7 +174,7 @@ export const PEOPLE = [
 	{
 		name: `Scott Tolinski`,
 		link: `https://bsky.app/profile/tolin.ski`,
-		met: false,
+		met: true,
 	},
 	{
 		name: `Ken Wheeler`,
@@ -349,6 +349,6 @@ export const PEOPLE = [
 	{
 		name: `Patak`,
 		link: `https://bsky.app/profile/patak.dev`,
-		met: false,
+		met: true,
 	},
 ]
