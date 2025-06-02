@@ -1,16 +1,26 @@
 ---
 date: 2025-05-25
+updated: 2025-06-02
 title: Migrating from @testing-library/svelte to vitest-browser-svelte
 tags: ['svelte', 'sveltekit', 'testing']
 is_private: false
 ---
 
 <script>
-  import { Details } from '$lib/components'
+  import { Details, Banner } from '$lib/components'
 	import { Bluesky } from 'sveltekit-embed'
+
+  const options = {
+    type: 'info',
+    message: `Update: I've since created a comprehensive companion repository 
+      <a href="https://github.com/spences10/sveltest" target="_blank" rel="noopener noreferrer">Sveltest</a> 
+      that demonstrates these testing patterns in practice. Check it out for real-world examples!`
+  }
 </script>
 
 <!-- cspell:ignore Dominik unobserve cbjcbvndpjb vyndsqgpsi lpzm ynvzs ypghyrk uzjc erus -->
+
+<Banner {options} />
 
 I first heard about `vitest-browser-svelte` at Svelte Summit from a
 talk by [Dominik G](https://github.com/dominikg), one of the core
@@ -431,6 +441,24 @@ pointing this out 🙏
 This approach is more reliable and follows modern testing best
 practices by focusing on how users interact with your components.
 
+## Companion Repository
+
+If you want to see these patterns in action, I've created
+[Sveltest](https://github.com/spences10/sveltest) - a comprehensive
+example project that demonstrates all the testing approaches covered
+in this post. It includes 32 test files with real-world examples of
+client-side, server-side, and SSR testing patterns, plus a detailed
+migration guide for moving from `@testing-library/svelte`.
+
+**Bonus for AI coding assistant users**: The repo also includes
+comprehensive
+[Cursor rules](https://github.com/spences10/sveltest/blob/main/.cursor/rules/testing.mdc)
+and
+[Windsurf rules](https://github.com/spences10/sveltest/blob/main/.windsurf/rules/testing.md)
+that help your AI assistant write proper vitest-browser-svelte tests.
+These rules encode all the best practices, common patterns, and error
+solutions - perfect for teams adopting this testing approach!
+
 ## When `flushSync()` is still needed
 
 While locators eliminate the need for `flushSync()` in most cases,
@@ -689,6 +717,112 @@ This test is:
 - **Fast**: Runs in actual Chromium, not a slow jsdom simulation
 - **Maintainable**: No complex setup or mocking to maintain
 
+## Should you make the switch?
+
+If you're still using `@testing-library/svelte` with jsdom, I'd say
+absolutely yes. Here's why:
+
+**You should migrate if:**
+
+- You're using or planning to use Svelte 5
+- You're tired of maintaining complex mocks
+- You want more reliable tests
+- You value good developer experience
+- You test components that use modern browser APIs
+
+**You might want to wait if:**
+
+- You have a massive test suite and limited time
+- Your current setup is working fine and you're not hitting
+  limitations
+- You're not using any browser APIs that need mocking
+
+But honestly? Even if you're in the "wait" category, I'd recommend
+trying this approach on a new project. Once you experience testing
+with real browser APIs, it's hard to go back.
+
+## CI with Playwright containers
+
+Another thing I discovered when doing this migration is that there's a
+Playwright Docker container you can use in your CI!
+
+So, in the case of this site (~150 tests) by using the official
+Playwright Docker container I managed to save 30 seconds, the
+container still needs to spn up, but I'm not downloading binaries each
+time! My CI run time dropped from 2 minutes to 1 minute 30 seconds,
+so, nearly a 30% reduction!
+
+Here's the key configuration in my `.github/workflows/unit-test.yml`
+file:
+
+```yaml
+jobs:
+  unit-tests:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.52.0-noble
+      options: --user 1001
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4.1.0
+      - uses: actions/setup-node@v4
+      - name: Install dependencies
+        run: pnpm install
+      - name: Test
+        run: pnpm run test:ci
+```
+
+**Why this is faster:**
+
+1. **Pre-installed browsers**: The Playwright container comes with
+   Chromium already installed
+2. **Optimized environment**: Container is specifically tuned for
+   browser testing
+3. **No browser download**: Skips the time-consuming browser
+   installation step
+4. **Better resource allocation**: Container resources are optimized
+   for testing workloads
+
+**For larger projects**, the time savings would be even more
+significant. If you're running hundreds or thousands of browser tests,
+this optimization alone could save substantial CI minutes and costs.
+
+**Important notes:**
+
+- Use `--user 1001` to avoid permission issues
+- Match the Playwright version in your container with your project
+  dependencies
+- The container approach works great for both unit tests and E2E tests
+
+## What I learned
+
+This migration taught me a few things:
+
+**_Sometimes the "simple" solution isn't_**
+
+The old setup looked simple on the surface, but the complexity was
+hidden in that setup file. The new approach is more explicit about
+what it's doing.
+
+**_Real > fake every time_**
+
+Testing in a real browser beats mocking browser APIs every single
+time. The confidence level in my tests has gone through the roof.
+
+**_Separation of concerns is so nice!_**
+
+Having different test environments for different purposes makes
+everything clearer. Browser tests test browser things, SSR tests test
+SSR things, Node tests test Node things. Run them where you're doing
+them, no need to wait for other tests to run!
+
+**_Modern tools are worth the migration effort_**
+
+Yes, migrating was work (for Claude 😅). But the productivity gains
+and better developer experience make it totally worth it.
+
 ## Summary of things
 
 **The file naming convention**
@@ -756,85 +890,6 @@ them, no need to wait for other tests to run!
 
 Yes, migrating was work (for Claude 😅). But the productivity gains
 and better developer experience make it totally worth it.
-
-## CI with Playwright containers
-
-Another thing I discovered when doing this migration is that there's a
-Playwright Docker container you can use in your CI!
-
-So, in the case of this site (~150 tests) by using the official
-Playwright Docker container I managed to save 30 seconds, the
-container still needs to spn up, but I'm not downloading binaries each
-time! My CI run time dropped from 2 minutes to 1 minute 30 seconds,
-so, nearly a 30% reduction!
-
-Here's the key configuration in my `.github/workflows/unit-test.yml`
-file:
-
-```yaml
-jobs:
-  unit-tests:
-    name: Run unit tests
-    runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.52.0-noble
-      options: --user 1001
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4.1.0
-      - uses: actions/setup-node@v4
-      - name: Install dependencies
-        run: pnpm install
-      - name: Test
-        run: pnpm run test:ci
-```
-
-**Why this is faster:**
-
-1. **Pre-installed browsers**: The Playwright container comes with
-   Chromium already installed
-2. **Optimized environment**: Container is specifically tuned for
-   browser testing
-3. **No browser download**: Skips the time-consuming browser
-   installation step
-4. **Better resource allocation**: Container resources are optimized
-   for testing workloads
-
-**For larger projects**, the time savings would be even more
-significant. If you're running hundreds or thousands of browser tests,
-this optimization alone could save substantial CI minutes and costs.
-
-**Important notes:**
-
-- Use `--user 1001` to avoid permission issues
-- Match the Playwright version in your container with your project
-  dependencies
-- The container approach works great for both unit tests and E2E tests
-
-## Should you make the switch?
-
-If you're still using `@testing-library/svelte` with jsdom, I'd say
-absolutely yes. Here's why:
-
-**You should migrate if:**
-
-- You're using or planning to use Svelte 5
-- You're tired of maintaining complex mocks
-- You want more reliable tests
-- You value good developer experience
-- You test components that use modern browser APIs
-
-**You might want to wait if:**
-
-- You have a massive test suite and limited time
-- Your current setup is working fine and you're not hitting
-  limitations
-- You're not using any browser APIs that need mocking
-
-But honestly? Even if you're in the "wait" category, I'd recommend
-trying this approach on a new project. Once you experience testing
-with real browser APIs, it's hard to go back.
 
 ## Conclusion
 
