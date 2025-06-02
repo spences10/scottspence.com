@@ -462,7 +462,7 @@ solutions - perfect for teams adopting this testing approach!
 ## When `flushSync()` is still needed
 
 While locators eliminate the need for `flushSync()` in most cases,
-there are still specific scenarios where you'll need it:
+there are specific scenarios where you'll need it:
 
 **Testing effects and derived state:**
 
@@ -837,9 +837,45 @@ This makes it crystal clear what environment each test runs in.
 
 When using locators, you typically don't need `flushSync()` or
 `tick()` because locators automatically retry assertions until
-elements are updated. Only use `flushSync()` when your entire test is
-synchronous, but since all Vitest locators and matchers are async,
-they handle waiting for updates automatically.
+elements are updated. However, there are specific scenarios where
+`flushSync()` is still necessary:
+
+**When you still need `flushSync()`:**
+
+1. **Testing derived state immediately**: When you need to test
+   computed values that depend on state changes within the same
+   synchronous execution context
+2. **Synchronous assertions**: If you're making synchronous assertions
+   on DOM state immediately after triggering changes
+3. **Testing side effects**: When testing effects that should run
+   synchronously after state changes
+
+**Example where `flushSync()` is needed:**
+
+```javascript
+import { flushSync } from 'svelte';
+
+test('derived state updates synchronously', () => {
+  // Trigger state change
+  component.updateCount(5);
+  
+  // Need flushSync to ensure derived state is computed
+  flushSync();
+  
+  // Now we can synchronously assert the derived value
+  expect(component.doubledCount).toBe(10);
+});
+```
+
+**When you don't need `flushSync()`:**
+
+Most vitest-browser-svelte tests use async locators and matchers that
+automatically wait for updates, making `flushSync()` unnecessary:
+
+```javascript
+// This automatically waits for updates - no flushSync needed
+await expect(page.getByText('Count: 5')).toBeVisible();
+```
 
 **Use real browser APIs**
 
