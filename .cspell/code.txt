@@ -2,6 +2,7 @@ Andvariables
 autoremove
 bcryptjs
 behavior
+bindable
 bindkey
 blogposts
 bootcamp

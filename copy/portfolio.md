@@ -8,10 +8,12 @@
   } from '$lib/components'
 </script>
 
+<!-- cspell:ignore Sveltest -->
+
 # Portfolio
 
 <Small>
-  Last updated: <DateUpdated date="2025-03-16" small="true" />
+  Last updated: <DateUpdated date="2025-06-11" small="true" />
 </Small>
 
 I'm Scott, a passionate Svelte ambassador and application team lead
@@ -22,6 +24,47 @@ practical utilities, developer tools, and useless projects I've built,
 just, because!
 
 Here's some of my recent work.
+
+## Sveltest
+
+[![SkyKit.blue screenshot](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1749636807/scottspence.com/8502f304-39bc-43d4-9819-6d0d12542b66.png)](https://sveltest.dev)
+
+A weekend project that evolved into a comprehensive testing resource
+for the Svelte ecosystem, now influencing how modern Svelte
+applications approach testing in real browser environments. Originally
+created as a companion to my blog post about
+[Migrating from @testing-library/svelte to vitest-browser-svelte](https://scottspence.com/posts/migrating-from-testing-library-svelte-to-vitest-browser-svelte),
+Sveltest has become a community-driven resource built by developers,
+for developers.
+
+**Key Features:**
+
+- Comprehensive testing documentation and real-world examples using
+  vitest-browser-svelte
+- Pre-configured AI assistant rules for Cursor and Windsurf that
+  enforce testing best practices automatically
+- Multi-layer testing approach with minimal mocking - shared
+  validation logic, real FormData/Request objects, and TypeScript
+  contracts
+- Lots, and I mean lots of testing scenarios
+- Battle-tested patterns from production environments using
+  bleeding-edge Svelte 5 and vitest-browser-svelte
+
+**Impact:**
+
+The project has influenced testing methodologies across the Svelte
+ecosystem, with patterns now being adopted by teams working on
+large-scale production applications. The comprehensive AI assistant
+rules help entire teams adopt consistent testing patterns, whether
+using Cursor, Windsurf, or other AI-powered editors.
+
+**Tech Stack:** SvelteKit, TypeScript, Vitest, vitest-browser-svelte,
+Playwright, TailwindCSS, daisyUI
+
+[Visit Sveltest](https://sveltest.dev) |
+[View Source](https://github.com/spences10/sveltest)
+
+---
 
 ## SkyKit.blue
 
@@ -42,6 +85,8 @@ authentication required, making it super low friction for users.
 
 [Visit SkyKit](https://skykit.blue) |
 [View Source](https://github.com/spences10/skykit)
+
+---
 
 ### AudioMind
 
@@ -65,6 +110,8 @@ Anthropic Claude 3, Deepgram, Voyage AI, Turso
 
 [View Source](https://github.com/spences10/audiomind)
 
+---
+
 ## Model Context Protocol (MCP) Tools Suite
 
 I've created
@@ -86,7 +133,9 @@ to enhance AI capabilities and improve developer workflows:
 
 [Explore MCP Tools](https://github.com/spences10?tab=repositories&q=mcp)
 
-## SvelteKit Embed Package
+---
+
+## SvelteKit Embed
 
 [![SvelteKit Embed screenshot](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1742143926/35ab90e5-5d17-4c5c-bc43-d772a31cf22e.png)](https://sveltekit-embed.pages.dev/)
 
@@ -103,6 +152,8 @@ SvelteKit projects.
 [View on GitHub](https://github.com/spences10/sveltekit-embed) |
 [NPM Package](https://www.npmjs.com/package/sveltekit-embed)
 
+---
+
 ## Svead
 
 [![Svead screenshot](https://github.com/spences10/svead/raw/main/.github/svead.svg)](https://svead.pages.dev/)
@@ -114,6 +165,8 @@ Graph tags, and schema.org data for SvelteKit projects.
 [View on GitHub](https://github.com/spences10/svead)
 [NPM Package](https://www.npmjs.com/package/svead)
 
+---
+
 ## Community Involvement
 
 - **Svelte Ambassador**: Officially recognized by the Svelte team
@@ -122,6 +175,8 @@ Graph tags, and schema.org data for SvelteKit projects.
   Svelte, SvelteKit, and web development
 - **Speaker**: Presenting at conferences and meetups about Svelte
 
+---
+
 ## Technical Writing
 
 I regularly share my knowledge through detailed blog posts here.
@@ -129,6 +184,8 @@ Recent highlights include:
 
 - [Using MCP Tools with Claude and Cline](https://scottspence.com/posts/using-mcp-tools-with-claude-and-cline)
 - [My Updated ZSH Config 2025](https://scottspence.com/posts/my-updated-zsh-config-2025)
+
+---
 
 ## Get in Touch
 
@@ -141,6 +198,8 @@ listed here:
   [@scottspence.dev](https://bsky.app/profile/scottspence.dev)
 - **YouTube**:
   [Scott Spence Please](https://youtube.com/scottspenceplease)
+
+---
 
 ## Stay Updated
 
