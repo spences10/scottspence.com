@@ -1,5 +1,6 @@
 ---
 date: 2025-03-18
+updated: 2025-06-14
 title: Windsurf Setup for WSL
 tags:
   [
@@ -13,6 +14,16 @@ tags:
   ]
 is_private: false
 ---
+
+<script>
+  import { Banner } from '$lib/components'
+
+  const bait_and_switch = {
+    type: 'warning',
+    message: `Windsurf have done the bait and switch here! This was 500 
+      credits, now it's 250 credits!`
+  }
+</script>
 
 I used Windsurf for the whole day yesterday, I'm impressed! I've been
 using Cursor as part of my development workflow full time since
@@ -198,6 +209,8 @@ different extension ecosystems, which is a flexibility that Cursor
 doesn't currently offer.
 
 ## Try Windsurf with free credits
+
+<Banner options={bait_and_switch} />
 
 I should mention that Windsurf offers a referral program that's pretty
 generous. If you're interested in trying out Windsurf sign up using
