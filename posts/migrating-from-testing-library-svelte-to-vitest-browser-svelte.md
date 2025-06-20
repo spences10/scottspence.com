@@ -18,7 +18,7 @@ is_private: false
   }
 </script>
 
-<!-- cspell:ignore Dominik unobserve cbjcbvndpjb vyndsqgpsi lpzm ynvzs ypghyrk uzjc erus -->
+<!-- cspell:ignore Dominik unobserve cbjcbvndpjb vyndsqgpsi lpzm ynvzs ypghyrk uzjc erus sveltest -->
 
 <Banner {options} />
 

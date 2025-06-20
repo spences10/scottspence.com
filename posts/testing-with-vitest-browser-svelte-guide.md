@@ -27,7 +27,7 @@ is_private: false
   }
 </script>
 
-<!-- cspell:ignore vitest jsdom flushSync Sveltest xlcwj pmdsdto iwptd lqkkl macbook Peng Dominik -->
+<!-- cspell:ignore vitest jsdom flushSync Sveltest xlcwj pmdsdto iwptd lqkkl macbook Peng Dominik scriptalert -->
 
 In this post I'm going to go through converting the SvelteKit minimal
 template from using `@testing-library/svelte` and `jsdom` over to
