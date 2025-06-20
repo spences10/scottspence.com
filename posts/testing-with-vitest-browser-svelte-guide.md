@@ -471,28 +471,44 @@ in `<span>` tags. This keeps the Svelte 5 snippet system happy!
 
 ## A note on the test examples
 
-Right, before we dive into more code examples, I want to mention something about the test patterns you'll see. Throughout this guide, I'm going to show you the core testing patterns once, and then use `it.skip()` for similar tests to avoid repetition.
+Right, before we dive into more code examples, I want to mention
+something about the test patterns you'll see. Throughout this guide,
+I'm going to show you the core testing patterns once, and then use
+`it.skip()` for similar tests to avoid repetition.
 
-When you see an `it.skip()` test, it's not broken - it's intentionally skipped with comments showing what pattern it would follow. This keeps the guide focused on the essential concepts without drowning you in repetitive test code.
+When you see an `it.skip()` test, it's not broken - it's intentionally
+skipped with comments showing what pattern it would follow. This keeps
+the guide focused on the essential concepts without drowning you in
+repetitive test code.
 
-If you want to see all the tests implemented in full, check out [sveltest.dev](https://sveltest.dev) where every pattern is shown completely. Think of this guide as the "why and how" and sveltest.dev as the "show me everything" resource.
+If you want to see all the tests implemented in full, check out
+[sveltest.dev](https://sveltest.dev) where every pattern is shown
+completely. Think of this guide as the "why and how" and sveltest.dev
+as the "show me everything" resource.
 
 The patterns I'll show once and then reference with `it.skip()`:
+
 - Component prop variations (different variants, sizes, etc.)
 - State manipulation patterns (increment, decrement, reset)
 - Form validation edge cases
 - SSR rendering with different props
 - E2E interaction patterns
 
-This approach lets me keep your attention on the important stuff - the Client-Server Alignment Strategy and the key insights for testing Svelte 5 with real browsers!
+This approach lets me keep your attention on the important stuff - the
+Client-Server Alignment Strategy and the key insights for testing
+Svelte 5 with real browsers!
 
 ## Testing best practices (the stuff that'll save you headaches)
 
-Right, before we get into the meat of the testing examples, let me share some hard-earned wisdom from my real-world testing experience. These are the gotchas that'll trip you up if you don't know about them!
+Right, before we get into the meat of the testing examples, let me
+share some hard-earned wisdom from my real-world testing experience.
+These are the gotchas that'll trip you up if you don't know about
+them!
 
-### Always use locators, never containers
+## Always use locators, never containers
 
-This is the big one! I cannot stress this enough - **always use `page.getBy*()` locators, never use containers**. Here's why:
+This is the big one! I cannot stress this enough - **always use
+`page.getBy*()` locators, never use containers**. Here's why:
 
 ```ts
 // ❌ DON'T do this - no auto-retry, will randomly fail
@@ -506,11 +522,15 @@ const button = page.getByTestId('submit')
 await button.click() // Rock solid!
 ```
 
-Locators have automatic retry logic built in, which means they'll wait for elements to appear in the DOM. Containers don't have this magic, so you'll get flaky tests that fail randomly. Trust me, I've been there!
+Locators have automatic retry logic built in, which means they'll wait
+for elements to appear in the DOM. Containers don't have this magic,
+so you'll get flaky tests that fail randomly. Trust me, I've been
+there!
 
-### Locator priority order
+## Locator priority order
 
-When you're picking locators, follow this hierarchy for the best accessibility and reliability:
+When you're picking locators, follow this hierarchy for the best
+accessibility and reliability:
 
 ```ts
 // 1. Semantic roles (best for accessibility)
@@ -526,9 +546,10 @@ page.getByText('Welcome back')
 page.getByTestId('submit-button')
 ```
 
-### Handle multiple elements properly
+## Handle multiple elements properly
 
-This one caught me out! When multiple elements match your locator, you'll get a "strict mode violation" error. Here's the fix:
+This one caught me out! When multiple elements match your locator,
+you'll get a "strict mode violation" error. Here's the fix:
 
 ```ts
 // ❌ FAILS: "strict mode violation" when multiple links exist
@@ -540,9 +561,10 @@ page.getByRole('link', { name: 'Home' }).nth(1) // second one
 page.getByRole('link', { name: 'Home' }).last()
 ```
 
-### Never click form submit buttons
+## Never click form submit buttons
 
-This is a sneaky one that'll cause your tests to hang! Don't click form submit buttons directly:
+This is a sneaky one that'll cause your tests to hang! Don't click
+form submit buttons directly:
 
 ```ts
 // ❌ DON'T - causes test hangs
@@ -550,15 +572,16 @@ const submitButton = page.getByRole('button', { type: 'submit' })
 await submitButton.click() // Test hangs here!
 
 // ✅ DO - test the form state instead
-render(ContactForm, { 
-  form: { errors: { email: 'Required' } } 
+render(ContactForm, {
+	form: { errors: { email: 'Required' } },
 })
 await expect.element(page.getByText('Required')).toBeInTheDocument()
 ```
 
-### Use `untrack()` for derived values
+## Use `untrack()` for derived values
 
-When testing Svelte 5 `$derived` values, always wrap them in `untrack()`:
+When testing Svelte 5 `$derived` values, always wrap them in
+`untrack()`:
 
 ```ts
 // ❌ This might not work reliably
@@ -568,7 +591,7 @@ expect(counter_state.doubled).toBe(6)
 expect(untrack(() => counter_state.doubled)).toBe(6)
 ```
 
-### Don't test implementation details
+## Don't test implementation details
 
 Focus on user behavior, not internal implementation:
 
@@ -578,30 +601,48 @@ expect(body).toContain('M9 12l2 2 4-4m6 2a9')
 expect(button).toHaveClass('bg-blue-500 hover:bg-blue-600')
 
 // ✅ Test user-facing behavior
-await expect.element(page.getByRole('img', { name: /success/i })).toBeInTheDocument()
+await expect
+	.element(page.getByRole('img', { name: /success/i }))
+	.toBeInTheDocument()
 await expect.element(page.getByRole('button')).toBeEnabled()
 ```
 
-### SvelteKit mocking - keep it simple
+## SvelteKit mocking - keep it simple
 
-For SvelteKit apps, keep your mocks simple and avoid `importOriginal` with SvelteKit modules:
+For SvelteKit apps, keep your mocks simple and avoid `importOriginal`
+with SvelteKit modules:
 
 ```ts
 // ✅ Simple and reliable
 vi.mock('$app/state', () => ({
-  page: { 
-    data: { user: { name: 'Test User' } }, 
-    url: new URL('http://localhost') 
-  }
+	page: {
+		data: { user: { name: 'Test User' } },
+		url: new URL('http://localhost'),
+	},
 }))
 
 // ❌ Causes SSR issues
 vi.mock('$app/stores', async (importOriginal) => {
-  return { ...(await importOriginal()) } // Don't do this!
+	return { ...(await importOriginal()) } // Don't do this!
 })
 ```
 
-These practices will save you hours of debugging flaky tests. I learned most of these the hard way, so you don't have to! Right, now let's get into the fun stuff...
+## Ignore SSR module warnings in browser tests
+
+You might see warnings like this when running browser tests:
+
+```
+Error when evaluating SSR module: Cannot read properties of undefined (reading 'wrapDynamicImport')
+```
+
+Don't panic! These are expected during the transition to browser
+testing and don't affect your test results. They're just noise in the
+output from SvelteKit trying to evaluate server modules in the browser
+context. Your tests will still pass fine.
+
+These practices will save you hours of debugging flaky tests. I
+learned most of these the hard way, so you don't have to! Right, now
+let's get into the fun stuff...
 
 ## Testing Svelte 5 runes and universal state
 
@@ -758,7 +799,7 @@ describe('Counter Component + Universal State', () => {
 
 		it.skip('derived state recalculates automatically', () => {
 			// Pattern: Test derived values update when dependencies change
-			// counter_state.increment() 
+			// counter_state.increment()
 			// counter_state.setMultiplier(3)
 			// flushSync()
 			// expect(counter_state.doubled).toBe(3) // 1 * 3
@@ -771,7 +812,9 @@ describe('Counter Component + Universal State', () => {
 			const incrementBtn = page.getByTestId('increment-btn')
 			await incrementBtn.click()
 
-			// flushSync not needed here - click events trigger internal reactivity
+			// External state ALWAYS needs flushSync, even with click events!
+			flushSync()
+
 			// Test that both the state and UI update
 			expect(counter_state.count).toBe(1)
 			await expect.element(page.getByText('Counter: 1')).toBeInTheDocument()
@@ -822,17 +865,17 @@ with Svelte 5:
 3. **Universal state** works seamlessly across components (with proper
    `flushSync()` usage)
 4. **No mocking needed** - The same state instance works everywhere
-5. **Clear patterns** - External state needs `flushSync()`, component
-   events don't
+5. **Clear patterns** - External state always needs `flushSync()`,
+   internal component state updates automatically
 
 **Key insights for testing Svelte 5 runes:**
 
-1. **External state requires `flushSync()`**: When testing universal
-   state from `*.svelte.ts` files, you need `flushSync()` to trigger
-   DOM updates after direct state manipulation
-2. **Component events work automatically**: Click handlers and form
-   inputs trigger their own reactivity updates - no `flushSync()`
-   needed
+1. **External state ALWAYS requires `flushSync()`**: When testing
+   universal state from `*.svelte.ts` files, you need `flushSync()` to
+   trigger DOM updates after ANY state manipulation - even click
+   events!
+2. **Component-internal state works automatically**: Only state that
+   lives inside the component itself gets automatic reactivity updates
 3. **Test in browser environment**: Runes require a component context
    and don't work in plain Node.js
 
@@ -1489,7 +1532,7 @@ test.describe('Contact Form E2E', () => {
 	})
 
 	test.skip('shows loading state during form submission', () => {
-		// Pattern: E2E loading state testing  
+		// Pattern: E2E loading state testing
 		// Fill form, click submit, immediately check for loading indicator
 	})
 })
