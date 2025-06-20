@@ -83,7 +83,7 @@ describe('Historical Stats Page Component', () => {
 		test('should render info alert about current year data', async () => {
 			render(StatsPage, { data: mockData })
 
-			const alertHeading = page.getByRole('heading', { level: 3 })
+			const alertHeading = page.getByRole('heading', { name: 'Looking for current year data?' })
 			await expect
 				.element(alertHeading)
 				.toHaveTextContent('Looking for current year data?')
@@ -236,9 +236,9 @@ describe('Historical Stats Page Component', () => {
 			render(StatsPage, { data: mockData })
 
 			// Check table headers
-			const titleHeader = page.getByText('Title')
-			const viewsHeader = page.getByText('Views')
-			const visitorsHeader = page.getByText('Unique Visitors')
+			const titleHeader = page.getByText('Title').first()
+			const viewsHeader = page.getByText('Views').last()
+			const visitorsHeader = page.getByText('Unique Visitors').last()
 
 			await expect.element(titleHeader).toBeInTheDocument()
 			await expect.element(viewsHeader).toBeInTheDocument()
@@ -279,7 +279,7 @@ describe('Historical Stats Page Component', () => {
 
 			// Should show all-time data
 			await expect
-				.element(page.getByText('1,000'))
+				.element(page.getByText('1K'))
 				.toBeInTheDocument()
 			await expect.element(page.getByText('730')).toBeInTheDocument()
 		})
@@ -348,9 +348,9 @@ describe('Historical Stats Page Component', () => {
 			await expect.element(table).toBeInTheDocument()
 
 			// Verify headers are present (already tested in display test)
-			const titleHeader = page.getByText('Title')
-			const viewsHeader = page.getByText('Views')
-			const visitorsHeader = page.getByText('Unique Visitors')
+			const titleHeader = page.getByText('Title').first()
+			const viewsHeader = page.getByText('Views').last()
+			const visitorsHeader = page.getByText('Unique Visitors').last()
 
 			await expect.element(titleHeader).toBeInTheDocument()
 			await expect.element(viewsHeader).toBeInTheDocument()
