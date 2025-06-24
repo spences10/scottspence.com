@@ -80,41 +80,21 @@ export const get_related_posts = async (
 ) => {
 	const client = turso_client()
 	try {
-		// First, get the embedding for the current post
-		const current_post_result = await client.execute({
-			sql: 'SELECT embedding FROM post_embeddings WHERE post_id = ?',
-			args: [post_id],
+		// Use native Turso vector_distance_cos function for optimal performance
+		const result = await client.execute({
+			sql: `SELECT post_id, 
+				vector_distance_cos(
+					embedding, 
+					(SELECT embedding FROM post_embeddings WHERE post_id = ?)
+				) as distance 
+			FROM post_embeddings 
+			WHERE post_id != ? 
+			ORDER BY distance ASC 
+			LIMIT ?`,
+			args: [post_id, post_id, limit],
 		})
 
-		if (current_post_result.rows.length === 0) {
-			throw new Error(`No embedding found for post_id: ${post_id}`)
-		}
-
-		const current_embedding = new Float32Array(
-			current_post_result.rows[0].embedding as ArrayBuffer,
-		)
-
-		// Get all other posts' embeddings
-		const all_posts_result = await client.execute({
-			sql: 'SELECT post_id, embedding FROM post_embeddings WHERE post_id != ?',
-			args: [post_id],
-		})
-
-		// Calculate similarities
-		const similarities = all_posts_result.rows.map((row: any) => ({
-			post_id: row.post_id,
-			similarity: cosine_similarity(
-				current_embedding,
-				new Float32Array(row.embedding as ArrayBuffer),
-			),
-		}))
-
-		// Sort by similarity and take top 'limit' results
-		const related_posts = similarities
-			.sort((a, b) => b.similarity - a.similarity)
-			.slice(0, limit)
-
-		return related_posts.map(post => post.post_id)
+		return result.rows.map((row: any) => row.post_id)
 	} catch (error) {
 		console.error('Error getting related posts:', error)
 		throw error
