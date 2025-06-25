@@ -60,11 +60,6 @@ describe('Historical Stats Page Component', () => {
 		vi.clearAllMocks()
 	})
 
-	afterEach(() => {
-		// Clean up any DOM changes
-		document.body.innerHTML = ''
-	})
-
 	describe('Initial Rendering', () => {
 		test('should render page title and description', async () => {
 			render(StatsPage, { data: mockData })
