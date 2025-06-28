@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Bluesky from '$lib/icons/bluesky.svelte'
+	import Perplexity from '$lib/icons/perplexity.svelte'
+	import Kagi from '$lib/icons/kagi.svelte'
 
 	interface Props {
 		selected_text: string
@@ -12,8 +14,7 @@
 
 	interface ButtonConfig {
 		label: string
-		icon?: string
-		component?: any
+		component: any
 		href: (
 			text: string,
 			post_title: string,
@@ -41,7 +42,7 @@
 		},
 		{
 			label: 'Perplexity',
-			icon: '🔍',
+			component: Perplexity,
 			href: (text) =>
 				`https://www.perplexity.ai/search?q=${encodeURIComponent(text)}`,
 			aria_label: (text) => 'Search selected text on Perplexity',
@@ -49,7 +50,7 @@
 		},
 		{
 			label: 'Kagi',
-			icon: '🔍',
+			component: Kagi,
 			href: (text) =>
 				`https://kagi.com/search?q=${encodeURIComponent(text)}`,
 			aria_label: (text) => 'Search selected text on Kagi',
@@ -68,6 +69,7 @@
 		>
 			<div class="flex gap-2">
 				{#each button_configs as config}
+					{@const Component = config.component}
 					<a
 						class="btn btn-sm {config.variant} inline-flex items-center gap-2"
 						rel="noreferrer noopener"
@@ -75,17 +77,11 @@
 						href={config.href(selected_text, post_title, post_url)}
 						aria-label={config.aria_label(selected_text)}
 					>
-						{#if config.icon}
-							<span>{config.icon}</span>
-						{/if}
 						<span>{config.label}</span>
-						{#if config.component}
-							{@const Component = config.component}
-							<Component
-								flutter={true}
-								class_props="text-primary-content"
-							/>
-						{/if}
+						<Component
+							flutter={config.label === 'Share'}
+							class_props=""
+						/>
 					</a>
 				{/each}
 			</div>
