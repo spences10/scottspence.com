@@ -1,5 +1,5 @@
 ---
-date: 2025-01-28
+date: 2025-06-28
 title: Shared Tailwind CSS Themes in Svelte Monorepos
 tags: ['sveltekit', 'tailwind', 'monorepo', 'how-to']
 is_private: false
