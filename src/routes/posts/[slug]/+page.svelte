@@ -18,6 +18,7 @@
 		Reactions,
 		RelatedPosts,
 		TableOfContents,
+		TextSelectionPopup,
 		UpdatedBanner,
 	} from '$lib/components'
 	import {
@@ -122,6 +123,43 @@
 
 	const handle_scroll = () => {
 		show_table_of_contents = update_toc_visibility(end_of_copy, -200)
+	}
+
+	let selection_popup = $state({
+		visible: false,
+		selectedText: '',
+		x: 0,
+		y: 0,
+	})
+
+	const text_selection_handler = (element: HTMLElement) => {
+		const handle_mouse_up = () => {
+			setTimeout(() => {
+				const selection = window.getSelection()
+				if (selection && selection.toString().trim().length > 0) {
+					const range = selection.getRangeAt(0)
+					const rect = range.getBoundingClientRect()
+
+					selection_popup = {
+						visible: true,
+						selectedText: selection.toString(),
+						x: rect.right + window.scrollX,
+						y: rect.bottom + window.scrollY,
+					}
+				} else {
+					selection_popup = {
+						...selection_popup,
+						visible: false,
+					}
+				}
+			}, 10)
+		}
+
+		element.addEventListener('mouseup', handle_mouse_up)
+
+		return () => {
+			element.removeEventListener('mouseup', handle_mouse_up)
+		}
 	}
 
 	let show_current_visitor_data = $state(false)
@@ -238,7 +276,7 @@
 		/>
 	{/if}
 
-	<div class="all-prose mb-10">
+	<div class="all-prose mb-10" {@attach text_selection_handler}>
 		<Content />
 	</div>
 
@@ -281,3 +319,12 @@
 
 	<ButtButt />
 </article>
+
+<TextSelectionPopup
+	selected_text={selection_popup.selectedText}
+	post_title={title}
+	post_url={url}
+	x={selection_popup.x}
+	y={selection_popup.y}
+	visible={selection_popup.visible}
+/>

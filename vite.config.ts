@@ -12,7 +12,7 @@ export default defineConfig({
 		},
 	},
 	test: {
-		workspace: [
+		projects: [
 			{
 				// Client-side tests (Svelte components)
 				extends: './vite.config.ts',

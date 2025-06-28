@@ -3,12 +3,14 @@
 		height?: string
 		width?: string
 		flutter?: boolean
+		class_props?: string
 	}
 
 	let {
 		height = '20px',
 		width = '20px',
 		flutter = false,
+		class_props = '',
 	}: Props = $props()
 </script>
 
@@ -41,7 +43,7 @@ Thanks Phil!
 {:else}
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
-		class="text-primary hover:text-secondary block fill-current transition"
+		class="text-primary hover:text-secondary block fill-current transition {class_props}"
 		{width}
 		{height}
 		viewBox="0 0 256 226"
