@@ -89,9 +89,11 @@ to debug it in place.
 
 ## The minimal repro breakthrough
 
-I should have done this from the start, but hindsight, right? I
-created a minimal reproduction repo to isolate the problem. And boom -
-immediately obvious what was happening.
+I should have done this from the start, but hindsight, right? After
+chatting with [Jeppe Reinhold](https://github.com/JReinhold) about the
+issue, I finally got smart and created a minimal reproduction repo to
+isolate the problem. And boom - immediately obvious what was
+happening.
 
 In the minimal repro, I went straight to adding the UI component into
 the `main-app` instead of trying to isolate it in Storybook first

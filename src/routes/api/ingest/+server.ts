@@ -12,6 +12,14 @@ import { export_training_data } from './export-training-data'
 // -H "Content-Type: application/json" \
 // -d '{"task": "task_name", "token": "your-secret-token"}'
 
+// more than one you want to run??
+// for task in "update_popular_posts" "update_posts" "update_embeddings" "update_related_posts"; do
+//   curl -X POST https://scottspence.com/api/ingest \
+//     -H "Content-Type: application/json" \
+//     -d "{\"task\": \"$task\", \"token\": \"your-secret-token\"}"
+//   echo # Add a newline for readability
+// done
+
 // Define generic task function
 type TaskFunction<TArgs = any, TResult = any> = (
 	...args: TArgs[]
