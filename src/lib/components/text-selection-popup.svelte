@@ -10,32 +10,85 @@
 		visible: boolean
 	}
 
+	interface ButtonConfig {
+		label: string
+		icon?: string
+		component?: any
+		href: (
+			text: string,
+			post_title: string,
+			post_url: string,
+		) => string
+		aria_label: (text: string) => string
+		variant: string
+	}
+
 	let { selected_text, post_title, post_url, x, y, visible }: Props =
 		$props()
 
 	let bluesky_text = $derived(
 		`"${selected_text}"\n\nFrom: ${post_title}\n${post_url}\nvia @scottspence.dev`,
 	)
+
+	let button_configs: ButtonConfig[] = [
+		{
+			label: 'Share',
+			component: Bluesky,
+			href: () =>
+				`https://bsky.app/intent/compose?text=${encodeURIComponent(bluesky_text)}`,
+			aria_label: () => 'Share selected text on Bluesky',
+			variant: 'btn-primary',
+		},
+		{
+			label: 'Perplexity',
+			icon: '🔍',
+			href: (text) =>
+				`https://www.perplexity.ai/search?q=${encodeURIComponent(text)}`,
+			aria_label: (text) => 'Search selected text on Perplexity',
+			variant: 'btn-secondary',
+		},
+		{
+			label: 'Kagi',
+			icon: '🔍',
+			href: (text) =>
+				`https://kagi.com/search?q=${encodeURIComponent(text)}`,
+			aria_label: (text) => 'Search selected text on Kagi',
+			variant: 'btn-accent',
+		},
+	]
 </script>
 
 {#if visible && selected_text.trim()}
 	<div
-		class="absolute transition-opacity duration-200"
-		style="left: {x}px; top: {y}px;"
+		class="absolute z-10 transition-opacity duration-200"
+		style="left: {x}px; top: {y}px; transform: translateX(-50%);"
 	>
 		<div
-			class="bg-base-100 border-base-300 rounded-lg border p-2 shadow-lg"
+			class="bg-base-300 border-base-300 rounded-box border p-2 shadow-lg"
 		>
-			<a
-				class="btn btn-sm btn-primary inline-flex items-center gap-2"
-				rel="noreferrer noopener"
-				target="_blank"
-				href={`https://bsky.app/intent/compose?text=${encodeURIComponent(bluesky_text)}`}
-				aria-label="Share selected text on Bluesky"
-			>
-				<span>Share</span>
-				<Bluesky flutter={true} class_props="text-primary-content" />
-			</a>
+			<div class="flex gap-2">
+				{#each button_configs as config}
+					<a
+						class="btn btn-sm {config.variant} inline-flex items-center gap-2"
+						rel="noreferrer noopener"
+						target="_blank"
+						href={config.href(selected_text, post_title, post_url)}
+						aria-label={config.aria_label(selected_text)}
+					>
+						{#if config.icon}
+							<span>{config.icon}</span>
+						{/if}
+						<span>{config.label}</span>
+						{#if config.component}
+							{@const Component = config.component}
+							<Component
+								flutter={true}
+								class_props="text-primary-content"
+							/>
+						{/if}
+					</a>
+				{/each}
+			</div>
 		</div>
 	</div>
 {/if}

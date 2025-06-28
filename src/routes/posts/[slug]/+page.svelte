@@ -143,8 +143,8 @@
 					selection_popup = {
 						visible: true,
 						selectedText: selection.toString(),
-						x: rect.right + window.scrollX,
-						y: rect.bottom + window.scrollY,
+						x: rect.left + (rect.width / 2) + window.scrollX,
+						y: rect.bottom + window.scrollY + 10,
 					}
 				} else {
 					selection_popup = {
