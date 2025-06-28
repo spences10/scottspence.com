@@ -26,7 +26,7 @@ Tailwind v4 at the same time! So, that's a package for the UI and a
 package for the Tailwind theme!
 
 Ok, whilst I'm at it I may as well move where the components are
-currently viewed as well, from the curerent home where they live in a
+currently viewed as well, from the current home where they live in a
 MDSveX SvelteKit app over to Stroybook! Makes sense right?? 😅😅
 
 So, that's the setup! Two new packages and one new app! Stroybook
@@ -72,7 +72,7 @@ and a `package.json`:
 }
 ```
 
-So, my smooth brain now interperets this as "I can just import the
+So, my smooth brain now interprets this as "I can just import the
 `@some-org/tailwind-theme/theme.css` file in my SvelteKit app and
 everything will work, right?" not quite! So, I've got the button from
 the UI package imported into Stroybook, that _should_ "just work" with
@@ -280,9 +280,9 @@ defines classes in TypeScript:
 
 ```typescript
 const variantClasses = {
-  primary: 'bg-brand-600 text-white hover:bg-brand-700',
-  secondary: 'bg-brand-100 text-brand-900 hover:bg-brand-200'
-};
+	primary: 'bg-brand-600 text-white hover:bg-brand-700',
+	secondary: 'bg-brand-100 text-brand-900 hover:bg-brand-200',
+}
 ```
 
 Tailwind treats all files as plain text (no code parsing), so the
@@ -297,8 +297,10 @@ hack - it's how you tell Tailwind about cross-package utility usage.
 Key takeaways:
 
 - **Import CSS for theme variables** - works great for design tokens
-- **Use @source for utility discovery** - essential for component libraries
-- **Optimize with exclusions** - exclude test/config files for better performance
+- **Use @source for utility discovery** - essential for component
+  libraries
+- **Optimize with exclusions** - exclude test/config files for better
+  performance
 - **Embrace utility-first** - that's why we're using Tailwind!
 
 The next time you're setting up a monorepo with shared Tailwind v4
