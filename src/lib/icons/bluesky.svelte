@@ -4,6 +4,7 @@
 		width?: string
 		flutter?: boolean
 		class_props?: string
+		aria_label?: string
 	}
 
 	let {
@@ -11,6 +12,7 @@
 		width = '20px',
 		flutter = false,
 		class_props = '',
+		aria_label,
 	}: Props = $props()
 </script>
 
@@ -27,7 +29,9 @@ Thanks Phil!
 		{height}
 		viewBox="0 0 566 500"
 		xmlns="http://www.w3.org/2000/svg"
-		aria-hidden="true"
+		aria-hidden={aria_label ? undefined : 'true'}
+		aria-label={aria_label}
+		role={aria_label ? 'img' : undefined}
 		focusable="false"
 	>
 		<defs>
@@ -47,7 +51,9 @@ Thanks Phil!
 		{width}
 		{height}
 		viewBox="0 0 256 226"
-		aria-hidden="true"
+		aria-hidden={aria_label ? undefined : 'true'}
+		aria-label={aria_label}
+		role={aria_label ? 'img' : undefined}
 		focusable="false"
 	>
 		<path

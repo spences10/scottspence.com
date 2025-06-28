@@ -3,12 +3,14 @@
 		height?: string
 		width?: string
 		class_props?: string
+		aria_label?: string
 	}
 
 	let {
 		height = '20px',
 		width = '20px',
 		class_props = '',
+		aria_label,
 	}: Props = $props()
 </script>
 
@@ -18,7 +20,9 @@
 	{width}
 	{height}
 	viewBox="0 0 512 512"
-	aria-hidden="true"
+	aria-hidden={aria_label ? undefined : 'true'}
+	aria-label={aria_label}
+	role={aria_label ? 'img' : undefined}
 	focusable="false"
 >
 	<path

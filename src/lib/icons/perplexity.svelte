@@ -3,12 +3,14 @@
 		height?: string
 		width?: string
 		class_props?: string
+		aria_label?: string
 	}
 
 	let {
 		height = '20px',
 		width = '20px',
 		class_props = '',
+		aria_label,
 	}: Props = $props()
 </script>
 
@@ -17,7 +19,9 @@
 	class="text-secondary-content hover:text-secondary block fill-current transition {class_props}"
 	{width}
 	{height}
-	aria-hidden="true"
+	aria-hidden={aria_label ? undefined : 'true'}
+	aria-label={aria_label}
+	role={aria_label ? 'img' : undefined}
 	focusable="false"
 	fill="currentColor"
 	viewBox="0 0 16 16"
