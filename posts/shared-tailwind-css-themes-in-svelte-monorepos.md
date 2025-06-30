@@ -41,8 +41,8 @@ car? That's my life right now!
 
 Ok, set up Stroybook in a new app, I followed the `sv` CLI options to
 create a new UI package with the classic button as the only component,
-export that for use in Stroybook and the theme, then create the
-Tailwind theme package too!
+export that for use in Stroybook, then create the Tailwind theme
+package for use in the UI package and in Stroybook!
 
 The Tailwind theme package is literally two files in a folder! If
 you're interested look at the reference repo
@@ -74,18 +74,21 @@ and a `package.json`:
 
 So, my smooth brain now interprets this as "I can just import the
 `@some-org/tailwind-theme/theme.css` file in my SvelteKit app and
-everything will work, right?" not quite! So, I've got the button from
-the UI package imported into Stroybook, that _should_ "just work" with
-the picking up the Tailwind classes now?? It does not!
+everything will work, right?" not quite! I can apply utility classes
+directly in the app, but the UI package components don't pick up the
+Tailwind classes!
+
+So, I've got the button from the UI package imported into Stroybook,
+that _should_ "just work" with the picking up the Tailwind classes
+now?? But it does not!
 
 Turns out it wasn't Storybook at all (sorry Storybook, I blamed you
 first). The issue was with how Tailwind v4 handles theme sharing in
 monorepos.
 
-But here's the thing - in a massive monorepo, literally anything could
-be causing the issue. Some random config file, build order problems,
-Storybook weirdness, you name it. I was getting tunnel vision trying
-to debug it in place.
+But here's the thing in a massive monorepo, there's probably other
+factors that could be causing the issue. I was getting tunnel vision
+trying to debug it in place.
 
 ## The minimal repro breakthrough
 
@@ -105,11 +108,11 @@ Here's the thing that took forever to work out and exactly why I'm
 blogging about it: `@source '../../*/src/**/*.{svelte,js,ts}';`
 
 That single line is the key to making shared Tailwind v4 themes work
-in a monorepo. After a lot of back and forth with Claude (who kept
-defaulting to Tailwind v3 solutions), we eventually found this v4
-approach.
+in a monorepo.
 
-## When to use this approach
+More on this in a sec!
+
+## Why do this though?
 
 This setup makes sense when you have:
 
@@ -130,8 +133,8 @@ You can clone it and see exactly how everything fits together.
 
 The key files to look at:
 
-- `packages/tailwind-theme/src/theme.css` - The magic `@source`
-  directive
+- `packages/tailwind-theme/src/theme.css` - For how the `@source`
+  directive is being used
 - `apps/main-app/src/app.css` - How apps import the theme
 - `packages/ui/src/lib/Button.svelte` - Using theme variables in
   components
@@ -148,7 +151,7 @@ Theme colors work fine for direct utility usage:
 </div>
 ```
 
-But your UI package components break:
+But the UI package components break:
 
 ```svelte
 <!-- This component loses all its styles -->
@@ -163,7 +166,7 @@ The issue isn't with importing CSS - that works fine. The problem is
 **With the `@source` directive:**
 
 1. Tailwind scans `../../*/src/**/*.{svelte,js,ts}`
-2. Finds your `Button.svelte` with classes like
+2. Finds my `Button.svelte` with classes like
    `bg-brand-600 hover:bg-brand-700`
 3. Generates those utility classes in the final CSS
 4. Button components work ✅
@@ -178,12 +181,12 @@ The issue isn't with importing CSS - that works fine. The problem is
    because Tailwind sees it in the current app
 
 The key insight: **Tailwind needs to know which classes to generate**.
-Without `@source`, it has no idea your UI package components are using
+Without `@source`, it has no idea my UI package components are using
 those brand utility classes.
 
 ## Why utility-first components need @source
 
-Our Button component uses runtime class composition:
+My Button component uses runtime class composition:
 
 ```typescript
 // packages/ui/src/lib/Button.svelte
@@ -196,19 +199,19 @@ const variantClasses = {
 ```
 
 This is **utility-first design** - composing styles from atomic
-utility classes. It's why we use Tailwind instead of plain CSS! But
-for this to work, Tailwind must:
+utility classes. It's why I use Tailwind instead of plain CSS! But for
+this to work, Tailwind must:
 
 1. **Know these classes are used** (via `@source` scanning)
 2. **Generate them** in the final CSS bundle
 
-Without `@source`, Tailwind never sees your Button component's
-template, so it never generates the brand utility classes your
-components depend on.
+Without `@source`, Tailwind never sees my Button component's template,
+so it never generates the brand utility classes my components depend
+on.
 
-## The alternative: @layer components (but why would you?)
+## The alternative: @layer components (but why would I?)
 
-You could avoid `@source` by using the `@layer components` approach:
+I could avoid `@source` by using the `@layer components` approach:
 
 ```css
 @layer components {
@@ -218,43 +221,24 @@ You could avoid `@source` by using the `@layer components` approach:
 }
 ```
 
-Then your component would use `class="btn-primary"` instead of dynamic
+Then my component would use `class="btn-primary"` instead of dynamic
 utility composition. But honestly, if I wanted to write `.btn-primary`
 classes, I'd just use regular CSS. The whole point of Tailwind is the
-utility-first approach!
-
-## So the @source directive stays
-
-The `@source` directive is **essential** for utility-first component
-libraries in monorepos. It's not a hack or workaround - it's the
-correct way to tell Tailwind about cross-package utility usage.
-
-**When you need @source:**
-
-- Utility-first component libraries
-- Dynamic class composition
-- Shared components across packages
-- Runtime variant switching
-
-**When you might not need @source:**
-
-- Traditional component-first CSS with `@layer components`
-- Single-package applications
-- Static utility classes only
+utility-first approach! 😅
 
 ## Why the @source directive is essential
 
 The `@source` directive is how Tailwind knows which utility classes to
 generate. Without it, Tailwind only scans the current app's files and
-never discovers the classes used in your UI package components.
+never discovers the classes used in my UI package components.
 
 This isn't a hack or workaround - it's the correct way to handle
 utility-first component libraries in monorepos. The magic glob pattern
-is exactly what you need.
+is exactly what I needed.
 
 ## Performance optimizations with exclusions
 
-One thing I discovered whilst working on this is that you can improve
+One thing I discovered whilst working on this is that I can improve
 build performance by excluding files that definitely won't contain
 Tailwind classes. Test files, config files, and type definitions are
 prime candidates for exclusion.
@@ -274,10 +258,10 @@ Here's what I added to the theme package:
 
 The `@source not` directive tells Tailwind to skip these files during
 scanning. In a large monorepo, this can make a noticeable difference
-to build times because you're not scanning hundreds of test files and
+to build times because I'm not scanning hundreds of test files and
 type definitions that will never contain utility classes.
 
-**Why include JS/TS files at all?** Because your component logic often
+**Why include JS/TS files at all?** Because my component logic often
 defines classes in TypeScript:
 
 ```typescript
@@ -294,7 +278,7 @@ performance cost is minimal, but the class discovery is essential.
 
 The `@source` directive with glob patterns is the correct solution for
 sharing Tailwind v4 themes in utility-first monorepos. It's not a
-hack - it's how you tell Tailwind about cross-package utility usage.
+hack - it's how I tell Tailwind about cross-package utility usage.
 
 Key takeaways:
 
@@ -305,7 +289,7 @@ Key takeaways:
   performance
 - **Embrace utility-first** - that's why we're using Tailwind!
 
-The next time you're setting up a monorepo with shared Tailwind v4
-themes, remember: import the CSS for design tokens, use `@source` for
+If you're setting up a monorepo with shared Tailwind v4 themes,
+remember to import the CSS for design tokens, use `@source` for
 utility discovery, and optimize with exclusions. It'll save you the
 debugging I went through!
