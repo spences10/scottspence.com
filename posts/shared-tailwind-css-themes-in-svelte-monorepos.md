@@ -40,9 +40,10 @@ gif where Hal goes to change a lightbulb and ends up fixing the entire
 car? That's my life right now!
 
 Ok, set up Stroybook in a new app, I followed the `sv` CLI options to
-create a new UI package with the classic button as the only component,
-export that for use in Stroybook, then create the Tailwind theme
-package for use in the UI package and in Stroybook!
+create both a Stroybook starter and create a new UI package with the
+classic button as the only component, export that for use in
+Stroybook, then create the Tailwind theme package for use in the UI
+package and in Stroybook!
 
 The Tailwind theme package is literally two files in a folder! If
 you're interested look at the reference repo
@@ -74,9 +75,8 @@ and a `package.json`:
 
 So, my smooth brain now interprets this as "I can just import the
 `@some-org/tailwind-theme/theme.css` file in my SvelteKit app and
-everything will work, right?" not quite! I can apply utility classes
-directly in the app, but the UI package components don't pick up the
-Tailwind classes!
+everything will work, right?" not quite! The UI package components
+don't pick up the Tailwind classes!
 
 So, I've got the button from the UI package imported into Stroybook,
 that _should_ "just work" with the picking up the Tailwind classes
@@ -87,8 +87,8 @@ first). The issue was with how Tailwind v4 handles theme sharing in
 monorepos.
 
 But here's the thing in a massive monorepo, there's probably other
-factors that could be causing the issue. I was getting tunnel vision
-trying to debug it in place.
+factors that could be causing the issue (which I hadn't diagnosed at
+this point). I was getting tunnel vision trying to debug it in place.
 
 ## The minimal repro breakthrough
 
@@ -103,6 +103,22 @@ the `main-app` instead of trying to isolate it in Storybook first
 (which is what I was doing in the monorepo). Sometimes you get so
 focused on the immediate thing you're working on that you miss the
 obvious debugging step.
+
+I can apply utility classes directly in the app, like this:
+
+```svelte
+<!-- This works perfectly -->
+<div class="bg-brand-500 p-4 text-white">
+	Direct utility classes work fine!
+</div>
+```
+
+But the UI package components break:
+
+```svelte
+<!-- This component loses all its styles -->
+<Button variant="primary">Broken button</Button>
+```
 
 Here's the thing that took forever to work out and exactly why I'm
 blogging about it: `@source '../../*/src/**/*.{svelte,js,ts}';`
@@ -141,8 +157,9 @@ The key files to look at:
 
 ## The real issue: utility class discovery
 
-Here's what actually happens when you remove the `@source` directive.
-Theme colors work fine for direct utility usage:
+Here's what actually happens when I remove the `@source` directive.
+Theme colors work fine for direct utility usage, so, those examples
+again!
 
 ```svelte
 <!-- This works perfectly -->
@@ -161,7 +178,7 @@ But the UI package components break:
 ## Why this happens
 
 The issue isn't with importing CSS - that works fine. The problem is
-**utility class discovery**. Here's the step-by-step breakdown:
+**utility class discovery**. Here's what I understand now:
 
 **With the `@source` directive:**
 
@@ -206,7 +223,7 @@ this to work, Tailwind must:
 2. **Generate them** in the final CSS bundle
 
 Without `@source`, Tailwind never sees my Button component's template,
-so it never generates the brand utility classes my components depend
+so it never generates the brand utility classes my component depends
 on.
 
 ## The alternative: @layer components (but why would I?)
@@ -226,7 +243,7 @@ utility composition. But honestly, if I wanted to write `.btn-primary`
 classes, I'd just use regular CSS. The whole point of Tailwind is the
 utility-first approach! 😅
 
-## Why the @source directive is essential
+## Why the @source directive is needed
 
 The `@source` directive is how Tailwind knows which utility classes to
 generate. Without it, Tailwind only scans the current app's files and
