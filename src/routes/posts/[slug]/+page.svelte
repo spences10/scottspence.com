@@ -143,7 +143,7 @@
 					selection_popup = {
 						visible: true,
 						selectedText: selection.toString(),
-						x: rect.left + (rect.width / 2) + window.scrollX,
+						x: rect.left + rect.width / 2 + window.scrollX,
 						y: rect.bottom + window.scrollY + 10,
 					}
 				} else {
@@ -155,10 +155,25 @@
 			}, 10)
 		}
 
+		const handle_global_click = (event: MouseEvent) => {
+			// Hide popup if clicking outside the content area and there's no selection
+			if (!element.contains(event.target as Node)) {
+				const selection = window.getSelection()
+				if (!selection || selection.toString().trim().length === 0) {
+					selection_popup = {
+						...selection_popup,
+						visible: false,
+					}
+				}
+			}
+		}
+
 		element.addEventListener('mouseup', handle_mouse_up)
+		document.addEventListener('click', handle_global_click)
 
 		return () => {
 			element.removeEventListener('mouseup', handle_mouse_up)
+			document.removeEventListener('click', handle_global_click)
 		}
 	}
 
