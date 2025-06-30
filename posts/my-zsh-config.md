@@ -13,7 +13,8 @@ is_private: false
     type: 'info',
     message: `If you want to get the latest config on this with my 
       preferred tooling then check out the post I did recently on 
-      <a href="https://scottspence.com/posts/my-updated-zsh-config-2025">
+      <a href="https://scottspence.com/posts/my-updated-zsh-config-2025" 
+         target="_blank" rel="noopener noreferrer">
       My Updated ZSH Config 2025</a> to have a super speedy shell 
       with a very similar config to this!
     `
