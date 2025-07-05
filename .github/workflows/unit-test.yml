@@ -11,7 +11,7 @@ jobs:
     name: Run unit tests
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.53.1-noble
+      image: mcr.microsoft.com/playwright:v1.53.2-noble
       options: --user 1001
 
     steps:
