@@ -10,7 +10,5 @@ export const og_image_url = (
 		author,
 		website: website || `scottspence.com`,
 	}
-	return `https://ogimggen.vercel.app/og${object_to_query_params(
-		params,
-	)}`
+	return `https://og.scott.garden/og${object_to_query_params(params)}`
 }
