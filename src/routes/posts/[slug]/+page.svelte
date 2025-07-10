@@ -302,7 +302,9 @@
 		<div class="divider divider-secondary"></div>
 	</div>
 
-	<Reactions data={count} path={current_path} />
+	{#if !is_private}
+		<Reactions data={count} path={current_path} />
+	{/if}
 
 	<div class="mb-24 grid justify-items-center">
 		<PostOnBlueSky

@@ -30,6 +30,8 @@ const fetch_reaction_data = async (): Promise<ReactionData[]> => {
 					GROUP BY
 						post_url
 				) total ON r.post_url = total.post_url
+			WHERE
+				p.is_private = false
 			ORDER BY
 				total.total_count DESC, r.post_url, r.reaction_type;
 		`)

@@ -3,7 +3,7 @@ import { ratelimit } from '$lib/redis'
 import { turso_client } from '$lib/turso/client'
 import { fail } from '@sveltejs/kit'
 
-const allowed_reactions = reactions.map(r => r.type)
+const allowed_reactions = reactions.map((r) => r.type)
 
 export const actions = {
 	default: async ({ request, url, getClientAddress }) => {
@@ -40,6 +40,22 @@ export const actions = {
 		}
 
 		const client = turso_client()
+
+		// Check if post exists and is not private
+		const slug = path.replace('/posts/', '')
+		const post_check = await client.execute({
+			sql: 'SELECT is_private FROM posts WHERE slug = ?',
+			args: [slug],
+		})
+
+		if (post_check.rows.length === 0) {
+			return fail(404, { error: 'Post not found' })
+		}
+
+		const is_private = post_check.rows[0]['is_private']
+		if (is_private) {
+			return fail(403, { error: 'Cannot react to private posts' })
+		}
 
 		await client.execute({
 			sql: `INSERT INTO reactions (post_url, reaction_type, count) VALUES (?, ?, 1)
