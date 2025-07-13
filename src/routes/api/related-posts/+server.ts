@@ -27,20 +27,31 @@ export const GET = async ({ url }) => {
 			? JSON.parse(related_post_ids_value)
 			: []
 
-	// Fetch titles for related posts
-	const related_posts_with_titles = await Promise.all(
-		related_post_ids.map(async (related_post_id: string) => {
-			const post_result = await client.execute({
-				sql: 'SELECT title FROM posts WHERE slug = ?',
-				args: [related_post_id],
-			})
-			const title =
-				post_result.rows.length > 0
-					? post_result.rows[0].title
-					: 'Unknown Title'
-			return { slug: related_post_id, title }
-		}),
-	)
+	// Fetch titles for related posts in a single query
+	let related_posts_with_titles: { slug: string; title: string }[] =
+		[]
+
+	if (related_post_ids.length > 0) {
+		const placeholders = related_post_ids.map(() => '?').join(',')
+		const posts_result = await client.execute({
+			sql: `SELECT slug, title FROM posts WHERE slug IN (${placeholders})`,
+			args: related_post_ids,
+		})
+
+		// Create a map for quick lookup
+		const title_map = new Map()
+		posts_result.rows.forEach((row) => {
+			title_map.set(row.slug, row.title)
+		})
+
+		// Build the final array maintaining the original order
+		related_posts_with_titles = related_post_ids.map(
+			(slug: string) => ({
+				slug,
+				title: title_map.get(slug) || 'Unknown Title',
+			}),
+		)
+	}
 
 	return json({ related_posts: related_posts_with_titles })
 }
