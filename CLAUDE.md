@@ -2,7 +2,12 @@
 
 <!-- cspell:ignore Nixpacks -->
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Unbreakable rules.
+
+- you must never read .env files even when explicitly asked to
+
+This file provides guidance to Claude Code (claude.ai/code) when
+working with code in this repository.
 
 ## Development Commands
 
@@ -35,11 +40,11 @@ pnpm coverage               # Test coverage report
 
 **Framework**: SvelteKit with Svelte 5 (runes) + TypeScript
 **Database**: Turso (LibSQL) for analytics, posts, reactions
-**Cache**: Upstash Redis for performance optimization
-**Styling**: Tailwind CSS v4 + daisyUI 5.0
-**Content**: MDSveX for markdown processing with 150+ blog posts
-**Testing**: Vitest (unit) + Playwright (e2e) with browser environment
-**Deployment**: Node.js adapter with Nixpacks
+**Cache**: Upstash Redis for performance optimization **Styling**:
+Tailwind CSS v4 + daisyUI 5.0 **Content**: MDSveX for markdown
+processing with 150+ blog posts **Testing**: Vitest (unit) +
+Playwright (e2e) with browser environment **Deployment**: Node.js
+adapter with Nixpacks
 
 ## Key Directories
 
@@ -56,6 +61,7 @@ pnpm coverage               # Test coverage report
 ## Database Schema (Turso)
 
 Main tables:
+
 - `posts` - Blog post metadata and analytics
 - `post_analytics` - Detailed analytics per post
 - `popular_posts` - Trending content tracking
@@ -65,17 +71,20 @@ Main tables:
 ## Content Management
 
 **Blog Posts**: File-based system in `/posts` directory
+
 - MDSveX processing with frontmatter
 - Auto-generated reading time, slugs, previews
 - Support for Svelte components in markdown
 
-**Configuration**: 
+**Configuration**:
+
 - `mdsvex.config.js` - Markdown processing with rehype/remark plugins
 - `svelte.config.js` - SvelteKit config with Node adapter
 
 ## Testing Strategy
 
 **Three environments**:
+
 - Client (browser) - Real browser testing with vitest-browser-svelte
 - Server (node) - API endpoints and server-side logic
 - SSR (node) - Server-side rendering tests
@@ -85,6 +94,7 @@ Main tables:
 ## Environment Variables
 
 Required for development:
+
 - `TURSO_DB_URL` - Database connection
 - `TURSO_DB_AUTH_TOKEN` - Database authentication
 - `UPSTASH_REDIS_REST_URL` - Redis cache URL
@@ -93,6 +103,7 @@ Required for development:
 ## API Endpoints
 
 Key API routes in `src/routes/api/`:
+
 - `/api/analytics` - Site analytics data
 - `/api/posts` - Blog post operations
 - `/api/reactions` - Post reactions/likes
