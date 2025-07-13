@@ -1,8 +1,6 @@
 ---
 date: 2025-07-13
-title:
-  Hunting Down 1.3 Billion Row Database Reads - A Turso Performance
-  Tale
+title: Hunting Down 1.3 Billion Row Database Reads
 tags: ['turso', 'database', 'sveltekit', 'sql']
 is_private: false
 ---
@@ -129,7 +127,8 @@ So, let's think about this now. My site analytics show:
 **But I actually saw**: 742k queries reading 1.27 billion rows!
 
 That's 5x more queries than traffic would suggest, and those numbers
-don't even account for the improved efficiency that caching should provide.
+don't even account for the improved efficiency that caching should
+provide.
 
 Something else is definitely going on - whether it's bot activity,
 server restarts invalidating the in-memory cache, or some other factor
@@ -270,9 +269,9 @@ CREATE INDEX idx_yearly_pathname ON analytics_yearly(pathname);
 ## The caching strategy
 
 The original code had a 5-minute in-memory cache, which sounds
-reasonable until I realized that with multiple concurrent users,
-cache misses were happening constantly. Every cache miss triggered
-that expensive query.
+reasonable until I realized that with multiple concurrent users, cache
+misses were happening constantly. Every cache miss triggered that
+expensive query.
 
 I kept the 5-minute cache but now it's actually effective because:
 
@@ -383,7 +382,8 @@ more database queries than traffic would suggest.
 - Are there other expensive queries I haven't spotted yet?
 
 The optimizations should help regardless of the root cause, but I need
-to keep digging. One query fixed, but clearly there's more going on here.
+to keep digging. One query fixed, but clearly there's more going on
+here.
 
 ## Want to Check the Sauce?
 
