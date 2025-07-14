@@ -1,0 +1,54 @@
+import { form, query } from '$app/server'
+import { turso_client } from '$lib/turso/client'
+import { z } from 'zod'
+
+const ReactionSchema = z.object({
+	reaction_type: z.string(),
+	count: z.number(),
+})
+
+const ReactionCountsSchema = z.array(ReactionSchema)
+
+// Get reaction counts from existing aggregated table
+export const getReactionCounts = query(
+	z.string(),
+	async (pathname) => {
+		const client = turso_client()
+		const result = await client.execute({
+			sql: `
+        SELECT 
+          reaction_type,
+          count
+        FROM reactions 
+        WHERE post_url = ?
+        ORDER BY last_updated DESC
+      `,
+			args: [pathname],
+		})
+
+		return ReactionCountsSchema.parse(
+			result.rows.map((row) => ({
+				reaction_type: row.reaction_type as string,
+				count: row.count as number,
+			})),
+		)
+	},
+)
+
+// Add reaction using existing schema (increment count)
+export const addReaction = form(async (data: FormData) => {
+	const client = turso_client()
+	const pathname = data.get('pathname') as string
+	const reactionType = data.get('reaction_type') as string
+
+	// Use existing upsert logic from current API
+	await client.execute({
+		sql: `INSERT INTO reactions (post_url, reaction_type, count) VALUES (?, ?, 1)
+            ON CONFLICT (post_url, reaction_type)
+            DO UPDATE SET count = count + 1, last_updated = CURRENT_TIMESTAMP`,
+		args: [pathname, reactionType],
+	})
+
+	// Refresh reaction counts
+	await getReactionCounts(pathname).refresh()
+})
