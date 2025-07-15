@@ -36,16 +36,16 @@
 		page.url.pathname, browser && Fathom.trackPageview()
 	})
 
-	onNavigate((navigation) => {
-		if (!browser || !document.startViewTransition) return
+	// onNavigate((navigation) => {
+	// 	if (!browser || !document.startViewTransition) return
 
-		return new Promise((resolve) => {
-			document.startViewTransition(async () => {
-				resolve()
-				await navigation.complete
-			})
-		})
-	})
+	// 	return new Promise((resolve) => {
+	// 		document.startViewTransition(async () => {
+	// 			resolve()
+	// 			await navigation.complete
+	// 		})
+	// 	})
+	// })
 </script>
 
 <svelte:window onmousemove={handle_mouse_move} />
