@@ -11,34 +11,41 @@ const RelatedPostSchema = z.object({
 
 const RelatedPostsSchema = z.array(RelatedPostSchema)
 
-export const getRelatedPosts = query(z.string(), async (postSlug) => {
-	const client = turso_client()
-	
-	// Get related post IDs from the current schema structure
-	const relatedResult = await client.execute({
-		sql: `
+export const get_related_posts = query(
+	z.string(),
+	async (postSlug) => {
+		const client = turso_client()
+
+		// Get related post IDs from the current schema structure
+		const related_result = await client.execute({
+			sql: `
         SELECT related_post_ids
         FROM related_posts
         WHERE post_id = ?
       `,
-		args: [postSlug],
-	})
+			args: [postSlug],
+		})
 
-	if (relatedResult.rows.length === 0 || !relatedResult.rows[0].related_post_ids) {
-		return []
-	}
+		if (
+			related_result.rows.length === 0 ||
+			!related_result.rows[0].related_post_ids
+		) {
+			return []
+		}
 
-	// Parse the related_post_ids (assuming it's a comma-separated string)
-	const relatedIds = (relatedResult.rows[0].related_post_ids as string).split(',').map(id => id.trim())
-	
-	if (relatedIds.length === 0) {
-		return []
-	}
+		// Parse the related_post_ids (it's a JSON string)
+		const related_ids = JSON.parse(
+			related_result.rows[0].related_post_ids as string,
+		)
 
-	// Get post details for related IDs
-	const placeholders = relatedIds.map(() => '?').join(',')
-	const result = await client.execute({
-		sql: `
+		if (related_ids.length === 0) {
+			return []
+		}
+
+		// Get post details for related IDs
+		const placeholders = related_ids.map(() => '?').join(',')
+		const result = await client.execute({
+			sql: `
         SELECT 
           slug,
           title,
@@ -49,15 +56,16 @@ export const getRelatedPosts = query(z.string(), async (postSlug) => {
         AND is_private = 0
         LIMIT 6
       `,
-		args: relatedIds,
-	})
+			args: related_ids,
+		})
 
-	return RelatedPostsSchema.parse(
-		result.rows.map((row) => ({
-			slug: row.slug as string,
-			title: row.title as string,
-			excerpt: row.excerpt as string | undefined,
-			date: row.date as string,
-		})),
-	)
-})
+		return RelatedPostsSchema.parse(
+			result.rows.map((row) => ({
+				slug: row.slug as string,
+				title: row.title as string,
+				excerpt: row.excerpt as string | undefined,
+				date: row.date as string,
+			})),
+		)
+	},
+)

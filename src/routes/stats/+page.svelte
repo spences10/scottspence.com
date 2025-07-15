@@ -4,6 +4,7 @@
 	import { create_seo_config } from '$lib/seo'
 	import { number_crunch, og_image_url } from '$lib/utils'
 	import { Head } from 'svead'
+	import { get_site_stats } from './stats.remote'
 
 	interface Stats {
 		views: number
@@ -27,7 +28,10 @@
 	}
 
 	let { data } = $props()
-	const { site_stats, current_month, current_year, error } = data
+	const { current_month, current_year, error } = data
+
+	// Load site stats using remote function
+	let siteStatsPromise = get_site_stats()
 
 	let selected_period = $state('yearly')
 	let selected_year = $state<string>(

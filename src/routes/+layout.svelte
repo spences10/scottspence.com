@@ -7,7 +7,6 @@
 		PUBLIC_FATHOM_URL,
 	} from '$env/static/public'
 	import { BackToTop, Footer, Header, Nav } from '$lib/components'
-	import { popular_posts_store } from '$lib/stores'
 	import { handle_mouse_move } from '$lib/utils'
 	import * as Fathom from 'fathom-client'
 	import '../app.css'
@@ -15,11 +14,6 @@
 
 	let { data, children } = $props()
 
-	$popular_posts_store = data?.popular_posts || {
-		popular_posts_daily: [],
-		popular_posts_monthly: [],
-		popular_posts_yearly: [],
-	}
 	// TODO: do something with this! 😂
 	// $visitors_store = data?.visitors
 

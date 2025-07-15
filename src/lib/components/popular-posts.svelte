@@ -1,24 +1,22 @@
 <script lang="ts">
-	import { page } from '$app/stores'
-	import { popular_posts_store } from '$lib/stores'
+	import { page } from '$app/state'
 	import { number_crunch } from '$lib/utils'
 	import * as Fathom from 'fathom-client'
+	import { get_popular_posts } from '../../routes/popular-posts.remote'
 
-	type PopularPostsPeriod = keyof PopularPosts
-	let selected_period: PopularPostsPeriod = $state(
-		'popular_posts_yearly',
-	)
-
-	let posts: PopularPost[] = $state([])
-
-	$effect.pre(() => {
-		posts = $popular_posts_store[
-			selected_period as PopularPostsPeriod
-		].slice(0, 4)
-	})
+	let selected_period: 'day' | 'month' | 'year' = $state('year')
+	let popular_posts_query = $derived(get_popular_posts(undefined))
 </script>
 
-{#if posts.length}
+{#if popular_posts_query.error}
+	<div class="alert alert-error">
+		<p>
+			Error loading popular posts: {popular_posts_query.error.message}
+		</p>
+	</div>
+{:else if popular_posts_query.pending}
+	<div class="loading loading-spinner loading-lg mx-auto"></div>
+{:else if popular_posts_query.current && popular_posts_query.current.length > 0}
 	<div class="xs:-mx-30 m-0 mb-20 lg:-mx-40">
 		<p class="mb-8 text-xl">
 			Take a look at some popular content from me...
@@ -26,20 +24,21 @@
 				bind:value={selected_period}
 				class="select select-sm border-secondary w-40 border"
 			>
-				<option value="popular_posts_daily">Views today</option>
-				<option value="popular_posts_monthly">Views this month</option
-				>
-				<option value="popular_posts_yearly">Views this year</option>
+				<option value="day">Views today</option>
+				<option value="month">Views this month</option>
+				<option value="year">Views this year</option>
 			</select>
 		</p>
 
 		<div
 			class="relative grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
 		>
-			{#each posts as post}
+			{#each popular_posts_query.current
+				.filter((p) => p.period === selected_period)
+				.slice(0, 4) as post}
 				<a
 					data-sveltekit-reload
-					href={$page.url.origin + post.pathname}
+					href={page.url.origin + post.pathname}
 					onclick={() =>
 						Fathom.trackEvent(`popular post click: ${post.title}`)}
 					class="h-full"

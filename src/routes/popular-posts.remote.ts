@@ -16,7 +16,7 @@ const PopularPostSchema = z.object({
 
 const PopularPostsResponseSchema = z.array(PopularPostSchema)
 
-export const getPopularPosts = query(
+export const get_popular_posts = query(
 	z.enum(['day', 'month', 'year']).optional(),
 	async (period) => {
 		const client = turso_client()
@@ -46,7 +46,7 @@ export const getPopularPosts = query(
 			args,
 		})
 
-		const validatedResults = PopularPostsResponseSchema.parse(
+		const validated_results = PopularPostsResponseSchema.parse(
 			result.rows
 				.filter((row) => (row.rn as number) <= 20)
 				.map((row) => ({
@@ -61,12 +61,12 @@ export const getPopularPosts = query(
 				})),
 		)
 
-		return validatedResults
+		return validated_results
 	},
 )
 
 // Background update function
-export const updatePopularPosts = form(async () => {
+export const update_popular_posts = form(async () => {
 	// Move current /api/ingest/update-popular-posts logic here
 	// This runs as a background task, not blocking user requests
 
@@ -75,5 +75,5 @@ export const updatePopularPosts = form(async () => {
 	// 3. Update popular_posts table
 	// 4. Refresh popular posts cache
 
-	await getPopularPosts().refresh()
+	await get_popular_posts().refresh()
 })

@@ -1,22 +1,22 @@
 <script lang="ts">
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	import { Eye } from '$lib/icons'
 	import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
-	import { popular_posts_store, visitors_store } from '$lib/stores'
+	import { visitors_store } from '$lib/stores'
 	import { number_crunch } from '$lib/utils'
 	import * as Fathom from 'fathom-client'
+	import { get_popular_posts } from '../../routes/popular-posts.remote'
 	import CurrentVisitorsData from './current-visitors-data.svelte'
 
-	type PopularPostsPeriod = keyof PopularPosts
-	let selected_period: PopularPostsPeriod = 'popular_posts_yearly'
-
-	let posts: PopularPost[] = $state([])
+	let selected_period: 'day' | 'month' | 'year' = 'year'
 	let show_current_visitor_data = $state(false)
 
+	// Load popular posts using remote function
+	let popularPosts = $state(get_popular_posts(selected_period))
+
+	// Update when period changes
 	$effect(() => {
-		posts = $popular_posts_store[
-			selected_period as PopularPostsPeriod
-		].slice(0, 6)
+		popularPosts = get_popular_posts(selected_period)
 	})
 
 	let total_visitors = $state(0)
@@ -35,27 +35,35 @@
 >
 	<nav>
 		<h6 class="footer-title">Popular Posts</h6>
-		{#each posts as post}
-			<p>
-				<a
-					data-sveltekit-reload
-					class="link link-hover text-primary-content"
-					href={$page.url.origin + post.pathname}
-				>
-					{post.title}
-				</a>
-				<span
-					class="tooltip tooltip-secondary text-primary-content relative cursor-pointer font-bold"
-					data-tip={`
-                    Visits: ${number_crunch(post.visits)},
-                    Pageviews: ${number_crunch(post.pageviews)}
-                    `}
-				>
-					<Eye />
-					{number_crunch(post.pageviews)}
-				</span>
-			</p>
-		{/each}
+		{#await popularPosts}
+			<div class="loading loading-dots loading-sm"></div>
+		{:then posts}
+			{#each posts
+				.filter((p) => p.period === selected_period)
+				.slice(0, 6) as post}
+				<p>
+					<a
+						data-sveltekit-reload
+						class="link link-hover text-primary-content"
+						href={page.url.origin + post.pathname}
+					>
+						{post.title}
+					</a>
+					<span
+						class="tooltip tooltip-secondary text-primary-content relative cursor-pointer font-bold"
+						data-tip={`
+                        Visits: ${number_crunch(post.visits)},
+                        Pageviews: ${number_crunch(post.pageviews)}
+                        `}
+					>
+						<Eye />
+						{number_crunch(post.pageviews)}
+					</span>
+				</p>
+			{/each}
+		{:catch error}
+			<p class="text-sm opacity-70">Failed to load popular posts</p>
+		{/await}
 
 		{#if total_visitors > 0}
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
