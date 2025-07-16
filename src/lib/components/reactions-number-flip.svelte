@@ -46,6 +46,8 @@
 	let crunched_length = crunched_number.length
 
 	function handle_click() {
+		// The form submission will handle the actual reaction logic
+		// This is just for visual feedback
 		count += 1
 		displayed_count.set(count)
 		crunched_number = number_crunch(count)

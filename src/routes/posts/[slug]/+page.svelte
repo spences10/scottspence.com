@@ -40,8 +40,8 @@
 	let { Content, meta } = data
 
 	// Load related posts and reactions using remote functions
-	let relatedPostsQuery = get_related_posts(meta.slug)
-	let reactionCountsQuery = get_reaction_counts(page.url.pathname)
+	let related_posts_query = get_related_posts(meta.slug)
+	let reaction_counts_query = get_reaction_counts(page.url.pathname)
 
 	const {
 		title,
@@ -311,23 +311,22 @@
 	</div>
 
 	{#if !is_private}
-		{#if reactionCountsQuery.error}
-			<Reactions data={{ count: {} }} path={current_path} />
-		{:else if reactionCountsQuery.pending}
+		{#await reaction_counts_query}
 			<div class="loading loading-spinner loading-lg mx-auto"></div>
-		{:else if reactionCountsQuery.current}
+		{:then reaction_counts}
 			<Reactions
 				data={{
-					count: reactionCountsQuery.current.reduce(
+					count: reaction_counts.reduce(
 						(acc, r) => ({ ...acc, [r.reaction_type]: r.count }),
 						{},
 					),
 				}}
 				path={current_path}
+				{reaction_counts_query}
 			/>
-		{:else}
+		{:catch error}
 			<Reactions data={{ count: {} }} path={current_path} />
-		{/if}
+		{/await}
 	{/if}
 
 	<div class="mb-24 grid justify-items-center">
@@ -356,17 +355,19 @@
 
 	<PopularPosts />
 
-	{#if relatedPostsQuery.error}
+	{#await related_posts_query}
+		<div class="loading loading-spinner loading-lg mx-auto"></div>
+	{:then related_posts}
+		{#if related_posts && related_posts.length > 0}
+			<RelatedPosts {related_posts} />
+		{/if}
+	{:catch error}
 		<div class="alert alert-error">
 			<p>
-				Error loading related posts: {relatedPostsQuery.error.message}
+				Error loading related posts: {error.message}
 			</p>
 		</div>
-	{:else if relatedPostsQuery.pending}
-		<div class="loading loading-spinner loading-lg mx-auto"></div>
-	{:else if relatedPostsQuery.current && relatedPostsQuery.current.length > 0}
-		<RelatedPosts related_posts={relatedPostsQuery.current} />
-	{/if}
+	{/await}
 
 	<ButtButt />
 </article>

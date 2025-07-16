@@ -17,14 +17,11 @@ const PopularPostSchema = z.object({
 const PopularPostsResponseSchema = z.array(PopularPostSchema)
 
 export const get_popular_posts = query(
-	z.enum(['day', 'month', 'year']).optional(),
+	z.enum(['day', 'month', 'year']).optional().default('year'),
 	async (period) => {
 		const client = turso_client()
-		const whereClause = period
-			? 'WHERE pp.date_grouping = ?'
-			: "WHERE pp.date_grouping IN ('day', 'month', 'year')"
-
-		const args = period ? [period] : []
+		const whereClause = 'WHERE pp.date_grouping = ?'
+		const args = [period]
 
 		const result = await client.execute({
 			sql: `

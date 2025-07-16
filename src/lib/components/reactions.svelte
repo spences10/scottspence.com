@@ -1,55 +1,52 @@
 <script lang="ts">
-	import { enhance } from '$app/forms'
 	import { reactions } from '$lib/reactions-config'
-	import type { ActionResult } from '@sveltejs/kit'
-	import { writable } from 'svelte/store'
+	import { add_reaction } from '../../routes/posts/[slug]/reactions.remote'
 	import NumberFlip from './reactions-number-flip.svelte'
 
 	interface Props {
 		path?: string | null
 		data?: ReactionsData | null
+		reaction_counts_query?: any
 	}
 
-	let { path = '/', data = null }: Props = $props()
+	let { path = '/', data = null, reaction_counts_query }: Props = $props()
 
-	let button_disabled = writable(false)
-
-	const handle_result = (result: ActionResult) => {
-		if (result.type === 'failure') {
-			$button_disabled = true
-			setTimeout(() => {
-				$button_disabled = false
-			}, result?.data?.time_remaining * 1000)
-		}
-	}
+	let button_disabled = $state(false)
 </script>
 
 <section class="mb-10 flex justify-center">
-	<form
-		method="POST"
-		action="/api/reactions?path={path}"
-		use:enhance={() => {
-			return ({ update, result }) => {
-				handle_result(result)
-				update({ reset: false })
-			}
-		}}
-		class="grid w-full grid-cols-1 gap-5 sm:flex sm:justify-between"
-	>
+	<div class="grid w-full grid-cols-1 gap-5 sm:flex sm:justify-between">
 		{#each reactions as reaction}
-			<NumberFlip
-				count={data?.count?.[reaction.type] || 0}
-				emoji={reaction.emoji}
-				value={reaction.type}
-				disabled={$button_disabled}
-				aria_label={`Submit ${
-					reaction.type
-				} reaction. Current count: ${
-					data?.count?.[reaction.type] || 0
-				}`}
-			/>
+			<form
+				{...add_reaction.enhance(async ({ data, submit }) => {
+					const reaction_type = data.get('reaction_type') as string
+					await submit().updates(
+						reaction_counts_query?.withOverride((current_reactions) =>
+							current_reactions.map((r) =>
+								r.reaction_type === reaction_type
+									? { ...r, count: r.count + 1 }
+									: r
+							)
+						)
+					)
+				})}
+			>
+				<input type="hidden" name="pathname" value={path} />
+				<input type="hidden" name="reaction_type" value={reaction.type} />
+				<NumberFlip
+					count={data?.count?.[reaction.type] || 0}
+					emoji={reaction.emoji}
+					value={reaction.type}
+					disabled={button_disabled}
+					aria_label={`Submit ${
+						reaction.type
+					} reaction. Current count: ${
+						data?.count?.[reaction.type] || 0
+					}`}
+				/>
+			</form>
 		{/each}
-	</form>
+	</div>
 </section>
 
 <div class="all-prose">

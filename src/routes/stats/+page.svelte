@@ -31,53 +31,13 @@
 	const { current_month, current_year, error } = data
 
 	// Load site stats using remote function
-	let siteStatsPromise = get_site_stats()
+	let site_stats_query = get_site_stats()
 
 	let selected_period = $state('yearly')
 	let selected_year = $state<string>(
 		(Number(current_year) - 1).toString(),
 	)
 	let selected_month = $state(current_month)
-
-	// Auto-update selections when period changes
-	$effect(() => {
-		if (selected_period === 'yearly') {
-			// Set to most recent historical year
-			const available_years = [
-				...new Set(
-					site_stats.flatMap((p) =>
-						p.yearly_stats
-							.filter((y) => Number(y.year) < Number(current_year))
-							.map((y) => y.year),
-					),
-				),
-			]
-				.sort()
-				.reverse()
-			if (available_years.length > 0) {
-				selected_year = available_years[0]
-			}
-		} else if (selected_period === 'monthly') {
-			// Set to most recent historical month
-			const available_months = [
-				...new Set(
-					site_stats.flatMap((p) =>
-						p.monthly_stats
-							.filter((m) => {
-								const [year] = m.year_month.split('-').map(Number)
-								return year < Number(current_year)
-							})
-							.map((m) => m.year_month),
-					),
-				),
-			]
-				.sort()
-				.reverse()
-			if (available_months.length > 0) {
-				selected_month = available_months[0]
-			}
-		}
-	})
 
 	const seo_config = create_seo_config({
 		title: `Site Stats - ${name}`,
@@ -91,8 +51,10 @@
 		slug: 'stats',
 	})
 
-	let filtered_stats = $derived.by(() =>
-		site_stats
+	let filtered_stats = $derived.by(() => {
+		if (!site_stats_query.current) return []
+		
+		return site_stats_query.current
 			.map((post) => {
 				let stats: Stats
 				if (selected_period === 'all_time') {
@@ -116,8 +78,8 @@
 				return { ...post, stats }
 			})
 			.filter((post) => post.stats.views > 0)
-			.sort((a, b) => b.stats.views - a.stats.views),
-	)
+			.sort((a, b) => b.stats.views - a.stats.views)
+	})
 
 	// Calculate summary statistics
 	let summary_stats = $derived.by(() => {
@@ -146,10 +108,12 @@
 
 	// Calculate date range for display
 	let date_range = $derived.by(() => {
+		if (!site_stats_query.current) return ''
+		
 		if (selected_period === 'all_time') {
 			const years = [
 				...new Set(
-					site_stats.flatMap((p) =>
+					site_stats_query.current.flatMap((p) =>
 						p.yearly_stats
 							.filter((y) => Number(y.year) < Number(current_year))
 							.map((y) => y.year),
@@ -201,12 +165,12 @@
 
 	// Generate all-time yearly visitor data for chart
 	let all_time_yearly_visitors = $derived.by(() => {
-		if (selected_period !== 'all_time') return []
+		if (selected_period !== 'all_time' || !site_stats_query.current) return []
 
 		// Aggregate visitors by year across all posts
 		const yearly_totals = new Map<string, number>()
 
-		site_stats.forEach((post) => {
+		site_stats_query.current.forEach((post) => {
 			post.yearly_stats
 				.filter((y) => Number(y.year) < Number(current_year))
 				.forEach((yearly_stat) => {
@@ -246,7 +210,7 @@
 	</div>
 {/if}
 
-{#if site_stats.length === 0 && !error}
+{#if site_stats_query.current && site_stats_query.current.length === 0 && !error}
 	<div class="alert alert-info mb-4">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -265,7 +229,13 @@
 	</div>
 {/if}
 
-{#if site_stats.length > 0}
+{#if site_stats_query.pending}
+	<div class="loading loading-spinner loading-lg mx-auto my-8"></div>
+{:else if site_stats_query.error}
+	<div class="alert alert-error mb-4">
+		<span>Error loading site stats: {site_stats_query.error.message}</span>
+	</div>
+{:else if site_stats_query.current && site_stats_query.current.length > 0}
 	<div class="prose prose-xl mx-auto mb-6">
 		<h1>Historical Site Statistics</h1>
 		<p>
@@ -308,7 +278,7 @@
 					class="select select-bordered w-full max-w-xs"
 					aria-label="Select year:"
 				>
-					{#each [...new Set(site_stats.flatMap((p) => p.yearly_stats
+					{#each [...new Set((site_stats_query.current || []).flatMap((p) => p.yearly_stats
 									.filter((y) => Number(y.year) < Number(current_year))
 									.map((y) => y.year)))]
 						.sort()
@@ -324,7 +294,7 @@
 					class="select select-bordered w-full max-w-xs"
 					aria-label="Select month:"
 				>
-					{#each [...new Set(site_stats.flatMap((p) => p.monthly_stats
+					{#each [...new Set((site_stats_query.current || []).flatMap((p) => p.monthly_stats
 									.filter((m) => {
 										const [year] = m.year_month.split('-').map(Number)
 										return year < Number(current_year)

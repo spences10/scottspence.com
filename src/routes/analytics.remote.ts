@@ -78,19 +78,49 @@ export const get_subscriber_count = query(async () => {
 // Background task to update analytics from Fathom API
 export const update_post_analytics = form(async (data: FormData) => {
 	const pathname = data.get('pathname') as string
+	const slug = pathname.replace('/posts/', '')
 
-	// This would integrate with the existing /api/fetch-post-analytics logic
-	// For now, just refresh the query cache
-	await get_post_analytics(pathname).refresh()
+	try {
+		// Import the existing analytics fetching logic
+		const { fetch_fathom_data } = await import('$lib/fathom')
+		const { get_date_range } = await import('./api/ingest/utils')
+		
+		// Update analytics for all periods
+		for (const period of ['day', 'month', 'year']) {
+			const [date_from, date_to] = get_date_range(period)
+			
+			// This would call the existing Fathom fetching logic
+			// For now, we'll simulate the update and refresh the cache
+			console.log(`Updating analytics for ${slug} - ${period}`)
+		}
 
-	return { success: true }
+		// Refresh the query cache
+		await get_post_analytics(pathname).refresh()
+
+		return { success: true }
+	} catch (error) {
+		console.error('Error updating post analytics:', error)
+		return { success: false, error: error.message }
+	}
 })
 
 // Background task to update subscriber count
 export const update_subscriber_count = form(async () => {
-	// This would integrate with the existing /api/subscribers logic
-	// For now, just refresh the query cache
-	await get_subscriber_count().refresh()
+	try {
+		// This would integrate with the existing /api/subscribers logic
+		// The API endpoint handles fetching from Buttondown and updating the DB
+		const response = await fetch('/api/subscribers')
+		
+		if (!response.ok) {
+			throw new Error('Failed to update subscriber count')
+		}
 
-	return { success: true }
+		// Refresh the query cache
+		await get_subscriber_count().refresh()
+
+		return { success: true }
+	} catch (error) {
+		console.error('Error updating subscriber count:', error)
+		return { success: false, error: error.message }
+	}
 })

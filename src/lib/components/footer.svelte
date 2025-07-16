@@ -12,11 +12,11 @@
 	let show_current_visitor_data = $state(false)
 
 	// Load popular posts using remote function
-	let popularPosts = $state(get_popular_posts(selected_period))
+	let popular_posts = $state(get_popular_posts(selected_period))
 
 	// Update when period changes
 	$effect(() => {
-		popularPosts = get_popular_posts(selected_period)
+		popular_posts = get_popular_posts(selected_period)
 	})
 
 	let total_visitors = $state(0)
@@ -35,7 +35,7 @@
 >
 	<nav>
 		<h6 class="footer-title">Popular Posts</h6>
-		{#await popularPosts}
+		{#await popular_posts}
 			<div class="loading loading-dots loading-sm"></div>
 		{:then posts}
 			{#each posts

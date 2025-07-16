@@ -5,7 +5,7 @@
 	import { get_popular_posts } from '../../routes/popular-posts.remote'
 
 	let selected_period: 'day' | 'month' | 'year' = $state('year')
-	let popular_posts_query = $derived(get_popular_posts(undefined))
+	let popular_posts_query = $state(get_popular_posts(undefined))
 </script>
 
 {#if popular_posts_query.error}
