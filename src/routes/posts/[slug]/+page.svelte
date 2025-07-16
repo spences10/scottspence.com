@@ -32,7 +32,7 @@
 	import { website } from '$lib/info'
 	import type { VisitorEntry } from '$lib/stores'
 
-	import { getReactionCounts } from './reactions.remote'
+	import { get_reaction_counts } from './reactions.remote'
 	import { get_related_posts } from './related.remote'
 
 	let { data } = $props()
@@ -41,7 +41,7 @@
 
 	// Load related posts and reactions using remote functions
 	let relatedPostsQuery = get_related_posts(meta.slug)
-	let reactionCountsQuery = getReactionCounts(page.url.pathname)
+	let reactionCountsQuery = get_reaction_counts(page.url.pathname)
 
 	const {
 		title,
