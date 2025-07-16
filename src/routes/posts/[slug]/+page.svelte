@@ -311,12 +311,14 @@
 	</div>
 
 	{#if !is_private}
-		{#await reaction_counts_query}
+		{#if reaction_counts_query.pending}
 			<div class="loading loading-spinner loading-lg mx-auto"></div>
-		{:then reaction_counts}
+		{:else if reaction_counts_query.error}
+			<Reactions data={{ count: {} }} path={current_path} />
+		{:else if reaction_counts_query.current}
 			<Reactions
 				data={{
-					count: reaction_counts.reduce(
+					count: reaction_counts_query.current.reduce(
 						(acc, r) => ({ ...acc, [r.reaction_type]: r.count }),
 						{},
 					),
@@ -324,9 +326,9 @@
 				path={current_path}
 				{reaction_counts_query}
 			/>
-		{:catch error}
+		{:else}
 			<Reactions data={{ count: {} }} path={current_path} />
-		{/await}
+		{/if}
 	{/if}
 
 	<div class="mb-24 grid justify-items-center">

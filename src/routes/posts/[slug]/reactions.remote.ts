@@ -26,12 +26,12 @@ export const get_reaction_counts = query(
 			args: [pathname],
 		})
 
-		return ReactionCountsSchema.parse(
-			result.rows.map((row) => ({
-				reaction_type: row.reaction_type as string,
-				count: row.count as number,
-			})),
-		)
+		const reactions_data = result.rows.map((row) => ({
+			reaction_type: row.reaction_type as string,
+			count: row.count as number,
+		}))
+
+		return ReactionCountsSchema.parse(reactions_data)
 	},
 )
 
@@ -49,6 +49,8 @@ export const add_reaction = form(async (data: FormData) => {
 		args: [pathname, reaction_type],
 	})
 
-	// Refresh reaction counts
+	// Refresh the query to sync optimistic update with real data
 	await get_reaction_counts(pathname).refresh()
+
+	return { success: true }
 })

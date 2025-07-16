@@ -30,9 +30,12 @@
 	let offset = $state(0)
 	let button_width = $state(``)
 
+	// React to count prop changes (from optimistic updates)
 	$effect(() => {
 		displayed_count.set(count)
 		offset = modulo($displayed_count, 1)
+		crunched_number = number_crunch(count)
+		crunched_length = crunched_number.length
 		button_width =
 			base_width + padding + character_width * crunched_length + 'rem'
 	})
@@ -46,13 +49,8 @@
 	let crunched_length = crunched_number.length
 
 	function handle_click() {
-		// The form submission will handle the actual reaction logic
-		// This is just for visual feedback
-		count += 1
-		displayed_count.set(count)
-		crunched_number = number_crunch(count)
-		button_width =
-			base_width + padding + character_width * crunched_length + 'rem'
+		// The form submission and optimistic updates will handle everything
+		// No need to manually increment here since the prop will update
 	}
 </script>
 

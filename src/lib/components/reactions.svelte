@@ -21,13 +21,28 @@
 				{...add_reaction.enhance(async ({ data, submit }) => {
 					const reaction_type = data.get('reaction_type') as string
 					await submit().updates(
-						reaction_counts_query?.withOverride((current_reactions) =>
-							current_reactions.map((r) =>
-								r.reaction_type === reaction_type
-									? { ...r, count: r.count + 1 }
-									: r
-							)
-						)
+						reaction_counts_query?.withOverride((current_reactions) => {
+							// Ensure current_reactions is an array
+							if (!Array.isArray(current_reactions)) {
+								console.error('current_reactions is not an array:', current_reactions)
+								return []
+							}
+							
+							// Check if reaction already exists
+							const existing_reaction = current_reactions.find(r => r.reaction_type === reaction_type)
+							
+							if (existing_reaction) {
+								// Update existing reaction
+								return current_reactions.map((r) =>
+									r.reaction_type === reaction_type
+										? { ...r, count: r.count + 1 }
+										: r
+								)
+							} else {
+								// Add new reaction
+								return [...current_reactions, { reaction_type, count: 1 }]
+							}
+						})
 					)
 				})}
 			>
