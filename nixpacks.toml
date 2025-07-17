@@ -1,5 +1,6 @@
 [variables]
 NIXPACKS_NODE_VERSION = "23"
+NIXPACKS_PKGS = "nodejs_23"
 
 [phases.setup]
 packages = ["nodejs_23", "curl", "wget"]
