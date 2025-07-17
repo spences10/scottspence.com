@@ -9,9 +9,8 @@
 	"version": "0.0.1",
 	"type": "module",
 	"engines": {
-		"node": ">=18"
+		"node": ">=20"
 	},
-	"packageManager": "pnpm@10.13.1",
 	"scripts": {
 		"start": "node ./build/index.js",
 		"dev": "vite dev",
@@ -78,12 +77,12 @@
 		"typescript": "^5.8.3",
 		"typescript-eslint": "^8.37.0",
 		"unist-util-visit": "5.0.0",
-		"vite": "^7.0.5",
+		"vite": "^6.3.5",
 		"vitest": "^3.2.4",
 		"vitest-browser-svelte": "^1.0.0"
 	},
 	"dependencies": {
-		"@libsql/client": "^0.15.10"
+		"@libsql/client": "^0.15.9"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [

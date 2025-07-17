@@ -1,9 +1,5 @@
-[variables]
-NIXPACKS_NODE_VERSION = "23"
-NIXPACKS_PKGS = "nodejs_23"
-
 [phases.setup]
-packages = ["nodejs_23", "curl", "wget"]
+packages = ["nodejs_20", "pnpm-9_x", "curl", "wget"]
 
 [phases.install]
 cmds = ["pnpm i --frozen-lockfile"]
