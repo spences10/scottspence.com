@@ -1,15 +1,5 @@
-export const load = async ({ fetch }) => {
-	// Fetch Popular Posts
-	const res = await fetch(`../api/fetch-popular-posts`)
-
-	if (res.ok) {
-		const { daily, monthly, yearly } = await res.json()
-		return {
-			popular_posts: {
-				popular_posts_daily: daily,
-				popular_posts_monthly: monthly,
-				popular_posts_yearly: yearly,
-			},
-		}
-	}
+// Layout no longer loads popular posts globally
+// Components will load their own data on-demand using remote functions
+export const load = async () => {
+	return {}
 }

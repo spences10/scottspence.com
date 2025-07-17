@@ -32,9 +32,17 @@
 	import { website } from '$lib/info'
 	import type { VisitorEntry } from '$lib/stores'
 
+	import { get_reaction_counts } from './reactions.remote'
+	import { get_related_posts } from './related.remote'
+
 	let { data } = $props()
 
-	let { Content, related_posts, meta, count } = data
+	let { Content, meta } = data
+
+	// Load related posts and reactions using remote functions
+	let related_posts_query = get_related_posts(meta.slug)
+	let reaction_counts_query = get_reaction_counts(page.url.pathname)
+
 	const {
 		title,
 		date,
@@ -303,7 +311,24 @@
 	</div>
 
 	{#if !is_private}
-		<Reactions data={count} path={current_path} />
+		{#if reaction_counts_query.pending}
+			<div class="loading loading-spinner loading-lg mx-auto"></div>
+		{:else if reaction_counts_query.error}
+			<Reactions data={{ count: {} }} path={current_path} />
+		{:else if reaction_counts_query.current}
+			<Reactions
+				data={{
+					count: reaction_counts_query.current.reduce(
+						(acc, r) => ({ ...acc, [r.reaction_type]: r.count }),
+						{},
+					),
+				}}
+				path={current_path}
+				{reaction_counts_query}
+			/>
+		{:else}
+			<Reactions data={{ count: {} }} path={current_path} />
+		{/if}
 	{/if}
 
 	<div class="mb-24 grid justify-items-center">
@@ -332,7 +357,19 @@
 
 	<PopularPosts />
 
-	<RelatedPosts {related_posts} />
+	{#await related_posts_query}
+		<div class="loading loading-spinner loading-lg mx-auto"></div>
+	{:then related_posts}
+		{#if related_posts && related_posts.length > 0}
+			<RelatedPosts {related_posts} />
+		{/if}
+	{:catch error}
+		<div class="alert alert-error">
+			<p>
+				Error loading related posts: {error.message}
+			</p>
+		</div>
+	{/await}
 
 	<ButtButt />
 </article>

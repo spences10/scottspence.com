@@ -5,6 +5,23 @@
 Unbreakable rules.
 
 - you must never read .env files even when explicitly asked to
+- you never need to run pnpm dev it adds zero value you running this
+  command
+- Never assume database schema without checking first
+- Always verify table structure before writing queries
+- Check existing data patterns before implementing new features
+- Use available tools to inspect systems before coding
+- Read actual schemas not imagined ones
+- Verify before implement
+- Check don't guess
+- Schema first code second
+- Use MCP tools to check database structure before writing SQL
+- No assumptions about existing data models ever
+- Always examine production data before writing queries against it
+- Read existing codebase patterns before implementing new ones
+- Check table schemas using available tools before any database work
+- Verify data structures exist as expected before using them
+- No coding without confirming database reality first
 
 This file provides guidance to Claude Code (claude.ai/code) when
 working with code in this repository.
