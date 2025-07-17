@@ -1,8 +1,8 @@
 [variables]
-NODE_VERSION = "23"
+NODE_VERSION = "24"
 
 [phases.setup]
-nixPkgs = ["nodejs_23", "pnpm-9_x"]
+nixPkgs = ["nodejs_24", "pnpm-9_x"]
 aptPkgs = ["curl", "wget"]
 
 [phases.install]
