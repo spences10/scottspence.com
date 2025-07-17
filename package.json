@@ -9,7 +9,7 @@
 	"version": "0.0.1",
 	"type": "module",
 	"engines": {
-		"node": ">=23"
+		"node": "22"
 	},
 	"packageManager": "pnpm@10.13.1",
 	"scripts": {
