@@ -9,8 +9,9 @@
 	"version": "0.0.1",
 	"type": "module",
 	"engines": {
-		"node": ">=20"
+		"node": ">=22"
 	},
+	"packageManager": "pnpm@10.13.1",
 	"scripts": {
 		"start": "node ./build/index.js",
 		"dev": "vite dev",
