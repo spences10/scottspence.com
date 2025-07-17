@@ -6,7 +6,7 @@ nixPkgs = ["nodejs_24", "pnpm-9_x"]
 aptPkgs = ["curl", "wget"]
 
 [phases.install]
-cmds = ["pnpm i --frozen-lockfile"]
+cmds = ["pnpm i --frozen-lockfile --ignore-engines"]
 
 [phases.build]
 cmds = ["pnpm run build"]
