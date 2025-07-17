@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-<!-- cspell:ignore Nixpacks -->
+<!-- cspell:ignore Nixpacks postamble -->
 
 Unbreakable rules.
 
