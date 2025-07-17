@@ -2,22 +2,19 @@
 	import { page } from '$app/state'
 	import { Eye } from '$lib/icons'
 	import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
+	import { get_popular_posts_for_period } from '$lib/state/popular-posts.svelte'
 	import { visitors_store } from '$lib/stores'
 	import { number_crunch } from '$lib/utils'
 	import * as Fathom from 'fathom-client'
-	import { get_popular_posts } from '../../routes/popular-posts.remote'
 	import CurrentVisitorsData from './current-visitors-data.svelte'
 
 	let selected_period: 'day' | 'month' | 'year' = 'year'
 	let show_current_visitor_data = $state(false)
 
-	// Load popular posts using remote function
-	let popular_posts = $state(get_popular_posts(selected_period))
-
-	// Update when period changes
-	$effect(() => {
-		popular_posts = get_popular_posts(selected_period)
-	})
+	// Load popular posts using remote function from state
+	let popular_posts = $derived(
+		get_popular_posts_for_period(selected_period),
+	)
 
 	let total_visitors = $state(0)
 	$effect(() => {

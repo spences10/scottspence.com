@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/state'
+	import { get_popular_posts_for_period } from '$lib/state/popular-posts.svelte'
 	import { number_crunch } from '$lib/utils'
 	import * as Fathom from 'fathom-client'
-	import { get_popular_posts } from '../../routes/popular-posts.remote'
 
 	let selected_period: 'day' | 'month' | 'year' = $state('year')
-	let popular_posts_query = $state(get_popular_posts(undefined))
+	let popular_posts_query = $derived(get_popular_posts_for_period(selected_period))
 </script>
 
 {#if popular_posts_query.error}
@@ -33,9 +33,7 @@
 		<div
 			class="relative grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
 		>
-			{#each popular_posts_query.current
-				.filter((p) => p.period === selected_period)
-				.slice(0, 4) as post}
+			{#each popular_posts_query.current.slice(0, 4) as post}
 				<a
 					data-sveltekit-reload
 					href={page.url.origin + post.pathname}
