@@ -4,7 +4,7 @@ import { differenceInHours, parseISO } from 'date-fns'
 
 const popular_posts_cache = new Map<string, any>()
 
-const CACHE_DURATION_MINUTES = 5
+const CACHE_DURATION_MINUTES = 60
 
 export const GET = async () => {
 	const cache_key = 'popular-posts'
@@ -82,7 +82,8 @@ export const GET = async () => {
 
 		// Process the results - only take top 20 per period
 		result.rows.forEach((row) => {
-			if (row.rn <= 20) { // Only take top 20 per period
+			if (row.rn && Number(row.rn) <= 20) {
+				// Only take top 20 per period
 				if (row.period === 'day') popular_posts.daily.push(row)
 				if (row.period === 'month') popular_posts.monthly.push(row)
 				if (row.period === 'year') popular_posts.yearly.push(row)
