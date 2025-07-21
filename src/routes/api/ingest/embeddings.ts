@@ -80,18 +80,27 @@ export const get_related_posts = async (
 ) => {
 	const client = turso_client()
 	try {
-		// Use native Turso vector_distance_cos function for optimal performance
+		// First get the target post's embedding
+		const target_post_result = await client.execute({
+			sql: 'SELECT embedding FROM post_embeddings WHERE post_id = ?',
+			args: [post_id],
+		})
+
+		if (target_post_result.rows.length === 0) {
+			throw new Error(`No embedding found for post_id: ${post_id}`)
+		}
+
+		const target_embedding = target_post_result.rows[0].embedding
+
+		// Now get related posts using the embedding as a parameter
 		const result = await client.execute({
 			sql: `SELECT post_id, 
-				vector_distance_cos(
-					embedding, 
-					(SELECT embedding FROM post_embeddings WHERE post_id = ?)
-				) as distance 
+				vector_distance_cos(embedding, ?) as distance 
 			FROM post_embeddings 
 			WHERE post_id != ? 
 			ORDER BY distance ASC 
 			LIMIT ?`,
-			args: [post_id, post_id, limit],
+			args: [target_embedding, post_id, limit],
 		})
 
 		return result.rows.map((row: any) => row.post_id)
@@ -128,21 +137,47 @@ export const search_similar_posts = async (
 	limit: number = 5,
 ) => {
 	const client = turso_client()
-	const query_embedding_array = new Float32Array(query_embedding)
 
-	const all_posts_result = await client.execute(
-		'SELECT post_id, embedding FROM post_embeddings',
-	)
+	try {
+		// Use Turso's native vector search instead of loading all embeddings
+		const result = await client.execute({
+			sql: `
+				SELECT post_id, libsql_vector_distance_cosine(embedding, ?) as distance
+				FROM post_embeddings
+				WHERE post_id IS NOT NULL
+				ORDER BY distance ASC
+				LIMIT ?
+			`,
+			args: [JSON.stringify(query_embedding), limit],
+		})
 
-	const similarities = all_posts_result.rows.map((row: any) => ({
-		post_id: row.post_id,
-		similarity: cosine_similarity(
-			query_embedding_array,
-			new Float32Array(row.embedding as ArrayBuffer),
-		),
-	}))
+		// Convert distance to similarity (1 - distance for cosine)
+		return result.rows.map((row: any) => ({
+			post_id: row.post_id,
+			similarity: 1 - Number(row.distance),
+		}))
+	} catch (error) {
+		// Fallback to the original method if native vector search fails
+		console.warn(
+			'Native vector search failed, falling back to in-memory search:',
+			error,
+		)
 
-	return similarities
-		.sort((a, b) => b.similarity - a.similarity)
-		.slice(0, limit)
+		const all_posts_result = await client.execute(
+			'SELECT post_id, embedding FROM post_embeddings',
+		)
+
+		const query_embedding_array = new Float32Array(query_embedding)
+		const similarities = all_posts_result.rows.map((row: any) => ({
+			post_id: row.post_id,
+			similarity: cosine_similarity(
+				query_embedding_array,
+				new Float32Array(row.embedding as ArrayBuffer),
+			),
+		}))
+
+		return similarities
+			.sort((a, b) => b.similarity - a.similarity)
+			.slice(0, limit)
+	}
 }
