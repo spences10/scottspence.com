@@ -302,7 +302,7 @@
 		<div class="divider divider-secondary"></div>
 	</div>
 
-	{#if !is_private}
+	{#if !is_private && count && count.count}
 		<Reactions data={count} path={current_path} />
 	{/if}
 
@@ -314,15 +314,17 @@
 		/>
 	</div>
 
-	<div class="flex justify-center">
-		<a
-			onclick={show_modal}
-			href="/stats/{page.params.slug}"
-			class="btn btn-primary btn-lg mb-20 px-10 text-xl shadow-lg"
-		>
-			✨ View the stats for this post ✨
-		</a>
-	</div>
+	{#if count && count.count}
+		<div class="flex justify-center">
+			<a
+				onclick={show_modal}
+				href="/stats/{page.params.slug}"
+				class="btn btn-primary btn-lg mb-20 px-10 text-xl shadow-lg"
+			>
+				✨ View the stats for this post ✨
+			</a>
+		</div>
+	{/if}
 
 	<Modal bind:modal onclose={close_modal}>
 		{#if page.state.selected}
