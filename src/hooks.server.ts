@@ -29,13 +29,24 @@ const reject_suspicious_requests: Handle = async ({
 	const user_agent =
 		event.request.headers.get('user-agent') || 'unknown'
 	const is_bot = /bot|crawl|spider|scrape|fetch/i.test(user_agent)
+	const is_health_check =
+		user_agent.includes('curl') ||
+		user_agent.includes('wget') ||
+		client_ip === '127.0.0.1'
+
+	// Skip health checks entirely - return minimal response
+	if (is_health_check && pathname === '/') {
+		return new Response('OK', { status: 200 })
+	}
 
 	// Always log requests to see what's hitting the site
-	console.log(
-		`REQUEST: ${client_ip} | ${is_bot ? 'BOT' : 'USER'} | ${pathname} | ${user_agent.substring(0, 50)}`,
-	)
+	if (!is_health_check) {
+		console.log(
+			`REQUEST: ${client_ip} | ${is_bot ? 'BOT' : 'USER'} | ${pathname} | ${user_agent.substring(0, 50)}`,
+		)
+	}
 
-	if (is_bot) {
+	if (is_bot && !is_health_check) {
 		console.log(
 			`BOT REQUEST: ${client_ip} | ${user_agent} | ${pathname}`,
 		)
