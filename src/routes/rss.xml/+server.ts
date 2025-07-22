@@ -12,28 +12,45 @@ interface RSSItem {
 }
 
 export const GET = async () => {
-	const { posts } = await get_posts()
+	try {
+		const { posts } = await get_posts()
 
-	// Filter out private posts and transform into RSS items
-	const rss_items: RSSItem[] = posts
-		.filter(post => !post.is_private)
-		.map(({ title, slug, date, preview, preview_html }) => ({
-			title,
-			url: `${website}/posts/${slug}/`,
-			description: preview,
-			date: new Date(date).toISOString(),
-			content: preview_html || '',
-		}))
+		// Filter out private posts and transform into RSS items
+		const rss_items: RSSItem[] = posts
+			.filter((post) => !post.is_private)
+			.map(({ title, slug, date, preview, preview_html }) => ({
+				title,
+				url: `${website}/posts/${slug}/`,
+				description: preview,
+				date: new Date(date).toISOString(),
+				content: preview_html || '',
+			}))
 
-	const body = render_rss_feed(rss_items)
+		const body = render_rss_feed(rss_items)
 
-	return new Response(body, {
-		headers: {
-			'content-type': 'application/xml',
-			'cache-control':
-				'public, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=3600',
-		},
-	})
+		return new Response(body, {
+			headers: {
+				'content-type': 'application/xml',
+				'cache-control':
+					'public, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=3600',
+			},
+		})
+	} catch (error) {
+		console.warn(
+			'Database unavailable, generating empty RSS feed:',
+			error instanceof Error ? error.message : 'Unknown error',
+		)
+
+		// Return minimal RSS feed when database is down
+		const empty_feed = render_rss_feed([])
+
+		return new Response(empty_feed, {
+			headers: {
+				'content-type': 'application/xml',
+				'cache-control': 'public, no-cache, max-age=300', // 5 min cache when in fallback mode
+			},
+		})
+	}
 }
 
 const render_rss_items = (items: RSSItem[]) => {

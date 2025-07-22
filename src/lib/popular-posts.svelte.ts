@@ -105,7 +105,10 @@ class PopularPostsState {
 
 			this.last_fetched = Date.now()
 		} catch (error) {
-			console.error('Error fetching popular posts:', error)
+			console.warn(
+				'Database unavailable, keeping cached popular posts:',
+				error instanceof Error ? error.message : 'Unknown error',
+			)
 			// Keep existing data on error - don't clear it
 		} finally {
 			this.loading = false
@@ -189,7 +192,10 @@ export const get_popular_posts =
 				})),
 			}
 		} catch (error) {
-			console.error('Error fetching popular posts:', error)
+			console.warn(
+				'Database unavailable, returning empty popular posts:',
+				error instanceof Error ? error.message : 'Unknown error',
+			)
 			return { daily: [], monthly: [], yearly: [] }
 		}
 	}
