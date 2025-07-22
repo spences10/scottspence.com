@@ -25,10 +25,15 @@ const reject_suspicious_requests: Handle = async ({
 		event.request.headers.get('x-real-ip') ||
 		event.getClientAddress()
 
-	// Log bot activity for analysis
+	// Log all requests to identify traffic patterns
 	const user_agent =
 		event.request.headers.get('user-agent') || 'unknown'
 	const is_bot = /bot|crawl|spider|scrape|fetch/i.test(user_agent)
+
+	// Always log requests to see what's hitting the site
+	console.log(
+		`REQUEST: ${client_ip} | ${is_bot ? 'BOT' : 'USER'} | ${pathname} | ${user_agent.substring(0, 50)}`,
+	)
 
 	if (is_bot) {
 		console.log(
