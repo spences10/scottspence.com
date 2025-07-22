@@ -1,10 +1,11 @@
 import { building } from '$app/environment'
+import { ratelimit, redis } from '$lib/redis/client'
 import {
 	rejected_extensions,
 	rejected_paths,
 } from '$lib/reject-patterns'
 import { themes } from '$lib/themes'
-import { redirect, type Handle } from '@sveltejs/kit'
+import { error, redirect, type Handle } from '@sveltejs/kit'
 import { sequence } from '@sveltejs/kit/hooks'
 
 const reject_suspicious_requests: Handle = async ({
@@ -23,6 +24,56 @@ const reject_suspicious_requests: Handle = async ({
 		event.request.headers.get('x-forwarded-for')?.split(',')[0] ||
 		event.request.headers.get('x-real-ip') ||
 		event.getClientAddress()
+
+	// Log bot activity for analysis
+	const user_agent =
+		event.request.headers.get('user-agent') || 'unknown'
+	const is_bot = /bot|crawl|spider|scrape|fetch/i.test(user_agent)
+
+	if (is_bot) {
+		console.log(
+			`BOT REQUEST: ${client_ip} | ${user_agent} | ${pathname}`,
+		)
+	}
+
+	// Rate limit all requests per IP (skip static assets)
+	if (
+		!pathname.startsWith('/static/') &&
+		!pathname.startsWith('/favicon')
+	) {
+		// Check if IP is blocked for an hour
+		const block_key = `blocked:${client_ip}`
+		const is_blocked = await redis.get(block_key)
+
+		if (is_blocked) {
+			const ttl = await redis.ttl(block_key)
+			const minutes_remaining = Math.ceil(ttl / 60)
+			console.log(
+				`BLOCKED IP: ${client_ip} | ${user_agent} | ${pathname} | ${minutes_remaining}min remaining`,
+			)
+			throw error(
+				429,
+				`IP blocked for excessive requests. Try again in ${minutes_remaining} minutes`,
+			)
+		}
+
+		const rate_limit_result = await ratelimit.limit(
+			`global:${client_ip}`,
+		)
+
+		if (!rate_limit_result.success) {
+			// Block IP for 1 hour when rate limit exceeded
+			await redis.setex(block_key, 3600, 'blocked')
+
+			console.log(
+				`IP BLOCKED FOR 1 HOUR: ${client_ip} | ${user_agent} | ${pathname}`,
+			)
+			throw error(
+				429,
+				`Rate limit exceeded. IP blocked for 1 hour due to excessive requests`,
+			)
+		}
+	}
 
 	if (rejected_extensions.some((ext) => pathname.endsWith(ext))) {
 		console.log(
