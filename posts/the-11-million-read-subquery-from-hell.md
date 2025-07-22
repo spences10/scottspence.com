@@ -17,8 +17,7 @@ minutes, but that was just the warm-up act.
 
 So the
 [Hunting Down 1.3 Billion Row Database Reads](https://scottspence.com/posts/hunting-down-billion-row-database-reads)
-is now nearly 10 billion reads!! 
-CTEs fixed, indexes added, query
+is now nearly 10 billion reads!! CTEs fixed, indexes added, query
 optimized - job done, right?
 
 Wrong. Dead wrong. 😅
@@ -265,6 +264,55 @@ completely different:
 - **Related posts updates**: Down from 11.5 million reads to ~450
   reads
 - **Overall database load**: Expecting 99%+ reduction in total reads
+
+But wait - there's more! 😅
+
+## The Plot Twist: It Was Me All Along
+
+So there I was, feeling proper chuffed about fixing the subquery from
+hell, when I noticed something mental in the server logs. Even with
+all the optimizations, I was still seeing database calls every few
+seconds:
+
+```
+Database unavailable, returning empty popular posts: BLOCKED
+Database unavailable for reaction counts: BLOCKED
+Database unavailable, returning empty related posts: BLOCKED
+```
+
+The pattern was dead suspicious - regular as clockwork, every 5-6
+seconds. Classic bot behavior, right? So I added some logging to catch
+the culprits...
+
+Turns out it was **my own bloody health checks**! 🤦‍♂️
+
+The hosting platform (Coolify) was hitting my homepage with
+`curl/7.81.0` every 5 seconds to make sure the app was alive. Each
+health check would load the layout, which would try to fetch popular
+posts, which would hit the database.
+
+**Self-pwn achievement unlocked!**
+
+I'd been hunting external bots when the calls were coming from inside
+the house. The hosting platform was basically DDoS'ing my own database
+with wellness checks.
+
+Quick fix in the hooks file:
+
+```typescript
+const is_health_check =
+	user_agent.includes('curl') ||
+	user_agent.includes('wget') ||
+	client_ip === '127.0.0.1'
+
+// Skip health checks entirely - return minimal response
+if (is_health_check && pathname === '/') {
+	return new Response('OK', { status: 200 })
+}
+```
+
+Now health checks get a simple "OK" without touching any database
+queries. Problem solved!
 
 I really should implement proper performance monitoring so this never
 happens again. A simple endpoint to track query metrics would have
