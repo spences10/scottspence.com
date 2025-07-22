@@ -1,4 +1,4 @@
-import { get_popular_posts } from '$lib/popular-posts.svelte'
+import { get_popular_posts } from '$lib/state/popular-posts.svelte'
 
 export const load = async () => {
 	try {
