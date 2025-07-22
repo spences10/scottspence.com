@@ -62,17 +62,6 @@ export const store_post_embedding = async (
 	}
 }
 
-function cosine_similarity(a: Float32Array, b: Float32Array): number {
-	let dot_product = 0
-	let norm_a = 0
-	let norm_b = 0
-	for (let i = 0; i < a.length; i++) {
-		dot_product += a[i] * b[i]
-		norm_a += a[i] * a[i]
-		norm_b += b[i] * b[i]
-	}
-	return dot_product / (Math.sqrt(norm_a) * Math.sqrt(norm_b))
-}
 
 export const get_related_posts = async (
 	post_id: string,
