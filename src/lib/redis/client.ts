@@ -17,7 +17,7 @@ if (!building) {
 
 	ratelimit = new Ratelimit({
 		redis,
-		limiter: Ratelimit.slidingWindow(10, '10 s'),
+		limiter: Ratelimit.slidingWindow(30, '10 s'),
 	})
 }
 
