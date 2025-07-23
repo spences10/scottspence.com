@@ -6,6 +6,8 @@ import {
 } from '$lib/cache/server-cache'
 import { turso_client } from '$lib/turso/client'
 
+// TODO: The SQL in this is fucking awful, needs to be rewritten!!
+
 const CACHE_KEY = 'reactions_leaderboard'
 
 interface ReactionData {
@@ -57,7 +59,7 @@ class ReactionsLeaderboardState {
 		const client = turso_client()
 
 		try {
-			const result = await client.execute(`
+			const db_result = await client.execute(`
 				SELECT
 					r.post_url as path,
 					p.title,
@@ -82,7 +84,7 @@ class ReactionsLeaderboardState {
 					total.total_count DESC, r.post_url, r.reaction_type;
 			`)
 
-			const reaction_data: ReactionData[] = result.rows.map(
+			const reaction_data: ReactionData[] = db_result.rows.map(
 				(row) => ({
 					path: String(row.path),
 					title: String(row.title),
@@ -160,7 +162,7 @@ export const get_reactions_leaderboard =
 		const client = turso_client()
 
 		try {
-			const result = await client.execute(`
+			const db_result2 = await client.execute(`
 			SELECT
 				r.post_url as path,
 				p.title,
@@ -185,7 +187,7 @@ export const get_reactions_leaderboard =
 				total.total_count DESC, r.post_url, r.reaction_type;
 		`)
 
-			const reaction_data: ReactionData[] = result.rows.map(
+			const reaction_data: ReactionData[] = db_result2.rows.map(
 				(row) => ({
 					path: String(row.path),
 					title: String(row.title),
@@ -196,11 +198,11 @@ export const get_reactions_leaderboard =
 			)
 
 			const leaderboard = process_leaderboard_data(reaction_data)
-			const result = { leaderboard }
+			const leaderboard_result = { leaderboard }
 
 			// Cache the result
-			set_cache(CACHE_KEY, result)
-			return result
+			set_cache(CACHE_KEY, leaderboard_result)
+			return leaderboard_result
 		} catch (error) {
 			console.warn(
 				'Database unavailable, returning empty leaderboard:',

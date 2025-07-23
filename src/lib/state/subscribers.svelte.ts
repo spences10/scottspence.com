@@ -82,8 +82,8 @@ class SubscribersState {
 			if (!response.ok) {
 				throw new Error('Error fetching newsletter subscriber count')
 			}
-			const data = await response.json()
-			const newsletter_subscriber_count = data.count
+			const api_response = await response.json()
+			const newsletter_subscriber_count = api_response.count
 
 			// Insert new data if different from the latest in the database
 			if (
@@ -101,16 +101,16 @@ class SubscribersState {
 				'SELECT count FROM newsletter_subscriber ORDER BY last_updated DESC LIMIT 1;',
 			)
 
-			const data = {
+			const subscriber_data = {
 				newsletter_subscriber_count: Number(
 					updatedResult.rows[0].count,
 				),
 			}
 
 			// Update both caches
-			this.data = data
+			this.data = subscriber_data
 			this.last_fetched = Date.now()
-			set_cache(CACHE_KEY, data)
+			set_cache(CACHE_KEY, subscriber_data)
 		} catch (error) {
 			console.warn(
 				'Database unavailable, keeping cached subscriber count:',
@@ -158,8 +158,8 @@ export const get_subscriber_count =
 			if (!response.ok) {
 				throw new Error('Error fetching newsletter subscriber count')
 			}
-			const data = await response.json()
-			const newsletter_subscriber_count = data.count
+			const api_response = await response.json()
+			const newsletter_subscriber_count = api_response.count
 
 			// Insert new data if different from the latest in the database
 			if (
