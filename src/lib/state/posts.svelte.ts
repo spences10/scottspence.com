@@ -7,7 +7,7 @@ class PostsState {
 	last_fetched = $state<number>(0)
 
 	private readonly CACHE_DURATION = 24 * 60 * 60 * 1000 // 24 hours
-	private readonly BYPASS_DB_READS = false // Set to false to enable DB reads
+	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
 
 	async load_posts(): Promise<void> {
 		if (this.BYPASS_DB_READS) {
@@ -60,6 +60,26 @@ export function get_posts_state(): PostsState {
 
 // Fallback function for server-side usage - now uses universal state with caching
 export const get_posts = async (): Promise<{ posts: Post[] }> => {
-	await posts_state.load_posts()
-	return { posts: posts_state.posts }
+	const BYPASS_DB_READS = true // Set to false to enable DB reads
+	if (BYPASS_DB_READS) {
+		return { posts: [] }
+	}
+
+	const client = turso_client()
+
+	try {
+		const posts_result = await client.execute(
+			'SELECT * FROM posts ORDER BY date DESC;',
+		)
+
+		return {
+			posts: posts_result.rows as unknown as Post[],
+		}
+	} catch (error) {
+		console.warn(
+			'Database unavailable, returning empty posts:',
+			error instanceof Error ? error.message : 'Unknown error',
+		)
+		return { posts: [] }
+	}
 }
