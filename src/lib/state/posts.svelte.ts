@@ -8,7 +8,7 @@ class PostsState {
 	last_fetched = $state<number>(0)
 
 	private readonly CACHE_DURATION = 24 * 60 * 60 * 1000 // 24 hours
-	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
+	private readonly BYPASS_DB_READS = false // Set to false to enable DB reads
 
 	async load_posts(): Promise<void> {
 		if (this.BYPASS_DB_READS) {
@@ -61,7 +61,7 @@ export function get_posts_state(): PostsState {
 
 // Fallback function for server-side usage and backward compatibility
 export const get_posts = async (): Promise<{ posts: Post[] }> => {
-	const BYPASS_DB_READS = true // Set to false to enable DB reads
+	const BYPASS_DB_READS = false // Set to false to enable DB reads
 	if (BYPASS_DB_READS) {
 		return { posts: [] }
 	}
