@@ -36,8 +36,22 @@ class PricingState {
 	last_fetched = $state<number>(0)
 
 	private readonly CACHE_DURATION = 60 * 60 * 1000 // 1 hour
+	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
 
 	async load_pricing_data(): Promise<void> {
+		if (this.BYPASS_DB_READS) {
+			this.data = {
+				exchangeRates: { GBP: 0.86, USD: 1.09, CAD: 1.47 },
+				pricingNumbers: {
+					posts_per_week: 1,
+					years_programming: 10,
+					total_posts: 100,
+					average_reading_time: 5,
+				},
+			}
+			return // DB reads disabled
+		}
+
 		// Check if cache is still valid
 		if (
 			Date.now() - this.last_fetched < this.CACHE_DURATION &&

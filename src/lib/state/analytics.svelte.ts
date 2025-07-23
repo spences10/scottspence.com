@@ -23,10 +23,15 @@ class AnalyticsState {
 	loading = $state<Set<string>>(new Set())
 
 	private readonly CACHE_DURATION = 10 * 60 * 1000 // 10 minutes
+	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
 
 	async load_analytics(
 		params: AnalyticsParams,
 	): Promise<AnalyticsData> {
+		if (this.BYPASS_DB_READS) {
+			return { analytics: [], message: 'Analytics DB reads disabled' }
+		}
+
 		const cache_key = JSON.stringify(params)
 
 		// Check cache first
@@ -171,6 +176,11 @@ export function get_analytics_state(): AnalyticsState {
 export const get_analytics = async (
 	params: AnalyticsParams,
 ): Promise<AnalyticsData> => {
+	const BYPASS_DB_READS = true // Set to false to enable DB reads
+	if (BYPASS_DB_READS) {
+		return { analytics: [], message: 'Analytics DB reads disabled' }
+	}
+
 	try {
 		const {
 			pathname,

@@ -20,8 +20,13 @@ class ReactionsLeaderboardState {
 	last_fetched = $state<number>(0)
 
 	private readonly CACHE_DURATION = 15 * 60 * 1000 // 15 minutes
+	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
 
 	async load_leaderboard(): Promise<void> {
+		if (this.BYPASS_DB_READS) {
+			return // DB reads disabled
+		}
+
 		// Check if cache is still valid
 		if (
 			Date.now() - this.last_fetched < this.CACHE_DURATION &&
@@ -130,6 +135,11 @@ export function get_reactions_leaderboard_state(): ReactionsLeaderboardState {
 // Fallback function for server-side usage and backward compatibility
 export const get_reactions_leaderboard =
 	async (): Promise<LeaderboardData> => {
+		const BYPASS_DB_READS = true // Set to false to enable DB reads
+		if (BYPASS_DB_READS) {
+			return { leaderboard: [] }
+		}
+
 		const client = turso_client()
 
 		try {
@@ -176,7 +186,10 @@ export const get_reactions_leaderboard =
 				'Database unavailable, returning empty leaderboard:',
 				error instanceof Error ? error.message : 'Unknown error',
 			)
-			return { error: 'Failed to load leaderboard data' }
+			return {
+				leaderboard: [],
+				error: 'Failed to load leaderboard data',
+			}
 		}
 	}
 

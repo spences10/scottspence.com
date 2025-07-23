@@ -17,8 +17,14 @@ class SubscribersState {
 	last_fetched = $state<number>(0)
 
 	private readonly CACHE_DURATION = 24 * 60 * 60 * 1000 // 24 hours
+	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
 
 	async load_subscriber_count(): Promise<void> {
+		if (this.BYPASS_DB_READS) {
+			this.data = { newsletter_subscriber_count: 105 }
+			return // DB reads disabled
+		}
+
 		// Check if cache is still valid
 		if (
 			Date.now() - this.last_fetched < this.CACHE_DURATION &&

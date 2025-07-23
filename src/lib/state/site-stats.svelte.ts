@@ -53,8 +53,13 @@ class SiteStatsState {
 	last_fetched = $state<number>(0)
 
 	private readonly CACHE_DURATION = 30 * 60 * 1000 // 30 minutes
+	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
 
 	async load_site_stats(): Promise<void> {
+		if (this.BYPASS_DB_READS) {
+			return // DB reads disabled
+		}
+
 		// Check if cache is still valid
 		if (
 			Date.now() - this.last_fetched < this.CACHE_DURATION &&
@@ -201,6 +206,15 @@ export function get_site_stats_state(): SiteStatsState {
 
 // Fallback function for server-side usage and backward compatibility
 export const get_site_stats = async (): Promise<SiteStatsData> => {
+	const BYPASS_DB_READS = true // Set to false to enable DB reads
+	if (BYPASS_DB_READS) {
+		return {
+			site_stats: [],
+			current_month: new Date().toISOString().slice(0, 7),
+			current_year: new Date().getFullYear().toString(),
+		}
+	}
+
 	const client = turso_client()
 
 	try {

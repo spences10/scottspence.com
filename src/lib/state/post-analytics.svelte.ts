@@ -26,8 +26,13 @@ class PostAnalyticsState {
 	loading = $state<Set<string>>(new Set())
 
 	private readonly CACHE_DURATION = 5 * 60 * 1000 // 5 minutes for reactive state
+	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
 
 	async load_post_analytics(slug: string): Promise<PostAnalytics> {
+		if (this.BYPASS_DB_READS) {
+			return { daily: null, monthly: null, yearly: null }
+		}
+
 		// Check cache first
 		const cached = this.cache.get(slug)
 		if (
@@ -296,6 +301,11 @@ export function get_post_analytics_state(): PostAnalyticsState {
 export const get_post_analytics_for_slug = async (
 	slug: string,
 ): Promise<PostAnalytics> => {
+	const BYPASS_DB_READS = true // Set to false to enable DB reads
+	if (BYPASS_DB_READS) {
+		return { daily: null, monthly: null, yearly: null }
+	}
+
 	const client = turso_client()
 
 	try {

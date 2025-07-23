@@ -23,12 +23,21 @@ class ReactionsState {
 	submitting = $state<Set<string>>(new Set())
 
 	private readonly CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
+	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
 
 	async submit_reaction(
 		reaction: string,
 		path: string,
 		ip: string,
 	): Promise<ReactionResult> {
+		if (this.BYPASS_DB_READS) {
+			return {
+				success: false,
+				status: 503,
+				error: 'Reactions disabled',
+			}
+		}
+
 		// Rate limiting
 		const rate_limit_attempt = await ratelimit.limit(ip)
 
@@ -178,6 +187,11 @@ export const submit_reaction = async (
 	path: string,
 	ip: string,
 ): Promise<any> => {
+	const BYPASS_DB_READS = true // Set to false to enable DB reads
+	if (BYPASS_DB_READS) {
+		return fail(503, { error: 'Reactions disabled' })
+	}
+
 	// Rate limiting
 	const rate_limit_attempt = await ratelimit.limit(ip)
 

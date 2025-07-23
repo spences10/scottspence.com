@@ -13,8 +13,13 @@ class RelatedPostsState {
 	loading = $state<Set<string>>(new Set())
 
 	private readonly CACHE_DURATION = 60 * 60 * 1000 // 1 hour
+	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
 
 	async load_related_posts(post_id: string): Promise<RelatedPost[]> {
+		if (this.BYPASS_DB_READS) {
+			return [] // DB reads disabled
+		}
+
 		// Check cache first
 		const cached = this.cache.get(post_id)
 		if (
@@ -111,6 +116,11 @@ export function get_related_posts_state(): RelatedPostsState {
 export const get_related_posts_for_post = async (
 	post_id: string,
 ): Promise<RelatedPost[]> => {
+	const BYPASS_DB_READS = true // Set to false to enable DB reads
+	if (BYPASS_DB_READS) {
+		return [] // DB reads disabled
+	}
+
 	const client = turso_client()
 
 	try {

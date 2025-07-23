@@ -28,8 +28,13 @@ class PopularPostsState {
 	last_fetched = $state<number>(0)
 
 	private readonly CACHE_DURATION = 60 * 60 * 1000 // 1 hour
+	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
 
 	async load_popular_posts(): Promise<void> {
+		if (this.BYPASS_DB_READS) {
+			return // DB reads disabled
+		}
+
 		// Check if cache is still valid
 		if (
 			Date.now() - this.last_fetched < this.CACHE_DURATION &&
@@ -131,6 +136,11 @@ export function get_popular_posts_state(): PopularPostsState {
 // Fallback function for server-side usage (like layout.server.ts)
 export const get_popular_posts =
 	async (): Promise<PopularPostsData> => {
+		const BYPASS_DB_READS = true // Set to false to enable DB reads
+		if (BYPASS_DB_READS) {
+			return { daily: [], monthly: [], yearly: [] }
+		}
+
 		const client = turso_client()
 
 		try {
