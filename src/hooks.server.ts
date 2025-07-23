@@ -34,10 +34,6 @@ const reject_suspicious_requests: Handle = async ({
 		user_agent.includes('wget') ||
 		client_ip === '127.0.0.1'
 
-	// Skip health checks entirely - return minimal response
-	if (is_health_check && pathname === '/') {
-		return new Response('OK', { status: 200 })
-	}
 
 	// Always log requests to see what's hitting the site
 	if (!is_health_check) {
