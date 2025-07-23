@@ -1,8 +1,11 @@
+import {
+	BYPASS_DB_READS,
+	CACHE_DURATIONS,
+} from '$lib/cache/server-cache'
 import { reactions } from '$lib/reactions-config'
 import { ratelimit } from '$lib/redis'
 import { turso_client } from '$lib/turso/client'
 import { fail } from '@sveltejs/kit'
-import { getContext, setContext } from 'svelte'
 
 const allowed_reactions = reactions.map((r) => r.type)
 
@@ -22,15 +25,12 @@ class ReactionsState {
 	)
 	submitting = $state<Set<string>>(new Set())
 
-	private readonly CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
-	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
-
 	async submit_reaction(
 		reaction: string,
 		path: string,
 		ip: string,
 	): Promise<ReactionResult> {
-		if (this.BYPASS_DB_READS) {
+		if (BYPASS_DB_READS.reactions) {
 			return {
 				success: false,
 				status: 503,
@@ -160,7 +160,7 @@ class ReactionsState {
 
 		if (
 			cached &&
-			Date.now() - cached.timestamp < this.CACHE_DURATION
+			Date.now() - cached.timestamp < CACHE_DURATIONS.reactions
 		) {
 			return cached.count
 		}
@@ -169,17 +169,8 @@ class ReactionsState {
 	}
 }
 
-const REACTIONS_KEY = Symbol('reactions')
-
-export function set_reactions_state() {
-	const state = new ReactionsState()
-	setContext(REACTIONS_KEY, state)
-	return state
-}
-
-export function get_reactions_state(): ReactionsState {
-	return getContext<ReactionsState>(REACTIONS_KEY)
-}
+// Single universal instance shared everywhere
+export const reactions_state = new ReactionsState()
 
 // Fallback function for server-side form actions
 export const submit_reaction = async (
@@ -187,8 +178,7 @@ export const submit_reaction = async (
 	path: string,
 	ip: string,
 ): Promise<any> => {
-	const BYPASS_DB_READS = true // Set to false to enable DB reads
-	if (BYPASS_DB_READS) {
+	if (BYPASS_DB_READS.reactions) {
 		return fail(503, { error: 'Reactions disabled' })
 	}
 

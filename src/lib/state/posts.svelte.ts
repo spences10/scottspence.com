@@ -1,22 +1,30 @@
 // Universal reactive state for posts with Svelte 5 runes
+import { BYPASS_DB_READS, CACHE_DURATIONS, get_from_cache, set_cache } from '$lib/cache/server-cache'
 import { turso_client } from '$lib/turso'
+
+const CACHE_KEY = 'posts'
 
 class PostsState {
 	posts = $state<Post[]>([])
 	loading = $state<boolean>(false)
 	last_fetched = $state<number>(0)
 
-	private readonly CACHE_DURATION = 24 * 60 * 60 * 1000 // 24 hours
-	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
-
 	async load_posts(): Promise<void> {
-		if (this.BYPASS_DB_READS) {
+		if (BYPASS_DB_READS.posts) {
 			return // DB reads disabled
 		}
 
-		// Check if cache is still valid
+		// Check server cache first
+		const server_cached = get_from_cache<Post[]>(CACHE_KEY, CACHE_DURATIONS.posts)
+		if (server_cached) {
+			this.posts = server_cached
+			this.last_fetched = Date.now()
+			return
+		}
+
+		// Check client cache
 		if (
-			Date.now() - this.last_fetched < this.CACHE_DURATION &&
+			Date.now() - this.last_fetched < CACHE_DURATIONS.posts &&
 			this.posts.length > 0
 		) {
 			return // Use cached data
@@ -32,8 +40,12 @@ class PostsState {
 				'SELECT * FROM posts ORDER BY date DESC;',
 			)
 
-			this.posts = posts_result.rows as unknown as Post[]
+			const posts = posts_result.rows as unknown as Post[]
+			
+			// Update both caches
+			this.posts = posts
 			this.last_fetched = Date.now()
+			set_cache(CACHE_KEY, posts)
 		} catch (error) {
 			console.warn(
 				'Database unavailable, keeping cached posts:',
@@ -58,11 +70,16 @@ export function get_posts_state(): PostsState {
 	return posts_state
 }
 
-// Fallback function for server-side usage - now uses universal state with caching
+// Fallback function for server-side usage - now uses server cache
 export const get_posts = async (): Promise<{ posts: Post[] }> => {
-	const BYPASS_DB_READS = true // Set to false to enable DB reads
-	if (BYPASS_DB_READS) {
+	if (BYPASS_DB_READS.posts) {
 		return { posts: [] }
+	}
+
+	// Check server cache first
+	const cached = get_from_cache<Post[]>(CACHE_KEY, CACHE_DURATIONS.posts)
+	if (cached) {
+		return { posts: cached }
 	}
 
 	const client = turso_client()
@@ -72,9 +89,12 @@ export const get_posts = async (): Promise<{ posts: Post[] }> => {
 			'SELECT * FROM posts ORDER BY date DESC;',
 		)
 
-		return {
-			posts: posts_result.rows as unknown as Post[],
-		}
+		const posts = posts_result.rows as unknown as Post[]
+		
+		// Cache the result
+		set_cache(CACHE_KEY, posts)
+		
+		return { posts }
 	} catch (error) {
 		console.warn(
 			'Database unavailable, returning empty posts:',

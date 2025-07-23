@@ -1,9 +1,12 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
+import {
+	BYPASS_DB_READS,
+	CACHE_DURATIONS,
+} from '$lib/cache/server-cache'
 import { fetch_fathom_data } from '$lib/fathom'
 import { turso_client } from '$lib/turso'
 import type { InStatement } from '@libsql/client'
 import { differenceInHours, parseISO } from 'date-fns'
-import { getContext, setContext } from 'svelte'
 import { get_date_range } from '../../routes/api/ingest/utils'
 
 interface PostAnalytics {
@@ -12,24 +15,14 @@ interface PostAnalytics {
 	yearly: any | null
 }
 
-// Add cache duration constants
-const CACHE_DURATIONS = {
-	day: 5, // 5 minutes
-	month: 24 * 60, // 24 hours in minutes
-	year: 24 * 60, // 24 hours in minutes
-}
-
 class PostAnalyticsState {
 	cache = $state<
 		Map<string, { data: PostAnalytics; timestamp: number }>
 	>(new Map())
 	loading = $state<Set<string>>(new Set())
 
-	private readonly CACHE_DURATION = 5 * 60 * 1000 // 5 minutes for reactive state
-	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
-
 	async load_post_analytics(slug: string): Promise<PostAnalytics> {
-		if (this.BYPASS_DB_READS) {
+		if (BYPASS_DB_READS.post_analytics) {
 			return { daily: null, monthly: null, yearly: null }
 		}
 
@@ -37,7 +30,8 @@ class PostAnalyticsState {
 		const cached = this.cache.get(slug)
 		if (
 			cached &&
-			Date.now() - cached.timestamp < this.CACHE_DURATION
+			Date.now() - cached.timestamp <
+				CACHE_DURATIONS.post_analytics.day
 		) {
 			return cached.data
 		}
@@ -160,10 +154,8 @@ class PostAnalyticsState {
 						parseISO(String(last_updated)),
 					) * 60
 
-				return (
-					minutes_difference >=
-					CACHE_DURATIONS[period as keyof typeof CACHE_DURATIONS]
-				)
+				const durations = CACHE_DURATIONS.post_analytics as any
+				return minutes_difference >= durations[period]
 			} else {
 				console.log(
 					'No last updated date found, assuming data is stale.',
@@ -285,24 +277,14 @@ class PostAnalyticsState {
 	}
 }
 
-const POST_ANALYTICS_KEY = Symbol('post_analytics')
-
-export function set_post_analytics_state() {
-	const state = new PostAnalyticsState()
-	setContext(POST_ANALYTICS_KEY, state)
-	return state
-}
-
-export function get_post_analytics_state(): PostAnalyticsState {
-	return getContext<PostAnalyticsState>(POST_ANALYTICS_KEY)
-}
+// Single universal instance shared everywhere
+export const post_analytics_state = new PostAnalyticsState()
 
 // Fallback function for server-side usage
 export const get_post_analytics_for_slug = async (
 	slug: string,
 ): Promise<PostAnalytics> => {
-	const BYPASS_DB_READS = true // Set to false to enable DB reads
-	if (BYPASS_DB_READS) {
+	if (BYPASS_DB_READS.post_analytics) {
 		return { daily: null, monthly: null, yearly: null }
 	}
 
@@ -389,10 +371,8 @@ const stale_data = async (
 					parseISO(String(last_updated)),
 				) * 60
 
-			return (
-				minutes_difference >=
-				CACHE_DURATIONS[period as keyof typeof CACHE_DURATIONS]
-			)
+			const durations = CACHE_DURATIONS.post_analytics as any
+			return minutes_difference >= durations[period]
 		} else {
 			console.log(
 				'No last updated date found, assuming data is stale.',

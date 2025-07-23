@@ -1,6 +1,12 @@
-// Universal reactive state for popular posts with Svelte 5 runes
+import {
+	BYPASS_DB_READS,
+	CACHE_DURATIONS,
+	get_from_cache,
+	set_cache,
+} from '$lib/cache/server-cache'
 import { turso_client } from '$lib/turso'
-import { getContext, setContext } from 'svelte'
+
+const CACHE_KEY = 'popular_posts'
 
 interface PopularPost {
 	id: string
@@ -27,17 +33,26 @@ class PopularPostsState {
 	loading = $state<boolean>(false)
 	last_fetched = $state<number>(0)
 
-	private readonly CACHE_DURATION = 60 * 60 * 1000 // 1 hour
-	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
-
 	async load_popular_posts(): Promise<void> {
-		if (this.BYPASS_DB_READS) {
+		if (BYPASS_DB_READS.popular_posts) {
 			return // DB reads disabled
 		}
 
-		// Check if cache is still valid
+		// Check server cache first
+		const server_cached = get_from_cache<PopularPostsData>(
+			CACHE_KEY,
+			CACHE_DURATIONS.popular_posts,
+		)
+		if (server_cached) {
+			this.data = server_cached
+			this.last_fetched = Date.now()
+			return
+		}
+
+		// Check client cache
 		if (
-			Date.now() - this.last_fetched < this.CACHE_DURATION &&
+			Date.now() - this.last_fetched <
+				CACHE_DURATIONS.popular_posts &&
 			this.data.daily.length > 0
 		) {
 			return // Use cached data
@@ -78,7 +93,7 @@ class PopularPostsState {
 					}),
 				])
 
-			this.data = {
+			const data = {
 				daily: daily_result.rows.map((row) => ({
 					id: String(row.id),
 					pathname: String(row.pathname),
@@ -108,7 +123,10 @@ class PopularPostsState {
 				})),
 			}
 
+			// Update both caches
+			this.data = data
 			this.last_fetched = Date.now()
+			set_cache(CACHE_KEY, data)
 		} catch (error) {
 			console.warn(
 				'Database unavailable, keeping cached popular posts:',
@@ -121,24 +139,23 @@ class PopularPostsState {
 	}
 }
 
-const POPULAR_POSTS_KEY = Symbol('popular_posts')
-
-export function set_popular_posts_state() {
-	const state = new PopularPostsState()
-	setContext(POPULAR_POSTS_KEY, state)
-	return state
-}
-
-export function get_popular_posts_state(): PopularPostsState {
-	return getContext<PopularPostsState>(POPULAR_POSTS_KEY)
-}
+// Single universal instance shared everywhere
+export const popular_posts_state = new PopularPostsState()
 
 // Fallback function for server-side usage (like layout.server.ts)
 export const get_popular_posts =
 	async (): Promise<PopularPostsData> => {
-		const BYPASS_DB_READS = true // Set to false to enable DB reads
-		if (BYPASS_DB_READS) {
+		if (BYPASS_DB_READS.popular_posts) {
 			return { daily: [], monthly: [], yearly: [] }
+		}
+
+		// Check server cache first
+		const cached = get_from_cache<PopularPostsData>(
+			CACHE_KEY,
+			CACHE_DURATIONS.popular_posts,
+		)
+		if (cached) {
+			return cached
 		}
 
 		const client = turso_client()
@@ -172,7 +189,7 @@ export const get_popular_posts =
 					}),
 				])
 
-			return {
+			const data = {
 				daily: daily_result.rows.map((row) => ({
 					id: String(row.id),
 					pathname: String(row.pathname),
@@ -201,6 +218,10 @@ export const get_popular_posts =
 					last_updated: String(row.last_updated),
 				})),
 			}
+
+			// Cache the result
+			set_cache(CACHE_KEY, data)
+			return data
 		} catch (error) {
 			console.warn(
 				'Database unavailable, returning empty popular posts:',
