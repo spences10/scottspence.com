@@ -4,6 +4,15 @@ import { turso_client } from '$lib/turso'
 export const get_reaction_count_data = async (
 	pathname: string,
 ): Promise<{ count: ReactionCount } | null> => {
+	const BYPASS_DB_READS = true // Set to false to enable DB reads
+	if (BYPASS_DB_READS) {
+		const count = {} as ReactionCount
+		for (const reaction of reactions) {
+			count[reaction.type] = 0
+		}
+		return { count }
+	}
+
 	try {
 		const client = turso_client()
 		const count = {} as ReactionCount

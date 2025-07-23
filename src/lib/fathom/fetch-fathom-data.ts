@@ -23,6 +23,7 @@ export const fetch_fathom_data = async (
 	params: Record<string, unknown>,
 	calling_function: string,
 ): Promise<FathomDataResponse> => {
+	const BYPASS_DB_LOGGING = true // Set to false to enable DB logging
 	const client = turso_client()
 	try {
 		const url = new URL(`https://api.usefathom.com/v1/${endpoint}`)
@@ -52,10 +53,12 @@ export const fetch_fathom_data = async (
 
 		const data = await res.json()
 
-		await client.execute({
-			sql: 'INSERT INTO fathom_api_calls (calling_function, endpoint, parameters) VALUES (?, ?, ?);',
-			args: [calling_function, endpoint, JSON.stringify(params)],
-		})
+		if (!BYPASS_DB_LOGGING) {
+			await client.execute({
+				sql: 'INSERT INTO fathom_api_calls (calling_function, endpoint, parameters) VALUES (?, ?, ?);',
+				args: [calling_function, endpoint, JSON.stringify(params)],
+			})
+		}
 
 		return data
 	} catch (error) {
