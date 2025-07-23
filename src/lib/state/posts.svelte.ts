@@ -1,6 +1,5 @@
 // Universal reactive state for posts with Svelte 5 runes
 import { turso_client } from '$lib/turso'
-import { getContext, setContext } from 'svelte'
 
 class PostsState {
 	posts = $state<Post[]>([])
@@ -47,40 +46,20 @@ class PostsState {
 	}
 }
 
-const POSTS_KEY = Symbol('posts')
+// Single universal instance shared everywhere
+export const posts_state = new PostsState()
 
+// Legacy context functions for backward compatibility
 export function set_posts_state() {
-	const state = new PostsState()
-	setContext(POSTS_KEY, state)
-	return state
+	return posts_state
 }
 
 export function get_posts_state(): PostsState {
-	return getContext<PostsState>(POSTS_KEY)
+	return posts_state
 }
 
-// Fallback function for server-side usage and backward compatibility
+// Fallback function for server-side usage - now uses universal state with caching
 export const get_posts = async (): Promise<{ posts: Post[] }> => {
-	const BYPASS_DB_READS = false // Set to false to enable DB reads
-	if (BYPASS_DB_READS) {
-		return { posts: [] }
-	}
-
-	const client = turso_client()
-
-	try {
-		const posts_result = await client.execute(
-			'SELECT * FROM posts ORDER BY date DESC;',
-		)
-
-		return {
-			posts: posts_result.rows as unknown as Post[],
-		}
-	} catch (error) {
-		console.warn(
-			'Database unavailable, returning empty posts:',
-			error instanceof Error ? error.message : 'Unknown error',
-		)
-		return { posts: [] }
-	}
+	await posts_state.load_posts()
+	return { posts: posts_state.posts }
 }
