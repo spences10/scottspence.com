@@ -1,3 +1,4 @@
+import { get_related_posts_for_post } from '$lib/state/related-posts.svelte'
 import { get_reaction_count_data } from '$lib/utils/get-reaction-count'
 
 export const load = async ({ url, fetch }) => {
@@ -5,20 +6,10 @@ export const load = async ({ url, fetch }) => {
 
 	try {
 		// Fetch both data concurrently
-		const [count_data, related_posts_response] = await Promise.all([
+		const [count_data, related_posts] = await Promise.all([
 			get_reaction_count_data(url.pathname),
-			fetch(`/api/related-posts?post_id=${slug}`),
+			get_related_posts_for_post(slug || ''),
 		])
-
-		if (!related_posts_response.ok) {
-			console.error('Failed to fetch related posts')
-			return {
-				count: count_data,
-				related_posts: [],
-			}
-		}
-
-		const { related_posts } = await related_posts_response.json()
 
 		return {
 			count: count_data,

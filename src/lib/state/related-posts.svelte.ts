@@ -1,4 +1,4 @@
-// Universal reactive state for related posts with Svelte 5 runes
+import { turso_client } from '$lib/turso'
 import { getContext, setContext } from 'svelte'
 
 interface RelatedPost {
@@ -30,19 +30,50 @@ class RelatedPostsState {
 		}
 
 		this.loading.add(post_id)
+		const client = turso_client()
 
 		try {
-			const response = await fetch(
-				`/api/related-posts?post_id=${post_id}`,
-			)
+			const result = await client.execute({
+				sql: 'SELECT related_post_ids FROM related_posts WHERE post_id = ?',
+				args: [post_id],
+			})
 
-			if (!response.ok) {
-				console.warn(`Failed to fetch related posts for ${post_id}`)
+			if (result.rows.length === 0) {
+				this.cache.set(post_id, {
+					posts: [],
+					timestamp: Date.now(),
+				})
 				return []
 			}
 
-			const data = await response.json()
-			const related_posts = data.related_posts || []
+			const related_post_ids_value = result.rows[0].related_post_ids
+			const related_post_ids =
+				typeof related_post_ids_value === 'string'
+					? JSON.parse(related_post_ids_value)
+					: []
+
+			// Fetch titles for related posts in a single query
+			let related_posts: RelatedPost[] = []
+
+			if (related_post_ids.length > 0) {
+				const placeholders = related_post_ids.map(() => '?').join(',')
+				const posts_result = await client.execute({
+					sql: `SELECT slug, title FROM posts WHERE slug IN (${placeholders})`,
+					args: related_post_ids,
+				})
+
+				// Create a map for quick lookup
+				const title_map = new Map()
+				posts_result.rows.forEach((row) => {
+					title_map.set(row.slug, row.title)
+				})
+
+				// Build the final array maintaining the original order
+				related_posts = related_post_ids.map((slug: string) => ({
+					slug,
+					title: title_map.get(slug) || 'Unknown Title',
+				}))
+			}
 
 			// Cache the result
 			this.cache.set(post_id, {
@@ -52,8 +83,12 @@ class RelatedPostsState {
 
 			return related_posts
 		} catch (error) {
-			console.warn('Related posts unavailable:', error)
-			return []
+			console.warn(
+				'Database unavailable, returning cached or empty related posts:',
+				error instanceof Error ? error.message : 'Unknown error',
+			)
+			// Keep existing cached data on error - don't clear it
+			return cached?.posts || []
 		} finally {
 			this.loading.delete(post_id)
 		}
@@ -76,19 +111,51 @@ export function get_related_posts_state(): RelatedPostsState {
 export const get_related_posts_for_post = async (
 	post_id: string,
 ): Promise<RelatedPost[]> => {
-	try {
-		const response = await fetch(
-			`/api/related-posts?post_id=${post_id}`,
-		)
+	const client = turso_client()
 
-		if (!response.ok) {
+	try {
+		const result = await client.execute({
+			sql: 'SELECT related_post_ids FROM related_posts WHERE post_id = ?',
+			args: [post_id],
+		})
+
+		if (result.rows.length === 0) {
 			return []
 		}
 
-		const data = await response.json()
-		return data.related_posts || []
+		const related_post_ids_value = result.rows[0].related_post_ids
+		const related_post_ids =
+			typeof related_post_ids_value === 'string'
+				? JSON.parse(related_post_ids_value)
+				: []
+
+		// Fetch titles for related posts in a single query
+		if (related_post_ids.length > 0) {
+			const placeholders = related_post_ids.map(() => '?').join(',')
+			const posts_result = await client.execute({
+				sql: `SELECT slug, title FROM posts WHERE slug IN (${placeholders})`,
+				args: related_post_ids,
+			})
+
+			// Create a map for quick lookup
+			const title_map = new Map()
+			posts_result.rows.forEach((row) => {
+				title_map.set(row.slug, row.title)
+			})
+
+			// Build the final array maintaining the original order
+			return related_post_ids.map((slug: string) => ({
+				slug,
+				title: title_map.get(slug) || 'Unknown Title',
+			}))
+		}
+
+		return []
 	} catch (error) {
-		console.warn('Related posts unavailable:', error)
+		console.warn(
+			'Database unavailable, returning empty related posts:',
+			error instanceof Error ? error.message : 'Unknown error',
+		)
 		return []
 	}
 }
