@@ -28,7 +28,7 @@ const reject_suspicious_requests: Handle = async ({
 		console.log(
 			`Suspicious file extension request dropped from IP ${client_ip}: ${pathname}`,
 		)
-		return new Response('', { status: 204 })
+		return new Response(null, { status: 204 })
 	}
 
 	if (
@@ -39,7 +39,7 @@ const reject_suspicious_requests: Handle = async ({
 		console.log(
 			`Suspicious path request dropped from IP ${client_ip}: ${pathname}`,
 		)
-		return new Response('', { status: 204 })
+		return new Response(null, { status: 204 })
 	}
 
 	return await resolve(event)

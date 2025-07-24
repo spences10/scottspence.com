@@ -216,8 +216,7 @@ export const site_stats_state = new SiteStatsState()
 
 // Fallback function for server-side usage and backward compatibility
 export const get_site_stats = async (): Promise<SiteStatsData> => {
-	const BYPASS_DB_READS = true // Set to false to enable DB reads
-	if (BYPASS_DB_READS) {
+	if (BYPASS_DB_READS.site_stats) {
 		return {
 			site_stats: [],
 			current_month: new Date().toISOString().slice(0, 7),

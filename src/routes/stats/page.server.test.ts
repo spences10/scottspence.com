@@ -25,6 +25,14 @@ vi.mock('$env/static/private', () => ({
 	TURSO_DB_AUTH_TOKEN: 'test-token',
 }))
 
+// Mock server cache
+vi.mock('$lib/cache/server-cache', () => ({
+	BYPASS_DB_READS: { site_stats: false },
+	CACHE_DURATIONS: { site_stats: 30000 },
+	get_from_cache: vi.fn(),
+	set_cache: vi.fn(),
+}))
+
 describe('Stats Page Server Logic', () => {
 	beforeEach(() => {
 		vi.clearAllMocks()
@@ -45,6 +53,11 @@ describe('Stats Page Server Logic', () => {
 
 	describe('Historical Data Filtering', () => {
 		test('should exclude current year (2025) from yearly stats', async () => {
+			const { get_from_cache } = await import(
+				'$lib/cache/server-cache'
+			)
+			;(get_from_cache as any).mockReturnValue(null) // No cache
+
 			// Mock database response with current year data
 			mockExecute.mockResolvedValueOnce({
 				rows: [
@@ -112,6 +125,11 @@ describe('Stats Page Server Logic', () => {
 		})
 
 		test('should exclude current year (2025) from monthly stats', async () => {
+			const { get_from_cache } = await import(
+				'$lib/cache/server-cache'
+			)
+			;(get_from_cache as any).mockReturnValue(null) // No cache
+
 			mockExecute.mockResolvedValueOnce({
 				rows: [
 					{
@@ -158,6 +176,11 @@ describe('Stats Page Server Logic', () => {
 		})
 
 		test('should calculate correct all-time stats excluding current year', async () => {
+			const { get_from_cache } = await import(
+				'$lib/cache/server-cache'
+			)
+			;(get_from_cache as any).mockReturnValue(null) // No cache
+
 			mockExecute.mockResolvedValueOnce({
 				rows: [
 					{
@@ -211,6 +234,11 @@ describe('Stats Page Server Logic', () => {
 
 	describe('Error Handling', () => {
 		test('should handle database connection errors gracefully', async () => {
+			const { get_from_cache } = await import(
+				'$lib/cache/server-cache'
+			)
+			;(get_from_cache as any).mockReturnValue(null) // No cache
+
 			mockExecute.mockRejectedValueOnce(
 				new Error('Database connection failed'),
 			)
@@ -222,6 +250,11 @@ describe('Stats Page Server Logic', () => {
 		})
 
 		test('should handle empty database results', async () => {
+			const { get_from_cache } = await import(
+				'$lib/cache/server-cache'
+			)
+			;(get_from_cache as any).mockReturnValue(null) // No cache
+
 			mockExecute.mockResolvedValueOnce({ rows: [] })
 
 			const result = await load()
@@ -233,6 +266,11 @@ describe('Stats Page Server Logic', () => {
 
 	describe('Data Aggregation', () => {
 		test('should correctly aggregate stats for posts with multiple years', async () => {
+			const { get_from_cache } = await import(
+				'$lib/cache/server-cache'
+			)
+			;(get_from_cache as any).mockReturnValue(null) // No cache
+
 			mockExecute.mockResolvedValueOnce({
 				rows: [
 					{
