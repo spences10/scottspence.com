@@ -225,54 +225,10 @@ class PricingState {
 // Single universal instance shared everywhere
 export const pricing_state = new PricingState()
 
-// Fallback functions for server-side usage and backward compatibility
+// Server-side function that uses the pricing state instance
 export const get_pricing_data = async (): Promise<PricingData> => {
-	try {
-		const [exchangeRates, pricingNumbers] = await Promise.all([
-			fetch_exchange_rates(),
-			fetch_pricing_numbers(),
-		])
-
-		return {
-			exchangeRates,
-			pricingNumbers,
-		}
-	} catch (error) {
-		console.warn(
-			'Database unavailable, returning default pricing data:',
-			error instanceof Error ? error.message : 'Unknown error',
-		)
-		return {
-			exchangeRates: { GBP: 0.86, USD: 1.09, CAD: 1.47 },
-			pricingNumbers: {
-				posts_per_week: 1,
-				years_programming: 10,
-				total_posts: 100,
-				average_reading_time: 5,
-			},
-		}
-	}
-}
-
-const fetch_exchange_rates = async (): Promise<ExchangeRates> => {
-	// When database is blocked, just return fallback rates immediately
-	console.warn(
-		'Database reads are blocked, using fallback exchange rates',
-	)
-	return { GBP: 0.86, USD: 1.09, CAD: 1.47 }
-}
-
-const fetch_pricing_numbers = async (): Promise<PricingNumbers> => {
-	// When database is blocked, just return default values immediately
-	console.warn(
-		'Database reads are blocked, using default pricing numbers',
-	)
-	return {
-		posts_per_week: 1,
-		years_programming: 10,
-		total_posts: 100,
-		average_reading_time: 5,
-	}
+	await pricing_state.load_pricing_data()
+	return pricing_state.data
 }
 
 // Export types

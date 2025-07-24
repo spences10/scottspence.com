@@ -8,10 +8,10 @@ export const BYPASS_DB_READS = {
 	analytics: true,
 	reactions: true,
 	reactions_leaderboard: true,
-	subscribers: true,
+	subscribers: false,
 	site_stats: true,
 	related_posts: true,
-	pricing: true,
+	pricing: false,
 	post_analytics: true,
 	post_tags: false,
 } as const
@@ -35,7 +35,10 @@ export const CACHE_DURATIONS = {
 	post_tags: 24 * 60 * 60 * 1000, // 24 hours
 } as const
 
-export function get_from_cache<T>(key: string, max_age: number): T | null {
+export function get_from_cache<T>(
+	key: string,
+	max_age: number,
+): T | null {
 	const cached = cache.get(key)
 	if (cached && Date.now() - cached.timestamp < max_age) {
 		return cached.data as T
