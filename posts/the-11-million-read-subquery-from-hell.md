@@ -5,6 +5,8 @@ tags: ['turso', 'database', 'sveltekit', 'sql']
 is_private: true
 ---
 
+<!-- cspell:ignore Coolify oneline -->
+
 Vibe coding! Embrace the vibes man! Let the LLM do all the work and
 blindly accept it and go with the vibes! Thing is, LLMs are like
 golden retrievers very happy to please, very happy to try do clever
