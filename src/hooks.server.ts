@@ -26,9 +26,9 @@ const reject_suspicious_requests: Handle = async ({
 
 	if (rejected_extensions.some((ext) => pathname.endsWith(ext))) {
 		console.log(
-			`Suspicious file extension request redirected from IP ${client_ip}: ${pathname}`,
+			`Suspicious file extension request dropped from IP ${client_ip}: ${pathname}`,
 		)
-		throw redirect(302, 'https://www.google.com')
+		return new Response('', { status: 204 })
 	}
 
 	if (
@@ -37,9 +37,9 @@ const reject_suspicious_requests: Handle = async ({
 		)
 	) {
 		console.log(
-			`Suspicious path request redirected from IP ${client_ip}: ${pathname}`,
+			`Suspicious path request dropped from IP ${client_ip}: ${pathname}`,
 		)
-		throw redirect(302, 'https://www.google.com')
+		return new Response('', { status: 204 })
 	}
 
 	return await resolve(event)
