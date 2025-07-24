@@ -13,6 +13,7 @@ export const BYPASS_DB_READS = {
 	related_posts: true,
 	pricing: true,
 	post_analytics: true,
+	post_tags: false,
 } as const
 
 // Cache duration constants (in milliseconds)
@@ -31,6 +32,7 @@ export const CACHE_DURATIONS = {
 		month: 24 * 60 * 60 * 1000, // 24 hours
 		year: 24 * 60 * 60 * 1000, // 24 hours
 	},
+	post_tags: 24 * 60 * 60 * 1000, // 24 hours
 } as const
 
 export function get_from_cache<T>(key: string, max_age: number): T | null {
