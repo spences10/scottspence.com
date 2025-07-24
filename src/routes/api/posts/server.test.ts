@@ -34,7 +34,7 @@ describe('POSTS GET endpoint', () => {
 		)
 
 		const console_spy = vi
-			.spyOn(console, 'error')
+			.spyOn(console, 'warn')
 			.mockImplementation(() => {})
 
 		const response = await GET({ fetch: {} } as any)
@@ -43,8 +43,8 @@ describe('POSTS GET endpoint', () => {
 		expect(response.status).toBe(500)
 		expect(data).toEqual({ error: 'Failed to fetch posts' })
 		expect(console_spy).toHaveBeenCalledWith(
-			'Error fetching posts:',
-			expect.any(Error),
+			'Database unavailable for posts API:',
+			'Fetch failed',
 		)
 
 		console_spy.mockRestore()

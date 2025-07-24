@@ -1,8 +1,15 @@
 import { EXCHANGE_RATE_API_KEY } from '$env/static/private'
+import {
+	BYPASS_DB_READS,
+	CACHE_DURATIONS,
+	get_from_cache,
+	set_cache,
+} from '$lib/cache/server-cache'
 import { turso_client } from '$lib/turso'
 import type { ResultSet } from '@libsql/client'
 import { differenceInHours, parseISO } from 'date-fns'
-import { getContext, setContext } from 'svelte'
+
+const CACHE_KEY = 'pricing'
 
 type ExchangeRates = {
 	GBP: number
@@ -35,11 +42,8 @@ class PricingState {
 	loading = $state<boolean>(false)
 	last_fetched = $state<number>(0)
 
-	private readonly CACHE_DURATION = 60 * 60 * 1000 // 1 hour
-	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
-
 	async load_pricing_data(): Promise<void> {
-		if (this.BYPASS_DB_READS) {
+		if (BYPASS_DB_READS.pricing) {
 			this.data = {
 				exchangeRates: { GBP: 0.86, USD: 1.09, CAD: 1.47 },
 				pricingNumbers: {
@@ -52,9 +56,20 @@ class PricingState {
 			return // DB reads disabled
 		}
 
-		// Check if cache is still valid
+		// Check server cache first
+		const server_cached = get_from_cache<PricingData>(
+			CACHE_KEY,
+			CACHE_DURATIONS.pricing,
+		)
+		if (server_cached) {
+			this.data = server_cached
+			this.last_fetched = Date.now()
+			return
+		}
+
+		// Check client cache
 		if (
-			Date.now() - this.last_fetched < this.CACHE_DURATION &&
+			Date.now() - this.last_fetched < CACHE_DURATIONS.pricing &&
 			this.data.exchangeRates.USD > 0 &&
 			this.data.pricingNumbers.total_posts > 0
 		) {
@@ -71,11 +86,15 @@ class PricingState {
 				this.fetch_pricing_numbers(),
 			])
 
-			this.data = {
+			const data = {
 				exchangeRates,
 				pricingNumbers,
 			}
+
+			// Update both caches
+			this.data = data
 			this.last_fetched = Date.now()
+			set_cache(CACHE_KEY, data)
 		} catch (error) {
 			console.warn(
 				'Database unavailable, keeping cached pricing data:',
@@ -203,66 +222,13 @@ class PricingState {
 	}
 }
 
-const PRICING_KEY = Symbol('pricing')
+// Single universal instance shared everywhere
+export const pricing_state = new PricingState()
 
-export function set_pricing_state() {
-	const state = new PricingState()
-	setContext(PRICING_KEY, state)
-	return state
-}
-
-export function get_pricing_state(): PricingState {
-	return getContext<PricingState>(PRICING_KEY)
-}
-
-// Fallback functions for server-side usage and backward compatibility
+// Server-side function that uses the pricing state instance
 export const get_pricing_data = async (): Promise<PricingData> => {
-	try {
-		const [exchangeRates, pricingNumbers] = await Promise.all([
-			fetch_exchange_rates(),
-			fetch_pricing_numbers(),
-		])
-
-		return {
-			exchangeRates,
-			pricingNumbers,
-		}
-	} catch (error) {
-		console.warn(
-			'Database unavailable, returning default pricing data:',
-			error instanceof Error ? error.message : 'Unknown error',
-		)
-		return {
-			exchangeRates: { GBP: 0.86, USD: 1.09, CAD: 1.47 },
-			pricingNumbers: {
-				posts_per_week: 1,
-				years_programming: 10,
-				total_posts: 100,
-				average_reading_time: 5,
-			},
-		}
-	}
-}
-
-const fetch_exchange_rates = async (): Promise<ExchangeRates> => {
-	// When database is blocked, just return fallback rates immediately
-	console.warn(
-		'Database reads are blocked, using fallback exchange rates',
-	)
-	return { GBP: 0.86, USD: 1.09, CAD: 1.47 }
-}
-
-const fetch_pricing_numbers = async (): Promise<PricingNumbers> => {
-	// When database is blocked, just return default values immediately
-	console.warn(
-		'Database reads are blocked, using default pricing numbers',
-	)
-	return {
-		posts_per_week: 1,
-		years_programming: 10,
-		total_posts: 100,
-		average_reading_time: 5,
-	}
+	await pricing_state.load_pricing_data()
+	return pricing_state.data
 }
 
 // Export types

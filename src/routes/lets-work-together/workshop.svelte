@@ -1,12 +1,16 @@
 <script lang="ts">
+	import { pricing_state } from '$lib/state/pricing-client.svelte'
 	import CurrencySelect from './currency-select.svelte'
 	import Select from './select.svelte'
-	import { exchange_rates_store, get_field_value } from './stores'
 	import { locale_string } from './utils'
 
-	let annual_rate_EUR = get_field_value('annual_rate_eur') || 0
+	const get_field_value = (field_name: string): number => {
+		return (pricing_state.data.pricingNumbers as any)[field_name] || 0
+	}
+
+	let annual_rate_EUR = get_field_value('annual_rate_eur') || 120000
 	let working_days_in_year =
-		get_field_value('working_days_in_year') || 0
+		get_field_value('working_days_in_year') || 260
 
 	let attendees = $state(5) // Minimum number of attendees
 	let selected_currency = $state('EUR')
@@ -54,7 +58,9 @@
 	let currency_rate = $derived(
 		selected_currency === 'EUR'
 			? 1
-			: $exchange_rates_store[selected_currency],
+			: pricing_state.data.exchangeRates[
+					selected_currency as keyof typeof pricing_state.data.exchangeRates
+				],
 	)
 	let price_per_attendee = $derived(
 		(workshop_cost_EUR * currency_rate) / attendees,

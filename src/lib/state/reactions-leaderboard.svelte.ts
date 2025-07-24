@@ -1,5 +1,14 @@
+import {
+	BYPASS_DB_READS,
+	CACHE_DURATIONS,
+	get_from_cache,
+	set_cache,
+} from '$lib/cache/server-cache'
 import { turso_client } from '$lib/turso/client'
-import { getContext, setContext } from 'svelte'
+
+// TODO: The SQL in this is fucking awful, needs to be rewritten!!
+
+const CACHE_KEY = 'reactions_leaderboard'
 
 interface ReactionData {
 	path: string
@@ -19,17 +28,26 @@ class ReactionsLeaderboardState {
 	loading = $state<boolean>(false)
 	last_fetched = $state<number>(0)
 
-	private readonly CACHE_DURATION = 15 * 60 * 1000 // 15 minutes
-	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
-
 	async load_leaderboard(): Promise<void> {
-		if (this.BYPASS_DB_READS) {
+		if (BYPASS_DB_READS.reactions_leaderboard) {
 			return // DB reads disabled
 		}
 
-		// Check if cache is still valid
+		// Check server cache first
+		const server_cached = get_from_cache<LeaderboardData>(
+			CACHE_KEY,
+			CACHE_DURATIONS.reactions_leaderboard,
+		)
+		if (server_cached) {
+			this.data = server_cached
+			this.last_fetched = Date.now()
+			return
+		}
+
+		// Check client cache
 		if (
-			Date.now() - this.last_fetched < this.CACHE_DURATION &&
+			Date.now() - this.last_fetched <
+				CACHE_DURATIONS.reactions_leaderboard &&
 			this.data.leaderboard.length > 0
 		) {
 			return // Use cached data
@@ -41,7 +59,7 @@ class ReactionsLeaderboardState {
 		const client = turso_client()
 
 		try {
-			const result = await client.execute(`
+			const db_result = await client.execute(`
 				SELECT
 					r.post_url as path,
 					p.title,
@@ -66,7 +84,7 @@ class ReactionsLeaderboardState {
 					total.total_count DESC, r.post_url, r.reaction_type;
 			`)
 
-			const reaction_data: ReactionData[] = result.rows.map(
+			const reaction_data: ReactionData[] = db_result.rows.map(
 				(row) => ({
 					path: String(row.path),
 					title: String(row.title),
@@ -77,9 +95,12 @@ class ReactionsLeaderboardState {
 			)
 
 			const leaderboard = this.process_leaderboard_data(reaction_data)
+			const data = { leaderboard }
 
-			this.data = { leaderboard }
+			// Update both caches
+			this.data = data
 			this.last_fetched = Date.now()
+			set_cache(CACHE_KEY, data)
 		} catch (error) {
 			console.warn(
 				'Database unavailable, keeping cached leaderboard:',
@@ -118,32 +139,30 @@ class ReactionsLeaderboardState {
 	}
 }
 
-const REACTIONS_LEADERBOARD_KEY = Symbol('reactions_leaderboard')
-
-export function set_reactions_leaderboard_state() {
-	const state = new ReactionsLeaderboardState()
-	setContext(REACTIONS_LEADERBOARD_KEY, state)
-	return state
-}
-
-export function get_reactions_leaderboard_state(): ReactionsLeaderboardState {
-	return getContext<ReactionsLeaderboardState>(
-		REACTIONS_LEADERBOARD_KEY,
-	)
-}
+// Single universal instance shared everywhere
+export const reactions_leaderboard_state =
+	new ReactionsLeaderboardState()
 
 // Fallback function for server-side usage and backward compatibility
 export const get_reactions_leaderboard =
 	async (): Promise<LeaderboardData> => {
-		const BYPASS_DB_READS = true // Set to false to enable DB reads
-		if (BYPASS_DB_READS) {
+		if (BYPASS_DB_READS.reactions_leaderboard) {
 			return { leaderboard: [] }
+		}
+
+		// Check server cache first
+		const cached = get_from_cache<LeaderboardData>(
+			CACHE_KEY,
+			CACHE_DURATIONS.reactions_leaderboard,
+		)
+		if (cached) {
+			return cached
 		}
 
 		const client = turso_client()
 
 		try {
-			const result = await client.execute(`
+			const db_result2 = await client.execute(`
 			SELECT
 				r.post_url as path,
 				p.title,
@@ -168,7 +187,7 @@ export const get_reactions_leaderboard =
 				total.total_count DESC, r.post_url, r.reaction_type;
 		`)
 
-			const reaction_data: ReactionData[] = result.rows.map(
+			const reaction_data: ReactionData[] = db_result2.rows.map(
 				(row) => ({
 					path: String(row.path),
 					title: String(row.title),
@@ -179,8 +198,11 @@ export const get_reactions_leaderboard =
 			)
 
 			const leaderboard = process_leaderboard_data(reaction_data)
+			const leaderboard_result = { leaderboard }
 
-			return { leaderboard }
+			// Cache the result
+			set_cache(CACHE_KEY, leaderboard_result)
+			return leaderboard_result
 		} catch (error) {
 			console.warn(
 				'Database unavailable, returning empty leaderboard:',

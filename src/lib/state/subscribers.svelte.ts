@@ -1,7 +1,14 @@
 import { BUTTONDOWN_API_KEY } from '$env/static/private'
+import {
+	BYPASS_DB_READS,
+	CACHE_DURATIONS,
+	get_from_cache,
+	set_cache,
+} from '$lib/cache/server-cache'
 import { turso_client } from '$lib/turso/client.js'
 import { differenceInHours, parseISO } from 'date-fns'
-import { getContext, setContext } from 'svelte'
+
+const CACHE_KEY = 'subscribers'
 
 const buttondown_url = 'https://api.buttondown.email'
 const buttondown_endpoint = '/v1/subscribers'
@@ -16,18 +23,26 @@ class SubscribersState {
 	loading = $state<boolean>(false)
 	last_fetched = $state<number>(0)
 
-	private readonly CACHE_DURATION = 24 * 60 * 60 * 1000 // 24 hours
-	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
-
 	async load_subscriber_count(): Promise<void> {
-		if (this.BYPASS_DB_READS) {
+		if (BYPASS_DB_READS.subscribers) {
 			this.data = { newsletter_subscriber_count: 105 }
 			return // DB reads disabled
 		}
 
-		// Check if cache is still valid
+		// Check server cache first
+		const server_cached = get_from_cache<SubscriberData>(
+			CACHE_KEY,
+			CACHE_DURATIONS.subscribers,
+		)
+		if (server_cached) {
+			this.data = server_cached
+			this.last_fetched = Date.now()
+			return
+		}
+
+		// Check client cache
 		if (
-			Date.now() - this.last_fetched < this.CACHE_DURATION &&
+			Date.now() - this.last_fetched < CACHE_DURATIONS.subscribers &&
 			(this.data.newsletter_subscriber_count ?? 0) > 0
 		) {
 			return // Use cached data
@@ -67,8 +82,8 @@ class SubscribersState {
 			if (!response.ok) {
 				throw new Error('Error fetching newsletter subscriber count')
 			}
-			const data = await response.json()
-			const newsletter_subscriber_count = data.count
+			const api_response = await response.json()
+			const newsletter_subscriber_count = api_response.count
 
 			// Insert new data if different from the latest in the database
 			if (
@@ -86,12 +101,16 @@ class SubscribersState {
 				'SELECT count FROM newsletter_subscriber ORDER BY last_updated DESC LIMIT 1;',
 			)
 
-			this.data = {
+			const subscriber_data = {
 				newsletter_subscriber_count: Number(
 					updatedResult.rows[0].count,
 				),
 			}
+
+			// Update both caches
+			this.data = subscriber_data
 			this.last_fetched = Date.now()
+			set_cache(CACHE_KEY, subscriber_data)
 		} catch (error) {
 			console.warn(
 				'Database unavailable, keeping cached subscriber count:',
@@ -104,17 +123,8 @@ class SubscribersState {
 	}
 }
 
-const SUBSCRIBERS_KEY = Symbol('subscribers')
-
-export function set_subscribers_state() {
-	const state = new SubscribersState()
-	setContext(SUBSCRIBERS_KEY, state)
-	return state
-}
-
-export function get_subscribers_state(): SubscribersState {
-	return getContext<SubscribersState>(SUBSCRIBERS_KEY)
-}
+// Single universal instance shared everywhere
+export const subscribers_state = new SubscribersState()
 
 // Fallback function for server-side usage and backward compatibility
 export const get_subscriber_count =
@@ -148,8 +158,8 @@ export const get_subscriber_count =
 			if (!response.ok) {
 				throw new Error('Error fetching newsletter subscriber count')
 			}
-			const data = await response.json()
-			const newsletter_subscriber_count = data.count
+			const api_response = await response.json()
+			const newsletter_subscriber_count = api_response.count
 
 			// Insert new data if different from the latest in the database
 			if (

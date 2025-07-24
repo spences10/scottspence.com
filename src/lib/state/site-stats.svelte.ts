@@ -1,6 +1,13 @@
+import {
+	BYPASS_DB_READS,
+	CACHE_DURATIONS,
+	get_from_cache,
+	set_cache,
+} from '$lib/cache/server-cache'
 import { turso_client } from '$lib/turso'
 import type { Value } from '@libsql/client'
-import { getContext, setContext } from 'svelte'
+
+const CACHE_KEY = 'site_stats'
 
 // Base stat type used across different time periods
 interface SiteStat {
@@ -52,17 +59,25 @@ class SiteStatsState {
 	loading = $state<boolean>(false)
 	last_fetched = $state<number>(0)
 
-	private readonly CACHE_DURATION = 30 * 60 * 1000 // 30 minutes
-	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
-
 	async load_site_stats(): Promise<void> {
-		if (this.BYPASS_DB_READS) {
+		if (BYPASS_DB_READS.site_stats) {
 			return // DB reads disabled
 		}
 
-		// Check if cache is still valid
+		// Check server cache first
+		const server_cached = get_from_cache<SiteStatsData>(
+			CACHE_KEY,
+			CACHE_DURATIONS.site_stats,
+		)
+		if (server_cached) {
+			this.data = server_cached
+			this.last_fetched = Date.now()
+			return
+		}
+
+		// Check client cache
 		if (
-			Date.now() - this.last_fetched < this.CACHE_DURATION &&
+			Date.now() - this.last_fetched < CACHE_DURATIONS.site_stats &&
 			this.data.site_stats.length > 0
 		) {
 			return // Use cached data
@@ -173,12 +188,16 @@ class SiteStatsState {
 				})
 			}
 
-			this.data = {
+			const data = {
 				site_stats,
 				current_month: new Date().toISOString().slice(0, 7),
 				current_year: new Date().getFullYear().toString(),
 			}
+
+			// Update both caches
+			this.data = data
 			this.last_fetched = Date.now()
+			set_cache(CACHE_KEY, data)
 		} catch (error) {
 			console.warn(
 				'Database unavailable, keeping cached stats:',
@@ -192,22 +211,12 @@ class SiteStatsState {
 	}
 }
 
-const SITE_STATS_KEY = Symbol('site_stats')
-
-export function set_site_stats_state() {
-	const state = new SiteStatsState()
-	setContext(SITE_STATS_KEY, state)
-	return state
-}
-
-export function get_site_stats_state(): SiteStatsState {
-	return getContext<SiteStatsState>(SITE_STATS_KEY)
-}
+// Single universal instance shared everywhere
+export const site_stats_state = new SiteStatsState()
 
 // Fallback function for server-side usage and backward compatibility
 export const get_site_stats = async (): Promise<SiteStatsData> => {
-	const BYPASS_DB_READS = true // Set to false to enable DB reads
-	if (BYPASS_DB_READS) {
+	if (BYPASS_DB_READS.site_stats) {
 		return {
 			site_stats: [],
 			current_month: new Date().toISOString().slice(0, 7),

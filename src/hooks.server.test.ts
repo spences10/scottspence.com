@@ -75,26 +75,24 @@ test('handle function rejects suspicious extensions', async () => {
 	const mockEvent = createMockEvent('/malicious.php')
 	const mockResolve = createMockResolve()
 
-	try {
-		await handle({ event: mockEvent, resolve: mockResolve } as any)
-		expect.fail('Expected redirect to be thrown')
-	} catch (error: any) {
-		expect(error.status).toBe(302)
-		expect(error.location).toBe('https://www.google.com')
-	}
+	const response = await handle({
+		event: mockEvent,
+		resolve: mockResolve,
+	} as any)
+
+	expect(response.status).toBe(204)
 })
 
 test('handle function rejects suspicious paths', async () => {
 	const mockEvent = createMockEvent('/wp-admin')
 	const mockResolve = createMockResolve()
 
-	try {
-		await handle({ event: mockEvent, resolve: mockResolve } as any)
-		expect.fail('Expected redirect to be thrown')
-	} catch (error: any) {
-		expect(error.status).toBe(302)
-		expect(error.location).toBe('https://www.google.com')
-	}
+	const response = await handle({
+		event: mockEvent,
+		resolve: mockResolve,
+	} as any)
+
+	expect(response.status).toBe(204)
 })
 
 test('handle function with valid theme', async () => {

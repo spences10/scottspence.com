@@ -1,5 +1,10 @@
+import {
+	BYPASS_DB_READS,
+	CACHE_DURATIONS,
+	get_from_cache,
+	set_cache,
+} from '$lib/cache/server-cache'
 import { turso_client } from '$lib/turso'
-import { getContext, setContext } from 'svelte'
 
 interface RelatedPost {
 	slug: string
@@ -12,19 +17,26 @@ class RelatedPostsState {
 	>(new Map())
 	loading = $state<Set<string>>(new Set())
 
-	private readonly CACHE_DURATION = 60 * 60 * 1000 // 1 hour
-	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
-
 	async load_related_posts(post_id: string): Promise<RelatedPost[]> {
-		if (this.BYPASS_DB_READS) {
+		if (BYPASS_DB_READS.related_posts) {
 			return [] // DB reads disabled
 		}
 
-		// Check cache first
+		// Check server cache first
+		const cache_key = `related_posts_${post_id}`
+		const server_cached = get_from_cache<RelatedPost[]>(
+			cache_key,
+			CACHE_DURATIONS.related_posts,
+		)
+		if (server_cached) {
+			return server_cached
+		}
+
+		// Check client cache
 		const cached = this.cache.get(post_id)
 		if (
 			cached &&
-			Date.now() - cached.timestamp < this.CACHE_DURATION
+			Date.now() - cached.timestamp < CACHE_DURATIONS.related_posts
 		) {
 			return cached.posts
 		}
@@ -80,11 +92,12 @@ class RelatedPostsState {
 				}))
 			}
 
-			// Cache the result
+			// Update both caches
 			this.cache.set(post_id, {
 				posts: related_posts,
 				timestamp: Date.now(),
 			})
+			set_cache(cache_key, related_posts)
 
 			return related_posts
 		} catch (error) {
@@ -100,17 +113,8 @@ class RelatedPostsState {
 	}
 }
 
-const RELATED_POSTS_KEY = Symbol('related_posts')
-
-export function set_related_posts_state() {
-	const state = new RelatedPostsState()
-	setContext(RELATED_POSTS_KEY, state)
-	return state
-}
-
-export function get_related_posts_state(): RelatedPostsState {
-	return getContext<RelatedPostsState>(RELATED_POSTS_KEY)
-}
+// Single universal instance shared everywhere
+export const related_posts_state = new RelatedPostsState()
 
 // Fallback function for server-side usage
 export const get_related_posts_for_post = async (

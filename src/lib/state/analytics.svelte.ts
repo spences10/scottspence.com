@@ -1,7 +1,12 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
+import {
+	BYPASS_DB_READS,
+	CACHE_DURATIONS,
+	get_from_cache,
+	set_cache,
+} from '$lib/cache/server-cache'
 import { fetch_fathom_data } from '$lib/fathom'
 import { turso_client } from '$lib/turso/client'
-import { getContext, setContext } from 'svelte'
 
 interface AnalyticsParams {
 	pathname: string
@@ -22,23 +27,29 @@ class AnalyticsState {
 	>(new Map())
 	loading = $state<Set<string>>(new Set())
 
-	private readonly CACHE_DURATION = 10 * 60 * 1000 // 10 minutes
-	private readonly BYPASS_DB_READS = true // Set to false to enable DB reads
-
 	async load_analytics(
 		params: AnalyticsParams,
 	): Promise<AnalyticsData> {
-		if (this.BYPASS_DB_READS) {
+		if (BYPASS_DB_READS.analytics) {
 			return { analytics: [], message: 'Analytics DB reads disabled' }
 		}
 
 		const cache_key = JSON.stringify(params)
 
-		// Check cache first
+		// Check server cache first
+		const server_cached = get_from_cache<AnalyticsData>(
+			cache_key,
+			CACHE_DURATIONS.analytics,
+		)
+		if (server_cached) {
+			return server_cached
+		}
+
+		// Check client cache
 		const cached = this.cache.get(cache_key)
 		if (
 			cached &&
-			Date.now() - cached.timestamp < this.CACHE_DURATION
+			Date.now() - cached.timestamp < CACHE_DURATIONS.analytics
 		) {
 			return cached.data
 		}
@@ -118,11 +129,12 @@ class AnalyticsState {
 				}
 			}
 
-			// Cache the result
+			// Update both caches
 			this.cache.set(cache_key, {
 				data: result,
 				timestamp: Date.now(),
 			})
+			set_cache(cache_key, result)
 			return result
 		} catch (error) {
 			console.warn(
@@ -160,25 +172,26 @@ class AnalyticsState {
 	}
 }
 
-const ANALYTICS_KEY = Symbol('analytics')
-
-export function set_analytics_state() {
-	const state = new AnalyticsState()
-	setContext(ANALYTICS_KEY, state)
-	return state
-}
-
-export function get_analytics_state(): AnalyticsState {
-	return getContext<AnalyticsState>(ANALYTICS_KEY)
-}
+// Single universal instance shared everywhere
+export const analytics_state = new AnalyticsState()
 
 // Fallback function for server-side usage and backward compatibility
 export const get_analytics = async (
 	params: AnalyticsParams,
 ): Promise<AnalyticsData> => {
-	const BYPASS_DB_READS = true // Set to false to enable DB reads
-	if (BYPASS_DB_READS) {
+	if (BYPASS_DB_READS.analytics) {
 		return { analytics: [], message: 'Analytics DB reads disabled' }
+	}
+
+	const cache_key = JSON.stringify(params)
+
+	// Check server cache first
+	const cached = get_from_cache<AnalyticsData>(
+		cache_key,
+		CACHE_DURATIONS.analytics,
+	)
+	if (cached) {
+		return cached
 	}
 
 	try {
@@ -223,8 +236,9 @@ export const get_analytics = async (
 			`analytics_GET`,
 		)
 
+		let result: AnalyticsData
 		if (Array.isArray(analytics_data) && analytics_data.length > 0) {
-			return { analytics: analytics_data }
+			result = { analytics: analytics_data }
 		} else {
 			console.error(
 				`analytics returned data in unexpected format. ${JSON.stringify(
@@ -233,12 +247,16 @@ export const get_analytics = async (
 					2,
 				)}`,
 			)
-			return {
+			result = {
 				analytics: [],
 				message:
 					'No analytics data available for the given parameters.',
 			}
 		}
+
+		// Cache the result
+		set_cache(cache_key, result)
+		return result
 	} catch (error) {
 		console.warn(
 			'Analytics unavailable, returning empty data:',
