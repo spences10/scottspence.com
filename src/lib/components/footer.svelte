@@ -2,7 +2,8 @@
 	import { page } from '$app/stores'
 	import { Eye } from '$lib/icons'
 	import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
-	import { popular_posts_store, visitors_store } from '$lib/stores'
+	import { popular_posts_state } from '$lib/state/popular-posts-state.svelte'
+	import { visitors_store } from '$lib/stores'
 	import { number_crunch } from '$lib/utils'
 	import * as Fathom from 'fathom-client'
 	import CurrentVisitorsData from './current-visitors-data.svelte'
@@ -14,7 +15,7 @@
 	let show_current_visitor_data = $state(false)
 
 	$effect(() => {
-		posts = $popular_posts_store[
+		posts = popular_posts_state.data[
 			selected_period as PopularPostsPeriod
 		].slice(0, 6)
 	})

@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { browser } from '$app/environment'
-	import { onNavigate } from '$app/navigation'
 	import { page } from '$app/state'
 	import {
 		PUBLIC_FATHOM_ID,
 		PUBLIC_FATHOM_URL,
 	} from '$env/static/public'
 	import { BackToTop, Footer, Header, Nav } from '$lib/components'
-	import { popular_posts_store } from '$lib/stores'
+	import { popular_posts_state } from '$lib/state/popular-posts-state.svelte'
 	import { handle_mouse_move } from '$lib/utils'
 	import * as Fathom from 'fathom-client'
 	import '../app.css'
@@ -15,13 +14,7 @@
 
 	let { data, children } = $props()
 
-	$popular_posts_store = data?.popular_posts || {
-		popular_posts_daily: [],
-		popular_posts_monthly: [],
-		popular_posts_yearly: [],
-	}
-	// TODO: do something with this! 😂
-	// $visitors_store = data?.visitors
+	popular_posts_state.set(data?.popular_posts)
 
 	$effect(() => {
 		if (browser) {
@@ -33,18 +26,7 @@
 
 	// Track pageview on route change
 	$effect(() => {
-		page.url.pathname, browser && Fathom.trackPageview()
-	})
-
-	onNavigate((navigation) => {
-		if (!browser || !document.startViewTransition) return
-
-		return new Promise((resolve) => {
-			document.startViewTransition(async () => {
-				resolve()
-				await navigation.complete
-			})
-		})
+		;(page.url.pathname, browser && Fathom.trackPageview())
 	})
 </script>
 

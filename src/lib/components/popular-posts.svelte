@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores'
-	import { popular_posts_store } from '$lib/stores'
+	import { popular_posts_state } from '$lib/state/popular-posts-state.svelte'
 	import { number_crunch } from '$lib/utils'
 	import * as Fathom from 'fathom-client'
 
@@ -12,7 +12,7 @@
 	let posts: PopularPost[] = $state([])
 
 	$effect.pre(() => {
-		posts = $popular_posts_store[
+		posts = popular_posts_state.data[
 			selected_period as PopularPostsPeriod
 		].slice(0, 4)
 	})
