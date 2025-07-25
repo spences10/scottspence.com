@@ -5,11 +5,10 @@ const cache = new Map<string, { data: any; timestamp: number }>()
 export const BYPASS_DB_READS = {
 	posts: false,
 	popular_posts: false,
-	analytics: true,
 	reactions: false,
 	reactions_leaderboard: false,
 	subscribers: false,
-	site_stats: true,
+	site_stats: false,
 	related_posts: false,
 	pricing: false,
 	post_analytics: false,
@@ -20,7 +19,6 @@ export const BYPASS_DB_READS = {
 export const CACHE_DURATIONS = {
 	posts: 24 * 60 * 60 * 1000, // 24 hours
 	popular_posts: 60 * 60 * 1000, // 1 hour
-	analytics: 10 * 60 * 1000, // 10 minutes
 	reactions: 5 * 60 * 1000, // 5 minutes
 	reactions_leaderboard: 15 * 60 * 1000, // 15 minutes
 	subscribers: 24 * 60 * 60 * 1000, // 24 hours
