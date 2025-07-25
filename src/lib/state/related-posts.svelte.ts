@@ -120,8 +120,7 @@ export const related_posts_state = new RelatedPostsState()
 export const get_related_posts_for_post = async (
 	post_id: string,
 ): Promise<RelatedPost[]> => {
-	const BYPASS_DB_READS = true // Set to false to enable DB reads
-	if (BYPASS_DB_READS) {
+	if (BYPASS_DB_READS.related_posts) {
 		return [] // DB reads disabled
 	}
 

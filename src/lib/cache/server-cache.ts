@@ -6,13 +6,13 @@ export const BYPASS_DB_READS = {
 	posts: false,
 	popular_posts: false,
 	analytics: true,
-	reactions: true,
-	reactions_leaderboard: true,
+	reactions: false,
+	reactions_leaderboard: false,
 	subscribers: false,
 	site_stats: true,
-	related_posts: true,
+	related_posts: false,
 	pricing: false,
-	post_analytics: true,
+	post_analytics: false,
 	post_tags: false,
 } as const
 
