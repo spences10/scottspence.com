@@ -4,7 +4,7 @@ const cache = new Map<string, { data: any; timestamp: number }>()
 // Global bypass flags - set to false to enable database reads per feature
 export const BYPASS_DB_READS = {
 	posts: false,
-	popular_posts: true,
+	popular_posts: false,
 	analytics: true,
 	reactions: true,
 	reactions_leaderboard: true,

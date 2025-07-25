@@ -5,7 +5,9 @@ import {
 } from '$env/static/private'
 import { createClient, type Client } from '@libsql/client'
 
-const LOCAL_DB_PATH = '/app/data/turso-replica.db'
+const LOCAL_DB_PATH = dev
+	? './local-dev-replica.db'
+	: '/app/data/turso-replica.db'
 
 let client_instance: Client | null = null
 
@@ -24,26 +26,17 @@ export const turso_client = (): Client => {
 		throw new Error('TURSO_DB_AUTH_TOKEN is not defined')
 	}
 
-	if (dev) {
-		client_instance = createClient({
-			url: remote_url,
-			authToken: auth_token,
-		})
-	} else {
-		client_instance = createClient({
-			url: `file:${LOCAL_DB_PATH}`,
-			syncUrl: remote_url,
-			authToken: auth_token,
-			syncInterval: 300,
-		})
-	}
+	client_instance = createClient({
+		url: `file:${LOCAL_DB_PATH}`,
+		syncUrl: remote_url,
+		authToken: auth_token,
+		syncInterval: dev ? 60 : 300,
+	})
 
 	return client_instance
 }
 
 export const sync_turso_replica = async (): Promise<void> => {
-	if (dev) return
-
 	try {
 		const client = turso_client()
 		if ('sync' in client) {
