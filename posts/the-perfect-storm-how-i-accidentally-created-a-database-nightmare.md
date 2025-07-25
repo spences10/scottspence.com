@@ -153,7 +153,7 @@ empty.
 
 ## The Detective Work
 
-The breakthrough came when Claude Code and I properly analyzed the git
+The breakthrough came when Claude Code and I properly analysed the git
 timeline around the spike dates instead of just looking at recent
 changes. We found:
 
