@@ -9,13 +9,7 @@ const LOCAL_DB_PATH = dev
 	? './local-dev-replica.db'
 	: '/app/data/turso-replica.db'
 
-let client_instance: Client | null = null
-
 export const turso_client = (): Client => {
-	if (client_instance) {
-		return client_instance
-	}
-
 	const remote_url = TURSO_DB_URL?.trim()
 	if (remote_url === undefined) {
 		throw new Error('TURSO_DB_URL is not defined')
@@ -26,14 +20,12 @@ export const turso_client = (): Client => {
 		throw new Error('TURSO_DB_AUTH_TOKEN is not defined')
 	}
 
-	client_instance = createClient({
+	return createClient({
 		url: `file:${LOCAL_DB_PATH}`,
 		syncUrl: remote_url,
 		authToken: auth_token,
 		syncInterval: dev ? 60 : 300,
 	})
-
-	return client_instance
 }
 
 export const sync_turso_replica = async (): Promise<void> => {
