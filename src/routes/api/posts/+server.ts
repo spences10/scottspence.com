@@ -7,7 +7,10 @@ export const GET: RequestHandler = async () => {
 		const { posts } = await get_posts()
 		return json(posts)
 	} catch (error) {
-		console.error('Error fetching posts:', error)
+		console.warn(
+			'Database unavailable for posts API:',
+			error instanceof Error ? error.message : 'Unknown error',
+		)
 		return json({ error: 'Failed to fetch posts' }, { status: 500 })
 	}
 }

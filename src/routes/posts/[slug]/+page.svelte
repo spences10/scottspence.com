@@ -310,25 +310,8 @@
 		<div class="divider divider-secondary"></div>
 	</div>
 
-	{#if !is_private}
-		{#if reaction_counts_query.pending}
-			<div class="loading loading-spinner loading-lg mx-auto"></div>
-		{:else if reaction_counts_query.error}
-			<Reactions data={{ count: {} }} path={current_path} />
-		{:else if reaction_counts_query.current}
-			<Reactions
-				data={{
-					count: reaction_counts_query.current.reduce(
-						(acc, r) => ({ ...acc, [r.reaction_type]: r.count }),
-						{},
-					),
-				}}
-				path={current_path}
-				{reaction_counts_query}
-			/>
-		{:else}
-			<Reactions data={{ count: {} }} path={current_path} />
-		{/if}
+	{#if !is_private && count && count.count}
+		<Reactions data={count} path={current_path} />
 	{/if}
 
 	<div class="mb-24 grid justify-items-center">
@@ -339,15 +322,17 @@
 		/>
 	</div>
 
-	<div class="flex justify-center">
-		<a
-			onclick={show_modal}
-			href="/stats/{page.params.slug}"
-			class="btn btn-primary btn-lg mb-20 px-10 text-xl shadow-lg"
-		>
-			✨ View the stats for this post ✨
-		</a>
-	</div>
+	{#if count && count.count}
+		<div class="flex justify-center">
+			<a
+				onclick={show_modal}
+				href="/stats/{page.params.slug}"
+				class="btn btn-primary btn-lg mb-20 px-10 text-xl shadow-lg"
+			>
+				✨ View the stats for this post ✨
+			</a>
+		</div>
+	{/if}
 
 	<Modal bind:modal onclose={close_modal}>
 		{#if page.state.selected}

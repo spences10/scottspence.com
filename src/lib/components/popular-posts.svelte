@@ -1,11 +1,21 @@
 <script lang="ts">
-	import { page } from '$app/state'
-	import { get_popular_posts_for_period } from '$lib/state/popular-posts.svelte'
+	import { page } from '$app/stores'
+	import { popular_posts_state } from '$lib/state/popular-posts-state.svelte'
 	import { number_crunch } from '$lib/utils'
 	import * as Fathom from 'fathom-client'
 
-	let selected_period: 'day' | 'month' | 'year' = $state('year')
-	let popular_posts_query = $derived(get_popular_posts_for_period(selected_period))
+	type PopularPostsPeriod = keyof PopularPosts
+	let selected_period: PopularPostsPeriod = $state(
+		'popular_posts_yearly',
+	)
+
+	let posts: PopularPost[] = $state([])
+
+	$effect.pre(() => {
+		posts = popular_posts_state.data[
+			selected_period as PopularPostsPeriod
+		].slice(0, 4)
+	})
 </script>
 
 {#if popular_posts_query.error}

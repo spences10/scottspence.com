@@ -5,6 +5,11 @@ export const GET = async ({
 	getClientAddress,
 	url,
 }): Promise<Response> => {
+	const BYPASS_DB_READS = true // Set to false to enable DB reads
+	if (BYPASS_DB_READS) {
+		return json({ visitor_data: [] })
+	}
+
 	const client_address = getClientAddress()
 	const slug = url.searchParams.get('slug') ?? '/'
 	const client = turso_client()
@@ -29,7 +34,7 @@ export const GET = async ({
 			'SELECT v.pathname, p.title, COUNT(*) AS recent_visitors FROM visitors v LEFT JOIN posts p ON v.pathname = p.slug WHERE v.last_visit >= datetime("now", "-5 minutes") GROUP BY v.pathname;',
 		)
 
-		const visitor_data = visitor_data_result.rows.map(row => ({
+		const visitor_data = visitor_data_result.rows.map((row) => ({
 			pathname: row.pathname,
 			title: row.title || 'Unknown',
 			recent_visitors: row.recent_visitors,

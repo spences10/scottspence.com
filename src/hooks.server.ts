@@ -4,8 +4,21 @@ import {
 	rejected_paths,
 } from '$lib/reject-patterns'
 import { themes } from '$lib/themes'
+import { sync_turso_replica } from '$lib/turso/client'
 import { redirect, type Handle } from '@sveltejs/kit'
 import { sequence } from '@sveltejs/kit/hooks'
+
+let startup_sync_done = false
+
+const sync_on_startup: Handle = async ({ event, resolve }) => {
+	if (!startup_sync_done && !building) {
+		startup_sync_done = true
+		sync_turso_replica().catch((error) => {
+			console.error('Initial Turso replica sync failed:', error)
+		})
+	}
+	return await resolve(event)
+}
 
 const reject_suspicious_requests: Handle = async ({
 	event,
@@ -26,9 +39,9 @@ const reject_suspicious_requests: Handle = async ({
 
 	if (rejected_extensions.some((ext) => pathname.endsWith(ext))) {
 		console.log(
-			`Suspicious file extension request redirected from IP ${client_ip}: ${pathname}`,
+			`Suspicious file extension request dropped from IP ${client_ip}: ${pathname}`,
 		)
-		throw redirect(302, 'https://www.google.com')
+		return new Response(null, { status: 204 })
 	}
 
 	if (
@@ -37,9 +50,9 @@ const reject_suspicious_requests: Handle = async ({
 		)
 	) {
 		console.log(
-			`Suspicious path request redirected from IP ${client_ip}: ${pathname}`,
+			`Suspicious path request dropped from IP ${client_ip}: ${pathname}`,
 		)
-		throw redirect(302, 'https://www.google.com')
+		return new Response(null, { status: 204 })
 	}
 
 	return await resolve(event)
@@ -91,6 +104,7 @@ const handle_preload: Handle = async ({ event, resolve }) => {
 }
 
 export const handle = sequence(
+	sync_on_startup,
 	reject_suspicious_requests,
 	handle_redirects,
 	theme,

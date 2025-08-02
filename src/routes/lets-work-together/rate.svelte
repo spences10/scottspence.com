@@ -1,7 +1,7 @@
 <script lang="ts">
+	import { pricing_state } from '$lib/state/pricing-client.svelte'
 	import { number_crunch } from '$lib/utils'
 	import CurrencySelect from './currency-select.svelte'
-	import { exchange_rates_store, get_field_value } from './stores'
 	import {
 		calculate_annual_rate_with_pto,
 		calculate_day_rate_with_pto,
@@ -9,15 +9,23 @@
 		locale_string,
 	} from './utils'
 
+	const get_field_value = (field_name: string): number => {
+		return (
+			pricing_state.data.pricingNumbers[
+				field_name as keyof typeof pricing_state.data.pricingNumbers
+			] || 0
+		)
+	}
+
 	let annual_rate_EUR = $state(
-		get_field_value('annual_rate_eur') || 0,
+		get_field_value('annual_rate_eur') || 120000,
 	)
 	let chosen_holidays = $state(
-		get_field_value('chosen_holidays') || 0,
+		get_field_value('chosen_holidays') || 25,
 	)
 	let working_days_in_year =
-		get_field_value('working_days_in_year') || 0
-	let public_holidays = get_field_value('public_holidays') || 0
+		get_field_value('working_days_in_year') || 260
+	let public_holidays = get_field_value('public_holidays') || 8
 	let selected_currency = $state('EUR')
 
 	let day_rate_with_pto = $derived(
@@ -50,13 +58,15 @@
 	let currency_rate = $derived(
 		selected_currency === 'EUR'
 			? 1
-			: $exchange_rates_store[selected_currency],
+			: pricing_state.data.exchangeRates[
+					selected_currency as keyof typeof pricing_state.data.exchangeRates
+				],
 	)
 
 	const on_annual_rate_input = (e: Event) => {
 		annual_rate_EUR = Math.max(
 			(e.target as HTMLInputElement).valueAsNumber,
-			get_field_value('annual_rate_eur') || 0,
+			get_field_value('annual_rate_eur') || 120000,
 		)
 	}
 </script>

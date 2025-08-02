@@ -1,8 +1,9 @@
 [phases.setup]
-packages = ["nodejs_20", "pnpm-9_x", "curl", "wget"]
+nixPkgs = ["nodejs_22", "pnpm-9_x"]
+aptPkgs = ["curl", "wget"]
 
 [phases.install]
-cmds = ["pnpm i --frozen-lockfile"]
+cmds = ["pnpm i --frozen-lockfile --config.engine-strict=false"]
 
 [phases.build]
 cmds = ["pnpm run build"]

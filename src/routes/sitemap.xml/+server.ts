@@ -60,22 +60,64 @@ async function discover_pages(
 }
 
 export const GET = async () => {
-	const [{ posts: posts_metadata }, { tags }, pages] =
-		await Promise.all([
-			get_posts(),
-			get_post_tags(),
-			discover_pages(),
-		])
+	try {
+		const [{ posts: posts_metadata }, { tags }, pages] =
+			await Promise.all([
+				get_posts(),
+				get_post_tags(),
+				discover_pages(),
+			])
 
-	const body = render_sitemap(pages, tags, posts_metadata)
+		const body = render_sitemap(pages, tags, posts_metadata)
 
-	return new Response(body, {
-		headers: {
-			'content-type': 'application/xml',
-			'cache-control':
-				'public, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=3600',
-		},
-	})
+		return new Response(body, {
+			headers: {
+				'content-type': 'application/xml',
+				'cache-control':
+					'public, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=3600',
+			},
+		})
+	} catch (error) {
+		console.warn(
+			'Database unavailable, generating minimal sitemap:',
+			error instanceof Error ? error.message : 'Unknown error',
+		)
+
+		// Generate minimal sitemap with just static pages when database is down
+		try {
+			const pages = await discover_pages()
+			const body = render_sitemap(pages, [], [])
+
+			return new Response(body, {
+				headers: {
+					'content-type': 'application/xml',
+					'cache-control': 'public, no-cache, max-age=300', // 5 min cache when in fallback mode
+				},
+			})
+		} catch (fallback_error) {
+			console.warn(
+				'Complete sitemap failure:',
+				fallback_error instanceof Error
+					? fallback_error.message
+					: 'Unknown error',
+			)
+			// Return absolute minimal sitemap
+			const minimal_sitemap = `<?xml version="1.0" encoding="UTF-8" ?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>${website}</loc>
+    <priority>1.0</priority>
+  </url>
+</urlset>`
+
+			return new Response(minimal_sitemap, {
+				headers: {
+					'content-type': 'application/xml',
+					'cache-control': 'public, no-cache, max-age=60',
+				},
+			})
+		}
+	}
 }
 
 const render_pages = (pages: PageInfo[]) => {
