@@ -1,21 +1,21 @@
 import { form, query } from '$app/server'
 import { turso_client } from '$lib/turso/client'
-import { z } from 'zod'
+import * as v from 'valibot'
 
-const PostAnalyticsSchema = z.object({
-	visits: z.number(),
-	pageviews: z.number(),
-	bounce_rate: z.number().optional(),
-	avg_duration: z.number().optional(),
-	date: z.string(),
-	pathname: z.string(),
+const PostAnalyticsSchema = v.object({
+	visits: v.number(),
+	pageviews: v.number(),
+	bounce_rate: v.optional(v.number()),
+	avg_duration: v.optional(v.number()),
+	date: v.string(),
+	pathname: v.string(),
 })
 
-const PostAnalyticsResponseSchema = z.array(PostAnalyticsSchema)
+const PostAnalyticsResponseSchema = v.array(PostAnalyticsSchema)
 
 // Get analytics for a specific post
 export const get_post_analytics = query(
-	z.string(),
+	v.string(),
 	async (pathname) => {
 		const client = turso_client()
 		const result = await client.execute({
@@ -35,7 +35,7 @@ export const get_post_analytics = query(
 			args: [pathname],
 		})
 
-		return PostAnalyticsResponseSchema.parse(
+		return v.parse(PostAnalyticsResponseSchema,
 			result.rows.map((row) => ({
 				visits: row.visits as number,
 				pageviews: row.pageviews as number,
@@ -49,9 +49,9 @@ export const get_post_analytics = query(
 )
 
 // Newsletter subscriber count
-const SubscriberSchema = z.object({
-	count: z.number(),
-	last_updated: z.string(),
+const SubscriberSchema = v.object({
+	count: v.number(),
+	last_updated: v.string(),
 })
 
 export const get_subscriber_count = query(async () => {
@@ -69,7 +69,7 @@ export const get_subscriber_count = query(async () => {
 		return { count: 0, last_updated: new Date().toISOString() }
 	}
 
-	return SubscriberSchema.parse({
+	return v.parse(SubscriberSchema, {
 		count: result.rows[0].count as number,
 		last_updated: result.rows[0].last_updated as string,
 	})

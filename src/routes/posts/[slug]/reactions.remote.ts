@@ -1,17 +1,17 @@
 import { form, query } from '$app/server'
 import { turso_client } from '$lib/turso/client'
-import { z } from 'zod'
+import * as v from 'valibot'
 
-const ReactionSchema = z.object({
-	reaction_type: z.string(),
-	count: z.number(),
+const ReactionSchema = v.object({
+	reaction_type: v.string(),
+	count: v.number(),
 })
 
-const ReactionCountsSchema = z.array(ReactionSchema)
+const ReactionCountsSchema = v.array(ReactionSchema)
 
 // Get reaction counts from existing aggregated table
 export const get_reaction_counts = query(
-	z.string(),
+	v.string(),
 	async (pathname) => {
 		const client = turso_client()
 		const result = await client.execute({
@@ -31,7 +31,7 @@ export const get_reaction_counts = query(
 			count: row.count as number,
 		}))
 
-		return ReactionCountsSchema.parse(reactions_data)
+		return v.parse(ReactionCountsSchema, reactions_data)
 	},
 )
 

@@ -11,10 +11,11 @@
 	let selected_period: 'day' | 'month' | 'year' = 'year'
 	let show_current_visitor_data = $state(false)
 
+	let posts: any[] = $state([])
+	
 	$effect(() => {
-		posts = popular_posts_state.data[
-			selected_period as PopularPostsPeriod
-		].slice(0, 6)
+		const period_key = `popular_posts_${selected_period}ly` as keyof typeof popular_posts_state.data
+		posts = popular_posts_state.data[period_key].slice(0, 6)
 	})
 
 	let total_visitors = $state(0)
@@ -33,12 +34,7 @@
 >
 	<nav>
 		<h6 class="footer-title">Popular Posts</h6>
-		{#await popular_posts}
-			<div class="loading loading-dots loading-sm"></div>
-		{:then posts}
-			{#each posts
-				.filter((p) => p.period === selected_period)
-				.slice(0, 6) as post}
+		{#each posts as post}
 				<p>
 					<a
 						data-sveltekit-reload
@@ -58,10 +54,7 @@
 						{number_crunch(post.pageviews)}
 					</span>
 				</p>
-			{/each}
-		{:catch error}
-			<p class="text-sm opacity-70">Failed to load popular posts</p>
-		{/await}
+		{/each}
 
 		{#if total_visitors > 0}
 			<!-- svelte-ignore a11y_no_static_element_interactions -->

@@ -1,23 +1,23 @@
 import { query } from '$app/server'
 import { turso_client } from '$lib/turso/client'
-import { z } from 'zod'
+import * as v from 'valibot'
 
-const SiteStatsSchema = z.object({
-	total_posts: z.number(),
-	total_visits: z.number(),
-	total_pageviews: z.number(),
-	avg_reading_time: z.number(),
-	popular_tags: z.array(
-		z.object({
-			tag: z.string(),
-			count: z.number(),
+const SiteStatsSchema = v.object({
+	total_posts: v.number(),
+	total_visits: v.number(),
+	total_pageviews: v.number(),
+	avg_reading_time: v.number(),
+	popular_tags: v.array(
+		v.object({
+			tag: v.string(),
+			count: v.number(),
 		}),
 	),
-	monthly_stats: z.array(
-		z.object({
-			month: z.string(),
-			visits: z.number(),
-			pageviews: z.number(),
+	monthly_stats: v.array(
+		v.object({
+			month: v.string(),
+			visits: v.number(),
+			pageviews: v.number(),
 		}),
 	),
 })
@@ -74,7 +74,7 @@ export const get_site_stats = query(async () => {
       `,
 	})
 
-	return SiteStatsSchema.parse({
+	return v.parse(SiteStatsSchema, {
 		total_posts: posts_result.rows[0].total_posts as number,
 		total_visits:
 			(traffic_result.rows[0].total_visits as number) || 0,

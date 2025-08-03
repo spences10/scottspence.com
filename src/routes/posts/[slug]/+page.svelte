@@ -310,8 +310,16 @@
 		<div class="divider divider-secondary"></div>
 	</div>
 
-	{#if !is_private && count && count.count}
-		<Reactions data={count} path={current_path} />
+	{#if !is_private}
+		{#await reaction_counts_query}
+			<!-- Loading state -->
+		{:then reaction_counts}
+			{#if reaction_counts && reaction_counts.length > 0}
+				<Reactions data={reaction_counts} path={current_path} />
+			{/if}
+		{:catch error}
+			<!-- Error state -->
+		{/await}
 	{/if}
 
 	<div class="mb-24 grid justify-items-center">
@@ -322,17 +330,19 @@
 		/>
 	</div>
 
-	{#if count && count.count}
-		<div class="flex justify-center">
-			<a
-				onclick={show_modal}
-				href="/stats/{page.params.slug}"
-				class="btn btn-primary btn-lg mb-20 px-10 text-xl shadow-lg"
-			>
-				✨ View the stats for this post ✨
-			</a>
-		</div>
-	{/if}
+	{#await reaction_counts_query then reaction_counts}
+		{#if reaction_counts && reaction_counts.length > 0}
+			<div class="flex justify-center">
+				<a
+					onclick={show_modal}
+					href="/stats/{page.params.slug}"
+					class="btn btn-primary btn-lg mb-20 px-10 text-xl shadow-lg"
+				>
+					✨ View the stats for this post ✨
+				</a>
+			</div>
+		{/if}
+	{/await}
 
 	<Modal bind:modal onclose={close_modal}>
 		{#if page.state.selected}

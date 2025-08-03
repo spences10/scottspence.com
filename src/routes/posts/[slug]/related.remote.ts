@@ -1,18 +1,18 @@
 import { query } from '$app/server'
 import { turso_client } from '$lib/turso/client'
-import { z } from 'zod'
+import * as v from 'valibot'
 
-const RelatedPostSchema = z.object({
-	slug: z.string(),
-	title: z.string(),
-	excerpt: z.string().optional(),
-	date: z.string(),
+const RelatedPostSchema = v.object({
+	slug: v.string(),
+	title: v.string(),
+	excerpt: v.optional(v.string()),
+	date: v.string(),
 })
 
-const RelatedPostsSchema = z.array(RelatedPostSchema)
+const RelatedPostsSchema = v.array(RelatedPostSchema)
 
 export const get_related_posts = query(
-	z.string(),
+	v.string(),
 	async (postSlug) => {
 		const client = turso_client()
 
@@ -59,7 +59,7 @@ export const get_related_posts = query(
 			args: related_ids,
 		})
 
-		return RelatedPostsSchema.parse(
+		return v.parse(RelatedPostsSchema,
 			result.rows.map((row) => ({
 				slug: row.slug as string,
 				title: row.title as string,

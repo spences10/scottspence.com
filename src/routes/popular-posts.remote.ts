@@ -1,23 +1,23 @@
 import { form, query } from '$app/server'
 import { turso_client } from '$lib/turso/client'
-import { z } from 'zod'
+import * as v from 'valibot'
 
 // Schema for popular posts
-const PopularPostSchema = z.object({
-	period: z.enum(['day', 'month', 'year']),
-	id: z.number(),
-	pathname: z.string(),
-	title: z.string(),
-	pageviews: z.number(),
-	visits: z.number(),
-	date_grouping: z.string(),
-	last_updated: z.string(),
+const PopularPostSchema = v.object({
+	period: v.picklist(['day', 'month', 'year']),
+	id: v.number(),
+	pathname: v.string(),
+	title: v.string(),
+	pageviews: v.number(),
+	visits: v.number(),
+	date_grouping: v.string(),
+	last_updated: v.string(),
 })
 
-const PopularPostsResponseSchema = z.array(PopularPostSchema)
+const PopularPostsResponseSchema = v.array(PopularPostSchema)
 
 export const get_popular_posts = query(
-	z.enum(['day', 'month', 'year']).optional().default('year'),
+	v.optional(v.picklist(['day', 'month', 'year']), 'year'),
 	async (period) => {
 		const client = turso_client()
 		const whereClause = 'WHERE pp.date_grouping = ?'
@@ -43,7 +43,7 @@ export const get_popular_posts = query(
 			args,
 		})
 
-		const validated_results = PopularPostsResponseSchema.parse(
+		const validated_results = v.parse(PopularPostsResponseSchema,
 			result.rows
 				.filter((row) => (row.rn as number) <= 20)
 				.map((row) => ({
