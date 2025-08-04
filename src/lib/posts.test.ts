@@ -1,10 +1,13 @@
 import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 import { get_posts } from './posts'
-import { turso_client } from './turso'
+import { sqlite_client } from '$lib/sqlite/client'
 
-// Mock the turso_client
-vi.mock('./turso', () => ({
-	turso_client: vi.fn(),
+// Mock the sqlite_client
+const mockExecute = vi.fn()
+vi.mock('$lib/sqlite/client', () => ({
+	sqlite_client: {
+		execute: mockExecute,
+	},
 }))
 
 // Mock server cache
@@ -34,7 +37,7 @@ test('get_posts fetches posts from database when cache is empty', async () => {
 			{ id: 2, title: 'Post 2', date: '2023-06-13' },
 		],
 	})
-	;(turso_client as any).mockReturnValue({ execute: mockExecute })
+	mockExecute.mockReturnValue({ rows: mockPosts })
 	;(get_from_cache as any).mockReturnValue(null) // No cache
 
 	const result = await get_posts()
@@ -63,7 +66,7 @@ test('get_posts returns cached posts when cache is valid', async () => {
 	]
 
 	const mockExecute = vi.fn()
-	;(turso_client as any).mockReturnValue({ execute: mockExecute })
+	mockExecute.mockReturnValue({ rows: mockPosts })
 	;(get_from_cache as any).mockReturnValue(cachedPosts)
 
 	const result = await get_posts()
@@ -85,7 +88,7 @@ test('get_posts fetches new posts when cache is expired', async () => {
 			{ id: 2, title: 'Post 2', date: '2023-06-13' },
 		],
 	})
-	;(turso_client as any).mockReturnValue({ execute: mockExecute })
+	mockExecute.mockReturnValue({ rows: mockPosts })
 	;(get_from_cache as any).mockReturnValue(null) // Cache expired
 
 	const result = await get_posts()
@@ -111,7 +114,7 @@ test('get_posts handles database error', async () => {
 	const mockExecute = vi
 		.fn()
 		.mockRejectedValue(new Error('Database error'))
-	;(turso_client as any).mockReturnValue({ execute: mockExecute })
+	mockExecute.mockReturnValue({ rows: mockPosts })
 	;(get_from_cache as any).mockReturnValue(null) // No cache
 
 	const consoleWarnSpy = vi

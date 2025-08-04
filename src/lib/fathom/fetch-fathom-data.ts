@@ -1,5 +1,5 @@
 import { FATHOM_API_KEY } from '$env/static/private'
-import { turso_client } from '$lib/turso'
+import { sqlite_client } from '$lib/sqlite/client'
 
 type FathomDataResponse =
 	| AnalyticsData
@@ -24,7 +24,7 @@ export const fetch_fathom_data = async (
 	calling_function: string,
 ): Promise<FathomDataResponse> => {
 	const BYPASS_DB_LOGGING = true // Set to false to enable DB logging
-	const client = turso_client()
+	const client = sqlite_client
 	try {
 		const url = new URL(`https://api.usefathom.com/v1/${endpoint}`)
 		Object.entries(params)

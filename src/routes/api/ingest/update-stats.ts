@@ -1,4 +1,4 @@
-import { turso_client } from '$lib/turso';
+import { sqlite_client } from '$lib/sqlite/client';
 
 const update_monthly_stats = `
   INSERT OR REPLACE INTO analytics_monthly (pathname, year_month, views, unique_visitors)
@@ -36,7 +36,7 @@ const update_all_time_stats = `
 `;
 
 export const update_stats = async () => {
-	const client = turso_client();
+	const client = sqlite_client;
 	try {
 		await client.execute(update_monthly_stats);
 		await client.execute(update_yearly_stats);
@@ -47,7 +47,5 @@ export const update_stats = async () => {
 		throw new Error(
 			`Failed to update stats: ${error instanceof Error ? error.message : 'Unknown error'}`,
 		);
-	} finally {
-		client.close();
 	}
 };

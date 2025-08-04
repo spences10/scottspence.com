@@ -1,7 +1,7 @@
-import { turso_client } from '$lib/turso'
+import { sqlite_client } from '$lib/sqlite/client'
 
 export const update_posts = async () => {
-	const client = turso_client()
+	const client = sqlite_client
 
 	// Fetch posts from local Markdown files
 	const posts: Post[] = await Promise.all(

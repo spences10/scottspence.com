@@ -4,7 +4,7 @@ import {
 	get_from_cache,
 	set_cache,
 } from '$lib/cache/server-cache'
-import { turso_client } from '$lib/turso'
+import { sqlite_client } from '$lib/sqlite/client'
 
 const CACHE_KEY = 'popular_posts'
 
@@ -61,7 +61,7 @@ class PopularPostsState {
 		if (this.loading) return // Prevent concurrent requests
 
 		this.loading = true
-		const client = turso_client()
+		const client = sqlite_client
 
 		try {
 			// Three targeted queries with indexes - much more efficient
@@ -158,7 +158,7 @@ export const get_popular_posts =
 			return cached
 		}
 
-		const client = turso_client()
+		const client = sqlite_client
 
 		try {
 			const [daily_result, monthly_result, yearly_result] =

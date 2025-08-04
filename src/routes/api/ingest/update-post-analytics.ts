@@ -1,7 +1,7 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
 import { fetch_fathom_data } from '$lib/fathom'
 import { get_posts } from '$lib/posts'
-import { turso_client } from '$lib/turso'
+import { sqlite_client } from '$lib/sqlite/client'
 import { differenceInHours } from 'date-fns'
 import { get_date_range } from './utils'
 
@@ -22,7 +22,7 @@ export const update_post_analytics = async (fetch: Fetch) => {
       FROM post_analytics
       GROUP BY date_grouping;
     `
-		const client = turso_client()
+		const client = sqlite_client
 		const last_updated_query_result = await client.execute(
 			get_last_updated_query,
 		)
@@ -166,7 +166,7 @@ const insert_fathom_data_into_turso = async (
 
 	if (batch_queries.length > 0) {
 		try {
-			const client = turso_client()
+			const client = sqlite_client
 			await client.batch(batch_queries)
 			console.log('Batch queries executed:', batch_queries.length)
 		} catch (error) {

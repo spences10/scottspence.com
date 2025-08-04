@@ -1,13 +1,13 @@
 import { PUBLIC_FATHOM_ID } from '$env/static/public'
 import { fetch_fathom_data } from '$lib/fathom'
-import { turso_client } from '$lib/turso'
+import { sqlite_client } from '$lib/sqlite/client'
 import { get_date_range } from './utils'
 
 const insert_fathom_data_into_turso = async (
 	data: PopularPost[],
 	period: string,
 ) => {
-	const client = turso_client()
+	const client = sqlite_client
 	const batch_queries = []
 	const insert_query = `
     INSERT INTO popular_posts (pathname, pageviews, visits, date_grouping)

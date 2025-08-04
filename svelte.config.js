@@ -16,6 +16,15 @@ const config = {
 		adapter: adapter(),
 		// check src/hooks.server.ts for config
 		csrf: { checkOrigin: false },
+		experimental: {
+			remoteFunctions: true
+		}
+	},
+
+	compilerOptions: {
+		experimental: {
+			async: true
+		}
 	},
 
 	extensions: ['.svelte', '.md'],

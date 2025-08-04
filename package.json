@@ -41,6 +41,7 @@
 		"@sveltejs/vite-plugin-svelte": "^6.1.0",
 		"@tailwindcss/typography": "0.5.16",
 		"@tailwindcss/vite": "^4.1.11",
+		"@types/better-sqlite3": "^7.6.13",
 		"@types/nodemailer": "^6.4.17",
 		"@upstash/ratelimit": "^2.0.6",
 		"@upstash/redis": "^1.35.3",
@@ -79,13 +80,14 @@
 		"vitest": "^3.2.4",
 		"vitest-browser-svelte": "^1.0.0"
 	},
-	"dependencies": {
-		"@libsql/client": "^0.15.10"
-	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
 			"@tailwindcss/oxide",
+			"better-sqlite3",
 			"esbuild"
 		]
+	},
+	"dependencies": {
+		"better-sqlite3": "^12.2.0"
 	}
 }

@@ -4,7 +4,7 @@ import {
 } from '$lib/cache/server-cache'
 import { reactions } from '$lib/reactions-config'
 import { ratelimit } from '$lib/redis'
-import { turso_client } from '$lib/turso/client'
+import { sqlite_client } from '$lib/sqlite/client'
 import { fail } from '@sveltejs/kit'
 
 const allowed_reactions = reactions.map((r) => r.type)
@@ -84,7 +84,7 @@ class ReactionsState {
 		}
 
 		this.submitting.add(submission_key)
-		const client = turso_client()
+		const client = sqlite_client
 
 		try {
 			// Check if post exists and is not private
@@ -206,7 +206,7 @@ export const submit_reaction = async (
 		return fail(400, { error: 'Invalid path' })
 	}
 
-	const client = turso_client()
+	const client = sqlite_client
 
 	try {
 		// Check if post exists and is not private

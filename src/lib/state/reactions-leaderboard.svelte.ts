@@ -4,7 +4,7 @@ import {
 	get_from_cache,
 	set_cache,
 } from '$lib/cache/server-cache'
-import { turso_client } from '$lib/turso/client'
+import { sqlite_client } from '$lib/sqlite/client'
 
 // TODO: The SQL in this is fucking awful, needs to be rewritten!!
 
@@ -56,7 +56,7 @@ class ReactionsLeaderboardState {
 		if (this.loading) return // Prevent concurrent requests
 
 		this.loading = true
-		const client = turso_client()
+		const client = sqlite_client
 
 		try {
 			const db_result = await client.execute(`
@@ -159,7 +159,7 @@ export const get_reactions_leaderboard =
 			return cached
 		}
 
-		const client = turso_client()
+		const client = sqlite_client
 
 		try {
 			const db_result2 = await client.execute(`

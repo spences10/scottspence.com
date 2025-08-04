@@ -1,4 +1,4 @@
-import { turso_client } from '$lib/turso/client.js'
+import { sqlite_client } from '$lib/sqlite/client'
 import { json } from '@sveltejs/kit'
 
 export const GET = async ({
@@ -12,7 +12,7 @@ export const GET = async ({
 
 	const client_address = getClientAddress()
 	const slug = url.searchParams.get('slug') ?? '/'
-	const client = turso_client()
+	const client = sqlite_client
 
 	try {
 		// Check if a record for this client_address and pathname already exists

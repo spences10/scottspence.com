@@ -1,8 +1,8 @@
-import { turso_client } from '$lib/turso'
+import { sqlite_client } from '$lib/sqlite/client'
 import { get_related_posts } from './embeddings'
 
 export async function update_related_posts_table() {
-	const client = turso_client()
+	const client = sqlite_client
 	const BATCH_SIZE = 20 // Process 20 posts at a time to avoid timeouts
 	
 	try {

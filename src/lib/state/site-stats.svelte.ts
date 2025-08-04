@@ -4,8 +4,7 @@ import {
 	get_from_cache,
 	set_cache,
 } from '$lib/cache/server-cache'
-import { turso_client } from '$lib/turso'
-import type { Value } from '@libsql/client'
+import { sqlite_client } from '$lib/sqlite/client'
 
 const CACHE_KEY = 'site_stats'
 
@@ -36,11 +35,11 @@ interface SiteStats {
 
 // Raw database row type
 interface StatsRow {
-	slug: Value
-	title: Value
-	monthly_stats: Value
-	yearly_stats: Value
-	all_time_stats: Value
+	slug: any
+	title: any
+	monthly_stats: any
+	yearly_stats: any
+	all_time_stats: any
 }
 
 interface SiteStatsData {
@@ -86,7 +85,7 @@ class SiteStatsState {
 		if (this.loading) return // Prevent concurrent requests
 
 		this.loading = true
-		const client = turso_client()
+		const client = sqlite_client
 
 		try {
 			const result = await client.execute({
@@ -206,8 +205,7 @@ class SiteStatsState {
 			// Keep existing data on error - don't clear it
 		} finally {
 			this.loading = false
-			client.close()
-		}
+					}
 	}
 }
 
@@ -224,7 +222,7 @@ export const get_site_stats = async (): Promise<SiteStatsData> => {
 		}
 	}
 
-	const client = turso_client()
+	const client = sqlite_client
 
 	try {
 		const result = await client.execute({
@@ -339,8 +337,7 @@ export const get_site_stats = async (): Promise<SiteStatsData> => {
 			current_year: new Date().getFullYear().toString(),
 		}
 	} finally {
-		client.close()
-	}
+			}
 }
 
 // Export types for use in components

@@ -5,7 +5,7 @@ import {
 	get_from_cache,
 	set_cache,
 } from '$lib/cache/server-cache'
-import { turso_client } from '$lib/turso/client.js'
+import { sqlite_client } from '$lib/sqlite/client'
 import { differenceInHours, parseISO } from 'date-fns'
 
 const CACHE_KEY = 'subscribers'
@@ -51,7 +51,7 @@ class SubscribersState {
 		if (this.loading) return // Prevent concurrent requests
 
 		this.loading = true
-		const client = turso_client()
+		const client = sqlite_client
 
 		try {
 			// Check the latest subscriber count from the database
@@ -129,7 +129,7 @@ export const subscribers_state = new SubscribersState()
 // Fallback function for server-side usage and backward compatibility
 export const get_subscriber_count =
 	async (): Promise<SubscriberData> => {
-		const client = turso_client()
+		const client = sqlite_client
 
 		try {
 			// Check the latest subscriber count from the database

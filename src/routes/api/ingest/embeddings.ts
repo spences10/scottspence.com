@@ -1,5 +1,5 @@
 import { VOYAGE_AI_API_KEY } from '$env/static/private'
-import { turso_client } from '$lib/turso'
+import { sqlite_client } from '$lib/sqlite/client'
 
 const create_embedding = async (text: string): Promise<number[]> => {
 	try {
@@ -39,7 +39,7 @@ export const store_post_embedding = async (
 	post_id: string,
 	content: string,
 ) => {
-	const client = turso_client()
+	const client = sqlite_client
 	try {
 		const embedding = await create_embedding(content)
 		if (embedding.length !== 1024) {
@@ -67,7 +67,7 @@ export const get_related_posts = async (
 	post_id: string,
 	limit: number = 4,
 ) => {
-	const client = turso_client()
+	const client = sqlite_client
 	try {
 		// First get the target post's embedding
 		const target_post_result = await client.execute({
@@ -84,7 +84,7 @@ export const get_related_posts = async (
 		// Now get related posts using the embedding as a parameter
 		const result = await client.execute({
 			sql: `SELECT post_id, 
-				vector_distance_cos(embedding, ?) as distance 
+				vec_distance_cosine(embedding, ?) as distance 
 			FROM post_embeddings 
 			WHERE post_id != ? 
 			ORDER BY distance ASC 
@@ -102,7 +102,7 @@ export const get_related_posts = async (
 export const get_post_embedding = async (
 	post_id: string,
 ): Promise<number[] | null> => {
-	const client = turso_client()
+	const client = sqlite_client
 	try {
 		const result = await client.execute({
 			sql: 'SELECT embedding FROM post_embeddings WHERE post_id = ?',
