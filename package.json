@@ -79,8 +79,7 @@
 		"vitest-browser-svelte": "^1.0.0"
 	},
 	"dependencies": {
-		"@libsql/client": "^0.15.10",
-		"valibot": "^1.1.0"
+		"@libsql/client": "^0.15.10"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [

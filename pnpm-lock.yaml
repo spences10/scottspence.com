@@ -11,9 +11,6 @@ importers:
       '@libsql/client':
         specifier: ^0.15.10
         version: 0.15.10
-      valibot:
-        specifier: ^1.1.0
-        version: 1.1.0(typescript@5.9.2)
     devDependencies:
       '@eslint/compat':
         specifier: ^1.3.1
@@ -2496,14 +2493,6 @@ packages:
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
-
-  valibot@1.1.0:
-    resolution: {integrity: sha512-Nk8lX30Qhu+9txPYTwM0cFlWLdPFsFr6LblzqIySfbZph9+BFsAHsNvHOymEviUepeIW6KFHzpX8TKhbptBXXw==}
-    peerDependencies:
-      typescript: '>=5'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
 
   vfile-location@4.1.0:
     resolution: {integrity: sha512-YF23YMyASIIJXpktBa4vIGLJ5Gs88UB/XePgqPmTa7cDA+JeO3yclbpheQYCHjVHBn/yePzrXuygIL+xbvRYHw==}
@@ -5005,10 +4994,6 @@ snapshots:
       punycode: 2.3.1
 
   util-deprecate@1.0.2: {}
-
-  valibot@1.1.0(typescript@5.9.2):
-    optionalDependencies:
-      typescript: 5.9.2
 
   vfile-location@4.1.0:
     dependencies:
