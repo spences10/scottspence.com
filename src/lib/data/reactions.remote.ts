@@ -96,12 +96,11 @@ export const submit_reaction = command(
 				}
 			}
 
-			await sqlite_client.execute({
-				sql: `INSERT INTO reactions (post_url, reaction_type, count) VALUES (?, ?, 1)
+			const stmt =
+				sqlite_client.prepare(`INSERT INTO reactions (post_url, reaction_type, count) VALUES (?, ?, 1)
 				ON CONFLICT (post_url, reaction_type)
-				DO UPDATE SET count = count + 1, last_updated = CURRENT_TIMESTAMP;`,
-				args: [path, reaction],
-			})
+				DO UPDATE SET count = count + 1, last_updated = CURRENT_TIMESTAMP;`)
+			stmt.run(path, reaction)
 
 			const result = await sqlite_client.execute({
 				sql: 'SELECT count FROM reactions WHERE post_url = ? AND reaction_type = ?',
