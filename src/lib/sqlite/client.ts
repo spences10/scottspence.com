@@ -12,9 +12,9 @@ let db_instance: Database.Database | null = null
  *
  * DEPLOYMENT NOTES FOR COOLIFY:
  * 1. Set DATABASE_PATH environment variable to point to persistent volume
- *    Example: DATABASE_PATH=/app/data/blog.db
+ *    Example: DATABASE_PATH=/app/data/site-data.db
  * 2. Mount persistent storage in Coolify:
- *    - Volume name: blog-data (or similar)
+ *    - Volume name: site-data (or similar)
  *    - Destination path: /app/data
  *    - This ensures data survives container restarts
  *
@@ -25,7 +25,7 @@ const create_database = () => {
 	// Priority: Environment variable > Default data directory
 	const db_path =
 		process.env.DATABASE_PATH ||
-		path.join(process.cwd(), 'data', 'blog.db')
+		path.join(process.cwd(), 'data', 'site-data.db')
 
 	// Ensure directory exists (critical for first deployment)
 	const db_dir = path.dirname(db_path)
