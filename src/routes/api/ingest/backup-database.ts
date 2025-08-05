@@ -2,7 +2,7 @@ import { DATABASE_PATH } from '$env/static/private'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 
-export const export_database = async () => {
+export const backup_database = async () => {
 	try {
 		const db_path =
 			DATABASE_PATH ||

@@ -1,8 +1,9 @@
 import { env } from '$env/dynamic/private'
 import { json } from '@sveltejs/kit'
-import { export_database } from './export-database'
+import { backup_database } from './backup-database'
 import { export_training_data } from './export-training-data'
-import { import_database } from './import-database'
+import { pull_database } from './pull-database'
+import { restore_database } from './restore-database'
 import { index_now } from './index-now'
 import { update_embeddings } from './update-embeddings'
 import { update_popular_posts } from './update-popular-posts'
@@ -36,8 +37,9 @@ type TaskKey =
 	| 'index_now'
 	| 'update_stats'
 	| 'export_training_data'
-	| 'export_database'
-	| 'import_database'
+	| 'backup_database'
+	| 'pull_database'
+	| 'restore_database'
 
 // Define the type for tasks object
 interface TaskType {
@@ -83,12 +85,16 @@ const tasks: TaskType = {
 		function: export_training_data,
 		expects_fetch: false,
 	},
-	export_database: {
-		function: export_database,
+	backup_database: {
+		function: backup_database,
 		expects_fetch: false,
 	},
-	import_database: {
-		function: import_database,
+	pull_database: {
+		function: pull_database,
+		expects_fetch: false,
+	},
+	restore_database: {
+		function: restore_database,
 		expects_fetch: false,
 	},
 }
