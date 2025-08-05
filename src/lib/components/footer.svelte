@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	import { Eye } from '$lib/icons'
 	import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
 	import { popular_posts_state } from '$lib/state/popular-posts-state.svelte'
@@ -8,16 +8,14 @@
 	import * as Fathom from 'fathom-client'
 	import CurrentVisitorsData from './current-visitors-data.svelte'
 
-	type PopularPostsPeriod = keyof PopularPosts
-	let selected_period: PopularPostsPeriod = 'popular_posts_yearly'
-
-	let posts: PopularPost[] = $state([])
+	let selected_period: 'day' | 'month' | 'year' = 'year'
 	let show_current_visitor_data = $state(false)
 
+	let posts: any[] = $state([])
+	
 	$effect(() => {
-		posts = popular_posts_state.data[
-			selected_period as PopularPostsPeriod
-		].slice(0, 6)
+		const period_key = `popular_posts_${selected_period}ly` as keyof typeof popular_posts_state.data
+		posts = popular_posts_state.data[period_key].slice(0, 6)
 	})
 
 	let total_visitors = $state(0)
@@ -37,25 +35,25 @@
 	<nav>
 		<h6 class="footer-title">Popular Posts</h6>
 		{#each posts as post}
-			<p>
-				<a
-					data-sveltekit-reload
-					class="link link-hover text-primary-content"
-					href={$page.url.origin + post.pathname}
-				>
-					{post.title}
-				</a>
-				<span
-					class="tooltip tooltip-secondary text-primary-content relative cursor-pointer font-bold"
-					data-tip={`
-                    Visits: ${number_crunch(post.visits)},
-                    Pageviews: ${number_crunch(post.pageviews)}
-                    `}
-				>
-					<Eye />
-					{number_crunch(post.pageviews)}
-				</span>
-			</p>
+				<p>
+					<a
+						data-sveltekit-reload
+						class="link link-hover text-primary-content"
+						href={page.url.origin + post.pathname}
+					>
+						{post.title}
+					</a>
+					<span
+						class="tooltip tooltip-secondary text-primary-content relative cursor-pointer font-bold"
+						data-tip={`
+                        Visits: ${number_crunch(post.visits)},
+                        Pageviews: ${number_crunch(post.pageviews)}
+                        `}
+					>
+						<Eye />
+						{number_crunch(post.pageviews)}
+					</span>
+				</p>
 		{/each}
 
 		{#if total_visitors > 0}

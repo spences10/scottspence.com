@@ -32,9 +32,17 @@
 	import { website } from '$lib/info'
 	import type { VisitorEntry } from '$lib/stores'
 
+	import { get_reaction_counts } from './reactions.remote'
+	import { get_related_posts } from './related.remote'
+
 	let { data } = $props()
 
-	let { Content, related_posts, meta, count } = data
+	let { Content, meta } = data
+
+	// Load related posts and reactions using remote functions
+	let related_posts_query = get_related_posts(meta.slug)
+	let reaction_counts_query = get_reaction_counts(page.url.pathname)
+
 	const {
 		title,
 		date,
@@ -302,8 +310,16 @@
 		<div class="divider divider-secondary"></div>
 	</div>
 
-	{#if !is_private && count && count.count}
-		<Reactions data={count} path={current_path} />
+	{#if !is_private}
+		{#await reaction_counts_query}
+			<!-- Loading state -->
+		{:then reaction_counts}
+			{#if reaction_counts && reaction_counts.length > 0}
+				<Reactions data={reaction_counts} path={current_path} />
+			{/if}
+		{:catch error}
+			<!-- Error state -->
+		{/await}
 	{/if}
 
 	<div class="mb-24 grid justify-items-center">
@@ -314,17 +330,19 @@
 		/>
 	</div>
 
-	{#if count && count.count}
-		<div class="flex justify-center">
-			<a
-				onclick={show_modal}
-				href="/stats/{page.params.slug}"
-				class="btn btn-primary btn-lg mb-20 px-10 text-xl shadow-lg"
-			>
-				✨ View the stats for this post ✨
-			</a>
-		</div>
-	{/if}
+	{#await reaction_counts_query then reaction_counts}
+		{#if reaction_counts && reaction_counts.length > 0}
+			<div class="flex justify-center">
+				<a
+					onclick={show_modal}
+					href="/stats/{page.params.slug}"
+					class="btn btn-primary btn-lg mb-20 px-10 text-xl shadow-lg"
+				>
+					✨ View the stats for this post ✨
+				</a>
+			</div>
+		{/if}
+	{/await}
 
 	<Modal bind:modal onclose={close_modal}>
 		{#if page.state.selected}
@@ -334,7 +352,19 @@
 
 	<PopularPosts />
 
-	<RelatedPosts {related_posts} />
+	{#await related_posts_query}
+		<div class="loading loading-spinner loading-lg mx-auto"></div>
+	{:then related_posts}
+		{#if related_posts && related_posts.length > 0}
+			<RelatedPosts {related_posts} />
+		{/if}
+	{:catch error}
+		<div class="alert alert-error">
+			<p>
+				Error loading related posts: {error.message}
+			</p>
+		</div>
+	{/await}
 
 	<ButtButt />
 </article>

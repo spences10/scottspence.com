@@ -1,31 +1,31 @@
-import { get_popular_posts } from '$lib/state/popular-posts.svelte'
+import { get_popular_posts } from './popular-posts.remote'
 
 export const load = async () => {
 	try {
-		// Get popular posts from in-memory cache (1-hour TTL)
-		const popular_posts_data = await get_popular_posts()
+		// Get popular posts from remote functions
+		const [daily_posts, monthly_posts, yearly_posts] = await Promise.all([
+			get_popular_posts('day'),
+			get_popular_posts('month'), 
+			get_popular_posts('year')
+		])
 
 		return {
 			popular_posts: {
-				popular_posts_daily: popular_posts_data.daily.map((post) => ({
+				popular_posts_daily: daily_posts.map((post) => ({
 					...post,
 					visits: String(post.visits),
 					pageviews: String(post.pageviews),
 				})),
-				popular_posts_monthly: popular_posts_data.monthly.map(
-					(post) => ({
-						...post,
-						visits: String(post.visits),
-						pageviews: String(post.pageviews),
-					}),
-				),
-				popular_posts_yearly: popular_posts_data.yearly.map(
-					(post) => ({
-						...post,
-						visits: String(post.visits),
-						pageviews: String(post.pageviews),
-					}),
-				),
+				popular_posts_monthly: monthly_posts.map((post) => ({
+					...post,
+					visits: String(post.visits),
+					pageviews: String(post.pageviews),
+				})),
+				popular_posts_yearly: yearly_posts.map((post) => ({
+					...post,
+					visits: String(post.visits),
+					pageviews: String(post.pageviews),
+				})),
 			},
 		}
 	} catch (error) {

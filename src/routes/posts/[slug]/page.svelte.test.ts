@@ -8,17 +8,34 @@ vi.mock('fathom-client', () => ({
 	trackEvent: vi.fn(),
 }))
 
+// Mock remote functions
+vi.mock('./related.remote', () => ({
+	getRelatedPosts: vi.fn(() =>
+		Promise.resolve([
+			{
+				title: 'Related Post 1',
+				slug: 'related-post-1',
+				excerpt: 'Preview of related post',
+				date: '2024-01-01',
+			},
+		]),
+	),
+}))
+
+vi.mock('./reactions.remote', () => ({
+	getReactionCounts: vi.fn(() =>
+		Promise.resolve([
+			{ reaction_type: 'likes', count: 5 },
+			{ reaction_type: 'hearts', count: 3 },
+			{ reaction_type: 'poops', count: 1 },
+		]),
+	),
+}))
+
 describe('PostPage Component', () => {
 	const defaultProps = {
 		data: {
 			Content: () => 'Mock content for testing',
-			related_posts: [
-				{
-					title: 'Related Post 1',
-					slug: 'related-post-1',
-					preview: 'Preview of related post',
-				},
-			],
 			meta: {
 				title: 'Test Blog Post',
 				date: '2024-01-01',
@@ -29,11 +46,6 @@ describe('PostPage Component', () => {
 				is_private: false,
 				tags: ['javascript', 'testing'],
 				reading_time: { text: '5 min read' },
-			},
-			count: {
-				reactions: 5,
-				thumbs_up: 3,
-				thumbs_down: 1,
 			},
 		},
 	}
@@ -264,15 +276,13 @@ describe('PostPage Component', () => {
 		})
 
 		it('should handle posts without related posts', async () => {
-			const noRelatedProps = {
-				...defaultProps,
-				data: {
-					...defaultProps.data,
-					related_posts: [], // Empty related posts
-				},
-			}
+			// Mock the remote function to return empty array
+			const { get_related_posts: getRelatedPosts } = await import(
+				'./related.remote'
+			)
+			vi.mocked(getRelatedPosts).mockResolvedValue([])
 
-			render(PostPage, noRelatedProps)
+			render(PostPage, defaultProps)
 
 			// Should render without errors
 			await expect
