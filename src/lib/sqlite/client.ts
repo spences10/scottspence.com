@@ -37,7 +37,7 @@ const create_database = () => {
 
 	/**
 	 * Load sqlite-vec extension for vector similarity search
-	 * 
+	 *
 	 * DOCKER/COOLIFY DEPLOYMENT:
 	 * - Uses the sqlite-vec npm package for reliable cross-platform support
 	 * - Requires system packages: libsqlite3-dev, sqlite3 (configured in nixpacks.toml)

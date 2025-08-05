@@ -4,7 +4,7 @@ import { get_related_posts } from './embeddings'
 export async function update_related_posts_table() {
 	const client = sqlite_client
 	const BATCH_SIZE = 20 // Process 20 posts at a time to avoid timeouts
-	
+
 	try {
 		// Get all post IDs
 		const all_posts_result = await client.execute(
@@ -14,17 +14,21 @@ export async function update_related_posts_table() {
 			(row: any) => row.post_id,
 		)
 
-		console.log(`Found ${all_post_ids.length} posts to process in batches of ${BATCH_SIZE}`)
+		console.log(
+			`Found ${all_post_ids.length} posts to process in batches of ${BATCH_SIZE}`,
+		)
 
 		// Process posts in batches
 		for (let i = 0; i < all_post_ids.length; i += BATCH_SIZE) {
 			const batch = all_post_ids.slice(i, i + BATCH_SIZE)
-			console.log(`Processing batch ${Math.floor(i/BATCH_SIZE) + 1}/${Math.ceil(all_post_ids.length/BATCH_SIZE)} (${batch.length} posts)`)
-			
+			console.log(
+				`Processing batch ${Math.floor(i / BATCH_SIZE) + 1}/${Math.ceil(all_post_ids.length / BATCH_SIZE)} (${batch.length} posts)`,
+			)
+
 			// Process batch with native SQL for maximum performance
 			try {
 				const batch_updates = []
-				
+
 				for (const post_id of batch) {
 					try {
 						// Get related posts using optimized native function
@@ -44,14 +48,19 @@ export async function update_related_posts_table() {
 					}
 				}
 
-				// Execute all updates in the batch
-				for (const update of batch_updates) {
-					await client.execute(update)
+				// Execute all updates in the batch using batch method
+				if (batch_updates.length > 0) {
+					await client.batch(batch_updates)
 				}
-				
-				console.log(`Completed batch ${Math.floor(i/BATCH_SIZE) + 1}, updated ${batch_updates.length} posts`)
+
+				console.log(
+					`Completed batch ${Math.floor(i / BATCH_SIZE) + 1}, updated ${batch_updates.length} posts`,
+				)
 			} catch (error) {
-				console.error(`Error processing batch starting at ${i}:`, error)
+				console.error(
+					`Error processing batch starting at ${i}:`,
+					error,
+				)
 			}
 		}
 
@@ -59,7 +68,7 @@ export async function update_related_posts_table() {
 		return {
 			message: 'Related posts updated successfully',
 			total_posts: all_post_ids.length,
-			batch_size: BATCH_SIZE
+			batch_size: BATCH_SIZE,
 		}
 	} catch (error) {
 		console.error('Error updating related posts table:', error)
