@@ -1,3 +1,4 @@
+import { DATABASE_PATH } from '$env/static/private'
 import type { RunResult } from 'better-sqlite3'
 import Database from 'better-sqlite3'
 import fs from 'node:fs'
@@ -24,8 +25,7 @@ const create_database = () => {
 	// Database path configuration
 	// Priority: Environment variable > Default data directory
 	const db_path =
-		process.env.DATABASE_PATH ||
-		path.join(process.cwd(), 'data', 'site-data.db')
+		DATABASE_PATH || path.join(process.cwd(), 'data', 'site-data.db')
 
 	// Ensure directory exists (critical for first deployment)
 	const db_dir = path.dirname(db_path)
