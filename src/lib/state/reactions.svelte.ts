@@ -111,12 +111,11 @@ class ReactionsState {
 				}
 			}
 
-			await client.execute({
-				sql: `INSERT INTO reactions (post_url, reaction_type, count) VALUES (?, ?, 1)
-					ON CONFLICT (post_url, reaction_type)
-					DO UPDATE SET count = count + 1, last_updated = CURRENT_TIMESTAMP;`,
-				args: [path, reaction],
-			})
+			const stmt =
+				client.prepare(`INSERT INTO reactions (post_url, reaction_type, count) VALUES (?, ?, 1)
+				ON CONFLICT (post_url, reaction_type)
+				DO UPDATE SET count = count + 1, last_updated = CURRENT_TIMESTAMP;`)
+			stmt.run(path, reaction)
 
 			const result = await client.execute({
 				sql: 'SELECT count FROM reactions WHERE post_url = ? AND reaction_type = ?',
@@ -225,12 +224,11 @@ export const submit_reaction = async (
 			return fail(403, { error: 'Cannot react to private posts' })
 		}
 
-		await client.execute({
-			sql: `INSERT INTO reactions (post_url, reaction_type, count) VALUES (?, ?, 1)
-				ON CONFLICT (post_url, reaction_type)
-				DO UPDATE SET count = count + 1, last_updated = CURRENT_TIMESTAMP;`,
-			args: [path, reaction],
-		})
+		const stmt =
+			client.prepare(`INSERT INTO reactions (post_url, reaction_type, count) VALUES (?, ?, 1)
+			ON CONFLICT (post_url, reaction_type)
+			DO UPDATE SET count = count + 1, last_updated = CURRENT_TIMESTAMP;`)
+		stmt.run(path, reaction)
 
 		const result = await client.execute({
 			sql: 'SELECT count FROM reactions WHERE post_url = ? AND reaction_type = ?',
