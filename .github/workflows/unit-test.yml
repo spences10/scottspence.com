@@ -40,8 +40,6 @@ jobs:
           EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
           EMAIL_APP_USER: ${{ secrets.EMAIL_APP_USER }}
           EMAIL_APP_TO_ADDRESS: ${{ secrets.EMAIL_APP_TO_ADDRESS }}
-          TURSO_DB_URL: ${{ secrets.TURSO_DB_URL }}
-          TURSO_DB_AUTH_TOKEN: ${{ secrets.TURSO_DB_AUTH_TOKEN }}
           VOYAGE_AI_API_KEY: ${{ secrets.VOYAGE_AI_API_KEY }}
       - name: Verify Playwright versions match
         run: |
