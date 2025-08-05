@@ -38,11 +38,13 @@ export const get_related_posts = query(
 				title_map.set(row.slug, row.title)
 			})
 
-			// Build the final array maintaining the original order
-			return related_post_ids.map((slug: string) => ({
-				slug,
-				title: title_map.get(slug) || 'Unknown Title',
-			}))
+			// Build the final array only for posts that have titles (public posts)
+			return related_post_ids
+				.map((slug: string) => ({
+					slug,
+					title: title_map.get(slug),
+				}))
+				.filter((post: RelatedPost) => post.title) // Only include posts with valid titles (public posts)
 		} catch (error) {
 			console.warn('Database unavailable for related posts:', error)
 			return []
