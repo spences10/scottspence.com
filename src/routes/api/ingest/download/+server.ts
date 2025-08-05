@@ -59,7 +59,7 @@ export const GET = async ({ request }) => {
 		const file_buffer = await fs.readFile(backup_path)
 		const file_stats = await fs.stat(backup_path)
 
-		return new Response(file_buffer, {
+		return new Response(new Uint8Array(file_buffer), {
 			headers: {
 				'Content-Type': 'application/octet-stream',
 				'Content-Disposition': `attachment; filename="${latest_backup}"`,

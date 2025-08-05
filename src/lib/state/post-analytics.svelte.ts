@@ -8,12 +8,6 @@ import { sqlite_client } from '$lib/sqlite/client'
 import { differenceInHours, parseISO } from 'date-fns'
 import { get_date_range } from '../../routes/api/ingest/utils'
 
-interface PostAnalytics {
-	daily: any | null
-	monthly: any | null
-	yearly: any | null
-}
-
 class PostAnalyticsState {
 	cache = $state<
 		Map<string, { data: PostAnalytics; timestamp: number }>

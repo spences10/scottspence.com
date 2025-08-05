@@ -8,16 +8,6 @@ import { sqlite_client } from '$lib/sqlite/client'
 
 const CACHE_KEY = 'popular_posts'
 
-interface PopularPost {
-	id: string
-	pathname: string
-	title: string
-	pageviews: number
-	visits: number
-	date_grouping: string
-	last_updated: string
-}
-
 interface PopularPostsData {
 	daily: PopularPost[]
 	monthly: PopularPost[]

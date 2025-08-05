@@ -2,11 +2,6 @@ import { query } from '$app/server'
 import { sqlite_client } from '$lib/sqlite/client'
 import * as v from 'valibot'
 
-interface RelatedPost {
-	slug: string
-	title: string
-}
-
 export const get_related_posts = query(v.string(), async (post_id: string): Promise<RelatedPost[]> => {
 	try {
 		const result = await sqlite_client.execute({

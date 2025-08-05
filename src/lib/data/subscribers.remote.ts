@@ -6,11 +6,6 @@ import { differenceInHours, parseISO } from 'date-fns'
 const buttondown_url = 'https://api.buttondown.email'
 const buttondown_endpoint = '/v1/subscribers'
 
-interface SubscriberData {
-	newsletter_subscriber_count?: number
-	error?: string
-}
-
 export const get_subscriber_count = query(async (): Promise<SubscriberData> => {
 	try {
 		// Check the latest subscriber count from the database

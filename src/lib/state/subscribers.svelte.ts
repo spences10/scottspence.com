@@ -13,11 +13,6 @@ const CACHE_KEY = 'subscribers'
 const buttondown_url = 'https://api.buttondown.email'
 const buttondown_endpoint = '/v1/subscribers'
 
-interface SubscriberData {
-	newsletter_subscriber_count?: number
-	error?: string
-}
-
 class SubscribersState {
 	data = $state<SubscriberData>({ newsletter_subscriber_count: 0 })
 	loading = $state<boolean>(false)

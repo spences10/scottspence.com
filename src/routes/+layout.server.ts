@@ -7,25 +7,9 @@ export const load = async () => {
 
 		return {
 			popular_posts: {
-				popular_posts_daily: popular_posts_data.daily.map((post) => ({
-					...post,
-					visits: String(post.visits),
-					pageviews: String(post.pageviews),
-				})),
-				popular_posts_monthly: popular_posts_data.monthly.map(
-					(post) => ({
-						...post,
-						visits: String(post.visits),
-						pageviews: String(post.pageviews),
-					}),
-				),
-				popular_posts_yearly: popular_posts_data.yearly.map(
-					(post) => ({
-						...post,
-						visits: String(post.visits),
-						pageviews: String(post.pageviews),
-					}),
-				),
+				popular_posts_daily: popular_posts_data.daily,
+				popular_posts_monthly: popular_posts_data.monthly,
+				popular_posts_yearly: popular_posts_data.yearly,
 			},
 		}
 	} catch (error) {

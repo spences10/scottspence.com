@@ -6,11 +6,6 @@ import {
 } from '$lib/cache/server-cache'
 import { sqlite_client } from '$lib/sqlite/client'
 
-interface RelatedPost {
-	slug: string
-	title: string
-}
-
 class RelatedPostsState {
 	cache = $state<
 		Map<string, { posts: RelatedPost[]; timestamp: number }>

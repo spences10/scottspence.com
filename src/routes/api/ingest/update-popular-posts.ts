@@ -22,12 +22,12 @@ const insert_fathom_data_into_sqlite = async (
 	for (const post of data) {
 		const args = [
 			post.pathname,
-			Number.isInteger(post.pageviews)
-				? post.pageviews
-				: parseInt(post.pageviews, 10),
-			Number.isInteger(post.visits)
-				? post.visits
-				: parseInt(post.visits, 10),
+			typeof post.pageviews === 'string'
+				? parseInt(post.pageviews, 10)
+				: post.pageviews,
+			typeof post.visits === 'string'
+				? parseInt(post.visits, 10)
+				: post.visits,
 			period,
 		]
 		batch_queries.push({ sql: insert_query, args })
@@ -70,17 +70,20 @@ export const update_popular_posts = async (fetch: Fetch) => {
 			)
 
 			if (fathom_data && Array.isArray(fathom_data)) {
-				const transformed_data = fathom_data.map(
-					(data: PopularPost) => ({
+				const transformed_data: PopularPost[] = fathom_data.map(
+					(data: any) => ({
+						id: '',
 						pathname: data.pathname,
 						title: 'Default Title',
 						pageviews: data.pageviews,
 						visits: data.visits,
+						date_grouping: period,
+						last_updated: '',
 					}),
 				)
 
 				await insert_fathom_data_into_sqlite(transformed_data, period)
-				popular_posts = transformed_data as unknown as PopularPost[]
+				popular_posts = transformed_data
 			}
 		} catch (error) {
 			console.error(

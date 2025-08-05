@@ -1,16 +1,6 @@
 import { query } from '$app/server'
 import { sqlite_client } from '$lib/sqlite/client'
 
-interface PopularPost {
-	id: string
-	pathname: string
-	title: string
-	pageviews: number
-	visits: number
-	date_grouping: string
-	last_updated: string
-}
-
 interface PopularPostsData {
 	daily: PopularPost[]
 	monthly: PopularPost[]
