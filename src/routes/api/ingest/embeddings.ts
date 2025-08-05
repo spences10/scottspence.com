@@ -54,13 +54,13 @@ export const store_post_embedding = async (
 
 		// Option 1: JSON format (recommended for new embeddings)
 		const embedding_json = JSON.stringify(embedding)
-		
+
 		const stmt = client.prepare(`
 			INSERT OR REPLACE INTO post_embeddings (post_id, embedding) 
 			VALUES (?, ?)
 		`)
 		stmt.run(post_id, embedding_json)
-		
+
 		client.close()
 	} catch (error) {
 		console.error(
@@ -77,49 +77,52 @@ export const get_related_posts = async (
 ) => {
 	const client = sqlite_client
 	try {
-		// Option 1: Use KNN syntax (most efficient)
+		// Option 1: Use KNN syntax (most efficient) with private post filtering
 		const stmt = client.prepare(`
-			SELECT post_id, distance 
-			FROM post_embeddings
-			WHERE embedding MATCH (
+			SELECT pe.post_id, distance 
+			FROM post_embeddings pe
+			JOIN posts p ON pe.post_id = p.slug
+			WHERE pe.embedding MATCH (
 				SELECT embedding FROM post_embeddings WHERE post_id = ?
 			)
 			AND k = ?
-			AND post_id != ?
+			AND pe.post_id != ?
+			AND p.is_private = 0
 		`)
-		
+
 		const results = stmt.all(post_id, limit + 1, post_id)
 		client.close()
-		
+
 		// Filter out the original post if it appears and limit results
 		return results
 			.filter((row: any) => row.post_id !== post_id)
 			.slice(0, limit)
 			.map((row: any) => row.post_id)
-			
 	} catch (error) {
 		console.error('Error getting related posts:', error)
 		client.close()
-		
-		// Fallback to traditional distance calculation
+
+		// Fallback to traditional distance calculation with private post filtering
 		try {
 			const fallback_client = sqlite_client
-			
+
 			const stmt = fallback_client.prepare(`
-				SELECT post_id, 
+				SELECT pe.post_id, 
 					vec_distance_cosine(
-						embedding, 
+						pe.embedding, 
 						(SELECT embedding FROM post_embeddings WHERE post_id = ?)
 					) as distance 
-				FROM post_embeddings 
-				WHERE post_id != ? 
+				FROM post_embeddings pe
+				JOIN posts p ON pe.post_id = p.slug
+				WHERE pe.post_id != ?
+				AND p.is_private = 0
 				ORDER BY distance ASC 
 				LIMIT ?
 			`)
-			
+
 			const results = stmt.all(post_id, post_id, limit)
 			fallback_client.close()
-			
+
 			return results.map((row: any) => row.post_id)
 		} catch (fallback_error) {
 			console.error('Fallback query also failed:', fallback_error)
@@ -138,10 +141,10 @@ export const get_post_embedding = async (
 		`)
 		const result = stmt.get(post_id)
 		client.close()
-		
+
 		if (result) {
 			const embedding = result.embedding
-			
+
 			// Handle different embedding formats
 			if (typeof embedding === 'string') {
 				// JSON format
@@ -154,9 +157,11 @@ export const get_post_embedding = async (
 						SELECT vec_to_json(embedding) as embedding_json 
 						FROM post_embeddings WHERE post_id = ?
 					`)
-					const json_result = json_stmt.get(post_id) as { embedding_json: string } | undefined
+					const json_result = json_stmt.get(post_id) as
+						| { embedding_json: string }
+						| undefined
 					json_client.close()
-					
+
 					if (json_result && json_result.embedding_json) {
 						return JSON.parse(json_result.embedding_json)
 					}
@@ -166,7 +171,7 @@ export const get_post_embedding = async (
 				return Array.from(new Float32Array(embedding))
 			}
 		}
-		
+
 		return null
 	} catch (error) {
 		console.error('Error getting post embedding:', error)

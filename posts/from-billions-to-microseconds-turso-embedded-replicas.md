@@ -2,7 +2,7 @@
 date: 2025-07-25
 title: From Billions to Microseconds - Turso Embedded Replicas
 tags: ['turso', 'database', 'sveltekit']
-is_private: false
+is_private: true
 ---
 
 So there I was, feeling proper chuffed about fixing my database
