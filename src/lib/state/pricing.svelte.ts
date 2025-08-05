@@ -5,8 +5,7 @@ import {
 	get_from_cache,
 	set_cache,
 } from '$lib/cache/server-cache'
-import { turso_client } from '$lib/turso'
-import type { ResultSet } from '@libsql/client'
+import { sqlite_client } from '$lib/sqlite/client'
 import { differenceInHours, parseISO } from 'date-fns'
 
 const CACHE_KEY = 'pricing'
@@ -107,7 +106,7 @@ class PricingState {
 	}
 
 	private async fetch_exchange_rates(): Promise<ExchangeRates> {
-		const client = turso_client()
+		const client = sqlite_client
 		let fetch_new_rates = false
 
 		// Check if the rates in the database are outdated
@@ -183,8 +182,8 @@ class PricingState {
 	}
 
 	private async fetch_pricing_numbers(): Promise<PricingNumbers> {
-		const client = turso_client()
-		let pricing_numbers: ResultSet
+		const client = sqlite_client
+		let pricing_numbers: any
 
 		try {
 			pricing_numbers = await client.execute(

@@ -30,10 +30,13 @@ declare interface AnalyticsData {
 }
 
 declare interface PopularPost {
-	visits: string
-	pageviews: string
+	id: string
 	pathname: string
 	title: string
+	pageviews: number
+	visits: number
+	date_grouping: string
+	last_updated: string
 }
 
 declare interface PopularPosts {
@@ -72,6 +75,22 @@ declare interface ReactionPage {
 	rank?: number
 	path: string
 	count: number
+}
+
+declare interface SubscriberData {
+	newsletter_subscriber_count?: number
+	error?: string
+}
+
+declare interface PostAnalytics {
+	daily: any | null
+	monthly: any | null
+	yearly: any | null
+}
+
+declare interface RelatedPost {
+	slug: string
+	title: string
 }
 
 // https://stackoverflow.com/questions/73025100/svelte-svelte-kit-type-custom-action-event-with-typescript

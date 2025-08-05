@@ -54,6 +54,11 @@ describe('Historical Stats Page Component', () => {
 		site_stats: mockSiteStats,
 		current_year: '2025',
 		current_month: '2025-01',
+		popular_posts: {
+			popular_posts_daily: [],
+			popular_posts_monthly: [],
+			popular_posts_yearly: [],
+		},
 	}
 
 	beforeEach(() => {
@@ -286,6 +291,11 @@ describe('Historical Stats Page Component', () => {
 				site_stats: [],
 				current_year: '2025',
 				current_month: '2025-01',
+				popular_posts: {
+					popular_posts_daily: [],
+					popular_posts_monthly: [],
+					popular_posts_yearly: [],
+				},
 			}
 
 			render(StatsPage, { data: emptyData })
@@ -302,6 +312,11 @@ describe('Historical Stats Page Component', () => {
 				current_year: '2025',
 				current_month: '2025-01',
 				error: 'Failed to load data',
+				popular_posts: {
+					popular_posts_daily: [],
+					popular_posts_monthly: [],
+					popular_posts_yearly: [],
+				},
 			}
 
 			render(StatsPage, { data: errorData })

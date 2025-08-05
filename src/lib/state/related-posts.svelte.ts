@@ -4,12 +4,7 @@ import {
 	get_from_cache,
 	set_cache,
 } from '$lib/cache/server-cache'
-import { turso_client } from '$lib/turso'
-
-interface RelatedPost {
-	slug: string
-	title: string
-}
+import { sqlite_client } from '$lib/sqlite/client'
 
 class RelatedPostsState {
 	cache = $state<
@@ -47,7 +42,7 @@ class RelatedPostsState {
 		}
 
 		this.loading.add(post_id)
-		const client = turso_client()
+		const client = sqlite_client
 
 		try {
 			const result = await client.execute({
@@ -124,7 +119,7 @@ export const get_related_posts_for_post = async (
 		return [] // DB reads disabled
 	}
 
-	const client = turso_client()
+	const client = sqlite_client
 
 	try {
 		const result = await client.execute({

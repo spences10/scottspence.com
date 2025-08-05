@@ -1,5 +1,5 @@
 import * as fathom_module from '$lib/fathom'
-import * as turso_module from '$lib/turso'
+import * as sqlite_module from '$lib/sqlite/client'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { update_popular_posts } from './update-popular-posts'
 import * as utils_module from './utils'
@@ -13,8 +13,8 @@ vi.mock('$lib/fathom', () => ({
 	fetch_fathom_data: vi.fn(),
 }))
 
-vi.mock('$lib/turso', () => ({
-	turso_client: vi.fn(),
+vi.mock('$lib/sqlite/client', () => ({
+	sqlite_client: vi.fn(),
 }))
 
 vi.mock('./utils', () => ({
@@ -31,7 +31,7 @@ describe('update_popular_posts function', () => {
 		mock_fetch = vi.fn()
 		mock_execute = vi.fn()
 		mock_batch = vi.fn()
-		vi.mocked(turso_module.turso_client).mockReturnValue({
+		Object.assign(sqlite_module.sqlite_client, {
 			execute: mock_execute,
 			batch: mock_batch,
 		} as any)

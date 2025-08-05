@@ -1,6 +1,6 @@
 import { BYPASS_DB_READS } from '$lib/cache/server-cache'
 import { reactions } from '$lib/reactions-config'
-import { turso_client } from '$lib/turso'
+import { sqlite_client } from '$lib/sqlite/client'
 
 export const get_reaction_count_data = async (
 	pathname: string,
@@ -10,7 +10,7 @@ export const get_reaction_count_data = async (
 	}
 
 	try {
-		const client = turso_client()
+		const client = sqlite_client
 		const count = {} as ReactionCount
 
 		for (const reaction of reactions) {

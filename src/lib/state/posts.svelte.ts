@@ -1,6 +1,6 @@
 // Universal reactive state for posts with Svelte 5 runes
 import { BYPASS_DB_READS, CACHE_DURATIONS, get_from_cache, set_cache } from '$lib/cache/server-cache'
-import { turso_client } from '$lib/turso'
+import { sqlite_client } from '$lib/sqlite/client'
 
 const CACHE_KEY = 'posts'
 
@@ -33,7 +33,7 @@ class PostsState {
 		if (this.loading) return // Prevent concurrent requests
 
 		this.loading = true
-		const client = turso_client()
+		const client = sqlite_client
 
 		try {
 			const posts_result = await client.execute(
@@ -82,7 +82,7 @@ export const get_posts = async (): Promise<{ posts: Post[] }> => {
 		return { posts: cached }
 	}
 
-	const client = turso_client()
+	const client = sqlite_client
 
 	try {
 		const posts_result = await client.execute(

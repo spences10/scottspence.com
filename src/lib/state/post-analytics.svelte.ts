@@ -4,16 +4,9 @@ import {
 	CACHE_DURATIONS,
 } from '$lib/cache/server-cache'
 import { fetch_fathom_data } from '$lib/fathom'
-import { turso_client } from '$lib/turso'
-import type { InStatement } from '@libsql/client'
+import { sqlite_client } from '$lib/sqlite/client'
 import { differenceInHours, parseISO } from 'date-fns'
 import { get_date_range } from '../../routes/api/ingest/utils'
-
-interface PostAnalytics {
-	daily: any | null
-	monthly: any | null
-	yearly: any | null
-}
 
 class PostAnalyticsState {
 	cache = $state<
@@ -94,7 +87,7 @@ class PostAnalyticsState {
 	private async fetch_visits(
 		slug: string,
 	): Promise<PostAnalytics | null> {
-		const client = turso_client()
+		const client = sqlite_client
 		let page_analytics: PostAnalytics = {
 			daily: null,
 			monthly: null,
@@ -139,7 +132,7 @@ class PostAnalyticsState {
 			FROM post_analytics
 			WHERE slug = ? AND date_grouping = ?;
 		`
-		const client = turso_client()
+		const client = sqlite_client
 		try {
 			const result = await client.execute({
 				sql,
@@ -210,8 +203,8 @@ class PostAnalyticsState {
 		slug: string,
 		data_batches: { period: any; data: any }[],
 	) {
-		const client = turso_client()
-		const queries: InStatement[] | { sql: string; args: any[] }[] = []
+		const client = sqlite_client
+		const queries: { sql: string; args: any[] }[] = []
 
 		data_batches.forEach(({ period, data }) => {
 			if (!data || !data[0]) {
@@ -288,7 +281,7 @@ export const get_post_analytics_for_slug = async (
 		return { daily: null, monthly: null, yearly: null }
 	}
 
-	const client = turso_client()
+	const client = sqlite_client
 
 	try {
 		// Check each period individually for staleness
@@ -356,7 +349,7 @@ const stale_data = async (
 		FROM post_analytics
 		WHERE slug = ? AND date_grouping = ?;
 	`
-	const client = turso_client()
+	const client = sqlite_client
 	try {
 		const result = await client.execute({
 			sql,
@@ -427,8 +420,8 @@ const insert_fathom_data = async (
 	slug: string,
 	data_batches: { period: any; data: any }[],
 ) => {
-	const client = turso_client()
-	const queries: InStatement[] | { sql: string; args: any[] }[] = []
+	const client = sqlite_client
+	const queries: { sql: string; args: any[] }[] = []
 
 	data_batches.forEach(({ period, data }) => {
 		if (!data || !data[0]) {

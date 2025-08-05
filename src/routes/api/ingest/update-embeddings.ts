@@ -31,13 +31,22 @@ export const update_embeddings = async () => {
 							'posts',
 							`${post.slug}.md`,
 						)
-						const file_contents = await fs.readFile(
-							file_path,
-							'utf-8',
-						)
 
-						await store_post_embedding(post.slug, file_contents)
-						new_embeddings++
+						try {
+							await fs.access(file_path)
+							const file_contents = await fs.readFile(
+								file_path,
+								'utf-8',
+							)
+
+							await store_post_embedding(post.slug, file_contents)
+							new_embeddings++
+						} catch (file_error) {
+							console.warn(
+								`Skipping ${post.slug}: markdown file not found`,
+							)
+							continue
+						}
 					} else {
 						existing_embeddings++
 					}

@@ -9,14 +9,12 @@ import {
 } from 'vitest'
 import { load } from './+page.server'
 
-// Mock the turso client
+// Mock the sqlite client
 const mockExecute = vi.fn()
-const mockClose = vi.fn()
-vi.mock('$lib/turso', () => ({
-	turso_client: () => ({
+vi.mock('$lib/sqlite/client', () => ({
+	sqlite_client: {
 		execute: mockExecute,
-		close: mockClose,
-	}),
+	},
 }))
 
 // Mock environment

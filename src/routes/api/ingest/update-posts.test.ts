@@ -1,4 +1,4 @@
-import * as turso_module from '$lib/turso'
+import * as sqlite_module from '$lib/sqlite/client'
 import {
 	afterEach,
 	beforeEach,
@@ -9,9 +9,9 @@ import {
 } from 'vitest'
 import { update_posts } from './update-posts'
 
-// Mock the turso_client
-vi.mock('$lib/turso', () => ({
-	turso_client: vi.fn(),
+// Mock the sqlite_client
+vi.mock('$lib/sqlite/client', () => ({
+	sqlite_client: vi.fn(),
 }))
 
 // Mock import.meta.glob
@@ -58,7 +58,7 @@ describe('update_posts function', () => {
 	beforeEach(() => {
 		vi.resetAllMocks()
 		mock_batch = vi.fn().mockResolvedValue(undefined)
-		vi.mocked(turso_module.turso_client).mockReturnValue({
+		Object.assign(sqlite_module.sqlite_client, {
 			batch: mock_batch,
 		} as any)
 

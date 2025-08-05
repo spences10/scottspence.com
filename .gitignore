@@ -27,6 +27,6 @@ vite.config.ts.timestamp-*
 # Training data
 training-data.jsonl
 
-# Local Turso replica
-local-dev-replica.db
-local-dev-replica.db-*
+# Local databases
+*.db
+*.db-*
