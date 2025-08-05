@@ -67,7 +67,6 @@
 		"rehype-slug": "6.0.0",
 		"remark-preview": "1.0.3",
 		"slugify": "1.6.6",
-		"sqlite-vec": "0.1.7-alpha.2",
 		"svead": "^0.0.13",
 		"svelte": "^5.37.2",
 		"svelte-check": "^4.3.0",
@@ -89,6 +88,7 @@
 		]
 	},
 	"dependencies": {
-		"better-sqlite3": "^12.2.0"
+		"better-sqlite3": "^12.2.0",
+		"sqlite-vec": "0.1.7-alpha.2"
 	}
 }
