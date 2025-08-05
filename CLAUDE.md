@@ -1,5 +1,7 @@
 Unbreakable rules.
 
+<!-- cspell:ignore scottink -->
+
 - NEVER read, write, or access .env files - this is a critical
   security violation
 - NEVER assume API details, endpoints, or implementations - always
