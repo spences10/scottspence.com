@@ -47,12 +47,21 @@ export const store_post_embedding = async (
 				`Expected 1024 dimensions, but got ${embedding.length}`,
 			)
 		}
-		const embedding_buffer = new Float32Array(embedding).buffer
 
-		await client.execute({
-			sql: 'INSERT OR REPLACE INTO post_embeddings (post_id, embedding) VALUES (?, ?)',
-			args: [post_id, embedding_buffer],
-		})
+		// For sqlite-vec, we can either:
+		// 1. Use JSON string format (simpler)
+		// 2. Use Float32Array buffer with vec_f32() function
+
+		// Option 1: JSON format (recommended for new embeddings)
+		const embedding_json = JSON.stringify(embedding)
+		
+		const stmt = client.prepare(`
+			INSERT OR REPLACE INTO post_embeddings (post_id, embedding) 
+			VALUES (?, ?)
+		`)
+		stmt.run(post_id, embedding_json)
+		
+		client.close()
 	} catch (error) {
 		console.error(
 			`Error storing embedding for post ${post_id}:`,
@@ -62,40 +71,60 @@ export const store_post_embedding = async (
 	}
 }
 
-
 export const get_related_posts = async (
 	post_id: string,
 	limit: number = 4,
 ) => {
 	const client = sqlite_client
 	try {
-		// First get the target post's embedding
-		const target_post_result = await client.execute({
-			sql: 'SELECT embedding FROM post_embeddings WHERE post_id = ?',
-			args: [post_id],
-		})
-
-		if (target_post_result.rows.length === 0) {
-			throw new Error(`No embedding found for post_id: ${post_id}`)
-		}
-
-		const target_embedding = target_post_result.rows[0].embedding
-
-		// Now get related posts using the embedding as a parameter
-		const result = await client.execute({
-			sql: `SELECT post_id, 
-				vec_distance_cosine(embedding, ?) as distance 
-			FROM post_embeddings 
-			WHERE post_id != ? 
-			ORDER BY distance ASC 
-			LIMIT ?`,
-			args: [target_embedding, post_id, limit],
-		})
-
-		return result.rows.map((row: any) => row.post_id)
+		// Option 1: Use KNN syntax (most efficient)
+		const stmt = client.prepare(`
+			SELECT post_id, distance 
+			FROM post_embeddings
+			WHERE embedding MATCH (
+				SELECT embedding FROM post_embeddings WHERE post_id = ?
+			)
+			AND k = ?
+			AND post_id != ?
+		`)
+		
+		const results = stmt.all(post_id, limit + 1, post_id)
+		client.close()
+		
+		// Filter out the original post if it appears and limit results
+		return results
+			.filter((row: any) => row.post_id !== post_id)
+			.slice(0, limit)
+			.map((row: any) => row.post_id)
+			
 	} catch (error) {
 		console.error('Error getting related posts:', error)
-		throw error
+		client.close()
+		
+		// Fallback to traditional distance calculation
+		try {
+			const fallback_client = sqlite_client
+			
+			const stmt = fallback_client.prepare(`
+				SELECT post_id, 
+					vec_distance_cosine(
+						embedding, 
+						(SELECT embedding FROM post_embeddings WHERE post_id = ?)
+					) as distance 
+				FROM post_embeddings 
+				WHERE post_id != ? 
+				ORDER BY distance ASC 
+				LIMIT ?
+			`)
+			
+			const results = stmt.all(post_id, post_id, limit)
+			fallback_client.close()
+			
+			return results.map((row: any) => row.post_id)
+		} catch (fallback_error) {
+			console.error('Fallback query also failed:', fallback_error)
+			throw error
+		}
 	}
 }
 
@@ -104,20 +133,44 @@ export const get_post_embedding = async (
 ): Promise<number[] | null> => {
 	const client = sqlite_client
 	try {
-		const result = await client.execute({
-			sql: 'SELECT embedding FROM post_embeddings WHERE post_id = ?',
-			args: [post_id],
-		})
-		if (result.rows.length > 0) {
-			const embedding = result.rows[0].embedding
-			if (embedding instanceof ArrayBuffer) {
+		const stmt = client.prepare(`
+			SELECT embedding FROM post_embeddings WHERE post_id = ?
+		`)
+		const result = stmt.get(post_id)
+		client.close()
+		
+		if (result) {
+			const embedding = result.embedding
+			
+			// Handle different embedding formats
+			if (typeof embedding === 'string') {
+				// JSON format
+				try {
+					return JSON.parse(embedding)
+				} catch {
+					// If not JSON, might be from migration - use vec_to_json
+					const json_client = sqlite_client
+					const json_stmt = json_client.prepare(`
+						SELECT vec_to_json(embedding) as embedding_json 
+						FROM post_embeddings WHERE post_id = ?
+					`)
+					const json_result = json_stmt.get(post_id) as { embedding_json: string } | undefined
+					json_client.close()
+					
+					if (json_result && json_result.embedding_json) {
+						return JSON.parse(json_result.embedding_json)
+					}
+				}
+			} else if (embedding instanceof Buffer) {
+				// Binary format from migration
 				return Array.from(new Float32Array(embedding))
 			}
 		}
+		
 		return null
 	} catch (error) {
 		console.error('Error getting post embedding:', error)
+		client.close()
 		return null
 	}
 }
-
