@@ -16,7 +16,7 @@ export const update_posts = async () => {
 	)
 
 	// Prepare batch statements
-	const batch_statements = posts.map(post => {
+	const batch_statements = posts.map((post) => {
 		return {
 			sql: `
 				INSERT INTO posts (
@@ -42,13 +42,15 @@ export const update_posts = async () => {
 				new Date(post.date).toISOString(),
 				post.is_private ?? false,
 				post.preview ?? '',
-				post.previewHtml ?? '',
-				post.reading_time.minutes,
-				post.reading_time.text,
-				post.reading_time.time / 1000,
-				post.reading_time.words,
-				post.slug,
-				post.tags?.join(',') ?? '',
+				post.preview_html ?? post.previewHtml ?? '',
+				post.reading_time?.minutes ?? 0,
+				post.reading_time?.text ?? '',
+				Math.round((post.reading_time?.time ?? 0) / 1000),
+				post.reading_time?.words ?? 0,
+				post.slug || '',
+				Array.isArray(post.tags)
+					? post.tags.join(',')
+					: (post.tags ?? ''),
 				post.title ?? '',
 				new Date().toISOString(),
 			],
