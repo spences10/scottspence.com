@@ -1,4 +1,10 @@
 import { query } from '$app/server'
+import {
+	BYPASS_DB_READS,
+	CACHE_DURATIONS,
+	get_from_cache,
+	set_cache,
+} from '$lib/cache/server-cache'
 import { sqlite_client } from '$lib/sqlite/client'
 
 interface ReactionData {
@@ -25,9 +31,25 @@ interface LeaderboardData {
 	error?: string
 }
 
-export const get_reactions_leaderboard = query(async (): Promise<LeaderboardData> => {
-	try {
-		const db_result = await sqlite_client.execute(`
+const CACHE_KEY = 'reactions_leaderboard'
+
+export const get_reactions_leaderboard = query(
+	async (): Promise<LeaderboardData> => {
+		if (BYPASS_DB_READS.reactions_leaderboard) {
+			return { leaderboard: [] }
+		}
+
+		// Check server cache first
+		const cached = get_from_cache<LeaderboardData>(
+			CACHE_KEY,
+			CACHE_DURATIONS.reactions_leaderboard,
+		)
+		if (cached) {
+			return cached
+		}
+
+		try {
+			const db_result = await sqlite_client.execute(`
 			SELECT
 				r.post_url as path,
 				p.title,
@@ -52,27 +74,38 @@ export const get_reactions_leaderboard = query(async (): Promise<LeaderboardData
 				total.total_count DESC, r.post_url, r.reaction_type;
 		`)
 
-		const reaction_data: ReactionData[] = db_result.rows.map((row) => ({
-			path: String(row.path),
-			title: String(row.title),
-			reaction_type: String(row.reaction_type),
-			count: Number(row.count),
-			total_count: Number(row.total_count),
-		}))
+			const reaction_data: ReactionData[] = db_result.rows.map(
+				(row) => ({
+					path: String(row.path),
+					title: String(row.title),
+					reaction_type: String(row.reaction_type),
+					count: Number(row.count),
+					total_count: Number(row.total_count),
+				}),
+			)
 
-		const leaderboard = process_leaderboard_data(reaction_data)
+			const leaderboard = process_leaderboard_data(reaction_data)
+			const data = { leaderboard }
 
-		return { leaderboard }
-	} catch (error) {
-		console.warn('Database unavailable for reactions leaderboard:', error)
-		return {
-			leaderboard: [],
-			error: 'Failed to load leaderboard data',
+			// Cache the result
+			set_cache(CACHE_KEY, data)
+			return data
+		} catch (error) {
+			console.warn(
+				'Database unavailable for reactions leaderboard:',
+				error,
+			)
+			return {
+				leaderboard: [],
+				error: 'Failed to load leaderboard data',
+			}
 		}
-	}
-})
+	},
+)
 
-function process_leaderboard_data(data: ReactionData[]): ReactionEntry[] {
+function process_leaderboard_data(
+	data: ReactionData[],
+): ReactionEntry[] {
 	const leaderboard = new Map<string, any>()
 
 	data.forEach((item) => {

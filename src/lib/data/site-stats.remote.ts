@@ -1,4 +1,10 @@
 import { query } from '$app/server'
+import {
+	BYPASS_DB_READS,
+	CACHE_DURATIONS,
+	get_from_cache,
+	set_cache,
+} from '$lib/cache/server-cache'
 import { sqlite_client } from '$lib/sqlite/client'
 
 // Base stat type used across different time periods
@@ -33,10 +39,30 @@ interface SiteStatsData {
 	error?: string
 }
 
-export const get_site_stats = query(async (): Promise<SiteStatsData> => {
-	try {
-		const result = await sqlite_client.execute({
-			sql: `
+const CACHE_KEY = 'site_stats'
+
+export const get_site_stats = query(
+	async (): Promise<SiteStatsData> => {
+		if (BYPASS_DB_READS.site_stats) {
+			return {
+				site_stats: [],
+				current_month: new Date().toISOString().slice(0, 7),
+				current_year: new Date().getFullYear().toString(),
+			}
+		}
+
+		// Check server cache first
+		const cached = get_from_cache<SiteStatsData>(
+			CACHE_KEY,
+			CACHE_DURATIONS.site_stats,
+		)
+		if (cached) {
+			return cached
+		}
+
+		try {
+			const result = await sqlite_client.execute({
+				sql: `
 				SELECT 
 					p.slug,
 					p.title,
@@ -81,49 +107,54 @@ export const get_site_stats = query(async (): Promise<SiteStatsData> => {
 				) DESC
 				LIMIT 500;
 			`,
-			args: [],
-		})
+				args: [],
+			})
 
-		if (!result.rows || result.rows.length === 0) {
+			if (!result.rows || result.rows.length === 0) {
+				return {
+					site_stats: [],
+					current_month: new Date().toISOString().slice(0, 7),
+					current_year: new Date().getFullYear().toString(),
+				}
+			}
+
+			const site_stats: SiteStats[] = result.rows
+				.map((row) => {
+					try {
+						return {
+							slug: String(row.slug),
+							title: String(row.title),
+							monthly_stats: JSON.parse(String(row.monthly_stats)),
+							yearly_stats: JSON.parse(String(row.yearly_stats)),
+							all_time_stats: JSON.parse(String(row.all_time_stats)),
+						}
+					} catch (error) {
+						console.error('Error parsing row:', error)
+						return null
+					}
+				})
+				.filter((item): item is SiteStats => item !== null)
+
+			const data = {
+				site_stats,
+				current_month: new Date().toISOString().slice(0, 7),
+				current_year: new Date().getFullYear().toString(),
+			}
+
+			// Cache the result
+			set_cache(CACHE_KEY, data)
+			return data
+		} catch (error) {
+			console.warn('Database unavailable for site stats:', error)
 			return {
 				site_stats: [],
+				error: 'Error fetching site stats data',
 				current_month: new Date().toISOString().slice(0, 7),
 				current_year: new Date().getFullYear().toString(),
 			}
 		}
-
-		const site_stats: SiteStats[] = result.rows
-			.map((row) => {
-				try {
-					return {
-						slug: String(row.slug),
-						title: String(row.title),
-						monthly_stats: JSON.parse(String(row.monthly_stats)),
-						yearly_stats: JSON.parse(String(row.yearly_stats)),
-						all_time_stats: JSON.parse(String(row.all_time_stats)),
-					}
-				} catch (error) {
-					console.error('Error parsing row:', error)
-					return null
-				}
-			})
-			.filter((item): item is SiteStats => item !== null)
-
-		return {
-			site_stats,
-			current_month: new Date().toISOString().slice(0, 7),
-			current_year: new Date().getFullYear().toString(),
-		}
-	} catch (error) {
-		console.warn('Database unavailable for site stats:', error)
-		return {
-			site_stats: [],
-			error: 'Error fetching site stats data',
-			current_month: new Date().toISOString().slice(0, 7),
-			current_year: new Date().getFullYear().toString(),
-		}
-	}
-})
+	},
+)
 
 // Export types for use in components
 export type {
