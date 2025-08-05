@@ -2,6 +2,7 @@ import { command, query } from '$app/server'
 import { sqlite_client } from '$lib/sqlite/client'
 import { reactions } from '$lib/reactions-config'
 import { ratelimit } from '$lib/redis'
+import * as v from 'valibot'
 
 const allowed_reactions = reactions.map((r) => r.type)
 
@@ -15,11 +16,13 @@ interface ReactionResult {
 	time_remaining?: number
 }
 
-export const submit_reaction = command(async (
-	reaction: string,
-	path: string,
-	ip: string,
-): Promise<ReactionResult> => {
+export const submit_reaction = command(
+	v.object({
+		reaction: v.string(),
+		path: v.string(),
+		ip: v.string(),
+	}),
+	async ({ reaction, path, ip }: { reaction: string; path: string; ip: string }): Promise<ReactionResult> => {
 	try {
 		// Rate limiting
 		const rate_limit_attempt = await ratelimit.limit(ip)
@@ -110,7 +113,7 @@ export const submit_reaction = command(async (
 	}
 })
 
-export const get_reaction_counts = query(async (pathname: string): Promise<ReactionCount | null> => {
+export const get_reaction_counts = query(v.string(), async (pathname: string): Promise<ReactionCount | null> => {
 	try {
 		const count = {} as ReactionCount
 

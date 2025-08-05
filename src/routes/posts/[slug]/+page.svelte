@@ -328,7 +328,8 @@
 
 	<Modal bind:modal onclose={close_modal}>
 		{#if page.state.selected}
-			<StatsPage data={page.state.selected} />
+			{@const statsData = page.state.selected as any}
+			<StatsPage data={statsData} />
 		{/if}
 	</Modal>
 

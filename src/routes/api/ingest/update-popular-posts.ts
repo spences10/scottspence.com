@@ -3,7 +3,7 @@ import { fetch_fathom_data } from '$lib/fathom'
 import { sqlite_client } from '$lib/sqlite/client'
 import { get_date_range } from './utils'
 
-const insert_fathom_data_into_turso = async (
+const insert_fathom_data_into_sqlite = async (
 	data: PopularPost[],
 	period: string,
 ) => {
@@ -79,7 +79,7 @@ export const update_popular_posts = async (fetch: Fetch) => {
 					}),
 				)
 
-				await insert_fathom_data_into_turso(transformed_data, period)
+				await insert_fathom_data_into_sqlite(transformed_data, period)
 				popular_posts = transformed_data as unknown as PopularPost[]
 			}
 		} catch (error) {

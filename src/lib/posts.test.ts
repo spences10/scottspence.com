@@ -2,6 +2,11 @@ import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 import { get_posts } from './posts'
 import { sqlite_client } from '$lib/sqlite/client'
 
+const mockPosts = [
+	{ id: 1, title: 'Post 1', date: '2023-06-14' },
+	{ id: 2, title: 'Post 2', date: '2023-06-13' },
+]
+
 // Mock the sqlite_client
 const mockExecute = vi.fn()
 vi.mock('$lib/sqlite/client', () => ({
@@ -32,10 +37,7 @@ test('get_posts fetches posts from database when cache is empty', async () => {
 	)
 
 	const mockExecute = vi.fn().mockResolvedValue({
-		rows: [
-			{ id: 1, title: 'Post 1', date: '2023-06-14' },
-			{ id: 2, title: 'Post 2', date: '2023-06-13' },
-		],
+		rows: mockPosts,
 	})
 	mockExecute.mockReturnValue({ rows: mockPosts })
 	;(get_from_cache as any).mockReturnValue(null) // No cache
@@ -45,15 +47,9 @@ test('get_posts fetches posts from database when cache is empty', async () => {
 	expect(mockExecute).toHaveBeenCalledWith(
 		'SELECT * FROM posts ORDER BY date DESC;',
 	)
-	expect(set_cache).toHaveBeenCalledWith('posts', [
-		{ id: 1, title: 'Post 1', date: '2023-06-14' },
-		{ id: 2, title: 'Post 2', date: '2023-06-13' },
-	])
+	expect(set_cache).toHaveBeenCalledWith('posts', mockPosts)
 	expect(result).toEqual({
-		posts: [
-			{ id: 1, title: 'Post 1', date: '2023-06-14' },
-			{ id: 2, title: 'Post 2', date: '2023-06-13' },
-		],
+		posts: mockPosts,
 	})
 })
 
@@ -83,10 +79,7 @@ test('get_posts fetches new posts when cache is expired', async () => {
 	)
 
 	const mockExecute = vi.fn().mockResolvedValue({
-		rows: [
-			{ id: 1, title: 'Post 1', date: '2023-06-14' },
-			{ id: 2, title: 'Post 2', date: '2023-06-13' },
-		],
+		rows: mockPosts,
 	})
 	mockExecute.mockReturnValue({ rows: mockPosts })
 	;(get_from_cache as any).mockReturnValue(null) // Cache expired
@@ -96,15 +89,9 @@ test('get_posts fetches new posts when cache is expired', async () => {
 	expect(mockExecute).toHaveBeenCalledWith(
 		'SELECT * FROM posts ORDER BY date DESC;',
 	)
-	expect(set_cache).toHaveBeenCalledWith('posts', [
-		{ id: 1, title: 'Post 1', date: '2023-06-14' },
-		{ id: 2, title: 'Post 2', date: '2023-06-13' },
-	])
+	expect(set_cache).toHaveBeenCalledWith('posts', mockPosts)
 	expect(result).toEqual({
-		posts: [
-			{ id: 1, title: 'Post 1', date: '2023-06-14' },
-			{ id: 2, title: 'Post 2', date: '2023-06-13' },
-		],
+		posts: mockPosts,
 	})
 })
 

@@ -1,4 +1,5 @@
 import Database from 'better-sqlite3'
+import type { Statement, RunResult } from 'better-sqlite3'
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -44,22 +45,34 @@ const create_database = () => {
 	return db
 }
 
+// Type definition for the SQLite client
+export type SqliteClient = {
+	execute: (query: string | { sql: string; args?: unknown[] }) => { rows: Record<string, unknown>[] }
+	batch: (queries: { sql: string; args?: unknown[] }[]) => { success: boolean }
+	prepare: (query: string) => {
+		run: (...args: unknown[]) => RunResult
+		get: (...args: unknown[]) => Record<string, unknown> | undefined
+		all: (...args: unknown[]) => Record<string, unknown>[]
+	}
+	close: () => void
+}
+
 // Create a single database instance
 const db = create_database()
 
 // Create a compatible interface that matches the libsql client API
-export const sqlite_client = {
-	execute: (query: string | { sql: string; args?: any[] }) => {
+export const sqlite_client: SqliteClient = {
+	execute: (query: string | { sql: string; args?: unknown[] }) => {
 		try {
 			if (typeof query === 'string') {
 				// Simple string query
 				const stmt = db.prepare(query)
-				const rows = stmt.all()
+				const rows = stmt.all() as Record<string, unknown>[]
 				return { rows }
 			} else {
 				// Query with parameters
 				const stmt = db.prepare(query.sql)
-				const rows = query.args ? stmt.all(...query.args) : stmt.all()
+				const rows = (query.args ? stmt.all(...query.args) : stmt.all()) as Record<string, unknown>[]
 				return { rows }
 			}
 		} catch (error) {
@@ -68,7 +81,7 @@ export const sqlite_client = {
 		}
 	},
 	
-	batch: (queries: { sql: string; args?: any[] }[]) => {
+	batch: (queries: { sql: string; args?: unknown[] }[]) => {
 		try {
 			const transaction = db.transaction(() => {
 				for (const query of queries) {
@@ -86,6 +99,20 @@ export const sqlite_client = {
 			console.error('SQLite batch error:', error)
 			throw error
 		}
+	},
+
+	prepare: (query: string) => {
+		const stmt = db.prepare(query)
+		return {
+			run: (...args: unknown[]) => stmt.run(...args),
+			get: (...args: unknown[]) => stmt.get(...args) as Record<string, unknown> | undefined,
+			all: (...args: unknown[]) => stmt.all(...args) as Record<string, unknown>[]
+		}
+	},
+
+	close: () => {
+		// SQLite better-sqlite3 connections don't need explicit closing
+		// The connection is managed by the module
 	}
 }
 

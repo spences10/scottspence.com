@@ -4,6 +4,7 @@ import { fetch_fathom_data } from '$lib/fathom'
 import { sqlite_client } from '$lib/sqlite/client'
 import { differenceInHours, parseISO } from 'date-fns'
 import { get_date_range } from '../../routes/api/ingest/utils'
+import * as v from 'valibot'
 
 interface PostAnalytics {
 	daily: any | null
@@ -11,7 +12,7 @@ interface PostAnalytics {
 	yearly: any | null
 }
 
-export const get_post_analytics = query(async (slug: string): Promise<PostAnalytics> => {
+export const get_post_analytics = query(v.string(), async (slug: string): Promise<PostAnalytics> => {
 	try {
 		// Check each period individually for staleness and refresh if needed
 		for (const period of ['day', 'month', 'year']) {

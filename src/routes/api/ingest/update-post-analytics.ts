@@ -113,7 +113,7 @@ const process_period = async (
 		)
 
 		if (fathom_data) {
-			await insert_fathom_data_into_turso(fathom_data, slug, period)
+			await insert_fathom_data_into_sqlite(fathom_data, slug, period)
 		} else {
 			console.error(`No data returned for slug: ${slug}`)
 		}
@@ -123,7 +123,7 @@ const process_period = async (
 	}
 }
 
-const insert_fathom_data_into_turso = async (
+const insert_fathom_data_into_sqlite = async (
 	data: any,
 	slug: string,
 	period: string,

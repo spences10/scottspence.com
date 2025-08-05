@@ -1,17 +1,16 @@
-import { sqlite_client } from '$lib/sqlite/client';
+import { sqlite_client, type SqliteClient } from '$lib/sqlite/client';
 import { describe, expect, it, vi } from 'vitest';
 import { update_stats } from './update-stats';
 
-const create_mock_client = () => ({
-	execute: vi.fn().mockResolvedValue({ success: true }),
-	batch: vi.fn(),
-	migrate: vi.fn(),
-	transaction: vi.fn(),
-	executeMultiple: vi.fn(),
-	sync: vi.fn(),
-	interrupt: vi.fn(),
-	closed: false,
-	protocol: 'libsql',
+const create_mock_client = (): SqliteClient => ({
+	execute: vi.fn().mockResolvedValue({ rows: [] }),
+	batch: vi.fn().mockResolvedValue({ success: true }),
+	prepare: vi.fn().mockReturnValue({
+		run: vi.fn(),
+		get: vi.fn(),
+		all: vi.fn().mockReturnValue([])
+	}),
+	close: vi.fn(),
 });
 
 vi.mock('$lib/sqlite/client', () => ({
@@ -28,10 +27,10 @@ describe('update_stats', () => {
 	});
 
 	it('should handle database errors', async () => {
-		const mock_client = {
+		const mock_client: SqliteClient = {
 			...create_mock_client(),
 			execute: vi.fn().mockRejectedValue(new Error('Database error')),
-		} as Client;
+		};
 		Object.assign(sqlite_client, mock_client);
 
 		await expect(update_stats()).rejects.toThrow(
@@ -41,10 +40,10 @@ describe('update_stats', () => {
 	});
 
 	it('should always close the database connection', async () => {
-		const mock_client = {
+		const mock_client: SqliteClient = {
 			...create_mock_client(),
 			execute: vi.fn().mockRejectedValue(new Error('Test error')),
-		} as Client;
+		};
 		Object.assign(sqlite_client, mock_client);
 
 		try {

@@ -31,9 +31,17 @@ describe('PostPage Component', () => {
 				reading_time: { text: '5 min read' },
 			},
 			count: {
-				reactions: 5,
-				thumbs_up: 3,
-				thumbs_down: 1,
+				count: {
+					likes: 3,
+					hearts: 2,
+					poops: 0,
+					parties: 1,
+				},
+			},
+			popular_posts: {
+				popular_posts_daily: [],
+				popular_posts_monthly: [],
+				popular_posts_yearly: [],
 			},
 		},
 	}

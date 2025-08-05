@@ -39,7 +39,7 @@ export const store_post_embedding = async (
 	post_id: string,
 	content: string,
 ) => {
-	const client = sqlite_client()
+	const client = sqlite_client
 	try {
 		const embedding = await create_embedding(content)
 		if (embedding.length !== 1024) {
@@ -75,7 +75,7 @@ export const get_related_posts = async (
 	post_id: string,
 	limit: number = 4,
 ) => {
-	const client = sqlite_client()
+	const client = sqlite_client
 	try {
 		// Option 1: Use KNN syntax (most efficient)
 		const stmt = client.prepare(`
@@ -103,7 +103,7 @@ export const get_related_posts = async (
 		
 		// Fallback to traditional distance calculation
 		try {
-			const fallback_client = sqlite_client()
+			const fallback_client = sqlite_client
 			
 			const stmt = fallback_client.prepare(`
 				SELECT post_id, 
@@ -131,7 +131,7 @@ export const get_related_posts = async (
 export const get_post_embedding = async (
 	post_id: string,
 ): Promise<number[] | null> => {
-	const client = sqlite_client()
+	const client = sqlite_client
 	try {
 		const stmt = client.prepare(`
 			SELECT embedding FROM post_embeddings WHERE post_id = ?
@@ -149,15 +149,15 @@ export const get_post_embedding = async (
 					return JSON.parse(embedding)
 				} catch {
 					// If not JSON, might be from migration - use vec_to_json
-					const json_client = sqlite_client()
+					const json_client = sqlite_client
 					const json_stmt = json_client.prepare(`
 						SELECT vec_to_json(embedding) as embedding_json 
 						FROM post_embeddings WHERE post_id = ?
 					`)
-					const json_result = json_stmt.get(post_id)
+					const json_result = json_stmt.get(post_id) as { embedding_json: string } | undefined
 					json_client.close()
 					
-					if (json_result) {
+					if (json_result && json_result.embedding_json) {
 						return JSON.parse(json_result.embedding_json)
 					}
 				}
