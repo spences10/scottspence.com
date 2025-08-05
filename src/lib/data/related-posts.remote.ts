@@ -7,6 +7,7 @@ import {
 } from '$lib/cache/server-cache'
 import { sqlite_client } from '$lib/sqlite/client'
 import * as v from 'valibot'
+import { get_related_posts as get_related_posts_from_embeddings } from '../../routes/api/ingest/embeddings'
 
 export const get_related_posts = query(
 	v.string(),
@@ -26,22 +27,9 @@ export const get_related_posts = query(
 		}
 
 		try {
-			const result = await sqlite_client.execute({
-				sql: 'SELECT related_post_ids FROM related_posts WHERE post_id = ?',
-				args: [post_id],
-			})
-
-			if (result.rows.length === 0) {
-				// Cache empty result to avoid repeated database queries
-				set_cache(cache_key, [])
-				return []
-			}
-
-			const related_post_ids_value = result.rows[0].related_post_ids
+			// Use vector similarity search with privacy filtering built-in
 			const related_post_ids =
-				typeof related_post_ids_value === 'string'
-					? JSON.parse(related_post_ids_value)
-					: []
+				await get_related_posts_from_embeddings(post_id, 4)
 
 			if (related_post_ids.length === 0) {
 				// Cache empty result to avoid repeated database queries
@@ -49,10 +37,10 @@ export const get_related_posts = query(
 				return []
 			}
 
-			// Fetch titles for related posts in a single query, excluding private posts
+			// Fetch titles for the related posts (already filtered for privacy)
 			const placeholders = related_post_ids.map(() => '?').join(',')
 			const posts_result = await sqlite_client.execute({
-				sql: `SELECT slug, title FROM posts WHERE slug IN (${placeholders}) AND is_private = 0`,
+				sql: `SELECT slug, title FROM posts WHERE slug IN (${placeholders})`,
 				args: related_post_ids,
 			})
 
@@ -62,13 +50,13 @@ export const get_related_posts = query(
 				title_map.set(row.slug, row.title)
 			})
 
-			// Build the final array only for posts that have titles (public posts)
+			// Build the final array maintaining the order from similarity search
 			const related_posts = related_post_ids
 				.map((slug: string) => ({
 					slug,
 					title: title_map.get(slug),
 				}))
-				.filter((post: RelatedPost) => post.title) // Only include posts with valid titles (public posts)
+				.filter((post: RelatedPost) => post.title) // Only include posts with valid titles
 
 			// Cache the result
 			set_cache(cache_key, related_posts)
