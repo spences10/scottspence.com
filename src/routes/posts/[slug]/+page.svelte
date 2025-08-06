@@ -10,6 +10,7 @@
 	import { Head, SchemaOrg } from 'svead'
 
 	import {
+		ActiveViewers,
 		ButtButt,
 		CurrentVisitorsData,
 		IsPrivateBanner,
@@ -258,6 +259,9 @@
 			{/if}
 		</div>
 	</div>
+
+	<ActiveViewers page_slug={current_path} class_name="mb-3" />
+
 	{#if current_visitor_data}
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<span
