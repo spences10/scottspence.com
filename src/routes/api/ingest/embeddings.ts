@@ -73,11 +73,15 @@ export const store_post_embedding = async (
 
 export const get_related_posts = async (
 	post_id: string,
-	limit: number = 4,
+	limit: number = 12,
 ) => {
 	const client = sqlite_client
 	try {
-		// Option 1: Use KNN syntax (most efficient) with private post filtering
+		// Use a higher k value to account for private posts being filtered out
+		// Multiply by 3 to ensure we get enough public posts after filtering
+		const search_limit = limit * 3
+
+		// Option 1: Use KNN syntax with higher k, then filter for privacy
 		const stmt = client.prepare(`
 			SELECT pe.post_id, distance 
 			FROM post_embeddings pe
@@ -90,8 +94,7 @@ export const get_related_posts = async (
 			AND p.is_private = 0
 		`)
 
-		const results = stmt.all(post_id, limit + 1, post_id)
-		client.close()
+		const results = stmt.all(post_id, search_limit, post_id)
 
 		// Filter out the original post if it appears and limit results
 		return results
@@ -100,13 +103,10 @@ export const get_related_posts = async (
 			.map((row: any) => row.post_id)
 	} catch (error) {
 		console.error('Error getting related posts:', error)
-		client.close()
 
 		// Fallback to traditional distance calculation with private post filtering
 		try {
-			const fallback_client = sqlite_client
-
-			const stmt = fallback_client.prepare(`
+			const stmt = client.prepare(`
 				SELECT pe.post_id, 
 					vec_distance_cosine(
 						pe.embedding, 
@@ -121,7 +121,6 @@ export const get_related_posts = async (
 			`)
 
 			const results = stmt.all(post_id, post_id, limit)
-			fallback_client.close()
 
 			return results.map((row: any) => row.post_id)
 		} catch (fallback_error) {
