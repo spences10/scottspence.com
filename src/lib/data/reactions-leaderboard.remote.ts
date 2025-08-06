@@ -15,17 +15,6 @@ interface ReactionData {
 	total_count: number
 }
 
-interface ReactionEntry {
-	path: string
-	title: string
-	total_count: number
-	likes: number
-	hearts: number
-	poops: number
-	parties: number
-	rank: number
-}
-
 interface LeaderboardData {
 	leaderboard: ReactionEntry[]
 	error?: string

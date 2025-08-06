@@ -7,22 +7,17 @@ import {
 } from '$lib/cache/server-cache'
 import { sqlite_client } from '$lib/sqlite/client'
 
-interface PopularPostsData {
-	daily: PopularPost[]
-	monthly: PopularPost[]
-	yearly: PopularPost[]
-}
 
 const CACHE_KEY = 'popular_posts'
 
 export const get_popular_posts = query(
-	async (): Promise<PopularPostsData> => {
+	async (): Promise<PopularPosts> => {
 		if (BYPASS_DB_READS.popular_posts) {
-			return { daily: [], monthly: [], yearly: [] }
+			return { popular_posts_daily: [], popular_posts_monthly: [], popular_posts_yearly: [] }
 		}
 
 		// Check server cache first
-		const cached = get_from_cache<PopularPostsData>(
+		const cached = get_from_cache<PopularPosts>(
 			CACHE_KEY,
 			CACHE_DURATIONS.popular_posts,
 		)
@@ -60,7 +55,7 @@ export const get_popular_posts = query(
 				])
 
 			const data = {
-				daily: daily_result.rows.map((row) => ({
+				popular_posts_daily: daily_result.rows.map((row) => ({
 					id: String(row.id),
 					pathname: String(row.pathname),
 					title: String(row.title),
@@ -69,7 +64,7 @@ export const get_popular_posts = query(
 					date_grouping: String(row.date_grouping),
 					last_updated: String(row.last_updated),
 				})),
-				monthly: monthly_result.rows.map((row) => ({
+				popular_posts_monthly: monthly_result.rows.map((row) => ({
 					id: String(row.id),
 					pathname: String(row.pathname),
 					title: String(row.title),
@@ -78,7 +73,7 @@ export const get_popular_posts = query(
 					date_grouping: String(row.date_grouping),
 					last_updated: String(row.last_updated),
 				})),
-				yearly: yearly_result.rows.map((row) => ({
+				popular_posts_yearly: yearly_result.rows.map((row) => ({
 					id: String(row.id),
 					pathname: String(row.pathname),
 					title: String(row.title),
@@ -94,7 +89,7 @@ export const get_popular_posts = query(
 			return data
 		} catch (error) {
 			console.warn('Database unavailable:', error)
-			return { daily: [], monthly: [], yearly: [] }
+			return { popular_posts_daily: [], popular_posts_monthly: [], popular_posts_yearly: [] }
 		}
 	},
 )
