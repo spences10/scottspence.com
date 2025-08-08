@@ -91,8 +91,8 @@ importers:
         specifier: ^16.3.0
         version: 16.3.0
       marked:
-        specifier: 15.0.12
-        version: 15.0.12
+        specifier: 16.1.2
+        version: 16.1.2
       mdsvex:
         specifier: ^0.12.6
         version: 0.12.6(svelte@5.37.3)
@@ -1898,9 +1898,9 @@ packages:
   magic-string@0.30.17:
     resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
 
-  marked@15.0.12:
-    resolution: {integrity: sha512-8dD6FusOQSrpv9Z1rdNMdlSgQOIP880DHqnohobOmYLElGEqAL/JvxvuxZO16r4HtjTlfPRDC1hbvxC9dPN2nA==}
-    engines: {node: '>= 18'}
+  marked@16.1.2:
+    resolution: {integrity: sha512-rNQt5EvRinalby7zJZu/mB+BvaAY2oz3wCuCjt1RDrWNpS1Pdf9xqMOeC9Hm5adBdcV/3XZPJpG58eT+WBc0XQ==}
+    engines: {node: '>= 20'}
     hasBin: true
 
   mdast-util-definitions@5.1.2:
@@ -4413,7 +4413,7 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.4
 
-  marked@15.0.12: {}
+  marked@16.1.2: {}
 
   mdast-util-definitions@5.1.2:
     dependencies:
