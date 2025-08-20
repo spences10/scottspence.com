@@ -42,7 +42,7 @@
 		"@tailwindcss/typography": "0.5.16",
 		"@tailwindcss/vite": "^4.1.12",
 		"@types/better-sqlite3": "^7.6.13",
-		"@types/nodemailer": "^6.4.17",
+		"@types/nodemailer": "^7.0.0",
 		"@upstash/ratelimit": "^2.0.6",
 		"@upstash/redis": "^1.35.3",
 		"@vitest/browser": "^3.2.4",
