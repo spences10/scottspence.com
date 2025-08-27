@@ -41,6 +41,10 @@ jobs:
           EMAIL_APP_USER: ${{ secrets.EMAIL_APP_USER }}
           EMAIL_APP_TO_ADDRESS: ${{ secrets.EMAIL_APP_TO_ADDRESS }}
           VOYAGE_AI_API_KEY: ${{ secrets.VOYAGE_AI_API_KEY }}
+          DATABASE_PATH: ${{ secrets.DATABASE_PATH }}
+          DATABASE_BACKUPS_PATH: ${{ secrets.DATABASE_BACKUPS_PATH }}
+          PRODUCTION_URL: ${{ secrets.PRODUCTION_URL }}
+          INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
       - name: Verify Playwright versions match
         run: |
           PACKAGE_VERSION=$(node -p "require('./package.json').devDependencies.playwright.replace('^', '')")
