@@ -1,7 +1,7 @@
-import adapter from '@sveltejs/adapter-node';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-import { mdsvex } from 'mdsvex';
-import mdsvexConfig from './mdsvex.config.js';
+import adapter from '@sveltejs/adapter-node'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
+import { mdsvex } from 'mdsvex'
+import mdsvexConfig from './mdsvex.config.js'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -14,20 +14,19 @@ const config = {
 		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
 		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
 		adapter: adapter(),
-		// check src/hooks.server.ts for config
-		csrf: { checkOrigin: false },
+		csrf: { trustedOrigins: ['https://scottspence.com'] },
 		experimental: {
-			remoteFunctions: true
-		}
+			remoteFunctions: true,
+		},
 	},
 
 	compilerOptions: {
 		experimental: {
-			async: true
-		}
+			async: true,
+		},
 	},
 
 	extensions: ['.svelte', '.md'],
-};
+}
 
-export default config;
+export default config
