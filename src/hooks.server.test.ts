@@ -14,6 +14,21 @@ vi.mock('@sveltejs/kit', async () => {
 	}
 })
 
+// Mock sequence function to avoid SvelteKit internals
+vi.mock('@sveltejs/kit/hooks', () => ({
+	sequence: (...handlers: any[]) => {
+		return async ({ event, resolve }: any) => {
+			for (const handler of handlers) {
+				const response = await handler({ event, resolve })
+				if (response instanceof Response) {
+					return response
+				}
+			}
+			return await resolve(event)
+		}
+	},
+}))
+
 vi.mock('$lib/themes', () => ({
 	themes: ['light', 'dark', 'custom'],
 }))
@@ -51,15 +66,14 @@ const createMockEvent = (pathname: string, theme?: string) => ({
 // Helper function to create a mock resolve function
 const createMockResolve = () =>
 	vi.fn().mockImplementation(async (event, opts) => {
+		let html = '<html data-theme="">'
 		if (opts && opts.transformPageChunk) {
-			return opts.transformPageChunk({
-				html: '<html data-theme="">',
-			})
+			html = opts.transformPageChunk({ html })
 		}
-		return '<html data-theme="">'
+		return html
 	})
 
-test.skip('handle function redirects old URL structure', async () => {
+test('handle function redirects old URL structure', async () => {
 	const mockEvent = createMockEvent('/2022/05/15/my-blog-post')
 	const mockResolve = createMockResolve()
 
@@ -72,7 +86,7 @@ test.skip('handle function redirects old URL structure', async () => {
 	}
 })
 
-test.skip('handle function removes trailing slash', async () => {
+test('handle function removes trailing slash', async () => {
 	const mockEvent = createMockEvent('/posts/my-blog-post/')
 	const mockResolve = createMockResolve()
 
@@ -85,7 +99,7 @@ test.skip('handle function removes trailing slash', async () => {
 	}
 })
 
-test.skip('handle function rejects suspicious extensions', async () => {
+test('handle function rejects suspicious extensions', async () => {
 	const mockEvent = createMockEvent('/malicious.php')
 	const mockResolve = createMockResolve()
 
@@ -97,7 +111,7 @@ test.skip('handle function rejects suspicious extensions', async () => {
 	expect(response.status).toBe(204)
 })
 
-test.skip('handle function rejects suspicious paths', async () => {
+test('handle function rejects suspicious paths', async () => {
 	const mockEvent = createMockEvent('/wp-admin')
 	const mockResolve = createMockResolve()
 
@@ -129,7 +143,7 @@ test.skip('handle function with valid theme', async () => {
 	expect(result).toBe('<html data-theme="dark">')
 })
 
-test.skip('handle function with invalid theme', async () => {
+test('handle function with invalid theme', async () => {
 	const mockEvent = createMockEvent(
 		'/posts/my-blog-post',
 		'invalid-theme',
@@ -152,7 +166,7 @@ test.skip('handle function with invalid theme', async () => {
 	expect(result).toBe('<html data-theme="">')
 })
 
-test.skip('handle function with no theme', async () => {
+test('handle function with no theme', async () => {
 	const mockEvent = createMockEvent('/posts/my-blog-post')
 	const mockResolve = createMockResolve()
 
