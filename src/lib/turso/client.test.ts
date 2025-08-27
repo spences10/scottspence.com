@@ -11,11 +11,6 @@ describe('Turso Database Client', () => {
 		// Test error message content
 	})
 
-	it.skip('should handle missing TURSO_DB_AUTH_TOKEN for remote databases', () => {
-		// Test error thrown when auth token is undefined for remote DB
-		// Test error message content
-	})
-
 	it.skip('should allow missing auth token for file databases', () => {
 		// Test file:// URLs work without auth token
 		// Test local database connections

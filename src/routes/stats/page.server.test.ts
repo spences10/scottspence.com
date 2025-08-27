@@ -17,12 +17,6 @@ vi.mock('$lib/sqlite/client', () => ({
 	},
 }))
 
-// Mock environment
-vi.mock('$env/static/private', () => ({
-	TURSO_DB_URL: 'test-url',
-	TURSO_DB_AUTH_TOKEN: 'test-token',
-}))
-
 // Mock server cache
 vi.mock('$lib/cache/server-cache', () => ({
 	BYPASS_DB_READS: { site_stats: false },
