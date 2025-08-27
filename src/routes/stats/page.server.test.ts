@@ -10,10 +10,9 @@ import {
 import { load } from './+page.server'
 
 // Mock the sqlite client
-const mockExecute = vi.fn()
 vi.mock('$lib/sqlite/client', () => ({
 	sqlite_client: {
-		execute: mockExecute,
+		execute: vi.fn(),
 	},
 }))
 
@@ -48,10 +47,11 @@ describe('Stats Page Server Logic', () => {
 			const { get_from_cache } = await import(
 				'$lib/cache/server-cache'
 			)
+			const { sqlite_client } = await import('$lib/sqlite/client')
 			;(get_from_cache as any).mockReturnValue(null) // No cache
 
 			// Mock database response with current year data
-			mockExecute.mockResolvedValueOnce({
+			;(sqlite_client.execute as any).mockResolvedValueOnce({
 				rows: [
 					{
 						slug: 'test-post',
@@ -120,9 +120,9 @@ describe('Stats Page Server Logic', () => {
 			const { get_from_cache } = await import(
 				'$lib/cache/server-cache'
 			)
+			const { sqlite_client } = await import('$lib/sqlite/client')
 			;(get_from_cache as any).mockReturnValue(null) // No cache
-
-			mockExecute.mockResolvedValueOnce({
+			;(sqlite_client.execute as any).mockResolvedValueOnce({
 				rows: [
 					{
 						slug: 'test-post',
@@ -171,9 +171,9 @@ describe('Stats Page Server Logic', () => {
 			const { get_from_cache } = await import(
 				'$lib/cache/server-cache'
 			)
+			const { sqlite_client } = await import('$lib/sqlite/client')
 			;(get_from_cache as any).mockReturnValue(null) // No cache
-
-			mockExecute.mockResolvedValueOnce({
+			;(sqlite_client.execute as any).mockResolvedValueOnce({
 				rows: [
 					{
 						slug: 'test-post',
@@ -229,9 +229,9 @@ describe('Stats Page Server Logic', () => {
 			const { get_from_cache } = await import(
 				'$lib/cache/server-cache'
 			)
+			const { sqlite_client } = await import('$lib/sqlite/client')
 			;(get_from_cache as any).mockReturnValue(null) // No cache
-
-			mockExecute.mockRejectedValueOnce(
+			;(sqlite_client.execute as any).mockRejectedValueOnce(
 				new Error('Database connection failed'),
 			)
 
@@ -245,9 +245,11 @@ describe('Stats Page Server Logic', () => {
 			const { get_from_cache } = await import(
 				'$lib/cache/server-cache'
 			)
+			const { sqlite_client } = await import('$lib/sqlite/client')
 			;(get_from_cache as any).mockReturnValue(null) // No cache
-
-			mockExecute.mockResolvedValueOnce({ rows: [] })
+			;(sqlite_client.execute as any).mockResolvedValueOnce({
+				rows: [],
+			})
 
 			const result = await load()
 
@@ -261,9 +263,9 @@ describe('Stats Page Server Logic', () => {
 			const { get_from_cache } = await import(
 				'$lib/cache/server-cache'
 			)
+			const { sqlite_client } = await import('$lib/sqlite/client')
 			;(get_from_cache as any).mockReturnValue(null) // No cache
-
-			mockExecute.mockResolvedValueOnce({
+			;(sqlite_client.execute as any).mockResolvedValueOnce({
 				rows: [
 					{
 						slug: 'popular-post',
