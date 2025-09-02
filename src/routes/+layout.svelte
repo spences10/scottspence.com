@@ -48,7 +48,7 @@
 		id="main-content"
 		class="container mx-auto max-w-3xl flex-grow px-4"
 	>
-		{@render children()}
+		{@render children?.()}
 		<BackToTop />
 	</main>
 
