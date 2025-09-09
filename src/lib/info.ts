@@ -90,6 +90,11 @@ export const PEOPLE = [
 		name: `Phil Pluckthun`,
 		link: `https://bsky.app/profile/kitten.sh`,
 		met: true,
+	},	
+	{
+		name: `David Flanagan`,
+		link: `https://bsky.app/profile/rawkode.dev`,
+		met: false,
 	},
 	{
 		name: `Phil Hawksworth`,
