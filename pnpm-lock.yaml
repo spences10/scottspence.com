@@ -23,16 +23,16 @@ importers:
         version: 9.35.0
       '@fontsource-variable/manrope':
         specifier: ^5.2.6
-        version: 5.2.6
+        version: 5.2.7
       '@fontsource-variable/victor-mono':
         specifier: ^5.2.6
-        version: 5.2.6
+        version: 5.2.7
       '@fontsource/comic-neue':
         specifier: ^5.2.6
         version: 5.2.6
       '@fontsource/victor-mono':
         specifier: ^5.2.6
-        version: 5.2.6
+        version: 5.2.7
       '@playwright/test':
         specifier: ^1.55.0
         version: 1.55.0
@@ -723,17 +723,17 @@ packages:
     resolution: {integrity: sha512-Z5kJ+wU3oA7MMIqVR9tyZRtjYPr4OC004Q4Rw7pgOKUOKkJfZ3O24nz3WYfGRpMDNmcOi3TwQOmgm7B7Tpii0w==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@fontsource-variable/manrope@5.2.6':
-    resolution: {integrity: sha512-8a0INmmJfrcOO+MDThDefifCqreErfhNX1qy9l9VMc0FNCUTJtJi8Lclk8H5RqsDmR5PBYfTot1iUZFZ7qX57A==}
+  '@fontsource-variable/manrope@5.2.7':
+    resolution: {integrity: sha512-BIEjvyUBcd2dya41h/6XKh4Uof91VjwrcgGA6yYMiDbBLZkizEjKSBQXsavmBApNydHSuteBESv4MLF4y6PzuQ==}
 
-  '@fontsource-variable/victor-mono@5.2.6':
-    resolution: {integrity: sha512-0UPLrQzT67pcuxeRSz9UAmSTKkjNUE6WJp90U6h+q0t9QC2+/kVHCj83nqdst6fKqUftgXrYn5Izpu+nzQ4tpw==}
+  '@fontsource-variable/victor-mono@5.2.7':
+    resolution: {integrity: sha512-XEO+ThmDqfBQ2kzLK8BN6WRl/OWNU06gdgwv2p9csYSE4XMNtIBf2yFoFjT2tp385ym4i8NcBSDmKIeKDU0hYw==}
 
   '@fontsource/comic-neue@5.2.6':
     resolution: {integrity: sha512-FhI/0GU20Dgv/7K50UqyFSNAThevYk2hDv9D9UFYYd3HaGJxH82ujtssJD5am36kxy6nFlSM8rafL3lEoSshJQ==}
 
-  '@fontsource/victor-mono@5.2.6':
-    resolution: {integrity: sha512-+R0K61MmVbsFInNmPrRgLKqnZdhkHgrnr5aiLww0rpaNlDReddJTjabKndYuBnLimyyBSQZd6ouPYCGIizsUeA==}
+  '@fontsource/victor-mono@5.2.7':
+    resolution: {integrity: sha512-5ZyVx6oZgF1iKEhjDskBrKLWPiL8NlWvmTNeVAuHLEsiT5hTGFiXVIjxEmI3+oi3UW6toS1T+wBcvk095zIQ8Q==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -3787,13 +3787,13 @@ snapshots:
       '@eslint/core': 0.15.2
       levn: 0.4.1
 
-  '@fontsource-variable/manrope@5.2.6': {}
+  '@fontsource-variable/manrope@5.2.7': {}
 
-  '@fontsource-variable/victor-mono@5.2.6': {}
+  '@fontsource-variable/victor-mono@5.2.7': {}
 
   '@fontsource/comic-neue@5.2.6': {}
 
-  '@fontsource/victor-mono@5.2.6': {}
+  '@fontsource/victor-mono@5.2.7': {}
 
   '@humanfs/core@0.19.1': {}
 
