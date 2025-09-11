@@ -1,8 +1,6 @@
 import { description, name, website } from '$lib/info'
 import { get_posts } from '$lib/posts'
 
-export const prerender = true
-
 interface RSSItem {
 	title: string
 	url: string
