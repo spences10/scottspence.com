@@ -54,7 +54,7 @@
 		"eslint-plugin-svelte": "^3.12.3",
 		"fathom-client": "3.7.2",
 		"globals": "^16.4.0",
-		"marked": "16.2.1",
+		"marked": "16.3.0",
 		"mdsvex": "^0.12.6",
 		"mdsvex-relative-images": "1.0.3",
 		"nodemailer": "^7.0.6",
