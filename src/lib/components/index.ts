@@ -1,3 +1,4 @@
+export { default as ActiveViewers } from './active-viewers.svelte'
 export { default as BackToTop } from './back-to-top.svelte'
 export { default as Banner } from './banner.svelte'
 export { default as ButtButt } from './butt-butt.svelte'
