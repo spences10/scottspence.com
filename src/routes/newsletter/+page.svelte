@@ -2,7 +2,7 @@
 	import { NewsletterSignup } from '$lib/components'
 	import { name, website } from '$lib/info'
 	import { create_seo_config } from '$lib/seo'
-	import { newsletter_subscriber_count_store } from '$lib/stores/index.js'
+	import { newsletter_subscriber_count_store } from '$lib/stores/index'
 	import { og_image_url } from '$lib/utils'
 	import { Head } from 'svead'
 
