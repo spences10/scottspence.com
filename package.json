@@ -47,7 +47,7 @@
 		"@upstash/redis": "^1.35.4",
 		"@vitest/browser": "^3.2.4",
 		"cspell": "^9.2.1",
-		"daisyui": "5.1.14",
+		"daisyui": "5.1.25",
 		"date-fns": "4.1.0",
 		"eslint": "^9.36.0",
 		"eslint-config-prettier": "^10.1.8",
