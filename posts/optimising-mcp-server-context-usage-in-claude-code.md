@@ -65,7 +65,7 @@ npx mcpick
 
 It works! The tool creates backups, safely modifies your
 `.claude.json` config, and lets you selectively enable only what you
-need. Before a web scraping task? Enable mcp-omnisearch. Working on
+need. Before a web scraping task? Enable `mcp-omnisearch`. Working on
 database stuff? Enable turso-cloud. Simple!
 
 But here's the thing - McPick was treating the symptom, not the source
@@ -75,7 +75,7 @@ the bloat itself.
 ## Optimise the servers
 
 Instead of juggling which servers to enable, I needed to make the
-servers more efficient. So I dug into mcp-omnisearch and started
+servers more efficient. So I dug into `mcp-omnisearch` and started
 consolidating. I'll probably mention this a lot, but, I'd much rather
 build my own MCP tool than hand off any of my API keys to a MCP server
 I don't control.
@@ -85,8 +85,8 @@ improve.
 
 ### The numbers before optimisation
 
-So, here's the breakdown of the mcp-omnisearch available tools before
-I started optimising. There's a lot of them:
+So, here's the breakdown of the `mcp-omnisearch` available tools
+before I started optimising. There's a lot of them:
 
 ```
 mcp-omnisearch:
@@ -387,8 +387,8 @@ That's on an empty conversation. I used McPick to enable all the MCP
 tools I use, so, if you look toward the end of that text block you can
 see how much context is free, 5%! Lol!
 
-Now with them all disabled except for mcp-omnisearch (which is pretty
-much my default for every Claude Code session) I get this:
+Now with them all disabled except for `mcp-omnisearch` (which is
+pretty much my default for every Claude Code session) I get this:
 
 ```
 > /context
@@ -414,7 +414,7 @@ use before starting a session in Claude Code.
 
 ## The McPick solution, managing what you can't optimise
 
-Whilst I optimised mcp-omnisearch, not all MCP servers are ones I've
+Whilst I optimised `mcp-omnisearch`, not all MCP servers are ones I've
 built (although I prefer to use my own tools). For third-party servers
 consuming excessive context, McPick is still the answer if you want to
 manage them effectively.
@@ -437,7 +437,7 @@ scratch my own itch.
 
 ## Side-by-side comparison
 
-So, the reveal? Lol! Well, here's where I am now with mcp-omnisearch!
+So, the reveal? Lol! Well, here's where I am now with `mcp-omnisearch`!
 Let me show you the actual difference:
 
 **Before (mcp-omnisearch)**
@@ -533,13 +533,8 @@ users (and Claude) will thank you!
 
 ## Want to check the sauce?
 
-The optimised mcp-omnisearch code is all in the
+The optimised `mcp-omnisearch` code is all in the
 [mcp-omnisearch repo](https://github.com/spences10/mcp-omnisearch).
-Key commits to check:
-
-- Tool consolidation work
-- Description trimming
-- Parameter standardisation
 
 The McPick tool for managing servers is at
 [McPick repo](https://github.com/spences10/mcpick).
