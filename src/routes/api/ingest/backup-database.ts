@@ -1,4 +1,5 @@
 import { DATABASE_PATH } from '$env/static/private'
+import Database from 'better-sqlite3'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 
@@ -12,15 +13,24 @@ export const backup_database = async () => {
 		// Ensure backups directory exists
 		await fs.mkdir(backups_dir, { recursive: true })
 
-		// Create timestamped backup filename
-		const timestamp = new Date().toISOString().split('T')[0] // YYYY-MM-DD
-		const backup_filename = `site-data-${timestamp}.db`
+		// Create timestamped backup filename with hour for multiple backups per day
+		const now = new Date()
+		const date = now.toISOString().split('T')[0] // YYYY-MM-DD
+		const hour = now.getHours().toString().padStart(2, '0')
+		const backup_filename = `site-data-${date}-${hour}00.db`
 		const backup_path = path.join(backups_dir, backup_filename)
 
-		// Copy database file
-		await fs.copyFile(db_path, backup_path)
+		// Use SQLite's native backup API to avoid corruption with WAL mode
+		// Opens a separate connection for backup to ensure consistency
+		const source_db = new Database(db_path, { readonly: true })
 
-		// Clean up old backups (keep only 7 days)
+		try {
+			await source_db.backup(backup_path)
+		} finally {
+			source_db.close()
+		}
+
+		// Clean up old backups (keep 28 backups = 7 days × 4 backups/day)
 		const files = await fs.readdir(backups_dir)
 		const backup_files = files
 			.filter(
@@ -30,8 +40,8 @@ export const backup_database = async () => {
 			.sort()
 			.reverse() // newest first
 
-		// Remove files beyond the 7 most recent
-		const files_to_delete = backup_files.slice(7)
+		// Remove files beyond the 28 most recent
+		const files_to_delete = backup_files.slice(28)
 		for (const file of files_to_delete) {
 			await fs.unlink(path.join(backups_dir, file))
 		}
@@ -42,7 +52,7 @@ export const backup_database = async () => {
 			message: 'Database exported successfully',
 			backup_file: backup_filename,
 			backup_size: `${Math.round(backup_size.size / 1024 / 1024)}MB`,
-			backups_kept: Math.min(backup_files.length, 7),
+			backups_kept: Math.min(backup_files.length, 28),
 			files_deleted: files_to_delete.length,
 		}
 	} catch (error) {
