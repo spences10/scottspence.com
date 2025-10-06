@@ -6,8 +6,8 @@ is_private: false
 ---
 
 I was looking up something on my site for reference (as I usually do
-when trying to recall a detail) when I noticed the popular posts in the
-footer weren't displaying. That's odd. I'd been working with the
+when trying to recall a detail) when I noticed the popular posts in
+the footer weren't displaying. That's odd. I'd been working with the
 database locally recently, so my immediate thought was: "What have I
 broken?"
 
@@ -282,6 +282,6 @@ docker exec container-name sh -c "rm -f /app/data/site-data.db-wal /app/data/sit
 docker exec container-name sqlite3 /app/data/site-data.db "PRAGMA integrity_check;"
 ```
 
-Have you had a database corruption incident? How did you recover? Hit
-me up on [Threads](https://threads.net/@spences10) – I'd love to hear
-your war stories. 😅
+Have you had a database corruption incident? How did you recover? I'd
+love to hear about it on
+[Bluesky](https://bsky.app/profile/scottspence.dev).
