@@ -2,26 +2,66 @@ import { env } from '$env/dynamic/private'
 import { json } from '@sveltejs/kit'
 import { backup_database } from './backup-database'
 import { export_training_data } from './export-training-data'
+import { index_now } from './index-now'
 import { pull_database } from './pull-database'
 import { restore_database } from './restore-database'
-import { index_now } from './index-now'
 import { update_embeddings } from './update-embeddings'
 import { update_popular_posts } from './update-popular-posts'
 import { update_posts } from './update-posts'
 import { update_related_posts_table } from './update-related-posts'
 import { update_stats } from './update-stats'
 
-// curl -X POST https://yourdomain.com/api/ingest \
-// -H "Content-Type: application/json" \
-// -d '{"task": "task_name", "token": "your-secret-token"}'
-
-// more than one you want to run??
-// for task in "update_popular_posts" "update_posts" "update_embeddings" "update_related_posts"; do
-//   curl -X POST https://scottspence.com/api/ingest \
-//     -H "Content-Type: application/json" \
-//     -d "{\"task\": \"$task\", \"token\": \"your-secret-token\"}"
-//   echo # Add a newline for readability
-// done
+/**
+ * === GETTING PRODUCTION DATA LOCALLY ===
+ *
+ * Step 1: Update production database with latest posts/stats
+ *
+for task in "update_posts" "update_stats" "update_popular_posts" "update_embeddings" "update_related_posts"; do
+	curl -X POST https://scottspence.com/api/ingest \
+		-H "Content-Type: application/json" \
+		-d "{\"task\": \"$task\", \"token\": \"your-secret-token\"}"
+	echo
+done
+ *
+ * Step 2: Create a backup of production database
+ *
+curl -X POST https://scottspence.com/api/ingest \
+	-H "Content-Type: application/json" \
+	-d '{"task": "backup_database", "token": "your-secret-token"}'
+ *
+ * Step 3: Download the backup to local
+ *
+curl -H "Authorization: Bearer your-secret-token" \
+		https://scottspence.com/api/ingest/download \
+		-o data/site-data.db
+ *
+ * Step 4: Restart dev server to clear caches
+ *
+ * === RUNNING TASKS LOCALLY ===
+ *
+ * Update local database with latest posts/stats
+ *
+for task in "update_posts" "update_stats" "update_popular_posts" "update_embeddings" "update_related_posts"; do
+	curl -X POST http://localhost:5173/api/ingest \
+		-H "Content-Type: application/json" \
+		-d "{\"task\": \"$task\", \"token\": \"your-secret-token\"}"
+	echo
+done
+ *
+ * === SINGLE TASK EXAMPLES ===
+ *
+ * Production:
+ *
+curl -X POST https://scottspence.com/api/ingest \
+  -H "Content-Type: application/json" \
+  -d '{"task": "update_posts", "token": "your-secret-token"}'
+ *
+ * Localhost:
+ *
+curl -X POST http://localhost:5173/api/ingest \
+  -H "Content-Type: application/json" \
+  -d '{"task": "update_posts", "token": "your-secret-token"}'
+ */
 
 // Define generic task function
 type TaskFunction<TArgs = any, TResult = any> = (
