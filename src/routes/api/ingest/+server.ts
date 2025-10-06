@@ -16,7 +16,7 @@ import { update_stats } from './update-stats'
  *
  * Step 1: Update production database with latest posts/stats
  *
-for task in "update_posts" "update_stats" "update_popular_posts" "update_embeddings" "update_related_posts"; do
+for task in "update_popular_posts" "update_posts" "update_embeddings" "update_related_posts"; do
 	curl -X POST https://scottspence.com/api/ingest \
 		-H "Content-Type: application/json" \
 		-d "{\"task\": \"$task\", \"token\": \"your-secret-token\"}"
@@ -41,7 +41,7 @@ curl -H "Authorization: Bearer your-secret-token" \
  *
  * Update local database with latest posts/stats
  *
-for task in "update_posts" "update_stats" "update_popular_posts" "update_embeddings" "update_related_posts"; do
+for task in "update_popular_posts" "update_posts" "update_embeddings" "update_related_posts"; do
 	curl -X POST http://localhost:5173/api/ingest \
 		-H "Content-Type: application/json" \
 		-d "{\"task\": \"$task\", \"token\": \"your-secret-token\"}"
