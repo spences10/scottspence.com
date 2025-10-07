@@ -2,7 +2,7 @@ import { BUTTONDOWN_API_KEY } from '$env/static/private'
 import { ratelimit } from '$lib/redis'
 import { fail } from '@sveltejs/kit'
 
-const buttondown_url = 'https://api.buttondown.email'
+const buttondown_url = 'https://api.buttondown.com'
 const buttondown_endpoint = '/v1/subscribers'
 
 export const actions = {
@@ -41,6 +41,7 @@ export const actions = {
 					},
 					body: JSON.stringify({
 						email,
+						ip_address,
 						tags,
 						metadata: {
 							source_ip: ip,
