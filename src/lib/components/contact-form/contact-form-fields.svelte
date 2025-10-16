@@ -1,25 +1,63 @@
 <script lang="ts">
-	import { enhance } from '$app/forms'
+	import type { ActionResult } from '@sveltejs/kit'
+	import { submit_contact } from '../../../routes/contact/contact.remote'
 
 	interface Props {
 		handle_result: Function
 	}
 
 	let { handle_result }: Props = $props()
+
+	let is_submitting = $state(false)
+	let error_message = $state<string | null>(null)
+
+	async function handle_submit(e: SubmitEvent) {
+		e.preventDefault()
+		is_submitting = true
+		error_message = null
+
+		try {
+			const form_data = new FormData(e.target as HTMLFormElement)
+			const data = {
+				name: form_data.get('name') as string,
+				email: form_data.get('email') as string,
+				reason: form_data.get('reason') as string,
+				message: form_data.get('message') as string,
+				subject: form_data.get('subject') as string,
+			}
+
+			console.log('Submitting contact form with data:', data)
+			await submit_contact(data)
+			console.log('Remote function succeeded')
+
+			const result: ActionResult = {
+				type: 'success',
+				status: 200,
+				data: { message: 'Email sent successfully' },
+			}
+			handle_result(result)
+			;(e.target as HTMLFormElement).reset()
+		} catch (error: unknown) {
+			const error_msg =
+				error instanceof Error ? error.message : 'An error occurred'
+			error_message = error_msg
+			const result: ActionResult = {
+				type: 'failure',
+				status: 400,
+				data: { error: error_msg },
+			}
+			handle_result(result)
+		} finally {
+			is_submitting = false
+		}
+	}
 </script>
 
 <div
-	class="not-prose bg-primary my-5 items-center justify-center rounded-box p-10 shadow-lg"
+	class="not-prose bg-primary rounded-box my-5 items-center justify-center p-10 shadow-lg"
 >
 	<form
-		method="POST"
-		action="/contact"
-		use:enhance={() => {
-			return ({ update, result }) => {
-				handle_result(result)
-				update({ reset: true })
-			}
-		}}
+		onsubmit={handle_submit}
 		class="mx-auto w-full max-w-md space-y-4 px-5"
 	>
 		<fieldset class="w-full">
@@ -97,9 +135,15 @@
 		<div class="flex justify-center">
 			<button
 				type="submit"
+				disabled={is_submitting}
 				class="btn btn-secondary w-full max-w-lg p-6"
 			>
-				Submit
+				{#if is_submitting}
+					<span class="loading loading-spinner"></span>
+					Sending...
+				{:else}
+					Submit
+				{/if}
 			</button>
 		</div>
 	</form>
