@@ -3,6 +3,7 @@ import {
 	EMAIL_APP_TO_ADDRESS,
 	RESEND_API_KEY,
 	RESEND_FROM_EMAIL,
+	TURNSTILE_SECRET_KEY,
 } from '$env/static/private'
 import { ratelimit } from '$lib/redis'
 import * as v from 'valibot'
@@ -32,7 +33,31 @@ const contact_schema = v.object({
 		v.maxLength(1000, 'Message must be less than 1000 characters'),
 	),
 	subject: v.optional(v.string()),
+	turnstile_token: v.string(),
 })
+
+async function verify_turnstile(
+	token: string,
+	ip: string,
+): Promise<boolean> {
+	const response = await fetch(
+		'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+		{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				secret: TURNSTILE_SECRET_KEY,
+				response: token,
+				remoteip: ip,
+			}),
+		},
+	)
+
+	const data = await response.json()
+	return data.success === true
+}
 
 async function send_email(
 	name: string,
@@ -87,6 +112,12 @@ export const submit_contact = command(
 			request.headers.get('x-real-ip') ||
 			'unknown'
 		console.log('[submit_contact] Client IP:', ip)
+
+		// Verify Turnstile token
+		const is_valid = await verify_turnstile(data.turnstile_token, ip)
+		if (!is_valid) {
+			throw new Error('Failed to verify captcha. Please try again.')
+		}
 
 		// Check rate limit
 		const rate_limit_attempt = await ratelimit.limit(ip)

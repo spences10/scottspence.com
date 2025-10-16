@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { PUBLIC_TURNSTILE_SITE_KEY } from '$env/static/public'
 	import type { ActionResult } from '@sveltejs/kit'
+	import { Turnstile } from 'svelte-turnstile'
 	import { submit_contact } from '../../../routes/contact/contact.remote'
 
 	interface Props {
@@ -10,6 +12,7 @@
 
 	let is_submitting = $state(false)
 	let error_message = $state<string | null>(null)
+	let turnstile_token = $state<string>('')
 
 	async function handle_submit(e: SubmitEvent) {
 		e.preventDefault()
@@ -17,6 +20,11 @@
 		error_message = null
 
 		try {
+			if (!turnstile_token) {
+				error_message = 'Please complete the verification'
+				return
+			}
+
 			const form_data = new FormData(e.target as HTMLFormElement)
 			const data = {
 				name: form_data.get('name') as string,
@@ -24,6 +32,7 @@
 				reason: form_data.get('reason') as string,
 				message: form_data.get('message') as string,
 				subject: form_data.get('subject') as string,
+				turnstile_token,
 			}
 
 			console.log('Submitting contact form with data:', data)
@@ -133,9 +142,22 @@
 			</div>
 		</fieldset>
 		<div class="flex justify-center">
+			<Turnstile
+				siteKey={PUBLIC_TURNSTILE_SITE_KEY}
+				on:turnstile-callback={(e) => {
+					turnstile_token = e.detail.token
+				}}
+			/>
+		</div>
+		{#if error_message}
+			<div class="alert alert-error">
+				<span>{error_message}</span>
+			</div>
+		{/if}
+		<div class="flex justify-center">
 			<button
 				type="submit"
-				disabled={is_submitting}
+				disabled={is_submitting || !turnstile_token}
 				class="btn btn-secondary w-full max-w-lg p-6"
 			>
 				{#if is_submitting}
