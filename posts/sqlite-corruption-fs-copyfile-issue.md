@@ -5,6 +5,8 @@ tags: ['sql', 'database', 'docker', 'guide', 'notes']
 is_private: false
 ---
 
+<!-- cspell:ignore freelist -->
+
 I was looking up something on my site for reference (as I usually do
 when trying to recall a detail) when I noticed the popular posts in
 the footer weren't displaying. That's odd. I'd been working with the

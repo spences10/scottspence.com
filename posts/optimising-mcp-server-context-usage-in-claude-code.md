@@ -5,6 +5,8 @@ tags: ['mcp', 'claude-code', 'claude', 'tools', 'guide']
 is_private: false
 ---
 
+<!-- cspell:ignore fastgpt autocompact -->
+
 So there I was, starting a Claude Code session, and I noticed
 something disturbing and completely of my own making: my MCP tools
 were consuming 66,000+ tokens of context before I even started a
@@ -437,8 +439,8 @@ scratch my own itch.
 
 ## Side-by-side comparison
 
-So, the reveal? Lol! Well, here's where I am now with `mcp-omnisearch`!
-Let me show you the actual difference:
+So, the reveal? Lol! Well, here's where I am now with
+`mcp-omnisearch`! Let me show you the actual difference:
 
 **Before (mcp-omnisearch)**
 
@@ -541,7 +543,7 @@ The McPick tool for managing servers is at
 
 Cool! So, that's one MCP server out of
 [the 13 I have made](https://github.com/spences10?tab=repositories&q=mcp-&type=source&language=&sort=)
-that's now optimised. The others will be on my hitlist with this post
+that's now optimised. The others will be on my hit list with this post
 as a reference.
 
 Have you optimised your own MCP servers? Found other ways to reduce
