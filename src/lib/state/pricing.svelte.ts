@@ -147,11 +147,10 @@ class PricingState {
 			for (const [currency, rate] of Object.entries(fetched_rates)) {
 				try {
 					// TODO: Maybe keep a history of these?
-					await client.execute({
-						sql: `INSERT INTO exchange_rates (currency_code, rate) VALUES (?, ?)
-							ON CONFLICT (currency_code) DO UPDATE SET rate = ?, last_updated = CURRENT_TIMESTAMP;`,
-						args: [currency, rate, rate],
-					})
+					const stmt =
+						client.prepare(`INSERT INTO exchange_rates (currency_code, rate) VALUES (?, ?)
+							ON CONFLICT (currency_code) DO UPDATE SET rate = ?, last_updated = CURRENT_TIMESTAMP;`)
+					stmt.run(currency, rate, rate)
 				} catch (error) {
 					console.error(
 						`Error updating exchange rate for ${currency}:`,
