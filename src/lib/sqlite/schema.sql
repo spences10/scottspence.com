@@ -127,6 +127,15 @@ CREATE TABLE IF NOT EXISTS
   );
 
 CREATE TABLE IF NOT EXISTS
+  newsletters_sent (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    filename TEXT NOT NULL UNIQUE,
+    sent_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    subscriber_count INTEGER,
+    resend_broadcast_id TEXT
+  );
+
+CREATE TABLE IF NOT EXISTS
   fathom_api_calls (
     id INTEGER PRIMARY KEY,
     calling_function TEXT NOT NULL,
