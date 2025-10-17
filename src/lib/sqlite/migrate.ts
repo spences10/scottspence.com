@@ -25,10 +25,11 @@ function get_applied_migrations(): string[] {
 function apply_migration(name: string, sql: string) {
 	try {
 		sqlite_client.exec(sql)
-		sqlite_client.execute({
-			sql: 'INSERT INTO migrations (name, applied_at) VALUES (?, ?)',
-			args: [name, Date.now()],
-		})
+		sqlite_client
+			.prepare(
+				'INSERT INTO migrations (name, applied_at) VALUES (?, ?)',
+			)
+			.run(name, Date.now())
 	} catch (error) {
 		console.error(`Failed to apply migration ${name}:`, error)
 		throw error
