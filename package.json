@@ -53,7 +53,7 @@
 		"eslint-plugin-svelte": "^3.12.4",
 		"fathom-client": "3.7.2",
 		"globals": "^16.4.0",
-		"marked": "16.4.0",
+		"marked": "16.4.1",
 		"mdsvex": "^0.12.6",
 		"mdsvex-relative-images": "1.0.3",
 		"playwright": "^1.56.0",
