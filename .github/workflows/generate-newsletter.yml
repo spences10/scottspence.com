@@ -13,6 +13,8 @@ jobs:
   create-newsletter-task:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
       - name: Create newsletter generation issue
         id: create-issue
         env:
