@@ -74,6 +74,7 @@ export type SqliteClient = {
 		get: (...args: unknown[]) => Record<string, unknown> | undefined
 		all: (...args: unknown[]) => Record<string, unknown>[]
 	}
+	exec: (sql: string) => void
 	close: () => void
 }
 
@@ -177,6 +178,20 @@ export const sqlite_client: SqliteClient = {
 				stmt.get(...args) as Record<string, unknown> | undefined,
 			all: (...args: unknown[]) =>
 				stmt.all(...args) as Record<string, unknown>[],
+		}
+	},
+
+	exec: (sql: string) => {
+		if (!sql) {
+			throw new Error('SQL cannot be empty')
+		}
+
+		try {
+			const db = get_database()
+			db.exec(sql)
+		} catch (error) {
+			console.error('SQLite exec error:', error)
+			throw error
 		}
 	},
 

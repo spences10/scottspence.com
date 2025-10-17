@@ -4,7 +4,7 @@ import { sqlite_client } from './client'
 
 // Create migrations table if it doesn't exist
 function init_migrations_table() {
-	sqlite_client.execute(`
+	sqlite_client.exec(`
     CREATE TABLE IF NOT EXISTS migrations (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL UNIQUE,
@@ -24,7 +24,7 @@ function get_applied_migrations(): string[] {
 // Apply a single migration
 function apply_migration(name: string, sql: string) {
 	try {
-		sqlite_client.execute(sql)
+		sqlite_client.exec(sql)
 		sqlite_client.execute({
 			sql: 'INSERT INTO migrations (name, applied_at) VALUES (?, ?)',
 			args: [name, Date.now()],
