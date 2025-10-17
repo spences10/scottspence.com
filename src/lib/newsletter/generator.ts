@@ -97,7 +97,7 @@ Start with the frontmatter (---) and include title, date, and published: false.
 	console.log('Calling Anthropic API...')
 
 	const message = await anthropic.messages.create({
-		model: 'claude-opus-4-1-20250805',
+		model: 'claude-haiku-4-5-20251001',
 		max_tokens: 2048,
 		system: agent_prompt,
 		messages: [
