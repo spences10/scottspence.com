@@ -1,5 +1,5 @@
-import { writeFile } from 'fs/promises'
-import { join } from 'path'
+import { writeFile } from 'node:fs/promises'
+import { join } from 'node:path'
 
 // Extend the Post type for our needs
 interface TrainingPost extends Post {
@@ -17,7 +17,7 @@ export const export_training_data = async () => {
 			const processedPosts = await Promise.all(
 				Object.entries(files).map(async ([path, importFn]) => {
 					try {
-						const content = await importFn() as string
+						const content = (await importFn()) as string
 						const parts = content.split('---')
 						const frontmatter = parts[1]
 						const markdown = parts.slice(2).join('---')
