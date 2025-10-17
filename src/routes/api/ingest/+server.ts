@@ -3,6 +3,7 @@ import { json } from '@sveltejs/kit'
 import { backup_database } from './backup-database'
 import { export_training_data } from './export-training-data'
 import { index_now } from './index-now'
+import { newsletter_send } from './newsletter-send'
 import { pull_database } from './pull-database'
 import { restore_database } from './restore-database'
 import { update_embeddings } from './update-embeddings'
@@ -80,6 +81,7 @@ type TaskKey =
 	| 'backup_database'
 	| 'pull_database'
 	| 'restore_database'
+	| 'newsletter_send'
 
 // Define the type for tasks object
 interface TaskType {
@@ -135,6 +137,10 @@ const tasks: TaskType = {
 	},
 	restore_database: {
 		function: restore_database,
+		expects_fetch: false,
+	},
+	newsletter_send: {
+		function: newsletter_send,
 		expects_fetch: false,
 	},
 }
