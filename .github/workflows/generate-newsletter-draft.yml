@@ -24,9 +24,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Install tsx
-        run: pnpm add -D tsx
-
       - name: Generate newsletter
         run: pnpx tsx scripts/generate-newsletter.ts
         env:

@@ -90,8 +90,8 @@ ${JSON.stringify(mock_data.bluesky_posts, null, 2)}
 ## GitHub Activity
 ${JSON.stringify(mock_data.github_activity, null, 2)}
 
-Create a professional, engaging newsletter in markdown format with frontmatter.
-Include the frontmatter with title, date, and published: false.
+Return ONLY the markdown content with frontmatter. Do NOT wrap in code fences or markdown triple backticks.
+Start with the frontmatter (---) and include title, date, and published: false.
 `
 
 	console.log('Calling Anthropic API...')
