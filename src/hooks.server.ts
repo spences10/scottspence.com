@@ -3,9 +3,19 @@ import {
 	rejected_extensions,
 	rejected_paths,
 } from '$lib/reject-patterns'
+import { sqlite_client } from '$lib/sqlite/client'
+import { run_migrations } from '$lib/sqlite/migrate'
 import { themes } from '$lib/themes'
 import { redirect, type Handle } from '@sveltejs/kit'
 import { sequence } from '@sveltejs/kit/hooks'
+import { readFileSync } from 'node:fs'
+
+// Initialize schema on startup
+const schema = readFileSync('src/lib/sqlite/schema.sql', 'utf-8')
+sqlite_client.execute(schema)
+
+// Run any pending migrations
+run_migrations()
 
 const sync_on_startup: Handle = async ({ event, resolve }) => {
 	// SQLite migration: No sync needed for local database
