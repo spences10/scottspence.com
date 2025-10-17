@@ -11,7 +11,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 export function read_agent_prompt(): string {
 	const agent_path = join(
 		__dirname,
-		'../../.claude/agents/newsletter-generator.md',
+		'../../../.claude/agents/newsletter-generator.md',
 	)
 
 	const content = readFileSync(agent_path, 'utf-8')

@@ -24,8 +24,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Install tsx
+        run: pnpm add -D tsx
+
       - name: Generate newsletter
-        run: npx tsx scripts/generate-newsletter.ts
+        run: pnpx tsx scripts/generate-newsletter.ts
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
