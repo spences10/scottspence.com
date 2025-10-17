@@ -34,9 +34,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh api repos/${{ github.repository }}/issues/${{ steps.create-issue.outputs.issue_number }}/assignees \
-            -f assignees='["copilot"]' \
-            -X POST
+          gh issue edit ${{ steps.create-issue.outputs.issue_number }} \
+            --add-assignee copilot-swe-agent \
+            --repo "${{ github.repository }}"
 
       - name: Comment with workflow context
         env:
