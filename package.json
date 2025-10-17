@@ -73,6 +73,7 @@
 		"svelte-turnstile": "^0.11.0",
 		"sveltekit-embed": "^0.0.22",
 		"tailwindcss": "^4.1.14",
+		"tsx": "^4.20.6",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.46.1",
 		"unist-util-visit": "5.0.0",
