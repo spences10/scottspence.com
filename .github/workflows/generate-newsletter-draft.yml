@@ -29,6 +29,9 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
+      - name: Set newsletter date
+        run: echo "NEWSLETTER_DATE=$(date +'%B %Y')" >> $GITHUB_ENV
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
@@ -36,7 +39,7 @@ jobs:
             "draft: newsletter for ${{ github.event.schedule ||
             'manual trigger' }}"
           branch: newsletters/draft-${{ github.run_number }}
-          title: 'Newsletter Draft: ${{ github.run_id }}'
+          title: 'Newsletter Draft: ${{ env.NEWSLETTER_DATE }}'
           body: |
             # Newsletter Draft
 
