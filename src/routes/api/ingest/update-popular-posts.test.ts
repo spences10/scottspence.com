@@ -45,7 +45,7 @@ describe('update_popular_posts function', () => {
 		] as any)
 	})
 
-	it('fetches data for all periods and inserts into Turso DB', async () => {
+	it('fetches data for all periods and inserts into database', async () => {
 		const result = await update_popular_posts(mock_fetch as Fetch)
 
 		expect(result).toEqual({ message: 'Popular posts updated' })
@@ -109,7 +109,7 @@ describe('update_popular_posts function', () => {
 		expect(result).toEqual({ message: 'Popular posts updated' })
 		expect(console_spy).toHaveBeenCalledTimes(3)
 		expect(console_spy).toHaveBeenCalledWith(
-			'Error fetching from Fathom or inserting into Turso DB:',
+			'Error fetching from Fathom or inserting into database:',
 			expect.any(Error),
 		)
 

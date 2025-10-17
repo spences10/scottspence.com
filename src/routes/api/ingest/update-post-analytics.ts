@@ -170,7 +170,7 @@ const insert_fathom_data_into_sqlite = async (
 			await client.batch(batch_queries)
 			console.log('Batch queries executed:', batch_queries.length)
 		} catch (error) {
-			console.error('Error during batch insert into Turso DB:', error)
+			console.error('Error during batch insert into database:', error)
 		}
 	}
 }

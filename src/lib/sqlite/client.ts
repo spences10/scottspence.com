@@ -215,10 +215,3 @@ export const sqlite_client: SqliteClient = {
 export const sync_sqlite_replica = async (): Promise<void> => {
 	console.log('Local SQLite: no sync needed')
 }
-
-/**
- * Legacy exports for compatibility during Turso → SQLite migration
- * These can be removed once all code is updated to use sqlite_client directly
- */
-export const turso_client = () => sqlite_client
-export const sync_turso_replica = sync_sqlite_replica

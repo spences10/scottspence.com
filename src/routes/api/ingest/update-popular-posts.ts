@@ -38,7 +38,7 @@ const insert_fathom_data_into_sqlite = async (
 		try {
 			await client.batch(batch_queries)
 		} catch (error) {
-			console.error('Error during batch insert into Turso DB:', error)
+			console.error('Error during batch insert into database:', error)
 		}
 	}
 }
@@ -87,7 +87,7 @@ export const update_popular_posts = async (fetch: Fetch) => {
 			}
 		} catch (error) {
 			console.error(
-				'Error fetching from Fathom or inserting into Turso DB:',
+				'Error fetching from Fathom or inserting into database:',
 				error,
 			)
 		}

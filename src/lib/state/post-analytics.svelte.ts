@@ -116,7 +116,7 @@ class PostAnalyticsState {
 				if (row.period === 'year') page_analytics.yearly = row
 			})
 		} catch (error) {
-			console.error('Error fetching from Turso DB:', error)
+			console.error('Error fetching from database:', error)
 			return null
 		}
 
