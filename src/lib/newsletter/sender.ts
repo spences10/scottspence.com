@@ -1,4 +1,8 @@
-import { env } from '$env/dynamic/private'
+import {
+	RESEND_API_KEY,
+	RESEND_AUDIENCE_ID,
+	RESEND_FROM_EMAIL,
+} from '$env/static/private'
 import { sqlite_client } from '$lib/sqlite/client'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
@@ -64,12 +68,12 @@ async function send_via_resend(
 	const response = await fetch('https://api.resend.com/emails', {
 		method: 'POST',
 		headers: {
-			Authorization: `Bearer ${env.RESEND_API_KEY}`,
+			Authorization: `Bearer ${RESEND_API_KEY}`,
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			from: `Scott <${env.RESEND_FROM_EMAIL}>`,
-			to: env.RESEND_AUDIENCE_ID,
+			from: `Scott <${RESEND_FROM_EMAIL}>`,
+			to: RESEND_AUDIENCE_ID,
 			subject: title,
 			html,
 			headers: {
@@ -117,10 +121,10 @@ async function record_send(
 async function get_subscriber_count(): Promise<number> {
 	try {
 		const response = await fetch(
-			`https://api.resend.com/audiences/${env.RESEND_AUDIENCE_ID}/contacts?limit=1`,
+			`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts?limit=1`,
 			{
 				headers: {
-					Authorization: `Bearer ${env.RESEND_API_KEY}`,
+					Authorization: `Bearer ${RESEND_API_KEY}`,
 				},
 			},
 		)
@@ -147,10 +151,10 @@ async function get_subscriber_count(): Promise<number> {
 		// Fetch remaining pages if needed
 		while (has_more && after_cursor) {
 			const next_response = await fetch(
-				`https://api.resend.com/audiences/${env.RESEND_AUDIENCE_ID}/contacts?limit=100&after=${after_cursor}`,
+				`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts?limit=100&after=${after_cursor}`,
 				{
 					headers: {
-						Authorization: `Bearer ${env.RESEND_API_KEY}`,
+						Authorization: `Bearer ${RESEND_API_KEY}`,
 					},
 				},
 			)
