@@ -86,7 +86,7 @@ export const subscribe_to_newsletter = command(
 						'Content-Type': 'application/json',
 					},
 					body: JSON.stringify({
-						from: RESEND_FROM_EMAIL,
+						from: `Scott <${RESEND_FROM_EMAIL}>`,
 						to: data.email,
 						subject: 'Confirm your newsletter subscription',
 						html: `
