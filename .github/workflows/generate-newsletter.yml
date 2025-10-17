@@ -1,0 +1,44 @@
+name: Generate Newsletter
+
+on:
+  workflow_dispatch: ~
+  schedule:
+    - cron: '0 0 * * *' # Daily at midnight UTC
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  create-newsletter-task:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create newsletter generation issue
+        id: create-issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ISSUE_URL=$(gh issue create \
+            --title "Generate newsletter - $(date +%B\ %Y)" \
+            --body "Generate this month's newsletter based on Bluesky and GitHub activity. See .github/copilot-instructions.md for detailed requirements." \
+            --label "newsletter" \
+            --repo "${{ github.repository }}")
+
+          ISSUE_NUMBER=$(echo "$ISSUE_URL" | grep -oP '(?<=/issues/)\d+')
+          echo "issue_number=$ISSUE_NUMBER" >> $GITHUB_OUTPUT
+          echo "issue_url=$ISSUE_URL" >> $GITHUB_OUTPUT
+
+      - name: Assign issue to Copilot
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api repos/${{ github.repository }}/issues/${{ steps.create-issue.outputs.issue_number }}/assignees \
+            -f assignees='["copilot"]' \
+            -X POST
+
+      - name: Comment with workflow context
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue comment ${{ steps.create-issue.outputs.issue_number }} \
+            --body "Assigned to @copilot. Please generate the newsletter based on the custom instructions in .github/copilot-instructions.md"
