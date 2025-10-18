@@ -1,5 +1,6 @@
 import { env } from '$env/dynamic/private'
 import { json } from '@sveltejs/kit'
+import { adhoc_newsletter_send } from './adhoc-newsletter-send'
 import { backup_database } from './backup-database'
 import { export_training_data } from './export-training-data'
 import { index_now } from './index-now'
@@ -82,6 +83,7 @@ type TaskKey =
 	| 'pull_database'
 	| 'restore_database'
 	| 'newsletter_send'
+	| 'adhoc_newsletter_send'
 
 // Define the type for tasks object
 interface TaskType {
@@ -141,6 +143,10 @@ const tasks: TaskType = {
 	},
 	newsletter_send: {
 		function: newsletter_send,
+		expects_fetch: false,
+	},
+	adhoc_newsletter_send: {
+		function: adhoc_newsletter_send,
 		expects_fetch: false,
 	},
 }

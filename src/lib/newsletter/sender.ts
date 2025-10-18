@@ -24,18 +24,19 @@ interface NewsletterFile {
  */
 function read_newsletter_file(filename: string): NewsletterFile {
 	// Validate filename to prevent path traversal
-	if (!filename.match(/^\d{4}-\d{2}\.md$/)) {
-		throw new Error('Invalid filename format. Use YYYY-MM.md')
+	// Allow both date format (YYYY-MM.md) and custom names (adhoc-*.md)
+	if (!filename.match(/^[\w-]+\.md$/)) {
+		throw new Error('Invalid filename format. Use [name].md')
 	}
 
 	try {
-		// Try reading from src first (for development)
-		const src_path = join(
+		// Try reading from newsletter directory
+		const newsletter_path = join(
 			process.cwd(),
-			'src/content/newsletters',
+			'newsletter',
 			filename,
 		)
-		const content = readFileSync(src_path, 'utf-8')
+		const content = readFileSync(newsletter_path, 'utf-8')
 		return { filename, content }
 	} catch {
 		throw new Error(`Newsletter file not found: ${filename}`)
@@ -65,32 +66,65 @@ async function send_via_resend(
 	html: string,
 	title: string,
 ): Promise<string> {
-	const response = await fetch('https://api.resend.com/emails', {
-		method: 'POST',
-		headers: {
-			Authorization: `Bearer ${RESEND_API_KEY}`,
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify({
-			from: `Scott <${RESEND_FROM_EMAIL}>`,
-			to: RESEND_AUDIENCE_ID,
-			subject: title,
-			html,
+	// Step 1: Create the broadcast
+	const create_response = await fetch(
+		'https://api.resend.com/broadcasts',
+		{
+			method: 'POST',
 			headers: {
-				'List-Unsubscribe': '{unsubscribe_link}',
+				Authorization: `Bearer ${RESEND_API_KEY}`,
+				'Content-Type': 'application/json',
 			},
-		}),
-	})
+			body: JSON.stringify({
+				audience_id: RESEND_AUDIENCE_ID,
+				name: title,
+				from: `Scott <${RESEND_FROM_EMAIL}>`,
+				subject: title,
+				html,
+				headers: {
+					'List-Unsubscribe': '{unsubscribe_link}',
+				},
+			}),
+		},
+	)
 
-	if (!response.ok) {
-		const error_data = await response.json()
+	if (!create_response.ok) {
+		const error_data = await create_response.json()
 		throw new Error(
-			error_data.message || 'Failed to send newsletter via Resend',
+			error_data.message || 'Failed to create broadcast via Resend',
 		)
 	}
 
-	const data = await response.json()
-	return data.id
+	const broadcast_data = await create_response.json()
+	const broadcast_id = broadcast_data.id
+
+	// Step 2: Send the broadcast immediately
+	const SEND_BROADCAST_IMMEDIATELY = false
+	if (SEND_BROADCAST_IMMEDIATELY) {
+		// Add delay to avoid rate limiting (2 requests/second limit)
+		await new Promise((resolve) => setTimeout(resolve, 1000))
+
+		const send_response = await fetch(
+			`https://api.resend.com/broadcasts/${broadcast_id}/send`,
+			{
+				method: 'POST',
+				headers: {
+					Authorization: `Bearer ${RESEND_API_KEY}`,
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({}),
+			},
+		)
+
+		if (!send_response.ok) {
+			const error_data = await send_response.json()
+			throw new Error(
+				error_data.message || 'Failed to send broadcast via Resend',
+			)
+		}
+	}
+
+	return broadcast_id
 }
 
 /**
@@ -102,13 +136,11 @@ async function record_send(
 	subscriber_count: number,
 ): Promise<void> {
 	try {
-		await sqlite_client.execute({
-			sql: `
-        INSERT INTO newsletters_sent (filename, resend_broadcast_id, subscriber_count)
-        VALUES (?, ?, ?);
-      `,
-			args: [filename, broadcast_id, subscriber_count],
-		})
+		const stmt = sqlite_client.prepare(`
+      INSERT INTO newsletters_sent (filename, resend_broadcast_id, subscriber_count)
+      VALUES (?, ?, ?)
+    `)
+		stmt.run(filename, broadcast_id, subscriber_count)
 	} catch (error) {
 		console.error('Error recording newsletter send:', error)
 		throw new Error('Failed to record newsletter send')

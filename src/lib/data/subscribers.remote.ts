@@ -109,10 +109,10 @@ export const get_subscriber_count = query(
 			// If we got a valid count from Resend, update the cache and return it
 			if (resend_count > 0) {
 				try {
-					await sqlite_client.execute({
-						sql: 'INSERT INTO newsletter_subscriber (count) VALUES (?);',
-						args: [resend_count],
-					})
+					const stmt = sqlite_client.prepare(
+						'INSERT INTO newsletter_subscriber (count) VALUES (?)',
+					)
+					stmt.run(resend_count)
 				} catch (error) {
 					console.error(
 						'Error updating subscriber count cache:',

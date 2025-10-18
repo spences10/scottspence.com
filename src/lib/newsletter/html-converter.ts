@@ -186,7 +186,7 @@ function create_email_template(
     <div class="email-footer">
       <p>
         <a href="https://scottspence.com">Visit my site</a> ·
-        <a href="{unsubscribe_link}">Unsubscribe</a>
+        <a href="{{{RESEND_UNSUBSCRIBE_URL}}}">Unsubscribe</a>
       </p>
     </div>
   </div>
