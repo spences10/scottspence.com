@@ -73,11 +73,6 @@ export const backfill_github_activity = async () => {
 				console.error(`  ✗ Error fetching ${date_str}:`, error)
 				// Continue with next day
 			}
-
-			// Small delay to avoid rate limiting
-			if (i < dates.length - 1) {
-				await new Promise((resolve) => setTimeout(resolve, 1000))
-			}
 		}
 
 		console.log('Backfill complete!')
