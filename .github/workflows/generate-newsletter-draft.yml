@@ -14,16 +14,27 @@ jobs:
 
       - name: Generate newsletter via API
         run: |
-          # Call production API to generate newsletter
-          curl -X POST https://scottspence.com/api/ingest \
+          # Call production API to generate newsletter with verbose output
+          echo "Calling API..."
+          curl -v -X POST https://scottspence.com/api/ingest \
             -H "Content-Type: application/json" \
             -d '{"task": "generate_newsletter", "token": "${{ secrets.INGEST_TOKEN }}"}' \
             -o newsletter-response.json
 
-          # Debug: Show the response
-          echo "API Response:"
+          echo ""
+          echo "=== API Response Content ==="
           cat newsletter-response.json
           echo ""
+          echo "=== End Response ==="
+          echo ""
+
+          # Check if response is valid JSON
+          if ! jq empty newsletter-response.json 2>/dev/null; then
+            echo "ERROR: Response is not valid JSON!"
+            echo "First 500 chars:"
+            head -c 500 newsletter-response.json
+            exit 1
+          fi
 
           # Extract content from JSON response
           CONTENT=$(cat newsletter-response.json | jq -r '.data.content')
