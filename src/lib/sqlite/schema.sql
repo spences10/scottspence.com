@@ -280,6 +280,62 @@ CREATE TABLE IF NOT EXISTS
     bounce_rate REAL NOT NULL
   );
 
+-- GitHub Activity tables for newsletter generation
+CREATE TABLE IF NOT EXISTS
+  github_commits (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sha TEXT NOT NULL UNIQUE,
+    repo TEXT NOT NULL,
+    message TEXT NOT NULL,
+    date TEXT NOT NULL,
+    url TEXT NOT NULL,
+    is_private BOOLEAN NOT NULL,
+    fetched_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  );
+
+CREATE TABLE IF NOT EXISTS
+  github_pull_requests (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    repo TEXT NOT NULL,
+    number INTEGER NOT NULL,
+    title TEXT NOT NULL,
+    state TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    merged_at TEXT,
+    url TEXT NOT NULL,
+    is_private BOOLEAN NOT NULL,
+    fetched_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (repo, number)
+  );
+
+CREATE TABLE IF NOT EXISTS
+  github_issues (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    repo TEXT NOT NULL,
+    number INTEGER NOT NULL,
+    title TEXT NOT NULL,
+    state TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    closed_at TEXT,
+    url TEXT NOT NULL,
+    is_private BOOLEAN NOT NULL,
+    fetched_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (repo, number)
+  );
+
+CREATE TABLE IF NOT EXISTS
+  github_releases (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    repo TEXT NOT NULL,
+    tag_name TEXT NOT NULL,
+    name TEXT NOT NULL,
+    published_at TEXT NOT NULL,
+    url TEXT NOT NULL,
+    is_private BOOLEAN NOT NULL,
+    fetched_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (repo, tag_name)
+  );
+
 -- Performance indexes
 CREATE INDEX IF NOT EXISTS idx_popular_posts_date_grouping_pageviews ON popular_posts (date_grouping, pageviews DESC);
 CREATE INDEX IF NOT EXISTS idx_posts_slug ON posts (slug);
@@ -287,6 +343,14 @@ CREATE INDEX IF NOT EXISTS idx_monthly_pathname ON analytics_monthly (pathname);
 CREATE INDEX IF NOT EXISTS idx_monthly_year_month ON analytics_monthly (year_month);
 CREATE INDEX IF NOT EXISTS idx_yearly_pathname ON analytics_yearly (pathname);
 CREATE INDEX IF NOT EXISTS idx_yearly_year ON analytics_yearly (year);
+CREATE INDEX IF NOT EXISTS idx_github_commits_date ON github_commits (date DESC);
+CREATE INDEX IF NOT EXISTS idx_github_commits_repo ON github_commits (repo);
+CREATE INDEX IF NOT EXISTS idx_github_prs_created ON github_pull_requests (created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_github_prs_repo ON github_pull_requests (repo);
+CREATE INDEX IF NOT EXISTS idx_github_issues_created ON github_issues (created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_github_issues_repo ON github_issues (repo);
+CREATE INDEX IF NOT EXISTS idx_github_releases_published ON github_releases (published_at DESC);
+CREATE INDEX IF NOT EXISTS idx_github_releases_repo ON github_releases (repo);
 
 -- Enable WAL mode for better concurrent access
 PRAGMA journal_mode = WAL;

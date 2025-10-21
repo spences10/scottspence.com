@@ -1,7 +1,9 @@
 import { env } from '$env/dynamic/private'
 import { json } from '@sveltejs/kit'
 import { adhoc_newsletter_send } from './adhoc-newsletter-send'
+import { backfill_github_activity } from './backfill-github-activity'
 import { backup_database } from './backup-database'
+import { daily_github_activity } from './daily-github-activity'
 import { export_training_data } from './export-training-data'
 import { fetch_github_activity } from './fetch-github-activity'
 import { generate_newsletter } from './generate-newsletter'
@@ -88,6 +90,8 @@ type TaskKey =
 	| 'newsletter_send'
 	| 'adhoc_newsletter_send'
 	| 'fetch_github_activity'
+	| 'backfill_github_activity'
+	| 'daily_github_activity'
 	| 'generate_newsletter'
 	| 'send_newsletter_reminder'
 
@@ -157,6 +161,14 @@ const tasks: TaskType = {
 	},
 	fetch_github_activity: {
 		function: fetch_github_activity,
+		expects_fetch: false,
+	},
+	backfill_github_activity: {
+		function: backfill_github_activity,
+		expects_fetch: false,
+	},
+	daily_github_activity: {
+		function: daily_github_activity,
 		expects_fetch: false,
 	},
 	generate_newsletter: {
