@@ -1,4 +1,4 @@
-import { GITHUB_TOKEN } from '$env/static/private'
+import { NEWSLETTER_GH_ACTIVITY_TOKEN } from '$env/static/private'
 import { fetch_github_activity as fetch_activity } from '$lib/newsletter/github-fetcher'
 
 /**
@@ -7,11 +7,11 @@ import { fetch_github_activity as fetch_activity } from '$lib/newsletter/github-
  */
 export const fetch_github_activity = async () => {
 	try {
-		const github_token = GITHUB_TOKEN
+		const github_token = NEWSLETTER_GH_ACTIVITY_TOKEN
 
 		if (!github_token) {
 			throw new Error(
-				'GITHUB_TOKEN environment variable is not set. Please add it to your .env file.',
+				'NEWSLETTER_GH_ACTIVITY_TOKEN environment variable is not set. Please add it to your .env file.',
 			)
 		}
 

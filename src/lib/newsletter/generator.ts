@@ -1,76 +1,46 @@
+import {
+	ANTHROPIC_API_KEY,
+	NEWSLETTER_GH_ACTIVITY_TOKEN,
+} from '$env/static/private'
 import Anthropic from '@anthropic-ai/sdk'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { read_agent_prompt } from './agent-reader'
+import {
+	fetch_github_activity,
+	type GitHubActivity,
+} from './github-fetcher'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const anthropic = new Anthropic({
-	apiKey: process.env.ANTHROPIC_API_KEY,
+	apiKey: ANTHROPIC_API_KEY,
 })
 
-interface MockData {
+interface NewsletterData {
 	month: string
 	year: number
-	bluesky_posts: Array<{
-		text: string
-		likes: number
-		replies: number
-		date: string
-	}>
-	github_activity: Array<{
-		type: string
-		repo: string
-		commits?: number
-		version?: string
-		message: string
-		date: string
-	}>
+	github_activity: GitHubActivity
 }
 
 /**
- * Generate mock data for testing
- * Replace with real Bluesky and GitHub API calls later
+ * Fetch real data for newsletter
  */
-function get_mock_data(): MockData {
+async function fetch_newsletter_data(
+	github_token: string,
+): Promise<NewsletterData> {
 	const now = new Date()
 	const month = now.toLocaleString('en-GB', { month: 'long' })
 	const year = now.getFullYear()
 
+	console.log('Fetching GitHub activity...')
+	const github_activity = await fetch_github_activity(github_token)
+
 	return {
 		month,
 		year,
-		bluesky_posts: [
-			{
-				text: 'Just shipped the new newsletter automation system. Finally getting those monthly updates out!',
-				likes: 24,
-				replies: 3,
-				date: '2025-10-15',
-			},
-			{
-				text: 'Spent the morning optimizing database queries. 60% faster now. Small wins add up.',
-				likes: 18,
-				replies: 2,
-				date: '2025-10-10',
-			},
-		],
-		github_activity: [
-			{
-				type: 'push',
-				repo: 'scottspence.com',
-				commits: 5,
-				message: 'feat: implement newsletter generation workflow',
-				date: '2025-10-17',
-			},
-			{
-				type: 'release',
-				repo: 'some-package',
-				version: '1.2.0',
-				message: 'Added new features',
-				date: '2025-10-14',
-			},
-		],
+		github_activity,
 	}
 }
 
@@ -79,16 +49,39 @@ function get_mock_data(): MockData {
  */
 async function call_anthropic_api(
 	agent_prompt: string,
-	mock_data: MockData,
+	data: NewsletterData,
 ): Promise<string> {
+	const { month, year, github_activity } = data
+
+	// Format GitHub activity for better readability
+	const activity_summary = `
+### Summary
+- **Commits**: ${github_activity.commits.length} commits across ${new Set(github_activity.commits.map((c) => c.repo)).size} repositories
+- **Pull Requests**: ${github_activity.pull_requests.length} PRs (${github_activity.pull_requests.filter((pr) => pr.merged_at).length} merged)
+- **Issues**: ${github_activity.issues.length} issues
+- **Releases**: ${github_activity.releases.length} releases
+
+### Date Range
+From: ${github_activity.date_range.from}
+To: ${github_activity.date_range.to}
+`
+
 	const user_message = `
-Generate a newsletter draft for ${mock_data.month} ${mock_data.year} using this data:
+Generate a newsletter draft for ${month} ${year} using this GitHub activity data:
 
-## Bluesky Posts
-${JSON.stringify(mock_data.bluesky_posts, null, 2)}
+${activity_summary}
 
-## GitHub Activity
-${JSON.stringify(mock_data.github_activity, null, 2)}
+## Commits
+${JSON.stringify(github_activity.commits, null, 2)}
+
+## Pull Requests
+${JSON.stringify(github_activity.pull_requests, null, 2)}
+
+## Issues
+${JSON.stringify(github_activity.issues, null, 2)}
+
+## Releases
+${JSON.stringify(github_activity.releases, null, 2)}
 
 Return ONLY the markdown content with frontmatter. Do NOT wrap in code fences or markdown triple backticks.
 Start with the frontmatter (---) and include title, date, and published: false.
@@ -98,7 +91,7 @@ Start with the frontmatter (---) and include title, date, and published: false.
 
 	const message = await anthropic.messages.create({
 		model: 'claude-haiku-4-5-20251001',
-		max_tokens: 2048,
+		max_tokens: 4096, // Increased for larger content
 		system: agent_prompt,
 		messages: [
 			{
@@ -139,23 +132,49 @@ function save_newsletter(content: string): string {
 	return filepath
 }
 
+export interface GenerateNewsletterResult {
+	success: boolean
+	filepath: string
+	content: string
+	filename: string
+}
+
 /**
  * Main function: Generate newsletter and save to file
+ * Returns both the content and metadata for API responses
  */
-export async function generate_newsletter(): Promise<void> {
+export async function generate_newsletter(): Promise<GenerateNewsletterResult> {
 	try {
 		console.log('Starting newsletter generation...')
 
+		// Check for required environment variables
+		const github_token = NEWSLETTER_GH_ACTIVITY_TOKEN
+		if (!github_token) {
+			throw new Error(
+				'NEWSLETTER_GH_ACTIVITY_TOKEN environment variable is required. Please add it to your .env file.',
+			)
+		}
+
 		const agent_prompt = read_agent_prompt()
-		const mock_data = get_mock_data()
+		const newsletter_data = await fetch_newsletter_data(github_token)
 		const newsletter_content = await call_anthropic_api(
 			agent_prompt,
-			mock_data,
+			newsletter_data,
 		)
 		const filepath = save_newsletter(newsletter_content)
 
+		const now = new Date()
+		const filename = now.toISOString().slice(0, 7) // YYYY-MM format
+
 		console.log('Newsletter generation complete!')
 		console.log(`File: ${filepath}`)
+
+		return {
+			success: true,
+			filepath,
+			content: newsletter_content,
+			filename: `${filename}.md`,
+		}
 	} catch (error) {
 		console.error('Newsletter generation failed:', error)
 		throw error

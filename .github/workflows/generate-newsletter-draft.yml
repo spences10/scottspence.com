@@ -6,28 +6,31 @@ on:
 
 jobs:
   generate-newsletter:
-    name: Generate newsletter from Bluesky + GitHub data
+    name: Generate newsletter from GitHub data
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v5
 
-      - uses: pnpm/action-setup@v4.2.0
-        with:
-          version: 10
+      - name: Generate newsletter via API
+        run: |
+          # Call production API to generate newsletter
+          curl -X POST https://scottspence.com/api/ingest \
+            -H "Content-Type: application/json" \
+            -d '{"task": "generate_newsletter", "token": "${{ secrets.INGEST_TOKEN }}"}' \
+            -o newsletter-response.json
 
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 22.x
-          cache: 'pnpm'
+          # Extract content from JSON response
+          CONTENT=$(cat newsletter-response.json | jq -r '.data.content')
+          FILENAME=$(cat newsletter-response.json | jq -r '.data.filename')
 
-      - name: Install dependencies
-        run: pnpm install
+          # Create newsletters directory if it doesn't exist
+          mkdir -p content/newsletters
 
-      - name: Generate newsletter
-        run: pnpx tsx scripts/generate-newsletter.ts
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Save newsletter content to file
+          echo "$CONTENT" > "content/newsletters/$FILENAME"
+
+          echo "Newsletter saved to content/newsletters/$FILENAME"
 
       - name: Set newsletter date
         run: echo "NEWSLETTER_DATE=$(date +'%B %Y')" >> $GITHUB_ENV
