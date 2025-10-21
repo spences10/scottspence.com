@@ -3,6 +3,7 @@ import { json } from '@sveltejs/kit'
 import { adhoc_newsletter_send } from './adhoc-newsletter-send'
 import { backup_database } from './backup-database'
 import { export_training_data } from './export-training-data'
+import { fetch_github_activity } from './fetch-github-activity'
 import { index_now } from './index-now'
 import { newsletter_send } from './newsletter-send'
 import { pull_database } from './pull-database'
@@ -84,6 +85,7 @@ type TaskKey =
 	| 'restore_database'
 	| 'newsletter_send'
 	| 'adhoc_newsletter_send'
+	| 'fetch_github_activity'
 
 // Define the type for tasks object
 interface TaskType {
@@ -147,6 +149,10 @@ const tasks: TaskType = {
 	},
 	adhoc_newsletter_send: {
 		function: adhoc_newsletter_send,
+		expects_fetch: false,
+	},
+	fetch_github_activity: {
+		function: fetch_github_activity,
 		expects_fetch: false,
 	},
 }
