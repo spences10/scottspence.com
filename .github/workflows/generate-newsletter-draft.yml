@@ -20,6 +20,11 @@ jobs:
             -d '{"task": "generate_newsletter", "token": "${{ secrets.INGEST_TOKEN }}"}' \
             -o newsletter-response.json
 
+          # Debug: Show the response
+          echo "API Response:"
+          cat newsletter-response.json
+          echo ""
+
           # Extract content from JSON response
           CONTENT=$(cat newsletter-response.json | jq -r '.data.content')
           FILENAME=$(cat newsletter-response.json | jq -r '.data.filename')
