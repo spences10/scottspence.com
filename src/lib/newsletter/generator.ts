@@ -1,16 +1,12 @@
-import {
-	ANTHROPIC_API_KEY,
-	NEWSLETTER_GH_ACTIVITY_TOKEN,
-} from '$env/static/private'
+import { ANTHROPIC_API_KEY } from '$env/static/private'
 import Anthropic from '@anthropic-ai/sdk'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { read_agent_prompt } from './agent-reader'
-import {
-	fetch_github_activity,
-	type GitHubActivity,
-} from './github-fetcher'
+import { fetch_github_activity_from_db } from './db-fetcher'
+import type { GitHubActivity } from './github-fetcher'
+import { fetch_blog_posts, type BlogPost } from './posts-fetcher'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -22,25 +18,28 @@ interface NewsletterData {
 	month: string
 	year: number
 	github_activity: GitHubActivity
+	blog_posts: BlogPost[]
 }
 
 /**
- * Fetch real data for newsletter
+ * Fetch real data for newsletter from database
  */
-async function fetch_newsletter_data(
-	github_token: string,
-): Promise<NewsletterData> {
+async function fetch_newsletter_data(): Promise<NewsletterData> {
 	const now = new Date()
 	const month = now.toLocaleString('en-GB', { month: 'long' })
 	const year = now.getFullYear()
 
-	console.log('Fetching GitHub activity...')
-	const github_activity = await fetch_github_activity(github_token)
+	console.log('Fetching GitHub activity from database...')
+	const github_activity = await fetch_github_activity_from_db()
+
+	console.log('Fetching blog posts from database...')
+	const blog_posts = await fetch_blog_posts()
 
 	return {
 		month,
 		year,
 		github_activity,
+		blog_posts,
 	}
 }
 
@@ -51,7 +50,7 @@ async function call_anthropic_api(
 	agent_prompt: string,
 	data: NewsletterData,
 ): Promise<string> {
-	const { month, year, github_activity } = data
+	const { month, year, github_activity, blog_posts } = data
 
 	// Format GitHub activity for better readability
 	const activity_summary = `
@@ -60,6 +59,7 @@ async function call_anthropic_api(
 - **Pull Requests**: ${github_activity.pull_requests.length} PRs (${github_activity.pull_requests.filter((pr) => pr.merged_at).length} merged)
 - **Issues**: ${github_activity.issues.length} issues
 - **Releases**: ${github_activity.releases.length} releases
+- **Blog Posts**: ${blog_posts.length} posts published
 
 ### Date Range
 From: ${github_activity.date_range.from}
@@ -67,9 +67,12 @@ To: ${github_activity.date_range.to}
 `
 
 	const user_message = `
-Generate a newsletter draft for ${month} ${year} using this GitHub activity data:
+Generate a newsletter draft for ${month} ${year} using this data:
 
 ${activity_summary}
+
+## Blog Posts
+${JSON.stringify(blog_posts, null, 2)}
 
 ## Commits
 ${JSON.stringify(github_activity.commits, null, 2)}
@@ -145,16 +148,8 @@ export async function generate_newsletter(): Promise<GenerateNewsletterResult> {
 	try {
 		console.log('Starting newsletter generation...')
 
-		// Check for required environment variables
-		const github_token = NEWSLETTER_GH_ACTIVITY_TOKEN
-		if (!github_token) {
-			throw new Error(
-				'NEWSLETTER_GH_ACTIVITY_TOKEN environment variable is required. Please add it to your .env file.',
-			)
-		}
-
 		const agent_prompt = read_agent_prompt()
-		const newsletter_data = await fetch_newsletter_data(github_token)
+		const newsletter_data = await fetch_newsletter_data()
 		const newsletter_content = await call_anthropic_api(
 			agent_prompt,
 			newsletter_data,

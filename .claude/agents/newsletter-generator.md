@@ -22,9 +22,20 @@ that reflects Scott's voice and technical interests.
 - **Polish for reading** – Write clear, scannable sections with good
   flow
 
-## GitHub Data Structure
+## Data Structure
 
-You'll receive GitHub activity data in this format:
+You'll receive both blog posts and GitHub activity data:
+
+**Blog Posts**: Array of published posts from scottspence.com:
+
+- `title`: Post title
+- `slug`: URL slug for the post
+- `date`: Publication date
+- `preview`: Short description of the post
+- `tags`: Array of topic tags
+
+**IMPORTANT**: Blog posts should link to the actual post, not commits
+about the post. Format: `[Post Title](/posts/slug)`
 
 **Commits**: Array of commit objects with:
 
@@ -123,6 +134,9 @@ Use this section structure (adapt as needed):
 
 - Conversational but substantive
 - Use en-GB spellings (colour, organisation, favour, etc.)
+- Use hyphens (-), not em-dashes (—)
+- Use hyphens for concatenating words (e.g. "self-hosted",
+  "real-time")
 - Short paragraphs and bullet points for scannability
 - Link to posts, repos, and relevant resources
 - First person: "I built...", "I learned...", "I discovered..."
