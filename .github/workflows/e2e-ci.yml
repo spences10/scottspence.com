@@ -60,3 +60,6 @@ jobs:
           DATABASE_BACKUPS_PATH: ${{ secrets.DATABASE_BACKUPS_PATH }}
           PRODUCTION_URL: ${{ secrets.PRODUCTION_URL }}
           INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # prettier-ignore
+          NEWSLETTER_GH_ACTIVITY_TOKEN: ${{ secrets.NEWSLETTER_GH_ACTIVITY_TOKEN }}
