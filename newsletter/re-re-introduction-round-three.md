@@ -10,7 +10,7 @@ Hey there!
 You're getting this because you signed up for my newsletter at some
 point. Firstly, thanks! Secondly, I've migrated everything from
 Buttondown over to Resend. I wanted to reach out to tell you this
-before I start sending the regular newletter.
+before I start sending the regular newsletter.
 
 So, **if you're not interested in receiving these emails from me
 anymore, absolutely no worries.** Here's the link to unsubscribe.
