@@ -63,7 +63,7 @@ grep -E "^title: \"[a-z]" posts/
 grep -E "(very|really|quite|basically|literally)" posts/
 
 # Find missing code block language identifiers
-grep -E "^\`\`\`$" src/content/newsletters/
+grep -E "^\`\`\`$" newsletter/
 ```
 
 ## En-GB Spelling Reference
@@ -175,7 +175,7 @@ grep -E "^##" posts/*.md | while read heading; do
 done
 
 # Find code blocks missing language identifier
-grep -n "^\`\`\`$" src/content/newsletters/*.md
+grep -n "^\`\`\`$" newsletter/*.md
 
 # Find potential typos (double spaces)
 grep -E "  " posts/*.md
@@ -235,7 +235,7 @@ npm run cspell -- 'posts/*.md'
 ### Check All Newsletters
 
 ```bash
-npm run cspell -- 'src/content/newsletters/*.md'
+npm run cspell -- 'newsletter/*.md'
 ```
 
 ### Check Specific File

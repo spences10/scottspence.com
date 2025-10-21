@@ -111,7 +111,7 @@ and readiness.
 
 ## File Location
 
-Newsletters are stored in `src/content/newsletters/` with filename
+Newsletters are stored in `newsletter/` (top-level directory) with filename
 format:
 
 - Correct: `2025-10.md` (YYYY-MM.md)

@@ -116,13 +116,11 @@ function save_newsletter(content: string): string {
 	const now = new Date()
 	const filename = now.toISOString().slice(0, 7) // YYYY-MM format
 
-	const newsletter_dir = join(__dirname, '../../content/newsletters')
+	const newsletter_dir = join(__dirname, '../../../newsletter')
 
 	// Create directory if it doesn't exist
-	if (!newsletter_dir) {
-		mkdirSync(newsletter_dir, { recursive: true })
-		console.log(`Created directory: ${newsletter_dir}`)
-	}
+	mkdirSync(newsletter_dir, { recursive: true })
+	console.log(`Created directory: ${newsletter_dir}`)
 
 	const filepath = join(newsletter_dir, `${filename}.md`)
 

@@ -9,6 +9,7 @@ import { index_now } from './index-now'
 import { newsletter_send } from './newsletter-send'
 import { pull_database } from './pull-database'
 import { restore_database } from './restore-database'
+import { send_newsletter_reminder } from './send-newsletter-reminder'
 import { update_embeddings } from './update-embeddings'
 import { update_popular_posts } from './update-popular-posts'
 import { update_posts } from './update-posts'
@@ -88,6 +89,7 @@ type TaskKey =
 	| 'adhoc_newsletter_send'
 	| 'fetch_github_activity'
 	| 'generate_newsletter'
+	| 'send_newsletter_reminder'
 
 // Define the type for tasks object
 interface TaskType {
@@ -159,6 +161,10 @@ const tasks: TaskType = {
 	},
 	generate_newsletter: {
 		function: generate_newsletter,
+		expects_fetch: false,
+	},
+	send_newsletter_reminder: {
+		function: send_newsletter_reminder,
 		expects_fetch: false,
 	},
 }
