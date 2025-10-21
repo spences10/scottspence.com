@@ -19,6 +19,11 @@
 			<p class="mt-4 text-xl">
 				Please check your email to confirm your subscription. 📨
 			</p>
+			<p class="mt-4 text-lg opacity-90">
+				If you don't see it in a few minutes, please check your
+				junk/spam folder. If it's there, marking it as "not junk"
+				would really help me out! 🙌
+			</p>
 		</div>
 	</div>
 </div>
