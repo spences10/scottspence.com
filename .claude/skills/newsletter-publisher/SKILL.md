@@ -32,12 +32,12 @@ and readiness.
 
 ### Structure
 
-- [ ] Includes Opening section (personal note or headline)
+- [ ] Starts with opening prose (no heading) that summarises the month
 - [ ] Has Highlights section (2-4 major items)
 - [ ] Contains Technical Deep Dives or Learnings
 - [ ] Includes Open Source section if applicable
 - [ ] Has "What's Coming" preview
-- [ ] Ends with brief closing/sign-off
+- [ ] Ends with brief closing prose (no heading)
 
 ### Heading Consistency
 
@@ -158,28 +158,30 @@ Change to `published: true` only when ready.
 
 Use this proven structure (adapt sections as needed):
 
-### Opening
+**Opening prose** (no heading)
 
-Brief personal note or headline capturing the month's essence.
+2-3 paragraphs that summarise the month's work. Should capture the
+overall scope, key themes, and personal reflection. Sets the tone
+before diving into detailed sections.
 
-### Highlights
+**## Highlights**
 
 2-4 major accomplishments or projects with real substance.
 
-### Technical Deep Dives
+**## Technical Deep Dives**
 
 Blog posts published, significant learnings, or substantial technical
 work.
 
-### Open Source
+**## Open Source**
 
 Contributions to projects, releases, or community involvement.
 
-### What's Coming
+**## What's Coming**
 
 Teases or previews for next month's focus.
 
-### Closing
+**Closing prose** (no heading)
 
 Brief personal sign-off (keep it under 2 sentences).
 

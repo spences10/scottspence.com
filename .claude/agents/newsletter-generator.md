@@ -122,15 +122,26 @@ and before sending.
 
 ## Structure
 
-Use this section structure (adapt as needed):
+The newsletter should flow naturally with these elements (adapt as
+needed):
 
-1. **Opening** – Brief personal note or headline from the month
-2. **Highlights** – Major accomplishments or projects (2-4 items)
-3. **Technical Deep Dives** – Blog posts, learnings, or substantial
+1. **Opening prose** (no heading) – Start with 2-3 paragraphs that
+   summarise the month's work. This should capture:
+   - The overall scope of activity (e.g., "shipped 3 releases",
+     "focused on infrastructure")
+   - Key themes or patterns (e.g., "database resilience",
+     "automation", "performance work")
+   - Personal reflection or context (e.g., "chaotic but productive",
+     "learned a lot about...")
+   - Sets the tone before diving into detailed sections
+2. **## Highlights** – Major accomplishments or projects (2-4 items)
+3. **## Technical Deep Dives** – Blog posts, learnings, or substantial
    work
-4. **Open Source** – Contributions to projects, releases, or community
-5. **What's Coming** – Teases or previews for next month
-6. **Closing** – Personal sign-off (keep it brief)
+4. **## Open Source** – Contributions to projects, releases, or
+   community
+5. **## What's Coming** – Teases or previews for next month
+6. **Closing prose** (no heading) – Personal sign-off (keep it brief,
+   1-2 sentences)
 
 ## Tone and Style
 
@@ -148,8 +159,12 @@ Use this section structure (adapt as needed):
 
 Return markdown with proper formatting:
 
-- Use `##` for section headings
+- Start with opening prose immediately after frontmatter (no
+  `## Opening` heading)
+- Use `##` for main section headings (`Highlights`,
+  `Technical Deep Dives`, etc.)
 - Use `###` for subsections if needed
+- End with closing prose (no `## Closing` heading)
 - Use `**bold**` for emphasis, not _italic_
 - Links in markdown format: `[text](url)`
 - Code references in backticks: `src/lib/utils.ts`
@@ -157,7 +172,31 @@ Return markdown with proper formatting:
   when anchor links are added. Instead, use a plain heading and link
   in the paragraph below
 
-**Example:**
+**Example structure:**
+
+```markdown
+---
+title: 'Newsletter: October 2025'
+date: 2025-10-31
+published: false
+---
+
+Opening prose here - no heading. Summarise the month's work...
+
+## Highlights
+
+### Project Name
+
+Details about the project...
+
+## What's Coming
+
+Plans for next month...
+
+Final thoughts here - no heading for the closing either.
+```
+
+**Example of heading links:**
 
 ```markdown
 ❌ WRONG: ###
