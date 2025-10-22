@@ -30,12 +30,14 @@ You'll receive both blog posts and GitHub activity data:
 
 - `title`: Post title
 - `slug`: URL slug for the post
+- `url`: Full URL to the post
 - `date`: Publication date
 - `preview`: Short description of the post
 - `tags`: Array of topic tags
 
 **IMPORTANT**: Blog posts should link to the actual post, not commits
-about the post. Format: `[Post Title](/posts/slug)`
+about the post. Always use the full URL from the `url` field. Format:
+`[Post Title](https://scottspence.com/posts/slug)`
 
 **Commits**: Array of commit objects with:
 

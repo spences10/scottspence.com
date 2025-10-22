@@ -1,4 +1,5 @@
 import { ANTHROPIC_API_KEY } from '$env/static/private'
+import { website } from '$lib/info'
 import Anthropic from '@anthropic-ai/sdk'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
@@ -66,13 +67,19 @@ From: ${github_activity.date_range.from}
 To: ${github_activity.date_range.to}
 `
 
+	// Transform blog posts to include full URLs
+	const blog_posts_with_urls = blog_posts.map((post) => ({
+		...post,
+		url: `${website}/posts/${post.slug}`,
+	}))
+
 	const user_message = `
 Generate a newsletter draft for ${month} ${year} using this data:
 
 ${activity_summary}
 
 ## Blog Posts
-${JSON.stringify(blog_posts, null, 2)}
+${JSON.stringify(blog_posts_with_urls, null, 2)}
 
 ## Commits
 ${JSON.stringify(github_activity.commits, null, 2)}
@@ -85,6 +92,8 @@ ${JSON.stringify(github_activity.issues, null, 2)}
 
 ## Releases
 ${JSON.stringify(github_activity.releases, null, 2)}
+
+When referencing blog posts, use the full URL provided in the 'url' field.
 
 Return ONLY the markdown content with frontmatter. Do NOT wrap in code fences or markdown triple backticks.
 Start with the frontmatter (---) and include title, date, and published: false.
@@ -117,7 +126,7 @@ Start with the frontmatter (---) and include title, date, and published: false.
  */
 function save_newsletter(content: string): string {
 	const now = new Date()
-	const filename = now.toISOString().slice(0, 7) // YYYY-MM format
+	const filename = now.toISOString().slice(0, 10) // YYYY-MM-DD format
 
 	const newsletter_dir = join(__dirname, '../../../newsletter')
 
@@ -157,7 +166,7 @@ export async function generate_newsletter(): Promise<GenerateNewsletterResult> {
 		const filepath = save_newsletter(newsletter_content)
 
 		const now = new Date()
-		const filename = now.toISOString().slice(0, 7) // YYYY-MM format
+		const filename = now.toISOString().slice(0, 10) // YYYY-MM-DD format
 
 		console.log('Newsletter generation complete!')
 		console.log(`File: ${filepath}`)
