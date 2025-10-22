@@ -34,12 +34,16 @@ The privacy policy in this site includes these points:
 The only piece of information I collect is your email address _if_ you
 sign up to receive email updates from me.
 
-I use Buttondown to capture your email address when you give it
+I use Resend to capture your email address when you give it
 voluntarily via the email sign up form, you can see their privacy
 statement [here][0].
 
 The information collected is an email address with no other personal
 identifying information.
+
+To protect your privacy, I use a double opt-in process: after
+submitting your email, you must confirm your subscription via a link
+sent to your email address before you'll receive any newsletters.
 
 ### What I do with collected information
 
@@ -106,7 +110,7 @@ you can unsubscribe from the mails sent anytime.
 
 If you want to contact me see [Contact information for site
 administrators] and I will personally remove your email address from
-Buttondown.
+Resend.
 
 ### Contact information for site administrators
 
@@ -133,22 +137,22 @@ Read] for a simple breakdown of what the ToS actually means.
 
 [how i collect your information]: #how-i-collect-your-information
 [what i do with collected information]:
-  #what-i-do-with-collected-information
+	#what-i-do-with-collected-information
 [what cookies, pixels, and other trackers my site uses and their purpose]:
-  #what-cookies-pixels-and-other-trackers-my-site-uses-and-their-purpose
+	#what-cookies-pixels-and-other-trackers-my-site-uses-and-their-purpose
 [any advertising networks and their methods/purposes of data collection and ad delivery]:
-  #any-advertising-networks-and-their-methodspurposes-of-data-collection-and-ad-delivery
+	#any-advertising-networks-and-their-methodspurposes-of-data-collection-and-ad-delivery
 [how users of this site can op-in and op-out of their data being collected and stored]:
-  #how-users-of-this-site-can-op-in-and-op-out-of-their-data-being-collected-and-stored
+	#how-users-of-this-site-can-op-in-and-op-out-of-their-data-being-collected-and-stored
 [how users of this site can request their data be turned over to them and/or be deleted]:
-  #how-users-of-this-site-can-request-their-data-be-turned-over-to-them-andor-be-deleted
+	#how-users-of-this-site-can-request-their-data-be-turned-over-to-them-andor-be-deleted
 [contact information for site administrators]:
-  #contact-information-for-site-administrators
-[0]: https://buttondown.email/legal/privacy
+	#contact-information-for-site-administrators
+[0]: https://resend.com/legal/privacy-policy
 [1]: https://usefathom.com/privacy
 [privacy@scottspence.dev]:
-  mailto:privacy@scottspence.dev?subject=Privacy%20Concern&body=Hi%20Scott%2C%0D%0A%0D%0AI%20have%20a%20concern%20about%20my%20privacy%20on%20your%20site.
+	mailto:privacy@scottspence.dev?subject=Privacy%20Concern&body=Hi%20Scott%2C%0D%0A%0D%0AI%20have%20a%20concern%20about%20my%20privacy%20on%20your%20site.
 [contact form]: /contact
 [terms of service didn't read]: https://tosdr.org
 [contact information for site administrators]:
-  #contact-information-for-site-administrators
+	#contact-information-for-site-administrators
