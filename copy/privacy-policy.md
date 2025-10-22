@@ -52,8 +52,8 @@ subscribers.
 
 If there is a giveaway being run where I need to send something in the
 post, like stickers. I will request your address via the email given
-in the mailing list on Buttondown. Once the package has been sent I
-will delete any emails with identifying information in them.
+in the mailing list on Resend. Once the package has been sent I will
+delete any emails with identifying information in them.
 
 ### What cookies, pixels, and other trackers my site uses and their purpose.
 
