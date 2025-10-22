@@ -31,7 +31,7 @@ export const send_newsletter_reminder = async () => {
 					subject: `📬 Newsletter Reminder: ${month}`,
 					html: `
 						<h2>Time to generate your newsletter!</h2>
-						<p>It's the 1st of the month - time to create your newsletter for <strong>${month}</strong>.</p>
+						<p>It's the 28th - time to generate this month's newsletter for <strong>${month}</strong>.</p>
 
 						<h3>Steps:</h3>
 						<ol>

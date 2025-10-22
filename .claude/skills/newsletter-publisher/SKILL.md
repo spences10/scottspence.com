@@ -45,6 +45,7 @@ and readiness.
 - [ ] Subsections use H3 (`###`) if needed
 - [ ] No H1 headings in content
 - [ ] Headings are clear and descriptive
+- [ ] Headings contain no links (links should be in paragraph text)
 
 ### Content Quality
 
@@ -63,6 +64,7 @@ and readiness.
 - [ ] Repository links included for projects
 - [ ] Blog post links included where relevant
 - [ ] No broken or placeholder links
+- [ ] **No links in headings** (causes nested `<a>` tags)
 
 ### Formatting
 
@@ -71,6 +73,7 @@ and readiness.
 - [ ] Code references in backticks: \`src/file.ts\`
 - [ ] No excessive whitespace
 - [ ] Consistent formatting throughout
+- [ ] No links in headings (use plain heading + link in paragraph)
 
 ### Voice Consistency
 
@@ -111,10 +114,10 @@ and readiness.
 
 ## File Location
 
-Newsletters are stored in `newsletter/` (top-level directory) with filename
-format:
+Newsletters are stored in `newsletter/` (top-level directory) with
+filename format:
 
-- Correct: `2025-10.md` (YYYY-MM.md)
+- Correct: `2025-10-01.md` (YYYY-MM-DD.md)
 - Incorrect: `october-2025.md`, `Newsletter-Oct-2025.md`
 
 Frontmatter structure:

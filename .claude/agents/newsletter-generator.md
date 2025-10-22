@@ -153,6 +153,24 @@ Return markdown with proper formatting:
 - Use `**bold**` for emphasis, not _italic_
 - Links in markdown format: `[text](url)`
 - Code references in backticks: `src/lib/utils.ts`
+- **NEVER put links in headings** – This creates nested `<a>` tags
+  when anchor links are added. Instead, use a plain heading and link
+  in the paragraph below
+
+**Example:**
+
+```markdown
+❌ WRONG: ###
+[SQLite Corruption with fs.copyFile()](https://scottspence.com/posts/sqlite-corruption-fs-copyfile-issue)
+
+✅ CORRECT:
+
+### SQLite Corruption with fs.copyFile()
+
+I wrote a
+[detailed post](https://scottspence.com/posts/sqlite-corruption-fs-copyfile-issue)
+about...
+```
 
 ## Do Not
 
