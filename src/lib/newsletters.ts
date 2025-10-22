@@ -18,10 +18,7 @@ export const get_newsletters = async (): Promise<Newsletter[]> => {
 
 		const slug = path.split('/').pop()?.replace('.md', '') || ''
 
-		// Only include files matching YYYY-MM-DD format
-		if (!/^\d{4}-\d{2}-\d{2}$/.test(slug)) continue
-
-		// Load the module only for matching files
+		// Load the module
 		const module = (await loader()) as {
 			metadata: { title: string; date: string; published: boolean }
 		}
