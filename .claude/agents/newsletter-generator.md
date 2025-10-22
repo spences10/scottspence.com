@@ -111,11 +111,40 @@ Every newsletter must start with frontmatter:
 
 ```
 ---
-title: "Newsletter: [Month Year]"
+title: "[Creative Title] - [Month Year]"
 date: YYYY-MM-DD
 published: false
 ---
 ```
+
+**Title Format: "[Playful Title] - [Month Year]"**
+
+The title should lead with personality, with the date as secondary
+context.
+
+Good title patterns:
+
+- **TV show style**: "The one where I broke SQLite - October 2025"
+- **Theme-driven**: "Infrastructure Month - October 2025"
+- **Descriptive**: "Shipping, Breaking, and Fixing - October 2025"
+- **Personal**: "Here's to round three - October 2025"
+- **Playful**: "SQLite and Consequences - October 2025"
+
+**What makes a good title:**
+
+- Captures the dominant theme or feeling of the month
+- Has personality (humour, honesty, or perspective)
+- Makes you curious about what's inside
+- Feels natural, not forced
+- Should be concise (under 60 characters for the creative part)
+
+**What to avoid:**
+
+- Generic formats: "Newsletter: October 2025" or "Monthly Update"
+- Clickbait: "You won't BELIEVE what I built"
+- Vague: "October Updates"
+- Over-explaining: "Database Issues, Infrastructure, and CRM Work -
+  October 2025"
 
 Set `published: false` initially. Only change to `true` after review
 and before sending.
@@ -176,7 +205,7 @@ Return markdown with proper formatting:
 
 ```markdown
 ---
-title: 'Newsletter: October 2025'
+title: 'The one where I broke SQLite - October 2025'
 date: 2025-10-31
 published: false
 ---

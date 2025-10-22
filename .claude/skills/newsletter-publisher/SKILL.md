@@ -25,7 +25,9 @@ and readiness.
 ### Frontmatter Validation
 
 - [ ] Has frontmatter with `---` delimiters
-- [ ] Title follows format: "Newsletter: [Month Year]"
+- [ ] Title follows format: "[Playful Title] - [Month Year]" (e.g.,
+      "The one where I broke SQLite - October 2025")
+- [ ] Title has personality and captures the month's essence
 - [ ] Date is in YYYY-MM-DD format
 - [ ] `published` field exists
 - [ ] No typos or formatting issues in frontmatter
@@ -124,12 +126,12 @@ Frontmatter structure:
 
 ```markdown
 ---
-title: 'Newsletter: October 2025'
+title: 'The one where I broke SQLite - October 2025'
 date: 2025-10-31
 published: false
 ---
 
-# Newsletter content here
+Opening prose here...
 ```
 
 Change to `published: true` only when ready.
