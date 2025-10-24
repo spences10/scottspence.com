@@ -16,6 +16,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
+      - name: Verify Playwright versions match
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').devDependencies.playwright.replace('^', '')")
+          CONTAINER_VERSION="1.52.0"  # Extract this from your container image
+          if [ "$PACKAGE_VERSION" != "$CONTAINER_VERSION" ]; then
+            echo "Error: Playwright versions don't match!"
+            echo "Package.json: $PACKAGE_VERSION"
+            echo "Container: $CONTAINER_VERSION"
+            exit 1
+          fi
       - uses: pnpm/action-setup@v4.2.0
         with:
           version: 10
@@ -25,15 +35,6 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: Verify Playwright versions match
-        run: |
-          PACKAGE_VERSION=$(node -p "require('./package.json').devDependencies.playwright.replace('^', '')")
-          CONTAINER_VERSION="1.52.0"  # Extract this from your container image
-          if [ "$PACKAGE_VERSION" != "$CONTAINER_VERSION" ]; then
-            echo "Warning: Playwright versions don't match!"
-            echo "Package.json: $PACKAGE_VERSION"
-            echo "Container: $CONTAINER_VERSION"
-          fi
       - name: Run tests
         run: pnpm run test:e2e
         env:
