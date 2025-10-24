@@ -169,8 +169,8 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4(@types/node@24.3.0)(@vitest/browser@3.2.4)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1)
       vitest-browser-svelte:
-        specifier: ^1.1.0
-        version: 1.1.0(@vitest/browser@3.2.4)(svelte@5.41.4)(vitest@3.2.4)
+        specifier: ^2.0.0
+        version: 2.0.0(svelte@5.41.4)(vitest@3.2.4)
 
 packages:
 
@@ -2750,13 +2750,11 @@ packages:
       vite:
         optional: true
 
-  vitest-browser-svelte@1.1.0:
-    resolution: {integrity: sha512-o98mCzKkWBjvmaGzi69rvyBd1IJ7zFPGI0jcID9vI4F5DmdG//YxkIbeQ7TS27hAVR+MULnBZNja2DUiuUBZyA==}
-    engines: {node: ^18.0.0 || >=20.0.0}
+  vitest-browser-svelte@2.0.0:
+    resolution: {integrity: sha512-+uHMRDkPBifChW29EbltbQ+WmYoS6Q5zHntg+vOmnssVyuBBJMI+wuUgogwH1hYHyoAdZPtn66nl7V2nXogTgw==}
     peerDependencies:
-      '@vitest/browser': ^2.1.0 || ^3.0.0 || ^4.0.0-0
       svelte: ^3 || ^4 || ^5 || ^5.0.0-next.0
-      vitest: ^2.1.0 || ^3.0.0 || ^4.0.0-0
+      vitest: ^4.0.0-0
 
   vitest@3.2.4:
     resolution: {integrity: sha512-LUCP5ev3GURDysTWiP47wRRUpLKMOfPh+yKTx3kVIEiu5KOMeqzpnYNsKyOoVrULivR8tLcks4+lga33Whn90A==}
@@ -5365,9 +5363,8 @@ snapshots:
     optionalDependencies:
       vite: 7.1.12(@types/node@24.3.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1)
 
-  vitest-browser-svelte@1.1.0(@vitest/browser@3.2.4)(svelte@5.41.4)(vitest@3.2.4):
+  vitest-browser-svelte@2.0.0(svelte@5.41.4)(vitest@3.2.4):
     dependencies:
-      '@vitest/browser': 3.2.4(playwright@1.56.1)(vite@7.1.12(@types/node@24.3.0)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1))(vitest@3.2.4)
       svelte: 5.41.4
       vitest: 3.2.4(@types/node@24.3.0)(@vitest/browser@3.2.4)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1)
 
