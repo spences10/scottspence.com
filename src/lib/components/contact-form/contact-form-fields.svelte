@@ -143,6 +143,8 @@
 		</fieldset>
 		<div class="flex justify-center">
 			<Turnstile
+				size="flexible"
+				theme="auto"
 				siteKey={PUBLIC_TURNSTILE_SITE_KEY}
 				on:turnstile-callback={(e) => {
 					turnstile_token = e.detail.token
