@@ -29,7 +29,7 @@
 		"coverage": "vitest run --coverage"
 	},
 	"devDependencies": {
-		"@anthropic-ai/sdk": "^0.67.0",
+		"@anthropic-ai/sdk": "^0.67.1",
 		"@eslint/compat": "^1.4.0",
 		"@eslint/js": "^9.38.0",
 		"@fontsource-variable/manrope": "^5.2.8",
@@ -38,7 +38,7 @@
 		"@fontsource/victor-mono": "^5.2.8",
 		"@playwright/test": "^1.56.1",
 		"@sveltejs/adapter-node": "^5.4.0",
-		"@sveltejs/kit": "^2.48.0",
+		"@sveltejs/kit": "^2.48.2",
 		"@sveltejs/vite-plugin-svelte": "^6.2.1",
 		"@tailwindcss/typography": "0.5.19",
 		"@tailwindcss/vite": "^4.1.16",
@@ -68,7 +68,7 @@
 		"resend": "^6.3.0",
 		"slugify": "1.6.6",
 		"svead": "^0.0.13",
-		"svelte": "^5.42.2",
+		"svelte": "^5.42.3",
 		"svelte-check": "^4.3.3",
 		"svelte-turnstile": "^0.11.0",
 		"sveltekit-embed": "^0.0.22",
