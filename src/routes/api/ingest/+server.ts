@@ -1,6 +1,5 @@
 import { env } from '$env/dynamic/private'
 import { json } from '@sveltejs/kit'
-import { adhoc_newsletter_send } from './adhoc-newsletter-send'
 import { backfill_github_activity } from './backfill-github-activity'
 import { backup_database } from './backup-database'
 import { daily_github_activity } from './daily-github-activity'
@@ -88,7 +87,6 @@ type TaskKey =
 	| 'pull_database'
 	| 'restore_database'
 	| 'newsletter_send'
-	| 'adhoc_newsletter_send'
 	| 'fetch_github_activity'
 	| 'backfill_github_activity'
 	| 'daily_github_activity'
@@ -153,10 +151,6 @@ const tasks: TaskType = {
 	},
 	newsletter_send: {
 		function: newsletter_send,
-		expects_fetch: false,
-	},
-	adhoc_newsletter_send: {
-		function: adhoc_newsletter_send,
 		expects_fetch: false,
 	},
 	fetch_github_activity: {

@@ -50,7 +50,7 @@ export const send_newsletter_reminder = async () => {
 							<li>Review and edit the generated content</li>
 							<li>Set <code>published: true</code> in the frontmatter</li>
 							<li>Commit and push</li>
-							<li>Send with <code>adhoc_newsletter_send</code> task</li>
+							<li>Send with <code>newsletter_send</code> task</li>
 						</ul>
 
 						<p style="color: #666; font-size: 0.9em; margin-top: 20px;">
