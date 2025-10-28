@@ -25,16 +25,43 @@ function parse_markdown(markdown: string): ParsedNewsletter {
 	const frontmatter_lines = lines.slice(start + 1, end)
 	const frontmatter: Record<string, unknown> = {}
 
-	for (const line of frontmatter_lines) {
+	let i = 0
+	while (i < frontmatter_lines.length) {
+		const line = frontmatter_lines[i]
 		const [key, ...value_parts] = line.split(':')
-		if (key && value_parts.length > 0) {
-			const value = value_parts.join(':').trim()
+
+		if (!key || key.trim() === '') {
+			i++
+			continue
+		}
+
+		const value = value_parts.join(':').trim()
+
+		// Check if value is on the same line
+		if (value.length > 0) {
 			if (value === 'true') {
 				frontmatter[key.trim()] = true
 			} else if (value === 'false') {
 				frontmatter[key.trim()] = false
 			} else {
 				frontmatter[key.trim()] = value.replace(/^["']|["']$/g, '')
+			}
+			i++
+		} else {
+			// Value is on next line(s) - check if next line is indented
+			if (
+				i + 1 < frontmatter_lines.length &&
+				frontmatter_lines[i + 1].startsWith(' ')
+			) {
+				const next_line = frontmatter_lines[i + 1].trim()
+				frontmatter[key.trim()] = next_line.replace(
+					/^["']|["']$/g,
+					'',
+				)
+				i += 2 // Skip both current and next line
+			} else {
+				// No value found, skip
+				i++
 			}
 		}
 	}
