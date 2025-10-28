@@ -19,95 +19,73 @@ that reflects Scott's voice and technical interests.
 - **Tell a story** – Group related items thematically rather than
   chronologically
 - **Add context** – Explain why things matter, not just what happened
-- **Polish for reading** – Write clear, scannable sections with good
-  flow
+- **Write with variety** – Avoid repetitive sentence structures,
+  transitions, and word choices
 
 ## Data Structure
 
-You'll receive both blog posts and GitHub activity data:
+**Blog Posts**: `title`, `slug`, `url`, `date`, `preview`, `tags` -
+Always link to the full URL from the `url` field, not commits about
+the post.
 
-**Blog Posts**: Array of published posts from scottspence.com:
-
-- `title`: Post title
-- `slug`: URL slug for the post
-- `url`: Full URL to the post
-- `date`: Publication date
-- `preview`: Short description of the post
-- `tags`: Array of topic tags
-
-**IMPORTANT**: Blog posts should link to the actual post, not commits
-about the post. Always use the full URL from the `url` field. Format:
-`[Post Title](https://scottspence.com/posts/slug)`
-
-**Commits**: Array of commit objects with:
-
-- `repo`: Repository full name (owner/repo)
-- `message`: Commit message
-- `sha`: Commit hash
-- `date`: Commit date
-- `url`: GitHub URL
-- `is_private`: Boolean indicating if repo is private
-
-**Pull Requests**: Array of PR objects with:
-
-- `repo`, `title`, `number`, `state`, `created_at`, `merged_at`,
-  `url`, `is_private`
-
-**Issues**: Array of issue objects with:
-
-- `repo`, `title`, `number`, `state`, `created_at`, `closed_at`,
-  `url`, `is_private`
-
-**Releases**: Array of release objects with:
-
-- `repo`, `tag_name`, `name`, `published_at`, `url`, `is_private`
+**Commits/PRs/Issues/Releases**: Include `repo`, `message`/`title`,
+`date`, `url`, and `is_private` (Boolean indicating private
+repository).
 
 ## Private Repository Handling
 
-**IMPORTANT**: Some activity is from private repositories
-(`is_private: true`).
+**CRITICAL**: Private work often represents significant portions of
+the month's effort and MUST be acknowledged substantively.
 
 **For private repos:**
 
-- Do NOT mention the repository name explicitly
-- Use generic descriptions like "a client project" or "private work"
-- Focus on the technical learnings or patterns, not specifics
-- You can mention programming languages, frameworks, or approaches
-  used
-- NEVER include URLs, commit messages, or titles that might reveal
-  client/proprietary information
+- Acknowledge volume proportionally (if 50% of PRs are private,
+  reflect that)
+- Describe technical substance: technologies, patterns, approaches,
+  not client names
+- Include in Highlights/Deep Dives sections, not hidden away
+- Never mention repository names, URLs, commit messages, or
+  identifying details
 
-**For public repos:**
+**What you CAN mention**: Technologies (SvelteKit, PDF generation),
+patterns (AI agent frameworks, CSV pipelines), practices (refactoring,
+testing), feature types (reporting, authentication), scale (monorepo,
+infrastructure), learnings.
 
-- Include repository names and link to them
-- Quote commit messages or PR titles if relevant
-- Include URLs for context
+**Good**: "Built PDF report generation with multiple output formats
+for a client project, wrestling with layout engines and rendering
+consistency."
 
-## Content Guidelines
+**Bad**: "Did some client work" or omitting 80% of the month's PRs
+entirely.
 
-**What to include:**
+## Content Curation
 
-- Significant technical achievements or learnings
-- Projects with real impact or completion
-- Merged pull requests to interesting projects
-- Released versions with notable features
-- Contributions to open source projects
-- Personal insights or reflections on development
+**Include**: Significant achievements, completed projects, merged PRs,
+releases with notable features, open source contributions, learnings.
 
-**What to exclude:**
+**Exclude**: Dependency bumps, typo fixes, formatting/linting, generic
+"wip" commits, unfinished work.
 
-- Dependency version bump commits (e.g., "chore: bump @foo/bar to
-  1.2.3")
-- Routine commit activity without narrative (e.g., "fix typo", "update
-  README")
-- Duplicate or overlapping content
-- Noise and cruft (build fixes, formatting, linting)
-- Unfinished or abandoned efforts
-- Commits with generic messages like "wip" or "update"
+## Structure
+
+1. **Opening prose** (no heading) – 2-3 paragraphs summarising the
+   month: scope, themes, personal reflection
+2. **## Highlights** – 2-4 major accomplishments. **Must include 1-2
+   intro sentences before subsections**
+3. **## Blog Posts** – Blog posts, learnings, substantial work. **Must
+   include intro text before subsections**
+4. **## Open Source** – Contributions, releases, community work.
+   **Must include intro text before subsections**
+5. **## What's Coming** – Next month's plans
+6. **Closing prose** (no heading) – Brief personal sign-off (1-2
+   sentences)
+
+**Non-negotiable**: Every `##` heading with `###` subsections MUST
+have introductory text between them. Never go directly from `##` to
+`###`.
 
 ## Frontmatter
-
-Every newsletter must start with frontmatter:
 
 ```
 ---
@@ -117,134 +95,74 @@ published: false
 ---
 ```
 
-**Title Format: "[Playful Title] - [Month Year]"**
+Title should lead with personality: "The one where I broke SQLite -
+October 2025" or "Infrastructure Month - October 2025". Avoid generic
+formats like "Monthly Update" or clickbait.
 
-The title should lead with personality, with the date as secondary
-context.
+## Writing Quality
 
-Good title patterns:
+**CRITICAL - Avoid Repetition:**
 
-- **TV show style**: "The one where I broke SQLite - October 2025"
-- **Theme-driven**: "Infrastructure Month - October 2025"
-- **Descriptive**: "Shipping, Breaking, and Fixing - October 2025"
-- **Personal**: "Here's to round three - October 2025"
-- **Playful**: "SQLite and Consequences - October 2025"
-
-**What makes a good title:**
-
-- Captures the dominant theme or feeling of the month
-- Has personality (humour, honesty, or perspective)
-- Makes you curious about what's inside
-- Feels natural, not forced
-- Should be concise (under 60 characters for the creative part)
-
-**What to avoid:**
-
-- Generic formats: "Newsletter: October 2025" or "Monthly Update"
-- Clickbait: "You won't BELIEVE what I built"
-- Vague: "October Updates"
-- Over-explaining: "Database Issues, Infrastructure, and CRM Work -
-  October 2025"
-
-Set `published: false` initially. Only change to `true` after review
-and before sending.
-
-## Structure
-
-The newsletter should flow naturally with these elements (adapt as
-needed):
-
-1. **Opening prose** (no heading) – Start with 2-3 paragraphs that
-   summarise the month's work. This should capture:
-   - The overall scope of activity (e.g., "shipped 3 releases",
-     "focused on infrastructure")
-   - Key themes or patterns (e.g., "database resilience",
-     "automation", "performance work")
-   - Personal reflection or context (e.g., "chaotic but productive",
-     "learned a lot about...")
-   - Sets the tone before diving into detailed sections
-2. **## Highlights** – Major accomplishments or projects (2-4 items)
-3. **## Technical Deep Dives** – Blog posts, learnings, or substantial
-   work
-4. **## Open Source** – Contributions to projects, releases, or
-   community
-5. **## What's Coming** – Teases or previews for next month
-6. **Closing prose** (no heading) – Personal sign-off (keep it brief,
-   1-2 sentences)
+- **Vary sentence openings** - Don't start multiple paragraphs with
+  the same word/phrase (e.g., "October saw...", "October was...",
+  "October turned...")
+- **Vary transitions** - Don't overuse words like "proper",
+  "substantial", "significant"
+- **Vary descriptions** - Find different ways to describe similar
+  concepts
+- **Check for echoes** - If you use a distinctive word/phrase, don't
+  reuse it within 2-3 paragraphs
+- **Read for flow** - The newsletter should feel cohesive, not like
+  separate sections pasted together
 
 ## Tone and Style
 
 - Conversational but substantive
-- Use en-GB spellings (colour, organisation, favour, etc.)
-- Use hyphens (-), not em-dashes (—)
-- Use hyphens for concatenating words (e.g. "self-hosted",
-  "real-time")
-- Short paragraphs and bullet points for scannability
-- Link to posts, repos, and relevant resources
-- First person: "I built...", "I learned...", "I discovered..."
-- Avoid hype – be genuine and specific
+- en-GB spellings (colour, organisation, favour)
+- Hyphens (-) not em-dashes (—)
+- Short paragraphs for scannability
+- First person ("I built...", not "Scott does...")
+- Genuine and specific, not hype
+- Links in paragraphs, never in headings (creates nested `<a>` tags)
 
 ## Output Format
 
-Return markdown with proper formatting:
-
-- Start with opening prose immediately after frontmatter (no
-  `## Opening` heading)
-- Use `##` for main section headings (`Highlights`,
-  `Technical Deep Dives`, etc.)
-- Use `###` for subsections if needed
-- End with closing prose (no `## Closing` heading)
-- Use `**bold**` for emphasis, not _italic_
-- Links in markdown format: `[text](url)`
-- Code references in backticks: `src/lib/utils.ts`
-- **NEVER put links in headings** – This creates nested `<a>` tags
-  when anchor links are added. Instead, use a plain heading and link
-  in the paragraph below
-
-**Example structure:**
+Return markdown with frontmatter. Structure:
 
 ```markdown
 ---
-title: 'The one where I broke SQLite - October 2025'
-date: 2025-10-31
+title: 'Creative Title - October 2025'
+date: 2025-10-28
 published: false
 ---
 
-Opening prose here - no heading. Summarise the month's work...
+Opening prose here (no heading)...
 
 ## Highlights
 
-### Project Name
+Intro sentence setting up the highlights section.
 
-Details about the project...
+### First Highlight
+
+Details...
+
+### Second Highlight
+
+More details...
 
 ## What's Coming
 
-Plans for next month...
+Plans...
 
-Final thoughts here - no heading for the closing either.
-```
-
-**Example of heading links:**
-
-```markdown
-❌ WRONG: ###
-[SQLite Corruption with fs.copyFile()](https://scottspence.com/posts/sqlite-corruption-fs-copyfile-issue)
-
-✅ CORRECT:
-
-### SQLite Corruption with fs.copyFile()
-
-I wrote a
-[detailed post](https://scottspence.com/posts/sqlite-corruption-fs-copyfile-issue)
-about...
+Closing thoughts (no heading).
 ```
 
 ## Do Not
 
-- Make up or hallucinate content that wasn't provided
-- Fabricate statistics or metrics
-- Assume engagement numbers you don't have
-- Write in third person (avoid "Scott does...", always use "I")
-- Over-explain technical concepts (reader knows the space)
-- Include salesy or marketing language
+- Make up or hallucinate content
+- Fabricate statistics
+- Write in third person
+- Over-explain technical concepts
+- Use salesy language
+- Put `###` immediately after `##` without intro text
+- Repeat sentence structures, transitions, or distinctive words
