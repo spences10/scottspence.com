@@ -19,8 +19,8 @@ importers:
         version: 0.1.7-alpha.2
     devDependencies:
       '@anthropic-ai/sdk':
-        specifier: ^0.67.1
-        version: 0.67.1
+        specifier: ^0.68.0
+        version: 0.68.0
       '@eslint/compat':
         specifier: ^1.4.0
         version: 1.4.0(eslint@9.38.0(jiti@2.6.1))
@@ -174,8 +174,8 @@ importers:
 
 packages:
 
-  '@anthropic-ai/sdk@0.67.1':
-    resolution: {integrity: sha512-ZLYZLog5ttur2OXkBxoCr8C+bsIGG//OwKYoDw4ZOlwdKF6u+qqQ7y+R4x9zqgQJBbdg5qZs6RHA7L+QpSrHUA==}
+  '@anthropic-ai/sdk@0.68.0':
+    resolution: {integrity: sha512-SMYAmbbiprG8k1EjEPMTwaTqssDT7Ae+jxcR5kWXiqTlbwMR2AthXtscEVWOHkRfyAV5+y3PFYTJRNa3OJWIEw==}
     hasBin: true
     peerDependencies:
       zod: ^3.25.0 || ^4.0.0
@@ -2738,7 +2738,7 @@ packages:
 
 snapshots:
 
-  '@anthropic-ai/sdk@0.67.1':
+  '@anthropic-ai/sdk@0.68.0':
     dependencies:
       json-schema-to-ts: 3.1.1
 
