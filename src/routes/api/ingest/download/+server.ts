@@ -32,11 +32,11 @@ export const GET = async ({ request }) => {
 		const backups_dir = path.join(path.dirname(db_path), 'backups')
 
 		// Find the most recent backup file
+		// Only match automated backups with pattern: site-data-YYYY-MM-DD-HHMM.db
 		const files = await fs.readdir(backups_dir)
 		const backup_files = files
-			.filter(
-				(file) =>
-					file.startsWith('site-data-') && file.endsWith('.db'),
+			.filter((file) =>
+				file.match(/^site-data-\d{4}-\d{2}-\d{2}-\d{4}\.db$/),
 			)
 			.sort()
 			.reverse() // newest first
