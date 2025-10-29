@@ -13,7 +13,7 @@
 # Portfolio
 
 <Small>
-  Last updated: <DateUpdated date="2025-06-11" small="true" />
+  Last updated: <DateUpdated date="2025-10-29" small="true" />
 </Small>
 
 I'm Scott, a passionate Svelte ambassador and application team lead
@@ -25,9 +25,43 @@ just, because!
 
 Here's some of my recent work.
 
+## Devhub CRM
+
+[![devhub.party screenshot](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1761763547/545b587f-6f2d-44f3-832a-620286903029.png)](https://devhub.party)
+
+A developer-first relationship management platform that solves the
+core problem developers face with traditional CRMs: they hate manual
+data entry and generic tools don't fit their unique workflow. Built
+from the ground up for how developers actually manage relationships -
+through GitHub, conferences, and open source communities.
+
+**Key Features:**
+
+- GitHub Quick Connect for seamless contact import from your
+  development network
+- Core CRM functionality including contacts, interactions, follow-ups,
+  and notes
+- Relationship health scoring to track connection strength
+- Public developer profiles with QR codes for easy networking at
+  conferences
+
+**Impact:**
+
+Designed specifically for conference networkers, open source
+maintainers, developer advocates, and freelancers who need to manage
+developer relationships without the overhead of traditional CRMs.
+
+**Tech Stack:** SvelteKit, Svelte 5, TypeScript, SQLite, sqlite-vec,
+Tailwind CSS, daisyUI, Better Auth
+
+[Visit Devhub](https://devhub.party) |
+[View Source](https://github.com/spences10/devhub-crm)
+
+---
+
 ## Sveltest
 
-[![SkyKit.blue screenshot](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1749636807/scottspence.com/8502f304-39bc-43d4-9819-6d0d12542b66.png)](https://sveltest.dev)
+[![sveltest.dev screenshot](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1749636807/scottspence.com/8502f304-39bc-43d4-9819-6d0d12542b66.png)](https://sveltest.dev)
 
 A weekend project that evolved into a comprehensive testing resource
 for the Svelte ecosystem, now influencing how modern Svelte
