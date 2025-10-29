@@ -5,7 +5,7 @@
 # What I'm doing Now
 
 <Small>
-  Last updated: <DateUpdated date="2023-09-16" small="true" />
+  Last updated: <DateUpdated date="2025-10-29" small="true" />
 </Small>
 
 ### Work
@@ -17,7 +17,7 @@ lifecycle.
 
 ### Play
 
-I've been playing the Zelda: Tears of the Kingdom on the Switch since
-release.
+I got me a Steam Deck! Was playing the Death Stranding Director's Cut,
+now playing Borderlands 4 (yes on the Steam Deck).
 
 [XtendOps]: https://www.xtendops.com
