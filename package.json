@@ -30,7 +30,7 @@
 	},
 	"devDependencies": {
 		"@anthropic-ai/sdk": "^0.68.0",
-		"@eslint/compat": "^1.4.0",
+		"@eslint/compat": "^1.4.1",
 		"@eslint/js": "^9.38.0",
 		"@fontsource-variable/manrope": "^5.2.8",
 		"@fontsource-variable/victor-mono": "^5.2.8",
@@ -45,7 +45,7 @@
 		"@types/better-sqlite3": "^7.6.13",
 		"@upstash/ratelimit": "^2.0.6",
 		"@upstash/redis": "^1.35.6",
-		"@vitest/browser-playwright": "^4.0.4",
+		"@vitest/browser-playwright": "^4.0.5",
 		"cspell": "^9.2.2",
 		"daisyui": "5.3.10",
 		"date-fns": "4.1.0",
@@ -78,7 +78,7 @@
 		"unist-util-visit": "5.0.0",
 		"valibot": "^1.1.0",
 		"vite": "^7.1.12",
-		"vitest": "^4.0.4",
+		"vitest": "^4.0.5",
 		"vitest-browser-svelte": "^2.0.1"
 	},
 	"pnpm": {
