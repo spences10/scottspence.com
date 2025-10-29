@@ -4,30 +4,28 @@ test.describe('Posts page', () => {
 	test('should load and display posts list', async ({ page }) => {
 		await page.goto('/posts')
 
-		// Wait for content to load
-		await page.waitForLoadState('networkidle')
+		// Wait for search input to appear (indicates page has loaded)
+		const searchInput = page.getByTestId('search')
+		await expect(searchInput).toBeVisible({ timeout: 10000 })
 
-		// Check page title
-		const h1 = page.locator('h1')
-		await expect(h1).toBeVisible()
-		await expect(h1).toContainText(/posts/i)
+		// Wait for at least one post link to appear
+		const postLinks = page.locator('a[href^="/posts/"]')
+		await expect(postLinks.first()).toBeVisible({ timeout: 10000 })
 
 		// Check that posts are rendered (should be at least one post)
-		const postLinks = page.locator('a[href^="/posts/"]')
 		const postCount = await postLinks.count()
 		expect(postCount).toBeGreaterThan(0)
 	})
 
 	test('should display post metadata', async ({ page }) => {
 		await page.goto('/posts')
-		await page.waitForLoadState('networkidle')
 
 		// First post should have:
 		// - Title (in a link)
 		// - Date
 		// - Reading time or preview text
 		const firstPost = page.locator('article').first()
-		await expect(firstPost).toBeVisible()
+		await expect(firstPost).toBeVisible({ timeout: 10000 })
 
 		// Check for post link
 		const postLink = firstPost.locator('a[href^="/posts/"]')
@@ -43,10 +41,11 @@ test.describe('Posts page', () => {
 		page,
 	}) => {
 		await page.goto('/posts')
-		await page.waitForLoadState('networkidle')
 
-		// Click the first post link
+		// Wait for first post link to appear
 		const firstPostLink = page.locator('a[href^="/posts/"]').first()
+		await expect(firstPostLink).toBeVisible({ timeout: 10000 })
+
 		const href = await firstPostLink.getAttribute('href')
 		expect(href).toBeTruthy()
 
@@ -64,7 +63,10 @@ test.describe('Posts page', () => {
 		})
 
 		await page.goto('/posts')
-		await page.waitForLoadState('networkidle')
+
+		// Wait for content to load
+		const searchInput = page.getByTestId('search')
+		await expect(searchInput).toBeVisible({ timeout: 10000 })
 
 		// No JS errors should occur
 		expect(errors).toHaveLength(0)

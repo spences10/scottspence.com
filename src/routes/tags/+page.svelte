@@ -243,7 +243,7 @@
 						<h3 class="card-title text-lg">
 							<a
 								class="link hover:text-primary transition-colors duration-200"
-								href={`tags/${tag.name}`}
+								href={`/tags/${tag.name}`}
 							>
 								{tag.name}
 							</a>
