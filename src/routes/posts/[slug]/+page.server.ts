@@ -1,18 +1,19 @@
-import { get_related_posts_for_post } from '$lib/state/related-posts.svelte'
-import { get_reaction_count_data } from '$lib/utils/get-reaction-count'
+import { get_reaction_counts } from '$lib/data/reactions.remote'
+import { get_related_posts } from '$lib/data/related-posts.remote'
 
-export const load = async ({ url, fetch }) => {
-	const slug = url.pathname.split('/').filter(Boolean).pop()
+export const load = async ({ params, url }) => {
+	const slug = params.slug
+	const pathname = url.pathname
 
 	try {
-		// Fetch both data concurrently
-		const [count_data, related_posts] = await Promise.all([
-			get_reaction_count_data(url.pathname),
-			get_related_posts_for_post(slug || ''),
+		// Fetch both data concurrently using remote functions
+		const [reaction_counts, related_posts] = await Promise.all([
+			get_reaction_counts(pathname),
+			get_related_posts(slug),
 		])
 
 		return {
-			count: count_data,
+			count: reaction_counts ? { count: reaction_counts } : null,
 			related_posts,
 		}
 	} catch (error) {
@@ -20,7 +21,6 @@ export const load = async ({ url, fetch }) => {
 			'Database unavailable, using fallback data for post page:',
 			error instanceof Error ? error.message : 'Unknown error',
 		)
-		// Return minimal data when everything fails
 		return {
 			count: null,
 			related_posts: [],

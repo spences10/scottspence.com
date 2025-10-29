@@ -23,10 +23,10 @@
 <h1 class="mb-5 text-5xl font-bold">Posts for {tag}</h1>
 
 <ul class="mb-20">
-	{#each posts_by_tag[tag] as { title, slug: post_slug }}
+	{#each posts_by_tag[tag] || [] as { title, slug: post_slug }}
 		<li class="my-4 text-xl">
 			<a
-				class="link mr-6 transition hover:text-primary"
+				class="link hover:text-primary mr-6 transition"
 				href={`/posts/${post_slug}`}
 			>
 				{title}

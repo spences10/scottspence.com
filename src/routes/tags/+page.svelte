@@ -51,10 +51,9 @@
 
 	// Calculate summary statistics
 	let summary_stats = $derived.by(() => {
-		const total_tags = tags.length // All available tags, not just filtered
-		const filtered_tags_count = filtered_tags.length // Currently displayed tags
+		const total_tags = tags.length
+		const filtered_tags_count = filtered_tags.length
 
-		// Get unique posts across all tags (avoiding double counting)
 		const unique_posts = new Set()
 		Object.values(posts_by_tag).forEach((posts: any) => {
 			posts.forEach((post: any) =>
@@ -63,7 +62,6 @@
 		})
 		const total_unique_posts = unique_posts.size
 
-		// Total tag-post relationships (posts can appear in multiple tags)
 		const total_tag_relationships = Object.values(
 			posts_by_tag,
 		).reduce((sum: number, posts: any) => sum + posts.length, 0)

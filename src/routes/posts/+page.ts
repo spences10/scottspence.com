@@ -1,7 +1,7 @@
-export const load = async ({ fetch }) => {
-	const res = await fetch(`api/posts`)
-	if (res.ok) {
-		const posts = await res.json()
-		return { posts }
-	}
+import { get_posts } from '$lib/data/posts.remote'
+
+export const load = async () => {
+	// Call remote function from load to ensure proper SSR context
+	const posts = await get_posts()
+	return { posts }
 }

@@ -1,10 +1,6 @@
-export const load = async ({ fetch }) => {
-	const res = await fetch(`api/post-tags`)
-	if (res.ok) {
-		const { tags, posts_by_tag } = await res.json()
-		return {
-			tags,
-			posts_by_tag,
-		}
-	}
+import { get_post_tags } from '$lib/data/post-tags.remote'
+
+export const load = async () => {
+	// Call remote function from load to ensure proper SSR context
+	return await get_post_tags()
 }

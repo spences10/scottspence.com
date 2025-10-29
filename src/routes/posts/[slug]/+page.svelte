@@ -46,6 +46,7 @@
 	} = meta
 
 	const url = `${website}/posts/${slug}`
+	const current_pathname = `/posts/${slug}`
 	const seo_config = create_seo_config({
 		title,
 		description: preview.slice(0, 140) + '...',
@@ -288,9 +289,8 @@
 	</div>
 
 	{#if !is_private && count && count.count}
-		<Reactions data={count} path={current_path} />
+		<Reactions data={count} path={current_pathname} />
 	{/if}
-
 
 	<div class="mb-24 grid justify-items-center">
 		<PostOnBlueSky
@@ -320,7 +320,6 @@
 
 	<ButtButt />
 
-	
 	<NewsletterSignup />
 
 	<div class="mb-24"></div>
