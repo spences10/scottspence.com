@@ -47,7 +47,7 @@ through GitHub, conferences, and open source communities.
 
 **Impact:**
 
-Designed specifically for conference networkers, open source
+Designed specifically for conference networking, open source
 maintainers, developer advocates, and freelancers who need to manage
 developer relationships without the overhead of traditional CRMs.
 
