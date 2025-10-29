@@ -69,6 +69,7 @@ deepgram
 deezer
 Dendron
 Deno
+devhub
 disqus
 Dittofeed
 DMARCLY
@@ -266,6 +267,7 @@ Svead
 svelteconsulting
 sveltejs
 sveltekit
+sveltest
 svort
 Swanley
 Tailblocks
