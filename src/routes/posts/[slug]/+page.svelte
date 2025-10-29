@@ -12,6 +12,7 @@
 		ButtButt,
 		CurrentVisitorsData,
 		IsPrivateBanner,
+		NewsletterSignup,
 		PopularPosts,
 		PostOnBlueSky,
 		Reactions,
@@ -290,6 +291,7 @@
 		<Reactions data={count} path={current_path} />
 	{/if}
 
+
 	<div class="mb-24 grid justify-items-center">
 		<PostOnBlueSky
 			post_text={`Check out this post from @scottspence.dev, ${title}: ${url}`}
@@ -317,6 +319,11 @@
 	<RelatedPosts {related_posts} />
 
 	<ButtButt />
+
+	
+	<NewsletterSignup />
+
+	<div class="mb-24"></div>
 </article>
 
 <TextSelectionPopup
