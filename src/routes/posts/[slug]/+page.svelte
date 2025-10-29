@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { goto, preloadData, pushState } from '$app/navigation'
 	import { page } from '$app/state'
 	import {
 		differenceInDays,
@@ -26,7 +25,6 @@
 		create_seo_config,
 	} from '$lib/seo'
 	import { get_headings, update_toc_visibility } from '$lib/utils'
-	import StatsPage from '../../stats/[slug]/+page.svelte'
 	import Modal from './modal.svelte'
 
 	import { website } from '$lib/info'
@@ -178,7 +176,7 @@
 	}
 
 	let show_current_visitor_data = $state(false)
-	let modal = $state() as HTMLDialogElement
+	let modal = $state() as typeof Modal.prototype
 
 	const show_modal = async (
 		e: MouseEvent & { currentTarget: HTMLAnchorElement },
@@ -189,26 +187,12 @@
 		// Track the event with Fathom
 		Fathom.trackEvent(`analytics click: ${current_path}`)
 
-		// get URL
-		const { href } = e.currentTarget as HTMLAnchorElement
-
-		// get result of `load` function
-		const result = await preloadData(href)
-
-		// create new history entry
-		if (result.type === 'loaded' && result.status === 200) {
-			// Serialize the data
-			const serialized_data = JSON.parse(JSON.stringify(result.data))
-			pushState(href, { selected: serialized_data })
-			modal.showModal()
-		} else {
-			goto(href)
-		}
+		// Open modal and fetch analytics data
+		await modal.show_modal()
 	}
 
 	const close_modal = () => {
-		history.back()
-		modal.close()
+		modal.close_modal()
 	}
 </script>
 
@@ -326,12 +310,7 @@
 		</div>
 	{/if}
 
-	<Modal bind:modal onclose={close_modal}>
-		{#if page.state.selected}
-			{@const statsData = page.state.selected as any}
-			<StatsPage data={statsData} />
-		{/if}
-	</Modal>
+	<Modal bind:this={modal} {slug} {title} onclose={close_modal} />
 
 	<PopularPosts />
 
