@@ -1,16 +1,14 @@
 import { error } from '@sveltejs/kit'
+import type { PageLoad } from './$types'
 
-export const load = async ({
-	params,
-	data: { count, related_posts },
-}) => {
+export const load: PageLoad = async ({ params, data }) => {
 	const { slug } = params
 
 	try {
 		const post = await import(`../../../../posts/${slug}.md`)
 		return {
-			count,
-			related_posts,
+			count: data?.count || null,
+			related_posts: data?.related_posts || [],
 			Content: post.default,
 			meta: { ...post.metadata, slug },
 		}

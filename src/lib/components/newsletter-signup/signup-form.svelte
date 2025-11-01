@@ -59,8 +59,8 @@
 				Want to keep up to date with what I'm working on?
 			</p>
 			<p class="mt-1 max-w-3xl">
-				Join {$newsletter_subscriber_count_store} other developers and
-				sign up for the newsletter.
+				Join {$newsletter_subscriber_count_store.newsletter_subscriber_count}
+				other developers and sign up for the newsletter.
 			</p>
 		</div>
 		<!-- Form section - fixed margin -->

@@ -1,6 +1,6 @@
-import { page } from 'vitest/browser'
 import { describe, expect, it, vi } from 'vitest'
 import { render } from 'vitest-browser-svelte'
+import { page } from 'vitest/browser'
 import PostPage from './+page.svelte'
 
 // Only mock external services, not browser APIs or data structures
@@ -98,7 +98,12 @@ describe('PostPage Component', () => {
 
 			render(PostPage, recentProps)
 
-			await expect.element(page.getByText('new')).toBeInTheDocument()
+			// Use CSS selector to target the specific badge, not just any "new" text in "newsletter"
+			const new_badge = document.querySelector(
+				'.badge-secondary',
+			) as HTMLElement
+			expect(new_badge).toBeTruthy()
+			expect(new_badge.textContent?.trim()).toBe('new')
 		})
 
 		it('should not show "new" badge for old posts', async () => {
@@ -115,9 +120,9 @@ describe('PostPage Component', () => {
 
 			render(PostPage, oldProps)
 
-			await expect
-				.element(page.getByText('new'))
-				.not.toBeInTheDocument()
+			// Use CSS selector to verify badge doesn't exist for old posts
+			const new_badge = document.querySelector('.badge-secondary')
+			expect(new_badge).toBeNull()
 		})
 
 		it('should render private banner when is_private is true', async () => {

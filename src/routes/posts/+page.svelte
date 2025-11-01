@@ -8,7 +8,7 @@
 	import type { PageData } from './$types'
 
 	const { data } = $props<{ data: PageData }>()
-	const posts = $state(data.posts)
+	const posts = data.posts
 
 	let search_query = $state(page.url.searchParams.get('search') || '')
 

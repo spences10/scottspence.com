@@ -107,8 +107,6 @@
 		})
 	})
 
-	let current_path = page.url.pathname
-
 	let current_visitor_data: VisitorEntry | undefined
 
 	// TODO: Fix this shit
@@ -186,7 +184,7 @@
 		e.preventDefault()
 
 		// Track the event with Fathom
-		Fathom.trackEvent(`analytics click: ${current_path}`)
+		Fathom.trackEvent(`analytics click: ${page.url.pathname}`)
 
 		// Open modal and fetch analytics data
 		await modal.show_modal()
@@ -288,9 +286,8 @@
 	</div>
 
 	{#if !is_private && count && count.count}
-		<Reactions data={count} path={current_path} />
+		<Reactions data={count} path={page.url.pathname} />
 	{/if}
-
 
 	<div class="mb-24 grid justify-items-center">
 		<PostOnBlueSky
@@ -320,7 +317,6 @@
 
 	<ButtButt />
 
-	
 	<NewsletterSignup />
 
 	<div class="mb-24"></div>
