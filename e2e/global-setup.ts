@@ -1,6 +1,7 @@
 import Database from 'better-sqlite3'
 import { readFileSync, readdirSync } from 'node:fs'
 import path from 'node:path'
+import * as sqliteVec from 'sqlite-vec'
 
 export default async function global_setup() {
 	console.log('Seeding database with posts...')
@@ -8,6 +9,14 @@ export default async function global_setup() {
 	// Create database
 	const db_path = path.join(process.cwd(), 'data', 'site-data.db')
 	const db = new Database(db_path)
+
+	// Load sqlite-vec extension
+	try {
+		sqliteVec.load(db)
+		console.log('sqlite-vec extension loaded')
+	} catch (error) {
+		console.warn('Failed to load sqlite-vec extension:', error)
+	}
 
 	// Read schema
 	const schema = readFileSync(
