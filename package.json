@@ -25,6 +25,7 @@
 		"test:e2e": "playwright test",
 		"test:ui": "vitest --ui",
 		"test:ci": "vitest run",
+		"seed-db": "vite-node e2e/setup/seed-db.ts",
 		"cspell": "cspell '**/*.md' --config cspell.json --wordsOnly",
 		"coverage": "vitest run --coverage"
 	},
