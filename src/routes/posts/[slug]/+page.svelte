@@ -46,7 +46,6 @@
 	} = meta
 
 	const url = `${website}/posts/${slug}`
-	const current_pathname = `/posts/${slug}`
 	const seo_config = create_seo_config({
 		title,
 		description: preview.slice(0, 140) + '...',
@@ -107,8 +106,6 @@
 			return headings
 		})
 	})
-
-	let current_path = page.url.pathname
 
 	let current_visitor_data: VisitorEntry | undefined
 
@@ -187,7 +184,7 @@
 		e.preventDefault()
 
 		// Track the event with Fathom
-		Fathom.trackEvent(`analytics click: ${current_path}`)
+		Fathom.trackEvent(`analytics click: ${page.url.pathname}`)
 
 		// Open modal and fetch analytics data
 		await modal.show_modal()
@@ -289,7 +286,7 @@
 	</div>
 
 	{#if !is_private && count && count.count}
-		<Reactions data={count} path={current_pathname} />
+		<Reactions data={count} path={page.url.pathname} />
 	{/if}
 
 	<div class="mb-24 grid justify-items-center">
