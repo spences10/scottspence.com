@@ -133,8 +133,8 @@ importers:
         specifier: 1.6.6
         version: 1.6.6
       svead:
-        specifier: ^0.0.13
-        version: 0.0.13(svelte@5.43.2)
+        specifier: ^0.0.15
+        version: 0.0.15(svelte@5.43.2)
       svelte:
         specifier: ^5.43.2
         version: 5.43.2
@@ -2264,6 +2264,9 @@ packages:
   safe-buffer@5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
 
+  schema-dts@1.1.5:
+    resolution: {integrity: sha512-RJr9EaCmsLzBX2NDiO5Z3ux2BVosNZN5jo0gWgsyKvxKIUL5R3swNvoorulAeL9kLB0iTSX7V6aokhla2m7xbg==}
+
   semver@7.7.2:
     resolution: {integrity: sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==}
     engines: {node: '>=10'}
@@ -2369,8 +2372,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  svead@0.0.13:
-    resolution: {integrity: sha512-Tcm1xKEClmmAFcbjm9t8+T58BXWPAWgAwna/0Z+sRWuiYDCohF4WwHQzrgsy/73c4c7iT6gW4bENJ/ZV0YkViw==}
+  svead@0.0.15:
+    resolution: {integrity: sha512-JdFrFfYwooY65pfcjlOFrFHzwgO+0S2vscleKjzUIB82BTuLHmWp86+s/Gen/ivIALSe4YncKEKXWx9QPAyQ+g==}
     peerDependencies:
       svelte: ^4.0.0 || ^5.0.0
 
@@ -4772,6 +4775,8 @@ snapshots:
 
   safe-buffer@5.2.1: {}
 
+  schema-dts@1.1.5: {}
+
   semver@7.7.2: {}
 
   semver@7.7.3: {}
@@ -4854,8 +4859,9 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  svead@0.0.13(svelte@5.43.2):
+  svead@0.0.15(svelte@5.43.2):
     dependencies:
+      schema-dts: 1.1.5
       svelte: 5.43.2
 
   svelte-check@4.3.3(picomatch@4.0.3)(svelte@5.43.2)(typescript@5.9.3):
