@@ -5,6 +5,7 @@
 		Megaphone,
 		WarningTriangle,
 	} from '$lib/icons'
+	import * as Fathom from 'fathom-client'
 
 	interface Props {
 		options?: BannerOptions
@@ -13,6 +14,7 @@
 	export interface BannerOptions {
 		type: 'info' | 'tip' | 'warning' | 'announcement'
 		message: string
+		track_event?: string
 	}
 
 	let {
@@ -21,6 +23,17 @@
 			message: '',
 		},
 	}: Props = $props()
+
+	function handle_click(event: MouseEvent | KeyboardEvent) {
+		const target = event.target as HTMLElement
+		if (target.tagName === 'A' && options.track_event) {
+			const link_text = target.textContent?.trim() || ''
+			const event_name = link_text
+				? `${options.track_event}: ${link_text}`
+				: options.track_event
+			Fathom.trackEvent(event_name)
+		}
+	}
 
 	const ICONS = {
 		info: InformationCircle,
@@ -42,9 +55,13 @@
 	const Icon = ICONS[options.type] ?? InformationCircle
 </script>
 
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <div
 	role="banner"
 	class="all-prose rounded-box prose-a:text-info-content relative mt-8 shadow-lg {banner_classes}"
+	onclick={handle_click}
+	onkeydown={handle_click}
 >
 	<div
 		class="{bg} border-base-300 absolute -top-3 -left-3 rounded-full border-4 p-1"

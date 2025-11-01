@@ -8,7 +8,19 @@ is_private: false
 <!-- cSpell:ignore modelcontextprotocol mcpServers spences10 sequentialthinking omnisearch -->
 
 <script>
-  import { Details } from '$lib/components'
+  import { Banner, Details } from '$lib/components'
+
+  const options = {
+    type: 'info',
+    message: `Managing MCP servers can be tricky! Check out 
+      <a href="https://github.com/spences10/mcpick" target="_blank" rel="noopener noreferrer">
+      McPick</a> - a tool that makes it simpler to manage your MCP 
+			server configurations. Also see the guide on 
+      <a href="/posts/optimising-mcp-server-context-usage-in-claude-code" target="_blank" rel="noopener noreferrer">
+      optimising MCP server context usage</a> to get the most out of 
+			your setup.`,
+    track_event: 'configuring mcp tools in claude code banner',
+  }
 </script>
 
 Aight! So, I've been using Claude Code for a bit now, and one thing
@@ -21,6 +33,8 @@ But there's a better way - directly editing the config file. This is
 especially useful when there's a large config that requires a lot of
 parameters to pass, such as paths and environment variables. More on
 that later.
+
+<Banner {options} />
 
 ## The problem with the CLI approach
 
