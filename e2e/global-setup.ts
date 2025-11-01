@@ -1,7 +1,55 @@
-import { update_posts } from '../src/routes/api/ingest/update-posts'
+import Database from 'better-sqlite3'
+import { readFileSync, readdirSync } from 'node:fs'
+import path from 'node:path'
 
-export default async function globalSetup() {
+export default async function global_setup() {
 	console.log('Seeding database with posts...')
-	const result = await update_posts()
-	console.log(result.message)
+
+	// Create database
+	const db_path = path.join(process.cwd(), 'data', 'site-data.db')
+	const db = new Database(db_path)
+
+	// Read schema
+	const schema = readFileSync(
+		path.join(process.cwd(), 'src/lib/sqlite/schema.sql'),
+		'utf-8',
+	)
+	db.exec(schema)
+
+	// Read all markdown files
+	const posts_dir = path.join(process.cwd(), 'posts')
+	const post_files = readdirSync(posts_dir).filter((f) =>
+		f.endsWith('.md'),
+	)
+
+	console.log(`Found ${post_files.length} posts to seed`)
+
+	// Simple insert - just enough for e2e tests to have posts
+	const insert_stmt = db.prepare(`
+		INSERT INTO posts (slug, title, date, is_private, preview, tags, reading_time_minutes, reading_time_text, reading_time_seconds, reading_time_words, preview_html, last_updated)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		ON CONFLICT (slug) DO NOTHING
+	`)
+
+	for (const file of post_files) {
+		const slug = file.replace('.md', '')
+		// Minimal seed data - just enough for tests
+		insert_stmt.run(
+			slug,
+			slug.replace(/-/g, ' '), // title
+			new Date().toISOString(), // date
+			0, // is_private
+			'Test preview', // preview
+			'test,tag', // tags
+			5, // reading_time_minutes
+			'5 min read', // reading_time_text
+			300, // reading_time_seconds
+			1000, // reading_time_words
+			'<p>Test preview</p>', // preview_html
+			new Date().toISOString(), // last_updated
+		)
+	}
+
+	db.close()
+	console.log(`Seeded ${post_files.length} posts`)
 }
