@@ -44,7 +44,6 @@ export default async function global_setup() {
 	const insert_embedding = db.prepare(`
 		INSERT INTO post_embeddings (post_id, embedding)
 		VALUES (?, ?)
-		ON CONFLICT (post_id) DO NOTHING
 	`)
 
 	// Dummy embedding (1024 dimensions of zeros as JSON)
