@@ -24,17 +24,27 @@ export default async function global_setup() {
 
 	console.log(`Found ${post_files.length} posts to seed`)
 
-	// Simple insert - just enough for e2e tests to have posts
-	const insert_stmt = db.prepare(`
+	// Insert posts - minimal data for e2e tests
+	const insert_post = db.prepare(`
 		INSERT INTO posts (slug, title, date, is_private, preview, tags, reading_time_minutes, reading_time_text, reading_time_seconds, reading_time_words, preview_html, last_updated)
 		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 		ON CONFLICT (slug) DO NOTHING
 	`)
 
+	// Insert embeddings into the virtual table
+	const insert_embedding = db.prepare(`
+		INSERT INTO post_embeddings (post_id, embedding)
+		VALUES (?, ?)
+		ON CONFLICT (post_id) DO NOTHING
+	`)
+
+	// Dummy embedding (1024 dimensions of zeros as JSON)
+	const dummy_embedding = JSON.stringify(new Array(1024).fill(0))
+
 	for (const file of post_files) {
 		const slug = file.replace('.md', '')
-		// Minimal seed data - just enough for tests
-		insert_stmt.run(
+		// Insert post
+		insert_post.run(
 			slug,
 			slug.replace(/-/g, ' '), // title
 			new Date().toISOString(), // date
@@ -48,6 +58,8 @@ export default async function global_setup() {
 			'<p>Test preview</p>', // preview_html
 			new Date().toISOString(), // last_updated
 		)
+		// Insert embedding
+		insert_embedding.run(slug, dummy_embedding)
 	}
 
 	db.close()
