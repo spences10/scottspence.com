@@ -10,12 +10,14 @@ import { redirect, type Handle } from '@sveltejs/kit'
 import { sequence } from '@sveltejs/kit/hooks'
 import { readFileSync } from 'node:fs'
 
-// Initialize schema on startup
-const schema = readFileSync('src/lib/sqlite/schema.sql', 'utf-8')
-sqlite_client.exec(schema)
+// Initialize schema on startup - skip during build
+if (!building) {
+	const schema = readFileSync('src/lib/sqlite/schema.sql', 'utf-8')
+	sqlite_client.exec(schema)
 
-// Run any pending migrations
-run_migrations()
+	// Run any pending migrations
+	run_migrations()
+}
 
 const sync_on_startup: Handle = async ({ event, resolve }) => {
 	// SQLite migration: No sync needed for local database
