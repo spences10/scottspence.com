@@ -35,8 +35,6 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: Seed database
-        run: pnpm run seed-db
       - name: Run tests
         run: pnpm run test:e2e
         env:
