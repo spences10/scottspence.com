@@ -77,13 +77,24 @@ export const get_related_posts = async (
 ) => {
 	const client = sqlite_client
 	try {
+		// Check if the current post has an embedding first
+		const check_stmt = client.prepare(`
+			SELECT post_id FROM post_embeddings WHERE post_id = ?
+		`)
+		const has_embedding = check_stmt.get(post_id)
+
+		if (!has_embedding) {
+			// No embedding for this post yet, return empty array
+			return []
+		}
+
 		// Use a higher k value to account for private posts being filtered out
 		// Multiply by 3 to ensure we get enough public posts after filtering
 		const search_limit = limit * 3
 
 		// Option 1: Use KNN syntax with higher k, then filter for privacy
 		const stmt = client.prepare(`
-			SELECT pe.post_id, distance 
+			SELECT pe.post_id, distance
 			FROM post_embeddings pe
 			JOIN posts p ON pe.post_id = p.slug
 			WHERE pe.embedding MATCH (
