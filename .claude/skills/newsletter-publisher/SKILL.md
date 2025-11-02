@@ -1,9 +1,6 @@
 ---
 name: newsletter-publisher
-description:
-  Prepare newsletters for publication by validating format, structure,
-  frontmatter, and content. Use when reviewing newsletter drafts
-  before sending or publishing.
+description: Prepare newsletters for publication by validating format, structure, frontmatter, and content. Use when reviewing newsletter drafts before sending or publishing.
 allowed-tools: Read, Edit, Glob
 ---
 

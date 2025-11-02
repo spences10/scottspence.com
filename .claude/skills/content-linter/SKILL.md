@@ -1,9 +1,6 @@
 ---
 name: content-linter
-description:
-  Lint content for spelling errors, en-GB compliance, and writing
-  quality. Use when checking markdown files for errors before
-  publication.
+description: Lint content for spelling errors, en-GB compliance, and writing quality. Use when checking markdown files for errors before publication.
 allowed-tools: Read, Bash, Grep
 ---
 

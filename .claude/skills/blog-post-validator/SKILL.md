@@ -1,9 +1,6 @@
 ---
 name: blog-post-validator
-description:
-  Validate blog posts for quality, consistency, en-GB spelling, code
-  examples, and adherence to ScottInk style guidelines before
-  publication.
+description: Validate blog posts for quality, consistency, en-GB spelling, code examples, and adherence to ScottInk style guidelines before publication.
 allowed-tools: Read, Grep, Glob
 ---
 

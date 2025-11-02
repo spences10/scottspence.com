@@ -82,31 +82,6 @@ frontmatter, and content.
 
 ---
 
-### 4. commit-message-generator
-
-Generate clear, conventional commit messages that follow best
-practices and project standards.
-
-**Use when:**
-
-- Writing commit messages for changes
-- Creating multiple commits in a PR
-- Need help making commit messages more meaningful
-- Ensuring consistency with project conventions
-
-**What it does:**
-
-- Follows Conventional Commits specification
-- Provides type/scope options for consistency
-- Ensures imperative mood in subject lines
-- Guides body and footer formatting
-- Explains when to reference issues
-- Includes examples for common scenarios
-
-**Location:** `.claude/skills/commit-message-generator/SKILL.md`
-
----
-
 ### 5. content-linter
 
 Comprehensive content checking for spelling errors, en-GB compliance,
@@ -148,7 +123,6 @@ with:
 - "Write a blog post about..."
 - "Check this blog post before publishing"
 - "Prepare the newsletter for sending"
-- "Generate a commit message"
 - "Check spelling in this content"
 
 Claude will automatically load the relevant Skill(s).
@@ -171,8 +145,6 @@ Each Skill follows this structure:
 │   └── SKILL.md
 ├── newsletter-publisher/
 │   └── SKILL.md
-├── commit-message-generator/
-│   └── SKILL.md
 ├── content-linter/
 │   └── SKILL.md
 └── README.md (this file)
@@ -193,7 +165,6 @@ Multiple Skills can work together. For example:
 - Write a blog post with **blog-post-creator**
 - Validate with **blog-post-validator**
 - Lint with **content-linter**
-- Commit with **commit-message-generator**
 
 ### Tool Restrictions
 
@@ -203,7 +174,6 @@ capabilities scoped to what's needed:
 - **blog-post-creator**: Read, Write, Edit, Glob
 - **blog-post-validator**: Read, Grep, Glob (no write)
 - **newsletter-publisher**: Read, Edit, Glob
-- **commit-message-generator**: Read, Bash
 - **content-linter**: Read, Bash, Grep
 
 ## Examples

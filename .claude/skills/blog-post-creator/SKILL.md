@@ -1,9 +1,6 @@
 ---
 name: blog-post-creator
-description:
-  Create new blog posts with proper frontmatter, structure, and
-  ScottInk voice. Use when writing blog posts, creating new content
-  for scottspence.com, or starting a technical article.
+description: Create new blog posts with proper frontmatter, structure, and ScottInk voice. Use when writing blog posts, creating new content for scottspence.com, or starting a technical article.
 allowed-tools: Read, Write, Edit, Glob
 ---
 
