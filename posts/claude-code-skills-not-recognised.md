@@ -5,12 +5,9 @@ tags: ['claude', 'claude-code', 'tools', 'guide']
 is_private: false
 ---
 
-<!-- cspell:ignore frontmatter mcpServers pnpx -->
-
-Got Claude Code skills not showing up when you list them? Yeah, I hit
-this too. When Claude Skills were announced I jumped straight on that!
-Dug into it and built out several skills, for this site and other
-projects.
+Not having Claude Code skills showing up? Yeah, I hit this too... When
+Claude Skills were announced I jumped straight on that! Dug into it
+and built out several skills, for this site and other projects.
 
 I even built out my own
 [CLI tool](https://github.com/spences10/claude-skills-cli) (Claude
