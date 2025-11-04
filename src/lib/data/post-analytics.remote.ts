@@ -6,28 +6,37 @@ import { differenceInHours, parseISO } from 'date-fns'
 import * as v from 'valibot'
 import { get_date_range } from '../../routes/api/ingest/utils'
 
-export const get_post_analytics = query(v.string(), async (slug: string): Promise<PostAnalytics> => {
-	try {
-		// Check each period individually for staleness and refresh if needed
-		for (const period of ['day', 'month', 'year']) {
-			if (await is_stale_data(slug, period)) {
-				const [date_from, date_to] = get_date_range(period)
-				const fathom_data = await get_fathom_data(slug, period, date_from, date_to)
-				if (fathom_data) {
-					await insert_fathom_data(slug, [{ period, data: fathom_data }])
+export const get_post_analytics = query(
+	v.string(),
+	async (slug: string): Promise<PostAnalytics> => {
+		try {
+			// Check each period individually for staleness and refresh if needed
+			for (const period of ['day', 'month', 'year']) {
+				if (await is_stale_data(slug, period)) {
+					const [date_from, date_to] = get_date_range(period)
+					const fathom_data = await get_fathom_data(
+						slug,
+						period,
+						date_from,
+						date_to,
+					)
+					if (fathom_data) {
+						await insert_fathom_data(slug, [
+							{ period, data: fathom_data },
+						])
+					}
 				}
 			}
-		}
 
-		// Fetch the analytics data
-		let page_analytics: PostAnalytics = {
-			daily: null,
-			monthly: null,
-			yearly: null,
-		}
+			// Fetch the analytics data
+			let page_analytics: PostAnalytics = {
+				daily: null,
+				monthly: null,
+				yearly: null,
+			}
 
-		// Construct and execute the UNION query
-		const sql = `
+			// Construct and execute the UNION query
+			const sql = `
 			SELECT 'day' AS period, * FROM post_analytics WHERE date_grouping = 'day' AND slug = ?
 			UNION
 			SELECT 'month' AS period, * FROM post_analytics WHERE date_grouping = 'month' AND slug = ?
@@ -35,26 +44,30 @@ export const get_post_analytics = query(v.string(), async (slug: string): Promis
 			SELECT 'year' AS period, * FROM post_analytics WHERE date_grouping = 'year' AND slug = ?;
 		`
 
-		const result = await sqlite_client.execute({
-			sql,
-			args: [slug, slug, slug],
-		})
+			const result = await sqlite_client.execute({
+				sql,
+				args: [slug, slug, slug],
+			})
 
-		// Process the results
-		result.rows.forEach((row) => {
-			if (row.period === 'day') page_analytics.daily = row
-			if (row.period === 'month') page_analytics.monthly = row
-			if (row.period === 'year') page_analytics.yearly = row
-		})
+			// Process the results
+			result.rows.forEach((row) => {
+				if (row.period === 'day') page_analytics.daily = row
+				if (row.period === 'month') page_analytics.monthly = row
+				if (row.period === 'year') page_analytics.yearly = row
+			})
 
-		return page_analytics
-	} catch (error) {
-		console.warn('Database unavailable for post analytics:', error)
-		return { daily: null, monthly: null, yearly: null }
-	}
-})
+			return page_analytics
+		} catch (error) {
+			console.warn('Database unavailable for post analytics:', error)
+			return { daily: null, monthly: null, yearly: null }
+		}
+	},
+)
 
-async function is_stale_data(slug: string, period: string): Promise<boolean> {
+async function is_stale_data(
+	slug: string,
+	period: string,
+): Promise<boolean> {
 	const sql = `
 		SELECT last_updated
 		FROM post_analytics
@@ -69,17 +82,22 @@ async function is_stale_data(slug: string, period: string): Promise<boolean> {
 
 		if (last_updated) {
 			const minutes_difference =
-				differenceInHours(new Date(), parseISO(String(last_updated))) * 60
+				differenceInHours(
+					new Date(),
+					parseISO(String(last_updated)),
+				) * 60
 
 			// Define cache durations in minutes
 			const durations: Record<string, number> = {
-				day: 60,    // 1 hour
+				day: 60, // 1 hour
 				month: 1440, // 24 hours
 				year: 1440, // 24 hours
 			}
 			return minutes_difference >= durations[period]
 		} else {
-			console.log('No last updated date found, assuming data is stale.')
+			console.log(
+				'No last updated date found, assuming data is stale.',
+			)
 			return true
 		}
 	} catch (error) {
@@ -118,7 +136,10 @@ async function get_fathom_data(
 		)
 		return fathom_data
 	} catch (error) {
-		console.error(`Error fetching from Fathom for period ${period}:`, error)
+		console.error(
+			`Error fetching from Fathom for period ${period}:`,
+			error,
+		)
 		return null
 	}
 }
@@ -131,11 +152,14 @@ async function insert_fathom_data(
 
 	data_batches.forEach(({ period, data }) => {
 		if (!data || !data[0]) {
-			console.log(`No data available for period: ${period}, skipping...`)
+			console.log(
+				`No data available for period: ${period}, skipping...`,
+			)
 			return // Skip this iteration as there's no data
 		}
 
-		const { pageviews, visits, uniques, avg_duration, bounce_rate } = data[0]
+		const { pageviews, visits, uniques, avg_duration, bounce_rate } =
+			data[0]
 
 		const args = [
 			slug,
@@ -176,7 +200,9 @@ async function insert_fathom_data(
 
 	try {
 		await sqlite_client.batch(queries)
-		console.log(`Batch insert/update completed for ${queries.length} periods.`)
+		console.log(
+			`Batch insert/update completed for ${queries.length} periods.`,
+		)
 	} catch (error) {
 		console.error(`Error inserting batch data:`, error)
 	}
