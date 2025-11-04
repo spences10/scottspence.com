@@ -39,12 +39,8 @@ Before finishing, verify:
 ## Quick Example
 
 ```markdown
-So, there I was debugging this query at 3am when the numbers just
-didn't add up - 742k reads? 😅
-
-Here's the fix I implemented: [code]
-
-Banging! That fixed it. Query went from ~5s to ~0.5s.
+I spent some time this weekend rolling the auth credentials (again)
+after Claude Code doxed my .env variables! 😅
 ```
 
 ## References

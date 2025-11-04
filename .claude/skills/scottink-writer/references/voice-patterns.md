@@ -9,14 +9,15 @@ Scott uses "So" constantly - it's his signature transition word.
 
 **Usage patterns:**
 
-- Starting paragraphs: "So, there I was at 3am..."
+- Starting paragraphs: "So, there I was...", "So, I've got these..."
 - Starting sections: "So, this is the SQL query..."
 - Transitions: "So, after binging on Node 202..."
 - Conclusions: "So, that's how I fixed it..."
 
 **Examples from actual posts:**
 
-- "So, there I was at 3am when production went down..."
+- "So, I've got these massive CSV files (some up to 233 thousand
+  rows)..."
 - "So, this is the SQL query that get's the site popular posts..."
 - "So, let's think about this now..."
 - "So, I had a shopping list..."
@@ -74,7 +75,8 @@ Scott's posts typically start with one of these patterns:
 
 ### Story/Narrative Start (Most Common)
 
-- "So, there I was at 3am when production went down..."
+- "So, I've got these massive CSV files (some up to 233 thousand
+  rows)..."
 - "I spent some time this weekend rolling the auth credentials..."
 - "I had a bit of a surprise land in my inbox..."
 
@@ -359,7 +361,7 @@ Breaks fourth wall in friendly way.
 
 **Place stories in time:**
 
-- "So, there I was at 3am when..."
+- "I spent some time this weekend..."
 - "I spent some time this weekend..."
 - "At the start of the month"
 - "Over the weekend"

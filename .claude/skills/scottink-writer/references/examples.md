@@ -8,9 +8,8 @@ patterns.
 ### Story/Narrative Start
 
 ```markdown
-So, there I was at 3am when production went down. I spent some time
-this weekend rolling the auth credentials for this site (again) after
-Claude Code doxed my `.env` variables! 😅
+I spent some time this weekend rolling the auth credentials for this
+site (again) after Claude Code doxed my `.env` variables! 😅
 ```
 
 ### Conversational Opener
@@ -272,8 +271,9 @@ This example shows multiple patterns working together:
 ````markdown
 ## The Problem
 
-So, there I was at 3am debugging billion-row database reads. Not the
-good type of surprise though! 😅
+I had a bit of a surprise land in my inbox at the start of the month
+from my analytics provider Fathom. Not the good type of surprise
+though! 😅
 
 I spent some time this weekend rolling the auth credentials for this
 site (again) after Claude Code doxed my `.env` variables! The numbers
@@ -369,7 +369,7 @@ Tl;DR: Skip to The Solution if you just want the fix.
 ## Temporal Markers
 
 ```markdown
-So, there I was at 3am when...
+I spent some time this weekend...
 
 I spent some time this weekend...
 
