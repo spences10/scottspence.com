@@ -3,8 +3,8 @@ import { PUBLIC_FATHOM_ID } from '$env/static/public'
 import { fetch_fathom_data } from '$lib/fathom'
 import { sqlite_client } from '$lib/sqlite/client'
 import { differenceInHours, parseISO } from 'date-fns'
-import { get_date_range } from '../../routes/api/ingest/utils'
 import * as v from 'valibot'
+import { get_date_range } from '../../routes/api/ingest/utils'
 
 export const get_post_analytics = query(v.string(), async (slug: string): Promise<PostAnalytics> => {
 	try {
@@ -75,7 +75,7 @@ async function is_stale_data(slug: string, period: string): Promise<boolean> {
 			const durations: Record<string, number> = {
 				day: 60,    // 1 hour
 				month: 1440, // 24 hours
-				year: 10080, // 7 days
+				year: 1440, // 24 hours
 			}
 			return minutes_difference >= durations[period]
 		} else {
