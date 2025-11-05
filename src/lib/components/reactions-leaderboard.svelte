@@ -10,12 +10,12 @@
 	let sort_by = $state<keyof ReactionEntry>('total_count')
 	let sort_order = $state<'asc' | 'desc'>('asc')
 
-	$effect(() => {
-		leaderboard = [...leaderboard].sort((a, b) => {
+	const sorted_leaderboard = $derived(
+		[...leaderboard].sort((a, b) => {
 			const order = sort_order === 'desc' ? -1 : 1
 			return order * ((b[sort_by] as number) - (a[sort_by] as number))
-		})
-	})
+		}),
+	)
 
 	const handle_sort_change = (new_sort_by: keyof ReactionEntry) => {
 		sort_by = new_sort_by
@@ -26,12 +26,12 @@
 	}
 </script>
 
-<section class="sm:-mx-30 m-0 mb-20 lg:-mx-40">
+<section class="m-0 mb-20 sm:-mx-30 lg:-mx-40">
 	<div class="mb-4 flex items-center justify-end">
 		<select
 			class="select select-bordered select-sm mr-2"
 			bind:value={sort_by}
-			onchange={e =>
+			onchange={(e) =>
 				handle_sort_change(
 					(e?.target as HTMLSelectElement)
 						?.value as keyof ReactionEntry,
@@ -54,7 +54,7 @@
 	</div>
 
 	<div class="relative grid grid-cols-1 gap-8 md:grid-cols-2">
-		{#each leaderboard as page (page.path)}
+		{#each sorted_leaderboard as page (page.path)}
 			<a
 				target="_blank"
 				rel="noopener noreferrer"
@@ -63,7 +63,7 @@
 				class="h-full"
 			>
 				<article
-					class="card flex h-full flex-col justify-between rounded-box border border-secondary p-5 font-bold shadow-lg transition hover:text-accent"
+					class="card rounded-box border-secondary hover:text-accent flex h-full flex-col justify-between border p-5 font-bold shadow-lg transition"
 				>
 					<h3 class="mb-5 text-2xl">
 						{#if page.rank === 1}
@@ -86,7 +86,7 @@
 					<div class="mt-5 flex flex-wrap justify-between">
 						{#each reactions as reaction}
 							<span
-								class="btn btn-primary mb-2 mr-2 min-w-[calc(50%-0.5rem)] flex-1 text-xl md:min-w-0 md:flex-none"
+								class="btn btn-primary mr-2 mb-2 min-w-[calc(50%-0.5rem)] flex-1 text-xl md:min-w-0 md:flex-none"
 							>
 								{reaction.emoji}
 								{page[reaction.type]}
