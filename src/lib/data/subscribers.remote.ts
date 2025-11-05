@@ -8,55 +8,38 @@ import { differenceInHours, parseISO } from 'date-fns'
 
 async function get_resend_subscriber_count(): Promise<number> {
 	try {
-		const response = await fetch(
-			`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts?limit=1`,
-			{
-				headers: {
-					Authorization: `Bearer ${RESEND_API_KEY}`,
-				},
-			},
-		)
-
-		if (!response.ok) {
-			throw new Error('Failed to fetch subscriber count from Resend')
-		}
-
-		const data = await response.json()
-		// The API returns pagination metadata, count total contacts by fetching all pages
 		let total_count = 0
 		let has_more = true
 		let after_cursor: string | undefined
 
-		// First fetch (already done above, just set the count)
-		if (data.data) {
-			total_count = data.data.length
-			has_more = data.has_more
-			if (data.data.length > 0) {
-				after_cursor = data.data[data.data.length - 1].id
-			}
-		}
+		while (has_more) {
+			const url = after_cursor
+				? `https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts?limit=100&after=${after_cursor}`
+				: `https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts?limit=100`
 
-		// Fetch remaining pages if needed
-		while (has_more && after_cursor) {
-			const next_response = await fetch(
-				`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts?limit=100&after=${after_cursor}`,
-				{
-					headers: {
-						Authorization: `Bearer ${RESEND_API_KEY}`,
-					},
+			const response = await fetch(url, {
+				headers: {
+					Authorization: `Bearer ${RESEND_API_KEY}`,
 				},
-			)
+			})
 
-			if (!next_response.ok) break
+			if (!response.ok) {
+				throw new Error('Failed to fetch contacts from Resend')
+			}
 
-			const next_data = await next_response.json()
-			total_count += next_data.data?.length || 0
-			has_more = next_data.has_more || false
+			const data = await response.json()
 
-			if (next_data.data && next_data.data.length > 0) {
-				after_cursor = next_data.data[next_data.data.length - 1].id
+			if (data.data && Array.isArray(data.data)) {
+				total_count += data.data.length
+				has_more = data.has_more || false
+
+				if (data.data.length > 0 && has_more) {
+					after_cursor = data.data[data.data.length - 1].id
+				} else {
+					has_more = false
+				}
 			} else {
-				break
+				has_more = false
 			}
 		}
 

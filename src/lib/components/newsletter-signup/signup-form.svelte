@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { newsletter_subscriber_count_store } from '$lib/stores'
+	import { get_subscriber_count } from '$lib/data/subscribers.remote'
 	import type { ActionResult } from '@sveltejs/kit'
 	import * as Fathom from 'fathom-client'
 	import { button_disabled } from './index'
@@ -11,6 +11,8 @@
 	}
 
 	let { email = $bindable(), handle_result }: Props = $props()
+
+	const subscriber_data = get_subscriber_count()
 
 	async function handle_submit(e: SubmitEvent) {
 		e.preventDefault()
@@ -59,8 +61,14 @@
 				Want to keep up to date with what I'm working on?
 			</p>
 			<p class="mt-1 max-w-3xl">
-				Join {$newsletter_subscriber_count_store.newsletter_subscriber_count}
-				other developers and sign up for the newsletter.
+				{#await subscriber_data}
+					Join other developers and sign up for the newsletter.
+				{:then data}
+					Join {data.newsletter_subscriber_count}
+					other developers and sign up for the newsletter.
+				{:catch}
+					Join other developers and sign up for the newsletter.
+				{/await}
 			</p>
 		</div>
 		<!-- Form section - fixed margin -->
