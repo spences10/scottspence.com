@@ -2,6 +2,7 @@ import { command, query } from '$app/server'
 import {
 	BYPASS_DB_READS,
 	CACHE_DURATIONS,
+	clear_cache,
 	get_from_cache,
 	set_cache,
 } from '$lib/cache/server-cache'
@@ -109,6 +110,9 @@ export const submit_reaction = command(
 
 			const count =
 				result.rows.length > 0 ? Number(result.rows[0]['count']) : 0
+
+			// Clear server-side cache for this reaction
+			clear_cache(`reaction_counts_${path}`)
 
 			return {
 				success: true,

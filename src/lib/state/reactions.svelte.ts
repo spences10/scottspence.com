@@ -1,6 +1,7 @@
 import {
 	BYPASS_DB_READS,
 	CACHE_DURATIONS,
+	clear_cache,
 } from '$lib/cache/server-cache'
 import { reactions } from '$lib/reactions-config'
 import { ratelimit } from '$lib/redis'
@@ -125,6 +126,9 @@ class ReactionsState {
 			const count =
 				result.rows.length > 0 ? Number(result.rows[0]['count']) : 0
 
+			// Clear server-side cache for this reaction
+			clear_cache(`reaction_counts_${path}`)
+
 			// Update cache
 			this.cache.set(submission_key, {
 				count,
@@ -237,6 +241,9 @@ export const submit_reaction = async (
 
 		const count =
 			result.rows.length > 0 ? Number(result.rows[0]['count']) : 0
+
+		// Clear server-side cache for this reaction
+		clear_cache(`reaction_counts_${path}`)
 
 		return {
 			success: true,
