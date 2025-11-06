@@ -45,6 +45,7 @@ serveless
 shiz
 sitch
 smoosh
+STFU
 Strikethrough
 subreddits
 templating
