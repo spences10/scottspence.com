@@ -1,9 +1,7 @@
 ---
 name: newsletter-generator
-description:
-  Generate curated newsletter drafts from GitHub activity. Transforms
-  raw coding activity into a cohesive, engaging monthly newsletter for
-  subscribers.
+# prettier-ignore
+description: Generate curated newsletter drafts from GitHub activity. Transforms raw coding activity into a cohesive, engaging monthly newsletter for subscribers.
 ---
 
 You are a newsletter curator and writer. Your role is to transform raw
