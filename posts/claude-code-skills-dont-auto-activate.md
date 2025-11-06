@@ -330,23 +330,95 @@ skill with unique trigger words. Beyond that, you're better off
 manually invoking skills with explicit commands until better tooling
 exists.
 
-## If you're building skills
+## Update: A simpler, more scalable approach
 
-A few learnings:
+After more testing with the
+[claude-skills-cli](https://github.com/spences10/claude-skills-cli),
+I've found a simpler solution that's **less brittle** than
+keyword-based scripts but a bit more inconsistent!
 
-1. Skills won't auto-activate reliably without hooks
-2. Gentle reminders don't work - you need explicit instructions
-3. Use `UserPromptSubmit` hooks to detect trigger words
-4. Parse JSON from stdin with `jq` to access the prompt
-5. Inject direct instructions, not suggestions
+The problem with my original approach is the keyword script works, but
+it has a flaw for scaling: **every new skill requires creating a new
+script or updating the script with new keywords**. You end up
+managing:
 
-The infrastructure-showcase repository has loads more patterns if
-you're building a proper skills setup. Worth a look if you're serious
-about scaling Claude Code for complex projects.
+- Keyword collision avoidance
+- Script maintenance for each skill
+- Regex patterns that grow increasingly complex
 
-## Conclusion
+What I found (from my testing) is:
 
-Have you got skills working without hooks? I'd be genuinely interested
-to know - hit me up on
-[Bluesky](https://bsky.app/profile/scottspence.dev) because this feels
-like something that should just work but doesn't.
+A single, hook with an **explicit instruction** that works for _all_
+skills:
+
+```json
+{
+	"hooks": {
+		"UserPromptSubmit": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "echo 'INSTRUCTION: If the prompt matches any available skill keywords, use Skill(skill-name) to activate it.'"
+					}
+				]
+			}
+		]
+	}
+}
+```
+
+No script. No `jq`. No keyword management. Just a direct instruction
+that tells Claude to:
+
+1. Check available skills
+2. Match keywords in the prompt to skill descriptions
+3. **Activate** matching skills using `Skill()` syntax
+
+## Does this work better?
+
+When I tested with two skills (alpha and beta) using different
+keywords:
+
+- **Simple hook**: Activated correctly based on skill metadata ✅
+- **No script updates needed** when adding new skills ✅
+- **Skills self-describe** through their frontmatter ✅
+
+## What I actually found from testing
+
+After messing about with both approaches for the "research" skill, I
+ran 20 fresh Claude Code sessions to test the hook reliability - 10
+with the hook at project level, 10 at global level.
+
+Results? **4/10 globally, 5/10 locally.** Basically a coin flip.
+
+So the simple explicit hook is a "Spin the wheel!" situation and see
+if Claude pays attention. Sometimes it activates skills, sometimes it
+completely ignores the instruction. No pattern I could spot - just
+50/50 randomness.
+
+Still, I prefer this approach over keyword scripts because:
+
+- No maintenance overhead when adding new skills
+- No keyword collision headaches
+- No regex patterns to manage
+
+50% success rate isn't great, but it beats maintaining keyword scripts
+and dealing with collisions when you've got multiple skills.
+
+The
+[claude-skills-cli](https://github.com/spences10/claude-skills-cli)
+uses this approach by default with the `add-hook` command.
+
+## Bottom line
+
+Skills should auto-activate based on their descriptions. (They don't).
+Even with explicit hook instructions, it's a coin flip.
+
+My approach? Use the simple hook approach for convenience, but if you
+actually need a skill for something important, invoke it explicitly
+with `Skill(skill-name)` in your prompt.
+
+If you've found a way to get skills activating reliably, I'd genuinely
+love to know - hit me up on
+[Bluesky](https://bsky.app/profile/scottspence.dev).
