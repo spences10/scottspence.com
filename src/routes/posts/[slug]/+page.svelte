@@ -33,50 +33,52 @@
 
 	let { data } = $props()
 
-	let { Content, related_posts, meta, count } = data
-	const {
-		title,
-		date,
-		updated,
-		preview,
-		slug,
-		is_private,
-		tags,
-		reading_time,
-	} = meta
+	// Direct property access maintains reactivity
+	const url = $derived(`${website}/posts/${data.meta.slug}`)
+	const seo_config = $derived(
+		create_seo_config({
+			title: data.meta.title,
+			description: data.meta.preview.slice(0, 140) + '...',
+			slug: `posts/${data.meta.slug}`,
+		}),
+	)
 
-	const url = `${website}/posts/${slug}`
-	const seo_config = create_seo_config({
-		title,
-		description: preview.slice(0, 140) + '...',
-		slug: `posts/${slug}`,
-	})
+	const blog_posting = $derived(
+		create_schema_org_config({
+			'@type': 'BlogPosting',
+			'@id': url,
+			url: url,
+			headline: data.meta.title,
+			name: data.meta.title,
+			description: data.meta.preview,
+			datePublished: format(
+				new Date(data.meta.date),
+				"yyyy-MM-dd'T'HH:mm:ssxxx",
+			),
+			dateModified: data.meta.updated
+				? format(
+						new Date(data.meta.updated),
+						"yyyy-MM-dd'T'HH:mm:ssxxx",
+					)
+				: format(
+						new Date(data.meta.date),
+						"yyyy-MM-dd'T'HH:mm:ssxxx",
+					),
+			image: seo_config.open_graph_image,
+			mainEntityOfPage: {
+				'@type': 'WebPage',
+				'@id': website,
+			},
+		}),
+	)
 
-	const blog_posting = create_schema_org_config({
-		'@type': 'BlogPosting',
-		'@id': url,
-		url: url,
-		headline: title,
-		name: title,
-		description: preview,
-		datePublished: format(new Date(date), "yyyy-MM-dd'T'HH:mm:ssxxx"),
-		dateModified: updated
-			? format(new Date(updated), "yyyy-MM-dd'T'HH:mm:ssxxx")
-			: format(new Date(date), "yyyy-MM-dd'T'HH:mm:ssxxx"),
-		image: seo_config.open_graph_image,
-		mainEntityOfPage: {
-			'@type': 'WebPage',
-			'@id': website,
-		},
-	})
-
-	const breadcrumb_items = [
+	const breadcrumb_items = $derived([
 		{ name: 'Home', item: website },
 		{ name: 'Posts', item: `${website}/posts` },
-		{ name: title, item: url },
-	]
+		{ name: data.meta.title, item: url },
+	])
 
-	const breadcrumb_list = {
+	const breadcrumb_list = $derived({
 		'@type': 'BreadcrumbList',
 		'@id': `${url}#breadcrumb`,
 		name: 'Breadcrumb',
@@ -86,12 +88,12 @@
 			name: breadcrumb.name,
 			item: breadcrumb.item,
 		})),
-	}
+	})
 
-	const schema_org_config = {
+	const schema_org_config = $derived({
 		'@context': 'https://schema.org',
 		'@graph': [blog_posting, breadcrumb_list],
-	}
+	})
 
 	let path = page.route.id
 
@@ -213,17 +215,17 @@
 {/if}
 
 <article>
-	<h1 class="mb-1 text-5xl font-black">{title}</h1>
+	<h1 class="mb-1 text-5xl font-black">{data.meta.title}</h1>
 	<div class="mt-4 mb-3 uppercase">
 		<div class="mb-1">
-			<time datetime={new Date(date).toISOString()}>
-				{format(new Date(date), 'MMMM d, yyyy')}
+			<time datetime={new Date(data.meta.date).toISOString()}>
+				{format(new Date(data.meta.date), 'MMMM d, yyyy')}
 			</time>
 			&bull;
-			<span>{reading_time.text}</span>
+			<span>{data.meta.reading_time.text}</span>
 		</div>
 		<div>
-			{#each tags as tag}
+			{#each data.meta.tags as tag}
 				<a href={`/tags/${tag}`}>
 					<span
 						class="badge badge-sm badge-primary text-primary-content hover:bg-accent hover:text-accetn-content mr-2 shadow-md transition"
@@ -232,7 +234,7 @@
 					</span>
 				</a>
 			{/each}
-			{#if differenceInDays(new Date(), new Date(date)) < 31}
+			{#if differenceInDays(new Date(), new Date(data.meta.date)) < 31}
 				<span
 					class="badge badge-sm badge-secondary text-secondary-content hover:bg-accent hover:text-accent-content cursor-pointer font-bold shadow-md transition"
 				>
@@ -263,19 +265,21 @@
 		</span>
 	{/if}
 
-	{#if is_private}
+	{#if data.meta.is_private}
 		<IsPrivateBanner />
 	{/if}
 
-	{#if differenceInYears(new Date(), new Date(date)) >= 1 || updated}
+	{#if differenceInYears(new Date(), new Date(data.meta.date)) >= 1 || data.meta.updated}
 		<UpdatedBanner
-			updated={updated === undefined ? date : updated}
-			{date}
+			updated={data.meta.updated === undefined
+				? data.meta.date
+				: data.meta.updated}
+			date={data.meta.date}
 		/>
 	{/if}
 
 	<div class="all-prose mb-10" {@attach text_selection_handler}>
-		<Content />
+		<data.Content />
 	</div>
 
 	<div
@@ -285,19 +289,19 @@
 		<div class="divider divider-secondary"></div>
 	</div>
 
-	{#if !is_private && count && count.count}
-		<Reactions data={count} path={page.url.pathname} />
+	{#if !data.meta.is_private && data.count && data.count.count}
+		<Reactions data={data.count} path={page.url.pathname} />
 	{/if}
 
 	<div class="mb-24 grid justify-items-center">
 		<PostOnBlueSky
-			post_text={`Check out this post from @scottspence.dev, ${title}: ${url}`}
+			post_text={`Check out this post from @scottspence.dev, ${data.meta.title}: ${url}`}
 			button_text="Useful? Share it on Bluesky."
 			button_class="btn-secondary"
 		/>
 	</div>
 
-	{#if count && count.count}
+	{#if data.count && data.count.count}
 		<div class="flex justify-center">
 			<a
 				onclick={show_modal}
@@ -309,11 +313,16 @@
 		</div>
 	{/if}
 
-	<Modal bind:this={modal} {slug} {title} onclose={close_modal} />
+	<Modal
+		bind:this={modal}
+		slug={data.meta.slug}
+		title={data.meta.title}
+		onclose={close_modal}
+	/>
 
 	<PopularPosts />
 
-	<RelatedPosts {related_posts} />
+	<RelatedPosts related_posts={data.related_posts} />
 
 	<ButtButt />
 
@@ -324,7 +333,7 @@
 
 <TextSelectionPopup
 	selected_text={selection_popup.selectedText}
-	post_title={title}
+	post_title={data.meta.title}
 	post_url={url}
 	x={selection_popup.x}
 	y={selection_popup.y}

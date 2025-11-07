@@ -163,7 +163,6 @@ export async function fetch_github_activity(
 			per_page: 100,
 			sort: 'created',
 			order: 'desc',
-			advanced_search: true,
 		})
 		const pr_results = pr_response.data
 
@@ -198,7 +197,6 @@ export async function fetch_github_activity(
 				per_page: 100,
 				sort: 'created',
 				order: 'desc',
-				advanced_search: true,
 			},
 		)
 		const issue_results = issue_response.data
