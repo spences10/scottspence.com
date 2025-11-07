@@ -1,5 +1,11 @@
 // Universal reactive state for posts with Svelte 5 runes
-import { BYPASS_DB_READS, CACHE_DURATIONS, get_from_cache, set_cache } from '$lib/cache/server-cache'
+import {
+	BYPASS_DB_READS,
+	CACHE_DURATIONS,
+	get_from_cache,
+	set_cache,
+} from '$lib/cache/server-cache'
+import { normalize_posts } from '$lib/data/post-normalizer'
 import { sqlite_client } from '$lib/sqlite/client'
 
 const CACHE_KEY = 'posts'
@@ -15,7 +21,10 @@ class PostsState {
 		}
 
 		// Check server cache first
-		const server_cached = get_from_cache<Post[]>(CACHE_KEY, CACHE_DURATIONS.posts)
+		const server_cached = get_from_cache<Post[]>(
+			CACHE_KEY,
+			CACHE_DURATIONS.posts,
+		)
 		if (server_cached) {
 			this.posts = server_cached
 			this.last_fetched = Date.now()
@@ -40,8 +49,8 @@ class PostsState {
 				'SELECT * FROM posts ORDER BY date DESC;',
 			)
 
-			const posts = posts_result.rows as unknown as Post[]
-			
+			const posts = normalize_posts(posts_result.rows)
+
 			// Update both caches
 			this.posts = posts
 			this.last_fetched = Date.now()
@@ -77,7 +86,10 @@ export const get_posts = async (): Promise<{ posts: Post[] }> => {
 	}
 
 	// Check server cache first
-	const cached = get_from_cache<Post[]>(CACHE_KEY, CACHE_DURATIONS.posts)
+	const cached = get_from_cache<Post[]>(
+		CACHE_KEY,
+		CACHE_DURATIONS.posts,
+	)
 	if (cached) {
 		return { posts: cached }
 	}
@@ -89,11 +101,11 @@ export const get_posts = async (): Promise<{ posts: Post[] }> => {
 			'SELECT * FROM posts ORDER BY date DESC;',
 		)
 
-		const posts = posts_result.rows as unknown as Post[]
-		
+		const posts = normalize_posts(posts_result.rows)
+
 		// Cache the result
 		set_cache(CACHE_KEY, posts)
-		
+
 		return { posts }
 	} catch (error) {
 		console.warn(
