@@ -13,27 +13,37 @@
 	let search_query = $state(page.url.searchParams.get('search') || '')
 
 	let filtered_posts = $derived.by(() => {
-		// First filter out private posts
+		// First filter out private posts and ensure valid post data
 		const public_posts = posts.filter(
-			(post: { is_private: boolean }) => !post.is_private,
+			(post: { is_private: boolean }) => post && !post.is_private,
 		)
 
 		// Then apply search filter if there's a search query
 		if (search_query === '') return public_posts
 
 		return public_posts.filter((post: Post) => {
-			return (
-				post.title
-					.toLowerCase()
-					.includes(search_query.toLowerCase()) ||
-				(Array.isArray(post.tags) &&
-					post.tags.some((tag) =>
+			// Defensive null checks for all accessed properties
+			if (!post) return false
+
+			const title_match =
+				post.title &&
+				post.title.toLowerCase().includes(search_query.toLowerCase())
+
+			const tag_match =
+				Array.isArray(post.tags) &&
+				post.tags.some(
+					(tag) =>
+						tag &&
 						tag.toLowerCase().includes(search_query.toLowerCase()),
-					)) ||
+				)
+
+			const preview_match =
+				post.preview &&
 				post.preview
 					.toLowerCase()
 					.includes(search_query.toLowerCase())
-			)
+
+			return title_match || tag_match || preview_match
 		})
 	})
 

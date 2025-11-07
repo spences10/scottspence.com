@@ -12,7 +12,7 @@
 		<article
 			class="card bg-base-100 hover:text-accent mb-10 p-5 transition first:pt-0"
 		>
-			<a href={`/posts/${post.slug}`} data-sveltekit-reload>
+			<a href={`/posts/${post.slug}`}>
 				<div>
 					<h2 class="mt-5 mb-2 text-3xl font-black">
 						{post.title}
