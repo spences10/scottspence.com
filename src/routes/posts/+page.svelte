@@ -78,6 +78,9 @@
 	/>
 </div>
 
-{#each filtered_posts as post (post.slug)}
-	<PostCard {post} />
-{/each}
+<!-- hacky bs to stop the post loading on hover -->
+<div data-sveltekit-preload-data="false">
+	{#each filtered_posts as post (post.slug)}
+		<PostCard {post} />
+	{/each}
+</div>
