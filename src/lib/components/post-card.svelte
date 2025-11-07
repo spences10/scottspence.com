@@ -6,13 +6,13 @@
 
 <div class="relative">
 	<div
-		class="rounded-box from-primary to-secondary absolute -inset-0 bg-gradient-to-r blur-sm"
+		class="rounded-box from-primary to-secondary absolute inset-0 bg-linear-to-r blur-sm"
 	></div>
 	<div class="relative">
 		<article
 			class="card bg-base-100 hover:text-accent mb-10 p-5 transition first:pt-0"
 		>
-			<a href={`/posts/${post.slug}`}>
+			<a href={`/posts/${post.slug}`} data-sveltekit-reload>
 				<div>
 					<h2 class="mt-5 mb-2 text-3xl font-black">
 						{post.title}
@@ -23,7 +23,7 @@
 						<span>{post.reading_time_text}</span>
 						{#if differenceInDays(new Date(), new Date(post.date)) < 31}
 							<span
-								class="badge badge-sm bg-primary text-primary-content hover:bg-secondary hover:text-secondary-content relative -top-[2px] ml-1"
+								class="badge badge-sm bg-primary text-primary-content hover:bg-secondary hover:text-secondary-content relative -top-0.5 ml-1"
 							>
 								new
 							</span>
