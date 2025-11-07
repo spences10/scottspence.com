@@ -55,12 +55,15 @@
 		class="dock bg-primary rounded-box mx-auto mb-2 max-w-[95vw] shadow-xl"
 	>
 		{#each links as link}
-			<button class={is_active(link.href) ? 'dock-active' : ''}>
-				<a href={link.href} class="text-primary-content">
-					<link.icon height="30" width="30" />
-					<span class="sr-only">{link.title}</span>
-				</a>
-			</button>
+			<a
+				href={link.href}
+				class="text-primary-content {is_active(link.href)
+					? 'dock-active'
+					: ''}"
+			>
+				<link.icon height="30" width="30" />
+				<span class="sr-only">{link.title}</span>
+			</a>
 		{/each}
 	</div>
 </div>
