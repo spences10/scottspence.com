@@ -8,6 +8,27 @@ vi.mock('fathom-client', () => ({
 	trackEvent: vi.fn(),
 }))
 
+// Mock remote functions - these require SvelteKit request context in production
+vi.mock('$lib/data/subscribers.remote', () => ({
+	get_subscriber_count: vi.fn(() =>
+		Promise.resolve({
+			newsletter_subscriber_count: 105,
+		}),
+	),
+}))
+
+vi.mock(
+	'$lib/components/newsletter-signup/newsletter.remote',
+	() => ({
+		subscribe_to_newsletter: vi.fn(() =>
+			Promise.resolve({
+				success: true,
+				message: 'Successfully subscribed',
+			}),
+		),
+	}),
+)
+
 describe('PostPage Component', () => {
 	const defaultProps = {
 		data: {
