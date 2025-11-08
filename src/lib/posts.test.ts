@@ -2,9 +2,59 @@ import { sqlite_client } from '$lib/sqlite/client'
 import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 import { get_posts } from './posts'
 
+const mockDbPosts = [
+	{
+		id: 1,
+		title: 'Post 1',
+		date: '2023-06-14',
+		slug: 'post-1',
+	},
+	{
+		id: 2,
+		title: 'Post 2',
+		date: '2023-06-13',
+		slug: 'post-2',
+	},
+]
+
+// Expected normalized structure after normalize_posts
 const mockPosts = [
-	{ id: 1, title: 'Post 1', date: '2023-06-14' },
-	{ id: 2, title: 'Post 2', date: '2023-06-13' },
+	{
+		title: 'Post 1',
+		date: '2023-06-14',
+		slug: 'post-1',
+		path: '/posts/post-1',
+		tags: [],
+		is_private: false,
+		reading_time: {
+			text: '',
+			minutes: 0,
+			time: 0,
+			words: 0,
+		},
+		reading_time_text: '',
+		preview_html: '',
+		preview: '',
+		previewHtml: '',
+	},
+	{
+		title: 'Post 2',
+		date: '2023-06-13',
+		slug: 'post-2',
+		path: '/posts/post-2',
+		tags: [],
+		is_private: false,
+		reading_time: {
+			text: '',
+			minutes: 0,
+			time: 0,
+			words: 0,
+		},
+		reading_time_text: '',
+		preview_html: '',
+		preview: '',
+		previewHtml: '',
+	},
 ]
 
 // Mock the sqlite_client
@@ -38,7 +88,7 @@ test('get_posts fetches posts from database when cache is empty', async () => {
 	)
 
 	;(sqlite_client.execute as any).mockResolvedValue({
-		rows: mockPosts,
+		rows: mockDbPosts,
 	})
 	;(get_from_cache as any).mockReturnValue(null) // No cache
 
@@ -77,7 +127,7 @@ test('get_posts fetches new posts when cache is expired', async () => {
 	)
 
 	;(sqlite_client.execute as any).mockResolvedValue({
-		rows: mockPosts,
+		rows: mockDbPosts,
 	})
 	;(get_from_cache as any).mockReturnValue(null) // Cache expired
 
