@@ -47,7 +47,7 @@
 		"@upstash/redis": "^1.35.6",
 		"@vitest/browser-playwright": "^4.0.8",
 		"cspell": "^9.3.0",
-		"daisyui": "5.4.7",
+		"daisyui": "5.5.5",
 		"date-fns": "4.1.0",
 		"eslint": "^9.39.1",
 		"eslint-config-prettier": "^10.1.8",
