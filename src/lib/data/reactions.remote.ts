@@ -1,4 +1,4 @@
-import { command, query } from '$app/server'
+import { command, getRequestEvent, query } from '$app/server'
 import {
 	BYPASS_DB_READS,
 	CACHE_DURATIONS,
@@ -25,20 +25,32 @@ interface ReactionResult {
 
 export const submit_reaction = command(
 	v.object({
-		reaction: v.string(),
-		path: v.string(),
-		ip: v.string(),
+		reaction: v.pipe(
+			v.string(),
+			v.trim(),
+			v.minLength(1, 'Reaction is required'),
+		),
+		path: v.pipe(
+			v.string(),
+			v.trim(),
+			v.minLength(1, 'Path is required'),
+		),
 	}),
 	async ({
 		reaction,
 		path,
-		ip,
 	}: {
 		reaction: string
 		path: string
-		ip: string
 	}): Promise<ReactionResult> => {
 		try {
+			// Extract IP server-side to prevent spoofing
+			const { request } = getRequestEvent()
+			const ip =
+				request.headers.get('x-forwarded-for')?.split(',')[0] ||
+				request.headers.get('x-real-ip') ||
+				'unknown'
+
 			// Rate limiting
 			const rate_limit_attempt = await ratelimit.limit(ip)
 
