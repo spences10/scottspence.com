@@ -85,8 +85,7 @@
 		"onlyBuiltDependencies": [
 			"@tailwindcss/oxide",
 			"better-sqlite3",
-			"esbuild",
-			"rollup"
+			"esbuild"
 		]
 	},
 	"dependencies": {
