@@ -128,7 +128,7 @@ importers:
         version: 1.0.3
       resend:
         specifier: ^6.4.2
-        version: 6.4.2
+        version: 6.5.2
       slugify:
         specifier: 1.6.6
         version: 1.6.6
@@ -2233,9 +2233,9 @@ packages:
   requires-port@1.0.0:
     resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
 
-  resend@6.4.2:
-    resolution: {integrity: sha512-YnxmwneltZtjc7Xff+8ZjG1/xPLdstCiqsedgO/JxWTf7vKRAPCx6CkhQ3ZXskG0mrmf8+I5wr/wNRd8PQMUfw==}
-    engines: {node: '>=18'}
+  resend@6.5.2:
+    resolution: {integrity: sha512-Yl83UvS8sYsjgmF8dVbNPzlfpmb3DkLUk3VwsAbkaEFo9UMswpNuPGryHBXGk+Ta4uYMv5HmjVk3j9jmNkcEDg==}
+    engines: {node: '>=20'}
     peerDependencies:
       '@react-email/render': '*'
     peerDependenciesMeta:
@@ -4730,7 +4730,7 @@ snapshots:
 
   requires-port@1.0.0: {}
 
-  resend@6.4.2:
+  resend@6.5.2:
     dependencies:
       svix: 1.76.1
 
