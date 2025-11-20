@@ -118,7 +118,7 @@ I tested four different approaches:
 
 ## The results
 
-Here's the the data from the databse across all five prompt types (10
+Here's the the data from the database across all five prompt types (10
 runs each prompt):
 
 ## Complete results across all hooks
@@ -239,7 +239,7 @@ skill.
 
 **The caveat**: It's not perfect (84%), and it uses more tokens than
 the simple hook since the prompt is larger. But 84% vs 20%? I'll take
-that tradeoff.
+that trade-off.
 
 ## The LLM eval hook (cheaper but can fail spectacularly)
 
