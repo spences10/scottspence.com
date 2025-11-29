@@ -47,7 +47,7 @@
 		<div class="space-y-6">
 			{#each published_newsletters as newsletter (newsletter.slug)}
 				<article
-					class="card bg-base-100 hover:bg-base-200 p-6 transition"
+					class="card bg-base-100 hover:bg-base-200 p-6 transition border border-primary"
 				>
 					<a href={`/newsletter/${newsletter.slug}`}>
 						<h3 class="mb-2 text-2xl font-bold">
