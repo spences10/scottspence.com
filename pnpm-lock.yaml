@@ -12,8 +12,8 @@ importers:
         specifier: ^22.0.1
         version: 22.0.1
       better-sqlite3:
-        specifier: ^12.4.6
-        version: 12.4.6
+        specifier: ^12.5.0
+        version: 12.5.0
       sqlite-vec:
         specifier: 0.1.7-alpha.2
         version: 0.1.7-alpha.2
@@ -40,7 +40,7 @@ importers:
         specifier: ^5.2.8
         version: 5.2.8
       '@playwright/test':
-        specifier: ^1.56.1
+        specifier: ^1.57.0
         version: 1.57.0
       '@sveltejs/adapter-node':
         specifier: ^5.4.0
@@ -64,10 +64,10 @@ importers:
         specifier: ^2.0.7
         version: 2.0.7(@upstash/redis@1.35.7)
       '@upstash/redis':
-        specifier: ^1.35.6
+        specifier: ^1.35.7
         version: 1.35.7
       '@vitest/browser-playwright':
-        specifier: ^4.0.13
+        specifier: ^4.0.14
         version: 4.0.14(playwright@1.57.0)(vite@7.2.4(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1))(vitest@4.0.14)
       cspell:
         specifier: ^9.3.2
@@ -103,17 +103,17 @@ importers:
         specifier: 1.0.3
         version: 1.0.3
       playwright:
-        specifier: ^1.56.1
+        specifier: ^1.57.0
         version: 1.57.0
       prettier:
-        specifier: ^3.6.2
-        version: 3.7.1
+        specifier: ^3.7.2
+        version: 3.7.2
       prettier-plugin-svelte:
         specifier: ^3.4.0
-        version: 3.4.0(prettier@3.7.1)(svelte@5.45.2)
+        version: 3.4.0(prettier@3.7.2)(svelte@5.45.2)
       prettier-plugin-tailwindcss:
         specifier: ^0.7.1
-        version: 0.7.1(prettier-plugin-svelte@3.4.0(prettier@3.7.1)(svelte@5.45.2))(prettier@3.7.1)
+        version: 0.7.1(prettier-plugin-svelte@3.4.0(prettier@3.7.2)(svelte@5.45.2))(prettier@3.7.2)
       rehype-autolink-headings:
         specifier: 7.1.0
         version: 7.1.0
@@ -136,7 +136,7 @@ importers:
         specifier: ^0.0.13
         version: 0.0.13(svelte@5.45.2)
       svelte:
-        specifier: ^5.43.14
+        specifier: ^5.45.2
         version: 5.45.2
       svelte-check:
         specifier: ^4.3.4
@@ -154,19 +154,19 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
       typescript-eslint:
-        specifier: ^8.47.0
+        specifier: ^8.48.0
         version: 8.48.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
       unist-util-visit:
         specifier: 5.0.0
         version: 5.0.0
       valibot:
-        specifier: ^1.1.0
+        specifier: ^1.2.0
         version: 1.2.0(typescript@5.9.3)
       vite:
         specifier: ^7.2.4
         version: 7.2.4(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1)
       vitest:
-        specifier: ^4.0.13
+        specifier: ^4.0.14
         version: 4.0.14(@types/node@24.10.1)(@vitest/browser-playwright@4.0.14)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1)
       vitest-browser-svelte:
         specifier: ^2.0.1
@@ -1213,8 +1213,8 @@ packages:
   before-after-hook@4.0.0:
     resolution: {integrity: sha512-q6tR3RPqIB1pMiTRMFcZwuG5T8vwp+vUvEG0vuI6B+Rikh5BfPp2fQ82c925FOs+b0lcFQ8CFrL+KbilfZFhOQ==}
 
-  better-sqlite3@12.4.6:
-    resolution: {integrity: sha512-gaYt9yqTbQ1iOxLpJA8FPR5PiaHP+jlg8I5EX0Rs2KFwNzhBsF40KzMZS5FwelY7RG0wzaucWdqSAJM3uNCPCg==}
+  better-sqlite3@12.5.0:
+    resolution: {integrity: sha512-WwCZ/5Diz7rsF29o27o0Gcc1Du+l7Zsv7SYtVPG0X3G/uUI1LqdxrQI7c9Hs2FWpqXXERjW9hp6g3/tH7DlVKg==}
     engines: {node: 20.x || 22.x || 23.x || 24.x || 25.x}
 
   bindings@1.5.0:
@@ -2134,8 +2134,8 @@ packages:
       prettier-plugin-svelte:
         optional: true
 
-  prettier@3.7.1:
-    resolution: {integrity: sha512-RWKXE4qB3u5Z6yz7omJkjWwmTfLdcbv44jUVHC5NpfXwFGzvpQM798FGv/6WNK879tc+Cn0AAyherCl1KjbyZQ==}
+  prettier@3.7.2:
+    resolution: {integrity: sha512-n3HV2J6QhItCXndGa3oMWvWFAgN1ibnS7R9mt6iokScBOC0Ul9/iZORmU2IWUMcyAQaMPjTlY3uT34TqocUxMA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -3634,7 +3634,7 @@ snapshots:
 
   before-after-hook@4.0.0: {}
 
-  better-sqlite3@12.4.6:
+  better-sqlite3@12.5.0:
     dependencies:
       bindings: 1.5.0
       prebuild-install: 7.1.3
@@ -4544,18 +4544,18 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-svelte@3.4.0(prettier@3.7.1)(svelte@5.45.2):
+  prettier-plugin-svelte@3.4.0(prettier@3.7.2)(svelte@5.45.2):
     dependencies:
-      prettier: 3.7.1
+      prettier: 3.7.2
       svelte: 5.45.2
 
-  prettier-plugin-tailwindcss@0.7.1(prettier-plugin-svelte@3.4.0(prettier@3.7.1)(svelte@5.45.2))(prettier@3.7.1):
+  prettier-plugin-tailwindcss@0.7.1(prettier-plugin-svelte@3.4.0(prettier@3.7.2)(svelte@5.45.2))(prettier@3.7.2):
     dependencies:
-      prettier: 3.7.1
+      prettier: 3.7.2
     optionalDependencies:
-      prettier-plugin-svelte: 3.4.0(prettier@3.7.1)(svelte@5.45.2)
+      prettier-plugin-svelte: 3.4.0(prettier@3.7.2)(svelte@5.45.2)
 
-  prettier@3.7.1: {}
+  prettier@3.7.2: {}
 
   prism-svelte@0.4.7: {}
 
