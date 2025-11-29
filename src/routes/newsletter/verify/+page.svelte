@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { ErrorCircle, SuccessCircle } from '$lib/icons'
+	import type { Newsletter } from '$lib/newsletters'
+	import { format } from 'date-fns'
 	import type { PageData } from './$types'
 
 	interface Props {
@@ -6,60 +9,51 @@
 	}
 
 	let { data }: Props = $props()
+
+	const published_newsletters = $derived(
+		data.newsletters?.filter((n: Newsletter) => n.published) || [],
+	)
 </script>
 
 <svelte:head>
 	<title>Newsletter Confirmation - Scott Spence</title>
 </svelte:head>
 
-<div class="mx-auto max-w-3xl px-4 py-16">
-	<div class="card bg-base-200 shadow-xl">
-		<div class="card-body items-center text-center">
-			{#if data.status === 'success'}
-				<div class="text-success mb-4">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						class="h-16 w-16"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-						/>
-					</svg>
-				</div>
-				<h1 class="card-title text-3xl">Subscription Confirmed!</h1>
-				<p class="py-4">{data.message}</p>
-				<div class="card-actions">
-					<a href="/" class="btn btn-primary">Go to Homepage</a>
-				</div>
-			{:else}
-				<div class="text-error mb-4">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						class="h-16 w-16"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-						/>
-					</svg>
-				</div>
-				<h1 class="card-title text-3xl">Confirmation Failed</h1>
-				<p class="py-4">{data.message}</p>
-				<div class="card-actions">
-					<a href="/" class="btn btn-primary">Go to Homepage</a>
-				</div>
-			{/if}
+<!-- Success/Error Alert Banner -->
+{#if data.status === 'success'}
+	<div class="alert alert-success mb-8" role="alert">
+		<SuccessCircle/>
+		<span>{data.message}</span>
+	</div>
+{:else}
+	<div class="alert alert-error mb-8" role="alert">
+		<ErrorCircle />
+		<span>{data.message}</span>
+	</div>
+{/if}
+
+<!-- Newsletter List -->
+{#if published_newsletters.length > 0}
+	<div class="mb-10">
+		<h2 class="mb-8 text-4xl font-black">Past Newsletters</h2>
+		<div class="space-y-6">
+			{#each published_newsletters as newsletter (newsletter.slug)}
+				<article
+					class="card border border-primary bg-base-100 p-6 transition hover:bg-base-200"
+				>
+					<a href={`/newsletter/${newsletter.slug}`}>
+						<h3 class="mb-2 text-2xl font-bold">
+							{newsletter.title}
+						</h3>
+						<time
+							class="text-base-content/70 text-sm"
+							datetime={new Date(newsletter.date).toISOString()}
+						>
+							{format(new Date(newsletter.date), 'MMMM d, yyyy')}
+						</time>
+					</a>
+				</article>
+			{/each}
 		</div>
 	</div>
-</div>
+{/if}
