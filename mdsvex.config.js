@@ -73,11 +73,6 @@ function posts() {
 				time: reading_time_minutes * 60 * 1000, // milliseconds
 				words: words,
 			},
-
-			// remove timezone from parsed date
-			date: file.data.fm.date
-				? new Date(file.data.fm.date).toLocaleDateString()
-				: undefined,
 		}
 	}
 }
@@ -88,8 +83,8 @@ function posts() {
 function videos() {
 	const extensions = ['mp4', 'webm']
 	return function transformer(tree) {
-		visit(tree, 'image', node => {
-			if (extensions.some(ext => node.url.endsWith(ext))) {
+		visit(tree, 'image', (node) => {
+			if (extensions.some((ext) => node.url.endsWith(ext))) {
 				node.type = 'html'
 				node.value = `
             <video 
