@@ -9,7 +9,7 @@
 	}
 
 	let { data }: Props = $props()
-	let { Copy } = data
+	let Copy = $derived(data.Copy)
 
 	const seo_config = create_seo_config({
 		title: `Uses - ${name}`,

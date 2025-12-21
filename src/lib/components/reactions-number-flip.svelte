@@ -26,6 +26,7 @@
 	let padding = 3
 	let character_width = 1
 
+	// svelte-ignore state_referenced_locally - intentionally capturing initial count for spring animation
 	const displayed_count = spring(count)
 	let offset = $state(0)
 	let button_width = $state(``)
@@ -42,6 +43,7 @@
 	}
 
 	// calculate initial button width
+	// svelte-ignore state_referenced_locally - intentionally capturing initial count for width calculation
 	let crunched_number = number_crunch(count)
 	let crunched_length = crunched_number.length
 
@@ -59,7 +61,7 @@
 	type="submit"
 	{value}
 	{disabled}
-	class="btn btn-primary relative overflow-hidden rounded-box lowercase shadow-xl"
+	class="btn btn-primary rounded-box relative overflow-hidden lowercase shadow-xl"
 	onclick={handle_click}
 	style:width={button_width}
 	title={count > 1000 ? `${value} ${count}` : ''}

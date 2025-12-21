@@ -18,7 +18,7 @@
 	}
 
 	let { data }: Props = $props()
-	let { Copy } = data
+	let Copy = $derived(data.Copy)
 </script>
 
 <Head {seo_config} />

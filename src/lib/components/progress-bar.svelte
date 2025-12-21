@@ -12,7 +12,7 @@
 		width = `w-full`,
 		label = ``,
 	}: Props = $props()
-	let progress = ((value / max) * 100).toFixed()
+	let progress = $derived(((value / max) * 100).toFixed())
 </script>
 
 <section class={`not-prose ${width} ${label ? `` : `-mt-4`}`}>
@@ -27,7 +27,7 @@
 		{value}
 		{max}
 	></progress>
-	<label for="progress" class="label -ml-1 -mt-4">
+	<label for="progress" class="label -mt-4 -ml-1">
 		<span class="label-text text-lg font-medium">{progress}%</span>
 	</label>
 </section>

@@ -8,14 +8,17 @@
 
 	let { data }: Props = $props()
 
-	const { posts_by_tag, slug: tag_slug } = data
-	const tag = tag_slug ?? ''
+	const posts_by_tag = $derived(data.posts_by_tag)
+	const tag_slug = $derived(data.slug)
+	const tag = $derived(tag_slug ?? '')
 
-	const seo_config = create_seo_config({
-		title: `Posts relating to ${tag}`,
-		description: `A collection of posts related to the tag "${tag}"`,
-		slug: `tags/${tag_slug}`,
-	})
+	const seo_config = $derived(
+		create_seo_config({
+			title: `Posts relating to ${tag}`,
+			description: `A collection of posts related to the tag "${tag}"`,
+			slug: `tags/${tag_slug}`,
+		}),
+	)
 </script>
 
 <Head {seo_config} />

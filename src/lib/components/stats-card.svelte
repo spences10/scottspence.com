@@ -73,18 +73,20 @@
 		}
 	}
 
-	const daily_stats = generate_stats('day', daily_visits)
-	const monthly_stats = generate_stats('month', monthly_visits)
-	const yearly_stats = generate_stats('year', yearly_visits)
+	const daily_stats = $derived(generate_stats('day', daily_visits))
+	const monthly_stats = $derived(
+		generate_stats('month', monthly_visits),
+	)
+	const yearly_stats = $derived(generate_stats('year', yearly_visits))
 
-	const stats_array = [
+	const stats_array = $derived([
 		{ title: 'Daily analytics for this post', stats: daily_stats },
 		{
 			title: 'Monthly analytics for this post',
 			stats: monthly_stats,
 		},
 		{ title: 'Yearly analytics for this post', stats: yearly_stats },
-	]
+	])
 
 	interface StatValue {
 		label: string
@@ -125,7 +127,7 @@
 						<h3>{title}</h3>
 					</header>
 					<section
-						class="stats stats-vertical mb-8 w-full border border-secondary shadow-lg md:stats-horizontal"
+						class="stats stats-vertical border-secondary md:stats-horizontal mb-8 w-full border shadow-lg"
 					>
 						{#if stats}
 							{#each Object.entries(stats) as [key, { label, value, range }]}

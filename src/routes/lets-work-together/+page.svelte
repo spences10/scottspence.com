@@ -16,21 +16,25 @@
 	}
 
 	let { data }: Props = $props()
-	let { Copy, exchange_rates, pricing_numbers } = data
+	let Copy = $derived(data.Copy)
+	let exchange_rates = $derived(data.exchange_rates)
+	let pricing_numbers = $derived(data.pricing_numbers)
 
 	// Initialize client-side state with server data
-	pricing_state.init({
-		exchangeRates: exchange_rates,
-		pricingNumbers: pricing_numbers || {
-			posts_per_week: 1,
-			years_programming: 10,
-			total_posts: 100,
-			average_reading_time: 5,
-			annual_rate_eur: 120000,
-			chosen_holidays: 25,
-			working_days_in_year: 260,
-			public_holidays: 8,
-		},
+	$effect(() => {
+		pricing_state.init({
+			exchangeRates: exchange_rates,
+			pricingNumbers: pricing_numbers || {
+				posts_per_week: 1,
+				years_programming: 10,
+				total_posts: 100,
+				average_reading_time: 5,
+				annual_rate_eur: 120000,
+				chosen_holidays: 25,
+				working_days_in_year: 260,
+				public_holidays: 8,
+			},
+		})
 	})
 
 	let end_of_copy = $state<HTMLElement | null>(null)

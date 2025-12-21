@@ -16,7 +16,7 @@
 		],
 	}
 
-	let response_message = message_data[message_type]
+	let response_message = $derived(message_data[message_type])
 </script>
 
 <div
@@ -28,7 +28,7 @@
 	>
 		<div class="text-primary-content lg:w-0 lg:flex-1">
 			<h3
-				class="text-4xl font-extrabold tracking-tight text-primary-content"
+				class="text-primary-content text-4xl font-extrabold tracking-tight"
 			>
 				{response_message[0]}
 			</h3>

@@ -10,7 +10,7 @@
 	}
 
 	let { data }: Props = $props()
-	let { leaderboard = [] } = data
+	let leaderboard = $derived(data.leaderboard ?? [])
 
 	const url = `${website}/reactions-leaderboard`
 

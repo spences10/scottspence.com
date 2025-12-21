@@ -10,7 +10,7 @@
 	import { Head } from 'svead'
 
 	let { data } = $props()
-	let { Copy } = data
+	let Copy = $derived(data.Copy)
 
 	let end_of_copy = $state<HTMLElement | null>(null)
 	let show_table_of_contents = $state(true)
@@ -55,6 +55,6 @@
 	<Copy />
 </div>
 
-<div class="mb-5 mt-10 flex w-full flex-col" bind:this={end_of_copy}>
+<div class="mt-10 mb-5 flex w-full flex-col" bind:this={end_of_copy}>
 	<div class="divider divider-secondary"></div>
 </div>

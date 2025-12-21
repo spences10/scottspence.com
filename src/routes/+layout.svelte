@@ -14,7 +14,9 @@
 
 	let { data, children } = $props()
 
-	popular_posts_state.set(data?.popular_posts)
+	$effect(() => {
+		popular_posts_state.set(data?.popular_posts)
+	})
 
 	$effect(() => {
 		if (browser) {
@@ -46,7 +48,7 @@
 <div class="flex min-h-screen flex-col overflow-x-hidden">
 	<main
 		id="main-content"
-		class="container mx-auto max-w-3xl flex-grow px-4"
+		class="container mx-auto max-w-3xl grow px-4"
 	>
 		{@render children?.()}
 		<BackToTop />

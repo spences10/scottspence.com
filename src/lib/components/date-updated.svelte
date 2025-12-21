@@ -8,9 +8,11 @@
 
 	let { date, small = '' }: Props = $props()
 	const last_build_date = new Date()
-	const buildDate = date
-		? format(new Date(date), 'MMMM do yyyy')
-		: format(new Date(last_build_date), 'MMMM do yyyy')
+	const buildDate = $derived(
+		date
+			? format(new Date(date), 'MMMM do yyyy')
+			: format(new Date(last_build_date), 'MMMM do yyyy'),
+	)
 </script>
 
 <small>

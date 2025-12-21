@@ -10,7 +10,7 @@
 	import { Head } from 'svead'
 
 	let { data } = $props()
-	let { Copy } = data
+	let Copy = $derived(data.Copy)
 
 	let end_of_copy = $state<HTMLElement | null>(null)
 	let show_table_of_contents = $state(true)

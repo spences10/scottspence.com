@@ -12,7 +12,8 @@
 	}
 
 	let { data }: Props = $props()
-	let { tags, posts_by_tag } = data
+	let tags = $derived(data.tags)
+	let posts_by_tag = $derived(data.posts_by_tag)
 
 	let query = $state('')
 	let sort_by = $state('post_count') // 'alphabetical', 'post_count'

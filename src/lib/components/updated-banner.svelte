@@ -10,9 +10,8 @@
 
 	let { date = new Date(), updated = new Date() }: Props = $props()
 
-	let has_been_updated = compareDesc(
-		new Date(updated),
-		new Date(date),
+	let has_been_updated = $derived(
+		compareDesc(new Date(updated), new Date(date)),
 	)
 </script>
 
@@ -53,8 +52,8 @@
 						? 'wow!'
 						: '.'}
 				</span>
-				If there's technical information in here it's more than likely
-				out of date.
+				If there's technical information in here it's more than likely out
+				of date.
 			</span>
 		</div>
 	</div>

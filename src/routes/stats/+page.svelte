@@ -27,13 +27,24 @@
 	}
 
 	let { data } = $props()
-	const { site_stats, current_month, current_year, error } = data
+	const site_stats = $derived(data.site_stats)
+	const current_month = $derived(data.current_month)
+	const current_year = $derived(data.current_year)
+	const error = $derived(data.error)
 
 	let selected_period = $state('yearly')
-	let selected_year = $state<string>(
-		(Number(current_year) - 1).toString(),
-	)
-	let selected_month = $state(current_month)
+	let selected_year = $state<string>('')
+	let selected_month = $state('')
+
+	// Initialize with derived values after mount
+	$effect(() => {
+		if (!selected_year && current_year) {
+			selected_year = (Number(current_year) - 1).toString()
+		}
+		if (!selected_month && current_month) {
+			selected_month = current_month
+		}
+	})
 
 	// Auto-update selections when period changes
 	$effect(() => {
@@ -432,13 +443,11 @@
 					{#each trend_data as post_trend}
 						<div class="card bg-base-200 h-48 shadow-lg">
 							<div class="card-body flex h-full flex-col p-4">
-								<h4
-									class="card-title line-clamp-2 flex-shrink-0 text-sm"
-								>
+								<h4 class="card-title line-clamp-2 shrink-0 text-sm">
 									{post_trend.title}
 								</h4>
 								<div
-									class="mt-auto mb-2 flex h-16 flex-grow items-end gap-1"
+									class="mt-auto mb-2 flex h-16 grow items-end gap-1"
 								>
 									{#each post_trend.data_points as point, i}
 										{@const max_views = Math.max(
@@ -449,15 +458,13 @@
 												? (point.views / max_views) * 100
 												: 0}
 										<div
-											class="bg-primary hover:bg-accent tooltip tooltip-accent tooltip-top min-h-[4px] flex-1 rounded-t transition-colors duration-200"
+											class="bg-primary hover:bg-accent tooltip tooltip-accent tooltip-top min-h-1 flex-1 rounded-t transition-colors duration-200"
 											style="height: {Math.max(height, 6)}%"
 											data-tip="{point.period}: {point.views} views"
 										></div>
 									{/each}
 								</div>
-								<div
-									class="text-base-content/70 flex-shrink-0 text-xs"
-								>
+								<div class="text-base-content/70 shrink-0 text-xs">
 									{post_trend.data_points.length} data points
 								</div>
 							</div>

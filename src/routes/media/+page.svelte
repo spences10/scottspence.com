@@ -11,7 +11,8 @@
 	}
 
 	let { data }: Props = $props()
-	let { CorporateCopy, FunCopy } = data
+	let CorporateCopy = $derived(data.CorporateCopy)
+	let FunCopy = $derived(data.FunCopy)
 
 	let show_fun_copy = $state(true)
 	const toggle_copy = () => {

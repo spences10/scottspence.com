@@ -50,9 +50,11 @@
 		promotion: { bg: 'bg-success', text: '!text-success-content' },
 	}
 
-	const { bg, text } = COLORS[options.type] ?? COLORS['info']
-	const banner_classes = `${bg} ${text} px-12 py-4`
-	const Icon = ICONS[options.type] ?? InformationCircle
+	const colors = $derived(COLORS[options.type] ?? COLORS['info'])
+	const bg = $derived(colors.bg)
+	const text = $derived(colors.text)
+	const banner_classes = $derived(`${bg} ${text} px-12 py-4`)
+	const Icon = $derived(ICONS[options.type] ?? InformationCircle)
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->

@@ -12,7 +12,8 @@
 	}
 
 	let { data }: Props = $props()
-	let { Copy, newsletters } = data
+	let Copy = $derived(data.Copy)
+	let newsletters = $derived(data.newsletters)
 
 	// Filter to only show published newsletters
 	const published_newsletters = $derived(
@@ -47,7 +48,7 @@
 		<div class="space-y-6">
 			{#each published_newsletters as newsletter (newsletter.slug)}
 				<article
-					class="card bg-base-100 hover:bg-base-200 p-6 transition border border-primary"
+					class="card bg-base-100 hover:bg-base-200 border-primary border p-6 transition"
 				>
 					<a href={`/newsletter/${newsletter.slug}`}>
 						<h3 class="mb-2 text-2xl font-bold">
