@@ -352,6 +352,26 @@ CREATE INDEX IF NOT EXISTS idx_github_issues_repo ON github_issues (repo);
 CREATE INDEX IF NOT EXISTS idx_github_releases_published ON github_releases (published_at DESC);
 CREATE INDEX IF NOT EXISTS idx_github_releases_repo ON github_releases (repo);
 
+-- Local analytics events (privacy-first, runs alongside Fathom)
+CREATE TABLE IF NOT EXISTS
+  analytics_events (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    visitor_hash TEXT NOT NULL,
+    event_type TEXT NOT NULL,
+    event_name TEXT,
+    path TEXT NOT NULL,
+    referrer TEXT,
+    user_agent TEXT,
+    ip TEXT,
+    props TEXT,
+    created_at INTEGER NOT NULL
+  );
+
+CREATE INDEX IF NOT EXISTS idx_analytics_events_visitor ON analytics_events (visitor_hash);
+CREATE INDEX IF NOT EXISTS idx_analytics_events_type ON analytics_events (event_type);
+CREATE INDEX IF NOT EXISTS idx_analytics_events_created ON analytics_events (created_at);
+CREATE INDEX IF NOT EXISTS idx_analytics_events_path ON analytics_events (path);
+
 -- Enable WAL mode for better concurrent access
 PRAGMA journal_mode = WAL;
 PRAGMA synchronous = NORMAL;
