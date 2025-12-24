@@ -1,4 +1,5 @@
 import { building } from '$app/environment'
+import { track_page_view } from '$lib/analytics/track.server'
 import {
 	rejected_extensions,
 	rejected_paths,
@@ -82,6 +83,37 @@ const handle_redirects: Handle = async ({ event, resolve }) => {
 	return await resolve(event)
 }
 
+const track_analytics: Handle = async ({ event, resolve }) => {
+	// Skip during build
+	if (building) {
+		return await resolve(event)
+	}
+
+	const pathname = event.url.pathname
+
+	// Skip internal paths, API routes, assets, and remote function calls
+	if (
+		pathname.startsWith('/_') ||
+		pathname.startsWith('/__') ||
+		pathname.startsWith('/api/') ||
+		pathname.includes('.') ||
+		pathname.includes('__remote')
+	) {
+		return await resolve(event)
+	}
+
+	// Track GET requests to page routes (catches both SSR and client nav)
+	if (event.request.method === 'GET') {
+		try {
+			track_page_view(event.request, pathname)
+		} catch (error) {
+			console.error('Analytics tracking failed:', error)
+		}
+	}
+
+	return await resolve(event)
+}
+
 export const theme: Handle = async ({ event, resolve }) => {
 	const theme = event.cookies.get('theme')
 
@@ -111,6 +143,7 @@ export const handle = sequence(
 	sync_on_startup,
 	reject_suspicious_requests,
 	handle_redirects,
+	track_analytics,
 	theme,
 	handle_preload,
 )

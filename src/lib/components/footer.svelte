@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores'
+	import { get_active_visitors } from '$lib/analytics/analytics.remote'
 	import { Eye } from '$lib/icons'
 	import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
 	import { popular_posts_state } from '$lib/state/popular-posts-state.svelte'
-	import { visitors_store } from '$lib/stores'
 	import { number_crunch } from '$lib/utils'
 	import * as Fathom from 'fathom-client'
 	import CurrentVisitorsData from './current-visitors-data.svelte'
@@ -20,14 +20,14 @@
 		].slice(0, 6)
 	})
 
-	let total_visitors = $state(0)
+	const visitors_data = get_active_visitors({ limit: 10 })
+
 	$effect(() => {
-		if ($visitors_store && $visitors_store.visitor_data) {
-			total_visitors = $visitors_store.visitor_data.reduce(
-				(total, visitor) => total + visitor.recent_visitors,
-				0,
-			)
-		}
+		const interval = setInterval(
+			() => visitors_data.refresh(),
+			10_000,
+		)
+		return () => clearInterval(interval)
 	})
 </script>
 
@@ -58,27 +58,30 @@
 			</p>
 		{/each}
 
-		{#if total_visitors > 0}
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<span
-				onmouseenter={() => (show_current_visitor_data = true)}
-				onmouseleave={() => (show_current_visitor_data = false)}
-				class="inline-block cursor-pointer"
-			>
-				<p
-					class="bg-secondary text-secondary-content rounded-box mt-2 px-4 py-2 tracking-wide shadow-lg"
+		<svelte:boundary>
+			{@const data = await visitors_data}
+			{#if data.total > 0}
+				<!-- svelte-ignore a11y_no_static_element_interactions -->
+				<span
+					onmouseenter={() => (show_current_visitor_data = true)}
+					onmouseleave={() => (show_current_visitor_data = false)}
+					class="inline-block cursor-pointer"
 				>
-					There's currently
-					<span class="font-bold">
-						{total_visitors}
-					</span>
-					live {total_visitors === 1 ? 'visitor' : 'visitors'}
-				</p>
-				{#if show_current_visitor_data}
-					<CurrentVisitorsData />
-				{/if}
-			</span>
-		{/if}
+					<p
+						class="bg-secondary text-secondary-content rounded-box mt-2 px-4 py-2 tracking-wide shadow-lg"
+					>
+						There's currently
+						<span class="font-bold">
+							{data.total}
+						</span>
+						live {data.total === 1 ? 'visitor' : 'visitors'}
+					</p>
+					{#if show_current_visitor_data}
+						<CurrentVisitorsData />
+					{/if}
+				</span>
+			{/if}
+		</svelte:boundary>
 	</nav>
 
 	<nav>
