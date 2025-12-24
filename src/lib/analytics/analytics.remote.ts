@@ -13,6 +13,42 @@ interface TrackResult {
 }
 
 /**
+ * Get site-wide active visitors by page (last 5 minutes)
+ */
+export const get_active_visitors = query(
+	v.object({ limit: v.optional(v.number()) }),
+	({ limit = 10 }) => {
+		const five_min_ago = Date.now() - 5 * 60 * 1000
+
+		try {
+			const result = sqlite_client.execute({
+				sql: `SELECT path, COUNT(DISTINCT visitor_hash) as count
+					FROM analytics_events
+					WHERE created_at > ?
+					GROUP BY path
+					ORDER BY count DESC
+					LIMIT ?`,
+				args: [five_min_ago, limit],
+			})
+
+			const total = sqlite_client.execute({
+				sql: `SELECT COUNT(DISTINCT visitor_hash) as count
+					FROM analytics_events
+					WHERE created_at > ?`,
+				args: [five_min_ago],
+			})
+
+			return {
+				pages: result.rows as { path: string; count: number }[],
+				total: Number(total.rows[0]?.['count'] ?? 0),
+			}
+		} catch {
+			return { pages: [], total: 0 }
+		}
+	},
+)
+
+/**
  * Get count of visitors viewing a specific path in last 5 minutes
  */
 export const get_active_on_path = query(

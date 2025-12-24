@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { visitors_store, type VisitorEntry } from '$lib/stores'
+	import { get_active_visitors } from '$lib/analytics/analytics.remote'
 	import * as Fathom from 'fathom-client'
 	import CurrentVisitorsData from './current-visitors-data.svelte'
 
@@ -9,16 +9,14 @@
 	let ScottFace = `${base_cloudinary_url}scott-mug-face-no-bg.png`
 	let ScottMugFace = `${base_cloudinary_url}scott-mug-face.png`
 
-	let current_visitor_data: VisitorEntry | undefined | number =
-		$state()
+	const visitors_data = get_active_visitors({ limit: 10 })
 
-	$effect.pre(() => {
-		if ($visitors_store && $visitors_store.visitor_data) {
-			current_visitor_data = $visitors_store.visitor_data.reduce(
-				(total, visitor) => total + visitor.recent_visitors,
-				0,
-			)
-		}
+	$effect(() => {
+		const interval = setInterval(
+			() => get_active_visitors({ limit: 10 }).refresh(),
+			10000,
+		)
+		return () => clearInterval(interval)
 	})
 
 	let show_current_visitor_data = $state(false)
@@ -40,7 +38,7 @@
 				<h1 class="text-6xl font-black">
 					<span class="block">Scott Spence</span>
 					<span
-						class="block bg-gradient-to-b from-primary to-secondary bg-clip-text text-transparent"
+						class="from-primary to-secondary block bg-linear-to-b bg-clip-text text-transparent"
 					>
 						Hello World!
 					</span>
@@ -72,33 +70,34 @@
 				<a
 					href="/contact"
 					onclick={() => Fathom.trackEvent(`contact button click`)}
-					class="btn btn-primary btn-md mb-5 w-full rounded-box !text-primary-content shadow-xl lg:btn-lg hover:text-primary-content"
+					class="btn btn-primary btn-md rounded-box text-primary-content! lg:btn-lg hover:text-primary-content mb-5 w-full shadow-xl"
 				>
 					Get in Touch
 				</a>
-				{#if current_visitor_data}
-					<!-- svelte-ignore a11y_no_static_element_interactions -->
-					<span
-						onmouseenter={() => (show_current_visitor_data = true)}
-						onmouseleave={() => (show_current_visitor_data = false)}
-						class="inline-block cursor-pointer"
-					>
-						<p
-							class="mt-2 rounded-box bg-secondary px-4 py-2 text-sm tracking-wide text-secondary-content shadow-xl"
+				<svelte:boundary>
+					{@const data = await visitors_data}
+					{#if data.total > 0}
+						<!-- svelte-ignore a11y_no_static_element_interactions -->
+						<span
+							onmouseenter={() => (show_current_visitor_data = true)}
+							onmouseleave={() => (show_current_visitor_data = false)}
+							class="inline-block cursor-pointer"
 						>
-							There's currently
-							<span class="font-bold">
-								{current_visitor_data}
-							</span>
-							live {current_visitor_data === 1
-								? 'visitor'
-								: 'visitors'}
-						</p>
-						{#if show_current_visitor_data}
-							<CurrentVisitorsData />
-						{/if}
-					</span>
-				{/if}
+							<p
+								class="rounded-box bg-secondary text-secondary-content mt-2 px-4 py-2 text-sm tracking-wide shadow-xl"
+							>
+								There's currently
+								<span class="font-bold">
+									{data.total}
+								</span>
+								live {data.total === 1 ? 'visitor' : 'visitors'}
+							</p>
+							{#if show_current_visitor_data}
+								<CurrentVisitorsData />
+							{/if}
+						</span>
+					{/if}
+				</svelte:boundary>
 			</div>
 		</div>
 	</div>
