@@ -363,6 +363,7 @@ CREATE TABLE IF NOT EXISTS
     referrer TEXT,
     user_agent TEXT,
     ip TEXT,
+    country TEXT,
     props TEXT,
     created_at INTEGER NOT NULL
   );

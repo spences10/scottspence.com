@@ -67,8 +67,8 @@ export const get_visitor_hash = (
  */
 const get_insert_statement = () => {
 	return sqlite_client.prepare(`
-		INSERT INTO analytics_events (visitor_hash, event_type, event_name, path, referrer, user_agent, ip, props, created_at)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+		INSERT INTO analytics_events (visitor_hash, event_type, event_name, path, referrer, user_agent, ip, country, props, created_at)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 	`)
 }
 
@@ -80,6 +80,7 @@ export type AnalyticsEvent = {
 	referrer?: string | null
 	user_agent?: string | null
 	ip?: string | null
+	country?: string | null
 	props?: Record<string, unknown> | null
 }
 
@@ -96,6 +97,7 @@ export const track_event = (event: AnalyticsEvent) => {
 			event.referrer || null,
 			event.user_agent || null,
 			event.ip || null,
+			event.country || null,
 			event.props ? JSON.stringify(event.props) : null,
 			Date.now(),
 		)
@@ -114,6 +116,7 @@ export const track_page_view = (
 	const ip = get_client_ip(request)
 	const user_agent = request.headers.get('user-agent')
 	const referrer = request.headers.get('referer')
+	const country = request.headers.get('cf-ipcountry')
 	const visitor_hash = get_visitor_hash(ip, user_agent)
 
 	track_event({
@@ -123,5 +126,6 @@ export const track_page_view = (
 		referrer,
 		user_agent,
 		ip: anonymise_ip(ip),
+		country,
 	})
 }
