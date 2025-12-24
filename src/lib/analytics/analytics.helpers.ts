@@ -33,11 +33,19 @@ export interface CountryCount {
 	count: number
 }
 
+export interface NameCount {
+	name: string
+	count: number
+}
+
 export interface ActiveVisitorsResult {
 	pages: { path: string; count: number }[]
 	total: number
 	bots: number
 	countries: CountryCount[]
+	browsers: NameCount[]
+	devices: NameCount[]
+	referrers: NameCount[]
 }
 
 export interface ActiveOnPathResult {
@@ -101,14 +109,70 @@ export function query_active_visitors(
 			args: [cutoff],
 		})
 
+		// Browsers (humans only, top 5)
+		const browsers = client.execute({
+			sql: `SELECT browser as name, COUNT(DISTINCT visitor_hash) as count
+				FROM analytics_events
+				WHERE created_at > ? AND (is_bot = 0 OR is_bot IS NULL) AND browser IS NOT NULL
+				GROUP BY browser
+				ORDER BY count DESC
+				LIMIT 5`,
+			args: [cutoff],
+		})
+
+		// Device types (humans only)
+		const devices = client.execute({
+			sql: `SELECT device_type as name, COUNT(DISTINCT visitor_hash) as count
+				FROM analytics_events
+				WHERE created_at > ? AND (is_bot = 0 OR is_bot IS NULL) AND device_type IS NOT NULL
+				GROUP BY device_type
+				ORDER BY count DESC`,
+			args: [cutoff],
+		})
+
+		// Referrers (humans only, top 5, excluding empty)
+		const referrers = client.execute({
+			sql: `SELECT
+					CASE
+						WHEN referrer LIKE '%://scottspence.com%' THEN '(internal)'
+						WHEN referrer IS NULL OR referrer = '' THEN '(direct)'
+						ELSE SUBSTR(referrer, INSTR(referrer, '://') + 3,
+							CASE
+								WHEN INSTR(SUBSTR(referrer, INSTR(referrer, '://') + 3), '/') > 0
+								THEN INSTR(SUBSTR(referrer, INSTR(referrer, '://') + 3), '/') - 1
+								ELSE LENGTH(referrer)
+							END
+						)
+					END as name,
+					COUNT(DISTINCT visitor_hash) as count
+				FROM analytics_events
+				WHERE created_at > ? AND (is_bot = 0 OR is_bot IS NULL)
+				GROUP BY name
+				HAVING name != '(internal)'
+				ORDER BY count DESC
+				LIMIT 5`,
+			args: [cutoff],
+		})
+
 		return {
 			pages: result.rows as { path: string; count: number }[],
 			total: Number((total.rows[0] as { count: number })?.count ?? 0),
 			bots: Number((bots.rows[0] as { count: number })?.count ?? 0),
 			countries: countries.rows as CountryCount[],
+			browsers: browsers.rows as NameCount[],
+			devices: devices.rows as NameCount[],
+			referrers: referrers.rows as NameCount[],
 		}
 	} catch {
-		return { pages: [], total: 0, bots: 0, countries: [] }
+		return {
+			pages: [],
+			total: 0,
+			bots: 0,
+			countries: [],
+			browsers: [],
+			devices: [],
+			referrers: [],
+		}
 	}
 }
 
