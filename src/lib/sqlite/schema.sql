@@ -364,6 +364,10 @@ CREATE TABLE IF NOT EXISTS
     user_agent TEXT,
     ip TEXT,
     country TEXT,
+    browser TEXT,
+    device_type TEXT,
+    os TEXT,
+    is_bot INTEGER DEFAULT 0,
     props TEXT,
     created_at INTEGER NOT NULL
   );
