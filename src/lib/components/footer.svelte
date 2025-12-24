@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/stores'
 	import { get_active_visitors } from '$lib/analytics/analytics.remote'
 	import { Eye } from '$lib/icons'
 	import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
@@ -41,7 +40,7 @@
 				<a
 					data-sveltekit-reload
 					class="link link-hover text-primary-content"
-					href={$page.url.origin + post.pathname}
+					href={post.pathname}
 				>
 					{post.title}
 				</a>
