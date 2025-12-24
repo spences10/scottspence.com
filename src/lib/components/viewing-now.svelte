@@ -6,10 +6,7 @@
 	let data = $derived(get_active_on_path({ path }))
 
 	$effect(() => {
-		const interval = setInterval(
-			() => get_active_on_path({ path }).refresh(),
-			5000,
-		)
+		const interval = setInterval(() => data.refresh(), 5_000)
 		return () => clearInterval(interval)
 	})
 </script>

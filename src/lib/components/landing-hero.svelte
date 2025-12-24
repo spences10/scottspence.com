@@ -13,8 +13,8 @@
 
 	$effect(() => {
 		const interval = setInterval(
-			() => get_active_visitors({ limit: 10 }).refresh(),
-			10000,
+			() => visitors_data.refresh(),
+			10_000,
 		)
 		return () => clearInterval(interval)
 	})
