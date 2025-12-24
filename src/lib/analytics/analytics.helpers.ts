@@ -3,13 +3,47 @@
  * These are used by analytics.remote.ts
  */
 
+/**
+ * Convert ISO 3166-1 alpha-2 country code to flag emoji
+ * e.g., "GB" -> "🇬🇧", "US" -> "🇺🇸"
+ */
+export function country_to_flag(country_code: string | null): string {
+	if (!country_code || country_code.length !== 2) return '🌍'
+	const code = country_code.toUpperCase()
+	// Regional indicator symbols: A=🇦 (U+1F1E6), B=🇧 (U+1F1E7), etc.
+	const offset = 0x1f1e6 - 65 // 65 is 'A'
+	return String.fromCodePoint(
+		code.charCodeAt(0) + offset,
+		code.charCodeAt(1) + offset,
+	)
+}
+
+/**
+ * Format countries as "3 🇬🇧 2 🇺🇸 1 🇩🇪"
+ */
+export function format_countries(countries: CountryCount[]): string {
+	if (!countries.length) return ''
+	return countries
+		.map((c) => `${c.count} ${country_to_flag(c.country)}`)
+		.join(' ')
+}
+
+export interface CountryCount {
+	country: string
+	count: number
+}
+
 export interface ActiveVisitorsResult {
 	pages: { path: string; count: number }[]
 	total: number
+	bots: number
+	countries: CountryCount[]
 }
 
 export interface ActiveOnPathResult {
 	count: number
+	bots: number
+	countries: CountryCount[]
 }
 
 export interface SqliteClient {
@@ -29,29 +63,52 @@ export function query_active_visitors(
 	const cutoff = Date.now() - window_ms
 
 	try {
+		// Pages (humans only)
 		const result = client.execute({
 			sql: `SELECT path, COUNT(DISTINCT visitor_hash) as count
 				FROM analytics_events
-				WHERE created_at > ?
+				WHERE created_at > ? AND (is_bot = 0 OR is_bot IS NULL)
 				GROUP BY path
 				ORDER BY count DESC
 				LIMIT ?`,
 			args: [cutoff, limit],
 		})
 
+		// Total humans
 		const total = client.execute({
 			sql: `SELECT COUNT(DISTINCT visitor_hash) as count
 				FROM analytics_events
-				WHERE created_at > ?`,
+				WHERE created_at > ? AND (is_bot = 0 OR is_bot IS NULL)`,
+			args: [cutoff],
+		})
+
+		// Total bots
+		const bots = client.execute({
+			sql: `SELECT COUNT(DISTINCT visitor_hash) as count
+				FROM analytics_events
+				WHERE created_at > ? AND is_bot = 1`,
+			args: [cutoff],
+		})
+
+		// Countries (humans only, top 5)
+		const countries = client.execute({
+			sql: `SELECT country, COUNT(DISTINCT visitor_hash) as count
+				FROM analytics_events
+				WHERE created_at > ? AND (is_bot = 0 OR is_bot IS NULL) AND country IS NOT NULL
+				GROUP BY country
+				ORDER BY count DESC
+				LIMIT 5`,
 			args: [cutoff],
 		})
 
 		return {
 			pages: result.rows as { path: string; count: number }[],
 			total: Number((total.rows[0] as { count: number })?.count ?? 0),
+			bots: Number((bots.rows[0] as { count: number })?.count ?? 0),
+			countries: countries.rows as CountryCount[],
 		}
 	} catch {
-		return { pages: [], total: 0 }
+		return { pages: [], total: 0, bots: 0, countries: [] }
 	}
 }
 
@@ -67,10 +124,30 @@ export function query_active_on_path(
 	const cutoff = Date.now() - window_ms
 
 	try {
+		// Humans
 		const result = client.execute({
 			sql: `SELECT COUNT(DISTINCT visitor_hash) as count
 				FROM analytics_events
-				WHERE path = ? AND created_at > ?`,
+				WHERE path = ? AND created_at > ? AND (is_bot = 0 OR is_bot IS NULL)`,
+			args: [path, cutoff],
+		})
+
+		// Bots
+		const bots = client.execute({
+			sql: `SELECT COUNT(DISTINCT visitor_hash) as count
+				FROM analytics_events
+				WHERE path = ? AND created_at > ? AND is_bot = 1`,
+			args: [path, cutoff],
+		})
+
+		// Countries (humans only)
+		const countries = client.execute({
+			sql: `SELECT country, COUNT(DISTINCT visitor_hash) as count
+				FROM analytics_events
+				WHERE path = ? AND created_at > ? AND (is_bot = 0 OR is_bot IS NULL) AND country IS NOT NULL
+				GROUP BY country
+				ORDER BY count DESC
+				LIMIT 5`,
 			args: [path, cutoff],
 		})
 
@@ -78,8 +155,12 @@ export function query_active_on_path(
 			result.rows.length > 0
 				? Number((result.rows[0] as { count: number }).count)
 				: 0
-		return { count }
+		return {
+			count,
+			bots: Number((bots.rows[0] as { count: number })?.count ?? 0),
+			countries: countries.rows as CountryCount[],
+		}
 	} catch {
-		return { count: 0 }
+		return { count: 0, bots: 0, countries: [] }
 	}
 }

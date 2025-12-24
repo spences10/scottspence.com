@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state'
+	import { format_countries } from '$lib/analytics/analytics.helpers'
 	import { get_active_on_path } from '$lib/analytics/analytics.remote'
 
 	let path = $derived(page.url.pathname)
@@ -25,8 +26,15 @@
 					class="bg-success relative inline-flex h-2 w-2 rounded-full"
 				></span>
 			</span>
-			{result.count}
-			{result.count === 1 ? 'person' : 'people'} viewing now
+			<span>
+				{result.count}
+				{result.count === 1 ? 'person' : 'people'} viewing now
+			</span>
+			{#if result.countries.length > 0}
+				<span class="opacity-70">
+					{format_countries(result.countries)}
+				</span>
+			{/if}
 		</div>
 	{/if}
 </svelte:boundary>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { format_countries } from '$lib/analytics/analytics.helpers'
 	import { get_active_visitors } from '$lib/analytics/analytics.remote'
 	import { mouse_position } from '$lib/utils'
 
@@ -24,7 +25,17 @@
 		<p class="mb-2 text-lg font-semibold">
 			{result.total}
 			{result.total === 1 ? 'visitor' : 'visitors'} active
+			{#if result.bots > 0}
+				<span class="text-sm font-normal opacity-50">
+					(+{result.bots} 🤖)
+				</span>
+			{/if}
 		</p>
+		{#if result.countries.length > 0}
+			<p class="mb-2 text-base opacity-80">
+				{format_countries(result.countries)}
+			</p>
+		{/if}
 		{#if result.pages.length > 0}
 			<section>
 				<h4 class="mb-2 text-sm font-semibold opacity-70">
