@@ -3,10 +3,7 @@
 	import { get_active_on_path } from '$lib/analytics/analytics.remote'
 
 	let path = $derived(page.url.pathname)
-
-	let result = $derived.by(async () => {
-		return await get_active_on_path({ path })
-	})
+	let data = $derived(get_active_on_path({ path }))
 
 	$effect(() => {
 		const interval = setInterval(
@@ -17,8 +14,9 @@
 	})
 </script>
 
-{#await result then data}
-	{#if data.count > 0}
+<svelte:boundary>
+	{@const result = await data}
+	{#if result.count > 0}
 		<div
 			class="text-base-content/70 flex items-center gap-1.5 text-sm"
 		>
@@ -30,8 +28,8 @@
 					class="bg-success relative inline-flex h-2 w-2 rounded-full"
 				></span>
 			</span>
-			{data.count}
-			{data.count === 1 ? 'person' : 'people'} viewing now
+			{result.count}
+			{result.count === 1 ? 'person' : 'people'} viewing now
 		</div>
 	{/if}
-{/await}
+</svelte:boundary>

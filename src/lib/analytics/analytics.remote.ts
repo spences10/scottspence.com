@@ -1,5 +1,9 @@
 import { command, getRequestEvent, query } from '$app/server'
 import {
+	query_active_on_path,
+	query_active_visitors,
+} from '$lib/analytics/analytics.helpers'
+import {
 	anonymise_ip,
 	get_client_ip,
 	get_visitor_hash,
@@ -17,35 +21,7 @@ interface TrackResult {
  */
 export const get_active_visitors = query(
 	v.object({ limit: v.optional(v.number()) }),
-	({ limit = 10 }) => {
-		const five_min_ago = Date.now() - 5 * 60 * 1000
-
-		try {
-			const result = sqlite_client.execute({
-				sql: `SELECT path, COUNT(DISTINCT visitor_hash) as count
-					FROM analytics_events
-					WHERE created_at > ?
-					GROUP BY path
-					ORDER BY count DESC
-					LIMIT ?`,
-				args: [five_min_ago, limit],
-			})
-
-			const total = sqlite_client.execute({
-				sql: `SELECT COUNT(DISTINCT visitor_hash) as count
-					FROM analytics_events
-					WHERE created_at > ?`,
-				args: [five_min_ago],
-			})
-
-			return {
-				pages: result.rows as { path: string; count: number }[],
-				total: Number(total.rows[0]?.['count'] ?? 0),
-			}
-		} catch {
-			return { pages: [], total: 0 }
-		}
-	},
+	({ limit = 10 }) => query_active_visitors(sqlite_client, { limit }),
 )
 
 /**
@@ -53,24 +29,7 @@ export const get_active_visitors = query(
  */
 export const get_active_on_path = query(
 	v.object({ path: v.string() }),
-	({ path }) => {
-		const five_min_ago = Date.now() - 5 * 60 * 1000
-
-		try {
-			const result = sqlite_client.execute({
-				sql: `SELECT COUNT(DISTINCT visitor_hash) as count
-					FROM analytics_events
-					WHERE path = ? AND created_at > ?`,
-				args: [path, five_min_ago],
-			})
-
-			const count =
-				result.rows.length > 0 ? Number(result.rows[0]['count']) : 0
-			return { count }
-		} catch {
-			return { count: 0 }
-		}
-	},
+	({ path }) => query_active_on_path(sqlite_client, path),
 )
 
 /**
