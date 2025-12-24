@@ -5,7 +5,7 @@ tags: ['endeavouros', 'linux', 'notes']
 is_private: false
 ---
 
-<!-- cspell:ignore Omarchy nvme GDDR journalctl AORUS CMDLINE mkconfig ghostty calt liga dlig deeb zcompdump compinit ddcutil Espanso -->
+<!-- cspell:ignore Omarchy nvme GDDR journalctl AORUS CMDLINE mkconfig ghostty calt liga dlig deeb zcompdump compinit ddcutil Espanso endeavouros bluetoothd oneshot displaylink usbreset keybind -->
 
 I spent some time over the last few days evaluating some Linux
 distros, two to be precise. Omarchy and EndeavourOS, Omarchy stayed on
