@@ -61,18 +61,15 @@ export const get_visitor_hash = (
 		.slice(0, 16)
 }
 
-// Lazy prepared statement - only prepare after schema exists
-let insert_event: ReturnType<typeof sqlite_client.prepare> | null =
-	null
-
+/**
+ * Get insert statement - creates fresh each time to avoid stale connection issues
+ * In dev mode, HMR can cause database reconnects that invalidate cached statements
+ */
 const get_insert_statement = () => {
-	if (!insert_event) {
-		insert_event = sqlite_client.prepare(`
-			INSERT INTO analytics_events (visitor_hash, event_type, event_name, path, referrer, user_agent, ip, props, created_at)
-			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-		`)
-	}
-	return insert_event
+	return sqlite_client.prepare(`
+		INSERT INTO analytics_events (visitor_hash, event_type, event_name, path, referrer, user_agent, ip, props, created_at)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+	`)
 }
 
 export type AnalyticsEvent = {
