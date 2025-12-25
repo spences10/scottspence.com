@@ -1,25 +1,12 @@
 <script lang="ts">
-	import { get_active_visitors } from '$lib/analytics/analytics.remote'
 	import * as Fathom from 'fathom-client'
-	import CurrentVisitorsData from './current-visitors-data.svelte'
+	import LiveVisitors from './live-visitors.svelte'
 
 	let is_hovering = $state(false)
 	let base_cloudinary_url =
 		'https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1691271318/scottspence.com/site-assets/'
 	let ScottFace = `${base_cloudinary_url}scott-mug-face-no-bg.png`
 	let ScottMugFace = `${base_cloudinary_url}scott-mug-face.png`
-
-	const visitors_data = get_active_visitors({ limit: 10 })
-
-	$effect(() => {
-		const interval = setInterval(
-			() => visitors_data.refresh(),
-			10_000,
-		)
-		return () => clearInterval(interval)
-	})
-
-	let show_current_visitor_data = $state(false)
 </script>
 
 <div class="relative mb-4 lg:-mx-40 lg:px-8 xl:-mx-64 2xl:-mx-60">
@@ -74,30 +61,7 @@
 				>
 					Get in Touch
 				</a>
-				<svelte:boundary>
-					{@const data = await visitors_data}
-					{#if data.total > 0}
-						<!-- svelte-ignore a11y_no_static_element_interactions -->
-						<span
-							onmouseenter={() => (show_current_visitor_data = true)}
-							onmouseleave={() => (show_current_visitor_data = false)}
-							class="inline-block cursor-pointer"
-						>
-							<p
-								class="rounded-box bg-secondary text-secondary-content mt-2 px-4 py-2 text-sm tracking-wide shadow-xl"
-							>
-								There's currently
-								<span class="font-bold">
-									{data.total}
-								</span>
-								live {data.total === 1 ? 'visitor' : 'visitors'}
-							</p>
-							{#if show_current_visitor_data}
-								<CurrentVisitorsData />
-							{/if}
-						</span>
-					{/if}
-				</svelte:boundary>
+				<LiveVisitors />
 			</div>
 		</div>
 	</div>

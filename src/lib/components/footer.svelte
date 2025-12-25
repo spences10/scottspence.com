@@ -1,32 +1,19 @@
 <script lang="ts">
-	import { get_active_visitors } from '$lib/analytics/analytics.remote'
 	import { Eye } from '$lib/icons'
 	import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
 	import { popular_posts_state } from '$lib/state/popular-posts-state.svelte'
 	import { number_crunch } from '$lib/utils'
 	import * as Fathom from 'fathom-client'
-	import CurrentVisitorsData from './current-visitors-data.svelte'
 
 	type PopularPostsPeriod = keyof PopularPosts
 	let selected_period: PopularPostsPeriod = 'popular_posts_yearly'
 
 	let posts: PopularPost[] = $state([])
-	let show_current_visitor_data = $state(false)
 
 	$effect(() => {
 		posts = popular_posts_state.data[
 			selected_period as PopularPostsPeriod
 		].slice(0, 6)
-	})
-
-	const visitors_data = get_active_visitors({ limit: 10 })
-
-	$effect(() => {
-		const interval = setInterval(
-			() => visitors_data.refresh(),
-			10_000,
-		)
-		return () => clearInterval(interval)
 	})
 </script>
 
@@ -56,31 +43,6 @@
 				</span>
 			</p>
 		{/each}
-
-		<svelte:boundary>
-			{@const data = await visitors_data}
-			{#if data.total > 0}
-				<!-- svelte-ignore a11y_no_static_element_interactions -->
-				<span
-					onmouseenter={() => (show_current_visitor_data = true)}
-					onmouseleave={() => (show_current_visitor_data = false)}
-					class="inline-block cursor-pointer"
-				>
-					<p
-						class="bg-secondary text-secondary-content rounded-box mt-2 px-4 py-2 tracking-wide shadow-lg"
-					>
-						There's currently
-						<span class="font-bold">
-							{data.total}
-						</span>
-						live {data.total === 1 ? 'visitor' : 'visitors'}
-					</p>
-					{#if show_current_visitor_data}
-						<CurrentVisitorsData />
-					{/if}
-				</span>
-			{/if}
-		</svelte:boundary>
 	</nav>
 
 	<nav>
