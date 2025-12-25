@@ -14,10 +14,10 @@ describe('analytics helpers', () => {
 	})
 
 	describe('query_active_visitors', () => {
-		it('should return pages and total count', () => {
+		it('should return human and bot breakdowns', () => {
 			mock_client = {
 				execute: vi.fn().mockImplementation(({ sql }) => {
-					if (sql.includes('GROUP BY')) {
+					if (sql.includes('GROUP BY ae.path')) {
 						return {
 							rows: [
 								{ path: '/posts/test', count: 5 },
@@ -25,18 +25,23 @@ describe('analytics helpers', () => {
 							],
 						}
 					}
-					return { rows: [{ count: 8 }] }
+					if (sql.includes('COUNT(DISTINCT visitor_hash)')) {
+						return { rows: [{ count: 8 }] }
+					}
+					return { rows: [] }
 				}),
 			}
 
 			const result = query_active_visitors(mock_client, { limit: 10 })
 
-			expect(result.pages).toHaveLength(2)
-			expect(result.pages[0]).toEqual({
+			expect(result.humans.pages).toHaveLength(2)
+			expect(result.humans.pages[0]).toEqual({
 				path: '/posts/test',
 				count: 5,
 			})
-			expect(result.total).toBe(8)
+			expect(result.humans.total).toBe(8)
+			expect(result.bots).toBeDefined()
+			expect(result.bots.total).toBe(8) // Same mock returns for both
 		})
 
 		it('should use correct time window', () => {
@@ -78,13 +83,22 @@ describe('analytics helpers', () => {
 			const result = query_active_visitors(mock_client)
 
 			expect(result).toEqual({
-				pages: [],
-				total: 0,
-				bots: 0,
-				countries: [],
-				browsers: [],
-				devices: [],
-				referrers: [],
+				humans: {
+					total: 0,
+					pages: [],
+					countries: [],
+					browsers: [],
+					devices: [],
+					referrers: [],
+				},
+				bots: {
+					total: 0,
+					pages: [],
+					countries: [],
+					browsers: [],
+					devices: [],
+					referrers: [],
+				},
 			})
 		})
 
@@ -95,8 +109,10 @@ describe('analytics helpers', () => {
 
 			const result = query_active_visitors(mock_client)
 
-			expect(result.pages).toEqual([])
-			expect(result.total).toBe(0)
+			expect(result.humans.pages).toEqual([])
+			expect(result.humans.total).toBe(0)
+			expect(result.bots.pages).toEqual([])
+			expect(result.bots.total).toBe(0)
 		})
 	})
 
