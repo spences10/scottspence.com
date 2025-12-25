@@ -38,8 +38,14 @@ export interface NameCount {
 	count: number
 }
 
+export interface PageCount {
+	path: string
+	count: number
+	title?: string
+}
+
 export interface ActiveVisitorsResult {
-	pages: { path: string; count: number }[]
+	pages: PageCount[]
 	total: number
 	bots: number
 	countries: CountryCount[]
@@ -71,12 +77,16 @@ export function query_active_visitors(
 	const cutoff = Date.now() - window_ms
 
 	try {
-		// Pages (humans only)
+		// Pages (humans only) with post titles
 		const result = client.execute({
-			sql: `SELECT path, COUNT(DISTINCT visitor_hash) as count
-				FROM analytics_events
-				WHERE created_at > ? AND (is_bot = 0 OR is_bot IS NULL)
-				GROUP BY path
+			sql: `SELECT
+					ae.path,
+					COUNT(DISTINCT ae.visitor_hash) as count,
+					p.title
+				FROM analytics_events ae
+				LEFT JOIN posts p ON ae.path = '/posts/' || p.slug
+				WHERE ae.created_at > ? AND (ae.is_bot = 0 OR ae.is_bot IS NULL)
+				GROUP BY ae.path
 				ORDER BY count DESC
 				LIMIT ?`,
 			args: [cutoff, limit],
@@ -155,7 +165,7 @@ export function query_active_visitors(
 		})
 
 		return {
-			pages: result.rows as { path: string; count: number }[],
+			pages: result.rows as PageCount[],
 			total: Number((total.rows[0] as { count: number })?.count ?? 0),
 			bots: Number((bots.rows[0] as { count: number })?.count ?? 0),
 			countries: countries.rows as CountryCount[],
