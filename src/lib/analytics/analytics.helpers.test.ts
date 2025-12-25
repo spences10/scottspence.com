@@ -77,7 +77,15 @@ describe('analytics helpers', () => {
 
 			const result = query_active_visitors(mock_client)
 
-			expect(result).toEqual({ pages: [], total: 0 })
+			expect(result).toEqual({
+				pages: [],
+				total: 0,
+				bots: 0,
+				countries: [],
+				browsers: [],
+				devices: [],
+				referrers: [],
+			})
 		})
 
 		it('should handle empty results', () => {
