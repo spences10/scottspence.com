@@ -135,7 +135,7 @@ export function query_active_visitors(
 			sql: `SELECT
 					CASE
 						WHEN referrer LIKE '%://scottspence.com%' THEN '(internal)'
-						WHEN referrer IS NULL OR referrer = '' THEN '(direct)'
+						WHEN referrer IS NULL OR referrer = '' THEN 'Direct / Unknown'
 						ELSE SUBSTR(referrer, INSTR(referrer, '://') + 3,
 							CASE
 								WHEN INSTR(SUBSTR(referrer, INSTR(referrer, '://') + 3), '/') > 0
