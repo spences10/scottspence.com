@@ -89,9 +89,8 @@ function query_traffic_breakdown(
 	limit: number,
 	is_bot: boolean,
 ): TrafficBreakdown {
-	const bot_filter = is_bot
-		? 'is_bot = 1'
-		: '(is_bot = 0 OR is_bot IS NULL)'
+	// Use COALESCE to avoid MULTI-INDEX OR scan (treats NULL as 0)
+	const bot_filter = is_bot ? 'is_bot = 1' : 'COALESCE(is_bot, 0) = 0'
 
 	// Pages with post titles
 	const pages = client.execute({
@@ -221,7 +220,7 @@ export function query_active_on_path(
 		const result = client.execute({
 			sql: `SELECT COUNT(DISTINCT visitor_hash) as count
 				FROM analytics_events
-				WHERE path = ? AND created_at > ? AND (is_bot = 0 OR is_bot IS NULL)`,
+				WHERE path = ? AND created_at > ? AND COALESCE(is_bot, 0) = 0`,
 			args: [path, cutoff],
 		})
 
@@ -237,7 +236,7 @@ export function query_active_on_path(
 		const countries = client.execute({
 			sql: `SELECT country, COUNT(DISTINCT visitor_hash) as count
 				FROM analytics_events
-				WHERE path = ? AND created_at > ? AND (is_bot = 0 OR is_bot IS NULL) AND country IS NOT NULL
+				WHERE path = ? AND created_at > ? AND COALESCE(is_bot, 0) = 0 AND country IS NOT NULL
 				GROUP BY country
 				ORDER BY count DESC
 				LIMIT 5`,
