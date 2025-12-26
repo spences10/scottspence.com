@@ -164,13 +164,25 @@ export const parse_user_agent = (
 }
 
 /**
- * Get insert statement - creates fresh each time to avoid stale connection issues
- * In dev mode, HMR can cause database reconnects that invalidate cached statements
+ * Get 30-minute window ID for deduplication
+ * Format: 2025-12-26T14:00 or 2025-12-26T14:30
  */
-const get_insert_statement = () => {
+const get_window_id = (): string => {
+	const now = new Date()
+	const minutes = now.getMinutes() < 30 ? '00' : '30'
+	return `${now.toISOString().slice(0, 13)}:${minutes}`
+}
+
+/**
+ * Get upsert statement - deduplicates same visitor+path within 30-min window
+ * Increments hit_count on conflict instead of creating new row
+ */
+const get_upsert_statement = () => {
 	return sqlite_client.prepare(`
-		INSERT INTO analytics_events (visitor_hash, event_type, event_name, path, referrer, user_agent, ip, country, browser, device_type, os, is_bot, props, created_at)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		INSERT INTO analytics_events (visitor_hash, event_type, event_name, path, referrer, user_agent, ip, country, browser, device_type, os, is_bot, hit_count, window_id, props, created_at)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?)
+		ON CONFLICT (visitor_hash, path, window_id) WHERE window_id IS NOT NULL
+		DO UPDATE SET hit_count = hit_count + 1, created_at = excluded.created_at
 	`)
 }
 
@@ -192,10 +204,12 @@ export type AnalyticsEvent = {
 
 /**
  * Track an analytics event
+ * Uses UPSERT to deduplicate same visitor+path within 30-min window
  */
 export const track_event = (event: AnalyticsEvent) => {
 	try {
-		get_insert_statement().run(
+		const window_id = get_window_id()
+		get_upsert_statement().run(
 			event.visitor_hash,
 			event.event_type,
 			event.event_name || null,
@@ -208,6 +222,7 @@ export const track_event = (event: AnalyticsEvent) => {
 			event.device_type || null,
 			event.os || null,
 			event.is_bot ? 1 : 0,
+			window_id,
 			event.props ? JSON.stringify(event.props) : null,
 			Date.now(),
 		)
