@@ -11,6 +11,7 @@ import { generate_newsletter } from './generate-newsletter'
 import { index_now } from './index-now'
 import { newsletter_send } from './newsletter-send'
 import { pull_database } from './pull-database'
+import { purge_bot_events } from './purge-bot-events'
 import { restore_database } from './restore-database'
 import { rollup_analytics } from './rollup-analytics'
 import { send_newsletter_reminder } from './send-newsletter-reminder'
@@ -93,6 +94,11 @@ curl -X POST http://localhost:5173/api/ingest \
 curl -X POST http://localhost:5173/api/ingest \
   -H "Content-Type: application/json" \
   -d '{"task": "vacuum_database", "token": "your-secret-token"}'
+ *
+ * 5. One-time purge of flagged bot events (run after flag_bot_behaviour + rollup)
+curl -X POST http://localhost:5173/api/ingest \
+  -H "Content-Type: application/json" \
+  -d '{"task": "purge_bot_events", "token": "your-secret-token"}'
  */
 
 // Define generic task function
@@ -122,6 +128,7 @@ type TaskKey =
 	| 'flag_bot_behaviour'
 	| 'cleanup_analytics'
 	| 'vacuum_database'
+	| 'purge_bot_events'
 
 // Define the type for tasks object
 interface TaskType {
@@ -217,6 +224,10 @@ const tasks: TaskType = {
 	},
 	vacuum_database: {
 		function: vacuum_database,
+		expects_fetch: false,
+	},
+	purge_bot_events: {
+		function: purge_bot_events,
 		expects_fetch: false,
 	},
 }
