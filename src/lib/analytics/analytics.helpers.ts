@@ -82,7 +82,7 @@ function empty_breakdown(): TrafficBreakdown {
 	}
 }
 
-// Query traffic breakdown for humans or bots
+// Query traffic breakdown for humans or bots - single query using JSON aggregation
 function query_traffic_breakdown(
 	client: SqliteClient,
 	cutoff: number,
@@ -92,92 +92,80 @@ function query_traffic_breakdown(
 	// Use COALESCE to avoid MULTI-INDEX OR scan (treats NULL as 0)
 	const bot_filter = is_bot ? 'is_bot = 1' : 'COALESCE(is_bot, 0) = 0'
 
-	// Pages with post titles
-	const pages = client.execute({
-		sql: `SELECT
-				ae.path,
-				COUNT(DISTINCT ae.visitor_hash) as count,
-				p.title
-			FROM analytics_events ae
-			LEFT JOIN posts p ON ae.path = '/posts/' || p.slug
-			WHERE ae.created_at > ? AND ${bot_filter}
-			GROUP BY ae.path
-			ORDER BY count DESC
-			LIMIT ?`,
+	// Single query with all aggregations using CTEs
+	const result = client.execute({
+		sql: `WITH filtered AS (
+				SELECT * FROM analytics_events
+				WHERE created_at > ?1 AND ${bot_filter}
+			),
+			page_data AS (
+				SELECT ae.path, COUNT(DISTINCT ae.visitor_hash) as count, p.title
+				FROM filtered ae
+				LEFT JOIN posts p ON ae.path = '/posts/' || p.slug
+				GROUP BY ae.path
+				ORDER BY count DESC
+				LIMIT ?2
+			),
+			country_data AS (
+				SELECT country, COUNT(DISTINCT visitor_hash) as count
+				FROM filtered WHERE country IS NOT NULL
+				GROUP BY country ORDER BY count DESC LIMIT 5
+			),
+			browser_data AS (
+				SELECT browser as name, COUNT(DISTINCT visitor_hash) as count
+				FROM filtered WHERE browser IS NOT NULL
+				GROUP BY browser ORDER BY count DESC LIMIT 5
+			),
+			device_data AS (
+				SELECT device_type as name, COUNT(DISTINCT visitor_hash) as count
+				FROM filtered WHERE device_type IS NOT NULL
+				GROUP BY device_type ORDER BY count DESC
+			),
+			referrer_data AS (
+				SELECT
+					CASE
+						WHEN referrer LIKE '%://scottspence.com%' THEN '(internal)'
+						WHEN referrer IS NULL OR referrer = '' THEN 'Direct / Unknown'
+						ELSE SUBSTR(referrer, INSTR(referrer, '://') + 3,
+							CASE
+								WHEN INSTR(SUBSTR(referrer, INSTR(referrer, '://') + 3), '/') > 0
+								THEN INSTR(SUBSTR(referrer, INSTR(referrer, '://') + 3), '/') - 1
+								ELSE LENGTH(referrer)
+							END
+						)
+					END as name,
+					COUNT(DISTINCT visitor_hash) as count
+				FROM filtered
+				GROUP BY name
+				HAVING name != '(internal)'
+				ORDER BY count DESC LIMIT 5
+			)
+			SELECT
+				(SELECT COUNT(DISTINCT visitor_hash) FROM filtered) as total,
+				(SELECT json_group_array(json_object('path', path, 'count', count, 'title', title)) FROM page_data) as pages,
+				(SELECT json_group_array(json_object('country', country, 'count', count)) FROM country_data) as countries,
+				(SELECT json_group_array(json_object('name', name, 'count', count)) FROM browser_data) as browsers,
+				(SELECT json_group_array(json_object('name', name, 'count', count)) FROM device_data) as devices,
+				(SELECT json_group_array(json_object('name', name, 'count', count)) FROM referrer_data) as referrers`,
 		args: [cutoff, limit],
 	})
 
-	// Total count
-	const total = client.execute({
-		sql: `SELECT COUNT(DISTINCT visitor_hash) as count
-			FROM analytics_events
-			WHERE created_at > ? AND ${bot_filter}`,
-		args: [cutoff],
-	})
-
-	// Countries (top 5)
-	const countries = client.execute({
-		sql: `SELECT country, COUNT(DISTINCT visitor_hash) as count
-			FROM analytics_events
-			WHERE created_at > ? AND ${bot_filter} AND country IS NOT NULL
-			GROUP BY country
-			ORDER BY count DESC
-			LIMIT 5`,
-		args: [cutoff],
-	})
-
-	// Browsers (top 5) - for bots this shows bot user agents
-	const browsers = client.execute({
-		sql: `SELECT browser as name, COUNT(DISTINCT visitor_hash) as count
-			FROM analytics_events
-			WHERE created_at > ? AND ${bot_filter} AND browser IS NOT NULL
-			GROUP BY browser
-			ORDER BY count DESC
-			LIMIT 5`,
-		args: [cutoff],
-	})
-
-	// Device types
-	const devices = client.execute({
-		sql: `SELECT device_type as name, COUNT(DISTINCT visitor_hash) as count
-			FROM analytics_events
-			WHERE created_at > ? AND ${bot_filter} AND device_type IS NOT NULL
-			GROUP BY device_type
-			ORDER BY count DESC`,
-		args: [cutoff],
-	})
-
-	// Referrers (top 5)
-	const referrers = client.execute({
-		sql: `SELECT
-				CASE
-					WHEN referrer LIKE '%://scottspence.com%' THEN '(internal)'
-					WHEN referrer IS NULL OR referrer = '' THEN 'Direct / Unknown'
-					ELSE SUBSTR(referrer, INSTR(referrer, '://') + 3,
-						CASE
-							WHEN INSTR(SUBSTR(referrer, INSTR(referrer, '://') + 3), '/') > 0
-							THEN INSTR(SUBSTR(referrer, INSTR(referrer, '://') + 3), '/') - 1
-							ELSE LENGTH(referrer)
-						END
-					)
-				END as name,
-				COUNT(DISTINCT visitor_hash) as count
-			FROM analytics_events
-			WHERE created_at > ? AND ${bot_filter}
-			GROUP BY name
-			HAVING name != '(internal)'
-			ORDER BY count DESC
-			LIMIT 5`,
-		args: [cutoff],
-	})
+	const row = result.rows[0] as {
+		total: number
+		pages: string
+		countries: string
+		browsers: string
+		devices: string
+		referrers: string
+	}
 
 	return {
-		total: Number((total.rows[0] as { count: number })?.count ?? 0),
-		pages: pages.rows as PageCount[],
-		countries: countries.rows as CountryCount[],
-		browsers: browsers.rows as NameCount[],
-		devices: devices.rows as NameCount[],
-		referrers: referrers.rows as NameCount[],
+		total: row?.total ?? 0,
+		pages: row?.pages ? JSON.parse(row.pages) : [],
+		countries: row?.countries ? JSON.parse(row.countries) : [],
+		browsers: row?.browsers ? JSON.parse(row.browsers) : [],
+		devices: row?.devices ? JSON.parse(row.devices) : [],
+		referrers: row?.referrers ? JSON.parse(row.referrers) : [],
 	}
 }
 
@@ -205,7 +193,7 @@ export function query_active_visitors(
 }
 
 /**
- * Query active visitors on a specific path
+ * Query active visitors on a specific path - single query
  */
 export function query_active_on_path(
 	client: SqliteClient,
@@ -216,41 +204,34 @@ export function query_active_on_path(
 	const cutoff = Date.now() - window_ms
 
 	try {
-		// Humans
 		const result = client.execute({
-			sql: `SELECT COUNT(DISTINCT visitor_hash) as count
-				FROM analytics_events
-				WHERE path = ? AND created_at > ? AND COALESCE(is_bot, 0) = 0`,
+			sql: `WITH filtered AS (
+					SELECT * FROM analytics_events
+					WHERE path = ?1 AND created_at > ?2
+				),
+				country_data AS (
+					SELECT country, COUNT(DISTINCT visitor_hash) as count
+					FROM filtered
+					WHERE COALESCE(is_bot, 0) = 0 AND country IS NOT NULL
+					GROUP BY country ORDER BY count DESC LIMIT 5
+				)
+				SELECT
+					(SELECT COUNT(DISTINCT visitor_hash) FROM filtered WHERE COALESCE(is_bot, 0) = 0) as count,
+					(SELECT COUNT(DISTINCT visitor_hash) FROM filtered WHERE is_bot = 1) as bots,
+					(SELECT json_group_array(json_object('country', country, 'count', count)) FROM country_data) as countries`,
 			args: [path, cutoff],
 		})
 
-		// Bots
-		const bots = client.execute({
-			sql: `SELECT COUNT(DISTINCT visitor_hash) as count
-				FROM analytics_events
-				WHERE path = ? AND created_at > ? AND is_bot = 1`,
-			args: [path, cutoff],
-		})
+		const row = result.rows[0] as {
+			count: number
+			bots: number
+			countries: string
+		}
 
-		// Countries (humans only)
-		const countries = client.execute({
-			sql: `SELECT country, COUNT(DISTINCT visitor_hash) as count
-				FROM analytics_events
-				WHERE path = ? AND created_at > ? AND COALESCE(is_bot, 0) = 0 AND country IS NOT NULL
-				GROUP BY country
-				ORDER BY count DESC
-				LIMIT 5`,
-			args: [path, cutoff],
-		})
-
-		const count =
-			result.rows.length > 0
-				? Number((result.rows[0] as { count: number }).count)
-				: 0
 		return {
-			count,
-			bots: Number((bots.rows[0] as { count: number })?.count ?? 0),
-			countries: countries.rows as CountryCount[],
+			count: row?.count ?? 0,
+			bots: row?.bots ?? 0,
+			countries: row?.countries ? JSON.parse(row.countries) : [],
 		}
 	} catch {
 		return { count: 0, bots: 0, countries: [] }
