@@ -39,7 +39,7 @@
 	const live_data = get_active_visitors({ limit: 10 })
 
 	$effect(() => {
-		const interval = setInterval(() => live_data.refresh(), 5_000)
+		const interval = setInterval(() => live_data.refresh(), 30_000)
 		return () => clearInterval(interval)
 	})
 
