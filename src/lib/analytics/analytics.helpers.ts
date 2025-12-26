@@ -89,14 +89,17 @@ function query_traffic_breakdown(
 	limit: number,
 	is_bot: boolean,
 ): TrafficBreakdown {
-	// Use COALESCE to avoid MULTI-INDEX OR scan (treats NULL as 0)
-	const bot_filter = is_bot ? 'is_bot = 1' : 'COALESCE(is_bot, 0) = 0'
+	try {
+		// Use COALESCE to avoid MULTI-INDEX OR scan (treats NULL as 0)
+		const bot_filter = is_bot
+			? 'is_bot = 1'
+			: 'COALESCE(is_bot, 0) = 0'
 
-	// Single query with all aggregations using CTEs
-	const result = client.execute({
-		sql: `WITH filtered AS (
+		// Single query with all aggregations using CTEs
+		const result = client.execute({
+			sql: `WITH filtered AS (
 				SELECT * FROM analytics_events
-				WHERE created_at > ?1 AND ${bot_filter}
+				WHERE created_at > ? AND ${bot_filter}
 			),
 			page_data AS (
 				SELECT ae.path, COUNT(DISTINCT ae.visitor_hash) as count, p.title
@@ -104,7 +107,7 @@ function query_traffic_breakdown(
 				LEFT JOIN posts p ON ae.path = '/posts/' || p.slug
 				GROUP BY ae.path
 				ORDER BY count DESC
-				LIMIT ?2
+				LIMIT ?
 			),
 			country_data AS (
 				SELECT country, COUNT(DISTINCT visitor_hash) as count
@@ -147,25 +150,42 @@ function query_traffic_breakdown(
 				(SELECT json_group_array(json_object('name', name, 'count', count)) FROM browser_data) as browsers,
 				(SELECT json_group_array(json_object('name', name, 'count', count)) FROM device_data) as devices,
 				(SELECT json_group_array(json_object('name', name, 'count', count)) FROM referrer_data) as referrers`,
-		args: [cutoff, limit],
-	})
+			args: [cutoff, limit],
+		})
 
-	const row = result.rows[0] as {
-		total: number
-		pages: string
-		countries: string
-		browsers: string
-		devices: string
-		referrers: string
-	}
+		if (!result.rows || result.rows.length === 0) {
+			return empty_breakdown()
+		}
 
-	return {
-		total: row?.total ?? 0,
-		pages: row?.pages ? JSON.parse(row.pages) : [],
-		countries: row?.countries ? JSON.parse(row.countries) : [],
-		browsers: row?.browsers ? JSON.parse(row.browsers) : [],
-		devices: row?.devices ? JSON.parse(row.devices) : [],
-		referrers: row?.referrers ? JSON.parse(row.referrers) : [],
+		const row = result.rows[0] as {
+			total: number | null
+			pages: string | null
+			countries: string | null
+			browsers: string | null
+			devices: string | null
+			referrers: string | null
+		}
+
+		const parse_json = (str: string | null): unknown[] => {
+			if (!str || str === '[]') return []
+			try {
+				return JSON.parse(str)
+			} catch {
+				return []
+			}
+		}
+
+		return {
+			total: row?.total ?? 0,
+			pages: parse_json(row?.pages) as PageCount[],
+			countries: parse_json(row?.countries) as CountryCount[],
+			browsers: parse_json(row?.browsers) as NameCount[],
+			devices: parse_json(row?.devices) as NameCount[],
+			referrers: parse_json(row?.referrers) as NameCount[],
+		}
+	} catch (error) {
+		console.error('query_traffic_breakdown error:', error)
+		return empty_breakdown()
 	}
 }
 
@@ -207,7 +227,7 @@ export function query_active_on_path(
 		const result = client.execute({
 			sql: `WITH filtered AS (
 					SELECT * FROM analytics_events
-					WHERE path = ?1 AND created_at > ?2
+					WHERE path = ? AND created_at > ?
 				),
 				country_data AS (
 					SELECT country, COUNT(DISTINCT visitor_hash) as count
