@@ -2,13 +2,16 @@ import { env } from '$env/dynamic/private'
 import { json } from '@sveltejs/kit'
 import { backfill_github_activity } from './backfill-github-activity'
 import { backup_database } from './backup-database'
+import { cleanup_analytics } from './cleanup-analytics'
 import { daily_github_activity } from './daily-github-activity'
 import { export_training_data } from './export-training-data'
 import { fetch_github_activity } from './fetch-github-activity'
+import { flag_bot_behaviour } from './flag-bot-behaviour'
 import { generate_newsletter } from './generate-newsletter'
 import { index_now } from './index-now'
 import { newsletter_send } from './newsletter-send'
 import { pull_database } from './pull-database'
+import { purge_bot_events } from './purge-bot-events'
 import { restore_database } from './restore-database'
 import { rollup_analytics } from './rollup-analytics'
 import { send_newsletter_reminder } from './send-newsletter-reminder'
@@ -17,6 +20,7 @@ import { update_popular_posts } from './update-popular-posts'
 import { update_posts } from './update-posts'
 import { update_related_posts_table } from './update-related-posts'
 import { update_stats } from './update-stats'
+import { vacuum_database } from './vacuum-database'
 
 /**
  * === GETTING PRODUCTION DATA LOCALLY ===
@@ -68,6 +72,33 @@ curl -X POST https://scottspence.com/api/ingest \
 curl -X POST http://localhost:5173/api/ingest \
   -H "Content-Type: application/json" \
   -d '{"task": "update_posts", "token": "your-secret-token"}'
+ *
+ * === ANALYTICS MAINTENANCE (run daily via cron) ===
+ *
+ * 1. Rollup raw events into summary tables
+curl -X POST http://localhost:5173/api/ingest \
+  -H "Content-Type: application/json" \
+  -d '{"task": "rollup_analytics", "token": "your-secret-token"}'
+ *
+ * 2. Flag scrapers as bots (hits > 200 AND unique_pages <= 3)
+curl -X POST http://localhost:5173/api/ingest \
+  -H "Content-Type: application/json" \
+  -d '{"task": "flag_bot_behaviour", "token": "your-secret-token"}'
+ *
+ * 3. Delete events older than 7 days (runs VACUUM if rows deleted)
+curl -X POST http://localhost:5173/api/ingest \
+  -H "Content-Type: application/json" \
+  -d '{"task": "cleanup_analytics", "token": "your-secret-token"}'
+ *
+ * 4. Manual vacuum (reclaim space without deleting data)
+curl -X POST http://localhost:5173/api/ingest \
+  -H "Content-Type: application/json" \
+  -d '{"task": "vacuum_database", "token": "your-secret-token"}'
+ *
+ * 5. One-time purge of flagged bot events (run after flag_bot_behaviour + rollup)
+curl -X POST http://localhost:5173/api/ingest \
+  -H "Content-Type: application/json" \
+  -d '{"task": "purge_bot_events", "token": "your-secret-token"}'
  */
 
 // Define generic task function
@@ -94,6 +125,10 @@ type TaskKey =
 	| 'generate_newsletter'
 	| 'send_newsletter_reminder'
 	| 'rollup_analytics'
+	| 'flag_bot_behaviour'
+	| 'cleanup_analytics'
+	| 'vacuum_database'
+	| 'purge_bot_events'
 
 // Define the type for tasks object
 interface TaskType {
@@ -177,6 +212,22 @@ const tasks: TaskType = {
 	},
 	rollup_analytics: {
 		function: rollup_analytics,
+		expects_fetch: false,
+	},
+	flag_bot_behaviour: {
+		function: flag_bot_behaviour,
+		expects_fetch: false,
+	},
+	cleanup_analytics: {
+		function: cleanup_analytics,
+		expects_fetch: false,
+	},
+	vacuum_database: {
+		function: vacuum_database,
+		expects_fetch: false,
+	},
+	purge_bot_events: {
+		function: purge_bot_events,
 		expects_fetch: false,
 	},
 }

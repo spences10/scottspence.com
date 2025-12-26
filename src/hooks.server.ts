@@ -11,13 +11,16 @@ import { redirect, type Handle } from '@sveltejs/kit'
 import { sequence } from '@sveltejs/kit/hooks'
 import { readFileSync } from 'node:fs'
 
-// Initialize schema on startup - skip during build
+// Initialize database on startup - skip during build
 if (!building) {
+	// Run migrations first - they add columns to existing tables
+	// For fresh db, this creates the migrations table and handles missing tables gracefully
+	run_migrations()
+
+	// Then apply full schema - creates tables if missing, creates indexes
+	// For existing db, CREATE TABLE IF NOT EXISTS skips, but indexes are created
 	const schema = readFileSync('src/lib/sqlite/schema.sql', 'utf-8')
 	sqlite_client.exec(schema)
-
-	// Run any pending migrations
-	run_migrations()
 }
 
 const sync_on_startup: Handle = async ({ event, resolve }) => {

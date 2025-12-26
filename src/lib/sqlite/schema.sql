@@ -368,6 +368,8 @@ CREATE TABLE IF NOT EXISTS
     device_type TEXT,
     os TEXT,
     is_bot INTEGER DEFAULT 0,
+    hit_count INTEGER DEFAULT 1,
+    window_id TEXT,
     props TEXT,
     created_at INTEGER NOT NULL
   );
@@ -376,6 +378,7 @@ CREATE INDEX IF NOT EXISTS idx_analytics_events_visitor ON analytics_events (vis
 CREATE INDEX IF NOT EXISTS idx_analytics_events_type ON analytics_events (event_type);
 CREATE INDEX IF NOT EXISTS idx_analytics_events_created ON analytics_events (created_at);
 CREATE INDEX IF NOT EXISTS idx_analytics_events_path ON analytics_events (path);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_analytics_events_dedupe ON analytics_events (visitor_hash, path, window_id) WHERE window_id IS NOT NULL;
 
 -- Enable WAL mode for better concurrent access
 PRAGMA journal_mode = WAL;

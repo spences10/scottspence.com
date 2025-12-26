@@ -17,13 +17,14 @@ export async function rollup_analytics(): Promise<RollupResult> {
 
 	try {
 		// Rollup to analytics_monthly
-		// Aggregates by path and year-month (includes all traffic, filter bots at query time if needed)
+		// Aggregates by path and year-month
+		// Uses COALESCE for hit_count to handle old rows without hit_count
 		const monthly = client.prepare(`
 			INSERT OR REPLACE INTO analytics_monthly (pathname, year_month, views, unique_visitors, last_updated)
 			SELECT
 				path as pathname,
 				strftime('%Y-%m', created_at/1000, 'unixepoch') as year_month,
-				COUNT(*) as views,
+				SUM(COALESCE(hit_count, 1)) as views,
 				COUNT(DISTINCT visitor_hash) as unique_visitors,
 				CURRENT_TIMESTAMP as last_updated
 			FROM analytics_events
@@ -32,13 +33,13 @@ export async function rollup_analytics(): Promise<RollupResult> {
 		const monthly_result = monthly.run()
 
 		// Rollup to analytics_yearly
-		// Aggregates by path and year (includes all traffic)
+		// Aggregates by path and year
 		const yearly = client.prepare(`
 			INSERT OR REPLACE INTO analytics_yearly (pathname, year, views, unique_visitors, last_updated)
 			SELECT
 				path as pathname,
 				strftime('%Y', created_at/1000, 'unixepoch') as year,
-				COUNT(*) as views,
+				SUM(COALESCE(hit_count, 1)) as views,
 				COUNT(DISTINCT visitor_hash) as unique_visitors,
 				CURRENT_TIMESTAMP as last_updated
 			FROM analytics_events
@@ -47,12 +48,12 @@ export async function rollup_analytics(): Promise<RollupResult> {
 		const yearly_result = yearly.run()
 
 		// Rollup to analytics_all_time
-		// Aggregates by path across all time (includes all traffic)
+		// Aggregates by path across all time
 		const all_time = client.prepare(`
 			INSERT OR REPLACE INTO analytics_all_time (pathname, views, unique_visitors, last_updated)
 			SELECT
 				path as pathname,
-				COUNT(*) as views,
+				SUM(COALESCE(hit_count, 1)) as views,
 				COUNT(DISTINCT visitor_hash) as unique_visitors,
 				CURRENT_TIMESTAMP as last_updated
 			FROM analytics_events

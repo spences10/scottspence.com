@@ -32,13 +32,16 @@ function apply_migration(name: string, sql: string) {
 			.run(name, Date.now())
 	} catch (error) {
 		const err = error as { code?: string; message?: string }
-		// Handle idempotent migrations - if column/table already exists, mark as applied
+		// Handle idempotent migrations:
+		// - column/table already exists: migration was already applied
+		// - no such table: fresh install, schema.sql will create table with columns
 		if (
 			err.code === 'SQLITE_ERROR' &&
 			(err.message?.includes('duplicate column name') ||
-				err.message?.includes('already exists'))
+				err.message?.includes('already exists') ||
+				err.message?.includes('no such table'))
 		) {
-			console.log(`  (already applied, marking as complete)`)
+			console.log(`  (skipped: ${err.message?.includes('no such table') ? 'fresh install' : 'already applied'})`)
 			sqlite_client
 				.prepare(
 					'INSERT INTO migrations (name, applied_at) VALUES (?, ?)',
