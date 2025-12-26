@@ -57,6 +57,8 @@ const create_database = () => {
 
 	// Enable WAL mode for better concurrent access
 	db.pragma('journal_mode = WAL')
+	// Wait up to 5 seconds if db is locked (prevents "no available server")
+	db.pragma('busy_timeout = 5000')
 
 	return db
 }
