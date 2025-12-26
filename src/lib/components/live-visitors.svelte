@@ -20,8 +20,10 @@
 	{@const countries = result.humans.countries}
 
 	{#if total > 0}
-		<div
-			class="text-base-content/70 flex items-center gap-1.5 text-sm"
+		<a
+			href="/stats"
+			class="text-base-content/70 hover:text-base-content flex items-center gap-1.5 text-sm transition"
+			data-tip="View live stats"
 		>
 			<span class="relative flex h-2 w-2">
 				<span
@@ -40,6 +42,6 @@
 					{format_countries(countries)}
 				</span>
 			{/if}
-		</div>
+		</a>
 	{/if}
 </svelte:boundary>
