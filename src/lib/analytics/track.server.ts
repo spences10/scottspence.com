@@ -174,16 +174,24 @@ const get_window_id = (): string => {
 }
 
 /**
- * Get upsert statement - deduplicates same visitor+path within 30-min window
+ * Cached upsert statement - deduplicates same visitor+path within 30-min window
  * Increments hit_count on conflict instead of creating new row
+ * Cached to avoid re-preparing on every page view
  */
+let cached_upsert_statement: ReturnType<
+	typeof sqlite_client.prepare
+> | null = null
+
 const get_upsert_statement = () => {
-	return sqlite_client.prepare(`
-		INSERT INTO analytics_events (visitor_hash, event_type, event_name, path, referrer, user_agent, ip, country, browser, device_type, os, is_bot, hit_count, window_id, props, created_at)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?)
-		ON CONFLICT (visitor_hash, path, window_id) WHERE window_id IS NOT NULL
-		DO UPDATE SET hit_count = hit_count + 1, created_at = excluded.created_at
-	`)
+	if (!cached_upsert_statement) {
+		cached_upsert_statement = sqlite_client.prepare(`
+			INSERT INTO analytics_events (visitor_hash, event_type, event_name, path, referrer, user_agent, ip, country, browser, device_type, os, is_bot, hit_count, window_id, props, created_at)
+			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?)
+			ON CONFLICT (visitor_hash, path, window_id) WHERE window_id IS NOT NULL
+			DO UPDATE SET hit_count = hit_count + 1, created_at = excluded.created_at
+		`)
+	}
+	return cached_upsert_statement
 }
 
 export type AnalyticsEvent = {

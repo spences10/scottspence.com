@@ -105,7 +105,12 @@ const track_analytics: Handle = async ({ event, resolve }) => {
 		return await resolve(event)
 	}
 
-	// Track GET requests to page routes (catches both SSR and client nav)
+	// Resolve the page FIRST, then track analytics
+	// This prevents blocking page rendering with sync DB writes
+	const response = await resolve(event)
+
+	// Track GET requests to page routes AFTER response is ready
+	// Fire-and-forget: don't block the response being sent
 	if (event.request.method === 'GET') {
 		try {
 			track_page_view(event.request, pathname)
@@ -114,7 +119,7 @@ const track_analytics: Handle = async ({ event, resolve }) => {
 		}
 	}
 
-	return await resolve(event)
+	return response
 }
 
 export const theme: Handle = async ({ event, resolve }) => {
