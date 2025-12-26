@@ -34,11 +34,15 @@
 	const current_year = $derived(data.current_year)
 	const error = $derived(data.error)
 
-	// Live visitors
+	// Live visitors - Feature flag
+	const LIVE_VISITORS_ENABLED = false
 	let show_bots = $state(false)
-	const live_data = get_active_visitors({ limit: 10 })
+	const live_data = LIVE_VISITORS_ENABLED
+		? get_active_visitors({ limit: 10 })
+		: null
 
 	$effect(() => {
+		if (!live_data) return
 		const interval = setInterval(() => live_data.refresh(), 30_000)
 		return () => clearInterval(interval)
 	})
@@ -267,197 +271,201 @@
 <Head {seo_config} />
 
 <!-- Live Visitors Section -->
-<div class="mb-12">
-	<svelte:boundary>
-		{#snippet pending()}
-			<div class="flex items-center gap-2">
-				<span class="loading loading-spinner"></span>
-				<span>Loading live stats...</span>
-			</div>
-		{/snippet}
-
-		{@const result = await live_data}
-		{@const current = show_bots ? result.bots : result.humans}
-		{@const has_traffic =
-			result.humans.total > 0 || result.bots.total > 0}
-
-		{#if has_traffic}
-			<div class="rounded-box border-secondary border p-6 shadow-xl">
-				<div
-					class="mb-4 flex flex-wrap items-center justify-between gap-4"
-				>
-					<h2 class="flex items-center gap-3 text-2xl font-bold">
-						<span class="relative flex h-3 w-3">
-							<span
-								class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"
-							></span>
-							<span
-								class="relative inline-flex h-3 w-3 rounded-full bg-green-500"
-							></span>
-						</span>
-						Live Now
-					</h2>
-					<div class="stats shadow">
-						<div class="stat px-4 py-2">
-							<div class="stat-title text-xs">Humans</div>
-							<div class="stat-value text-primary text-xl">
-								{result.humans.total}
-							</div>
-						</div>
-						{#if result.bots.total > 0}
-							<div class="stat px-4 py-2">
-								<div class="stat-title text-xs">Bots</div>
-								<div class="stat-value text-secondary text-xl">
-									{result.bots.total}
-								</div>
-							</div>
-						{/if}
-					</div>
+{#if LIVE_VISITORS_ENABLED && live_data}
+	<div class="mb-12">
+		<svelte:boundary>
+			{#snippet pending()}
+				<div class="flex items-center gap-2">
+					<span class="loading loading-spinner"></span>
+					<span>Loading live stats...</span>
 				</div>
+			{/snippet}
 
-				<!-- Toggle between humans and bots -->
-				{#if result.bots.total > 0}
-					<div class="mb-4 flex justify-center">
-						<div class="join">
-							<button
-								class="join-item btn btn-sm"
-								class:btn-active={!show_bots}
-								onclick={() => (show_bots = false)}
-							>
-								👤 Humans
-								<span class="badge badge-sm ml-1">
+			{@const result = await live_data}
+			{@const current = show_bots ? result.bots : result.humans}
+			{@const has_traffic =
+				result.humans.total > 0 || result.bots.total > 0}
+
+			{#if has_traffic}
+				<div
+					class="rounded-box border-secondary border p-6 shadow-xl"
+				>
+					<div
+						class="mb-4 flex flex-wrap items-center justify-between gap-4"
+					>
+						<h2 class="flex items-center gap-3 text-2xl font-bold">
+							<span class="relative flex h-3 w-3">
+								<span
+									class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"
+								></span>
+								<span
+									class="relative inline-flex h-3 w-3 rounded-full bg-green-500"
+								></span>
+							</span>
+							Live Now
+						</h2>
+						<div class="stats shadow">
+							<div class="stat px-4 py-2">
+								<div class="stat-title text-xs">Humans</div>
+								<div class="stat-value text-primary text-xl">
 									{result.humans.total}
-								</span>
-							</button>
-							<button
-								class="join-item btn btn-sm"
-								class:btn-active={show_bots}
-								onclick={() => (show_bots = true)}
-							>
-								🤖 Bots
-								<span class="badge badge-sm ml-1">
-									{result.bots.total}
-								</span>
-							</button>
+								</div>
+							</div>
+							{#if result.bots.total > 0}
+								<div class="stat px-4 py-2">
+									<div class="stat-title text-xs">Bots</div>
+									<div class="stat-value text-secondary text-xl">
+										{result.bots.total}
+									</div>
+								</div>
+							{/if}
 						</div>
 					</div>
-				{/if}
 
-				{#if current.total === 0}
-					<p class="text-base-content/50 text-center">
-						No {show_bots ? 'bot' : 'human'} traffic right now
-					</p>
-				{:else}
-					<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-						<!-- Countries -->
-						{#if current.countries.length > 0}
-							<section>
-								<h4
-									class="text-secondary mb-2 flex items-center gap-2 text-xs font-bold tracking-wide uppercase"
+					<!-- Toggle between humans and bots -->
+					{#if result.bots.total > 0}
+						<div class="mb-4 flex justify-center">
+							<div class="join">
+								<button
+									class="join-item btn btn-sm"
+									class:btn-active={!show_bots}
+									onclick={() => (show_bots = false)}
 								>
-									<span>🌍</span>
-									{show_bots ? 'Crawling from' : 'Visiting from'}
-								</h4>
-								<p class="text-lg">
-									{format_countries(current.countries)}
-								</p>
-							</section>
-						{/if}
-
-						<!-- Devices -->
-						{#if current.devices.length > 0}
-							<section>
-								<h4
-									class="text-secondary mb-2 text-xs font-bold tracking-wide uppercase"
+									👤 Humans
+									<span class="badge badge-sm ml-1">
+										{result.humans.total}
+									</span>
+								</button>
+								<button
+									class="join-item btn btn-sm"
+									class:btn-active={show_bots}
+									onclick={() => (show_bots = true)}
 								>
-									{show_bots ? 'Bot Types' : 'Devices'}
-								</h4>
-								<div class="flex flex-wrap gap-2">
-									{#each current.devices as { name, count }}
-										<span class="badge badge-outline gap-1">
-											{show_bots ? '🤖' : device_emoji(name)}
-											{count}
-										</span>
-									{/each}
-								</div>
-							</section>
-						{/if}
-
-						<!-- Browsers -->
-						{#if current.browsers.length > 0}
-							<section>
-								<h4
-									class="text-secondary mb-2 text-xs font-bold tracking-wide uppercase"
-								>
-									{show_bots ? 'User Agents' : 'Browsers'}
-								</h4>
-								<div class="flex flex-wrap gap-2">
-									{#each current.browsers as { name, count }}
-										<span
-											class="badge badge-outline gap-1"
-											class:text-xs={show_bots}
-										>
-											{show_bots ? '' : browser_emoji(name)}
-											{count}
-											{name}
-										</span>
-									{/each}
-								</div>
-							</section>
-						{/if}
-
-						<!-- Referrers -->
-						{#if current.referrers.length > 0}
-							<section>
-								<h4
-									class="text-secondary mb-2 flex items-center gap-2 text-xs font-bold tracking-wide uppercase"
-								>
-									<span>🔗</span>
-									{show_bots ? 'Source' : 'Came from'}
-								</h4>
-								<div class="flex flex-wrap gap-2">
-									{#each current.referrers as { name, count }}
-										<span class="badge badge-primary gap-1">
-											<span class="font-bold">{count}</span>
-											{name}
-										</span>
-									{/each}
-								</div>
-							</section>
-						{/if}
-					</div>
-
-					<!-- Pages -->
-					{#if current.pages.length > 0}
-						<section class="mt-6">
-							<h4
-								class="text-secondary mb-3 flex items-center gap-2 text-xs font-bold tracking-wide uppercase"
-							>
-								<Eye />
-								{show_bots ? 'Crawling' : 'Viewing now'}
-							</h4>
-							<div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-								{#each current.pages as { path, count, title }}
-									<a
-										href={path}
-										class="bg-base-100 hover:bg-base-300 flex items-center justify-between rounded-lg p-3 transition"
-									>
-										<span class="truncate">
-											{format_path(path, title)}
-										</span>
-										<span class="badge badge-sm badge-ghost ml-2">
-											{count}
-										</span>
-									</a>
-								{/each}
+									🤖 Bots
+									<span class="badge badge-sm ml-1">
+										{result.bots.total}
+									</span>
+								</button>
 							</div>
-						</section>
+						</div>
 					{/if}
-				{/if}
-			</div>
-		{/if}
-	</svelte:boundary>
-</div>
+
+					{#if current.total === 0}
+						<p class="text-base-content/50 text-center">
+							No {show_bots ? 'bot' : 'human'} traffic right now
+						</p>
+					{:else}
+						<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+							<!-- Countries -->
+							{#if current.countries.length > 0}
+								<section>
+									<h4
+										class="text-secondary mb-2 flex items-center gap-2 text-xs font-bold tracking-wide uppercase"
+									>
+										<span>🌍</span>
+										{show_bots ? 'Crawling from' : 'Visiting from'}
+									</h4>
+									<p class="text-lg">
+										{format_countries(current.countries)}
+									</p>
+								</section>
+							{/if}
+
+							<!-- Devices -->
+							{#if current.devices.length > 0}
+								<section>
+									<h4
+										class="text-secondary mb-2 text-xs font-bold tracking-wide uppercase"
+									>
+										{show_bots ? 'Bot Types' : 'Devices'}
+									</h4>
+									<div class="flex flex-wrap gap-2">
+										{#each current.devices as { name, count }}
+											<span class="badge badge-outline gap-1">
+												{show_bots ? '🤖' : device_emoji(name)}
+												{count}
+											</span>
+										{/each}
+									</div>
+								</section>
+							{/if}
+
+							<!-- Browsers -->
+							{#if current.browsers.length > 0}
+								<section>
+									<h4
+										class="text-secondary mb-2 text-xs font-bold tracking-wide uppercase"
+									>
+										{show_bots ? 'User Agents' : 'Browsers'}
+									</h4>
+									<div class="flex flex-wrap gap-2">
+										{#each current.browsers as { name, count }}
+											<span
+												class="badge badge-outline gap-1"
+												class:text-xs={show_bots}
+											>
+												{show_bots ? '' : browser_emoji(name)}
+												{count}
+												{name}
+											</span>
+										{/each}
+									</div>
+								</section>
+							{/if}
+
+							<!-- Referrers -->
+							{#if current.referrers.length > 0}
+								<section>
+									<h4
+										class="text-secondary mb-2 flex items-center gap-2 text-xs font-bold tracking-wide uppercase"
+									>
+										<span>🔗</span>
+										{show_bots ? 'Source' : 'Came from'}
+									</h4>
+									<div class="flex flex-wrap gap-2">
+										{#each current.referrers as { name, count }}
+											<span class="badge badge-primary gap-1">
+												<span class="font-bold">{count}</span>
+												{name}
+											</span>
+										{/each}
+									</div>
+								</section>
+							{/if}
+						</div>
+
+						<!-- Pages -->
+						{#if current.pages.length > 0}
+							<section class="mt-6">
+								<h4
+									class="text-secondary mb-3 flex items-center gap-2 text-xs font-bold tracking-wide uppercase"
+								>
+									<Eye />
+									{show_bots ? 'Crawling' : 'Viewing now'}
+								</h4>
+								<div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+									{#each current.pages as { path, count, title }}
+										<a
+											href={path}
+											class="bg-base-100 hover:bg-base-300 flex items-center justify-between rounded-lg p-3 transition"
+										>
+											<span class="truncate">
+												{format_path(path, title)}
+											</span>
+											<span class="badge badge-sm badge-ghost ml-2">
+												{count}
+											</span>
+										</a>
+									{/each}
+								</div>
+							</section>
+						{/if}
+					{/if}
+				</div>
+			{/if}
+		</svelte:boundary>
+	</div>
+{/if}
 
 {#if error}
 	<div class="alert alert-error mb-4">
