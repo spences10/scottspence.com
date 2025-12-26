@@ -36,7 +36,7 @@
 	}
 </script>
 
-<div class="inline-block">
+<div class="inline-block w-full sm:w-auto">
 	<svelte:boundary>
 		{#snippet pending()}
 			<span class="btn btn-sm btn-ghost loading loading-spinner"
@@ -86,7 +86,7 @@
 			{#if expanded}
 				<div
 					transition:slide={{ duration: 300, easing: cubicOut }}
-					class="rounded-box border-secondary bg-base-100 mt-2 overflow-hidden border shadow-xl"
+					class="rounded-box border-secondary bg-base-100 mt-2 w-full max-w-sm overflow-hidden border shadow-xl"
 				>
 					<div
 						in:fade={{ duration: 200, delay: 100 }}
@@ -95,7 +95,9 @@
 						<!-- Toggle between humans and bots -->
 						{#if result.bots.total > 0}
 							<div class="mb-4 flex justify-center">
-								<div class="join">
+								<div
+									class="join join-vertical sm:join-horizontal w-full sm:w-auto"
+								>
 									<button
 										class="join-item btn btn-sm"
 										class:btn-active={!show_bots}
@@ -141,7 +143,9 @@
 							{/if}
 
 							<!-- Devices & Browsers -->
-							<section class="mb-4 grid grid-cols-2 gap-4">
+							<section
+								class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2"
+							>
 								{#if current.devices.length > 0}
 									<div>
 										<h4
