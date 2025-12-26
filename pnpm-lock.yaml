@@ -62,10 +62,10 @@ importers:
         version: 7.6.13
       '@upstash/ratelimit':
         specifier: ^2.0.7
-        version: 2.0.7(@upstash/redis@1.35.8)
+        version: 2.0.7(@upstash/redis@1.36.0)
       '@upstash/redis':
         specifier: ^1.35.8
-        version: 1.35.8
+        version: 1.36.0
       '@vitest/browser-playwright':
         specifier: ^4.0.16
         version: 4.0.16(playwright@1.57.0)(vite@7.3.0(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.2))(vitest@4.0.16)
@@ -1123,8 +1123,8 @@ packages:
     peerDependencies:
       '@upstash/redis': ^1.34.3
 
-  '@upstash/redis@1.35.8':
-    resolution: {integrity: sha512-QqLpVCD9PCPE6hlRzOkz864nfijSdazxtyJLIy9ZeTh6kU2nBIKKfjT5HMHjIRD4BCm6TK1dbUT9pxhFjcvpng==}
+  '@upstash/redis@1.36.0':
+    resolution: {integrity: sha512-9zN2UV9QJGPnXfWU3yZBLVQaqqENDh7g+Y4J2vJuSxBCi9FQ0aUOtaXlzuFhnsiZvCqM+eS27ic+tgmkWUsfOg==}
 
   '@vitest/browser-playwright@4.0.16':
     resolution: {integrity: sha512-I2Fy/ANdphi1yI46d15o0M1M4M0UJrUiVKkH5oKeRZZCdPg0fw/cfTKZzv9Ge9eobtJYp4BGblMzXdXH0vcl5g==}
@@ -3520,14 +3520,14 @@ snapshots:
 
   '@upstash/core-analytics@0.0.10':
     dependencies:
-      '@upstash/redis': 1.35.8
+      '@upstash/redis': 1.36.0
 
-  '@upstash/ratelimit@2.0.7(@upstash/redis@1.35.8)':
+  '@upstash/ratelimit@2.0.7(@upstash/redis@1.36.0)':
     dependencies:
       '@upstash/core-analytics': 0.0.10
-      '@upstash/redis': 1.35.8
+      '@upstash/redis': 1.36.0
 
-  '@upstash/redis@1.35.8':
+  '@upstash/redis@1.36.0':
     dependencies:
       uncrypto: 0.1.3
 
