@@ -6,8 +6,6 @@
 		PUBLIC_FATHOM_URL,
 	} from '$env/static/public'
 	import { BackToTop, Footer, Header, Nav } from '$lib/components'
-	import { get_popular_posts } from '$lib/data/popular-posts.remote'
-	import { popular_posts_state } from '$lib/state/popular-posts-state.svelte'
 	import { handle_mouse_move } from '$lib/utils'
 	import * as Fathom from 'fathom-client'
 	import { onMount } from 'svelte'
@@ -17,7 +15,6 @@
 	let { children } = $props()
 
 	onMount(() => {
-		get_popular_posts().then((data) => popular_posts_state.set(data))
 		Fathom.load(PUBLIC_FATHOM_ID, { url: PUBLIC_FATHOM_URL })
 	})
 
