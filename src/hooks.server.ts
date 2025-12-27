@@ -39,7 +39,9 @@ const time_request: Handle = async ({ event, resolve }) => {
 	const total = performance.now() - start
 	// Only log slow requests (>500ms) or __data.json requests
 	if (total > 500 || event.url.pathname.includes('__data')) {
-		console.log(`[timing] ${event.url.pathname} ${total.toFixed(0)}ms`)
+		console.log(
+			`[timing] ${event.url.pathname} ${total.toFixed(0)}ms`,
+		)
 	}
 	return response
 }
@@ -173,7 +175,7 @@ export const handle = sequence(
 	sync_on_startup,
 	reject_suspicious_requests,
 	handle_redirects,
-	track_analytics,
+	// track_analytics, // disabled - DB writes overwhelming under load
 	theme,
 	handle_preload,
 )
