@@ -15,20 +15,22 @@ describe('analytics helpers', () => {
 
 	describe('query_active_visitors', () => {
 		it('should return human and bot breakdowns', () => {
+			// Mock returns JSON aggregated data as the CTE query produces
 			mock_client = {
-				execute: vi.fn().mockImplementation(({ sql }) => {
-					if (sql.includes('GROUP BY ae.path')) {
-						return {
-							rows: [
-								{ path: '/posts/test', count: 5 },
-								{ path: '/', count: 3 },
-							],
-						}
-					}
-					if (sql.includes('COUNT(DISTINCT visitor_hash)')) {
-						return { rows: [{ count: 8 }] }
-					}
-					return { rows: [] }
+				execute: vi.fn().mockReturnValue({
+					rows: [
+						{
+							total: 8,
+							pages: JSON.stringify([
+								{ path: '/posts/test', count: 5, title: null },
+								{ path: '/', count: 3, title: null },
+							]),
+							countries: JSON.stringify([]),
+							browsers: JSON.stringify([]),
+							devices: JSON.stringify([]),
+							referrers: JSON.stringify([]),
+						},
+					],
 				}),
 			}
 
@@ -38,6 +40,7 @@ describe('analytics helpers', () => {
 			expect(result.humans.pages[0]).toEqual({
 				path: '/posts/test',
 				count: 5,
+				title: null,
 			})
 			expect(result.humans.total).toBe(8)
 			expect(result.bots).toBeDefined()
@@ -103,6 +106,7 @@ describe('analytics helpers', () => {
 		})
 
 		it('should handle empty results', () => {
+			// When no rows returned, query_traffic_breakdown returns empty breakdown
 			mock_client = {
 				execute: vi.fn().mockReturnValue({ rows: [] }),
 			}

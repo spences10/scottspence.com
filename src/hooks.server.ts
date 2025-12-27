@@ -21,6 +21,15 @@ if (!building) {
 	// For existing db, CREATE TABLE IF NOT EXISTS skips, but indexes are created
 	const schema = readFileSync('src/lib/sqlite/schema.sql', 'utf-8')
 	sqlite_client.exec(schema)
+
+	// Checkpoint WAL on startup to prevent bloat
+	// TRUNCATE mode: checkpoint and truncate WAL file to zero bytes
+	try {
+		sqlite_client.exec('PRAGMA wal_checkpoint(TRUNCATE);')
+		console.log('WAL checkpoint completed on startup')
+	} catch (error) {
+		console.warn('WAL checkpoint failed:', error)
+	}
 }
 
 const sync_on_startup: Handle = async ({ event, resolve }) => {
@@ -105,7 +114,12 @@ const track_analytics: Handle = async ({ event, resolve }) => {
 		return await resolve(event)
 	}
 
-	// Track GET requests to page routes (catches both SSR and client nav)
+	// Resolve the page FIRST, then track analytics
+	// This prevents blocking page rendering with sync DB writes
+	const response = await resolve(event)
+
+	// Track GET requests to page routes AFTER response is ready
+	// Fire-and-forget: don't block the response being sent
 	if (event.request.method === 'GET') {
 		try {
 			track_page_view(event.request, pathname)
@@ -114,7 +128,7 @@ const track_analytics: Handle = async ({ event, resolve }) => {
 		}
 	}
 
-	return await resolve(event)
+	return response
 }
 
 export const theme: Handle = async ({ event, resolve }) => {
