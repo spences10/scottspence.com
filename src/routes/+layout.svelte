@@ -6,21 +6,29 @@
 		PUBLIC_FATHOM_URL,
 	} from '$env/static/public'
 	import { BackToTop, Footer, Header, Nav } from '$lib/components'
+	import { popular_posts_state } from '$lib/state/popular-posts-state.svelte'
 	import { handle_mouse_move } from '$lib/utils'
 	import * as Fathom from 'fathom-client'
-	import { onMount } from 'svelte'
 	import '../app.css'
 	import '../prism.css'
 
-	let { children } = $props()
+	let { data, children } = $props()
 
-	onMount(() => {
-		Fathom.load(PUBLIC_FATHOM_ID, { url: PUBLIC_FATHOM_URL })
+	$effect(() => {
+		popular_posts_state.set(data?.popular_posts)
 	})
 
 	$effect(() => {
-		page.url.pathname
-		browser && Fathom.trackPageview()
+		if (browser) {
+			Fathom.load(PUBLIC_FATHOM_ID, {
+				url: PUBLIC_FATHOM_URL,
+			})
+		}
+	})
+
+	// Track pageview on route change
+	$effect(() => {
+		;(page.url.pathname, browser && Fathom.trackPageview())
 	})
 </script>
 

@@ -40,9 +40,6 @@ export default async function global_setup() {
 		ON CONFLICT (slug) DO NOTHING
 	`)
 
-	// Clear existing embeddings (virtual tables don't support ON CONFLICT)
-	db.exec(`DELETE FROM post_embeddings`)
-
 	// Insert embeddings into the virtual table
 	const insert_embedding = db.prepare(`
 		INSERT INTO post_embeddings (post_id, embedding)

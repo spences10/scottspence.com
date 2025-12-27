@@ -60,6 +60,8 @@ export const store_post_embedding = async (
 			VALUES (?, ?)
 		`)
 		stmt.run(post_id, embedding_json)
+
+		client.close()
 	} catch (error) {
 		console.error(
 			`Error storing embedding for post ${post_id}:`,
@@ -148,6 +150,7 @@ export const get_post_embedding = async (
 			SELECT embedding FROM post_embeddings WHERE post_id = ?
 		`)
 		const result = stmt.get(post_id)
+		client.close()
 
 		if (result) {
 			const embedding = result.embedding
@@ -167,6 +170,7 @@ export const get_post_embedding = async (
 					const json_result = json_stmt.get(post_id) as
 						| { embedding_json: string }
 						| undefined
+					json_client.close()
 
 					if (json_result && json_result.embedding_json) {
 						return JSON.parse(json_result.embedding_json)
@@ -181,6 +185,7 @@ export const get_post_embedding = async (
 		return null
 	} catch (error) {
 		console.error('Error getting post embedding:', error)
+		client.close()
 		return null
 	}
 }

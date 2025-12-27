@@ -1,13 +1,19 @@
-import { flushSync } from 'svelte'
-import { beforeEach, describe, expect, test, vi } from 'vitest'
-import { render } from 'vitest-browser-svelte'
 import { page } from 'vitest/browser'
+import { flushSync } from 'svelte'
+import {
+	afterEach,
+	beforeEach,
+	describe,
+	expect,
+	test,
+	vi,
+} from 'vitest'
+import { render } from 'vitest-browser-svelte'
 import StatsPage from './+page.svelte'
 
 // Mock the icons
 vi.mock('$lib/icons', () => ({
 	InformationCircle: () => 'div', // Simple mock component
-	Eye: () => 'div', // Simple mock component
 }))
 
 describe('Historical Stats Page Component', () => {
@@ -77,9 +83,7 @@ describe('Historical Stats Page Component', () => {
 		test('should render info alert about current year data', async () => {
 			render(StatsPage, { data: mockData })
 
-			const alertHeading = page.getByRole('heading', {
-				name: 'Looking for current year data?',
-			})
+			const alertHeading = page.getByRole('heading', { name: 'Looking for current year data?' })
 			await expect
 				.element(alertHeading)
 				.toHaveTextContent('Looking for current year data?')
@@ -274,7 +278,9 @@ describe('Historical Stats Page Component', () => {
 			flushSync()
 
 			// Should show all-time data
-			await expect.element(page.getByText('1K')).toBeInTheDocument()
+			await expect
+				.element(page.getByText('1K'))
+				.toBeInTheDocument()
 			await expect.element(page.getByText('730')).toBeInTheDocument()
 		})
 	})

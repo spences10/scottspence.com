@@ -29,25 +29,6 @@ vi.mock(
 	}),
 )
 
-// Mock analytics remote functions
-vi.mock('$lib/analytics/analytics.remote', () => {
-	const mock_promise = Promise.resolve({ count: 0 })
-	// @ts-expect-error - adding refresh method to promise
-	mock_promise.refresh = vi.fn(() => mock_promise)
-	return {
-		get_active_on_path: vi.fn(() => mock_promise),
-		get_active_visitors: vi.fn(() => {
-			const visitors_promise = Promise.resolve({
-				pages: [],
-				total: 0,
-			})
-			// @ts-expect-error - adding refresh method to promise
-			visitors_promise.refresh = vi.fn(() => visitors_promise)
-			return visitors_promise
-		}),
-	}
-})
-
 describe('PostPage Component', () => {
 	const defaultProps = {
 		data: {
@@ -138,10 +119,12 @@ describe('PostPage Component', () => {
 
 			render(PostPage, recentProps)
 
-			// Wait for badge to render - use page locator for async rendering
-			await expect
-				.element(page.getByText('new', { exact: true }))
-				.toBeInTheDocument()
+			// Use CSS selector to target the specific badge, not just any "new" text in "newsletter"
+			const new_badge = document.querySelector(
+				'.badge-secondary',
+			) as HTMLElement
+			expect(new_badge).toBeTruthy()
+			expect(new_badge.textContent?.trim()).toBe('new')
 		})
 
 		it('should not show "new" badge for old posts', async () => {
