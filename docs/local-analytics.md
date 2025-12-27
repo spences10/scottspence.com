@@ -189,9 +189,8 @@ CREATE INDEX idx_events_rollup ON analytics_events(created_at, path, is_bot);
 ### Phase 2: Re-enable tracking
 
 - [ ] Deploy with `track_analytics` disabled
-- [ ] Enable on low-traffic pages first
+- [ ] Enable tracking (hooks run on all requests - no partial rollout)
 - [ ] Monitor DB size and response times
-- [ ] Gradually enable site-wide
 
 ### Phase 3: Replace Fathom
 
