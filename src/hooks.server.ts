@@ -32,6 +32,18 @@ if (!building) {
 	}
 }
 
+// Request timing instrumentation - diagnose slow responses
+const time_request: Handle = async ({ event, resolve }) => {
+	const start = performance.now()
+	const response = await resolve(event)
+	const total = performance.now() - start
+	// Only log slow requests (>500ms) or __data.json requests
+	if (total > 500 || event.url.pathname.includes('__data')) {
+		console.log(`[timing] ${event.url.pathname} ${total.toFixed(0)}ms`)
+	}
+	return response
+}
+
 const sync_on_startup: Handle = async ({ event, resolve }) => {
 	// SQLite migration: No sync needed for local database
 	return await resolve(event)
@@ -157,6 +169,7 @@ const handle_preload: Handle = async ({ event, resolve }) => {
 }
 
 export const handle = sequence(
+	time_request,
 	sync_on_startup,
 	reject_suspicious_requests,
 	handle_redirects,

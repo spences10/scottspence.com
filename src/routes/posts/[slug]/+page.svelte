@@ -20,7 +20,6 @@
 		TextSelectionPopup,
 		UpdatedBanner,
 	} from '$lib/components'
-	import ViewingNow from '$lib/components/viewing-now.svelte'
 	import {
 		create_schema_org_config,
 		create_seo_config,
@@ -230,7 +229,6 @@
 			{/if}
 		</div>
 	</div>
-	<ViewingNow />
 
 	{#if data.meta.is_private}
 		<IsPrivateBanner />
