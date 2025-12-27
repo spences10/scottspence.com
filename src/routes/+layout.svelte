@@ -9,6 +9,7 @@
 	import { popular_posts_state } from '$lib/state/popular-posts-state.svelte'
 	import { handle_mouse_move } from '$lib/utils'
 	import * as Fathom from 'fathom-client'
+	import { onMount } from 'svelte'
 	import '../app.css'
 	import '../prism.css'
 
@@ -18,12 +19,10 @@
 		popular_posts_state.set(data?.popular_posts)
 	})
 
-	$effect(() => {
-		if (browser) {
-			Fathom.load(PUBLIC_FATHOM_ID, {
-				url: PUBLIC_FATHOM_URL,
-			})
-		}
+	onMount(() => {
+		Fathom.load(PUBLIC_FATHOM_ID, {
+			url: PUBLIC_FATHOM_URL,
+		})
 	})
 
 	// Track pageview on route change
