@@ -2,7 +2,7 @@
 date: 2017-01-04
 title: Twitter McTwitBot
 tags: ['guide']
-isPrivate: false
+is_private: false
 ---
 
 I must say this was great to do and a nice little introduction to node

@@ -2,7 +2,7 @@
 date: 2023-02-21
 title: Adding real-time analytics to my SvelteKit site with Fathom
 tags: ['analytics', 'svelte', 'sveltekit', 'fathom']
-isPrivate: false
+is_private: false
 ---
 
 <script>
@@ -146,9 +146,9 @@ import { json } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 
 export const GET: RequestHandler = async () => {
-  return json({
-    visitors: 0,
-  })
+	return json({
+		visitors: 0,
+	})
 }
 ```
 
@@ -194,27 +194,27 @@ import { json } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 
 export const GET: RequestHandler = async () => {
-  try {
-    const headers_auth = new Headers()
-    headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
-    const res = await fetch(
-      `https://api.usefathom.com/v1/current_visitors?site_id=${PUBLIC_FATHOM_ID}&detailed=true`,
-      {
-        headers: headers_auth,
-      }
-    )
+	try {
+		const headers_auth = new Headers()
+		headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
+		const res = await fetch(
+			`https://api.usefathom.com/v1/current_visitors?site_id=${PUBLIC_FATHOM_ID}&detailed=true`,
+			{
+				headers: headers_auth,
+			},
+		)
 
-    let data = await res.json()
+		let data = await res.json()
 
-    return json({
-      visitors: data,
-    })
-  } catch (error) {
-    return json({
-      error: `Error: ${error}`,
-      status: 500,
-    })
-  }
+		return json({
+			visitors: data,
+		})
+	} catch (error) {
+		return json({
+			error: `Error: ${error}`,
+			status: 500,
+		})
+	}
 }
 ```
 
@@ -225,17 +225,17 @@ and I get the following JSON response.
 
 ```json
 {
-  "visitors": {
-    "total": 1,
-    "content": [
-      {
-        "hostname": "https://www.ideal-memory.com",
-        "pathname": "/contact",
-        "total": "1"
-      }
-    ],
-    "referrers": []
-  }
+	"visitors": {
+		"total": 1,
+		"content": [
+			{
+				"hostname": "https://www.ideal-memory.com",
+				"pathname": "/contact",
+				"total": "1"
+			}
+		],
+		"referrers": []
+	}
 }
 ```
 
@@ -264,15 +264,15 @@ call the `current-visitors.json` API endpoint and return the
 import type { LayoutServerLoad } from './$types'
 
 export const load: LayoutServerLoad = async ({ fetch }) => {
-  const fetch_visitors = async () => {
-    const res = await fetch(`../current-visitors.json`)
-    const { visitors } = await res.json()
-    return visitors
-  }
+	const fetch_visitors = async () => {
+		const res = await fetch(`../current-visitors.json`)
+		const { visitors } = await res.json()
+		return visitors
+	}
 
-  return {
-    visitors: fetch_visitors(),
-  }
+	return {
+		visitors: fetch_visitors(),
+	}
 }
 ```
 
@@ -298,36 +298,36 @@ on them to check out how the files look.
 
 <!-- cSpell:ignore pageview,pageviews -->
 
-<Details buttonText="+layout.svelte" styles="lowercase">
+<Details button_text="+layout.svelte" styles="lowercase">
 
 ```svelte
 <script lang="ts">
-  import { browser } from '$app/environment'
-  import { page } from '$app/stores'
-  import {
-    PUBLIC_FATHOM_ID,
-    PUBLIC_FATHOM_URL,
-  } from '$env/static/public'
-  import Nav from '$lib/components/nav.svelte'
-  import * as Fathom from 'fathom-client'
-  import { onMount } from 'svelte'
-  import '../app.css'
-  import type { PageData } from './$types'
+	import { browser } from '$app/environment'
+	import { page } from '$app/stores'
+	import {
+		PUBLIC_FATHOM_ID,
+		PUBLIC_FATHOM_URL,
+	} from '$env/static/public'
+	import Nav from '$lib/components/nav.svelte'
+	import * as Fathom from 'fathom-client'
+	import { onMount } from 'svelte'
+	import '../app.css'
+	import type { PageData } from './$types'
 
-  export let data: PageData
+	export let data: PageData
 
-  onMount(async () => {
-    Fathom.load(PUBLIC_FATHOM_ID, {
-      url: PUBLIC_FATHOM_URL,
-    })
-  })
+	onMount(async () => {
+		Fathom.load(PUBLIC_FATHOM_ID, {
+			url: PUBLIC_FATHOM_URL,
+		})
+	})
 
-  $: $page.url.pathname, browser && Fathom.trackPageview()
+	$: $page.url.pathname, browser && Fathom.trackPageview()
 </script>
 
 <Nav visitors={data?.visitors.total} />
 <main class="container mx-auto mb-20 max-w-3xl px-4">
-  <slot />
+	<slot />
 </main>
 ```
 
@@ -343,68 +343,68 @@ Which I can use in the navbar end:
 
 ```svelte
 <div class="navbar-end">
-  <p
-    class="text-sm font-semibold cursor-pointer rounded-xl bg-secondary px-2 tracking-wide text-secondary-content"
-  >
-    {visitors} Live Visitors
-  </p>
+	<p
+		class="bg-secondary text-secondary-content cursor-pointer rounded-xl px-2 text-sm font-semibold tracking-wide"
+	>
+		{visitors} Live Visitors
+	</p>
 </div>
 ```
 
 This is what the navbar looks like now:
 
-<Details buttonText="nav.svelte" styles="lowercase">
+<Details button_text="nav.svelte" styles="lowercase">
 
 ```svelte
 <script lang="ts">
-  import { trackGoal } from 'fathom-client'
+	import { trackGoal } from 'fathom-client'
 
-  let links = [
-    {
-      href: '/pricing',
-      text: 'Pricing',
-    },
-    {
-      href: '/contact',
-      text: 'Contact Us',
-    },
-    {
-      href: '/about',
-      text: 'About',
-    },
-    {
-      href: '/blog',
-      text: 'Blog',
-    },
-  ]
+	let links = [
+		{
+			href: '/pricing',
+			text: 'Pricing',
+		},
+		{
+			href: '/contact',
+			text: 'Contact Us',
+		},
+		{
+			href: '/about',
+			text: 'About',
+		},
+		{
+			href: '/blog',
+			text: 'Blog',
+		},
+	]
 
-  export let visitors: number
+	export let visitors: number
 </script>
 
-<div class="navbar mb-10 bg-neutral text-neutral-content shadow-lg">
-  <div class="navbar-start mx-2 px-2">
-    <!-- cSpell:disable -->
-    <a href="/" on:click={() => trackGoal(`KWOYX0PK`, 0)}>
-      <span class="text-lg font-bold">SvelteKit and Fathom</span>
-    </a>
-    <!-- cSpell:enable -->
-  </div>
-  <div class="navbar-center mx-2 hidden px-2 lg:flex">
-    <div class="flex items-stretch">
-      {#each links as { href, text }}
-        <a {href} class="btn-ghost rounded-btn btn-sm btn">
-          {text}
-        </a>
-      {/each}
-    </div>
-  </div>
-  <div class="navbar-end">
-    <p
-      class="text-sm font-semibold cursor-pointer rounded-xl bg-secondary px-2 tracking-wide text-secondary-content"
-    >
-      {visitors} Live Visitors
-    </p>
-  </div>
+<div class="navbar bg-neutral text-neutral-content mb-10 shadow-lg">
+	<div class="navbar-start mx-2 px-2">
+		<!-- cSpell:disable -->
+		<a href="/" on:click={() => trackGoal(`KWOYX0PK`, 0)}>
+			<span class="text-lg font-bold">SvelteKit and Fathom</span>
+		</a>
+		<!-- cSpell:enable -->
+	</div>
+	<div class="navbar-center mx-2 hidden px-2 lg:flex">
+		<div class="flex items-stretch">
+			{#each links as { href, text }}
+				<a {href} class="btn-ghost rounded-btn btn-sm btn">
+					{text}
+				</a>
+			{/each}
+		</div>
+	</div>
+	<div class="navbar-end">
+		<p
+			class="bg-secondary text-secondary-content cursor-pointer rounded-xl px-2 text-sm font-semibold tracking-wide"
+		>
+			{visitors} Live Visitors
+		</p>
+	</div>
 </div>
 ```
 
@@ -507,27 +507,27 @@ import { json } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 
 export const GET: RequestHandler = async () => {
-  try {
-    const headers_auth = new Headers()
-    headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
-    const res = await fetch(
-      `https://api.usefathom.com/v1/aggregations?entity=pageview&entity_id=${PUBLIC_FATHOM_ID}&aggregates=pageviews`,
-      {
-        headers: headers_auth,
-      }
-    )
+	try {
+		const headers_auth = new Headers()
+		headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
+		const res = await fetch(
+			`https://api.usefathom.com/v1/aggregations?entity=pageview&entity_id=${PUBLIC_FATHOM_ID}&aggregates=pageviews`,
+			{
+				headers: headers_auth,
+			},
+		)
 
-    let data = await res.json()
+		let data = await res.json()
 
-    return json({
-      analytics: data,
-    })
-  } catch (error) {
-    return json({
-      error: `Error: ${error}`,
-      status: 500,
-    })
-  }
+		return json({
+			analytics: data,
+		})
+	} catch (error) {
+		return json({
+			error: `Error: ${error}`,
+			status: 500,
+		})
+	}
 }
 ```
 
@@ -550,27 +550,27 @@ import { json } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 
 export const GET: RequestHandler = async () => {
-  try {
-    const headers_auth = new Headers()
-    headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
-    const res = await fetch(
-      `https://api.usefathom.com/v1/aggregations?entity=pageview&entity_id=${PUBLIC_FATHOM_ID}&aggregates=pageviews&date_from=2023-01-01T00:00:00.000Z&date_to=2023-12-31T23:59:59.999Z&date_grouping=year`,
-      {
-        headers: headers_auth,
-      }
-    )
+	try {
+		const headers_auth = new Headers()
+		headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
+		const res = await fetch(
+			`https://api.usefathom.com/v1/aggregations?entity=pageview&entity_id=${PUBLIC_FATHOM_ID}&aggregates=pageviews&date_from=2023-01-01T00:00:00.000Z&date_to=2023-12-31T23:59:59.999Z&date_grouping=year`,
+			{
+				headers: headers_auth,
+			},
+		)
 
-    let data = await res.json()
+		let data = await res.json()
 
-    return json({
-      analytics: data,
-    })
-  } catch (error) {
-    return json({
-      error: `Error: ${error}`,
-      status: 500,
-    })
-  }
+		return json({
+			analytics: data,
+		})
+	} catch (error) {
+		return json({
+			error: `Error: ${error}`,
+			status: 500,
+		})
+	}
 }
 ```
 
@@ -584,11 +584,11 @@ So now, if I change the start year from `2023` to `2021` I get:
 
 ```json
 {
-  "analytics": [
-    { "pageviews": "647", "date": "2023" },
-    { "pageviews": "492", "date": "2022" },
-    { "pageviews": "23", "date": "2021" }
-  ]
+	"analytics": [
+		{ "pageviews": "647", "date": "2023" },
+		{ "pageviews": "492", "date": "2022" },
+		{ "pageviews": "23", "date": "2021" }
+	]
 }
 ```
 
@@ -622,12 +622,12 @@ joining all the entries with an `&`:
 
 ```ts
 export const object_to_query_params = (
-  obj: { [s: string]: unknown } | ArrayLike<unknown>
+	obj: { [s: string]: unknown } | ArrayLike<unknown>,
 ) => {
-  const params = Object.entries(obj).map(
-    ([key, value]) => `${key}=${value}`
-  )
-  return '?' + params.join('&')
+	const params = Object.entries(obj).map(
+		([key, value]) => `${key}=${value}`,
+	)
+	return '?' + params.join('&')
 }
 ```
 
@@ -637,12 +637,12 @@ the parameters used in the last example and add them to the
 
 ```ts
 const default_params = {
-  entity: 'pageview',
-  entity_id: PUBLIC_FATHOM_ID,
-  aggregates: 'pageviews',
-  date_from: '2021-01-01T00:00:00.000Z',
-  date_to: '2023-12-31T23:59:59.999Z',
-  date_grouping: 'year',
+	entity: 'pageview',
+	entity_id: PUBLIC_FATHOM_ID,
+	aggregates: 'pageviews',
+	date_from: '2021-01-01T00:00:00.000Z',
+	date_to: '2023-12-31T23:59:59.999Z',
+	date_grouping: 'year',
 }
 ```
 
@@ -682,12 +682,12 @@ there's just the `pageviews`, I'm going to add `visits`, `uniques`,
 
 ```ts
 const default_params = {
-  entity: 'pageview',
-  entity_id: PUBLIC_FATHOM_ID,
-  aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
-  date_from: '2021-01-01T00:00:00.000Z',
-  date_to: '2023-12-31T23:59:59.999Z',
-  date_grouping: 'year',
+	entity: 'pageview',
+	entity_id: PUBLIC_FATHOM_ID,
+	aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
+	date_from: '2021-01-01T00:00:00.000Z',
+	date_to: '2023-12-31T23:59:59.999Z',
+	date_grouping: 'year',
 }
 ```
 
@@ -695,32 +695,32 @@ Now I refresh the dev server and see what I get from the API now:
 
 ```json
 {
-  "analytics": [
-    {
-      "visits": "99",
-      "uniques": "140",
-      "pageviews": "681",
-      "avg_duration": "55.5731",
-      "bounce_rate": 0.2828282828282828,
-      "date": "2023"
-    },
-    {
-      "visits": "145",
-      "uniques": "202",
-      "pageviews": "492",
-      "avg_duration": "30.7709",
-      "bounce_rate": 0.1310344827586207,
-      "date": "2022"
-    },
-    {
-      "visits": "4",
-      "uniques": "5",
-      "pageviews": "23",
-      "avg_duration": "36.0909",
-      "bounce_rate": 0.75,
-      "date": "2021"
-    }
-  ]
+	"analytics": [
+		{
+			"visits": "99",
+			"uniques": "140",
+			"pageviews": "681",
+			"avg_duration": "55.5731",
+			"bounce_rate": 0.2828282828282828,
+			"date": "2023"
+		},
+		{
+			"visits": "145",
+			"uniques": "202",
+			"pageviews": "492",
+			"avg_duration": "30.7709",
+			"bounce_rate": 0.1310344827586207,
+			"date": "2022"
+		},
+		{
+			"visits": "4",
+			"uniques": "5",
+			"pageviews": "23",
+			"avg_duration": "36.0909",
+			"bounce_rate": 0.75,
+			"date": "2021"
+		}
+	]
 }
 ```
 
@@ -733,39 +733,39 @@ property to get the `date_from` and `date_to` parameters:
 
 ```ts
 export const GET: RequestHandler = async ({ url }) => {
-  const date_from = url.searchParams.get('date_from') ?? null
-  const date_to = url.searchParams.get('date_to') ?? null
+	const date_from = url.searchParams.get('date_from') ?? null
+	const date_to = url.searchParams.get('date_to') ?? null
 
-  const default_params = {
-    entity: 'pageview',
-    entity_id: PUBLIC_FATHOM_ID,
-    aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
-    date_grouping: 'year',
-  }
+	const default_params = {
+		entity: 'pageview',
+		entity_id: PUBLIC_FATHOM_ID,
+		aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
+		date_grouping: 'year',
+	}
 
-  try {
-    const headers_auth = new Headers()
-    headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
-    const res = await fetch(
-      `https://api.usefathom.com/v1/aggregations${object_to_query_params(
-        default_params
-      )}`,
-      {
-        headers: headers_auth,
-      }
-    )
+	try {
+		const headers_auth = new Headers()
+		headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
+		const res = await fetch(
+			`https://api.usefathom.com/v1/aggregations${object_to_query_params(
+				default_params,
+			)}`,
+			{
+				headers: headers_auth,
+			},
+		)
 
-    let data = await res.json()
+		let data = await res.json()
 
-    return json({
-      analytics: data,
-    })
-  } catch (error) {
-    return json({
-      error: `Error: ${error}`,
-      status: 500,
-    })
-  }
+		return json({
+			analytics: data,
+		})
+	} catch (error) {
+		return json({
+			error: `Error: ${error}`,
+			status: 500,
+		})
+	}
 }
 ```
 
@@ -796,9 +796,9 @@ I found this approach conditionally adding object properties on a
 
 ```ts
 const date_params = {
-  ...(date_from && { date_from }),
-  ...(date_to && { date_to }),
-  ...(date_grouping && { date_grouping }),
+	...(date_from && { date_from }),
+	...(date_to && { date_to }),
+	...(date_grouping && { date_grouping }),
 }
 ```
 
@@ -816,15 +816,15 @@ parameters I get the lump total again:
 
 ```json
 {
-  "analytics": [
-    {
-      "visits": "470",
-      "uniques": "453",
-      "pageviews": "2328",
-      "avg_duration": "47.8992",
-      "bounce_rate": 0.265824915584089
-    }
-  ]
+	"analytics": [
+		{
+			"visits": "470",
+			"uniques": "453",
+			"pageviews": "2328",
+			"avg_duration": "47.8992",
+			"bounce_rate": 0.265824915584089
+		}
+	]
 }
 ```
 
@@ -843,47 +843,47 @@ import { json } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 
 export const GET: RequestHandler = async ({ url }) => {
-  const date_from = url.searchParams.get('date_from') ?? null
-  const date_to = url.searchParams.get('date_to') ?? null
-  const date_grouping = url.searchParams.get('date_grouping') ?? null
+	const date_from = url.searchParams.get('date_from') ?? null
+	const date_to = url.searchParams.get('date_to') ?? null
+	const date_grouping = url.searchParams.get('date_grouping') ?? null
 
-  const date_params = {
-    ...(date_from && { date_from }),
-    ...(date_to && { date_to }),
-    ...(date_grouping && { date_grouping }),
-  }
+	const date_params = {
+		...(date_from && { date_from }),
+		...(date_to && { date_to }),
+		...(date_grouping && { date_grouping }),
+	}
 
-  const default_params = {
-    entity: 'pageview',
-    entity_id: PUBLIC_FATHOM_ID,
-    aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
-  }
+	const default_params = {
+		entity: 'pageview',
+		entity_id: PUBLIC_FATHOM_ID,
+		aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
+	}
 
-  const params = { ...default_params, ...date_params }
+	const params = { ...default_params, ...date_params }
 
-  try {
-    const headers_auth = new Headers()
-    headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
-    const res = await fetch(
-      `https://api.usefathom.com/v1/aggregations${object_to_query_params(
-        params
-      )}`,
-      {
-        headers: headers_auth,
-      }
-    )
+	try {
+		const headers_auth = new Headers()
+		headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
+		const res = await fetch(
+			`https://api.usefathom.com/v1/aggregations${object_to_query_params(
+				params,
+			)}`,
+			{
+				headers: headers_auth,
+			},
+		)
 
-    let data = await res.json()
+		let data = await res.json()
 
-    return json({
-      analytics: data,
-    })
-  } catch (error) {
-    return json({
-      error: `Error: ${error}`,
-      status: 500,
-    })
-  }
+		return json({
+			analytics: data,
+		})
+	} catch (error) {
+		return json({
+			error: `Error: ${error}`,
+			status: 500,
+		})
+	}
 }
 ```
 
@@ -909,11 +909,11 @@ The `default_params` object will looks like this now:
 
 ```ts
 const default_params = {
-  entity: 'pageview',
-  entity_id: PUBLIC_FATHOM_ID,
-  aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
-  field_grouping: 'pathname',
-  filters: `[{"property": "pathname","operator": "is","value": "${pathname}"}]`,
+	entity: 'pageview',
+	entity_id: PUBLIC_FATHOM_ID,
+	aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
+	field_grouping: 'pathname',
+	filters: `[{"property": "pathname","operator": "is","value": "${pathname}"}]`,
 }
 ```
 
@@ -956,13 +956,13 @@ function I'll import the `date-fns` functions:
 
 ```ts
 import {
-  format,
-  startOfDay,
-  endOfDay,
-  startOfMonth,
-  endOfMonth,
-  startOfYear,
-  endOfYear,
+	format,
+	startOfDay,
+	endOfDay,
+	startOfMonth,
+	endOfMonth,
+	startOfYear,
+	endOfYear,
 } from 'date-fns'
 ```
 
@@ -977,18 +977,18 @@ infer the type:
 
 ```ts
 export const page_analytics = async (
-  base_path: string,
-  fetch: {
-    (
-      input: URL | RequestInfo,
-      init?: RequestInit | undefined
-    ): Promise<Response>
-    (
-      input: URL | RequestInfo,
-      init?: RequestInit | undefined
-    ): Promise<Response>
-    (arg0: string): any
-  }
+	base_path: string,
+	fetch: {
+		(
+			input: URL | RequestInfo,
+			init?: RequestInit | undefined,
+		): Promise<Response>
+		(
+			input: URL | RequestInfo,
+			init?: RequestInit | undefined,
+		): Promise<Response>
+		(arg0: string): any
+	},
 ) => {}
 ```
 
@@ -1011,76 +1011,76 @@ for `fetch_daily_visits` and return `daily_visits`.
 
 ```ts
 const fetch_daily_visits = async () => {
-  const res = await fetch(
-    `${base_path}&date_from=${day_start}&date_to=${day_end}`
-  )
-  const { analytics } = await res.json()
-  return analytics
+	const res = await fetch(
+		`${base_path}&date_from=${day_start}&date_to=${day_end}`,
+	)
+	const { analytics } = await res.json()
+	return analytics
 }
 
 return {
-  daily_visits: fetch_daily_visits(),
+	daily_visits: fetch_daily_visits(),
 }
 ```
 
 Here's what the full `page_analytics` function looks like:
 
-<Details buttonText="page_analytics" styles="lowercase">
+<Details button_text="page_analytics" styles="lowercase">
 
 ```ts
 export const page_analytics = async (
-  base_path: string,
-  fetch: {
-    (
-      input: URL | RequestInfo,
-      init?: RequestInit | undefined
-    ): Promise<Response>
-    (
-      input: URL | RequestInfo,
-      init?: RequestInit | undefined
-    ): Promise<Response>
-    (arg0: string): any
-  }
+	base_path: string,
+	fetch: {
+		(
+			input: URL | RequestInfo,
+			init?: RequestInit | undefined,
+		): Promise<Response>
+		(
+			input: URL | RequestInfo,
+			init?: RequestInit | undefined,
+		): Promise<Response>
+		(arg0: string): any
+	},
 ) => {
-  const day_start = startOfDay(new Date()).toISOString()
-  const day_end = endOfDay(new Date()).toISOString()
+	const day_start = startOfDay(new Date()).toISOString()
+	const day_end = endOfDay(new Date()).toISOString()
 
-  const month_start = startOfMonth(new Date()).toISOString()
-  const month_end = endOfMonth(new Date()).toISOString()
+	const month_start = startOfMonth(new Date()).toISOString()
+	const month_end = endOfMonth(new Date()).toISOString()
 
-  const year_start = startOfYear(new Date()).toISOString()
-  const year_end = endOfYear(new Date()).toISOString()
+	const year_start = startOfYear(new Date()).toISOString()
+	const year_end = endOfYear(new Date()).toISOString()
 
-  // get daily visits
-  const fetch_daily_visits = async () => {
-    const res = await fetch(
-      `${base_path}&date_from=${day_start}&date_to=${day_end}`
-    )
-    const { analytics } = await res.json()
-    return analytics
-  }
-  // get monthly visits
-  const fetch_monthly_visits = async () => {
-    const res = await fetch(
-      `${base_path}&date_from=${month_start}&date_to=${month_end}&date_grouping=month`
-    )
-    const { analytics } = await res.json()
-    return analytics
-  }
-  // get yearly visits
-  const fetch_yearly_visits = async () => {
-    const res = await fetch(
-      `${base_path}&date_from=${year_start}&date_to=${year_end}&date_grouping=year`
-    )
-    const { analytics } = await res.json()
-    return analytics
-  }
+	// get daily visits
+	const fetch_daily_visits = async () => {
+		const res = await fetch(
+			`${base_path}&date_from=${day_start}&date_to=${day_end}`,
+		)
+		const { analytics } = await res.json()
+		return analytics
+	}
+	// get monthly visits
+	const fetch_monthly_visits = async () => {
+		const res = await fetch(
+			`${base_path}&date_from=${month_start}&date_to=${month_end}&date_grouping=month`,
+		)
+		const { analytics } = await res.json()
+		return analytics
+	}
+	// get yearly visits
+	const fetch_yearly_visits = async () => {
+		const res = await fetch(
+			`${base_path}&date_from=${year_start}&date_to=${year_end}&date_grouping=year`,
+		)
+		const { analytics } = await res.json()
+		return analytics
+	}
 
-  return {
-    daily_visits: fetch_daily_visits(),
-    monthly_visits: fetch_monthly_visits(),
-    yearly_visits: fetch_yearly_visits(),
-  }
+	return {
+		daily_visits: fetch_daily_visits(),
+		monthly_visits: fetch_monthly_visits(),
+		yearly_visits: fetch_yearly_visits(),
+	}
 }
 ```
 
@@ -1102,16 +1102,16 @@ import { page_analytics } from '$lib/utils'
 import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async ({ fetch }) => {
-  const base_path = `analytics.json?pathname=/about`
+	const base_path = `analytics.json?pathname=/about`
 
-  let { daily_visits, monthly_visits, yearly_visits } =
-    await page_analytics(base_path, fetch)
+	let { daily_visits, monthly_visits, yearly_visits } =
+		await page_analytics(base_path, fetch)
 
-  return {
-    daily_visits,
-    monthly_visits,
-    yearly_visits,
-  }
+	return {
+		daily_visits,
+		monthly_visits,
+		yearly_visits,
+	}
 }
 ```
 
@@ -1121,23 +1121,23 @@ dumping it out into a `<pre>` tag:
 
 ```svelte
 <script lang="ts">
-  import type { PageData } from './$types'
+	import type { PageData } from './$types'
 
-  export let data: PageData
+	export let data: PageData
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
 
 <svelte:head>
-  <title>SvelteKit with Fathom | About</title>
+	<title>SvelteKit with Fathom | About</title>
 </svelte:head>
 
 <section
-  class="prose-xl prose-h1:text-secondary prose-a:link-primary"
+	class="prose-xl prose-h1:text-secondary prose-a:link-primary"
 >
-  <h1>About</h1>
+	<h1>About</h1>
 
-  <p>This site was built to made to showcase Fathom Analytics.</p>
+	<p>This site was built to made to showcase Fathom Analytics.</p>
 </section>
 ```
 
@@ -1145,49 +1145,49 @@ Looking at the about page I get the pre tag with the data:
 
 ```json
 {
-  "visitors": {
-    "total": 1,
-    "content": [
-      {
-        "hostname": "http://localhost",
-        "pathname": "/about",
-        "total": "1"
-      }
-    ],
-    "referrers": []
-  },
-  "daily_visits": [
-    {
-      "visits": "5",
-      "uniques": "3",
-      "pageviews": "132",
-      "avg_duration": "66.4521",
-      "bounce_rate": 0,
-      "pathname": "/about"
-    }
-  ],
-  "monthly_visits": [
-    {
-      "visits": "7",
-      "uniques": "16",
-      "pageviews": "192",
-      "avg_duration": "46.9545",
-      "bounce_rate": 0.14285714285714285,
-      "date": "2023-02",
-      "pathname": "/about"
-    }
-  ],
-  "yearly_visits": [
-    {
-      "visits": "7",
-      "uniques": "18",
-      "pageviews": "194",
-      "avg_duration": "46.1339",
-      "bounce_rate": 0.14285714285714285,
-      "date": "2023",
-      "pathname": "/about"
-    }
-  ]
+	"visitors": {
+		"total": 1,
+		"content": [
+			{
+				"hostname": "http://localhost",
+				"pathname": "/about",
+				"total": "1"
+			}
+		],
+		"referrers": []
+	},
+	"daily_visits": [
+		{
+			"visits": "5",
+			"uniques": "3",
+			"pageviews": "132",
+			"avg_duration": "66.4521",
+			"bounce_rate": 0,
+			"pathname": "/about"
+		}
+	],
+	"monthly_visits": [
+		{
+			"visits": "7",
+			"uniques": "16",
+			"pageviews": "192",
+			"avg_duration": "46.9545",
+			"bounce_rate": 0.14285714285714285,
+			"date": "2023-02",
+			"pathname": "/about"
+		}
+	],
+	"yearly_visits": [
+		{
+			"visits": "7",
+			"uniques": "18",
+			"pageviews": "194",
+			"avg_duration": "46.1339",
+			"bounce_rate": 0.14285714285714285,
+			"date": "2023",
+			"pathname": "/about"
+		}
+	]
 }
 ```
 
@@ -1213,37 +1213,37 @@ Then in the component I'll need to accept the analytics data as
 
 ```svelte
 <script lang="ts">
-  export let page_analytics: {
-    date: string
-    visits: number
-    uniques: number
-    pageviews: number
-  }
+	export let page_analytics: {
+		date: string
+		visits: number
+		uniques: number
+		pageviews: number
+	}
 </script>
 
 <div
-  class="stats stats-vertical mb-8 w-full border border-secondary shadow-lg md:stats-horizontal"
+	class="stats stats-vertical border-secondary md:stats-horizontal mb-8 w-full border shadow-lg"
 >
-  <div class="stat">
-    <div class="stat-title">Entries</div>
-    <div class="stat-value text-2xl">
-      {page_analytics?.visits}
-    </div>
-  </div>
+	<div class="stat">
+		<div class="stat-title">Entries</div>
+		<div class="stat-value text-2xl">
+			{page_analytics?.visits}
+		</div>
+	</div>
 
-  <div class="stat">
-    <div class="stat-title">Visitors</div>
-    <div class="stat-value text-2xl">
-      {page_analytics?.uniques}
-    </div>
-  </div>
+	<div class="stat">
+		<div class="stat-title">Visitors</div>
+		<div class="stat-value text-2xl">
+			{page_analytics?.uniques}
+		</div>
+	</div>
 
-  <div class="stat">
-    <div class="stat-title">Views</div>
-    <div class="stat-value text-2xl">
-      {page_analytics?.pageviews}
-    </div>
-  </div>
+	<div class="stat">
+		<div class="stat-title">Views</div>
+		<div class="stat-value text-2xl">
+			{page_analytics?.pageviews}
+		</div>
+	</div>
 </div>
 ```
 
@@ -1252,29 +1252,29 @@ for each of the stats:
 
 ```svelte
 <script lang="ts">
-  import { AnalyticsCard } from '$lib/components'
-  import type { PageData } from './$types'
+	import { AnalyticsCard } from '$lib/components'
+	import type { PageData } from './$types'
 
-  export let data: PageData
+	export let data: PageData
 </script>
 
 <svelte:head>
-  <title>SvelteKit with Fathom | About</title>
+	<title>SvelteKit with Fathom | About</title>
 </svelte:head>
 
 <section
-  class="prose-xl prose-h1:text-secondary prose-a:link-primary"
+	class="prose-xl prose-h1:text-secondary prose-a:link-primary"
 >
-  <h1>About</h1>
+	<h1>About</h1>
 
-  <p>This site was built to made to showcase Fathom Analytics.</p>
+	<p>This site was built to made to showcase Fathom Analytics.</p>
 
-  <p>Live Analytics for daily visits.</p>
-  <AnalyticsCard page_analytics={data?.daily_visits[0]} />
-  <p>Live Analytics for monthly visits.</p>
-  <AnalyticsCard page_analytics={data?.monthly_visits[0]} />
-  <p>Live Analytics for yearly visits.</p>
-  <AnalyticsCard page_analytics={data?.yearly_visits[0]} />
+	<p>Live Analytics for daily visits.</p>
+	<AnalyticsCard page_analytics={data?.daily_visits[0]} />
+	<p>Live Analytics for monthly visits.</p>
+	<AnalyticsCard page_analytics={data?.monthly_visits[0]} />
+	<p>Live Analytics for yearly visits.</p>
+	<AnalyticsCard page_analytics={data?.yearly_visits[0]} />
 </section>
 ```
 
@@ -1338,20 +1338,20 @@ Finally, to prevent Google from crawling API endpoints, I added in a
 [analytics]: https://scottspence.com/tags/analytics
 [fathom api documentation]: https://usefathom.com/api
 [fathom analytics with sveltekit]:
-  https://scottspence.com/posts/fathom-analytics-with-svelte
+	https://scottspence.com/posts/fathom-analytics-with-svelte
 [the github repo]: https://github.com/spences10/sveltekit-and-fathom
 [`app.usefathom.com/api`]: https://app.usefathom.com/api
 [robots.txt file for sveltekit projects]:
-  https://scottspence.com/posts/robots-txt-file-for-sveltekit-projects
+	https://scottspence.com/posts/robots-txt-file-for-sveltekit-projects
 [sveltekit and fathom github project]:
-  https://github.com/spences10/sveltekit-and-fathom
+	https://github.com/spences10/sveltekit-and-fathom
 [before]:
-  https://github.com/spences10/sveltekit-and-fathom/tree/ref/pre-real-time-analytics-implementation
+	https://github.com/spences10/sveltekit-and-fathom/tree/ref/pre-real-time-analytics-implementation
 [after]:
-  https://github.com/spences10/sveltekit-and-fathom/tree/feat/add-real-time-analytics
+	https://github.com/spences10/sveltekit-and-fathom/tree/feat/add-real-time-analytics
 [diff]:
-  https://github.com/spences10/sveltekit-and-fathom/pull/160/files
+	https://github.com/spences10/sveltekit-and-fathom/pull/160/files
 [`ideal-memory.com`]: https://ideal-memory.com
 [sveltekit environment variables with the sveltekit $env module]:
-  https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module
+	https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module
 [stack overflow]: https://stackoverflow.com/a/51200448

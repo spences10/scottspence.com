@@ -2,7 +2,7 @@
 date: 2020-05-02
 title: Moving from Now to Netlify then back to Now
 tags: ['learning']
-isPrivate: false
+is_private: false
 ---
 
 <script>

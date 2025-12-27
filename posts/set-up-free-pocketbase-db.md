@@ -1,8 +1,8 @@
 ---
 date: 2022-10-02
 title: Set up a free PocketBase database with Fly.io
-tags: ['pocketbase', 'database', 'docker', 'guide']
-isPrivate: false
+tags: ['pocketbase', 'database', 'flyio', 'docker', 'guide']
+is_private: false
 ---
 
 I was playing around with Linode recently to try set up a PocketBase

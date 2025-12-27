@@ -2,7 +2,7 @@
 date: 2023-01-06
 title: Instagram Image Filters with Tailwind CSS and SvelteKit
 tags: ['css', 'how-to', 'svelte', 'sveltekit']
-isPrivate: false
+is_private: false
 ---
 
 Real quick! This was a dumb idea I had when I created the repo for

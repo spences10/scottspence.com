@@ -2,7 +2,7 @@
 date: 2019-03-24
 title: Creating a Custom React Hook for Gatsby Site Metadata
 tags: ['learning', 'gatsby', 'react', 'hooks', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 <script>

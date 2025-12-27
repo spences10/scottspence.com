@@ -3,7 +3,7 @@ date: 2023-06-13
 updated: 2023-06-18
 title: How I got back online after AWS East went down
 tags: ['vercel', 'analytics', 'sveltekit']
-isPrivate: false
+is_private: false
 meta_description:
   Discover the steps I took to bring my website back online during a
   major AWS East outage, and learn how to ensure your website stays

@@ -2,7 +2,7 @@
 date: 2021-09-20
 title: Fetch data from two or more endpoints in SvelteKit
 tags: ['svelte', 'sveltekit']
-isPrivate: false
+is_private: false
 ---
 
 Real quick example of how I used `Promise.all` to fetch data from

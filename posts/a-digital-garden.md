@@ -2,7 +2,7 @@
 date: 2020-04-27
 title: A Digital Garden
 tags: ['learning']
-isPrivate: false
+is_private: false
 ---
 
 I spent a couple of days now questioning how and what I write after

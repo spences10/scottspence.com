@@ -2,7 +2,7 @@
 date: 2020-07-25
 title: Take Home Tests
 tags: ['career']
-isPrivate: true
+is_private: true
 ---
 
 <script>

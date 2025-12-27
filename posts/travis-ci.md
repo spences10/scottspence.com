@@ -2,7 +2,7 @@
 date: 2018-05-28
 title: Making a CI pipeline with Travis CI
 tags: ['guide', 'ci-cd']
-isPrivate: false
+is_private: false
 ---
 
 I thought I'd set up this blog with some sort of build pipeline, the

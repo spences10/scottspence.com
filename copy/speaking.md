@@ -10,19 +10,47 @@
   } from 'sveltekit-embed'
 </script>
 
+<!-- cspell:ignore J5srLwhlBdw -->
+
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2023-09-02" small="true" />
+  Last updated: <DateUpdated date="2024-10-31" small="true" />
 </Small>
 
 If you want me to talk about using Svelte and SvelteKit or anything
-else [get in touch].
+else [get in touch]. I offer similar workshops for teams through
+[my consulting services](https://svelteconsulting.dev/services/workshops).
 
 **Recent talks, workshops and appearances**
 
 Here's the list of talks, podcasts and live streams I have done
 recently.
+
+## 2025
+
+### Svelte Society London - January 2025
+
+Staying current with Svelte using AI tools.
+
+<!-- cSpell:ignore ketkcywX -->
+
+<YouTube youTubeId='ketkcywX-qQ' skipTo={{ h: 0, m: 25, s: 8 }} />
+
+## 2024
+
+### Svelte Society London - October 2024
+
+Oh no! SEO, how to get your Svelte projects indexed by search engines.
+
+<YouTube youTubeId='mxM208nCvHc' skipTo={{ h: 1, m: 3, s: 26 }} />
+
+### Svelte Society London - June 2024
+
+Check out my junk! A tour of SvelteKit projects that I've built and
+learned from.
+
+<YouTube youTubeId='J5srLwhlBdw' skipTo={{ h: 0, m: 43, s: 21 }}/>
 
 ## 2023
 
@@ -84,7 +112,7 @@ CityJS, 2hr community workshop on building with Svelte and SvelteKit
 ### Modern Web Podcast
 
 Jesse Tomchak and I dive into the ins and outs of Svelte, ramping up
-from React, what’s it like to a second career developer, and the
+from React, what's it like to a second career developer, and the
 importance of paying it forward to developers who are new to the
 community.
 
@@ -338,7 +366,7 @@ about common problems among developers.
 
 📺 [Watch it on YouTube](https://www.youtube.com/watch?v=0P8GTyBEUVE)
 
-<!-- cSpell:ignore xdozdWXWI,bxq -->
+<!-- cSpell:ignore 1xdozdWXWINddIIbxqZAzL -->
 
 <Spotify
   spotifyLink="episode/1xdozdWXWINddIIbxqZAzL"
@@ -498,33 +526,33 @@ the Jamstack is and the advantages of using it.
 
 [get in touch]: /contact
 [jamstack explorers mission on building a production ready svelte project with svelte]:
-  https://explorers.netlify.com/learn/building-with-sveltekit-and-graphcms
+	https://explorers.netlify.com/learn/building-with-sveltekit-and-graphcms
 [post from ilesh]:
-  https://www.ileshmistry.com/mmt-tech-meet-up-january-2020-recap-gatsbyjs-and-houdini-css
+	https://www.ileshmistry.com/mmt-tech-meet-up-january-2020-recap-gatsbyjs-and-houdini-css
 [mdx embed]: https://www.mdx-embed.com/
 [gatsby eats apis (slides)]:
-  https://github.com/spences10/gatsby-eats-apis
+	https://github.com/spences10/gatsby-eats-apis
 [jesse martin]: https://twitter.com/motleydev
 [spreading the jamstack (slides)]:
-  https://spreading-the-jam-stack.now.sh/#0
+	https://spreading-the-jam-stack.now.sh/#0
 [building with sveltekit and graphcms]:
-  https://graphqlgalaxy.com/workshops-3h#ckwajl0u87vcm0c56xivankq9
+	https://graphqlgalaxy.com/workshops-3h#ckwajl0u87vcm0c56xivankq9
 [building with sveltekit and graphql]:
-  https://jsnation.com/remote-js-workshops#building-with-svelte-kit-and-graph-ql-remote
+	https://jsnation.com/remote-js-workshops#building-with-svelte-kit-and-graph-ql-remote
 
 <!-- Images -->
 
 [jsnation workshop 2022]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1656077172/scottspence.com/building-with-svelte-and-graphql-jsnation-2022.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1656077172/scottspence.com/building-with-svelte-and-graphql-jsnation-2022.png
 [jamstack explorers]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1634933520/scottspence.com/jamstack-explorers-mission.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1634933520/scottspence.com/jamstack-explorers-mission.png
 [jamstack conf workshop 2021]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1634933520/scottspence.com/jamstack-conf-workshopp.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1634933520/scottspence.com/jamstack-conf-workshopp.png
 [graphql galaxy 2021]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1639133326/scottspence.com/building-with-svelte-and-graphql-graphql-galaxy-2021.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1639133326/scottspence.com/building-with-svelte-and-graphql-graphql-galaxy-2021.png
 [api days london 2019]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1616774309/scottspence.com/api-days-london-2019.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1616774309/scottspence.com/api-days-london-2019.jpg
 [scott-at-modern-frontends-1]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1668962975/scottspence.com/scott-at-modern-frontends-1.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1668962975/scottspence.com/scott-at-modern-frontends-1.jpg
 [scott-at-modern-frontends-2]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1668962976/scottspence.com/scott-at-modern-frontends-2.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1668962976/scottspence.com/scott-at-modern-frontends-2.jpg

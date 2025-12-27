@@ -2,7 +2,7 @@
 date: 2023-10-01
 title: Switching from Brevo to Buttondown
 tags: ['notes', 'email', 'buttondown']
-isPrivate: false
+is_private: false
 ---
 
 <script>

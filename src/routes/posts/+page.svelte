@@ -1,57 +1,86 @@
 <script lang="ts">
-  import { page } from '$app/stores'
-  import { Head } from '$lib/components'
-  import PostCard from '$lib/components/post-card.svelte'
-  import { description, name, website } from '$lib/info.js'
-  import { og_image_url } from '$lib/utils'
+	import { page } from '$app/state'
+	import { PostCard } from '$lib/components'
+	import { description, name, website } from '$lib/info'
+	import { create_seo_config } from '$lib/seo'
+	import { og_image_url } from '$lib/utils'
+	import { Head } from 'svead'
+	import type { PageData } from './$types'
 
-  export let data
-  let { posts } = data
+	const { data } = $props<{ data: PageData }>()
+	const posts = $derived(data.posts)
 
-  let search_query = $page.url.searchParams.get('search') || ''
+	let search_query = $state(page.url.searchParams.get('search') || '')
 
-  $: filtered_posts = posts.filter((post: Post) => {
-    if (post.isPrivate) return false
+	let filtered_posts = $derived.by(() => {
+		// First filter out private posts and ensure valid post data
+		const public_posts = posts.filter(
+			(post: { is_private: boolean }) => post && !post.is_private,
+		)
 
-    if (search_query === '') return true
+		// Then apply search filter if there's a search query
+		if (search_query === '') return public_posts
 
-    return (
-      post.title.toLowerCase().indexOf(search_query.toLowerCase()) !==
-        -1 ||
-      post.tags.find(
-        (tag: string) =>
-          tag.toLowerCase() === search_query.toLowerCase()
-      ) ||
-      post.preview
-        .toLowerCase()
-        .indexOf(search_query.toLowerCase()) !== -1
-    )
-  })
+		return public_posts.filter((post: Post) => {
+			// Defensive null checks for all accessed properties
+			if (!post) return false
+
+			const title_match =
+				post.title &&
+				post.title.toLowerCase().includes(search_query.toLowerCase())
+
+			const tag_match =
+				Array.isArray(post.tags) &&
+				post.tags.some(
+					(tag) =>
+						tag &&
+						tag.toLowerCase().includes(search_query.toLowerCase()),
+				)
+
+			const preview_match =
+				post.preview &&
+				post.preview
+					.toLowerCase()
+					.includes(search_query.toLowerCase())
+
+			return title_match || tag_match || preview_match
+		})
+	})
+
+	const seo_config = create_seo_config({
+		title: `Welcome! - ${name}`,
+		description,
+		open_graph_image: og_image_url(
+			name,
+			`scottspence.com`,
+			`Thoughts Pamphlet`,
+		),
+		url: `${website}/posts`,
+		slug: 'posts',
+	})
 </script>
 
-<Head
-  title={`Welcome! - ${name}`}
-  {description}
-  image={og_image_url(name, `scottspence.com`, `Thoughts Pamphlet`)}
-  url={`${website}/posts`}
-/>
+<Head {seo_config} />
 
-<div class="mb-10 form-control">
-  <label for="search" class="label">
-    <span class="label-text">
-      Search {filtered_posts.length} posts...
-    </span>
-  </label>
-  <input
-    data-testid="search"
-    id="search"
-    class="input input-primary input-bordered"
-    type="text"
-    placeholder="Search..."
-    bind:value={search_query}
-  />
+<div class="mb-10">
+	<label for="search" class="label mb-2 text-sm">
+		<span class="label-text">
+			Search {filtered_posts.length} posts...
+		</span>
+	</label>
+	<input
+		data-testid="search"
+		id="search"
+		class="input input-bordered input-primary input-lg w-full"
+		type="text"
+		placeholder="Search..."
+		bind:value={search_query}
+	/>
 </div>
 
-{#each filtered_posts as post (post.slug)}
-  <PostCard {post} />
-{/each}
+<!-- hacky bs to stop the post loading on hover -->
+<div data-sveltekit-preload-data="false">
+	{#each filtered_posts as post (post.slug)}
+		<PostCard {post} />
+	{/each}
+</div>

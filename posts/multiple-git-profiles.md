@@ -2,7 +2,7 @@
 date: 2019-01-27
 title: Setting up multiple Git providers
 tags: ['learning', 'guide', 'wsl', 'git']
-isPrivate: false
+is_private: false
 ---
 
 Over the past couple of weeks now I have set up several development
@@ -144,4 +144,4 @@ Work specific config `~/work/.gitconfig`
   https://cheatsheets.xyz/git/#use-multiple-ssh-keys
 [re use ssh keys from one machine to another]:
   https://cheatsheets.xyz/git/#re-use-ssh-keys-from-one-machine-to-another
-[wsl set-up]: https://scottspence.com/posts/wsl-bootstrap-2019/
+[wsl set-up]: https://scottspence.com/posts/wsl-bootstrap-2019

@@ -2,7 +2,7 @@
 date: 2021-04-20
 title: Remove Service Worker - Gatsby
 tags: ['gatsby', 'guide', 'resource']
-isPrivate: false
+is_private: false
 ---
 
 The Gatsby offline plugin is really handy right up until you don't

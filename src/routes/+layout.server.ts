@@ -1,97 +1,29 @@
-import {
-  analytics_data_with_titles,
-  cache_response,
-  get_data_from_cache,
-  get_posts_by_slug,
-} from '$lib/fathom'
-import { time_to_seconds } from '$lib/utils'
+import { get_popular_posts } from '$lib/state/popular-posts.svelte'
 
-const fetch_popular_posts = async (
-  fetch: Fetch,
-  url: string,
-  period: string,
-  cache_duration: number,
-) => {
-  const cache_key = `popular_posts_${period}`
-  const cached = await get_data_from_cache(cache_key)
+export const load = async () => {
+	try {
+		// Get popular posts from in-memory cache (1-hour TTL)
+		const popular_posts_data = await get_popular_posts()
 
-  if (cached && typeof cached === 'string') {
-    try {
-      return JSON.parse(cached)
-    } catch (e) {
-      console.error(`Error parsing cached data: ${e}`)
-    }
-  }
-
-  try {
-    const res = await fetch(url)
-    const data = await res.json()
-    const analytics_data = data.analytics || null
-
-    // Get titles for the popular posts
-    const posts_response = await fetch('posts.json')
-    const posts_data = await posts_response.json()
-    const posts_by_slug = get_posts_by_slug(posts_data)
-    const result = analytics_data_with_titles(
-      analytics_data,
-      posts_by_slug,
-    )
-
-    await cache_response(
-      cache_key,
-      JSON.stringify(result),
-      cache_duration,
-    )
-
-    return result
-  } catch (error) {
-    console.error(
-      `Error fetching popular posts for ${period}: ${error}`,
-    )
-    return null
-  }
-}
-
-export const load = async ({ fetch }) => {
-  const cache_duration = time_to_seconds({ hours: 24 })
-
-  // Fetch Popular Posts
-  const popular_posts_promises = ['day', 'month', 'year'].map(
-    period =>
-      fetch_popular_posts(
-        fetch,
-        `../popular-posts.json?period=${period}&cache_duration=${cache_duration}`,
-        period,
-        cache_duration,
-      ),
-  )
-
-  // Fetch Visitors
-  const visitors_promise = fetch(`../current-visitors.json`)
-
-  // Fetch newsletter subscriber count
-  const subscribers_promise = fetch(`../subscribers.json`)
-
-  const [
-    popular_posts_daily,
-    popular_posts_monthly,
-    popular_posts_yearly,
-  ] = await Promise.all(popular_posts_promises)
-
-  const visitors_response = await visitors_promise
-  const visitors = await visitors_response.json()
-
-  const subscribers_response = await subscribers_promise
-  const { newsletter_subscriber_count } =
-    await subscribers_response.json()
-
-  return {
-    visitors,
-    popular_posts: {
-      popular_posts_daily,
-      popular_posts_monthly,
-      popular_posts_yearly,
-    },
-    newsletter_subscriber_count,
-  }
+		return {
+			popular_posts: {
+				popular_posts_daily: popular_posts_data.daily,
+				popular_posts_monthly: popular_posts_data.monthly,
+				popular_posts_yearly: popular_posts_data.yearly,
+			},
+		}
+	} catch (error) {
+		console.warn(
+			'Database unavailable, using empty popular posts:',
+			(error as Error)?.message || 'Unknown error',
+		)
+		// Return empty data when database is blocked/unavailable
+		return {
+			popular_posts: {
+				popular_posts_daily: [],
+				popular_posts_monthly: [],
+				popular_posts_yearly: [],
+			},
+		}
+	}
 }

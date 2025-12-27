@@ -2,7 +2,7 @@
 date: 2023-02-06
 title: How to Implement Redirects for Changed Post Routes in Sveltekit
 tags: ['sveltekit', 'seo', 'guide', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 <script>

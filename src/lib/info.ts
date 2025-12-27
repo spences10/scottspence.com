@@ -4,590 +4,356 @@ export const website = `https://scottspence.com`
 
 export const description = `My own little space on the internet, where I write about what I've learned as a web developer mainly Svelte and SvelteKit.`
 
-export const PORTFOLIO_PROJECTS = [
-  {
-    title: 'MDX Embed',
-    repo: 'https://github.com/PaulieScanlon/mdx-embed/',
-    demo: 'https://www.mdx-embed.com/',
-    tags: ['gatsby', 'mdx', 'typescript'],
-    image: '/mdx-embed.png',
-    copy: ['Embed popular 3rd party media content into your .mdx'],
-  },
-  {
-    title: 'GitHub Charts',
-    repo: 'https://github.com/spences10/github-user-information/',
-    demo: 'https://github-user-information.vercel.app/heat.png?username=spences10&year=2020&interactive=true',
-    tags: ['typescript', 'serverless', 'vercel'],
-    image: '/gh-charts.jpg',
-    copy: [
-      'Serverless function to display GitHub user information as images',
-    ],
-  },
-  {
-    title: 'City 2 Sea',
-    repo: '',
-    demo: 'https://beagoodasshole.com/',
-    tags: ['gatsby', 'styled-components', 'lottie'],
-    image: '/city-to-sea.png',
-    copy: [
-      'A playful landing page featuring the voice of Andy Serkis',
-    ],
-  },
-  {
-    title: 'Cheat Sheets',
-    repo: 'https://github.com/spences10/cheat-sheets/',
-    demo: 'https://cheatsheets.xyz/',
-    tags: ['gatsby', 'chakra', 'mdx'],
-    image: '/cheat-sheets.jpg',
-    copy: ['A collection of hints and tips for web development'],
-  },
-]
+export const payment_pointer = '$ilp.uphold.com/bzPBWkMBzLmN'
 
-export const POPULAR_POSTS = [
-  {
-    path: `/posts/use-chrome-in-ubuntu-wsl`,
-    title: `Use Google Chrome in Ubuntu on Windows Subsystem Linux`,
-  },
-  {
-    path: `/posts/change-scrollbar-color-tailwind-css`,
-    title: `Change Browser Scrollbar Colour with Tailwind CSS`,
-  },
-  {
-    path: `/posts/stylelint-configuration-for-tailwindcss`,
-    title: `Stylelint Configuration for use with Tailwind CSS`,
-  },
-  {
-    path: `/posts/email-form-submission-with-sveltekit`,
-    title: `Make an Email Form Submission with SvelteKit`,
-  },
-  {
-    path: `/posts/get-graphql-data-with-axios`,
-    title: `Get GraphQL Data Using Axios`,
-  },
-  {
-    path: `/posts/make-a-sitemap-with-sveltekit`,
-    title: `Make a Sitemap with SvelteKit`,
-  },
-  {
-    path: `/posts/sveltekit-environment-variables-with-the-sveltekit-env-module`,
-    title: `SvelteKit Environment Variables with the SvelteKit $env Module`,
-  },
-  {
-    path: `/posts/change-text-highlight-colour-with-tailwind-css`,
-    title: `Change Text Highlight Color with Tailwind CSS`,
-  },
-  {
-    path: `/posts/why-fastmail-over-proton-mail`,
-    title: `Why Fastmail over ProtonMail`,
-  },
-  {
-    path: `/posts/my-zsh-config`,
-    title: `My Zsh Config`,
-  },
-]
+export const language = 'en-GB'
 
 export const SOCIAL_LINKS = [
-  {
-    title: `YouTube`,
-    link: `https://ss10.dev/yt`,
-  },
-  {
-    title: `GitHub`,
-    link: `https://ss10.dev/git`,
-  },
-  {
-    title: `Threads`,
-    link: `https://www.threads.net/@spences10`,
-  },
-  {
-    title: `Bluesky`,
-    link: `https://ss10.dev/bluesky`,
-  },
-  {
-    title: `Spotify`,
-    link: `https://ss10.dev/spotify`,
-  },
-  {
-    title: `Twitch`,
-    link: `https://ss10.dev/twitch`,
-  },
-  {
-    title: `Twitter`,
-    link: `https://ss10.dev/twitter`,
-  },
+	{
+		title: `Bluesky`,
+		link: `https://ss10.dev/bluesky`,
+	},
+	{
+		title: `YouTube`,
+		link: `https://ss10.dev/yt`,
+	},
+	{
+		title: `GitHub`,
+		link: `https://ss10.dev/git`,
+	},
+	{
+		title: `Spotify`,
+		link: `https://ss10.dev/spotify`,
+	},
+	{
+		title: `Twitch`,
+		link: `https://ss10.dev/twitch`,
+	},
 ]
 
 export const SITE_LINKS = [
-  {
-    title: `Writing`,
-    slug: `posts`,
-  },
-  {
-    title: `About`,
-    slug: `about`,
-  },
-  {
-    title: `Now`,
-    slug: `now`,
-  },
-  {
-    title: `Portfolio`,
-    slug: `portfolio`,
-  },
-  {
-    title: `Speaking`,
-    slug: `speaking`,
-  },
-  {
-    title: `Uses`,
-    slug: `uses`,
-  },
-  {
-    title: `Newsletter`,
-    slug: `newsletter`,
-  },
-  {
-    title: `Contact`,
-    slug: `contact`,
-  },
-  {
-    title: `Media Pack`,
-    slug: `media`,
-  },
-  {
-    title: `Privacy Policy`,
-    slug: `privacy-policy`,
-  },
-  {
-    title: `Cookie Policy`,
-    slug: `cookie-policy`,
-  },
+	{
+		title: `About`,
+		slug: `about`,
+	},
+	{
+		title: `Now`,
+		slug: `now`,
+	},
+	{
+		title: `Portfolio`,
+		slug: `portfolio`,
+	},
+	{
+		title: `Uses`,
+		slug: `uses`,
+	},
+	{
+		title: `Newsletter`,
+		slug: `newsletter`,
+	},
+	{
+		title: `Media Pack`,
+		slug: `media`,
+	},
+	{
+		title: `Let's work together`,
+		slug: `lets-work-together`,
+	},
+	{
+		title: `Privacy Policy`,
+		slug: `privacy-policy`,
+	},
+	{
+		title: `Cookie Policy`,
+		slug: `cookie-policy`,
+	},
 ]
 
 export const PEOPLE = [
-  {
-    name: `Rodney Lab`,
-    link: `https://twitter.com/askRodney`,
-    met: false,
-  },
-  {
-    name: `David Darnes`,
-    link: `https://twitter.com/DavidDarnes`,
-    met: true,
-  },
-  {
-    name: `Phil Pluckthun`,
-    link: `https://twitter.com/_philpl`,
-    met: true,
-  },
-  {
-    name: `Phil Hawksworth`,
-    link: `https://twitter.com/philhawksworth`,
-    met: true,
-  },
-  {
-    name: `Kevin Åberg`,
-    link: `https://twitter.com/kevmodrome`,
-    met: true,
-  },
-  {
-    name: `Marc Littlemore`,
-    link: `https://twitter.com/MarcLittlemore`,
-    met: true,
-  },
-  {
-    name: `Emma Bostian`,
-    link: `https://twitter.com/EmmaBostian`,
-    met: true,
-  },
-  {
-    name: `James Perkins`,
-    link: `https://twitter.com/james_r_perkins`,
-    met: false,
-  },
-  {
-    name: `Anna McDougall`,
-    link: `https://twitter.com/AnnaJMcDougall`,
-    met: false,
-  },
-  {
-    name: `Eddy Vinck`,
-    link: `https://twitter.com/EddyVinckk`,
-    met: true,
-  },
-  {
-    name: `Mads Brodt`,
-    link: `https://twitter.com/madsbrodt`,
-    met: false,
-  },
-  {
-    name: `Annie`,
-    link: `https://twitter.com/anniebombanie_`,
-    met: false,
-  },
-  {
-    name: `Rob Kendal`,
-    link: `https://twitter.com/kendalmintcode`,
-    met: false,
-  },
-  {
-    name: `Victoria Bergquist`,
-    link: `https://twitter.com/vicbergquist`,
-    met: true,
-  },
-  {
-    name: `Aman Mittal`,
-    link: `https://twitter.com/amanhimself`,
-    met: false,
-  },
-  {
-    name: `Carlos Rufo`,
-    link: `https://twitter.com/swcarlosrj`,
-    met: true,
-  },
-  {
-    name: `Nicky Meuleman`,
-    link: `https://twitter.com/NMeuleman`,
-    met: false,
-  },
-  {
-    name: `Nick De Jesus`,
-    link: `https://twitter.com/Dayhaysoos`,
-    met: false,
-  },
-  {
-    name: `Tom Hirst`,
-    link: `https://twitter.com/tom_hirst`,
-    met: false,
-  },
-  {
-    name: `Sean Grove`,
-    link: `https://twitter.com/sgrove`,
-    met: true,
-  },
-  {
-    name: `Rich Haines`,
-    link: `https://twitter.com/studio_hungry`,
-    met: false,
-  },
-  {
-    name: `Paul Scanlon`,
-    link: `https://twitter.com/PaulieScanlon`,
-    met: true,
-  },
-  {
-    name: `Marc Backes`,
-    link: `https://twitter.com/themarcba`,
-    met: true,
-  },
-  {
-    name: `Catalin Pit`,
-    link: `https://catalins.tech/`,
-    met: true,
-  },
-  {
-    name: `Wes Bos`,
-    link: `https://twitter.com/wesbos`,
-    met: false,
-  },
-  {
-    name: `Danny Thompson`,
-    link: `https://twitter.com/DThompsonDev`,
-    met: false,
-  },
-  {
-    name: `Debs O'Brien`,
-    link: `https://twitter.com/debs_obrien`,
-    met: true,
-  },
-  {
-    name: `Pouya Saadeghi`,
-    link: `https://twitter.com/Saadeghi`,
-    met: false,
-  },
-  {
-    name: `Scott Tolinski`,
-    link: `https://twitter.com/stolinski`,
-    met: false,
-  },
-  {
-    name: `Ken Wheeler`,
-    link: `https://twitter.com/ken_wheeler`,
-    met: true,
-  },
-  {
-    name: `Jamie Barton`,
-    link: `https://twitter.com/notrab`,
-    met: true,
-  },
-  {
-    name: `Benedicte Raae`,
-    link: `http://twitter.com/raae`,
-    met: true,
-  },
-  {
-    name: `Sid`,
-    link: `https://twitter.com/chatsidhartha`,
-    met: true,
-  },
-  {
-    name: `Matt Jennings`,
-    link: `https://twitter.com/mattjennings44`,
-    met: false,
-  },
-  {
-    name: `Kevin Canlas`,
-    link: `https://twitter.com/kvncnls`,
-    met: false,
-  },
-  {
-    name: `Tan Li Hau`,
-    link: `https://twitter.com/lihautan`,
-    met: true,
-  },
-  {
-    name: `Ron Au`,
-    link: `https://twitter.com/ronvoluted`,
-    met: true,
-  },
-  {
-    name: `Guillermo Rauch`,
-    link: `https://twitter.com/rauchg`,
-    met: false,
-  },
-  {
-    name: `Steve Schoger`,
-    link: `https://twitter.com/steveschoger`,
-    met: false,
-  },
-  {
-    name: `Jesse Skinner`,
-    link: `https://twitter.com/JesseSkinner`,
-    met: false,
-  },
-  {
-    name: `Jack Forge`,
-    link: `https://twitter.com/TheJackForge`,
-    met: false,
-  },
-  {
-    name: `Rich Harris`,
-    link: `https://twitter.com/Rich_Harris`,
-    met: true,
-  },
-  {
-    name: `Jenny Potts`,
-    link: `https://twitter.com/jennycodes`,
-    met: false,
-  },
-  {
-    name: `Sophie Koonin`,
-    link: `https://twitter.com/type__error`,
-    met: true,
-  },
-  {
-    name: `Alex Naydenov`,
-    link: `https://twitter.com/vremigrant`,
-    met: true,
-  },
-  {
-    name: `John Otander`,
-    link: `https://twitter.com/4lpine`,
-    met: true,
-  },
-  {
-    name: `Frederik Eychenié`,
-    link: `https://twitter.com/feychenie`,
-    met: true,
-  },
-  {
-    name: `Michael Lukaszczyk`,
-    link: `https://twitter.com/m_lukaszczyk`,
-    met: true,
-  },
-  {
-    name: `Chris Biscardi`,
-    link: `https://twitter.com/chrisbiscardi`,
-    met: false,
-  },
-  {
-    name: `Ste`,
-    link: `https://twitter.com/stecodes`,
-    met: false,
-  },
-  {
-    name: `Sam Larsen Disney`,
-    link: `https://twitter.com/SamLarsenDisney`,
-    met: true,
-  },
-  {
-    name: `Kevin Lewis`,
-    link: `https://twitter.com/_phzn`,
-    met: true,
-  },
-  {
-    name: `Tim Benniks`,
-    link: `https://twitter.com/timbenniks`,
-    met: true,
-  },
-  {
-    name: `Eli Schutze`,
-    link: `https://twitter.com/elibelly`,
-    met: true,
-  },
-  {
-    name: `Jamie Bradley`,
-    link: `https://twitter.com/jamiebradley234`,
-    met: true,
-  },
-  {
-    name: `João Pedro Schmitz`,
-    link: `https://twitter.com/jpedroschmitz`,
-    met: true,
-  },
-  {
-    name: `Michael Brooks`,
-    link: `https://twitter.com/MBrooksUK`,
-    met: false,
-  },
-  {
-    name: `Lovell Fuller`,
-    link: `https://twitter.com/lovell`,
-    met: true,
-  },
-  {
-    name: `Jack Ellis`,
-    link: `https://twitter.com/JackEllis`,
-    met: false,
-  },
-  {
-    name: `Domitrius Clark`,
-    link: `https://twitter.com/domitriusclark`,
-    met: false,
-  },
-  {
-    name: `Rafa`,
-    link: `https://twitter.com/rafahari`,
-    met: false,
-  },
-  {
-    name: `James Q Quick`,
-    link: `https://twitter.com/jamesqquick`,
-    met: true,
-  },
-  {
-    name: `Telmo`,
-    link: `https://twitter.com/telmo`,
-    met: false,
-  },
-  {
-    name: `Chris Bongers`,
-    link: `https://twitter.com/DailyDevTips1`,
-    met: false,
-  },
-  {
-    name: `Ania Kubów`,
-    link: `https://twitter.com/ania_kubow`,
-    met: false,
-  },
-  {
-    name: `Chris DeMars`,
-    link: `https://twitter.com/saltnburnem`,
-    met: true,
-  },
-  {
-    name: `Ro`,
-    link: `https://twitter.com/rothecoder`,
-    met: false,
-  },
-  {
-    name: `Brittney Postma`,
-    link: `https://twitter.com/BrittneyPostma`,
-    met: true,
-  },
-  {
-    name: `Antony Jones`,
-    link: `https://twitter.com/antony`,
-    met: true,
-  },
-  {
-    name: `Michael Bromley`,
-    link: `https://twitter.com/michlbrmly`,
-    met: false,
-  },
-  {
-    name: `Geoff Rich`,
-    link: `https://twitter.com/geoffrich_`,
-    met: false,
-  },
-  {
-    name: `JYC`,
-    link: `https://twitter.com/jycouet`,
-    met: true,
-  },
-  {
-    name: `Lors`,
-    link: `https://twitter.com/miss_lorsx`,
-    met: false,
-  },
-  {
-    name: `Alex Thomas`,
-    link: `https://twitter.com/graftoverflow`,
-    met: false,
-  },
-  {
-    name: `Ronak Ganatra`,
-    link: `https://twitter.com/gunnyganatra`,
-    met: true,
-  },
-  {
-    name: `Jon Hilton`,
-    link: `https://twitter.com/jonhilt`,
-    met: false,
-  },
-  {
-    name: `Quincy Larson`,
-    link: `https://twitter.com/ossia`,
-    met: false,
-  },
-  {
-    name: `Jay`,
-    link: `https://twitter.com/_thisisthejay`,
-    met: false,
-  },
-  {
-    name: `Willow (GHOST)`,
-    link: `https://twitter.com/onlyspaceghost`,
-    met: true,
-  },
-  {
-    name: `Mike Karan`,
-    link: `https://twitter.com/htmleverything`,
-    met: false,
-  },
-  {
-    name: `Pranshu`,
-    link: `https://twitter.com/inmypranshoes`,
-    met: true,
-  },
-  {
-    name: `Puru`,
-    link: `https://twitter.com/puruvjdev`,
-    met: true,
-  },
-  {
-    name: `Bert Bengtson`,
-    link: `https://twitter.com/BertBengtson`,
-    met: true,
-  },
-  {
-    name: `TiiaAurora`,
-    link: `https://twitter.com/TiiaAurora`,
-    met: false,
-  },
-  {
-    name: `Patak`,
-    link: `https://twitter.com/patak_dev`,
-    met: false,
-  },
+	{
+		name: `Rodney Lab`,
+		link: `https://bsky.app/profile/askrodney.bsky.social`,
+		met: false,
+	},
+	{
+		name: `Zeu`,
+		link: `https://bsky.app/profile/zeu.dev`,
+		met: true,
+	},
+	{
+		name: `David Darnes`,
+		link: `https://bsky.app/profile/darn.es`,
+		met: true,
+	},
+	{
+		name: `Phil Pluckthun`,
+		link: `https://bsky.app/profile/kitten.sh`,
+		met: true,
+	},	
+	{
+		name: `David Flanagan`,
+		link: `https://bsky.app/profile/rawkode.dev`,
+		met: false,
+	},
+	{
+		name: `Phil Hawksworth`,
+		link: `https://bsky.app/profile/philhawksworth.dev`,
+		met: true,
+	},
+	{
+		name: `Kevin Åberg`,
+		link: `https://bsky.app/profile/kevinak.se`,
+		met: true,
+	},
+	{
+		name: `Marc Littlemore`,
+		link: `https://bsky.app/profile/marclittlemore.com`,
+		met: true,
+	},
+	{
+		name: `Emma Bostian`,
+		link: `https://bsky.app/profile/emmabostian.bsky.social`,
+		met: true,
+	},
+	{
+		name: `James Perkins`,
+		link: `https://bsky.app/profile/jamesperkins.dev`,
+		met: false,
+	},
+	{
+		name: `Eddy Vinck`,
+		link: `https://bsky.app/profile/eddyvinck.bsky.social`,
+		met: true,
+	},
+	{
+		name: `Rob Kendal`,
+		link: `https://bsky.app/profile/kendalmintcode.bsky.social`,
+		met: false,
+	},
+	{
+		name: `Aman Mittal`,
+		link: `https://bsky.app/profile/aman.bsky.social`,
+		met: false,
+	},
+	{
+		name: `Nick DeJesus`,
+		link: `https://bsky.app/profile/dayhaysoos.bsky.social`,
+		met: false,
+	},
+	{
+		name: `Rich Haines`,
+		link: `https://bsky.app/profile/richardhaines.dev`,
+		met: false,
+	},
+	{
+		name: `Paul Scanlon`,
+		link: `https://bsky.app/profile/pauliescanlon.bsky.social`,
+		met: true,
+	},
+	{
+		name: `Marc Backes`,
+		link: `https://bsky.app/profile/marc.ba`,
+		met: true,
+	},
+	{
+		name: `Catalin Pit`,
+		link: `https://bsky.app/profile/catalinpit.com`,
+		met: true,
+	},
+	{
+		name: `Wes Bos`,
+		link: `https://bsky.app/profile/wesbos.com`,
+		met: false,
+	},
+	{
+		name: `Danny Thompson`,
+		link: `https://bsky.app/profile/dthompsondev.bsky.social`,
+		met: false,
+	},
+	{
+		name: `Pouya Saadeghi`,
+		link: `https://bsky.app/profile/saadeghi.bsky.social`,
+		met: false,
+	},
+	{
+		name: `Scott Tolinski`,
+		link: `https://bsky.app/profile/tolin.ski`,
+		met: true,
+	},
+	{
+		name: `Ken Wheeler`,
+		link: `https://bsky.app/profile/aiight.bet`,
+		met: true,
+	},
+	{
+		name: `Jamie Barton`,
+		link: `https://bsky.app/profile/notrab.dev`,
+		met: true,
+	},
+	{
+		name: `Benedicte Raae`,
+		link: `https://bsky.app/profile/raae.bsky.social`,
+		met: true,
+	},
+	{
+		name: `Sid`,
+		link: `https://bsky.app/profile/chatsidhartha.bsky.social`,
+		met: true,
+	},
+	{
+		name: `Matt Jennings`,
+		link: `https://bsky.app/profile/mattjennin.gs`,
+		met: false,
+	},
+	{
+		name: `Ron Au`,
+		link: `https://bsky.app/profile/ronvoluted.bsky.social`,
+		met: true,
+	},
+	{
+		name: `Jesse Skinner`,
+		link: `https://bsky.app/profile/jesseskinner.bsky.social`,
+		met: false,
+	},
+	{
+		name: `Rich Harris`,
+		link: `https://bsky.app/profile/rich-harris.dev`,
+		met: true,
+	},
+	{
+		name: `Paolo Ricciuti`,
+		link: `https://bsky.app/profile/ricciuti.me`,
+		met: true,
+	},
+	{
+		name: `Tejas Kumar`,
+		link: `https://bsky.app/profile/tej.as`,
+		met: true,
+	},
+	{
+		name: `Sophie Koonin`,
+		link: `https://bsky.app/profile/localghost.dev`,
+		met: true,
+	},
+	{
+		name: `Chris Biscardi`,
+		link: `https://bsky.app/profile/chrisbiscardi.bsky.social`,
+		met: false,
+	},
+	{
+		name: `Sam Larsen Disney`,
+		link: `https://bsky.app/profile/sld.codes`,
+		met: true,
+	},
+	{
+		name: `Kevin Lewis`,
+		link: `https://bsky.app/profile/lws.io`,
+		met: true,
+	},
+	{
+		name: `Tim Benniks`,
+		link: `https://bsky.app/profile/timbenniks.dev`,
+		met: true,
+	},
+	{
+		name: `Eli Schutze`,
+		link: `https://bsky.app/profile/elibelly.dev`,
+		met: true,
+	},
+	{
+		name: `Lovell Fuller`,
+		link: `https://bsky.app/profile/lovell.info`,
+		met: true,
+	},
+	{
+		name: `Domitrius Clark`,
+		link: `https://bsky.app/profile/domitri.us`,
+		met: false,
+	},
+	{
+		name: `Rafa`,
+		link: `https://bsky.app/profile/rafaelconde.bsky.social`,
+		met: false,
+	},
+	{
+		name: `James Q Quick`,
+		link: `https://bsky.app/profile/jamesqquick.bsky.social`,
+		met: true,
+	},
+	{
+		name: `Telmo`,
+		link: `https://bsky.app/profile/did:plc:gtbohpin5op22ispn4gdnt7n`,
+		met: false,
+	},
+	{
+		name: `Chris DeMars`,
+		link: `https://bsky.app/profile/saltnburnem.bsky.social`,
+		met: true,
+	},
+	{
+		name: `Brittney Postma`,
+		link: `https://bsky.app/profile/brittneypostma.bsky.social`,
+		met: true,
+	},
+	{
+		name: `Antony Jones`,
+		link: `https://bsky.app/profile/antony.is`,
+		met: true,
+	},
+	{
+		name: `Michael Bromley`,
+		link: `https://bsky.app/profile/michlbrmly.dev`,
+		met: false,
+	},
+	{
+		name: `Geoff Rich`,
+		link: `https://bsky.app/profile/geoffrich.net`,
+		met: false,
+	},
+	{
+		name: `JYC`,
+		link: `https://bsky.app/profile/jyc.dev`,
+		met: true,
+	},
+	{
+		name: `Jon Hilton`,
+		link: `https://bsky.app/profile/jonhilton.net`,
+		met: false,
+	},
+	{
+		name: `Quincy Larson`,
+		link: `https://bsky.app/profile/quincy.bsky.social`,
+		met: false,
+	},
+	{
+		name: `Willow (GHOST)`,
+		link: `https://bsky.app/profile/willow.sh`,
+		met: true,
+	},
+	{
+		name: `Mike Karan`,
+		link: `https://bsky.app/profile/mikek.me`,
+		met: false,
+	},
+	{
+		name: `Puru`,
+		link: `https://bsky.app/profile/puruvj.dev`,
+		met: true,
+	},
+	{
+		name: `Bert Bengtson`,
+		link: `https://twitter.com/BertBengtson`,
+		met: true,
+	},
+	{
+		name: `TiiaAurora`,
+		link: `https://bsky.app/profile/tiiaaurora.bsky.social`,
+		met: false,
+	},
+	{
+		name: `Patak`,
+		link: `https://bsky.app/profile/patak.dev`,
+		met: true,
+	},
 ]

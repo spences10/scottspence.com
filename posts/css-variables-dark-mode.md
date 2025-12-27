@@ -2,7 +2,7 @@
 date: 2020-05-02
 title: CSS Variables Fallback
 tags: ['learning', 'css']
-isPrivate: false
+is_private: false
 ---
 
 <script>

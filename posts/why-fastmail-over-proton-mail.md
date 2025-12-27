@@ -2,7 +2,7 @@
 date: 2023-01-07
 title: Why Fastmail over ProtonMail
 tags: ['mail', 'fastmail', 'protonmail', 'domains']
-isPrivate: false
+is_private: false
 ---
 
 I've now been using Fastmail for a year now. I was using ProtonMail

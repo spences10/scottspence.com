@@ -2,7 +2,7 @@
 date: 2023-01-15
 title: Load markdown via endpoint in SvelteKit
 tags: ['markdown', 'sveltekit']
-isPrivate: false
+is_private: false
 ---
 
 I had this idea whilst working on a SvelteKit project to see if I

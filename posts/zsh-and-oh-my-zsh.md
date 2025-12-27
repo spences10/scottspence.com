@@ -2,7 +2,7 @@
 date: 2020-12-08
 title: Notes on Zsh and Oh My Zsh
 tags: ['zsh', 'learning', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 <script>

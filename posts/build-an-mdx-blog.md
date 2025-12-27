@@ -2,7 +2,7 @@
 date: 2019-10-31
 title: Build a coding blog from scratch with Gatsby and MDX
 tags: ['learning', 'gatsby', 'guide', 'mdx', 'markdown']
-isPrivate: false
+is_private: false
 ---
 
 <script>
@@ -129,7 +129,7 @@ created `index.js` enter the following:
 import React from 'react'
 
 export default () => {
-  return <h1>Hello World!</h1>
+	return <h1>Hello World!</h1>
 }
 ```
 
@@ -155,7 +155,7 @@ yarn dev
 
 And with that the "Hello World" incantation is complete 🧙!
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="2vP3ZTDbN1g" />
 </Details>
 
@@ -270,25 +270,25 @@ Now its time to configure `gatsby-config.js`:
 
 ```js
 module.exports = {
-  siteMetadata: {
-    title: `The Localhost Blog`,
-    description: `This is my coding blog where I write about my coding journey.`,
-  },
-  plugins: [
-    {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        extensions: [`.mdx`, `.md`],
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/posts`,
-        name: `posts`,
-      },
-    },
-  ],
+	siteMetadata: {
+		title: `The Localhost Blog`,
+		description: `This is my coding blog where I write about my coding journey.`,
+	},
+	plugins: [
+		{
+			resolve: `gatsby-plugin-mdx`,
+			options: {
+				extensions: [`.mdx`, `.md`],
+			},
+		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				path: `${__dirname}/posts`,
+				name: `posts`,
+			},
+		},
+	],
 }
 ```
 
@@ -302,18 +302,18 @@ GraphQL GraphiQL explorer and check out the data:
 
 ```graphql
 {
-  allMdx {
-    nodes {
-      frontmatter {
-        title
-        date
-      }
-    }
-  }
+	allMdx {
+		nodes {
+			frontmatter {
+				title
+				date
+			}
+		}
+	}
 }
 ```
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="MPNJu24ad_s" />
 </Details>
 
@@ -329,8 +329,8 @@ metadata:
 
 ```js
 const siteMetadata = {
-  title: `The Localhost Blog`,
-  description: `This is my coding blog where I write about my coding journey.`,
+	title: `The Localhost Blog`,
+	description: `This is my coding blog where I write about my coding journey.`,
 }
 ```
 
@@ -338,12 +338,12 @@ Now query the Site Metadata with GraphQL.
 
 ```graphql
 {
-  site {
-    siteMetadata {
-      title
-      description
-    }
-  }
+	site {
+		siteMetadata {
+			title
+			description
+		}
+	}
 }
 ```
 
@@ -368,17 +368,17 @@ Ok, and in your newly created file were going to use the Gatsby
 import { graphql, useStaticQuery } from 'gatsby'
 
 export const useSiteMetadata = () => {
-  const { site } = useStaticQuery(graphql`
-    query SITE_METADATA_QUERY {
-      site {
-        siteMetadata {
-          title
-          description
-        }
-      }
-    }
-  `)
-  return site.siteMetadata
+	const { site } = useStaticQuery(graphql`
+		query SITE_METADATA_QUERY {
+			site {
+				siteMetadata {
+					title
+					description
+				}
+			}
+		}
+	`)
+	return site.siteMetadata
 }
 ```
 
@@ -390,19 +390,19 @@ import React from 'react'
 import { useSiteMetadata } from '../hooks/useSiteMetadata'
 
 export default () => {
-  const { title, description } = useSiteMetadata()
-  return (
-    <>
-      <h1>{title}</h1>
-      <p>{description}</p>
-    </>
-  )
+	const { title, description } = useSiteMetadata()
+	return (
+		<>
+			<h1>{title}</h1>
+			<p>{description}</p>
+		</>
+	)
 }
 ```
 
 <!-- cSpell:ignore Tfycp -->
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="TfycpV4yyqY" />
 </Details>
 
@@ -432,28 +432,28 @@ Ok, with that detailed explanation out of the way, configure them in
 
 ```js {1-4,7,9}
 const siteMetadata = {
-  title: `The Localhost Blog`,
-  description: `This is my coding blog where I write about my coding journey.`,
+	title: `The Localhost Blog`,
+	description: `This is my coding blog where I write about my coding journey.`,
 }
 
 module.exports = {
-  siteMetadata: siteMetadata,
-  plugins: [
-    `gatsby-plugin-styled-components`,
-    {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        extensions: [`.mdx`, `.md`],
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/posts`,
-        name: `posts`,
-      },
-    },
-  ],
+	siteMetadata: siteMetadata,
+	plugins: [
+		`gatsby-plugin-styled-components`,
+		{
+			resolve: `gatsby-plugin-mdx`,
+			options: {
+				extensions: [`.mdx`, `.md`],
+			},
+		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				path: `${__dirname}/posts`,
+				name: `posts`,
+			},
+		},
+	],
 }
 ```
 
@@ -472,24 +472,24 @@ import styled from 'styled-components'
 import { useSiteMetadata } from '../hooks/useSiteMetadata'
 
 const StyledH1 = styled.h1`
-  color: rebeccapurple;
+	color: rebeccapurple;
 `
 
 export default () => {
-  const { title, description } = useSiteMetadata()
-  return (
-    <>
-      <StyledH1>{title}</StyledH1>
-      <p>{description}</p>
-    </>
-  )
+	const { title, description } = useSiteMetadata()
+	return (
+		<>
+			<StyledH1>{title}</StyledH1>
+			<p>{description}</p>
+		</>
+	)
 }
 ```
 
 That is styled-components on a very basic level, basically create the
 styling you want for your page elements you're creating in the JSX.
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="41aNkb2tLyg" />
 </Details>
 
@@ -523,10 +523,10 @@ import { Link } from 'gatsby'
 import React from 'react'
 
 export const Header = ({ siteTitle, siteDescription }) => (
-  <Link to="/">
-    <h1>{siteTitle}</h1>
-    <p>{siteDescription}</p>
-  </Link>
+	<Link to="/">
+		<h1>{siteTitle}</h1>
+		<p>{siteDescription}</p>
+	</Link>
 )
 ```
 
@@ -541,13 +541,13 @@ import { useSiteMetadata } from '../hooks/useSiteMetadata'
 import { Header } from './Header'
 
 export const Layout = ({ children }) => {
-  const { title, description } = useSiteMetadata()
-  return (
-    <>
-      <Header siteTitle={title} siteDescription={description} />
-      {children}
-    </>
-  )
+	const { title, description } = useSiteMetadata()
+	return (
+		<>
+			<Header siteTitle={title} siteDescription={description} />
+			{children}
+		</>
+	)
 }
 ```
 
@@ -562,18 +562,18 @@ import { useSiteMetadata } from '../hooks/useSiteMetadata'
 import { Header } from './Header'
 
 const AppStyles = styled.main`
-  width: 800px;
-  margin: 0 auto;
+	width: 800px;
+	margin: 0 auto;
 `
 
 export const Layout = ({ children }) => {
-  const { title, description } = useSiteMetadata()
-  return (
-    <AppStyles>
-      <Header siteTitle={title} siteDescription={description} />
-      {children}
-    </AppStyles>
-  )
+	const { title, description } = useSiteMetadata()
+	return (
+		<AppStyles>
+			<Header siteTitle={title} siteDescription={description} />
+			{children}
+		</AppStyles>
+	)
 }
 ```
 
@@ -584,17 +584,17 @@ import React from 'react'
 import { Layout } from '../components/Layout'
 
 export default () => {
-  return (
-    <>
-      <Layout />
-    </>
-  )
+	return (
+		<>
+			<Layout />
+		</>
+	)
 }
 ```
 
 <!-- cSpell:ignore bjxt -->
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="Ase7bjxtQ3w" />
 </Details>
 
@@ -609,16 +609,16 @@ The query will look something like this:
 
 ```graphql
 {
-  allMdx {
-    nodes {
-      id
-      excerpt(pruneLength: 250)
-      frontmatter {
-        title
-        date
-      }
-    }
-  }
+	allMdx {
+		nodes {
+			id
+			excerpt(pruneLength: 250)
+			frontmatter {
+				title
+				date
+			}
+		}
+	}
 }
 ```
 
@@ -628,19 +628,19 @@ add in a filter for posts that are marked as published or not.
 
 ```graphql
 {
-  allMdx(
-    sort: { fields: [frontmatter___date], order: DESC }
-    filter: { frontmatter: { published: { eq: true } } }
-  ) {
-    nodes {
-      id
-      excerpt(pruneLength: 250)
-      frontmatter {
-        title
-        date
-      }
-    }
-  }
+	allMdx(
+		sort: { fields: [frontmatter___date], order: DESC }
+		filter: { frontmatter: { published: { eq: true } } }
+	) {
+		nodes {
+			id
+			excerpt(pruneLength: 250)
+			frontmatter {
+				title
+				date
+			}
+		}
+	}
 }
 ```
 
@@ -654,37 +654,37 @@ import React from 'react'
 import { Layout } from '../components/Layout'
 
 export default ({ data }) => {
-  return (
-    <>
-      <Layout>
-        {data.allMdx.nodes.map(({ excerpt, frontmatter }) => (
-          <>
-            <h1>{frontmatter.title}</h1>
-            <p>{frontmatter.date}</p>
-            <p>{excerpt}</p>
-          </>
-        ))}
-      </Layout>
-    </>
-  )
+	return (
+		<>
+			<Layout>
+				{data.allMdx.nodes.map(({ excerpt, frontmatter }) => (
+					<>
+						<h1>{frontmatter.title}</h1>
+						<p>{frontmatter.date}</p>
+						<p>{excerpt}</p>
+					</>
+				))}
+			</Layout>
+		</>
+	)
 }
 
 export const query = graphql`
-  query SITE_INDEX_QUERY {
-    allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true } } }
-    ) {
-      nodes {
-        id
-        excerpt(pruneLength: 250)
-        frontmatter {
-          title
-          date
-        }
-      }
-    }
-  }
+	query SITE_INDEX_QUERY {
+		allMdx(
+			sort: { fields: [frontmatter___date], order: DESC }
+			filter: { frontmatter: { published: { eq: true } } }
+		) {
+			nodes {
+				id
+				excerpt(pruneLength: 250)
+				frontmatter {
+					title
+					date
+				}
+			}
+		}
+	}
 `
 ```
 
@@ -695,7 +695,7 @@ GraphQL query. Gatsby `graphql` runs the query (`SITE_INDEX_QUERY`) at
 runtime and gives us the results as props to your component via the
 `data` prop.
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="2GDbxZ0mHbM" />
 </Details>
 
@@ -721,15 +721,15 @@ the file locations and associated value.
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-  if (node.internal.type === `Mdx`) {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
-  }
+	const { createNodeField } = actions
+	if (node.internal.type === `Mdx`) {
+		const value = createFilePath({ node, getNode })
+		createNodeField({
+			name: `slug`,
+			node,
+			value,
+		})
+	}
 }
 ```
 
@@ -748,24 +748,24 @@ touch src/components/Dump.js
 ```jsx
 import React from 'react'
 
-const Dump = props => (
-  <div
-    style={{
-      fontSize: 20,
-      border: '1px solid #efefef',
-      padding: 10,
-      background: 'white',
-    }}
-  >
-    {Object.entries(props).map(([key, val]) => (
-      <pre key={key}>
-        <strong style={{ color: 'white', background: 'red' }}>
-          {key} 💩
-        </strong>
-        {JSON.stringify(val, '', ' ')}
-      </pre>
-    ))}
-  </div>
+const Dump = (props) => (
+	<div
+		style={{
+			fontSize: 20,
+			border: '1px solid #efefef',
+			padding: 10,
+			background: 'white',
+		}}
+	>
+		{Object.entries(props).map(([key, val]) => (
+			<pre key={key}>
+				<strong style={{ color: 'white', background: 'red' }}>
+					{key} 💩
+				</strong>
+				{JSON.stringify(val, '', ' ')}
+			</pre>
+		))}
+	</div>
 )
 
 export default Dump
@@ -785,42 +785,42 @@ import Dump from '../components/Dump'
 import { Layout } from '../components/Layout'
 
 export default ({ data }) => {
-  return (
-    <>
-      <Layout>
-        <Dump data={data} />
-        {data.allMdx.nodes.map(({ excerpt, frontmatter }) => (
-          <>
-            <h1>{frontmatter.title}</h1>
-            <p>{frontmatter.date}</p>
-            <p>{excerpt}</p>
-          </>
-        ))}
-      </Layout>
-    </>
-  )
+	return (
+		<>
+			<Layout>
+				<Dump data={data} />
+				{data.allMdx.nodes.map(({ excerpt, frontmatter }) => (
+					<>
+						<h1>{frontmatter.title}</h1>
+						<p>{frontmatter.date}</p>
+						<p>{excerpt}</p>
+					</>
+				))}
+			</Layout>
+		</>
+	)
 }
 
 export const query = graphql`
-  query SITE_INDEX_QUERY {
-    allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true } } }
-    ) {
-      nodes {
-        id
-        excerpt(pruneLength: 250)
-        frontmatter {
-          title
-          date
-        }
-      }
-    }
-  }
+	query SITE_INDEX_QUERY {
+		allMdx(
+			sort: { fields: [frontmatter___date], order: DESC }
+			filter: { frontmatter: { published: { eq: true } } }
+		) {
+			nodes {
+				id
+				excerpt(pruneLength: 250)
+				frontmatter {
+					title
+					date
+				}
+			}
+		}
+	}
 `
 ```
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="7eZZk7aJnUU" />
 </Details>
 
@@ -844,44 +844,44 @@ const IndexWrapper = styled.main``
 const PostWrapper = styled.div``
 
 export default ({ data }) => {
-  return (
-    <Layout>
-      <IndexWrapper>
-        {data.allMdx.nodes.map(
-          ({ id, excerpt, frontmatter, fields }) => (
-            <PostWrapper key={id}>
-              <Link to={fields.slug}>
-                <h1>{frontmatter.title}</h1>
-                <p>{frontmatter.date}</p>
-                <p>{excerpt}</p>
-              </Link>
-            </PostWrapper>
-          ),
-        )}
-      </IndexWrapper>
-    </Layout>
-  )
+	return (
+		<Layout>
+			<IndexWrapper>
+				{data.allMdx.nodes.map(
+					({ id, excerpt, frontmatter, fields }) => (
+						<PostWrapper key={id}>
+							<Link to={fields.slug}>
+								<h1>{frontmatter.title}</h1>
+								<p>{frontmatter.date}</p>
+								<p>{excerpt}</p>
+							</Link>
+						</PostWrapper>
+					),
+				)}
+			</IndexWrapper>
+		</Layout>
+	)
 }
 
 export const query = graphql`
-  query SITE_INDEX_QUERY {
-    allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true } } }
-    ) {
-      nodes {
-        id
-        excerpt(pruneLength: 250)
-        frontmatter {
-          title
-          date
-        }
-        fields {
-          slug
-        }
-      }
-    }
-  }
+	query SITE_INDEX_QUERY {
+		allMdx(
+			sort: { fields: [frontmatter___date], order: DESC }
+			filter: { frontmatter: { published: { eq: true } } }
+		) {
+			nodes {
+				id
+				excerpt(pruneLength: 250)
+				frontmatter {
+					title
+					date
+				}
+				fields {
+					slug
+				}
+			}
+		}
+	}
 `
 ```
 
@@ -909,11 +909,11 @@ adding data to this shortly:
 import React from 'react'
 
 export default () => {
-  return (
-    <>
-      <p>post here</p>
-    </>
-  )
+	return (
+		<>
+			<p>post here</p>
+		</>
+	)
 }
 ```
 
@@ -935,54 +935,54 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 const path = require(`path`)
 
 exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions
-  const blogPostTemplate = path.resolve(
-    'src/templates/blogPostTemplate.js',
-  )
+	const { createPage } = actions
+	const blogPostTemplate = path.resolve(
+		'src/templates/blogPostTemplate.js',
+	)
 
-  return graphql(`
-    {
-      allMdx {
-        nodes {
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-          }
-        }
-      }
-    }
-  `).then(result => {
-    if (result.errors) {
-      throw result.errors
-    }
+	return graphql(`
+		{
+			allMdx {
+				nodes {
+					fields {
+						slug
+					}
+					frontmatter {
+						title
+					}
+				}
+			}
+		}
+	`).then((result) => {
+		if (result.errors) {
+			throw result.errors
+		}
 
-    const posts = result.data.allMdx.nodes
+		const posts = result.data.allMdx.nodes
 
-    // create page for each mdx file
-    posts.forEach(post => {
-      createPage({
-        path: post.fields.slug,
-        component: blogPostTemplate,
-        context: {
-          slug: post.fields.slug,
-        },
-      })
-    })
-  })
+		// create page for each mdx file
+		posts.forEach((post) => {
+			createPage({
+				path: post.fields.slug,
+				component: blogPostTemplate,
+				context: {
+					slug: post.fields.slug,
+				},
+			})
+		})
+	})
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-  if (node.internal.type === `Mdx`) {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
-  }
+	const { createNodeField } = actions
+	if (node.internal.type === `Mdx`) {
+		const value = createFilePath({ node, getNode })
+		createNodeField({
+			name: `slug`,
+			node,
+			value,
+		})
+	}
 }
 ```
 
@@ -996,18 +996,18 @@ post navigation soon.
 
 ```js
 // create page for each mdx node
-posts.forEach(post => {
-  createPage({
-    path: post.fields.slug,
-    component: blogPostTemplate,
-    context: {
-      slug: post.fields.slug,
-    },
-  })
+posts.forEach((post) => {
+	createPage({
+		path: post.fields.slug,
+		component: blogPostTemplate,
+		context: {
+			slug: post.fields.slug,
+		},
+	})
 })
 ```
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="OyQfIvXr4YA" />
 </Details>
 
@@ -1026,12 +1026,12 @@ named query and define the variable you're going to pass in:
 
 ```graphql
 query PostBySlug($slug: String!) {
-  mdx(fields: { slug: { eq: $slug } }) {
-    frontmatter {
-      title
-      date(formatString: "YYYY MMMM Do")
-    }
-  }
+	mdx(fields: { slug: { eq: $slug } }) {
+		frontmatter {
+			title
+			date(formatString: "YYYY MMMM Do")
+		}
+	}
 }
 ```
 
@@ -1076,26 +1076,26 @@ import React from 'react'
 import { Layout } from '../components/Layout'
 
 export default ({ data }) => {
-  const { frontmatter, body } = data.mdx
-  return (
-    <Layout>
-      <h1>{frontmatter.title}</h1>
-      <p>{frontmatter.date}</p>
-      <MDXRenderer>{body}</MDXRenderer>
-    </Layout>
-  )
+	const { frontmatter, body } = data.mdx
+	return (
+		<Layout>
+			<h1>{frontmatter.title}</h1>
+			<p>{frontmatter.date}</p>
+			<MDXRenderer>{body}</MDXRenderer>
+		</Layout>
+	)
 }
 
 export const query = graphql`
-  query PostsBySlug($slug: String!) {
-    mdx(fields: { slug: { eq: $slug } }) {
-      body
-      frontmatter {
-        title
-        date(formatString: "YYYY MMMM Do")
-      }
-    }
-  }
+	query PostsBySlug($slug: String!) {
+		mdx(fields: { slug: { eq: $slug } }) {
+			body
+			frontmatter {
+				title
+				date(formatString: "YYYY MMMM Do")
+			}
+		}
+	}
 `
 ```
 
@@ -1107,7 +1107,7 @@ template in all it's basic glory!
 
 <!-- cSpell:ignore Cjsc -->
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="S7cnkRoCjsc" />
 </Details>
 
@@ -1126,19 +1126,19 @@ out the previous and next posts.
 ```js
 // create page for each mdx node
 posts.forEach((post, index) => {
-  const previous =
-    index === posts.length - 1 ? null : posts[index + 1]
-  const next = index === 0 ? null : posts[index - 1]
+	const previous =
+		index === posts.length - 1 ? null : posts[index + 1]
+	const next = index === 0 ? null : posts[index - 1]
 
-  createPage({
-    path: post.fields.slug,
-    component: blogPostTemplate,
-    context: {
-      slug: post.fields.slug,
-      previous,
-      next,
-    },
-  })
+	createPage({
+		path: post.fields.slug,
+		component: blogPostTemplate,
+		context: {
+			slug: post.fields.slug,
+			previous,
+			next,
+		},
+	})
 })
 ```
 
@@ -1152,63 +1152,63 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 const path = require(`path`)
 
 exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions
-  const blogPostTemplate = path.resolve(
-    'src/templates/blogPostTemplate.js',
-  )
+	const { createPage } = actions
+	const blogPostTemplate = path.resolve(
+		'src/templates/blogPostTemplate.js',
+	)
 
-  return graphql(`
-    {
-      allMdx(
-        sort: { fields: [frontmatter___date], order: DESC }
-        filter: { frontmatter: { published: { eq: true } } }
-      ) {
-        nodes {
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-          }
-        }
-      }
-    }
-  `).then(result => {
-    if (result.errors) {
-      throw result.errors
-    }
+	return graphql(`
+		{
+			allMdx(
+				sort: { fields: [frontmatter___date], order: DESC }
+				filter: { frontmatter: { published: { eq: true } } }
+			) {
+				nodes {
+					fields {
+						slug
+					}
+					frontmatter {
+						title
+					}
+				}
+			}
+		}
+	`).then((result) => {
+		if (result.errors) {
+			throw result.errors
+		}
 
-    const posts = result.data.allMdx.nodes
+		const posts = result.data.allMdx.nodes
 
-    // create page for each mdx node
-    posts.forEach((post, index) => {
-      const previous =
-        index === posts.length - 1 ? null : posts[index + 1]
-      const next = index === 0 ? null : posts[index - 1]
+		// create page for each mdx node
+		posts.forEach((post, index) => {
+			const previous =
+				index === posts.length - 1 ? null : posts[index + 1]
+			const next = index === 0 ? null : posts[index - 1]
 
-      createPage({
-        path: post.fields.slug,
-        component: blogPostTemplate,
-        context: {
-          slug: post.fields.slug,
-          previous,
-          next,
-        },
-      })
-    })
-  })
+			createPage({
+				path: post.fields.slug,
+				component: blogPostTemplate,
+				context: {
+					slug: post.fields.slug,
+					previous,
+					next,
+				},
+			})
+		})
+	})
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-  if (node.internal.type === `Mdx`) {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
-  }
+	const { createNodeField } = actions
+	if (node.internal.type === `Mdx`) {
+		const value = createFilePath({ node, getNode })
+		createNodeField({
+			name: `slug`,
+			node,
+			value,
+		})
+	}
 }
 ```
 
@@ -1227,29 +1227,29 @@ import Dump from '../components/Dump'
 import { Layout } from '../components/Layout'
 
 export default ({ data, pageContext }) => {
-  const { frontmatter, body } = data.mdx
-  const { previous, next } = pageContext
-  return (
-    <Layout>
-      <Dump previous={previous} />
-      <Dump next={next} />
-      <h1>{frontmatter.title}</h1>
-      <p>{frontmatter.date}</p>
-      <MDXRenderer>{body}</MDXRenderer>
-    </Layout>
-  )
+	const { frontmatter, body } = data.mdx
+	const { previous, next } = pageContext
+	return (
+		<Layout>
+			<Dump previous={previous} />
+			<Dump next={next} />
+			<h1>{frontmatter.title}</h1>
+			<p>{frontmatter.date}</p>
+			<MDXRenderer>{body}</MDXRenderer>
+		</Layout>
+	)
 }
 
 export const query = graphql`
-  query PostsBySlug($slug: String!) {
-    mdx(fields: { slug: { eq: $slug } }) {
-      body
-      frontmatter {
-        title
-        date(formatString: "YYYY MMMM Do")
-      }
-    }
-  }
+	query PostsBySlug($slug: String!) {
+		mdx(fields: { slug: { eq: $slug } }) {
+			body
+			frontmatter {
+				title
+				date(formatString: "YYYY MMMM Do")
+			}
+		}
+	}
 `
 ```
 
@@ -1265,51 +1265,51 @@ import Dump from '../components/Dump'
 import { Layout } from '../components/Layout'
 
 export default ({ data, pageContext }) => {
-  const { frontmatter, body } = data.mdx
-  const { previous, next } = pageContext
-  return (
-    <Layout>
-      <Dump previous={previous} />
-      <Dump next={next} />
-      <h1>{frontmatter.title}</h1>
-      <p>{frontmatter.date}</p>
-      <MDXRenderer>{body}</MDXRenderer>
-      {previous === false ? null : (
-        <>
-          {previous && (
-            <Link to={previous.fields.slug}>
-              <p>{previous.frontmatter.title}</p>
-            </Link>
-          )}
-        </>
-      )}
-      {next === false ? null : (
-        <>
-          {next && (
-            <Link to={next.fields.slug}>
-              <p>{next.frontmatter.title}</p>
-            </Link>
-          )}
-        </>
-      )}
-    </Layout>
-  )
+	const { frontmatter, body } = data.mdx
+	const { previous, next } = pageContext
+	return (
+		<Layout>
+			<Dump previous={previous} />
+			<Dump next={next} />
+			<h1>{frontmatter.title}</h1>
+			<p>{frontmatter.date}</p>
+			<MDXRenderer>{body}</MDXRenderer>
+			{previous === false ? null : (
+				<>
+					{previous && (
+						<Link to={previous.fields.slug}>
+							<p>{previous.frontmatter.title}</p>
+						</Link>
+					)}
+				</>
+			)}
+			{next === false ? null : (
+				<>
+					{next && (
+						<Link to={next.fields.slug}>
+							<p>{next.frontmatter.title}</p>
+						</Link>
+					)}
+				</>
+			)}
+		</Layout>
+	)
 }
 
 export const query = graphql`
-  query PostsBySlug($slug: String!) {
-    mdx(fields: { slug: { eq: $slug } }) {
-      body
-      frontmatter {
-        title
-        date(formatString: "YYYY MMMM Do")
-      }
-    }
-  }
+	query PostsBySlug($slug: String!) {
+		mdx(fields: { slug: { eq: $slug } }) {
+			body
+			frontmatter {
+				title
+				date(formatString: "YYYY MMMM Do")
+			}
+		}
+	}
 `
 ```
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="AjLimYEwDOk" />
 </Details>
 
@@ -1368,23 +1368,23 @@ import { MDXProvider } from '@mdx-js/react'
 import React from 'react'
 
 const components = {
-  h2: ({ children }) => (
-    <h2 style={{ color: 'rebeccapurple' }}>{children}</h2>
-  ),
-  'p.inlineCode': props => (
-    <code style={{ backgroundColor: 'lightgray' }} {...props} />
-  ),
+	h2: ({ children }) => (
+		<h2 style={{ color: 'rebeccapurple' }}>{children}</h2>
+	),
+	'p.inlineCode': (props) => (
+		<code style={{ backgroundColor: 'lightgray' }} {...props} />
+	),
 }
 
 export const wrapRootElement = ({ element }) => (
-  <MDXProvider components={components}>{element}</MDXProvider>
+	<MDXProvider components={components}>{element}</MDXProvider>
 )
 ```
 
 You're now overriding any `h2` in your rendered markdown along with
 any `code` blocks (that's words wrapped in `` `backticks` ``).
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="kN8ld7iLQso" />
 </Details>
 
@@ -1412,24 +1412,24 @@ Here is the `Dump` component!
 ```jsx
 import React from 'react'
 
-const Dump = props => (
-  <div
-    style={{
-      fontSize: 20,
-      border: '1px solid #efefef',
-      padding: 10,
-      background: 'white',
-    }}
-  >
-    {Object.entries(props).map(([key, val]) => (
-      <pre key={key}>
-        <strong style={{ color: 'white', background: 'red' }}>
-          {key} 💩
-        </strong>
-        {JSON.stringify(val, '', ' ')}
-      </pre>
-    ))}
-  </div>
+const Dump = (props) => (
+	<div
+		style={{
+			fontSize: 20,
+			border: '1px solid #efefef',
+			padding: 10,
+			background: 'white',
+		}}
+	>
+		{Object.entries(props).map(([key, val]) => (
+			<pre key={key}>
+				<strong style={{ color: 'white', background: 'red' }}>
+					{key} 💩
+				</strong>
+				{JSON.stringify(val, '', ' ')}
+			</pre>
+		))}
+	</div>
 )
 
 export default Dump
@@ -1448,16 +1448,16 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 import React from 'react'
 
 const components = {
-  h2: ({ children }) => (
-    <h2 style={{ color: 'rebeccapurple' }}>{children}</h2>
-  ),
-  'p.inlineCode': props => (
-    <code style={{ backgroundColor: 'lightgray' }} {...props} />
-  ),
-  pre: props => (
-    <Highlight
-      {...defaultProps}
-      code={`
+	h2: ({ children }) => (
+		<h2 style={{ color: 'rebeccapurple' }}>{children}</h2>
+	),
+	'p.inlineCode': (props) => (
+		<code style={{ backgroundColor: 'lightgray' }} {...props} />
+	),
+	pre: (props) => (
+		<Highlight
+			{...defaultProps}
+			code={`
         (function someDemo() {
           var test = "Hello World!";
           console.log(test);
@@ -1465,31 +1465,31 @@ const components = {
 
         return () => <App />;
       `}
-      language="jsx"
-    >
-      {({
-        className,
-        style,
-        tokens,
-        getLineProps,
-        getTokenProps,
-      }) => (
-        <pre className={className} style={style}>
-          {tokens.map((line, i) => (
-            <div {...getLineProps({ line, key: i })}>
-              {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} />
-              ))}
-            </div>
-          ))}
-        </pre>
-      )}
-    </Highlight>
-  ),
+			language="jsx"
+		>
+			{({
+				className,
+				style,
+				tokens,
+				getLineProps,
+				getTokenProps,
+			}) => (
+				<pre className={className} style={style}>
+					{tokens.map((line, i) => (
+						<div {...getLineProps({ line, key: i })}>
+							{line.map((token, key) => (
+								<span {...getTokenProps({ token, key })} />
+							))}
+						</div>
+					))}
+				</pre>
+			)}
+		</Highlight>
+	),
 }
 
 export const wrapRootElement = ({ element }) => (
-  <MDXProvider components={components}>{element}</MDXProvider>
+	<MDXProvider components={components}>{element}</MDXProvider>
 )
 ```
 
@@ -1503,35 +1503,35 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 import React from 'react'
 
 const components = {
-  pre: props => (
-    <Highlight
-      {...defaultProps}
-      code={props.children.props.children.trim()}
-      language="jsx"
-    >
-      {({
-        className,
-        style,
-        tokens,
-        getLineProps,
-        getTokenProps,
-      }) => (
-        <pre className={className} style={style}>
-          {tokens.map((line, i) => (
-            <div {...getLineProps({ line, key: i })}>
-              {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} />
-              ))}
-            </div>
-          ))}
-        </pre>
-      )}
-    </Highlight>
-  ),
+	pre: (props) => (
+		<Highlight
+			{...defaultProps}
+			code={props.children.props.children.trim()}
+			language="jsx"
+		>
+			{({
+				className,
+				style,
+				tokens,
+				getLineProps,
+				getTokenProps,
+			}) => (
+				<pre className={className} style={style}>
+					{tokens.map((line, i) => (
+						<div {...getLineProps({ line, key: i })}>
+							{line.map((token, key) => (
+								<span {...getTokenProps({ token, key })} />
+							))}
+						</div>
+					))}
+				</pre>
+			)}
+		</Highlight>
+	),
 }
 
 export const wrapRootElement = ({ element }) => (
-  <MDXProvider components={components}>{element}</MDXProvider>
+	<MDXProvider components={components}>{element}</MDXProvider>
 )
 ```
 
@@ -1544,49 +1544,49 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 import React from 'react'
 
 const components = {
-  h2: ({ children }) => (
-    <h2 style={{ color: 'rebeccapurple' }}>{children}</h2>
-  ),
-  'p.inlineCode': props => (
-    <code style={{ backgroundColor: 'lightgray' }} {...props} />
-  ),
-  pre: props => {
-    const className = props.children.props.className || ''
-    const matches = className.match(/language-(?<lang>.*)/)
-    return (
-      <Highlight
-        {...defaultProps}
-        code={props.children.props.children.trim()}
-        language={
-          matches && matches.groups && matches.groups.lang
-            ? matches.groups.lang
-            : ''
-        }
-      >
-        {({
-          className,
-          style,
-          tokens,
-          getLineProps,
-          getTokenProps,
-        }) => (
-          <pre className={className} style={style}>
-            {tokens.map((line, i) => (
-              <div {...getLineProps({ line, key: i })}>
-                {line.map((token, key) => (
-                  <span {...getTokenProps({ token, key })} />
-                ))}
-              </div>
-            ))}
-          </pre>
-        )}
-      </Highlight>
-    )
-  },
+	h2: ({ children }) => (
+		<h2 style={{ color: 'rebeccapurple' }}>{children}</h2>
+	),
+	'p.inlineCode': (props) => (
+		<code style={{ backgroundColor: 'lightgray' }} {...props} />
+	),
+	pre: (props) => {
+		const className = props.children.props.className || ''
+		const matches = className.match(/language-(?<lang>.*)/)
+		return (
+			<Highlight
+				{...defaultProps}
+				code={props.children.props.children.trim()}
+				language={
+					matches && matches.groups && matches.groups.lang
+						? matches.groups.lang
+						: ''
+				}
+			>
+				{({
+					className,
+					style,
+					tokens,
+					getLineProps,
+					getTokenProps,
+				}) => (
+					<pre className={className} style={style}>
+						{tokens.map((line, i) => (
+							<div {...getLineProps({ line, key: i })}>
+								{line.map((token, key) => (
+									<span {...getTokenProps({ token, key })} />
+								))}
+							</div>
+						))}
+					</pre>
+				)}
+			</Highlight>
+		)
+	},
 }
 
 export const wrapRootElement = ({ element }) => (
-  <MDXProvider components={components}>{element}</MDXProvider>
+	<MDXProvider components={components}>{element}</MDXProvider>
 )
 ```
 
@@ -1606,49 +1606,49 @@ import theme from 'prism-react-renderer/themes/nightOwl'
 import React from 'react'
 
 const components = {
-  pre: props => {
-    const className = props.children.props.className || ''
-    const matches = className.match(/language-(?<lang>.*)/)
+	pre: (props) => {
+		const className = props.children.props.className || ''
+		const matches = className.match(/language-(?<lang>.*)/)
 
-    return (
-      <Highlight
-        {...defaultProps}
-        code={props.children.props.children.trim()}
-        language={
-          matches && matches.groups && matches.groups.lang
-            ? matches.groups.lang
-            : ''
-        }
-        theme={theme}
-      >
-        {({
-          className,
-          style,
-          tokens,
-          getLineProps,
-          getTokenProps,
-        }) => (
-          <pre className={className} style={style}>
-            {tokens.map((line, i) => (
-              <div {...getLineProps({ line, key: i })}>
-                {line.map((token, key) => (
-                  <span {...getTokenProps({ token, key })} />
-                ))}
-              </div>
-            ))}
-          </pre>
-        )}
-      </Highlight>
-    )
-  },
+		return (
+			<Highlight
+				{...defaultProps}
+				code={props.children.props.children.trim()}
+				language={
+					matches && matches.groups && matches.groups.lang
+						? matches.groups.lang
+						: ''
+				}
+				theme={theme}
+			>
+				{({
+					className,
+					style,
+					tokens,
+					getLineProps,
+					getTokenProps,
+				}) => (
+					<pre className={className} style={style}>
+						{tokens.map((line, i) => (
+							<div {...getLineProps({ line, key: i })}>
+								{line.map((token, key) => (
+									<span {...getTokenProps({ token, key })} />
+								))}
+							</div>
+						))}
+					</pre>
+				)}
+			</Highlight>
+		)
+	},
 }
 
 export const wrapRootElement = ({ element }) => (
-  <MDXProvider components={components}>{element}</MDXProvider>
+	<MDXProvider components={components}>{element}</MDXProvider>
 )
 ```
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="k6gI3jVxjKg" />
 </Details>
 
@@ -1678,11 +1678,11 @@ take a look at the `props` coming into the `pre` element.
 Comment out the code you added earlier and add in a `console.log`:
 
 ```js
-pre: props => {
-  console.log('=====================')
-  console.log(props)
-  console.log('=====================')
-  return <pre />
+pre: (props) => {
+	console.log('=====================')
+	console.log(props)
+	console.log('=====================')
+	return <pre />
 }
 ```
 
@@ -1729,32 +1729,32 @@ import theme from 'prism-react-renderer/themes/nightOwl'
 import React from 'react'
 
 const Code = ({ codeString, language }) => {
-  return (
-    <Highlight
-      {...defaultProps}
-      code={codeString}
-      language={language}
-      theme={theme}
-    >
-      {({
-        className,
-        style,
-        tokens,
-        getLineProps,
-        getTokenProps,
-      }) => (
-        <pre className={className} style={style}>
-          {tokens.map((line, i) => (
-            <div {...getLineProps({ line, key: i })}>
-              {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} />
-              ))}
-            </div>
-          ))}
-        </pre>
-      )}
-    </Highlight>
-  )
+	return (
+		<Highlight
+			{...defaultProps}
+			code={codeString}
+			language={language}
+			theme={theme}
+		>
+			{({
+				className,
+				style,
+				tokens,
+				getLineProps,
+				getTokenProps,
+			}) => (
+				<pre className={className} style={style}>
+					{tokens.map((line, i) => (
+						<div {...getLineProps({ line, key: i })}>
+							{line.map((token, key) => (
+								<span {...getTokenProps({ token, key })} />
+							))}
+						</div>
+					))}
+				</pre>
+			)}
+		</Highlight>
+	)
 }
 
 export default Code
@@ -1780,21 +1780,21 @@ pass in the elements `{...props}`:
 
 ```jsx
 pre: ({ children: { props } }) => {
-  if (props.mdxType === 'code') {
-    return (
-      <Code
-        codeString={props.children.trim()}
-        language={
-          props.className && props.className.replace('language-', '')
-        }
-        {...props}
-      />
-    )
-  }
+	if (props.mdxType === 'code') {
+		return (
+			<Code
+				codeString={props.children.trim()}
+				language={
+					props.className && props.className.replace('language-', '')
+				}
+				{...props}
+			/>
+		)
+	}
 }
 ```
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="m0tWxa9Ip5E" />
 </Details>
 
@@ -1811,54 +1811,54 @@ import React from 'react'
 import styled from 'styled-components'
 
 export const Pre = styled.pre`
-  text-align: left;
-  margin: 1em 0;
-  padding: 0.5em;
-  overflow-x: auto;
-  border-radius: 3px;
+	text-align: left;
+	margin: 1em 0;
+	padding: 0.5em;
+	overflow-x: auto;
+	border-radius: 3px;
 
-  & .token-line {
-    line-height: 1.3em;
-    height: 1.3em;
-  }
-  font-family: 'Courier New', Courier, monospace;
+	& .token-line {
+		line-height: 1.3em;
+		height: 1.3em;
+	}
+	font-family: 'Courier New', Courier, monospace;
 `
 
 export const LineNo = styled.span`
-  display: inline-block;
-  width: 2em;
-  user-select: none;
-  opacity: 0.3;
+	display: inline-block;
+	width: 2em;
+	user-select: none;
+	opacity: 0.3;
 `
 
 const Code = ({ codeString, language, ...props }) => {
-  return (
-    <Highlight
-      {...defaultProps}
-      code={codeString}
-      language={language}
-      theme={theme}
-    >
-      {({
-        className,
-        style,
-        tokens,
-        getLineProps,
-        getTokenProps,
-      }) => (
-        <Pre className={className} style={style}>
-          {tokens.map((line, i) => (
-            <div {...getLineProps({ line, key: i })}>
-              <LineNo>{i + 1}</LineNo>
-              {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} />
-              ))}
-            </div>
-          ))}
-        </Pre>
-      )}
-    </Highlight>
-  )
+	return (
+		<Highlight
+			{...defaultProps}
+			code={codeString}
+			language={language}
+			theme={theme}
+		>
+			{({
+				className,
+				style,
+				tokens,
+				getLineProps,
+				getTokenProps,
+			}) => (
+				<Pre className={className} style={style}>
+					{tokens.map((line, i) => (
+						<div {...getLineProps({ line, key: i })}>
+							<LineNo>{i + 1}</LineNo>
+							{line.map((token, key) => (
+								<span {...getTokenProps({ token, key })} />
+							))}
+						</div>
+					))}
+				</Pre>
+			)}
+		</Highlight>
+	)
 }
 
 export default Code
@@ -1866,7 +1866,7 @@ export default Code
 
 <!-- cSpell:ignore wpqc -->
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="PPH153kWpqc" />
 </Details>
 
@@ -1892,33 +1892,33 @@ touch src/utils/copy-to-clipboard.js
 ```js
 // https://github.com/gatsbyjs/gatsby/blob/master/www/src/utils/copy-to-clipboard.js
 
-export const copyToClipboard = str => {
-  const clipboard = window.navigator.clipboard
-  /*
-   * fallback to older browsers (including Safari)
-   * if clipboard API not supported
-   */
-  if (!clipboard || typeof clipboard.writeText !== `function`) {
-    const textarea = document.createElement(`textarea`)
-    textarea.value = str
-    textarea.setAttribute(`readonly`, true)
-    textarea.setAttribute(`contenteditable`, true)
-    textarea.style.position = `absolute`
-    textarea.style.left = `-9999px`
-    document.body.appendChild(textarea)
-    textarea.select()
-    const range = document.createRange()
-    const sel = window.getSelection()
-    sel.removeAllRanges()
-    sel.addRange(range)
-    textarea.setSelectionRange(0, textarea.value.length)
-    document.execCommand(`copy`)
-    document.body.removeChild(textarea)
+export const copyToClipboard = (str) => {
+	const clipboard = window.navigator.clipboard
+	/*
+	 * fallback to older browsers (including Safari)
+	 * if clipboard API not supported
+	 */
+	if (!clipboard || typeof clipboard.writeText !== `function`) {
+		const textarea = document.createElement(`textarea`)
+		textarea.value = str
+		textarea.setAttribute(`readonly`, true)
+		textarea.setAttribute(`contenteditable`, true)
+		textarea.style.position = `absolute`
+		textarea.style.left = `-9999px`
+		document.body.appendChild(textarea)
+		textarea.select()
+		const range = document.createRange()
+		const sel = window.getSelection()
+		sel.removeAllRanges()
+		sel.addRange(range)
+		textarea.setSelectionRange(0, textarea.value.length)
+		document.execCommand(`copy`)
+		document.body.removeChild(textarea)
 
-    return Promise.resolve(true)
-  }
+		return Promise.resolve(true)
+	}
 
-  return clipboard.writeText(str)
+	return clipboard.writeText(str)
 }
 ```
 
@@ -1930,15 +1930,15 @@ the `Pre` component which will let us position the styled button:
 
 ```js
 const CopyCode = styled.button`
-  position: absolute;
-  right: 0.25rem;
-  border: 0;
-  border-radius: 3px;
-  margin: 0.25em;
-  opacity: 0.3;
-  &:hover {
-    opacity: 1;
-  }
+	position: absolute;
+	right: 0.25rem;
+	border: 0;
+	border-radius: 3px;
+	margin: 0.25em;
+	opacity: 0.3;
+	&:hover {
+		opacity: 1;
+	}
 `
 ```
 
@@ -1953,72 +1953,72 @@ import styled from 'styled-components'
 import { copyToClipboard } from '../utils/copy-to-clipboard'
 
 export const Pre = styled.pre`
-  text-align: left;
-  margin: 1rem 0;
-  padding: 0.5rem;
-  overflow-x: auto;
-  border-radius: 3px;
+	text-align: left;
+	margin: 1rem 0;
+	padding: 0.5rem;
+	overflow-x: auto;
+	border-radius: 3px;
 
-  & .token-line {
-    line-height: 1.3rem;
-    height: 1.3rem;
-  }
-  font-family: 'Courier New', Courier, monospace;
-  position: relative;
+	& .token-line {
+		line-height: 1.3rem;
+		height: 1.3rem;
+	}
+	font-family: 'Courier New', Courier, monospace;
+	position: relative;
 `
 
 export const LineNo = styled.span`
-  display: inline-block;
-  width: 2rem;
-  user-select: none;
-  opacity: 0.3;
+	display: inline-block;
+	width: 2rem;
+	user-select: none;
+	opacity: 0.3;
 `
 
 const CopyCode = styled.button`
-  position: absolute;
-  right: 0.25rem;
-  border: 0;
-  border-radius: 3px;
-  margin: 0.25em;
-  opacity: 0.3;
-  &:hover {
-    opacity: 1;
-  }
+	position: absolute;
+	right: 0.25rem;
+	border: 0;
+	border-radius: 3px;
+	margin: 0.25em;
+	opacity: 0.3;
+	&:hover {
+		opacity: 1;
+	}
 `
 
 const Code = ({ codeString, language }) => {
-  const handleClick = () => {
-    copyToClipboard(codeString)
-  }
+	const handleClick = () => {
+		copyToClipboard(codeString)
+	}
 
-  return (
-    <Highlight
-      {...defaultProps}
-      code={codeString}
-      language={language}
-      theme={theme}
-    >
-      {({
-        className,
-        style,
-        tokens,
-        getLineProps,
-        getTokenProps,
-      }) => (
-        <Pre className={className} style={style}>
-          <CopyCode onClick={handleClick}>Copy</CopyCode>
-          {tokens.map((line, i) => (
-            <div {...getLineProps({ line, key: i })}>
-              <LineNo>{i + 1}</LineNo>
-              {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} />
-              ))}
-            </div>
-          ))}
-        </Pre>
-      )}
-    </Highlight>
-  )
+	return (
+		<Highlight
+			{...defaultProps}
+			code={codeString}
+			language={language}
+			theme={theme}
+		>
+			{({
+				className,
+				style,
+				tokens,
+				getLineProps,
+				getTokenProps,
+			}) => (
+				<Pre className={className} style={style}>
+					<CopyCode onClick={handleClick}>Copy</CopyCode>
+					{tokens.map((line, i) => (
+						<div {...getLineProps({ line, key: i })}>
+							<LineNo>{i + 1}</LineNo>
+							{line.map((token, key) => (
+								<span {...getTokenProps({ token, key })} />
+							))}
+						</div>
+					))}
+				</Pre>
+			)}
+		</Highlight>
+	)
 }
 
 export default Code
@@ -2026,7 +2026,7 @@ export default Code
 
 <!-- cSpell:ignore einx -->
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="j-EINXVe2WA" />
 </Details>
 
@@ -2039,10 +2039,10 @@ You're going to import the components:
 
 ```jsx
 import {
-  LiveEditor,
-  LiveError,
-  LivePreview,
-  LiveProvider,
+	LiveEditor,
+	LiveError,
+	LivePreview,
+	LiveProvider,
 } from 'react-live'
 ```
 
@@ -2051,13 +2051,13 @@ language tag on your mdx file via the props:
 
 ```jsx
 if (props['react-live']) {
-  return (
-    <LiveProvider code={codeString} noInline={true} theme={theme}>
-      <LiveEditor />
-      <LiveError />
-      <LivePreview />
-    </LiveProvider>
-  )
+	return (
+		<LiveProvider code={codeString} noInline={true} theme={theme}>
+			<LiveEditor />
+			<LiveError />
+			<LivePreview />
+		</LiveProvider>
+	)
 }
 ```
 
@@ -2068,91 +2068,91 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 import theme from 'prism-react-renderer/themes/nightOwl'
 import React from 'react'
 import {
-  LiveEditor,
-  LiveError,
-  LivePreview,
-  LiveProvider,
+	LiveEditor,
+	LiveError,
+	LivePreview,
+	LiveProvider,
 } from 'react-live'
 import styled from 'styled-components'
 import { copyToClipboard } from '../../utils/copy-to-clipboard'
 
 const Pre = styled.pre`
-  position: relative;
-  text-align: left;
-  margin: 1em 0;
-  padding: 0.5em;
-  overflow-x: auto;
-  border-radius: 3px;
+	position: relative;
+	text-align: left;
+	margin: 1em 0;
+	padding: 0.5em;
+	overflow-x: auto;
+	border-radius: 3px;
 
-  & .token-line {
-    line-height: 1.3em;
-    height: 1.3em;
-  }
-  font-family: 'Courier New', Courier, monospace;
+	& .token-line {
+		line-height: 1.3em;
+		height: 1.3em;
+	}
+	font-family: 'Courier New', Courier, monospace;
 `
 
 const LineNo = styled.span`
-  display: inline-block;
-  width: 2em;
-  user-select: none;
-  opacity: 0.3;
+	display: inline-block;
+	width: 2em;
+	user-select: none;
+	opacity: 0.3;
 `
 
 const CopyCode = styled.button`
-  position: absolute;
-  right: 0.25rem;
-  border: 0;
-  border-radius: 3px;
-  margin: 0.25em;
-  opacity: 0.3;
-  &:hover {
-    opacity: 1;
-  }
+	position: absolute;
+	right: 0.25rem;
+	border: 0;
+	border-radius: 3px;
+	margin: 0.25em;
+	opacity: 0.3;
+	&:hover {
+		opacity: 1;
+	}
 `
 
 export const Code = ({ codeString, language, ...props }) => {
-  if (props['react-live']) {
-    return (
-      <LiveProvider code={codeString} noInline={true} theme={theme}>
-        <LiveEditor />
-        <LiveError />
-        <LivePreview />
-      </LiveProvider>
-    )
-  }
+	if (props['react-live']) {
+		return (
+			<LiveProvider code={codeString} noInline={true} theme={theme}>
+				<LiveEditor />
+				<LiveError />
+				<LivePreview />
+			</LiveProvider>
+		)
+	}
 
-  const handleClick = () => {
-    copyToClipboard(codeString)
-  }
+	const handleClick = () => {
+		copyToClipboard(codeString)
+	}
 
-  return (
-    <Highlight
-      {...defaultProps}
-      code={codeString}
-      language={language}
-      theme={theme}
-    >
-      {({
-        className,
-        style,
-        tokens,
-        getLineProps,
-        getTokenProps,
-      }) => (
-        <Pre className={className} style={style}>
-          <CopyCode onClick={handleClick}>Copy</CopyCode>
-          {tokens.map((line, i) => (
-            <div {...getLineProps({ line, key: i })}>
-              <LineNo>{i + 1}</LineNo>
-              {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} />
-              ))}
-            </div>
-          ))}
-        </Pre>
-      )}
-    </Highlight>
-  )
+	return (
+		<Highlight
+			{...defaultProps}
+			code={codeString}
+			language={language}
+			theme={theme}
+		>
+			{({
+				className,
+				style,
+				tokens,
+				getLineProps,
+				getTokenProps,
+			}) => (
+				<Pre className={className} style={style}>
+					<CopyCode onClick={handleClick}>Copy</CopyCode>
+					{tokens.map((line, i) => (
+						<div {...getLineProps({ line, key: i })}>
+							<LineNo>{i + 1}</LineNo>
+							{line.map((token, key) => (
+								<span {...getTokenProps({ token, key })} />
+							))}
+						</div>
+					))}
+				</Pre>
+			)}
+		</Highlight>
+	)
 }
 ```
 
@@ -2167,30 +2167,30 @@ Now you can edit the code directly, try changing a few things like
 this:
 
 ```jsx
-const Dump = props => (
-  <div
-    style={{
-      fontSize: 20,
-      border: '1px solid #efefef',
-      padding: 10,
-      background: 'white',
-    }}
-  >
-    {Object.entries(props).map(([key, val]) => (
-      <pre key={key}>
-        <strong style={{ color: 'white', background: 'red' }}>
-          {key} 💩
-        </strong>
-        {JSON.stringify(val, '', ' ')}
-      </pre>
-    ))}
-  </div>
+const Dump = (props) => (
+	<div
+		style={{
+			fontSize: 20,
+			border: '1px solid #efefef',
+			padding: 10,
+			background: 'white',
+		}}
+	>
+		{Object.entries(props).map(([key, val]) => (
+			<pre key={key}>
+				<strong style={{ color: 'white', background: 'red' }}>
+					{key} 💩
+				</strong>
+				{JSON.stringify(val, '', ' ')}
+			</pre>
+		))}
+	</div>
 )
 
 render(<Dump props={['One', 'Two', 'Three', 'Four']} />)
 ```
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="AlOdd-TvqHE" />
 </Details>
 
@@ -2214,38 +2214,38 @@ config:
 
 ```js
 module.exports = {
-  siteMetadata: siteMetadata,
-  plugins: [
-    `gatsby-plugin-styled-components`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        extensions: [`.mdx`, `.md`],
-        gatsbyRemarkPlugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 590,
-            },
-          },
-        ],
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 590,
-            },
-          },
-        ],
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: { path: `${__dirname}/posts`, name: `posts` },
-    },
-  ],
+	siteMetadata: siteMetadata,
+	plugins: [
+		`gatsby-plugin-styled-components`,
+		`gatsby-transformer-sharp`,
+		`gatsby-plugin-sharp`,
+		{
+			resolve: `gatsby-plugin-mdx`,
+			options: {
+				extensions: [`.mdx`, `.md`],
+				gatsbyRemarkPlugins: [
+					{
+						resolve: `gatsby-remark-images`,
+						options: {
+							maxWidth: 590,
+						},
+					},
+				],
+				plugins: [
+					{
+						resolve: `gatsby-remark-images`,
+						options: {
+							maxWidth: 590,
+						},
+					},
+				],
+			},
+		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: { path: `${__dirname}/posts`, name: `posts` },
+		},
+	],
 }
 ```
 
@@ -2279,7 +2279,7 @@ Add `gatsby-image` use that in a styled component:
 
 ```js
 const Image = styled(Img)`
-  border-radius: 5px;
+	border-radius: 5px;
 `
 ```
 
@@ -2287,9 +2287,9 @@ Add some JavaScript to determine if there's anything to render:
 
 ```js
 {
-  !!frontmatter.cover ? (
-    <Image sizes={frontmatter.cover.childImageSharp.sizes} />
-  ) : null
+	!!frontmatter.cover ? (
+		<Image sizes={frontmatter.cover.childImageSharp.sizes} />
+	) : null
 }
 ```
 
@@ -2307,68 +2307,68 @@ const IndexWrapper = styled.main``
 const PostWrapper = styled.div``
 
 const Image = styled(Img)`
-  border-radius: 5px;
+	border-radius: 5px;
 `
 
 export default ({ data }) => {
-  return (
-    <Layout>
-      <IndexWrapper>
-        {/* <Dump data={data}></Dump> */}
-        {data.allMdx.nodes.map(
-          ({ id, excerpt, frontmatter, fields }) => (
-            <PostWrapper key={id}>
-              <Link to={fields.slug}>
-                {!!frontmatter.cover ? (
-                  <Image
-                    sizes={frontmatter.cover.childImageSharp.sizes}
-                  />
-                ) : null}
-                <h1>{frontmatter.title}</h1>
-                <p>{frontmatter.date}</p>
-                <p>{excerpt}</p>
-              </Link>
-            </PostWrapper>
-          ),
-        )}
-      </IndexWrapper>
-    </Layout>
-  )
+	return (
+		<Layout>
+			<IndexWrapper>
+				{/* <Dump data={data}></Dump> */}
+				{data.allMdx.nodes.map(
+					({ id, excerpt, frontmatter, fields }) => (
+						<PostWrapper key={id}>
+							<Link to={fields.slug}>
+								{!!frontmatter.cover ? (
+									<Image
+										sizes={frontmatter.cover.childImageSharp.sizes}
+									/>
+								) : null}
+								<h1>{frontmatter.title}</h1>
+								<p>{frontmatter.date}</p>
+								<p>{excerpt}</p>
+							</Link>
+						</PostWrapper>
+					),
+				)}
+			</IndexWrapper>
+		</Layout>
+	)
 }
 
 export const query = graphql`
-  query SITE_INDEX_QUERY {
-    allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true } } }
-    ) {
-      nodes {
-        id
-        excerpt(pruneLength: 250)
-        frontmatter {
-          title
-          date(formatString: "YYYY MMMM Do")
-          cover {
-            publicURL
-            childImageSharp {
-              sizes(maxWidth: 2000, traceSVG: { color: "#639" }) {
-                ...GatsbyImageSharpSizes_tracedSVG
-              }
-            }
-          }
-        }
-        fields {
-          slug
-        }
-      }
-    }
-  }
+	query SITE_INDEX_QUERY {
+		allMdx(
+			sort: { fields: [frontmatter___date], order: DESC }
+			filter: { frontmatter: { published: { eq: true } } }
+		) {
+			nodes {
+				id
+				excerpt(pruneLength: 250)
+				frontmatter {
+					title
+					date(formatString: "YYYY MMMM Do")
+					cover {
+						publicURL
+						childImageSharp {
+							sizes(maxWidth: 2000, traceSVG: { color: "#639" }) {
+								...GatsbyImageSharpSizes_tracedSVG
+							}
+						}
+					}
+				}
+				fields {
+					slug
+				}
+			}
+		}
+	}
 `
 ```
 
 <!-- cSpell:ignore Ntql -->
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="9S5GNtql02w" />
 </Details>
 
@@ -2384,7 +2384,7 @@ export const query = graphql`
 
 <!-- cSpell:ignore Jknw -->
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="I9qQslUJknw" />
 </Details>
 
@@ -2469,23 +2469,23 @@ properties:
 import { graphql, useStaticQuery } from 'gatsby'
 
 export const useSiteMetadata = () => {
-  const { site } = useStaticQuery(graphql`
-    query SITE_METADATA_QUERY {
-      site {
-        siteMetadata {
-          description
-          title
-          image
-          siteUrl
-          siteLanguage
-          siteLocale
-          twitterUsername
-          authorName
-        }
-      }
-    }
-  `)
-  return site.siteMetadata
+	const { site } = useStaticQuery(graphql`
+		query SITE_METADATA_QUERY {
+			site {
+				siteMetadata {
+					description
+					title
+					image
+					siteUrl
+					siteLanguage
+					siteLocale
+					twitterUsername
+					authorName
+				}
+			}
+		}
+	`)
+	return site.siteMetadata
 }
 ```
 
@@ -2544,84 +2544,84 @@ const IndexWrapper = styled.main``
 const PostWrapper = styled.div``
 
 const Image = styled(Img)`
-  border-radius: 5px;
+	border-radius: 5px;
 `
 
 export default ({ data }) => {
-  const {
-    description,
-    title,
-    image,
-    siteUrl,
-    siteLanguage,
-    siteLocale,
-    twitterUsername,
-  } = useSiteMetadata()
-  return (
-    <Layout>
-      <SEO
-        title={title}
-        description={description || `nothin'`}
-        image={`${siteUrl}${image}`}
-        pathname={siteUrl}
-        siteLanguage={siteLanguage}
-        siteLocale={siteLocale}
-        twitterUsername={twitterUsername}
-      />
-      <IndexWrapper>
-        {/* <Dump data={data}></Dump> */}
-        {data.allMdx.nodes.map(
-          ({ id, excerpt, frontmatter, fields }) => (
-            <PostWrapper key={id}>
-              <Link to={fields.slug}>
-                {!!frontmatter.cover ? (
-                  <Image
-                    sizes={frontmatter.cover.childImageSharp.sizes}
-                  />
-                ) : null}
-                <h1>{frontmatter.title}</h1>
-                <p>{frontmatter.date}</p>
-                <p>{excerpt}</p>
-              </Link>
-            </PostWrapper>
-          ),
-        )}
-      </IndexWrapper>
-    </Layout>
-  )
+	const {
+		description,
+		title,
+		image,
+		siteUrl,
+		siteLanguage,
+		siteLocale,
+		twitterUsername,
+	} = useSiteMetadata()
+	return (
+		<Layout>
+			<SEO
+				title={title}
+				description={description || `nothin'`}
+				image={`${siteUrl}${image}`}
+				pathname={siteUrl}
+				siteLanguage={siteLanguage}
+				siteLocale={siteLocale}
+				twitterUsername={twitterUsername}
+			/>
+			<IndexWrapper>
+				{/* <Dump data={data}></Dump> */}
+				{data.allMdx.nodes.map(
+					({ id, excerpt, frontmatter, fields }) => (
+						<PostWrapper key={id}>
+							<Link to={fields.slug}>
+								{!!frontmatter.cover ? (
+									<Image
+										sizes={frontmatter.cover.childImageSharp.sizes}
+									/>
+								) : null}
+								<h1>{frontmatter.title}</h1>
+								<p>{frontmatter.date}</p>
+								<p>{excerpt}</p>
+							</Link>
+						</PostWrapper>
+					),
+				)}
+			</IndexWrapper>
+		</Layout>
+	)
 }
 
 export const query = graphql`
-  query SITE_INDEX_QUERY {
-    allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true } } }
-    ) {
-      nodes {
-        id
-        excerpt(pruneLength: 250)
-        frontmatter {
-          title
-          date(formatString: "YYYY MMMM Do")
-          cover {
-            publicURL
-            childImageSharp {
-              sizes(maxWidth: 2000, traceSVG: { color: "#639" }) {
-                ...GatsbyImageSharpSizes_tracedSVG
-              }
-            }
-          }
-        }
-        fields {
-          slug
-        }
-      }
-    }
-  }
+	query SITE_INDEX_QUERY {
+		allMdx(
+			sort: { fields: [frontmatter___date], order: DESC }
+			filter: { frontmatter: { published: { eq: true } } }
+		) {
+			nodes {
+				id
+				excerpt(pruneLength: 250)
+				frontmatter {
+					title
+					date(formatString: "YYYY MMMM Do")
+					cover {
+						publicURL
+						childImageSharp {
+							sizes(maxWidth: 2000, traceSVG: { color: "#639" }) {
+								...GatsbyImageSharpSizes_tracedSVG
+							}
+						}
+					}
+				}
+				fields {
+					slug
+				}
+			}
+		}
+	}
 `
 ```
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="O0jk9AqM_ls" />
 </Details>
 
@@ -2689,84 +2689,84 @@ import { Layout } from '../components/Layout'
 import { useSiteMetadata } from '../hooks/useSiteMetadata'
 
 export default ({ data, pageContext }) => {
-  const {
-    image,
-    siteUrl,
-    siteLanguage,
-    siteLocale,
-    twitterUsername,
-    authorName,
-  } = useSiteMetadata()
-  const { frontmatter, body, fields, excerpt } = data.mdx
-  const { title, date, cover } = frontmatter
-  const { previous, next } = pageContext
-  return (
-    <Layout>
-      <SEO
-        title={title}
-        description={excerpt}
-        image={
-          cover === null
-            ? `${siteUrl}${image}`
-            : `${siteUrl}${cover.publicURL}`
-        }
-        pathname={`${siteUrl}${fields.slug}`}
-        siteLanguage={siteLanguage}
-        siteLocale={siteLocale}
-        twitterUsername={twitterUsername}
-        author={authorName}
-        article={true}
-        publishedDate={date}
-        modifiedDate={new Date(Date.now()).toISOString()}
-      />
-      <h1>{frontmatter.title}</h1>
-      <p>{frontmatter.date}</p>
-      <MDXRenderer>{body}</MDXRenderer>
-      {previous === false ? null : (
-        <>
-          {previous && (
-            <Link to={previous.fields.slug}>
-              <p>{previous.frontmatter.title}</p>
-            </Link>
-          )}
-        </>
-      )}
-      {next === false ? null : (
-        <>
-          {next && (
-            <Link to={next.fields.slug}>
-              <p>{next.frontmatter.title}</p>
-            </Link>
-          )}
-        </>
-      )}
-    </Layout>
-  )
+	const {
+		image,
+		siteUrl,
+		siteLanguage,
+		siteLocale,
+		twitterUsername,
+		authorName,
+	} = useSiteMetadata()
+	const { frontmatter, body, fields, excerpt } = data.mdx
+	const { title, date, cover } = frontmatter
+	const { previous, next } = pageContext
+	return (
+		<Layout>
+			<SEO
+				title={title}
+				description={excerpt}
+				image={
+					cover === null
+						? `${siteUrl}${image}`
+						: `${siteUrl}${cover.publicURL}`
+				}
+				pathname={`${siteUrl}${fields.slug}`}
+				siteLanguage={siteLanguage}
+				siteLocale={siteLocale}
+				twitterUsername={twitterUsername}
+				author={authorName}
+				article={true}
+				publishedDate={date}
+				modifiedDate={new Date(Date.now()).toISOString()}
+			/>
+			<h1>{frontmatter.title}</h1>
+			<p>{frontmatter.date}</p>
+			<MDXRenderer>{body}</MDXRenderer>
+			{previous === false ? null : (
+				<>
+					{previous && (
+						<Link to={previous.fields.slug}>
+							<p>{previous.frontmatter.title}</p>
+						</Link>
+					)}
+				</>
+			)}
+			{next === false ? null : (
+				<>
+					{next && (
+						<Link to={next.fields.slug}>
+							<p>{next.frontmatter.title}</p>
+						</Link>
+					)}
+				</>
+			)}
+		</Layout>
+	)
 }
 
 export const query = graphql`
-  query PostBySlug($slug: String!) {
-    mdx(fields: { slug: { eq: $slug } }) {
-      frontmatter {
-        title
-        date(formatString: "YYYY MMMM Do")
-        cover {
-          publicURL
-        }
-      }
-      body
-      excerpt
-      fields {
-        slug
-      }
-    }
-  }
+	query PostBySlug($slug: String!) {
+		mdx(fields: { slug: { eq: $slug } }) {
+			frontmatter {
+				title
+				date(formatString: "YYYY MMMM Do")
+				cover {
+					publicURL
+				}
+			}
+			body
+			excerpt
+			fields {
+				slug
+			}
+		}
+	}
 `
 ```
 
 <!-- cSpell:ignore YIQRIU -->
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="a2fcgYIQRIU" />
 </Details>
 
@@ -2796,7 +2796,7 @@ in Windows and Linux) on the page and do a Ctrl+f to find them.
 
 <!-- cSpell:ignore agjc -->
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="c6bB9ddAgjc" />
 </Details>
 
@@ -2816,7 +2816,7 @@ command looks like.
 Some good resources for authenticating with GitHub via SSH are [Kent
 Dodds Egghead.io video] and also a how-to [on CheatSheets.xyz].
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="r2eiJ8E_YT0" />
 </Details>
 
@@ -2853,7 +2853,7 @@ You will be prompted to commit the changes and push them to GitHub
 (with `git push`), once you have done that your site will be published
 and ready for all to see!
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="voWeHvIGB0g" />
 </Details>
 
@@ -2872,7 +2872,7 @@ homepage and a blog page for the correct meta tags with
 
 <!-- cSpell:ignore yhwo -->
 
-<Details buttonText="Check out the Video">
+<Details button_text="Check out the Video">
   <YouTube youTubeId="JH1AVanYhwo" />
 </Details>
 
@@ -2897,52 +2897,52 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 <!-- Links -->
 
 [windows web-dev bootstrap]:
-  https://scottspence.com/posts/wsl-bootstrap-2019/
+	https://scottspence.com/posts/wsl-bootstrap-2019
 [ubuntu as well]: https://www.youtube.com/watch?v=eSAsdQuQ-1o
 [codesandbox.io]: https://codesandbox.io
 [gatsby-source-filesystem]:
-  https://www.gatsbyjs.com/packages/gatsby-source-filesystem/
+	https://www.gatsbyjs.com/packages/gatsby-source-filesystem/
 [gatsby-plugin-mdx]:
-  https://www.gatsbyjs.com/packages/gatsby-plugin-mdx/
+	https://www.gatsbyjs.com/packages/gatsby-plugin-mdx/
 [v0 may 2017]:
-  https://github.com/spences10/blog.scottspence.me/tree/a470e8563e1a040527cf2094fc1b377550a88c77
+	https://github.com/spences10/blog.scottspence.me/tree/a470e8563e1a040527cf2094fc1b377550a88c77
 [progressive disclosure of complexity]:
-  https://lengstorf.com/progressive-disclosure-of-complexity/
+	https://lengstorf.com/progressive-disclosure-of-complexity/
 [layout components]: https://www.gatsbyjs.com/docs/layout-components/
 [dump.js]: https://github.com/wesbos/dump
 [prism-react-renderer]:
-  https://github.com/FormidableLabs/prism-react-renderer
+	https://github.com/FormidableLabs/prism-react-renderer
 [react-live]: https://github.com/FormidableLabs/react-live
 [egghead.io playlist]:
-  https://egghead.io/lessons/vue-js-introduction-to-mdx?pl=building-websites-with-mdx-and-gatsby-161e9529
+	https://egghead.io/lessons/vue-js-introduction-to-mdx?pl=building-websites-with-mdx-and-gatsby-161e9529
 [chris biscardi]: https://twitter.com/chrisbiscardi
 [duotonedark]:
-  https://github.com/FormidableLabs/prism-react-renderer/blob/9c041dfd8580b8b71f55c2a57e61f4c63356d4f4/packages/prism-react-renderer/src/themes/duotoneDark.ts
+	https://github.com/FormidableLabs/prism-react-renderer/blob/9c041dfd8580b8b71f55c2a57e61f4c63356d4f4/packages/prism-react-renderer/src/themes/duotoneDark.ts
 [nightowl]:
-  https://github.com/FormidableLabs/prism-react-renderer/blob/9c041dfd8580b8b71f55c2a57e61f4c63356d4f4/packages/prism-react-renderer/src/themes/nightOwl.ts
+	https://github.com/FormidableLabs/prism-react-renderer/blob/9c041dfd8580b8b71f55c2a57e61f4c63356d4f4/packages/prism-react-renderer/src/themes/nightOwl.ts
 [the other examples]:
-  https://github.com/FormidableLabs/prism-react-renderer/tree/9c041dfd8580b8b71f55c2a57e61f4c63356d4f4/packages/prism-react-renderer/src/themes
+	https://github.com/FormidableLabs/prism-react-renderer/tree/9c041dfd8580b8b71f55c2a57e61f4c63356d4f4/packages/prism-react-renderer/src/themes
 [github pr on seo]: https://github.com/gatsbyjs/gatsby/issues/14125
 [great notes from andrew welch]:
-  https://github.com/gatsbyjs/gatsby/pull/10780#issuecomment-451048608
+	https://github.com/gatsbyjs/gatsby/pull/10780#issuecomment-451048608
 [lekoarts]: https://github.com/LekoArts
 [lumen]: https://github.com/alxshelepenok/gatsby-starter-lumen
 [the essential meta tags for social media]:
-  https://css-tricks.com/essential-meta-tags-social-media/
+	https://css-tricks.com/essential-meta-tags-social-media/
 [as a react component]:
-  https://github.com/spences10/react-seo-component
+	https://github.com/spences10/react-seo-component
 [`react-seo-component`]:
-  https://github.com/spences10/react-seo-component
+	https://github.com/spences10/react-seo-component
 [w3 language tags]:
-  https://www.w3.org/International/articles/language-tags/
+	https://www.w3.org/International/articles/language-tags/
 [kent dodds egghead.io video]:
-  https://egghead.io/lessons/javascript-how-to-authenticate-with-github-using-ssh
+	https://egghead.io/lessons/javascript-how-to-authenticate-with-github-using-ssh
 [on cheatsheets.xyz]:
-  https://www.cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh
+	https://www.cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh
 [twitter]: https://twitter.com/spences10
 [ask me anything]: https://github.com/spences10/ama
 
 <!-- Images -->
 
 [draw a horse quincy tweet]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/draw-a-horse-quincy-tweet-c94426ee247944669175d7575b851f60.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/draw-a-horse-quincy-tweet-c94426ee247944669175d7575b851f60.png

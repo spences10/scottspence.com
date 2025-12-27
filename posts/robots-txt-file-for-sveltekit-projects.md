@@ -2,7 +2,7 @@
 date: 2023-02-20
 title: Robots.txt file for SvelteKit projects
 tags: ['sveltekit', 'guide', 'seo']
-isPrivate: false
+is_private: false
 ---
 
 <script>

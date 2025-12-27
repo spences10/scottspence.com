@@ -2,7 +2,7 @@
 date: 2022-05-02
 title: Making npm Packages with SvelteKit
 tags: ['svelte', 'sveltekit', 'npm']
-isPrivate: false
+is_private: false
 ---
 
 I have several components that I use across a couple of my SvelteKit

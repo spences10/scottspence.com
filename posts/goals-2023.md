@@ -2,7 +2,7 @@
 date: 2022-12-24
 title: Goals for 2023
 tags: ['career', 'learning', 'habits']
-isPrivate: false
+is_private: false
 ---
 
 <script>

@@ -2,7 +2,7 @@
 date: 2023-10-07
 title: Updating BIOS on Motherboard
 tags: ['windows', 'wsl', 'hardware', 'bios']
-isPrivate: false
+is_private: false
 ---
 
 Real quick one for me! Future me that is!! I had to update the BIOS on

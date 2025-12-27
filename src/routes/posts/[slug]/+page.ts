@@ -1,23 +1,20 @@
-export const load = async ({
-  params,
-  data: { daily_visits, monthly_visits, yearly_visits, count },
-}) => {
-  const { slug } = params
+import { error } from '@sveltejs/kit'
+import type { PageLoad } from './$types'
 
-  try {
-    const post = await import(`../../../../posts/${slug}.md`)
-    return {
-      daily_visits,
-      monthly_visits,
-      yearly_visits,
-      count,
-      Content: post.default,
-      meta: { ...post.metadata, slug },
-    }
-  } catch (err) {
-    return {
-      status: 404,
-      error: err,
-    }
-  }
+export const load: PageLoad = async ({ params, data }) => {
+	const { slug } = params
+
+	try {
+		const post = await import(`../../../../posts/${slug}.md`)
+		return {
+			count: data?.count || null,
+			related_posts: data?.related_posts || [],
+			Content: post.default,
+			meta: { ...post.metadata, slug },
+		}
+	} catch (err) {
+		error(404, {
+			message: 'Post not found',
+		})
+	}
 }

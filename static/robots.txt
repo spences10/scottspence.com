@@ -1,7 +1,13 @@
 User-agent: *
+Sitemap: https://scottspence.com/sitemap.xml
+# Allow all the things
+Allow: /
+
 # Specific disallow rules
-Disallow: /analytics.json
-Disallow: /current-visitors.json
+# Disallow: /api/analytics
+# Disallow: /current-visitors.json
+# apparently having disallow on and endpoint 
+# and in the robots.txt means Google ignores both!
 
 # Specific directives for GPTBot
 User-agent: GPTBot

@@ -2,7 +2,7 @@
 date: 2019-04-01
 title: Update Windows Subsystem Linux Ubuntu from 18.04 to 18.10
 tags: ['learning', 'wsl', 'guide', 'ubuntu']
-isPrivate: false
+is_private: false
 ---
 
 Already use WSL with Ubuntu? Want an Upgrade??

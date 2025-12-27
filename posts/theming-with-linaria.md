@@ -2,7 +2,7 @@
 date: 2020-06-18
 title: Theming With Linaria
 tags: ['css', 'css-in-js', 'linaria']
-isPrivate: false
+is_private: false
 ---
 
 This is a follow up on the post I did about [Getting Started with

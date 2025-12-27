@@ -3,7 +3,7 @@ date: 2018-05-22
 title: Use the React Context API with Gatsby
 tags: ['learning', 'guide', 'gatsby', 'api']
 excerpt: ''
-isPrivate: false
+is_private: false
 ---
 
 I'm a bit late to the party using the new [React Context API], I did

@@ -1,7 +1,7 @@
 {
-  "git.enableSmartCommit": true,
-  "git.postCommitCommand": "sync",
-  "css.validate": false,
-  "cSpell.enableFiletypes": ["dotenv", "jsx-tags", "svelte", "windi"],
-  "cSpell.words": ["Namecheap"]
+	"git.enableSmartCommit": true,
+	"git.postCommitCommand": "sync",
+	"css.validate": false,
+	"cSpell.enableFiletypes": ["dotenv", "jsx-tags", "svelte", "windi"],
+	"cSpell.words": ["Namecheap", "tseslint"]
 }

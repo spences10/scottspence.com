@@ -2,22 +2,34 @@
 date: 2022-07-12
 title: Change Browser Scrollbar Colour with Tailwind CSS
 tags: ['css', 'tailwind', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 <script>
   import { CodePen } from 'sveltekit-embed'
+  import { Banner } from '$lib/components'
+
+  let href = `/posts/scrollbar-styling-with-tailwind-and-daisyui`
+  const options = {
+    type: 'info',
+    message: `I've made an updated post with new information about using 
+      <code>!important</code> when styling scrollbars with Tailwind and 
+      daisyUI. Check out the new post on 
+      <a href=${href} target="_blank" rel="noopener noreferrer">
+      Scrollbar Styling with Tailwind and daisyUI</a> for more details.`
+  }
 </script>
 
 Styling a scrollbar with Tailwind CSS for Chrome, Edge, Safari and
-Firefox. This is possible with [vendor prefixes] and
-[pseudo-elements].
+Firefox. This is possible with [vendor prefixes] and [pseudo-elements].
 
 I touched on the configuration for this in the [Change Text Highlight
 Color with Tailwind CSS] post I did recently.
 
 So, I'll go over how to do this in Tailwind CSS then I can go over it
 with a vanilla CSS example too.
+
+<Banner {options} />
 
 ## Tailwind example
 
@@ -34,8 +46,7 @@ in it, it should look something like this:
 
 This file is where you'd add in any global styles, in this case for
 the scrollbars you'd need to add it between `@tailwind base;` and
-`@tailwind components;` for Firefox add in the CSS for [CSS
-Scrollbars]:
+`@tailwind components;` for Firefox add in the CSS for [CSS Scrollbars]:
 
 ```css
 @tailwind base;
@@ -125,8 +136,8 @@ So there you have it, really simple way to style a scrollbar with CSS!
 If you want to [Change Text Highlight Color with Tailwind CSS] you can
 check out that post too.
 
-There's also a post on [Gradient animations with Tailwind CSS and
-SvelteKit] you might find interesting.
+There's also a post on [Gradient animations with Tailwind CSS
+and SvelteKit] you might find interesting.
 
 <!-- Links -->
 

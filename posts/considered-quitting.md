@@ -2,7 +2,7 @@
 date: 2021-04-25
 title: Ever Considered Quitting?
 tags: ['career', 'vba', 'notes']
-isPrivate: true
+is_private: true
 ---
 
 I was listening to James Q Quick on his podcast, he was doing his

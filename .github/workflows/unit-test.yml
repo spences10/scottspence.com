@@ -10,23 +10,29 @@ jobs:
   unit-tests:
     name: Run unit tests
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.57.0-noble
+      options: --user 1001
 
     steps:
-      - uses: actions/cache@v3
+      - uses: actions/checkout@v6
+      - name: Verify Playwright versions match
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').devDependencies.playwright.replace('^', '')")
+          CONTAINER_VERSION="1.57.0"  # Extract this from your container image
+          if [ "$PACKAGE_VERSION" != "$CONTAINER_VERSION" ]; then
+            echo "Error: Playwright versions don't match!"
+            echo "Package.json: $PACKAGE_VERSION"
+            echo "Container: $CONTAINER_VERSION"
+            exit 1
+          fi
+      - uses: pnpm/action-setup@v4.2.0
         with:
-          path: ~/.pnpm-store
-          key:
-            # prettier-ignore
-            ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2.4.0
+          version: 10
+      - uses: actions/setup-node@v6
         with:
-          version: 6.0.2
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18.x
+          node-version: 22.x
+          cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
       - name: Build
@@ -40,9 +46,23 @@ jobs:
           # prettier-ignore
           UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
           EXCHANGE_RATE_API_KEY: ${{ secrets.EXCHANGE_RATE_API_KEY }}
-          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID }}
+          RESEND_FROM_EMAIL: ${{ secrets.RESEND_FROM_EMAIL }}
+          SECRET_PASSPHRASE: ${{ secrets.SECRET_PASSPHRASE }}
+          # prettier-ignore
+          PUBLIC_TURNSTILE_SITE_KEY: ${{ secrets.PUBLIC_TURNSTILE_SITE_KEY }}
+          TURNSTILE_SECRET_KEY: ${{ secrets.TURNSTILE_SECRET_KEY }}
           EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
           EMAIL_APP_USER: ${{ secrets.EMAIL_APP_USER }}
           EMAIL_APP_TO_ADDRESS: ${{ secrets.EMAIL_APP_TO_ADDRESS }}
+          VOYAGE_AI_API_KEY: ${{ secrets.VOYAGE_AI_API_KEY }}
+          DATABASE_PATH: ${{ secrets.DATABASE_PATH }}
+          DATABASE_BACKUPS_PATH: ${{ secrets.DATABASE_BACKUPS_PATH }}
+          PRODUCTION_URL: ${{ secrets.PRODUCTION_URL }}
+          INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # prettier-ignore
+          NEWSLETTER_GH_ACTIVITY_TOKEN: ${{ secrets.NEWSLETTER_GH_ACTIVITY_TOKEN }}
       - name: Test
         run: pnpm run test:ci

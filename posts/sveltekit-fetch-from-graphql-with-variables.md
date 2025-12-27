@@ -2,7 +2,7 @@
 date: 2021-12-02
 title: SvelteKit Fetch from GraphQL Endpoint with Variables
 tags: ['svelte', 'api', 'graphql', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 If you want to fetch data from a GraphQL endpoint, you can use the

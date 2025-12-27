@@ -2,7 +2,7 @@
 date: 2020-12-14
 title: Fish Shell Introduction
 tags: ['learning', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 <script>

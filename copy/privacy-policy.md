@@ -8,7 +8,7 @@
 # Privacy Policy
 
 <Small>
-  Last updated: <DateUpdated date="2023-10-06" small="true" />
+  Last updated: <DateUpdated date="2024-04-14" small="true" />
 </Small>
 
 Hello, welcome to the privacy policy for [scottspence.com](), I want
@@ -34,12 +34,16 @@ The privacy policy in this site includes these points:
 The only piece of information I collect is your email address _if_ you
 sign up to receive email updates from me.
 
-I use Buttondown to capture your email address when you give it
+I use Resend to capture your email address when you give it
 voluntarily via the email sign up form, you can see their privacy
 statement [here][0].
 
 The information collected is an email address with no other personal
 identifying information.
+
+To protect your privacy, I use a double opt-in process: after
+submitting your email, you must confirm your subscription via a link
+sent to your email address before you'll receive any newsletters.
 
 ### What I do with collected information
 
@@ -48,21 +52,17 @@ subscribers.
 
 If there is a giveaway being run where I need to send something in the
 post, like stickers. I will request your address via the email given
-in the mailing list on Buttondown. Once the package has been sent I
-will delete any emails with identifying information in them.
+in the mailing list on Resend. Once the package has been sent I will
+delete any emails with identifying information in them.
 
 ### What cookies, pixels, and other trackers my site uses and their purpose.
 
 Ok, cookies! On [scottspence.com](), I use cookies, but keep it
-simple. I use a cookie to remember your theme choice and one to
-register if you're blocking the analytics script.
+simple. I use a cookie to remember your theme choice, that's it.
 
 The **theme** cookie is like a handy helper that knows your theme
-preference every time you drop by. No fuss.
-
-The **block_fathom** cookie is to save me money! If you use an ad
-blocker (no judgment, I use one!) then I'll need to stop requesting
-analytics from Fathom (which shows visitor stats).
+preference every time you drop by. No fuss. If you don't change then
+theme then no cookie is set.
 
 You can find more about them both in the
 [Cookie Policy](/cookie-policy).
@@ -110,7 +110,7 @@ you can unsubscribe from the mails sent anytime.
 
 If you want to contact me see [Contact information for site
 administrators] and I will personally remove your email address from
-Buttondown.
+Resend.
 
 ### Contact information for site administrators
 
@@ -137,22 +137,22 @@ Read] for a simple breakdown of what the ToS actually means.
 
 [how i collect your information]: #how-i-collect-your-information
 [what i do with collected information]:
-  #what-i-do-with-collected-information
+	#what-i-do-with-collected-information
 [what cookies, pixels, and other trackers my site uses and their purpose]:
-  #what-cookies-pixels-and-other-trackers-my-site-uses-and-their-purpose
+	#what-cookies-pixels-and-other-trackers-my-site-uses-and-their-purpose
 [any advertising networks and their methods/purposes of data collection and ad delivery]:
-  #any-advertising-networks-and-their-methodspurposes-of-data-collection-and-ad-delivery
+	#any-advertising-networks-and-their-methodspurposes-of-data-collection-and-ad-delivery
 [how users of this site can op-in and op-out of their data being collected and stored]:
-  #how-users-of-this-site-can-op-in-and-op-out-of-their-data-being-collected-and-stored
+	#how-users-of-this-site-can-op-in-and-op-out-of-their-data-being-collected-and-stored
 [how users of this site can request their data be turned over to them and/or be deleted]:
-  #how-users-of-this-site-can-request-their-data-be-turned-over-to-them-andor-be-deleted
+	#how-users-of-this-site-can-request-their-data-be-turned-over-to-them-andor-be-deleted
 [contact information for site administrators]:
-  #contact-information-for-site-administrators
-[0]: https://buttondown.email/legal/privacy
+	#contact-information-for-site-administrators
+[0]: https://resend.com/legal/privacy-policy
 [1]: https://usefathom.com/privacy
 [privacy@scottspence.dev]:
-  mailto:privacy@scottspence.dev?subject=Privacy%20Concern&body=Hi%20Scott%2C%0D%0A%0D%0AI%20have%20a%20concern%20about%20my%20privacy%20on%20your%20site.
+	mailto:privacy@scottspence.dev?subject=Privacy%20Concern&body=Hi%20Scott%2C%0D%0A%0D%0AI%20have%20a%20concern%20about%20my%20privacy%20on%20your%20site.
 [contact form]: /contact
 [terms of service didn't read]: https://tosdr.org
 [contact information for site administrators]:
-  #contact-information-for-site-administrators
+	#contact-information-for-site-administrators

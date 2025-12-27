@@ -2,7 +2,7 @@
 date: 2022-07-03
 title: Prisma, SvelteKit and PlanetScale deployment issues on Vercel
 tags: ['sveltekit', 'planetscale', 'prisma', 'vercel']
-isPrivate: false
+is_private: false
 ---
 
 <script>

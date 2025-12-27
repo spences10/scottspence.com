@@ -1,13 +1,13 @@
 export const update_toc_visibility = (
-  end_of_copy: HTMLElement | null,
-  offset = -700
+	end_of_copy: HTMLElement | null,
+	offset = -700,
 ): boolean => {
-  if (
-    window.scrollY >=
-    (end_of_copy?.offsetTop ?? -Infinity) + offset
-  ) {
-    return false
-  } else {
-    return true
-  }
+	if (
+		window.scrollY >=
+		(end_of_copy?.offsetTop ?? -Infinity) + offset
+	) {
+		return false
+	} else {
+		return true
+	}
 }

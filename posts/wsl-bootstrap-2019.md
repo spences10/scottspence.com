@@ -2,7 +2,7 @@
 date: 2018-12-24
 title: Windows Web-dev bootstrap
 tags: ['learning', 'guide', 'wsl', 'n', 'node']
-isPrivate: false
+is_private: false
 ---
 
 From scratch to Create React App on Windows

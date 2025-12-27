@@ -2,7 +2,7 @@
 date: 2021-03-15
 title: Stylelint Configuration for use with Tailwind CSS
 tags: ['tailwind', 'css', 'notes']
-isPrivate: false
+is_private: false
 ---
 
 When using Tailwind CSS in a Toast project I got a CSS warning

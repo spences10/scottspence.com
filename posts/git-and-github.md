@@ -2,7 +2,7 @@
 date: 2017-01-05
 title: Git and GitHub
 tags: ['learning', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 I know why Linus called it that now!

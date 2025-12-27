@@ -1,8 +1,8 @@
 ---
 date: 2020-09-24
 title: Testing
-tags: ['', '', '']
-isPrivate: true
+tags: ['testing']
+is_private: true
 ---
 
 <script>

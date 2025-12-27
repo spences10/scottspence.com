@@ -2,7 +2,7 @@
 date: 2016-11-14
 title: VBA Code Export for Version Control Systems
 tags: ['vcs', 'vba']
-isPrivate: false
+is_private: false
 ---
 
 I have seen the same situation many times now in my career as a VBA

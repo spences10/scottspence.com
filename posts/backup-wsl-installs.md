@@ -2,7 +2,7 @@
 date: 2021-03-24
 title: How to Backup Windows Subsystem for Linux distributions
 tags: ['wsl', 'fedora', 'linux']
-isPrivate: false
+is_private: false
 ---
 
 I have always liked using Windows Subsystem for Linux (WSL), I'd

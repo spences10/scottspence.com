@@ -2,7 +2,7 @@
 date: 2018-02-27
 title: How to make time for 100 days of code
 tags: ['guide', 'learning', 'habits', 'career']
-isPrivate: false
+is_private: false
 ---
 
 <!-- cSpell:ignore Bueller -->

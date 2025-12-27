@@ -2,7 +2,7 @@
 date: 2020-09-02
 title: How to Monetise Your Content With Coil and Brave BAT
 tags: ['learning', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 I recently started monetising my blog, (don't worry there's no

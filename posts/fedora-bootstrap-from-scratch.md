@@ -2,7 +2,7 @@
 date: 2021-01-06
 title: WSL Web Developer Bootstrap with Fedora 33
 tags: ['fedora', 'linux', 'wsl']
-isPrivate: false
+is_private: false
 ---
 
 I have been having a blast playing around with configuring Fedora 33

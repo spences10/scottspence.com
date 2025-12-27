@@ -1,11 +1,11 @@
 <div
-  class="not-prose flex justify-center items-center text-center py-14 my-5 bg-primary shadow-xl rounded-box"
+	class="not-prose bg-primary my-5 flex items-center justify-center rounded-box p-10 text-center shadow-lg"
 >
-  <div class="text-primary-content text-xl">
-    <h3 class="font-extrabold tracking-tight text-4xl">
-      Awesome! 🕺
-    </h3>
-    <p class="mt-4">Thanks for reaching out!</p>
-    <p class="mt-4">I'll be in touch!</p>
-  </div>
+	<div class="text-primary-content text-xl">
+		<h3 class="text-4xl font-extrabold tracking-tight">
+			Awesome! 🕺
+		</h3>
+		<p class="mt-4">Thanks for reaching out!</p>
+		<p class="mt-4">I'll be in touch!</p>
+	</div>
 </div>

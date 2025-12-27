@@ -2,7 +2,7 @@
 date: 2023-10-07
 title: Contact Form Send Email From Site with Fastmail
 tags: ['fastmail', 'guide', 'resource', 'email']
-isPrivate: false
+is_private: false
 ---
 
 <!-- cSpell:ignore jmap, smtps, reqd, rcpt, webjeda -->
@@ -651,7 +651,7 @@ site.
 
 [let's work together]: https://scottspence.com/lets-work-together
 [tag for it]: https://scottspence.com/tags/fastmail
-[referral link]: https://ref.fm/u27421800
+[referral link]: https://join.fastmail.com/9283c1fd
 [Switching from Brevo to Buttondown]:
   https://scottspence.com/posts/switching-from-brevo-to-buttondown
 [I have done in the past]:

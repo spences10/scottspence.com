@@ -2,7 +2,7 @@
 date: 2017-03-15
 title: Code life balance
 tags: ['career']
-isPrivate: false
+is_private: false
 ---
 
 Just some rationalisation of what I'm currently doing.

@@ -1,47 +1,24 @@
-<script>
-  import { visitors_store } from '$lib/stores'
-  import { mouse_position } from '$lib/utils'
+<script lang="ts">
+	import { visitors_store } from '$lib/stores'
+	import { mouse_position } from '$lib/utils'
 
-  let visitors = $visitors_store
+	let visitors = $visitors_store
 </script>
 
 <div
-  class="not-prose text-sm fixed z-20 border border-primary rounded-box p-5 shadow-xl bg-base-100 text-base-content"
-  style={`top: ${$mouse_position.y}px; left: ${$mouse_position.x}px;`}
+	class="not-prose fixed z-20 rounded-box border border-primary bg-base-100 p-5 text-sm text-base-content shadow-xl"
+	style={`top: ${$mouse_position.y}px; left: ${$mouse_position.x}px;`}
 >
-  <h3 class="font-bold text-xl mb-2">Current Site Visitors</h3>
-  <h4 class="font-bold mb-2">
-    Total Visitors: {visitors.visitors.total}
-  </h4>
-  <section>
-    <h4 class="font-semibold">Current Pages:</h4>
-    <ul class="mb-2">
-      {#each visitors.visitors.content as { hostname, pathname, total }}
-        <li>
-          <a
-            href={pathname}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="link link-primary"
-          >
-            {hostname}{pathname}
-          </a>
-          ({total})
-        </li>
-      {/each}
-    </ul>
-  </section>
-  <section>
-    <h4 class="font-semibold">Referrers:</h4>
-    <ul>
-      {#each visitors.visitors.referrers as { referrer_hostname, referrer_pathname, total }}
-        <li>
-          <span class="link link-primary cursor-not-allowed">
-            {referrer_hostname}{referrer_pathname}
-          </span>
-          ({total})
-        </li>
-      {/each}
-    </ul>
-  </section>
+	<h3 class="mb-2 text-xl font-bold">Current Site Visitors</h3>
+	<section>
+		<h4 class="mb-2 text-lg font-semibold">Recent Page Visits:</h4>
+		<ul class="mb-2">
+			{#each visitors.visitor_data as { pathname, title, recent_visitors }}
+				<li class="mb-2 text-base-content">
+					{title === 'Unknown' ? pathname : title}
+					<span class="font-bold">{recent_visitors}</span>
+				</li>
+			{/each}
+		</ul>
+	</section>
 </div>

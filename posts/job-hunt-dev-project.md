@@ -2,7 +2,7 @@
 date: 2018-11-30
 title: Turning a job hunt into a dev project
 tags: ['learning', 'career']
-isPrivate: false
+is_private: false
 ---
 
 Cliffs/TL;DR

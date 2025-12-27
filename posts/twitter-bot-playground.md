@@ -2,7 +2,7 @@
 date: 2017-05-23
 title: Twitter bot playground
 tags: ['guide']
-isPrivate: false
+is_private: false
 ---
 
 How to build and deploy a multifunctional Twitter bot!

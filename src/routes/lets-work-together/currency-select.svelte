@@ -1,19 +1,21 @@
-<script>
-  import { exchange_rates_store } from './stores'
-  export let selected_currency = 'EUR'
+<script lang="ts">
+	import { pricing_state } from '$lib/state/pricing-client.svelte'
+	let { selected_currency = $bindable('EUR') } = $props()
 </script>
 
 <legend class="sr-only">Currency Selection</legend>
 <label for="selected_currency" class="label">
-  <span class="label-text text-base">Currency:</span>
+	<span class="text-base font-medium">Currency:</span>
 </label>
 <select
-  id="selected_currency"
-  bind:value={selected_currency}
-  class="select select-bordered select-sm text-sm mb-5"
+	id="selected_currency"
+	bind:value={selected_currency}
+	class="select select-sm rounded-box w-full text-sm"
 >
-  <option value="EUR">EUR</option>
-  {#each Object.keys($exchange_rates_store || {}) as currency}
-    <option value={currency}>{currency}</option>
-  {/each}
+	<option class="text-base-content" value="EUR">EUR</option>
+	{#each Object.keys(pricing_state.data.exchangeRates || {}) as currency}
+		<option class="text-base-content" value={currency}>
+			{currency}
+		</option>
+	{/each}
 </select>

@@ -2,7 +2,7 @@
 date: 2021-11-29
 title: Data Fetching in Svelte
 tags: ['svelte', 'sveltekit', 'notes']
-isPrivate: true
+is_private: true
 ---
 
 Here's an overview of the various ways to fetch data in Svelte. This

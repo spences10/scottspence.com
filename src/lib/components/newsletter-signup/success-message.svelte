@@ -1,24 +1,29 @@
 <script lang="ts">
-  import { scale_and_fade } from '$lib/utils'
+	import { scale_and_fade } from '$lib/utils'
 </script>
 
 <div
-  in:scale_and_fade|global={{ delay: 400, duration: 400 }}
-  class="mx-auto text-center max-w-7xl lg:px-8"
+	in:scale_and_fade|global={{ delay: 400, duration: 400 }}
+	class="mx-auto max-w-7xl text-center lg:px-8"
 >
-  <div
-    class="bg-primary rounded-box py-10 lg:flex lg:p-14 lg:items-center"
-  >
-    <div class="text-primary-content lg:flex-1 lg:w-0">
-      <h3 class="font-extrabold tracking-tight text-4xl">
-        Awesome! 🥳
-      </h3>
-      <p class="mt-4 text-xl">
-        Thanks for showing interest in my content.
-      </p>
-      <p class="mt-4 text-xl">
-        Please check your email to confirm your subscription. 📨
-      </p>
-    </div>
-  </div>
+	<div
+		class="rounded-box bg-primary py-10 lg:flex lg:items-center lg:p-14"
+	>
+		<div class="text-primary-content lg:w-0 lg:flex-1">
+			<h3 class="text-4xl font-extrabold tracking-tight">
+				Awesome! 🥳
+			</h3>
+			<p class="mt-4 text-xl">
+				Thanks for showing interest in my content.
+			</p>
+			<p class="mt-4 text-xl">
+				Please check your email to confirm your subscription. 📨
+			</p>
+			<p class="mt-4 text-lg opacity-90">
+				If you don't see it in a few minutes, please check your
+				junk/spam folder. If it's there, marking it as "not junk"
+				would really help me out! 🙌
+			</p>
+		</div>
+	</div>
 </div>

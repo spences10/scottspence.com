@@ -1,27 +1,36 @@
 <script lang="ts">
-  import { Head, LandingHero, PeopleToMeet } from '$lib/components'
-  import { description, name, website } from '$lib/info'
-  import { og_image_url } from '$lib/utils'
+	import { Head } from 'svead'
 
-  export let data
-  let { Copy } = data
+	import { LandingHero, PeopleToMeet } from '$lib/components'
+	import { website } from '$lib/info'
+	import { default_seo_config } from '$lib/seo'
+
+	import type { SeoConfig } from 'svead'
+
+	const seo_config: SeoConfig = {
+		...default_seo_config,
+		title: 'Hello World! Welcome to my site! Enjoy!',
+		website: website,
+	}
+
+	interface Props {
+		data: any
+	}
+
+	let { data }: Props = $props()
+	let Copy = $derived(data.Copy)
 </script>
 
-<Head
-  title={`Hello World! Welcome to my site! Enjoy! - ${name}`}
-  {description}
-  image={og_image_url(name, `scottspence.com`, name)}
-  url={website}
-/>
+<Head {seo_config} />
 
 <LandingHero />
 
 <article class="all-prose mb-10">
-  <svelte:component this={Copy} />
+	<Copy />
 </article>
 
 <PeopleToMeet />
 
-<div class="flex flex-col w-full my-10">
-  <div class="divider" />
+<div class="my-10 flex w-full flex-col">
+	<div class="divider divider-secondary"></div>
 </div>

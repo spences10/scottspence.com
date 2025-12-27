@@ -2,7 +2,7 @@
 date: 2021-01-02
 title: Get GraphQL Data Using Axios
 tags: ['graphql', 'api', 'notes']
-isPrivate: false
+is_private: false
 ---
 
 Ok this is a little snippet I've got set up to query data from the

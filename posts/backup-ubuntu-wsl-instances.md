@@ -2,7 +2,7 @@
 date: 2021-11-02
 title: Backup Ubuntu in Windows Subsystem for Linux
 tags: ['wsl', 'ubuntu', 'linux', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 I've had to make a copy of my current Ubuntu install for Windows

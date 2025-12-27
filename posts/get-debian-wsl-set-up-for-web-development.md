@@ -2,7 +2,7 @@
 date: 2022-05-22
 title: Get Debian WSL Set Up For Web Development
 tags: ['wsl', 'debian', 'guide']
-isPrivate: false
+is_private: false
 ---
 
 Quick guide to getting Debian WSL set up for web development.

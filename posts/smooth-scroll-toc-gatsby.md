@@ -2,7 +2,7 @@
 date: 2020-02-13
 title: Add a Table of Contents with Smooth scroll using Gatsby and MDX
 tags: ['learning', 'gatsby', 'guide', 'mdx', 'markdown']
-isPrivate: false
+is_private: false
 ---
 
 <script>

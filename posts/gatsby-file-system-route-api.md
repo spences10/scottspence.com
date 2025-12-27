@@ -2,7 +2,7 @@
 date: 2020-11-29
 title: Gatsby File System Route API with MDX
 tags: ['gatsby', 'mdx', 'learning']
-isPrivate: false
+is_private: false
 ---
 
 The Gatsby File System Route API was [announced recently] and I have

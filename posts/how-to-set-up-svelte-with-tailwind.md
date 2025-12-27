@@ -2,8 +2,22 @@
 date: 2021-11-16
 title: How to Set Up Svelte with Tailwind CSS
 tags: ['tailwind', 'svelte', 'how-to']
-isPrivate: false
+is_private: false
 ---
+
+<script>
+  import { Banner, DateDistance as DD } from '$lib/components'
+
+  let href = `/posts/svelte-cli-add-tailwind`
+  const options = {
+    type: 'warning',
+    message: `With the new Svelte <code>sv</code> CLI you can now add 
+      Tailwind CSS to your project with the CLI, like super simple! 
+      Check out the post on <a href=${href} target="_blank" 
+      rel="noopener noreferrer">The new Svelte (sv) CLI, adding 
+      Tailwind is simple now</a>.`
+  }
+</script>
 
 How to set up Tailwind CSS with Svelte, two examples here of adding
 Tailwind CSS to a new Svelte project.
@@ -18,6 +32,12 @@ on the index page of both projects to convert them to use Tailwind.
 
 Both examples will use the [Svelte Add] utility and I'll go through
 converting each one from the Svelte scoped CSS over to Tailwind.
+
+Did you read the banner? This post is <DD date={date} /> old now, I've
+added some more content on using the new Svelte CLI to add Tailwind.
+👇
+
+<Banner {options} />
 
 ## Prerequisites
 
@@ -325,12 +345,12 @@ Then adding in the Tailwind classes to the HTML elements:
 
   <Counter />
 
-+  <p class="mx-auto max-w-none my-4 max-w-56 md:leading-5">
++  <p class="mx-auto my-4 max-w-56 md:leading-5">
     Visit <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte
     apps.
   </p>
 
-+  <p class="mx-auto max-w-none my-4 max-w-56 md:leading-5">
++  <p class="mx-auto my-4 max-w-56 md:leading-5">
     Check out <a
 +      class="underline underline-dark-500"
       href="https://github.com/sveltejs/kit#readme">SvelteKit</a
@@ -349,6 +369,11 @@ I've created a couple of example projects using the `npm init` command
 for both Vite and Svelte. Added in Tailwind support using [Svelte Add]
 and replaced the index page styles on each with Tailwind styles.
 
+Need help implementing Svelte and Tailwind in your business projects?
+Visit [OES Technology](https://oestechnology.co.uk) where we provide
+scalable Svelte solutions with modern styling approaches like Tailwind
+CSS.
+
 <!-- Links -->
 
 [svelte add]: https://github.com/svelte-add/svelte-add
@@ -356,4 +381,4 @@ and replaced the index page styles on each with Tailwind styles.
 <!-- Images -->
 
 [changes-after-svelte-add-tailwind]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1641143473/scottspence.com/changes-after-svelte-add-tailwind.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1641143473/scottspence.com/changes-after-svelte-add-tailwind.png

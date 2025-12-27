@@ -2,7 +2,7 @@
 date: 2021-02-01
 title: Logitech G915 - First Impressions
 tags: ['hardware']
-isPrivate: false
+is_private: false
 ---
 
 <script>

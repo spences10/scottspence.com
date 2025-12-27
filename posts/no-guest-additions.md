@@ -2,7 +2,7 @@
 date: 2020-06-09
 title: Full Screen Resolution With No Guest Additions in VirtualBox
 tags: ['learning']
-isPrivate: false
+is_private: false
 ---
 
 <script>

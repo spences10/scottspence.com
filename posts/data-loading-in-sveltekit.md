@@ -2,7 +2,7 @@
 date: 2022-10-30
 title: Data loading in SvelteKit
 tags: ['sveltekit', 'resource', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 With the recent changes to SvelteKit which has invalidated a _lot_ of

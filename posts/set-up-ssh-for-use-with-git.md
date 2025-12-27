@@ -2,7 +2,7 @@
 date: 2022-04-14
 title: Set up SSH for use with Git
 tags: ['git', 'ssh', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 Secure Shell (SSH) is a secure way to connect with code repository

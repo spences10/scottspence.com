@@ -2,7 +2,7 @@
 date: 2019-06-11
 title: Convert the Gatsby starter blog to use MDX part two
 tags: ['learning', 'gatsby', 'guide', 'mdx', 'markdown']
-isPrivate: true
+is_private: true
 ---
 
 Since publishing my last post on this [Chris Biscardi] has released an

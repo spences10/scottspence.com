@@ -3,7 +3,7 @@ date: 2017-06-01
 title:
   Moving from beginner to [slightly more] advanced git with aliases.
 tags: ['guide']
-isPrivate: false
+is_private: false
 ---
 
 Speed up your git workflow with git aliases, this is a brief

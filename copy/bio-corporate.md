@@ -7,55 +7,48 @@
 </script>
 
 <Small>
-  Last updated: <DateUpdated date="2023-09-16" small="true" />
+  Last updated: <DateUpdated date="2025-04-18" small="true" />
 </Small>
 
 ## Short
 
-Scott Spence is a applications team lead specializing in Svelte and
-SvelteKit with <DD date="2021-04-06" /> experience using it. They're
-an experienced conference speaker and digital content specialist,
-producing engaging content to educate the Svelte community.
+Scott Spence is an Engineering Team Lead at XtendOps, specializing in
+Svelte and SvelteKit. With <DD date="2018-03-18" /> of commercial web
+development experience, Scott leads teams building scalable AI-driven
+applications. As the founder of OES Technology and an experienced
+Developer Advocate, he brings deep expertise in JavaScript, modern
+frameworks, and technical leadership.
 
 ## Medium
 
-Scott Spence, a skilled and dedicated applications team lead who
-creates video content to support their extensive knowledge on Svelte
-and SvelteKit.
+Scott Spence is a seasoned Engineering Team Lead, currently overseeing
+a sophisticated SvelteKit monorepo powering multiple customer-facing
+AI products at XtendOps. With a career spanning
 
-They're an experienced international conference speaker and meetup
-presenter, connecting with and educating others in the Svelte
-community.
-
-Their blog receives around 16k visitors and 30k views monthly,
-showcasing their ability to produce engaging and informative content.
-They're always looking for ways to improve their skills and give back
-to the community.
+<DD date="2006-04-01" /> in technology and <DD date="2018-03-18" /> in
+commercial web development, Scott excels in technical leadership,
+architecture, and team mentoring. As the founder of OES Technology and
+a former Developer Advocate, he is passionate about driving
+innovation, maintaining high code quality, and sharing knowledge
+through content and community engagement.
 
 ## Long
 
-With <DD date="2018-03-18" /> of commercial experience in working in
-development teams. Scott Spence is a results-oriented applications
-team with experience in working in development teams delivering
-projects, specializing in Svelte. With <DD date="2016-06-15" /> of
-experience in using JavaScript, HTML, and CSS. With commercial
-experience in using frameworks like Svelte and React, they bring a
-wealth of knowledge to the table.
+Scott Spence is an Engineering Team Lead with <DD date="2018-03-18" />
+of commercial web development experience and <DD date="2006-04-01" />
+of experience in the tech industry. At XtendOps, he leads development
+teams in building and maintaining a large-scale SvelteKit monorepo for
+AI-powered platforms, focusing on technical excellence, security, and
+product innovation. Scott is the founder of OES Technology, delivering
+scalable Svelte solutions for businesses, and previously worked as a
+Developer Advocate, creating educational content and building
+developer communities.
 
-They specialize in creating video content to support their extensive
-knowledge with a focus on Svelte. They're an experienced international
-conference speaker and meetup presenter, connecting with and educating
-others in the Svelte community.
-
-Their blog receives around 16k visitors and 30k views monthly,
-showcasing their ability to produce engaging and informative content.
-With a track record of success in previous senior-level Analyst
-Developer roles specializing in Microsoft Office automation for large
-financial organizations, they have a keen eye for detail and a passion
-for excellence.
-
-In their spare time, they attend industry events related to Svelte,
-participate in educational opportunities, and stay up-to-date with the
-latest trends in technology. They're a dedicated professional, always
-looking for ways to improve their skills and give back to the
+Earlier in his career, Scott spent over 12 years as a senior-level
+Analyst Developer, specializing in Microsoft Office automation for
+major financial organizations. He is recognized for his strong
+leadership, mentoring, and commitment to best practices. Scott remains
+actively engaged in the tech community, attending industry events,
+contributing to open source, and continuously advancing his skills to
+deliver value and foster growth within his teams and the wider
 community.

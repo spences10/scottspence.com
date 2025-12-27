@@ -2,7 +2,7 @@
 date: 2023-01-06
 title: Gradient animations with Tailwind CSS and SvelteKit
 tags: ['css', 'tailwind', 'how-to', 'svelte', 'sveltekit']
-isPrivate: false
+is_private: false
 ---
 
 <!-- cSpell:ignore Yoalli -->

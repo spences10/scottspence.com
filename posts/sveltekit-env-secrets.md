@@ -2,7 +2,7 @@
 date: 2021-06-22
 title: SvelteKit .env secrets
 tags: ['sveltekit', 'notes']
-isPrivate: false
+is_private: false
 ---
 
 <script>

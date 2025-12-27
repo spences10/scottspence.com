@@ -2,7 +2,7 @@
 date: 2022-07-05
 title: The new KitQL SvelteKit GraphQL client
 tags: ['svelte', 'sveltekit', 'kitql', 'houdini', 'graphql']
-isPrivate: true
+is_private: true
 ---
 
 The latest version of KitQL dropped yesterday!

@@ -2,7 +2,7 @@
 date: 2018-09-01
 title: Shaving the Yak!
 tags: ['productivity']
-isPrivate: false
+is_private: false
 ---
 
 <script>
@@ -28,7 +28,7 @@ This YouTube video of Hal from Malcolm in the Middle beautifully
 illustrates Yak Shaving. 👇
 
 <!-- cSpell:ignore sehc -->
-<Details buttonText="Expand to watch.">
+<Details button_text="Expand to watch.">
   <YouTube youTubeId="AbSehcT19u0" />
 </Details>
 
@@ -99,17 +99,17 @@ it.
 <!-- Links -->
 
 [seth godin article]:
-  https://sethgodin.typepad.com/seths_blog/2005/03/dont_shave_that.html
+	https://sethgodin.typepad.com/seths_blog/2005/03/dont_shave_that.html
 [chingu collabs]: https://chingu.io/
 [marina biletska]: https://github.com/mar-bi
 [grad.then()]: https://github.com/chingu-voyage6/grad.then/issues/191
 [eslint line-break style]:
-  https://github.com/chingu-voyage6/grad.then/issues/118#issuecomment-353569629
+	https://github.com/chingu-voyage6/grad.then/issues/118#issuecomment-353569629
 [update dependencies]:
-  https://github.com/chingu-voyage6/grad.then/issues/191
+	https://github.com/chingu-voyage6/grad.then/issues/191
 [wd-40]: https://en.wikipedia.org/wiki/WD-40
 [seth godin - don't shave that yak!]:
-  https://seths.blog/2005/03/dont_shave_that/
+	https://seths.blog/2005/03/dont_shave_that/
 [wiktionary - ren and stimpy reference]:
-  https://en.wiktionary.org/wiki/yak_shaving
+	https://en.wiktionary.org/wiki/yak_shaving
 [jason lengstorf - meta-work]: https://www.jason.af/yak-shaving

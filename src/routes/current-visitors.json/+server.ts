@@ -1,46 +1,53 @@
-import { PUBLIC_FATHOM_ID } from '$env/static/public'
-import { fetch_fathom_data, handle_block_fathom } from '$lib/fathom'
-import { time_to_seconds } from '$lib/utils/time-to-seconds.js'
-import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
+import { sqlite_client } from '$lib/sqlite/client'
 import { json } from '@sveltejs/kit'
 
-export const config: ServerlessConfig = {
-  runtime: 'nodejs18.x',
-}
+export const GET = async ({
+	getClientAddress,
+	url,
+}): Promise<Response> => {
+	const BYPASS_DB_READS = true // Set to false to enable DB reads
+	if (BYPASS_DB_READS) {
+		return json({ visitor_data: [] })
+	}
 
-export const GET = async ({ fetch, cookies }): Promise<Response> => {
-  const block_fathom = cookies.get('block_fathom') !== 'false'
+	const client_address = getClientAddress()
+	const slug = url.searchParams.get('slug') ?? '/'
+	const client = sqlite_client
 
-  const visitors = await fetch_fathom_data(
-    fetch,
-    `current_visitors`,
-    { site_id: PUBLIC_FATHOM_ID, detailed: true },
-    time_to_seconds({ minutes: 1 }),
-    `current_visitors`,
-    block_fathom,
-  )
+	try {
+		// Check if a record for this client_address and pathname already exists
+		const existing_visit_result = await client.execute({
+			sql: 'SELECT * FROM visitors WHERE client_address = ? AND pathname = ?;',
+			args: [client_address, slug],
+		})
 
-  if (block_fathom) {
-    const response = handle_block_fathom(visitors, 'visitors')
+		if (!existing_visit_result.rows.length) {
+			// Insert a new record if it doesn't exist
+			await client.execute({
+				sql: 'INSERT INTO visitors (client_address, pathname, last_visit) VALUES (?, ?, CURRENT_TIMESTAMP);',
+				args: [client_address, slug],
+			})
+		}
 
-    if (response) {
-      return json(response.body, { headers: response.headers })
-    }
-  }
+		// Fetch visitor count
+		const visitor_data_result = await client.execute(
+			'SELECT v.pathname, p.title, COUNT(*) AS recent_visitors FROM visitors v LEFT JOIN posts p ON v.pathname = p.slug WHERE v.last_visit >= datetime("now", "-5 minutes") GROUP BY v.pathname;',
+		)
 
-  if (visitors && visitors.total != null && visitors.content) {
-    return json(
-      {
-        visitors,
-      },
-      {
-        headers: {
-          'X-Robots-Tag': 'noindex, nofollow',
-        },
-      },
-    )
-  } else {
-    console.error('Visitors API returned data in unexpected format.')
-    return json({ visitors: {} })
-  }
+		const visitor_data = visitor_data_result.rows.map((row) => ({
+			pathname: row.pathname,
+			title: row.title || 'Unknown',
+			recent_visitors: row.recent_visitors,
+		}))
+
+		// Cleanup old visitors
+		await client.execute(
+			'DELETE FROM visitors WHERE last_visit < datetime("now", "-15 minutes");',
+		)
+
+		return json({ visitor_data: visitor_data })
+	} catch (error) {
+		console.error('Error:', error)
+		return json({ visitor_data: [] })
+	}
 }

@@ -2,7 +2,7 @@
 date: 2021-09-26
 title: Six Months as a Developer Advocate - a retrospective
 tags: ['career', 'notes']
-isPrivate: false
+is_private: false
 ---
 
 <script>

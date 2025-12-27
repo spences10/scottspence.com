@@ -2,7 +2,7 @@
 date: 2019-11-06
 title: React Advanced - London 2019
 tags: ['conference', 'react']
-isPrivate: false
+is_private: false
 ---
 
 <script>

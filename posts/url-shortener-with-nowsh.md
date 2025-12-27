@@ -2,7 +2,7 @@
 date: 2020-04-19
 title: Make a simple, personal, URL shortener with Now.sh
 tags: ['learning', 'guide', 'domains']
-isPrivate: false
+is_private: false
 ---
 
 <script>
@@ -171,7 +171,7 @@ these questions:
 - Set up and deploy project?: y
 - Which scope (this is my user account): Scott Spence
 - Link to an existing project?: n
-- Whats your project name (hit return): short-urls
+- What's your project name (hit return): short-urls
 - In which directory is your code located (hit return)?: /
 - Want to override the settings?: n
 ```
@@ -282,7 +282,7 @@ the same project.
 [now cli]: https://vercel.com/download
 [vercel.com account]: https://vercel.com/signup
 [github account]: https://github.com/join
-[for windows]: https://scottspence.com/posts/wsl-bootstrap-2019/
+[for windows]: https://scottspence.com/posts/wsl-bootstrap-2019
 [kent c dodds example with netlify]:
   https://www.youtube.com/watch?v=HL6paXyx6hM
 [vercel's documentation]:

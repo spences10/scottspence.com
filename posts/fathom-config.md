@@ -2,7 +2,7 @@
 date: 2020-06-09
 title: Fathom Analytics Gatsby Configuration
 tags: ['analytics', 'learning', 'guide', 'hooks', 'react', 'gatsby']
-isPrivate: false
+is_private: false
 ---
 
 Fathom Analytics, a great tool to use for your site analytics without

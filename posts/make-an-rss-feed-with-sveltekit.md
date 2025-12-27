@@ -2,7 +2,7 @@
 date: 2021-08-09
 title: Make an RSS Feed for your SvelteKit Project
 tags: ['svelte', 'sveltekit', 'rss', 'guide', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 The indie web is alive and well and there are more and more people
@@ -15,7 +15,7 @@ I made an RSS feed for my [blog] using SvelteKit routes. I did this
 much like the [Sitemap Generation for Dynamic Routes In NextJS with
 the Sanity Client] post I did back in February.
 
-## RSS on [`scottspence.com`](https://scottspence.com)
+## RSS on `scottspence.com`
 
 As I mentioned already as my blog is a SvelteKit project I can use the
 SvelteKit [routing endpoints] to define the data type I want returned
@@ -155,7 +155,7 @@ The code for get posts is:
 ```js
 export async function getPosts() {
   const posts = await Object.entries(
-    import.meta.globEager('/posts/**/*.md')
+    import.meta.globEager('/posts/**/*.md'),
   )
     // get post metadata
     .map(([, post]) => post.metadata)
@@ -249,7 +249,7 @@ const xml =
             </div>
           </content:encoded>
         </item>
-      `
+      `,
       )
       .join('')}
   </channel>

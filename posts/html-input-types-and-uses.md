@@ -2,7 +2,7 @@
 date: 2023-08-13
 title: HTML Input Types and Uses
 tags: ['html', 'notes']
-isPrivate: false
+is_private: false
 ---
 
 I came across one of those infographic's today detailing a couple of
@@ -146,13 +146,17 @@ If even one person finds this useful, I'll consider it a win.
 - Example:
 
 ```html
-<input type="button" value="Click me" onclick="alert('Hello!')" />
+<input
+  type="button"
+  value="Click me"
+  onclick="{() => alert('Hello!')}"
+/>
 ```
 
 <input
   type="button"
   value="Click me"
-  onclick="alert('Hello!')"
+  onclick="{() => alert('Hello!')}"
   class="btn btn-primary"
 />
 

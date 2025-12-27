@@ -2,7 +2,7 @@
 date: 2022-04-16
 title: Create Skip To Content With Tailwind CSS
 tags: ['tailwind', 'css', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 <script>

@@ -2,7 +2,7 @@
 date: 2022-04-18
 title: How to Fix Windows Update Download Error
 tags: ['windows', 'how-to']
-isPrivate: false
+is_private: false
 ---
 
 I've had this issue a couple of times now and want to document how to

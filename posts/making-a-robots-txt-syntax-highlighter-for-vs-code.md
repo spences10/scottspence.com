@@ -2,7 +2,7 @@
 date: 2023-10-23
 title: Making a robots.txt syntax highlighter for VS Code
 tags: ['reference', 'guide', 'vscode', 'extension', 'robots.txt']
-isPrivate: false
+is_private: false
 ---
 
 <script>

@@ -232,8 +232,8 @@ answer my phone if I'm not expecting a call.
 
 I prefer to avoid phone calls for these reasons:
 
-1. I'm on a [maker's schedule], which means interruptions are
-   disruptive to my flow.
+1. I'm on a [maker's schedule], which means interruptions are disruptive
+   to my flow.
 1. I've already tried to answer the majority of questions asked on
    this page. I've probably phrased them more clearly here than I will
    on the phone.

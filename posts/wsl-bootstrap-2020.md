@@ -2,7 +2,7 @@
 date: 2020-08-26
 title: Windows Subsystem Linux Bootstrap 2020
 tags: ['learning', 'guide', 'wsl']
-isPrivate: false
+is_private: false
 ---
 
 <script>
@@ -706,7 +706,7 @@ try.
 [windows subsystem linux setup]:
   https://scottspence.com/posts/wsl-bootstrap/
 [windows web-dev bootstrap]:
-  https://scottspence.com/posts/wsl-bootstrap-2019/
+  https://scottspence.com/posts/wsl-bootstrap-2019
 [this comment on a wsl issue]:
   https://github.com/microsoft/WSL/issues/5078#issuecomment-613384302
 [symbolic links]: https://en.wikipedia.org/wiki/Symbolic_link

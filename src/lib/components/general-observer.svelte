@@ -1,25 +1,30 @@
 <script lang="ts">
-  import { viewport } from '$lib/utils'
+	import { viewport } from '$lib/utils'
 
-  export let height = 100
-  export let width = 100
+	interface Props {
+		height?: number
+		width?: number
+		children?: import('svelte').Snippet
+	}
 
-  let intersecting: boolean
+	let { height = 100, width = 100, children }: Props = $props()
+
+	let intersecting: boolean = $state(false)
 </script>
 
 <div
-  use:viewport
-  on:enter_viewport={() => (intersecting = true)}
-  on:exit_viewport={() => (intersecting = false)}
+	use:viewport
+	onenter_viewport={() => (intersecting = true)}
+	onexit_viewport={() => (intersecting = false)}
 >
-  {#if intersecting}
-    <div class="flex justify-center mb-12" style={`width: ${width}`}>
-      <slot />
-    </div>
-  {:else}
-    <div
-      class="flex justify-center mb-12"
-      style={`height:${height}px;width: 100%`}
-    />
-  {/if}
+	{#if intersecting}
+		<div class="mb-12 flex justify-center" style={`width: ${width}`}>
+			{@render children?.()}
+		</div>
+	{:else}
+		<div
+			class="mb-12 flex justify-center"
+			style={`height:${height}px;width: 100%`}
+		></div>
+	{/if}
 </div>

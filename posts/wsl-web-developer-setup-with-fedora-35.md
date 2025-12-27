@@ -2,7 +2,7 @@
 date: 2021-12-08
 title: WSL Web Developer Setup with Fedora 35
 tags: ['fedora', 'linux', 'wsl']
-isPrivate: false
+is_private: false
 ---
 
 This is an updated guide on the post I did [at the start of the year]

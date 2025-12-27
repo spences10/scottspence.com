@@ -4,7 +4,7 @@ title:
   Using the GitHub GraphQL API in a serverless function - GraphQL vs
   REST
 tags: ['api', 'graphql', 'vercel']
-isPrivate: false
+is_private: false
 ---
 
 <script>

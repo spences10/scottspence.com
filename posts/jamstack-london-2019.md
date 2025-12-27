@@ -2,7 +2,7 @@
 date: 2019-07-19
 title: JAMstack_conf London 2019
 tags: ['conference', 'jamstack']
-isPrivate: false
+is_private: false
 ---
 
 <script>

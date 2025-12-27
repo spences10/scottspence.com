@@ -3,7 +3,7 @@ date: 2023-01-20
 updated: 2023-04-05
 title: Adding multiple SPF records with Vercel
 tags: ['domains', 'guide', 'resource']
-isPrivate: false
+is_private: false
 ---
 
 So, I just found that the SPF record on my Fastmail account for

@@ -1,9 +1,25 @@
 ---
 date: 2022-04-14
+updated: 2025-02-23
 title: My Zsh Config
 tags: ['zsh', 'guide']
-isPrivate: false
+is_private: false
 ---
+
+<script>
+  import { Banner } from '$lib/components'
+
+  const options = {
+    type: 'info',
+    message: `If you want to get the latest config on this with my 
+      preferred tooling then check out the post I did recently on 
+      <a href="https://scottspence.com/posts/my-updated-zsh-config-2025" 
+         target="_blank" rel="noopener noreferrer">
+      My Updated ZSH Config 2025</a> to have a super speedy shell 
+      with a very similar config to this!
+    `
+  }
+</script>
 
 I've always bundled in my Zsh config with other guides I've done in
 the past and never a stand alone post. So I'm making this now for my
@@ -13,6 +29,8 @@ I switched to Zsh around two years ago after being a long time [Fish]
 shell user. The reason for the switch? I found Zsh to be a bit simpler
 to configure. I'm by no means a power user but I like to have my own
 preferred configuration.
+
+<Banner {options} />
 
 ## Install Zsh
 
@@ -217,7 +235,7 @@ The error message looks something like this:
 (upower:185): UPower-WARNING **: 18:38:44.618: Cannot connect to upowerd: Could not connect: No such file or directory
 ```
 
-There’s a post on [Miguel Alex Cantu]’s blog about this and there’s a
+There's a post on [Miguel Alex Cantu]'s blog about this and there's a
 spaceship config option for it.
 
 ```bash
@@ -278,18 +296,18 @@ found it useful then that's a massive win for me! Thank you 🙏
 [fish]: https://fishshell.com/
 [oh my zsh]: https://ohmyz.sh/
 [installing zsh and oh my zsh on fedora]:
-  https://scottspence.com/posts/wsl-web-developer-setup-with-fedora-35#install-zsh-and-oh-my-zsh
+	https://scottspence.com/posts/wsl-web-developer-setup-with-fedora-35#install-zsh-and-oh-my-zsh
 [default `.zshrc` file]:
-  https://github.com/ohmyzsh/ohmyzsh/blob/master/templates/zshrc.zsh-template
+	https://github.com/ohmyzsh/ohmyzsh/blob/master/templates/zshrc.zsh-template
 [`zsh-syntax-highlighting`]:
-  https://github.com/zsh-users/zsh-syntax-highlighting
+	https://github.com/zsh-users/zsh-syntax-highlighting
 [`zsh-autosuggestions`]:
-  https://github.com/zsh-users/zsh-autosuggestions
+	https://github.com/zsh-users/zsh-autosuggestions
 [`spaceship`]: https://github.com/spaceship-prompt/spaceship-prompt
 [miguel alex cantu]:
-  http://blog.miguelalexcantu.com/2020/12/fixing-upower-warning-wslzshspaceship.html
+	http://blog.miguelalexcantu.com/2020/12/fixing-upower-warning-wslzshspaceship.html
 [video from gotbletu]: https://www.youtube.com/watch?v=WTTIGjZAMGg
 [zsh and oh my zsh]:
-  https://scottspence.com/posts/zsh-and-oh-my-zsh#abbreviations
+	https://scottspence.com/posts/zsh-and-oh-my-zsh#abbreviations
 [dotfiles on github]:
-  https://github.com/spences10/dotfiles/blob/main/.zsh_aliases
+	https://github.com/spences10/dotfiles/blob/main/.zsh_aliases

@@ -1,27 +1,33 @@
 <script lang="ts">
-  import { DateUpdated, Head, Small } from '$lib/components'
-  import { name, website } from '$lib/info'
-  import { og_image_url } from '$lib/utils'
+	import { name, website } from '$lib/info'
+	import { create_seo_config } from '$lib/seo'
+	import { og_image_url } from '$lib/utils'
+	import { Head } from 'svead'
 
-  export let data
-  let { Copy } = data
+	interface Props {
+		data: any
+	}
+
+	let { data }: Props = $props()
+	let Copy = $derived(data.Copy)
+
+	const seo_config = create_seo_config({
+		title: `About - ${name}`,
+		description: `Some info about ${name}`,
+		open_graph_image: og_image_url(name, `scottspence.com`, `About`),
+		url: `${website}/about`,
+		slug: 'about',
+	})
 </script>
 
-<Head
-  title={`About - ${name}`}
-  description={`Some info about ${name}`}
-  image={og_image_url(name, `scottspence.com`, `About`)}
-  url={`${website}/about`}
-/>
+<Head {seo_config} />
 
 <div class="all-prose">
-  <h1>About</h1>
-  <Small>
-    Last updated: <DateUpdated date="2021-08-14" small="true" />
-  </Small>
-  <svelte:component this={Copy} />
+	<h1>About</h1>
+
+	<Copy />
 </div>
 
-<div class="flex flex-col w-full my-10">
-  <div class="divider" />
+<div class="my-10 flex w-full flex-col">
+	<div class="divider divider-secondary"></div>
 </div>

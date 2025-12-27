@@ -2,7 +2,7 @@
 date: 2021-04-24
 title: Setting up Resources on Render
 tags: ['render', 'notes', 'resource']
-isPrivate: false
+is_private: false
 ---
 
 Render is pretty neat!

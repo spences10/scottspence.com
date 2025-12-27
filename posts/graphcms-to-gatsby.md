@@ -10,7 +10,7 @@ tags:
     'graphql',
     'graphcms',
   ]
-isPrivate: false
+is_private: false
 ---
 
 <script>

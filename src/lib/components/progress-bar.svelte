@@ -1,24 +1,33 @@
 <script lang="ts">
-  export let value = 0
-  export let max = 100
-  export let width = `w-full`
-  export let label = ``
-  let progress = ((value / max) * 100).toFixed()
+	interface Props {
+		value?: number
+		max?: number
+		width?: any
+		label?: any
+	}
+
+	let {
+		value = 0,
+		max = 100,
+		width = `w-full`,
+		label = ``,
+	}: Props = $props()
+	let progress = $derived(((value / max) * 100).toFixed())
 </script>
 
 <section class={`not-prose ${width} ${label ? `` : `-mt-4`}`}>
-  {#if label}
-    <label for="progress" class="label -mb-5 -ml-1">
-      <span class="label-text text-lg font-medium">{label}</span>
-    </label>
-  {/if}
-  <progress
-    id="progress"
-    class="progress progress-primary w-full"
-    {value}
-    {max}
-  />
-  <label for="progress" class="label -mt-4 -ml-1">
-    <span class="label-text text-lg font-medium">{progress}%</span>
-  </label>
+	{#if label}
+		<label for="progress" class="label -mb-5 -ml-1">
+			<span class="label-text text-lg font-medium">{label}</span>
+		</label>
+	{/if}
+	<progress
+		id="progress"
+		class="progress progress-primary w-full"
+		{value}
+		{max}
+	></progress>
+	<label for="progress" class="label -mt-4 -ml-1">
+		<span class="label-text text-lg font-medium">{progress}%</span>
+	</label>
 </section>

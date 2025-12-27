@@ -1,95 +1,29 @@
-import { time_to_seconds } from '$lib/utils'
-import { get_reaction_count_data } from '$lib/utils/get-reaction-count.js'
-import {
-  endOfMonth,
-  endOfYear,
-  formatISO,
-  startOfMonth,
-  startOfYear,
-  subDays,
-} from 'date-fns'
+import { get_reaction_counts } from '$lib/data/reactions.remote'
+import { get_related_posts } from '$lib/data/related-posts.remote'
 
-function get_date_bounds(date: Date, start = true): string {
-  const formatted_date = formatISO(date, { representation: 'date' })
-  return start
-    ? `${formatted_date}T00:00:00.000Z`
-    : `${formatted_date}T23:59:59.999Z`
-}
+export const load = async ({ params, url }) => {
+	const slug = params.slug
+	const pathname = url.pathname
 
-const fetch_visits = async (
-  fetch: Fetch,
-  base_path: string,
-  date_from: string,
-  date_to: string,
-  date_grouping = '',
-  cache_duration: number,
-) => {
-  const params = new URLSearchParams({
-    date_from,
-    date_to,
-    date_grouping,
-    cache_duration: cache_duration.toString(),
-  })
-  const url = `${base_path}&${params.toString()}`
+	try {
+		// Fetch both data concurrently using remote functions
+		const [reaction_counts, related_posts] = await Promise.all([
+			get_reaction_counts(pathname),
+			get_related_posts(slug),
+		])
 
-  const res = await fetch(url)
-  const { analytics } = await res.json()
-
-  if (Array.isArray(analytics)) {
-    return analytics.length > 0 ? analytics[0] : null
-  } else {
-    return analytics || null
-  }
-}
-
-export const load = async ({ fetch, params, url }) => {
-  const { slug } = params
-  const base_path = `../analytics.json?pathname=/posts/${slug}`
-
-  const now = new Date()
-  const day_start = get_date_bounds(subDays(now, 1))
-  const day_end = get_date_bounds(subDays(now, 1), false)
-
-  const month_start = get_date_bounds(startOfMonth(now))
-  const month_end = get_date_bounds(endOfMonth(now), false)
-
-  const year_start = get_date_bounds(startOfYear(now))
-  const year_end = get_date_bounds(endOfYear(now), false)
-
-  const [daily_visits, monthly_visits, yearly_visits] =
-    await Promise.all([
-      fetch_visits(
-        fetch,
-        base_path,
-        day_start,
-        day_end,
-        '',
-        time_to_seconds({ hours: 24 }),
-      ),
-      fetch_visits(
-        fetch,
-        base_path,
-        month_start,
-        month_end,
-        'month',
-        time_to_seconds({ hours: 24 }),
-      ),
-      fetch_visits(
-        fetch,
-        base_path,
-        year_start,
-        year_end,
-        'year',
-        time_to_seconds({ hours: 24 }),
-      ),
-    ])
-
-  const count = await get_reaction_count_data(url.pathname)
-
-  return {
-    daily_visits,
-    monthly_visits,
-    yearly_visits,
-    count,
-  }
+		return {
+			count: reaction_counts ? { count: reaction_counts } : null,
+			related_posts,
+		}
+	} catch (error) {
+		console.warn(
+			'Database unavailable, using fallback data for post page:',
+			error instanceof Error ? error.message : 'Unknown error',
+		)
+		return {
+			count: null,
+			related_posts: [],
+		}
+	}
 }

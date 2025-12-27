@@ -2,7 +2,7 @@
 date: 2020-01-28
 title: Upgrade Windows Subsystem Linux - Ubuntu 18.04 to Ubuntu 19.10
 tags: ['wsl', 'guide', 'ubuntu']
-isPrivate: false
+is_private: false
 ---
 
 <script>
@@ -195,7 +195,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [twitter]: https://twitter.com/spences10
 [ask me anything]: https://github.com/spences10/ama
 [this process in the past]:
-  https://scottspence.com/posts/update-wsl-from-18.04-18.10/
+  https://scottspence.com/posts/update-wsl-from-18.04-18.10
 [my comments]: https://dev.to/spences10/comment/9n19
 [do-release-upgrade]:
   https://help.ubuntu.com/lts/serverguide/installing-upgrading.html

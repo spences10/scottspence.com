@@ -2,7 +2,7 @@
 date: 2021-02-16
 title: Making Presentations with MDX
 tags: ['mdx', 'speaking', 'markdown']
-isPrivate: false
+is_private: false
 ---
 
 <script>

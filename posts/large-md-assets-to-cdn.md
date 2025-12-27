@@ -2,7 +2,7 @@
 date: 2020-04-30
 title: Moving Large Markdown Assets to a CDN
 tags: ['learning']
-isPrivate: false
+is_private: false
 ---
 
 I've spent a while today trying to bring down the size of this

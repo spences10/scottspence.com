@@ -3,7 +3,7 @@ date: 2019-09-01
 title: Why is anything intimidating?
 tags: ['habits']
 excerpt: ''
-isPrivate: false
+is_private: false
 ---
 
 Stand back everyone, I'm doing pontification! I've had a couple

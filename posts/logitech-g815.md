@@ -2,7 +2,7 @@
 date: 2020-06-20
 title: Logitech G815 Keyboard on Ubuntu - First Impressions
 tags: ['hardware', 'ubuntu']
-isPrivate: false
+is_private: false
 ---
 
 <script>
