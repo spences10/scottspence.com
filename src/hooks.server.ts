@@ -21,6 +21,15 @@ if (!building) {
 	// For existing db, CREATE TABLE IF NOT EXISTS skips, but indexes are created
 	const schema = readFileSync('src/lib/sqlite/schema.sql', 'utf-8')
 	sqlite_client.exec(schema)
+
+	// Checkpoint WAL on startup to prevent bloat
+	// TRUNCATE mode: checkpoint and truncate WAL file to zero bytes
+	try {
+		sqlite_client.exec('PRAGMA wal_checkpoint(TRUNCATE);')
+		console.log('WAL checkpoint completed on startup')
+	} catch (error) {
+		console.warn('WAL checkpoint failed:', error)
+	}
 }
 
 const sync_on_startup: Handle = async ({ event, resolve }) => {

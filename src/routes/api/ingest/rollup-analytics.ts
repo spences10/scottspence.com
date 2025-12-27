@@ -18,13 +18,13 @@ export async function rollup_analytics(): Promise<RollupResult> {
 	try {
 		// Rollup to analytics_monthly
 		// Aggregates by path and year-month
-		// Uses COALESCE for hit_count to handle old rows without hit_count
+		// COUNT(*) for views - each row is one page view
 		const monthly = client.prepare(`
 			INSERT OR REPLACE INTO analytics_monthly (pathname, year_month, views, unique_visitors, last_updated)
 			SELECT
 				path as pathname,
 				strftime('%Y-%m', created_at/1000, 'unixepoch') as year_month,
-				SUM(COALESCE(hit_count, 1)) as views,
+				COUNT(*) as views,
 				COUNT(DISTINCT visitor_hash) as unique_visitors,
 				CURRENT_TIMESTAMP as last_updated
 			FROM analytics_events
@@ -39,7 +39,7 @@ export async function rollup_analytics(): Promise<RollupResult> {
 			SELECT
 				path as pathname,
 				strftime('%Y', created_at/1000, 'unixepoch') as year,
-				SUM(COALESCE(hit_count, 1)) as views,
+				COUNT(*) as views,
 				COUNT(DISTINCT visitor_hash) as unique_visitors,
 				CURRENT_TIMESTAMP as last_updated
 			FROM analytics_events
@@ -53,7 +53,7 @@ export async function rollup_analytics(): Promise<RollupResult> {
 			INSERT OR REPLACE INTO analytics_all_time (pathname, views, unique_visitors, last_updated)
 			SELECT
 				path as pathname,
-				SUM(COALESCE(hit_count, 1)) as views,
+				COUNT(*) as views,
 				COUNT(DISTINCT visitor_hash) as unique_visitors,
 				CURRENT_TIMESTAMP as last_updated
 			FROM analytics_events

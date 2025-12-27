@@ -339,6 +339,7 @@ CREATE TABLE IF NOT EXISTS
 -- Performance indexes
 CREATE INDEX IF NOT EXISTS idx_popular_posts_date_grouping_pageviews ON popular_posts (date_grouping, pageviews DESC);
 CREATE INDEX IF NOT EXISTS idx_posts_slug ON posts (slug);
+CREATE INDEX IF NOT EXISTS idx_posts_date ON posts (date DESC);
 CREATE INDEX IF NOT EXISTS idx_monthly_pathname ON analytics_monthly (pathname);
 CREATE INDEX IF NOT EXISTS idx_monthly_year_month ON analytics_monthly (year_month);
 CREATE INDEX IF NOT EXISTS idx_yearly_pathname ON analytics_yearly (pathname);
@@ -353,6 +354,7 @@ CREATE INDEX IF NOT EXISTS idx_github_releases_published ON github_releases (pub
 CREATE INDEX IF NOT EXISTS idx_github_releases_repo ON github_releases (repo);
 
 -- Local analytics events (privacy-first, runs alongside Fathom)
+-- Simple INSERT model - uniqueness via COUNT(DISTINCT visitor_hash) in queries
 CREATE TABLE IF NOT EXISTS
   analytics_events (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -368,8 +370,6 @@ CREATE TABLE IF NOT EXISTS
     device_type TEXT,
     os TEXT,
     is_bot INTEGER DEFAULT 0,
-    hit_count INTEGER DEFAULT 1,
-    window_id TEXT,
     props TEXT,
     created_at INTEGER NOT NULL
   );
@@ -378,7 +378,6 @@ CREATE INDEX IF NOT EXISTS idx_analytics_events_visitor ON analytics_events (vis
 CREATE INDEX IF NOT EXISTS idx_analytics_events_type ON analytics_events (event_type);
 CREATE INDEX IF NOT EXISTS idx_analytics_events_created ON analytics_events (created_at);
 CREATE INDEX IF NOT EXISTS idx_analytics_events_path ON analytics_events (path);
-CREATE UNIQUE INDEX IF NOT EXISTS idx_analytics_events_dedupe ON analytics_events (visitor_hash, path, window_id) WHERE window_id IS NOT NULL;
 
 -- Enable WAL mode for better concurrent access
 PRAGMA journal_mode = WAL;

@@ -164,34 +164,22 @@ export const parse_user_agent = (
 }
 
 /**
- * Get 30-minute window ID for deduplication
- * Format: 2025-12-26T14:00 or 2025-12-26T14:30
- */
-const get_window_id = (): string => {
-	const now = new Date()
-	const minutes = now.getMinutes() < 30 ? '00' : '30'
-	return `${now.toISOString().slice(0, 13)}:${minutes}`
-}
-
-/**
- * Cached upsert statement - deduplicates same visitor+path within 30-min window
- * Increments hit_count on conflict instead of creating new row
+ * Cached insert statement for analytics events
+ * Simple INSERT - uniqueness handled by COUNT(DISTINCT visitor_hash) in queries
  * Cached to avoid re-preparing on every page view
  */
-let cached_upsert_statement: ReturnType<
+let cached_insert_statement: ReturnType<
 	typeof sqlite_client.prepare
 > | null = null
 
-const get_upsert_statement = () => {
-	if (!cached_upsert_statement) {
-		cached_upsert_statement = sqlite_client.prepare(`
-			INSERT INTO analytics_events (visitor_hash, event_type, event_name, path, referrer, user_agent, ip, country, browser, device_type, os, is_bot, hit_count, window_id, props, created_at)
-			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?)
-			ON CONFLICT (visitor_hash, path, window_id) WHERE window_id IS NOT NULL
-			DO UPDATE SET hit_count = hit_count + 1, created_at = excluded.created_at
+const get_insert_statement = () => {
+	if (!cached_insert_statement) {
+		cached_insert_statement = sqlite_client.prepare(`
+			INSERT INTO analytics_events (visitor_hash, event_type, event_name, path, referrer, user_agent, ip, country, browser, device_type, os, is_bot, props, created_at)
+			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 		`)
 	}
-	return cached_upsert_statement
+	return cached_insert_statement
 }
 
 export type AnalyticsEvent = {
@@ -212,12 +200,11 @@ export type AnalyticsEvent = {
 
 /**
  * Track an analytics event
- * Uses UPSERT to deduplicate same visitor+path within 30-min window
+ * Simple INSERT - deduplication handled by COUNT(DISTINCT visitor_hash) in queries
  */
 export const track_event = (event: AnalyticsEvent) => {
 	try {
-		const window_id = get_window_id()
-		get_upsert_statement().run(
+		get_insert_statement().run(
 			event.visitor_hash,
 			event.event_type,
 			event.event_name || null,
@@ -230,7 +217,6 @@ export const track_event = (event: AnalyticsEvent) => {
 			event.device_type || null,
 			event.os || null,
 			event.is_bot ? 1 : 0,
-			window_id,
 			event.props ? JSON.stringify(event.props) : null,
 			Date.now(),
 		)
