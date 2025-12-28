@@ -40,6 +40,37 @@ export const queue_page_view = (event: AnalyticsEvent): void => {
 export const get_queue_length = (): number => queue.length
 
 /**
+ * Get live stats from queue (no DB read)
+ * Returns recent activity from last flush window (~5s)
+ */
+export const get_live_stats = () => {
+	const human_events = queue.filter((e) => !e.is_bot)
+	const unique_visitors = new Set(
+		human_events.map((e) => e.visitor_hash),
+	).size
+	const unique_paths = new Set(human_events.map((e) => e.path)).size
+
+	return {
+		total_events: queue.length,
+		human_events: human_events.length,
+		unique_visitors,
+		unique_paths,
+	}
+}
+
+/**
+ * Get viewers for a specific path (no DB read)
+ * Useful for "X people viewing this page"
+ */
+export const get_path_viewers = (path: string): number => {
+	return new Set(
+		queue
+			.filter((e) => e.path === path && !e.is_bot)
+			.map((e) => e.visitor_hash),
+	).size
+}
+
+/**
  * Flush queued events to database
  * Drains queue and batch inserts all events
  */
