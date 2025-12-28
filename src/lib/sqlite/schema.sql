@@ -280,6 +280,38 @@ CREATE TABLE IF NOT EXISTS
     bounce_rate REAL NOT NULL
   );
 
+-- Local analytics events (batched writes, short retention)
+CREATE TABLE IF NOT EXISTS
+  analytics_events (
+    id INTEGER PRIMARY KEY,
+    visitor_hash TEXT NOT NULL,
+    event_type TEXT NOT NULL DEFAULT 'page_view',
+    event_name TEXT,
+    path TEXT NOT NULL,
+    referrer TEXT,
+    user_agent TEXT,
+    ip TEXT,
+    country TEXT,
+    browser TEXT,
+    device_type TEXT,
+    os TEXT,
+    is_bot INTEGER DEFAULT 0,
+    props TEXT,
+    created_at INTEGER NOT NULL
+  );
+
+-- Daily rollup table (permanent)
+CREATE TABLE IF NOT EXISTS
+  analytics_daily (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    pathname TEXT NOT NULL,
+    date TEXT NOT NULL,
+    views INTEGER NOT NULL DEFAULT 0,
+    unique_visitors INTEGER NOT NULL DEFAULT 0,
+    last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (pathname, date)
+  );
+
 -- GitHub Activity tables for newsletter generation
 CREATE TABLE IF NOT EXISTS
   github_commits (
@@ -351,6 +383,8 @@ CREATE INDEX IF NOT EXISTS idx_github_issues_created ON github_issues (created_a
 CREATE INDEX IF NOT EXISTS idx_github_issues_repo ON github_issues (repo);
 CREATE INDEX IF NOT EXISTS idx_github_releases_published ON github_releases (published_at DESC);
 CREATE INDEX IF NOT EXISTS idx_github_releases_repo ON github_releases (repo);
+CREATE INDEX IF NOT EXISTS idx_events_rollup ON analytics_events (created_at, path, is_bot);
+CREATE INDEX IF NOT EXISTS idx_daily_date ON analytics_daily (date);
 
 -- Enable WAL mode for better concurrent access
 PRAGMA journal_mode = WAL;

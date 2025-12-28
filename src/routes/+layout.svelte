@@ -5,6 +5,7 @@
 		PUBLIC_FATHOM_ID,
 		PUBLIC_FATHOM_URL,
 	} from '$env/static/public'
+	import { init_live_analytics } from '$lib/analytics/live-analytics.svelte'
 	import { BackToTop, Footer, Header, Nav } from '$lib/components'
 	import { popular_posts_state } from '$lib/state/popular-posts-state.svelte'
 	import { handle_mouse_move } from '$lib/utils'
@@ -23,6 +24,7 @@
 		Fathom.load(PUBLIC_FATHOM_ID, {
 			url: PUBLIC_FATHOM_URL,
 		})
+		init_live_analytics()
 	})
 
 	// Track pageview on route change

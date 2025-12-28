@@ -1,5 +1,16 @@
 import { building } from '$app/environment'
 import {
+	queue_page_view,
+	start_flush_timer,
+} from '$lib/analytics/queue'
+import {
+	anonymise_ip,
+	get_client_ip,
+	get_visitor_hash,
+	parse_user_agent,
+	should_skip_path,
+} from '$lib/analytics/utils'
+import {
 	rejected_extensions,
 	rejected_paths,
 } from '$lib/reject-patterns'
@@ -17,6 +28,17 @@ if (!building) {
 
 	// Run any pending migrations
 	run_migrations()
+
+	// Checkpoint WAL on startup to prevent bloat
+	try {
+		sqlite_client.exec('PRAGMA wal_checkpoint(TRUNCATE);')
+		console.log('[startup] WAL checkpoint completed')
+	} catch (error) {
+		console.warn('[startup] WAL checkpoint failed:', error)
+	}
+
+	// Start analytics flush timer (5s interval)
+	start_flush_timer()
 }
 
 const sync_on_startup: Handle = async ({ event, resolve }) => {
@@ -107,9 +129,64 @@ const handle_preload: Handle = async ({ event, resolve }) => {
 	})
 }
 
+const track_analytics: Handle = async ({ event, resolve }) => {
+	// Skip during build
+	if (building) {
+		return await resolve(event)
+	}
+
+	const pathname = event.url.pathname
+
+	// Skip paths that shouldn't be tracked
+	if (should_skip_path(pathname)) {
+		return await resolve(event)
+	}
+
+	// Resolve the page FIRST, then queue analytics
+	// This ensures tracking never blocks page rendering
+	const response = await resolve(event)
+
+	// Track GET requests to page routes AFTER response is ready
+	if (event.request.method === 'GET') {
+		try {
+			const ip = get_client_ip(event.request)
+			const user_agent = event.request.headers.get('user-agent')
+			const referrer = event.request.headers.get('referer')
+			const country = event.request.headers.get('cf-ipcountry')
+			const visitor_hash = get_visitor_hash(ip, user_agent)
+			const { browser, os, device_type, is_bot } =
+				parse_user_agent(user_agent)
+
+			// Queue event - does NOT block, just array push
+			queue_page_view({
+				visitor_hash,
+				event_type: 'page_view',
+				event_name: null,
+				path: pathname,
+				referrer,
+				user_agent,
+				ip: anonymise_ip(ip),
+				country,
+				browser,
+				os,
+				device_type,
+				is_bot,
+				props: null,
+				created_at: Date.now(),
+			})
+		} catch (error) {
+			// Analytics should never break the site
+			console.error('[analytics] Queue failed:', error)
+		}
+	}
+
+	return response
+}
+
 export const handle = sequence(
 	sync_on_startup,
 	reject_suspicious_requests,
+	track_analytics,
 	handle_redirects,
 	theme,
 	handle_preload,

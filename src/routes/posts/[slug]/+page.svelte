@@ -10,7 +10,6 @@
 
 	import {
 		ButtButt,
-		CurrentVisitorsData,
 		IsPrivateBanner,
 		NewsletterSignup,
 		PopularPosts,
@@ -20,6 +19,7 @@
 		TableOfContents,
 		TextSelectionPopup,
 		UpdatedBanner,
+		ViewingNow,
 	} from '$lib/components'
 	import {
 		create_schema_org_config,
@@ -29,7 +29,6 @@
 	import Modal from './modal.svelte'
 
 	import { website } from '$lib/info'
-	import type { VisitorEntry } from '$lib/stores'
 
 	let { data } = $props()
 
@@ -109,17 +108,6 @@
 		})
 	})
 
-	let current_visitor_data: VisitorEntry | undefined
-
-	// TODO: Fix this shit
-	// $: {
-	//   if ($visitors_store && $visitors_store.visitor_data) {
-	//     current_visitor_data = $visitors_store.visitor_data.find(
-	//       visitor => visitor.pathname === slug,
-	//     )
-	//   }
-	// }
-
 	const handle_scroll = () => {
 		show_table_of_contents = update_toc_visibility(end_of_copy, -200)
 	}
@@ -176,7 +164,6 @@
 		}
 	}
 
-	let show_current_visitor_data = $state(false)
 	let modal = $state() as typeof Modal.prototype
 
 	const show_modal = async (
@@ -243,27 +230,7 @@
 			{/if}
 		</div>
 	</div>
-	{#if current_visitor_data}
-		<!-- svelte-ignore a11y_no_static_element_interactions -->
-		<span
-			onmouseenter={() => (show_current_visitor_data = true)}
-			onmouseleave={() => (show_current_visitor_data = false)}
-			class="inline-block cursor-pointer text-sm"
-		>
-			<p>
-				{current_visitor_data.recent_visitors}
-				{current_visitor_data.recent_visitors > 1
-					? `people`
-					: `person`} viewing this page live
-			</p>
-			{#if show_current_visitor_data}
-				<CurrentVisitorsData />
-			{/if}
-			<p class="text-sm">
-				Read to the end of the post for more stats
-			</p>
-		</span>
-	{/if}
+	<ViewingNow path={page.url.pathname} />
 
 	{#if data.meta.is_private}
 		<IsPrivateBanner />
