@@ -9,10 +9,10 @@ Self-hosted analytics using SQLite to replace Fathom API dependency.
 - **Database**: SQLite with better-sqlite3 (synchronous)
 - **Persistent container** - no serverless cold starts
 
-## Status: v2 Implemented (Dec 28, 2025)
+## Status: v3 Heartbeat (Dec 28, 2025)
 
-Batched writes implementation complete. Load tested with 3200
-concurrent requests, 0 failures.
+Heartbeat-based live visitors. Batched writes for analytics events.
+Load tested with 3200 concurrent requests, 0 failures.
 
 ### What's done
 
@@ -22,8 +22,10 @@ concurrent requests, 0 failures.
 - [x] WAL checkpoint on startup
 - [x] `track_analytics` hook (non-blocking)
 - [x] `rollup_analytics` + `cleanup_analytics` ingest tasks
-- [x] Live visitors from queue (no DB read)
-- [x] `ViewingNow` + `LiveVisitors` components using remote functions
+- [x] Heartbeat-based live visitors (replaces queue-based approach)
+- [x] Active sessions map with 15s TTL
+- [x] Shared client state (single heartbeat interval)
+- [x] `ViewingNow` + `LiveVisitors` components using shared state
 
 ### What's left
 
@@ -32,6 +34,7 @@ concurrent requests, 0 failures.
 - [ ] Stats page UI using rollup tables
 - [ ] Remove old Fathom-based stats (Phase 3)
 - [ ] Remove old `visitors_store` system
+- [ ] Delete unused queue read functions
 
 ---
 
@@ -138,7 +141,7 @@ Simple INSERT + COUNT(DISTINCT) at read time achieves same result.
 6. **Aggressive data retention** - Delete raw events after 7 days,
    keep only rollups.
 
-## Architecture for v2
+## Architecture for v3
 
 ### Write path (non-blocking)
 
@@ -149,7 +152,28 @@ Page view → Memory queue → Batch insert every 5s
                          ↓
               Daily rollup job → analytics_daily/monthly/yearly
                          ↓
-              Cleanup job → DELETE events > 7 days + VACUUM
+              Cleanup job → DELETE events > 2 days + VACUUM
+```
+
+### Live visitors (heartbeat)
+
+```
+Client                          Server
+  │                               │
+  ├─► init_live_analytics()       │
+  │   (onMount in +layout)        │
+  │                               │
+  ├─► send_heartbeat ────────────►├─► active_sessions.set(id, path)
+  │   every 5s                    │   (in-memory Map)
+  │                               │
+  │◄─ { unique_visitors,    ◄─────┤
+  │     path_viewers }            │
+  │                               │
+  ├─► end_session ───────────────►├─► active_sessions.delete(id)
+  │   (beforeunload)              │
+  │                               │
+  │   Session expires after 15s   │
+  │   of no heartbeat             │
 ```
 
 ### Read path (cached)
@@ -165,7 +189,8 @@ Stats page → In-memory cache (5min TTL) → Rollup tables
 1. Never query `analytics_events` in request path - only rollup tables
 2. Never write synchronously in request hook
 3. Use rollup tables for all reads
-4. Aggressive TTLs - analytics doesn't need real-time accuracy
+4. Live visitors from heartbeat (not write queue)
+5. Single shared heartbeat interval per client
 
 ## Tables
 
@@ -286,14 +311,24 @@ won't fix architecture issues alone.
 
 ## Related files
 
+### Analytics core
+
 - `src/hooks.server.ts` - tracking enabled, WAL checkpoint
-- `src/lib/analytics/queue.ts` - in-memory queue + 5s flush
+- `src/lib/analytics/queue.ts` - in-memory write queue + 5s flush
 - `src/lib/analytics/utils.ts` - visitor hash, UA parsing
-- `src/lib/analytics/live-analytics.remote.ts` - remote functions
+- `src/lib/sqlite/schema.sql` - table definitions
+- `migrations/003_add_analytics_events.sql` - schema migration
+
+### Live visitors (heartbeat)
+
+- `src/lib/analytics/active-sessions.ts` - server-side session map
+- `src/lib/analytics/live-analytics.svelte.ts` - shared client state
+- `src/lib/analytics/live-analytics.remote.ts` - heartbeat commands
 - `src/lib/components/viewing-now.svelte` - per-page viewer count
 - `src/lib/components/live-visitors.svelte` - total live visitors
-- `src/lib/sqlite/schema.sql` - table definitions
+- `src/routes/+layout.svelte` - init heartbeat on mount
+
+### Rollup/cleanup
+
 - `src/routes/api/ingest/rollup-analytics.ts` - daily rollup job
 - `src/routes/api/ingest/cleanup-analytics.ts` - 2-day retention
-  cleanup
-- `migrations/003_add_analytics_events.sql` - schema migration
