@@ -1,5 +1,7 @@
 # Svelte Patterns
 
+<!-- cspell:ignore rollups -->
+
 Learnings from building features in this codebase.
 
 ## Remote Functions + Polling (No Flicker)

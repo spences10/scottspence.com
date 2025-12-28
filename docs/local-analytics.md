@@ -1,5 +1,7 @@
 # Local Analytics Implementation
 
+<!-- cspell:ignore rollups beforeunload TTFB dedup -->
+
 Self-hosted analytics using SQLite to replace Fathom API dependency.
 
 ## Infrastructure
