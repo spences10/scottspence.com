@@ -11,10 +11,11 @@ Self-hosted analytics using SQLite to replace Fathom API dependency.
 - **Database**: SQLite with better-sqlite3 (synchronous)
 - **Persistent container** - no serverless cold starts
 
-## Status: v3 Heartbeat (Dec 28, 2025)
+## Status: v3.1 Non-blocking (Dec 28, 2025)
 
 Heartbeat-based live visitors. Batched writes for analytics events.
-Load tested with 3200 concurrent requests, 0 failures.
+Non-blocking page loads - popular posts fetch via remote function.
+Load tested with 100 concurrent requests, 0 failures.
 
 ### What's done
 
@@ -28,6 +29,8 @@ Load tested with 3200 concurrent requests, 0 failures.
 - [x] Active sessions map with 15s TTL
 - [x] Shared client state (single heartbeat interval)
 - [x] `ViewingNow` + `LiveVisitors` components using shared state
+- [x] Popular posts via remote function (non-blocking)
+- [x] Removed blocking `+layout.server.ts` DB queries
 
 ### What's left
 
@@ -35,8 +38,6 @@ Load tested with 3200 concurrent requests, 0 failures.
 - [ ] Test rollup job with real data
 - [ ] Stats page UI using rollup tables
 - [ ] Remove old Fathom-based stats (Phase 3)
-- [ ] Remove old `visitors_store` system
-- [ ] Delete unused queue read functions
 
 ---
 
@@ -329,6 +330,14 @@ won't fix architecture issues alone.
 - `src/lib/components/viewing-now.svelte` - per-page viewer count
 - `src/lib/components/live-visitors.svelte` - total live visitors
 - `src/routes/+layout.svelte` - init heartbeat on mount
+
+### Popular posts (non-blocking)
+
+- `src/lib/data/popular-posts.remote.ts` - remote function for DB
+  queries
+- `src/lib/data/popular-posts.helpers.ts` - testable query logic
+- `src/lib/components/popular-posts.svelte` - fetches on mount
+- `src/lib/components/footer.svelte` - fetches on mount
 
 ### Rollup/cleanup
 

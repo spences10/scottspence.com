@@ -1,4 +1,4 @@
-import { env } from '$env/dynamic/private'
+import { ANALYTICS_SALT } from '$env/static/private'
 import crypto from 'node:crypto'
 
 /**
@@ -51,7 +51,7 @@ export const get_visitor_hash = (
 	user_agent: string | null,
 ): string => {
 	const today = new Date().toISOString().split('T')[0]
-	const salt = env.ANALYTICS_SALT || 'default-salt'
+	const salt = ANALYTICS_SALT || 'default-salt'
 	const data = `${ip || 'unknown'}|${user_agent || 'unknown'}|${today}|${salt}`
 	return crypto
 		.createHash('sha256')
