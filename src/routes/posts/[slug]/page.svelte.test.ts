@@ -29,6 +29,16 @@ vi.mock(
 	}),
 )
 
+vi.mock('$lib/data/popular-posts.remote', () => ({
+	get_popular_posts: vi.fn(() =>
+		Promise.resolve({
+			popular_posts_daily: [],
+			popular_posts_monthly: [],
+			popular_posts_yearly: [],
+		}),
+	),
+}))
+
 describe('PostPage Component', () => {
 	const defaultProps = {
 		data: {

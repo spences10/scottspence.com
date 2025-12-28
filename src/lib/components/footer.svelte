@@ -1,21 +1,30 @@
 <script lang="ts">
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
+	import { get_popular_posts } from '$lib/data/popular-posts.remote'
 	import { Eye } from '$lib/icons'
 	import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
-	import { popular_posts_state } from '$lib/state/popular-posts-state.svelte'
 	import { number_crunch } from '$lib/utils'
 	import * as Fathom from 'fathom-client'
+	import { onMount } from 'svelte'
 	import LiveVisitors from './live-visitors.svelte'
 
 	type PopularPostsPeriod = keyof PopularPosts
-	let selected_period: PopularPostsPeriod = 'popular_posts_yearly'
+	let selected_period: PopularPostsPeriod = $state(
+		'popular_posts_yearly',
+	)
 
-	let posts: PopularPost[] = $state([])
+	let popular_posts: PopularPosts = $state({
+		popular_posts_daily: [],
+		popular_posts_monthly: [],
+		popular_posts_yearly: [],
+	})
 
-	$effect(() => {
-		posts = popular_posts_state.data[
-			selected_period as PopularPostsPeriod
-		].slice(0, 6)
+	let posts: PopularPost[] = $derived(
+		popular_posts[selected_period].slice(0, 6),
+	)
+
+	onMount(async () => {
+		popular_posts = await get_popular_posts()
 	})
 </script>
 
@@ -29,7 +38,7 @@
 				<a
 					data-sveltekit-reload
 					class="link link-hover text-primary-content"
-					href={$page.url.origin + post.pathname}
+					href={page.url.origin + post.pathname}
 				>
 					{post.title}
 				</a>

@@ -1,20 +1,27 @@
 <script lang="ts">
 	import { page } from '$app/state'
-	import { popular_posts_state } from '$lib/state/popular-posts-state.svelte'
+	import { get_popular_posts } from '$lib/data/popular-posts.remote'
 	import { number_crunch } from '$lib/utils'
 	import * as Fathom from 'fathom-client'
+	import { onMount } from 'svelte'
 
 	type PopularPostsPeriod = keyof PopularPosts
 	let selected_period: PopularPostsPeriod = $state(
 		'popular_posts_yearly',
 	)
 
-	let posts: PopularPost[] = $state([])
+	let popular_posts: PopularPosts = $state({
+		popular_posts_daily: [],
+		popular_posts_monthly: [],
+		popular_posts_yearly: [],
+	})
 
-	$effect.pre(() => {
-		posts = popular_posts_state.data[
-			selected_period as PopularPostsPeriod
-		].slice(0, 4)
+	let posts: PopularPost[] = $derived(
+		popular_posts[selected_period].slice(0, 4),
+	)
+
+	onMount(async () => {
+		popular_posts = await get_popular_posts()
 	})
 </script>
 

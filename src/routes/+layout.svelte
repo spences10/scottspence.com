@@ -7,18 +7,13 @@
 	} from '$env/static/public'
 	import { init_live_analytics } from '$lib/analytics/live-analytics.svelte'
 	import { BackToTop, Footer, Header, Nav } from '$lib/components'
-	import { popular_posts_state } from '$lib/state/popular-posts-state.svelte'
 	import { handle_mouse_move } from '$lib/utils'
 	import * as Fathom from 'fathom-client'
 	import { onMount } from 'svelte'
 	import '../app.css'
 	import '../prism.css'
 
-	let { data, children } = $props()
-
-	$effect(() => {
-		popular_posts_state.set(data?.popular_posts)
-	})
+	let { children } = $props()
 
 	onMount(() => {
 		Fathom.load(PUBLIC_FATHOM_ID, {
