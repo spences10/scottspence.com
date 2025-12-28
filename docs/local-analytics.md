@@ -9,10 +9,36 @@ Self-hosted analytics using SQLite to replace Fathom API dependency.
 - **Database**: SQLite with better-sqlite3 (synchronous)
 - **Persistent container** - no serverless cold starts
 
-## Status: Paused
+## Status: v2 Implemented (Dec 28, 2025)
 
-Initial implementation caused performance issues under load. This doc
-captures learnings and requirements for v2.
+Batched writes implementation complete. Load tested with 3200
+concurrent requests, 0 failures.
+
+### What's done
+
+- [x] `analytics_events` table with batched writes (5s flush)
+- [x] `analytics_daily` rollup table
+- [x] In-memory queue in `src/lib/analytics/queue.ts`
+- [x] WAL checkpoint on startup
+- [x] `track_analytics` hook (non-blocking)
+- [x] `rollup_analytics` + `cleanup_analytics` ingest tasks
+- [x] Live visitors from queue (no DB read)
+- [x] `ViewingNow` + `LiveVisitors` components using remote functions
+
+### What's left
+
+- [ ] Set up cron jobs in Coolify for rollup/cleanup
+- [ ] Test rollup job with real data
+- [ ] Stats page UI using rollup tables
+- [ ] Remove old Fathom-based stats (Phase 3)
+- [ ] Remove old `visitors_store` system
+
+---
+
+## v1 Learnings (Dec 2025)
+
+Initial implementation caused performance issues under load. See below
+for what went wrong and how v2 fixed it.
 
 ## Learnings from v1 (Dec 2025)
 
@@ -260,7 +286,14 @@ won't fix architecture issues alone.
 
 ## Related files
 
-- `src/hooks.server.ts` - request hooks (tracking disabled here)
-- `src/lib/cache/server-cache.ts` - bypass flags
+- `src/hooks.server.ts` - tracking enabled, WAL checkpoint
+- `src/lib/analytics/queue.ts` - in-memory queue + 5s flush
+- `src/lib/analytics/utils.ts` - visitor hash, UA parsing
+- `src/lib/analytics/live-analytics.remote.ts` - remote functions
+- `src/lib/components/viewing-now.svelte` - per-page viewer count
+- `src/lib/components/live-visitors.svelte` - total live visitors
 - `src/lib/sqlite/schema.sql` - table definitions
-- `src/routes/api/ingest/` - cron job tasks
+- `src/routes/api/ingest/rollup-analytics.ts` - daily rollup job
+- `src/routes/api/ingest/cleanup-analytics.ts` - 2-day retention
+  cleanup
+- `migrations/003_add_analytics_events.sql` - schema migration
