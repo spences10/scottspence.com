@@ -2,6 +2,7 @@ import { env } from '$env/dynamic/private'
 import { json } from '@sveltejs/kit'
 import { backfill_github_activity } from './backfill-github-activity'
 import { backup_database } from './backup-database'
+import { cleanup_analytics } from './cleanup-analytics'
 import { daily_github_activity } from './daily-github-activity'
 import { export_training_data } from './export-training-data'
 import { fetch_github_activity } from './fetch-github-activity'
@@ -10,6 +11,7 @@ import { index_now } from './index-now'
 import { newsletter_send } from './newsletter-send'
 import { pull_database } from './pull-database'
 import { restore_database } from './restore-database'
+import { rollup_analytics } from './rollup-analytics'
 import { send_newsletter_reminder } from './send-newsletter-reminder'
 import { update_embeddings } from './update-embeddings'
 import { update_popular_posts } from './update-popular-posts'
@@ -92,6 +94,8 @@ type TaskKey =
 	| 'daily_github_activity'
 	| 'generate_newsletter'
 	| 'send_newsletter_reminder'
+	| 'rollup_analytics'
+	| 'cleanup_analytics'
 
 // Define the type for tasks object
 interface TaskType {
@@ -171,6 +175,14 @@ const tasks: TaskType = {
 	},
 	send_newsletter_reminder: {
 		function: send_newsletter_reminder,
+		expects_fetch: false,
+	},
+	rollup_analytics: {
+		function: rollup_analytics,
+		expects_fetch: false,
+	},
+	cleanup_analytics: {
+		function: cleanup_analytics,
 		expects_fetch: false,
 	},
 }
