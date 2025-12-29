@@ -225,11 +225,25 @@ CREATE INDEX idx_events_rollup ON analytics_events(created_at, path, is_bot);
 
 ## Cron jobs
 
-| Job                  | Schedule    | Purpose                                         |
-| -------------------- | ----------- | ----------------------------------------------- |
-| `rollup_analytics`   | Daily 00:05 | Aggregate yesterday's events into rollup tables |
-| `flag_bot_behaviour` | Daily 00:10 | Mark suspicious patterns as bots                |
-| `cleanup_analytics`  | Daily 00:15 | Delete events >7 days, VACUUM                   |
+| Job                 | Schedule    | Purpose                                              |
+| ------------------- | ----------- | ---------------------------------------------------- |
+| `rollup_analytics`  | Daily 03:05 | Flag bots + aggregate yesterday's events into rollup |
+| `cleanup_analytics` | Daily 03:15 | Delete events >7 days, VACUUM                        |
+
+### Bot detection thresholds
+
+Behaviour-based bot detection runs as part of `rollup_analytics`
+(before aggregation).
+
+Configurable in `src/routes/api/ingest/flag-bot-behaviour.ts`:
+
+| Threshold                    | Default | Purpose                               |
+| ---------------------------- | ------- | ------------------------------------- |
+| `MAX_HITS_PER_PATH_PER_DAY`  | 50      | Scraper hitting same page repeatedly  |
+| `MAX_HITS_TOTAL_PER_DAY`     | 200     | Crawler visiting many pages           |
+| `MAX_HITS_PER_PATH_PER_HOUR` | 20      | Burst detection (not yet implemented) |
+
+Adjust based on observed traffic patterns.
 
 ## Migration plan
 
@@ -341,5 +355,7 @@ won't fix architecture issues alone.
 
 ### Rollup/cleanup
 
+- `src/routes/api/ingest/flag-bot-behaviour.ts` - behaviour-based bot
+  detection
 - `src/routes/api/ingest/rollup-analytics.ts` - daily rollup job
 - `src/routes/api/ingest/cleanup-analytics.ts` - 2-day retention

@@ -1,10 +1,15 @@
 import { sqlite_client } from '$lib/sqlite/client'
+import {
+	BOT_THRESHOLDS,
+	flag_bot_behaviour,
+} from './flag-bot-behaviour'
 
 /**
  * Daily rollup job to aggregate analytics_events into summary tables
- * Run via cron at 00:05 daily
+ * Run via cron at 03:05 daily
  *
  * Flow:
+ * 0. Flag behaviour-based bots (scrapers with spoofed UAs)
  * 1. Aggregate yesterday's events → analytics_daily
  * 2. Reaggregate affected month → analytics_monthly
  * 3. Reaggregate affected year → analytics_yearly
@@ -27,6 +32,15 @@ export const rollup_analytics = async () => {
 
 	console.log(
 		`[rollup] Processing ${date_str} (${start_ts} - ${end_ts})`,
+	)
+
+	// Step 0: Flag behaviour-based bots before aggregating
+	console.log(
+		`[rollup] Flagging bots (thresholds: ${BOT_THRESHOLDS.MAX_HITS_PER_PATH_PER_DAY}/path, ${BOT_THRESHOLDS.MAX_HITS_TOTAL_PER_DAY}/total)`,
+	)
+	const bot_result = await flag_bot_behaviour()
+	console.log(
+		`[rollup] Flagged ${bot_result.events_flagged} events from ${bot_result.visitors_flagged} visitors as bots`,
 	)
 
 	// Step 1: Rollup yesterday's events into analytics_daily
@@ -100,6 +114,8 @@ export const rollup_analytics = async () => {
 	return {
 		success: true,
 		message: `Rolled up ${date_str}`,
+		bots_flagged: bot_result.events_flagged,
+		visitors_flagged: bot_result.visitors_flagged,
 		daily: daily_result.changes,
 		monthly: monthly_result.changes,
 		yearly: yearly_result.changes,
