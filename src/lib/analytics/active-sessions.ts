@@ -2,12 +2,24 @@
  * Server-side active sessions tracking
  * Tracks who's currently viewing what via heartbeats
  * Separate from write queue - this is for real-time "who's here" data
+ *
+ * Extended to include country/browser/device for consistent live stats
+ * (all data from single source, no DB queries needed)
  */
 
 type ActiveSession = {
 	visitor_hash: string
 	path: string
 	last_seen: number
+	country?: string
+	browser?: string
+	device_type?: string
+}
+
+type SessionMetadata = {
+	country?: string
+	browser?: string
+	device_type?: string
 }
 
 // In-memory map of active sessions
@@ -20,15 +32,22 @@ const SESSION_TTL_MS = 15_000
 /**
  * Record a heartbeat from a visitor
  * Called every 5s from client
+ * Now includes metadata for consistent live stats
  */
 export const heartbeat = (
 	visitor_hash: string,
 	path: string,
+	metadata?: SessionMetadata,
 ): void => {
+	const existing = active_sessions.get(visitor_hash)
 	active_sessions.set(visitor_hash, {
 		visitor_hash,
 		path,
 		last_seen: Date.now(),
+		// Preserve existing metadata if not provided (page navigation within session)
+		country: metadata?.country ?? existing?.country,
+		browser: metadata?.browser ?? existing?.browser,
+		device_type: metadata?.device_type ?? existing?.device_type,
 	})
 }
 
@@ -67,6 +86,77 @@ export const get_path_viewer_count = (path: string): number => {
 export const get_all_sessions = (): ActiveSession[] => {
 	cleanup_stale_sessions()
 	return Array.from(active_sessions.values())
+}
+
+/**
+ * Get aggregated stats from active sessions
+ * All data from single in-memory source = consistent
+ */
+export const get_session_breakdown = () => {
+	cleanup_stale_sessions()
+	const sessions = Array.from(active_sessions.values())
+
+	// Countries
+	const country_counts = new Map<string, number>()
+	for (const s of sessions) {
+		if (s.country) {
+			country_counts.set(
+				s.country,
+				(country_counts.get(s.country) || 0) + 1,
+			)
+		}
+	}
+	const countries = Array.from(country_counts.entries())
+		.map(([country, visitors]) => ({ country, visitors }))
+		.sort((a, b) => b.visitors - a.visitors)
+		.slice(0, 10)
+
+	// Browsers
+	const browser_counts = new Map<string, number>()
+	for (const s of sessions) {
+		if (s.browser) {
+			browser_counts.set(
+				s.browser,
+				(browser_counts.get(s.browser) || 0) + 1,
+			)
+		}
+	}
+	const browsers = Array.from(browser_counts.entries())
+		.map(([browser, visitors]) => ({ browser, visitors }))
+		.sort((a, b) => b.visitors - a.visitors)
+		.slice(0, 5)
+
+	// Devices
+	const device_counts = new Map<string, number>()
+	for (const s of sessions) {
+		if (s.device_type) {
+			device_counts.set(
+				s.device_type,
+				(device_counts.get(s.device_type) || 0) + 1,
+			)
+		}
+	}
+	const devices = Array.from(device_counts.entries())
+		.map(([device_type, visitors]) => ({ device_type, visitors }))
+		.sort((a, b) => b.visitors - a.visitors)
+
+	// Paths
+	const path_counts = new Map<string, number>()
+	for (const s of sessions) {
+		path_counts.set(s.path, (path_counts.get(s.path) || 0) + 1)
+	}
+	const top_paths = Array.from(path_counts.entries())
+		.map(([path, visitors]) => ({ path, views: visitors, visitors }))
+		.sort((a, b) => b.visitors - a.visitors)
+		.slice(0, 10)
+
+	return {
+		active_visitors: sessions.length,
+		countries,
+		browsers,
+		devices,
+		top_paths,
+	}
 }
 
 /**

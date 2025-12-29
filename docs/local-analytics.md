@@ -338,9 +338,12 @@ won't fix architecture issues alone.
 
 ### Live visitors (heartbeat)
 
-- `src/lib/analytics/active-sessions.ts` - server-side session map
+- `src/lib/analytics/active-sessions.ts` - server-side session map +
+  aggregation
 - `src/lib/analytics/live-analytics.svelte.ts` - shared client state
 - `src/lib/analytics/live-analytics.remote.ts` - heartbeat commands
+- `src/lib/analytics/live-analytics.helpers.ts` - testable pure
+  functions
 - `src/lib/components/viewing-now.svelte` - per-page viewer count
 - `src/lib/components/live-visitors.svelte` - total live visitors
 - `src/routes/+layout.svelte` - init heartbeat on mount
@@ -364,7 +367,8 @@ won't fix architecture issues alone.
 
 - `src/routes/stats/+page.svelte` - live dashboard + historical data
 - `src/lib/analytics/live-analytics.remote.ts` -
-  `get_live_stats_breakdown()` query
+  `get_live_stats_breakdown()` (in-memory only)
+- `src/lib/analytics/live-analytics.helpers.ts` - formatting logic
 
 ## Stats Page Implementation (Dec 29, 2025)
 
@@ -380,69 +384,44 @@ Live dashboard with:
 
 Historical data below (unchanged - uses rollup tables).
 
-### Trade-off: DB reads on /stats page
+### Consistent live stats via extended active-sessions
 
-The `get_live_stats_breakdown()` query reads from `analytics_events`
-for country/browser/device breakdown. This technically violates the
-"never query analytics_events in request path" principle.
+Live stats now use in-memory sessions ONLY - no DB queries. This
+ensures all numbers are consistent (same source, same moment in time).
 
-**Why it's acceptable:**
+**How it works:**
 
-| Factor          | Mitigation                                          |
-| --------------- | --------------------------------------------------- |
-| Query frequency | Only on /stats page, not every request              |
-| Data volume     | Filtered to last 5 mins (`created_at > ?`)          |
-| Index coverage  | Uses `idx_events_rollup (created_at, path, is_bot)` |
-| Traffic         | /stats is low-traffic admin page                    |
-| Blocking        | Client-side fetch via `onMount`, not SSR blocking   |
+1. Heartbeat extracts country/browser/device from request headers
+2. Metadata stored in `ActiveSession` alongside path/visitor_hash
+3. `get_live_stats_breakdown()` aggregates from in-memory Map
+4. No mixing of DB queries (5 min window) with heartbeat data (15s
+   TTL)
 
-**Alternatives considered:**
+**ActiveSession type:**
 
-1. **Extend active-sessions** - Store country/browser in memory map.
-   Would require passing from hook to heartbeat. Purist "zero DB"
-   approach but adds complexity.
-
-2. **Cache with TTL** - Cache breakdown results for 30-60s. Reduces DB
-   hits but adds staleness.
-
-3. **Accept DB read** (current) - Simple, indexed, low-traffic page.
-   Monitor if issues arise.
-
-### Queries in get_live_stats_breakdown()
-
-```sql
--- Countries (last 5 mins, non-bots)
-SELECT country, COUNT(DISTINCT visitor_hash) as visitors
-FROM analytics_events
-WHERE created_at > ? AND is_bot = 0 AND country IS NOT NULL
-GROUP BY country ORDER BY visitors DESC LIMIT 10
-
--- Browsers
-SELECT browser, COUNT(DISTINCT visitor_hash) as visitors
-FROM analytics_events
-WHERE created_at > ? AND is_bot = 0 AND browser IS NOT NULL
-GROUP BY browser ORDER BY visitors DESC LIMIT 5
-
--- Devices
-SELECT device_type, COUNT(DISTINCT visitor_hash) as visitors
-FROM analytics_events
-WHERE created_at > ? AND is_bot = 0 AND device_type IS NOT NULL
-GROUP BY device_type ORDER BY visitors DESC
-
--- Top paths
-SELECT path, COUNT(*) as views, COUNT(DISTINCT visitor_hash) as visitors
-FROM analytics_events
-WHERE created_at > ? AND is_bot = 0
-GROUP BY path ORDER BY visitors DESC LIMIT 10
+```ts
+type ActiveSession = {
+	visitor_hash: string
+	path: string
+	last_seen: number
+	country?: string // from cf-ipcountry header
+	browser?: string // from UA parsing
+	device_type?: string // from UA parsing
+}
 ```
 
-All queries use the `idx_events_rollup` index on
-`(created_at, path, is_bot)`.
+**Benefits:**
+
+- All live numbers from single source = consistent
+- Zero DB queries for live dashboard
+- No cache staleness issues
+- Simpler code (removed 4 SQL queries)
 
 ### Future improvements
 
 If /stats page causes issues under load:
 
-1. Add TTL cache (30s) around `get_live_stats_breakdown()`
-2. Move country/browser to in-memory tracking
-3. Create real-time rollup table updated by flush timer
+1. ~~Move country/browser to in-memory tracking~~ ✅ Done (Dec
+   29, 2025)
+2. Add TTL cache (30s) if aggregation becomes slow with many sessions
+3. Create real-time rollup table updated by flush timer (if needed)
