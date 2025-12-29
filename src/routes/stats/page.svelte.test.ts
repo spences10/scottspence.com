@@ -1,14 +1,7 @@
-import { page } from 'vitest/browser'
 import { flushSync } from 'svelte'
-import {
-	afterEach,
-	beforeEach,
-	describe,
-	expect,
-	test,
-	vi,
-} from 'vitest'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 import { render } from 'vitest-browser-svelte'
+import { page } from 'vitest/browser'
 import StatsPage from './+page.svelte'
 
 // Mock the icons
@@ -66,32 +59,18 @@ describe('Historical Stats Page Component', () => {
 	})
 
 	describe('Initial Rendering', () => {
-		test('should render page title and description', async () => {
+		test('should render page title', async () => {
 			render(StatsPage, { data: mockData })
 
 			const title = page.getByRole('heading', { level: 1 })
-			await expect
-				.element(title)
-				.toHaveTextContent('Historical Site Statistics')
-
-			const description = page.getByText(
-				'This page shows historical analytics data for posts from previous years.',
-			)
-			await expect.element(description).toBeInTheDocument()
+			await expect.element(title).toHaveTextContent('Site Stats')
 		})
 
-		test('should render info alert about current year data', async () => {
+		test('should render historical data section divider', async () => {
 			render(StatsPage, { data: mockData })
 
-			const alertHeading = page.getByRole('heading', { name: 'Looking for current year data?' })
-			await expect
-				.element(alertHeading)
-				.toHaveTextContent('Looking for current year data?')
-
-			const alertText = page.getByText(
-				'Visit any post and click the "✨ View the stats for this post ✨" button',
-			)
-			await expect.element(alertText).toBeInTheDocument()
+			const divider = page.getByText('Historical Data')
+			await expect.element(divider).toBeInTheDocument()
 		})
 
 		test('should render period selection dropdown', async () => {
@@ -278,9 +257,7 @@ describe('Historical Stats Page Component', () => {
 			flushSync()
 
 			// Should show all-time data
-			await expect
-				.element(page.getByText('1K'))
-				.toBeInTheDocument()
+			await expect.element(page.getByText('1K')).toBeInTheDocument()
 			await expect.element(page.getByText('730')).toBeInTheDocument()
 		})
 	})

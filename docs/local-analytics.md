@@ -359,3 +359,90 @@ won't fix architecture issues alone.
   detection
 - `src/routes/api/ingest/rollup-analytics.ts` - daily rollup job
 - `src/routes/api/ingest/cleanup-analytics.ts` - 2-day retention
+
+### Stats page
+
+- `src/routes/stats/+page.svelte` - live dashboard + historical data
+- `src/lib/analytics/live-analytics.remote.ts` -
+  `get_live_stats_breakdown()` query
+
+## Stats Page Implementation (Dec 29, 2025)
+
+### What it shows
+
+Live dashboard with:
+
+- Active visitors (from in-memory sessions)
+- Recent visitors (last 5 mins from DB)
+- Countries with flag emojis
+- Top active pages
+- Browser/device breakdown
+
+Historical data below (unchanged - uses rollup tables).
+
+### Trade-off: DB reads on /stats page
+
+The `get_live_stats_breakdown()` query reads from `analytics_events`
+for country/browser/device breakdown. This technically violates the
+"never query analytics_events in request path" principle.
+
+**Why it's acceptable:**
+
+| Factor          | Mitigation                                          |
+| --------------- | --------------------------------------------------- |
+| Query frequency | Only on /stats page, not every request              |
+| Data volume     | Filtered to last 5 mins (`created_at > ?`)          |
+| Index coverage  | Uses `idx_events_rollup (created_at, path, is_bot)` |
+| Traffic         | /stats is low-traffic admin page                    |
+| Blocking        | Client-side fetch via `onMount`, not SSR blocking   |
+
+**Alternatives considered:**
+
+1. **Extend active-sessions** - Store country/browser in memory map.
+   Would require passing from hook to heartbeat. Purist "zero DB"
+   approach but adds complexity.
+
+2. **Cache with TTL** - Cache breakdown results for 30-60s. Reduces DB
+   hits but adds staleness.
+
+3. **Accept DB read** (current) - Simple, indexed, low-traffic page.
+   Monitor if issues arise.
+
+### Queries in get_live_stats_breakdown()
+
+```sql
+-- Countries (last 5 mins, non-bots)
+SELECT country, COUNT(DISTINCT visitor_hash) as visitors
+FROM analytics_events
+WHERE created_at > ? AND is_bot = 0 AND country IS NOT NULL
+GROUP BY country ORDER BY visitors DESC LIMIT 10
+
+-- Browsers
+SELECT browser, COUNT(DISTINCT visitor_hash) as visitors
+FROM analytics_events
+WHERE created_at > ? AND is_bot = 0 AND browser IS NOT NULL
+GROUP BY browser ORDER BY visitors DESC LIMIT 5
+
+-- Devices
+SELECT device_type, COUNT(DISTINCT visitor_hash) as visitors
+FROM analytics_events
+WHERE created_at > ? AND is_bot = 0 AND device_type IS NOT NULL
+GROUP BY device_type ORDER BY visitors DESC
+
+-- Top paths
+SELECT path, COUNT(*) as views, COUNT(DISTINCT visitor_hash) as visitors
+FROM analytics_events
+WHERE created_at > ? AND is_bot = 0
+GROUP BY path ORDER BY visitors DESC LIMIT 10
+```
+
+All queries use the `idx_events_rollup` index on
+`(created_at, path, is_bot)`.
+
+### Future improvements
+
+If /stats page causes issues under load:
+
+1. Add TTL cache (30s) around `get_live_stats_breakdown()`
+2. Move country/browser to in-memory tracking
+3. Create real-time rollup table updated by flush timer

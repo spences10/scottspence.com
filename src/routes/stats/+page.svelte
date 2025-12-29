@@ -1,9 +1,71 @@
 <script lang="ts">
+	import { get_live_stats_breakdown } from '$lib/analytics/live-analytics.remote'
 	import { InformationCircle } from '$lib/icons'
 	import { name, website } from '$lib/info'
 	import { create_seo_config } from '$lib/seo'
 	import { number_crunch, og_image_url } from '$lib/utils'
 	import { Head } from 'svead'
+	import { onMount } from 'svelte'
+
+	// Live stats state
+	type LiveStats = {
+		active_visitors: number
+		recent_visitors: number
+		active_pages: { path: string; viewers: number }[]
+		countries: { country: string; visitors: number }[]
+		browsers: { browser: string; visitors: number }[]
+		devices: { device_type: string; visitors: number }[]
+		top_paths: { path: string; views: number; visitors: number }[]
+	}
+
+	let live_stats = $state<LiveStats | null>(null)
+	let live_loading = $state(true)
+
+	const fetch_live_data = async () => {
+		try {
+			live_stats = await get_live_stats_breakdown()
+		} catch (e) {
+			console.error('[stats] Failed to fetch live data:', e)
+		} finally {
+			live_loading = false
+		}
+	}
+
+	const format_path = (path: string) => {
+		if (path === '/') return 'Home'
+		if (path.startsWith('/posts/')) {
+			return path.replace('/posts/', '').replaceAll('-', ' ')
+		}
+		return path.slice(1).replaceAll('-', ' ').replaceAll('/', ' / ')
+	}
+
+	// Country code to flag emoji
+	const country_flag = (code: string) => {
+		if (!code || code.length !== 2) return '🌍'
+		const offset = 127397
+		return String.fromCodePoint(
+			...code
+				.toUpperCase()
+				.split('')
+				.map((c) => c.charCodeAt(0) + offset),
+		)
+	}
+
+	// Device emoji
+	const device_icon = (type: string) => {
+		const icons: Record<string, string> = {
+			desktop: '🖥️',
+			mobile: '📱',
+			tablet: '📱',
+		}
+		return icons[type?.toLowerCase()] ?? '💻'
+	}
+
+	onMount(() => {
+		fetch_live_data()
+		const interval = setInterval(fetch_live_data, 10000) // 10s refresh
+		return () => clearInterval(interval)
+	})
 
 	interface Stats {
 		views: number
@@ -272,28 +334,184 @@
 	</div>
 {/if}
 
-{#if site_stats.length > 0}
-	<div class="prose prose-xl mx-auto mb-6">
-		<h1>Historical Site Statistics</h1>
-		<p>
-			This page shows historical analytics data for posts from
-			previous years.
-		</p>
+<!-- Page header with live indicator -->
+<div class="mb-8 flex items-center justify-between">
+	<h1 class="text-3xl font-bold">Site Stats</h1>
+	{#if !live_loading && live_stats}
+		<div class="flex items-center gap-2">
+			<div class="inline-grid *:[grid-area:1/1]">
+				<div
+					class="status status-primary h-3 w-3 animate-ping [animation-duration:2s]"
+				></div>
+				<div class="status status-primary h-3 w-3"></div>
+			</div>
+			<span class="text-primary text-lg font-bold tabular-nums">
+				{live_stats.active_visitors}
+			</span>
+			<span class="text-base-content/60 text-sm">now</span>
+		</div>
+	{/if}
+</div>
+
+<!-- Live dashboard grid -->
+{#if live_loading}
+	<div class="flex items-center justify-center py-12">
+		<div class="loading loading-spinner loading-lg"></div>
 	</div>
+{:else if live_stats}
+	<!-- Stats cards row -->
+	<div
+		class="stats stats-vertical border-secondary md:stats-horizontal mb-8 w-full border shadow-lg"
+	>
+		<div class="stat">
+			<div class="stat-title">Active Now</div>
+			<div class="stat-value text-primary">
+				{live_stats.active_visitors}
+			</div>
+			<div class="stat-desc">Current visitors</div>
+		</div>
+		<div class="stat">
+			<div class="stat-title">Last 5 mins</div>
+			<div class="stat-value text-secondary">
+				{live_stats.recent_visitors}
+			</div>
+			<div class="stat-desc">Unique visitors</div>
+		</div>
+		<div class="stat">
+			<div class="stat-title">Countries</div>
+			<div class="stat-value text-accent">
+				{live_stats.countries.length}
+			</div>
+			<div class="stat-desc">Represented</div>
+		</div>
+		<div class="stat">
+			<div class="stat-title">Active Pages</div>
+			<div class="stat-value text-info">
+				{live_stats.top_paths.length}
+			</div>
+			<div class="stat-desc">Being viewed</div>
+		</div>
+	</div>
+
+	<!-- Main grid: Countries + Active Pages -->
+	<div class="mb-8 grid gap-6 lg:grid-cols-2">
+		<!-- Countries -->
+		<div class="card bg-base-200 shadow-lg">
+			<div class="card-body">
+				<h2 class="card-title text-lg">Visitors by Country</h2>
+				{#if live_stats.countries.length > 0}
+					<ul class="space-y-2">
+						{#each live_stats.countries as c}
+							<li class="flex items-center justify-between">
+								<span class="flex items-center gap-2">
+									<span class="text-xl"
+										>{country_flag(c.country)}</span
+									>
+									<span class="uppercase">{c.country}</span>
+								</span>
+								<span class="badge badge-ghost tabular-nums">
+									{c.visitors}
+								</span>
+							</li>
+						{/each}
+					</ul>
+				{:else}
+					<p class="text-base-content/50 text-sm">No data yet</p>
+				{/if}
+			</div>
+		</div>
+
+		<!-- Active Pages -->
+		<div class="card bg-base-200 shadow-lg">
+			<div class="card-body">
+				<h2 class="card-title text-lg">Top Pages</h2>
+				{#if live_stats.top_paths.length > 0}
+					<ul class="space-y-2">
+						{#each live_stats.top_paths.slice(0, 8) as page}
+							<li class="flex items-center justify-between gap-2">
+								<a
+									href={page.path}
+									class="link-hover link min-w-0 flex-1 truncate text-sm capitalize"
+								>
+									{format_path(page.path)}
+								</a>
+								<span
+									class="badge badge-primary badge-sm tabular-nums"
+								>
+									{page.visitors}
+								</span>
+							</li>
+						{/each}
+					</ul>
+				{:else}
+					<p class="text-base-content/50 text-sm">No activity</p>
+				{/if}
+			</div>
+		</div>
+	</div>
+
+	<!-- Secondary grid: Browsers + Devices -->
+	<div class="mb-8 grid gap-6 md:grid-cols-2">
+		<!-- Browsers -->
+		<div class="card bg-base-200 shadow-lg">
+			<div class="card-body py-4">
+				<h2 class="card-title text-base">Browsers</h2>
+				{#if live_stats.browsers.length > 0}
+					<div class="flex flex-wrap gap-2">
+						{#each live_stats.browsers as b}
+							<div class="badge badge-outline gap-1">
+								{b.browser}
+								<span class="text-primary font-bold"
+									>{b.visitors}</span
+								>
+							</div>
+						{/each}
+					</div>
+				{:else}
+					<p class="text-base-content/50 text-sm">No data</p>
+				{/if}
+			</div>
+		</div>
+
+		<!-- Devices -->
+		<div class="card bg-base-200 shadow-lg">
+			<div class="card-body py-4">
+				<h2 class="card-title text-base">Devices</h2>
+				{#if live_stats.devices.length > 0}
+					<div class="flex flex-wrap gap-2">
+						{#each live_stats.devices as d}
+							<div class="badge badge-outline gap-1">
+								<span>{device_icon(d.device_type)}</span>
+								{d.device_type}
+								<span class="text-primary font-bold"
+									>{d.visitors}</span
+								>
+							</div>
+						{/each}
+					</div>
+				{:else}
+					<p class="text-base-content/50 text-sm">No data</p>
+				{/if}
+			</div>
+		</div>
+	</div>
+
+	<p class="text-base-content/50 mb-8 text-center text-xs">
+		Live data refreshes every 10 seconds
+	</p>
+{/if}
+
+<!-- Historical section -->
+{#if site_stats.length > 0}
+	<div class="divider mb-8">Historical Data</div>
 
 	<div class="alert alert-info mb-6">
 		<InformationCircle />
 		<div class="prose prose-md text-info-content">
-			<h3 class="text-info-content font-bold">
-				Looking for current year data?
-			</h3>
-			<div>
-				Visit any post and click the
-				<strong class="text-info-content">
-					"✨ View the stats for this post ✨"
-				</strong>
-				button, or check the site footer for current analytics!
-			</div>
+			<p>
+				Historical analytics from previous years. Current year data
+				available per-post.
+			</p>
 		</div>
 	</div>
 
