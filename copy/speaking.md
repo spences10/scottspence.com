@@ -15,7 +15,7 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2024-10-31" small="true" />
+  Last updated: <DateUpdated date="2025-12-30" small="true" />
 </Small>
 
 If you want me to talk about using Svelte and SvelteKit or anything
@@ -28,6 +28,14 @@ Here's the list of talks, podcasts and live streams I have done
 recently.
 
 ## 2025
+
+### JSMonthly London - December 2025
+
+Refactoring 370 Files in 11 Hours (thanks Claude)
+
+<!-- cSpell:ignore GTjLEvsMvhQ -->
+
+<YouTube youTubeId='GTjLEvsMvhQ' skipTo={{ h: 0, m: 1, s: 10 }} />
 
 ### Svelte Society London - January 2025
 
