@@ -365,24 +365,35 @@ won't fix architecture issues alone.
 
 ### Stats page
 
-- `src/routes/stats/+page.svelte` - live dashboard + historical data
+- `src/routes/stats/+page.svelte` - live dashboard + period +
+  historical
 - `src/lib/analytics/live-analytics.remote.ts` -
   `get_live_stats_breakdown()` (in-memory only)
 - `src/lib/analytics/live-analytics.helpers.ts` - formatting logic
+- `src/lib/analytics/period-stats.remote.ts` - `get_period_stats()`
+  (DB queries by time period)
+- `src/lib/analytics/period-stats.helpers.ts` - time boundaries,
+  formatting
 
-## Stats Page Implementation (Dec 29, 2025)
+## Stats Page Implementation (Dec 30, 2025)
 
 ### What it shows
 
-Live dashboard with:
+**Live dashboard** (in-memory heartbeat):
 
 - Active visitors (from in-memory sessions)
-- Recent visitors (last 5 mins from DB)
 - Countries with flag emojis
 - Top active pages
 - Browser/device breakdown
 
-Historical data below (unchanged - uses rollup tables).
+**Period stats** (queries `analytics_events`):
+
+- Today, Yesterday, 7 days, 30 days, 12 months
+- Views + unique visitors
+- Top pages, countries, browsers, devices
+- Queries filtered by `created_at` timestamp
+
+**Historical data** (uses rollup tables) - unchanged.
 
 ### Consistent live stats via extended active-sessions
 

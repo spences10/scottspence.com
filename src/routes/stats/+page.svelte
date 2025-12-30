@@ -1,5 +1,10 @@
 <script lang="ts">
 	import { get_live_stats_breakdown } from '$lib/analytics/live-analytics.remote'
+	import {
+		get_period_stats,
+		type PeriodStats,
+		type StatsPeriod,
+	} from '$lib/analytics/period-stats.remote'
 	import { InformationCircle } from '$lib/icons'
 	import { name, website } from '$lib/info'
 	import { create_seo_config } from '$lib/seo'
@@ -20,6 +25,11 @@
 
 	let live_stats = $state<LiveStats | null>(null)
 	let live_loading = $state(true)
+
+	// Period stats state
+	let period_stats = $state<PeriodStats | null>(null)
+	let period_loading = $state(false)
+	let selected_stats_period = $state<StatsPeriod>('today')
 
 	const fetch_live_data = async () => {
 		try {
@@ -60,6 +70,31 @@
 		}
 		return icons[type?.toLowerCase()] ?? '💻'
 	}
+
+	// Period button labels
+	const period_labels: Record<StatsPeriod, string> = {
+		today: 'Today',
+		yesterday: 'Yesterday',
+		week: '7 days',
+		month: '30 days',
+		year: '12 months',
+	}
+
+	const fetch_period_data = async (period: StatsPeriod) => {
+		period_loading = true
+		try {
+			period_stats = await get_period_stats({ period })
+		} catch (e) {
+			console.error('[stats] Failed to fetch period data:', e)
+		} finally {
+			period_loading = false
+		}
+	}
+
+	// Reactive: fetch when period changes
+	$effect(() => {
+		fetch_period_data(selected_stats_period)
+	})
 
 	onMount(() => {
 		fetch_live_data()
@@ -404,9 +439,9 @@
 						{#each live_stats.countries as c}
 							<li class="flex items-center justify-between">
 								<span class="flex items-center gap-2">
-									<span class="text-xl"
-										>{country_flag(c.country)}</span
-									>
+									<span class="text-xl">
+										{country_flag(c.country)}
+									</span>
 									<span class="uppercase">{c.country}</span>
 								</span>
 								<span class="badge badge-ghost tabular-nums">
@@ -461,9 +496,9 @@
 						{#each live_stats.browsers as b}
 							<div class="badge badge-outline gap-1">
 								{b.browser}
-								<span class="text-primary font-bold"
-									>{b.visitors}</span
-								>
+								<span class="text-primary font-bold">
+									{b.visitors}
+								</span>
 							</div>
 						{/each}
 					</div>
@@ -483,9 +518,9 @@
 							<div class="badge badge-outline gap-1">
 								<span>{device_icon(d.device_type)}</span>
 								{d.device_type}
-								<span class="text-primary font-bold"
-									>{d.visitors}</span
-								>
+								<span class="text-primary font-bold">
+									{d.visitors}
+								</span>
 							</div>
 						{/each}
 					</div>
@@ -499,6 +534,163 @@
 	<p class="text-base-content/50 mb-8 text-center text-xs">
 		Live data refreshes every 10 seconds
 	</p>
+{/if}
+
+<!-- Period Stats Section -->
+<div class="divider mb-8">Period Stats</div>
+
+<div class="mb-4 flex flex-wrap items-center gap-2">
+	{#each ['today', 'yesterday', 'week', 'month', 'year'] as period (period)}
+		<button
+			class="btn btn-sm {selected_stats_period === period
+				? 'btn-primary'
+				: 'btn-ghost'}"
+			onclick={() => (selected_stats_period = period as StatsPeriod)}
+		>
+			{period_labels[period as StatsPeriod]}
+		</button>
+	{/each}
+</div>
+
+{#if period_loading}
+	<div class="flex items-center justify-center py-8">
+		<div class="loading loading-spinner loading-md"></div>
+	</div>
+{:else if period_stats}
+	<!-- Period summary cards -->
+	<div
+		class="stats stats-vertical border-secondary md:stats-horizontal mb-8 w-full border shadow-lg"
+	>
+		<div class="stat">
+			<div class="stat-title">Views</div>
+			<div class="stat-value text-primary">
+				{number_crunch(period_stats.views)}
+			</div>
+			<div class="stat-desc">{period_stats.period_label}</div>
+		</div>
+		<div class="stat">
+			<div class="stat-title">Unique Visitors</div>
+			<div class="stat-value text-secondary">
+				{number_crunch(period_stats.unique_visitors)}
+			</div>
+			<div class="stat-desc">{period_stats.period_label}</div>
+		</div>
+		<div class="stat">
+			<div class="stat-title">Countries</div>
+			<div class="stat-value text-accent">
+				{period_stats.countries.length}
+			</div>
+			<div class="stat-desc">Represented</div>
+		</div>
+		<div class="stat">
+			<div class="stat-title">Pages</div>
+			<div class="stat-value text-info">
+				{period_stats.top_pages.length}
+			</div>
+			<div class="stat-desc">With traffic</div>
+		</div>
+	</div>
+
+	<!-- Period grids -->
+	<div class="mb-8 grid gap-6 lg:grid-cols-2">
+		<!-- Countries -->
+		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+			<div class="card-body min-w-0">
+				<h2 class="card-title text-lg">Top Countries</h2>
+				{#if period_stats.countries.length > 0}
+					<ul class="space-y-2">
+						{#each period_stats.countries as c}
+							<li class="flex items-center justify-between">
+								<span class="flex items-center gap-2">
+									<span class="text-xl">
+										{country_flag(c.country)}
+									</span>
+									<span class="uppercase">{c.country}</span>
+								</span>
+								<span class="badge badge-ghost tabular-nums">
+									{c.visitors}
+								</span>
+							</li>
+						{/each}
+					</ul>
+				{:else}
+					<p class="text-base-content/50 text-sm">No data</p>
+				{/if}
+			</div>
+		</div>
+
+		<!-- Top Pages -->
+		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+			<div class="card-body min-w-0">
+				<h2 class="card-title text-lg">Top Pages</h2>
+				{#if period_stats.top_pages.length > 0}
+					<ul class="space-y-2">
+						{#each period_stats.top_pages.slice(0, 8) as page}
+							<li class="flex items-center justify-between gap-2">
+								<a
+									href={page.path}
+									class="link-hover link min-w-0 flex-1 truncate text-sm capitalize"
+								>
+									{format_path(page.path)}
+								</a>
+								<span
+									class="badge badge-primary badge-sm tabular-nums"
+								>
+									{page.visitors}
+								</span>
+							</li>
+						{/each}
+					</ul>
+				{:else}
+					<p class="text-base-content/50 text-sm">No data</p>
+				{/if}
+			</div>
+		</div>
+	</div>
+
+	<!-- Browsers + Devices -->
+	<div class="mb-8 grid gap-6 md:grid-cols-2">
+		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+			<div class="card-body min-w-0 py-4">
+				<h2 class="card-title text-base">Browsers</h2>
+				{#if period_stats.browsers.length > 0}
+					<div class="flex flex-wrap gap-2">
+						{#each period_stats.browsers as b}
+							<div class="badge badge-outline gap-1">
+								{b.browser}
+								<span class="text-primary font-bold">
+									{b.visitors}
+								</span>
+							</div>
+						{/each}
+					</div>
+				{:else}
+					<p class="text-base-content/50 text-sm">No data</p>
+				{/if}
+			</div>
+		</div>
+
+		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+			<div class="card-body min-w-0 py-4">
+				<h2 class="card-title text-base">Devices</h2>
+				{#if period_stats.devices.length > 0}
+					<div class="flex flex-wrap gap-2">
+						{#each period_stats.devices as d}
+							<div class="badge badge-outline gap-1">
+								<span>{device_icon(d.device_type)}</span>
+								{d.device_type}
+								<span class="text-primary font-bold">
+									{d.visitors}
+								</span>
+							</div>
+						{/each}
+					</div>
+				{:else}
+					<p class="text-base-content/50 text-sm">No data</p>
+				{/if}
+			</div>
+		</div>
+	</div>
 {/if}
 
 <!-- Historical section -->
