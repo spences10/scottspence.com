@@ -396,8 +396,8 @@
 	<!-- Main grid: Countries + Active Pages -->
 	<div class="mb-8 grid gap-6 lg:grid-cols-2">
 		<!-- Countries -->
-		<div class="card bg-base-200 shadow-lg">
-			<div class="card-body">
+		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+			<div class="card-body min-w-0">
 				<h2 class="card-title text-lg">Visitors by Country</h2>
 				{#if live_stats.countries.length > 0}
 					<ul class="space-y-2">
@@ -422,8 +422,8 @@
 		</div>
 
 		<!-- Active Pages -->
-		<div class="card bg-base-200 shadow-lg">
-			<div class="card-body">
+		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+			<div class="card-body min-w-0">
 				<h2 class="card-title text-lg">Top Pages</h2>
 				{#if live_stats.top_paths.length > 0}
 					<ul class="space-y-2">
@@ -453,8 +453,8 @@
 	<!-- Secondary grid: Browsers + Devices -->
 	<div class="mb-8 grid gap-6 md:grid-cols-2">
 		<!-- Browsers -->
-		<div class="card bg-base-200 shadow-lg">
-			<div class="card-body py-4">
+		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+			<div class="card-body min-w-0 py-4">
 				<h2 class="card-title text-base">Browsers</h2>
 				{#if live_stats.browsers.length > 0}
 					<div class="flex flex-wrap gap-2">
@@ -474,8 +474,8 @@
 		</div>
 
 		<!-- Devices -->
-		<div class="card bg-base-200 shadow-lg">
-			<div class="card-body py-4">
+		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+			<div class="card-body min-w-0 py-4">
 				<h2 class="card-title text-base">Devices</h2>
 				{#if live_stats.devices.length > 0}
 					<div class="flex flex-wrap gap-2">
