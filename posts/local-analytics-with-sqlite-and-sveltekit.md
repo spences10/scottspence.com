@@ -5,6 +5,8 @@ tags: ['sveltekit', 'sql', 'sqlite', 'analytics', 'performance']
 is_private: false
 ---
 
+<!-- cspell:ignore Checkpointing -->
+
 I've been using Fathom Analytics for years and it's great, but I
 wanted something more integrated. Something that could power live
 visitor counts and popular posts without external API calls. This is
