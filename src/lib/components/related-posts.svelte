@@ -29,7 +29,7 @@
 					class="h-full"
 				>
 					<aside
-						class="card h-full rounded-box border border-secondary p-5 font-bold shadow-lg transition hover:text-accent"
+						class="card rounded-box border-secondary hover:text-accent h-full border p-5 font-bold shadow-lg transition"
 					>
 						<h3 class="mb-5 text-2xl">
 							{post.title}

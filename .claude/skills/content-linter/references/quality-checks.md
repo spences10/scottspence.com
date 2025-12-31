@@ -35,6 +35,7 @@ npm run cspell
 ```
 
 Review the output and categorize errors:
+
 - **Misspellings** - Fix immediately
 - **British/American conflicts** - Convert to British
 - **Project-specific terms** - May be in dictionary already
@@ -43,6 +44,7 @@ Review the output and categorize errors:
 ### Step 2: Fix Identified Issues
 
 Common issues to address:
+
 - en-GB/en-US spelling conflicts
 - Typos and misspellings
 - Formatting inconsistencies
@@ -51,6 +53,7 @@ Common issues to address:
 ### Step 3: Verify Against Known Words
 
 The project has a cspell configuration with approved words. Check:
+
 - `cspell.json` - Main configuration
 - Project-specific dictionaries
 

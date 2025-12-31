@@ -26,7 +26,8 @@
 
 ## Code Examples
 
-- [ ] All code blocks have language identifiers (e.g., \`\`\`typescript)
+- [ ] All code blocks have language identifiers (e.g.,
+      \`\`\`typescript)
 - [ ] Code is tested and working
 - [ ] File paths use backticks: \`src/lib/utils.ts\`
 - [ ] Code examples support the narrative
@@ -43,7 +44,8 @@
 
 ## Spelling & Language
 
-- [ ] Uses en-GB spelling: colour, organisation, behaviour, favour, etc.
+- [ ] Uses en-GB spelling: colour, organisation, behaviour, favour,
+      etc.
 - [ ] No en-US spellings: color, organization, behavior
 - [ ] Grammar and punctuation are correct
 - [ ] No typos or spelling errors

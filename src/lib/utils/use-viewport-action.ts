@@ -6,10 +6,10 @@ function ensure_intersection_observer() {
 	if (intersectionObserver) return
 
 	intersectionObserver = new IntersectionObserver(
-		entries => {
+		(entries) => {
 			entries
 				.filter(({ isIntersecting }) => isIntersecting)
-				.forEach(entry => {
+				.forEach((entry) => {
 					entry.target.dispatchEvent(
 						new CustomEvent('enter_viewport'),
 					)

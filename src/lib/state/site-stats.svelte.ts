@@ -205,7 +205,7 @@ class SiteStatsState {
 			// Keep existing data on error - don't clear it
 		} finally {
 			this.loading = false
-					}
+		}
 	}
 }
 
@@ -337,7 +337,7 @@ export const get_site_stats = async (): Promise<SiteStatsData> => {
 			current_year: new Date().getFullYear().toString(),
 		}
 	} finally {
-			}
+	}
 }
 
 // Export types for use in components

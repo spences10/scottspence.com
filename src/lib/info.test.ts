@@ -32,7 +32,7 @@ describe('info', () => {
 	})
 
 	test('each social link should have a title and link', () => {
-		SOCIAL_LINKS.forEach(link => {
+		SOCIAL_LINKS.forEach((link) => {
 			expect(link.title).toBeDefined()
 			expect(typeof link.title).toBe('string')
 			expect(link.link).toBeDefined()
@@ -57,7 +57,7 @@ describe('info', () => {
 	})
 
 	test('each person should have a name and link', () => {
-		PEOPLE.forEach(person => {
+		PEOPLE.forEach((person) => {
 			expect(person.name).toBeDefined()
 			expect(typeof person.name).toBe('string')
 			expect(person.link).toBeDefined()

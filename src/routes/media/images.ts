@@ -21,7 +21,7 @@ const file_names = [
 ]
 
 // Generate the images array
-export const images = file_names.map(fileName => ({
+export const images = file_names.map((fileName) => ({
 	url: `${base_url}/${public_id}/${fileName}`,
 	square: `${base_url}/${square_params}/${public_id}/${fileName}`,
 	thumb: `${base_url}/${thumb_params}/${public_id}/${fileName}`,

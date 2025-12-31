@@ -43,7 +43,7 @@ test('get_post_tags returns correct tags and posts_by_tag', async () => {
 	)
 
 	// Check if posts without tags are excluded
-	Object.values(result.posts_by_tag).forEach(posts => {
+	Object.values(result.posts_by_tag).forEach((posts) => {
 		expect(posts).not.toContainEqual(
 			expect.objectContaining({ title: 'Post 5' }),
 		)

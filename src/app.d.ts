@@ -9,10 +9,10 @@ declare global {
 		// interface Platform {}
 		interface PageState {
 			selected: {
-				analytics: any;
-			};
+				analytics: any
+			}
 		}
 	}
 }
 
-export {};
+export {}

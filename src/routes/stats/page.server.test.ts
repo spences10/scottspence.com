@@ -44,9 +44,8 @@ describe('Stats Page Server Logic', () => {
 
 	describe('Historical Data Filtering', () => {
 		test('should exclude current year (2025) from yearly stats', async () => {
-			const { get_from_cache } = await import(
-				'$lib/cache/server-cache'
-			)
+			const { get_from_cache } =
+				await import('$lib/cache/server-cache')
 			const { sqlite_client } = await import('$lib/sqlite/client')
 			;(get_from_cache as any).mockReturnValue(null) // No cache
 
@@ -117,9 +116,8 @@ describe('Stats Page Server Logic', () => {
 		})
 
 		test('should exclude current year (2025) from monthly stats', async () => {
-			const { get_from_cache } = await import(
-				'$lib/cache/server-cache'
-			)
+			const { get_from_cache } =
+				await import('$lib/cache/server-cache')
 			const { sqlite_client } = await import('$lib/sqlite/client')
 			;(get_from_cache as any).mockReturnValue(null) // No cache
 			;(sqlite_client.execute as any).mockResolvedValueOnce({
@@ -168,9 +166,8 @@ describe('Stats Page Server Logic', () => {
 		})
 
 		test('should calculate correct all-time stats excluding current year', async () => {
-			const { get_from_cache } = await import(
-				'$lib/cache/server-cache'
-			)
+			const { get_from_cache } =
+				await import('$lib/cache/server-cache')
 			const { sqlite_client } = await import('$lib/sqlite/client')
 			;(get_from_cache as any).mockReturnValue(null) // No cache
 			;(sqlite_client.execute as any).mockResolvedValueOnce({
@@ -226,9 +223,8 @@ describe('Stats Page Server Logic', () => {
 
 	describe('Error Handling', () => {
 		test('should handle database connection errors gracefully', async () => {
-			const { get_from_cache } = await import(
-				'$lib/cache/server-cache'
-			)
+			const { get_from_cache } =
+				await import('$lib/cache/server-cache')
 			const { sqlite_client } = await import('$lib/sqlite/client')
 			;(get_from_cache as any).mockReturnValue(null) // No cache
 			;(sqlite_client.execute as any).mockRejectedValueOnce(
@@ -242,9 +238,8 @@ describe('Stats Page Server Logic', () => {
 		})
 
 		test('should handle empty database results', async () => {
-			const { get_from_cache } = await import(
-				'$lib/cache/server-cache'
-			)
+			const { get_from_cache } =
+				await import('$lib/cache/server-cache')
 			const { sqlite_client } = await import('$lib/sqlite/client')
 			;(get_from_cache as any).mockReturnValue(null) // No cache
 			;(sqlite_client.execute as any).mockResolvedValueOnce({
@@ -260,9 +255,8 @@ describe('Stats Page Server Logic', () => {
 
 	describe('Data Aggregation', () => {
 		test('should correctly aggregate stats for posts with multiple years', async () => {
-			const { get_from_cache } = await import(
-				'$lib/cache/server-cache'
-			)
+			const { get_from_cache } =
+				await import('$lib/cache/server-cache')
 			const { sqlite_client } = await import('$lib/sqlite/client')
 			;(get_from_cache as any).mockReturnValue(null) // No cache
 			;(sqlite_client.execute as any).mockResolvedValueOnce({

@@ -1,6 +1,5 @@
-import { og_image_url } from './og-image-url-build'
-import { object_to_query_params } from './object-to-query-params'
 import { describe, expect, it } from 'vitest'
+import { og_image_url } from './og-image-url-build'
 
 describe('og_image_url', () => {
 	it('should build URL with correct base and encoded parameters', () => {
@@ -18,7 +17,7 @@ describe('og_image_url', () => {
 
 	it('should use default website when empty', () => {
 		const result = og_image_url('Author', '', 'Title')
-		
+
 		expect(result).toContain('website=scottspence.com')
 	})
 })

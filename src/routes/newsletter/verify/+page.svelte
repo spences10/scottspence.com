@@ -22,7 +22,7 @@
 <!-- Success/Error Alert Banner -->
 {#if data.status === 'success'}
 	<div class="alert alert-success mb-8" role="alert">
-		<SuccessCircle/>
+		<SuccessCircle />
 		<span>{data.message}</span>
 	</div>
 {:else}
@@ -39,7 +39,7 @@
 		<div class="space-y-6">
 			{#each published_newsletters as newsletter (newsletter.slug)}
 				<article
-					class="card border border-primary bg-base-100 p-6 transition hover:bg-base-200"
+					class="card border-primary bg-base-100 hover:bg-base-200 border p-6 transition"
 				>
 					<a href={`/newsletter/${newsletter.slug}`}>
 						<h3 class="mb-2 text-2xl font-bold">

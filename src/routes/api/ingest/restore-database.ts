@@ -28,9 +28,10 @@ export const restore_database = async (backup_filename?: string) => {
 		}
 
 		// Use specified backup or latest one
-		const backup_to_restore = backup_filename && backup_files.includes(backup_filename)
-			? backup_filename
-			: backup_files[0]
+		const backup_to_restore =
+			backup_filename && backup_files.includes(backup_filename)
+				? backup_filename
+				: backup_files[0]
 
 		const backup_path = path.join(backups_dir, backup_to_restore)
 
@@ -40,7 +41,10 @@ export const restore_database = async (backup_filename?: string) => {
 		const hour = now.getHours().toString().padStart(2, '0')
 		const minute = now.getMinutes().toString().padStart(2, '0')
 		const current_backup_name = `site-data-pre-restore-${date}-${hour}${minute}.db`
-		const current_backup_path = path.join(backups_dir, current_backup_name)
+		const current_backup_path = path.join(
+			backups_dir,
+			current_backup_name,
+		)
 
 		try {
 			const current_db = new Database(db_path, { readonly: true })
@@ -50,7 +54,10 @@ export const restore_database = async (backup_filename?: string) => {
 				current_db.close()
 			}
 		} catch (error) {
-			console.warn('Could not backup current database (may not exist):', error)
+			console.warn(
+				'Could not backup current database (may not exist):',
+				error,
+			)
 		}
 
 		// Restore from backup using SQLite backup API

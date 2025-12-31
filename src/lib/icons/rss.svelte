@@ -13,7 +13,7 @@
 	viewBox="0 0 24 24"
 	{height}
 	{width}
-	class="hover:text-primary-accent block fill-current text-primary transition"
+	class="hover:text-primary-accent text-primary block fill-current transition"
 >
 	<path
 		d="M5 3a1 1 0 000 2c5.523 0 10 4.477 10 10a1 1 0 102 0C17 8.373 11.627 3 5 3z"

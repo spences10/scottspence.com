@@ -12,7 +12,7 @@
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	aria-hidden="true"
 	role="img"
-	class="inline-block fill-current text-primary-content"
+	class="text-primary-content inline-block fill-current"
 	{height}
 	{width}
 	preserveAspectRatio="xMidYMid meet"

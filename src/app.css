@@ -75,12 +75,12 @@
 }
 
 /* Plugin configurations */
-@plugin "@tailwindcss/typography";
-@plugin "daisyui" {
+@plugin '@tailwindcss/typography';
+@plugin 'daisyui' {
 	themes: all;
 }
 
-@plugin "daisyui/theme" {
+@plugin 'daisyui/theme' {
 	name: 'wireframe';
 	--color-primary: oklch(32.37% 0.177 264.06); /* Navy */
 	--color-primary-content: oklch(100% 0 0); /* White */
@@ -108,17 +108,17 @@
 	font-family: 'Comic Neue';
 }
 
-@plugin "daisyui/theme" {
+@plugin 'daisyui/theme' {
 	name: 'corporate';
 	font-family: 'Manrope Variable';
 }
 
-@plugin "daisyui/theme" {
+@plugin 'daisyui/theme' {
 	name: 'cyberpunk';
 	font-family: 'Victor Mono Variable';
 }
 
-@plugin "daisyui/theme" {
+@plugin 'daisyui/theme' {
 	name: 'tealix';
 	--color-base-100: oklch(27% 0.046 192.524);
 	--color-base-200: oklch(38% 0.063 188.416);

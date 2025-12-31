@@ -30,7 +30,7 @@ async function generate_url_list() {
 			.filter(({ is_private }) => !is_private)
 			.map(({ slug }) => `${website}/posts/${slug}`),
 		...pages.map(({ page }) => `${website}/${page}`),
-		...tags.map(tag => `${website}/tags/${slugify(tag)}`),
+		...tags.map((tag) => `${website}/tags/${slugify(tag)}`),
 	]
 
 	return urls

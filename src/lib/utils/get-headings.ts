@@ -5,7 +5,7 @@ export const get_headings = async (headings = 'h2') => {
 
 	// Clear previous headings
 	const previous_headings = document.querySelectorAll('.toc-heading')
-	previous_headings.forEach(heading => heading.remove())
+	previous_headings.forEach((heading) => heading.remove())
 
 	const heading_elements = document.querySelectorAll(headings)
 	return Array.from(heading_elements).map((element, index) => {

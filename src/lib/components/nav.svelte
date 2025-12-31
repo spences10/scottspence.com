@@ -50,7 +50,9 @@
 </nav>
 
 <!-- Mobile Navigation with DaisyUI v5 dock -->
-<div class="fixed right-0 bottom-0 left-0 z-10 lg:hidden print:hidden">
+<div
+	class="fixed right-0 bottom-0 left-0 z-10 lg:hidden print:hidden"
+>
 	<div
 		class="dock bg-primary rounded-box mx-auto mb-2 max-w-[95vw] shadow-xl"
 	>

@@ -1,4 +1,8 @@
-import { DATABASE_PATH, PRODUCTION_URL, INGEST_TOKEN } from '$env/static/private'
+import {
+	DATABASE_PATH,
+	INGEST_TOKEN,
+	PRODUCTION_URL,
+} from '$env/static/private'
 import Database from 'better-sqlite3'
 import fs from 'node:fs/promises'
 import path from 'node:path'
@@ -19,14 +23,19 @@ export const pull_database = async () => {
 
 		// Download latest backup from production
 		console.log('Downloading latest backup from production...')
-		const response = await fetch(`${PRODUCTION_URL}/api/ingest/download`, {
-			headers: {
-				'Authorization': `Bearer ${INGEST_TOKEN}`,
+		const response = await fetch(
+			`${PRODUCTION_URL}/api/ingest/download`,
+			{
+				headers: {
+					Authorization: `Bearer ${INGEST_TOKEN}`,
+				},
 			},
-		})
+		)
 
 		if (!response.ok) {
-			throw new Error(`Failed to download backup: ${response.status} ${response.statusText}`)
+			throw new Error(
+				`Failed to download backup: ${response.status} ${response.statusText}`,
+			)
 		}
 
 		// Save downloaded backup to temporary location
@@ -35,14 +44,20 @@ export const pull_database = async () => {
 		const hour = now.getHours().toString().padStart(2, '0')
 		const minute = now.getMinutes().toString().padStart(2, '0')
 		const downloaded_filename = `site-data-downloaded-${date}-${hour}${minute}.db`
-		const downloaded_path = path.join(backups_dir, downloaded_filename)
+		const downloaded_path = path.join(
+			backups_dir,
+			downloaded_filename,
+		)
 
 		const arrayBuffer = await response.arrayBuffer()
 		await fs.writeFile(downloaded_path, new Uint8Array(arrayBuffer))
 
 		// Create backup of current local database before replacing using SQLite backup API
 		const current_backup_name = `site-data-local-backup-${date}-${hour}${minute}.db`
-		const current_backup_path = path.join(backups_dir, current_backup_name)
+		const current_backup_path = path.join(
+			backups_dir,
+			current_backup_name,
+		)
 
 		try {
 			const current_db = new Database(db_path, { readonly: true })
@@ -52,11 +67,16 @@ export const pull_database = async () => {
 				current_db.close()
 			}
 		} catch (error) {
-			console.warn('Could not backup current database (may not exist):', error)
+			console.warn(
+				'Could not backup current database (may not exist):',
+				error,
+			)
 		}
 
 		// Replace local database with downloaded backup using SQLite backup API
-		const downloaded_db = new Database(downloaded_path, { readonly: true })
+		const downloaded_db = new Database(downloaded_path, {
+			readonly: true,
+		})
 
 		try {
 			await downloaded_db.backup(db_path)

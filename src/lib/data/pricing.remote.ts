@@ -21,30 +21,32 @@ interface PricingData {
 	pricingNumbers: PricingNumbers
 }
 
-export const get_pricing_data = query(async (): Promise<PricingData> => {
-	try {
-		const [exchangeRates, pricingNumbers] = await Promise.all([
-			fetch_exchange_rates(),
-			fetch_pricing_numbers(),
-		])
+export const get_pricing_data = query(
+	async (): Promise<PricingData> => {
+		try {
+			const [exchangeRates, pricingNumbers] = await Promise.all([
+				fetch_exchange_rates(),
+				fetch_pricing_numbers(),
+			])
 
-		return {
-			exchangeRates,
-			pricingNumbers,
+			return {
+				exchangeRates,
+				pricingNumbers,
+			}
+		} catch (error) {
+			console.warn('Database unavailable for pricing data:', error)
+			return {
+				exchangeRates: { GBP: 0.86, USD: 1.09, CAD: 1.47 },
+				pricingNumbers: {
+					posts_per_week: 1,
+					years_programming: 10,
+					total_posts: 100,
+					average_reading_time: 5,
+				},
+			}
 		}
-	} catch (error) {
-		console.warn('Database unavailable for pricing data:', error)
-		return {
-			exchangeRates: { GBP: 0.86, USD: 1.09, CAD: 1.47 },
-			pricingNumbers: {
-				posts_per_week: 1,
-				years_programming: 10,
-				total_posts: 100,
-				average_reading_time: 5,
-			},
-		}
-	}
-})
+	},
+)
 
 async function fetch_exchange_rates(): Promise<ExchangeRates> {
 	let fetch_new_rates = false
@@ -60,12 +62,18 @@ async function fetch_exchange_rates(): Promise<ExchangeRates> {
 
 		if (
 			last_updated &&
-			differenceInHours(new Date(), parseISO(last_updated.last_update)) > 1
+			differenceInHours(
+				new Date(),
+				parseISO(last_updated.last_update),
+			) > 1
 		) {
 			fetch_new_rates = true
 		}
 	} catch (error) {
-		console.warn('Database unavailable for checking rates update time:', error)
+		console.warn(
+			'Database unavailable for checking rates update time:',
+			error,
+		)
 		return { GBP: 0.86, USD: 1.09, CAD: 1.47 }
 	}
 
@@ -74,7 +82,8 @@ async function fetch_exchange_rates(): Promise<ExchangeRates> {
 		const response = await fetch(
 			`https://api.freecurrencyapi.com/v1/latest?apikey=${EXCHANGE_RATE_API_KEY}&currencies=GBP%2CUSD%2CCAD&base_currency=EUR`,
 		)
-		const fetched_rates = (await response.json()).data as ExchangeRates
+		const fetched_rates = (await response.json())
+			.data as ExchangeRates
 
 		for (const [currency, rate] of Object.entries(fetched_rates)) {
 			try {
@@ -84,7 +93,10 @@ async function fetch_exchange_rates(): Promise<ExchangeRates> {
 					args: [currency, rate, rate],
 				})
 			} catch (error) {
-				console.error(`Error updating exchange rate for ${currency}:`, error)
+				console.error(
+					`Error updating exchange rate for ${currency}:`,
+					error,
+				)
 			}
 		}
 	}

@@ -10,7 +10,7 @@ test('reactions array contains the correct number of reactions', () => {
 })
 
 test('each reaction has the correct properties', () => {
-	reactions.forEach(reaction => {
+	reactions.forEach((reaction) => {
 		expect(reaction).toHaveProperty('type')
 		expect(reaction).toHaveProperty('emoji')
 		expect(typeof reaction.type).toBe('string')
@@ -20,13 +20,13 @@ test('each reaction has the correct properties', () => {
 
 test('reactions contain expected types', () => {
 	const expectedTypes = ['likes', 'hearts', 'poops', 'parties']
-	const actualTypes = reactions.map(reaction => reaction.type)
+	const actualTypes = reactions.map((reaction) => reaction.type)
 	expect(actualTypes).toEqual(expect.arrayContaining(expectedTypes))
 })
 
 test('reactions contain expected emojis', () => {
 	const expectedEmojis = ['👍', '❤️', '💩', '🎉']
-	const actualEmojis = reactions.map(reaction => reaction.emoji)
+	const actualEmojis = reactions.map((reaction) => reaction.emoji)
 	expect(actualEmojis).toEqual(expect.arrayContaining(expectedEmojis))
 })
 

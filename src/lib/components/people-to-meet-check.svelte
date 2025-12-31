@@ -13,7 +13,7 @@
 	{#if met}
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			class="block h-5 w-5 bg-primary fill-current text-primary-content"
+			class="bg-primary text-primary-content block h-5 w-5 fill-current"
 			viewBox="0 0 20 20"
 			fill="currentColor"
 		>

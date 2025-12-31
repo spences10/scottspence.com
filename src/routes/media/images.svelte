@@ -32,7 +32,7 @@
 	<div class="not-prose grid grid-cols-6 gap-2">
 		{#each images as image}
 			<button
-				class="focus:border-primary-accent shadow-xl focus:outline-primary"
+				class="focus:border-primary-accent focus:outline-primary shadow-xl"
 				onclick={() => handle_image_click(image)}
 			>
 				<img

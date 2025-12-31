@@ -14,7 +14,6 @@ export const visitors_store = writable<VisitorsData>({
 	visitor_data: [],
 })
 
-
 export const newsletter_subscriber_count_store = writable({
 	newsletter_subscriber_count: 0,
 })

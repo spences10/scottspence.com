@@ -3,7 +3,8 @@
 ## Frontmatter Validation
 
 - [ ] Has frontmatter with `---` delimiters
-- [ ] Title follows format: "[Playful Title] - [Month Year]" (e.g., "The one where I broke SQLite - October 2025")
+- [ ] Title follows format: "[Playful Title] - [Month Year]" (e.g.,
+      "The one where I broke SQLite - October 2025")
 - [ ] Title has personality and captures the month's essence
 - [ ] Date is in YYYY-MM-DD format
 - [ ] `published` field exists
@@ -24,7 +25,8 @@
 - [ ] Subsections use H3 (`###`) if needed
 - [ ] No H1 headings in content
 - [ ] Headings are clear and descriptive
-- [ ] **Headings contain no links** (links should be in paragraph text)
+- [ ] **Headings contain no links** (links should be in paragraph
+      text)
 
 ## Content Quality
 

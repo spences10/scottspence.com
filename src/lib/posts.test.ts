@@ -83,9 +83,8 @@ afterEach(() => {
 })
 
 test('get_posts fetches posts from database when cache is empty', async () => {
-	const { get_from_cache, set_cache } = await import(
-		'$lib/cache/server-cache'
-	)
+	const { get_from_cache, set_cache } =
+		await import('$lib/cache/server-cache')
 
 	;(sqlite_client.execute as any).mockResolvedValue({
 		rows: mockDbPosts,
@@ -122,9 +121,8 @@ test('get_posts returns cached posts when cache is valid', async () => {
 })
 
 test('get_posts fetches new posts when cache is expired', async () => {
-	const { get_from_cache, set_cache } = await import(
-		'$lib/cache/server-cache'
-	)
+	const { get_from_cache, set_cache } =
+		await import('$lib/cache/server-cache')
 
 	;(sqlite_client.execute as any).mockResolvedValue({
 		rows: mockDbPosts,

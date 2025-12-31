@@ -9,6 +9,7 @@ npm run cspell
 ```
 
 This command:
+
 - Checks all markdown files recursively
 - Uses project's cspell configuration
 - Reports spelling errors and unknowns

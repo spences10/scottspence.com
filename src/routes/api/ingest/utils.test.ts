@@ -1,13 +1,13 @@
+import * as dateFns from 'date-fns'
 import {
-	describe,
-	it,
-	expect,
-	vi,
-	beforeEach,
 	afterEach,
+	beforeEach,
+	describe,
+	expect,
+	it,
+	vi,
 } from 'vitest'
 import { get_date_range } from './utils'
-import * as dateFns from 'date-fns'
 
 vi.mock('date-fns', async () => {
 	const actual = await vi.importActual('date-fns')
@@ -19,7 +19,7 @@ vi.mock('date-fns', async () => {
 		endOfMonth: vi.fn(),
 		startOfYear: vi.fn(),
 		endOfYear: vi.fn(),
-		formatISO: vi.fn(date => date.toISOString()),
+		formatISO: vi.fn((date) => date.toISOString()),
 	}
 })
 

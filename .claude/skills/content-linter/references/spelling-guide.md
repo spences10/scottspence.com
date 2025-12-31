@@ -45,7 +45,8 @@ grep -rE "\b(colour|organisation|behaviour|realise|analyse)\b" posts/
 
 ### cspell.json
 
-The project's cspell configuration is located at `cspell.json` and includes:
+The project's cspell configuration is located at `cspell.json` and
+includes:
 
 - Language settings (en-GB)
 - Project-specific word lists

@@ -38,7 +38,7 @@
 	<div class="divider divider-secondary"></div>
 </div>
 
-<article class="m-0 mb-20 xs:-mx-30 lg:-mx-40">
+<article class="xs:-mx-30 m-0 mb-20 lg:-mx-40">
 	<a
 		href="#people-id-like-to-meet"
 		id="people-id-like-to-meet"
@@ -85,7 +85,7 @@
 	</div>
 
 	<ul
-		class="sm:grid-cols-2 mb-10 grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4"
+		class="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
 	>
 		{#each sorted_people as { name, link, met }}
 			<li>

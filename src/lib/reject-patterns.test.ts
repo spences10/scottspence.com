@@ -17,7 +17,7 @@ describe('reject patterns', () => {
 		})
 
 		it('should all start with a dot', () => {
-			rejected_extensions.forEach(ext => {
+			rejected_extensions.forEach((ext) => {
 				expect(ext.startsWith('.')).toBe(true)
 			})
 		})
@@ -31,13 +31,13 @@ describe('reject patterns', () => {
 		})
 
 		it('should all start with a forward slash', () => {
-			rejected_paths.forEach(path => {
+			rejected_paths.forEach((path) => {
 				expect(path.startsWith('/')).toBe(true)
 			})
 		})
 
 		it('should not contain trailing slashes', () => {
-			rejected_paths.forEach(path => {
+			rejected_paths.forEach((path) => {
 				expect(path.endsWith('/')).toBe(false)
 			})
 		})

@@ -6,7 +6,7 @@ export const handle_mouse_move = (event: {
 	clientX: number
 	clientY: number
 }) => {
-	mouse_position.update(_ => ({
+	mouse_position.update((_) => ({
 		x: event.clientX + 10,
 		y: event.clientY + 10,
 	}))

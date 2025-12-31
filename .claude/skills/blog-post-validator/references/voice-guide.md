@@ -24,9 +24,11 @@ Provide feedback in this structure:
 **Overall Assessment:** [Pass/Needs Changes/Hold for Discussion]
 
 **Strengths:**
+
 - Specific positive observations
 
 **Issues to Address:**
+
 - Priority: High
   - [Issue 1]
   - [Issue 2]
