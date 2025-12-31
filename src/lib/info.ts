@@ -188,7 +188,7 @@ export const PEOPLE = [
 	},
 	{
 		name: `Jamie Barton`,
-		link: `https://bsky.app/profile/notrab.dev`,
+		link: `https://notrab.dev`,
 		met: true,
 	},
 	{
