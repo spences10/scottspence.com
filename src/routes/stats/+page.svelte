@@ -2,6 +2,7 @@
 	import { get_live_stats_breakdown } from '$lib/analytics/live-analytics.remote'
 	import {
 		get_period_stats,
+		type FilterMode,
 		type PeriodStats,
 		type StatsPeriod,
 	} from '$lib/analytics/period-stats.remote'
@@ -30,6 +31,7 @@
 	let period_stats = $state<PeriodStats | null>(null)
 	let period_loading = $state(false)
 	let selected_stats_period = $state<StatsPeriod>('today')
+	let selected_filter_mode = $state<FilterMode>('humans')
 
 	const fetch_live_data = async () => {
 		try {
@@ -80,10 +82,13 @@
 		year: '12 months',
 	}
 
-	const fetch_period_data = async (period: StatsPeriod) => {
+	const fetch_period_data = async (
+		period: StatsPeriod,
+		filter_mode: FilterMode,
+	) => {
 		period_loading = true
 		try {
-			period_stats = await get_period_stats({ period })
+			period_stats = await get_period_stats({ period, filter_mode })
 		} catch (e) {
 			console.error('[stats] Failed to fetch period data:', e)
 		} finally {
@@ -91,9 +96,9 @@
 		}
 	}
 
-	// Reactive: fetch when period changes
+	// Reactive: fetch when period or filter mode changes
 	$effect(() => {
-		fetch_period_data(selected_stats_period)
+		fetch_period_data(selected_stats_period, selected_filter_mode)
 	})
 
 	onMount(() => {
@@ -539,17 +544,61 @@
 <!-- Period Stats Section -->
 <div class="divider mb-8">Period Stats</div>
 
-<div class="mb-4 flex flex-wrap items-center gap-2">
-	{#each ['today', 'yesterday', 'week', 'month', 'year'] as period (period)}
+<!-- Filter info alert -->
+<div class="alert mb-6">
+	<InformationCircle />
+	<div class="text-sm">
+		<p>
+			<strong>Bot filtering:</strong> Detects bots via user-agent patterns
+			(crawlers, scripts) and behaviour analysis (200+ requests/day). Historical
+			data is filtered overnight; current day filtering is applied in real-time.
+		</p>
+	</div>
+</div>
+
+<div class="mb-4 flex flex-wrap items-center justify-between gap-4">
+	<!-- Period selector -->
+	<div class="flex flex-wrap items-center gap-2">
+		{#each ['today', 'yesterday', 'week', 'month', 'year'] as period (period)}
+			<button
+				class="btn btn-sm {selected_stats_period === period
+					? 'btn-primary'
+					: 'btn-ghost'}"
+				onclick={() =>
+					(selected_stats_period = period as StatsPeriod)}
+			>
+				{period_labels[period as StatsPeriod]}
+			</button>
+		{/each}
+	</div>
+
+	<!-- Filter mode toggle -->
+	<div class="join">
 		<button
-			class="btn btn-sm {selected_stats_period === period
-				? 'btn-primary'
+			class="btn join-item btn-sm {selected_filter_mode === 'humans'
+				? 'btn-success'
 				: 'btn-ghost'}"
-			onclick={() => (selected_stats_period = period as StatsPeriod)}
+			onclick={() => (selected_filter_mode = 'humans')}
 		>
-			{period_labels[period as StatsPeriod]}
+			Humans
 		</button>
-	{/each}
+		<button
+			class="btn join-item btn-sm {selected_filter_mode === 'bots'
+				? 'btn-warning'
+				: 'btn-ghost'}"
+			onclick={() => (selected_filter_mode = 'bots')}
+		>
+			Bots
+		</button>
+		<button
+			class="btn join-item btn-sm {selected_filter_mode === 'all'
+				? 'btn-info'
+				: 'btn-ghost'}"
+			onclick={() => (selected_filter_mode = 'all')}
+		>
+			All
+		</button>
+	</div>
 </div>
 
 {#if period_loading}
@@ -559,18 +608,32 @@
 {:else if period_stats}
 	<!-- Period summary cards -->
 	<div
-		class="stats stats-vertical border-secondary md:stats-horizontal mb-8 w-full border shadow-lg"
+		class="stats stats-vertical border-secondary md:stats-horizontal mb-4 w-full border shadow-lg"
 	>
 		<div class="stat">
-			<div class="stat-title">Views</div>
-			<div class="stat-value text-primary">
+			<div class="stat-title">
+				{selected_filter_mode === 'bots' ? 'Bot Views' : 'Views'}
+			</div>
+			<div
+				class="stat-value {selected_filter_mode === 'bots'
+					? 'text-warning'
+					: 'text-primary'}"
+			>
 				{number_crunch(period_stats.views)}
 			</div>
 			<div class="stat-desc">{period_stats.period_label}</div>
 		</div>
 		<div class="stat">
-			<div class="stat-title">Unique Visitors</div>
-			<div class="stat-value text-secondary">
+			<div class="stat-title">
+				{selected_filter_mode === 'bots'
+					? 'Bot Visitors'
+					: 'Unique Visitors'}
+			</div>
+			<div
+				class="stat-value {selected_filter_mode === 'bots'
+					? 'text-warning'
+					: 'text-secondary'}"
+			>
 				{number_crunch(period_stats.unique_visitors)}
 			</div>
 			<div class="stat-desc">{period_stats.period_label}</div>
@@ -590,6 +653,26 @@
 			<div class="stat-desc">With traffic</div>
 		</div>
 	</div>
+
+	<!-- Bot stats summary (shown when viewing humans) -->
+	{#if selected_filter_mode === 'humans' && period_stats.bot_views > 0}
+		<div class="bg-base-200 mb-8 rounded-lg p-3 text-sm">
+			<span class="text-warning font-semibold"
+				>Bot traffic filtered:</span
+			>
+			{number_crunch(period_stats.bot_views)} views from {period_stats.bot_visitors}
+			detected bots
+			<span class="text-base-content/60">
+				({Math.round(
+					(period_stats.bot_views /
+						(period_stats.views + period_stats.bot_views)) *
+						100,
+				)}% of total)
+			</span>
+		</div>
+	{:else}
+		<div class="mb-4"></div>
+	{/if}
 
 	<!-- Period grids -->
 	<div class="mb-8 grid gap-6 lg:grid-cols-2">

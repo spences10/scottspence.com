@@ -384,6 +384,7 @@ CREATE INDEX IF NOT EXISTS idx_github_issues_repo ON github_issues (repo);
 CREATE INDEX IF NOT EXISTS idx_github_releases_published ON github_releases (published_at DESC);
 CREATE INDEX IF NOT EXISTS idx_github_releases_repo ON github_releases (repo);
 CREATE INDEX IF NOT EXISTS idx_events_rollup ON analytics_events (created_at, path, is_bot);
+CREATE INDEX IF NOT EXISTS idx_events_visitor ON analytics_events (created_at, visitor_hash);
 CREATE INDEX IF NOT EXISTS idx_daily_date ON analytics_daily (date);
 
 -- Enable WAL mode for better concurrent access

@@ -76,7 +76,9 @@ describe('format_period_stats', () => {
 	it('formats stats correctly', () => {
 		const result = format_period_stats(
 			'today',
+			'humans',
 			{ views: 100, unique_visitors: 50 },
+			{ views: 20, visitors: 5 },
 			[{ path: '/', views: 50, visitors: 25 }],
 			[{ country: 'GB', visitors: 20 }],
 			[{ browser: 'Chrome', visitors: 30 }],
@@ -85,8 +87,11 @@ describe('format_period_stats', () => {
 
 		expect(result.period).toBe('today')
 		expect(result.period_label).toBe('Today')
+		expect(result.filter_mode).toBe('humans')
 		expect(result.views).toBe(100)
 		expect(result.unique_visitors).toBe(50)
+		expect(result.bot_views).toBe(20)
+		expect(result.bot_visitors).toBe(5)
 		expect(result.top_pages).toHaveLength(1)
 		expect(result.countries).toHaveLength(1)
 		expect(result.browsers).toHaveLength(1)

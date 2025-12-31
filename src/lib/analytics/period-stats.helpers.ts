@@ -10,11 +10,16 @@ export type StatsPeriod =
 	| 'month'
 	| 'year'
 
+export type FilterMode = 'humans' | 'bots' | 'all'
+
 export type PeriodStats = {
 	period: StatsPeriod
 	period_label: string
+	filter_mode: FilterMode
 	views: number
 	unique_visitors: number
+	bot_views: number
+	bot_visitors: number
 	top_pages: { path: string; views: number; visitors: number }[]
 	countries: { country: string; visitors: number }[]
 	browsers: { browser: string; visitors: number }[]
@@ -96,7 +101,9 @@ export const get_period_label = (period: StatsPeriod): string => {
  */
 export const format_period_stats = (
 	period: StatsPeriod,
+	filter_mode: FilterMode,
 	totals: { views: number; unique_visitors: number },
+	bot_totals: { views: number; visitors: number },
 	top_pages: { path: string; views: number; visitors: number }[],
 	countries: { country: string; visitors: number }[],
 	browsers: { browser: string; visitors: number }[],
@@ -104,8 +111,11 @@ export const format_period_stats = (
 ): PeriodStats => ({
 	period,
 	period_label: get_period_label(period),
+	filter_mode,
 	views: totals.views,
 	unique_visitors: totals.unique_visitors,
+	bot_views: bot_totals.views,
+	bot_visitors: bot_totals.visitors,
 	top_pages,
 	countries,
 	browsers,
