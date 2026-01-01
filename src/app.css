@@ -43,7 +43,7 @@
 /* Custom components */
 @layer components {
 	.table-of-contents {
-		@apply fixed top-72 left-[calc(50%+400px)] z-10 my-3 max-h-[50vh] w-[310px] p-3 text-base leading-7;
+		@apply fixed top-72 left-[calc(50%+400px)] z-10 my-3 max-h-[50vh] w-77.5 p-3 text-base leading-7;
 	}
 
 	.all-prose {
