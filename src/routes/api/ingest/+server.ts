@@ -7,6 +7,7 @@ import { daily_github_activity } from './daily-github-activity'
 import { export_training_data } from './export-training-data'
 import { fetch_github_activity } from './fetch-github-activity'
 import { generate_newsletter } from './generate-newsletter'
+import { import_fathom_2025 } from './import-fathom-2025'
 import { index_now } from './index-now'
 import { newsletter_send } from './newsletter-send'
 import { pull_database } from './pull-database'
@@ -96,6 +97,7 @@ type TaskKey =
 	| 'send_newsletter_reminder'
 	| 'rollup_analytics'
 	| 'cleanup_analytics'
+	| 'import_fathom_2025'
 
 // Define the type for tasks object
 interface TaskType {
@@ -183,6 +185,10 @@ const tasks: TaskType = {
 	},
 	cleanup_analytics: {
 		function: cleanup_analytics,
+		expects_fetch: false,
+	},
+	import_fathom_2025: {
+		function: import_fathom_2025,
 		expects_fetch: false,
 	},
 }
