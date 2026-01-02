@@ -36,6 +36,7 @@ interface ReferrerRow {
 }
 
 export interface Push2025AnalyticsPayload {
+	clear?: boolean // Only delete existing 2025 data if true
 	countries?: CountryRow[]
 	device_types?: DeviceTypeRow[]
 	pages?: PageRow[]
@@ -58,10 +59,13 @@ export const push_2025_analytics = async (
 
 	// Countries
 	if (payload.countries && payload.countries.length > 0) {
-		const delete_stmt = client.prepare(
-			`DELETE FROM analytics_countries WHERE timestamp >= '2025-01-01'`,
-		)
-		const deleted = delete_stmt.run()
+		let deleted_count = 0
+		if (payload.clear) {
+			const delete_stmt = client.prepare(
+				`DELETE FROM analytics_countries WHERE timestamp >= '2025-01-01'`,
+			)
+			deleted_count = delete_stmt.run().changes
+		}
 
 		const insert_stmt = client.prepare(`
 			INSERT INTO analytics_countries (timestamp, country, pageviews, visits)
@@ -69,25 +73,33 @@ export const push_2025_analytics = async (
 		`)
 
 		for (const row of payload.countries) {
-			insert_stmt.run(row.timestamp, row.country, row.pageviews, row.visits)
+			insert_stmt.run(
+				row.timestamp,
+				row.country,
+				row.pageviews,
+				row.visits,
+			)
 		}
 
 		results.push({
 			table: 'analytics_countries',
-			deleted: deleted.changes,
+			deleted: deleted_count,
 			inserted: payload.countries.length,
 		})
 		console.log(
-			`[push-2025] analytics_countries: deleted ${deleted.changes}, inserted ${payload.countries.length}`,
+			`[push-2025] analytics_countries: deleted ${deleted_count}, inserted ${payload.countries.length}`,
 		)
 	}
 
 	// Device Types
 	if (payload.device_types && payload.device_types.length > 0) {
-		const delete_stmt = client.prepare(
-			`DELETE FROM analytics_device_types WHERE timestamp >= '2025-01-01'`,
-		)
-		const deleted = delete_stmt.run()
+		let deleted_count = 0
+		if (payload.clear) {
+			const delete_stmt = client.prepare(
+				`DELETE FROM analytics_device_types WHERE timestamp >= '2025-01-01'`,
+			)
+			deleted_count = delete_stmt.run().changes
+		}
 
 		const insert_stmt = client.prepare(`
 			INSERT INTO analytics_device_types (timestamp, device_type, pageviews, visits)
@@ -105,20 +117,23 @@ export const push_2025_analytics = async (
 
 		results.push({
 			table: 'analytics_device_types',
-			deleted: deleted.changes,
+			deleted: deleted_count,
 			inserted: payload.device_types.length,
 		})
 		console.log(
-			`[push-2025] analytics_device_types: deleted ${deleted.changes}, inserted ${payload.device_types.length}`,
+			`[push-2025] analytics_device_types: deleted ${deleted_count}, inserted ${payload.device_types.length}`,
 		)
 	}
 
 	// Pages
 	if (payload.pages && payload.pages.length > 0) {
-		const delete_stmt = client.prepare(
-			`DELETE FROM analytics_pages WHERE timestamp >= '2025-01-01'`,
-		)
-		const deleted = delete_stmt.run()
+		let deleted_count = 0
+		if (payload.clear) {
+			const delete_stmt = client.prepare(
+				`DELETE FROM analytics_pages WHERE timestamp >= '2025-01-01'`,
+			)
+			deleted_count = delete_stmt.run().changes
+		}
 
 		const insert_stmt = client.prepare(`
 			INSERT INTO analytics_pages (timestamp, hostname, pathname, views, uniques)
@@ -137,20 +152,23 @@ export const push_2025_analytics = async (
 
 		results.push({
 			table: 'analytics_pages',
-			deleted: deleted.changes,
+			deleted: deleted_count,
 			inserted: payload.pages.length,
 		})
 		console.log(
-			`[push-2025] analytics_pages: deleted ${deleted.changes}, inserted ${payload.pages.length}`,
+			`[push-2025] analytics_pages: deleted ${deleted_count}, inserted ${payload.pages.length}`,
 		)
 	}
 
 	// Referrers
 	if (payload.referrers && payload.referrers.length > 0) {
-		const delete_stmt = client.prepare(
-			`DELETE FROM analytics_referrers WHERE timestamp >= '2025-01-01'`,
-		)
-		const deleted = delete_stmt.run()
+		let deleted_count = 0
+		if (payload.clear) {
+			const delete_stmt = client.prepare(
+				`DELETE FROM analytics_referrers WHERE timestamp >= '2025-01-01'`,
+			)
+			deleted_count = delete_stmt.run().changes
+		}
 
 		const insert_stmt = client.prepare(`
 			INSERT INTO analytics_referrers (timestamp, referrer_hostname, referrer_pathname, views, visits)
@@ -169,16 +187,21 @@ export const push_2025_analytics = async (
 
 		results.push({
 			table: 'analytics_referrers',
-			deleted: deleted.changes,
+			deleted: deleted_count,
 			inserted: payload.referrers.length,
 		})
 		console.log(
-			`[push-2025] analytics_referrers: deleted ${deleted.changes}, inserted ${payload.referrers.length}`,
+			`[push-2025] analytics_referrers: deleted ${deleted_count}, inserted ${payload.referrers.length}`,
 		)
 	}
 
-	const total_inserted = results.reduce((sum, r) => sum + r.inserted, 0)
-	console.log(`[push-2025] Complete. Total rows inserted: ${total_inserted}`)
+	const total_inserted = results.reduce(
+		(sum, r) => sum + r.inserted,
+		0,
+	)
+	console.log(
+		`[push-2025] Complete. Total rows inserted: ${total_inserted}`,
+	)
 
 	return {
 		success: true,
