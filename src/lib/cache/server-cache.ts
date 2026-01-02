@@ -31,6 +31,7 @@ export const CACHE_DURATIONS = {
 		year: 24 * 60 * 60 * 1000, // 24 hours
 	},
 	post_tags: 24 * 60 * 60 * 1000, // 24 hours
+	period_stats: 30 * 1000, // 30 seconds - prevents hammering on stats page
 } as const
 
 export function get_from_cache<T>(

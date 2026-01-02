@@ -1,4 +1,9 @@
 import { query } from '$app/server'
+import {
+	CACHE_DURATIONS,
+	get_from_cache,
+	set_cache,
+} from '$lib/cache/server-cache'
 import { sqlite_client } from '$lib/sqlite/client'
 import * as v from 'valibot'
 import {
@@ -62,10 +67,21 @@ export const get_period_stats = query(
 		),
 	}),
 	({ period, filter_mode }): PeriodStats => {
+		const mode = filter_mode as FilterMode
+
+		// Check cache first - key includes period + filter mode
+		const cache_key = `period_stats_${period}_${mode}`
+		const cached = get_from_cache<PeriodStats>(
+			cache_key,
+			CACHE_DURATIONS.period_stats,
+		)
+		if (cached) {
+			return cached
+		}
+
 		const { start, end } = get_period_boundaries(
 			period as StatsPeriod,
 		)
-		const mode = filter_mode as FilterMode
 
 		// Get behaviour bot hashes for this period
 		const behaviour_bots = get_behaviour_bot_hashes(start, end)
@@ -222,7 +238,7 @@ export const get_period_stats = query(
 			visitors: number
 		}[]
 
-		return format_period_stats(
+		const result = format_period_stats(
 			period as StatsPeriod,
 			mode,
 			totals,
@@ -232,5 +248,9 @@ export const get_period_stats = query(
 			browsers,
 			devices,
 		)
+
+		// Cache the result
+		set_cache(cache_key, result)
+		return result
 	},
 )
