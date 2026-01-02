@@ -9,6 +9,15 @@ vi.mock('$lib/icons', () => ({
 	InformationCircle: () => 'div', // Simple mock component
 }))
 
+// Mock remote functions to prevent hanging network calls
+vi.mock('$lib/analytics/live-analytics.remote', () => ({
+	get_live_stats_breakdown: vi.fn().mockResolvedValue(null),
+}))
+
+vi.mock('$lib/analytics/period-stats.remote', () => ({
+	get_period_stats: vi.fn().mockResolvedValue(null),
+}))
+
 describe('Historical Stats Page Component', () => {
 	const mockSiteStats = [
 		{
@@ -69,7 +78,9 @@ describe('Historical Stats Page Component', () => {
 		test('should render historical data section divider', async () => {
 			render(StatsPage, { data: mockData })
 
-			const divider = page.getByText('Historical Data')
+			const divider = page.getByText('Historical Data', {
+				exact: true,
+			})
 			await expect.element(divider).toBeInTheDocument()
 		})
 
