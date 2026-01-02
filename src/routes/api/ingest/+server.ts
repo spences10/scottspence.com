@@ -260,3 +260,10 @@ export const POST = async ({ request, fetch }) => {
 		)
 	}
 }
+
+// Increase body size limit for large analytics payloads
+export const config = {
+	body: {
+		limit: '50mb',
+	},
+}
