@@ -10,7 +10,6 @@ import { generate_newsletter } from './generate-newsletter'
 import { index_now } from './index-now'
 import { newsletter_send } from './newsletter-send'
 import { pull_database } from './pull-database'
-import { push_2025_analytics } from './push-2025-analytics'
 import { restore_database } from './restore-database'
 import { rollup_analytics } from './rollup-analytics'
 import { send_newsletter_reminder } from './send-newsletter-reminder'
@@ -97,14 +96,12 @@ type TaskKey =
 	| 'send_newsletter_reminder'
 	| 'rollup_analytics'
 	| 'cleanup_analytics'
-	| 'push_2025_analytics'
 
 // Define the type for tasks object
 interface TaskType {
 	[key: string]: {
 		function: TaskFunction
 		expects_fetch: boolean
-		expects_data?: boolean
 	}
 }
 
@@ -112,7 +109,6 @@ interface TaskType {
 interface RequestBody {
 	token: string
 	task: TaskKey
-	data?: unknown
 }
 
 // Define a mapping from task names to functions
@@ -189,11 +185,6 @@ const tasks: TaskType = {
 		function: cleanup_analytics,
 		expects_fetch: false,
 	},
-	push_2025_analytics: {
-		function: push_2025_analytics,
-		expects_fetch: false,
-		expects_data: true,
-	},
 }
 
 export const POST = async ({ request, fetch }) => {
@@ -211,15 +202,10 @@ export const POST = async ({ request, fetch }) => {
 			console.log(`Executing task: ${task_key}`)
 
 			try {
-				// Call the task function with appropriate arguments
-				let result
-				if (task.expects_data) {
-					result = await task.function(body.data)
-				} else if (task.expects_fetch) {
-					result = await task.function(fetch)
-				} else {
-					result = await task.function()
-				}
+				// Call the task function with or without fetch based on its requirement
+				const result = task.expects_fetch
+					? await task.function(fetch)
+					: await task.function()
 
 				console.log(`Task ${task_key} completed with result:`, result)
 				return json(result)
@@ -259,11 +245,4 @@ export const POST = async ({ request, fetch }) => {
 			{ status: 500 },
 		)
 	}
-}
-
-// Increase body size limit for large analytics payloads
-export const config = {
-	body: {
-		limit: '50mb',
-	},
 }
