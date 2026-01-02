@@ -436,3 +436,109 @@ If /stats page causes issues under load:
    29, 2025)
 2. Add TTL cache (30s) if aggregation becomes slow with many sessions
 3. Create real-time rollup table updated by flush timer (if needed)
+
+## Known Issue: Heartbeat Request Pile-up (Jan 2026)
+
+### Problem
+
+When server is slow or under load, `send_heartbeat` requests pile up
+(100+ pending). Observed in DevTools: many requests stuck in "pending"
+state for 3+ minutes.
+
+### Root cause
+
+In `src/lib/analytics/live-analytics.svelte.ts`:
+
+1. **No in-flight guard** - `setInterval(do_heartbeat, 5000)` fires
+   regardless of pending requests
+2. **Visibility trigger stacks** - `visibilitychange` fires additional
+   heartbeat on tab focus, adding to pile
+3. **No request cancellation** - Remote functions don't support
+   AbortSignal
+
+### Planned fix (not yet implemented)
+
+Refactor to Svelte 5 `$effect` pattern with proper cleanup:
+
+```ts
+// In-flight guard prevents pile-up
+let heartbeat_in_flight = false
+
+export const create_heartbeat_effect = () => {
+	if (!browser) return () => {}
+
+	const session_id = get_session_id()
+	let interval: ReturnType<typeof setInterval> | null = null
+	let is_visible = !document.hidden
+
+	const do_heartbeat = async () => {
+		// Skip if request already in flight or tab hidden
+		if (heartbeat_in_flight || !is_visible) return
+
+		heartbeat_in_flight = true
+		try {
+			const result = await send_heartbeat({ session_id, path })
+			// update state...
+		} finally {
+			heartbeat_in_flight = false
+		}
+	}
+
+	const on_visibility_change = () => {
+		is_visible = !document.hidden
+		if (is_visible && !interval) {
+			do_heartbeat()
+			interval = setInterval(do_heartbeat, 5000)
+		} else if (!is_visible && interval) {
+			clearInterval(interval)
+			interval = null
+		}
+	}
+
+	// Start
+	interval = setInterval(do_heartbeat, 5000)
+	document.addEventListener('visibilitychange', on_visibility_change)
+
+	// Cleanup for $effect
+	return () => {
+		if (interval) clearInterval(interval)
+		document.removeEventListener(
+			'visibilitychange',
+			on_visibility_change,
+		)
+	}
+}
+```
+
+**Usage in +layout.svelte:**
+
+```svelte
+$effect(() => {
+  return create_heartbeat_effect()
+})
+```
+
+### Key changes
+
+1. **In-flight guard** - skip heartbeat if previous still pending
+2. **Visibility pause** - stop interval when tab hidden
+3. **`$effect` cleanup** - proper teardown on component destroy
+
+### Audit concerns (to address before implementing)
+
+| Issue                       | Risk   | Notes                                         |
+| --------------------------- | ------ | --------------------------------------------- |
+| Double `end_session()`      | Medium | Called in beforeunload AND cleanup            |
+| No re-entry guard           | Medium | Multiple intervals if effect re-runs          |
+| HMR flag leak               | Low    | `heartbeat_in_flight` not reset during dev    |
+| Remote function AbortSignal | N/A    | Not supported - in-flight guard is workaround |
+
+### Research notes
+
+- `getAbortSignal()` (Svelte 5.35+) only works with raw fetch, not
+  remote functions
+- Remote functions are RPC-style, don't expose signal parameter
+- SvelteKit issue #14146: abort signals don't propagate to server
+- Sources:
+  [svelte $effect docs](https://svelte.dev/docs/svelte/$effect),
+  [getAbortSignal](https://svelte.dev/docs/svelte/svelte)
