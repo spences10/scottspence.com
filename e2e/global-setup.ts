@@ -42,7 +42,7 @@ export default async function global_setup() {
 
 	// Insert embeddings into the virtual table
 	const insert_embedding = db.prepare(`
-		INSERT INTO post_embeddings (post_id, embedding)
+		INSERT OR IGNORE INTO post_embeddings (post_id, embedding)
 		VALUES (?, ?)
 	`)
 

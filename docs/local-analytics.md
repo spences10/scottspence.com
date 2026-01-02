@@ -1,6 +1,6 @@
 # Local Analytics Implementation
 
-<!-- cspell:ignore rollups beforeunload TTFB dedup ipcountry -->
+<!-- cspell:ignore rollups beforeunload TTFB dedup ipcountry visibilitychange teardown -->
 
 Self-hosted analytics using SQLite to replace Fathom API dependency.
 
@@ -11,11 +11,14 @@ Self-hosted analytics using SQLite to replace Fathom API dependency.
 - **Database**: SQLite with better-sqlite3 (synchronous)
 - **Persistent container** - no serverless cold starts
 
-## Status: v3.1 Non-blocking (Dec 28, 2025)
+## Status: v3.2 Fathom Removal Ready (Jan 2, 2026)
 
 Heartbeat-based live visitors. Batched writes for analytics events.
 Non-blocking page loads - popular posts fetch via remote function.
 Load tested with 100 concurrent requests, 0 failures.
+
+Cron jobs running in ping-the-thing. Ready to remove Fathom
+dependency.
 
 ### What's done
 
@@ -31,13 +34,65 @@ Load tested with 100 concurrent requests, 0 failures.
 - [x] `ViewingNow` + `LiveVisitors` components using shared state
 - [x] Popular posts via remote function (non-blocking)
 - [x] Removed blocking `+layout.server.ts` DB queries
+- [x] Cron jobs in ping-the-thing (rollup 03:05, cleanup 03:15)
+- [x] Stats page with period stats + live dashboard
 
 ### What's left
 
-- [ ] Set up cron jobs in Coolify for rollup/cleanup
-- [ ] Test rollup job with real data
-- [ ] Stats page UI using rollup tables
-- [ ] Remove old Fathom-based stats (Phase 3)
+- [ ] Remove Fathom API dependency (see Fathom Migration Status below)
+- [ ] Delete legacy `update_stats` ingest task
+- [ ] Switch popular posts from Fathom to local rollups
+- [ ] Switch per-post analytics from Fathom to local rollups
+
+---
+
+## Fathom Migration Status (Jan 2, 2026)
+
+### Current state
+
+Two analytics systems running in parallel:
+
+| Feature                    | Source              | Notes                 |
+| -------------------------- | ------------------- | --------------------- |
+| Site-wide stats (`/stats`) | Local rollups       | ✅ Done               |
+| Live visitors              | In-memory heartbeat | ✅ Done               |
+| Popular posts              | Fathom API          | ❌ Still using Fathom |
+| Per-post analytics (modal) | Fathom API          | ❌ Still using Fathom |
+
+### Fathom API still used by
+
+| File                                            | Purpose                |
+| ----------------------------------------------- | ---------------------- |
+| `src/lib/fathom/fetch-fathom-data.ts`           | API client             |
+| `src/lib/data/post-analytics.remote.ts`         | Per-post stats (modal) |
+| `src/lib/state/post-analytics.svelte.ts`        | Per-post stats (state) |
+| `src/routes/api/ingest/update-popular-posts.ts` | Popular posts cron     |
+
+### Dead code to remove
+
+| File                                         | Reason                                                                        |
+| -------------------------------------------- | ----------------------------------------------------------------------------- |
+| `src/routes/api/ingest/update-stats.ts`      | Reads from `analytics_pages` (Fathom table), superseded by `rollup_analytics` |
+| `src/routes/api/ingest/update-stats.test.ts` | Test for dead code                                                            |
+
+### What local analytics DOESN'T capture
+
+Fathom provides `avg_duration` and `bounce_rate` per post. Local
+analytics doesn't track these - would require session end/navigation
+tracking.
+
+**Decision**: Accept this limitation. Views + uniques are sufficient.
+
+### Migration steps
+
+1. **Delete `update_stats`** - dead code, not in cron
+2. **Switch popular posts** - query `analytics_all_time` instead of
+   Fathom
+3. **Switch per-post analytics** - query
+   `analytics_daily/monthly/yearly` filtered by pathname
+4. **Remove Fathom client** - delete `src/lib/fathom/`
+5. **Remove Fathom env vars** - `FATHOM_API_KEY`, `PUBLIC_FATHOM_ID`
+6. **Remove fathom-client package** - `pnpm remove fathom-client`
 
 ---
 

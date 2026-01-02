@@ -5,105 +5,89 @@
 Migrate from Fathom API to self-hosted analytics using
 `analytics_events` table.
 
-> **Note**: See `local-analytics.md` for learnings from v1
-> implementation and requirements for v2.
+> **Note**: See `local-analytics.md` for detailed implementation docs
+> and the Fathom Migration Status section.
 
-## Timeline
+## Status: Jan 2, 2026
 
-- **End of 2025**: Export Fathom 2025 data, update analytics\_\*
-  tables
-- **Jan 1 2026**: Start using local analytics exclusively, daily
-  rollups
+Local analytics fully operational. Fathom still used for:
 
-## Current State
+- Popular posts (cron job)
+- Per-post analytics (modal on post pages)
 
-### Tables populated from Fathom
+Ready to cut over - see migration steps in `local-analytics.md`.
 
+## What's done
+
+- [x] `analytics_events` tracking with batched writes
+- [x] `rollup_analytics` cron (daily 03:05) - aggregates to
+      daily/monthly/yearly/all_time
+- [x] `cleanup_analytics` cron (daily 03:15) - 2-day retention +
+      VACUUM
+- [x] Bot detection via `flag_bot_behaviour` (runs inside rollup)
+- [x] Stats page using local rollup tables
+- [x] Live visitors via heartbeat (in-memory)
+- [x] Cron jobs running in ping-the-thing
+
+## What's left
+
+- [ ] Switch popular posts from Fathom API to local rollups
+- [ ] Switch per-post analytics from Fathom API to local rollups
+- [ ] Delete `update_stats` ingest task (dead code)
+- [ ] Remove Fathom client code
+- [ ] Remove `fathom-client` package
+
+## Dead code identified
+
+| File                                            | Status         |
+| ----------------------------------------------- | -------------- |
+| `src/routes/api/ingest/update-stats.ts`         | Delete         |
+| `src/routes/api/ingest/update-stats.test.ts`    | Delete         |
+| `src/lib/fathom/`                               | Delete (after) |
+| `src/lib/data/post-analytics.remote.ts`         | Rewrite        |
+| `src/lib/state/post-analytics.svelte.ts`        | Rewrite        |
+| `src/routes/api/ingest/update-popular-posts.ts` | Rewrite        |
+
+## Rollup task comparison
+
+| Task               | Source             | Target                        | Bot filter  |
+| ------------------ | ------------------ | ----------------------------- | ----------- |
+| `update_stats`     | `analytics_pages`  | monthly/yearly/all_time       | ❌ None     |
+| `rollup_analytics` | `analytics_events` | daily→monthly→yearly→all_time | ✅ is_bot=0 |
+
+**`update_stats` is legacy** - reads from Fathom-populated
+`analytics_pages` table. Superseded by `rollup_analytics` which reads
+from local `analytics_events`.
+
+## Data we lose from Fathom
+
+- `avg_duration` (time on page)
+- `bounce_rate`
+
+These require session tracking which adds complexity. Decision: accept
+this limitation - views + uniques sufficient for our needs.
+
+## Historical Fathom tables
+
+These tables contain pre-2026 data from Fathom API:
+
+- `analytics_pages` - pageviews by path
 - `analytics_countries` / `analytics_countries_summary`
-- `analytics_pages`
 - `analytics_browsers` / `analytics_browsers_summary`
 - `analytics_device_types` / `analytics_device_types_summary`
 - `analytics_referrers` / `analytics_referrers_summary`
 - `analytics_site`
+- `post_analytics` - per-post day/month/year stats
+- `popular_posts` - top pages by period
+- `fathom_api_calls` - API call tracking
 
-### Tables populated from analytics_events (via rollup)
+**Decision**: Keep for historical reference. No need to delete
+immediately.
 
-- `analytics_monthly`
-- `analytics_yearly`
-- `analytics_all_time`
+## Cron schedule (ping-the-thing)
 
-## Tasks
-
-### 1. Extend rollup_analytics.ts
-
-Add rollups for tables currently populated by Fathom:
-
-```sql
--- Countries rollup
-INSERT OR REPLACE INTO analytics_countries_summary (country, pageviews, visits, year_month)
-SELECT country, SUM(hit_count), COUNT(DISTINCT visitor_hash), strftime('%Y-%m', ...)
-FROM analytics_events WHERE is_bot = 0
-GROUP BY country, year_month
-
--- Browsers rollup
--- Device types rollup
--- Referrers rollup
--- Site totals rollup
-```
-
-### 2. Bot filtering in rollups
-
-- Exclude `is_bot = 1` from human stats
-- Consider separate bot stats table?
-
-### 3. Schema updates
-
-Consider adding to summary tables:
-
-- `bot_views` column for tracking bot traffic separately?
-- Or keep simple: just exclude bots from rollups
-
-### 4. Remove Fathom API
-
-Files to update/remove:
-
-- [ ] `src/lib/fathom/` - API client code
-- [ ] `fathom_api_calls` table - tracking table
-- [ ] Any routes/components using Fathom API
-- [ ] Environment variables (FATHOM_API_KEY, etc.)
-
-### 5. Update stats UI
-
-- [ ] `/stats` page - use local tables instead of Fathom
-- [ ] Any components showing analytics data
-
-### 6. Fathom 2025 export
-
-- Export format compatibility with local tables
-- One-time import script to merge 2025 data
-
-### 7. Cron schedule for 2026
-
-Daily tasks (in order):
-
-1. `rollup_analytics` - aggregate events into summary tables
-2. `flag_bot_behaviour` - mark scrapers
-3. `cleanup_analytics` - delete events >7 days (includes VACUUM)
-
-## Open Questions
-
-1. Keep Fathom as backup/comparison, or fully remove?
-2. Bot stats: separate tables or just exclude from human stats?
-3. Historical data: keep analytics_pages etc. or migrate to new
-   schema?
-
-## Migrations Cleanup
-
-Once prod is stable and all migrations have run:
-
-1. Delete all files in `migrations/`
-2. Clear migrations table: `DELETE FROM migrations`
-3. `schema.sql` becomes single source of truth
-4. Only add new migrations for future schema changes
-
-This simplifies the codebase - no more "fresh install" noise in logs.
+| Task                   | Schedule    | Purpose                            |
+| ---------------------- | ----------- | ---------------------------------- |
+| `rollup_analytics`     | Daily 03:05 | Flag bots + aggregate to rollups   |
+| `cleanup_analytics`    | Daily 03:15 | Delete events >2 days + VACUUM     |
+| `update_popular_posts` | Hourly      | ❌ Still using Fathom - to migrate |
