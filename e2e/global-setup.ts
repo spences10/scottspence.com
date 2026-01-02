@@ -33,6 +33,9 @@ export default async function global_setup() {
 
 	console.log(`Found ${post_files.length} posts to seed`)
 
+	// Clear existing embeddings (vec0 doesn't support ON CONFLICT)
+	db.exec('DELETE FROM post_embeddings')
+
 	// Insert posts - minimal data for e2e tests
 	const insert_post = db.prepare(`
 		INSERT INTO posts (slug, title, date, is_private, preview, tags, reading_time_minutes, reading_time_text, reading_time_seconds, reading_time_words, preview_html, last_updated)
@@ -42,7 +45,7 @@ export default async function global_setup() {
 
 	// Insert embeddings into the virtual table
 	const insert_embedding = db.prepare(`
-		INSERT OR IGNORE INTO post_embeddings (post_id, embedding)
+		INSERT INTO post_embeddings (post_id, embedding)
 		VALUES (?, ?)
 	`)
 

@@ -64,7 +64,7 @@ importers:
         specifier: ^2.0.7
         version: 2.0.7(@upstash/redis@1.36.0)
       '@upstash/redis':
-        specifier: ^1.35.8
+        specifier: ^1.36.0
         version: 1.36.0
       '@vitest/browser-playwright':
         specifier: ^4.0.16
@@ -136,7 +136,7 @@ importers:
         specifier: ^0.0.13
         version: 0.0.13(svelte@5.46.1)
       svelte:
-        specifier: ^5.46.0
+        specifier: ^5.46.1
         version: 5.46.1
       svelte-check:
         specifier: ^4.3.5
@@ -154,7 +154,7 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
       typescript-eslint:
-        specifier: ^8.50.1
+        specifier: ^8.51.0
         version: 8.51.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       unist-util-visit:
         specifier: 5.0.0
