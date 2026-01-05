@@ -21,10 +21,22 @@ export type AnalyticsEvent = {
 }
 
 /**
- * Module-level queue - shared across all requests
- * Node.js caches modules, so this array persists
+ * Click event structure for tracking user interactions
+ */
+export type ClickEvent = {
+	event_name: string
+	event_context: string | null
+	visitor_hash: string
+	path: string
+	created_at: number
+}
+
+/**
+ * Module-level queues - shared across all requests
+ * Node.js caches modules, so these arrays persist
  */
 const queue: AnalyticsEvent[] = []
+const click_queue: ClickEvent[] = []
 let flush_timer: ReturnType<typeof setInterval> | null = null
 
 /**
@@ -32,6 +44,13 @@ let flush_timer: ReturnType<typeof setInterval> | null = null
  */
 export const queue_page_view = (event: AnalyticsEvent): void => {
 	queue.push(event)
+}
+
+/**
+ * Queue a click event (O(1), non-blocking)
+ */
+export const queue_click_event = (event: ClickEvent): void => {
+	click_queue.push(event)
 }
 
 /**
@@ -72,39 +91,66 @@ export const get_path_viewers = (path: string): number => {
 
 /**
  * Flush queued events to database
- * Drains queue and batch inserts all events
+ * Drains both queues and batch inserts all events
  */
 const flush_batch = (): void => {
-	if (queue.length === 0) return
+	const has_analytics = queue.length > 0
+	const has_clicks = click_queue.length > 0
 
-	// Drain queue atomically
-	const batch = queue.splice(0, queue.length)
+	if (!has_analytics && !has_clicks) return
+
+	const queries: { sql: string; args: unknown[] }[] = []
+
+	// Drain analytics queue
+	if (has_analytics) {
+		const batch = queue.splice(0, queue.length)
+		for (const event of batch) {
+			queries.push({
+				sql: `INSERT INTO analytics_events
+					(visitor_hash, event_type, event_name, path, referrer, user_agent, ip, country, browser, device_type, os, is_bot, props, created_at)
+					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+				args: [
+					event.visitor_hash,
+					event.event_type,
+					event.event_name,
+					event.path,
+					event.referrer,
+					event.user_agent,
+					event.ip,
+					event.country,
+					event.browser,
+					event.device_type,
+					event.os,
+					event.is_bot ? 1 : 0,
+					event.props ? JSON.stringify(event.props) : null,
+					event.created_at,
+				],
+			})
+		}
+	}
+
+	// Drain click queue
+	if (has_clicks) {
+		const click_batch = click_queue.splice(0, click_queue.length)
+		for (const event of click_batch) {
+			queries.push({
+				sql: `INSERT INTO click_events
+					(event_name, event_context, visitor_hash, path, created_at)
+					VALUES (?, ?, ?, ?, ?)`,
+				args: [
+					event.event_name,
+					event.event_context,
+					event.visitor_hash,
+					event.path,
+					event.created_at,
+				],
+			})
+		}
+	}
 
 	try {
-		const queries = batch.map((event) => ({
-			sql: `INSERT INTO analytics_events
-				(visitor_hash, event_type, event_name, path, referrer, user_agent, ip, country, browser, device_type, os, is_bot, props, created_at)
-				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-			args: [
-				event.visitor_hash,
-				event.event_type,
-				event.event_name,
-				event.path,
-				event.referrer,
-				event.user_agent,
-				event.ip,
-				event.country,
-				event.browser,
-				event.device_type,
-				event.os,
-				event.is_bot ? 1 : 0,
-				event.props ? JSON.stringify(event.props) : null,
-				event.created_at,
-			],
-		}))
-
 		sqlite_client.batch(queries)
-		console.log(`[analytics] Flushed ${batch.length} events`)
+		console.log(`[analytics] Flushed ${queries.length} events`)
 	} catch (error) {
 		// Events are lost on failure - acceptable for analytics
 		console.error('[analytics] Flush failed:', error)

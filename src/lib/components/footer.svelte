@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/state'
+	import { track_click } from '$lib/analytics/track-click.remote'
 	import { get_popular_posts } from '$lib/data/popular-posts.remote'
 	import { Eye } from '$lib/icons'
 	import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
 	import { number_crunch } from '$lib/utils'
-	import * as Fathom from 'fathom-client'
 	import { onMount } from 'svelte'
 	import LiveVisitors from './live-visitors.svelte'
 
@@ -63,7 +63,7 @@
 		{#each SITE_LINKS as link}
 			<a
 				href={`/${link.slug}`}
-				onclick={() => Fathom.trackEvent(link.slug)}
+				onclick={() => track_click({ event_name: link.slug })}
 				class="link link-hover text-primary-content"
 			>
 				{link.title}

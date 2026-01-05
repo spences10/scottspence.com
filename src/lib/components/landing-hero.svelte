@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Fathom from 'fathom-client'
+	import { track_click } from '$lib/analytics/track-click.remote'
 	import LiveVisitors from './live-visitors.svelte'
 
 	let is_hovering = $state(false)
@@ -56,7 +56,8 @@
 				</p>
 				<a
 					href="/contact"
-					onclick={() => Fathom.trackEvent(`contact button click`)}
+					onclick={() =>
+						track_click({ event_name: 'contact button click' })}
 					class="btn btn-primary btn-md rounded-box text-primary-content! lg:btn-lg hover:text-primary-content mb-5 w-full shadow-xl"
 				>
 					Get in Touch

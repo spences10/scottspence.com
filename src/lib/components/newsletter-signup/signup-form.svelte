@@ -1,7 +1,7 @@
 <script lang="ts">
+	import { track_click } from '$lib/analytics/track-click.remote'
 	import { get_subscriber_count } from '$lib/data/subscribers.remote'
 	import type { ActionResult } from '@sveltejs/kit'
-	import * as Fathom from 'fathom-client'
 	import { button_disabled } from './index'
 	import { subscribe_to_newsletter } from './newsletter.remote'
 
@@ -19,7 +19,7 @@
 		$button_disabled = true
 
 		try {
-			Fathom.trackEvent('newsletter signup click')
+			track_click({ event_name: 'newsletter signup click' })
 			await subscribe_to_newsletter({ email })
 
 			const result: ActionResult = {
