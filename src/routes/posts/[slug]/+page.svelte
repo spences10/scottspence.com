@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/state'
+	import { track_click } from '$lib/analytics/track-click.remote'
 	import {
 		differenceInDays,
 		differenceInYears,
 		format,
 	} from 'date-fns'
-	import * as Fathom from 'fathom-client'
 	import { Head, SchemaOrg } from 'svead'
 
 	import {
@@ -172,8 +172,10 @@
 		if (e.metaKey || e.ctrlKey) return
 		e.preventDefault()
 
-		// Track the event with Fathom
-		Fathom.trackEvent(`analytics click: ${page.url.pathname}`)
+		// Track the event
+		track_click({
+			event_name: `analytics click: ${page.url.pathname}`,
+		})
 
 		// Open modal and fetch analytics data
 		await modal.show_modal()

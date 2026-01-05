@@ -1,11 +1,11 @@
 <script lang="ts">
+	import { track_click } from '$lib/analytics/track-click.remote'
 	import {
 		InformationCircle,
 		LightBulb,
 		Megaphone,
 		WarningTriangle,
 	} from '$lib/icons'
-	import * as Fathom from 'fathom-client'
 
 	interface Props {
 		options?: BannerOptions
@@ -31,7 +31,7 @@
 			const event_name = link_text
 				? `${options.track_event}: ${link_text}`
 				: options.track_event
-			Fathom.trackEvent(event_name)
+			track_click({ event_name })
 		}
 	}
 

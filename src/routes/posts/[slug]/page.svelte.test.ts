@@ -3,9 +3,9 @@ import { render } from 'vitest-browser-svelte'
 import { page } from 'vitest/browser'
 import PostPage from './+page.svelte'
 
-// Only mock external services, not browser APIs or data structures
-vi.mock('fathom-client', () => ({
-	trackEvent: vi.fn(),
+// Mock remote functions - track_click needs SvelteKit request context
+vi.mock('$lib/analytics/track-click.remote', () => ({
+	track_click: vi.fn(),
 }))
 
 // Mock remote functions - these require SvelteKit request context in production

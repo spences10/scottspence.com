@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Fathom from 'fathom-client'
+	import { track_click } from '$lib/analytics/track-click.remote'
 
 	interface RelatedPost {
 		slug: string
@@ -25,7 +25,9 @@
 					data-sveltekit-reload
 					href={`/posts/${post.slug}`}
 					onclick={() =>
-						Fathom.trackEvent(`related post click: ${post.title}`)}
+						track_click({
+							event_name: `related post click: ${post.title}`,
+						})}
 					class="h-full"
 				>
 					<aside

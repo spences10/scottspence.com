@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state'
+	import { track_click } from '$lib/analytics/track-click.remote'
 	import { get_popular_posts } from '$lib/data/popular-posts.remote'
 	import { number_crunch } from '$lib/utils'
-	import * as Fathom from 'fathom-client'
 	import { onMount } from 'svelte'
 
 	type PopularPostsPeriod = keyof PopularPosts
@@ -48,7 +48,9 @@
 					data-sveltekit-reload
 					href={page.url.origin + post.pathname}
 					onclick={() =>
-						Fathom.trackEvent(`popular post click: ${post.title}`)}
+						track_click({
+							event_name: `popular post click: ${post.title}`,
+						})}
 					class="h-full"
 				>
 					<aside
