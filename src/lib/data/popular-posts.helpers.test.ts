@@ -1,7 +1,9 @@
 import { describe, expect, it, vi } from 'vitest'
 import {
-	build_popular_posts_query,
+	fetch_popular_month,
 	fetch_popular_posts_from_db,
+	fetch_popular_today,
+	fetch_popular_year,
 	normalize_popular_post,
 	normalize_popular_posts,
 } from './popular-posts.helpers'
@@ -10,63 +12,37 @@ describe('popular-posts.helpers', () => {
 	describe('normalize_popular_post', () => {
 		it('should normalize a row with all fields', () => {
 			const row = {
-				id: 1,
 				pathname: '/posts/test-post',
 				title: 'Test Post',
-				pageviews: 100,
-				visits: 50,
-				date_grouping: 'day',
-				last_updated: '2024-01-01',
+				views: 100,
+				uniques: 50,
 			}
 
 			const result = normalize_popular_post(row)
 
 			expect(result).toEqual({
-				id: '1',
+				id: '/posts/test-post',
 				pathname: '/posts/test-post',
 				title: 'Test Post',
 				pageviews: 100,
 				visits: 50,
-				date_grouping: 'day',
-				last_updated: '2024-01-01',
+				date_grouping: '',
+				last_updated: '',
 			})
 		})
 
-		it('should convert string numbers to numbers', () => {
+		it('should map views to pageviews and uniques to visits', () => {
 			const row = {
-				id: '42',
 				pathname: '/posts/test',
 				title: 'Test',
-				pageviews: '200',
-				visits: '100',
-				date_grouping: 'month',
-				last_updated: '2024-06-01',
+				views: 200,
+				uniques: 100,
 			}
 
 			const result = normalize_popular_post(row)
 
-			expect(result.id).toBe('42')
 			expect(result.pageviews).toBe(200)
 			expect(result.visits).toBe(100)
-		})
-
-		it('should handle null/undefined values', () => {
-			const row = {
-				id: null,
-				pathname: undefined,
-				title: null,
-				pageviews: null,
-				visits: undefined,
-				date_grouping: null,
-				last_updated: undefined,
-			}
-
-			const result = normalize_popular_post(row)
-
-			expect(result.id).toBe('null')
-			expect(result.pathname).toBe('undefined')
-			expect(result.pageviews).toBe(0) // Number(null) = 0
-			expect(result.visits).toBeNaN() // Number(undefined) = NaN
 		})
 	})
 
@@ -74,22 +50,16 @@ describe('popular-posts.helpers', () => {
 		it('should normalize an array of rows', () => {
 			const rows = [
 				{
-					id: 1,
 					pathname: '/posts/post-1',
 					title: 'Post 1',
-					pageviews: 100,
-					visits: 50,
-					date_grouping: 'day',
-					last_updated: '2024-01-01',
+					views: 100,
+					uniques: 50,
 				},
 				{
-					id: 2,
 					pathname: '/posts/post-2',
 					title: 'Post 2',
-					pageviews: 200,
-					visits: 100,
-					date_grouping: 'day',
-					last_updated: '2024-01-02',
+					views: 200,
+					uniques: 100,
 				},
 			]
 
@@ -106,31 +76,79 @@ describe('popular-posts.helpers', () => {
 		})
 	})
 
-	describe('build_popular_posts_query', () => {
-		it('should build query for day grouping', () => {
-			const query = build_popular_posts_query('day')
+	describe('fetch_popular_today', () => {
+		it('should query analytics_events for today', async () => {
+			const mock_client = {
+				execute: vi.fn().mockResolvedValue({
+					rows: [
+						{
+							pathname: '/posts/today-post',
+							title: 'Today Post',
+							views: 100,
+							uniques: 50,
+						},
+					],
+				}),
+			}
 
-			expect(query).toContain("WHERE pp.date_grouping = 'day'")
-			expect(query).toContain('ORDER BY pp.pageviews DESC')
-			expect(query).toContain('LIMIT 20')
+			const result = await fetch_popular_today(mock_client as any)
+
+			expect(mock_client.execute).toHaveBeenCalled()
+			const call = mock_client.execute.mock.calls[0][0]
+			expect(call.sql).toContain('analytics_events')
+			expect(call.sql).toContain('is_bot = 0')
+			expect(result).toHaveLength(1)
+			expect(result[0].title).toBe('Today Post')
 		})
+	})
 
-		it('should build query for month grouping', () => {
-			const query = build_popular_posts_query('month')
+	describe('fetch_popular_month', () => {
+		it('should query analytics_monthly for current month', async () => {
+			const mock_client = {
+				execute: vi.fn().mockResolvedValue({
+					rows: [
+						{
+							pathname: '/posts/monthly-post',
+							title: 'Monthly Post',
+							views: 500,
+							uniques: 250,
+						},
+					],
+				}),
+			}
 
-			expect(query).toContain("WHERE pp.date_grouping = 'month'")
+			const result = await fetch_popular_month(mock_client as any)
+
+			expect(mock_client.execute).toHaveBeenCalled()
+			const call = mock_client.execute.mock.calls[0][0]
+			expect(call.sql).toContain('analytics_monthly')
+			expect(result).toHaveLength(1)
+			expect(result[0].title).toBe('Monthly Post')
 		})
+	})
 
-		it('should build query for year grouping', () => {
-			const query = build_popular_posts_query('year')
+	describe('fetch_popular_year', () => {
+		it('should query analytics_yearly for current year', async () => {
+			const mock_client = {
+				execute: vi.fn().mockResolvedValue({
+					rows: [
+						{
+							pathname: '/posts/yearly-post',
+							title: 'Yearly Post',
+							views: 1000,
+							uniques: 500,
+						},
+					],
+				}),
+			}
 
-			expect(query).toContain("WHERE pp.date_grouping = 'year'")
-		})
+			const result = await fetch_popular_year(mock_client as any)
 
-		it('should include JOIN with posts table', () => {
-			const query = build_popular_posts_query('day')
-
-			expect(query).toContain('JOIN posts p ON')
+			expect(mock_client.execute).toHaveBeenCalled()
+			const call = mock_client.execute.mock.calls[0][0]
+			expect(call.sql).toContain('analytics_yearly')
+			expect(result).toHaveLength(1)
+			expect(result[0].title).toBe('Yearly Post')
 		})
 	})
 
@@ -138,47 +156,38 @@ describe('popular-posts.helpers', () => {
 		it('should fetch and normalize all time periods', async () => {
 			const mock_client = {
 				execute: vi.fn().mockImplementation(({ sql }) => {
-					if (sql.includes("'day'")) {
+					if (sql.includes('analytics_events')) {
 						return {
 							rows: [
 								{
-									id: 1,
 									pathname: '/posts/daily',
 									title: 'Daily Post',
-									pageviews: 100,
-									visits: 50,
-									date_grouping: 'day',
-									last_updated: '2024-01-01',
+									views: 100,
+									uniques: 50,
 								},
 							],
 						}
 					}
-					if (sql.includes("'month'")) {
+					if (sql.includes('analytics_monthly')) {
 						return {
 							rows: [
 								{
-									id: 2,
 									pathname: '/posts/monthly',
 									title: 'Monthly Post',
-									pageviews: 500,
-									visits: 250,
-									date_grouping: 'month',
-									last_updated: '2024-01-01',
+									views: 500,
+									uniques: 250,
 								},
 							],
 						}
 					}
-					if (sql.includes("'year'")) {
+					if (sql.includes('analytics_yearly')) {
 						return {
 							rows: [
 								{
-									id: 3,
 									pathname: '/posts/yearly',
 									title: 'Yearly Post',
-									pageviews: 1000,
-									visits: 500,
-									date_grouping: 'year',
-									last_updated: '2024-01-01',
+									views: 1000,
+									uniques: 500,
 								},
 							],
 						}

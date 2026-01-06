@@ -18,7 +18,10 @@ export const BYPASS_DB_READS = {
 // Cache duration constants (in milliseconds)
 export const CACHE_DURATIONS = {
 	posts: 24 * 60 * 60 * 1000, // 24 hours
-	popular_posts: 60 * 60 * 1000, // 1 hour
+	popular_posts: 60 * 60 * 1000, // 1 hour (backwards compat)
+	popular_posts_today: 15 * 60 * 1000, // 15 minutes
+	popular_posts_month: 60 * 60 * 1000, // 1 hour
+	popular_posts_year: 60 * 60 * 1000, // 1 hour
 	reactions: 30 * 1000, // 30 seconds
 	reactions_leaderboard: 15 * 60 * 1000, // 15 minutes
 	subscribers: 24 * 60 * 60 * 1000, // 24 hours
