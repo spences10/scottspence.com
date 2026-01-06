@@ -15,10 +15,10 @@ Migrate from Fathom API to self-hosted analytics using
 - [x] Click events migration (`Fathom.trackEvent` → `click_events`
       table)
 - [x] Popular posts migration (local rollups + cached queries)
+- [x] Bot detection for "today" queries (inline CTE filtering)
 
 **Remaining:**
 
-- [ ] Fix bot detection for "today" queries (see below)
 - [ ] Per-post analytics modal → local rollups
 - [ ] Delete dead code (`update_stats`, `update_popular_posts`)
 - [ ] Remove Fathom API client
@@ -27,60 +27,128 @@ Migrate from Fathom API to self-hosted analytics using
 
 ---
 
-## Bot Detection Issue (Jan 6, 2026)
+## Bot Detection Fix ✅ (Jan 6, 2026)
 
 ### Problem
 
-"Today" popular posts shows 10k+ views vs Fathom's ~200 views.
+"Today" popular posts showed 10k+ views vs Fathom's ~200 views.
 
 ### Root cause
 
 Behaviour-based bot detection (`flag_bot_behaviour.ts`) only runs
 during daily rollup at 03:05. For "today" queries on
 `analytics_events`, only UA-based detection applies - missing
-sophisticated bots.
+sophisticated bots with realistic UAs.
 
-### Analysis (prod data)
+### Analysis
+
+**Traffic distribution (2.5 days, 109k events):**
 
 | Hit range | Visitors | Total views | % of traffic |
 | --------- | -------- | ----------- | ------------ |
-| 1 hit     | 1,563    | 1,563       | 6%           |
-| 2-5       | 928      | 2,429       | 9%           |
-| 6-10      | 121      | 889         | 3%           |
-| 11-50     | 79       | 1,733       | 7%           |
-| 51-100    | 33       | 2,480       | 10%          |
-| **100+**  | **44**   | **19,078**  | **74%**      |
+| 1 hit     | 6,679    | 6,679       | 14.5%        |
+| 2-5       | 3,005    | 7,780       | 16.9%        |
+| 6-10      | 340      | 2,541       | 5.5%         |
+| 11-50     | 272      | 6,477       | 14.1%        |
+| 51-100    | 44       | 3,105       | 6.8%         |
+| **100+**  | **47**   | **19,410**  | **42.2%**    |
 
-**44 "visitors" = 74% of today's views.** Pattern: Firefox UA, single
-page, thousands of hits = scrapers with realistic UA.
+**Human behaviour patterns (hits per page):**
 
-### Proposed fixes
+| Hits/page | Visitors | % of total | Interpretation        |
+| --------- | -------- | ---------- | --------------------- |
+| 1-2       | 9,721    | 93.6%      | Normal humans         |
+| 3-5       | 407      | 3.9%       | Engaged readers       |
+| 6-10      | 76       | 0.7%       | Suspicious            |
+| 11-20     | 53       | 0.5%       | Very suspicious       |
+| **20+**   | **130**  | **1.3%**   | Almost certainly bots |
 
-1. **Inline filtering** - exclude visitors with >50 hits from today's
-   query
-2. **More frequent bot flagging** - run behaviour detection every
-   15-30 min
-3. **Better UA patterns** - catch more bots at write time
+**Top offenders (Firefox UA, single page, thousands of hits):**
 
-### Quick fix for `fetch_popular_today`
+- `2b541b33...`: 5,066 hits to 1 page (Firefox Mac)
+- `556ae857...`: 2,544 hits to 1 page (Firefox Mac)
+- `e9ad616a...`: 1,533 hits to 1 page (Firefox Mac)
+
+**Targeted pages:**
+
+- `/posts/configuring-mcp-tools-in-claude-code` → 9,155 bot hits
+- `/posts/my-zsh-config` → 6,066 bot hits
+
+### Fathom comparison
+
+**Real-time comparison (Jan 6):**
+
+- **Fathom**: 5 visitors
+- **Local**: 52 visitors
+- **Ratio**: 10x difference
+
+**Daily totals comparison (Jan 6):**
+
+| Source         | Views  | Visitors | Ratio vs Fathom |
+| -------------- | ------ | -------- | --------------- |
+| Fathom         | ~1,400 | 547      | 1x              |
+| Local raw      | 25,758 | 2,105    | **18x views**   |
+| Local filtered | 3,884  | 2,015    | **2.8x views**  |
+
+**Before/after filtering:**
+
+- Raw: **18x** more views than Fathom (bot-inflated)
+- Filtered: **2.8x** more views than Fathom (reasonable)
+
+**Why local > Fathom (even after filtering):**
+
+1. **Adblockers** - ~30-40% of tech users block Fathom JS, but
+   server-side tracking catches everyone
+2. **Fathom's extra filtering** - datacenter IPs, headless browsers,
+   fingerprinting we don't do
+3. **Some bots still slipping through** - could tighten thresholds
+   further if needed
+
+**Why this validates local analytics:**
+
+- Server-side = actual visitors (no blockers)
+- Fathom undersells true traffic due to adblockers
+- Local oversells due to bots, but filtering brings it close
+- 2.8x gap is expected/acceptable for a tech audience
+
+### Solution implemented
+
+**Inline CTE filtering** in `fetch_popular_today`:
 
 ```sql
-SELECT path, COUNT(*) as views, COUNT(DISTINCT visitor_hash) as uniques
-FROM analytics_events e
-WHERE created_at >= ?
-  AND is_bot = 0
-  AND visitor_hash NOT IN (
-    SELECT visitor_hash FROM analytics_events
+WITH bad_visitors AS (
+    -- Visitors exceeding per-path threshold
+    SELECT DISTINCT visitor_hash
+    FROM analytics_events
+    WHERE created_at >= ?
+    GROUP BY visitor_hash, path
+    HAVING COUNT(*) > 20
+    UNION
+    -- Visitors exceeding total threshold
+    SELECT visitor_hash
+    FROM analytics_events
     WHERE created_at >= ?
     GROUP BY visitor_hash
-    HAVING COUNT(*) > 50
-  )
-GROUP BY path
-ORDER BY views DESC
-LIMIT 20
+    HAVING COUNT(*) > 100
+)
+SELECT ...
+WHERE visitor_hash NOT IN (SELECT visitor_hash FROM bad_visitors)
 ```
 
-Or simpler: show unique visitors instead of total views for "today".
+### Aligned thresholds
+
+Both `flag-bot-behaviour.ts` and `popular-posts.helpers.ts` now use:
+
+| Threshold     | Old value | New value | Rationale                        |
+| ------------- | --------- | --------- | -------------------------------- |
+| Per path/day  | 50        | **20**    | 93.6% humans have 1-2 hits/page  |
+| Total/day     | 200       | **100**   | Engaged humans avg 31 total hits |
+| Per path/hour | 20        | **10**    | Burst detection (not yet used)   |
+
+### Files modified
+
+- `src/lib/data/popular-posts.helpers.ts` - CTE filter + thresholds
+- `src/routes/api/ingest/flag-bot-behaviour.ts` - aligned thresholds
 
 ---
 
@@ -102,7 +170,7 @@ Or simpler: show unique visitors instead of total views for "today".
 
 ## What's left
 
-- [ ] Fix bot detection for "today" popular posts
+- [x] Fix bot detection for "today" popular posts
 - [ ] Switch per-post analytics modal to local rollups
 - [ ] Delete `update_stats` ingest task (dead code)
 - [ ] Delete `update_popular_posts` ingest task

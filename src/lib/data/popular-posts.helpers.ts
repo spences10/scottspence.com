@@ -24,8 +24,21 @@ export const normalize_popular_posts = (
 ): PopularPost[] => rows.map(normalize_popular_post)
 
 /**
+ * Bot detection thresholds (aligned with flag-bot-behaviour.ts)
+ * Based on analysis: 93.6% of humans have 1-2 hits/page
+ */
+const BOT_THRESHOLDS = {
+	MAX_HITS_PER_PATH: 20, // >20 hits to same page = bot
+	MAX_HITS_TOTAL: 100, // >100 total hits = bot
+}
+
+/**
  * Get today's popular posts from analytics_events (live data)
  * Cached for 15 minutes in remote function
+ *
+ * Uses inline bot filtering via CTE to exclude:
+ * - Visitors with >20 hits to any single path
+ * - Visitors with >100 total hits
  */
 export const fetch_popular_today = async (
 	client: SqliteClient,
@@ -37,11 +50,19 @@ export const fetch_popular_today = async (
 	const result = await client.execute({
 		sql: `
 			WITH bad_visitors AS (
+				-- Visitors exceeding per-path threshold
+				SELECT DISTINCT visitor_hash
+				FROM analytics_events
+				WHERE created_at >= ?
+				GROUP BY visitor_hash, path
+				HAVING COUNT(*) > ?
+				UNION
+				-- Visitors exceeding total threshold
 				SELECT visitor_hash
 				FROM analytics_events
 				WHERE created_at >= ?
 				GROUP BY visitor_hash
-				HAVING COUNT(*) > 50
+				HAVING COUNT(*) > ?
 			)
 			SELECT
 				e.path as pathname,
@@ -57,7 +78,13 @@ export const fetch_popular_today = async (
 			ORDER BY views DESC
 			LIMIT 20
 		`,
-		args: [today_timestamp, today_timestamp],
+		args: [
+			today_timestamp,
+			BOT_THRESHOLDS.MAX_HITS_PER_PATH,
+			today_timestamp,
+			BOT_THRESHOLDS.MAX_HITS_TOTAL,
+			today_timestamp,
+		],
 	})
 
 	return normalize_popular_posts(
