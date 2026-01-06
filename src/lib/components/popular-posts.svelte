@@ -31,6 +31,16 @@
 			Take a look at some popular content from me...
 			<select
 				bind:value={selected_period}
+				onchange={() => {
+					const labels: Record<PopularPostsPeriod, string> = {
+						popular_posts_daily: 'today',
+						popular_posts_monthly: 'this month',
+						popular_posts_yearly: 'this year',
+					}
+					track_click({
+						event_name: `popular posts period: ${labels[selected_period]}`,
+					})
+				}}
 				class="select select-sm border-secondary w-40 border"
 			>
 				<option value="popular_posts_daily">Views today</option>
