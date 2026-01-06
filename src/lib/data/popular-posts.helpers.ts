@@ -36,6 +36,13 @@ export const fetch_popular_today = async (
 
 	const result = await client.execute({
 		sql: `
+			WITH bad_visitors AS (
+				SELECT visitor_hash
+				FROM analytics_events
+				WHERE created_at >= ?
+				GROUP BY visitor_hash
+				HAVING COUNT(*) > 50
+			)
 			SELECT
 				e.path as pathname,
 				p.title,
@@ -43,12 +50,14 @@ export const fetch_popular_today = async (
 				COUNT(DISTINCT e.visitor_hash) as uniques
 			FROM analytics_events e
 			JOIN posts p ON e.path = '/posts/' || p.slug
-			WHERE e.created_at >= ? AND e.is_bot = 0
+			WHERE e.created_at >= ?
+				AND e.is_bot = 0
+				AND e.visitor_hash NOT IN (SELECT visitor_hash FROM bad_visitors)
 			GROUP BY e.path
 			ORDER BY views DESC
 			LIMIT 20
 		`,
-		args: [today_timestamp],
+		args: [today_timestamp, today_timestamp],
 	})
 
 	return normalize_popular_posts(
