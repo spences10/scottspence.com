@@ -8,17 +8,81 @@ Migrate from Fathom API to self-hosted analytics using
 > **Note**: See `local-analytics.md` for detailed implementation docs
 > and the Fathom Migration Status section.
 
-## Status: Jan 4, 2026
+## Status: Jan 6, 2026
 
-Local analytics fully operational. 2025 Fathom data loaded into DB.
+**Completed:**
+
+- [x] Click events migration (`Fathom.trackEvent` → `click_events`
+      table)
+- [x] Popular posts migration (local rollups + cached queries)
+
+**Remaining:**
+
+- [ ] Fix bot detection for "today" queries (see below)
+- [ ] Per-post analytics modal → local rollups
+- [ ] Delete dead code (`update_stats`, `update_popular_posts`)
+- [ ] Remove Fathom API client
 
 **Fathom stays for**: pageview tracking in `+layout.svelte` only.
 
-**Fathom removal targets**:
+---
 
-- Popular posts (cron job) → local rollups + cached query
-- Per-post analytics (modal) → local rollups
-- Click events (`Fathom.trackEvent`) → new `click_events` table
+## Bot Detection Issue (Jan 6, 2026)
+
+### Problem
+
+"Today" popular posts shows 10k+ views vs Fathom's ~200 views.
+
+### Root cause
+
+Behaviour-based bot detection (`flag_bot_behaviour.ts`) only runs
+during daily rollup at 03:05. For "today" queries on
+`analytics_events`, only UA-based detection applies - missing
+sophisticated bots.
+
+### Analysis (prod data)
+
+| Hit range | Visitors | Total views | % of traffic |
+| --------- | -------- | ----------- | ------------ |
+| 1 hit     | 1,563    | 1,563       | 6%           |
+| 2-5       | 928      | 2,429       | 9%           |
+| 6-10      | 121      | 889         | 3%           |
+| 11-50     | 79       | 1,733       | 7%           |
+| 51-100    | 33       | 2,480       | 10%          |
+| **100+**  | **44**   | **19,078**  | **74%**      |
+
+**44 "visitors" = 74% of today's views.** Pattern: Firefox UA, single
+page, thousands of hits = scrapers with realistic UA.
+
+### Proposed fixes
+
+1. **Inline filtering** - exclude visitors with >50 hits from today's
+   query
+2. **More frequent bot flagging** - run behaviour detection every
+   15-30 min
+3. **Better UA patterns** - catch more bots at write time
+
+### Quick fix for `fetch_popular_today`
+
+```sql
+SELECT path, COUNT(*) as views, COUNT(DISTINCT visitor_hash) as uniques
+FROM analytics_events e
+WHERE created_at >= ?
+  AND is_bot = 0
+  AND visitor_hash NOT IN (
+    SELECT visitor_hash FROM analytics_events
+    WHERE created_at >= ?
+    GROUP BY visitor_hash
+    HAVING COUNT(*) > 50
+  )
+GROUP BY path
+ORDER BY views DESC
+LIMIT 20
+```
+
+Or simpler: show unique visitors instead of total views for "today".
+
+---
 
 ## What's done
 
@@ -32,13 +96,13 @@ Local analytics fully operational. 2025 Fathom data loaded into DB.
 - [x] Live visitors via heartbeat (in-memory)
 - [x] Cron jobs running in ping-the-thing
 - [x] 2025 Fathom data imported
+- [x] Click events table + tracking function
+- [x] 7 components migrated from `Fathom.trackEvent`
+- [x] Popular posts using local rollups (cached queries)
 
 ## What's left
 
-- [ ] Add `click_events` table + tracking function
-- [ ] Migrate 7 components from `Fathom.trackEvent` to local
-- [ ] Switch popular posts to local (cached query for today, rollups
-      for month/year)
+- [ ] Fix bot detection for "today" popular posts
 - [ ] Switch per-post analytics modal to local rollups
 - [ ] Delete `update_stats` ingest task (dead code)
 - [ ] Delete `update_popular_posts` ingest task
@@ -48,9 +112,9 @@ Local analytics fully operational. 2025 Fathom data loaded into DB.
 
 ---
 
-## Click Events Migration
+## Click Events Migration ✅
 
-### Components using `Fathom.trackEvent`
+### Components migrated
 
 | Component                              | Event                         |
 | -------------------------------------- | ----------------------------- |
@@ -62,113 +126,34 @@ Local analytics fully operational. 2025 Fathom data loaded into DB.
 | `related-posts.svelte`                 | `related post click: {title}` |
 | `posts/[slug]/+page.svelte`            | `analytics click: {path}`     |
 
-### New `click_events` table
+### Files created/modified
 
-```sql
-CREATE TABLE click_events (
-  id INTEGER PRIMARY KEY,
-  event_name TEXT NOT NULL,
-  event_context TEXT,      -- JSON for flexible metadata
-  visitor_hash TEXT,
-  path TEXT,               -- page where click happened
-  created_at INTEGER NOT NULL
-);
-
-CREATE INDEX idx_clicks_event ON click_events(event_name, created_at);
-CREATE INDEX idx_clicks_path ON click_events(path, created_at);
-```
-
-### Tracking function
-
-```ts
-// src/lib/analytics/track-click.remote.ts
-export const track_click = command(
-	async ({
-		event_name,
-		context,
-	}: {
-		event_name: string
-		context?: Record<string, unknown>
-	}) => {
-		// Add to same write queue as pageviews, or separate queue
-		click_queue.push({
-			event_name,
-			event_context: context ? JSON.stringify(context) : null,
-			visitor_hash: get_visitor_hash(event),
-			path: event.url.pathname,
-			created_at: Date.now(),
-		})
-	},
-)
-```
+- `migrations/005_add_click_events.sql` - table + indexes
+- `src/lib/analytics/track-click.remote.ts` - remote function
+- `src/lib/analytics/queue.ts` - added `click_queue` + `ClickEvent`
+  type
 
 ---
 
-## Popular Posts Migration
+## Popular Posts Migration ✅
 
-### Current (Fathom)
+### New approach (implemented)
 
-- `update_popular_posts` cron runs hourly
-- Fetches day/month/year from Fathom API
-- Writes to `popular_posts` table
+- **Today**: `analytics_events` with 15-min cache
+- **Month**: `analytics_monthly` rollup with 1-hour cache
+- **Year**: `analytics_yearly` rollup with 1-hour cache
 
-### New approach
+### Files modified
 
-**Today**: Cached query with 15-min TTL (no cron needed)
+- `src/lib/data/popular-posts.helpers.ts` - new query functions
+- `src/lib/data/popular-posts.remote.ts` - per-period caching
+- `src/lib/cache/server-cache.ts` - added cache durations
 
-```ts
-export const get_popular_today = () => {
-	return get_cached(
-		'popular_today',
-		async () => {
-			return sqlite_client.execute(
-				`
-      SELECT path, COUNT(*) as views,
-             COUNT(DISTINCT visitor_hash) as uniques
-      FROM analytics_events
-      WHERE created_at >= ? AND is_bot = 0
-      GROUP BY path
-      ORDER BY views DESC
-      LIMIT 20
-    `,
-				[today_start_timestamp],
-			)
-		},
-		15 * 60 * 1000,
-	) // 15 min cache
-}
-```
-
-**Month/Year**: Query rollup tables directly
-
-```ts
-export const get_popular_month = () => {
-	return get_cached(
-		'popular_month',
-		async () => {
-			return sqlite_client.execute(
-				`
-      SELECT path, SUM(views) as views, SUM(uniques) as uniques
-      FROM analytics_monthly
-      WHERE month = ?
-      GROUP BY path
-      ORDER BY views DESC
-      LIMIT 20
-    `,
-				[current_month],
-			)
-		},
-		60 * 60 * 1000,
-	) // 1 hour cache
-}
-```
-
-**Benefits**:
+### Benefits
 
 - No cron job for popular posts
 - Lazy evaluation (only queries when needed)
-- Safe from lock contention (cached, infrequent DB hits)
-- Today's data is fresh within 15 min
+- No Fathom API dependency
 
 ---
 
