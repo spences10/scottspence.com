@@ -1,6 +1,6 @@
 # 2026 Analytics Migration Plan
 
-<!-- cspell:ignore rollups -->
+<!-- cspell:ignore rollups Adblockers -->
 
 Migrate from Fathom API to self-hosted analytics using
 `analytics_events` table.
