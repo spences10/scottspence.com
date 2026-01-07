@@ -19,7 +19,7 @@ Migrate from Fathom API to self-hosted analytics using
 
 **Remaining:**
 
-- [ ] Per-post analytics modal → local rollups
+- [x] Per-post analytics modal → local rollups
 - [ ] Delete dead code (`update_stats`, `update_popular_posts`)
 - [ ] Remove Fathom API client
 
@@ -269,8 +269,8 @@ export const get_post_analytics = query(async (pathname: string) => {
 | `src/routes/api/ingest/update-stats.test.ts`    | Delete  |
 | `src/routes/api/ingest/update-popular-posts.ts` | Delete  |
 | `src/lib/fathom/`                               | Delete  |
-| `src/lib/data/post-analytics.remote.ts`         | Rewrite |
-| `src/lib/state/post-analytics.svelte.ts`        | Rewrite |
+| `src/lib/data/post-analytics.remote.ts`         | ✅ Done |
+| `src/lib/state/post-analytics.svelte.ts`        | ✅ Done |
 
 ---
 

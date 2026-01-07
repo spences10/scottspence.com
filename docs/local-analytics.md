@@ -41,8 +41,8 @@ dependency.
 
 - [ ] Remove Fathom API dependency (see Fathom Migration Status below)
 - [ ] Delete legacy `update_stats` ingest task
-- [ ] Switch popular posts from Fathom to local rollups
-- [ ] Switch per-post analytics from Fathom to local rollups
+- [x] Switch popular posts from Fathom to local rollups
+- [x] Switch per-post analytics from Fathom to local rollups
 
 ---
 
@@ -52,21 +52,25 @@ dependency.
 
 Two analytics systems running in parallel:
 
-| Feature                    | Source              | Notes                 |
-| -------------------------- | ------------------- | --------------------- |
-| Site-wide stats (`/stats`) | Local rollups       | ✅ Done               |
-| Live visitors              | In-memory heartbeat | ✅ Done               |
-| Popular posts              | Fathom API          | ❌ Still using Fathom |
-| Per-post analytics (modal) | Fathom API          | ❌ Still using Fathom |
+| Feature                    | Source              | Notes   |
+| -------------------------- | ------------------- | ------- |
+| Site-wide stats (`/stats`) | Local rollups       | ✅ Done |
+| Live visitors              | In-memory heartbeat | ✅ Done |
+| Popular posts              | Local rollups       | ✅ Done |
+| Per-post analytics (modal) | Local rollups       | ✅ Done |
 
 ### Fathom API still used by
 
-| File                                            | Purpose                |
-| ----------------------------------------------- | ---------------------- |
-| `src/lib/fathom/fetch-fathom-data.ts`           | API client             |
-| `src/lib/data/post-analytics.remote.ts`         | Per-post stats (modal) |
-| `src/lib/state/post-analytics.svelte.ts`        | Per-post stats (state) |
-| `src/routes/api/ingest/update-popular-posts.ts` | Popular posts cron     |
+| File                                            | Purpose            |
+| ----------------------------------------------- | ------------------ |
+| `src/lib/fathom/fetch-fathom-data.ts`           | API client         |
+| `src/routes/api/ingest/update-popular-posts.ts` | Popular posts cron |
+
+**Migrated to local rollups:**
+
+- `src/lib/data/post-analytics.remote.ts` - now queries local tables
+- `src/lib/state/post-analytics.svelte.ts` - deleted (no longer
+  needed)
 
 ### Dead code to remove
 

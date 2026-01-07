@@ -10,6 +10,7 @@
  * - flag-bot-behaviour.ts (nightly rollup)
  * - popular-posts.helpers.ts (today's query CTE)
  * - period-stats.remote.ts (stats page filtering)
+ * - post-analytics.remote.ts (per-post modal)
  *
  * See docs/2026-analytics-migration.md for full analysis.
  */

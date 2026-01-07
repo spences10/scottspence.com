@@ -1,209 +1,173 @@
 import { query } from '$app/server'
-import { PUBLIC_FATHOM_ID } from '$env/static/public'
-import { fetch_fathom_data } from '$lib/fathom'
+import { BOT_THRESHOLDS } from '$lib/analytics/bot-thresholds'
+import {
+	BYPASS_DB_READS,
+	CACHE_DURATIONS,
+	get_from_cache,
+	set_cache,
+} from '$lib/cache/server-cache'
 import { sqlite_client } from '$lib/sqlite/client'
-import { differenceInHours, parseISO } from 'date-fns'
 import * as v from 'valibot'
-import { get_date_range } from '../../routes/api/ingest/utils'
 
+interface PostAnalyticsRow {
+	pageviews: number
+	uniques: number
+	visits: number
+}
+
+const empty_analytics: PostAnalytics = {
+	daily: null,
+	monthly: null,
+	yearly: null,
+}
+
+/**
+ * Get post analytics from local rollup tables
+ * Replaces Fathom API with local analytics_events + rollup tables
+ */
 export const get_post_analytics = query(
 	v.string(),
 	async (slug: string): Promise<PostAnalytics> => {
+		if (BYPASS_DB_READS.post_analytics) {
+			return empty_analytics
+		}
+
+		const cache_key = `post_analytics:${slug}`
+		const cached = get_from_cache<PostAnalytics>(
+			cache_key,
+			CACHE_DURATIONS.post_analytics.day,
+		)
+		if (cached) return cached
+
 		try {
-			// Check each period individually for staleness and refresh if needed
-			for (const period of ['day', 'month', 'year']) {
-				if (await is_stale_data(slug, period)) {
-					const [date_from, date_to] = get_date_range(period)
-					const fathom_data = await get_fathom_data(
-						slug,
-						period,
-						date_from,
-						date_to,
-					)
-					if (fathom_data) {
-						await insert_fathom_data(slug, [
-							{ period, data: fathom_data },
-						])
-					}
-				}
-			}
+			const pathname = `/posts/${slug}`
 
-			// Fetch the analytics data
-			let page_analytics: PostAnalytics = {
-				daily: null,
-				monthly: null,
-				yearly: null,
-			}
+			const [daily, monthly, yearly] = await Promise.all([
+				fetch_today_stats(pathname),
+				fetch_month_stats(pathname),
+				fetch_year_stats(pathname),
+			])
 
-			// Construct and execute the UNION query
-			const sql = `
-			SELECT 'day' AS period, * FROM post_analytics WHERE date_grouping = 'day' AND slug = ?
-			UNION
-			SELECT 'month' AS period, * FROM post_analytics WHERE date_grouping = 'month' AND slug = ?
-			UNION
-			SELECT 'year' AS period, * FROM post_analytics WHERE date_grouping = 'year' AND slug = ?;
-		`
-
-			const result = await sqlite_client.execute({
-				sql,
-				args: [slug, slug, slug],
-			})
-
-			// Process the results
-			result.rows.forEach((row) => {
-				if (row.period === 'day') page_analytics.daily = row
-				if (row.period === 'month') page_analytics.monthly = row
-				if (row.period === 'year') page_analytics.yearly = row
-			})
-
-			return page_analytics
+			const result: PostAnalytics = { daily, monthly, yearly }
+			set_cache(cache_key, result)
+			return result
 		} catch (error) {
 			console.warn('Database unavailable for post analytics:', error)
-			return { daily: null, monthly: null, yearly: null }
+			return empty_analytics
 		}
 	},
 )
 
-async function is_stale_data(
-	slug: string,
-	period: string,
-): Promise<boolean> {
-	const sql = `
-		SELECT last_updated
-		FROM post_analytics
-		WHERE slug = ? AND date_grouping = ?;
-	`
-	try {
-		const result = await sqlite_client.execute({
-			sql,
-			args: [slug, period],
-		})
-		const last_updated = result.rows[0]?.last_updated
+/**
+ * Today's stats from analytics_events with bot filtering CTE
+ */
+const fetch_today_stats = async (
+	pathname: string,
+): Promise<PostAnalyticsRow | null> => {
+	const today_start = new Date()
+	today_start.setHours(0, 0, 0, 0)
+	const today_timestamp = today_start.getTime()
 
-		if (last_updated) {
-			const minutes_difference =
-				differenceInHours(
-					new Date(),
-					parseISO(String(last_updated)),
-				) * 60
-
-			// Define cache durations in minutes
-			const durations: Record<string, number> = {
-				day: 60, // 1 hour
-				month: 1440, // 24 hours
-				year: 1440, // 24 hours
-			}
-			return minutes_difference >= durations[period]
-		} else {
-			console.log(
-				'No last updated date found, assuming data is stale.',
+	const result = await sqlite_client.execute({
+		sql: `
+			WITH bad_visitors AS (
+				SELECT DISTINCT visitor_hash
+				FROM analytics_events
+				WHERE created_at >= ?
+				GROUP BY visitor_hash, path
+				HAVING COUNT(*) > ?
+				UNION
+				SELECT visitor_hash
+				FROM analytics_events
+				WHERE created_at >= ?
+				GROUP BY visitor_hash
+				HAVING COUNT(*) > ?
 			)
-			return true
-		}
-	} catch (error) {
-		console.error('Error checking last updated:', error)
-		return false
-	}
-}
-
-async function get_fathom_data(
-	slug: string,
-	period: string,
-	date_from: string,
-	date_to: string,
-) {
-	const params = {
-		entity: 'pageview',
-		entity_id: PUBLIC_FATHOM_ID,
-		aggregates: 'pageviews,visits,uniques,avg_duration,bounce_rate',
-		date_grouping: period,
-		date_from,
-		date_to,
-		filters: JSON.stringify([
-			{
-				property: 'pathname',
-				operator: 'is',
-				value: `/posts/${slug}`,
-			},
-		]),
-	}
-	try {
-		const fathom_data = await fetch_fathom_data(
-			fetch,
-			'aggregations',
-			params,
-			`fetch_post_analytics_${period}`,
-		)
-		return fathom_data
-	} catch (error) {
-		console.error(
-			`Error fetching from Fathom for period ${period}:`,
-			error,
-		)
-		return null
-	}
-}
-
-async function insert_fathom_data(
-	slug: string,
-	data_batches: { period: any; data: any }[],
-) {
-	const queries: { sql: string; args: any[] }[] = []
-
-	data_batches.forEach(({ period, data }) => {
-		if (!data || !data[0]) {
-			console.log(
-				`No data available for period: ${period}, skipping...`,
-			)
-			return // Skip this iteration as there's no data
-		}
-
-		const { pageviews, visits, uniques, avg_duration, bounce_rate } =
-			data[0]
-
-		const args = [
-			slug,
-			period,
-			parseInt(pageviews, 10) || 0,
-			parseInt(visits, 10) || 0,
-			parseInt(uniques, 10) || 0,
-			parseFloat(avg_duration) || 0,
-			parseFloat(bounce_rate) || 0,
-		]
-
-		const sql = `
-			INSERT INTO post_analytics (
-				slug,
-				date_grouping,
-				pageviews,
-				visits,
-				uniques,
-				avg_duration,
-				bounce_rate
-			) VALUES (?, ?, ?, ?, ?, ?, ?)
-			ON CONFLICT (slug, date_grouping) DO UPDATE SET
-				pageviews = excluded.pageviews,
-				visits = excluded.visits,
-				uniques = excluded.uniques,
-				avg_duration = excluded.avg_duration,
-				bounce_rate = excluded.bounce_rate,
-				last_updated = CURRENT_TIMESTAMP;
-		`
-
-		queries.push({ sql, args })
+			SELECT
+				COUNT(*) as views,
+				COUNT(DISTINCT visitor_hash) as uniques
+			FROM analytics_events
+			WHERE path = ?
+				AND created_at >= ?
+				AND is_bot = 0
+				AND visitor_hash NOT IN (SELECT visitor_hash FROM bad_visitors)
+		`,
+		args: [
+			today_timestamp,
+			BOT_THRESHOLDS.MAX_HITS_PER_PATH_PER_DAY,
+			today_timestamp,
+			BOT_THRESHOLDS.MAX_HITS_TOTAL_PER_DAY,
+			pathname,
+			today_timestamp,
+		],
 	})
 
-	if (queries.length === 0) {
-		console.log('No queries to execute, all periods were empty.')
-		return // Exit early if there are no queries to execute
-	}
+	const row = result.rows[0]
+	if (!row || (row.views === 0 && row.uniques === 0)) return null
 
-	try {
-		await sqlite_client.batch(queries)
-		console.log(
-			`Batch insert/update completed for ${queries.length} periods.`,
-		)
-	} catch (error) {
-		console.error(`Error inserting batch data:`, error)
+	return {
+		pageviews: Number(row.views),
+		uniques: Number(row.uniques),
+		visits: Number(row.uniques),
+	}
+}
+
+/**
+ * This month's stats from analytics_monthly rollup
+ */
+const fetch_month_stats = async (
+	pathname: string,
+): Promise<PostAnalyticsRow | null> => {
+	const current_month = new Date().toISOString().slice(0, 7)
+
+	const result = await sqlite_client.execute({
+		sql: `
+			SELECT
+				SUM(views) as views,
+				SUM(unique_visitors) as uniques
+			FROM analytics_monthly
+			WHERE pathname = ?
+				AND year_month = ?
+		`,
+		args: [pathname, current_month],
+	})
+
+	const row = result.rows[0]
+	if (!row || (!row.views && !row.uniques)) return null
+
+	return {
+		pageviews: Number(row.views) || 0,
+		uniques: Number(row.uniques) || 0,
+		visits: Number(row.uniques) || 0,
+	}
+}
+
+/**
+ * This year's stats from analytics_yearly rollup
+ */
+const fetch_year_stats = async (
+	pathname: string,
+): Promise<PostAnalyticsRow | null> => {
+	const current_year = new Date().getFullYear().toString()
+
+	const result = await sqlite_client.execute({
+		sql: `
+			SELECT
+				SUM(views) as views,
+				SUM(unique_visitors) as uniques
+			FROM analytics_yearly
+			WHERE pathname = ?
+				AND year = ?
+		`,
+		args: [pathname, current_year],
+	})
+
+	const row = result.rows[0]
+	if (!row || (!row.views && !row.uniques)) return null
+
+	return {
+		pageviews: Number(row.views) || 0,
+		uniques: Number(row.uniques) || 0,
+		visits: Number(row.uniques) || 0,
 	}
 }
