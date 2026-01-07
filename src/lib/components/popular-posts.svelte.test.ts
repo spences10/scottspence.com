@@ -194,8 +194,14 @@ describe('PopularPosts Component', () => {
 				await expect.element(title).toBeInTheDocument()
 			})
 
-			// Click the first link (which contains Yearly Post One)
+			// Click the first link - prevent navigation to avoid breaking iframe
 			const links = page.getByRole('link')
+			const link_element = await links.first().element()
+			link_element.addEventListener(
+				'click',
+				(e) => e.preventDefault(),
+				{ once: true },
+			)
 			await links.first().click()
 
 			expect(mock_track_click).toHaveBeenCalledWith({
