@@ -147,8 +147,14 @@ Both `flag-bot-behaviour.ts` and `popular-posts.helpers.ts` now use:
 
 ### Files modified
 
-- `src/lib/data/popular-posts.helpers.ts` - CTE filter + thresholds
-- `src/routes/api/ingest/flag-bot-behaviour.ts` - aligned thresholds
+- `src/lib/analytics/bot-thresholds.ts` - **single source of truth**
+- `src/lib/data/popular-posts.helpers.ts` - CTE filter (imports
+  thresholds)
+- `src/lib/analytics/period-stats.remote.ts` - stats page (imports
+  thresholds)
+- `src/routes/api/ingest/flag-bot-behaviour.ts` - nightly rollup
+  (imports thresholds)
+- `src/routes/api/ingest/rollup-analytics.ts` - (imports thresholds)
 
 ---
 

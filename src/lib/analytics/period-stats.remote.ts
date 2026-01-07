@@ -6,6 +6,7 @@ import {
 } from '$lib/cache/server-cache'
 import { sqlite_client } from '$lib/sqlite/client'
 import * as v from 'valibot'
+import { BOT_THRESHOLDS } from './bot-thresholds'
 import {
 	format_period_stats,
 	get_period_boundaries,
@@ -22,15 +23,6 @@ export type {
 } from './period-stats.helpers'
 
 /**
- * Behaviour-based bot thresholds (aligned with flag-bot-behaviour.ts)
- * Based on Jan 2026 analysis: 93.6% of humans have 1-2 hits/page
- */
-const BOT_THRESHOLDS = {
-	MAX_HITS_PER_PATH: 20, // >20 hits to same page = bot
-	MAX_HITS_TOTAL: 100, // >100 total hits = bot
-}
-
-/**
  * Get visitor hashes that exceed behaviour thresholds for a period
  * These are bots spoofing real user agents
  */
@@ -45,7 +37,7 @@ const get_behaviour_bot_hashes = (
 			WHERE created_at >= ? AND created_at < ?
 			GROUP BY visitor_hash, path
 			HAVING COUNT(*) > ?`,
-		args: [start, end, BOT_THRESHOLDS.MAX_HITS_PER_PATH],
+		args: [start, end, BOT_THRESHOLDS.MAX_HITS_PER_PATH_PER_DAY],
 	})
 
 	// Get visitors exceeding total threshold
@@ -55,7 +47,7 @@ const get_behaviour_bot_hashes = (
 			WHERE created_at >= ? AND created_at < ?
 			GROUP BY visitor_hash
 			HAVING COUNT(*) > ?`,
-		args: [start, end, BOT_THRESHOLDS.MAX_HITS_TOTAL],
+		args: [start, end, BOT_THRESHOLDS.MAX_HITS_TOTAL_PER_DAY],
 	})
 
 	// Combine both sets

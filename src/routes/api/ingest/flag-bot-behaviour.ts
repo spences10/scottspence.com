@@ -1,30 +1,5 @@
+import { BOT_THRESHOLDS } from '$lib/analytics/bot-thresholds'
 import { sqlite_client } from '$lib/sqlite/client'
-
-/**
- * Behaviour-based bot detection thresholds
- *
- * Based on Jan 2026 analysis of real traffic:
- * - 93.6% of humans have 1-2 hits/page
- * - Engaged multi-page visitors: ~1.6 hits/page
- * - Anyone >20 hits/page is almost certainly a bot
- *
- * Fathom comparison: ~200 real views/day vs 10k+ raw = ~95% bot traffic
- *
- * These thresholds are aligned with popular-posts.helpers.ts CTE filter
- */
-export const BOT_THRESHOLDS = {
-	// Max hits per visitor per path per day before flagged as bot
-	// Analysis: 93.6% of visitors have 1-2 hits/page
-	MAX_HITS_PER_PATH_PER_DAY: 20,
-
-	// Max hits per visitor across all paths per day
-	// Analysis: engaged humans browsing 10+ pages avg 31 total hits
-	MAX_HITS_TOTAL_PER_DAY: 100,
-
-	// Max hits per visitor per path per hour (burst detection)
-	// Note: not currently implemented in flag logic
-	MAX_HITS_PER_PATH_PER_HOUR: 10,
-} as const
 
 /**
  * Flag suspicious visitors as bots based on behaviour patterns

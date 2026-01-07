@@ -1,8 +1,6 @@
+import { BOT_THRESHOLDS } from '$lib/analytics/bot-thresholds'
 import { sqlite_client } from '$lib/sqlite/client'
-import {
-	BOT_THRESHOLDS,
-	flag_bot_behaviour,
-} from './flag-bot-behaviour'
+import { flag_bot_behaviour } from './flag-bot-behaviour'
 
 /**
  * Daily rollup job to aggregate analytics_events into summary tables

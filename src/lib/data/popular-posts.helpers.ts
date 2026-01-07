@@ -1,3 +1,4 @@
+import { BOT_THRESHOLDS } from '$lib/analytics/bot-thresholds'
 import type { SqliteClient } from '$lib/sqlite/client'
 
 interface PopularPostRow {
@@ -22,15 +23,6 @@ export const normalize_popular_post = (
 export const normalize_popular_posts = (
 	rows: PopularPostRow[],
 ): PopularPost[] => rows.map(normalize_popular_post)
-
-/**
- * Bot detection thresholds (aligned with flag-bot-behaviour.ts)
- * Based on analysis: 93.6% of humans have 1-2 hits/page
- */
-const BOT_THRESHOLDS = {
-	MAX_HITS_PER_PATH: 20, // >20 hits to same page = bot
-	MAX_HITS_TOTAL: 100, // >100 total hits = bot
-}
 
 /**
  * Get today's popular posts from analytics_events (live data)
@@ -80,9 +72,9 @@ export const fetch_popular_today = async (
 		`,
 		args: [
 			today_timestamp,
-			BOT_THRESHOLDS.MAX_HITS_PER_PATH,
+			BOT_THRESHOLDS.MAX_HITS_PER_PATH_PER_DAY,
 			today_timestamp,
-			BOT_THRESHOLDS.MAX_HITS_TOTAL,
+			BOT_THRESHOLDS.MAX_HITS_TOTAL_PER_DAY,
 			today_timestamp,
 		],
 	})
