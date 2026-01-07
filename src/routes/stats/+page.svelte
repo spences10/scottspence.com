@@ -550,8 +550,9 @@
 	<div class="text-sm">
 		<p>
 			<strong>Bot filtering:</strong> Detects bots via user-agent patterns
-			(crawlers, scripts) and behaviour analysis (200+ requests/day). Historical
-			data is filtered overnight; current day filtering is applied in real-time.
+			(crawlers, scripts) and behaviour analysis (20+ hits/page or 100+
+			total/day). Historical data is filtered overnight; current day filtering
+			is applied in real-time.
 		</p>
 	</div>
 </div>

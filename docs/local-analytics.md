@@ -288,17 +288,19 @@ CREATE INDEX idx_events_rollup ON analytics_events(created_at, path, is_bot);
 ### Bot detection thresholds
 
 Behaviour-based bot detection runs as part of `rollup_analytics`
-(before aggregation).
+(before aggregation). Also applied inline via CTE in
+`popular-posts.helpers.ts` for real-time "today" queries.
 
 Configurable in `src/routes/api/ingest/flag-bot-behaviour.ts`:
 
-| Threshold                    | Default | Purpose                               |
-| ---------------------------- | ------- | ------------------------------------- |
-| `MAX_HITS_PER_PATH_PER_DAY`  | 50      | Scraper hitting same page repeatedly  |
-| `MAX_HITS_TOTAL_PER_DAY`     | 200     | Crawler visiting many pages           |
-| `MAX_HITS_PER_PATH_PER_HOUR` | 20      | Burst detection (not yet implemented) |
+| Threshold                    | Default | Purpose                              |
+| ---------------------------- | ------- | ------------------------------------ |
+| `MAX_HITS_PER_PATH_PER_DAY`  | 20      | Scraper hitting same page repeatedly |
+| `MAX_HITS_TOTAL_PER_DAY`     | 100     | Crawler visiting many pages          |
+| `MAX_HITS_PER_PATH_PER_HOUR` | 10      | Burst detection (not yet used)       |
 
-Adjust based on observed traffic patterns.
+Based on Jan 2026 analysis: 93.6% of humans have 1-2 hits/page. See
+`2026-analytics-migration.md` for full analysis.
 
 ## Migration plan
 

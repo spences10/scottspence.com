@@ -21,8 +21,14 @@ export type {
 	StatsPeriod,
 } from './period-stats.helpers'
 
-// Behaviour-based bot threshold (matches flag-bot-behaviour.ts)
-const BOT_THRESHOLD_TOTAL_HITS = 200
+/**
+ * Behaviour-based bot thresholds (aligned with flag-bot-behaviour.ts)
+ * Based on Jan 2026 analysis: 93.6% of humans have 1-2 hits/page
+ */
+const BOT_THRESHOLDS = {
+	MAX_HITS_PER_PATH: 20, // >20 hits to same page = bot
+	MAX_HITS_TOTAL: 100, // >100 total hits = bot
+}
 
 /**
  * Get visitor hashes that exceed behaviour thresholds for a period
@@ -32,15 +38,35 @@ const get_behaviour_bot_hashes = (
 	start: number,
 	end: number,
 ): Set<string> => {
-	const result = sqlite_client.execute({
+	// Get visitors exceeding per-path threshold
+	const per_path_result = sqlite_client.execute({
+		sql: `SELECT DISTINCT visitor_hash
+			FROM analytics_events
+			WHERE created_at >= ? AND created_at < ?
+			GROUP BY visitor_hash, path
+			HAVING COUNT(*) > ?`,
+		args: [start, end, BOT_THRESHOLDS.MAX_HITS_PER_PATH],
+	})
+
+	// Get visitors exceeding total threshold
+	const total_result = sqlite_client.execute({
 		sql: `SELECT visitor_hash
 			FROM analytics_events
 			WHERE created_at >= ? AND created_at < ?
 			GROUP BY visitor_hash
 			HAVING COUNT(*) > ?`,
-		args: [start, end, BOT_THRESHOLD_TOTAL_HITS],
+		args: [start, end, BOT_THRESHOLDS.MAX_HITS_TOTAL],
 	})
-	return new Set(result.rows.map((r) => r.visitor_hash as string))
+
+	// Combine both sets
+	const hashes = new Set<string>()
+	per_path_result.rows.forEach((r) =>
+		hashes.add(r.visitor_hash as string),
+	)
+	total_result.rows.forEach((r) =>
+		hashes.add(r.visitor_hash as string),
+	)
+	return hashes
 }
 
 /**
