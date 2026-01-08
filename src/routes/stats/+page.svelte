@@ -15,15 +15,7 @@
 	import { create_seo_config } from '$lib/seo'
 	import { number_crunch, og_image_url } from '$lib/utils'
 	import { scaleBand, scaleTime } from 'd3-scale'
-	import {
-		Area,
-		Axis,
-		Bars,
-		Chart,
-		Spline,
-		Svg,
-		Tooltip,
-	} from 'layerchart'
+	import { Area, Axis, Bars, Chart, Svg, Tooltip } from 'layerchart'
 	import { Head } from 'svead'
 	import { onMount } from 'svelte'
 
@@ -128,6 +120,42 @@
 			...point,
 			date: new Date(point.timestamp),
 		}))
+	})
+
+	// Flatten chart data for multi-series (views + visitors)
+	let chart_data_multi = $derived.by(() => {
+		if (!chart_data_parsed.length) return []
+		return chart_data_parsed.flatMap((point) => [
+			{
+				date: point.date,
+				value: point.visitors,
+				series: 'visitors',
+				timestamp: point.timestamp,
+			},
+			{
+				date: point.date,
+				value: point.views,
+				series: 'views',
+				timestamp: point.timestamp,
+			},
+		])
+	})
+
+	// Group by series for rendering
+	let chart_series_data = $derived.by(() => {
+		if (!chart_data_parsed.length) return { visitors: [], views: [] }
+		return {
+			visitors: chart_data_parsed.map((p) => ({
+				date: p.date,
+				value: p.visitors,
+				timestamp: p.timestamp,
+			})),
+			views: chart_data_parsed.map((p) => ({
+				date: p.date,
+				value: p.views,
+				timestamp: p.timestamp,
+			})),
+		}
 	})
 
 	onMount(() => {
@@ -686,16 +714,31 @@
 
 	<!-- Period Area Chart -->
 	{#if chart_data_parsed.length > 0}
+		{@const max_value = Math.max(
+			...chart_data_parsed.map((d) => Math.max(d.views, d.visitors)),
+		)}
 		{#key chart_data_parsed.length}
 			<div class="card bg-base-200 mb-4 shadow-lg">
 				<div class="card-body p-4">
+					<div class="mb-2 flex gap-4 text-sm">
+						<span class="flex items-center gap-1">
+							<span class="bg-secondary inline-block h-2 w-4 rounded"
+							></span>
+							Visitors
+						</span>
+						<span class="flex items-center gap-1">
+							<span class="bg-primary inline-block h-2 w-4 rounded"
+							></span>
+							Views
+						</span>
+					</div>
 					<div class="h-48">
 						<Chart
-							data={chart_data_parsed}
+							data={chart_data_multi}
 							x="date"
 							xScale={scaleTime()}
-							y="visitors"
-							yDomain={[0, null]}
+							y="value"
+							yDomain={[0, max_value]}
 							yNice
 							padding={{ left: 40, bottom: 24, right: 8, top: 8 }}
 							tooltip={{ mode: 'bisect-x' }}
@@ -703,11 +746,18 @@
 							<Svg>
 								<Axis placement="left" grid rule />
 								<Axis placement="bottom" />
+								<!-- Visitors area/line -->
 								<Area
+									data={chart_series_data.visitors}
+									line={{ class: 'stroke-secondary stroke-2' }}
+									class="fill-secondary/20"
+								/>
+								<!-- Views area/line -->
+								<Area
+									data={chart_series_data.views}
 									line={{ class: 'stroke-primary stroke-2' }}
 									class="fill-primary/20"
 								/>
-								<Spline class="stroke-primary stroke-2" />
 							</Svg>
 							<Tooltip.Root>
 								{#snippet children({
@@ -715,19 +765,22 @@
 								}: {
 									data: {
 										timestamp: string
-										views: number
-										visitors: number
+										value: number
+										series: string
 									}
 								})}
+									{@const point = chart_data_parsed.find(
+										(p) => p.timestamp === data.timestamp,
+									)}
 									<Tooltip.Header>{data.timestamp}</Tooltip.Header>
 									<Tooltip.List>
 										<Tooltip.Item
 											label="Visitors"
-											value={number_crunch(data.visitors)}
+											value={number_crunch(point?.visitors ?? 0)}
 										/>
 										<Tooltip.Item
 											label="Views"
-											value={number_crunch(data.views)}
+											value={number_crunch(point?.views ?? 0)}
 										/>
 									</Tooltip.List>
 								{/snippet}
