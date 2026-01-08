@@ -1,4 +1,8 @@
 <script lang="ts">
+	import {
+		get_chart_data,
+		type ChartData,
+	} from '$lib/analytics/chart-data.remote'
 	import { get_live_stats_breakdown } from '$lib/analytics/live-analytics.remote'
 	import {
 		get_period_stats,
@@ -10,6 +14,16 @@
 	import { name, website } from '$lib/info'
 	import { create_seo_config } from '$lib/seo'
 	import { number_crunch, og_image_url } from '$lib/utils'
+	import { scaleBand, scaleTime } from 'd3-scale'
+	import {
+		Area,
+		Axis,
+		Bars,
+		Chart,
+		Spline,
+		Svg,
+		Tooltip,
+	} from 'layerchart'
 	import { Head } from 'svead'
 	import { onMount } from 'svelte'
 
@@ -29,6 +43,7 @@
 
 	// Period stats state
 	let period_stats = $state<PeriodStats | null>(null)
+	let chart_data = $state<ChartData | null>(null)
 	let period_loading = $state(false)
 	let selected_stats_period = $state<StatsPeriod>('today')
 	let selected_filter_mode = $state<FilterMode>('humans')
@@ -88,7 +103,12 @@
 	) => {
 		period_loading = true
 		try {
-			period_stats = await get_period_stats({ period, filter_mode })
+			const [stats, chart] = await Promise.all([
+				get_period_stats({ period, filter_mode }),
+				get_chart_data({ period, filter_mode }),
+			])
+			period_stats = stats
+			chart_data = chart
 		} catch (e) {
 			console.error('[stats] Failed to fetch period data:', e)
 		} finally {
@@ -99,6 +119,15 @@
 	// Reactive: fetch when period or filter mode changes
 	$effect(() => {
 		fetch_period_data(selected_stats_period, selected_filter_mode)
+	})
+
+	// Convert chart data timestamps to Date objects for scaleTime
+	let chart_data_parsed = $derived.by(() => {
+		if (!chart_data) return []
+		return chart_data.data_points.map((point) => ({
+			...point,
+			date: new Date(point.timestamp),
+		}))
 	})
 
 	onMount(() => {
@@ -655,6 +684,61 @@
 		</div>
 	</div>
 
+	<!-- Period Area Chart -->
+	{#if chart_data_parsed.length > 0}
+		{#key chart_data_parsed.length}
+			<div class="card bg-base-200 mb-4 shadow-lg">
+				<div class="card-body p-4">
+					<div class="h-48">
+						<Chart
+							data={chart_data_parsed}
+							x="date"
+							xScale={scaleTime()}
+							y="visitors"
+							yDomain={[0, null]}
+							yNice
+							padding={{ left: 40, bottom: 24, right: 8, top: 8 }}
+							tooltip={{ mode: 'bisect-x' }}
+						>
+							<Svg>
+								<Axis placement="left" grid rule />
+								<Axis placement="bottom" />
+								<Area
+									line={{ class: 'stroke-primary stroke-2' }}
+									class="fill-primary/20"
+								/>
+								<Spline class="stroke-primary stroke-2" />
+							</Svg>
+							<Tooltip.Root>
+								{#snippet children({
+									data,
+								}: {
+									data: {
+										timestamp: string
+										views: number
+										visitors: number
+									}
+								})}
+									<Tooltip.Header>{data.timestamp}</Tooltip.Header>
+									<Tooltip.List>
+										<Tooltip.Item
+											label="Visitors"
+											value={number_crunch(data.visitors)}
+										/>
+										<Tooltip.Item
+											label="Views"
+											value={number_crunch(data.views)}
+										/>
+									</Tooltip.List>
+								{/snippet}
+							</Tooltip.Root>
+						</Chart>
+					</div>
+				</div>
+			</div>
+		{/key}
+	{/if}
+
 	<!-- Bot stats summary (shown when viewing humans) -->
 	{#if selected_filter_mode === 'humans' && period_stats.bot_views > 0}
 		<div class="bg-base-200 mb-8 rounded-lg p-3 text-sm">
@@ -887,85 +971,114 @@
 
 		<!-- All-Time Yearly Visitors Chart -->
 		{#if selected_period === 'all_time' && all_time_yearly_visitors.length > 0}
-			<div class="mb-8">
-				<h3 class="mb-4 text-xl font-bold">Total Visitors by Year</h3>
-				<div class="card bg-base-200 shadow-lg">
-					<div class="card-body p-6">
-						<div class="mb-4 flex h-64 items-end gap-2">
-							{#each all_time_yearly_visitors as year_data}
-								{@const max_visitors = Math.max(
-									...all_time_yearly_visitors.map((y) => y.visitors),
-								)}
-								{@const height_px =
-									max_visitors > 0
-										? Math.max(
-												(year_data.visitors / max_visitors) * 240,
-												8,
-											)
-										: 8}
-								<div class="flex flex-1 flex-col items-center gap-2">
-									<div
-										class="bg-secondary hover:bg-accent tooltip tooltip-accent tooltip-top w-full rounded-t transition-all duration-300 hover:scale-105"
-										style="height: {height_px}px"
-										data-tip="{year_data.year}: {number_crunch(
-											year_data.visitors,
-										)} visitors"
-									></div>
-									<div class="text-base-content/70 font-mono text-xs">
-										{year_data.year}
-									</div>
-								</div>
-							{/each}
-						</div>
-						<div class="text-center">
-							<div class="text-base-content/70 text-sm">
-								Hover over bars to see exact visitor counts
+			{#key all_time_yearly_visitors.length}
+				<div class="mb-8">
+					<h3 class="mb-4 text-xl font-bold">
+						Total Visitors by Year
+					</h3>
+					<div class="card bg-base-200 shadow-lg">
+						<div class="card-body p-6">
+							<div class="h-64">
+								<Chart
+									data={all_time_yearly_visitors}
+									x="year"
+									xScale={scaleBand().padding(0.2)}
+									y="visitors"
+									yDomain={[0, null]}
+									yNice
+									padding={{ left: 48, bottom: 24 }}
+									tooltip={{ mode: 'band' }}
+								>
+									<Svg>
+										<Axis placement="left" grid rule />
+										<Axis placement="bottom" />
+										<Bars radius={4} class="fill-secondary" />
+									</Svg>
+									<Tooltip.Root>
+										{#snippet children({
+											data,
+										}: {
+											data: { year: string; visitors: number }
+										})}
+											<Tooltip.Header>{data.year}</Tooltip.Header>
+											<Tooltip.List>
+												<Tooltip.Item
+													label="Visitors"
+													value={number_crunch(data.visitors)}
+												/>
+											</Tooltip.List>
+										{/snippet}
+									</Tooltip.Root>
+								</Chart>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			{/key}
 		{/if}
 
 		<!-- Simple Trend Visualization for Top Posts -->
 		{#if trend_data.length > 0 && selected_period !== 'all_time'}
-			<div class="mb-8">
-				<h3 class="mb-4 text-xl font-bold">
-					Trend Overview - Top 3 Posts
-				</h3>
-				<div class="grid gap-4 md:grid-cols-1 lg:grid-cols-3">
-					{#each trend_data as post_trend}
-						<div class="card bg-base-200 h-48 shadow-lg">
-							<div class="card-body flex h-full flex-col p-4">
-								<h4 class="card-title line-clamp-2 shrink-0 text-sm">
-									{post_trend.title}
-								</h4>
-								<div
-									class="mt-auto mb-2 flex h-16 grow items-end gap-1"
-								>
-									{#each post_trend.data_points as point, i}
-										{@const max_views = Math.max(
-											...post_trend.data_points.map((p) => p.views),
-										)}
-										{@const height =
-											max_views > 0
-												? (point.views / max_views) * 100
-												: 0}
-										<div
-											class="bg-primary hover:bg-accent tooltip tooltip-accent tooltip-top min-h-1 flex-1 rounded-t transition-colors duration-200"
-											style="height: {Math.max(height, 6)}%"
-											data-tip="{point.period}: {point.views} views"
-										></div>
-									{/each}
-								</div>
-								<div class="text-base-content/70 shrink-0 text-xs">
-									{post_trend.data_points.length} data points
+			{#key trend_data.length}
+				<div class="mb-8">
+					<h3 class="mb-4 text-xl font-bold">
+						Trend Overview - Top 3 Posts
+					</h3>
+					<div class="grid gap-4 md:grid-cols-1 lg:grid-cols-3">
+						{#each trend_data as post_trend (post_trend.slug)}
+							<div class="card bg-base-200 h-48 shadow-lg">
+								<div class="card-body flex h-full flex-col p-4">
+									<h4
+										class="card-title line-clamp-2 shrink-0 text-sm"
+									>
+										{post_trend.title}
+									</h4>
+									<div class="mt-auto mb-2 h-20 grow">
+										<Chart
+											data={post_trend.data_points}
+											x="period"
+											xScale={scaleBand().padding(0.1)}
+											y="views"
+											yDomain={[0, null]}
+											padding={{
+												left: 0,
+												right: 0,
+												top: 4,
+												bottom: 0,
+											}}
+											tooltip={{ mode: 'band' }}
+										>
+											<Svg>
+												<Bars radius={2} class="fill-primary" />
+											</Svg>
+											<Tooltip.Root>
+												{#snippet children({
+													data,
+												}: {
+													data: { period: string; views: number }
+												})}
+													<Tooltip.Header
+														>{data.period}</Tooltip.Header
+													>
+													<Tooltip.List>
+														<Tooltip.Item
+															label="Views"
+															value={data.views}
+														/>
+													</Tooltip.List>
+												{/snippet}
+											</Tooltip.Root>
+										</Chart>
+									</div>
+									<div class="text-base-content/70 shrink-0 text-xs">
+										{post_trend.data_points.length} data points
+									</div>
 								</div>
 							</div>
-						</div>
-					{/each}
+						{/each}
+					</div>
 				</div>
-			</div>
+			{/key}
 		{/if}
 
 		<div class="overflow-x-auto">
