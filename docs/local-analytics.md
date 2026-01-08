@@ -94,9 +94,12 @@ tracking.
    Fathom
 3. **Switch per-post analytics** - query
    `analytics_daily/monthly/yearly` filtered by pathname
-4. **Remove Fathom client** - delete `src/lib/fathom/`
-5. **Remove Fathom env vars** - `FATHOM_API_KEY`, `PUBLIC_FATHOM_ID`
-6. **Remove fathom-client package** - `pnpm remove fathom-client`
+4. **Remove Fathom API client** - delete `src/lib/fathom/`
+5. **Remove `FATHOM_API_KEY` env var** - keep `PUBLIC_FATHOM_ID` for
+   pageview tracking in `+layout.svelte`
+
+**Note:** Keep `fathom-client` package - still used for pageview
+tracking.
 
 ---
 
