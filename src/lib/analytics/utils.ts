@@ -71,48 +71,117 @@ export interface ParsedUserAgent {
 }
 
 const BOT_PATTERNS = [
+	// Generic bot indicators
 	/bot/i,
 	/crawl/i,
 	/spider/i,
 	/slurp/i,
 	/mediapartners/i,
+
+	// Search engines
 	/googlebot/i,
 	/bingbot/i,
 	/yandex/i,
 	/baidu/i,
 	/duckduckbot/i,
+	/duckassistbot/i,
+	/applebot/i,
+	/qwantbot/i,
+	/sogou/i,
+	/seznambot/i,
+	/coccocbot/i,
+	/mojeekbot/i,
+
+	// AI crawlers
+	/chatgpt/i,
+	/oai-searchbot/i,
+	/gptbot/i,
+	/notebooklm/i,
+	/claudebot/i,
+	/claude-user/i,
+	/anthropic/i,
+	/langchain/i,
+	/perplexity/i,
+	/cohere/i,
+	/iaskbot/i,
+	/lmarena/i,
+
+	// Social/preview
 	/facebookexternalhit/i,
+	/meta-externalagent/i,
+	/meta-webindexer/i,
 	/twitterbot/i,
 	/linkedinbot/i,
 	/whatsapp/i,
 	/telegram/i,
 	/discord/i,
 	/slack/i,
+
+	// SEO tools
+	/semrush/i,
+	/ahrefs/i,
+	/mj12bot/i,
+	/dotbot/i,
+	/bytespider/i,
+	/petalbot/i,
+	/amazonbot/i,
+	/thinkbot/i,
+	/iboubot/i,
+	/linkupbot/i,
+	/domainstatsbot/i,
+
+	// Feed readers
+	/newsblur/i,
+	/feedly/i,
+	/feeder\.co/i,
+	/freshrss/i,
+	/feedfetcher/i,
+
+	// Monitoring/testing
 	/pingdom/i,
 	/uptimerobot/i,
 	/gtmetrix/i,
 	/lighthouse/i,
+
+	// Headless/automation
 	/headlesschrome/i,
 	/phantomjs/i,
 	/selenium/i,
 	/puppeteer/i,
+	/playwright/i,
+
+	// HTTP clients/libraries
 	/python-requests/i,
+	/python-urllib/i,
+	/aiohttp/i,
 	/curl/i,
 	/wget/i,
 	/httpx/i,
 	/axios/i,
 	/go-http-client/i,
-	/java/i,
+	/java\//i,
 	/ruby/i,
 	/perl/i,
-	/semrush/i,
-	/ahrefs/i,
-	/mj12bot/i,
-	/dotbot/i,
-	/applebot/i,
-	/bytespider/i,
-	/petalbot/i,
-	/gptbot/i,
+	/guzzlehttp/i,
+	/colly/i,
+	/scrapy/i,
+	/node-fetch/i,
+	/undici/i,
+
+	// Dev tools
+	/postman/i,
+	/insomnia/i,
+	/augment-vscode/i,
+	/qbusiness/i,
+
+	// Archive
+	/archive\.org/i,
+
+	// Generic suspicious patterns
+	/^node$/i,
+	/^Mozilla\/5\.0$/,
+	/^Mozilla\/5\.0 \(compatible\)$/,
+	/MSIE [5-7]\./i,
 ]
 
 export const parse_user_agent = (
