@@ -429,7 +429,7 @@
 			{/if}
 		</span>
 		<span class="badge badge-ghost relative z-10 tabular-nums"
-			>{value}</span
+			>{number_crunch(value)}</span
 		>
 	</li>
 {/snippet}
@@ -456,12 +456,12 @@
 		<span
 			class="badge badge-ghost badge-sm relative z-10 w-14 justify-end tabular-nums"
 		>
-			{visitors}
+			{number_crunch(visitors)}
 		</span>
 		<span
 			class="badge badge-outline badge-sm relative z-10 w-14 justify-end tabular-nums"
 		>
-			{views}
+			{number_crunch(views)}
 		</span>
 	</li>
 {/snippet}
@@ -593,7 +593,7 @@
 								<span
 									class="badge badge-ghost relative z-10 tabular-nums"
 								>
-									{c.visitors}
+									{number_crunch(c.visitors)}
 								</span>
 							</li>
 						{/each}
@@ -676,7 +676,7 @@
 								<span
 									class="badge badge-ghost relative z-10 tabular-nums"
 								>
-									{d.visitors}
+									{number_crunch(d.visitors)}
 								</span>
 							</li>
 						{/each}
@@ -893,7 +893,9 @@
 			<span class="text-warning font-semibold"
 				>Bot traffic filtered:</span
 			>
-			{number_crunch(period_stats.bot_views)} views from {period_stats.bot_visitors}
+			{number_crunch(period_stats.bot_views)} views from {number_crunch(
+				period_stats.bot_visitors,
+			)}
 			detected bots
 			<span class="text-base-content/60">
 				({Math.round(
@@ -969,12 +971,12 @@
 								<span
 									class="badge badge-ghost badge-sm relative z-10 w-14 justify-end tabular-nums"
 								>
-									{c.visitors}
+									{number_crunch(c.visitors)}
 								</span>
 								<span
 									class="badge badge-outline badge-sm relative z-10 w-14 justify-end tabular-nums"
 								>
-									{c.views}
+									{number_crunch(c.views)}
 								</span>
 							</li>
 						{/each}
@@ -1081,12 +1083,12 @@
 								<span
 									class="badge badge-ghost badge-sm relative z-10 w-14 justify-end tabular-nums"
 								>
-									{d.visitors}
+									{number_crunch(d.visitors)}
 								</span>
 								<span
 									class="badge badge-outline badge-sm relative z-10 w-14 justify-end tabular-nums"
 								>
-									{d.views}
+									{number_crunch(d.views)}
 								</span>
 							</li>
 						{/each}
@@ -1301,7 +1303,7 @@
 													<Tooltip.List>
 														<Tooltip.Item
 															label="Views"
-															value={data.views}
+															value={number_crunch(data.views)}
 														/>
 													</Tooltip.List>
 												{/snippet}
