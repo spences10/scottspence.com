@@ -961,12 +961,10 @@
 									style="width: {(c.visitors / max_visitors) * 100}%"
 								></div>
 								<span
-									class="relative z-10 flex flex-1 items-center gap-2"
+									class="relative z-10 flex min-w-0 flex-1 items-center gap-1.5 text-sm"
 								>
-									<span class="text-xl">
-										{country_flag(c.country)}
-									</span>
-									<span class="uppercase">{c.country}</span>
+									<span>{country_flag(c.country)}</span>
+									<span class="truncate uppercase">{c.country}</span>
 								</span>
 								<span
 									class="badge badge-ghost badge-sm relative z-10 w-14 justify-end tabular-nums"
