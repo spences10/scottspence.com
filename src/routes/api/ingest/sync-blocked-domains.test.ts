@@ -8,6 +8,7 @@ import {
 vi.mock('$lib/sqlite/client', () => ({
 	sqlite_client: {
 		execute: vi.fn(),
+		prepare: vi.fn(),
 	},
 }))
 
@@ -70,19 +71,33 @@ describe('sync_blocked_domains', () => {
 		vi.clearAllMocks()
 	})
 
-	it('adds domains and returns correct count', async () => {
-		const execute_mock = vi
-			.fn()
-			// First call: INSERT for domain1
-			.mockReturnValueOnce({ rowsAffected: 1 })
-			// Second call: INSERT for domain2
-			.mockReturnValueOnce({ rowsAffected: 1 })
-			// Third call: SELECT current list
-			.mockReturnValueOnce({
-				rows: [{ domain: 'domain1.com' }, { domain: 'domain2.com' }],
-			})
+	const setup_mocks = (
+		insert_results: { changes: number }[],
+		delete_results: { changes: number }[],
+		select_result: { rows: { domain: unknown }[] },
+	) => {
+		let insert_call = 0
+		let delete_call = 0
 
-		;(sqlite_client.execute as any) = execute_mock
+		const insert_run = vi.fn(() => insert_results[insert_call++])
+		const delete_run = vi.fn(() => delete_results[delete_call++])
+
+		;(sqlite_client.prepare as any).mockImplementation(
+			(sql: string) => {
+				if (sql.includes('INSERT')) return { run: insert_run }
+				if (sql.includes('DELETE')) return { run: delete_run }
+				throw new Error(`Unexpected SQL: ${sql}`)
+			},
+		)
+		;(sqlite_client.execute as any).mockReturnValue(select_result)
+
+		return { insert_run, delete_run }
+	}
+
+	it('adds domains and returns correct count', async () => {
+		setup_mocks([{ changes: 1 }, { changes: 1 }], [], {
+			rows: [{ domain: 'domain1.com' }, { domain: 'domain2.com' }],
+		})
 
 		const result = await sync_blocked_domains({
 			add: ['domain1.com', 'domain2.com'],
@@ -94,13 +109,11 @@ describe('sync_blocked_domains', () => {
 	})
 
 	it('does not count duplicate adds', async () => {
-		const execute_mock = vi
-			.fn()
-			// INSERT OR IGNORE returns 0 rowsAffected for duplicates
-			.mockReturnValueOnce({ rowsAffected: 0 })
-			.mockReturnValueOnce({ rows: [{ domain: 'existing.com' }] })
-
-		;(sqlite_client.execute as any) = execute_mock
+		setup_mocks(
+			[{ changes: 0 }], // INSERT OR IGNORE returns 0 for duplicates
+			[],
+			{ rows: [{ domain: 'existing.com' }] },
+		)
 
 		const result = await sync_blocked_domains({
 			add: ['existing.com'],
@@ -110,14 +123,7 @@ describe('sync_blocked_domains', () => {
 	})
 
 	it('removes domains and returns correct count', async () => {
-		const execute_mock = vi
-			.fn()
-			// DELETE returns 1 rowsAffected
-			.mockReturnValueOnce({ rowsAffected: 1 })
-			// SELECT current list
-			.mockReturnValueOnce({ rows: [] })
-
-		;(sqlite_client.execute as any) = execute_mock
+		setup_mocks([], [{ changes: 1 }], { rows: [] })
 
 		const result = await sync_blocked_domains({
 			remove: ['spam.com'],
@@ -128,13 +134,7 @@ describe('sync_blocked_domains', () => {
 	})
 
 	it('does not count non-existent removes', async () => {
-		const execute_mock = vi
-			.fn()
-			// DELETE returns 0 rowsAffected when domain doesn't exist
-			.mockReturnValueOnce({ rowsAffected: 0 })
-			.mockReturnValueOnce({ rows: [] })
-
-		;(sqlite_client.execute as any) = execute_mock
+		setup_mocks([], [{ changes: 0 }], { rows: [] })
 
 		const result = await sync_blocked_domains({
 			remove: ['nonexistent.com'],
@@ -144,48 +144,33 @@ describe('sync_blocked_domains', () => {
 	})
 
 	it('normalises domains to lowercase and trims whitespace', async () => {
-		const execute_mock = vi
-			.fn()
-			.mockReturnValueOnce({ rowsAffected: 1 })
-			.mockReturnValueOnce({ rows: [{ domain: 'spam.com' }] })
-
-		;(sqlite_client.execute as any) = execute_mock
+		const { insert_run } = setup_mocks([{ changes: 1 }], [], {
+			rows: [{ domain: 'spam.com' }],
+		})
 
 		await sync_blocked_domains({
 			add: ['  SPAM.COM  '],
 		})
 
-		expect(execute_mock).toHaveBeenCalledWith({
-			sql: expect.stringContaining('INSERT'),
-			args: ['spam.com'],
-		})
+		expect(insert_run).toHaveBeenCalledWith('spam.com')
 	})
 
 	it('skips empty strings after normalisation', async () => {
-		const execute_mock = vi.fn().mockReturnValueOnce({ rows: [] })
-
-		;(sqlite_client.execute as any) = execute_mock
+		const { insert_run } = setup_mocks([], [], { rows: [] })
 
 		const result = await sync_blocked_domains({
 			add: ['   ', ''],
 		})
 
-		// Only the final SELECT should be called, no INSERTs
-		expect(execute_mock).toHaveBeenCalledTimes(1)
+		// No INSERTs should be called
+		expect(insert_run).not.toHaveBeenCalled()
 		expect(result.added).toBe(0)
 	})
 
 	it('handles both add and remove in single call', async () => {
-		const execute_mock = vi
-			.fn()
-			// INSERT
-			.mockReturnValueOnce({ rowsAffected: 1 })
-			// DELETE
-			.mockReturnValueOnce({ rowsAffected: 1 })
-			// SELECT
-			.mockReturnValueOnce({ rows: [{ domain: 'new.com' }] })
-
-		;(sqlite_client.execute as any) = execute_mock
+		setup_mocks([{ changes: 1 }], [{ changes: 1 }], {
+			rows: [{ domain: 'new.com' }],
+		})
 
 		const result = await sync_blocked_domains({
 			add: ['new.com'],
@@ -197,18 +182,19 @@ describe('sync_blocked_domains', () => {
 	})
 
 	it('handles database errors gracefully for individual operations', async () => {
-		const execute_mock = vi
-			.fn()
-			// First INSERT throws
-			.mockImplementationOnce(() => {
-				throw new Error('DB error')
-			})
-			// Second INSERT succeeds
-			.mockReturnValueOnce({ rowsAffected: 1 })
-			// SELECT
-			.mockReturnValueOnce({ rows: [{ domain: 'good.com' }] })
+		let call_count = 0
+		const insert_run = vi.fn(() => {
+			call_count++
+			if (call_count === 1) throw new Error('DB error')
+			return { changes: 1 }
+		})
 
-		;(sqlite_client.execute as any) = execute_mock
+		;(sqlite_client.prepare as any).mockImplementation(() => ({
+			run: insert_run,
+		}))
+		;(sqlite_client.execute as any).mockReturnValue({
+			rows: [{ domain: 'good.com' }],
+		})
 
 		const result = await sync_blocked_domains({
 			add: ['bad.com', 'good.com'],
@@ -219,7 +205,7 @@ describe('sync_blocked_domains', () => {
 	})
 
 	it('filters non-string values from result', async () => {
-		const execute_mock = vi.fn().mockReturnValueOnce({
+		setup_mocks([], [], {
 			rows: [
 				{ domain: 'valid.com' },
 				{ domain: null },
@@ -227,8 +213,6 @@ describe('sync_blocked_domains', () => {
 				{ domain: 'also-valid.com' },
 			],
 		})
-
-		;(sqlite_client.execute as any) = execute_mock
 
 		const result = await sync_blocked_domains({})
 

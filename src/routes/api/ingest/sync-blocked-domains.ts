@@ -34,38 +34,38 @@ export const sync_blocked_domains = async (
 	let added = 0
 	let removed = 0
 
-	// Add domains
+	// Add domains (use prepare().run() for write operations)
 	if (data.add && data.add.length > 0) {
+		const insert_stmt = sqlite_client.prepare(
+			`INSERT OR IGNORE INTO blocked_referrer_domains (domain, reason) VALUES (?, 'spam')`,
+		)
 		for (const domain of data.add) {
 			const normalised = domain.toLowerCase().trim()
 			if (!normalised) continue
 
 			try {
-				const result = sqlite_client.execute({
-					sql: `INSERT OR IGNORE INTO blocked_referrer_domains (domain, reason) VALUES (?, 'spam')`,
-					args: [normalised],
-				})
+				const result = insert_stmt.run(normalised)
 				// Only count if row was actually inserted
-				if (result.rowsAffected > 0) added++
+				if (result.changes > 0) added++
 			} catch (error) {
 				console.error(`Failed to add domain ${normalised}:`, error)
 			}
 		}
 	}
 
-	// Remove domains
+	// Remove domains (use prepare().run() for write operations)
 	if (data.remove && data.remove.length > 0) {
+		const delete_stmt = sqlite_client.prepare(
+			`DELETE FROM blocked_referrer_domains WHERE domain = ?`,
+		)
 		for (const domain of data.remove) {
 			const normalised = domain.toLowerCase().trim()
 			if (!normalised) continue
 
 			try {
-				const result = sqlite_client.execute({
-					sql: `DELETE FROM blocked_referrer_domains WHERE domain = ?`,
-					args: [normalised],
-				})
+				const result = delete_stmt.run(normalised)
 				// Only count if row was actually deleted
-				if (result.rowsAffected > 0) removed++
+				if (result.changes > 0) removed++
 			} catch (error) {
 				console.error(`Failed to remove domain ${normalised}:`, error)
 			}
