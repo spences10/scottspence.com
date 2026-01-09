@@ -15,6 +15,7 @@ import {
 	type PeriodStats,
 	type StatsPeriod,
 } from './period-stats.helpers'
+import { aggregate_referrers } from './referrer-normalisation'
 
 // Re-export types for consumers
 export type {
@@ -263,7 +264,25 @@ export const get_period_stats = query(
 			visitors: number
 		}[]
 
-		// Referrers (exclude internal + blocked domains from DB)
+		// Direct traffic (null/empty referrer)
+		const direct_result = sqlite_client.execute({
+			sql: `SELECT
+				COUNT(*) as views,
+				COUNT(DISTINCT visitor_hash) as visitors
+			FROM analytics_events
+			WHERE created_at >= ? AND created_at < ?
+				${bot_condition}
+				AND (referrer IS NULL OR referrer = '')`,
+			args: [start, end, ...bot_args],
+		})
+		const direct_stats = {
+			referrer: 'Direct',
+			views: (direct_result.rows[0]?.views as number) ?? 0,
+			visitors: (direct_result.rows[0]?.visitors as number) ?? 0,
+		}
+
+		// Referrers - fetch raw, then normalise/aggregate in JS
+		// Fetch more than we need since grouping will consolidate
 		const blocked_domains = get_blocked_domains_array()
 		const blocked_placeholders = blocked_domains
 			.map(() => `AND referrer NOT LIKE ?`)
@@ -279,18 +298,24 @@ export const get_period_stats = query(
 				${bot_condition}
 				AND referrer IS NOT NULL
 				AND referrer != ''
-				AND referrer NOT LIKE '%scottspence.com%'
 				${blocked_placeholders}
 			GROUP BY referrer
 			ORDER BY visitors DESC
-			LIMIT 10`,
+			LIMIT 100`,
 			args: [start, end, ...bot_args, ...blocked_args],
 		})
-		const referrers = referrers_result.rows as {
+		const raw_referrers = referrers_result.rows as {
 			referrer: string
 			views: number
 			visitors: number
 		}[]
+		// Normalise and aggregate (groups Google variants, filters internal)
+		const aggregated = aggregate_referrers(raw_referrers)
+		// Combine with Direct and take top 10
+		const all_referrers = [direct_stats, ...aggregated]
+			.sort((a, b) => b.visitors - a.visitors)
+			.slice(0, 10)
+		const referrers = all_referrers
 
 		const result = format_period_stats(
 			period as StatsPeriod,
