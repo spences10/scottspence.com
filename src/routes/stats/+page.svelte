@@ -421,14 +421,14 @@
 			class="bg-primary/20 absolute inset-y-0 left-0 rounded"
 			style="width: {(value / max_value) * 100}%"
 		></div>
-		<span class="relative z-10 min-w-0 flex-1 truncate text-sm">
+		<span class="relative min-w-0 flex-1 truncate text-sm">
 			{#if href}
 				<a {href} class="link-hover link capitalize">{label}</a>
 			{:else}
 				<span class="capitalize">{label}</span>
 			{/if}
 		</span>
-		<span class="badge badge-ghost relative z-10 tabular-nums"
+		<span class="badge badge-ghost relative tabular-nums"
 			>{number_crunch(value)}</span
 		>
 	</li>
@@ -446,7 +446,7 @@
 			class="bg-primary/20 absolute inset-y-0 left-0 rounded"
 			style="width: {(visitors / max_value) * 100}%"
 		></div>
-		<span class="relative z-10 min-w-0 flex-1 truncate text-sm">
+		<span class="relative min-w-0 flex-1 truncate text-sm">
 			{#if href}
 				<a {href} class="link-hover link capitalize">{label}</a>
 			{:else}
@@ -454,12 +454,12 @@
 			{/if}
 		</span>
 		<span
-			class="badge badge-ghost badge-sm relative z-10 w-14 justify-end tabular-nums"
+			class="badge badge-ghost badge-sm relative w-14 justify-end tabular-nums"
 		>
 			{number_crunch(visitors)}
 		</span>
 		<span
-			class="badge badge-outline badge-sm relative z-10 w-14 justify-end tabular-nums"
+			class="badge badge-outline badge-sm relative w-14 justify-end tabular-nums"
 		>
 			{number_crunch(views)}
 		</span>
@@ -584,14 +584,14 @@
 									class="bg-primary/20 absolute inset-y-0 left-0 rounded"
 									style="width: {(c.visitors / max_visitors) * 100}%"
 								></div>
-								<span class="relative z-10 flex items-center gap-2">
+								<span class="relative flex items-center gap-2">
 									<span class="text-xl">
 										{country_flag(c.country)}
 									</span>
 									<span class="uppercase">{c.country}</span>
 								</span>
 								<span
-									class="badge badge-ghost relative z-10 tabular-nums"
+									class="badge badge-ghost relative tabular-nums"
 								>
 									{number_crunch(c.visitors)}
 								</span>
@@ -669,12 +669,12 @@
 									class="bg-primary/20 absolute inset-y-0 left-0 rounded"
 									style="width: {(d.visitors / max_visitors) * 100}%"
 								></div>
-								<span class="relative z-10 flex items-center gap-1">
+								<span class="relative flex items-center gap-1">
 									<span>{device_icon(d.device_type)}</span>
 									<span class="capitalize">{d.device_type}</span>
 								</span>
 								<span
-									class="badge badge-ghost relative z-10 tabular-nums"
+									class="badge badge-ghost relative tabular-nums"
 								>
 									{number_crunch(d.visitors)}
 								</span>
@@ -963,18 +963,18 @@
 									style="width: {(c.visitors / max_visitors) * 100}%"
 								></div>
 								<span
-									class="relative z-10 flex min-w-0 flex-1 items-center gap-1.5 text-sm"
+									class="relative flex min-w-0 flex-1 items-center gap-1.5 text-sm"
 								>
 									<span>{country_flag(c.country)}</span>
 									<span class="truncate uppercase">{c.country}</span>
 								</span>
 								<span
-									class="badge badge-ghost badge-sm relative z-10 w-14 justify-end tabular-nums"
+									class="badge badge-ghost badge-sm relative w-14 justify-end tabular-nums"
 								>
 									{number_crunch(c.visitors)}
 								</span>
 								<span
-									class="badge badge-outline badge-sm relative z-10 w-14 justify-end tabular-nums"
+									class="badge badge-outline badge-sm relative w-14 justify-end tabular-nums"
 								>
 									{number_crunch(c.views)}
 								</span>
@@ -1075,18 +1075,18 @@
 									style="width: {(d.visitors / max_visitors) * 100}%"
 								></div>
 								<span
-									class="relative z-10 flex flex-1 items-center gap-1"
+									class="relative flex flex-1 items-center gap-1"
 								>
 									<span>{device_icon(d.device_type)}</span>
 									<span class="capitalize">{d.device_type}</span>
 								</span>
 								<span
-									class="badge badge-ghost badge-sm relative z-10 w-14 justify-end tabular-nums"
+									class="badge badge-ghost badge-sm relative w-14 justify-end tabular-nums"
 								>
 									{number_crunch(d.visitors)}
 								</span>
 								<span
-									class="badge badge-outline badge-sm relative z-10 w-14 justify-end tabular-nums"
+									class="badge badge-outline badge-sm relative w-14 justify-end tabular-nums"
 								>
 									{number_crunch(d.views)}
 								</span>
