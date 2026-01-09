@@ -1,5 +1,6 @@
 import { env } from '$env/dynamic/private'
 import { json } from '@sveltejs/kit'
+import * as v from 'valibot'
 import { backfill_github_activity } from './backfill-github-activity'
 import { backup_database } from './backup-database'
 import { cleanup_analytics } from './cleanup-analytics'
@@ -13,6 +14,10 @@ import { pull_database } from './pull-database'
 import { restore_database } from './restore-database'
 import { rollup_analytics } from './rollup-analytics'
 import { send_newsletter_reminder } from './send-newsletter-reminder'
+import {
+	sync_blocked_domains,
+	validate_sync_blocked_domains,
+} from './sync-blocked-domains'
 import { update_embeddings } from './update-embeddings'
 import { update_popular_posts } from './update-popular-posts'
 import { update_posts } from './update-posts'
@@ -27,7 +32,8 @@ import { update_stats } from './update-stats'
 for task in "update_popular_posts" "update_posts" "update_embeddings" "update_related_posts"; do
 	curl -X POST https://scottspence.com/api/ingest \
 		-H "Content-Type: application/json" \
-		-d "{\"task\": \"$task\", \"token\": \"your-secret-token\"}"
+		-H "Authorization: Bearer $INGEST_TOKEN" \
+		-d "{\"task\": \"$task\"}"
 	echo
 done
  *
@@ -35,11 +41,12 @@ done
  *
 curl -X POST https://scottspence.com/api/ingest \
 	-H "Content-Type: application/json" \
-	-d '{"task": "backup_database", "token": "your-secret-token"}'
+	-H "Authorization: Bearer $INGEST_TOKEN" \
+	-d '{"task": "backup_database"}'
  *
  * Step 3: Download the backup to local
  *
-curl -H "Authorization: Bearer your-secret-token" \
+curl -H "Authorization: Bearer $INGEST_TOKEN" \
 		https://scottspence.com/api/ingest/download \
 		-o data/site-data.db
  *
@@ -52,7 +59,8 @@ curl -H "Authorization: Bearer your-secret-token" \
 for task in "update_popular_posts" "update_posts" "update_embeddings" "update_related_posts"; do
 	curl -X POST http://localhost:5173/api/ingest \
 		-H "Content-Type: application/json" \
-		-d "{\"task\": \"$task\", \"token\": \"your-secret-token\"}"
+		-H "Authorization: Bearer $INGEST_TOKEN" \
+		-d "{\"task\": \"$task\"}"
 	echo
 done
  *
@@ -62,13 +70,24 @@ done
  *
 curl -X POST https://scottspence.com/api/ingest \
   -H "Content-Type: application/json" \
-  -d '{"task": "update_posts", "token": "your-secret-token"}'
+  -H "Authorization: Bearer $INGEST_TOKEN" \
+  -d '{"task": "update_posts"}'
  *
  * Localhost:
  *
 curl -X POST http://localhost:5173/api/ingest \
   -H "Content-Type: application/json" \
-  -d '{"task": "update_posts", "token": "your-secret-token"}'
+  -H "Authorization: Bearer $INGEST_TOKEN" \
+  -d '{"task": "update_posts"}'
+ *
+ * === TASKS WITH DATA ===
+ *
+ * Sync blocked domains (add/remove):
+ *
+curl -X POST https://scottspence.com/api/ingest \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $INGEST_TOKEN" \
+  -d '{"task": "sync_blocked_domains", "data": {"add": ["spamsite"], "remove": ["falsepositivesite"]}}'
  */
 
 // Define generic task function
@@ -96,19 +115,27 @@ type TaskKey =
 	| 'send_newsletter_reminder'
 	| 'rollup_analytics'
 	| 'cleanup_analytics'
+	| 'sync_blocked_domains'
+
+// Task function type for data-expecting tasks
+type DataTaskFunction = (data: unknown) => Promise<unknown>
 
 // Define the type for tasks object
+interface TaskConfig {
+	function: TaskFunction | DataTaskFunction
+	expects_fetch: boolean
+	expects_data?: boolean
+	validate_data?: (data: unknown) => unknown
+}
+
 interface TaskType {
-	[key: string]: {
-		function: TaskFunction
-		expects_fetch: boolean
-	}
+	[key: string]: TaskConfig
 }
 
 // Define the type for the expected structure of request body
 interface RequestBody {
-	token: string
 	task: TaskKey
+	data?: unknown
 }
 
 // Define a mapping from task names to functions
@@ -185,50 +212,80 @@ const tasks: TaskType = {
 		function: cleanup_analytics,
 		expects_fetch: false,
 	},
+	sync_blocked_domains: {
+		function: sync_blocked_domains,
+		expects_fetch: false,
+		expects_data: true,
+		validate_data: validate_sync_blocked_domains,
+	},
 }
 
 export const POST = async ({ request, fetch }) => {
 	try {
 		const body: RequestBody = await request.json()
-		const token = body.token
 		const task_key = body.task
+
+		// Check authorisation first (prevents task enumeration)
+		const auth_header = request.headers.get('Authorization')
+		const token = auth_header?.replace('Bearer ', '')
 
 		if (!token || token !== env.INGEST_TOKEN) {
 			return json({ message: 'Unauthorized' }, { status: 401 })
 		}
 
+		// Get the task config (after auth check)
 		const task = tasks[task_key]
-		if (task && typeof task.function === 'function') {
-			console.log(`Executing task: ${task_key}`)
-
-			try {
-				// Call the task function with or without fetch based on its requirement
-				const result = task.expects_fetch
-					? await task.function(fetch)
-					: await task.function()
-
-				console.log(`Task ${task_key} completed with result:`, result)
-				return json(result)
-			} catch (task_error) {
-				console.error(`Error executing task ${task_key}:`, task_error)
-				return json(
-					{
-						message: `Error executing task ${task_key}`,
-						error:
-							task_error instanceof Error
-								? task_error.message
-								: 'Unknown error',
-					},
-					{ status: 500 },
-				)
-			}
-		} else {
+		if (!task || typeof task.function !== 'function') {
 			return json(
 				{
 					message:
 						'Specified task does not exist or is not a function',
 				},
 				{ status: 400 },
+			)
+		}
+
+		console.log(`Executing task: ${task_key}`)
+
+		try {
+			let result
+
+			if (task.expects_data && task.validate_data) {
+				// Validate and pass data to task
+				const validated_data = task.validate_data(body.data)
+				result = await (task.function as DataTaskFunction)(
+					validated_data,
+				)
+			} else if (task.expects_fetch) {
+				result = await (task.function as TaskFunction)(fetch)
+			} else {
+				result = await (task.function as TaskFunction)()
+			}
+
+			console.log(`Task ${task_key} completed with result:`, result)
+			return json(result)
+		} catch (task_error) {
+			// Validation errors are client errors (400)
+			if (v.isValiError(task_error)) {
+				return json(
+					{
+						message: 'Invalid request data',
+						errors: task_error.issues.map((i) => i.message),
+					},
+					{ status: 400 },
+				)
+			}
+
+			console.error(`Error executing task ${task_key}:`, task_error)
+			return json(
+				{
+					message: `Error executing task ${task_key}`,
+					error:
+						task_error instanceof Error
+							? task_error.message
+							: 'Unknown error',
+				},
+				{ status: 500 },
 			)
 		}
 	} catch (error) {

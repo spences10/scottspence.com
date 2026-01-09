@@ -6,6 +6,7 @@ import {
 } from '$lib/cache/server-cache'
 import { sqlite_client } from '$lib/sqlite/client'
 import * as v from 'valibot'
+import { get_blocked_domains_array } from './blocked-domains'
 import { BOT_THRESHOLDS } from './bot-thresholds'
 import {
 	format_period_stats,
@@ -203,6 +204,7 @@ export const get_period_stats = query(
 		const countries_result = sqlite_client.execute({
 			sql: `SELECT
 				country,
+				COUNT(*) as views,
 				COUNT(DISTINCT visitor_hash) as visitors
 			FROM analytics_events
 			WHERE created_at >= ? AND created_at < ?
@@ -216,6 +218,7 @@ export const get_period_stats = query(
 		})
 		const countries = countries_result.rows as {
 			country: string
+			views: number
 			visitors: number
 		}[]
 
@@ -223,6 +226,7 @@ export const get_period_stats = query(
 		const browsers_result = sqlite_client.execute({
 			sql: `SELECT
 				browser,
+				COUNT(*) as views,
 				COUNT(DISTINCT visitor_hash) as visitors
 			FROM analytics_events
 			WHERE created_at >= ? AND created_at < ?
@@ -235,6 +239,7 @@ export const get_period_stats = query(
 		})
 		const browsers = browsers_result.rows as {
 			browser: string
+			views: number
 			visitors: number
 		}[]
 
@@ -242,6 +247,7 @@ export const get_period_stats = query(
 		const devices_result = sqlite_client.execute({
 			sql: `SELECT
 				device_type,
+				COUNT(*) as views,
 				COUNT(DISTINCT visitor_hash) as visitors
 			FROM analytics_events
 			WHERE created_at >= ? AND created_at < ?
@@ -253,6 +259,36 @@ export const get_period_stats = query(
 		})
 		const devices = devices_result.rows as {
 			device_type: string
+			views: number
+			visitors: number
+		}[]
+
+		// Referrers (exclude internal + blocked domains from DB)
+		const blocked_domains = get_blocked_domains_array()
+		const blocked_placeholders = blocked_domains
+			.map(() => `AND referrer NOT LIKE ?`)
+			.join(' ')
+		const blocked_args = blocked_domains.map((d) => `%${d}%`)
+		const referrers_result = sqlite_client.execute({
+			sql: `SELECT
+				referrer,
+				COUNT(*) as views,
+				COUNT(DISTINCT visitor_hash) as visitors
+			FROM analytics_events
+			WHERE created_at >= ? AND created_at < ?
+				${bot_condition}
+				AND referrer IS NOT NULL
+				AND referrer != ''
+				AND referrer NOT LIKE '%scottspence.com%'
+				${blocked_placeholders}
+			GROUP BY referrer
+			ORDER BY visitors DESC
+			LIMIT 10`,
+			args: [start, end, ...bot_args, ...blocked_args],
+		})
+		const referrers = referrers_result.rows as {
+			referrer: string
+			views: number
 			visitors: number
 		}[]
 
@@ -265,6 +301,7 @@ export const get_period_stats = query(
 			countries,
 			browsers,
 			devices,
+			referrers,
 		)
 
 		// Cache the result

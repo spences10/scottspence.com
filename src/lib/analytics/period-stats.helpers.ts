@@ -21,9 +21,10 @@ export type PeriodStats = {
 	bot_views: number
 	bot_visitors: number
 	top_pages: { path: string; views: number; visitors: number }[]
-	countries: { country: string; visitors: number }[]
-	browsers: { browser: string; visitors: number }[]
-	devices: { device_type: string; visitors: number }[]
+	countries: { country: string; views: number; visitors: number }[]
+	browsers: { browser: string; views: number; visitors: number }[]
+	devices: { device_type: string; views: number; visitors: number }[]
+	referrers: { referrer: string; views: number; visitors: number }[]
 }
 
 /**
@@ -105,9 +106,10 @@ export const format_period_stats = (
 	totals: { views: number; unique_visitors: number },
 	bot_totals: { views: number; visitors: number },
 	top_pages: { path: string; views: number; visitors: number }[],
-	countries: { country: string; visitors: number }[],
-	browsers: { browser: string; visitors: number }[],
-	devices: { device_type: string; visitors: number }[],
+	countries: { country: string; views: number; visitors: number }[],
+	browsers: { browser: string; views: number; visitors: number }[],
+	devices: { device_type: string; views: number; visitors: number }[],
+	referrers: { referrer: string; views: number; visitors: number }[],
 ): PeriodStats => ({
 	period,
 	period_label: get_period_label(period),
@@ -120,4 +122,5 @@ export const format_period_stats = (
 	countries,
 	browsers,
 	devices,
+	referrers,
 })

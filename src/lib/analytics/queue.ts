@@ -1,4 +1,5 @@
 import { sqlite_client } from '$lib/sqlite/client'
+import { is_blocked_referrer } from './blocked-domains'
 
 /**
  * Analytics event structure for batched writes
@@ -41,9 +42,14 @@ let flush_timer: ReturnType<typeof setInterval> | null = null
 
 /**
  * Queue a page view event (O(1), non-blocking)
+ * Blocked referrers are nullified before storage
  */
 export const queue_page_view = (event: AnalyticsEvent): void => {
-	queue.push(event)
+	// Filter blocked referrers at ingestion (copy to avoid mutation)
+	const to_queue = is_blocked_referrer(event.referrer)
+		? { ...event, referrer: null }
+		: event
+	queue.push(to_queue)
 }
 
 /**

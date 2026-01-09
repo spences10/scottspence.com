@@ -35,6 +35,7 @@ export const CACHE_DURATIONS = {
 	},
 	post_tags: 24 * 60 * 60 * 1000, // 24 hours
 	period_stats: 30 * 1000, // 30 seconds - prevents hammering on stats page
+	blocked_domains: 5 * 60 * 1000, // 5 minutes - blocklist refresh interval
 } as const
 
 export function get_from_cache<T>(

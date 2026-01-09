@@ -80,6 +80,25 @@
 		return icons[type?.toLowerCase()] ?? '💻'
 	}
 
+	// Parse referrer URL to friendly hostname
+	const parse_referrer = (url: string) => {
+		try {
+			const hostname = new URL(url).hostname.replace('www.', '')
+			if (hostname.includes('google')) return 'Google'
+			if (hostname.includes('bing')) return 'Bing'
+			if (hostname.includes('duckduckgo')) return 'DuckDuckGo'
+			if (hostname.includes('github')) return 'GitHub'
+			if (hostname.includes('reddit')) return 'Reddit'
+			if (hostname.includes('twitter') || hostname.includes('x.com'))
+				return 'X/Twitter'
+			if (hostname.includes('linkedin')) return 'LinkedIn'
+			if (hostname.includes('facebook')) return 'Facebook'
+			return hostname
+		} catch {
+			return url || 'Direct'
+		}
+	}
+
 	// Period button labels
 	const period_labels: Record<StatsPeriod, string> = {
 		today: 'Today',
@@ -391,6 +410,62 @@
 	})
 </script>
 
+{#snippet stat_row(
+	label: string,
+	value: number,
+	max_value: number,
+	href?: string,
+)}
+	<li class="relative flex items-center justify-between gap-2 py-1.5">
+		<div
+			class="bg-primary/20 absolute inset-y-0 left-0 rounded"
+			style="width: {(value / max_value) * 100}%"
+		></div>
+		<span class="relative z-10 min-w-0 flex-1 truncate text-sm">
+			{#if href}
+				<a {href} class="link-hover link capitalize">{label}</a>
+			{:else}
+				<span class="capitalize">{label}</span>
+			{/if}
+		</span>
+		<span class="badge badge-ghost relative z-10 tabular-nums"
+			>{value}</span
+		>
+	</li>
+{/snippet}
+
+{#snippet stat_row_multi(
+	label: string,
+	visitors: number,
+	views: number,
+	max_value: number,
+	href?: string,
+)}
+	<li class="relative flex items-center gap-2 py-1.5">
+		<div
+			class="bg-primary/20 absolute inset-y-0 left-0 rounded"
+			style="width: {(visitors / max_value) * 100}%"
+		></div>
+		<span class="relative z-10 min-w-0 flex-1 truncate text-sm">
+			{#if href}
+				<a {href} class="link-hover link capitalize">{label}</a>
+			{:else}
+				<span class="capitalize">{label}</span>
+			{/if}
+		</span>
+		<span
+			class="badge badge-ghost badge-sm relative z-10 w-14 justify-end tabular-nums"
+		>
+			{visitors}
+		</span>
+		<span
+			class="badge badge-outline badge-sm relative z-10 w-14 justify-end tabular-nums"
+		>
+			{views}
+		</span>
+	</li>
+{/snippet}
+
 <Head {seo_config} />
 
 {#if error}
@@ -497,16 +572,27 @@
 			<div class="card-body min-w-0">
 				<h2 class="card-title text-lg">Visitors by Country</h2>
 				{#if live_stats.countries.length > 0}
-					<ul class="space-y-2">
+					{@const max_visitors = Math.max(
+						...live_stats.countries.map((c) => c.visitors),
+					)}
+					<ul class="space-y-1">
 						{#each live_stats.countries as c}
-							<li class="flex items-center justify-between">
-								<span class="flex items-center gap-2">
+							<li
+								class="relative flex items-center justify-between gap-2 py-1.5"
+							>
+								<div
+									class="bg-primary/20 absolute inset-y-0 left-0 rounded"
+									style="width: {(c.visitors / max_visitors) * 100}%"
+								></div>
+								<span class="relative z-10 flex items-center gap-2">
 									<span class="text-xl">
 										{country_flag(c.country)}
 									</span>
 									<span class="uppercase">{c.country}</span>
 								</span>
-								<span class="badge badge-ghost tabular-nums">
+								<span
+									class="badge badge-ghost relative z-10 tabular-nums"
+								>
 									{c.visitors}
 								</span>
 							</li>
@@ -523,21 +609,19 @@
 			<div class="card-body min-w-0">
 				<h2 class="card-title text-lg">Top Pages</h2>
 				{#if live_stats.top_paths.length > 0}
-					<ul class="space-y-2">
+					{@const max_visitors = Math.max(
+						...live_stats.top_paths
+							.slice(0, 8)
+							.map((p) => p.visitors),
+					)}
+					<ul class="space-y-1">
 						{#each live_stats.top_paths.slice(0, 8) as page}
-							<li class="flex items-center justify-between gap-2">
-								<a
-									href={page.path}
-									class="link-hover link min-w-0 flex-1 truncate text-sm capitalize"
-								>
-									{format_path(page.path)}
-								</a>
-								<span
-									class="badge badge-primary badge-sm tabular-nums"
-								>
-									{page.visitors}
-								</span>
-							</li>
+							{@render stat_row(
+								format_path(page.path),
+								page.visitors,
+								max_visitors,
+								page.path,
+							)}
 						{/each}
 					</ul>
 				{:else}
@@ -554,16 +638,14 @@
 			<div class="card-body min-w-0 py-4">
 				<h2 class="card-title text-base">Browsers</h2>
 				{#if live_stats.browsers.length > 0}
-					<div class="flex flex-wrap gap-2">
+					{@const max_visitors = Math.max(
+						...live_stats.browsers.map((b) => b.visitors),
+					)}
+					<ul class="space-y-1">
 						{#each live_stats.browsers as b}
-							<div class="badge badge-outline gap-1">
-								{b.browser}
-								<span class="text-primary font-bold">
-									{b.visitors}
-								</span>
-							</div>
+							{@render stat_row(b.browser, b.visitors, max_visitors)}
 						{/each}
-					</div>
+					</ul>
 				{:else}
 					<p class="text-base-content/50 text-sm">No data</p>
 				{/if}
@@ -575,17 +657,30 @@
 			<div class="card-body min-w-0 py-4">
 				<h2 class="card-title text-base">Devices</h2>
 				{#if live_stats.devices.length > 0}
-					<div class="flex flex-wrap gap-2">
+					{@const max_visitors = Math.max(
+						...live_stats.devices.map((d) => d.visitors),
+					)}
+					<ul class="space-y-1">
 						{#each live_stats.devices as d}
-							<div class="badge badge-outline gap-1">
-								<span>{device_icon(d.device_type)}</span>
-								{d.device_type}
-								<span class="text-primary font-bold">
+							<li
+								class="relative flex items-center justify-between gap-2 py-1.5"
+							>
+								<div
+									class="bg-primary/20 absolute inset-y-0 left-0 rounded"
+									style="width: {(d.visitors / max_visitors) * 100}%"
+								></div>
+								<span class="relative z-10 flex items-center gap-1">
+									<span>{device_icon(d.device_type)}</span>
+									<span class="capitalize">{d.device_type}</span>
+								</span>
+								<span
+									class="badge badge-ghost relative z-10 tabular-nums"
+								>
 									{d.visitors}
 								</span>
-							</div>
+							</li>
 						{/each}
-					</div>
+					</ul>
 				{:else}
 					<p class="text-base-content/50 text-sm">No data</p>
 				{/if}
@@ -814,22 +909,74 @@
 
 	<!-- Period grids -->
 	<div class="mb-8 grid gap-6 lg:grid-cols-2">
+		<!-- Referrers -->
+		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+			<div class="card-body min-w-0">
+				<div class="flex items-center justify-between">
+					<h2 class="card-title text-lg">Referrers</h2>
+					<div class="flex gap-2 text-xs opacity-60">
+						<span class="w-14 text-right">Visitors</span>
+						<span class="w-14 text-right">Views</span>
+					</div>
+				</div>
+				{#if period_stats.referrers.length > 0}
+					{@const max_visitors = Math.max(
+						...period_stats.referrers.map((r) => r.visitors),
+					)}
+					<ul class="space-y-1">
+						{#each period_stats.referrers as ref}
+							{@render stat_row_multi(
+								parse_referrer(ref.referrer),
+								ref.visitors,
+								ref.views,
+								max_visitors,
+							)}
+						{/each}
+					</ul>
+				{:else}
+					<p class="text-base-content/50 text-sm">No referrer data</p>
+				{/if}
+			</div>
+		</div>
+
 		<!-- Countries -->
 		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
 			<div class="card-body min-w-0">
-				<h2 class="card-title text-lg">Top Countries</h2>
+				<div class="flex items-center justify-between">
+					<h2 class="card-title text-lg">Top Countries</h2>
+					<div class="flex gap-2 text-xs opacity-60">
+						<span class="w-14 text-right">Visitors</span>
+						<span class="w-14 text-right">Views</span>
+					</div>
+				</div>
 				{#if period_stats.countries.length > 0}
-					<ul class="space-y-2">
+					{@const max_visitors = Math.max(
+						...period_stats.countries.map((c) => c.visitors),
+					)}
+					<ul class="space-y-1">
 						{#each period_stats.countries as c}
-							<li class="flex items-center justify-between">
-								<span class="flex items-center gap-2">
+							<li class="relative flex items-center gap-2 py-1.5">
+								<div
+									class="bg-primary/20 absolute inset-y-0 left-0 rounded"
+									style="width: {(c.visitors / max_visitors) * 100}%"
+								></div>
+								<span
+									class="relative z-10 flex flex-1 items-center gap-2"
+								>
 									<span class="text-xl">
 										{country_flag(c.country)}
 									</span>
 									<span class="uppercase">{c.country}</span>
 								</span>
-								<span class="badge badge-ghost tabular-nums">
+								<span
+									class="badge badge-ghost badge-sm relative z-10 w-14 justify-end tabular-nums"
+								>
 									{c.visitors}
+								</span>
+								<span
+									class="badge badge-outline badge-sm relative z-10 w-14 justify-end tabular-nums"
+								>
+									{c.views}
 								</span>
 							</li>
 						{/each}
@@ -839,27 +986,34 @@
 				{/if}
 			</div>
 		</div>
+	</div>
 
-		<!-- Top Pages -->
+	<!-- Top Pages (full width) -->
+	<div class="mb-8">
 		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
 			<div class="card-body min-w-0">
-				<h2 class="card-title text-lg">Top Pages</h2>
+				<div class="flex items-center justify-between">
+					<h2 class="card-title text-lg">Top Pages</h2>
+					<div class="flex gap-2 text-xs opacity-60">
+						<span class="w-14 text-right">Visitors</span>
+						<span class="w-14 text-right">Views</span>
+					</div>
+				</div>
 				{#if period_stats.top_pages.length > 0}
-					<ul class="space-y-2">
-						{#each period_stats.top_pages.slice(0, 8) as page}
-							<li class="flex items-center justify-between gap-2">
-								<a
-									href={page.path}
-									class="link-hover link min-w-0 flex-1 truncate text-sm capitalize"
-								>
-									{format_path(page.path)}
-								</a>
-								<span
-									class="badge badge-primary badge-sm tabular-nums"
-								>
-									{page.visitors}
-								</span>
-							</li>
+					{@const max_visitors = Math.max(
+						...period_stats.top_pages
+							.slice(0, 10)
+							.map((p) => p.visitors),
+					)}
+					<ul class="space-y-1">
+						{#each period_stats.top_pages.slice(0, 10) as page}
+							{@render stat_row_multi(
+								format_path(page.path),
+								page.visitors,
+								page.views,
+								max_visitors,
+								page.path,
+							)}
 						{/each}
 					</ul>
 				{:else}
@@ -873,18 +1027,27 @@
 	<div class="mb-8 grid gap-6 md:grid-cols-2">
 		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
 			<div class="card-body min-w-0 py-4">
-				<h2 class="card-title text-base">Browsers</h2>
-				{#if period_stats.browsers.length > 0}
-					<div class="flex flex-wrap gap-2">
-						{#each period_stats.browsers as b}
-							<div class="badge badge-outline gap-1">
-								{b.browser}
-								<span class="text-primary font-bold">
-									{b.visitors}
-								</span>
-							</div>
-						{/each}
+				<div class="flex items-center justify-between">
+					<h2 class="card-title text-base">Browsers</h2>
+					<div class="flex gap-2 text-xs opacity-60">
+						<span class="w-14 text-right">Visitors</span>
+						<span class="w-14 text-right">Views</span>
 					</div>
+				</div>
+				{#if period_stats.browsers.length > 0}
+					{@const max_visitors = Math.max(
+						...period_stats.browsers.map((b) => b.visitors),
+					)}
+					<ul class="space-y-1">
+						{#each period_stats.browsers as b}
+							{@render stat_row_multi(
+								b.browser,
+								b.visitors,
+								b.views,
+								max_visitors,
+							)}
+						{/each}
+					</ul>
 				{:else}
 					<p class="text-base-content/50 text-sm">No data</p>
 				{/if}
@@ -893,19 +1056,43 @@
 
 		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
 			<div class="card-body min-w-0 py-4">
-				<h2 class="card-title text-base">Devices</h2>
+				<div class="flex items-center justify-between">
+					<h2 class="card-title text-base">Devices</h2>
+					<div class="flex gap-2 text-xs opacity-60">
+						<span class="w-14 text-right">Visitors</span>
+						<span class="w-14 text-right">Views</span>
+					</div>
+				</div>
 				{#if period_stats.devices.length > 0}
-					<div class="flex flex-wrap gap-2">
+					{@const max_visitors = Math.max(
+						...period_stats.devices.map((d) => d.visitors),
+					)}
+					<ul class="space-y-1">
 						{#each period_stats.devices as d}
-							<div class="badge badge-outline gap-1">
-								<span>{device_icon(d.device_type)}</span>
-								{d.device_type}
-								<span class="text-primary font-bold">
+							<li class="relative flex items-center gap-2 py-1.5">
+								<div
+									class="bg-primary/20 absolute inset-y-0 left-0 rounded"
+									style="width: {(d.visitors / max_visitors) * 100}%"
+								></div>
+								<span
+									class="relative z-10 flex flex-1 items-center gap-1"
+								>
+									<span>{device_icon(d.device_type)}</span>
+									<span class="capitalize">{d.device_type}</span>
+								</span>
+								<span
+									class="badge badge-ghost badge-sm relative z-10 w-14 justify-end tabular-nums"
+								>
 									{d.visitors}
 								</span>
-							</div>
+								<span
+									class="badge badge-outline badge-sm relative z-10 w-14 justify-end tabular-nums"
+								>
+									{d.views}
+								</span>
+							</li>
 						{/each}
-					</div>
+					</ul>
 				{:else}
 					<p class="text-base-content/50 text-sm">No data</p>
 				{/if}
