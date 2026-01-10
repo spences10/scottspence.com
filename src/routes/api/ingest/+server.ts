@@ -19,17 +19,15 @@ import {
 	validate_sync_blocked_domains,
 } from './sync-blocked-domains'
 import { update_embeddings } from './update-embeddings'
-import { update_popular_posts } from './update-popular-posts'
 import { update_posts } from './update-posts'
 import { update_related_posts_table } from './update-related-posts'
-import { update_stats } from './update-stats'
 
 /**
  * === GETTING PRODUCTION DATA LOCALLY ===
  *
  * Step 1: Update production database with latest posts/stats
  *
-for task in "update_popular_posts" "update_posts" "update_embeddings" "update_related_posts"; do
+for task in "update_posts" "update_embeddings" "update_related_posts"; do
 	curl -X POST https://scottspence.com/api/ingest \
 		-H "Content-Type: application/json" \
 		-H "Authorization: Bearer $INGEST_TOKEN" \
@@ -56,7 +54,7 @@ curl -H "Authorization: Bearer $INGEST_TOKEN" \
  *
  * Update local database with latest posts/stats
  *
-for task in "update_popular_posts" "update_posts" "update_embeddings" "update_related_posts"; do
+for task in "update_posts" "update_embeddings" "update_related_posts"; do
 	curl -X POST http://localhost:5173/api/ingest \
 		-H "Content-Type: application/json" \
 		-H "Authorization: Bearer $INGEST_TOKEN" \
@@ -97,12 +95,10 @@ type TaskFunction<TArgs = any, TResult = any> = (
 
 // Define the type for the keys in tasks object
 type TaskKey =
-	| 'update_popular_posts'
 	| 'update_posts'
 	| 'update_embeddings'
 	| 'update_related_posts'
 	| 'index_now'
-	| 'update_stats'
 	| 'export_training_data'
 	| 'backup_database'
 	| 'pull_database'
@@ -140,10 +136,6 @@ interface RequestBody {
 
 // Define a mapping from task names to functions
 const tasks: TaskType = {
-	update_popular_posts: {
-		function: update_popular_posts,
-		expects_fetch: true,
-	},
 	update_posts: {
 		function: update_posts,
 		expects_fetch: false,
@@ -158,10 +150,6 @@ const tasks: TaskType = {
 	},
 	update_related_posts: {
 		function: update_related_posts_table,
-		expects_fetch: false,
-	},
-	update_stats: {
-		function: update_stats,
 		expects_fetch: false,
 	},
 	export_training_data: {

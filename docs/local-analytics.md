@@ -39,45 +39,24 @@ dependency.
 
 ### What's left
 
-- [ ] Remove Fathom API dependency (see Fathom Migration Status below)
-- [ ] Delete legacy `update_stats` ingest task
-- [x] Switch popular posts from Fathom to local rollups
-- [x] Switch per-post analytics from Fathom to local rollups
+All migration tasks complete. See `2026-analytics-migration.md` for
+details.
 
 ---
 
-## Fathom Migration Status (Jan 2, 2026)
+## Fathom Migration Status (Complete - Jan 10, 2026)
 
-### Current state
+All Fathom API code removed. Only pageview tracking remains via
+`fathom-client` in `+layout.svelte`.
 
-Two analytics systems running in parallel:
-
-| Feature                    | Source              | Notes   |
+| Feature                    | Source              | Status  |
 | -------------------------- | ------------------- | ------- |
 | Site-wide stats (`/stats`) | Local rollups       | ✅ Done |
 | Live visitors              | In-memory heartbeat | ✅ Done |
 | Popular posts              | Local rollups       | ✅ Done |
 | Per-post analytics (modal) | Local rollups       | ✅ Done |
-
-### Fathom API still used by
-
-| File                                            | Purpose            |
-| ----------------------------------------------- | ------------------ |
-| `src/lib/fathom/fetch-fathom-data.ts`           | API client         |
-| `src/routes/api/ingest/update-popular-posts.ts` | Popular posts cron |
-
-**Migrated to local rollups:**
-
-- `src/lib/data/post-analytics.remote.ts` - now queries local tables
-- `src/lib/state/post-analytics.svelte.ts` - deleted (no longer
-  needed)
-
-### Dead code to remove
-
-| File                                         | Reason                                                                        |
-| -------------------------------------------- | ----------------------------------------------------------------------------- |
-| `src/routes/api/ingest/update-stats.ts`      | Reads from `analytics_pages` (Fathom table), superseded by `rollup_analytics` |
-| `src/routes/api/ingest/update-stats.test.ts` | Test for dead code                                                            |
+| Fathom API client          | Deleted             | ✅ Done |
+| Dead ingest tasks          | Deleted             | ✅ Done |
 
 ### What local analytics DOESN'T capture
 
@@ -86,20 +65,6 @@ analytics doesn't track these - would require session end/navigation
 tracking.
 
 **Decision**: Accept this limitation. Views + uniques are sufficient.
-
-### Migration steps
-
-1. **Delete `update_stats`** - dead code, not in cron
-2. **Switch popular posts** - query `analytics_all_time` instead of
-   Fathom
-3. **Switch per-post analytics** - query
-   `analytics_daily/monthly/yearly` filtered by pathname
-4. **Remove Fathom API client** - delete `src/lib/fathom/`
-5. **Remove `FATHOM_API_KEY` env var** - keep `PUBLIC_FATHOM_ID` for
-   pageview tracking in `+layout.svelte`
-
-**Note:** Keep `fathom-client` package - still used for pageview
-tracking.
 
 ---
 

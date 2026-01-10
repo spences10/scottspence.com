@@ -8,7 +8,7 @@ Migrate from Fathom API to self-hosted analytics using
 > **Note**: See `local-analytics.md` for detailed implementation docs
 > and the Fathom Migration Status section.
 
-## Status: Jan 6, 2026
+## Status: Jan 10, 2026
 
 **Completed:**
 
@@ -16,12 +16,9 @@ Migrate from Fathom API to self-hosted analytics using
       table)
 - [x] Popular posts migration (local rollups + cached queries)
 - [x] Bot detection for "today" queries (inline CTE filtering)
-
-**Remaining:**
-
 - [x] Per-post analytics modal → local rollups
-- [ ] Delete dead code (`update_stats`, `update_popular_posts`)
-- [ ] Remove Fathom API client
+- [x] Delete dead code (`update_stats`, `update_popular_posts`)
+- [x] Remove Fathom API client
 
 **Fathom stays for**: pageview tracking in `+layout.svelte` only.
 
@@ -176,13 +173,8 @@ Both `flag-bot-behaviour.ts` and `popular-posts.helpers.ts` now use:
 
 ## What's left
 
-- [x] Fix bot detection for "today" popular posts
-- [ ] Switch per-post analytics modal to local rollups
-- [ ] Delete `update_stats` ingest task (dead code)
-- [ ] Delete `update_popular_posts` ingest task
-- [ ] Remove Fathom API client (`src/lib/fathom/`)
-- [ ] Remove `FATHOM_API_KEY` env var (keep `PUBLIC_FATHOM_ID` for
-      tracker)
+All migration tasks complete. Fathom pageview tracker remains in
+`+layout.svelte`.
 
 ---
 
@@ -261,16 +253,15 @@ export const get_post_analytics = query(async (pathname: string) => {
 
 ---
 
-## Dead code to delete
+## Dead code deleted (Jan 10, 2026)
 
-| File                                            | Action  |
-| ----------------------------------------------- | ------- |
-| `src/routes/api/ingest/update-stats.ts`         | Delete  |
-| `src/routes/api/ingest/update-stats.test.ts`    | Delete  |
-| `src/routes/api/ingest/update-popular-posts.ts` | Delete  |
-| `src/lib/fathom/`                               | Delete  |
-| `src/lib/data/post-analytics.remote.ts`         | ✅ Done |
-| `src/lib/state/post-analytics.svelte.ts`        | ✅ Done |
+| File                                                 | Status  |
+| ---------------------------------------------------- | ------- |
+| `src/routes/api/ingest/update-stats.ts`              | ✅ Done |
+| `src/routes/api/ingest/update-stats.test.ts`         | ✅ Done |
+| `src/routes/api/ingest/update-popular-posts.ts`      | ✅ Done |
+| `src/routes/api/ingest/update-popular-posts.test.ts` | ✅ Done |
+| `src/lib/fathom/`                                    | ✅ Done |
 
 ---
 
