@@ -479,9 +479,7 @@
 									class="bg-primary/20 absolute inset-y-0 left-0 rounded"
 									style="width: {(d.visitors / max_visitors) * 100}%"
 								></div>
-								<span
-									class="relative flex flex-1 items-center gap-1"
-								>
+								<span class="relative flex flex-1 items-center gap-1">
 									<span>{device_icon(d.device_type)}</span>
 									<span class="capitalize">{d.device_type}</span>
 								</span>

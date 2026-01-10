@@ -108,10 +108,10 @@
 									class="bg-primary/20 absolute inset-y-0 left-0 rounded"
 									style="width: {(c.visitors / max_visitors) * 100}%"
 								></div>
-								<span class="relative flex items-center gap-2">
-									<span class="text-xl">
-										{country_flag(c.country)}
-									</span>
+								<span
+									class="relative flex items-center gap-2 text-sm"
+								>
+									<span>{country_flag(c.country)}</span>
 									<span class="uppercase">{c.country}</span>
 								</span>
 								<span class="badge badge-ghost relative tabular-nums">
