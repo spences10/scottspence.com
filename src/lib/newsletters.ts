@@ -7,21 +7,25 @@ export interface Newsletter {
 	slug: string
 }
 
+type NewsletterModule = {
+	metadata: { title: string; date: string; published: boolean }
+}
+
 export const get_newsletters = async (): Promise<Newsletter[]> => {
-	const newsletter_files = import.meta.glob('/newsletter/*.md')
+	const newsletter_files = import.meta.glob<NewsletterModule>(
+		'/newsletter/*.md',
+	)
 
 	const newsletters: Newsletter[] = []
 
-	for (const [path, loader] of Object.entries(newsletter_files)) {
+	for (const path of Object.keys(newsletter_files)) {
 		// Skip README.md
 		if (path.includes('README')) continue
 
 		const slug = path.split('/').pop()?.replace('.md', '') || ''
 
 		// Load the module
-		const module = (await loader()) as {
-			metadata: { title: string; date: string; published: boolean }
-		}
+		const module = await newsletter_files[path]()
 
 		newsletters.push({
 			title: module.metadata.title,

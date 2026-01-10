@@ -8,16 +8,19 @@ interface TrainingPost extends Post {
 
 export const export_training_data = async () => {
 	try {
-		const files = import.meta.glob('../../../../posts/**/*.md', {
-			query: '?raw',
-			import: 'default',
-		})
+		const files = import.meta.glob<string>(
+			'../../../../posts/**/*.md',
+			{
+				query: '?raw',
+				import: 'default',
+			},
+		)
 
 		const processPosts = async (): Promise<TrainingPost[]> => {
 			const processedPosts = await Promise.all(
-				Object.entries(files).map(async ([path, importFn]) => {
+				Object.keys(files).map(async (path) => {
 					try {
-						const content = (await importFn()) as string
+						const content = await files[path]()
 						const parts = content.split('---')
 						const frontmatter = parts[1]
 						const markdown = parts.slice(2).join('---')

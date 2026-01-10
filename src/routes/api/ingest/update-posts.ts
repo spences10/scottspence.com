@@ -4,15 +4,16 @@ export const update_posts = async () => {
 	const client = sqlite_client
 
 	// Fetch posts from local Markdown files
+	const post_files = import.meta.glob<{ metadata: Post }>(
+		'../../../../posts/**/*.md',
+	)
 	const posts: Post[] = await Promise.all(
-		Object.entries(import.meta.glob('../../../../posts/**/*.md')).map(
-			async ([path, resolver]) => {
-				const resolved = (await resolver()) as { metadata: Post }
-				const { metadata } = resolved
-				const slug = path.split('/').pop()?.slice(0, -3) ?? ''
-				return { ...metadata, slug }
-			},
-		),
+		Object.keys(post_files).map(async (path) => {
+			const resolved = await post_files[path]()
+			const { metadata } = resolved
+			const slug = path.split('/').pop()?.slice(0, -3) ?? ''
+			return { ...metadata, slug }
+		}),
 	)
 
 	// Prepare batch statements
