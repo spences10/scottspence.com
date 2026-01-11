@@ -71,5 +71,9 @@ export function run_migrations() {
 		apply_migration(file, sql)
 	}
 
+	// VACUUM after migrations to reclaim space from any dropped tables
+	console.log('Running VACUUM...')
+	sqlite_client.exec('VACUUM')
+
 	console.log('Migrations complete')
 }

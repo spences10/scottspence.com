@@ -19,31 +19,6 @@ CREATE TABLE IF NOT EXISTS
     last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
 
-CREATE TABLE IF NOT EXISTS
-  post_analytics (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    slug TEXT NOT NULL,
-    date_grouping TEXT NOT NULL,
-    pageviews INTEGER NOT NULL,
-    visits INTEGER NOT NULL,
-    uniques INTEGER,
-    avg_duration REAL,
-    bounce_rate REAL,
-    last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE (slug, date_grouping)
-  );
-
-CREATE TABLE IF NOT EXISTS
-  popular_posts (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    pathname TEXT NOT NULL,
-    pageviews INTEGER NOT NULL,
-    visits INTEGER NOT NULL,
-    date_grouping TEXT NOT NULL,
-    last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE (pathname, date_grouping)
-  );
-
 -- Analytics and aggregation tables
 CREATE TABLE IF NOT EXISTS
   analytics_all_time (
@@ -136,15 +111,6 @@ CREATE TABLE IF NOT EXISTS
   );
 
 CREATE TABLE IF NOT EXISTS
-  fathom_api_calls (
-    id INTEGER PRIMARY KEY,
-    calling_function TEXT NOT NULL,
-    endpoint TEXT NOT NULL,
-    parameters TEXT,
-    call_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-  );
-
-CREATE TABLE IF NOT EXISTS
   visitors (
     id INTEGER PRIMARY KEY,
     client_address TEXT,
@@ -185,100 +151,6 @@ CREATE VIRTUAL TABLE IF NOT EXISTS post_embeddings USING vec0(
   post_id TEXT PRIMARY KEY,
   embedding FLOAT[1024]
 );
-
--- Analytics summary tables (Fathom exports)
-CREATE TABLE IF NOT EXISTS
-  analytics_browsers (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    timestamp TIMESTAMP NOT NULL,
-    browser TEXT NOT NULL,
-    pageviews INTEGER NOT NULL,
-    visits INTEGER NOT NULL
-  );
-
-CREATE TABLE IF NOT EXISTS
-  analytics_browsers_summary (
-    browser TEXT NOT NULL,
-    pageviews INTEGER NOT NULL,
-    visits INTEGER NOT NULL,
-    year_month TEXT NOT NULL,
-    PRIMARY KEY (browser, year_month)
-  );
-
-CREATE TABLE IF NOT EXISTS
-  analytics_countries (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    timestamp TIMESTAMP NOT NULL,
-    country TEXT NOT NULL,
-    pageviews INTEGER NOT NULL,
-    visits INTEGER NOT NULL
-  );
-
-CREATE TABLE IF NOT EXISTS
-  analytics_countries_summary (
-    country TEXT NOT NULL,
-    pageviews INTEGER NOT NULL,
-    visits INTEGER NOT NULL,
-    year_month TEXT NOT NULL,
-    PRIMARY KEY (country, year_month)
-  );
-
-CREATE TABLE IF NOT EXISTS
-  analytics_device_types (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    timestamp TIMESTAMP NOT NULL,
-    device_type TEXT NOT NULL,
-    pageviews INTEGER NOT NULL,
-    visits INTEGER NOT NULL
-  );
-
-CREATE TABLE IF NOT EXISTS
-  analytics_device_types_summary (
-    device_type TEXT NOT NULL,
-    pageviews INTEGER NOT NULL,
-    visits INTEGER NOT NULL,
-    year_month TEXT NOT NULL,
-    PRIMARY KEY (device_type, year_month)
-  );
-
-CREATE TABLE IF NOT EXISTS
-  analytics_pages (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    timestamp TIMESTAMP NOT NULL,
-    hostname TEXT NOT NULL,
-    pathname TEXT NOT NULL,
-    views INTEGER NOT NULL,
-    uniques INTEGER NOT NULL
-  );
-
-CREATE TABLE IF NOT EXISTS
-  analytics_referrers (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    timestamp TIMESTAMP NOT NULL,
-    referrer_hostname TEXT NOT NULL,
-    referrer_pathname TEXT NOT NULL,
-    views INTEGER NOT NULL,
-    visits INTEGER NOT NULL
-  );
-
-CREATE TABLE IF NOT EXISTS
-  analytics_referrers_summary (
-    referrer_hostname TEXT NOT NULL,
-    pageviews INTEGER NOT NULL,
-    visits INTEGER NOT NULL,
-    year_month TEXT NOT NULL,
-    PRIMARY KEY (referrer_hostname, year_month)
-  );
-
-CREATE TABLE IF NOT EXISTS
-  analytics_site (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    timestamp TIMESTAMP NOT NULL,
-    pageviews INTEGER NOT NULL,
-    visits INTEGER NOT NULL,
-    avg_duration REAL NOT NULL,
-    bounce_rate REAL NOT NULL
-  );
 
 -- Local analytics events (batched writes, short retention)
 CREATE TABLE IF NOT EXISTS
@@ -378,7 +250,6 @@ CREATE TABLE IF NOT EXISTS
   );
 
 -- Performance indexes
-CREATE INDEX IF NOT EXISTS idx_popular_posts_date_grouping_pageviews ON popular_posts (date_grouping, pageviews DESC);
 CREATE INDEX IF NOT EXISTS idx_posts_slug ON posts (slug);
 CREATE INDEX IF NOT EXISTS idx_monthly_pathname ON analytics_monthly (pathname);
 CREATE INDEX IF NOT EXISTS idx_monthly_year_month ON analytics_monthly (year_month);
