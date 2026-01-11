@@ -1,4 +1,5 @@
 export { default as Bluesky } from './bluesky.svelte'
+export { default as Document } from './document.svelte'
 export { default as Envelope } from './envelope.svelte'
 export { default as ErrorCircle } from './error-circle.svelte'
 export { default as Eye } from './eye.svelte'

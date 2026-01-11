@@ -31,6 +31,25 @@ export const SOCIAL_LINKS = [
 	},
 ]
 
+export const NAV_LINKS = [
+	{
+		title: `Posts`,
+		slug: `posts`,
+	},
+	{
+		title: `Tags`,
+		slug: `tags`,
+	},
+	{
+		title: `Speaking`,
+		slug: `speaking`,
+	},
+	{
+		title: `FAQ`,
+		slug: `faq`,
+	},
+]
+
 export const SITE_LINKS = [
 	{
 		title: `About`,
