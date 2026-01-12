@@ -15,9 +15,11 @@
 			></div>
 			<div class="status status-primary"></div>
 		</div>
-		<span class="text-sm">
-			{state.path_viewers}
-			{state.path_viewers === 1 ? 'person' : 'people'} viewing now
-		</span>
+		<a href="/stats" class="link link-primary text-sm tracking-wide">
+			<span class="text-sm">
+				{state.path_viewers}
+				{state.path_viewers === 1 ? 'person' : 'people'} viewing now
+			</span>
+		</a>
 	</div>
 {/if}
