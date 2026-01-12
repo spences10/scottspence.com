@@ -7,32 +7,32 @@ allowed-tools: mcp__mcp-sqlite-tools__*, Read, Grep
 
 # Analytics Audit
 
-Investigate local analytics for bot traffic, referrer spam, and
-suspicious patterns.
+Comprehensive analytics investigation: bot detection, traffic
+insights, content performance, and Fathom comparison.
 
 ## Quick Start
 
-Open the database at `data/site-data.db` using the MCP sqlite tools,
-then run queries from the references.
+Open `data/site-data.db` with MCP sqlite tools, then run queries from
+references.
 
-## Key Investigations
+## Investigations
 
-1. **Bot detection gaps** - Find "non-bot" traffic with >95% homepage
-   visits
-2. **Referrer spam** - High-profile domains with no page path,
-   single-visit referrers
-3. **Suspicious UAs** - Outdated OS/browser, malformed Chrome UAs, null
-   UA
+1. **Bot Detection** - Homepage-heavy traffic, outdated UAs, null UA
+2. **Traffic Trends** - Daily/weekly patterns, growth, peak times
+3. **Content Performance** - Top posts, engagement depth, entry pages
+4. **Audience** - Geography, devices, browsers
+5. **Referrer Quality** - Real traffic sources vs spam
+6. **Fathom Comparison** - Local vs Fathom discrepancies
 
-## Red Flags
+## Quick Checks
 
-- Homepage visits >95% of total = bot
-- iOS 13.x or below = bot (2019)
-- Chrome < 100 = bot (pre-2022)
-- `Chrome/120.0.0.0` without Safari suffix = malformed bot UA
+- Homepage >95% = bot
+- iOS 13.x or below = bot
+- Chrome < 100 = bot
 - null user_agent = bot
 
 ## References
 
-- [Common Queries](references/queries.md) - SQL for all investigations
+- [Queries](references/queries.md) - SQL for all investigations
 - [Bot Patterns](references/bot-patterns.md) - Known signatures
+- [Metrics Guide](references/metrics.md) - What to look for
