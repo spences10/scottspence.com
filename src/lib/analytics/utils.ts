@@ -182,17 +182,24 @@ const BOT_PATTERNS = [
 	/^Mozilla\/5\.0$/,
 	/^Mozilla\/5\.0 \(compatible\)$/,
 	/MSIE [5-7]\./i,
+
+	// Outdated OS/browser versions (commonly spoofed by bots)
+	/iPhone; CPU iPhone OS 1[0-4]_/i, // iOS 10-14 (2016-2020)
+	/Android [4-9];.*Chrome\/[4-8]\d\./i, // Old Android + Chrome < 90
+	/Chrome\/[1-9]\d\.\d/i, // Chrome < 100 (pre-2022)
+	/Chrome\/\d+\.0\.0\.0(?!\s+Safari)/i, // Malformed: Chrome/120.0.0.0 without Safari
 ]
 
 export const parse_user_agent = (
 	ua: string | null,
 ): ParsedUserAgent => {
+	// No user agent = bot (real browsers always send UA)
 	if (!ua)
 		return {
 			browser: null,
 			os: null,
 			device_type: null,
-			is_bot: false,
+			is_bot: true,
 		}
 
 	// Bot detection
