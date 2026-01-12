@@ -11,6 +11,7 @@
 	import {
 		ButtButt,
 		IsPrivateBanner,
+		LiveVisitors,
 		NewsletterSignup,
 		PopularPosts,
 		PostOnBlueSky,
@@ -19,7 +20,6 @@
 		TableOfContents,
 		TextSelectionPopup,
 		UpdatedBanner,
-		ViewingNow,
 	} from '$lib/components'
 	import {
 		create_schema_org_config,
@@ -232,7 +232,7 @@
 			{/if}
 		</div>
 	</div>
-	<ViewingNow path={page.url.pathname} />
+	<LiveVisitors mode="page" />
 
 	{#if data.meta.is_private}
 		<IsPrivateBanner />
