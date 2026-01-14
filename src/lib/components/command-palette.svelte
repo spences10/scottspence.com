@@ -167,7 +167,7 @@
 	aria-label="Search"
 >
 	<article
-		class="modal-box rounded-box flex h-auto max-h-[65vh] w-full max-w-xl flex-col p-0 sm:max-h-[80vh]"
+		class="modal-box rounded-box flex h-auto max-h-[75dvh] w-full max-w-xl flex-col p-0 sm:max-h-[80vh]"
 	>
 		<search class="border-base-300 border-b p-4">
 			<label for="command-palette-search" class="sr-only">
