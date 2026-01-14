@@ -44,7 +44,6 @@
 		type="text"
 		placeholder="Search... (Ctrl+K)"
 		readonly
-		onfocus={() => command_palette_state.open()}
 		onclick={() => command_palette_state.open()}
 	/>
 </div>

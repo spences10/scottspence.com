@@ -5,15 +5,11 @@
 	import { Document, News, Tag } from '$lib/icons'
 	import { NAV_LINKS, SITE_LINKS } from '$lib/info'
 	import { command_palette_state } from '$lib/state/command-palette.svelte'
-	import { tick } from 'svelte'
 
 	let posts = $state<Post[]>([])
 	let tags = $state<string[]>([])
 	let loaded = $state(false)
 	let loading = $state(false)
-
-	let dialog_element = $state<HTMLDialogElement>()
-	let input_element = $state<HTMLInputElement>()
 	let selected_index = $state(0)
 
 	// Lazy load data when palette opens
@@ -117,19 +113,8 @@
 		selected_index = 0
 	})
 
-	// Sync dialog with state
-	$effect(() => {
-		const open = command_palette_state.is_open
-		if (open) {
-			dialog_element?.showModal()
-			tick().then(() => input_element?.focus())
-		} else {
-			dialog_element?.close()
-		}
-	})
-
 	const scroll_selected_into_view = () => {
-		const selected_el = dialog_element?.querySelector(
+		const selected_el = command_palette_state.dialog?.querySelector(
 			`[data-index="${selected_index}"]`,
 		)
 		selected_el?.scrollIntoView({ block: 'nearest' })
@@ -177,11 +162,8 @@
 
 <dialog
 	class="modal modal-bottom sm:modal-middle p-4 sm:p-6"
-	bind:this={dialog_element}
+	{@attach command_palette_state.register}
 	onclose={handle_close}
-	onclick={(e) => {
-		if (e.target === dialog_element) handle_close()
-	}}
 	aria-label="Search"
 >
 	<article
@@ -193,7 +175,7 @@
 			</label>
 			<input
 				id="command-palette-search"
-				bind:this={input_element}
+				{@attach command_palette_state.register_input}
 				bind:value={command_palette_state.query}
 				onkeydown={handle_keydown}
 				type="search"

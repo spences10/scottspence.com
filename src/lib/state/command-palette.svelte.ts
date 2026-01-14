@@ -1,15 +1,37 @@
 class CommandPaletteState {
-	is_open = $state(false)
+	dialog: HTMLDialogElement | null = null
+	input: HTMLInputElement | null = null
 	query = $state('')
 	recent = $state<string[]>([])
+	is_open = $state(false)
+
+	// Attach function for dialog - register element with state
+	register = (dialog: HTMLDialogElement) => {
+		this.dialog = dialog
+		return () => {
+			this.dialog = null
+		}
+	}
+
+	// Attach function for input - register for focus management
+	register_input = (input: HTMLInputElement) => {
+		this.input = input
+		return () => {
+			this.input = null
+		}
+	}
 
 	open() {
-		this.is_open = true
-		this.query = ''
+		if (!this.dialog?.open) {
+			this.is_open = true
+			this.dialog?.showModal()
+			this.input?.focus()
+		}
 	}
 
 	close() {
 		this.is_open = false
+		this.dialog?.close()
 		this.query = ''
 	}
 
