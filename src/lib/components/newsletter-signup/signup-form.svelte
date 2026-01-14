@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { PUBLIC_TURNSTILE_SITE_KEY } from '$env/static/public'
 	import { track_click } from '$lib/analytics/track-click.remote'
 	import { get_subscriber_count } from '$lib/data/subscribers.remote'
 	import type { ActionResult } from '@sveltejs/kit'
+	import { Turnstile } from 'svelte-turnstile'
 	import { button_disabled } from './index'
 	import { subscribe_to_newsletter } from './newsletter.remote'
 
@@ -11,16 +13,25 @@
 	}
 
 	let { email = $bindable(), handle_result }: Props = $props()
+	let turnstile_token = $state<string>('')
+	let error_message = $state<string | null>(null)
 
 	const subscriber_data = get_subscriber_count()
 
 	async function handle_submit(e: SubmitEvent) {
 		e.preventDefault()
+		error_message = null
+
+		if (!turnstile_token) {
+			error_message = 'Please complete the verification'
+			return
+		}
+
 		$button_disabled = true
 
 		try {
 			track_click({ event_name: 'newsletter signup click' })
-			await subscribe_to_newsletter({ email })
+			await subscribe_to_newsletter({ email, turnstile_token })
 
 			const result: ActionResult = {
 				type: 'success',
@@ -82,9 +93,7 @@
 						class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2"
 					>
 						<div class="form-control flex-1">
-							<!-- Added form-control and flex-1 -->
 							<div class="validator validator-email w-full">
-								<!-- Added w-full -->
 								<input
 									class="input input-bordered input-primary text-primary w-full"
 									id="email"
@@ -105,10 +114,25 @@
 								? 'loading loading-spinner text-secondary'
 								: 'btn btn-secondary'}
 							value="sign me up!"
-							disabled={$button_disabled}
+							disabled={$button_disabled || !turnstile_token}
 						/>
 					</div>
 				</fieldset>
+				<div class="mt-3 flex justify-center">
+					<Turnstile
+						size="flexible"
+						theme="auto"
+						siteKey={PUBLIC_TURNSTILE_SITE_KEY}
+						on:turnstile-callback={(e) => {
+							turnstile_token = e.detail.token
+						}}
+					/>
+				</div>
+				{#if error_message}
+					<div class="alert alert-error mt-2">
+						<span>{error_message}</span>
+					</div>
+				{/if}
 			</form>
 			<p class="mt-3 text-sm">
 				I care about the protection of your data. Read the

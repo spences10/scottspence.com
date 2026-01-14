@@ -3,6 +3,7 @@ import {
 	RESEND_API_KEY,
 	RESEND_AUDIENCE_ID,
 	RESEND_FROM_EMAIL,
+	TURNSTILE_SECRET_KEY,
 } from '$env/static/private'
 import { encrypt } from '$lib/crypto'
 import { ratelimit } from '$lib/redis'
@@ -14,7 +15,31 @@ const newsletter_schema = v.object({
 		v.trim(),
 		v.email('Invalid email format'),
 	),
+	turnstile_token: v.string(),
 })
+
+async function verify_turnstile(
+	token: string,
+	ip: string,
+): Promise<boolean> {
+	const response = await fetch(
+		'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+		{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				secret: TURNSTILE_SECRET_KEY,
+				response: token,
+				remoteip: ip,
+			}),
+		},
+	)
+
+	const data = await response.json()
+	return data.success === true
+}
 
 export const subscribe_to_newsletter = command(
 	newsletter_schema,
@@ -24,6 +49,12 @@ export const subscribe_to_newsletter = command(
 			request.headers.get('x-forwarded-for')?.split(',')[0] ||
 			request.headers.get('x-real-ip') ||
 			'unknown'
+
+		// Verify Turnstile token
+		const is_valid = await verify_turnstile(data.turnstile_token, ip)
+		if (!is_valid) {
+			throw new Error('Failed to verify captcha. Please try again.')
+		}
 
 		// Check rate limit
 		const rate_limit_attempt = await ratelimit.limit(ip)
