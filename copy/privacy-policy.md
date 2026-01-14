@@ -8,7 +8,7 @@
 # Privacy Policy
 
 <Small>
-  Last updated: <DateUpdated date="2024-04-14" small="true" />
+  Last updated: <DateUpdated date="2025-01-14" small="true" />
 </Small>
 
 Hello, welcome to the privacy policy for [scottspence.com](), I want
@@ -21,6 +21,7 @@ The privacy policy in this site includes these points:
 - [What I do with collected information]
 - [What cookies, pixels, and other trackers my site uses and their
   purpose]
+- [Local analytics]
 - [Any advertising networks and their methods/purposes of data
   collection and ad delivery]
 - [How users of this site can op-in and op-out of their data being
@@ -70,6 +71,35 @@ You can find more about them both in the
 I use Fathom Analytics to measure page visits to [scottspence.com](),
 they use no cookies, no trackers, you can view the Fathom Analytics
 privacy statement [here][1].
+
+### Local analytics
+
+Alongside Fathom, I run my own lightweight analytics on the server to
+get a clearer picture of what's popular and spot dodgy bot traffic.
+
+Here's what gets collected when you visit a page:
+
+- **Anonymised IP** - last bit chopped off (192.168.1.100 becomes
+  192.168.1.0)
+- **Browser and device type** - Chrome on desktop, Safari on mobile,
+  that sort of thing
+- **Country** - just the country, nothing more specific
+- **Page visited and referrer** - where you came from and what you
+  looked at
+- **A daily visitor hash** - resets every day, can't track you across
+  sessions
+
+No cookies involved. No fingerprinting. Can't identify you personally
+
+- that's the whole point.
+
+The data helps me understand which posts are useful and which ones
+nobody cares about. Also helps me filter out the absolute deluge of
+bot traffic that hammers the site daily.
+
+I keep raw events for a few days for debugging, then they get rolled
+up into simple page view counts. The aggregate stats stick around
+longer because they're just numbers, not personal data.
 
 ### Any advertising networks and their methods/purposes of data collection and ad delivery.
 
@@ -140,6 +170,7 @@ Read] for a simple breakdown of what the ToS actually means.
 	#what-i-do-with-collected-information
 [what cookies, pixels, and other trackers my site uses and their purpose]:
 	#what-cookies-pixels-and-other-trackers-my-site-uses-and-their-purpose
+[local analytics]: #local-analytics
 [any advertising networks and their methods/purposes of data collection and ad delivery]:
 	#any-advertising-networks-and-their-methodspurposes-of-data-collection-and-ad-delivery
 [how users of this site can op-in and op-out of their data being collected and stored]:
