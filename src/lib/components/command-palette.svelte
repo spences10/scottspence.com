@@ -176,13 +176,16 @@
 </script>
 
 <dialog
-	class="modal modal-bottom sm:modal-middle"
+	class="modal modal-bottom sm:modal-middle p-4 sm:p-6"
 	bind:this={dialog_element}
 	onclose={handle_close}
+	onclick={(e) => {
+		if (e.target === dialog_element) handle_close()
+	}}
 	aria-label="Search"
 >
 	<article
-		class="modal-box flex h-[85vh] max-h-[85vh] w-full max-w-xl flex-col p-0 sm:h-auto sm:max-h-[80vh]"
+		class="modal-box rounded-box flex h-auto max-h-[65vh] w-full max-w-xl flex-col p-0 sm:max-h-[80vh]"
 	>
 		<search class="border-base-300 border-b p-4">
 			<label for="command-palette-search" class="sr-only">
