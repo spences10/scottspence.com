@@ -161,13 +161,13 @@
 </script>
 
 <dialog
-	class="modal modal-bottom sm:modal-middle p-4 sm:p-6"
+	class="modal modal-middle p-4"
 	{@attach command_palette_state.register}
 	onclose={handle_close}
 	aria-label="Search"
 >
 	<article
-		class="modal-box rounded-box flex h-auto max-h-[75dvh] w-full max-w-xl flex-col p-0 sm:max-h-[80vh]"
+		class="modal-box rounded-box flex h-auto max-h-[75dvh] w-full max-w-xl flex-col p-0 sm:max-h-[80vh] lg:max-w-3xl"
 	>
 		<search class="border-base-300 border-b p-4">
 			<label for="command-palette-search" class="sr-only">
