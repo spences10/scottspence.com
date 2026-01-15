@@ -184,6 +184,17 @@ CREATE TABLE IF NOT EXISTS
     UNIQUE (pathname, date)
   );
 
+-- Click events for tracking user interactions (replaces Fathom.trackEvent)
+CREATE TABLE IF NOT EXISTS
+  click_events (
+    id INTEGER PRIMARY KEY,
+    event_name TEXT NOT NULL,
+    event_context TEXT,
+    visitor_hash TEXT,
+    path TEXT NOT NULL,
+    created_at INTEGER NOT NULL
+  );
+
 -- GitHub Activity tables for newsletter generation
 CREATE TABLE IF NOT EXISTS
   github_commits (
@@ -266,6 +277,8 @@ CREATE INDEX IF NOT EXISTS idx_github_releases_repo ON github_releases (repo);
 CREATE INDEX IF NOT EXISTS idx_events_rollup ON analytics_events (created_at, path, is_bot);
 CREATE INDEX IF NOT EXISTS idx_events_visitor ON analytics_events (created_at, visitor_hash);
 CREATE INDEX IF NOT EXISTS idx_daily_date ON analytics_daily (date);
+CREATE INDEX IF NOT EXISTS idx_clicks_event ON click_events (event_name, created_at);
+CREATE INDEX IF NOT EXISTS idx_clicks_path ON click_events (path, created_at);
 
 -- Enable WAL mode for better concurrent access
 PRAGMA journal_mode = WAL;
