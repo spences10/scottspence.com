@@ -17,7 +17,7 @@
 				{#each PORTFOLIO_PROJECTS as project}
 					<div class="card bordered">
 						<div class="card-body">
-							<h3 class="card-title !-mt-0">
+							<h3 class="card-title mt-0! text-balance">
 								{project.title}
 							</h3>
 							<p>
@@ -46,7 +46,9 @@
 								{/if}
 							</div>
 							<p>Uses</p>
-							<div class="relative mt-2 flex flex-wrap break-words">
+							<div
+								class="relative mt-2 flex flex-wrap wrap-break-word"
+							>
 								{#each project.tags as tag}
 									<div class="badge badge-secondary m-2 flex">
 										{tag}

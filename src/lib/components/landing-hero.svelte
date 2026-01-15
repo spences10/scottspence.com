@@ -22,7 +22,7 @@
 				onmouseout={() => (is_hovering = !is_hovering)}
 			/>
 			<div class="all-prose lg:mr-28">
-				<h1 class="text-6xl font-black">
+				<h1 class="text-6xl font-black text-balance">
 					<span class="block">Scott Spence</span>
 					<span
 						class="from-primary to-secondary block bg-linear-to-b bg-clip-text text-transparent"
@@ -30,12 +30,12 @@
 						Hello World!
 					</span>
 				</h1>
-				<p class="mb-5">
+				<p class="mb-5 text-pretty">
 					This is my blog where I write about many things, including,
 					but not limited to Svelte, SvelteKit, JavaScript, Tailwind
 					and many more web dev related topics.
 				</p>
-				<p class="mb-5">
+				<p class="mb-5 text-pretty">
 					Check out that massive picture of my <a
 						href="https://www.cockneyrhymingslang.co.uk/slang/boat_race"
 						target="_blank"
@@ -46,11 +46,11 @@
 					out some of the stuff I'm writing about on the
 					<a href="/posts">posts page</a>.
 				</p>
-				<p class="mb-5">
+				<p class="mb-5 text-pretty">
 					You can carry on scrolling for a bit more info about me if
 					you like.
 				</p>
-				<p class="mb-10">
+				<p class="mb-10 text-pretty">
 					Or if you want to get in touch, feel free to reach out to
 					me...
 				</p>

@@ -30,7 +30,7 @@
 		<a href="/stats" class="link link-primary text-sm tracking-wide">
 			{#if mode === 'site'}
 				There's currently
-				<span class="font-bold">{count}</span>
+				<span class="font-bold tabular-nums">{count}</span>
 				{text}
 			{:else}
 				<span class="text-sm">{count} {text}</span>

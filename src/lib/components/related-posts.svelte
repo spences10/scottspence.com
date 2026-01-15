@@ -33,7 +33,7 @@
 					<aside
 						class="card rounded-box border-secondary hover:text-accent h-full border p-5 font-bold shadow-lg transition"
 					>
-						<h3 class="mb-5 text-2xl">
+						<h3 class="mb-5 line-clamp-3 text-2xl text-balance">
 							{post.title}
 						</h3>
 					</aside>

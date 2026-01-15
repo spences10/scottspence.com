@@ -204,7 +204,9 @@
 {/if}
 
 <article>
-	<h1 class="mb-1 text-5xl font-black">{data.meta.title}</h1>
+	<h1 class="mb-1 text-5xl font-black text-balance">
+		{data.meta.title}
+	</h1>
 	<div class="mt-4 mb-3 uppercase">
 		<div class="mb-1">
 			<time datetime={new Date(data.meta.date).toISOString()}>

@@ -124,7 +124,7 @@
 			{#if has_data(stats)}
 				<article>
 					<header class="mb-2 pl-1">
-						<h3>{title}</h3>
+						<h3 class="text-balance">{title}</h3>
 					</header>
 					<section
 						class="stats stats-vertical border-secondary md:stats-horizontal mb-8 w-full border shadow-lg"
@@ -133,7 +133,10 @@
 							{#each Object.entries(stats) as [key, { label, value, range }]}
 								<div class="stat">
 									<header class="stat-title">{label}</header>
-									<div class="stat-value text-2xl" role="status">
+									<div
+										class="stat-value text-2xl tabular-nums"
+										role="status"
+									>
 										{value}
 									</div>
 									{#if range}

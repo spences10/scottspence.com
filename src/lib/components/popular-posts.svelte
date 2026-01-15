@@ -66,11 +66,11 @@
 					<aside
 						class="card rounded-box border-secondary hover:text-accent h-full border p-5 font-bold shadow-lg transition"
 					>
-						<h3 class="mb-5 text-2xl">
+						<h3 class="mb-5 text-2xl text-balance line-clamp-3">
 							{post.title}
 						</h3>
 						<div class="mt-5">
-							<span class="text-primary absolute bottom-0 mb-4">
+							<span class="text-primary absolute bottom-0 mb-4 tabular-nums">
 								Views: {number_crunch(post.pageviews)}
 							</span>
 						</div>

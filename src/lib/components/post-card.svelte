@@ -14,7 +14,7 @@
 		>
 			<a href={`/posts/${post.slug}`}>
 				<div>
-					<h2 class="mt-5 mb-2 text-3xl font-black">
+					<h2 class="mt-5 mb-2 text-3xl font-black text-balance">
 						{post.title}
 					</h2>
 					<div class="text-accent mb-4 text-sm font-bold uppercase">
