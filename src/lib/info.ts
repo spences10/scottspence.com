@@ -87,6 +87,18 @@ export const SITE_LINKS = [
 		title: `Cookie Policy`,
 		slug: `cookie-policy`,
 	},
+	{
+		title: `Contact`,
+		slug: `contact`,
+	},
+	{
+		title: `Stats`,
+		slug: `stats`,
+	},
+	{
+		title: `SEO Outreach`,
+		slug: `seo-outreach`,
+	},
 ]
 
 export const PEOPLE = [
