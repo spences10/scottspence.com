@@ -6,7 +6,19 @@ is_private: false
 ---
 
 <script>
-  import { Details } from '$lib/components'
+  import { Banner, Details } from '$lib/components'
+
+  const toolkit_banner = {
+    type: 'announcement',
+    message: `The forced-eval hook is now part of <a href="https://github.com/spences10/claude-code-toolkit" target="_blank">claude-code-toolkit</a> - a plugin marketplace with performance optimisations, MCP server guides, and usage analytics. In Claude Code run:<br><code>/plugin marketplace add spences10/claude-code-toolkit</code><br>then<br><code>/plugin install toolkit-skills</code>`,
+    track_event: 'skills activation post - toolkit banner',
+  }
+
+  const svelte_banner = {
+    type: 'info',
+    message: `These skills are now available as a plugin: <a href="https://github.com/spences10/svelte-skills-kit" target="_blank">svelte-skills-kit</a>. Pair with <a href="https://github.com/spences10/claude-code-toolkit" target="_blank">claude-code-toolkit</a> for the forced-eval hook! In Claude Code run: <code>/plugin marketplace add spences10/svelte-skills-kit</code> then <code>/plugin install svelte-skills</code>`,
+    track_event: 'skills activation post - svelte skills banner',
+  }
 </script>
 
 So, remember that
@@ -77,6 +89,8 @@ actions, `sveltekit-data-flow` should activate. If you ask about
 The problem? Without proper hooks, skills just sit there collecting
 dust whilst Claude blags it's way through things with pattern
 matching.
+
+<Banner options={svelte_banner} />
 
 ## The test prompts
 
@@ -358,6 +372,8 @@ hook.
 For me, I'm using the forced eval hook. The 84% success rate is worth
 the verbosity, and I don't have to worry about API keys or external
 dependencies.
+
+<Banner options={toolkit_banner} />
 
 **If you're using the claude-skills-cli**: Both hooks are available.
 Generate them with:
