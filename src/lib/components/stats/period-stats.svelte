@@ -4,6 +4,14 @@
 		type ChartData,
 	} from '$lib/analytics/chart-data.remote'
 	import {
+		sort_engagement_stats,
+		type EngagementSortMode,
+	} from '$lib/analytics/engagement-stats.helpers'
+	import {
+		get_engagement_stats,
+		type EngagementStats,
+	} from '$lib/analytics/engagement-stats.remote'
+	import {
 		get_period_stats,
 		type FilterMode,
 		type PeriodStats,
@@ -24,9 +32,21 @@
 
 	let period_stats = $state<PeriodStats | null>(null)
 	let chart_data = $state<ChartData | null>(null)
+	let engagement_stats = $state<EngagementStats | null>(null)
 	let period_loading = $state(false)
 	let selected_stats_period = $state<StatsPeriod>('today')
 	let selected_filter_mode = $state<FilterMode>('humans')
+	let engagement_sort_mode = $state<EngagementSortMode>('clicks')
+
+	// Sort engagement stats based on selected mode
+	const sorted_engagement_pages = $derived(
+		engagement_stats
+			? sort_engagement_stats(
+					engagement_stats.pages,
+					engagement_sort_mode,
+				)
+			: [],
+	)
 
 	const fetch_period_data = async (
 		period: StatsPeriod,
@@ -34,12 +54,14 @@
 	) => {
 		period_loading = true
 		try {
-			const [stats, chart] = await Promise.all([
+			const [stats, chart, engagement] = await Promise.all([
 				get_period_stats({ period, filter_mode }),
 				get_chart_data({ period, filter_mode }),
+				get_engagement_stats({ period }),
 			])
 			period_stats = stats
 			chart_data = chart
+			engagement_stats = engagement
 		} catch (e) {
 			console.error('[stats] Failed to fetch period data:', e)
 		} finally {
@@ -427,6 +449,96 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Engagement Stats -->
+	{#if engagement_stats && sorted_engagement_pages.length > 0}
+		{@const max_clicks = Math.max(
+			...sorted_engagement_pages.map((p) => p.clicks),
+		)}
+		{@const max_rate = Math.max(
+			...sorted_engagement_pages.map((p) => p.engagement_rate),
+		)}
+		<div class="mb-8">
+			<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+				<div class="card-body min-w-0">
+					<div
+						class="flex flex-wrap items-center justify-between gap-2"
+					>
+						<h2 class="card-title text-lg">Page Engagement</h2>
+						<div class="join">
+							<button
+								class="btn join-item btn-xs {engagement_sort_mode ===
+								'clicks'
+									? 'btn-accent'
+									: 'btn-ghost'}"
+								onclick={() => (engagement_sort_mode = 'clicks')}
+							>
+								Most Clicks
+							</button>
+							<button
+								class="btn join-item btn-xs {engagement_sort_mode ===
+								'rate'
+									? 'btn-accent'
+									: 'btn-ghost'}"
+								onclick={() => (engagement_sort_mode = 'rate')}
+							>
+								Highest Rate
+							</button>
+						</div>
+					</div>
+					<div class="flex justify-end gap-2 text-xs opacity-60">
+						<span class="w-14 text-right">Clicks</span>
+						<span class="w-14 text-right">Views</span>
+						<span class="w-14 text-right">Rate</span>
+					</div>
+					<ul class="space-y-1">
+						{#each sorted_engagement_pages as page}
+							{@const bar_value =
+								engagement_sort_mode === 'clicks'
+									? page.clicks / max_clicks
+									: page.engagement_rate / max_rate}
+							<li class="relative flex items-center gap-2 py-1.5">
+								<div
+									class="bg-accent/20 absolute inset-y-0 left-0 rounded"
+									style="width: {bar_value * 100}%"
+								></div>
+								<a
+									href={page.path}
+									class="link-hover relative min-w-0 flex-1 truncate text-sm"
+								>
+									{format_path(page.path)}
+								</a>
+								<span
+									class="badge badge-ghost badge-sm relative w-14 justify-end tabular-nums"
+								>
+									{number_crunch(page.clicks)}
+								</span>
+								<span
+									class="badge badge-outline badge-sm relative w-14 justify-end tabular-nums"
+								>
+									{number_crunch(page.human_views)}
+								</span>
+								<span
+									class="badge badge-accent badge-sm relative w-14 justify-end tabular-nums"
+								>
+									{page.engagement_rate >= 10
+										? `${Math.round(page.engagement_rate)}%`
+										: `${page.engagement_rate.toFixed(1)}%`}
+								</span>
+							</li>
+						{/each}
+					</ul>
+					<p class="text-base-content/50 mt-2 text-xs">
+						Overall: {engagement_stats.total_clicks} clicks / {number_crunch(
+							engagement_stats.total_human_views,
+						)} views = {engagement_stats.overall_engagement_rate.toFixed(
+							1,
+						)}% engagement
+					</p>
+				</div>
+			</div>
+		</div>
+	{/if}
 
 	<!-- Browsers + Devices -->
 	<div class="mb-8 grid gap-6 md:grid-cols-2">
