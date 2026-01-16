@@ -247,7 +247,7 @@ keybind = ctrl+t=new_tab
 keybind = ctrl+w=close_surface
 right-click-action = copy-or-paste
 keybind = ctrl+v=paste_from_clipboard
-keybind = shift+enter=text:\x1b\r
+keybind = shift+enter=unbind
 ```
 
 The `right-click-action = copy-or-paste` is the familiar behaviour I'm
