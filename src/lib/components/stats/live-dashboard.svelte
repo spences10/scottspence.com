@@ -5,7 +5,6 @@
 	import StatRow from './stat-row.svelte'
 	import {
 		country_flag,
-		device_icon,
 		format_path,
 		type LiveStats,
 	} from './stats.svelte'
@@ -30,26 +29,9 @@
 	})
 </script>
 
-<!-- Page header with live indicator -->
-<div class="mb-8 flex items-center justify-between">
-	<h1 class="text-3xl font-bold">Site Stats</h1>
-	{#if !live_loading && live_stats}
-		<div class="flex items-center gap-2">
-			<div class="inline-grid *:[grid-area:1/1]">
-				<div
-					class="status status-primary h-3 w-3 animate-ping [animation-duration:2s]"
-				></div>
-				<div class="status status-primary h-3 w-3"></div>
-			</div>
-			<span class="text-primary text-lg font-bold tabular-nums">
-				{live_stats.active_visitors}
-			</span>
-			<span class="text-base-content/60 text-sm">now</span>
-		</div>
-	{/if}
-</div>
+<!-- Live Stats Section -->
+<div class="divider mb-8">Live Visitors</div>
 
-<!-- Live dashboard grid -->
 {#if live_loading}
 	<div class="flex items-center justify-center py-12">
 		<div class="loading loading-spinner loading-lg"></div>
@@ -148,65 +130,6 @@
 					</ul>
 				{:else}
 					<p class="text-base-content/50 text-sm">No activity</p>
-				{/if}
-			</div>
-		</div>
-	</div>
-
-	<!-- Secondary grid: Browsers + Devices -->
-	<div class="mb-8 grid gap-6 md:grid-cols-2">
-		<!-- Browsers -->
-		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
-			<div class="card-body min-w-0 py-4">
-				<h2 class="card-title text-base">Browsers</h2>
-				{#if live_stats.browsers.length > 0}
-					{@const max_visitors = Math.max(
-						...live_stats.browsers.map((b) => b.visitors),
-					)}
-					<ul class="space-y-1">
-						{#each live_stats.browsers as b}
-							<StatRow
-								label={b.browser}
-								value={b.visitors}
-								max_value={max_visitors}
-							/>
-						{/each}
-					</ul>
-				{:else}
-					<p class="text-base-content/50 text-sm">No data</p>
-				{/if}
-			</div>
-		</div>
-
-		<!-- Devices -->
-		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
-			<div class="card-body min-w-0 py-4">
-				<h2 class="card-title text-base">Devices</h2>
-				{#if live_stats.devices.length > 0}
-					{@const max_visitors = Math.max(
-						...live_stats.devices.map((d) => d.visitors),
-					)}
-					<ul class="space-y-1">
-						{#each live_stats.devices as d}
-							<li
-								class="relative flex items-center justify-between gap-2 py-1.5"
-							>
-								<div
-									class="bg-primary/20 absolute inset-y-0 left-0 rounded"
-									style="width: {(d.visitors / max_visitors) * 100}%"
-								></div>
-								<span class="relative flex items-center gap-1">
-									<span>{device_icon(d.device_type)}</span>
-									<span class="capitalize">{d.device_type}</span>
-								</span>
-								<span class="badge badge-ghost relative tabular-nums">
-									{number_crunch(d.visitors)}
-								</span>
-							</li>
-						{/each}
-					</ul>
-				{:else}
-					<p class="text-base-content/50 text-sm">No data</p>
 				{/if}
 			</div>
 		</div>

@@ -68,8 +68,8 @@
 	</div>
 {/if}
 
-<LiveDashboard />
 <PeriodStats />
+<LiveDashboard />
 
 {#if site_stats.length > 0}
 	<HistoricalStats {site_stats} {current_month} {current_year} />

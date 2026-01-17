@@ -120,8 +120,10 @@
 	})
 </script>
 
-<!-- Period Stats Section -->
-<div class="divider mb-8">Period Stats</div>
+<!-- Page header -->
+<div class="mb-8 flex items-center justify-between">
+	<h1 class="text-3xl font-bold">Site Stats</h1>
+</div>
 
 <!-- Filter info alert -->
 <div class="alert mb-6">
@@ -336,85 +338,6 @@
 		<div class="mb-4"></div>
 	{/if}
 
-	<!-- Period grids -->
-	<div class="mb-8 grid gap-6 lg:grid-cols-2">
-		<!-- Referrers -->
-		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
-			<div class="card-body min-w-0">
-				<div class="flex items-center justify-between">
-					<h2 class="card-title text-lg">Referrers</h2>
-					<div class="flex gap-2 text-xs opacity-60">
-						<span class="w-14 text-right">Visitors</span>
-						<span class="w-14 text-right">Views</span>
-					</div>
-				</div>
-				{#if period_stats.referrers.length > 0}
-					{@const max_visitors = Math.max(
-						...period_stats.referrers.map((r) => r.visitors),
-					)}
-					<ul class="space-y-1">
-						{#each period_stats.referrers as ref}
-							<StatRowMulti
-								label={parse_referrer(ref.referrer)}
-								visitors={ref.visitors}
-								views={ref.views}
-								max_value={max_visitors}
-							/>
-						{/each}
-					</ul>
-				{:else}
-					<p class="text-base-content/50 text-sm">No referrer data</p>
-				{/if}
-			</div>
-		</div>
-
-		<!-- Countries -->
-		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
-			<div class="card-body min-w-0">
-				<div class="flex items-center justify-between">
-					<h2 class="card-title text-lg">Top Countries</h2>
-					<div class="flex gap-2 text-xs opacity-60">
-						<span class="w-14 text-right">Visitors</span>
-						<span class="w-14 text-right">Views</span>
-					</div>
-				</div>
-				{#if period_stats.countries.length > 0}
-					{@const max_visitors = Math.max(
-						...period_stats.countries.map((c) => c.visitors),
-					)}
-					<ul class="space-y-1">
-						{#each period_stats.countries as c}
-							<li class="relative flex items-center gap-2 py-1.5">
-								<div
-									class="bg-primary/20 absolute inset-y-0 left-0 rounded"
-									style="width: {(c.visitors / max_visitors) * 100}%"
-								></div>
-								<span
-									class="relative flex min-w-0 flex-1 items-center gap-1.5 text-sm"
-								>
-									<span>{country_flag(c.country)}</span>
-									<span class="truncate uppercase">{c.country}</span>
-								</span>
-								<span
-									class="badge badge-ghost badge-sm relative w-14 justify-end tabular-nums"
-								>
-									{number_crunch(c.visitors)}
-								</span>
-								<span
-									class="badge badge-outline badge-sm relative w-14 justify-end tabular-nums"
-								>
-									{number_crunch(c.views)}
-								</span>
-							</li>
-						{/each}
-					</ul>
-				{:else}
-					<p class="text-base-content/50 text-sm">No data</p>
-				{/if}
-			</div>
-		</div>
-	</div>
-
 	<!-- Top Pages (full width) -->
 	<div class="mb-8">
 		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
@@ -539,6 +462,85 @@
 			</div>
 		</div>
 	{/if}
+
+	<!-- Referrers + Countries -->
+	<div class="mb-8 grid gap-6 lg:grid-cols-2">
+		<!-- Referrers -->
+		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+			<div class="card-body min-w-0">
+				<div class="flex items-center justify-between">
+					<h2 class="card-title text-lg">Referrers</h2>
+					<div class="flex gap-2 text-xs opacity-60">
+						<span class="w-14 text-right">Visitors</span>
+						<span class="w-14 text-right">Views</span>
+					</div>
+				</div>
+				{#if period_stats.referrers.length > 0}
+					{@const max_visitors = Math.max(
+						...period_stats.referrers.map((r) => r.visitors),
+					)}
+					<ul class="space-y-1">
+						{#each period_stats.referrers as ref}
+							<StatRowMulti
+								label={parse_referrer(ref.referrer)}
+								visitors={ref.visitors}
+								views={ref.views}
+								max_value={max_visitors}
+							/>
+						{/each}
+					</ul>
+				{:else}
+					<p class="text-base-content/50 text-sm">No referrer data</p>
+				{/if}
+			</div>
+		</div>
+
+		<!-- Countries -->
+		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+			<div class="card-body min-w-0">
+				<div class="flex items-center justify-between">
+					<h2 class="card-title text-lg">Top Countries</h2>
+					<div class="flex gap-2 text-xs opacity-60">
+						<span class="w-14 text-right">Visitors</span>
+						<span class="w-14 text-right">Views</span>
+					</div>
+				</div>
+				{#if period_stats.countries.length > 0}
+					{@const max_visitors = Math.max(
+						...period_stats.countries.map((c) => c.visitors),
+					)}
+					<ul class="space-y-1">
+						{#each period_stats.countries as c}
+							<li class="relative flex items-center gap-2 py-1.5">
+								<div
+									class="bg-primary/20 absolute inset-y-0 left-0 rounded"
+									style="width: {(c.visitors / max_visitors) * 100}%"
+								></div>
+								<span
+									class="relative flex min-w-0 flex-1 items-center gap-1.5 text-sm"
+								>
+									<span>{country_flag(c.country)}</span>
+									<span class="truncate uppercase">{c.country}</span>
+								</span>
+								<span
+									class="badge badge-ghost badge-sm relative w-14 justify-end tabular-nums"
+								>
+									{number_crunch(c.visitors)}
+								</span>
+								<span
+									class="badge badge-outline badge-sm relative w-14 justify-end tabular-nums"
+								>
+									{number_crunch(c.views)}
+								</span>
+							</li>
+						{/each}
+					</ul>
+				{:else}
+					<p class="text-base-content/50 text-sm">No data</p>
+				{/if}
+			</div>
+		</div>
+	</div>
 
 	<!-- Browsers + Devices -->
 	<div class="mb-8 grid gap-6 md:grid-cols-2">
