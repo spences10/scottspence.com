@@ -92,7 +92,7 @@
 		],
 		"overrides": {
 			"vitest": "4.0.17",
-			"@vitest/browser": "4.0.15",
+			"@vitest/browser": "4.0.17",
 			"@vitest/browser-playwright": "4.0.17"
 		}
 	},
