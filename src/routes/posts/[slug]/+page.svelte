@@ -6,7 +6,7 @@
 		differenceInYears,
 		format,
 	} from 'date-fns'
-	import { Head, SchemaOrg } from 'svead'
+	import { Head, SchemaOrg, type SchemaOrgProps } from 'svead'
 
 	import {
 		ButtButt,
@@ -92,7 +92,7 @@
 	const schema_org_config = $derived({
 		'@context': 'https://schema.org',
 		'@graph': [blog_posting, breadcrumb_list],
-	})
+	} as unknown as SchemaOrgProps['schema'])
 
 	let path = page.route.id
 

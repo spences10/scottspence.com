@@ -1,7 +1,7 @@
 import { description, language, name, website } from '$lib/info'
 import { og_image_url } from '$lib/utils'
 
-import type { SchemaOrgProps, SeoConfig } from 'svead'
+import type { SeoConfig } from 'svead'
 
 export const same_as = [
 	'https://www.twitter.com/spences10',
@@ -26,10 +26,10 @@ const person = {
 	name: name,
 	url: website,
 	sameAs: same_as,
-}
+} as const
 
-export const default_schema_org_config: SchemaOrgProps['schema'] = {
-	'@type': 'WebSite',
+export const default_schema_org_config = {
+	'@type': 'WebSite' as const,
 	'@id': website,
 	url: website,
 	name: name,
@@ -52,9 +52,11 @@ export const create_seo_config = (
 		og_image_url(name, 'scottspence.com', options.title || ''),
 })
 
-export const create_schema_org_config = (
-	options: Partial<SchemaOrgProps['schema']>,
-): SchemaOrgProps['schema'] => ({
+export const create_schema_org_config = <
+	T extends Record<string, unknown>,
+>(
+	options: T,
+) => ({
 	...default_schema_org_config,
 	...options,
 })
