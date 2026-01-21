@@ -71,6 +71,78 @@ export const flag_bot_behaviour = async () => {
 		`[bot-flag] Flagged ${total_result.changes} events (total threshold: ${BOT_THRESHOLDS.MAX_HITS_TOTAL_PER_DAY})`,
 	)
 
+	// Flag 3: Homepage monitors - high homepage % + high direct % + many IPs
+	const flag_homepage_monitors = client.prepare(`
+		UPDATE analytics_events
+		SET is_bot = 1
+		WHERE created_at >= ? AND created_at < ?
+		AND is_bot = 0
+		AND user_agent IN (
+			SELECT user_agent
+			FROM analytics_events
+			WHERE created_at >= ? AND created_at < ?
+			GROUP BY user_agent
+			HAVING
+				COUNT(DISTINCT visitor_hash) > ?
+				AND 100.0 * SUM(CASE WHEN path = '/' THEN 1 ELSE 0 END) / COUNT(*) > ?
+				AND 100.0 * SUM(CASE WHEN referrer IS NULL THEN 1 ELSE 0 END) / COUNT(*) > ?
+		)
+	`)
+	const homepage_result = flag_homepage_monitors.run(
+		start_ts,
+		end_ts,
+		start_ts,
+		end_ts,
+		BOT_THRESHOLDS.MIN_VISITORS_FOR_AGGREGATE,
+		BOT_THRESHOLDS.HOMEPAGE_PCT_THRESHOLD,
+		BOT_THRESHOLDS.DIRECT_PCT_THRESHOLD,
+	)
+	console.log(
+		`[bot-flag] Flagged ${homepage_result.changes} events (homepage monitors)`,
+	)
+
+	// Flag 4: Direct-only scrapers - 100% direct traffic + many IPs + >50% homepage
+	// (homepage requirement excludes legitimate app users who visit posts)
+	const flag_direct_only = client.prepare(`
+		UPDATE analytics_events
+		SET is_bot = 1
+		WHERE created_at >= ? AND created_at < ?
+		AND is_bot = 0
+		AND user_agent IN (
+			SELECT user_agent
+			FROM analytics_events
+			WHERE created_at >= ? AND created_at < ?
+			GROUP BY user_agent
+			HAVING
+				COUNT(DISTINCT visitor_hash) > ?
+				AND SUM(CASE WHEN referrer IS NULL THEN 1 ELSE 0 END) = COUNT(*)
+				AND 100.0 * SUM(CASE WHEN path = '/' THEN 1 ELSE 0 END) / COUNT(*) > 50
+		)
+	`)
+	const direct_result = flag_direct_only.run(
+		start_ts,
+		end_ts,
+		start_ts,
+		end_ts,
+		BOT_THRESHOLDS.MIN_VISITORS_FOR_DIRECT_ONLY,
+	)
+	console.log(
+		`[bot-flag] Flagged ${direct_result.changes} events (direct-only scrapers)`,
+	)
+
+	// Flag 5: Malformed UA (quotes around user agent string)
+	const flag_malformed_ua = client.prepare(`
+		UPDATE analytics_events
+		SET is_bot = 1
+		WHERE created_at >= ? AND created_at < ?
+		AND is_bot = 0
+		AND (user_agent LIKE '"%' OR user_agent LIKE '%"')
+	`)
+	const malformed_result = flag_malformed_ua.run(start_ts, end_ts)
+	console.log(
+		`[bot-flag] Flagged ${malformed_result.changes} events (malformed UA)`,
+	)
+
 	// Count how many unique visitors were flagged
 	const flagged_visitors = client
 		.prepare(
@@ -83,10 +155,17 @@ export const flag_bot_behaviour = async () => {
 		)
 		.get(start_ts, end_ts) as { count: number }
 
+	const total_flagged =
+		per_path_result.changes +
+		total_result.changes +
+		homepage_result.changes +
+		direct_result.changes +
+		malformed_result.changes
+
 	return {
 		success: true,
 		message: `Flagged bot behaviour for ${date_str}`,
-		events_flagged: per_path_result.changes + total_result.changes,
+		events_flagged: total_flagged,
 		visitors_flagged: flagged_visitors.count,
 		thresholds: BOT_THRESHOLDS,
 	}

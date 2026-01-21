@@ -23,6 +23,14 @@ export const BOT_THRESHOLDS = {
 
 	/** Max hits per visitor per path per hour - burst detection (not yet used) */
 	MAX_HITS_PER_PATH_PER_HOUR: 10,
+
+	/** Aggregate UA detection - homepage monitors */
+	HOMEPAGE_PCT_THRESHOLD: 75,
+	DIRECT_PCT_THRESHOLD: 75,
+	MIN_VISITORS_FOR_AGGREGATE: 20,
+
+	/** Aggregate UA detection - direct-only scrapers */
+	MIN_VISITORS_FOR_DIRECT_ONLY: 15,
 } as const
 
 export type BotThresholds = typeof BOT_THRESHOLDS
