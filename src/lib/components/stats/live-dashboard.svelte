@@ -58,14 +58,14 @@
 		<div class="stat">
 			<div class="stat-title">Countries</div>
 			<div class="stat-value text-accent">
-				{live_stats.countries.length}
+				{live_stats.countries_total}
 			</div>
 			<div class="stat-desc">Represented</div>
 		</div>
 		<div class="stat">
 			<div class="stat-title">Active Pages</div>
 			<div class="stat-value text-info">
-				{live_stats.top_paths.length}
+				{live_stats.paths_total}
 			</div>
 			<div class="stat-desc">Being viewed</div>
 		</div>

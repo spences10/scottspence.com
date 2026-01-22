@@ -98,6 +98,7 @@ describe('active-sessions', () => {
 				{ country: 'GB', visitors: 2 },
 				{ country: 'US', visitors: 1 },
 			])
+			expect(breakdown.countries_total).toBe(2)
 		})
 
 		it('aggregates browsers correctly', () => {
@@ -149,6 +150,7 @@ describe('active-sessions', () => {
 				{ path: '/posts/a', views: 2, visitors: 2 },
 				{ path: '/posts/b', views: 1, visitors: 1 },
 			])
+			expect(breakdown.paths_total).toBe(2)
 		})
 
 		it('returns correct active_visitors count', () => {
@@ -166,9 +168,11 @@ describe('active-sessions', () => {
 
 			expect(breakdown.active_visitors).toBe(0)
 			expect(breakdown.countries).toEqual([])
+			expect(breakdown.countries_total).toBe(0)
 			expect(breakdown.browsers).toEqual([])
 			expect(breakdown.devices).toEqual([])
 			expect(breakdown.top_paths).toEqual([])
+			expect(breakdown.paths_total).toBe(0)
 		})
 
 		it('skips undefined metadata in aggregations', () => {

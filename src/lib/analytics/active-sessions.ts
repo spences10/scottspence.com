@@ -106,10 +106,11 @@ export const get_session_breakdown = () => {
 			)
 		}
 	}
-	const countries = Array.from(country_counts.entries())
+	const countries_sorted = Array.from(country_counts.entries())
 		.map(([country, visitors]) => ({ country, visitors }))
 		.sort((a, b) => b.visitors - a.visitors)
-		.slice(0, 10)
+	const countries_total = countries_sorted.length
+	const countries = countries_sorted.slice(0, 10)
 
 	// Browsers
 	const browser_counts = new Map<string, number>()
@@ -145,17 +146,20 @@ export const get_session_breakdown = () => {
 	for (const s of sessions) {
 		path_counts.set(s.path, (path_counts.get(s.path) || 0) + 1)
 	}
-	const top_paths = Array.from(path_counts.entries())
+	const paths_sorted = Array.from(path_counts.entries())
 		.map(([path, visitors]) => ({ path, views: visitors, visitors }))
 		.sort((a, b) => b.visitors - a.visitors)
-		.slice(0, 10)
+	const paths_total = paths_sorted.length
+	const top_paths = paths_sorted.slice(0, 10)
 
 	return {
 		active_visitors: sessions.length,
 		countries,
+		countries_total,
 		browsers,
 		devices,
 		top_paths,
+		paths_total,
 	}
 }
 

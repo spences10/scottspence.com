@@ -56,12 +56,14 @@ describe('format_live_stats_breakdown', () => {
 		const breakdown = {
 			active_visitors: 5,
 			countries: [{ country: 'GB', visitors: 3 }],
+			countries_total: 1,
 			browsers: [{ browser: 'Chrome', visitors: 4 }],
 			devices: [{ device_type: 'desktop', visitors: 5 }],
 			top_paths: [
 				{ path: '/posts/test', views: 10, visitors: 5 },
 				{ path: '/', views: 3, visitors: 2 },
 			],
+			paths_total: 2,
 		}
 
 		const result = format_live_stats_breakdown(breakdown)
@@ -73,6 +75,7 @@ describe('format_live_stats_breakdown', () => {
 			{ path: '/', viewers: 2 },
 		])
 		expect(result.countries).toEqual([{ country: 'GB', visitors: 3 }])
+		expect(result.countries_total).toBe(1)
 		expect(result.browsers).toEqual([
 			{ browser: 'Chrome', visitors: 4 },
 		])
@@ -80,15 +83,18 @@ describe('format_live_stats_breakdown', () => {
 			{ device_type: 'desktop', visitors: 5 },
 		])
 		expect(result.top_paths).toEqual(breakdown.top_paths)
+		expect(result.paths_total).toBe(2)
 	})
 
 	it('handles empty breakdown', () => {
 		const breakdown = {
 			active_visitors: 0,
 			countries: [],
+			countries_total: 0,
 			browsers: [],
 			devices: [],
 			top_paths: [],
+			paths_total: 0,
 		}
 
 		const result = format_live_stats_breakdown(breakdown)
@@ -97,5 +103,7 @@ describe('format_live_stats_breakdown', () => {
 		expect(result.recent_visitors).toBe(0)
 		expect(result.active_pages).toEqual([])
 		expect(result.countries).toEqual([])
+		expect(result.countries_total).toBe(0)
+		expect(result.paths_total).toBe(0)
 	})
 })

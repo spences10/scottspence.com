@@ -1,7 +1,4 @@
-import type {
-	FilterMode,
-	StatsPeriod,
-} from '$lib/analytics/period-stats.remote'
+import type { StatsPeriod } from '$lib/analytics/period-stats.remote'
 
 // Live stats types
 export type LiveStats = {
@@ -9,9 +6,11 @@ export type LiveStats = {
 	recent_visitors: number
 	active_pages: { path: string; viewers: number }[]
 	countries: { country: string; visitors: number }[]
+	countries_total: number
 	browsers: { browser: string; visitors: number }[]
 	devices: { device_type: string; visitors: number }[]
 	top_paths: { path: string; views: number; visitors: number }[]
+	paths_total: number
 }
 
 // Historical stats types

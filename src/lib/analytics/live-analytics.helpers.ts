@@ -46,9 +46,11 @@ export type LiveStatsBreakdown = {
 	recent_visitors: number
 	active_pages: { path: string; viewers: number }[]
 	countries: { country: string; visitors: number }[]
+	countries_total: number
 	browsers: { browser: string; visitors: number }[]
 	devices: { device_type: string; visitors: number }[]
 	top_paths: { path: string; views: number; visitors: number }[]
+	paths_total: number
 }
 
 /**
@@ -58,9 +60,11 @@ export type LiveStatsBreakdown = {
 export const format_live_stats_breakdown = (breakdown: {
 	active_visitors: number
 	countries: { country: string; visitors: number }[]
+	countries_total: number
 	browsers: { browser: string; visitors: number }[]
 	devices: { device_type: string; visitors: number }[]
 	top_paths: { path: string; views: number; visitors: number }[]
+	paths_total: number
 }): LiveStatsBreakdown => {
 	const active_pages = breakdown.top_paths.map(
 		({ path, visitors }) => ({
@@ -74,8 +78,10 @@ export const format_live_stats_breakdown = (breakdown: {
 		recent_visitors: breakdown.active_visitors,
 		active_pages,
 		countries: breakdown.countries,
+		countries_total: breakdown.countries_total,
 		browsers: breakdown.browsers,
 		devices: breakdown.devices,
 		top_paths: breakdown.top_paths,
+		paths_total: breakdown.paths_total,
 	}
 }
