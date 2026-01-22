@@ -76,24 +76,35 @@ export const rollup_analytics = async () => {
 	)
 
 	// Step 3: Reaggregate affected year into analytics_yearly
-	const rollup_yearly = client.prepare(`
-		INSERT OR REPLACE INTO analytics_yearly (pathname, year, views, unique_visitors, last_updated)
-		SELECT
-			pathname,
-			? as year,
-			SUM(views) as views,
-			SUM(unique_visitors) as unique_visitors,
-			CURRENT_TIMESTAMP as last_updated
-		FROM analytics_daily
-		WHERE substr(date, 1, 4) = ?
-		GROUP BY pathname
-	`)
-	const yearly_result = rollup_yearly.run(year, year)
-	console.log(
-		`[rollup] Yearly (${year}): ${yearly_result.changes} paths updated`,
-	)
+	// Guard: Only rebuild 2026+ years. Historical years (2020-2025) have imported Fathom data
+	// that would be destroyed if we rebuilt from analytics_daily (which only has Dec 28+ data)
+	let yearly_result = { changes: 0 }
+	if (parseInt(year) >= 2026) {
+		const rollup_yearly = client.prepare(`
+			INSERT OR REPLACE INTO analytics_yearly (pathname, year, views, unique_visitors, last_updated)
+			SELECT
+				pathname,
+				? as year,
+				SUM(views) as views,
+				SUM(unique_visitors) as unique_visitors,
+				CURRENT_TIMESTAMP as last_updated
+			FROM analytics_daily
+			WHERE substr(date, 1, 4) = ?
+			GROUP BY pathname
+		`)
+		yearly_result = rollup_yearly.run(year, year)
+		console.log(
+			`[rollup] Yearly (${year}): ${yearly_result.changes} paths updated`,
+		)
+	} else {
+		console.log(
+			`[rollup] Yearly (${year}): skipped (historical Fathom data preserved)`,
+		)
+	}
 
 	// Step 4: Reaggregate all time into analytics_all_time
+	// NOTE: Must use analytics_yearly (not analytics_daily) because daily only has recent data
+	// while yearly contains full historical data back to 2020
 	const rollup_all_time = client.prepare(`
 		INSERT OR REPLACE INTO analytics_all_time (pathname, views, unique_visitors, last_updated)
 		SELECT
@@ -101,7 +112,7 @@ export const rollup_analytics = async () => {
 			SUM(views) as views,
 			SUM(unique_visitors) as unique_visitors,
 			CURRENT_TIMESTAMP as last_updated
-		FROM analytics_daily
+		FROM analytics_yearly
 		GROUP BY pathname
 	`)
 	const all_time_result = rollup_all_time.run()
