@@ -41,9 +41,10 @@ export const send_newsletter_reminder = async () => {
 
 						<pre style="background: #f4f4f4; padding: 10px; border-radius: 5px;">curl -X POST http://localhost:5173/api/ingest \\
   -H "Content-Type: application/json" \\
-  -d '{"task": "generate_newsletter", "token": "your-token"}'</pre>
+  -H "Authorization: Bearer $INGEST_TOKEN" \\
+  -d '{"task": "generate_newsletter"}'</pre>
 
-						<p>This will create <code>newsletter/${now.toISOString().slice(0, 7)}.md</code></p>
+						<p>This will create <code>newsletter/${now.toISOString().slice(0, 10)}.md</code></p>
 
 						<h3>Then:</h3>
 						<ul>
