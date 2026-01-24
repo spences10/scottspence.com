@@ -1,7 +1,7 @@
 ---
 date: 2026-01-24
 title: Organising Claude Code Skills Into Plugin Marketplaces
-tags: ['claude', 'claude-code', 'guide', 'notes']
+tags: ['claude', 'claude-code', 'notes']
 is_private: false
 ---
 
