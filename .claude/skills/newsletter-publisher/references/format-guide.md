@@ -14,27 +14,26 @@
 
 ### 1. Opening Prose (No Heading)
 
-Brief summary of the month's theme or what's in the newsletter.
+Brief summary of the month's themes - what made it interesting.
 
 ### 2. Highlights Section
 
-2-4 major accomplishments or topics from the month.
+2-3 significant things written as flowing paragraphs, not itemised
+lists. No H3 subheadings.
 
-### 3. Technical Deep Dives
+### 3. Blog Posts
 
-Detailed discussion of technical learnings or implementations.
+Brief mentions of posts published with links.
 
 ### 4. Open Source (If Applicable)
 
-Updates on open source contributions or projects.
+Brief paragraph on contributions worth mentioning.
 
-### 5. What's Coming
+### 5. Closing Prose (No Heading)
 
-Preview of upcoming work or plans.
+Brief sign-off (1-2 sentences).
 
-### 6. Closing Prose (No Heading)
-
-Brief wrap-up or reflection.
+**Target length:** 400-600 words. Shorter is better.
 
 ## Common Issues to Flag
 

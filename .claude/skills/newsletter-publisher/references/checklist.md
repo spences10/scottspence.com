@@ -16,17 +16,17 @@
 - [ ] Has Highlights section (2-4 major items)
 - [ ] Contains Technical Deep Dives or Learnings
 - [ ] Includes Open Source section if applicable
-- [ ] Has "What's Coming" preview
 - [ ] Ends with brief closing prose (no heading)
 
 ## Heading Consistency
 
-- [ ] Uses only H2 headings (`##`) for main sections
-- [ ] Subsections use H3 (`###`) if needed
+- [ ] Uses only H2 headings (`##`) for sections
+- [ ] No H3 subheadings (`###`) - use prose instead
 - [ ] No H1 headings in content
 - [ ] Headings are clear and descriptive
 - [ ] **Headings contain no links** (links should be in paragraph
       text)
+- [ ] Total length under 600 words
 
 ## Content Quality
 

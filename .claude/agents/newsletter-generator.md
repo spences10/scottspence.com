@@ -68,20 +68,17 @@ releases with notable features, open source contributions, learnings.
 ## Structure
 
 1. **Opening prose** (no heading) – 2-3 paragraphs summarising the
-   month: scope, themes, personal reflection
-2. **## Highlights** – 2-4 major accomplishments. **Must include 1-2
-   intro sentences before subsections**
-3. **## Blog Posts** – Blog posts, learnings, substantial work. **Must
-   include intro text before subsections**
-4. **## Open Source** – Contributions, releases, community work.
-   **Must include intro text before subsections**
-5. **## What's Coming** – Next month's plans
-6. **Closing prose** (no heading) – Brief personal sign-off (1-2
+   month's themes and what made it interesting
+2. **## Highlights** – The 2-3 most significant things, written as
+   flowing paragraphs, not a list of items
+3. **## Blog Posts** – Brief mentions of posts published, with links
+4. **## Open Source** – Contributions worth mentioning (skip if quiet
+   month)
+5. **Closing prose** (no heading) – Brief personal sign-off (1-2
    sentences)
 
-**Non-negotiable**: Every `##` heading with `###` subsections MUST
-have introductory text between them. Never go directly from `##` to
-`###`.
+**Non-negotiable**: Use ONLY `##` headings. Never use `###`
+subheadings - write flowing prose instead of itemised lists.
 
 ## Frontmatter
 
@@ -125,7 +122,8 @@ formats like "Monthly Update" or clickbait.
 
 ## Output Format
 
-Return markdown with frontmatter. Structure:
+Return markdown with frontmatter. Keep it SHORT - aim for 400-600
+words total, not a comprehensive changelog.
 
 ```markdown
 ---
@@ -134,33 +132,33 @@ date: 2025-10-28
 published: false
 ---
 
-Opening prose here (no heading)...
+Opening prose about the month's themes...
 
 ## Highlights
 
-Intro sentence setting up the highlights section.
+Flowing paragraphs about 2-3 significant things. No subheadings, no
+bullet lists of every commit. Tell a story about what mattered.
 
-### First Highlight
+## Blog Posts
 
-Details...
+Brief paragraph mentioning posts with links.
 
-### Second Highlight
+## Open Source
 
-More details...
+Brief paragraph if there's something worth sharing.
 
-## What's Coming
-
-Plans...
-
-Closing thoughts (no heading).
+Short closing thought.
 ```
 
 ## Do Not
 
 - Make up or hallucinate content
-- Fabricate statistics
+- Fabricate statistics or percentages
 - Write in third person
 - Over-explain technical concepts
 - Use salesy language
-- Put `###` immediately after `##` without intro text
+- Use `###` subheadings - only `##` is allowed
 - Repeat sentence structures, transitions, or distinctive words
+- Speculate about future plans or "what's coming" - you don't know
+- List every commit/PR - curate ruthlessly
+- Write more than 600 words - shorter is better

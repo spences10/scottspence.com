@@ -15,8 +15,7 @@ and readiness.
 Check newsletter draft for:
 
 1. **Frontmatter** - Title format, date, published field
-2. **Structure** - Opening → Highlights → Deep Dives → What's Coming →
-   Closing
+2. **Structure** - Opening → Highlights → Deep Dives → Closing
 3. **Voice** - First-person, conversational, en-GB
 4. **Links** - No links in headings (causes nested `<a>` tags)
 
@@ -25,17 +24,17 @@ Check newsletter draft for:
 ### Must Have
 
 - ✅ Title format: "[Playful Title] - [Month Year]"
-- ✅ H2 headings only (no H1)
+- ✅ H2 headings only (no H1 or H3)
 - ✅ First-person voice
 - ✅ en-GB spelling throughout
 - ✅ Links in paragraph text, NOT in headings
+- ✅ Under 600 words - newsletter should be scannable
 
 ### Structure
 
 - Opening prose (no heading)
 - Highlights section
 - Technical Deep Dives
-- What's Coming preview
 - Brief closing (no heading)
 
 ## Common Issues

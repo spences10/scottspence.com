@@ -72,7 +72,7 @@ frontmatter, and content.
 
 - Validates newsletter frontmatter (title, date, published flag)
 - Checks structure (Opening, Highlights, Deep Dives, Open Source,
-  What's Coming, Closing)
+  Closing)
 - Verifies content quality and scannability
 - Checks link formatting and validity
 - Ensures en-GB spelling throughout
