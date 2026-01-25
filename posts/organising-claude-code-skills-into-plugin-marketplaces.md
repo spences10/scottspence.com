@@ -5,7 +5,7 @@ tags: ['claude', 'claude-code', 'notes']
 is_private: false
 ---
 
-<!-- cspell:ignore cclog -->
+<!-- cspell:ignore cclog layerchart -->
 
 Aight, so, continuing with the Claude Code 'bits' and my toolchain I'm
 putting together for working with Claude Code. Claude Code is very
