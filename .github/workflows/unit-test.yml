@@ -11,7 +11,7 @@ jobs:
     name: Run unit tests
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.57.0-noble
+      image: mcr.microsoft.com/playwright:v1.58.0-noble
       options: --user 1001
 
     steps:
@@ -19,7 +19,7 @@ jobs:
       - name: Verify Playwright versions match
         run: |
           PACKAGE_VERSION=$(node -p "require('./package.json').devDependencies.playwright.replace('^', '')")
-          CONTAINER_VERSION="1.57.0"  # Extract this from your container image
+          CONTAINER_VERSION="1.58.0"  # Extract this from your container image
           if [ "$PACKAGE_VERSION" != "$CONTAINER_VERSION" ]; then
             echo "Error: Playwright versions don't match!"
             echo "Package.json: $PACKAGE_VERSION"
