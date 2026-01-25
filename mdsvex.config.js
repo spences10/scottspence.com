@@ -1,5 +1,4 @@
 import { defineMDSveXConfig as defineConfig } from 'mdsvex'
-import relativeImages from 'mdsvex-relative-images'
 import path from 'node:path'
 import autolinkHeadings from 'rehype-autolink-headings'
 import rehypeExternalLinks from 'rehype-external-links'
@@ -29,7 +28,6 @@ const config = defineConfig({
 		),
 		posts,
 		videos,
-		relativeImages,
 	],
 	rehypePlugins: [
 		slugPlugin,
