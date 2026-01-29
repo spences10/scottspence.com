@@ -5,7 +5,7 @@ tags: ['claude', 'claude-code', 'guide']
 is_private: false
 ---
 
-<!-- 
+<!--
 cspell:ignore Kimi Witteveen claudesp numman sneakpeek realmikekelly
 -->
 
@@ -38,22 +38,29 @@ manage the subagents from there! I was in research mode! Pulled the
 transcript from Sam's video had Claude break it down into
 documentation, then asked Claude to do some more research and it found
 [claude-sneakpeek](https://github.com/mikekelly/claude-sneakpeek).
+That's the post really!
 
 ## What is this?
 
-It's a parallel build of Claude Code that has the flags in that Gist enabled:
+Mike found the feature flag check in the minified JS and patched it to
+always return true. What that unlocks:
 
-- **Swarm mode** - But not, it's called `TeammateTool`
-- **Delegate mode** - Task tool spawns background agents
-- **Team coordination** - teammate messaging and task ownership (my
-  'inbox' idea)
+- **Delegation mode** - spawns a team of specialists when you approve
+  a plan
+- **Shared task board** - tasks with dependencies that workers pick up
+- **Parallel teammates** - workers coordinate amongst themselves
+- **Inter-agent messaging** - the `TeammateTool` with `write`,
+  `broadcast`, etc.
 
-So Mike took the time to recompile the claude binary with the flags
-enabled! It's in it's own npm package you can install and it's
-isolated from your main Claude Code install. Separate config,
-sessions, MCP servers, credentials. Everything.
+It's packaged as its own npm install, completely isolated from your
+main Claude Code. Separate config, sessions, MCP servers, credentials.
+This is important to note as you're starting fresh again!
 
 ## Install it
+
+The following is taken from the
+[README.md](https://github.com/mikekelly/claude-sneakpeek/blob/main/README.md)
+on the claude-sneakpeek repo.
 
 ```bash
 npx @realmikekelly/claude-sneakpeek quick --name claudesp # whatever you want to call it
@@ -65,7 +72,7 @@ Add to PATH if needed (macOS/Linux):
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc
 ```
 
-Then run `claudesp` to launch.
+Then run `claudesp` to launch. Or whatever you decided to name it.
 
 ## What's actually unlocked?
 
@@ -84,53 +91,29 @@ per-project.
 
 ## The orchestration pattern
 
-The real magic is in the orchestration skill that ships with it. The
-idea is simple:
+The real magic is in the orchestration skill that ships with it. You
+don't execute, you delegate. The orchestrator plans and spawns
+workers, the workers do the actual coding. There's a whole breakdown
+of which tools the orchestrator uses vs what the workers use, plus a
+worker preamble you need to include when spawning agents. I'm not
+going to copy it all here, check out the
+[tools.md](https://github.com/mikekelly/claude-sneakpeek/blob/main/src/skills/orchestration/references/tools.md)
+reference in the repo for the full details.
 
-**You (the orchestrator) don't execute. You delegate.**
+The gist, orchestrator uses `Task` to spawn workers,
+`TaskCreate`/`TaskUpdate` to manage work, and `Read` to synthesise
+results. Workers use the actual tools like `Write`, `Edit`, `Bash` to
+get stuff done. Clean separation.
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│  ORCHESTRATOR uses directly:                                │
-│                                                             │
-│  • Read (references, guides, agent outputs for synthesis)   │
-│  • TaskCreate, TaskUpdate, TaskGet, TaskList                │
-│  • AskUserQuestion                                          │
-│  • Task (to spawn workers)                                  │
-│                                                             │
-│  WORKERS use directly:                                      │
-│                                                             │
-│  • Read (for exploring/implementing), Write, Edit, Bash     │
-│  • Glob, Grep, WebFetch, WebSearch, LSP                     │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
+## Model selection
 
-Every worker agent needs a preamble:
-
-```text
-CONTEXT: You are a WORKER agent, not an orchestrator.
-
-RULES:
-- Complete ONLY the task described below
-- Use tools directly (Read, Write, Edit, Bash, etc.)
-- Do NOT spawn sub-agents
-- Do NOT call TaskCreate or TaskUpdate
-- Report your results with absolute file paths
-
-TASK:
-[Your specific task here]
-```
-
-## Model selection matters
-
-The skill includes guidance on which model to use:
-
-| Model    | When to use                                       |
-| -------- | ------------------------------------------------- |
-| `haiku`  | Fetch/grep/search tasks - spawn many in parallel  |
-| `sonnet` | Well-defined implementation tasks                 |
-| `opus`   | Ambiguous problems, architecture, security review |
+Mike's docs have guidance on which model to use for what. Basically:
+haiku for quick fetch/search tasks (spawn loads of them), sonnet for
+well-defined implementation work, opus for the ambiguous stuff that
+needs more reasoning. Makes sense when you think about cost vs
+capability. Full breakdown in the
+[tools.md](https://github.com/mikekelly/claude-sneakpeek/blob/main/src/skills/orchestration/references/tools.md)
+reference.
 
 ## Real-world testing
 
