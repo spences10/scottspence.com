@@ -91,19 +91,17 @@ per-project.
 
 ## The orchestration pattern
 
-The real magic is in the orchestration skill that ships with it. You
-don't execute, you delegate. The orchestrator plans and spawns
-workers, the workers do the actual coding. There's a whole breakdown
-of which tools the orchestrator uses vs what the workers use, plus a
-worker preamble you need to include when spawning agents. I'm not
-going to copy it all here, check out the
+Mike's orchestration skill ships with documentation on how to use
+these unlocked tools effectively. The key pattern is the WORKER
+preamble - every agent prompt starts with context telling the agent
+it's a worker, not an orchestrator. This prevents recursive agent
+spawning (agents trying to spawn their own agents). Check the
 [tools.md](https://github.com/mikekelly/claude-sneakpeek/blob/main/src/skills/orchestration/references/tools.md)
-reference in the repo for the full details.
+reference for the full preamble and workflow patterns.
 
-The gist, orchestrator uses `Task` to spawn workers,
-`TaskCreate`/`TaskUpdate` to manage work, and `Read` to synthesise
-results. Workers use the actual tools like `Write`, `Edit`, `Bash` to
-get stuff done. Clean separation.
+The orchestrator handles planning and coordination (Task, TaskCreate,
+TaskUpdate), workers do the actual implementation (Write, Edit, Bash).
+You maintain this separation through prompting discipline.
 
 ## Model selection
 
@@ -144,6 +142,63 @@ Agent 6 → Sub-issue 4
 30 minutes. Not perfect, so I ran another orchestrator pass - read the
 docs again, review changes, find gaps, implement. The iterative
 approach works.
+
+## Using swarm mode to validate this post
+
+I used swarm mode to fact-check this article, meta! Spawned three
+agents in parallel:
+
+```
+Agent 1 (haiku)  → Read and summarise this blog post
+Agent 2 (haiku)  → Fetch and analyse the gist
+Agent 3 (sonnet) → Explore the claude-sneakpeek repo
+```
+
+All three ran in the background, reported back within a minute. The
+synthesis revealed gaps I'd missed:
+
+**TeammateTool is deeper than I described.** The gist documents 13
+operations, not just "write, broadcast, etc.":
+
+- Team management: `spawnTeam`, `discoverTeams`, `requestJoin`,
+  `approveJoin`, `rejectJoin`
+- Messaging: `write`, `broadcast`
+- Lifecycle: `requestShutdown`, `approveShutdown`, `rejectShutdown`
+- Plan approval: `approvePlan`, `rejectPlan`
+- Cleanup: `cleanup`
+
+**Spawn backends exist.** iTerm2 split panes on macOS, tmux windows
+cross-platform, or in-process (fastest). I hadn't mentioned this.
+
+**More interaction patterns.** The gist documents Leader, Swarm,
+Pipeline, Council, and Watchdog patterns. The repo adds Task Graph,
+Fan-Out, Map-Reduce, Speculative, and Background patterns.
+
+**Infrastructure I glossed over:**
+
+The coordination layer is file-based. Agents communicate via a mailbox
+at `~/.claude/teams/{team-name}/messages/{session-id}/`. Tasks live in
+`~/.claude/tasks/{team-name}/` - workers autonomously claim them via
+`TaskUpdate`. No central broker, just the filesystem.
+
+Crash recovery uses heartbeat timeouts. If an agent dies mid-task, the
+5-minute timeout releases the task back to the pool. Another worker
+can claim it.
+
+Environment variables tell agents who they are:
+
+- `CLAUDE_CODE_TEAM_NAME` - which team they belong to
+- `CLAUDE_CODE_AGENT_ID` - unique identifier
+- `CLAUDE_CODE_AGENT_NAME` - display name
+- `CLAUDE_CODE_AGENT_TYPE` - role (worker, leader, etc.)
+- `CLAUDE_CODE_PLAN_MODE_REQUIRED` - whether plans need approval
+
+**Provider support.** Not just Claude - sneakpeek supports Z.ai,
+MiniMax, OpenRouter, and local models via the cc-mirror fork.
+
+This is exactly the kind of research task swarm mode excels at -
+parallel information gathering with synthesis. Three sources, one
+orchestrator, coherent output.
 
 ## The flow
 
