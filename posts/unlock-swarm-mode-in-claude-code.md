@@ -5,7 +5,9 @@ tags: ['claude', 'claude-code', 'guide']
 is_private: false
 ---
 
-<!-- cspell:ignore Kimi Witteveen claudesp numman -->
+<!-- 
+cspell:ignore Kimi Witteveen claudesp numman sneakpeek realmikekelly
+-->
 
 So, I watched a video about Kimi K2.5 from Sam Witteveen that detailed
 a load of cool looking features but what caught my eye was the swarm
@@ -22,11 +24,11 @@ of Claude Code.
   [Kimi K2.5- The Agent Swarm](https://www.youtube.com/watch?v=FfCqINSD8Tc)
   If you're interested
 
-Anyway, orcestration of tasks is something I've got a bit of an
+Anyway, orchestration of tasks is something I've got a bit of an
 interest in for me and my team to get ship done! I spent some time
 building [ralph-town](https://github.com/spences10/ralph-town)
 essentially the Ralph loop but with containers, and, well I had mixed
-results with it. Essenitally if you didn't have the perfect user story
+results with it. Essentially if you didn't have the perfect user story
 with essentially every step outlined it just failed.
 
 I sort of bailed on that idea but watching that video did make me want
@@ -39,14 +41,14 @@ documentation, then asked Claude to do some more research and it found
 
 ## What is this?
 
-It's a parallel build of Claude Code that unlocks hidden features:
+It's a parallel build of Claude Code that has the flags in that Gist enabled:
 
 - **Swarm mode** - But not, it's called `TeammateTool`
 - **Delegate mode** - Task tool spawns background agents
 - **Team coordination** - teammate messaging and task ownership (my
   'inbox' idea)
 
-So Mike took the time to recompile the claude binary with the flag
+So Mike took the time to recompile the claude binary with the flags
 enabled! It's in it's own npm package you can install and it's
 isolated from your main Claude Code install. Separate config,
 sessions, MCP servers, credentials. Everything.
@@ -228,7 +230,7 @@ User Request
 
 Up to you, usual disclaimer bs here I guess! I've had limited use, but
 that use has been very impressive. If you've been looking at Ralph
-loop and other orcestration methods then this may be what you're
+loop and other orchestration methods then this may be what you're
 looking for.
 
 The irony isn't lost on me about the time I spent trying to create my
