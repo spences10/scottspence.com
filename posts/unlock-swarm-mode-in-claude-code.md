@@ -5,6 +5,39 @@ tags: ['claude', 'claude-code', 'guide']
 is_private: false
 ---
 
+<script>
+  import { Mermaid } from '$lib/components'
+
+  const orchestration_flow = `
+flowchart TD
+    UR["User Request"]
+    VC["Vibe Check<br/>Read their energy, adapt tone"]
+    CL["Clarify<br/>AskUserQuestion if scope fuzzy"]
+    DT["Decompose Into Tasks<br/>TaskCreate → TaskCreate → ..."]
+    SD["Set Dependencies<br/>TaskUpdate(addBlockedBy)"]
+    FW["Find Ready Work<br/>TaskList → find unblocked tasks"]
+    SW["Spawn Workers"]
+    A1["Agent A"]
+    A2["Agent B"]
+    A3["Agent C"]
+    A4["Agent D"]
+    MC["Mark Complete<br/>TaskUpdate(status=resolved)"]
+    SY["Synthesize & Deliver<br/>Weave results into something beautiful"]
+
+    UR --> VC --> CL --> DT --> SD --> FW --> SW
+    SW --> A1
+    SW --> A2
+    SW --> A3
+    SW --> A4
+    A1 --> MC
+    A2 --> MC
+    A3 --> MC
+    A4 --> MC
+    MC --> FW
+    MC --> SY
+`
+</script>
+
 <!--
 cspell:ignore Kimi Witteveen claudesp numman sneakpeek realmikekelly
 -->
@@ -208,61 +241,7 @@ in the claude-sneakpeek repo, didn't even know 'vibe check' was a
 thing, thought I'd add this for illustration purposes, again thanks to
 Mike for putting this together for us:
 
-```
-User Request
-     │
-     ▼
-┌─────────────┐
-│ Vibe Check  │  ← Read their energy, adapt your tone
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│   Clarify   │  ← AskUserQuestion if scope fuzzy
-└──────┬──────┘
-       │
-       ▼
-┌─────────────────────────────────────┐
-│         DECOMPOSE INTO TASKS        │
-│   TaskCreate → TaskCreate → ...     │
-└──────────────┬──────────────────────┘
-               │
-               ▼
-┌─────────────────────────────────────┐
-│         SET DEPENDENCIES            │
-│   TaskUpdate(addBlockedBy) for      │
-│   things that must happen in order  │
-└──────────────┬──────────────────────┘
-               │
-               ▼
-┌─────────────────────────────────────┐
-│         FIND READY WORK             │
-│   TaskList → find unblocked tasks   │
-└──────────────┬──────────────────────┘
-               │
-               ▼
-┌─────────────────────────────────────┐
-│     SPAWN WORKERS (background)      │
-│   ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐   │
-│   │Agent│ │Agent│ │Agent│ │Agent│   │
-│   │  A  │ │  B  │ │  C  │ │  D  │   │
-│   └─────┘ └─────┘ └─────┘ └─────┘   │
-└──────────────┬──────────────────────┘
-               │
-               ▼
-┌─────────────────────────────────────┐
-│         MARK COMPLETE               │
-│   TaskUpdate(status="resolved")     │
-│   ↻ Loop back to FIND READY WORK    │
-└──────────────┬──────────────────────┘
-               │
-               ▼
-┌─────────────────────────────────────┐
-│         SYNTHESIZE & DELIVER        │
-│   Weave results into something      │
-│   beautiful and satisfying          │
-└─────────────────────────────────────┘
-```
+<Mermaid diagram={orchestration_flow} />
 
 ## Should you use this?
 
