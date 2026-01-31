@@ -5,6 +5,8 @@ tags: ['claude', 'claude-code', 'daytona', 'orchestration', 'guide']
 is_private: false
 ---
 
+<!-- cspell:ignore daytonaio -->
+
 <script>
   import { Mermaid } from '$lib/components'
 
@@ -28,7 +30,7 @@ flowchart TD
 Ok, so, I've been using the Claude Code swarm feature now for several
 days and I'm super impressed! Like, three days in and I already can't
 see myself _not_ using it in my daily workflow! Is it a token gobbling
-nighmare? Yes, does it get the work done in record time with minimal
+nightmare? Yes, does it get the work done in record time with minimal
 intervention? Also yes, but, (and this is the reason for this post)
 what about when you have multiple issues spanning multiple files in
 the codebase where many of them touch the same files?
