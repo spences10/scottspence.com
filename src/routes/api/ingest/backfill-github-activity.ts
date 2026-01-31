@@ -18,8 +18,8 @@ export const backfill_github_activity = async () => {
 		}
 
 		// Hardcoded date range
-		const from_date = '2025-10-01'
-		const to_date = '2025-10-20'
+		const from_date = '2026-01-19'
+		const to_date = '2026-01-31'
 
 		console.log(`Backfill date range: ${from_date} to ${to_date}`)
 
