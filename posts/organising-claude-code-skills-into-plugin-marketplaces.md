@@ -5,7 +5,7 @@ tags: ['claude', 'claude-code', 'notes']
 is_private: false
 ---
 
-<!-- cspell:ignore cclog layerchart -->
+<!-- cspell:ignore ccrecall layerchart -->
 
 Aight, so, continuing with the Claude Code 'bits' and my toolchain I'm
 putting together for working with Claude Code. Claude Code is very
@@ -60,7 +60,8 @@ for any project.
 - **performance** - SQLite FTS5 indexing that dropped file search from
   28ms to 3ms with BM25 ranking
 - **mcp-essentials** - Setup guide for my recommended MCP servers
-- **analytics** - Query your Claude Code usage from cclog's database
+- **analytics** - Query your Claude Code usage from ccrecall's
+  database
 
 ```bash
 # In Claude Code
@@ -104,9 +105,9 @@ I've been reflecting on my tooling lately, and SQLite has become my
 go-to for nearly everything AI workflow related.
 
 The performance plugin uses SQLite FTS5. The analytics plugin queries
-SQLite. My conversation logging (cclog) stores everything in SQLite -
-I've got a 186MB database tracking 2,555 AI sessions, 70k messages,
-and 19M tokens. 😅
+SQLite. My conversation logging (ccrecall) stores everything in
+SQLite - I've got a 186MB database tracking 2,555 AI sessions, 70k
+messages, and 19M tokens. 😅
 
 Why SQLite for AI work?
 
@@ -128,10 +129,10 @@ These marketplaces are part of a broader set of tools I've built:
 | ---------------- | -------------------------------------- |
 | mcp-omnisearch   | Unified search (Tavily, Kagi, GitHub)  |
 | mcp-sqlite-tools | Safe SQLite operations via MCP         |
-| cclog            | Sync Claude Code transcripts to SQLite |
+| ccrecall         | Sync Claude Code transcripts to SQLite |
 | mcpick           | Toggle MCP servers on/off dynamically  |
 
-They all work together. Use `cclog` to sync your transcripts, query
+They all work together. Use `ccrecall` to sync your transcripts, query
 them with `mcp-sqlite-tools`, search the web with `mcp-omnisearch`,
 and manage which MCPs are active with `mcpick`.
 
@@ -166,7 +167,7 @@ marketplaces) so I can have them in use at a top level (for every
 project I work on) and be activated reliably with the forced eval
 hook!
 
-Using cclog and the reflect skill I'l able to improve and refine these
-skills as I use them in projects along with creating new skills and
-using things like the claude-skills-cli to enforce best practices
+Using ccrecall and the reflect skill I'l able to improve and refine
+these skills as I use them in projects along with creating new skills
+and using things like the claude-skills-cli to enforce best practices
 creating them!
