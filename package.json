@@ -49,7 +49,7 @@
 		"@vitest/browser-playwright": "4.0.18",
 		"cspell": "^9.6.3",
 		"d3-scale": "^4.0.2",
-		"daisyui": "5.5.17",
+		"daisyui": "5.5.18",
 		"date-fns": "4.1.0",
 		"eslint": "^9.39.2",
 		"eslint-config-prettier": "^10.1.8",
