@@ -16,18 +16,14 @@ Unbreakable rules.
 - Test critical user journeys, not implementation details
 - Use established patterns and components over custom solutions
 
-## Sub-Agents
+## Agents and Teams
 
-The following specialized sub-agents are available in the
-`.claude/agents/` directory:
+Prefer team mode over sub-agents for multi-step work. Sub-agents
+ignore instructions, lack project context, and can't coordinate. Use
+team mode with delegate mode for orchestration tasks.
 
-- **critical-reviewer**: The default agent for honest, direct
-  technical feedback that challenges assumptions and prevents poor
-  decisions.
-- **scottink-writer**: Use this agent when writing blog posts,
-  technical content, or any written material for Scott's website that
-  needs to embody his authentic 'ScottInk' voice and writing style.
+Sub-agents are acceptable for single focused lookups (search, fetch,
+summarise) where context isolation doesn't matter.
 
-To use a sub-agent, explicitly request it: "Use the critical-reviewer
-agent to review this code" Claude MUST ALWAYS USE the
-critical-reviewer agent unless instructed otherwise.
+Do NOT use `.claude/agents/` sub-agents unless explicitly requested.
+They exist as references but are not the default workflow.
