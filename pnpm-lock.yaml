@@ -108,8 +108,8 @@ importers:
         specifier: 2.0.0-next.44
         version: 2.0.0-next.44(svelte@5.51.3)
       marked:
-        specifier: 17.0.1
-        version: 17.0.1
+        specifier: 17.0.3
+        version: 17.0.3
       mdsvex:
         specifier: ^0.12.6
         version: 0.12.6(svelte@5.51.3)
@@ -2481,8 +2481,8 @@ packages:
     engines: {node: '>= 20'}
     hasBin: true
 
-  marked@17.0.1:
-    resolution: {integrity: sha512-boeBdiS0ghpWcSwoNm/jJBwdpFaMnZWRzjA6SkUMYb40SVaN1x7mmfGKp0jvexGcx+7y2La5zRZsYFZI6Qpypg==}
+  marked@17.0.3:
+    resolution: {integrity: sha512-jt1v2ObpyOKR8p4XaUJVk3YWRJ5n+i4+rjQopxvV32rSndTJXvIzuUdWWIy/1pFQMkQmvTXawzDNqOH/CUmx6A==}
     engines: {node: '>= 20'}
     hasBin: true
 
@@ -5608,7 +5608,7 @@ snapshots:
 
   marked@16.4.2: {}
 
-  marked@17.0.1: {}
+  marked@17.0.3: {}
 
   mdast-util-definitions@5.1.2:
     dependencies:
