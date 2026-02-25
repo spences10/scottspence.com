@@ -17,10 +17,10 @@ type ExchangeRates = {
 }
 
 type PricingNumbers = {
-	posts_per_week: number
-	years_programming: number
-	total_posts: number
-	average_reading_time: number
+	annual_rate_eur: number
+	chosen_holidays: number
+	public_holidays: number
+	working_days_in_year: number
 }
 
 interface PricingData {
@@ -32,10 +32,10 @@ class PricingState {
 	data = $state<PricingData>({
 		exchangeRates: { GBP: 0, USD: 0, CAD: 0 },
 		pricingNumbers: {
-			posts_per_week: 0,
-			years_programming: 0,
-			total_posts: 0,
-			average_reading_time: 0,
+			annual_rate_eur: 155000,
+			chosen_holidays: 30,
+			public_holidays: 8,
+			working_days_in_year: 252,
 		},
 	})
 	loading = $state<boolean>(false)
@@ -46,10 +46,10 @@ class PricingState {
 			this.data = {
 				exchangeRates: { GBP: 0.86, USD: 1.09, CAD: 1.47 },
 				pricingNumbers: {
-					posts_per_week: 1,
-					years_programming: 10,
-					total_posts: 100,
-					average_reading_time: 5,
+					annual_rate_eur: 155000,
+					chosen_holidays: 30,
+					public_holidays: 8,
+					working_days_in_year: 252,
 				},
 			}
 			return // DB reads disabled
@@ -70,7 +70,7 @@ class PricingState {
 		if (
 			Date.now() - this.last_fetched < CACHE_DURATIONS.pricing &&
 			this.data.exchangeRates.USD > 0 &&
-			this.data.pricingNumbers.total_posts > 0
+			this.data.pricingNumbers.annual_rate_eur > 0
 		) {
 			return // Use cached data
 		}
@@ -191,19 +191,19 @@ class PricingState {
 
 			if (pricing_numbers.rows.length === 0) {
 				return {
-					posts_per_week: 1,
-					years_programming: 10,
-					total_posts: 100,
-					average_reading_time: 5,
+					annual_rate_eur: 155000,
+					chosen_holidays: 30,
+					public_holidays: 8,
+					working_days_in_year: 252,
 				}
 			}
 
 			const row = pricing_numbers.rows[0]
 			return {
-				posts_per_week: Number(row.posts_per_week),
-				years_programming: Number(row.years_programming),
-				total_posts: Number(row.total_posts),
-				average_reading_time: Number(row.average_reading_time),
+				annual_rate_eur: Number(row.annual_rate_eur),
+				chosen_holidays: Number(row.chosen_holidays),
+				public_holidays: Number(row.public_holidays),
+				working_days_in_year: Number(row.working_days_in_year),
 			}
 		} catch (error) {
 			console.warn(
@@ -211,10 +211,10 @@ class PricingState {
 				error instanceof Error ? error.message : 'Unknown error',
 			)
 			return {
-				posts_per_week: 1,
-				years_programming: 10,
-				total_posts: 100,
-				average_reading_time: 5,
+				annual_rate_eur: 155000,
+				chosen_holidays: 30,
+				public_holidays: 8,
+				working_days_in_year: 252,
 			}
 		}
 	}

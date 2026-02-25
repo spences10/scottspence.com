@@ -10,10 +10,10 @@ type ExchangeRates = {
 }
 
 type PricingNumbers = {
-	posts_per_week: number
-	years_programming: number
-	total_posts: number
-	average_reading_time: number
+	annual_rate_eur: number
+	chosen_holidays: number
+	public_holidays: number
+	working_days_in_year: number
 }
 
 interface PricingData {
@@ -38,10 +38,10 @@ export const get_pricing_data = query(
 			return {
 				exchangeRates: { GBP: 0.86, USD: 1.09, CAD: 1.47 },
 				pricingNumbers: {
-					posts_per_week: 1,
-					years_programming: 10,
-					total_posts: 100,
-					average_reading_time: 5,
+					annual_rate_eur: 155000,
+					chosen_holidays: 30,
+					public_holidays: 8,
+					working_days_in_year: 252,
 				},
 			}
 		}
@@ -126,27 +126,27 @@ async function fetch_pricing_numbers(): Promise<PricingNumbers> {
 
 		if (pricing_numbers.rows.length === 0) {
 			return {
-				posts_per_week: 1,
-				years_programming: 10,
-				total_posts: 100,
-				average_reading_time: 5,
+				annual_rate_eur: 155000,
+				chosen_holidays: 30,
+				public_holidays: 8,
+				working_days_in_year: 252,
 			}
 		}
 
 		const row = pricing_numbers.rows[0]
 		return {
-			posts_per_week: Number(row.posts_per_week),
-			years_programming: Number(row.years_programming),
-			total_posts: Number(row.total_posts),
-			average_reading_time: Number(row.average_reading_time),
+			annual_rate_eur: Number(row.annual_rate_eur),
+			chosen_holidays: Number(row.chosen_holidays),
+			public_holidays: Number(row.public_holidays),
+			working_days_in_year: Number(row.working_days_in_year),
 		}
 	} catch (error) {
 		console.warn('Database unavailable for pricing numbers:', error)
 		return {
-			posts_per_week: 1,
-			years_programming: 10,
-			total_posts: 100,
-			average_reading_time: 5,
+			annual_rate_eur: 155000,
+			chosen_holidays: 30,
+			public_holidays: 8,
+			working_days_in_year: 252,
 		}
 	}
 }

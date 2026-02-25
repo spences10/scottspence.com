@@ -18,7 +18,7 @@
 	}
 
 	let annual_rate_EUR = $state(
-		get_field_value('annual_rate_eur') || 120000,
+		get_field_value('annual_rate_eur') || 155000,
 	)
 	let chosen_holidays = $state(
 		get_field_value('chosen_holidays') || 25,
@@ -66,7 +66,7 @@
 	const on_annual_rate_input = (e: Event) => {
 		annual_rate_EUR = Math.max(
 			(e.target as HTMLInputElement).valueAsNumber,
-			get_field_value('annual_rate_eur') || 120000,
+			get_field_value('annual_rate_eur') || 155000,
 		)
 	}
 </script>
@@ -89,7 +89,7 @@
 						<input
 							id="annual_rate"
 							type="range"
-							min={120000}
+							min={155000}
 							max={180000}
 							step={5000}
 							bind:value={annual_rate_EUR}
