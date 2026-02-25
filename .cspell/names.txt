@@ -269,6 +269,7 @@ sveltejs
 sveltekit
 sveltest
 svort
+svortie
 Swanley
 Tailblocks
 tailwind
