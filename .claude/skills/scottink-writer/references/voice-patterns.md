@@ -3,27 +3,26 @@
 This document contains all the detailed patterns for embodying Scott's
 authentic writing voice.
 
-## 1. "So" as Universal Connector (CRITICAL)
+## 1. "So" as Mid-Post Connector (Use Within Posts, Not as Default Opener)
 
-Scott uses "So" constantly - it's his signature transition word.
+Scott uses "So" as a transition within posts, but NOT as the go-to
+opening word. Using "So" to start every post is the #1 reason output
+sounds formulaic and repetitive.
 
-**Usage patterns:**
+**Good usage (mid-post transitions):**
 
-- Starting paragraphs: "So, there I was...", "So, I've got these..."
-- Starting sections: "So, this is the SQL query..."
-- Transitions: "So, after binging on Node 202..."
-- Conclusions: "So, that's how I fixed it..."
-
-**Examples from actual posts:**
-
-- "So, I've got these massive CSV files (some up to 233 thousand
-  rows)..."
 - "So, this is the SQL query that get's the site popular posts..."
 - "So, let's think about this now..."
-- "So, I had a shopping list..."
 - "So, what's actually slowing things down?"
+- "So, after binging on Node 202 episodes..."
 
-Use liberally - it's Scott's most common connector.
+**Avoid:**
+
+- Starting every post with "So, there I was..." (use rarely, maybe 1
+  in 10 posts)
+- Using "So" as the first word of the post by default
+
+Use within posts for transitions, not as a crutch opener.
 
 ## 2. Contractions (NON-NEGOTIABLE)
 
@@ -69,38 +68,47 @@ Scott uses parentheses extensively for personality.
 
 Use frequently - adds conversational feel.
 
-## 4. Opening Strategies
+## 4. Opening Strategies (MUST VARY - Never Repeat)
 
-Scott's posts typically start with one of these patterns:
+The biggest problem is producing identical-sounding posts. VARY the
+opener every time. Here are the patterns from Scott's actual recent
+posts, ordered by frequency:
 
-### Story/Narrative Start (Most Common)
+### Self-Referential Callback (Most Common Recently)
 
-- "So, I've got these massive CSV files (some up to 233 thousand
-  rows)..."
+- "Remember that post where I tested skill activation..."
+- "Right, so, remember when I wrote about unlocking swarm mode..."
+- "So, remember that blog post I wrote about Claude Code skills..."
+
+### Situation Drop
+
 - "I spent some time this weekend rolling the auth credentials..."
+- "I spent some time over the last few days evaluating some Linux
+  distros..."
 - "I had a bit of a surprise land in my inbox..."
 
-### Direct Problem Statement
+### Direct Dive
 
-- "Ok, on 2023-06-13 there was an AWS outage..."
-- "In this post, I'll go through the process of..."
-- "Super quick one I want to document here!"
+- "Ok, so, I've been using the Claude Code swarm feature now for
+  several days and I'm super impressed!"
+- "A couple of years ago I wrote a guide on setting up..."
 
-### Conversational Opener
+### Conversational Lead-in
 
-- "Cool! So, coding tools! We all use them right?"
+- "Aight, so, continuing with the Claude Code 'bits'..."
+- "Right, so, I watched a video about Kimi K2.5..."
 - "Okedokey, so, I've been playing around with Turso..."
 
 ### Meta-Commentary
 
 - "Ok, I don't usually do a post like this..."
-- "Up until recently I was very happy with..."
+- "Super quick one I want to document here!"
 
-Choose based on post type:
+### Rare/Occasional (Use Sparingly)
 
-- Technical troubleshooting → Story/narrative
-- Tutorial/guide → Direct problem or conversational
-- Opinion/notes → Meta-commentary
+- "So, there I was..." (1 in 10 posts MAX)
+
+Choose based on post type AND what was used last time - don't repeat.
 
 ## 5. Transition Phrases
 
@@ -144,21 +152,16 @@ This is NON-NEGOTIABLE.
 
 ## 7. British Slang & Expressions
 
-**Common expressions with usage:**
+**IMPORTANT: "banging" and "proper" are OUTDATED in Scott's current
+writing. Do NOT use them.**
 
-- **banging** - excellent/impressive
-  - "Window functions are bloody brilliant and banging!"
-  - "I didn't know I could get the referrer, banging! 😅"
+**Active expressions (still in use):**
 
 - **ballache** - annoying/difficult task
   - "Node on Windows is a ballache"
 
 - **bloody brilliant** - really impressive
   - "Window functions are bloody brilliant"
-
-- **proper** - intensifier
-  - "That's a proper solution"
-  - "Proper fast now"
 
 - **sitch** - situation
   - "The sitch was..."
@@ -186,7 +189,12 @@ This is NON-NEGOTIABLE.
 - **butt load** - many, lots of
   - "I watched a butt load of people building PCs"
 
-Use naturally - don't force them, but sprinkle throughout.
+**Retired expressions (DO NOT USE):**
+
+- ~~banging~~ - outdated
+- ~~proper~~ (as intensifier) - outdated
+
+Use active expressions naturally and sparingly - don't force them.
 
 ## 8. Emoji Usage (2-5 per Post)
 
@@ -305,7 +313,7 @@ demos."
 - "That's it!" (when solution is complete)
 - "Cool!" (validation)
 - "Fiddly but it works!" (imperfect solution)
-- "Banging!" (impressive solution)
+- "Sweet!" (something working nicely)
 
 **Explanation style:**
 
@@ -427,7 +435,7 @@ Absolute and specific when showing file structure.
 **Must Haves (Critical):**
 
 - [ ] Contractions used extensively (it's, I've, that's, don't)
-- [ ] "So" used frequently as connector
+- [ ] "So" used as mid-post connector (NOT as default opener)
 - [ ] First-person perspective throughout
 - [ ] en-GB spelling (colour, behaviour, organisation)
 - [ ] At least 2-5 emojis (primarily 😅 😂)
@@ -439,7 +447,8 @@ Absolute and specific when showing file structure.
 **Should Haves (Important):**
 
 - [ ] Parenthetical asides: "(again)", "(for me)"
-- [ ] British slang: "banging", "proper", "aight"
+- [ ] British slang used sparingly: "ballache", "sitch", "aight",
+  "nifty" (NOT "banging" or "proper")
 - [ ] Honest problem admission/vulnerability
 - [ ] Questions to reader
 - [ ] Thanks/attribution to sources

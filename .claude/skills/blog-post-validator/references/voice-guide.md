@@ -2,12 +2,18 @@
 
 ## Authentic Phrases to Verify
 
-- "So, there I was..."
+Posts should use VARIED openers (not always the same one). Check for:
+
+- "Remember that post where I..." (self-referential callbacks)
+- "Right, so..." / "Ok, so..." / "Aight, so..." (conversational)
+- "I spent some time..." (situation drops)
 - "This is where things get interesting"
 - "Want to check the code?"
-- "Banging!" (for impressive things)
-- "That's a proper [problem/solution]"
 - "The numbers don't lie"
+- "Thing is..." / "Here's the thing"
+
+**FLAG if post uses:** "So, there I was" (overused), "banging"
+(outdated), "proper" as intensifier (outdated)
 
 ## Tone Descriptors
 

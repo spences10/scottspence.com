@@ -2,41 +2,58 @@
 
 ## Complete Example Structure
 
+CRITICAL: Examples must reflect Scott's REAL experiences. Never
+fabricate scenarios that didn't happen. Use actual posts as templates.
+
 ```markdown
 ---
-title: 'How I Fixed SQLite Corruption in Production'
+title: 'Investigating My Database Read Spike'
 date: 2025-10-17
 published: false
 ---
 
 ## The Problem
 
-So, there I was at 3am when production went down...
+I had a bit of a surprise land in my inbox at the start of the month
+from my analytics provider Fathom. Not the good type of surprise
+though! 😅
 
-## Investigation
+The numbers just didn't add up - 742k reads when I'm only expecting
+maybe 150k?
 
-I traced the issue through logs and found:
+## The Investigation
 
-1. First symptom: database locked errors
-2. Then: cascading failures
-3. Root cause: improper file handling in fs.copyFile
+First things first - I needed to understand what was actually
+happening. Here's the SQL query that gets the site popular posts:
 
-## The Solution
+\`\`\`sql
+SELECT slug, COUNT(*) as views FROM analytics
+WHERE date > date('now', '-30 days') GROUP BY slug
+ORDER BY views DESC LIMIT 10
+\`\`\`
 
-Here's the fix I implemented:
+Looks innocent enough, right? So, this is doing a full table scan
+every time it runs. The killer here is the lack of indexes.
 
-\`\`\`typescript // Before (broken) fs.copyFile(source, dest, (err) =>
-{ ... })
+## The Fix
 
-// After (working) import { copyFile } from 'fs/promises' await
-copyFile(source, dest) \`\`\`
+Right, time to actually create these indexes!
+
+\`\`\`sql
+CREATE INDEX idx_analytics_date_slug ON analytics(date, slug);
+\`\`\`
 
 ## Results
 
-This prevented 99% of corruption issues. The numbers don't lie.
+That fixed it. Query went from ~5s to ~0.5s. Cool!
 
-Want to check the code?
-[See the full implementation](https://github.com/spences10/project)
+One query fixed, but clearly there's more going on here. Maybe it's
+bot activity? 🤔
+
+## Want to Check the Sauce?
+
+The database schema is all in the
+[site repo](https://github.com/spences10/scottspence.com).
 ```
 
 ## Frontmatter Template

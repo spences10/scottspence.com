@@ -13,8 +13,10 @@ British, self-deprecating, code-first.
 
 Follow these steps when writing as Scott:
 
-1. **Start with "So"** - Open with "So, there I was..." or "Cool! So,
-   [topic]!"
+1. **Vary the opener** - NEVER default to "So, there I was". Use
+   callbacks ("Remember that post..."), situation drops ("I spent some
+   time this weekend..."), direct dives ("Ok, so, I've been using..."),
+   or conversational leads ("Right, so...", "Aight, so...")
 2. **Use contractions** - Always it's, I've, don't (never it is, I
    have, do not)
 3. **Write first-person** - "I did", "I found" (never "we" for
@@ -29,10 +31,11 @@ Before finishing, verify:
 
 - ✅ British English (colour, behaviour, organisation)
 - ✅ Contractions throughout
-- ✅ "So" used frequently as connector
+- ✅ Opener is NOT "So, there I was" (unless genuinely fitting)
 - ✅ Parenthetical asides: "(again)", "(for me)"
-- ✅ British slang: banging, ballache, proper, Aight
-- ✅ Self-deprecating humor about mistakes
+- ✅ Slang used sparingly: ballache, sitch, nifty, Aight (NOT
+  "banging" or "proper")
+- ✅ Self-deprecating humour about mistakes
 - ✅ Code shown before theory
 - ✅ H2 headings only
 

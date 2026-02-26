@@ -5,26 +5,49 @@ patterns.
 
 ## Opening Examples
 
-### Story/Narrative Start
+CRITICAL: These are ALL valid openers. VARY them. Never default to one
+pattern repeatedly.
+
+### Self-Referential Callback (Very Common Recently)
+
+```markdown
+Remember that post where I tested skill activation with the Claude API
+and got the forced-eval hook to 84%?
+
+Right, so, remember when I wrote about unlocking swarm mode with
+claude-sneakpeek?
+```
+
+### Situation Drop
 
 ```markdown
 I spent some time this weekend rolling the auth credentials for this
 site (again) after Claude Code doxed my `.env` variables! 😅
+
+I spent some time over the last few days evaluating some Linux
+distros, two to be precise.
+
+I had a bit of a surprise land in my inbox at the start of the month
+from my analytics provider Fathom.
 ```
 
-### Conversational Opener
+### Direct Dive
 
 ```markdown
-Cool! So, coding tools! We all use them right? But the thing is, these
-tools will promise a lot but deliver very little. Where's the line?
+Ok, so, I've been using the Claude Code swarm feature now for several
+days and I'm super impressed!
+
+A couple of years ago I wrote a guide on setting up a web development
+environment on WSL using Fedora 35.
 ```
 
-### Direct Problem
+### Conversational Lead-in
 
 ```markdown
-Ok, on 2023-06-13 there was an AWS outage that took down my site for
-around 8 hours. In this post, I'll go through what happened and how I
-got back online.
+Aight, so, continuing with the Claude Code 'bits' and my toolchain
+I'm putting together for working with Claude Code.
+
+Right, so, I watched a video about Kimi K2.5 from Sam Witteveen...
 ```
 
 ### Meta-Commentary
@@ -32,15 +55,20 @@ got back online.
 ```markdown
 Ok, I don't usually do a post like this, but I wanted to document my
 thought process on this one.
+
+Super quick one I want to document here!
 ```
 
-## "So" as Connector Examples
+## "So" as Mid-Post Connector (NOT as Default Opener)
+
+"So" works great as a transition WITHIN posts. Don't use it to start
+every post.
 
 ```markdown
-So, there I was debugging this query... So, this is the SQL query that
-get's the site popular posts... So, let's think about this now... So,
-I had a shopping list of components... So, after binging on Node 202
-episodes... So, what's actually slowing things down?
+So, this is the SQL query that get's the site popular posts...
+So, let's think about this now...
+So, what's actually slowing things down?
+So, after binging on Node 202 episodes...
 ```
 
 ## Parenthetical Asides
@@ -59,25 +87,13 @@ pun) 😅
 
 ## British Slang in Context
 
-### "banging"
-
-```markdown
-I didn't know I could get the referrer and user agent from the hooks
-event - banging! 😅
-
-Window functions are bloody brilliant and banging!
-```
+NOTE: "banging" and "proper" are OUTDATED in Scott's current writing.
+Don't use them. Prefer the expressions below.
 
 ### "ballache"
 
 ```markdown
 Node on Windows is a ballache, so I'm using WSL.
-```
-
-### "proper"
-
-```markdown
-That's a proper solution now. The query is proper fast.
 ```
 
 ### "init"
@@ -101,7 +117,7 @@ Claude Code doxed my `.env` variables! 😅
 
 if you read that post then yeah, this is what you get! 😅
 
-I didn't know I could get the referrer - banging! 😅
+I didn't know I could get the referrer from the hooks event! 😅
 ```
 
 ### Laughing at Self (😂)
@@ -203,7 +219,7 @@ That's it!
 
 Fiddly but it works!
 
-Banging!
+Cool!
 ```
 
 ## Honest About Unknowns
@@ -303,8 +319,8 @@ CREATE INDEX idx_analytics_slug ON analytics(slug);
 
 ## The Results
 
-Banging! That fixed it. The query went from ~5s to ~0.5s. Window
-functions are bloody brilliant!
+That fixed it. The query went from ~5s to ~0.5s. Window functions are
+bloody brilliant!
 
 One query fixed, but clearly there's more going on here. Maybe it's
 bot activity? 🤔

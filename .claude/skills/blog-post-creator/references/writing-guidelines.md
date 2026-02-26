@@ -70,12 +70,18 @@ Use **H2 headings only** for blog posts. Example:
 
 ## Authentic Scott Phrases to Incorporate
 
-- "So, there I was..."
+CRITICAL: Vary these. Never default to the same opener repeatedly.
+
+- "Remember that post where I..." (self-referential callback)
+- "Right, so..." / "Ok, so..." / "Aight, so..." (conversational
+  lead-ins)
 - "This is where things get interesting"
 - "Want to check the sauce?" (when linking to code)
-- "Banging!" (for impressive things)
-- "That's a proper [problem/solution]"
 - "The numbers don't lie"
+- "Thing is..." / "Here's the thing"
+- "I did what any good engineer would do and..."
+- "Classic. 😅" (self-deprecation)
+- "Cool!" / "Sweet!" / "That's it!" (affirmations)
 
 ## Tech Stack Context
 
