@@ -10,18 +10,16 @@
 ## Hi, I'm Scott
 
 <Small>
-  Last updated: <DateUpdated date="2024-10-12" small="true" />
+  Last updated: <DateUpdated date="2026-03-03" small="true" />
 </Small>
 
-I'm an application team lead overseeing a large Svelte and SvelteKit
-codebase centred around an AI product. My role, leading a team of
-super talented developers and ensuring best practices in the
-development lifecycle. Prior to this, I was a developer advocate,
-partnering with companies to create content that educates users and
-streamline their journey. For specialized Svelte consulting services,
-visit [svelteconsulting.dev](https://svelteconsulting.dev). I'm also
-the founder of [OES Technology](https://oestechnology.co.uk), where we
-provide scalable Svelte solutions for businesses.
+I'm a product engineer, currently operating through
+[OES Technology](https://oestechnology.co.uk) as an AI & Svelte
+consultant. I build AI-powered products, author MCP tools, and ship
+open-source developer tooling. Previously I was an engineering team
+lead at XtendOps, leading 12 developers across two product teams
+building AI customer service agents. For specialised Svelte consulting
+services, visit [svelteconsulting.dev](https://svelteconsulting.dev).
 
 I create content written in the blog here and educational videos
 supporting the written content.
@@ -35,14 +33,11 @@ organisers of the [Svelte Society London] group.
 
 Check out the [speaking] section for more details about those!
 
-My journey in web development has given me a strong foundation in
-modern web standards and best practices. I gained extensive experience
-(<DD date="2018-08-02"/>) working with various frameworks and
-architectures, including [Gatsby] and the [Jamstack] approach. While I
-moved away from active Jamstack usage <DD date="2021-04-06" /> ago,
-the principles of performance, security, and scalability I learned
-continue to inform my work in creating efficient, user-centric web
-applications.
+These days I'm deep into AI tooling, building MCP servers, working
+with the Claude API and Agent SDK, and exploring multi-agent
+workflows. My web development background (<DD date="2018-08-02"/> in
+the industry) means I care about performance, accessibility, and
+developer experience in everything I build.
 
 ### Sectors I have worked in:
 
@@ -51,9 +46,9 @@ organisations in Finance (Risk, Asset Management), Property, Oil & Gas
 and the Lloyd's insurance market.
 
 As a web developer I've worked in government digital transformation,
-creative digital and the content management space. I now work in
-business process outsourcing, helping build smart AI agents for
-clients.
+creative digital, content management, and business process
+outsourcing. I now focus on AI tooling, agent orchestration, and
+open-source developer AI tooling.
 
 ### My personality
 
@@ -64,11 +59,15 @@ I like to think of myself as an easy to approach and friendly person.
 
 ### My interests
 
-I'm obsessed with watching anything to do with mechanical engineering
-and restorations on YouTube.
+I'm all in on AI tooling right now, building MCP servers, Claude Code
+workflows, and seeing how far I can push multi-agent systems.
 
-I got a Steam Deck! Been playing Borderlands 1, 2 and 3 on it, still
-really like the franchise after all this time 😊
+I'm obsessed with watching anything to do with mechanical engineering
+and restorations on YouTube. Also fallen down the mechanical keyboards
+rabbit hole!
+
+Playing Borderlands 4 on the Steam Deck at the moment, but still think
+BL2 is the best one 😊
 
 ### Music I listen to
 
@@ -95,14 +94,15 @@ Other playlists I'd recommend would be the UKF Drum and Bass Top 100:
 I listen to many podcasts, here are some that I get a lot of value
 from that aren't all code related:
 
-**Darknet Diaries**
+**Prof G Markets**
 
-Stories of cyber threats/breaches that happened on the internet, these
-are stories from the past not covering current tech security. Super
-interesting to listen to.
+Ed Elson breaks down what's moving the capital markets with Scott
+Galloway joining every other episode or so. Great for keeping up with
+what's happening in tech and the markets.
 
-<Deezer
-  frameSrc="show/496882"
+<Spotify
+  spotifyLink="show/7syF2ry9j6nqYc656WHBA7"
+  width="100%"
 />
 
 **Random But Memorable**
@@ -114,21 +114,29 @@ latest security news.
   frameSrc="show/401552"
 />
 
-**Land of the Giants**
+**The AI Fix**
 
-Stories about big tech and how it's changing the world.
+Mark Stockley and a guest will always bring some laughs with their
+weekly findings with what's going on with AI.
 
 <Deezer
-  frameSrc="show/679992"
+  frameSrc="show/1001031882"
+/>
+
+**Tech Brew Ride Home**
+
+A daily 15-minute tech news summary. Silicon Valley's water cooler
+podcast, perfect for the walk to the shops.
+
+<Deezer
+  frameSrc="show/1505672"
 />
 
 <!-- Links -->
 
 [vba]: https://en.wikipedia.org/wiki/Visual_Basic_for_Applications
-[gatsby]: https://www.gatsbyjs.com/
 [16personalities]: https://www.16personalities.com/
 [my results]: https://www.16personalities.com/profiles/ba01a67248b68
-[jamstack]: https://jamstack.org/
 [portfolio section]: /portfolio
 [speaking]: /speaking
 [svelte society london]:
