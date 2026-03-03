@@ -26,10 +26,8 @@ maybe 150k?
 First things first - I needed to understand what was actually
 happening. Here's the SQL query that gets the site popular posts:
 
-\`\`\`sql
-SELECT slug, COUNT(*) as views FROM analytics
-WHERE date > date('now', '-30 days') GROUP BY slug
-ORDER BY views DESC LIMIT 10
+\`\`\`sql SELECT slug, COUNT(\*) as views FROM analytics WHERE date >
+date('now', '-30 days') GROUP BY slug ORDER BY views DESC LIMIT 10
 \`\`\`
 
 Looks innocent enough, right? So, this is doing a full table scan
@@ -39,9 +37,8 @@ every time it runs. The killer here is the lack of indexes.
 
 Right, time to actually create these indexes!
 
-\`\`\`sql
-CREATE INDEX idx_analytics_date_slug ON analytics(date, slug);
-\`\`\`
+\`\`\`sql CREATE INDEX idx_analytics_date_slug ON analytics(date,
+slug); \`\`\`
 
 ## Results
 
@@ -49,11 +46,6 @@ That fixed it. Query went from ~5s to ~0.5s. Cool!
 
 One query fixed, but clearly there's more going on here. Maybe it's
 bot activity? 🤔
-
-## Want to Check the Sauce?
-
-The database schema is all in the
-[site repo](https://github.com/spences10/scottspence.com).
 ```
 
 ## Frontmatter Template

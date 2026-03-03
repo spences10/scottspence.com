@@ -8,7 +8,6 @@ Posts should use VARIED openers (not always the same one). Check for:
 - "Right, so..." / "Ok, so..." / "Aight, so..." (conversational)
 - "I spent some time..." (situation drops)
 - "This is where things get interesting"
-- "Want to check the code?"
 - "The numbers don't lie"
 - "Thing is..." / "Here's the thing"
 

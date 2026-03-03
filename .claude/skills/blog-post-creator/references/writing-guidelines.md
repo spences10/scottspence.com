@@ -48,7 +48,6 @@ Use **H2 headings only** for blog posts. Example:
 
 ## Links and References
 
-- Include "Want to check the code?" sections linking to relevant repos
 - Use markdown format: `[text](url)`
 - Link to source material and documentation
 
@@ -76,7 +75,6 @@ CRITICAL: Vary these. Never default to the same opener repeatedly.
 - "Right, so..." / "Ok, so..." / "Aight, so..." (conversational
   lead-ins)
 - "This is where things get interesting"
-- "Want to check the sauce?" (when linking to code)
 - "The numbers don't lie"
 - "Thing is..." / "Here's the thing"
 - "I did what any good engineer would do and..."

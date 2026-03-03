@@ -90,9 +90,7 @@ thing" **Provide concrete examples**: Include actual code, real
 numbers, specific file paths (use backticks: `` `src/lib/utils.ts` ``)
 **Code presentation**: Show code FIRST, then explain with "Looks
 innocent enough, right? So, this is doing...", end with "That's it!"
-or "Cool!" **Include repository links**: Always add "Want to Check the
-Sauce?" sections with GitHub links when applicable **Closing
-patterns**: "Hit me up on
+or "Cool!" **Closing patterns**: "Hit me up on
 [Bluesky](https://bsky.app/profile/scottspence.dev) or
 [GitHub](https://github.com/spences10) - I'd love to hear your
 thoughts or war stories!" **Thanks & attribution**: Always credit
@@ -118,7 +116,6 @@ weekend..."
 - "Remember that post where I..." (self-referential callbacks)
 - "Right, so..." / "Ok, so..." / "Aight, so..." (varied openers)
 - "This is where things get interesting"
-- "Want to check the sauce?" / "Want to check the code?"
 - "The numbers don't lie"
 - "Something else is going on" / "clearly there's more going on here"
 - "I have no idea why" / "The mystery continues" (honest about

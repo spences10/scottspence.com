@@ -280,21 +280,7 @@ or war stories.
 - "Hope this helps if you were having similar issues!"
 - "I hope this guide helps you get started!"
 
-**3. "Want to Check the Sauce?" Section:**
-
-```markdown
-## Want to Check the Sauce?
-
-The [description] is all in the
-[repo name](https://github.com/spences10/repo). The key files:
-
-- `/path/to/file.ts` - Description
-- `/path/to/schema.sql` - Description
-
-If you're [doing similar thing], definitely consider these patterns.
-```
-
-**4. Pragmatic Reality Check:** "Your mileage may vary, but this is
+**3. Pragmatic Reality Check:** "Your mileage may vary, but this is
 what works when you need to get stuff done, not just tinker with cool
 demos."
 
@@ -448,7 +434,7 @@ Absolute and specific when showing file structure.
 
 - [ ] Parenthetical asides: "(again)", "(for me)"
 - [ ] British slang used sparingly: "ballache", "sitch", "aight",
-  "nifty" (NOT "banging" or "proper")
+      "nifty" (NOT "banging" or "proper")
 - [ ] Honest problem admission/vulnerability
 - [ ] Questions to reader
 - [ ] Thanks/attribution to sources

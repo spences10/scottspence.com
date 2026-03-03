@@ -44,8 +44,8 @@ environment on WSL using Fedora 35.
 ### Conversational Lead-in
 
 ```markdown
-Aight, so, continuing with the Claude Code 'bits' and my toolchain
-I'm putting together for working with Claude Code.
+Aight, so, continuing with the Claude Code 'bits' and my toolchain I'm
+putting together for working with Claude Code.
 
 Right, so, I watched a video about Kimi K2.5 from Sam Witteveen...
 ```
@@ -65,9 +65,8 @@ Super quick one I want to document here!
 every post.
 
 ```markdown
-So, this is the SQL query that get's the site popular posts...
-So, let's think about this now...
-So, what's actually slowing things down?
+So, this is the SQL query that get's the site popular posts... So,
+let's think about this now... So, what's actually slowing things down?
 So, after binging on Node 202 episodes...
 ```
 
@@ -325,18 +324,9 @@ bloody brilliant!
 One query fixed, but clearly there's more going on here. Maybe it's
 bot activity? 🤔
 
-## Want to Check the Sauce?
-
-The database schema is all in the
-[site repo](https://github.com/spences10/scottspence.com). The key
-files:
-
-- `src/lib/db/schema.sql` - Database schema
-- `src/routes/api/analytics/+server.ts` - Analytics endpoint
-
-Cool! Have you had any similar database performance mysteries? Hit me
-up on [Bluesky](https://bsky.app/profile/scottspence.dev) - I'd love
-to hear your thoughts!
+Have you had any similar database performance mysteries? Hit me up on
+[Bluesky](https://bsky.app/profile/scottspence.dev) - I'd love to hear
+your thoughts!
 
 ````
 
