@@ -334,7 +334,7 @@ And honestly? Having Claude Code as a debugging partner made all the
 difference. Fresh eyes on the code, systematic investigation, and
 spotting patterns I'd missed. Proper teamwork! 🤖
 
-## Want to Check the Sauce?
+## Want to Check the Source?
 
 The fix is in the
 [scottspence.com repo](https://github.com/spences10/scottspence.com).

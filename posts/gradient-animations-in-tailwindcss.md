@@ -17,7 +17,7 @@ to apply to the effect to some text rather than to a div as with
 Victor's example.
 
 I'll put this in an example project on GitHub so if you want to
-**Tl;Dr** and see the sauce you can [skip to the end](#conclusion).
+**Tl;Dr** and see the source you can [skip to the end](#conclusion).
 
 In this post I'll create an example project using SvelteKit, Tailwind
 CSS and daisyUI.

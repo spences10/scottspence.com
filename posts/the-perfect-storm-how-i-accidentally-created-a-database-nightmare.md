@@ -242,7 +242,7 @@ None of my tests would have caught this because they don't replicate
 the scale of production batch operations or the cache invalidation
 patterns of real deployments.
 
-## Want to Check the Sauce?
+## Want to Check the Source?
 
 The timeline is all there in the git history if you want to see the
 exact commits:

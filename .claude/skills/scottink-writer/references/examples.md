@@ -368,8 +368,6 @@ Tl;DR: Skip to The Solution if you just want the fix.
 ## The results? FAST! ⚡
 
 ## Next steps
-
-## Want to Check the Sauce?
 ```
 
 ## Temporal Markers

@@ -65,7 +65,7 @@ turso db tokens create my-analytics-experiment
 This isn't going to be a tutorial, more of a high level overview of
 what I did to get things working.
 
-Want to check the sauce? Here's the repo:
+Want to check the source? Here's the repo:
 https://github.com/spences10/sveltekit-and-turso-analytics
 
 Feel free to help improve it as well! This was thrown together over

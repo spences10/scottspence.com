@@ -664,7 +664,7 @@ TOC.
 <!-- cSpell:ignore Kajhlu -->
 <YouTube youTubeId="Kp51KajhluE" />
 
-## Demo and Sauce
+## Demo and Source
 
 Source code: https://github.com/spences10/gatsby-smooth-scroll
 

@@ -533,7 +533,7 @@ footprints mean:
 If you're building MCP servers, take the time to optimise them. Your
 users (and Claude) will thank you!
 
-## Want to check the sauce?
+## Want to check the source?
 
 The optimised `mcp-omnisearch` code is all in the
 [mcp-omnisearch repo](https://github.com/spences10/mcp-omnisearch).

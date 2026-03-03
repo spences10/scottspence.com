@@ -247,7 +247,7 @@ If you're running a read-heavy SvelteKit app with Turso, definitely
 consider embedded replicas. The setup is dead simple, and the
 performance improvement is immediately noticeable.
 
-## Want to Check the Sauce?
+## Want to Check the Source?
 
 The embedded replica setup is all in the
 [scottspence.com repo](https://github.com/spences10/scottspence.com).

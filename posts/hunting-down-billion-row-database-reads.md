@@ -385,7 +385,7 @@ The optimizations should help regardless of the root cause, but I need
 to keep digging. One query fixed, but clearly there's more going on
 here.
 
-## Want to Check the Sauce?
+## Want to Check the Source?
 
 The optimized query and schema changes are all in the
 [scottspence.com repo](https://github.com/spences10/scottspence.com).
