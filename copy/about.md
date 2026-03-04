@@ -15,11 +15,13 @@
 
 I'm a product engineer, currently operating through
 [OES Technology](https://oestechnology.co.uk) as an AI & Svelte
-consultant. I build AI-powered products, author MCP tools, and ship
-open-source developer tooling. Previously I was an engineering team
-lead at XtendOps, leading 12 developers across two product teams
-building AI customer service agents. For specialised Svelte consulting
-services, visit [svelteconsulting.dev](https://svelteconsulting.dev).
+consultant. I'm building [Svortie](https://svortie.com), a platform
+for running AI agents with scheduled workflows, MCP servers, and
+sandboxed environments. I also author MCP tools and ship open-source
+developer tooling. Previously I was an engineering team lead at
+XtendOps, leading 12 developers across two product teams building AI
+customer service agents. For specialised Svelte consulting services,
+visit [svelteconsulting.dev](https://svelteconsulting.dev).
 
 I create content written in the blog here and educational videos
 supporting the written content.
