@@ -5,6 +5,20 @@ tags: ['claude', 'claude-code', 'tools', 'guide']
 is_private: false
 ---
 
+<script>
+  import { Banner } from '$lib/components'
+
+  const options = {
+    type: 'info',
+    message: `Got your skills working? Give your agents skills, MCP
+      servers, and a schedule.
+      <a href="https://svortie.com" target="_blank" rel="noopener noreferrer">
+      Svortie</a> runs them in sandboxed cloud environments, no
+      babysitting.`,
+    track_event: 'skills not recognised post banner',
+  }
+</script>
+
 Not having Claude Code skills showing up? Yeah, I hit this too... When
 Claude Skills were announced I jumped straight on that! Dug into it
 and built out several skills, for this site and other projects.
@@ -22,6 +36,8 @@ well-structured skills and prevent Claude from going absolutely
 bananas writing stupidly long skills (which it absolutely does without
 guardrails). The CLI was doing its job, but the skills still weren't
 being recognised by Claude Code.
+
+<Banner {options} />
 
 Searching around there were _similar_ issues so I ended up commenting
 on the

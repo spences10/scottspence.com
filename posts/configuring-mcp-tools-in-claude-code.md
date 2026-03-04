@@ -12,13 +12,13 @@ is_private: false
 
   const options = {
     type: 'info',
-    message: `Managing MCP servers can be tricky! Check out 
+    message: `Managing MCP servers can be tricky! Check out
       <a href="https://github.com/spences10/mcpick" target="_blank" rel="noopener noreferrer">
-      McPick</a> - a tool that makes it simpler to manage your MCP 
-			server configurations. Also see the guide on 
-      <a href="/posts/optimising-mcp-server-context-usage-in-claude-code" target="_blank" rel="noopener noreferrer">
-      optimising MCP server context usage</a> to get the most out of 
-			your setup.`,
+      McPick</a> - a tool that makes it simpler to manage your MCP
+			server configurations. Building AI agents that use MCP tools?
+      <a href="https://svortie.com" target="_blank" rel="noopener noreferrer">
+      Svortie</a> manages MCP servers, schedules, and sandboxed
+			environments for your agents.`,
     track_event: 'configuring mcp tools in claude code banner',
   }
 </script>

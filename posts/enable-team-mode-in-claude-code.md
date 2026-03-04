@@ -5,6 +5,19 @@ tags: ['claude', 'claude-code', 'guide', 'orchestration']
 is_private: false
 ---
 
+<script>
+  import { Banner } from '$lib/components'
+
+  const options = {
+    type: 'info',
+    message: `Team mode coordinates agents in your terminal.
+      <a href="https://svortie.com" target="_blank" rel="noopener noreferrer">
+      Svortie</a> does it in the cloud. Scheduled workflows, isolated
+      sandboxes, managed MCP servers.`,
+    track_event: 'enable team mode post banner',
+  }
+</script>
+
 <!--
 cspell:ignore sneakpeek realmikekelly kieranklaassen teammateMode ccrecall agentic Klaassen Ghostty respawned
 -->
@@ -38,6 +51,8 @@ That's the flag that unlocks the TeamCreate, TaskCreate, TaskUpdate,
 TaskList, SendMessage tools. The same ones that were hidden behind
 obfuscated checks in the minified JS that Mike Kelly patched out for
 sneakpeek. Now you just... set a flag.
+
+<Banner {options} />
 
 ## Configure teammate mode
 
