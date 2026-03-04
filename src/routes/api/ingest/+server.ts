@@ -13,6 +13,7 @@ import { newsletter_send } from './newsletter-send'
 import { pull_database } from './pull-database'
 import { restore_database } from './restore-database'
 import { rollup_analytics } from './rollup-analytics'
+import { run_query, validate_run_query } from './run-query'
 import { send_newsletter_reminder } from './send-newsletter-reminder'
 import {
 	sync_blocked_domains,
@@ -112,6 +113,7 @@ type TaskKey =
 	| 'rollup_analytics'
 	| 'cleanup_analytics'
 	| 'sync_blocked_domains'
+	| 'run_query'
 
 // Task function type for data-expecting tasks
 type DataTaskFunction = (data: unknown) => Promise<unknown>
@@ -205,6 +207,12 @@ const tasks: TaskType = {
 		expects_fetch: false,
 		expects_data: true,
 		validate_data: validate_sync_blocked_domains,
+	},
+	run_query: {
+		function: run_query,
+		expects_fetch: false,
+		expects_data: true,
+		validate_data: validate_run_query,
 	},
 }
 
