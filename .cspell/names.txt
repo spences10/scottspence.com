@@ -84,6 +84,7 @@ dummdidumm
 eggradients
 Eleventy
 Elgato
+Elson
 elitedisplay
 Eychenié
 facecam

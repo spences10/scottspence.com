@@ -117,6 +117,7 @@ vsix
 webm
 webp
 wireframe
+WHBA
 WORKDIR
 wrapPageElement
 wraprootelement
