@@ -142,7 +142,7 @@ export const get_chart_data = query(
 		} else if (period === 'week' || period === 'month') {
 			// Daily granularity from analytics_daily
 			const start_date = new Date(start).toISOString().split('T')[0]
-			const end_date = new Date(end).toISOString().split('T')[0]
+			const today_date = new Date().toISOString().split('T')[0]
 
 			const result = sqlite_client.execute({
 				sql: `SELECT
@@ -153,18 +153,35 @@ export const get_chart_data = query(
 				WHERE date >= ? AND date < ?
 				GROUP BY date
 				ORDER BY date ASC`,
-				args: [start_date, end_date],
+				args: [start_date, today_date],
 			})
 			data_points = result.rows as ChartDataPoint[]
+
+			// Add today's data from raw events
+			const today_utc_start = new Date(
+				today_date + 'T00:00:00Z',
+			).getTime()
+			const today_result = sqlite_client.execute({
+				sql: `SELECT
+					? as timestamp,
+					COUNT(*) as views,
+					COUNT(DISTINCT visitor_hash) as visitors
+				FROM analytics_events
+				WHERE created_at >= ? AND created_at < ? ${bot_condition}`,
+				args: [today_date, today_utc_start, end, ...bot_args],
+			})
+			const today_views =
+				(today_result.rows[0]?.views as number) ?? 0
+			if (today_views > 0) {
+				data_points.push(
+					today_result.rows[0] as ChartDataPoint,
+				)
+			}
 		} else if (period === 'year') {
 			// Monthly granularity from analytics_monthly
-			const now = new Date()
-			const year_ago = new Date(
-				now.getFullYear() - 1,
-				now.getMonth(),
-				1,
-			)
-			const start_month = year_ago.toISOString().slice(0, 7)
+			const start_month = new Date(start)
+				.toISOString()
+				.slice(0, 7)
 
 			const result = sqlite_client.execute({
 				sql: `SELECT
