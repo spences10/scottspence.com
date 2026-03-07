@@ -102,19 +102,82 @@ export const get_engagement_stats = query(
 		}
 
 		// Get human views per path
-		const views_result = sqlite_client.execute({
-			sql: `SELECT
-				path,
-				COUNT(*) as human_views
-			FROM analytics_events
-			WHERE created_at >= ? AND created_at < ? ${bot_condition}
-			GROUP BY path`,
-			args: [start, end, ...bot_args],
-		})
-
+		const is_long_period =
+			period === 'week' || period === 'month' || period === 'year'
 		const views_by_path = new Map<string, number>()
-		for (const row of views_result.rows) {
-			views_by_path.set(row.path as string, row.human_views as number)
+
+		if (is_long_period) {
+			const today_date = new Date().toISOString().split('T')[0]
+			const today_utc_start = new Date(
+				today_date + 'T00:00:00Z',
+			).getTime()
+
+			// Historical from rollup (already bot-filtered)
+			let rollup_result
+			if (period === 'year') {
+				const start_month = new Date(start)
+					.toISOString()
+					.slice(0, 7)
+				rollup_result = sqlite_client.execute({
+					sql: `SELECT pathname as path,
+						SUM(views) as human_views
+					FROM analytics_monthly WHERE year_month >= ?
+					GROUP BY pathname`,
+					args: [start_month],
+				})
+			} else {
+				const start_date = new Date(start)
+					.toISOString()
+					.split('T')[0]
+				rollup_result = sqlite_client.execute({
+					sql: `SELECT pathname as path,
+						SUM(views) as human_views
+					FROM analytics_daily WHERE date >= ? AND date < ?
+					GROUP BY pathname`,
+					args: [start_date, today_date],
+				})
+			}
+
+			for (const row of rollup_result.rows) {
+				views_by_path.set(
+					row.path as string,
+					(row.human_views as number) ?? 0,
+				)
+			}
+
+			// Add today's raw events
+			const today_result = sqlite_client.execute({
+				sql: `SELECT path,
+					COUNT(*) as human_views
+				FROM analytics_events
+				WHERE created_at >= ? AND created_at < ? AND is_bot = 0
+				GROUP BY path`,
+				args: [today_utc_start, end],
+			})
+			for (const row of today_result.rows) {
+				const existing =
+					views_by_path.get(row.path as string) ?? 0
+				views_by_path.set(
+					row.path as string,
+					existing + ((row.human_views as number) ?? 0),
+				)
+			}
+		} else {
+			const views_result = sqlite_client.execute({
+				sql: `SELECT
+					path,
+					COUNT(*) as human_views
+				FROM analytics_events
+				WHERE created_at >= ? AND created_at < ? ${bot_condition}
+				GROUP BY path`,
+				args: [start, end, ...bot_args],
+			})
+			for (const row of views_result.rows) {
+				views_by_path.set(
+					row.path as string,
+					row.human_views as number,
+				)
+			}
 		}
 
 		// Get clicks per path (within same period)

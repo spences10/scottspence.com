@@ -134,19 +134,89 @@ export const get_period_stats = query(
 			bot_condition = ''
 		}
 
-		// Total views and unique visitors (filtered)
-		const totals_result = sqlite_client.execute({
-			sql: `SELECT
-				COUNT(*) as views,
-				COUNT(DISTINCT visitor_hash) as unique_visitors
-			FROM analytics_events
-			WHERE created_at >= ? AND created_at < ? ${bot_condition}`,
-			args: [start, end, ...bot_args],
-		})
-		const totals = {
-			views: (totals_result.rows[0]?.views as number) ?? 0,
-			unique_visitors:
-				(totals_result.rows[0]?.unique_visitors as number) ?? 0,
+		// For longer periods with human filter, use rollup tables + today's raw
+		// Rollup data is already bot-filtered (is_bot = 0) during the rollup job
+		const use_rollup =
+			(period === 'week' ||
+				period === 'month' ||
+				period === 'year') &&
+			mode === 'humans'
+
+		const today_date = new Date().toISOString().split('T')[0]
+		const today_utc_start = new Date(
+			today_date + 'T00:00:00Z',
+		).getTime()
+
+		// Total views and unique visitors
+		let totals: { views: number; unique_visitors: number }
+
+		if (use_rollup) {
+			let rollup_views = 0
+			let rollup_uv = 0
+
+			if (period === 'year') {
+				const start_month = new Date(start)
+					.toISOString()
+					.slice(0, 7)
+				const result = sqlite_client.execute({
+					sql: `SELECT COALESCE(SUM(views), 0) as views,
+						COALESCE(SUM(unique_visitors), 0) as unique_visitors
+					FROM analytics_monthly WHERE year_month >= ?`,
+					args: [start_month],
+				})
+				rollup_views =
+					(result.rows[0]?.views as number) ?? 0
+				rollup_uv =
+					(result.rows[0]?.unique_visitors as number) ?? 0
+			} else {
+				const start_date = new Date(start)
+					.toISOString()
+					.split('T')[0]
+				const result = sqlite_client.execute({
+					sql: `SELECT COALESCE(SUM(views), 0) as views,
+						COALESCE(SUM(unique_visitors), 0) as unique_visitors
+					FROM analytics_daily WHERE date >= ? AND date < ?`,
+					args: [start_date, today_date],
+				})
+				rollup_views =
+					(result.rows[0]?.views as number) ?? 0
+				rollup_uv =
+					(result.rows[0]?.unique_visitors as number) ?? 0
+			}
+
+			// Add today's raw events
+			const today_result = sqlite_client.execute({
+				sql: `SELECT COUNT(*) as views,
+					COUNT(DISTINCT visitor_hash) as unique_visitors
+				FROM analytics_events
+				WHERE created_at >= ? AND created_at < ? AND is_bot = 0`,
+				args: [today_utc_start, end],
+			})
+
+			totals = {
+				views:
+					rollup_views +
+					((today_result.rows[0]?.views as number) ?? 0),
+				unique_visitors:
+					rollup_uv +
+					((today_result.rows[0]?.unique_visitors as number) ??
+						0),
+			}
+		} else {
+			const totals_result = sqlite_client.execute({
+				sql: `SELECT
+					COUNT(*) as views,
+					COUNT(DISTINCT visitor_hash) as unique_visitors
+				FROM analytics_events
+				WHERE created_at >= ? AND created_at < ? ${bot_condition}`,
+				args: [start, end, ...bot_args],
+			})
+			totals = {
+				views: (totals_result.rows[0]?.views as number) ?? 0,
+				unique_visitors:
+					(totals_result.rows[0]?.unique_visitors as number) ??
+					0,
+			}
 		}
 
 		// Bot totals (always calculate for display)
@@ -183,23 +253,93 @@ export const get_period_stats = query(
 		}
 
 		// Top pages
-		const pages_result = sqlite_client.execute({
-			sql: `SELECT
-				path,
-				COUNT(*) as views,
-				COUNT(DISTINCT visitor_hash) as visitors
-			FROM analytics_events
-			WHERE created_at >= ? AND created_at < ? ${bot_condition}
-			GROUP BY path
-			ORDER BY visitors DESC
-			LIMIT 10`,
-			args: [start, end, ...bot_args],
-		})
-		const top_pages = pages_result.rows as {
-			path: string
-			views: number
-			visitors: number
-		}[]
+		let top_pages: { path: string; views: number; visitors: number }[]
+
+		if (use_rollup) {
+			let rollup_pages_result
+			if (period === 'year') {
+				const start_month = new Date(start)
+					.toISOString()
+					.slice(0, 7)
+				rollup_pages_result = sqlite_client.execute({
+					sql: `SELECT pathname as path,
+						SUM(views) as views,
+						SUM(unique_visitors) as visitors
+					FROM analytics_monthly WHERE year_month >= ?
+					GROUP BY pathname`,
+					args: [start_month],
+				})
+			} else {
+				const start_date = new Date(start)
+					.toISOString()
+					.split('T')[0]
+				rollup_pages_result = sqlite_client.execute({
+					sql: `SELECT pathname as path,
+						SUM(views) as views,
+						SUM(unique_visitors) as visitors
+					FROM analytics_daily WHERE date >= ? AND date < ?
+					GROUP BY pathname`,
+					args: [start_date, today_date],
+				})
+			}
+
+			// Today's raw events
+			const today_pages_result = sqlite_client.execute({
+				sql: `SELECT path,
+					COUNT(*) as views,
+					COUNT(DISTINCT visitor_hash) as visitors
+				FROM analytics_events
+				WHERE created_at >= ? AND created_at < ? AND is_bot = 0
+				GROUP BY path`,
+				args: [today_utc_start, end],
+			})
+
+			// Merge rollup + today
+			const pages_map = new Map<
+				string,
+				{ views: number; visitors: number }
+			>()
+			for (const row of rollup_pages_result.rows) {
+				pages_map.set(row.path as string, {
+					views: row.views as number,
+					visitors: row.visitors as number,
+				})
+			}
+			for (const row of today_pages_result.rows) {
+				const existing = pages_map.get(row.path as string)
+				if (existing) {
+					existing.views += row.views as number
+					existing.visitors += row.visitors as number
+				} else {
+					pages_map.set(row.path as string, {
+						views: row.views as number,
+						visitors: row.visitors as number,
+					})
+				}
+			}
+			top_pages = [...pages_map.entries()]
+				.map(([path, stats]) => ({ path, ...stats }))
+				.sort((a, b) => b.visitors - a.visitors)
+				.slice(0, 10)
+		} else {
+			const pages_result = sqlite_client.execute({
+				sql: `SELECT
+					path,
+					COUNT(*) as views,
+					COUNT(DISTINCT visitor_hash) as visitors
+				FROM analytics_events
+				WHERE created_at >= ? AND created_at < ? ${bot_condition}
+				GROUP BY path
+				ORDER BY visitors DESC
+				LIMIT 10`,
+				args: [start, end, ...bot_args],
+			})
+			top_pages = pages_result.rows as {
+				path: string
+				views: number
+				visitors: number
+			}[]
+		}
 
 		// Countries
 		const countries_result = sqlite_client.execute({
