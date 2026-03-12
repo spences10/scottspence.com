@@ -61,15 +61,17 @@ CREATE TABLE IF NOT EXISTS
     last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
 
-INSERT OR IGNORE INTO
+INSERT INTO
   pricing_numbers (
     annual_rate_eur,
     chosen_holidays,
     public_holidays,
     working_days_in_year
   )
-VALUES
-  (120200, 30, 8, 252);
+SELECT
+  155000, 30, 8, 252
+WHERE
+  NOT EXISTS (SELECT 1 FROM pricing_numbers);
 
 CREATE TABLE IF NOT EXISTS
   exchange_rates (
