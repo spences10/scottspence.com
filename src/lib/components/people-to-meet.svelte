@@ -54,7 +54,7 @@
 		Idea totally stolen from
 		<a
 			class="link hover:text-primary transition"
-			rel="noreferrer noopener"
+			rel="nofollow noreferrer noopener"
 			target="_blank"
 			href="https://rafa.design/"
 		>
@@ -95,7 +95,7 @@
 						<a
 							class="text-xl"
 							href={link}
-							rel="noreferrer noopener"
+							rel="nofollow noreferrer noopener"
 							target="_blank"
 						>
 							{name}

@@ -39,7 +39,7 @@
 					Check out that massive picture of my <a
 						href="https://www.cockneyrhymingslang.co.uk/slang/boat_race"
 						target="_blank"
-						rel="noopener noreferrer"
+						rel="nofollow noopener noreferrer"
 					>
 						boat race
 					</a>! What do you think? If you want to crack on then check
