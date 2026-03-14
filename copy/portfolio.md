@@ -13,17 +13,48 @@
 # Portfolio
 
 <Small>
-  Last updated: <DateUpdated date="2025-10-29" small="true" />
+  Last updated: <DateUpdated date="2026-03-14" small="true" />
 </Small>
 
-I'm Scott, a passionate Svelte ambassador and application team lead
-with <DateDistance date='2018-03-18' /> years of commercial experience
-in web development. Currently, I'm an engineering lead developing an
-AI-focused product built with Svelte and SvelteKit. My work spans
-practical utilities, developer tools, and useless projects I've built,
-just, because!
+<!-- prettier-ignore -->
+I'm Scott, a passionate Svelte ambassador and product engineer with <DateDistance date='2018-03-18' /> years of commercial experience in
+web development. Currently operating as an AI & Svelte consultant
+through [OES Technology](https://oestechnology.co.uk), building
+[Svortie](https://svortie.com), and shipping open-source developer
+tooling. My work spans practical utilities, developer tools, and
+useless projects I've built, just, because!
 
 Here's some of my recent work.
+
+## Svortie
+
+[![Svortie dashboard screenshot](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1773531238/scottspence.com/svortie-dash.png)](https://svortie.com)
+
+An agent orchestration dashboard for defining Claude agents, deploying
+them into sandboxed environments, and monitoring execution in
+real-time. Svortie lets you manage the full lifecycle of AI agents
+from configuration through to live log streaming, all from a single
+interface.
+
+**Key Features:**
+
+- "Create with AI": describe what you need in natural language (via
+  Deepgram) and Svortie figures out whether to build an agent,
+  workflow, schedule, or a combination of all three
+- Agent management with system prompts, tasks, model selection, and
+  MCP server configuration
+- Visual workflow builder for multi-step sequential agent execution
+- Real-time execution monitoring with live log streaming
+- Sandboxed environments via Daytona SDK for isolated agent runs
+- Usage-based billing with credit packs via Polar
+- Authentication with email/password and GitHub OAuth
+
+**Tech Stack:** SvelteKit, Svelte 5, TypeScript, SQLite, Tailwind CSS,
+shadcn-svelte, Better Auth, Claude Agent SDK, Daytona, Deepgram, Bun
+
+[Visit Svortie](https://svortie.com)
+
+---
 
 ## Devhub CRM
 
