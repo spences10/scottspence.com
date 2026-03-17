@@ -95,6 +95,6 @@
 	"dependencies": {
 		"@octokit/rest": "^22.0.1",
 		"better-sqlite3": "^12.8.0",
-		"sqlite-vec": "0.1.7-alpha.2"
+		"sqlite-vec": "0.1.7"
 	}
 }
