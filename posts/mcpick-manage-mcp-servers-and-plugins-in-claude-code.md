@@ -33,8 +33,7 @@ activated), but McPick's grown into something more since then.
 McPick is a CLI for managing MCP servers **and** Claude Code
 marketplace plugins. Run `npx mcpick` and you get a friendly TUI
 that's way simpler than the built-in Claude Code configuration flow.
-Or have Claude manage manage it for you. Either way, no manual JSON
-editing.
+Or have Claude manage it for you. Either way, no manual JSON editing.
 
 ```bash
 npx mcpick@latest
