@@ -46,8 +46,8 @@
 		"@types/d3-scale": "^4.0.9",
 		"@upstash/ratelimit": "^2.0.8",
 		"@upstash/redis": "^1.37.0",
-		"@vitest/browser": "4.1.0",
-		"@vitest/browser-playwright": "4.1.0",
+		"@vitest/browser": "4.1.2",
+		"@vitest/browser-playwright": "4.1.2",
 		"cspell": "^9.7.0",
 		"d3-scale": "^4.0.2",
 		"daisyui": "5.5.19",
@@ -82,7 +82,7 @@
 		"unist-util-visit": "5.1.0",
 		"valibot": "^1.2.0",
 		"vite": "^8.0.0",
-		"vitest": "4.1.0",
+		"vitest": "4.1.2",
 		"vitest-browser-svelte": "^2.1.0"
 	},
 	"pnpm": {
