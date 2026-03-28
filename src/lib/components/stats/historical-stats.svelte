@@ -437,7 +437,7 @@
 								{post.title}
 							</a>
 						</td>
-						<td class="text-right font-mono">
+						<td class="text-right font-mono whitespace-nowrap">
 							<div
 								class="tooltip tooltip-accent tooltip-top"
 								data-tip="Views/Visitors Ratio: {ratio}"
@@ -445,7 +445,7 @@
 								{number_crunch(post.stats.views)}
 							</div>
 						</td>
-						<td class="text-right font-mono">
+						<td class="text-right font-mono whitespace-nowrap">
 							{number_crunch(post.stats.unique_visitors)}
 						</td>
 					</tr>
