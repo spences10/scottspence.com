@@ -355,7 +355,9 @@
 										(p) => p.timestamp === data.timestamp,
 									)}
 									<Tooltip.Header>
-										<span class="text-base-content/70 text-xs font-medium">
+										<span
+											class="text-base-content/70 text-xs font-medium"
+										>
 											{point
 												? point.date.toLocaleDateString('en-GB', {
 														day: 'numeric',
@@ -584,7 +586,7 @@
 						...period_stats.countries.map((c) => c.visitors),
 					)}
 					<ul class="space-y-1">
-						{#each period_stats.countries as c}
+						{#each period_stats.countries.slice(0, 15) as c}
 							<li class="relative flex items-center gap-2 py-1.5">
 								<div
 									class="bg-primary/20 absolute inset-y-0 left-0 rounded"
