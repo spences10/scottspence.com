@@ -1,9 +1,14 @@
-import { page } from 'vitest/browser'
 import { flushSync, untrack } from 'svelte'
 import { describe, expect, it } from 'vitest'
 import { render } from 'vitest-browser-svelte'
-import type { BannerOptions } from './banner.svelte'
+import { page } from 'vitest/browser'
 import Banner from './banner.svelte'
+// BannerOptions is exported from the component's script block
+type BannerOptions = {
+	type: 'info' | 'tip' | 'warning' | 'announcement'
+	message: string
+	track_event?: string
+}
 
 describe('Banner Component', () => {
 	describe('Initial Rendering', () => {

@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit'
+import type { PageLoad } from './$types'
 
-export const load = async ({ data }) => {
+export const load: PageLoad = async ({ data }) => {
 	const slug = 'lets-work-together'
 	try {
 		const Copy = await import(`../../../copy/${slug}.md`)

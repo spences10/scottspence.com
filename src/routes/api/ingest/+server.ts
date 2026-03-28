@@ -210,7 +210,13 @@ const tasks: TaskType = {
 	},
 }
 
-export const POST = async ({ request, fetch }) => {
+export const POST = async ({
+	request,
+	fetch,
+}: {
+	request: Request
+	fetch: typeof globalThis.fetch
+}) => {
 	try {
 		const body: RequestBody = await request.json()
 		const task_key = body.task

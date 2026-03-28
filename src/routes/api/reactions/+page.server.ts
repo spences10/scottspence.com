@@ -2,7 +2,15 @@ import { submit_reaction } from '$lib/state/reactions.svelte'
 import { fail } from '@sveltejs/kit'
 
 export const actions = {
-	default: async ({ request, url, getClientAddress }) => {
+	default: async ({
+		request,
+		url,
+		getClientAddress,
+	}: {
+		request: Request
+		url: URL
+		getClientAddress: () => string
+	}) => {
 		const ip = getClientAddress()
 		const data = await request.formData()
 		const reaction = data.get('reaction')

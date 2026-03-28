@@ -4,6 +4,9 @@ import { json } from '@sveltejs/kit'
 export const GET = async ({
 	getClientAddress,
 	url,
+}: {
+	getClientAddress: () => string
+	url: URL
 }): Promise<Response> => {
 	const BYPASS_DB_READS = true // Set to false to enable DB reads
 	if (BYPASS_DB_READS) {

@@ -16,7 +16,7 @@ import path from 'node:path'
 //      -H "Content-Type: application/json" \
 //      -d '{"task": "pull_database", "token": "your-secret-token"}'
 
-export const GET = async ({ request }) => {
+export const GET = async ({ request }: { request: Request }) => {
 	try {
 		// Check authorization
 		const auth_header = request.headers.get('authorization')
