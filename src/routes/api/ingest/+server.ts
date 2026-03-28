@@ -7,7 +7,6 @@ import { cleanup_analytics } from './cleanup-analytics'
 import { daily_github_activity } from './daily-github-activity'
 import { export_training_data } from './export-training-data'
 import { fetch_github_activity } from './fetch-github-activity'
-import { generate_newsletter } from './generate-newsletter'
 import { index_now } from './index-now'
 import { newsletter_send } from './newsletter-send'
 import { pull_database } from './pull-database'
@@ -108,7 +107,6 @@ type TaskKey =
 	| 'fetch_github_activity'
 	| 'backfill_github_activity'
 	| 'daily_github_activity'
-	| 'generate_newsletter'
 	| 'send_newsletter_reminder'
 	| 'rollup_analytics'
 	| 'cleanup_analytics'
@@ -184,10 +182,6 @@ const tasks: TaskType = {
 	},
 	daily_github_activity: {
 		function: daily_github_activity,
-		expects_fetch: false,
-	},
-	generate_newsletter: {
-		function: generate_newsletter,
 		expects_fetch: false,
 	},
 	send_newsletter_reminder: {
