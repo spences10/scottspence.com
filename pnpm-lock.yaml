@@ -11,9 +11,15 @@ importers:
       '@octokit/rest':
         specifier: ^22.0.1
         version: 22.0.1
+      '@types/d3-shape':
+        specifier: ^3.1.8
+        version: 3.1.8
       better-sqlite3:
         specifier: ^12.8.0
         version: 12.8.0
+      d3-shape:
+        specifier: ^3.2.0
+        version: 3.2.0
       sqlite-vec:
         specifier: 0.1.7
         version: 0.1.7

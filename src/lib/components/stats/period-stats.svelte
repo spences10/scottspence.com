@@ -20,7 +20,16 @@
 	import { InformationCircle } from '$lib/icons'
 	import { number_crunch } from '$lib/utils'
 	import { scaleTime } from 'd3-scale'
-	import { Area, Axis, Chart, Svg, Tooltip } from 'layerchart'
+	import { curveMonotoneX } from 'd3-shape'
+	import {
+		Area,
+		Axis,
+		Chart,
+		Highlight,
+		LinearGradient,
+		Svg,
+		Tooltip,
+	} from 'layerchart'
 	import StatRowMulti from './stat-row-multi.svelte'
 	import {
 		country_flag,
@@ -264,26 +273,75 @@
 							y="value"
 							yDomain={[0, max_value]}
 							yNice
-							padding={{ left: 40, bottom: 24, right: 8, top: 8 }}
+							padding={{ left: 48, bottom: 24, right: 8, top: 8 }}
 							tooltip={{ mode: 'bisect-x' }}
 						>
 							<Svg>
-								<Axis placement="left" grid rule />
-								<Axis placement="bottom" />
-								<!-- Visitors area/line -->
-								<Area
-									data={chart_series_data.visitors}
-									line={{ class: 'stroke-secondary stroke-2' }}
-									class="fill-secondary/20"
+								<Axis
+									placement="left"
+									grid
+									rule
+									format={(v: number) => number_crunch(v)}
+									classes={{
+										tickLabel:
+											'!stroke-transparent fill-muted-foreground',
+									}}
 								/>
-								<!-- Views area/line -->
-								<Area
-									data={chart_series_data.views}
-									line={{ class: 'stroke-primary stroke-2' }}
-									class="fill-primary/20"
+								<Axis
+									placement="bottom"
+									rule
+									ticks={7}
+									format={(v: Date) =>
+										v.toLocaleDateString('en-GB', {
+											day: 'numeric',
+											month: 'short',
+										})}
+									classes={{
+										tickLabel:
+											'!stroke-transparent fill-muted-foreground',
+									}}
 								/>
+								<!-- Visitors area with gradient -->
+								<LinearGradient
+									class="from-secondary/50 to-secondary/1"
+									vertical
+								>
+									{#snippet children({ gradient })}
+										<Area
+											data={chart_series_data.visitors}
+											curve={curveMonotoneX}
+											fill={gradient}
+											line={{
+												class: 'stroke-secondary stroke-2',
+											}}
+										/>
+									{/snippet}
+								</LinearGradient>
+								<!-- Views area with gradient -->
+								<LinearGradient
+									class="from-primary/50 to-primary/1"
+									vertical
+								>
+									{#snippet children({ gradient })}
+										<Area
+											data={chart_series_data.views}
+											curve={curveMonotoneX}
+											fill={gradient}
+											line={{
+												class: 'stroke-primary stroke-2',
+											}}
+										/>
+									{/snippet}
+								</LinearGradient>
+								<Highlight points lines />
 							</Svg>
-							<Tooltip.Root>
+							<Tooltip.Root
+								variant="none"
+								classes={{
+									container:
+										'bg-base-100 text-base-content rounded-lg border border-base-300 px-3 py-2 text-sm shadow-lg',
+								}}
+							>
 								{#snippet children({
 									data,
 								}: {
@@ -296,15 +354,31 @@
 									{@const point = chart_data_parsed.find(
 										(p) => p.timestamp === data.timestamp,
 									)}
-									<Tooltip.Header>{data.timestamp}</Tooltip.Header>
+									<Tooltip.Header>
+										<span class="text-base-content/70 text-xs font-medium">
+											{point
+												? point.date.toLocaleDateString('en-GB', {
+														day: 'numeric',
+														month: 'short',
+														year: 'numeric',
+													})
+												: data.timestamp}
+										</span>
+									</Tooltip.Header>
 									<Tooltip.List>
 										<Tooltip.Item
 											label="Visitors"
 											value={number_crunch(point?.visitors ?? 0)}
+											classes={{
+												label: 'text-secondary',
+											}}
 										/>
 										<Tooltip.Item
 											label="Views"
 											value={number_crunch(point?.views ?? 0)}
+											classes={{
+												label: 'text-primary',
+											}}
 										/>
 									</Tooltip.List>
 								{/snippet}
