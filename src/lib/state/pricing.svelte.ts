@@ -6,37 +6,69 @@ import {
 	set_cache,
 } from '$lib/cache/server-cache'
 import { sqlite_client } from '$lib/sqlite/client'
+import type { UkTaxConfig } from '$lib/uk-tax-calculator'
 import { differenceInHours, parseISO } from 'date-fns'
 
-const CACHE_KEY = 'pricing'
+const CACHE_KEY = 'pricing_v3'
 
 type ExchangeRates = {
-	GBP: number
+	EUR: number
 	USD: number
 	CAD: number
 }
 
-type PricingNumbers = {
-	annual_rate_eur: number
-	chosen_holidays: number
-	public_holidays: number
+type PricingConfig = {
+	day_rate_gbp: number
+	ir35_uplift_pct: number
 	working_days_in_year: number
+	public_holidays: number
+	default_pto_days: number
 }
 
 interface PricingData {
-	exchangeRates: ExchangeRates
-	pricingNumbers: PricingNumbers
+	exchange_rates: ExchangeRates
+	pricing_config: PricingConfig
+	uk_tax_config: UkTaxConfig
+}
+
+const DEFAULT_CONFIG: PricingConfig = {
+	day_rate_gbp: 575,
+	ir35_uplift_pct: 25,
+	working_days_in_year: 252,
+	public_holidays: 8,
+	default_pto_days: 30,
+}
+
+const DEFAULT_TAX_CONFIG: UkTaxConfig = {
+	personal_allowance: 12570,
+	personal_allowance_taper_start: 100000,
+	basic_rate_ceiling: 50270,
+	higher_rate_ceiling: 125140,
+	basic_rate: 0.2,
+	higher_rate: 0.4,
+	additional_rate: 0.45,
+	ni_primary_threshold: 12570,
+	ni_upper_earnings_limit: 50270,
+	ni_main_rate: 0.08,
+	ni_upper_rate: 0.02,
+	corporation_tax_rate: 0.25,
+	dividend_allowance: 500,
+	dividend_basic_rate: 0.0875,
+	dividend_higher_rate: 0.3375,
+	basic_rate_band: 37700,
+}
+
+const FALLBACK_RATES: ExchangeRates = {
+	EUR: 1.17,
+	USD: 1.27,
+	CAD: 1.74,
 }
 
 class PricingState {
 	data = $state<PricingData>({
-		exchangeRates: { GBP: 0, USD: 0, CAD: 0 },
-		pricingNumbers: {
-			annual_rate_eur: 155000,
-			chosen_holidays: 30,
-			public_holidays: 8,
-			working_days_in_year: 252,
-		},
+		exchange_rates: { ...FALLBACK_RATES },
+		pricing_config: { ...DEFAULT_CONFIG },
+		uk_tax_config: { ...DEFAULT_TAX_CONFIG },
 	})
 	loading = $state<boolean>(false)
 	last_fetched = $state<number>(0)
@@ -44,18 +76,13 @@ class PricingState {
 	async load_pricing_data(): Promise<void> {
 		if (BYPASS_DB_READS.pricing) {
 			this.data = {
-				exchangeRates: { GBP: 0.86, USD: 1.09, CAD: 1.47 },
-				pricingNumbers: {
-					annual_rate_eur: 155000,
-					chosen_holidays: 30,
-					public_holidays: 8,
-					working_days_in_year: 252,
-				},
+				exchange_rates: { ...FALLBACK_RATES },
+				pricing_config: { ...DEFAULT_CONFIG },
+				uk_tax_config: { ...DEFAULT_TAX_CONFIG },
 			}
-			return // DB reads disabled
+			return
 		}
 
-		// Check server cache first
 		const server_cached = get_from_cache<PricingData>(
 			CACHE_KEY,
 			CACHE_DURATIONS.pricing,
@@ -66,31 +93,28 @@ class PricingState {
 			return
 		}
 
-		// Check client cache
 		if (
 			Date.now() - this.last_fetched < CACHE_DURATIONS.pricing &&
-			this.data.exchangeRates.USD > 0 &&
-			this.data.pricingNumbers.annual_rate_eur > 0
+			this.data.exchange_rates.USD > 0 &&
+			this.data.pricing_config.day_rate_gbp > 0
 		) {
-			return // Use cached data
+			return
 		}
 
-		if (this.loading) return // Prevent concurrent requests
+		if (this.loading) return
 
 		this.loading = true
 
 		try {
-			const [exchangeRates, pricingNumbers] = await Promise.all([
-				this.fetch_exchange_rates(),
-				this.fetch_pricing_numbers(),
-			])
+			const [exchange_rates, pricing_config, uk_tax_config] =
+				await Promise.all([
+					this.fetch_exchange_rates(),
+					this.fetch_pricing_config(),
+					this.fetch_uk_tax_config(),
+				])
 
-			const data = {
-				exchangeRates,
-				pricingNumbers,
-			}
+			const data = { exchange_rates, pricing_config, uk_tax_config }
 
-			// Update both caches
 			this.data = data
 			this.last_fetched = Date.now()
 			set_cache(CACHE_KEY, data)
@@ -99,7 +123,6 @@ class PricingState {
 				'Database unavailable, keeping cached pricing data:',
 				error instanceof Error ? error.message : 'Unknown error',
 			)
-			// Keep existing data on error - don't clear it
 		} finally {
 			this.loading = false
 		}
@@ -109,17 +132,16 @@ class PricingState {
 		const client = sqlite_client
 		let fetch_new_rates = false
 
-		// Check if the rates in the database are outdated
 		try {
 			const last_update_result = await client.execute(
 				'SELECT MAX(last_updated) as last_update FROM exchange_rates;',
 			)
 			const last_updated = last_update_result.rows[0] as unknown as {
-				last_update: string
+				last_update: string | null
 			}
 
 			if (
-				last_updated &&
+				!last_updated?.last_update ||
 				differenceInHours(
 					new Date(),
 					parseISO(last_updated.last_update),
@@ -132,43 +154,51 @@ class PricingState {
 				'Database unavailable for checking rates update time, will use fallbacks:',
 				error instanceof Error ? error.message : 'Unknown error',
 			)
-			// When database is unavailable, skip fetching new rates and use fallbacks
-			return { GBP: 0.86, USD: 1.09, CAD: 1.47 }
+			return { ...FALLBACK_RATES }
 		}
 
-		// Fetch new rates if necessary and update the database
 		if (fetch_new_rates) {
-			const response = await fetch(
-				`https://api.freecurrencyapi.com/v1/latest?apikey=${EXCHANGE_RATE_API_KEY}&currencies=GBP%2CUSD%2CCAD&base_currency=EUR`,
-			)
-			const fetched_rates = (await response.json())
-				.data as ExchangeRates
+			try {
+				const response = await fetch(
+					`https://api.freecurrencyapi.com/v1/latest?apikey=${EXCHANGE_RATE_API_KEY}&currencies=EUR%2CUSD%2CCAD&base_currency=GBP`,
+				)
+				const fetched_rates = (await response.json())
+					.data as ExchangeRates
 
-			for (const [currency, rate] of Object.entries(fetched_rates)) {
-				try {
-					// TODO: Maybe keep a history of these?
-					const stmt =
-						client.prepare(`INSERT INTO exchange_rates (currency_code, rate) VALUES (?, ?)
-							ON CONFLICT (currency_code) DO UPDATE SET rate = ?, last_updated = CURRENT_TIMESTAMP;`)
-					stmt.run(currency, rate, rate)
-				} catch (error) {
-					console.error(
-						`Error updating exchange rate for ${currency}:`,
-						error,
-					)
+				for (const [currency, rate] of Object.entries(
+					fetched_rates,
+				)) {
+					try {
+						const stmt = client.prepare(
+							`INSERT INTO exchange_rates (currency_code, rate) VALUES (?, ?)
+							ON CONFLICT (currency_code) DO UPDATE SET rate = ?, last_updated = CURRENT_TIMESTAMP;`,
+						)
+						stmt.run(currency, rate, rate)
+					} catch (error) {
+						console.error(
+							`Error updating exchange rate for ${currency}:`,
+							error,
+						)
+					}
 				}
+			} catch (error) {
+				console.warn(
+					'Failed to fetch exchange rates from API:',
+					error instanceof Error ? error.message : 'Unknown error',
+				)
 			}
 		}
 
-		// If the rates are not outdated, fetch them from the database
 		try {
 			const result = await client.execute(
 				'SELECT currency_code, rate FROM exchange_rates;',
 			)
-			const rates: ExchangeRates = { GBP: 0, USD: 0, CAD: 0 }
+			const rates: ExchangeRates = { ...FALLBACK_RATES }
 			result.rows.forEach((row) => {
 				const code = row.currency_code as keyof ExchangeRates
-				rates[code] = Number(row.rate)
+				if (code in rates) {
+					rates[code] = Number(row.rate)
+				}
 			})
 			return rates
 		} catch (error) {
@@ -176,58 +206,87 @@ class PricingState {
 				'Database unavailable for exchange rates, using fallbacks:',
 				error instanceof Error ? error.message : 'Unknown error',
 			)
-			return { GBP: 0.86, USD: 1.09, CAD: 1.47 } // Fallback rates
+			return { ...FALLBACK_RATES }
 		}
 	}
 
-	private async fetch_pricing_numbers(): Promise<PricingNumbers> {
+	private async fetch_pricing_config(): Promise<PricingConfig> {
 		const client = sqlite_client
-		let pricing_numbers: any
 
 		try {
-			pricing_numbers = await client.execute(
-				'SELECT * FROM pricing_numbers ORDER BY last_updated DESC LIMIT 1;',
+			const result = await client.execute(
+				'SELECT * FROM pricing_config ORDER BY last_updated DESC LIMIT 1;',
 			)
 
-			if (pricing_numbers.rows.length === 0) {
-				return {
-					annual_rate_eur: 155000,
-					chosen_holidays: 30,
-					public_holidays: 8,
-					working_days_in_year: 252,
-				}
+			if (result.rows.length === 0) {
+				return { ...DEFAULT_CONFIG }
 			}
 
-			const row = pricing_numbers.rows[0]
+			const row = result.rows[0]
 			return {
-				annual_rate_eur: Number(row.annual_rate_eur),
-				chosen_holidays: Number(row.chosen_holidays),
-				public_holidays: Number(row.public_holidays),
+				day_rate_gbp: Number(row.day_rate_gbp),
+				ir35_uplift_pct: Number(row.ir35_uplift_pct),
 				working_days_in_year: Number(row.working_days_in_year),
+				public_holidays: Number(row.public_holidays),
+				default_pto_days: Number(row.default_pto_days),
 			}
 		} catch (error) {
 			console.warn(
-				'Database unavailable for pricing numbers, using defaults:',
+				'Database unavailable for pricing config, using defaults:',
 				error instanceof Error ? error.message : 'Unknown error',
 			)
-			return {
-				annual_rate_eur: 155000,
-				chosen_holidays: 30,
-				public_holidays: 8,
-				working_days_in_year: 252,
+			return { ...DEFAULT_CONFIG }
+		}
+	}
+
+	private async fetch_uk_tax_config(): Promise<UkTaxConfig> {
+		const client = sqlite_client
+
+		try {
+			const result = await client.execute(
+				'SELECT * FROM uk_tax_config ORDER BY last_updated DESC LIMIT 1;',
+			)
+
+			if (result.rows.length === 0) {
+				return { ...DEFAULT_TAX_CONFIG }
 			}
+
+			const row = result.rows[0]
+			return {
+				personal_allowance: Number(row.personal_allowance),
+				personal_allowance_taper_start: Number(
+					row.personal_allowance_taper_start,
+				),
+				basic_rate_ceiling: Number(row.basic_rate_ceiling),
+				higher_rate_ceiling: Number(row.higher_rate_ceiling),
+				basic_rate: Number(row.basic_rate),
+				higher_rate: Number(row.higher_rate),
+				additional_rate: Number(row.additional_rate),
+				ni_primary_threshold: Number(row.ni_primary_threshold),
+				ni_upper_earnings_limit: Number(row.ni_upper_earnings_limit),
+				ni_main_rate: Number(row.ni_main_rate),
+				ni_upper_rate: Number(row.ni_upper_rate),
+				corporation_tax_rate: Number(row.corporation_tax_rate),
+				dividend_allowance: Number(row.dividend_allowance),
+				dividend_basic_rate: Number(row.dividend_basic_rate),
+				dividend_higher_rate: Number(row.dividend_higher_rate),
+				basic_rate_band: Number(row.basic_rate_band),
+			}
+		} catch (error) {
+			console.warn(
+				'Database unavailable for UK tax config, using defaults:',
+				error instanceof Error ? error.message : 'Unknown error',
+			)
+			return { ...DEFAULT_TAX_CONFIG }
 		}
 	}
 }
 
-// Single universal instance shared everywhere
 export const pricing_state = new PricingState()
 
-// Server-side function that uses the pricing state instance
 export const get_pricing_data = async (): Promise<PricingData> => {
 	await pricing_state.load_pricing_data()
 	return pricing_state.data
 }
 
-// Export types
-export type { ExchangeRates, PricingData, PricingNumbers }
+export type { ExchangeRates, PricingConfig, PricingData }

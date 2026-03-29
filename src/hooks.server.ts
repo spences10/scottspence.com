@@ -183,9 +183,16 @@ const track_analytics: Handle = async ({ event, resolve }) => {
 	return response
 }
 
+const set_country: Handle = async ({ event, resolve }) => {
+	event.locals.country =
+		event.request.headers.get('cf-ipcountry') || null
+	return await resolve(event)
+}
+
 export const handle = sequence(
 	sync_on_startup,
 	reject_suspicious_requests,
+	set_country,
 	track_analytics,
 	handle_redirects,
 	theme,
