@@ -25,12 +25,12 @@
 		{/if}
 	</span>
 	<span
-		class="badge badge-ghost badge-sm relative w-14 justify-end tabular-nums"
+		class="badge badge-ghost badge-sm relative w-14 shrink-0 justify-end whitespace-nowrap tabular-nums"
 	>
 		{number_crunch(visitors)}
 	</span>
 	<span
-		class="badge badge-outline badge-sm relative w-14 justify-end tabular-nums"
+		class="badge badge-outline badge-sm relative w-14 shrink-0 justify-end whitespace-nowrap tabular-nums"
 	>
 		{number_crunch(views)}
 	</span>
