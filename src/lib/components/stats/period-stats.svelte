@@ -292,10 +292,16 @@
 									rule
 									ticks={7}
 									format={(v: Date) =>
-										v.toLocaleDateString('en-GB', {
-											day: 'numeric',
-											month: 'short',
-										})}
+										selected_stats_period === 'today' ||
+										selected_stats_period === 'yesterday'
+											? v.toLocaleTimeString('en-GB', {
+													hour: '2-digit',
+													minute: '2-digit',
+												})
+											: v.toLocaleDateString('en-GB', {
+													day: 'numeric',
+													month: 'short',
+												})}
 									classes={{
 										tickLabel:
 											'!stroke-transparent fill-muted-foreground',
@@ -358,13 +364,27 @@
 										<span
 											class="text-base-content/70 text-xs font-medium"
 										>
-											{point
-												? point.date.toLocaleDateString('en-GB', {
+											{#if point}
+												{#if selected_stats_period === 'today' || selected_stats_period === 'yesterday'}
+													{point.date.toLocaleTimeString('en-GB', {
+														hour: '2-digit',
+														minute: '2-digit',
+													})}
+													&middot;
+													{point.date.toLocaleDateString('en-GB', {
+														day: 'numeric',
+														month: 'short',
+													})}
+												{:else}
+													{point.date.toLocaleDateString('en-GB', {
 														day: 'numeric',
 														month: 'short',
 														year: 'numeric',
-													})
-												: data.timestamp}
+													})}
+												{/if}
+											{:else}
+												{data.timestamp}
+											{/if}
 										</span>
 									</Tooltip.Header>
 									<Tooltip.List>
