@@ -1,15 +1,6 @@
--- Remove salary_equivalent_gbp/salary_multiplier from pricing_config
--- (now calculated from uk_tax_config bands instead of stored)
--- and create uk_tax_config table for HMRC tax rates.
+-- Create uk_tax_config if it doesn't exist (fresh DBs get it from 012,
+-- but DBs that ran the original 012 before it was updated need this).
 
--- Drop the old column (salary_multiplier from 012, or salary_equivalent_gbp
--- if 012 was re-run). SQLite 3.35+ supports ALTER TABLE DROP COLUMN.
-ALTER TABLE pricing_config DROP COLUMN salary_multiplier;
-
--- UK tax bands and rates - stored in DB so they can be updated
--- without a code deploy when HMRC changes rates.
--- NOTE: Review annually around March/April budget.
--- Current rates: 2025/26 tax year (frozen to April 2028).
 CREATE TABLE IF NOT EXISTS
   uk_tax_config (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
