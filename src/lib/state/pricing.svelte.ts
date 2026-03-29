@@ -6,7 +6,10 @@ import {
 	set_cache,
 } from '$lib/cache/server-cache'
 import { sqlite_client } from '$lib/sqlite/client'
-import type { UkTaxConfig } from '$lib/uk-tax-calculator'
+import {
+	DEFAULT_TAX_CONFIG,
+	type UkTaxConfig,
+} from '$lib/uk-tax-calculator'
 import { differenceInHours, parseISO } from 'date-fns'
 
 const CACHE_KEY = 'pricing_v3'
@@ -37,25 +40,6 @@ const DEFAULT_CONFIG: PricingConfig = {
 	working_days_in_year: 252,
 	public_holidays: 8,
 	default_pto_days: 30,
-}
-
-const DEFAULT_TAX_CONFIG: UkTaxConfig = {
-	personal_allowance: 12570,
-	personal_allowance_taper_start: 100000,
-	basic_rate_ceiling: 50270,
-	higher_rate_ceiling: 125140,
-	basic_rate: 0.2,
-	higher_rate: 0.4,
-	additional_rate: 0.45,
-	ni_primary_threshold: 12570,
-	ni_upper_earnings_limit: 50270,
-	ni_main_rate: 0.08,
-	ni_upper_rate: 0.02,
-	corporation_tax_rate: 0.25,
-	dividend_allowance: 500,
-	dividend_basic_rate: 0.0875,
-	dividend_higher_rate: 0.3375,
-	basic_rate_band: 37700,
 }
 
 const FALLBACK_RATES: ExchangeRates = {

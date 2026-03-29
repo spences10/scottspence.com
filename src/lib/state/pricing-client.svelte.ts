@@ -1,5 +1,6 @@
 import {
 	calculate_contractor_vs_permanent,
+	DEFAULT_TAX_CONFIG,
 	type UkTaxConfig,
 } from '$lib/uk-tax-calculator'
 import { country_to_currency } from '../../routes/lets-work-together/utils'
@@ -22,25 +23,6 @@ interface PricingData {
 	exchange_rates: ExchangeRates
 	pricing_config: PricingConfig
 	uk_tax_config: UkTaxConfig
-}
-
-const DEFAULT_TAX_CONFIG: UkTaxConfig = {
-	personal_allowance: 12570,
-	personal_allowance_taper_start: 100000,
-	basic_rate_ceiling: 50270,
-	higher_rate_ceiling: 125140,
-	basic_rate: 0.2,
-	higher_rate: 0.4,
-	additional_rate: 0.45,
-	ni_primary_threshold: 12570,
-	ni_upper_earnings_limit: 50270,
-	ni_main_rate: 0.08,
-	ni_upper_rate: 0.02,
-	corporation_tax_rate: 0.25,
-	dividend_allowance: 500,
-	dividend_basic_rate: 0.0875,
-	dividend_higher_rate: 0.3375,
-	basic_rate_band: 37700,
 }
 
 class PricingState {
