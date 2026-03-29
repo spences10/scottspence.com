@@ -1,8 +1,8 @@
 <script>
  import {
-    DateDistance as DD, 
-    DateUpdated, 
-    Small, 
+    DateDistance as DD,
+    DateUpdated,
+    Small,
   } from '$lib/components'
  import {
     BlogPost,
@@ -15,37 +15,39 @@
 # Let's work together!
 
 <Small>
-  Last updated: <DateUpdated date='2024-09-22' small='true' />
+  Last updated: <DateUpdated date='2026-03-29' small='true' />
 </Small>
 
 In today's rapidly evolving tech landscape, having a seasoned expert
 on your team can be the difference between success and stagnation.
-With nearly two decades of diverse tech experience, I bring a unique
-blend of technical prowess, leadership skills, and community influence
-to the table.
+With over two decades of diverse tech experience, I bring a unique
+blend of technical expertise, AI engineering leadership, and community
+influence to the table.
 
-## What can an expert Svelte and SvelteKit Developer Advocate do for you?
+## What can an AI & Svelte engineering leader do for you?
 
 With <DD date='2004-06-15' /> of experience in the tech industry,
 including <DD date='2016-06-15' /> of hands-on web and fullstack
-development, I offer more than just coding skills. My proficiency lies
-in empowering teams, driving adoption, and elevating products through
-education, advocacy, and strategic guidance.
+development, I offer more than just coding skills. I build AI-powered
+products, lead engineering teams, and ship fast. My recent work
+includes building an AI customer service agent runtime that reduced
+average handle time by 40%, and developing multi-agent orchestration
+systems with Claude and MCP tooling.
 
-With my diverse background I have honed my skills in stakeholder
-management and realistic project management, which I've successfully
-applied throughout my career. This unique combination allows me to
-bridge the gap between technical implementation and business needs
-effectively.
+I built [Svortie](https://svortie.com) in two weeks between contracts,
+a full agent orchestration platform where you define agents, deploy
+them into sandboxed environments, and monitor execution in real time.
 
-As a Svelte ambassador and co-founder of the Svelte Society London
-events for nearly 3 years, I serve as a bridge between your team and
-the broader Svelte community. This proactive approach can
-significantly boost your product's adoption, visibility, and success.
+As a recognised Svelte ambassador and co-founder of the Svelte Society
+London events (running since November 2021), I bridge the gap between
+your team and the broader Svelte community. This proactive approach
+can significantly boost your product's adoption, visibility, and
+success.
 
-Whether it's delivering top-tier workshops, leading projects, or
-advocating for your product, my diverse skill set can drive tangible
-results for your team and business.
+Whether it's building AI-powered features, delivering top-tier
+workshops, leading projects, or advocating for your product, my
+diverse skill set can drive tangible results for your team and
+business.
 
 ## Workshops & speaking engagements
 
@@ -54,39 +56,38 @@ _**Empowering developers through education**_
 With <DD date='2021-04-21' /> of experience delivering engaging talks
 at events like JSNation, CityJS, Connect.Tech Atlanta, and Jamstack
 Conf, I've honed my skills in translating complex technical concepts
-into actionable learning experiences. My workshops aim to empower
-developers, providing them with the tools and knowledge to navigate
-and utilize Svelte and SvelteKit effectively.
+into actionable learning experiences. My workshops cover Svelte,
+SvelteKit, AI integration, and modern developer tooling.
 
 From beginner-friendly introductions to advanced deep dives, I offer
 workshops that cater to all experience levels. Participants walk away
-with a comprehensive understanding of these powerful tools and the
-ability to implement them effectively in their own projects.
+with a comprehensive understanding of these tools and the ability to
+implement them effectively in their own projects.
 
 ## Consulting & project delivery
 
 _**Bringing expert knowledge and leadership to your team**_
 
-Beyond standalone workshops, I offer long-term consulting services and
-project leadership. As the current Application Team Lead at XtendOps,
-overseeing a large SvelteKit monorepo codebase, I bring valuable
-experience in leading multi-national remote teams and ensuring best
-practices throughout the development lifecycle. For specialized Svelte
-consulting services, visit
-[Svelte Consulting](https://svelteconsulting.dev) or
-[OES Technology](https://oestechnology.co.uk).
+I offer long-term consulting services and project leadership through
+[OES Technology](https://oestechnology.co.uk). Having recently led a
+team of 12 developers across two product teams, overseeing a large
+SvelteKit monorepo codebase, I bring hands-on experience in leading
+multi-national remote teams and ensuring best practices throughout the
+development lifecycle.
 
 My approach is collaborative and adaptive, focusing on creating a
 positive and productive working environment. I believe in the
 importance of communication and transparency in ensuring a project's
 success, and work with team members to foster these values.
 
-Whether your team needs to expand its knowledge of Svelte and
-SvelteKit, or require expert guidance on a major project, my wealth of
-experience can be a valuable asset.
+Whether your team needs to expand its knowledge of Svelte, SvelteKit,
+or AI integration, or requires expert guidance on a major project, my
+wealth of experience can be a valuable asset.
 
 Common scenarios where I deliver successful projects:
 
+- You need an AI engineering leader to build agent-powered features
+  into your product.
 - You need a developer advocate to increase the visibility and
   adoption of your product.
 - You require assistance with workshops, tutorials, demos, educational
@@ -104,15 +105,14 @@ _**Transparency and flexibility**_
 
 I believe in straightforward, transparent pricing. To simplify this
 process, I've added pricing widgets that cover the services I offer,
-all calculated on a single rate.
+all calculated from a single day rate. The currency is automatically
+set based on your location, but you can change it using the dropdown.
 
-_**Currency preference and client location**_
+_**Client location**_
 
 While I'm based in the UK (Swanley, Kent), I've had the privilege to
-work with diverse teams across different time zones. I prefer payments
-in EUR or USD, aligning well with the international tech market.
-However, I'm adaptable and can work with your company's local currency
-if needed.
+work with diverse teams across different time zones. I work with
+clients internationally and can invoice in GBP, USD, EUR, or CAD.
 
 My preference leans towards forming long-lasting relationships with
 international companies, valuing the dynamics of global cooperation
@@ -120,11 +120,10 @@ and the opportunities they present.
 
 ## Rates
 
-The widget below factors in holidays (with 8 days public holidays as
-default). If you're willing to provide Paid Time Off (PTO) or it's a
-short contract, you can adjust using the slider. This gives you an
-idea of the budget and helps align with your existing employment
-practices.
+The rate calculator shows my day rate with options to adjust for PTO.
+If you're willing to provide Paid Time Off or it's a short contract,
+you can adjust using the slider. UK-based clients can also see the
+IR35 inside/outside comparison and full-time salary equivalent.
 
 <Rate />
 
@@ -132,10 +131,10 @@ Now, let's go into specifics:
 
 ## Workshops
 
-I offer several types of workshops to level-up your team's SvelteKit
-skills. From basics through API integration and styling with
+I offer several types of workshops to level-up your team's skills.
+From SvelteKit basics through AI integration and styling with
 contemporary tools like Tailwind and daisyUI, these workshops offer
-comprehensive insights into working with Svelte and SvelteKit.
+comprehensive insights into building modern web applications.
 
 <Workshop />
 
@@ -152,12 +151,12 @@ content for your team or community.
 ## Blog Posts
 
 My blog posts serve as go-to resources for both beginner and seasoned
-developers in the Svelte and SvelteKit space. Covering topics from
-basic concepts to advanced techniques, each post is designed to offer
-actionable insights and solutions. With a proven track record of
-content creation and examples of such content on
-[scottspence.com](https://scottspence.com) (with over 30k monthly
-visitors), I deliver valuable written content for your audience.
+developers. Covering topics from Svelte and SvelteKit to AI tooling
+and developer workflows, each post is designed to offer actionable
+insights and solutions. With a proven track record of content creation
+across 244+ posts on [scottspence.com](https://scottspence.com) (with
+22k+ monthly readers and 1.4M+ total page views), I deliver valuable
+written content for your audience.
 
 <BlogPost />
 
@@ -169,10 +168,10 @@ don't hesitate to [reach out]. I'm here to help.
 ## Why hire me?
 
 With <DD date='2004-06-15' /> of experience in the tech industry,
-including <DD date='2016-06-15' /> of hands-on JavaScript, HTML, and
-CSS experience, I bring a robust and diverse skill set to the table.
-My career spans multiple phases, each contributing unique value to my
-current expertise.
+including <DD date='2016-06-15' /> of hands-on JavaScript, TypeScript,
+HTML, and CSS experience, I bring a robust and diverse skill set to
+the table. My career spans multiple phases, each contributing unique
+value to my current expertise.
 
 ## My background
 
@@ -182,7 +181,10 @@ delivering solutions in high-pressure environments.
 
 For <DD date='2016-06-15' /> now, I've been fully immersed in web and
 fullstack development, working on projects for start-ups, medium to
-large businesses, and international brands.
+large businesses, and international brands. More recently, I've been
+focused on AI engineering — building agent runtimes, multi-agent
+orchestration systems, and developer tooling with Claude, MCP, and
+TypeScript.
 
 This diverse background has allowed me to develop a unique blend of
 technical and soft skills, enabling me to navigate complex project
@@ -196,16 +198,17 @@ technical implementation and business objectives.
 
 ## My skills
 
-I develop solutions using modern tooling and processes, leveraging
-JavaScript, HTML, CSS, and frameworks like Svelte and React. My
-expertise extends to:
+I build AI-powered products and modern web applications using
+TypeScript, SvelteKit, and the Claude ecosystem. My expertise extends
+to:
 
+- AI engineering (Claude API, Agent SDK, MCP tooling)
 - Team leadership and project management
 - Stakeholder management and communication
+- SvelteKit, TypeScript, and fullstack development
 - Developer advocacy and community building
 - Content creation (blog posts, videos, workshops)
-- CI/CD optimization
-- Agile methodologies
+- Infrastructure (AWS, Terraform, CI/CD)
 
 I'm a good communicator, reliable, autonomous, pragmatic, and adept at
 managing both myself and wider teams. My extensive experience has
