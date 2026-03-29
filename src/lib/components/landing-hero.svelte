@@ -31,9 +31,9 @@
 					</span>
 				</h1>
 				<p class="mb-5 text-pretty">
-					This is my blog where I write about many things, including,
-					but not limited to Svelte, SvelteKit, JavaScript, Tailwind
-					and many more web dev related topics.
+					AI engineering leader and fullstack developer. I build
+					AI-powered products with TypeScript, SvelteKit, and the
+					Claude ecosystem. I write about all of it here.
 				</p>
 				<p class="mb-5 text-pretty">
 					Check out that massive picture of my <a
