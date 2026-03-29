@@ -1,97 +1,40 @@
 <script lang="ts">
 	import { pricing_state } from '$lib/state/pricing-client.svelte'
-	import CurrencySelect from './currency-select.svelte'
 	import Select from './select.svelte'
-	import { calculate_day_rate_with_pto, locale_string } from './utils'
-
-	const get_field_value = (field_name: string): number => {
-		return (
-			pricing_state.data.pricingNumbers[
-				field_name as keyof typeof pricing_state.data.pricingNumbers
-			] || 0
-		)
-	}
-
-	let annual_rate_EUR = get_field_value('annual_rate_eur') || 120000
-	let working_days_in_year =
-		get_field_value('working_days_in_year') || 260
+	import { locale_string } from './utils'
 
 	const BLOG_POST_LENGTH = {
-		Short: {
-			description: '<1k words',
-			cost:
-				calculate_day_rate_with_pto(
-					annual_rate_EUR,
-					working_days_in_year,
-				) * 1,
-		},
-		Medium: {
-			description: '1k-2k words',
-			cost:
-				calculate_day_rate_with_pto(
-					annual_rate_EUR,
-					working_days_in_year,
-				) * 2,
-		},
-		Long: {
-			description: '>2k words',
-			cost:
-				calculate_day_rate_with_pto(
-					annual_rate_EUR,
-					working_days_in_year,
-				) * 3,
-		},
+		Short: { description: '<1k words', multiplier: 1 },
+		Medium: { description: '1k-2k words', multiplier: 2 },
+		Long: { description: '>2k words', multiplier: 3 },
 	}
 
 	const BLOG_POST_DEPTH = {
 		Overview: 0,
-		'In-depth': 0.5, // 50% extra
-		Series: 0.4, // 40% extra
+		'In-depth': 0.5,
+		Series: 0.4,
 	}
 
 	let selected_post_length = $state(Object.keys(BLOG_POST_LENGTH)[0])
 	let selected_post_depth = $state(Object.keys(BLOG_POST_DEPTH)[0])
-	let selected_currency = $state('EUR')
-	let selected_length_description = $state('Short')
 
-	// function to calculate cost with depth
-	const calculate_cost_with_depth = (
-		base_cost: number,
-		depth_percentage: number,
-	) => base_cost * (1 + depth_percentage)
-
-	$effect.pre(() => {
-		selected_length_description =
-			BLOG_POST_LENGTH[
-				selected_post_length as keyof typeof BLOG_POST_LENGTH
-			].description
-	})
-
-	let post_cost = $derived(
+	let selected_length_config = $derived(
 		BLOG_POST_LENGTH[
 			selected_post_length as keyof typeof BLOG_POST_LENGTH
-		].cost,
+		],
 	)
 
-	let post_cost_with_depth = $derived(
-		calculate_cost_with_depth(
-			post_cost,
-			BLOG_POST_DEPTH[
-				selected_post_depth as keyof typeof BLOG_POST_DEPTH
-			],
-		),
+	let depth_multiplier = $derived(
+		BLOG_POST_DEPTH[
+			selected_post_depth as keyof typeof BLOG_POST_DEPTH
+		],
 	)
 
-	let currency_rate = $derived(
-		selected_currency === 'EUR'
-			? 1
-			: pricing_state.data.exchangeRates[
-					selected_currency as keyof typeof pricing_state.data.exchangeRates
-				],
-	)
-
-	let post_cost_with_depth_in_selected_currency = $derived(
-		post_cost_with_depth * currency_rate,
+	let total_cost = $derived(
+		pricing_state.day_rate *
+			selected_length_config.multiplier *
+			(1 + depth_multiplier) *
+			pricing_state.currency_rate,
 	)
 </script>
 
@@ -120,10 +63,6 @@
 						options={Object.keys(BLOG_POST_DEPTH)}
 					/>
 				</div>
-
-				<div class="mb-4">
-					<CurrencySelect bind:selected_currency />
-				</div>
 			</fieldset>
 
 			<div
@@ -133,7 +72,7 @@
 				<div class="stat">
 					<div class="stat-title font-medium">Length</div>
 					<div class="stat-value text-primary flex items-center">
-						{selected_length_description}
+						{selected_length_config.description}
 					</div>
 					<div class="stat-desc">Word count range</div>
 				</div>
@@ -157,9 +96,9 @@
 				<div class="stat">
 					<div class="stat-title font-medium">Total</div>
 					<div class="stat-value text-accent flex items-center">
-						{locale_string(post_cost_with_depth_in_selected_currency)}
+						{locale_string(total_cost)}
 						<span class="ml-2 text-xl">
-							{selected_currency}
+							{pricing_state.selected_currency}
 						</span>
 					</div>
 					<div class="stat-desc">Final price</div>

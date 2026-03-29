@@ -17,25 +17,17 @@
 
 	let { data }: Props = $props()
 	let Copy = $derived(data.Copy)
-	let exchange_rates = $derived(data.exchange_rates)
-	let pricing_numbers = $derived(data.pricing_numbers)
 
-	// Initialize client-side state with server data
-	$effect(() => {
-		pricing_state.init({
-			exchangeRates: exchange_rates,
-			pricingNumbers: pricing_numbers || {
-				posts_per_week: 1,
-				years_programming: 10,
-				total_posts: 100,
-				average_reading_time: 5,
-				annual_rate_eur: 120000,
-				chosen_holidays: 25,
-				working_days_in_year: 260,
-				public_holidays: 8,
-			},
-		})
-	})
+	// Initialise client-side state with server data (one-time hydration)
+	// svelte-ignore state_referenced_locally
+	pricing_state.init(
+		{
+			exchange_rates: data.exchange_rates,
+			pricing_config: data.pricing_config,
+			uk_tax_config: data.uk_tax_config,
+		},
+		data.country,
+	)
 
 	let end_of_copy = $state<HTMLElement | null>(null)
 	let show_table_of_contents = $state(true)

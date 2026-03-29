@@ -42,11 +42,18 @@ curl -X POST https://scottspence.com/api/ingest \
 	-H "Authorization: Bearer $INGEST_TOKEN" \
 	-d '{"task": "backup_database"}'
  *
- * Step 3: Download the backup to local
+ * Step 3: Back up local DB (if exists), then download production
  *
+ * IMPORTANT: Always back up the local DB before overwriting.
+ * Downloading over a running DB can corrupt it.
+ *
+# Stop dev server first, then:
+[ -f data/site-data.db ] && cp data/site-data.db data/site-data.db.bak
+rm -f data/site-data.db
 curl -H "Authorization: Bearer $INGEST_TOKEN" \
 		https://scottspence.com/api/ingest/download \
 		-o data/site-data.db
+# If download fails, restore: cp data/site-data.db.bak data/site-data.db
  *
  * Step 4: Restart dev server to clear caches
  *

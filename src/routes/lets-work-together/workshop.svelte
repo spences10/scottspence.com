@@ -1,22 +1,9 @@
 <script lang="ts">
 	import { pricing_state } from '$lib/state/pricing-client.svelte'
-	import CurrencySelect from './currency-select.svelte'
 	import Select from './select.svelte'
 	import { locale_string } from './utils'
 
-	const get_field_value = (field_name: string): number => {
-		return (pricing_state.data.pricingNumbers as any)[field_name] || 0
-	}
-
-	let annual_rate_EUR = get_field_value('annual_rate_eur') || 120000
-	let working_days_in_year =
-		get_field_value('working_days_in_year') || 260
-
-	let attendees = $state(5) // Minimum number of attendees
-	let selected_currency = $state('EUR')
-	let workshop_duration = $state('90 minutes')
-
-	const BESPOKE_PERCENTAGES: Record<string, number> = {
+	const WORKSHOP_DURATION: Record<string, number> = {
 		'90 minutes': 1.2,
 		'Half day': 1.8,
 		'Full day': 3.5,
@@ -24,47 +11,24 @@
 		'Three days': 9,
 	}
 
-	const calculate_day_rate = (
-		annual_rate: number,
-		working_days: number,
-	) => {
-		return annual_rate / working_days
-	}
+	let attendees = $state(5)
+	let workshop_duration = $state('90 minutes')
 
-	const calculate_workshop_cost = (
-		annual_rate: number,
-		working_days: number,
-		attendees: number,
-		workshop_duration: string,
-	) => {
-		let base_cost = calculate_day_rate(annual_rate, working_days)
-		let discount_factor = 1 - Math.log(attendees) / 20
+	let workshop_cost = $derived.by(() => {
+		const base = pricing_state.day_rate
+		const discount_factor = 1 - Math.log(attendees) / 20
 		return (
-			base_cost *
+			base *
 			discount_factor *
 			attendees *
-			BESPOKE_PERCENTAGES[workshop_duration]
+			WORKSHOP_DURATION[workshop_duration]
 		)
-	}
+	})
 
-	let workshop_cost_EUR = $derived(
-		calculate_workshop_cost(
-			annual_rate_EUR,
-			working_days_in_year,
-			attendees,
-			workshop_duration,
-		),
+	let total_display = $derived(
+		workshop_cost * pricing_state.currency_rate,
 	)
-	let currency_rate = $derived(
-		selected_currency === 'EUR'
-			? 1
-			: pricing_state.data.exchangeRates[
-					selected_currency as keyof typeof pricing_state.data.exchangeRates
-				],
-	)
-	let price_per_attendee = $derived(
-		(workshop_cost_EUR * currency_rate) / attendees,
-	)
+	let per_attendee_display = $derived(total_display / attendees)
 
 	const on_attendees_input = (e: Event) => {
 		attendees = Math.max(
@@ -87,7 +51,7 @@
 						id="workshop_duration"
 						label="Workshop Duration:"
 						bind:selected={workshop_duration}
-						options={Object.keys(BESPOKE_PERCENTAGES)}
+						options={Object.keys(WORKSHOP_DURATION)}
 					/>
 				</div>
 
@@ -112,10 +76,6 @@
 						</span>
 					</div>
 				</div>
-
-				<div class="mb-4">
-					<CurrencySelect bind:selected_currency />
-				</div>
 			</fieldset>
 
 			<div
@@ -133,9 +93,9 @@
 				<div class="stat">
 					<div class="stat-title font-medium">Price Per Attendee</div>
 					<div class="stat-value text-secondary flex items-center">
-						{locale_string(price_per_attendee)}
+						{locale_string(per_attendee_display)}
 						<span class="ml-2 text-xl">
-							{selected_currency}
+							{pricing_state.selected_currency}
 						</span>
 					</div>
 					<div class="stat-desc">Cost per person</div>
@@ -144,9 +104,9 @@
 				<div class="stat">
 					<div class="stat-title font-medium">Workshop Cost</div>
 					<div class="stat-value text-accent flex items-center">
-						{locale_string(workshop_cost_EUR * currency_rate)}
+						{locale_string(total_display)}
 						<span class="ml-2 text-xl">
-							{selected_currency}
+							{pricing_state.selected_currency}
 						</span>
 					</div>
 					<div class="stat-desc">Total workshop price</div>
@@ -166,10 +126,10 @@
 						d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
 					></path></svg
 				>
-				<span
-					>Group discounts are automatically applied as the number of
-					attendees increases.</span
-				>
+				<span>
+					Group discounts are automatically applied as the number of
+					attendees increases.
+				</span>
 			</div>
 		</div>
 	</div>

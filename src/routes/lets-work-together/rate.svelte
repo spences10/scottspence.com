@@ -2,73 +2,20 @@
 	import { pricing_state } from '$lib/state/pricing-client.svelte'
 	import { number_crunch } from '$lib/utils'
 	import CurrencySelect from './currency-select.svelte'
-	import {
-		calculate_annual_rate_with_pto,
-		calculate_day_rate_with_pto,
-		calculate_monthly_rate_with_pto,
-		locale_string,
-	} from './utils'
+	import { locale_string } from './utils'
 
-	const get_field_value = (field_name: string): number => {
-		return (
-			pricing_state.data.pricingNumbers[
-				field_name as keyof typeof pricing_state.data.pricingNumbers
-			] || 0
-		)
-	}
-
-	let annual_rate_EUR = $state(
-		get_field_value('annual_rate_eur') || 155000,
+	let day_rate_display = $derived(
+		pricing_state.day_rate * pricing_state.currency_rate,
 	)
-	let chosen_holidays = $state(
-		get_field_value('chosen_holidays') || 25,
+	let weekly_display = $derived(
+		pricing_state.weekly_rate * pricing_state.currency_rate,
 	)
-	let working_days_in_year =
-		get_field_value('working_days_in_year') || 260
-	let public_holidays = get_field_value('public_holidays') || 8
-	let selected_currency = $state('EUR')
-
-	let day_rate_with_pto = $derived(
-		calculate_day_rate_with_pto(
-			annual_rate_EUR || 0,
-			working_days_in_year,
-			chosen_holidays,
-			public_holidays,
-		),
+	let monthly_display = $derived(
+		pricing_state.monthly_rate * pricing_state.currency_rate,
 	)
-
-	let monthly_rate_with_pto = $derived(
-		calculate_monthly_rate_with_pto(
-			annual_rate_EUR || 0,
-			working_days_in_year,
-			chosen_holidays,
-			public_holidays,
-		),
+	let annual_display = $derived(
+		pricing_state.annual_rate * pricing_state.currency_rate,
 	)
-
-	let annual_rate_with_pto = $derived(
-		calculate_annual_rate_with_pto(
-			annual_rate_EUR || 0,
-			working_days_in_year,
-			chosen_holidays,
-			public_holidays,
-		),
-	)
-
-	let currency_rate = $derived(
-		selected_currency === 'EUR'
-			? 1
-			: pricing_state.data.exchangeRates[
-					selected_currency as keyof typeof pricing_state.data.exchangeRates
-				],
-	)
-
-	const on_annual_rate_input = (e: Event) => {
-		annual_rate_EUR = Math.max(
-			(e.target as HTMLInputElement).valueAsNumber,
-			get_field_value('annual_rate_eur') || 155000,
-		)
-	}
 </script>
 
 <div class="card bg-base-100 shadow-xl">
@@ -80,32 +27,53 @@
 				<legend class="sr-only">Rate Settings</legend>
 
 				<div class="mb-4">
-					<label for="annual_rate" class="label">
-						<span class="text-base font-medium">
-							Annual rate (EUR): {locale_string(annual_rate_EUR)}
-						</span>
-					</label>
-					<div class="flex items-center gap-4">
-						<input
-							id="annual_rate"
-							type="range"
-							min={155000}
-							max={180000}
-							step={5000}
-							bind:value={annual_rate_EUR}
-							oninput={on_annual_rate_input}
-							class="range range-primary flex-1"
-						/>
-						<span class="badge badge-primary badge-lg">
-							{locale_string(annual_rate_EUR)}
-						</span>
-					</div>
+					<CurrencySelect />
 				</div>
+
+				{#if pricing_state.is_gbp}
+					<div class="mb-4">
+						<label for="ir35_toggle" class="label">
+							<span class="text-base font-medium">
+								IR35 Status:
+							</span>
+						</label>
+						<div class="flex items-center gap-3">
+							<span
+								class="text-sm font-medium"
+								class:text-primary={!pricing_state.ir35_inside}
+							>
+								Outside
+							</span>
+							<input
+								id="ir35_toggle"
+								type="checkbox"
+								bind:checked={pricing_state.ir35_inside}
+								class="toggle toggle-primary"
+							/>
+							<span
+								class="text-sm font-medium"
+								class:text-primary={pricing_state.ir35_inside}
+							>
+								Inside
+							</span>
+						</div>
+						<p class="text-base-content/60 mt-1 text-xs">
+							{#if pricing_state.ir35_inside}
+								Inside IR35: {pricing_state.data.pricing_config
+									.ir35_uplift_pct}% uplift applied to cover
+								employer's NI and tax obligations
+							{:else}
+								Outside IR35: standard contractor rate via limited
+								company
+							{/if}
+						</p>
+					</div>
+				{/if}
 
 				<div class="mb-4">
 					<label for="pto_days" class="label">
 						<span class="text-base font-medium">
-							PTO (days): {chosen_holidays}
+							PTO (days): {pricing_state.pto_days}
 						</span>
 					</label>
 					<div class="flex items-center gap-4">
@@ -115,17 +83,13 @@
 							min={0}
 							max={40}
 							step={1}
-							bind:value={chosen_holidays}
+							bind:value={pricing_state.pto_days}
 							class="range range-primary flex-1"
 						/>
-						<span class="badge badge-primary badge-lg"
-							>{chosen_holidays}</span
-						>
+						<span class="badge badge-primary badge-lg">
+							{pricing_state.pto_days}
+						</span>
 					</div>
-				</div>
-
-				<div class="mb-4">
-					<CurrencySelect bind:selected_currency />
 				</div>
 			</fieldset>
 
@@ -135,12 +99,18 @@
 				<article class="stat">
 					<div class="stat-title font-medium">Day Rate</div>
 					<div class="stat-value text-primary flex items-center">
-						{locale_string(day_rate_with_pto * currency_rate)}
+						{locale_string(day_rate_display)}
 						<span class="ml-2 text-xl">
-							{selected_currency}
+							{pricing_state.selected_currency}
 						</span>
 					</div>
-					<div class="stat-desc"></div>
+					<div class="stat-desc">
+						{#if pricing_state.is_gbp}
+							{pricing_state.ir35_inside
+								? 'Inside IR35'
+								: 'Outside IR35'}
+						{/if}
+					</div>
 				</article>
 
 				<article class="stat">
@@ -148,21 +118,21 @@
 					<div class="stat-value text-secondary">
 						<div
 							class="tooltip flex items-center"
-							data-tip={locale_string(
-								day_rate_with_pto * 5 * currency_rate,
-							)}
+							data-tip={locale_string(weekly_display)}
 						>
-							{number_crunch(day_rate_with_pto * 5 * currency_rate)}
+							{number_crunch(weekly_display)}
 							<span class="ml-2 text-xl">
-								{selected_currency}
+								{pricing_state.selected_currency}
 							</span>
 						</div>
 					</div>
 					<div class="stat-desc">
-						{chosen_holidays === 0
+						{pricing_state.pto_days === 0
 							? `Base rate`
 							: `Incl. ${(
-									(chosen_holidays / working_days_in_year) *
+									(pricing_state.pto_days /
+										pricing_state.data.pricing_config
+											.working_days_in_year) *
 									5
 								).toFixed(2)} days PTO`}
 					</div>
@@ -173,20 +143,18 @@
 					<div class="stat-value text-accent">
 						<div
 							class="tooltip flex items-center"
-							data-tip={locale_string(
-								monthly_rate_with_pto * currency_rate,
-							)}
+							data-tip={locale_string(monthly_display)}
 						>
-							{number_crunch(monthly_rate_with_pto * currency_rate)}
+							{number_crunch(monthly_display)}
 							<span class="ml-2 text-xl">
-								{selected_currency}
+								{pricing_state.selected_currency}
 							</span>
 						</div>
 					</div>
 					<div class="stat-desc">
-						{chosen_holidays === 0
+						{pricing_state.pto_days === 0
 							? `Base rate`
-							: `Incl. ${(chosen_holidays / 12).toFixed(1)} days PTO`}
+							: `Incl. ${(pricing_state.pto_days / 12).toFixed(1)} days PTO`}
 					</div>
 				</article>
 
@@ -195,23 +163,53 @@
 					<div class="stat-value">
 						<div
 							class="tooltip flex items-center"
-							data-tip={locale_string(
-								annual_rate_with_pto * currency_rate,
-							)}
+							data-tip={locale_string(annual_display)}
 						>
-							{number_crunch(annual_rate_with_pto * currency_rate)}
+							{number_crunch(annual_display)}
 							<span class="ml-2 text-xl">
-								{selected_currency}
+								{pricing_state.selected_currency}
 							</span>
 						</div>
 					</div>
 					<div class="stat-desc">
-						{chosen_holidays === 0
+						{pricing_state.pto_days === 0
 							? `Base rate`
-							: `Incl. ${chosen_holidays} days PTO`}
+							: `Incl. ${pricing_state.pto_days} days PTO`}
 					</div>
 				</article>
 			</div>
+
+			{#if pricing_state.is_gbp}
+				<div
+					class="stats stats-vertical border-base-300 bg-base-100 md:stats-horizontal w-full border shadow"
+				>
+					<article class="stat">
+						<div class="stat-title font-medium">
+							Contractor Take-home
+						</div>
+						<div class="stat-value text-primary flex items-center">
+							{number_crunch(pricing_state.contractor_take_home)}
+							<span class="ml-2 text-xl">GBP</span>
+						</div>
+						<div class="stat-desc">
+							Via Ltd company (salary + dividends)
+						</div>
+					</article>
+
+					<article class="stat">
+						<div class="stat-title font-medium">
+							Equivalent Salary
+						</div>
+						<div class="stat-value text-secondary flex items-center">
+							{number_crunch(pricing_state.salary_equivalent)}
+							<span class="ml-2 text-xl">GBP</span>
+						</div>
+						<div class="stat-desc">
+							Permanent salary for same take-home
+						</div>
+					</article>
+				</div>
+			{/if}
 		</div>
 	</div>
 </div>
