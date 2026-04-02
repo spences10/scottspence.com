@@ -148,8 +148,8 @@ importers:
         specifier: ^6.9.4
         version: 6.10.0
       slugify:
-        specifier: 1.6.8
-        version: 1.6.8
+        specifier: 1.6.9
+        version: 1.6.9
       svead:
         specifier: ^0.0.15
         version: 0.0.15(svelte@5.55.0)
@@ -2891,8 +2891,8 @@ packages:
     resolution: {integrity: sha512-2wcC/oGxHis/BoHkkPwldgiPSYcpZK3JU28WoMVv55yHJgcZ8rlXvuG9iZggz+sU1d4bRgIGASwyWqjxu3FM0g==}
     engines: {node: '>=18'}
 
-  slugify@1.6.8:
-    resolution: {integrity: sha512-HVk9X1E0gz3mSpoi60h/saazLKXKaZThMLU3u/aNwoYn8/xQyX2MGxL0ui2eaokkD7tF+Zo+cKTHUbe1mmmGzA==}
+  slugify@1.6.9:
+    resolution: {integrity: sha512-vZ7rfeehZui7wQs438JXBckYLkIIdfHOXsaVEUMyS5fHo1483l1bMdo0EDSWYclY0yZKFOipDy4KHuKs6ssvdg==}
     engines: {node: '>=8.0.0'}
 
   smol-toml@1.6.0:
@@ -6044,7 +6044,7 @@ snapshots:
       mrmime: 2.0.1
       totalist: 3.0.1
 
-  slugify@1.6.8: {}
+  slugify@1.6.9: {}
 
   smol-toml@1.6.0: {}
 
