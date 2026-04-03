@@ -102,9 +102,12 @@ npx nopeek load .env
 npx nopeek load .env --only DATABASE_URL,API_KEY
 ```
 
-Inside a Claude Code session, nopeek writes to `CLAUDE_ENV_FILE` so
-the variables are available to subsequent bash commands. Outside
-Claude Code, it prints eval-able export statements you can source.
+Inside a Claude Code session, nopeek writes to
+[`CLAUDE_ENV_FILE`](https://code.claude.com/docs/en/hooks#filechanged),
+a mechanism Anthropic built specifically for injecting environment
+variables into sessions. The variables are then available to
+subsequent bash commands. Outside Claude Code, it prints eval-able
+export statements you can source.
 
 The output only ever shows key _names_, never values:
 
