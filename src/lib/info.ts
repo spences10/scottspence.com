@@ -263,11 +263,6 @@ export const PEOPLE = [
 		met: true,
 	},
 	{
-		name: `Sophie Koonin`,
-		link: `https://bsky.app/profile/localghost.dev`,
-		met: true,
-	},
-	{
 		name: `Chris Biscardi`,
 		link: `https://bsky.app/profile/chrisbiscardi.bsky.social`,
 		met: false,
