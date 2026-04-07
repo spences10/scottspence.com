@@ -11,7 +11,17 @@ vi.mock('$lib/icons', () => ({
 
 // Mock remote functions to prevent hanging network calls
 vi.mock('$lib/analytics/live-analytics.remote', () => ({
-	get_live_stats_breakdown: vi.fn().mockResolvedValue(null),
+	get_live_stats_breakdown: vi.fn().mockResolvedValue({
+		active_visitors: 0,
+		recent_visitors: 0,
+		active_pages: [],
+		countries: [],
+		countries_total: 0,
+		browsers: [],
+		devices: [],
+		top_paths: [],
+		paths_total: 0,
+	}),
 }))
 
 vi.mock('$lib/analytics/period-stats.remote', () => ({
