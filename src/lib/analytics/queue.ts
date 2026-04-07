@@ -4,7 +4,7 @@ import { is_blocked_referrer } from './blocked-domains'
 /**
  * Analytics event structure for batched writes
  */
-export type AnalyticsEvent = {
+type AnalyticsEvent = {
 	visitor_hash: string
 	event_type: 'page_view' | 'custom'
 	event_name: string | null
@@ -24,7 +24,7 @@ export type AnalyticsEvent = {
 /**
  * Click event structure for tracking user interactions
  */
-export type ClickEvent = {
+type ClickEvent = {
 	event_name: string
 	event_context: string | null
 	visitor_hash: string
@@ -62,13 +62,13 @@ export const queue_click_event = (event: ClickEvent): void => {
 /**
  * Get current queue length (for monitoring)
  */
-export const get_queue_length = (): number => queue.length
+const get_queue_length = (): number => queue.length
 
 /**
  * Get live stats from queue (no DB read)
  * Returns recent activity from last flush window (~5s)
  */
-export const get_live_stats = () => {
+const get_live_stats = () => {
 	const human_events = queue.filter((e) => !e.is_bot)
 	const unique_visitors = new Set(
 		human_events.map((e) => e.visitor_hash),
@@ -87,7 +87,7 @@ export const get_live_stats = () => {
  * Get viewers for a specific path (no DB read)
  * Useful for "X people viewing this page"
  */
-export const get_path_viewers = (path: string): number => {
+const get_path_viewers = (path: string): number => {
 	return new Set(
 		queue
 			.filter((e) => e.path === path && !e.is_bot)
@@ -181,7 +181,7 @@ export const start_flush_timer = (): void => {
  * Stop the flush timer and flush remaining events
  * Call on graceful shutdown
  */
-export const stop_flush_timer = (): void => {
+const stop_flush_timer = (): void => {
 	if (flush_timer) {
 		clearInterval(flush_timer)
 		flush_timer = null
