@@ -14,7 +14,7 @@
 
 	const fetch_live_data = async () => {
 		try {
-			live_stats = await get_live_stats_breakdown()
+			live_stats = await get_live_stats_breakdown().run()
 		} catch (e) {
 			console.error('[stats] Failed to fetch live data:', e)
 		} finally {

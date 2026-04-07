@@ -21,7 +21,7 @@
 	)
 
 	onMount(async () => {
-		popular_posts = await get_popular_posts()
+		popular_posts = await get_popular_posts().run()
 	})
 </script>
 
