@@ -3,28 +3,14 @@
 	import { number_crunch } from '$lib/utils'
 	import { onMount } from 'svelte'
 	import StatRow from './stat-row.svelte'
-	import {
-		country_flag,
-		format_path,
-		type LiveStats,
-	} from './stats.svelte'
+	import { country_flag, format_path } from './stats.svelte'
 
-	let live_stats = $state<LiveStats | null>(null)
-	let live_loading = $state(true)
-
-	const fetch_live_data = async () => {
-		try {
-			live_stats = await get_live_stats_breakdown().run()
-		} catch (e) {
-			console.error('[stats] Failed to fetch live data:', e)
-		} finally {
-			live_loading = false
-		}
-	}
+	const live_stats_query = get_live_stats_breakdown()
 
 	onMount(() => {
-		fetch_live_data()
-		const interval = setInterval(fetch_live_data, 10000) // 10s refresh
+		const interval = setInterval(() => {
+			get_live_stats_breakdown().refresh().catch(console.error)
+		}, 10000)
 		return () => clearInterval(interval)
 	})
 </script>
@@ -32,11 +18,11 @@
 <!-- Live Stats Section -->
 <div class="divider mb-8">Live Visitors</div>
 
-{#if live_loading}
+{#await live_stats_query}
 	<div class="flex items-center justify-center py-12">
 		<div class="loading loading-spinner loading-lg"></div>
 	</div>
-{:else if live_stats}
+{:then live_stats}
 	<!-- Stats cards row -->
 	<div
 		class="stats stats-vertical border-secondary md:stats-horizontal mb-8 w-full border shadow-lg"
@@ -138,4 +124,4 @@
 	<p class="text-base-content/50 mb-8 text-center text-xs">
 		Live data refreshes every 10 seconds
 	</p>
-{/if}
+{/await}

@@ -5,27 +5,9 @@
 	import { Eye } from '$lib/icons'
 	import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
 	import { number_crunch } from '$lib/utils'
-	import { onMount } from 'svelte'
 	import LiveVisitors from './live-visitors.svelte'
 
-	type PopularPostsPeriod = keyof PopularPosts
-	let selected_period: PopularPostsPeriod = $state(
-		'popular_posts_yearly',
-	)
-
-	let popular_posts: PopularPosts = $state({
-		popular_posts_daily: [],
-		popular_posts_monthly: [],
-		popular_posts_yearly: [],
-	})
-
-	let posts: PopularPost[] = $derived(
-		popular_posts[selected_period].slice(0, 6),
-	)
-
-	onMount(async () => {
-		popular_posts = await get_popular_posts().run()
-	})
+	const popular_posts_query = get_popular_posts()
 </script>
 
 <footer
@@ -33,27 +15,30 @@
 >
 	<nav>
 		<h6 class="footer-title">Popular Posts</h6>
-		{#each posts as post}
-			<p>
-				<a
-					data-sveltekit-reload
-					class="link link-hover text-primary-content"
-					href={page.url.origin + post.pathname}
-				>
-					{post.title}
-				</a>
-				<span
-					class="tooltip tooltip-secondary text-primary-content relative cursor-pointer font-bold"
-					data-tip={`
+		{#await popular_posts_query then popular_posts}
+			{@const posts = popular_posts.popular_posts_yearly.slice(0, 6)}
+			{#each posts as post}
+				<p>
+					<a
+						data-sveltekit-reload
+						class="link link-hover text-primary-content"
+						href={page.url.origin + post.pathname}
+					>
+						{post.title}
+					</a>
+					<span
+						class="tooltip tooltip-secondary text-primary-content relative cursor-pointer font-bold"
+						data-tip={`
                     Visits: ${number_crunch(post.visits)},
                     Pageviews: ${number_crunch(post.pageviews)}
                     `}
-				>
-					<Eye />
-					{number_crunch(post.pageviews)}
-				</span>
-			</p>
-		{/each}
+					>
+						<Eye />
+						{number_crunch(post.pageviews)}
+					</span>
+				</p>
+			{/each}
+		{/await}
 
 		<LiveVisitors />
 	</nav>
