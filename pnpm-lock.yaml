@@ -26,7 +26,7 @@ importers:
     devDependencies:
       '@anthropic-ai/sdk':
         specifier: ^0.86.0
-        version: 0.86.0
+        version: 0.86.1
       '@eslint/compat':
         specifier: ^2.0.4
         version: 2.0.5(eslint@10.2.0(jiti@2.6.1))
@@ -195,8 +195,8 @@ packages:
   '@antfu/install-pkg@1.1.0':
     resolution: {integrity: sha512-MGQsmw10ZyI+EJo45CdSER4zEb+p31LpDAFp2Z3gkSd1yqVZGi0Ebx++YTEMonJy4oChEMLsxZ64j8FH6sSqtQ==}
 
-  '@anthropic-ai/sdk@0.86.0':
-    resolution: {integrity: sha512-U4TAozK3V2TbfA6JvDux9oTTVaRS5471XYC3CDvQbLRV8hlU2FTyjHL2XnjLSsJK6fOEU3ZYf0Du6M1vQex+vA==}
+  '@anthropic-ai/sdk@0.86.1':
+    resolution: {integrity: sha512-Q32GUFCVMmTJrVQC4bQOG2mA8rGNuYWJP8ODufxl3g5Awy1VjY5wy0Xm+mC++i5rBkZMvxhzOR9MNTW7IvIAmw==}
     hasBin: true
     peerDependencies:
       zod: ^3.25.0 || ^4.0.0
@@ -204,8 +204,8 @@ packages:
       zod:
         optional: true
 
-  '@babel/runtime@7.28.4':
-    resolution: {integrity: sha512-Q/N6JNWvIvPnLDvjlE1OUBLPQHH6l3CltCEsHIujp45zQUSSh8K+gHnaEX45yAT1nyngnINhvWtzN+Nb9D8RAQ==}
+  '@babel/runtime@7.29.2':
+    resolution: {integrity: sha512-JiDShH45zKHWyGe4ZNVRrCjBz8Nh9TMmZG1kh4QTK8hCBTWBi8Da+i7s1fJw7/lYpM4ccepSNfqzZ/QvABBi5g==}
     engines: {node: '>=6.9.0'}
 
   '@blazediff/core@1.9.1':
@@ -3347,11 +3347,11 @@ snapshots:
       package-manager-detector: 1.6.0
       tinyexec: 1.0.4
 
-  '@anthropic-ai/sdk@0.86.0':
+  '@anthropic-ai/sdk@0.86.1':
     dependencies:
       json-schema-to-ts: 3.1.1
 
-  '@babel/runtime@7.28.4': {}
+  '@babel/runtime@7.29.2': {}
 
   '@blazediff/core@1.9.1': {}
 
@@ -5442,7 +5442,7 @@ snapshots:
 
   json-schema-to-ts@3.1.1:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       ts-algebra: 2.0.0
 
   json-schema-traverse@0.4.1: {}
