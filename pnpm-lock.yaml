@@ -109,8 +109,8 @@ importers:
         specifier: ^17.4.0
         version: 17.4.0
       layerchart:
-        specifier: 2.0.0-next.50
-        version: 2.0.0-next.50(@sveltejs/kit@2.56.1(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.1)(vite@8.0.5(@types/node@25.0.3)(esbuild@0.27.2)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.1)(typescript@6.0.2)(vite@8.0.5(@types/node@25.0.3)(esbuild@0.27.2)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.1)
+        specifier: 2.0.0-next.51
+        version: 2.0.0-next.51(@sveltejs/kit@2.56.1(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.1)(vite@8.0.5(@types/node@25.0.3)(esbuild@0.27.2)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.1)(typescript@6.0.2)(vite@8.0.5(@types/node@25.0.3)(esbuild@0.27.2)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.1)
       marked:
         specifier: 17.0.6
         version: 17.0.6
@@ -2349,8 +2349,8 @@ packages:
     resolution: {integrity: sha512-zu9QWmjpzJcomzdJQAHgDVhLGq5bLosVak1KVa40NzQHXfqr4eAHupvnPOVXEoLkg6Ocefvf/93d//SB7du4YQ==}
     engines: {node: '>=20.10.0', npm: '>=10.2.3'}
 
-  layerchart@2.0.0-next.50:
-    resolution: {integrity: sha512-1I2q0oOZO0qQG8tugZcRHsKAygFOZNmzbQMKGvcq9w1k5dvVPEab2Lsgd6qw0u0j1plYk+XvtGHo8OcCPidCFw==}
+  layerchart@2.0.0-next.51:
+    resolution: {integrity: sha512-RvRu67ja+OfZzObTus7z/Ldc27tf4TLZNsimaAgx5Ser/qCIQomwtIcNnLURg2etQmFJDTULpeceR5mHvzwNZA==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -5459,7 +5459,7 @@ snapshots:
       vscode-languageserver-textdocument: 1.0.12
       vscode-uri: 3.1.0
 
-  layerchart@2.0.0-next.50(@sveltejs/kit@2.56.1(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.1)(vite@8.0.5(@types/node@25.0.3)(esbuild@0.27.2)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.1)(typescript@6.0.2)(vite@8.0.5(@types/node@25.0.3)(esbuild@0.27.2)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.1):
+  layerchart@2.0.0-next.51(@sveltejs/kit@2.56.1(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.1)(vite@8.0.5(@types/node@25.0.3)(esbuild@0.27.2)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.1)(typescript@6.0.2)(vite@8.0.5(@types/node@25.0.3)(esbuild@0.27.2)(jiti@2.6.1)(yaml@2.8.3)))(svelte@5.55.1):
     dependencies:
       '@dagrejs/dagre': 2.0.4
       '@layerstack/svelte-actions': 1.0.1-next.18
