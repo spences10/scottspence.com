@@ -58,7 +58,7 @@
 		"fathom-client": "3.7.2",
 		"globals": "^17.4.0",
 		"layerchart": "2.0.0-next.51",
-		"marked": "17.0.6",
+		"marked": "18.0.0",
 		"mdsvex": "^0.12.7",
 		"mermaid": "^11.14.0",
 		"playwright": "^1.59.1",
