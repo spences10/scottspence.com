@@ -1,4 +1,0 @@
-onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
-  - better-sqlite3
-  - esbuild

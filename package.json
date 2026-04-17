@@ -85,6 +85,13 @@
 		"vitest": "4.1.4",
 		"vitest-browser-svelte": "^2.1.0"
 	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"@tailwindcss/oxide",
+			"better-sqlite3",
+			"esbuild"
+		]
+	},
 	"dependencies": {
 		"@octokit/rest": "^22.0.1",
 		"@types/d3-shape": "^3.1.8",
