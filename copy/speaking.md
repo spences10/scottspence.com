@@ -15,7 +15,7 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2025-12-30" small="true" />
+  Last updated: <DateUpdated date="2026-04-18" small="true" />
 </Small>
 
 If you want me to talk about using Svelte and SvelteKit or anything
@@ -26,6 +26,16 @@ else [get in touch]. I offer similar workshops for teams through
 
 Here's the list of talks, podcasts and live streams I have done
 recently.
+
+## 2026
+
+### CityJS London - April 2026
+
+Pigeon-Driven Development, a talk on AI in practice, building safely
+and reliably with AI tools, delivered on the Svelte track at CityJS
+London 2026.
+
+[Slides](https://cityjs-london-2026.guardian-ice4896.workers.dev/#)
 
 ## 2025
 
