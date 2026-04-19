@@ -7,11 +7,18 @@ published: true
 
 <!-- cspell:ignore otel pirecall ccrecall ndjson inspectable correlatable -->
 
-Right, so, with LSP in `my-pi`, the next thing I wanted to focus on
-was evals. The idea was simple enough: throw `pnpx my-pi@latest` at a
-few prompts, maybe flip a flag or two, set some env vars, and see how
-it did. Eval-harness stuff, right. Except I quickly realised I had no
-way of actually answering the questions I cared about afterwards.
+Right, so, `my-pi` is the coding agent harness I've been building on
+top of the excellent
+[pi-coding-agent](https://github.com/badlogic/pi-mono) from
+[badlogic](https://github.com/badlogic). I keep bolting things onto it
+as I need them for real work. Last time round it was
+[LSP](https://scottspence.com/posts/add-lsp-to-my-pi). This time it
+was evals, which meant telemetry first.
+
+The idea was simple enough: throw `pnpx my-pi@latest` at a few
+prompts, maybe flip a flag or two, set some env vars, and see how it
+did. Eval-harness stuff, right. Except I quickly realised I had no way
+of actually answering the questions I cared about afterwards.
 
 A run either "worked" or it "didn't". If it didn't, I had a session
 transcript, a final output, and whatever I remembered from scrolling
