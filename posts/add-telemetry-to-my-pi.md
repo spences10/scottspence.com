@@ -5,7 +5,7 @@ tags: ['pi', 'telemetry', 'sqlite', 'evals', 'developer-experience']
 published: true
 ---
 
-<!-- cspell:ignore otel pirecall ccrecall ndjson inspectable correlatable -->
+<!-- cspell:ignore otel pirecall ccrecall ndjson inspectable correlatable badlogic -->
 
 Right, so, `my-pi` is the coding agent harness I've been building on
 top of the excellent
