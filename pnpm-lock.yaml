@@ -146,7 +146,7 @@ importers:
         version: 1.0.3
       resend:
         specifier: ^6.12.0
-        version: 6.12.0
+        version: 6.12.2
       slugify:
         specifier: 1.6.9
         version: 1.6.9
@@ -2780,8 +2780,8 @@ packages:
   remark-preview@1.0.3:
     resolution: {integrity: sha512-XT1qrNgB3JjawguQGknlT0O2z6TbJO/MdR3pBbLWz7aPbfgrba4YgANkNO4DbV4fSlLzrqok48pKmd3TwlkHZw==}
 
-  resend@6.12.0:
-    resolution: {integrity: sha512-CaxEvX1z+/MGbgnhsM/bvmkbnZd1v1sEXELAjBNSDBQNMaB7MgqOyrBgI27CYikEgdaDnBrXghAXYWTBs/h5Bw==}
+  resend@6.12.2:
+    resolution: {integrity: sha512-xwgmU4b0OqoabJsIoK/x0Whk0Fcs3bpbK4i/DEWPiE5hYJHyHl0TbB6QbI3gIr+bLdLUJ1GYm/fe41aVFuHXgw==}
     engines: {node: '>=20'}
     peerDependencies:
       '@react-email/render': '*'
@@ -5888,7 +5888,7 @@ snapshots:
       unist-util-visit: 3.1.0
       unist-util-visit-parents: 4.1.1
 
-  resend@6.12.0:
+  resend@6.12.2:
     dependencies:
       postal-mime: 2.7.4
       svix: 1.90.0
