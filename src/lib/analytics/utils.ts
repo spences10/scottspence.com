@@ -63,7 +63,7 @@ export const get_visitor_hash = (
 /**
  * Parse user agent for browser, OS, device type, and bot detection
  */
-export interface ParsedUserAgent {
+interface ParsedUserAgent {
 	browser: string | null
 	os: string | null
 	device_type: 'desktop' | 'mobile' | 'tablet' | null

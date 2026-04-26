@@ -86,7 +86,7 @@ export const init_live_analytics = () => {
 /**
  * Stop heartbeats (for cleanup)
  */
-export const stop_live_analytics = () => {
+const stop_live_analytics = () => {
 	if (heartbeat_interval) {
 		clearInterval(heartbeat_interval)
 		heartbeat_interval = null

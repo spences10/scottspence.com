@@ -21,4 +21,4 @@ if (!building) {
 	})
 }
 
-export { ratelimit, redis }
+export { ratelimit }
