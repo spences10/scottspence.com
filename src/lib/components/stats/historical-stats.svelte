@@ -324,7 +324,7 @@
 								yDomain={[0, null]}
 								yNice
 								padding={{ left: 48, bottom: 24 }}
-								tooltip={{ mode: 'band' }}
+								tooltipContext={{ mode: 'band' }}
 							>
 								<Svg>
 									<Axis placement="left" grid rule />
@@ -381,7 +381,7 @@
 											top: 4,
 											bottom: 0,
 										}}
-										tooltip={{ mode: 'band' }}
+										tooltipContext={{ mode: 'band' }}
 									>
 										<Svg>
 											<Bars radius={2} class="fill-primary" />

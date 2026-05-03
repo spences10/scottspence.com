@@ -274,7 +274,7 @@
 							yDomain={[0, max_value]}
 							yNice
 							padding={{ left: 48, bottom: 24, right: 8, top: 8 }}
-							tooltip={{ mode: 'bisect-x' }}
+							tooltipContext={{ mode: 'bisect-x' }}
 						>
 							<Svg>
 								<Axis
@@ -284,7 +284,7 @@
 									format={(v: number) => number_crunch(v)}
 									classes={{
 										tickLabel:
-											'!stroke-transparent fill-muted-foreground',
+											'!stroke-transparent fill-[var(--color-base-content)] opacity-70',
 									}}
 								/>
 								<Axis
@@ -304,7 +304,7 @@
 												})}
 									classes={{
 										tickLabel:
-											'!stroke-transparent fill-muted-foreground',
+											'!stroke-transparent fill-[var(--color-base-content)] opacity-70',
 									}}
 								/>
 								<!-- Visitors area with gradient -->
