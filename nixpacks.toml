@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["nodejs_22", "pnpm-9_x", "sqlite", "gcc", "pkg-config"]
+nixPkgs = ["nodejs_24", "pnpm_10", "sqlite", "gcc", "pkg-config"]
 aptPkgs = ["curl", "wget", "libsqlite3-dev", "sqlite3"]
 
 [phases.install]
