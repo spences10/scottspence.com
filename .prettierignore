@@ -1,4 +1,22 @@
-# Package Managers
+**/.svelte-kit
+**/build
+**/node_modules
+**/test-results
+data
+bun.lock
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+**/*.js
+**/*.cjs
+**/*.mjs
+**/*.jsx
+**/*.ts
+**/*.cts
+**/*.mts
+**/*.tsx
+**/*.json
+**/*.jsonc
+**/*.yaml
+**/*.yml
+.claude/settings.local.json

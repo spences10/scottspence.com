@@ -1,10 +1,39 @@
 import { sveltekit } from '@sveltejs/kit/vite'
 import tailwindcss from '@tailwindcss/vite'
-import { playwright } from '@vitest/browser-playwright'
-import { defineConfig } from 'vitest/config'
+import { playwright } from 'vite-plus/test/browser-playwright'
+import { defineConfig } from 'vite-plus'
 
 export default defineConfig({
-	plugins: [tailwindcss() as any, sveltekit()],
+	fmt: {
+		useTabs: true,
+		singleQuote: true,
+		semi: false,
+		printWidth: 70,
+		trailingComma: 'all',
+		proseWrap: 'always',
+		ignorePatterns: [
+			'posts/**',
+			'newsletter/**',
+			'copy/**',
+			'docs/**',
+			'*.md',
+			'*.toml',
+		],
+	},
+	lint: {
+		ignorePatterns: [
+			'**/node_modules/**',
+			'**/build/**',
+			'**/.svelte-kit/**',
+			'**/test-results/**',
+			'data/**',
+		],
+		options: {
+			typeAware: true,
+			typeCheck: true,
+		},
+	},
+	plugins: [tailwindcss(), sveltekit()],
 	server: {
 		fs: {
 			// Allow serving files from one level up to the project root

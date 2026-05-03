@@ -1,7 +1,8 @@
 {
-	"git.enableSmartCommit": true,
-	"git.postCommitCommand": "sync",
-	"css.validate": false,
-	"cSpell.enableFiletypes": ["dotenv", "jsx-tags", "svelte", "windi"],
-	"cSpell.words": ["Namecheap", "tseslint"]
+	"editor.defaultFormatter": "oxc.oxc-vscode",
+	"editor.formatOnSave": true,
+	"oxc.fmt.configPath": "./vite.config.ts",
+	"files.associations": {
+		"*.css": "tailwindcss"
+	}
 }
