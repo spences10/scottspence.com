@@ -35,7 +35,7 @@ Pigeon-Driven Development, a talk on AI in practice, building safely
 and reliably with AI tools, delivered on the Svelte track at CityJS
 London 2026.
 
-[Slides](https://cityjs-london-2026.guardian-ice4896.workers.dev/#)
+[Slides](https://cityjs-london-2026.ss10.dev/#)
 
 ## 2025
 
