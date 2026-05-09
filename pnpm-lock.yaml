@@ -91,8 +91,8 @@ importers:
         specifier: 3.7.2
         version: 3.7.2
       layerchart:
-        specifier: 2.0.0-next.61
-        version: 2.0.0-next.61(@sveltejs/kit@2.59.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(jiti@2.7.0)(yaml@2.8.4)))(svelte@5.55.5)(typescript@6.0.3)(vite@8.0.11(@types/node@25.6.2)(jiti@2.7.0)(yaml@2.8.4)))(svelte@5.55.5)
+        specifier: 2.0.0-next.63
+        version: 2.0.0-next.63(@sveltejs/kit@2.59.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(jiti@2.7.0)(yaml@2.8.4)))(svelte@5.55.5)(typescript@6.0.3)(vite@8.0.11(@types/node@25.6.2)(jiti@2.7.0)(yaml@2.8.4)))(svelte@5.55.5)
       marked:
         specifier: 18.0.3
         version: 18.0.3
@@ -2296,8 +2296,8 @@ packages:
     resolution: {integrity: sha512-sOPIi4hISFnY7twwV97ca1TsxpBtXq0URu/LL1AvxwccPG/RIBBlKS7a/f/EL6w8lTNaS0EFs/F+IdSOaqYpng==}
     engines: {node: '>=20.10.0', npm: '>=10.2.3'}
 
-  layerchart@2.0.0-next.61:
-    resolution: {integrity: sha512-yJTsDhABgoxIXumgmwI5nmjOD83GJQdi2tuovpN08WJJhAptnwZnW1+Yhacc22UXdMq/EAqIXur14xpj3xSC2g==}
+  layerchart@2.0.0-next.63:
+    resolution: {integrity: sha512-pX/mShq+cOTcdjLsLk0ILjBYxucOneeQcTuuYTE5fu9e3tUX7PwWvH36jXWiIMzRhn3m5Ojds8EVfeXiv4NXEg==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -5068,7 +5068,7 @@ snapshots:
       vscode-languageserver-textdocument: 1.0.12
       vscode-uri: 3.1.0
 
-  layerchart@2.0.0-next.61(@sveltejs/kit@2.59.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(jiti@2.7.0)(yaml@2.8.4)))(svelte@5.55.5)(typescript@6.0.3)(vite@8.0.11(@types/node@25.6.2)(jiti@2.7.0)(yaml@2.8.4)))(svelte@5.55.5):
+  layerchart@2.0.0-next.63(@sveltejs/kit@2.59.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.55.5)(vite@8.0.11(@types/node@25.6.2)(jiti@2.7.0)(yaml@2.8.4)))(svelte@5.55.5)(typescript@6.0.3)(vite@8.0.11(@types/node@25.6.2)(jiti@2.7.0)(yaml@2.8.4)))(svelte@5.55.5):
     dependencies:
       '@dagrejs/dagre': 2.0.4
       '@layerstack/svelte-actions': 1.0.1-next.18
