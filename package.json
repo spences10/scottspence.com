@@ -1,10 +1,10 @@
 {
 	"name": "scottspence.com",
 	"private": true,
-	"packageManager": "pnpm@10.33.4",
+	"packageManager": "pnpm@11.1.1",
 	"engines": {
 		"node": ">=24.0.0",
-		"pnpm": ">=10.0.0"
+		"pnpm": ">=11.0.0"
 	},
 	"author": {
 		"name": "Scott Spence",
@@ -82,13 +82,6 @@
 		"vite-plus": "^0.1.20",
 		"vitest": "4.1.6",
 		"vitest-browser-svelte": "^2.1.1"
-	},
-	"pnpm": {
-		"onlyBuiltDependencies": [
-			"@tailwindcss/oxide",
-			"better-sqlite3",
-			"esbuild"
-		]
 	},
 	"dependencies": {
 		"@octokit/rest": "^22.0.1",
