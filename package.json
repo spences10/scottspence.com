@@ -38,7 +38,7 @@
 		"@fontsource-variable/manrope": "^5.2.8",
 		"@fontsource-variable/victor-mono": "^5.2.8",
 		"@fontsource/comic-neue": "^5.2.7",
-		"@playwright/test": "^1.59.1",
+		"@playwright/test": "^1.60.0",
 		"@sveltejs/adapter-node": "^5.5.4",
 		"@sveltejs/kit": "^2.59.1",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
@@ -59,8 +59,8 @@
 		"layerchart": "2.0.0-next.63",
 		"marked": "18.0.3",
 		"mdsvex": "^0.12.7",
-		"mermaid": "^11.14.0",
-		"playwright": "^1.59.1",
+		"mermaid": "^11.15.0",
+		"playwright": "^1.60.0",
 		"prettier": "^3.8.3",
 		"prettier-plugin-svelte": "^3.5.1",
 		"prettier-plugin-tailwindcss": "^0.8.0",
@@ -86,7 +86,7 @@
 	"dependencies": {
 		"@octokit/rest": "^22.0.1",
 		"@types/d3-shape": "^3.1.8",
-		"better-sqlite3": "^12.9.0",
+		"better-sqlite3": "^12.10.0",
 		"d3-shape": "^3.2.0",
 		"sqlite-vec": "0.1.9"
 	}
