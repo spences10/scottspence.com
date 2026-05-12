@@ -1,6 +1,6 @@
 import { sveltekit } from '@sveltejs/kit/vite'
 import tailwindcss from '@tailwindcss/vite'
-import { playwright } from 'vite-plus/test/browser-playwright'
+import { playwright } from '@vitest/browser-playwright'
 import { defineConfig } from 'vite-plus'
 
 export default defineConfig({
