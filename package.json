@@ -1,10 +1,10 @@
 {
 	"name": "scottspence.com",
 	"private": true,
-	"packageManager": "pnpm@10.33.2",
+	"packageManager": "pnpm@11.1.1",
 	"engines": {
 		"node": ">=24.0.0",
-		"pnpm": ">=10.0.0"
+		"pnpm": ">=11.0.0"
 	},
 	"author": {
 		"name": "Scott Spence",
