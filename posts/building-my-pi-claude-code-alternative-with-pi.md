@@ -7,14 +7,14 @@ published: true
 
 <!-- cspell:ignore pirecall ccrecall nopeek Codex dogfooding badlogic opencode handoff mariozechner -->
 
-Right, so, I have written a few posts now about bits of `my-pi`:
+I have written a few posts now about bits of `my-pi`:
 [adding LSP](/posts/add-lsp-to-my-pi),
 [adding telemetry](/posts/add-telemetry-to-my-pi), and
 [hardening redaction with evals](/posts/hardening-redaction-in-my-pi).
 
-What I have not actually done is write the obvious post: what is
-`my-pi`, why did I make it, and why have I suddenly spent a slightly
-silly amount of time using it?
+What I have not actually done is the obvious one: explain what `my-pi`
+is, why I made it, and why I have suddenly spent a slightly silly
+amount of time using it.
 
 The short version: `my-pi` is my own opinionated AI coding agent
 harness, built on top of

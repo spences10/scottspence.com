@@ -7,11 +7,13 @@ published: true
 
 <!-- cspell:ignore otel pirecall ccrecall ndjson inspectable correlatable badlogic -->
 
-Right, so, `my-pi` is the coding agent harness I've been building on
-top of the excellent
-[pi-coding-agent](https://github.com/badlogic/pi-mono) from
-[badlogic](https://github.com/badlogic). I keep bolting things onto it
-as I need them for real work. Last time round it was
+`my-pi` keeps growing in the direction of whatever annoyed me most
+that week.
+
+It is the coding agent harness I've been building on top of the
+excellent [pi-coding-agent](https://github.com/badlogic/pi-mono) from
+[badlogic](https://github.com/badlogic), and I keep bolting things
+onto it as I need them for real work. Last time round it was
 [LSP](https://scottspence.com/posts/add-lsp-to-my-pi). This time it
 was evals, which meant telemetry first.
 
