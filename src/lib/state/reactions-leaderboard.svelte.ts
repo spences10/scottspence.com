@@ -140,7 +140,7 @@ class ReactionsLeaderboardState {
 }
 
 // Single universal instance shared everywhere
-export const reactions_leaderboard_state =
+const reactions_leaderboard_state =
 	new ReactionsLeaderboardState()
 
 // Fallback function for server-side usage and backward compatibility

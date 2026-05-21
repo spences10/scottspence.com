@@ -1,7 +1,7 @@
 import type { RequestEvent } from '@sveltejs/kit'
 import { parse_user_agent } from './utils'
 
-export type SessionMetadata = {
+type SessionMetadata = {
 	country?: string
 	browser?: string
 	device_type?: string
@@ -41,7 +41,7 @@ export const extract_metadata_from_event = (
 	return extract_session_metadata(user_agent, country)
 }
 
-export type LiveStatsBreakdown = {
+type LiveStatsBreakdown = {
 	active_visitors: number
 	recent_visitors: number
 	active_pages: { path: string; viewers: number }[]

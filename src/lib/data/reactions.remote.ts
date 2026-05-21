@@ -23,7 +23,7 @@ interface ReactionResult {
 	time_remaining?: number
 }
 
-export const submit_reaction = command(
+const submit_reaction = command(
 	v.object({
 		reaction: v.pipe(
 			v.string(),

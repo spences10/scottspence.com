@@ -173,7 +173,7 @@ class ReactionsState {
 }
 
 // Single universal instance shared everywhere
-export const reactions_state = new ReactionsState()
+const reactions_state = new ReactionsState()
 
 // Fallback function for server-side form actions
 export const submit_reaction = async (

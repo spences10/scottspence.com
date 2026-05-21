@@ -22,7 +22,7 @@ export interface EngagementStats {
 	period_label: string
 }
 
-export const ENGAGEMENT_PERIOD_LABELS: Record<StatsPeriod, string> = {
+const ENGAGEMENT_PERIOD_LABELS: Record<StatsPeriod, string> = {
 	today: 'Today',
 	yesterday: 'Yesterday',
 	week: 'This Week',
