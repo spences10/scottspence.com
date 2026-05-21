@@ -91,8 +91,8 @@ importers:
         specifier: 3.7.2
         version: 3.7.2
       layerchart:
-        specifier: 2.0.0-next.63
-        version: 2.0.0-next.63(@sveltejs/kit@2.60.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.55.8)(vite@8.0.11(@types/node@25.8.0)(jiti@2.7.0)(yaml@2.8.4)))(svelte@5.55.8)(typescript@6.0.3)(vite@8.0.11(@types/node@25.8.0)(jiti@2.7.0)(yaml@2.8.4)))(svelte@5.55.8)
+        specifier: 2.0.0-next.64
+        version: 2.0.0-next.64(@sveltejs/kit@2.60.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.55.8)(vite@8.0.11(@types/node@25.8.0)(jiti@2.7.0)(yaml@2.8.4)))(svelte@5.55.8)(typescript@6.0.3)(vite@8.0.11(@types/node@25.8.0)(jiti@2.7.0)(yaml@2.8.4)))(svelte@5.55.8)
       marked:
         specifier: 18.0.4
         version: 18.0.4
@@ -2284,8 +2284,8 @@ packages:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
     engines: {node: '>=6'}
 
-  layerchart@2.0.0-next.63:
-    resolution: {integrity: sha512-pX/mShq+cOTcdjLsLk0ILjBYxucOneeQcTuuYTE5fu9e3tUX7PwWvH36jXWiIMzRhn3m5Ojds8EVfeXiv4NXEg==}
+  layerchart@2.0.0-next.64:
+    resolution: {integrity: sha512-vkD8CBPQOFslC8AGgHvTc1lXOJYuj+Fzimjle7Gxu/GUXQ83m68G+H3zhMTB61Q8aXEu4ytz4vVuwuOB+5JD+Q==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -5031,7 +5031,7 @@ snapshots:
 
   kleur@4.1.5: {}
 
-  layerchart@2.0.0-next.63(@sveltejs/kit@2.60.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.55.8)(vite@8.0.11(@types/node@25.8.0)(jiti@2.7.0)(yaml@2.8.4)))(svelte@5.55.8)(typescript@6.0.3)(vite@8.0.11(@types/node@25.8.0)(jiti@2.7.0)(yaml@2.8.4)))(svelte@5.55.8):
+  layerchart@2.0.0-next.64(@sveltejs/kit@2.60.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.55.8)(vite@8.0.11(@types/node@25.8.0)(jiti@2.7.0)(yaml@2.8.4)))(svelte@5.55.8)(typescript@6.0.3)(vite@8.0.11(@types/node@25.8.0)(jiti@2.7.0)(yaml@2.8.4)))(svelte@5.55.8):
     dependencies:
       '@dagrejs/dagre': 2.0.4
       '@layerstack/svelte-actions': 1.0.1-next.18
