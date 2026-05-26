@@ -54,7 +54,7 @@
 		"cspell": "^10.0.0",
 		"d3-scale": "^4.0.2",
 		"daisyui": "5.5.20",
-		"date-fns": "4.2.1",
+		"date-fns": "4.3.0",
 		"fathom-client": "3.7.2",
 		"layerchart": "2.0.0-next.64",
 		"marked": "18.0.4",
