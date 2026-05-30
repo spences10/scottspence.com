@@ -30,7 +30,7 @@
 		is_loading = true
 		error = null
 		try {
-			analytics_data = await get_post_analytics(slug).run()
+			analytics_data = await get_post_analytics(slug)
 		} catch (err) {
 			error = 'Failed to load analytics data'
 			console.error('Error fetching analytics:', err)
