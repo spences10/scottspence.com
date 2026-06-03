@@ -49,8 +49,8 @@
 		"@types/node": "^25.9.1",
 		"@upstash/ratelimit": "^2.0.8",
 		"@upstash/redis": "^1.38.0",
-		"@vitest/browser": "4.1.7",
-		"@vitest/browser-playwright": "4.1.7",
+		"@vitest/browser": "4.1.8",
+		"@vitest/browser-playwright": "4.1.8",
 		"cspell": "^10.0.0",
 		"d3-scale": "^4.0.2",
 		"daisyui": "5.5.20",
@@ -80,7 +80,7 @@
 		"unist-util-visit": "5.1.0",
 		"valibot": "^1.4.0",
 		"vite-plus": "0.1.23",
-		"vitest": "4.1.7",
+		"vitest": "4.1.8",
 		"vitest-browser-svelte": "^2.1.1"
 	},
 	"dependencies": {
