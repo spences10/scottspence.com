@@ -210,7 +210,7 @@ class SiteStatsState {
 }
 
 // Single universal instance shared everywhere
-export const site_stats_state = new SiteStatsState()
+const site_stats_state = new SiteStatsState()
 
 // Fallback function for server-side usage and backward compatibility
 export const get_site_stats = async (): Promise<SiteStatsData> => {
@@ -340,11 +340,3 @@ export const get_site_stats = async (): Promise<SiteStatsData> => {
 	}
 }
 
-// Export types for use in components
-export type {
-	MonthlyStat,
-	SiteStat,
-	SiteStats,
-	SiteStatsData,
-	YearlyStat,
-}

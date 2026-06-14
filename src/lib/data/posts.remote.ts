@@ -45,7 +45,7 @@ export const get_posts = query(async (): Promise<Post[]> => {
 	}
 })
 
-export const get_post_by_slug = query(
+const get_post_by_slug = query(
 	v.string(),
 	async (slug: string): Promise<Post | null> => {
 		if (BYPASS_DB_READS.posts) {

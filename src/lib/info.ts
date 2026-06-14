@@ -4,7 +4,7 @@ export const website = `https://scottspence.com`
 
 export const description = `My own little space on the internet, where I write about what I've learned as a web developer mainly Svelte and SvelteKit.`
 
-export const payment_pointer = '$ilp.uphold.com/bzPBWkMBzLmN'
+const payment_pointer = '$ilp.uphold.com/bzPBWkMBzLmN'
 
 export const language = 'en-GB'
 

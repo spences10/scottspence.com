@@ -214,6 +214,6 @@ export const sqlite_client: SqliteClient = {
  * No-op sync function for local SQLite (no replication needed)
  * Maintains API compatibility with Turso's sync_replica function
  */
-export const sync_sqlite_replica = async (): Promise<void> => {
+const sync_sqlite_replica = async (): Promise<void> => {
 	console.log('Local SQLite: no sync needed')
 }

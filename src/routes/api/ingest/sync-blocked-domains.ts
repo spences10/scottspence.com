@@ -10,7 +10,7 @@ const sync_blocked_domains_schema = v.object({
 	remove: v.optional(v.array(v.string())),
 })
 
-export type SyncBlockedDomainsData = v.InferOutput<
+type SyncBlockedDomainsData = v.InferOutput<
 	typeof sync_blocked_domains_schema
 >
 

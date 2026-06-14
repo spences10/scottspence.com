@@ -44,7 +44,7 @@ export const DEFAULT_TAX_CONFIG: UkTaxConfig = {
 	basic_rate_band: 37700,
 }
 
-export interface PermanentBreakdown {
+interface PermanentBreakdown {
 	gross: number
 	personal_allowance: number
 	income_tax: number
@@ -53,7 +53,7 @@ export interface PermanentBreakdown {
 	take_home: number
 }
 
-export interface ContractorBreakdown {
+interface ContractorBreakdown {
 	gross_annual: number
 	salary: number
 	corporation_tax: number
@@ -65,7 +65,7 @@ export interface ContractorBreakdown {
 	take_home: number
 }
 
-export interface ContractorVsPermanent {
+interface ContractorVsPermanent {
 	day_rate: number
 	working_days: number
 	contractor: ContractorBreakdown

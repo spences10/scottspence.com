@@ -266,11 +266,10 @@ class PricingState {
 	}
 }
 
-export const pricing_state = new PricingState()
+const pricing_state = new PricingState()
 
 export const get_pricing_data = async (): Promise<PricingData> => {
 	await pricing_state.load_pricing_data()
 	return pricing_state.data
 }
 
-export type { ExchangeRates, PricingConfig, PricingData }
