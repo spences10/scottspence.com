@@ -1,8 +1,8 @@
 ---
 date: 2026-06-21
 title: How I Stop LLMs Drifting In Production Codebases
-tags: ['llm', 'pi', 'my-pi', 'svelte', 'guide']
-published: false
+tags: ['pi', 'my-pi', 'svelte', 'guide', 'notes']
+published: true
 ---
 
 <!-- cSpell:ignore LLMs SvelteKit my-pi oxlint guardrails worktree handoff handoffs allowlist toolcall toolcalls FTS PRs mockup -->
@@ -18,6 +18,14 @@ handoffs, "prompt harder" is not an engineering system. The answer is
 guardrails in the repo: checks, docs, lint rules, tool-call blockers,
 and handoff validation that stop the model drifting before the mistake
 becomes normal.
+
+That starts with establishing good patterns first. LLMs are pattern
+followers before they are engineers. They look for the nearest example
+that appears to work, then continue from there. If the repo is full of
+clean service boundaries, narrow components, cited docs, targeted
+invalidation, and boring validation commands, the model has something
+useful to copy. If the repo is full of shortcuts, the model will copy
+those too, just faster.
 
 For me, drift looks like this:
 
