@@ -8,12 +8,12 @@
   } from '$lib/components'
 </script>
 
-<!-- cspell:ignore Sveltest -->
+<!-- cspell:ignore Sveltest my-pi nopeek -->
 
 # Portfolio
 
 <Small>
-  Last updated: <DateUpdated date="2026-03-14" small="true" />
+  Last updated: <DateUpdated date="2026-06-22" small="true" />
 </Small>
 
 <!-- prettier-ignore -->
@@ -21,10 +21,41 @@ I'm Scott, a passionate Svelte ambassador and product engineer with <DateDistanc
 web development. Currently operating as an AI & Svelte consultant
 through [OES Technology](https://oestechnology.co.uk), building
 [Svortie](https://svortie.com), and shipping open-source developer
-tooling. My work spans practical utilities, developer tools, and
-useless projects I've built, just, because!
+tooling like [my-pi](https://github.com/spences10/my-pi). My work
+spans practical utilities, developer tools, and useless projects I've
+built, just, because!
 
 Here's some of my recent work.
+
+## my-pi
+
+[![my-pi package preview](https://raw.githubusercontent.com/spences10/my-pi/main/assets/pi-package-preview.png)](https://github.com/spences10/my-pi)
+
+[my-pi](https://github.com/spences10/my-pi) is my curated Pi
+distribution: a ready-to-run coding agent CLI with MCP, LSP, skills,
+recall, redaction, telemetry, team mode, prompt presets, and the bits
+I want wired in when I work in a terminal.
+
+**Key Features:**
+
+- Pi-native CLI with interactive TUI, print mode, JSON mode, RPC mode,
+  and a programmable runtime
+- Project-aware MCP tools and skills, scoped per repo so noisy or
+  sensitive tools only load where they belong
+- LSP-backed diagnostics, hover, definitions, references, and document
+  symbols
+- Local SQLite context sidecar, telemetry, evals, recall, and live
+  observability
+- Secret safety through output redaction and `nopeek` reminders
+- Team mode for local RPC teammate orchestration with tasks and
+  mailboxes
+
+**Tech Stack:** TypeScript, Pi, SQLite, MCP, LSP, pnpm
+
+[View Source](https://github.com/spences10/my-pi) |
+[Read the write-up](/posts/building-my-pi-claude-code-alternative-with-pi)
+
+---
 
 ## Svortie
 
