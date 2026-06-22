@@ -184,7 +184,7 @@ authentication required, making it super low friction for users.
 
 ---
 
-### AudioMind
+## AudioMind
 
 [![AudioMind](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1742151192/1a04f573-f419-4b85-93be-5878e7772a21.png)](https://github.com/spences10/audiomind)
 
