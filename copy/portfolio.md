@@ -17,7 +17,7 @@
 </Small>
 
 <!-- prettier-ignore -->
-I'm Scott, a passionate Svelte ambassador and product engineer with <DateDistance date='2018-03-18' /> years of commercial experience in
+I'm Scott, a passionate Svelte ambassador and product engineer with <DateDistance date='2018-03-18' /> of commercial experience in
 web development. Currently operating as an AI & Svelte consultant
 through [OES Technology](https://oestechnology.co.uk), building
 [Svortie](https://svortie.com), and shipping open-source developer
