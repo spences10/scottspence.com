@@ -34,7 +34,7 @@
 		"coverage": "vitest run --coverage"
 	},
 	"devDependencies": {
-		"@anthropic-ai/sdk": "^0.104.0",
+		"@anthropic-ai/sdk": "^0.105.0",
 		"@fontsource-variable/manrope": "^5.2.8",
 		"@fontsource-variable/victor-mono": "^5.2.8",
 		"@fontsource/comic-neue": "^5.2.7",
