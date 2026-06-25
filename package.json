@@ -79,7 +79,7 @@
 		"typescript": "^6.0.3",
 		"unist-util-visit": "5.1.0",
 		"valibot": "^1.4.0",
-		"vite-plus": "0.1.24",
+		"vite-plus": "0.2.1",
 		"vitest": "4.1.8",
 		"vitest-browser-svelte": "^2.1.1"
 	},
