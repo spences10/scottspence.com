@@ -1,0 +1,15 @@
+[phases.setup]
+nixPkgs = ["nodejs_24", "sqlite", "gcc", "pkg-config"]
+aptPkgs = ["curl", "wget", "libsqlite3-dev", "sqlite3"]
+
+[phases.install]
+cmds = [
+  "npm install -g pnpm@11.9.0",
+  "pnpm install --frozen-lockfile --config.engine-strict=false --config.optional=true"
+]
+
+[phases.build]
+cmds = ["pnpm run build"]
+
+[start]
+cmd = "pnpm run start"
