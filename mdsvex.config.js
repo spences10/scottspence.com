@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { defineMDSveXConfig as defineConfig } from 'mdsvex'
 import path from 'node:path'
 import autolinkHeadings from 'rehype-autolink-headings'

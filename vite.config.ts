@@ -1,39 +1,30 @@
+import adapter from '@sveltejs/adapter-node'
 import { sveltekit } from '@sveltejs/kit/vite'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import tailwindcss from '@tailwindcss/vite'
 import { playwright } from '@vitest/browser-playwright'
-import { defineConfig } from 'vite-plus'
+import { mdsvex } from 'mdsvex'
+import { defineConfig } from 'vitest/config'
+import mdsvexConfig from './mdsvex.config.js'
 
 export default defineConfig({
-	fmt: {
-		useTabs: true,
-		singleQuote: true,
-		semi: false,
-		printWidth: 70,
-		trailingComma: 'all',
-		proseWrap: 'always',
-		ignorePatterns: [
-			'posts/**',
-			'newsletter/**',
-			'copy/**',
-			'docs/**',
-			'*.md',
-			'*.toml',
-		],
-	},
-	lint: {
-		ignorePatterns: [
-			'**/node_modules/**',
-			'**/build/**',
-			'**/.svelte-kit/**',
-			'**/test-results/**',
-			'data/**',
-		],
-		options: {
-			typeAware: true,
-			typeCheck: true,
-		},
-	},
-	plugins: [tailwindcss(), sveltekit()],
+	plugins: [
+		tailwindcss(),
+		sveltekit({
+			adapter: adapter(),
+			compilerOptions: {
+				experimental: {
+					async: true,
+				},
+			},
+			csrf: { trustedOrigins: ['https://scottspence.com'] },
+			experimental: {
+				remoteFunctions: true,
+			},
+			extensions: ['.svelte', '.md'],
+			preprocess: [mdsvex(mdsvexConfig), vitePreprocess()],
+		}),
+	],
 	server: {
 		fs: {
 			// Allow serving files from one level up to the project root

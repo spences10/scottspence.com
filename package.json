@@ -15,9 +15,9 @@
 	"type": "module",
 	"scripts": {
 		"start": "node ./build/index.js",
-		"dev": "vp dev",
-		"build": "vp build",
-		"preview": "vp preview",
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
 		"check": "svelte-kit sync && vp check && svelte-check --tsconfig ./tsconfig.json && prettier --check .",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "vp check --fix && prettier --write .",
