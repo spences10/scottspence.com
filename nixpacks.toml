@@ -8,7 +8,7 @@ cmds = [
 ]
 
 [phases.build]
-cmds = ["$(npm prefix -g)/bin/pnpm run build"]
+cmds = ["$(npm prefix -g)/bin/pnpm exec vite build"]
 
 [start]
 cmd = "node ./build/index.js"
