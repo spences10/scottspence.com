@@ -4,12 +4,11 @@ aptPkgs = ["curl", "wget", "libsqlite3-dev", "sqlite3"]
 
 [phases.install]
 cmds = [
-  "npm install -g pnpm@11.9.0",
-  "pnpm install --frozen-lockfile --config.engine-strict=false --config.optional=true"
+  "npm install -g pnpm@11.9.0 && $(npm prefix -g)/bin/pnpm install --frozen-lockfile --config.engine-strict=false --config.optional=true"
 ]
 
 [phases.build]
-cmds = ["pnpm run build"]
+cmds = ["$(npm prefix -g)/bin/pnpm run build"]
 
 [start]
-cmd = "pnpm run start"
+cmd = "node ./build/index.js"
