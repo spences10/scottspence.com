@@ -156,6 +156,9 @@ importers:
       valibot:
         specifier: ^1.4.1
         version: 1.4.1(typescript@6.0.3)
+      vite:
+        specifier: ^8.1.0
+        version: 8.1.0(@types/node@26.0.1)(jiti@2.7.0)(yaml@2.9.0)
       vite-plus:
         specifier: 0.2.1
         version: 0.2.1(@types/node@26.0.1)(@vitest/browser-playwright@4.1.9)(jiti@2.7.0)(svelte@5.56.4)(typescript@6.0.3)(vite@8.1.0(@types/node@26.0.1)(jiti@2.7.0)(yaml@2.9.0))(yaml@2.9.0)
