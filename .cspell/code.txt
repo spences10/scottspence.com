@@ -119,6 +119,7 @@ webp
 wireframe
 WHBA
 WORKDIR
+worktree
 wrapPageElement
 wraprootelement
 wslu
