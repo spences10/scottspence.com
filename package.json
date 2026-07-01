@@ -52,7 +52,7 @@
 		"@vitest/browser-playwright": "4.1.9",
 		"cspell": "^10.0.1",
 		"d3-scale": "^4.0.2",
-		"daisyui": "5.6.3",
+		"daisyui": "5.6.6",
 		"date-fns": "4.4.0",
 		"fathom-client": "3.7.2",
 		"layerchart": "2.0.0-next.65",
