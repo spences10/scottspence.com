@@ -3,7 +3,7 @@ import { og_image_url } from '$lib/utils'
 
 import type { SeoConfig } from 'svead'
 
-export const same_as = [
+const same_as = [
 	'https://www.twitter.com/spences10',
 	'https://www.github.com/spences10',
 	'https://www.linkedin.com/in/spences10',
@@ -28,7 +28,7 @@ const person = {
 	sameAs: same_as,
 } as const
 
-export const default_schema_org_config = {
+const default_schema_org_config = {
 	'@type': 'WebSite' as const,
 	'@id': website,
 	url: website,

@@ -6,7 +6,7 @@
 /**
  * Internal domains to filter out
  */
-export const INTERNAL_DOMAINS = new Set([
+const INTERNAL_DOMAINS = new Set([
 	'scottspence.com',
 	'scottspence.dev',
 	'scottspence.me',

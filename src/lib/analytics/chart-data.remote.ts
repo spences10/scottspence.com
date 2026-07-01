@@ -13,7 +13,7 @@ import {
 	type StatsPeriod,
 } from './period-stats.helpers'
 
-export type ChartDataPoint = {
+type ChartDataPoint = {
 	timestamp: string
 	views: number
 	visitors: number

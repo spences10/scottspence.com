@@ -11,7 +11,7 @@ import type {
  * Insert GitHub commits into database
  * Uses INSERT OR REPLACE to handle duplicates (UNIQUE constraint on sha)
  */
-export function insert_commits(commits: GitHubCommit[]): number {
+function insert_commits(commits: GitHubCommit[]): number {
 	if (commits.length === 0) return 0
 
 	const queries = commits.map((commit) => ({
@@ -39,7 +39,7 @@ export function insert_commits(commits: GitHubCommit[]): number {
  * Insert GitHub pull requests into database
  * Uses INSERT OR REPLACE to handle duplicates (UNIQUE constraint on repo+number)
  */
-export function insert_pull_requests(
+function insert_pull_requests(
 	pull_requests: GitHubPullRequest[],
 ): number {
 	if (pull_requests.length === 0) return 0
@@ -71,7 +71,7 @@ export function insert_pull_requests(
  * Insert GitHub issues into database
  * Uses INSERT OR REPLACE to handle duplicates (UNIQUE constraint on repo+number)
  */
-export function insert_issues(issues: GitHubIssue[]): number {
+function insert_issues(issues: GitHubIssue[]): number {
 	if (issues.length === 0) return 0
 
 	const queries = issues.map((issue) => ({
@@ -101,7 +101,7 @@ export function insert_issues(issues: GitHubIssue[]): number {
  * Insert GitHub releases into database
  * Uses INSERT OR REPLACE to handle duplicates (UNIQUE constraint on repo+tag_name)
  */
-export function insert_releases(releases: GitHubRelease[]): number {
+function insert_releases(releases: GitHubRelease[]): number {
 	if (releases.length === 0) return 0
 
 	const queries = releases.map((release) => ({
