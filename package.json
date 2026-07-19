@@ -79,7 +79,7 @@
 		"unist-util-visit": "5.1.0",
 		"valibot": "^1.4.1",
 		"vite": "^8.1.0",
-		"vite-plus": "0.2.4",
+		"vite-plus": "0.2.5",
 		"vitest": "4.1.10",
 		"vitest-browser-svelte": "^2.1.1"
 	},
