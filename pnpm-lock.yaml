@@ -125,7 +125,7 @@ importers:
         version: 1.0.3
       resend:
         specifier: ^6.16.0
-        version: 6.17.2
+        version: 6.18.0
       slugify:
         specifier: 1.6.9
         version: 1.6.9
@@ -2658,8 +2658,8 @@ packages:
   points-on-path@0.2.1:
     resolution: {integrity: sha512-25ClnWWuw7JbWZcgqY/gJ4FQWadKxGWk+3kR/7kD0tCaDtPPMj7oHu2ToLaVhfpnHrZzYby2w6tUA0eOIuUg8g==}
 
-  postal-mime@2.7.4:
-    resolution: {integrity: sha512-0WdnFQYUrPGGTFu1uOqD2s7omwua8xaeYGdO6rb88oD5yJ/4pPHDA4sdWqfD8wQVfCny563n/HQS7zTFft+f/g==}
+  postal-mime@2.7.5:
+    resolution: {integrity: sha512-GNEXKvWFQnbgO5NlrGzVa0FmWzBZ24PersAWErttSg1Hjpf0ATxTwS5DOMGaOpTG6bUh5cTr7xi0jAD942wCJA==}
 
   postcss-selector-parser@6.0.10:
     resolution: {integrity: sha512-IQ7TZdoaqbT+LCpShg46jnZVlhWD2w6iQYAcYXfHARZ7X1t/UGhhceQDs5X0cGqKvYlHNOuv7Oa1xmb0oQuA3w==}
@@ -2786,8 +2786,8 @@ packages:
   remark-preview@1.0.3:
     resolution: {integrity: sha512-XT1qrNgB3JjawguQGknlT0O2z6TbJO/MdR3pBbLWz7aPbfgrba4YgANkNO4DbV4fSlLzrqok48pKmd3TwlkHZw==}
 
-  resend@6.17.2:
-    resolution: {integrity: sha512-hbaXEORFIFfT2Bh03NsA/akTTTKkD1hiuJ88ke64c5dWVV6DyoLxzFve3OiZqVOQ+JKLJ5uVkPR6hlUslpJFoA==}
+  resend@6.18.0:
+    resolution: {integrity: sha512-EjxZ9AVzywJgOlUoIJe9ytBWVrfbUtJbjeoLnRSvpU1sv97Hh9DSwhw+k8kiujrG4Rg4bzTBsjlmwWWuoOxSug==}
     engines: {node: '>=20'}
     peerDependencies:
       '@react-email/render': '*'
@@ -5530,7 +5530,7 @@ snapshots:
       path-data-parser: 0.1.0
       points-on-curve: 0.2.0
 
-  postal-mime@2.7.4: {}
+  postal-mime@2.7.5: {}
 
   postcss-selector-parser@6.0.10:
     dependencies:
@@ -5640,9 +5640,9 @@ snapshots:
       unist-util-visit: 3.1.0
       unist-util-visit-parents: 4.1.1
 
-  resend@6.17.2:
+  resend@6.18.0:
     dependencies:
-      postal-mime: 2.7.4
+      postal-mime: 2.7.5
       standardwebhooks: 1.0.0
 
   resolve-from@5.0.0: {}
