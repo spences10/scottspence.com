@@ -1,10 +1,10 @@
-<!-- 
+<!--
 	button flip example taken from
 	https://codesandbox.io/s/svelte-kit-demo-typescript-slxxe
 -->
 <script lang="ts">
 	import { number_crunch } from '$lib/utils'
-	import { spring } from 'svelte/motion'
+	import { Spring } from 'svelte/motion'
 
 	let {
 		count,
@@ -22,37 +22,21 @@
 		aria_label: string
 	} = $props()
 
-	let base_width = 2
-	let padding = 3
-	let character_width = 1
-
-	// svelte-ignore state_referenced_locally - intentionally capturing initial count for spring animation
-	const displayed_count = spring(count)
-	let offset = $state(0)
-	let button_width = $state(``)
-
-	$effect(() => {
-		displayed_count.set(count)
-		offset = modulo($displayed_count, 1)
-		button_width =
-			base_width + padding + character_width * crunched_length + 'rem'
-	})
+	const base_width = 2
+	const padding = 3
+	const character_width = 1
+	const displayed_count = Spring.of(() => count)
+	let offset = $derived(modulo(displayed_count.current, 1))
+	let crunched_number = $derived(number_crunch(count))
+	let button_width = $derived(
+		base_width +
+			padding +
+			character_width * crunched_number.length +
+			'rem',
+	)
 
 	function modulo(n: number, m: number) {
 		return ((n % m) + m) % m
-	}
-
-	// calculate initial button width
-	// svelte-ignore state_referenced_locally - intentionally capturing initial count for width calculation
-	let crunched_number = number_crunch(count)
-	let crunched_length = crunched_number.length
-
-	function handle_click() {
-		count += 1
-		displayed_count.set(count)
-		crunched_number = number_crunch(count)
-		button_width =
-			base_width + padding + character_width * crunched_length + 'rem'
 	}
 </script>
 
@@ -61,8 +45,7 @@
 	type="submit"
 	{value}
 	{disabled}
-	class="btn btn-primary rounded-box relative overflow-hidden lowercase shadow-xl"
-	onclick={handle_click}
+	class="btn relative overflow-hidden rounded-box lowercase shadow-xl btn-primary"
 	style:width={button_width}
 	title={count > 1000 ? `${value} ${count}` : ''}
 	aria-label={aria_label}
@@ -78,7 +61,7 @@
 			aria-hidden="true"
 		>
 			<strong class="font-bold">
-				{number_crunch(Math.floor($displayed_count + 1))}
+				{number_crunch(Math.floor(displayed_count.current + 1))}
 			</strong>
 		</div>
 		<div
@@ -86,7 +69,7 @@
 			style:width={button_width}
 		>
 			<strong class="font-bold">
-				{number_crunch(Math.floor($displayed_count))}
+				{number_crunch(Math.floor(displayed_count.current))}
 			</strong>
 		</div>
 	</div>
