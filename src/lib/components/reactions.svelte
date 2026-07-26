@@ -72,7 +72,7 @@
 				count={counts[reaction.type] ?? 0}
 				emoji={reaction.emoji}
 				value={reaction.type}
-				disabled={submitting || rate_limited}
+				disabled={rate_limited}
 				aria_label={`Submit ${
 					reaction.type
 				} reaction. Current count: ${counts[reaction.type] ?? 0}`}
