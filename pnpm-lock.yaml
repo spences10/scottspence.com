@@ -91,8 +91,8 @@ importers:
         specifier: 2.0.4
         version: 2.0.4(@sveltejs/kit@2.70.1(@sveltejs/vite-plugin-svelte@7.2.0(svelte@5.56.8)(vite@8.1.5(@types/node@26.1.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.56.8)(typescript@6.0.3)(vite@8.1.5(@types/node@26.1.2)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.56.8)
       marked:
-        specifier: 18.0.7
-        version: 18.0.7
+        specifier: 18.0.9
+        version: 18.0.9
       mdsvex:
         specifier: ^0.12.7
         version: 0.12.8(svelte@5.56.8)
@@ -2587,8 +2587,8 @@ packages:
     engines: {node: '>= 20'}
     hasBin: true
 
-  marked@18.0.7:
-    resolution: {integrity: sha512-iDVQ5ldaiKXn6b2JroX5kgRfmwgqolW7NpaEzTl1k/2Zh1njIEN9yniyLV/mOvWwtsE8OGgkjsCYvijuPk1dtA==}
+  marked@18.0.9:
+    resolution: {integrity: sha512-/Sa4qiiHZxf0/FQdBBowr9q4r10krCwMvpK48FUBdXdUXScDxiQGR9zCPrFgRVR5LU3iySOiIjy09ZQvADir1w==}
     engines: {node: '>= 20'}
     hasBin: true
 
@@ -5469,7 +5469,7 @@ snapshots:
 
   marked@16.4.2: {}
 
-  marked@18.0.7: {}
+  marked@18.0.9: {}
 
   mdast-util-definitions@5.1.2:
     dependencies:
