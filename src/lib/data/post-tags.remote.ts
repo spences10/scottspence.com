@@ -5,8 +5,6 @@ import {
 	type PostTagsResult,
 } from '$lib/utils/group-posts-by-tag'
 
-export type { PostTagsResult }
-
 export const get_post_tags = query(
 	async (): Promise<PostTagsResult> => {
 		const posts = await get_posts()

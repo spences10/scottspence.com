@@ -33,4 +33,4 @@ export const BOT_THRESHOLDS = {
 	MIN_VISITORS_FOR_DIRECT_ONLY: 15,
 } as const
 
-export type BotThresholds = typeof BOT_THRESHOLDS
+type BotThresholds = typeof BOT_THRESHOLDS
