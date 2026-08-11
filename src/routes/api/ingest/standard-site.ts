@@ -251,7 +251,6 @@ const put_records = async (
 					{
 						repo: session.did,
 						...record,
-						validate: true,
 					},
 					session.accessJwt,
 				),
