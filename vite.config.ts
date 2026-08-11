@@ -7,7 +7,7 @@ import { mdsvex } from 'mdsvex'
 import { defineConfig } from 'vitest/config'
 import mdsvexConfig from './mdsvex.config.js'
 
-export default defineConfig({
+const config = defineConfig({
 	plugins: [
 		tailwindcss(),
 		sveltekit({
@@ -79,3 +79,29 @@ export default defineConfig({
 		],
 	},
 })
+
+export default {
+	...config,
+	fmt: {
+		useTabs: true,
+		singleQuote: true,
+		printWidth: 70,
+		trailingComma: 'all',
+		proseWrap: 'always',
+		ignorePatterns: [
+			'.svelte-kit/**',
+			'build/**',
+			'test-results/**',
+			'data/**',
+			'bun.lock',
+			'package-lock.json',
+			'pnpm-lock.yaml',
+			'yarn.lock',
+			'.claude/settings.local.json',
+		],
+		svelte: true,
+		sortTailwindcss: {
+			stylesheet: './src/app.css',
+		},
+	},
+}
