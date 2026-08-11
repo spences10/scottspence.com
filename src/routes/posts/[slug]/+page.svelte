@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { page } from '$app/state'
-	import { track_click } from '$lib/analytics/track-click.remote'
+	import { page } from '$app/state';
+	import { track_click } from '$lib/analytics/track-click.remote';
 	import {
 		differenceInDays,
 		differenceInYears,
 		format,
-	} from 'date-fns'
-	import { Head, SchemaOrg, type SchemaOrgProps } from 'svead'
+	} from 'date-fns';
+	import { Head, SchemaOrg, type SchemaOrgProps } from 'svead';
 
 	import {
 		ButtButt,
@@ -20,27 +20,33 @@
 		TableOfContents,
 		TextSelectionPopup,
 		UpdatedBanner,
-	} from '$lib/components'
+	} from '$lib/components';
 	import {
 		create_schema_org_config,
 		create_seo_config,
-	} from '$lib/seo'
-	import { get_headings, update_toc_visibility } from '$lib/utils'
-	import Modal from './modal.svelte'
+	} from '$lib/seo';
+	import { get_headings, update_toc_visibility } from '$lib/utils';
+	import Modal from './modal.svelte';
 
-	import { website } from '$lib/info'
+	import { website } from '$lib/info';
+	import { standard_site_document_uri } from '$lib/standard-site';
 
-	let { data } = $props()
+	let { data } = $props();
 
 	// Direct property access maintains reactivity
-	const url = $derived(`${website}/posts/${data.meta.slug}`)
+	const url = $derived(`${website}/posts/${data.meta.slug}`);
+	const standard_site_uri = $derived(
+		data.meta.is_private
+			? undefined
+			: standard_site_document_uri(data.meta.slug, data.meta.date),
+	);
 	const seo_config = $derived(
 		create_seo_config({
 			title: data.meta.title,
 			description: data.meta.preview.slice(0, 140) + '...',
 			slug: `posts/${data.meta.slug}`,
 		}),
-	)
+	);
 
 	const blog_posting = $derived(
 		create_schema_org_config({
@@ -69,13 +75,13 @@
 				'@id': website,
 			},
 		}),
-	)
+	);
 
 	const breadcrumb_items = $derived([
 		{ name: 'Home', item: website },
 		{ name: 'Posts', item: `${website}/posts` },
 		{ name: data.meta.title, item: url },
-	])
+	]);
 
 	const breadcrumb_list = $derived({
 		'@type': 'BreadcrumbList',
@@ -87,104 +93,110 @@
 			name: breadcrumb.name,
 			item: breadcrumb.item,
 		})),
-	})
+	});
 
 	const schema_org_config = $derived({
 		'@context': 'https://schema.org',
 		'@graph': [blog_posting, breadcrumb_list],
-	} as unknown as SchemaOrgProps['schema'])
+	} as unknown as SchemaOrgProps['schema']);
 
-	let path = page.route.id
+	let path = page.route.id;
 
-	let end_of_copy = $state<HTMLElement | null>(null)
-	let show_table_of_contents = $state(true)
+	let end_of_copy = $state<HTMLElement | null>(null);
+	let show_table_of_contents = $state(true);
 	let headings_promise = $state<
 		Promise<{ label: string; href: string }[]> | undefined
-	>(undefined)
+	>(undefined);
 
 	$effect(() => {
 		headings_promise = get_headings().then((headings) => {
-			return headings
-		})
-	})
+			return headings;
+		});
+	});
 
 	const handle_scroll = () => {
-		show_table_of_contents = update_toc_visibility(end_of_copy, -200)
-	}
+		show_table_of_contents = update_toc_visibility(end_of_copy, -200);
+	};
 
 	let selection_popup = $state({
 		visible: false,
 		selectedText: '',
 		x: 0,
 		y: 0,
-	})
+	});
 
 	const text_selection_handler = (element: HTMLElement) => {
 		const handle_mouse_up = () => {
 			setTimeout(() => {
-				const selection = window.getSelection()
+				const selection = window.getSelection();
 				if (selection && selection.toString().trim().length > 0) {
-					const range = selection.getRangeAt(0)
-					const rect = range.getBoundingClientRect()
+					const range = selection.getRangeAt(0);
+					const rect = range.getBoundingClientRect();
 
 					selection_popup = {
 						visible: true,
 						selectedText: selection.toString(),
 						x: rect.left + rect.width / 2 + window.scrollX,
 						y: rect.bottom + window.scrollY + 10,
-					}
+					};
 				} else {
 					selection_popup = {
 						...selection_popup,
 						visible: false,
-					}
+					};
 				}
-			}, 10)
-		}
+			}, 10);
+		};
 
 		const handle_global_click = (event: MouseEvent) => {
 			// Hide popup if clicking outside the content area and there's no selection
 			if (!element.contains(event.target as Node)) {
-				const selection = window.getSelection()
+				const selection = window.getSelection();
 				if (!selection || selection.toString().trim().length === 0) {
 					selection_popup = {
 						...selection_popup,
 						visible: false,
-					}
+					};
 				}
 			}
-		}
+		};
 
-		element.addEventListener('mouseup', handle_mouse_up)
-		document.addEventListener('click', handle_global_click)
+		element.addEventListener('mouseup', handle_mouse_up);
+		document.addEventListener('click', handle_global_click);
 
 		return () => {
-			element.removeEventListener('mouseup', handle_mouse_up)
-			document.removeEventListener('click', handle_global_click)
-		}
-	}
+			element.removeEventListener('mouseup', handle_mouse_up);
+			document.removeEventListener('click', handle_global_click);
+		};
+	};
 
-	let modal = $state() as typeof Modal.prototype
+	let modal = $state() as typeof Modal.prototype;
 
 	const show_modal = async (
 		e: MouseEvent & { currentTarget: HTMLAnchorElement },
 	) => {
-		if (e.metaKey || e.ctrlKey) return
-		e.preventDefault()
+		if (e.metaKey || e.ctrlKey) return;
+		e.preventDefault();
 
 		// Track the event
 		track_click({
 			event_name: `analytics click: ${page.url.pathname}`,
-		})
+		});
 
 		// Open modal and fetch analytics data
-		await modal.show_modal()
-	}
+		await modal.show_modal();
+	};
 
 	const close_modal = () => {
-		modal.close_modal()
-	}
+		modal.close_modal();
+	};
 </script>
+
+<svelte:head>
+	{#if standard_site_uri}
+		<link rel="site.standard.document" href={standard_site_uri} />
+	{/if}
+</svelte:head>
 
 <svelte:window onscroll={handle_scroll} />
 
@@ -219,7 +231,7 @@
 			{#each data.meta.tags as tag}
 				<a href={`/tags/${tag}`}>
 					<span
-						class="badge badge-sm badge-primary text-primary-content hover:bg-accent hover:text-accetn-content mr-2 shadow-md transition"
+						class="hover:text-accetn-content mr-2 badge badge-sm text-primary-content shadow-md transition badge-primary hover:bg-accent"
 					>
 						{tag}
 					</span>
@@ -227,7 +239,7 @@
 			{/each}
 			{#if differenceInDays(new Date(), new Date(data.meta.date)) < 31}
 				<span
-					class="badge badge-sm badge-secondary text-secondary-content hover:bg-accent hover:text-accent-content cursor-pointer font-bold shadow-md transition"
+					class="badge cursor-pointer badge-sm font-bold text-secondary-content shadow-md transition badge-secondary hover:bg-accent hover:text-accent-content"
 				>
 					new
 				</span>
@@ -277,7 +289,7 @@
 			<a
 				onclick={show_modal}
 				href="/stats/{page.params.slug}"
-				class="btn btn-primary btn-lg mb-20 px-10 text-xl shadow-lg"
+				class="btn mb-20 px-10 text-xl shadow-lg btn-lg btn-primary"
 			>
 				✨ View the stats for this post ✨
 			</a>

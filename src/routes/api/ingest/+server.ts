@@ -1,26 +1,30 @@
-import { env } from '$env/dynamic/private'
-import { json } from '@sveltejs/kit'
-import * as v from 'valibot'
-import { backfill_github_activity } from './backfill-github-activity'
-import { backup_database } from './backup-database'
-import { cleanup_analytics } from './cleanup-analytics'
-import { daily_github_activity } from './daily-github-activity'
-import { export_training_data } from './export-training-data'
-import { fetch_github_activity } from './fetch-github-activity'
-import { index_now } from './index-now'
-import { newsletter_send } from './newsletter-send'
-import { pull_database } from './pull-database'
-import { restore_database } from './restore-database'
-import { rollup_analytics } from './rollup-analytics'
-import { run_query, validate_run_query } from './run-query'
-import { send_newsletter_reminder } from './send-newsletter-reminder'
+import { env } from '$env/dynamic/private';
+import { json } from '@sveltejs/kit';
+import * as v from 'valibot';
+import { backfill_github_activity } from './backfill-github-activity';
+import { backup_database } from './backup-database';
+import { cleanup_analytics } from './cleanup-analytics';
+import { daily_github_activity } from './daily-github-activity';
+import { export_training_data } from './export-training-data';
+import { fetch_github_activity } from './fetch-github-activity';
+import { index_now } from './index-now';
+import { newsletter_send } from './newsletter-send';
+import { pull_database } from './pull-database';
+import { restore_database } from './restore-database';
+import { rollup_analytics } from './rollup-analytics';
+import { run_query, validate_run_query } from './run-query';
+import { send_newsletter_reminder } from './send-newsletter-reminder';
+import {
+	standard_site_sync,
+	validate_standard_site_sync,
+} from './standard-site';
 import {
 	sync_blocked_domains,
 	validate_sync_blocked_domains,
-} from './sync-blocked-domains'
-import { update_embeddings } from './update-embeddings'
-import { update_posts } from './update-posts'
-import { update_related_posts_table } from './update-related-posts'
+} from './sync-blocked-domains';
+import { update_embeddings } from './update-embeddings';
+import { update_posts } from './update-posts';
+import { update_related_posts_table } from './update-related-posts';
 
 /**
  * === GETTING PRODUCTION DATA LOCALLY ===
@@ -93,12 +97,26 @@ curl -X POST https://scottspence.com/api/ingest \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $INGEST_TOKEN" \
   -d '{"task": "sync_blocked_domains", "data": {"add": ["spamsite"], "remove": ["falsepositivesite"]}}'
+ *
+ * Preview Standard.site records without writing:
+ *
+curl -X POST http://localhost:5173/api/ingest \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $INGEST_TOKEN" \
+  -d '{"task": "standard_site", "data": {"mode": "preview"}}'
+ *
+ * Publish after reviewing the preview:
+ *
+curl -X POST http://localhost:5173/api/ingest \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $INGEST_TOKEN" \
+  -d '{"task": "standard_site", "data": {"mode": "publish", "confirm": true}}'
  */
 
 // Define generic task function
 type TaskFunction<TArgs = any, TResult = any> = (
 	...args: TArgs[]
-) => Promise<TResult>
+) => Promise<TResult>;
 
 // Define the type for the keys in tasks object
 type TaskKey =
@@ -117,28 +135,29 @@ type TaskKey =
 	| 'send_newsletter_reminder'
 	| 'rollup_analytics'
 	| 'cleanup_analytics'
+	| 'standard_site'
 	| 'sync_blocked_domains'
-	| 'run_query'
+	| 'run_query';
 
 // Task function type for data-expecting tasks
-type DataTaskFunction = (data: unknown) => Promise<unknown>
+type DataTaskFunction = (data: unknown) => Promise<unknown>;
 
 // Define the type for tasks object
 interface TaskConfig {
-	function: TaskFunction | DataTaskFunction
-	expects_fetch: boolean
-	expects_data?: boolean
-	validate_data?: (data: unknown) => unknown
+	function: TaskFunction | DataTaskFunction;
+	expects_fetch: boolean;
+	expects_data?: boolean;
+	validate_data?: (data: unknown) => unknown;
 }
 
 interface TaskType {
-	[key: string]: TaskConfig
+	[key: string]: TaskConfig;
 }
 
 // Define the type for the expected structure of request body
 interface RequestBody {
-	task: TaskKey
-	data?: unknown
+	task: TaskKey;
+	data?: unknown;
 }
 
 // Define a mapping from task names to functions
@@ -203,6 +222,12 @@ const tasks: TaskType = {
 		function: cleanup_analytics,
 		expects_fetch: false,
 	},
+	standard_site: {
+		function: standard_site_sync,
+		expects_fetch: true,
+		expects_data: true,
+		validate_data: validate_standard_site_sync,
+	},
 	sync_blocked_domains: {
 		function: sync_blocked_domains,
 		expects_fetch: false,
@@ -215,29 +240,29 @@ const tasks: TaskType = {
 		expects_data: true,
 		validate_data: validate_run_query,
 	},
-}
+};
 
 export const POST = async ({
 	request,
 	fetch,
 }: {
-	request: Request
-	fetch: typeof globalThis.fetch
+	request: Request;
+	fetch: typeof globalThis.fetch;
 }) => {
 	try {
-		const body: RequestBody = await request.json()
-		const task_key = body.task
+		const body: RequestBody = await request.json();
+		const task_key = body.task;
 
 		// Check authorisation first (prevents task enumeration)
-		const auth_header = request.headers.get('Authorization')
-		const token = auth_header?.replace('Bearer ', '')
+		const auth_header = request.headers.get('Authorization');
+		const token = auth_header?.replace('Bearer ', '');
 
 		if (!token || token !== env.INGEST_TOKEN) {
-			return json({ message: 'Unauthorized' }, { status: 401 })
+			return json({ message: 'Unauthorized' }, { status: 401 });
 		}
 
 		// Get the task config (after auth check)
-		const task = tasks[task_key]
+		const task = tasks[task_key];
 		if (!task || typeof task.function !== 'function') {
 			return json(
 				{
@@ -245,28 +270,38 @@ export const POST = async ({
 						'Specified task does not exist or is not a function',
 				},
 				{ status: 400 },
-			)
+			);
 		}
 
-		console.log(`Executing task: ${task_key}`)
+		console.log(`Executing task: ${task_key}`);
 
 		try {
-			let result
+			let result;
 
-			if (task.expects_data && task.validate_data) {
+			if (
+				task.expects_fetch &&
+				task.expects_data &&
+				task.validate_data
+			) {
+				const validated_data = task.validate_data(body.data);
+				result = await (task.function as TaskFunction)(
+					fetch,
+					validated_data,
+				);
+			} else if (task.expects_data && task.validate_data) {
 				// Validate and pass data to task
-				const validated_data = task.validate_data(body.data)
+				const validated_data = task.validate_data(body.data);
 				result = await (task.function as DataTaskFunction)(
 					validated_data,
-				)
+				);
 			} else if (task.expects_fetch) {
-				result = await (task.function as TaskFunction)(fetch)
+				result = await (task.function as TaskFunction)(fetch);
 			} else {
-				result = await (task.function as TaskFunction)()
+				result = await (task.function as TaskFunction)();
 			}
 
-			console.log(`Task ${task_key} completed with result:`, result)
-			return json(result)
+			console.log(`Task ${task_key} completed with result:`, result);
+			return json(result);
 		} catch (task_error) {
 			// Validation errors are client errors (400)
 			if (v.isValiError(task_error)) {
@@ -276,10 +311,10 @@ export const POST = async ({
 						errors: task_error.issues.map((i) => i.message),
 					},
 					{ status: 400 },
-				)
+				);
 			}
 
-			console.error(`Error executing task ${task_key}:`, task_error)
+			console.error(`Error executing task ${task_key}:`, task_error);
 			return json(
 				{
 					message: `Error executing task ${task_key}`,
@@ -289,13 +324,13 @@ export const POST = async ({
 							: 'Unknown error',
 				},
 				{ status: 500 },
-			)
+			);
 		}
 	} catch (error) {
-		console.error('Error in POST /api/ingest:', error)
+		console.error('Error in POST /api/ingest:', error);
 		const error_message =
-			error instanceof Error ? error.message : 'Unknown error'
-		const error_stack = error instanceof Error ? error.stack : ''
+			error instanceof Error ? error.message : 'Unknown error';
+		const error_stack = error instanceof Error ? error.stack : '';
 		return json(
 			{
 				message: 'Error processing the request',
@@ -303,6 +338,6 @@ export const POST = async ({
 				stack: error_stack,
 			},
 			{ status: 500 },
-		)
+		);
 	}
-}
+};
