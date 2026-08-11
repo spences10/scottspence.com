@@ -16,6 +16,13 @@ interface Session {
 	did: string;
 }
 
+interface BlobReference {
+	$type: 'blob';
+	ref: { $link: string };
+	mimeType: string;
+	size: number;
+}
+
 interface DidDocument {
 	service?: Array<{
 		id: string;
@@ -184,6 +191,43 @@ const get_documents = async (
 	return documents;
 };
 
+export const get_standard_site_icon = async (
+	fetch: typeof globalThis.fetch,
+	service: string,
+) => {
+	const params = new URLSearchParams({
+		repo: standard_site.did,
+		collection: 'app.bsky.actor.profile',
+		rkey: 'self',
+	});
+	const response = await fetch(
+		`${service}/xrpc/com.atproto.repo.getRecord?${params}`,
+	);
+
+	if (!response.ok) {
+		throw new Error(
+			`Unable to read AT Protocol profile (${response.status})`,
+		);
+	}
+
+	const profile = (await response.json()) as {
+		value?: { avatar?: Partial<BlobReference> };
+	};
+	const avatar = profile.value?.avatar;
+
+	if (
+		avatar?.$type !== 'blob' ||
+		typeof avatar.ref?.$link !== 'string' ||
+		!avatar.mimeType?.startsWith('image/') ||
+		typeof avatar.size !== 'number' ||
+		avatar.size > 1_000_000
+	) {
+		throw new Error('AT Protocol profile has no suitable avatar');
+	}
+
+	return avatar as BlobReference;
+};
+
 export const resolve_standard_site_pds = async (
 	fetch: typeof globalThis.fetch,
 ) => {
@@ -222,6 +266,7 @@ const put_records = async (
 	session: Session,
 	documents: StandardSiteDocument[],
 ) => {
+	const icon = await get_standard_site_icon(fetch, service);
 	const records = [
 		{
 			collection: standard_site.publication_collection,
@@ -231,6 +276,7 @@ const put_records = async (
 				url: website,
 				name,
 				description,
+				icon,
 				preferences: { showInDiscover: true },
 			},
 		},

@@ -4,6 +4,7 @@ vi.mock('$env/dynamic/private', () => ({ env: {} }));
 
 import {
 	build_standard_site_document,
+	get_standard_site_icon,
 	resolve_standard_site_pds,
 	standard_site_sync,
 	to_plain_text,
@@ -79,6 +80,25 @@ const answer = 42
 			tags: ['svelte'],
 			textContent: 'Hello world',
 		});
+	});
+
+	it('reuses the Bluesky profile avatar as the publication icon', async () => {
+		const avatar = {
+			$type: 'blob' as const,
+			ref: { $link: 'bafkreiexample' },
+			mimeType: 'image/jpeg',
+			size: 146_531,
+		};
+		const fetch = vi
+			.fn()
+			.mockResolvedValue(Response.json({ value: { avatar } }));
+
+		await expect(
+			get_standard_site_icon(fetch, 'https://eurosky.social'),
+		).resolves.toEqual(avatar);
+		expect(fetch).toHaveBeenCalledWith(
+			expect.stringContaining('/xrpc/com.atproto.repo.getRecord?'),
+		);
 	});
 
 	it('resolves the account PDS from its DID document', async () => {
