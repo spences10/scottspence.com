@@ -10,7 +10,7 @@ const run_query_schema = v.object({
 	),
 })
 
-export type RunQueryData = v.InferOutput<typeof run_query_schema>
+type RunQueryData = v.InferOutput<typeof run_query_schema>
 
 export const validate_run_query = (data: unknown): RunQueryData => {
 	return v.parse(run_query_schema, data)

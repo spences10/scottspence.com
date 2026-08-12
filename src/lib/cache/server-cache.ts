@@ -61,7 +61,7 @@ export function clear_cache(key?: string): void {
 	}
 }
 
-export function get_cache_stats() {
+function get_cache_stats() {
 	return {
 		size: cache.size,
 		keys: Array.from(cache.keys()),

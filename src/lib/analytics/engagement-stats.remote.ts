@@ -17,10 +17,7 @@ import {
 } from './period-stats.helpers'
 
 // Re-export types for consumers
-export type {
-	EngagementStat,
-	EngagementStats,
-} from './engagement-stats.helpers'
+export type { EngagementStats } from './engagement-stats.helpers'
 
 /**
  * Get behaviour bot hashes for filtering

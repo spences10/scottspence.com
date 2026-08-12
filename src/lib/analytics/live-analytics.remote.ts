@@ -49,7 +49,7 @@ export const end_session = command(
  * Get live analytics (read-only, no heartbeat)
  * For initial render before heartbeat starts
  */
-export const get_live_analytics = query(() => {
+const get_live_analytics = query(() => {
 	return {
 		unique_visitors: get_active_visitor_count(),
 	}
@@ -59,7 +59,7 @@ export const get_live_analytics = query(() => {
  * Get viewers for a specific path (read-only)
  * For initial render before heartbeat starts
  */
-export const get_viewing_now = query(
+const get_viewing_now = query(
 	v.object({ path: v.string() }),
 	({ path }) => {
 		return {
@@ -73,7 +73,7 @@ export const get_viewing_now = query(
  * Get live dashboard data - all sessions grouped by path
  * For stats page live dashboard
  */
-export const get_live_dashboard = query(() => {
+const get_live_dashboard = query(() => {
 	const sessions = get_all_sessions()
 	const unique_visitors = get_active_visitor_count()
 

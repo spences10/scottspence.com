@@ -19,11 +19,11 @@ export interface Stats {
 	unique_visitors: number
 }
 
-export interface MonthlyStats extends Stats {
+interface MonthlyStats extends Stats {
 	year_month: string
 }
 
-export interface YearlyStats extends Stats {
+interface YearlyStats extends Stats {
 	year: string
 }
 

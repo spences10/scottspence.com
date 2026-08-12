@@ -115,4 +115,3 @@ class PricingState {
 
 export const pricing_state = new PricingState()
 
-export type { ExchangeRates, PricingConfig, PricingData }

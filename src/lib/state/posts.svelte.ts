@@ -68,14 +68,14 @@ class PostsState {
 }
 
 // Single universal instance shared everywhere
-export const posts_state = new PostsState()
+const posts_state = new PostsState()
 
 // Legacy context functions for backward compatibility
-export function set_posts_state() {
+function set_posts_state() {
 	return posts_state
 }
 
-export function get_posts_state(): PostsState {
+function get_posts_state(): PostsState {
 	return posts_state
 }
 
