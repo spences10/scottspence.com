@@ -6,7 +6,7 @@ import ButtButt from './butt-butt.svelte';
 describe('ButtButt Component', () => {
 	describe('Initial Rendering', () => {
 		it('renders with default props', async () => {
-			render(ButtButt);
+			await render(ButtButt);
 
 			const container = page.getByRole('complementary');
 			await expect.element(container).toBeInTheDocument();
@@ -21,7 +21,7 @@ describe('ButtButt Component', () => {
 		});
 
 		it('renders with custom dimensions', async () => {
-			render(ButtButt, {
+			await render(ButtButt, {
 				height: '200px',
 				width: '300px',
 			});
@@ -37,7 +37,7 @@ describe('ButtButt Component', () => {
 		});
 
 		it('does not display image initially', async () => {
-			render(ButtButt);
+			await render(ButtButt);
 
 			// Image should not be visible initially (not intersecting)
 			const image = page.getByAltText('a cheeky butt');
@@ -45,7 +45,7 @@ describe('ButtButt Component', () => {
 		});
 
 		it('displays initial pun text', async () => {
-			render(ButtButt);
+			await render(ButtButt);
 
 			// Should display some pun text (any of the possible puns)
 			const punContainer = page.getByRole('complementary');
@@ -57,7 +57,7 @@ describe('ButtButt Component', () => {
 		});
 
 		it('renders pun generation button', async () => {
-			render(ButtButt);
+			await render(ButtButt);
 
 			const button = page.getByRole('button', { name: 'pun me up' });
 			await expect.element(button).toBeInTheDocument();
@@ -69,7 +69,7 @@ describe('ButtButt Component', () => {
 
 	describe('User Interactions', () => {
 		it('generates new pun when button is clicked', async () => {
-			render(ButtButt);
+			await render(ButtButt);
 
 			const button = page.getByRole('button', { name: 'pun me up' });
 			await expect.element(button).toBeInTheDocument();
@@ -86,7 +86,7 @@ describe('ButtButt Component', () => {
 		});
 
 		it('button remains functional after multiple clicks', async () => {
-			render(ButtButt);
+			await render(ButtButt);
 
 			const button = page.getByRole('button', { name: 'pun me up' });
 
@@ -102,7 +102,7 @@ describe('ButtButt Component', () => {
 		});
 
 		it('pun text contains expected content patterns', async () => {
-			render(ButtButt);
+			await render(ButtButt);
 
 			const button = page.getByRole('button', { name: 'pun me up' });
 
@@ -124,7 +124,7 @@ describe('ButtButt Component', () => {
 
 	describe('Accessibility', () => {
 		it('has proper semantic structure', async () => {
-			render(ButtButt);
+			await render(ButtButt);
 
 			// Should use aside element for complementary content
 			const aside = page.getByRole('complementary');
@@ -136,7 +136,7 @@ describe('ButtButt Component', () => {
 		});
 
 		it('image has proper alt text when visible', async () => {
-			render(ButtButt);
+			await render(ButtButt);
 
 			// When image becomes visible, it should have proper alt text
 			// Note: We can't easily trigger intersection observer in tests,
@@ -146,7 +146,7 @@ describe('ButtButt Component', () => {
 		});
 
 		it('button is keyboard accessible', async () => {
-			render(ButtButt);
+			await render(ButtButt);
 
 			const button = page.getByRole('button', { name: 'pun me up' });
 
@@ -161,7 +161,7 @@ describe('ButtButt Component', () => {
 
 	describe('Content Structure', () => {
 		it('displays all required text elements', async () => {
-			render(ButtButt);
+			await render(ButtButt);
 
 			// Check for main message
 			const mainMessage = page.getByText(
@@ -179,7 +179,7 @@ describe('ButtButt Component', () => {
 		});
 
 		it('has proper CSS classes applied', async () => {
-			render(ButtButt);
+			await render(ButtButt);
 
 			const container = page.getByRole('complementary');
 			await expect.element(container).toHaveClass('all-prose');
@@ -188,7 +188,7 @@ describe('ButtButt Component', () => {
 		});
 
 		it('maintains text content structure', async () => {
-			render(ButtButt);
+			await render(ButtButt);
 
 			const container = page.getByRole('complementary');
 
@@ -205,7 +205,7 @@ describe('ButtButt Component', () => {
 
 	describe('Props Handling', () => {
 		it('accepts custom height and width props', async () => {
-			render(ButtButt, {
+			await render(ButtButt, {
 				height: '150px',
 				width: '250px',
 			});
@@ -219,7 +219,7 @@ describe('ButtButt Component', () => {
 		});
 
 		it('works with default props when none provided', async () => {
-			render(ButtButt);
+			await render(ButtButt);
 
 			// Should work fine with default props
 			const container = page.getByRole('complementary');
@@ -231,7 +231,7 @@ describe('ButtButt Component', () => {
 		});
 
 		it('handles edge case prop values', async () => {
-			render(ButtButt, {
+			await render(ButtButt, {
 				height: '0px',
 				width: '0px',
 			});
@@ -248,7 +248,7 @@ describe('ButtButt Component', () => {
 
 	describe('Component Behavior', () => {
 		it('maintains state across interactions', async () => {
-			render(ButtButt);
+			await render(ButtButt);
 
 			const button = page.getByRole('button', { name: 'pun me up' });
 			const container = page.getByRole('complementary');
@@ -270,7 +270,7 @@ describe('ButtButt Component', () => {
 		});
 
 		it('pun generation is functional', async () => {
-			render(ButtButt);
+			await render(ButtButt);
 
 			const button = page.getByRole('button', { name: 'pun me up' });
 
@@ -285,7 +285,7 @@ describe('ButtButt Component', () => {
 
 		it('component is reusable', async () => {
 			// Render multiple instances to test reusability
-			const { unmount: unmount1 } = render(ButtButt, {
+			const { unmount: unmount1 } = await render(ButtButt, {
 				height: '100px',
 				width: '160px',
 			});
@@ -296,7 +296,7 @@ describe('ButtButt Component', () => {
 			unmount1();
 
 			// Render second instance
-			render(ButtButt, {
+			await render(ButtButt, {
 				height: '200px',
 				width: '300px',
 			});

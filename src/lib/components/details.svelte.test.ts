@@ -7,7 +7,7 @@ import Details from './details.svelte';
 describe('Details Component', () => {
 	describe('Initial Rendering', () => {
 		it('renders with default props', async () => {
-			render(Details);
+			await render(Details);
 			const button = page.getByTestId('details-button');
 
 			await expect.element(button).toBeInTheDocument();
@@ -20,7 +20,7 @@ describe('Details Component', () => {
 		});
 
 		it('renders with custom button text', async () => {
-			render(Details, {
+			await render(Details, {
 				button_text: 'Show Details',
 			});
 			const button = page.getByTestId('details-button');
@@ -29,7 +29,7 @@ describe('Details Component', () => {
 		});
 
 		it('renders with empty button text', async () => {
-			render(Details, {
+			await render(Details, {
 				button_text: '',
 			});
 			const button = page.getByTestId('details-button');
@@ -38,7 +38,7 @@ describe('Details Component', () => {
 		});
 
 		it('renders with whitespace-only button text', async () => {
-			render(Details, {
+			await render(Details, {
 				button_text: '   ',
 			});
 			const button = page.getByTestId('details-button');
@@ -47,7 +47,7 @@ describe('Details Component', () => {
 		});
 
 		it('applies custom styles', async () => {
-			render(Details, {
+			await render(Details, {
 				styles: 'custom-class another-class',
 			});
 			const button = page.getByTestId('details-button');
@@ -59,7 +59,7 @@ describe('Details Component', () => {
 		});
 
 		it('handles undefined styles gracefully', async () => {
-			render(Details, {
+			await render(Details, {
 				styles: undefined,
 			});
 			const button = page.getByTestId('details-button');
@@ -71,7 +71,7 @@ describe('Details Component', () => {
 
 	describe('Initial State Control', () => {
 		it('respects initial is_open: false', async () => {
-			render(Details, {
+			await render(Details, {
 				button_text: 'Show Details',
 				is_open: false,
 			});
@@ -89,7 +89,7 @@ describe('Details Component', () => {
 				setup: () => {},
 			}));
 
-			render(Details, {
+			await render(Details, {
 				button_text: 'Show Details',
 				is_open: true,
 				children: testSnippet,
@@ -111,7 +111,7 @@ describe('Details Component', () => {
 				setup: () => {},
 			}));
 
-			render(Details, {
+			await render(Details, {
 				button_text: 'Show Details',
 				is_open: false,
 				children: testSnippet,
@@ -145,7 +145,7 @@ describe('Details Component', () => {
 				setup: () => {},
 			}));
 
-			render(Details, {
+			await render(Details, {
 				button_text: 'Show Details',
 				is_open: true,
 				children: testSnippet,
@@ -174,7 +174,7 @@ describe('Details Component', () => {
 				setup: () => {},
 			}));
 
-			render(Details, {
+			await render(Details, {
 				button_text: 'Toggle Details',
 				is_open: false,
 				children: testSnippet,
@@ -215,7 +215,7 @@ describe('Details Component', () => {
 				setup: () => {},
 			}));
 
-			render(Details, {
+			await render(Details, {
 				button_text: 'Show Details',
 				is_open: true,
 				children: testSnippet,
@@ -233,7 +233,7 @@ describe('Details Component', () => {
 				setup: () => {},
 			}));
 
-			render(Details, {
+			await render(Details, {
 				button_text: 'Show Details',
 				is_open: true,
 				children: emptySnippet,
@@ -258,7 +258,7 @@ describe('Details Component', () => {
 				setup: () => {},
 			}));
 
-			render(Details, {
+			await render(Details, {
 				button_text: 'Show Complex Content',
 				is_open: true,
 				children: complexSnippet,
@@ -277,7 +277,7 @@ describe('Details Component', () => {
 
 	describe('Accessibility', () => {
 		it('button has correct accessibility attributes', async () => {
-			render(Details, {
+			await render(Details, {
 				button_text: 'Show Details',
 			});
 
@@ -291,7 +291,7 @@ describe('Details Component', () => {
 				setup: () => {},
 			}));
 
-			render(Details, {
+			await render(Details, {
 				button_text: 'Show Details',
 				is_open: true,
 				children: testSnippet,
@@ -307,7 +307,7 @@ describe('Details Component', () => {
 				setup: () => {},
 			}));
 
-			render(Details, {
+			await render(Details, {
 				button_text: 'Show Details',
 				is_open: false,
 				children: testSnippet,
@@ -335,7 +335,7 @@ describe('Details Component', () => {
 				setup: () => {},
 			}));
 
-			render(Details, {
+			await render(Details, {
 				button_text: 'Toggle Details',
 				is_open: false,
 				children: testSnippet,
@@ -376,7 +376,7 @@ describe('Details Component', () => {
 		});
 
 		it('works without children prop', async () => {
-			render(Details, {
+			await render(Details, {
 				button_text: 'Show Details',
 				is_open: true,
 			});
@@ -392,7 +392,7 @@ describe('Details Component', () => {
 			const longText =
 				'This is a very long button text that might cause layout issues or overflow problems in some scenarios';
 
-			render(Details, {
+			await render(Details, {
 				button_text: longText,
 				is_open: false,
 			});
@@ -408,7 +408,7 @@ describe('Details Component', () => {
 				setup: () => {},
 			}));
 
-			const { rerender } = render(Details, {
+			const { rerender } = await render(Details, {
 				button_text: 'Initial Text',
 				is_open: false,
 				children: testSnippet,

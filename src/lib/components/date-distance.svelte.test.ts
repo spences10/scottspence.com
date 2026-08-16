@@ -21,7 +21,9 @@ test('renders formatted date distance', async () => {
 		mockFormattedDistance,
 	);
 
-	const { container } = render(DateDistance, { date: mockDate });
+	const { container } = await render(DateDistance, {
+		date: mockDate,
+	});
 
 	const element = container.querySelector(
 		'[data-testid="date-distance"]',
@@ -44,7 +46,7 @@ test('updates formatted distance when date prop changes', async () => {
 		.mockReturnValueOnce(initialFormattedDistance)
 		.mockReturnValueOnce(updatedFormattedDistance);
 
-	const { container, rerender } = render(DateDistance, {
+	const { container, rerender } = await render(DateDistance, {
 		date: initialDate,
 	});
 

@@ -18,7 +18,7 @@ test('renders formatted date with default size', async () => {
 
 	vi.mocked(format).mockReturnValue(mockFormattedDate);
 
-	const { container } = render(DateUpdated, { date: mockDate });
+	const { container } = await render(DateUpdated, { date: mockDate });
 
 	await vi.waitFor(() => {
 		expect(container.textContent?.includes(mockFormattedDate)).toBe(
@@ -40,7 +40,7 @@ test('renders formatted date with small size', async () => {
 
 	vi.mocked(format).mockReturnValue(mockFormattedDate);
 
-	const { container } = render(DateUpdated, {
+	const { container } = await render(DateUpdated, {
 		date: mockDate,
 		small: 'true',
 	});
@@ -66,7 +66,7 @@ test('renders current date when date prop is null', async () => {
 	const mockFormattedDate = 'June 15th 2023';
 	vi.mocked(format).mockReturnValue(mockFormattedDate);
 
-	const { container } = render(DateUpdated, { date: null });
+	const { container } = await render(DateUpdated, { date: null });
 
 	await vi.waitFor(() => {
 		expect(container.textContent?.includes(mockFormattedDate)).toBe(
@@ -89,7 +89,9 @@ test('renders current date when date prop is undefined', async () => {
 	const mockFormattedDate = 'June 15th 2023';
 	vi.mocked(format).mockReturnValue(mockFormattedDate);
 
-	const { container } = render(DateUpdated, { date: undefined });
+	const { container } = await render(DateUpdated, {
+		date: undefined,
+	});
 
 	await vi.waitFor(() => {
 		expect(container.textContent?.includes(mockFormattedDate)).toBe(

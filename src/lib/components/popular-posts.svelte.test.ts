@@ -52,7 +52,10 @@ vi.mock('#lib/analytics/track-click.remote.js', () => ({
 // Mock $app/state
 vi.mock('$app/state', () => ({
 	page: {
-		url: { origin: 'https://scottspence.com' },
+		url: {
+			origin: 'https://scottspence.com',
+			pathname: '/posts/example',
+		},
 	},
 }));
 
@@ -132,6 +135,7 @@ describe('PopularPosts Component', () => {
 
 			expect(mock_track_click).toHaveBeenCalledWith({
 				event_name: 'popular posts period: today',
+				path: '/posts/example',
 			});
 		});
 
@@ -148,6 +152,7 @@ describe('PopularPosts Component', () => {
 
 			expect(mock_track_click).toHaveBeenCalledWith({
 				event_name: 'popular posts period: this month',
+				path: '/posts/example',
 			});
 		});
 
@@ -208,6 +213,7 @@ describe('PopularPosts Component', () => {
 
 			expect(mock_track_click).toHaveBeenCalledWith({
 				event_name: 'popular post click: Yearly Post One',
+				path: '/posts/example',
 			});
 		});
 	});

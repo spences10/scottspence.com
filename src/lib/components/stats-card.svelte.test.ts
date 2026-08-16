@@ -3,19 +3,19 @@ import { render } from 'vitest-browser-svelte';
 import StatsCard from './stats-card.svelte';
 
 describe('StatsCard', () => {
-	function renderStatsCard(
+	async function render_stats_card(
 		daily_visits: AnalyticsData | null | undefined,
 		monthly_visits: AnalyticsData | null | undefined,
 		yearly_visits: AnalyticsData | null | undefined,
 	) {
-		return render(StatsCard, {
+		return await render(StatsCard, {
 			daily_visits,
 			monthly_visits,
 			yearly_visits,
 		});
 	}
 
-	it('should render stats correctly', () => {
+	it('should render stats correctly', async () => {
 		const daily_visits = {
 			visits: '100',
 			uniques: '50',
@@ -26,7 +26,11 @@ describe('StatsCard', () => {
 			pathname: '/',
 		};
 
-		const { container } = renderStatsCard(daily_visits, null, null);
+		const { container } = await render_stats_card(
+			daily_visits,
+			null,
+			null,
+		);
 
 		expect(
 			container.textContent?.includes('Entries Today'),
@@ -42,7 +46,7 @@ describe('StatsCard', () => {
 		expect(container.textContent?.includes('200')).toBeTruthy();
 	});
 
-	it('should render stats for different time periods', () => {
+	it('should render stats for different time periods', async () => {
 		const daily_visits = {
 			visits: '100',
 			uniques: '50',
@@ -73,7 +77,7 @@ describe('StatsCard', () => {
 			pathname: '/',
 		};
 
-		const { container } = renderStatsCard(
+		const { container } = await render_stats_card(
 			daily_visits,
 			monthly_visits,
 			yearly_visits,

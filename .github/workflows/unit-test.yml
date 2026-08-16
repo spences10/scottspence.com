@@ -65,3 +65,22 @@ jobs:
           ANALYTICS_SALT: ${{ secrets.ANALYTICS_SALT }}
       - name: Test
         run: pnpm run test:ci
+        env:
+          PUBLIC_FATHOM_ID: test
+          PUBLIC_FATHOM_URL: https://example.com
+          PUBLIC_TURNSTILE_SITE_KEY: test
+          EMAIL_APP_TO_ADDRESS: test@example.com
+          RESEND_API_KEY: test
+          RESEND_AUDIENCE_ID: test
+          RESEND_FROM_EMAIL: test@example.com
+          TURNSTILE_SECRET_KEY: test
+          INGEST_TOKEN: test
+          NEWSLETTER_GH_ACTIVITY_TOKEN: test
+          DATABASE_PATH: data/test.db
+          VOYAGE_AI_API_KEY: test
+          PRODUCTION_URL: https://example.com
+          SECRET_PASSPHRASE: test
+          EXCHANGE_RATE_API_KEY: test
+          UPSTASH_REDIS_REST_TOKEN: test
+          UPSTASH_REDIS_REST_URL: https://example.com
+          ANALYTICS_SALT: test
