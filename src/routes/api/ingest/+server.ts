@@ -1,5 +1,4 @@
 import { INGEST_TOKEN } from '$app/env/private';
-import { json } from '@sveltejs/kit';
 import * as v from 'valibot';
 import { backfill_github_activity } from './backfill-github-activity';
 import { backup_database } from './backup-database';
@@ -258,13 +257,16 @@ export const POST = async ({
 		const token = auth_header?.replace('Bearer ', '');
 
 		if (!token || token !== INGEST_TOKEN) {
-			return json({ message: 'Unauthorized' }, { status: 401 });
+			return Response.json(
+				{ message: 'Unauthorized' },
+				{ status: 401 },
+			);
 		}
 
 		// Get the task config (after auth check)
 		const task = tasks[task_key];
 		if (!task || typeof task.function !== 'function') {
-			return json(
+			return Response.json(
 				{
 					message:
 						'Specified task does not exist or is not a function',
@@ -301,11 +303,11 @@ export const POST = async ({
 			}
 
 			console.log(`Task ${task_key} completed with result:`, result);
-			return json(result);
+			return Response.json(result);
 		} catch (task_error) {
 			// Validation errors are client errors (400)
 			if (v.isValiError(task_error)) {
-				return json(
+				return Response.json(
 					{
 						message: 'Invalid request data',
 						errors: task_error.issues.map((i) => i.message),
@@ -315,7 +317,7 @@ export const POST = async ({
 			}
 
 			console.error(`Error executing task ${task_key}:`, task_error);
-			return json(
+			return Response.json(
 				{
 					message: `Error executing task ${task_key}`,
 					error:
@@ -331,7 +333,7 @@ export const POST = async ({
 		const error_message =
 			error instanceof Error ? error.message : 'Unknown error';
 		const error_stack = error instanceof Error ? error.stack : '';
-		return json(
+		return Response.json(
 			{
 				message: 'Error processing the request',
 				error: error_message,

@@ -9,7 +9,7 @@ is_private: false
   import {
     DateDistance as DD,
     Banner,
-  } from '$lib/components'
+  } from '#lib/components/index.js'
 
   const options = {
     type: 'info',

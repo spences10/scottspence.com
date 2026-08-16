@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { ProgressBar } from '$lib/components'
+  import { ProgressBar } from '#lib/components/index.js'
 </script>
 
 For 2023 I'm going to note down my goals for the year. I'll take a

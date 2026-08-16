@@ -4,7 +4,7 @@
     DateDistance as DD, 
     DateUpdated, 
     Small, 
-  } from '$lib/components'
+  } from '#lib/components/index.js'
 </script>
 
 ## Hi, I'm Scott

@@ -7,7 +7,7 @@ is_private: false
 
 <script>
   import { Gist } from 'sveltekit-embed'
-  import { Banner } from '$lib/components'
+  import { Banner } from '#lib/components/index.js'
 
   const options = {
     type: 'info',

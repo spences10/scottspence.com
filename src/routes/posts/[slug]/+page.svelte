@@ -184,6 +184,7 @@
 		// Track the event
 		track_click({
 			event_name: `analytics click: ${page.url.pathname}`,
+			path: page.url.pathname,
 		});
 
 		// Open modal and fetch analytics data

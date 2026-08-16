@@ -16,7 +16,7 @@ is_private: false
 ---
 
 <script>
-  import { Banner } from '$lib/components'
+  import { Banner } from '#lib/components/index.js'
 
   const bait_and_switch = {
     type: 'warning',

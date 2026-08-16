@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import { track_click } from '#lib/analytics/track-click.remote.js';
 	import {
 		InformationCircle,
@@ -31,7 +32,7 @@
 			const event_name = link_text
 				? `${options.track_event}: ${link_text}`
 				: options.track_event;
-			track_click({ event_name });
+			track_click({ event_name, path: page.url.pathname });
 		}
 	}
 

@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { Details, Banner } from '$lib/components'
+  import { Details, Banner } from '#lib/components/index.js'
 
   let href = `/posts/sveltekit-environment-variables-with-the-sveltekit-env-module`
   const options = {

@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { DateDistance } from '$lib/components'
+  import { DateDistance } from '#lib/components/index.js'
 </script>
 
 It's been <DateDistance date='2023-02-06' /> since I last wrote about

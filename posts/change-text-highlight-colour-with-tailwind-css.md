@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { Chat, Details } from '$lib/components'
+  import { Chat, Details } from '#lib/components/index.js'
 </script>
 
 How to change the highlight color of text on the page? Here's the

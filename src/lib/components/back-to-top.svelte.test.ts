@@ -57,7 +57,7 @@ describe('BackToTop Component', () => {
 			render(BackToTop);
 			const button = page.getByTestId('back-to-top');
 
-			await expect.element(button).toHaveClass('bottom-[-2rem]');
+			await expect.element(button).toHaveClass('-bottom-8');
 			await expect.element(button).toHaveClass('back-to-top-button');
 			await expect.element(button).toHaveClass('font-normal');
 			await expect.element(button).toHaveClass('normal-case');
@@ -693,7 +693,7 @@ describe('BackToTop Component', () => {
 			// These classes should always be present for responsive behavior
 			await expect.element(button).toHaveClass('fixed');
 			await expect.element(button).toHaveClass('right-5');
-			await expect.element(button).toHaveClass('bottom-[-2rem]');
+			await expect.element(button).toHaveClass('-bottom-8');
 		});
 	});
 });

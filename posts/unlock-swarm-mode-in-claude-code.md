@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { Mermaid } from '$lib/components'
+  import { Mermaid } from '#lib/components/index.js'
 
   const orchestration_flow = `
 flowchart TD

@@ -28,6 +28,7 @@
 						};
 						track_click({
 							event_name: `popular posts period: ${labels[selected_period]}`,
+							path: page.url.pathname,
 						});
 					}}
 					class="select w-40 border border-secondary select-sm"
@@ -51,6 +52,7 @@
 						onclick={() =>
 							track_click({
 								event_name: `popular post click: ${post.title}`,
+								path: page.url.pathname,
 							})}
 						class="h-full"
 					>

@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { DateDistance } from '$lib/components'
+  import { DateDistance } from '#lib/components/index.js'
 </script>
 
 Here's a real quick one on making sure you don't blow your crawl

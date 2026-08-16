@@ -7,7 +7,7 @@ is_private: false
 
 <script>
   import { Tweet } from 'sveltekit-embed'
-  import { Banner } from '$lib/components'
+  import { Banner } from '#lib/components/index.js'
 
   let href = `https://usefathom.com/docs/script/custom-domains`
   const options = {

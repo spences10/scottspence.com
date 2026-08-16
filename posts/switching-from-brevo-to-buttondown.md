@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { NewsletterSignup } from '$lib/components'
+  import { NewsletterSignup } from '#lib/components/index.js'
   import { Tweet } from 'sveltekit-embed'
 </script>
 

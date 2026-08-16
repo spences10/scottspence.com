@@ -65,7 +65,7 @@ describe('BackToTop.svelte SSR', () => {
 		const { body } = render(BackToTop);
 
 		expect(body).toContain('right-5');
-		expect(body).toContain('bottom-[-2rem]');
+		expect(body).toContain('-bottom-8');
 		expect(body).toContain('fixed');
 	});
 });

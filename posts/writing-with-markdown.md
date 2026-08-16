@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { MarkdownParser, Small } from '$lib/components'
+  import { MarkdownParser, Small } from '#lib/components/index.js'
   import { YouTube } from 'sveltekit-embed'
 </script>
 

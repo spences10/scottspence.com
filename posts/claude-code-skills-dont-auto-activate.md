@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { Details } from '$lib/components'
+  import { Details } from '#lib/components/index.js'
 </script>
 
 So I got Claude Skills to register with Claude Code (sorted the

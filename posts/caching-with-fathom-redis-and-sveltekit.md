@@ -7,7 +7,7 @@ is_private: false
 
 <script>
   import { Tweet } from 'sveltekit-embed'
-  import { Details } from '$lib/components'
+  import { Details } from '#lib/components/index.js'
 </script>
 
 I had a bit of a surprise land in my inbox at the start of the month

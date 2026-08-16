@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { Sarcasm } from '$lib/components'
+  import { Sarcasm } from '#lib/components/index.js'
 </script>
 
 <!-- cSpell:ignore Sooooooo -->

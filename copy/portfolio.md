@@ -5,7 +5,7 @@
     DateDistance,
     Small, 
     NewsletterSignup
-  } from '$lib/components'
+  } from '#lib/components/index.js'
 </script>
 
 <!-- cspell:ignore Sveltest my-pi nopeek -->

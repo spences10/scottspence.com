@@ -1,6 +1,10 @@
 import { describe, expect, it, vi } from 'vitest';
 
-vi.mock('$env/dynamic/private', () => ({ env: {} }));
+vi.mock('$app/env/private', () => ({
+	ATPROTO_APP_PASSWORD: '',
+	ATPROTO_IDENTIFIER: '',
+	ATPROTO_SERVICE: '',
+}));
 
 import {
 	build_standard_site_document,

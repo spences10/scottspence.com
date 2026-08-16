@@ -28,6 +28,14 @@ vi.mock('#lib/analytics/period-stats.remote.js', () => ({
 	get_period_stats: vi.fn().mockResolvedValue(null),
 }));
 
+vi.mock('#lib/analytics/chart-data.remote.js', () => ({
+	get_chart_data: vi.fn().mockResolvedValue(null),
+}));
+
+vi.mock('#lib/analytics/engagement-stats.remote.js', () => ({
+	get_engagement_stats: vi.fn().mockResolvedValue(null),
+}));
+
 describe('Historical Stats Page Component', () => {
 	const mockSiteStats = [
 		{

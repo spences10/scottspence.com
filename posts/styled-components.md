@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { Details } from '$lib/components'
+  import { Details } from '#lib/components/index.js'
 </script>
 
 We're going to style the basic create react app with styled-components

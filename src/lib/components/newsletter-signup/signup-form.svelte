@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import type { ActionResult } from '$app/forms';
 	import { PUBLIC_TURNSTILE_SITE_KEY } from '$app/env/public';
 	import { track_click } from '#lib/analytics/track-click.remote.js';
@@ -30,12 +31,16 @@
 		$button_disabled = true;
 
 		try {
-			track_click({ event_name: 'newsletter signup click' });
+			track_click({
+				event_name: 'newsletter signup click',
+				path: page.url.pathname,
+			});
 			await subscribe_to_newsletter({ email, turnstile_token });
 
 			const result: ActionResult = {
 				type: 'success',
 				status: 200,
+				location: page.url.pathname,
 				data: { message: 'Successfully subscribed to newsletter' },
 			};
 			handle_result(result);
@@ -46,6 +51,7 @@
 			const result: ActionResult = {
 				type: 'failure',
 				status: 400,
+				location: page.url.pathname,
 				data: {
 					error: error_msg,
 					body:

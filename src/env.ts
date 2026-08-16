@@ -1,6 +1,5 @@
 import { defineEnvVars } from '@sveltejs/kit/env';
 
-// @migration-task Review usage of dynamic environment variables. They fall back to the empty string if not present, which may not be what you want.
 export const variables = defineEnvVars({
 	PUBLIC_FATHOM_ID: { public: true, static: true },
 	PUBLIC_FATHOM_URL: { public: true, static: true },
@@ -21,4 +20,7 @@ export const variables = defineEnvVars({
 	UPSTASH_REDIS_REST_URL: { static: true },
 	PUBLIC_TURNSTILE_SITE_KEY: { public: true, static: true },
 	ANALYTICS_SALT: { static: true },
+	ATPROTO_APP_PASSWORD: { schema: (input) => input ?? '' },
+	ATPROTO_IDENTIFIER: { schema: (input) => input ?? '' },
+	ATPROTO_SERVICE: { schema: (input) => input ?? '' },
 });

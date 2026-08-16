@@ -1,4 +1,8 @@
-import { env } from '$env/dynamic/private';
+import {
+	ATPROTO_APP_PASSWORD,
+	ATPROTO_IDENTIFIER,
+	ATPROTO_SERVICE,
+} from '$app/env/private';
 import { description, name, website } from '#lib/info.js';
 import {
 	standard_site,
@@ -227,7 +231,7 @@ export const get_standard_site_icon = async (
 export const resolve_standard_site_pds = async (
 	fetch: typeof globalThis.fetch,
 ) => {
-	const configured_service = env.ATPROTO_SERVICE?.trim();
+	const configured_service = ATPROTO_SERVICE.trim();
 
 	if (configured_service)
 		return configured_service.replace(/\/$/, '');
@@ -332,9 +336,7 @@ export const standard_site_sync = async (
 		);
 	}
 
-	// @migration-task Rewrite dynamic env lookup manually.
-	const password = env[['ATPROTO', 'APP', 'PASSWORD'].join('_')];
-	if (!password) {
+	if (!ATPROTO_APP_PASSWORD) {
 		throw new Error('AT Protocol app password is not configured');
 	}
 
@@ -344,8 +346,8 @@ export const standard_site_sync = async (
 		service,
 		'com.atproto.server.createSession',
 		{
-			identifier: env.ATPROTO_IDENTIFIER ?? standard_site.did,
-			password,
+			identifier: ATPROTO_IDENTIFIER || standard_site.did,
+			password: ATPROTO_APP_PASSWORD,
 		},
 	);
 

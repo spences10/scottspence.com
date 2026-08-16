@@ -3,7 +3,7 @@
     DateDistance as DD,
     DateUpdated,
     Small,
-  } from '$lib/components'
+  } from '#lib/components/index.js'
  import {
     BlogPost,
     Rate,

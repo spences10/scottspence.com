@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { Banner, Details } from '$lib/components'
+  import { Banner, Details } from '#lib/components/index.js'
 
   const toolkit_banner = {
     type: 'announcement',

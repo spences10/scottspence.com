@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import type { ActionResult } from '$app/forms';
 	import { PUBLIC_TURNSTILE_SITE_KEY } from '$app/env/public';
 	import { Turnstile } from 'svelte-turnstile';
@@ -42,6 +43,7 @@
 			const result: ActionResult = {
 				type: 'success',
 				status: 200,
+				location: page.url.pathname,
 				data: { message: 'Email sent successfully' },
 			};
 			handle_result(result);
@@ -53,6 +55,7 @@
 			const result: ActionResult = {
 				type: 'failure',
 				status: 400,
+				location: page.url.pathname,
 				data: { error: error_msg },
 			};
 			handle_result(result);

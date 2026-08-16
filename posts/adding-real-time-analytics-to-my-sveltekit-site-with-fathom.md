@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { Banner, DateDistance as DD, Details } from '$lib/components'
+  import { Banner, DateDistance as DD, Details } from '#lib/components/index.js'
 
   let href = `/posts/caching-with-fathom-redis-and-sveltekit`
   const options = {

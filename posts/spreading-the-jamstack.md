@@ -10,7 +10,7 @@ is_private: false
     DateDistance, 
     Sarcasm, 
     Small
-  } from '$lib/components'
+  } from '#lib/components/index.js'
 </script>
 
 I have delivered this talk several times now but not actually written
