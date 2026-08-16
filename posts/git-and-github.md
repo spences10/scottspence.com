@@ -141,23 +141,23 @@ push/pull without having to authenticate each time.
 <!-- Links -->
 
 [awesome-twitter-bots]:
-  https://github.com/spences10/awesome-twitter-bots
+	https://github.com/spences10/awesome-twitter-bots
 [@amanhimself]: https://twitter.com/amanhimself
 [twitter bot]: https://scottspence.com/posts/twitter-mctwitbot
 [git-it]: https://jlord.us/git-it/index.html
 [github help]: https://help.github.com/
 [@amandeepmittal]: https://github.com/amandeepmittal
 [/settings/collaboration]:
-  https://github.com/spences10/awesome-twitter-bots/settings/collaboration
+	https://github.com/spences10/awesome-twitter-bots/settings/collaboration
 [readme.md]:
-  https://github.com/amandeepmittal/awesome-twitter-bots/blob/master/README.md
+	https://github.com/amandeepmittal/awesome-twitter-bots/blob/master/README.md
 [#2]: https://github.com/amandeepmittal/awesome-twitter-bots/pull/2
 
 <!-- Images -->
 
 [octocat]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930928/scottspence.com/git-logo-536686b63ad7e966fc425ed4c67c2ddc.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930928/scottspence.com/git-logo-536686b63ad7e966fc425ed4c67c2ddc.jpg
 [fork-a-repo]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930928/scottspence.com/fork-a-repo-7898cedb809d19d597af446ca0683bd8.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930928/scottspence.com/fork-a-repo-7898cedb809d19d597af446ca0683bd8.png
 [open-a-pull-request]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/open-a-pull-request-3344c43215debf994772b5f1893bc581.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/open-a-pull-request-3344c43215debf994772b5f1893bc581.png

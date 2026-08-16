@@ -125,9 +125,9 @@ accompanying copy.
 <!-- Links -->
 
 [this so question]:
-  https://serverfault.com/questions/200949/how-can-i-find-the-biggest-directories-in-unix-ubuntu
+	https://serverfault.com/questions/200949/how-can-i-find-the-biggest-directories-in-unix-ubuntu
 [structure things in a certain]:
-  https://scottspence.com/posts/add-tracking-links-to-your-markdown/#the-other-problem-for-me-anyway-
+	https://scottspence.com/posts/add-tracking-links-to-your-markdown/#the-other-problem-for-me-anyway-
 [disk usage]: https://ss64.com/bash/du.html
 [images.weserv.nl]: https://images.weserv.nl/docs/#how-it-works
 

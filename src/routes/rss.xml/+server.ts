@@ -1,17 +1,17 @@
-import { description, name, website } from '$lib/info'
-import { get_posts } from '$lib/posts'
+import { description, name, website } from '$lib/info';
+import { get_posts } from '$lib/posts';
 
 interface RSSItem {
-	title: string
-	url: string
-	description: string
-	date: string
-	content: string
+	title: string;
+	url: string;
+	description: string;
+	date: string;
+	content: string;
 }
 
 export const GET = async () => {
 	try {
-		const { posts } = await get_posts()
+		const { posts } = await get_posts();
 
 		// Filter out private posts and transform into RSS items
 		const rss_items: RSSItem[] = posts
@@ -22,9 +22,9 @@ export const GET = async () => {
 				description: preview,
 				date: new Date(date).toISOString(),
 				content: preview_html || '',
-			}))
+			}));
 
-		const body = render_rss_feed(rss_items)
+		const body = render_rss_feed(rss_items);
 
 		return new Response(body, {
 			headers: {
@@ -32,24 +32,24 @@ export const GET = async () => {
 				'cache-control':
 					'public, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=3600',
 			},
-		})
+		});
 	} catch (error) {
 		console.warn(
 			'Database unavailable, generating empty RSS feed:',
 			error instanceof Error ? error.message : 'Unknown error',
-		)
+		);
 
 		// Return minimal RSS feed when database is down
-		const empty_feed = render_rss_feed([])
+		const empty_feed = render_rss_feed([]);
 
 		return new Response(empty_feed, {
 			headers: {
 				'content-type': 'application/xml',
 				'cache-control': 'public, no-cache, max-age=300', // 5 min cache when in fallback mode
 			},
-		})
+		});
 	}
-}
+};
 
 const render_rss_items = (items: RSSItem[]) => {
 	return items
@@ -79,8 +79,8 @@ const render_rss_items = (items: RSSItem[]) => {
 				</content>
 			</entry>`,
 		)
-		.join('\n')
-}
+		.join('\n');
+};
 
 const render_rss_feed = (items: RSSItem[]) => {
 	return `<?xml version="1.0" encoding="UTF-8"?>
@@ -92,5 +92,5 @@ const render_rss_feed = (items: RSSItem[]) => {
 	<id>${website}/</id>
 	<updated>${new Date().toISOString()}</updated>
 	${render_rss_items(items)}
-</feed>`
-}
+</feed>`;
+};

@@ -1,9 +1,9 @@
 // Thanks Lihau https://www.youtube.com/watch?v=1SKKzdHVvcI&t=182s
 
-let intersectionObserver: IntersectionObserver
+let intersectionObserver: IntersectionObserver;
 
 function ensure_intersection_observer() {
-	if (intersectionObserver) return
+	if (intersectionObserver) return;
 
 	intersectionObserver = new IntersectionObserver(
 		(entries) => {
@@ -12,23 +12,23 @@ function ensure_intersection_observer() {
 				.forEach((entry) => {
 					entry.target.dispatchEvent(
 						new CustomEvent('enter_viewport'),
-					)
-				})
+					);
+				});
 		},
 		{
 			rootMargin: '0px',
 		},
-	)
+	);
 }
 
 export default function viewport(element: Element) {
-	ensure_intersection_observer()
+	ensure_intersection_observer();
 
-	intersectionObserver.observe(element)
+	intersectionObserver.observe(element);
 
 	return {
 		destroy() {
-			intersectionObserver.unobserve(element)
+			intersectionObserver.unobserve(element);
 		},
-	}
+	};
 }

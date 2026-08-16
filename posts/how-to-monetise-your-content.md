@@ -167,26 +167,26 @@ payment pointer in the [settings] panel under 'Web Monetization'.
 [back in june]: https://dev.to/devteam/dev-is-now-web-monetized-21db
 [scottspence.com]: https://scottspence.com
 [interledger protocol]:
-  https://interledger.org/developer-tools/get-started/set-up
+	https://interledger.org/developer-tools/get-started/set-up
 [uphold]: https://uphold.com/
 [gatehub]: https://gatehub.net/
 [there's a plugin for that]:
-  https://github.com/Daudr/gatsby-plugin-web-monetization
+	https://github.com/Daudr/gatsby-plugin-web-monetization
 [top level module]:
-  https://github.com/spences10/last.scottspence.com/blob/production/src/root-wrapper.js#L79
+	https://github.com/spences10/last.scottspence.com/blob/production/src/root-wrapper.js#L79
 [settings]: https://dev.to/settings/misc
 [spelling]:
-  https://dictionary.cambridge.org/dictionary/english/monetization
+	https://dictionary.cambridge.org/dictionary/english/monetization
 [brave rewards]: https://publishers.basicattentiontoken.org
 [web monetization like i'm 5]:
-  https://dev.to/hacksultan/web-monetization-like-i-m-5-1418
+	https://dev.to/hacksultan/web-monetization-like-i-m-5-1418
 [dev is now web monetized]:
-  https://dev.to/devteam/dev-is-now-web-monetized-21db
+	https://dev.to/devteam/dev-is-now-web-monetized-21db
 [you can now web-monetize your dev posts! (but don't get your hopes up too quickly)]:
-  https://dev.to/devteam/you-can-now-web-monetize-your-dev-posts-but-don-t-get-your-hopes-up-too-quickly-goc
+	https://dev.to/devteam/you-can-now-web-monetize-your-dev-posts-but-don-t-get-your-hopes-up-too-quickly-goc
 [brave rewards: earn more for content you publish to the web]:
-  https://publishers.basicattentiontoken.org/
+	https://publishers.basicattentiontoken.org/
 [innovating on web monetization: coil and firefox reality]:
-  https://hacks.mozilla.org/2020/03/web-monetization-coil-and-firefox-reality/
+	https://hacks.mozilla.org/2020/03/web-monetization-coil-and-firefox-reality/
 [the state of web monetization]:
-  https://coil.com/p/kenmelendez/The-State-of-Web-Monetization/KTVijO7ah
+	https://coil.com/p/kenmelendez/The-State-of-Web-Monetization/KTVijO7ah

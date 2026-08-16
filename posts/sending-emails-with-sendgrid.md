@@ -59,22 +59,22 @@ from SendGrid as well.
  */
 
 export default async function happyForm(email, name, list) {
-  await fetch('https://api.sendgrid.com/v3/marketing/contacts', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${process.env.GATSBY_SENDGRID_API_KEY}`,
-    },
-    body: JSON.stringify({
-      list_ids: [list],
-      contacts: [
-        {
-          email,
-          first_name: name,
-        },
-      ],
-    }),
-  })
+	await fetch('https://api.sendgrid.com/v3/marketing/contacts', {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${process.env.GATSBY_SENDGRID_API_KEY}`,
+		},
+		body: JSON.stringify({
+			list_ids: [list],
+			contacts: [
+				{
+					email,
+					first_name: name,
+				},
+			],
+		}),
+	});
 }
 ```
 
@@ -85,16 +85,16 @@ To do that, if you create a new list in your contacts then
 <!-- Links -->
 
 [setting up a custom email with zoho]:
-  https://scottspence.com/posts/custom-email-domain-with-now/
+	https://scottspence.com/posts/custom-email-domain-with-now/
 [sam larsen-disney]: https://twitter.com/SamLarsenDisney
 [newsletter]: https://scottspence.com/newsletter
 [leigh halliday]: https://www.youtube.com/watch?v=gK7KKswOnOQ
 [james q quick]: https://www.youtube.com/watch?v=7HVM3HPhlTw
 [kwes forms]: https://kwes.io/
 [setting up protonmail with vercel]:
-  https://scottspence.com/posts/setting-up-proton-mail-with-vercel/
+	https://scottspence.com/posts/setting-up-proton-mail-with-vercel/
 
 <!-- Images -->
 
 [sendgrid empty contact list]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/sendgrid-empty-contact-list-73204f3ecdb25d07f4bedfb3be6b6434.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/sendgrid-empty-contact-list-73204f3ecdb25d07f4bedfb3be6b6434.png

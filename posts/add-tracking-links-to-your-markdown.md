@@ -40,20 +40,20 @@ pick out the ID and pass it to the analytics provider from the `A`
 component I'm using to override the links in the Markdown.
 
 ```js {2,7}
-export const A = props => {
-  const fa = useAnalytics()
-  return (
-    <a
-      {...props}
-      id={props.id}
-      onClick={() => fa(props.goal)}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {props.children}
-    </a>
-  )
-}
+export const A = (props) => {
+	const fa = useAnalytics();
+	return (
+		<a
+			{...props}
+			id={props.id}
+			onClick={() => fa(props.goal)}
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			{props.children}
+		</a>
+	);
+};
 ```
 
 So the Markdown will look something like this:
@@ -130,7 +130,7 @@ their service.
 <!-- Links -->
 
 [custom domains]:
-  https://usefathom.com/blog/bypass-adblockers?goalId="IBQBRDPP"
+	https://usefathom.com/blog/bypass-adblockers?goalId="IBQBRDPP"
 ```
 
 This way the structure of the Markdown is unchanged making a much
@@ -145,21 +145,21 @@ Using the `URL(props.href).searchParams` means that I can pull out the
 `goalId` using the `.get` function.
 
 ```js {3-8}
-export const A = props => {
-  const fa = useAnalytics()
-  const onClick = () => {
-    if (props.href.includes(`goalId`)) {
-      const params = new URL(props.href).searchParams
-      fa(params.get(`goalId`))
-    }
-  }
+export const A = (props) => {
+	const fa = useAnalytics();
+	const onClick = () => {
+		if (props.href.includes(`goalId`)) {
+			const params = new URL(props.href).searchParams;
+			fa(params.get(`goalId`));
+		}
+	};
 
-  return (
-    <a {...props} onClick={onClick}>
-      {props.children}
-    </a>
-  )
-}
+	return (
+		<a {...props} onClick={onClick}>
+			{props.children}
+		</a>
+	);
+};
 ```
 
 The only thing with this was that the `goalId` would still be in the
@@ -186,37 +186,37 @@ The props have been changed now so I'll need to provide the new `href`
 to the `a` tag in the props, on line 25.
 
 ```js {3-5,7-14,17-19,25}
-export const A = props => {
-  const fa = useAnalytics()
-  const containsGoalId = props.href.includes(`goalId`)
-  const [goalId, setGoalId] = useState(``)
-  const [newHref, setNewHref] = useState(``)
+export const A = (props) => {
+	const fa = useAnalytics();
+	const containsGoalId = props.href.includes(`goalId`);
+	const [goalId, setGoalId] = useState(``);
+	const [newHref, setNewHref] = useState(``);
 
-  useEffect(() => {
-    if (containsGoalId) {
-      const url = new URL(props.href)
-      setGoalId(url.searchParams.get(`goalId`))
-      url.searchParams.delete(`goalId`)
-      setNewHref(url.href)
-    }
-  }, [containsGoalId, props.href])
+	useEffect(() => {
+		if (containsGoalId) {
+			const url = new URL(props.href);
+			setGoalId(url.searchParams.get(`goalId`));
+			url.searchParams.delete(`goalId`);
+			setNewHref(url.href);
+		}
+	}, [containsGoalId, props.href]);
 
-  const onClick = () => {
-    if (goalId) {
-      fa(goalId)
-    }
-  }
+	const onClick = () => {
+		if (goalId) {
+			fa(goalId);
+		}
+	};
 
-  return (
-    <a
-      {...props}
-      href={containsGoalId ? newHref : props.href}
-      onClick={onClick}
-    >
-      {props.children}
-    </a>
-  )
-}
+	return (
+		<a
+			{...props}
+			href={containsGoalId ? newHref : props.href}
+			onClick={onClick}
+		>
+			{props.children}
+		</a>
+	);
+};
 ```
 
 Now clicking the link will only call the analytics provider when
@@ -244,20 +244,20 @@ These resources helped me along the way.
 
 [my affiliate link]: https://usefathom.com/ref/HG492L
 [track custom events]:
-  https://scottspence.com/posts/track-custom-events-with-fathom-analytics/
+	https://scottspence.com/posts/track-custom-events-with-fathom-analytics/
 [fathom goal]: https://usefathom.com/support/goals
 [stackoverflow posts]: https://stackoverflow.com/a/12151322/1138354
 [mdn url api]: https://developer.mozilla.org/en-US/docs/Web/API/URL
 [mdn searchparams delete]:
-  https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/delete
+	https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/delete
 [so get query string values]:
-  https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+	https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 [so remove query string values]:
-  https://stackoverflow.com/questions/22753052/remove-url-parameters-without-refreshing-page
+	https://stackoverflow.com/questions/22753052/remove-url-parameters-without-refreshing-page
 [google urlsearchparams]:
-  https://developers.google.com/web/updates/2016/01/urlsearchparams
+	https://developers.google.com/web/updates/2016/01/urlsearchparams
 
 <!-- Images -->
 
 [url with goalid showing]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/url-with-goalid-showing-a8b55efd542a1abaf4905a646549dea6.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/url-with-goalid-showing-a8b55efd542a1abaf4905a646549dea6.png

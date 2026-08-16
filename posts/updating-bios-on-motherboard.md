@@ -73,4 +73,4 @@ That's it, future Scott! I hope you find this useful!
 <!-- Links -->
 
 [How to Check Your Motherboard Model Number on Your Windows PC]:
-  https://www.howtogeek.com/208420/how-to-check-your-motherboard-model-number-on-your-windows-pc/
+	https://www.howtogeek.com/208420/how-to-check-your-motherboard-model-number-on-your-windows-pc/

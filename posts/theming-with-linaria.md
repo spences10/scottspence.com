@@ -67,13 +67,13 @@ theme out of `defaults` and label it as `themeDefaults` I can then
 spread them into my theme object.
 
 ```js
-import { defaults } from './theme-defaults'
+import { defaults } from './theme-defaults';
 
-const { theme: themeDefaults } = defaults
+const { theme: themeDefaults } = defaults;
 
 export const theme = {
-  ...themeDefaults,
-}
+	...themeDefaults,
+};
 ```
 
 ## Theming with Linaria
@@ -94,10 +94,10 @@ named `theme-provider.js` in there I'll import and pass in the theme
 object I created:
 
 ```js
-import { createTheming } from '@callstack/react-theme-provider'
-import { theme } from './theme'
+import { createTheming } from '@callstack/react-theme-provider';
+import { theme } from './theme';
 
-export const { useTheme } = createTheming(theme)
+export const { useTheme } = createTheming(theme);
 ```
 
 Now I'll be able to use the `useTheme` hook in my Linaria components
@@ -113,17 +113,17 @@ the Linaria `styled` component `theme` prop.
 
 ```jsx {2,4}
 const Header = ({ siteTitle }) => {
-  const theme = useTheme()
-  return (
-    <StyledHeader theme={theme}>
-      <div>
-        <h1>
-          <Link to="/">{siteTitle}</Link>
-        </h1>
-      </div>
-    </StyledHeader>
-  )
-}
+	const theme = useTheme();
+	return (
+		<StyledHeader theme={theme}>
+			<div>
+				<h1>
+					<Link to="/">{siteTitle}</Link>
+				</h1>
+			</div>
+		</StyledHeader>
+	);
+};
 ```
 
 Now in the Linaria `styled` component I can use any of the theme
@@ -131,21 +131,21 @@ values. In the Header component I'll change the `background` to blue:
 
 ```js {2}
 const StyledHeader = styled.header`
-  background: ${({ theme }) => theme.colors.blue[500]};
-  margin-bottom: 1.45rem;
-  div {
-    margin: 0 auto;
-    max-width: 960px;
-    padding: 1.45rem 1.0875rem;
-    h1 {
-      margin: 0;
-      a {
-        color: white;
-        text-decoration: none;
-      }
-    }
-  }
-`
+	background: ${({ theme }) => theme.colors.blue[500]};
+	margin-bottom: 1.45rem;
+	div {
+		margin: 0 auto;
+		max-width: 960px;
+		padding: 1.45rem 1.0875rem;
+		h1 {
+			margin: 0;
+			a {
+				color: white;
+				text-decoration: none;
+			}
+		}
+	}
+`;
 ```
 
 Also a valid way to get the theme values would be:
@@ -173,27 +173,27 @@ look at [0to255.com].
 With my shades of rebeccapurple I can add that to the `theme` object.
 
 ```js {7-20}
-import { defaults } from './theme-defaults'
+import { defaults } from './theme-defaults';
 
-const { theme: themeDefaults } = defaults
+const { theme: themeDefaults } = defaults;
 
 export const theme = {
-  ...themeDefaults,
-  colors: {
-    primary: {
-      100: '#aa7fd4',
-      200: '#9966cc',
-      300: '#884cc3',
-      400: '#773bb2',
-      500: '#663399',
-      600: '#552b80',
-      700: '#442266',
-      800: '#331a4d',
-      900: '#221133',
-    },
-    ...themeDefaults.colors,
-  },
-}
+	...themeDefaults,
+	colors: {
+		primary: {
+			100: '#aa7fd4',
+			200: '#9966cc',
+			300: '#884cc3',
+			400: '#773bb2',
+			500: '#663399',
+			600: '#552b80',
+			700: '#442266',
+			800: '#331a4d',
+			900: '#221133',
+		},
+		...themeDefaults.colors,
+	},
+};
 ```
 
 Take note that I'm spreading the colours back in after defining the
@@ -213,11 +213,11 @@ needs.
 <!-- Links -->
 
 [getting started with linaria]:
-  https://scottspence.com/posts/linaria-getting-started/
+	https://scottspence.com/posts/linaria-getting-started/
 [defaults from tailwind css]:
-  https://github.com/tailwindcss/designing-with-tailwindcss/blob/master/01-getting-up-and-running/07-customizing-your-design-system/tailwind-full.config.js
+	https://github.com/tailwindcss/designing-with-tailwindcss/blob/master/01-getting-up-and-running/07-customizing-your-design-system/tailwind-full.config.js
 [callstack theme provider]:
-  https://github.com/callstack/react-theme-provider
+	https://github.com/callstack/react-theme-provider
 [using css custom properties]:
-  https://github.com/callstack/linaria/blob/master/docs/THEMING.md#css-custom-properties
+	https://github.com/callstack/linaria/blob/master/docs/THEMING.md#css-custom-properties
 [0to255.com]: https://0to255.com

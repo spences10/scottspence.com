@@ -1,24 +1,24 @@
 <script lang="ts">
-	import { NewsletterSignup } from '$lib/components'
-	import { name, website } from '$lib/info'
-	import type { Newsletter } from '$lib/newsletters'
-	import { create_seo_config } from '$lib/seo'
-	import { og_image_url } from '$lib/utils'
-	import { format } from 'date-fns'
-	import { Head } from 'svead'
+	import { NewsletterSignup } from '$lib/components';
+	import { name, website } from '$lib/info';
+	import type { Newsletter } from '$lib/newsletters';
+	import { create_seo_config } from '$lib/seo';
+	import { og_image_url } from '$lib/utils';
+	import { format } from 'date-fns';
+	import { Head } from 'svead';
 
 	interface Props {
-		data: any
+		data: any;
 	}
 
-	let { data }: Props = $props()
-	let Copy = $derived(data.Copy)
-	let newsletters = $derived(data.newsletters)
+	let { data }: Props = $props();
+	let Copy = $derived(data.Copy);
+	let newsletters = $derived(data.newsletters);
 
 	// Filter to only show published newsletters
 	const published_newsletters = $derived(
 		newsletters.filter((n: Newsletter) => n.published),
-	)
+	);
 
 	const seo_config = create_seo_config({
 		title: `Newsletter, get updates on what I'm working on - ${name}`,
@@ -30,7 +30,7 @@
 		),
 		url: `${website}/newsletter`,
 		slug: 'newsletter',
-	})
+	});
 </script>
 
 <Head {seo_config} />
@@ -48,14 +48,14 @@
 		<div class="space-y-6">
 			{#each published_newsletters as newsletter (newsletter.slug)}
 				<article
-					class="card bg-base-100 hover:bg-base-200 border-primary border p-6 transition"
+					class="card border border-primary bg-base-100 p-6 transition hover:bg-base-200"
 				>
 					<a href={`/newsletter/${newsletter.slug}`}>
 						<h3 class="mb-2 text-2xl font-bold">
 							{newsletter.title}
 						</h3>
 						<time
-							class="text-base-content/70 text-sm"
+							class="text-sm text-base-content/70"
 							datetime={new Date(newsletter.date).toISOString()}
 						>
 							{format(new Date(newsletter.date), 'MMMM d, yyyy')}

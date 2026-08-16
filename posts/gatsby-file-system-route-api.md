@@ -155,16 +155,16 @@ slug, here's the GraphQL query:
 
 ```graphql
 {
-  allMdx {
-    nodes {
-      id
-      slug
-      frontmatter {
-        date
-        title
-      }
-    }
-  }
+	allMdx {
+		nodes {
+			id
+			slug
+			frontmatter {
+				date
+				title
+			}
+		}
+	}
 }
 ```
 
@@ -200,15 +200,15 @@ to take the `slug`, it'll look something like this:
 
 ```graphql
 query PostBySlug($slug: String!) {
-  mdx(slug: { eq: $slug }) {
-    id
-    slug
-    # body
-    frontmatter {
-      date
-      title
-    }
-  }
+	mdx(slug: { eq: $slug }) {
+		id
+		slug
+		# body
+		frontmatter {
+			date
+			title
+		}
+	}
 }
 ```
 
@@ -221,7 +221,7 @@ or the query wont run:
 
 ```json
 {
-  "slug": "09/02/how-to-monetise-your-content/"
+	"slug": "09/02/how-to-monetise-your-content/"
 }
 ```
 
@@ -245,9 +245,9 @@ Remember the query I made to select a single MDX page??
 
 ```graphql
 query PostBySlug($slug: String!) {
-  mdx(slug: { eq: $slug }) {
-    slug
-  }
+	mdx(slug: { eq: $slug }) {
+		slug
+	}
 }
 ```
 
@@ -303,14 +303,14 @@ In the `{mdx.slug}.js` file, I'll first scaffold out a basic React
 component:
 
 ```jsx
-import React from 'react'
+import React from 'react';
 
 export default function PostPage() {
-  return (
-    <>
-      <h1>Yo!</h1>
-    </>
-  )
+	return (
+		<>
+			<h1>Yo!</h1>
+		</>
+	);
 }
 ```
 
@@ -321,33 +321,33 @@ Now time to add a bit more data to the page, I'll do that by using a
 GraphQL query in there:
 
 ```js {4-7,15-27}
-import { graphql } from 'gatsby'
-import React from 'react'
+import { graphql } from 'gatsby';
+import React from 'react';
 
 export default function PostPage({ data }) {
-  console.log('=====================')
-  console.log(data)
-  console.log('=====================')
-  return (
-    <>
-      <h1>Yo!</h1>
-    </>
-  )
+	console.log('=====================');
+	console.log(data);
+	console.log('=====================');
+	return (
+		<>
+			<h1>Yo!</h1>
+		</>
+	);
 }
 
 export const query = graphql`
-  query PostBySlug($slug: String) {
-    mdx(slug: { eq: $slug }) {
-      id
-      slug
-      body
-      frontmatter {
-        date
-        title
-      }
-    }
-  }
-`
+	query PostBySlug($slug: String) {
+		mdx(slug: { eq: $slug }) {
+			id
+			slug
+			body
+			frontmatter {
+				date
+				title
+			}
+		}
+	}
+`;
 ```
 
 Now that I have defined the query I want to use for the data in the
@@ -374,37 +374,37 @@ MDX as if it were Markdown, I'll import that along with a Chakra UI
 `Text` component:
 
 ```js {1,3,7-10,13-14}
-import { Text } from '@chakra-ui/react'
-import { graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
-import React from 'react'
+import { Text } from '@chakra-ui/react';
+import { graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+import React from 'react';
 
 export default function PostPage({ data }) {
-  const {
-    body,
-    frontmatter: { title },
-  } = data.mdx
-  return (
-    <>
-      <Text fontSize="4xl">{title}</Text>
-      <MDXRenderer>{body}</MDXRenderer>
-    </>
-  )
+	const {
+		body,
+		frontmatter: { title },
+	} = data.mdx;
+	return (
+		<>
+			<Text fontSize="4xl">{title}</Text>
+			<MDXRenderer>{body}</MDXRenderer>
+		</>
+	);
 }
 
 export const query = graphql`
-  query PostBySlug($slug: String) {
-    mdx(slug: { eq: $slug }) {
-      id
-      slug
-      body
-      frontmatter {
-        date
-        title
-      }
-    }
-  }
-`
+	query PostBySlug($slug: String) {
+		mdx(slug: { eq: $slug }) {
+			id
+			slug
+			body
+			frontmatter {
+				date
+				title
+			}
+		}
+	}
+`;
 ```
 
 ## Bonus content
@@ -511,9 +511,9 @@ Gatsby [File System Route Starter] I made.
 
 [announced recently]: https://www.gatsbyjs.com/blog/fs-route-api/
 [dynamic routing you get with next.js]:
-  https://nextjs.org/blog/next-9#dynamic-route-segments
+	https://nextjs.org/blog/next-9#dynamic-route-segments
 [getting started chakra ui gatsby]:
-  https://scottspence.com/posts/getting-started-chakra-ui-gatsby/
+	https://scottspence.com/posts/getting-started-chakra-ui-gatsby/
 [file system route starter]:
-  https://github.com/spences10/gatsby-starter-file-system-route-api-mdx
+	https://github.com/spences10/gatsby-starter-file-system-route-api-mdx
 [curly bois]: https://twitter.com/spences10/status/1329335632041299971

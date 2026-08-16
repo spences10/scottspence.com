@@ -53,8 +53,8 @@ what the setup file used to look like:
 
 ```typescript
 // vitest-setup-client.ts
-import '@testing-library/jest-dom/vitest'
-import { vi } from 'vitest'
+import '@testing-library/jest-dom/vitest';
+import { vi } from 'vitest';
 
 // Mock window.matchMedia
 Object.defineProperty(window, 'matchMedia', {
@@ -69,27 +69,27 @@ Object.defineProperty(window, 'matchMedia', {
 		removeEventListener: vi.fn(),
 		dispatchEvent: vi.fn(),
 	})),
-})
+});
 
 // Mock IntersectionObserver
 global.IntersectionObserver = vi.fn().mockImplementation(() => ({
 	observe: vi.fn(),
 	unobserve: vi.fn(),
 	disconnect: vi.fn(),
-}))
+}));
 
 // Mock ResizeObserver
 global.ResizeObserver = vi.fn().mockImplementation(() => ({
 	observe: vi.fn(),
 	unobserve: vi.fn(),
 	disconnect: vi.fn(),
-}))
+}));
 
 // Mock scrollTo
 Object.defineProperty(window, 'scrollTo', {
 	value: vi.fn(),
 	writable: true,
-})
+});
 
 // Mock localStorage
 const localStorageMock = {
@@ -97,20 +97,20 @@ const localStorageMock = {
 	setItem: vi.fn(),
 	removeItem: vi.fn(),
 	clear: vi.fn(),
-}
+};
 Object.defineProperty(window, 'localStorage', {
 	value: localStorageMock,
-})
+});
 
 // Mock sessionStorage
 Object.defineProperty(window, 'sessionStorage', {
 	value: localStorageMock,
-})
+});
 
 // Mock URL.createObjectURL
 Object.defineProperty(URL, 'createObjectURL', {
 	value: vi.fn(),
-})
+});
 ```
 
 </Details>
@@ -133,18 +133,18 @@ Here's what a typical test looked like with the old setup:
 
 ```typescript
 // Old approach
-import { render, screen } from '@testing-library/svelte'
-import { fireEvent } from '@testing-library/dom'
-import MyComponent from './MyComponent.svelte'
+import { render, screen } from '@testing-library/svelte';
+import { fireEvent } from '@testing-library/dom';
+import MyComponent from './MyComponent.svelte';
 
 test('component works', async () => {
-	render(MyComponent, { props: { title: 'Test' } })
+	render(MyComponent, { props: { title: 'Test' } });
 
-	const button = screen.getByTestId('my-button')
-	await fireEvent.click(button)
+	const button = screen.getByTestId('my-button');
+	await fireEvent.click(button);
 
-	expect(screen.getByText('Clicked')).toBeInTheDocument()
-})
+	expect(screen.getByText('Clicked')).toBeInTheDocument();
+});
 ```
 
 Looks clean enough, right? But under the hood, it's running in `jsdom`
@@ -304,39 +304,39 @@ in the prompt and it churned through them like a champ!
 **Before:**
 
 ```typescript
-import { fireEvent, render, screen } from '@testing-library/svelte'
-import { expect, test } from 'vitest'
-import Details from './details.svelte'
+import { fireEvent, render, screen } from '@testing-library/svelte';
+import { expect, test } from 'vitest';
+import Details from './details.svelte';
 
 test('toggles details', async () => {
-	render(Details, { props: { summary: 'Test' } })
+	render(Details, { props: { summary: 'Test' } });
 
-	const summary = screen.getByText('Test')
-	await fireEvent.click(summary)
+	const summary = screen.getByText('Test');
+	await fireEvent.click(summary);
 
-	expect(summary.closest('details')).toHaveAttribute('open')
-})
+	expect(summary.closest('details')).toHaveAttribute('open');
+});
 ```
 
 **After:**
 
 ```typescript
-import { render } from 'vitest-browser-svelte'
-import { page } from '@vitest/browser/context'
-import { flushSync } from 'svelte'
+import { render } from 'vitest-browser-svelte';
+import { page } from '@vitest/browser/context';
+import { flushSync } from 'svelte';
 
 test('toggles details', async () => {
 	render(Details, {
 		props: { summary: 'Test' },
-	})
+	});
 
-	const summary = page.getByRole('button', { name: 'Test' })
-	await summary.click()
+	const summary = page.getByRole('button', { name: 'Test' });
+	await summary.click();
 	// No flushSync() needed - locators automatically retry!
 
-	const details = page.getByRole('group')
-	await expect.element(details).toHaveAttribute('open')
-})
+	const details = page.getByRole('group');
+	await expect.element(details).toHaveAttribute('open');
+});
 ```
 
 The new version uses **locators** instead of manual DOM queries and
@@ -387,20 +387,20 @@ Here's the difference:
 
 ```typescript
 test('renders button', () => {
-	const { container } = render(MyComponent)
-	const button = container.querySelector('[data-testid="my-button"]')
-	expect(button?.textContent).toBe('Click me')
-})
+	const { container } = render(MyComponent);
+	const button = container.querySelector('[data-testid="my-button"]');
+	expect(button?.textContent).toBe('Click me');
+});
 ```
 
 **New approach (locators):**
 
 ```typescript
 test('renders button', async () => {
-	render(MyComponent)
-	const button = page.getByTestId('my-button')
-	await expect.element(button).toHaveTextContent('Click me')
-})
+	render(MyComponent);
+	const button = page.getByTestId('my-button');
+	await expect.element(button).toHaveTextContent('Click me');
+});
 ```
 
 **Key differences:**
@@ -473,20 +473,20 @@ synchronous execution:
 ```typescript
 test('Effect runs synchronously', () => {
 	const cleanup = $effect.root(() => {
-		let count = $state(0)
-		let log = logger(() => count)
+		let count = $state(0);
+		let log = logger(() => count);
 
 		// Effects normally run after a microtask
-		flushSync() // Force synchronous execution
-		expect(log.value).toEqual([0])
+		flushSync(); // Force synchronous execution
+		expect(log.value).toEqual([0]);
 
-		count = 1
-		flushSync() // Still needed for immediate derived state evaluation
-		expect(log.value).toEqual([0, 1])
-	})
+		count = 1;
+		flushSync(); // Still needed for immediate derived state evaluation
+		expect(log.value).toEqual([0, 1]);
+	});
 
-	cleanup()
-})
+	cleanup();
+});
 ```
 
 **Testing immediate state transitions:**
@@ -496,14 +496,14 @@ next render cycle:
 
 ```typescript
 test('immediate state evaluation', () => {
-	let count = $state(0)
-	let doubled = $derived(count * 2)
+	let count = $state(0);
+	let doubled = $derived(count * 2);
 
-	count = 5
-	flushSync() // Needed for immediate derived state evaluation
+	count = 5;
+	flushSync(); // Needed for immediate derived state evaluation
 
-	expect(doubled).toBe(10)
-})
+	expect(doubled).toBe(10);
+});
 ```
 
 **Key takeaway:** Use `flushSync()` only when your entire test is
@@ -535,16 +535,16 @@ For testing server-side rendering using Svelte's built-in `render`
 function, here's that test I chucked in for reference:
 
 ```typescript
-import { render } from 'svelte/server'
-import { describe, expect, it } from 'vitest'
-import BackToTop from './back-to-top.svelte'
+import { render } from 'svelte/server';
+import { describe, expect, it } from 'vitest';
+import BackToTop from './back-to-top.svelte';
 
 describe('BackToTop.svelte SSR', () => {
 	it('renders', () => {
-		const { body } = render(BackToTop)
-		expect(body).toContain('Back to top')
-	})
-})
+		const { body } = render(BackToTop);
+		expect(body).toContain('Back to top');
+	});
+});
 ```
 
 This is good for testing SEO
@@ -564,30 +564,30 @@ reactive state is now possible.
 
 ```typescript
 // some-file.svelte.test.ts
-import { page } from '@vitest/browser/context'
-import { flushSync } from 'svelte'
+import { page } from '@vitest/browser/context';
+import { flushSync } from 'svelte';
 
 test('reactive state with $state and $derived', async () => {
-	let count = $state(0)
-	let doubled = $derived(count * 2)
+	let count = $state(0);
+	let doubled = $derived(count * 2);
 
 	render(Counter, {
 		props: { count, doubled },
-	})
+	});
 
-	const countDisplay = page.getByTestId('count-display')
-	const doubledDisplay = page.getByTestId('doubled-display')
+	const countDisplay = page.getByTestId('count-display');
+	const doubledDisplay = page.getByTestId('doubled-display');
 
-	await expect.element(countDisplay).toHaveTextContent('0')
-	await expect.element(doubledDisplay).toHaveTextContent('0')
+	await expect.element(countDisplay).toHaveTextContent('0');
+	await expect.element(doubledDisplay).toHaveTextContent('0');
 
-	count = 5
+	count = 5;
 	// flushSync() only needed if testing synchronously
 	// Locators will automatically wait for updates!
 
-	await expect.element(countDisplay).toHaveTextContent('5')
-	await expect.element(doubledDisplay).toHaveTextContent('10')
-})
+	await expect.element(countDisplay).toHaveTextContent('5');
+	await expect.element(doubledDisplay).toHaveTextContent('10');
+});
 ```
 
 ## It's not `global.window` now
@@ -599,7 +599,7 @@ set global properties:
 
 ```typescript
 // ❌ This breaks in browser environment
-global.window.scrollY = 100
+global.window.scrollY = 100;
 ```
 
 The fix:
@@ -609,7 +609,7 @@ The fix:
 Object.defineProperty(window, 'scrollY', {
 	value: 100,
 	writable: true,
-})
+});
 ```
 
 In the browser environment, there's no `global` object - just use
@@ -652,62 +652,62 @@ have a `Details` component that handles collapsible content:
 
 ```typescript
 // details.svelte.test.ts
-import { page } from '@vitest/browser/context'
-import { createRawSnippet, flushSync, tick } from 'svelte'
-import { describe, expect, test } from 'vitest'
-import { render } from 'vitest-browser-svelte'
-import Details from './details.svelte'
+import { page } from '@vitest/browser/context';
+import { createRawSnippet, flushSync, tick } from 'svelte';
+import { describe, expect, test } from 'vitest';
+import { render } from 'vitest-browser-svelte';
+import Details from './details.svelte';
 
 describe('Details Component', () => {
 	test('renders with button text', async () => {
 		render(Details, {
 			button_text: 'Show Details',
-		})
+		});
 
-		const button = page.getByTestId('details-button')
-		await expect.element(button).toHaveTextContent('Show Details')
-	})
+		const button = page.getByTestId('details-button');
+		await expect.element(button).toHaveTextContent('Show Details');
+	});
 
 	test('toggles open state when clicked', async () => {
 		const testSnippet = createRawSnippet(() => ({
 			render: () => '<p>Test Content</p>',
 			setup: () => {},
-		}))
+		}));
 
 		render(Details, {
 			button_text: 'Show Details',
 			is_open: false,
 			children: testSnippet,
-		})
+		});
 
-		const button = page.getByTestId('details-button')
+		const button = page.getByTestId('details-button');
 
 		// Initially closed
-		await expect.element(button).toHaveTextContent('Show Details')
+		await expect.element(button).toHaveTextContent('Show Details');
 		await expect
 			.element(page.getByTestId('details-content'))
-			.not.toBeInTheDocument()
+			.not.toBeInTheDocument();
 
 		// Click to open
-		await button.click()
+		await button.click();
 		// No flushSync() or tick() needed with locators!
 
-		const content = page.getByTestId('details-content')
-		await expect.element(content).toBeInTheDocument()
-		await expect.element(content).toHaveTextContent('Test Content')
-		await expect.element(button).toHaveTextContent('Close')
-	})
+		const content = page.getByTestId('details-content');
+		await expect.element(content).toBeInTheDocument();
+		await expect.element(content).toHaveTextContent('Test Content');
+		await expect.element(button).toHaveTextContent('Close');
+	});
 
 	test('applies custom styles', async () => {
 		render(Details, {
 			styles: 'custom-class',
-		})
+		});
 
-		const button = page.getByTestId('details-button')
-		await expect.element(button).toHaveClass('custom-class')
-		await expect.element(button).toHaveClass('btn')
-	})
-})
+		const button = page.getByTestId('details-button');
+		await expect.element(button).toHaveClass('custom-class');
+		await expect.element(button).toHaveClass('btn');
+	});
+});
 ```
 
 This test is:
@@ -856,14 +856,14 @@ elements are updated. However, there are specific scenarios where
 import { flushSync } from 'svelte';
 
 test('derived state updates synchronously', () => {
-  // Trigger state change
-  component.updateCount(5);
-  
-  // Need flushSync to ensure derived state is computed
-  flushSync();
-  
-  // Now we can synchronously assert the derived value
-  expect(component.doubledCount).toBe(10);
+	// Trigger state change
+	component.updateCount(5);
+
+	// Need flushSync to ensure derived state is computed
+	flushSync();
+
+	// Now we can synchronously assert the derived value
+	expect(component.doubledCount).toBe(10);
 });
 ```
 

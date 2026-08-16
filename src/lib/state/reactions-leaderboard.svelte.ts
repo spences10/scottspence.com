@@ -3,45 +3,45 @@ import {
 	CACHE_DURATIONS,
 	get_from_cache,
 	set_cache,
-} from '$lib/cache/server-cache'
-import { sqlite_client } from '$lib/sqlite/client'
+} from '$lib/cache/server-cache';
+import { sqlite_client } from '$lib/sqlite/client';
 
 // TODO: The SQL in this is fucking awful, needs to be rewritten!!
 
-const CACHE_KEY = 'reactions_leaderboard'
+const CACHE_KEY = 'reactions_leaderboard';
 
 interface ReactionData {
-	path: string
-	title: string
-	reaction_type: string
-	count: number
-	total_count: number
+	path: string;
+	title: string;
+	reaction_type: string;
+	count: number;
+	total_count: number;
 }
 
 interface LeaderboardData {
-	leaderboard: ReactionEntry[]
-	error?: string
+	leaderboard: ReactionEntry[];
+	error?: string;
 }
 
 class ReactionsLeaderboardState {
-	data = $state<LeaderboardData>({ leaderboard: [] })
-	loading = $state<boolean>(false)
-	last_fetched = $state<number>(0)
+	data = $state<LeaderboardData>({ leaderboard: [] });
+	loading = $state<boolean>(false);
+	last_fetched = $state<number>(0);
 
 	async load_leaderboard(): Promise<void> {
 		if (BYPASS_DB_READS.reactions_leaderboard) {
-			return // DB reads disabled
+			return; // DB reads disabled
 		}
 
 		// Check server cache first
 		const server_cached = get_from_cache<LeaderboardData>(
 			CACHE_KEY,
 			CACHE_DURATIONS.reactions_leaderboard,
-		)
+		);
 		if (server_cached) {
-			this.data = server_cached
-			this.last_fetched = Date.now()
-			return
+			this.data = server_cached;
+			this.last_fetched = Date.now();
+			return;
 		}
 
 		// Check client cache
@@ -50,13 +50,13 @@ class ReactionsLeaderboardState {
 				CACHE_DURATIONS.reactions_leaderboard &&
 			this.data.leaderboard.length > 0
 		) {
-			return // Use cached data
+			return; // Use cached data
 		}
 
-		if (this.loading) return // Prevent concurrent requests
+		if (this.loading) return; // Prevent concurrent requests
 
-		this.loading = true
-		const client = sqlite_client
+		this.loading = true;
+		const client = sqlite_client;
 
 		try {
 			const db_result = await client.execute(`
@@ -82,7 +82,7 @@ class ReactionsLeaderboardState {
 					p.is_private = false
 				ORDER BY
 					total.total_count DESC, r.post_url, r.reaction_type;
-			`)
+			`);
 
 			const reaction_data: ReactionData[] = db_result.rows.map(
 				(row) => ({
@@ -92,30 +92,31 @@ class ReactionsLeaderboardState {
 					count: Number(row.count),
 					total_count: Number(row.total_count),
 				}),
-			)
+			);
 
-			const leaderboard = this.process_leaderboard_data(reaction_data)
-			const data = { leaderboard }
+			const leaderboard =
+				this.process_leaderboard_data(reaction_data);
+			const data = { leaderboard };
 
 			// Update both caches
-			this.data = data
-			this.last_fetched = Date.now()
-			set_cache(CACHE_KEY, data)
+			this.data = data;
+			this.last_fetched = Date.now();
+			set_cache(CACHE_KEY, data);
 		} catch (error) {
 			console.warn(
 				'Database unavailable, keeping cached leaderboard:',
 				error instanceof Error ? error.message : 'Unknown error',
-			)
+			);
 			// Keep existing data on error - don't clear it
 		} finally {
-			this.loading = false
+			this.loading = false;
 		}
 	}
 
 	private process_leaderboard_data(
 		data: ReactionData[],
 	): ReactionEntry[] {
-		const leaderboard = new Map<string, any>()
+		const leaderboard = new Map<string, any>();
 
 		data.forEach((item) => {
 			if (!leaderboard.has(item.path)) {
@@ -127,39 +128,39 @@ class ReactionsLeaderboardState {
 					hearts: 0,
 					poops: 0,
 					parties: 0,
-				})
+				});
 			}
-			const entry = leaderboard.get(item.path)
-			entry[item.reaction_type] = item.count
-		})
+			const entry = leaderboard.get(item.path);
+			entry[item.reaction_type] = item.count;
+		});
 
 		return Array.from(leaderboard.values())
 			.sort((a, b) => b.total_count - a.total_count)
-			.map((entry, index) => ({ ...entry, rank: index + 1 }))
+			.map((entry, index) => ({ ...entry, rank: index + 1 }));
 	}
 }
 
 // Single universal instance shared everywhere
 export const reactions_leaderboard_state =
-	new ReactionsLeaderboardState()
+	new ReactionsLeaderboardState();
 
 // Fallback function for server-side usage and backward compatibility
 export const get_reactions_leaderboard =
 	async (): Promise<LeaderboardData> => {
 		if (BYPASS_DB_READS.reactions_leaderboard) {
-			return { leaderboard: [] }
+			return { leaderboard: [] };
 		}
 
 		// Check server cache first
 		const cached = get_from_cache<LeaderboardData>(
 			CACHE_KEY,
 			CACHE_DURATIONS.reactions_leaderboard,
-		)
+		);
 		if (cached) {
-			return cached
+			return cached;
 		}
 
-		const client = sqlite_client
+		const client = sqlite_client;
 
 		try {
 			const db_result2 = await client.execute(`
@@ -185,7 +186,7 @@ export const get_reactions_leaderboard =
 				p.is_private = false
 			ORDER BY
 				total.total_count DESC, r.post_url, r.reaction_type;
-		`)
+		`);
 
 			const reaction_data: ReactionData[] = db_result2.rows.map(
 				(row) => ({
@@ -195,31 +196,31 @@ export const get_reactions_leaderboard =
 					count: Number(row.count),
 					total_count: Number(row.total_count),
 				}),
-			)
+			);
 
-			const leaderboard = process_leaderboard_data(reaction_data)
-			const leaderboard_result = { leaderboard }
+			const leaderboard = process_leaderboard_data(reaction_data);
+			const leaderboard_result = { leaderboard };
 
 			// Cache the result
-			set_cache(CACHE_KEY, leaderboard_result)
-			return leaderboard_result
+			set_cache(CACHE_KEY, leaderboard_result);
+			return leaderboard_result;
 		} catch (error) {
 			console.warn(
 				'Database unavailable, returning empty leaderboard:',
 				error instanceof Error ? error.message : 'Unknown error',
-			)
+			);
 			return {
 				leaderboard: [],
 				error: 'Failed to load leaderboard data',
-			}
+			};
 		}
-	}
+	};
 
 // Helper function for server-side processing
 const process_leaderboard_data = (
 	data: ReactionData[],
 ): ReactionEntry[] => {
-	const leaderboard = new Map<string, any>()
+	const leaderboard = new Map<string, any>();
 
 	data.forEach((item) => {
 		if (!leaderboard.has(item.path)) {
@@ -231,13 +232,13 @@ const process_leaderboard_data = (
 				hearts: 0,
 				poops: 0,
 				parties: 0,
-			})
+			});
 		}
-		const entry = leaderboard.get(item.path)
-		entry[item.reaction_type] = item.count
-	})
+		const entry = leaderboard.get(item.path);
+		entry[item.reaction_type] = item.count;
+	});
 
 	return Array.from(leaderboard.values())
 		.sort((a, b) => b.total_count - a.total_count)
-		.map((entry, index) => ({ ...entry, rank: index + 1 }))
-}
+		.map((entry, index) => ({ ...entry, rank: index + 1 }));
+};

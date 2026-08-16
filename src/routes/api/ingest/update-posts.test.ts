@@ -1,4 +1,4 @@
-import * as sqlite_module from '$lib/sqlite/client'
+import * as sqlite_module from '$lib/sqlite/client';
 import {
 	afterEach,
 	beforeEach,
@@ -6,13 +6,13 @@ import {
 	expect,
 	it,
 	vi,
-} from 'vitest'
-import { update_posts } from './update-posts'
+} from 'vitest';
+import { update_posts } from './update-posts';
 
 // Mock the sqlite_client
 vi.mock('$lib/sqlite/client', () => ({
 	sqlite_client: vi.fn(),
-}))
+}));
 
 // Mock import.meta.glob
 vi.mock('../../../../posts/**/*.md', () => ({
@@ -50,32 +50,32 @@ vi.mock('../../../../posts/**/*.md', () => ({
 				title: 'Test Post 2',
 			},
 		}),
-}))
+}));
 
 describe('update_posts function', () => {
-	let mock_batch: ReturnType<typeof vi.fn>
+	let mock_batch: ReturnType<typeof vi.fn>;
 
 	beforeEach(() => {
-		vi.resetAllMocks()
-		mock_batch = vi.fn().mockResolvedValue(undefined)
+		vi.resetAllMocks();
+		mock_batch = vi.fn().mockResolvedValue(undefined);
 		Object.assign(sqlite_module.sqlite_client, {
 			batch: mock_batch,
-		} as any)
+		} as any);
 
 		// Mock the current date
-		vi.useFakeTimers()
-		vi.setSystemTime(new Date('2023-06-15T12:00:00Z'))
-	})
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date('2023-06-15T12:00:00Z'));
+	});
 
 	afterEach(() => {
-		vi.useRealTimers()
-	})
+		vi.useRealTimers();
+	});
 
 	it.skip('should update posts successfully', async () => {
-		const result = await update_posts()
+		const result = await update_posts();
 
-		expect(result).toEqual({ message: 'Posts updated' })
-		expect(mock_batch).toHaveBeenCalledTimes(1)
+		expect(result).toEqual({ message: 'Posts updated' });
+		expect(mock_batch).toHaveBeenCalledTimes(1);
 		expect(mock_batch).toHaveBeenCalledWith([
 			expect.objectContaining({
 				sql: expect.stringContaining('INSERT INTO posts'),
@@ -111,23 +111,23 @@ describe('update_posts function', () => {
 					'2023-06-15T12:00:00.000Z',
 				],
 			}),
-		])
-	})
+		]);
+	});
 
 	it.skip('should handle errors during batch update', async () => {
 		const console_error_spy = vi
 			.spyOn(console, 'error')
-			.mockImplementation(() => {})
-		mock_batch.mockRejectedValueOnce(new Error('Database error'))
+			.mockImplementation(() => {});
+		mock_batch.mockRejectedValueOnce(new Error('Database error'));
 
-		const result = await update_posts()
+		const result = await update_posts();
 
-		expect(result).toBeUndefined()
+		expect(result).toBeUndefined();
 		expect(console_error_spy).toHaveBeenCalledWith(
 			'Error performing batch insert/update:',
 			expect.any(Error),
-		)
+		);
 
-		console_error_spy.mockRestore()
-	})
-})
+		console_error_spy.mockRestore();
+	});
+});

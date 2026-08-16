@@ -191,7 +191,7 @@ junior dev.
 
 [again]: https://scottspence.com/#hi-im-scott
 [20161230]:
-  https://github.com/spences10/100-days-of-code/commit/7dbefb608862401d4cb9e6ed11f539b44bedcdae
+	https://github.com/spences10/100-days-of-code/commit/7dbefb608862401d4cb9e6ed11f539b44bedcdae
 [chingu]: https://medium.com/chingu
 [my portfolio]: https://scottspence.com/#portfolio
 [content on egghead.io]: https://egghead.io/instructors/kentcdodds
@@ -200,6 +200,6 @@ junior dev.
 <!-- Images -->
 
 [compare]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930929/scottspence.com/weight-gain-349fdf64fd8046a361b7bcf639250909.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930929/scottspence.com/weight-gain-349fdf64fd8046a361b7bcf639250909.png
 [wakatime]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930932/scottspence.com/wakatime-stats-8581ce35405d8dd3124ca0fdb229c5f0.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930932/scottspence.com/wakatime-stats-8581ce35405d8dd3124ca0fdb229c5f0.png

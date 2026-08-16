@@ -379,13 +379,13 @@ Thanks again 👍
 <!-- Links -->
 
 [my youtube channel]:
-  https://www.youtube.com/channel/UCnngLXpLSFsKkDhFoO9Ct3w
+	https://www.youtube.com/channel/UCnngLXpLSFsKkDhFoO9Ct3w
 [get your graphcms data into gatsby]:
-  https://scottspence.com/posts/graphcms-to-gatsby/
+	https://scottspence.com/posts/graphcms-to-gatsby/
 [developer's guide to starting a youtube channel]:
-  https://learn.jamesqquick.com/developers-guide-to-starting-a-youtube-channel/7qkrr
+	https://learn.jamesqquick.com/developers-guide-to-starting-a-youtube-channel/7qkrr
 [transformer pro]:
-  https://www.asus.com/uk/2-in-1-PCs/ASUS-Transformer-Pro-T304UA/
+	https://www.asus.com/uk/2-in-1-PCs/ASUS-Transformer-Pro-T304UA/
 [obs]: https://obsproject.com/
 [open broadcaster software]: https://obsproject.com/
 [openshot]: https://www.openshot.org/
@@ -397,25 +397,25 @@ Thanks again 👍
 [aukey webcam]: https://www.amazon.co.uk/gp/product/B0721MKXQ2
 [2009]: https://www.youtube.com/watch?v=9gk_rl3y_SU
 [obs forum resources section]:
-  https://obsproject.com/forum/resources/count-down-adaptive-time.719/
+	https://obsproject.com/forum/resources/count-down-adaptive-time.719/
 [large microphone boom arm]:
-  https://www.amazon.co.uk/gp/product/B07JN2CJF9
+	https://www.amazon.co.uk/gp/product/B07JN2CJF9
 [create a new google account]:
-  https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp
+	https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp
 [youtube channel switcher]: https://www.youtube.com/channel_switcher
 [youtube studio]: https://studio.youtube.com/
 
 <!-- Images -->
 
 [obs-auto-configuration-wizard]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/obs-auto-configuration-wizard-9f4d97bea64dba475beaea2e3803bd54.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/obs-auto-configuration-wizard-9f4d97bea64dba475beaea2e3803bd54.png
 [empty-starting-scene]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/empty-starting-scene-13cafbf630213ab2bd16ab1b8980975a.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/empty-starting-scene-13cafbf630213ab2bd16ab1b8980975a.png
 [add-display-capture.png]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/add-display-capture-0aac3d0f1e6f42f31ded0493cbd4c6a3.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/add-display-capture-0aac3d0f1e6f42f31ded0493cbd4c6a3.png
 [add-text-to-scene]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/add-text-to-scene-4ff48ee5a07dffb57f0ddb6769deec3a.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/add-text-to-scene-4ff48ee5a07dffb57f0ddb6769deec3a.png
 [add-script]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/add-script-ab536cc3ff3fa25f5312dcba22ff2d6b.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/add-script-ab536cc3ff3fa25f5312dcba22ff2d6b.png
 [youtube-add-icon]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/youtube-add-icon-76d47080f1e5e3f0a736929663a9cd86.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/youtube-add-icon-76d47080f1e5e3f0a736929663a9cd86.png

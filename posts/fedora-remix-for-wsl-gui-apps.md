@@ -107,23 +107,23 @@ well!!
 <!-- Links -->
 
 [fedora remix for wsl]:
-  https://www.microsoft.com/en-us/p/fedora-remix-for-wsl/9n6gdm4k2hnc?activetab=pivot:overviewtab
+	https://www.microsoft.com/en-us/p/fedora-remix-for-wsl/9n6gdm4k2hnc?activetab=pivot:overviewtab
 [i did previously]: https://scottspence.com/2020/12/09/gui-with-wsl/
 [nicky's post]:
-  https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress
+	https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress
 [automatically start `dbus`]:
-  https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#automatically-start-dbus
+	https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#automatically-start-dbus
 [grant passwordless access for `dbus`]:
-  https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#grant-passwordless-access-for-dbus
+	https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#grant-passwordless-access-for-dbus
 [stack overflow question]:
-  https://stackoverflow.com/questions/58134793/error-while-loading-shared-libraries-libnss3-so-while-running-gtlab-ci-job-to
+	https://stackoverflow.com/questions/58134793/error-while-loading-shared-libraries-libnss3-so-while-running-gtlab-ci-job-to
 [code weavers]:
-  https://www.codeweavers.com/support/wiki/Diag/MissingLibAsoundMidi
+	https://www.codeweavers.com/support/wiki/Diag/MissingLibAsoundMidi
 [this page]:
-  https://www.codeweavers.com/support/wiki/Diag/MissingLibAsound
+	https://www.codeweavers.com/support/wiki/Diag/MissingLibAsound
 [mdx embed project]: https://github.com/PaulieScanlon/mdx-embed
 
 <!-- Images -->
 
 [stack overflow comment]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/stack-overflow-comment-55459b70613d9cd30faf38898f07e47d.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/stack-overflow-comment-55459b70613d9cd30faf38898f07e47d.png

@@ -566,14 +566,14 @@ columns aren't formatted to fit it could get a bit tricky to read:
 [digital garden]: https://scottspence.com/garden
 [gfm]: https://github.github.com/gfm/
 [markdown table generator]:
-  https://www.tablesgenerator.com/markdown_tables
+	https://www.tablesgenerator.com/markdown_tables
 [the initial markdown announcement]:
-  https://daringfireball.net/projects/markdown/
+	https://daringfireball.net/projects/markdown/
 [markdown cheatsheet]:
-  https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+	https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 [markdown forge]: https://www.markdownforge.com/about
 [justin juno]: https://twitter.com/justinjunodev
 [linguist]:
-  https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
+	https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
 [december 2004 on daring fireball]:
-  https://daringfireball.net/projects/markdown/
+	https://daringfireball.net/projects/markdown/

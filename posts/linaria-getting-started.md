@@ -118,26 +118,26 @@ Add a `body` tag to remove that margin and add a `background` colour
 with a bit of contrast so that I can see the styles have been applied.
 
 ```js {17}
-import { css } from 'linaria'
+import { css } from 'linaria';
 
 export const globals = css`
-  :global() {
-    html {
-      box-sizing: border-box;
-    }
+	:global() {
+		html {
+			box-sizing: border-box;
+		}
 
-    *,
-    *:before,
-    *:after {
-      box-sizing: inherit;
-    }
+		*,
+		*:before,
+		*:after {
+			box-sizing: inherit;
+		}
 
-    body {
-      margin: 0;
-      background: red;
-    }
-  }
-`
+		body {
+			margin: 0;
+			background: red;
+		}
+	}
+`;
 ```
 
 Ok, cool, so that's nice, but wtf do I do with it? Right??
@@ -176,30 +176,30 @@ I can now take some of the styles from the reset I deleted and add
 those to the `globals` file:
 
 ```js {6-8,20-21}
-import { css } from 'linaria'
+import { css } from 'linaria';
 
 export const globals = css`
-  :global() {
-    html {
-      box-sizing: border-box;
-      font-family: sans-serif;
-      -ms-text-size-adjust: 100%;
-      -webkit-text-size-adjust: 100%;
-    }
+	:global() {
+		html {
+			box-sizing: border-box;
+			font-family: sans-serif;
+			-ms-text-size-adjust: 100%;
+			-webkit-text-size-adjust: 100%;
+		}
 
-    *,
-    *:before,
-    *:after {
-      box-sizing: inherit;
-    }
+		*,
+		*:before,
+		*:after {
+			box-sizing: inherit;
+		}
 
-    body {
-      margin: 0;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-  }
-`
+		body {
+			margin: 0;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+	}
+`;
 ```
 
 Now the styles are back to what they were but I'm now using Linaria.
@@ -218,9 +218,9 @@ I'll work through the components that have styles in them.
 `StyledHeader` component:
 
 ```js
-import { styled } from 'linaria/react'
+import { styled } from 'linaria/react';
 
-const StyledHeader = styled.header``
+const StyledHeader = styled.header``;
 ```
 
 From here I can add all the styles in that wrapping component to the
@@ -231,21 +231,21 @@ is an `a` element) like this:
 
 ```js
 const StyledHeader = styled.header`
-  background: rebeccapurple;
-  margin-bottom: 1.45rem;
-  div {
-    margin: 0 auto;
-    max-width: 960px;
-    padding: 1.45rem 1.0875rem;
-  }
-  h1 {
-    margin: 0;
-  }
-  a {
-    color: white;
-    text-decoration: none;
-  }
-`
+	background: rebeccapurple;
+	margin-bottom: 1.45rem;
+	div {
+		margin: 0 auto;
+		max-width: 960px;
+		padding: 1.45rem 1.0875rem;
+	}
+	h1 {
+		margin: 0;
+	}
+	a {
+		color: white;
+		text-decoration: none;
+	}
+`;
 ```
 
 Now the component is cleaner with all the inline styling moved to the
@@ -253,23 +253,23 @@ Now the component is cleaner with all the inline styling moved to the
 
 ```jsx
 const Header = ({ siteTitle }) => (
-  <StyledHeader>
-    <div>
-      <h1 style={{ margin: 0 }}>
-        <Link to="/">{siteTitle}</Link>
-      </h1>
-    </div>
-  </StyledHeader>
-)
+	<StyledHeader>
+		<div>
+			<h1 style={{ margin: 0 }}>
+				<Link to="/">{siteTitle}</Link>
+			</h1>
+		</div>
+	</StyledHeader>
+);
 ```
 
 **Layout:** same again, import the Linaria `styled` tag and make a
 `StyledLayout` component:
 
 ```js
-import { styled } from 'linaria/react'
+import { styled } from 'linaria/react';
 
-const StyledLayout = styled.main``
+const StyledLayout = styled.main``;
 ```
 
 As this is wrapping the whole project I'll need to define a class for
@@ -277,12 +277,12 @@ the `div` on this component:
 
 ```js
 const StyledLayout = styled.main`
-  .page-wrapper {
-    margin: 0 auto;
-    max-width: 960px;
-    padding: 0 1.0875rem 1.45rem;
-  }
-`
+	.page-wrapper {
+		margin: 0 auto;
+		max-width: 960px;
+		padding: 0 1.0875rem 1.45rem;
+	}
+`;
 ```
 
 Apply the class to the div in the component and remove the `main` tag
@@ -290,18 +290,18 @@ wrapping the components `children`:
 
 ```jsx {4-5}
 return (
-  <StyledLayout className={globals}>
-    <Header siteTitle={data.site.siteMetadata.title} />
-    <div className="page-wrapper">
-      <>{children}</>
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>
-      </footer>
-    </div>
-  </StyledLayout>
-)
+	<StyledLayout className={globals}>
+		<Header siteTitle={data.site.siteMetadata.title} />
+		<div className="page-wrapper">
+			<>{children}</>
+			<footer>
+				© {new Date().getFullYear()}, Built with
+				{` `}
+				<a href="https://www.gatsbyjs.com">Gatsby</a>
+			</footer>
+		</div>
+	</StyledLayout>
+);
 ```
 
 That's it for the components and taking a look at the pages none of
@@ -331,28 +331,28 @@ Here's some resources on CSS-in-JS performance I found interesting.
 <!-- cSpell:ignore Callstack -->
 
 [the unseen performance costs of modern css-in-js libraries in react apps]:
-  https://calendar.perfplanet.com/2019/the-unseen-performance-costs-of-css-in-js-in-react-apps/
+	https://calendar.perfplanet.com/2019/the-unseen-performance-costs-of-css-in-js-in-react-apps/
 [css-in-js performance cost - mitigating strategies]:
-  https://www.infoq.com/news/2020/01/css-cssinjs-performance-cost/
+	https://www.infoq.com/news/2020/01/css-cssinjs-performance-cost/
 [https://www.freecodecamp.org/news/the-tradeoffs-of-css-in-js-bee5cf926fdb/]:
-  https://www.freecodecamp.org/news/the-tradeoffs-of-css-in-js-bee5cf926fdb/
+	https://www.freecodecamp.org/news/the-tradeoffs-of-css-in-js-bee5cf926fdb/
 [linaria docs for benefits]:
-  https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md
+	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md
 [css is downloaded and parsed separately from js]:
-  https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#1-css-is-downloaded-and-parsed-separately-from-js
+	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#1-css-is-downloaded-and-parsed-separately-from-js
 [no extra parsing needed for css]:
-  https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#2-no-extra-parsing-needed-for-css
+	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#2-no-extra-parsing-needed-for-css
 [no style duplication on ssr]:
-  https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#3-no-style-duplication-on-ssr
+	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#3-no-style-duplication-on-ssr
 [catch errors early due to build-time evaluation]:
-  https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#4-catch-errors-early-due-to-build-time-evaluation
+	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#4-catch-errors-early-due-to-build-time-evaluation
 [familiar css syntax]:
-  https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#5-familiar-css-syntax
+	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#5-familiar-css-syntax
 [works without javascript]:
-  https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#6-works-without-javascript
+	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#6-works-without-javascript
 [jack the example]:
-  https://github.com/callstack/linaria/blob/master/docs/BASICS.md#adding-global-styles
+	https://github.com/callstack/linaria/blob/master/docs/BASICS.md#adding-global-styles
 [brevity]: https://dictionary.cambridge.org/dictionary/english/brevity
 [known issue]:
-  https://github.com/silvenon/gatsby-plugin-linaria#error-cannot-find-module-core-jsmodulespolyfill
+	https://github.com/silvenon/gatsby-plugin-linaria#error-cannot-find-module-core-jsmodulespolyfill
 [tl;dr to the video]: #video-detailing-the-process

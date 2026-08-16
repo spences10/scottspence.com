@@ -298,19 +298,19 @@ was `bcrypt` I know for the future.
 <!-- Links -->
 
 [awesome guide]:
-  https://joyofcode.xyz/sveltekit-authentication-using-cookies
+	https://joyofcode.xyz/sveltekit-authentication-using-cookies
 [matia]: https://twitter.com/joyofcodedev
 [video playlist]:
-  https://www.youtube.com/playlist?list=PLA9WiRZ-IS_zKrDzhOhV5RGKKTHNIyTDO
+	https://www.youtube.com/playlist?list=PLA9WiRZ-IS_zKrDzhOhV5RGKKTHNIyTDO
 [how to set up a free postgresql database on heroku]:
-  https://dev.to/prisma/how-to-setup-a-free-postgresql-database-on-heroku-1dc1
+	https://dev.to/prisma/how-to-setup-a-free-postgresql-database-on-heroku-1dc1
 [planetscale]: https://planetscale.com
 [prisma with planetscale quickstart]:
-  https://docs.planetscale.com/tutorials/prisma-quickstart
+	https://docs.planetscale.com/tutorials/prisma-quickstart
 [@josefaidt]: https://twitter.com/josefaidt
 [sveltekit-prisma]:
-  https://github.com/mikenikles/sveltekit-prisma/blob/main/package.json#L13
+	https://github.com/mikenikles/sveltekit-prisma/blob/main/package.json#L13
 [@mikenikles]: https://twitter.com/mikenikles
 [stackoverflow question]: https://stackoverflow.com/q/70097108/1138354
 [josef shared]:
-  https://josef.dev/posts/svelte-kit-planetscale-and-prisma-on-vercel
+	https://josef.dev/posts/svelte-kit-planetscale-and-prisma-on-vercel

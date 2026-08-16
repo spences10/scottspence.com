@@ -4,6 +4,6 @@ export const object_to_query_params = (
 	const params = Object.entries(obj).map(
 		([key, value]) =>
 			`${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`,
-	)
-	return '?' + params.join('&')
-}
+	);
+	return '?' + params.join('&');
+};

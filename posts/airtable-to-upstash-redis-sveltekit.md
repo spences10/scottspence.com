@@ -47,20 +47,20 @@ The JSON data from Airtable looked like this.
 
 ```ts
 export const airtable_json_data = [
-  {
-    id: 'rec03P0YflWl1x1x1',
-    createdTime: '2022-07-21T18:40:13.000Z',
-    fields: {
-      destination: 'https://ten-facts.now.sh',
-      source: '/10facts',
-      position: 1,
-      description: '10 Facts About Me',
-      clicks: 3,
-      visible: true,
-    },
-  },
-  // rest of the data
-]
+	{
+		id: 'rec03P0YflWl1x1x1',
+		createdTime: '2022-07-21T18:40:13.000Z',
+		fields: {
+			destination: 'https://ten-facts.now.sh',
+			source: '/10facts',
+			position: 1,
+			description: '10 Facts About Me',
+			clicks: 3,
+			visible: true,
+		},
+	},
+	// rest of the data
+];
 ```
 
 Because I didn't need the `id`, `createdTime` or `field` object I did
@@ -69,16 +69,16 @@ data like this.
 
 ```ts
 export const airtable_json_data = [
-  {
-    destination: 'https://ten-facts.now.sh',
-    source: '10facts',
-    position: 1,
-    description: '10 Facts About Me',
-    clicks: 3,
-    visible: true,
-  },
-  // rest of the data
-]
+	{
+		destination: 'https://ten-facts.now.sh',
+		source: '10facts',
+		position: 1,
+		description: '10 Facts About Me',
+		clicks: 3,
+		visible: true,
+	},
+	// rest of the data
+];
 ```
 
 I also removed the `/` from the `source` field as I didn't need it
@@ -90,35 +90,35 @@ values).
 
 ```ts
 const import_data_to_redis = async () => {
-  for (const record of airtable_json_data) {
-    const {
-      destination,
-      source,
-      position,
-      description,
-      clicks,
-      visible,
-    } = record
-    const redis_key = `short_url:${source}`
+	for (const record of airtable_json_data) {
+		const {
+			destination,
+			source,
+			position,
+			description,
+			clicks,
+			visible,
+		} = record;
+		const redis_key = `short_url:${source}`;
 
-    // Import each record to Redis using hset
-    await redis.hset(redis_key, [
-      'destination',
-      destination,
-      'position',
-      position,
-      'description',
-      description,
-      'clicks',
-      clicks,
-      'visible',
-      visible,
-    ])
-  }
-}
+		// Import each record to Redis using hset
+		await redis.hset(redis_key, [
+			'destination',
+			destination,
+			'position',
+			position,
+			'description',
+			description,
+			'clicks',
+			clicks,
+			'visible',
+			visible,
+		]);
+	}
+};
 
 // Execute the function
-import_data_to_redis().catch(console.error)
+import_data_to_redis().catch(console.error);
 ```
 
 I added this code to the `lib/redis.ts` file and ran it with from
@@ -177,5 +177,5 @@ Redis, it's not as nice as Airtable but it's not too bad.
 <!-- Links -->
 
 [SvelteKit Contact Form Example with Airtable]:
-  https://scottspence.com/posts/sveltekit-contact-form-example-with-airtable
+	https://scottspence.com/posts/sveltekit-contact-form-example-with-airtable
 [PR]: https://github.com/spences10/sveltekit-short-urls/pull/265

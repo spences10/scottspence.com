@@ -70,7 +70,7 @@ element.
 <!-- cSpell:ignore Kodchasan -->
 
 ```js
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Kodchasan:400,700');
@@ -86,7 +86,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0 auto;
     list-style-type: none;
   }
-`
+`;
 ```
 
 Ok, now we can use the export component here to apply styles globally
@@ -97,8 +97,8 @@ wraps all the pages in this project.
 In `layout.js` import the `GlobalStyle` component.
 
 ```js
-import Header from './header'
-import { GlobalStyle } from '../theme/globalStyle'
+import Header from './header';
+import { GlobalStyle } from '../theme/globalStyle';
 ```
 
 Then add it in with the other components being rendered.
@@ -232,31 +232,31 @@ export default Layout
 **index.js**
 
 ```js
-import React from 'react'
-import { Link } from 'gatsby'
-import styled from 'styled-components'
+import React from 'react';
+import { Link } from 'gatsby';
+import styled from 'styled-components';
 
-import Layout from '../components/layout'
-import Image from '../components/image'
+import Layout from '../components/layout';
+import Image from '../components/image';
 
 const ImgWrapper = styled.div`
-  max-width: 300px;
-  margin-bottom: 1.45rem;
-`
+	max-width: 300px;
+	margin-bottom: 1.45rem;
+`;
 
 const IndexPage = () => (
-  <Layout>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <ImgWrapper>
-      <Image />
-    </ImgWrapper>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+	<Layout>
+		<h1>Hi people</h1>
+		<p>Welcome to your new Gatsby site.</p>
+		<p>Now go build something great.</p>
+		<ImgWrapper>
+			<Image />
+		</ImgWrapper>
+		<Link to="/page-2/">Go to page 2</Link>
+	</Layout>
+);
 
-export default IndexPage
+export default IndexPage;
 ```
 
 ## 5. Done

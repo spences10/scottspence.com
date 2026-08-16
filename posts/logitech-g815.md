@@ -191,20 +191,20 @@ G5 key is mapped to F5 so it may get annoying.
 [havit kb395l]: https://www.amazon.co.uk/gp/product/B0767YQQTQ
 [ruminating]: https://en.wikipedia.org/wiki/Rumination_(psychology)
 [logitech g hub]:
-  https://www.logitechg.com/en-gb/innovation/g-hub.html
+	https://www.logitechg.com/en-gb/innovation/g-hub.html
 [reddit post]:
-  https://www.reddit.com/r/linux4noobs/comments/eqkotk/logitech_g815_keyboard_controls/
+	https://www.reddit.com/r/linux4noobs/comments/eqkotk/logitech_g815_keyboard_controls/
 [libratbag]: https://github.com/libratbag/libratbag
 [add a ppa]:
-  https://launchpad.net/~libratbag-piper/+archive/ubuntu/piper-libratbag-git
+	https://launchpad.net/~libratbag-piper/+archive/ubuntu/piper-libratbag-git
 
 <!-- Images -->
 
 [box comparison]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/box-comparison-7e4831de6c91f0502ba6d2118ab18302.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858546/scottspence.com/box-comparison-7e4831de6c91f0502ba6d2118ab18302.jpg
 [boards comparison]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858548/scottspence.com/boards-comparison-91ea724edce1f0b60656eecc5af09480.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858548/scottspence.com/boards-comparison-91ea724edce1f0b60656eecc5af09480.jpg
 [rainbow cycle lights]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858548/scottspence.com/rainbow-cycle-lights-b6b3b5f54b383db6328804ad822b858a.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858548/scottspence.com/rainbow-cycle-lights-b6b3b5f54b383db6328804ad822b858a.jpg
 [preferred-colour]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858547/scottspence.com/preferred-colour-25622ecd01126ad8d50122b6df2e52cc.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858547/scottspence.com/preferred-colour-25622ecd01126ad8d50122b6df2e52cc.jpg

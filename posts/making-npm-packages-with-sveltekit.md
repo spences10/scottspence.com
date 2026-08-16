@@ -37,7 +37,7 @@ This will be how the components can be accessed in the project, here's
 how they're being exported.
 
 ```ts
-export { default as AnchorFm } from './components/anchor-fm.svelte'
+export { default as AnchorFm } from './components/anchor-fm.svelte';
 ```
 
 ## Package the project

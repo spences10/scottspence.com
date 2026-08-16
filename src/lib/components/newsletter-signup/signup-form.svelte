@@ -1,48 +1,48 @@
 <script lang="ts">
-	import { PUBLIC_TURNSTILE_SITE_KEY } from '$env/static/public'
-	import { track_click } from '$lib/analytics/track-click.remote'
-	import { get_subscriber_count } from '$lib/data/subscribers.remote'
-	import type { ActionResult } from '@sveltejs/kit'
-	import { Turnstile } from 'svelte-turnstile'
-	import { button_disabled } from './index'
-	import { subscribe_to_newsletter } from './newsletter.remote'
+	import { PUBLIC_TURNSTILE_SITE_KEY } from '$env/static/public';
+	import { track_click } from '$lib/analytics/track-click.remote';
+	import { get_subscriber_count } from '$lib/data/subscribers.remote';
+	import type { ActionResult } from '@sveltejs/kit';
+	import { Turnstile } from 'svelte-turnstile';
+	import { button_disabled } from './index';
+	import { subscribe_to_newsletter } from './newsletter.remote';
 
 	interface Props {
-		email: string
-		handle_result: Function
+		email: string;
+		handle_result: Function;
 	}
 
-	let { email = $bindable(), handle_result }: Props = $props()
-	let turnstile_token = $state<string>('')
-	let error_message = $state<string | null>(null)
+	let { email = $bindable(), handle_result }: Props = $props();
+	let turnstile_token = $state<string>('');
+	let error_message = $state<string | null>(null);
 
-	const subscriber_data = get_subscriber_count()
+	const subscriber_data = get_subscriber_count();
 
 	async function handle_submit(e: SubmitEvent) {
-		e.preventDefault()
-		error_message = null
+		e.preventDefault();
+		error_message = null;
 
 		if (!turnstile_token) {
-			error_message = 'Please complete the verification'
-			return
+			error_message = 'Please complete the verification';
+			return;
 		}
 
-		$button_disabled = true
+		$button_disabled = true;
 
 		try {
-			track_click({ event_name: 'newsletter signup click' })
-			await subscribe_to_newsletter({ email, turnstile_token })
+			track_click({ event_name: 'newsletter signup click' });
+			await subscribe_to_newsletter({ email, turnstile_token });
 
 			const result: ActionResult = {
 				type: 'success',
 				status: 200,
 				data: { message: 'Successfully subscribed to newsletter' },
-			}
-			handle_result(result)
-			email = ''
+			};
+			handle_result(result);
+			email = '';
 		} catch (error: unknown) {
 			const error_msg =
-				error instanceof Error ? error.message : 'An error occurred'
+				error instanceof Error ? error.message : 'An error occurred';
 			const result: ActionResult = {
 				type: 'failure',
 				status: 400,
@@ -53,13 +53,13 @@
 							? { code: 'email_already_exists' }
 							: {},
 				},
-			}
-			handle_result(result)
+			};
+			handle_result(result);
 		}
 	}
 </script>
 
-<div class="text-primary-content mx-auto max-w-7xl lg:px-8">
+<div class="mx-auto max-w-7xl text-primary-content lg:px-8">
 	<div
 		class="rounded-box bg-primary px-4 py-10 lg:flex lg:items-center lg:p-14"
 	>
@@ -93,9 +93,9 @@
 						class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2"
 					>
 						<div class="form-control flex-1">
-							<div class="validator validator-email w-full">
+							<div class="validator-email validator w-full">
 								<input
-									class="input input-bordered input-primary text-primary w-full"
+									class="input-bordered input w-full text-primary input-primary"
 									id="email"
 									aria-label="email"
 									type="email"
@@ -124,12 +124,12 @@
 						theme="auto"
 						siteKey={PUBLIC_TURNSTILE_SITE_KEY}
 						on:turnstile-callback={(e) => {
-							turnstile_token = e.detail.token
+							turnstile_token = e.detail.token;
 						}}
 					/>
 				</div>
 				{#if error_message}
-					<div class="alert alert-error mt-2">
+					<div class="mt-2 alert alert-error">
 						<span>{error_message}</span>
 					</div>
 				{/if}

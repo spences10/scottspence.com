@@ -1,45 +1,45 @@
 class CommandPaletteState {
-	dialog: HTMLDialogElement | null = null
-	input: HTMLInputElement | null = null
-	query = $state('')
-	recent = $state<string[]>([])
-	is_open = $state(false)
+	dialog: HTMLDialogElement | null = null;
+	input: HTMLInputElement | null = null;
+	query = $state('');
+	recent = $state<string[]>([]);
+	is_open = $state(false);
 
 	// Attach function for dialog - register element with state
 	register = (dialog: HTMLDialogElement) => {
-		this.dialog = dialog
+		this.dialog = dialog;
 		return () => {
-			this.dialog = null
-		}
-	}
+			this.dialog = null;
+		};
+	};
 
 	// Attach function for input - register for focus management
 	register_input = (input: HTMLInputElement) => {
-		this.input = input
+		this.input = input;
 		return () => {
-			this.input = null
-		}
-	}
+			this.input = null;
+		};
+	};
 
 	open() {
 		if (!this.dialog?.open) {
-			this.is_open = true
-			this.dialog?.showModal()
-			this.input?.focus()
+			this.is_open = true;
+			this.dialog?.showModal();
+			this.input?.focus();
 		}
 	}
 
 	close() {
-		this.is_open = false
-		this.dialog?.close()
-		this.query = ''
+		this.is_open = false;
+		this.dialog?.close();
+		this.query = '';
 	}
 
 	toggle() {
 		if (this.is_open) {
-			this.close()
+			this.close();
 		} else {
-			this.open()
+			this.open();
 		}
 	}
 
@@ -48,8 +48,8 @@ class CommandPaletteState {
 		this.recent = [
 			href,
 			...this.recent.filter((r) => r !== href),
-		].slice(0, 5)
+		].slice(0, 5);
 	}
 }
 
-export const command_palette_state = new CommandPaletteState()
+export const command_palette_state = new CommandPaletteState();

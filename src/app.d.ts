@@ -4,17 +4,17 @@ declare global {
 	namespace App {
 		// interface Error {}
 		interface Locals {
-			country: string | null
+			country: string | null;
 		}
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}
 		interface PageState {
 			selected: {
-				analytics: any
-			}
+				analytics: any;
+			};
 		}
 	}
 }
 
-export {}
+export {};

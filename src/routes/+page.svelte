@@ -1,24 +1,24 @@
 <script lang="ts">
-	import { Head } from 'svead'
+	import { Head } from 'svead';
 
-	import { LandingHero, PeopleToMeet } from '$lib/components'
-	import { website } from '$lib/info'
-	import { default_seo_config } from '$lib/seo'
+	import { LandingHero, PeopleToMeet } from '$lib/components';
+	import { website } from '$lib/info';
+	import { default_seo_config } from '$lib/seo';
 
-	import type { SeoConfig } from 'svead'
+	import type { SeoConfig } from 'svead';
 
 	const seo_config: SeoConfig = {
 		...default_seo_config,
 		title: 'Hello World! Welcome to my site! Enjoy!',
 		website: website,
-	}
+	};
 
 	interface Props {
-		data: any
+		data: any;
 	}
 
-	let { data }: Props = $props()
-	let Copy = $derived(data.Copy)
+	let { data }: Props = $props();
+	let Copy = $derived(data.Copy);
 </script>
 
 <Head {seo_config} />

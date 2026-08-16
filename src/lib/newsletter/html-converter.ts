@@ -1,67 +1,67 @@
-import { marked } from 'marked'
+import { marked } from 'marked';
 
 interface ParsedNewsletter {
-	frontmatter: Record<string, unknown>
-	content: string
+	frontmatter: Record<string, unknown>;
+	content: string;
 }
 
 /**
  * Parse markdown frontmatter and content
  */
 function parse_markdown(markdown: string): ParsedNewsletter {
-	const lines = markdown.split('\n')
-	const start = lines.findIndex((line) => line === '---')
+	const lines = markdown.split('\n');
+	const start = lines.findIndex((line) => line === '---');
 	const end = lines.findIndex(
 		(line, i) => i > start && line === '---',
-	)
+	);
 
 	if (start === -1 || end === -1) {
 		throw new Error(
 			'Invalid markdown: missing frontmatter delimiters',
-		)
+		);
 	}
 
 	// Parse frontmatter
-	const frontmatter_lines = lines.slice(start + 1, end)
-	const frontmatter: Record<string, unknown> = {}
+	const frontmatter_lines = lines.slice(start + 1, end);
+	const frontmatter: Record<string, unknown> = {};
 
-	let i = 0
+	let i = 0;
 	while (i < frontmatter_lines.length) {
-		const line = frontmatter_lines[i]
-		const [key, ...value_parts] = line.split(':')
+		const line = frontmatter_lines[i];
+		const [key, ...value_parts] = line.split(':');
 
 		if (!key || key.trim() === '') {
-			i++
-			continue
+			i++;
+			continue;
 		}
 
-		const value = value_parts.join(':').trim()
+		const value = value_parts.join(':').trim();
 
 		// Check if value is on the same line
 		if (value.length > 0) {
 			if (value === 'true') {
-				frontmatter[key.trim()] = true
+				frontmatter[key.trim()] = true;
 			} else if (value === 'false') {
-				frontmatter[key.trim()] = false
+				frontmatter[key.trim()] = false;
 			} else {
-				frontmatter[key.trim()] = value.replace(/^["']|["']$/g, '')
+				frontmatter[key.trim()] = value.replace(/^["']|["']$/g, '');
 			}
-			i++
+			i++;
 		} else {
 			// Value is on next line(s) - check if next line is indented
 			if (
 				i + 1 < frontmatter_lines.length &&
 				frontmatter_lines[i + 1].startsWith(' ')
 			) {
-				const next_line = frontmatter_lines[i + 1].trim()
+				const next_line = frontmatter_lines[i + 1].trim();
 				frontmatter[key.trim()] = next_line.replace(
 					/^["']|["']$/g,
 					'',
-				)
-				i += 2 // Skip both current and next line
+				);
+				i += 2; // Skip both current and next line
 			} else {
 				// No value found, skip
-				i++
+				i++;
 			}
 		}
 	}
@@ -70,16 +70,16 @@ function parse_markdown(markdown: string): ParsedNewsletter {
 	const content = lines
 		.slice(end + 1)
 		.join('\n')
-		.trim()
+		.trim();
 
-	return { frontmatter, content }
+	return { frontmatter, content };
 }
 
 /**
  * Convert markdown content to HTML email-safe format
  */
 async function markdown_to_html(markdown: string): Promise<string> {
-	return marked(markdown)
+	return marked(markdown);
 }
 
 /**
@@ -218,7 +218,7 @@ function create_email_template(
     </div>
   </div>
 </body>
-</html>`
+</html>`;
 }
 
 /**
@@ -227,13 +227,13 @@ function create_email_template(
 export async function convert_newsletter_to_html(
 	markdown: string,
 ): Promise<{ html: string; title: string; published: boolean }> {
-	const { frontmatter, content } = parse_markdown(markdown)
+	const { frontmatter, content } = parse_markdown(markdown);
 
-	const title = (frontmatter.title as string) || 'Newsletter'
-	const published = (frontmatter.published as boolean) || false
+	const title = (frontmatter.title as string) || 'Newsletter';
+	const published = (frontmatter.published as boolean) || false;
 
-	const html_content = await markdown_to_html(content)
-	const html = create_email_template(html_content, title)
+	const html_content = await markdown_to_html(content);
+	const html = create_email_template(html_content, title);
 
-	return { html, title, published }
+	return { html, title, published };
 }

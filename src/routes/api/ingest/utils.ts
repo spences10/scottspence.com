@@ -6,9 +6,9 @@ import {
 	startOfDay,
 	startOfMonth,
 	startOfYear,
-} from 'date-fns'
+} from 'date-fns';
 
-type PeriodType = 'day' | 'month' | 'year'
+type PeriodType = 'day' | 'month' | 'year';
 
 const date_range_functions: Record<
 	PeriodType,
@@ -26,13 +26,13 @@ const date_range_functions: Record<
 		formatISO(startOfYear(now)),
 		formatISO(endOfYear(now)),
 	],
-}
+};
 
 export const get_date_range = (period: string) => {
-	const now = new Date()
-	const range_function = date_range_functions[period as PeriodType]
+	const now = new Date();
+	const range_function = date_range_functions[period as PeriodType];
 	if (!range_function) {
-		throw new Error(`Unknown period: ${period}`)
+		throw new Error(`Unknown period: ${period}`);
 	}
-	return range_function(now)
-}
+	return range_function(now);
+};

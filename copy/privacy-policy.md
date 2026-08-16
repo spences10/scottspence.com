@@ -11,9 +11,9 @@
   Last updated: <DateUpdated date="2025-01-14" small="true" />
 </Small>
 
-Hello, welcome to the privacy policy for [scottspence.com](), I want
-to be transparent about anything this site collects from you and what
-I use it for.
+Hello, welcome to the privacy policy for
+[scottspence.com](https://scottspence.com), I want to be transparent
+about anything this site collects from you and what I use it for.
 
 The privacy policy in this site includes these points:
 
@@ -58,8 +58,9 @@ delete any emails with identifying information in them.
 
 ### What cookies, pixels, and other trackers my site uses and their purpose.
 
-Ok, cookies! On [scottspence.com](), I use cookies, but keep it
-simple. I use a cookie to remember your theme choice, that's it.
+Ok, cookies! On [scottspence.com](https://scottspence.com), I use
+cookies, but keep it simple. I use a cookie to remember your theme
+choice, that's it.
 
 The **theme** cookie is like a handy helper that knows your theme
 preference every time you drop by. No fuss. If you don't change then
@@ -68,9 +69,10 @@ theme then no cookie is set.
 You can find more about them both in the
 [Cookie Policy](/cookie-policy).
 
-I use Fathom Analytics to measure page visits to [scottspence.com](),
-they use no cookies, no trackers, you can view the Fathom Analytics
-privacy statement [here][1].
+I use Fathom Analytics to measure page visits to
+[scottspence.com](https://scottspence.com), they use no cookies, no
+trackers, you can view the Fathom Analytics privacy statement
+[here][1].
 
 ### Local analytics
 
@@ -124,13 +126,13 @@ To open the console in the browser use the following key combinations
 Use the following snippet to block tracking:
 
 ```js
-fathom.blockTrackingForMe()
+fathom.blockTrackingForMe();
 ```
 
 If you wish to re-enable it use this:
 
 ```js
-fathom.enableTrackingForMe()
+fathom.enableTrackingForMe();
 ```
 
 ### How users of this site can request their data be turned over to them and/or be deleted

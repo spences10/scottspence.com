@@ -266,27 +266,27 @@ where you an swap out any parts which are causing issues.
 [logitech g915]: https://scottspence.com/posts/logitech-g915
 [havit kb395l]: https://www.amazon.co.uk/gp/product/B0767YQQTQ
 [logitech g915 disassembly]:
-  https://www.youtube.com/watch?v=qLvvMJYUWdE
+	https://www.youtube.com/watch?v=qLvvMJYUWdE
 [logitech g815 disassembly]:
-  https://www.youtube.com/watch?v=C32VZ6SDTCE
+	https://www.youtube.com/watch?v=C32VZ6SDTCE
 [keychron q1]:
-  https://www.keychron.com/products/keychron-q1?variant=39406901362777
+	https://www.keychron.com/products/keychron-q1?variant=39406901362777
 [gmmk pro]:
-  https://www.pcgamingrace.com/products/glorious-gmmk-pro-75-barebone-iso-black-slate
+	https://www.pcgamingrace.com/products/glorious-gmmk-pro-75-barebone-iso-black-slate
 
 <!-- Images -->
 
 [keychron-q1-keycap-sets]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685653/scottspence.com/keychron-q1-keycap-sets.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685653/scottspence.com/keychron-q1-keycap-sets.jpg
 [keychron-q1-backplate-and-pcb]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685405/scottspence.com/keychron-q1-backplate-and-pcb.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685405/scottspence.com/keychron-q1-backplate-and-pcb.jpg
 [size-comparison-keychron-q1-ligitech-g915]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685392/scottspence.com/size-comparison-keychron-q1-ligitech-g915.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685392/scottspence.com/size-comparison-keychron-q1-ligitech-g915.jpg
 [keychron-q1-backplate-with-tape]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685356/scottspence.com/keychron-q1-backplate-with-tape.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685356/scottspence.com/keychron-q1-backplate-with-tape.jpg
 [elevation-comparison-keychron-q1-ligitech-g915]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685355/scottspence.com/elevation-comparison-keychron-q1-ligitech-g915.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685355/scottspence.com/elevation-comparison-keychron-q1-ligitech-g915.jpg
 [via-function-layer]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685101/scottspence.com/via-function-layer.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685101/scottspence.com/via-function-layer.png
 [keychron-q1-keyboard]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640686830/scottspence.com/keychron-q1-keyboard.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640686830/scottspence.com/keychron-q1-keyboard.jpg

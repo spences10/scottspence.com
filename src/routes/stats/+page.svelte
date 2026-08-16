@@ -3,17 +3,17 @@
 		HistoricalStats,
 		LiveDashboard,
 		PeriodStats,
-	} from '$lib/components/stats'
-	import { name, website } from '$lib/info'
-	import { create_seo_config } from '$lib/seo'
-	import { og_image_url } from '$lib/utils'
-	import { Head } from 'svead'
+	} from '$lib/components/stats';
+	import { name, website } from '$lib/info';
+	import { create_seo_config } from '$lib/seo';
+	import { og_image_url } from '$lib/utils';
+	import { Head } from 'svead';
 
-	let { data } = $props()
-	const site_stats = $derived(data.site_stats)
-	const current_month = $derived(data.current_month)
-	const current_year = $derived(data.current_year)
-	const error = $derived(data.error)
+	let { data } = $props();
+	const site_stats = $derived(data.site_stats);
+	const current_month = $derived(data.current_month);
+	const current_year = $derived(data.current_year);
+	const error = $derived(data.error);
 
 	const seo_config = create_seo_config({
 		title: `Site Stats - ${name}`,
@@ -25,13 +25,13 @@
 		),
 		url: `${website}/stats`,
 		slug: 'stats',
-	})
+	});
 </script>
 
 <Head {seo_config} />
 
 {#if error}
-	<div class="alert alert-error mb-4">
+	<div class="mb-4 alert alert-error">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			class="h-6 w-6 shrink-0 stroke-current"
@@ -50,7 +50,7 @@
 {/if}
 
 {#if site_stats.length === 0 && !error}
-	<div class="alert alert-info mb-4">
+	<div class="mb-4 alert alert-info">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"

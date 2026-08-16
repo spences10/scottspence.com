@@ -191,17 +191,15 @@ on business goals. For example, the BBC found they lost an additional
 [reactjs.org]: https://reactjs.org
 [store.gatsbyjs.com]: https://store.gatsbyjs.com
 [nozzle.io]: https://nozzle.io
-[staticgen.com]: https://www.staticgen.com/)
-[404pagefound.com]: https://www.404pagefound.com/)
-[jamstack.wtf]: https://jamstack.wtf/)
+
+[staticgen.com]: https://www.staticgen.com/) [404pagefound.com]:
+https://www.404pagefound.com/) [jamstack.wtf]: https://jamstack.wtf/)
 [how-mobile-latency-impacts-publisher-revenue]:
-  https://www.thinkwithgoogle.com/intl/en-154/insights-inspiration/research-data/need-mobile-speed-how-mobile-latency-impacts-publisher-revenue/
+https://www.thinkwithgoogle.com/intl/en-154/insights-inspiration/research-data/need-mobile-speed-how-mobile-latency-impacts-publisher-revenue/
 [mobile-page-speed-new-industry-benchmarks]:
-  https://www.thinkwithgoogle.com/marketing-resources/data-measurement/mobile-page-speed-new-industry-benchmarks/
-[cook]: https://www.cookfood.net/
-[why does speed matter]: https://web.dev/why-speed-matters/
-[name change]: https://github.com/jamstack/jamstack.org/issues/279
-[hugo]: https://gohugo.io/
-[jekyll]: https://jekyllrb.com
-[11ty]: https://11ty.dev/
-[gatsby]: https://www.gatsbyjs.com/
+https://www.thinkwithgoogle.com/marketing-resources/data-measurement/mobile-page-speed-new-industry-benchmarks/
+[cook]: https://www.cookfood.net/ [why does speed matter]:
+https://web.dev/why-speed-matters/ [name change]:
+https://github.com/jamstack/jamstack.org/issues/279 [hugo]:
+https://gohugo.io/ [jekyll]: https://jekyllrb.com [11ty]:
+https://11ty.dev/ [gatsby]: https://www.gatsbyjs.com/

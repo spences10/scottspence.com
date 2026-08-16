@@ -132,16 +132,16 @@ below.
 
 ```js
 var queryList = [
-  '100daysofcode',
-  'freecodecamp',
-  'github',
-  'vscode',
-  'node.js',
-  'vue.js',
-  'inferno.js',
-]
-var randomNumber = Math.floor(Math.random() * queryList.length)
-var queryString = queryList[randomNumber]
+	'100daysofcode',
+	'freecodecamp',
+	'github',
+	'vscode',
+	'node.js',
+	'vue.js',
+	'inferno.js',
+];
+var randomNumber = Math.floor(Math.random() * queryList.length);
+var queryString = queryList[randomNumber];
 ```
 
 This worked, for a while then the same errors started creeping in, I
@@ -166,19 +166,19 @@ Built the query string:
 
 ```js
 var queryString = uniqueRandomArray([
-  '100daysofcode',
-  'freecodecamp',
-  'github',
-  'vscode',
-  'visual studio code',
-  'nodejs',
-  'node.js',
-  'vuejs',
-  'vue.js',
-  'inferno_js',
-  'inferno.js',
-  'jekyll',
-])
+	'100daysofcode',
+	'freecodecamp',
+	'github',
+	'vscode',
+	'visual studio code',
+	'nodejs',
+	'node.js',
+	'vuejs',
+	'vue.js',
+	'inferno_js',
+	'inferno.js',
+	'jekyll',
+]);
 ```
 
 Then just replaced the `queryString` string with the `queryString()`
@@ -215,18 +215,18 @@ better replies.
 [github]: https://github.com
 [random quote generator]: https://codepen.io/spences10/full/dOaYbP/
 [twitter-bot-bootstrap]:
-  https://github.com/mobeets/twitter-bot-bootstrap
+	https://github.com/mobeets/twitter-bot-bootstrap
 [heroku]: https://heroku.com
 [@amanhimself]: https://twitter.com/amanhimself
 [#100daysofcode]:
-  https://medium.freecodecamp.com/start-2017-with-the-100daysofcode-improved-and-updated-18ce604b237b
+	https://medium.freecodecamp.com/start-2017-with-the-100daysofcode-improved-and-updated-18ce604b237b
 [here]:
-  https://hackernoon.com/create-a-simple-twitter-bot-with-node-js-5b14eb006c08
+	https://hackernoon.com/create-a-simple-twitter-bot-with-node-js-5b14eb006c08
 [and here]:
-  https://community.risingstack.com/how-to-make-a-twitter-bot-with-node-js/
+	https://community.risingstack.com/how-to-make-a-twitter-bot-with-node-js/
 [@spences10]: https://twitter.com/spences10
 [check here]:
-  https://en.wikipedia.org/wiki/RRS_Sir_David_Attenborough#Boaty_McBoatface_Naming_Controversy
+	https://en.wikipedia.org/wiki/RRS_Sir_David_Attenborough#Boaty_McBoatface_Naming_Controversy
 [c9]: https://c9.io/?redirect=0
 [heroku cli]: https://devcenter.heroku.com/articles/heroku-cli
 [twitter dev portal]: https://apps.twitter.com/app/new
@@ -234,15 +234,15 @@ better replies.
 [@amanhimself]: https://twitter.com/amanhimself
 [off-piste]: https://en.oxforddictionaries.com/definition/us/off-piste
 [unique-random-array]:
-  https://www.npmjs.com/package/unique-random-array
+	https://www.npmjs.com/package/unique-random-array
 
 <!-- Images -->
 
 [twitter logo]:
-  https://now-images-wine.now.sh/2017/twitter-mctwitbot/twitter-bird.png
+	https://now-images-wine.now.sh/2017/twitter-mctwitbot/twitter-bird.png
 [heroku-build]:
-  https://now-images-wine.now.sh/2017/twitter-mctwitbot/heroku-build.png
+	https://now-images-wine.now.sh/2017/twitter-mctwitbot/heroku-build.png
 [heroku-error-output]:
-  https://now-images-wine.now.sh/2017/twitter-mctwitbot/heroku-error-output.png
+	https://now-images-wine.now.sh/2017/twitter-mctwitbot/heroku-error-output.png
 [yes-tweet-yourself]:
-  https://now-images-wine.now.sh/2017/twitter-mctwitbot/yes-tweet-yourself.png
+	https://now-images-wine.now.sh/2017/twitter-mctwitbot/yes-tweet-yourself.png

@@ -20,7 +20,7 @@ export const INTERNAL_DOMAINS = new Set([
 	'svelte.dad',
 	'scott.garden',
 	'blog.scottspence.me',
-])
+]);
 
 /**
  * Search engine patterns → canonical names
@@ -41,7 +41,7 @@ const SEARCH_ENGINE_MAPPINGS: [RegExp, string][] = [
 	[/^(www\.)?yandex\.[a-z]+$/, 'Yandex'],
 	[/^(www\.)?baidu\.com$/, 'Baidu'],
 	[/^(www\.)?ecosia\.org$/, 'Ecosia'],
-]
+];
 
 /**
  * Extract hostname from referrer URL
@@ -51,39 +51,39 @@ const extract_hostname = (referrer: string): string | null => {
 	try {
 		// Handle android-app:// scheme
 		if (referrer.startsWith('android-app://')) {
-			return referrer
+			return referrer;
 		}
 		// Add protocol if missing
 		const url_string = referrer.includes('://')
 			? referrer
-			: `https://${referrer}`
-		const url = new URL(url_string)
-		return url.hostname.toLowerCase()
+			: `https://${referrer}`;
+		const url = new URL(url_string);
+		return url.hostname.toLowerCase();
 	} catch {
-		return null
+		return null;
 	}
-}
+};
 
 /**
  * Check if referrer is from an internal domain
  */
 export const is_internal_referrer = (referrer: string): boolean => {
-	const hostname = extract_hostname(referrer)
-	if (!hostname) return false
+	const hostname = extract_hostname(referrer);
+	if (!hostname) return false;
 
 	// Strip www. for comparison
-	const clean_hostname = hostname.replace(/^www\./, '')
+	const clean_hostname = hostname.replace(/^www\./, '');
 
 	// Check exact match
-	if (INTERNAL_DOMAINS.has(clean_hostname)) return true
+	if (INTERNAL_DOMAINS.has(clean_hostname)) return true;
 
 	// Check if subdomain of internal domain
 	for (const domain of INTERNAL_DOMAINS) {
-		if (clean_hostname.endsWith(`.${domain}`)) return true
+		if (clean_hostname.endsWith(`.${domain}`)) return true;
 	}
 
-	return false
-}
+	return false;
+};
 
 /**
  * Normalise referrer to canonical source name
@@ -93,24 +93,24 @@ export const is_internal_referrer = (referrer: string): boolean => {
 export const normalise_referrer = (
 	referrer: string | null,
 ): string | null => {
-	if (!referrer || referrer === '') return null
+	if (!referrer || referrer === '') return null;
 
 	// Check if internal
-	if (is_internal_referrer(referrer)) return null
+	if (is_internal_referrer(referrer)) return null;
 
-	const hostname = extract_hostname(referrer)
-	if (!hostname) return referrer // Return as-is if can't parse
+	const hostname = extract_hostname(referrer);
+	if (!hostname) return referrer; // Return as-is if can't parse
 
 	// Check search engine mappings
 	for (const [pattern, name] of SEARCH_ENGINE_MAPPINGS) {
 		if (pattern.test(hostname) || pattern.test(referrer)) {
-			return name
+			return name;
 		}
 	}
 
 	// Return cleaned hostname (strip www.)
-	return hostname.replace(/^www\./, '')
-}
+	return hostname.replace(/^www\./, '');
+};
 
 /**
  * Aggregate referrers by normalised source
@@ -118,29 +118,29 @@ export const normalise_referrer = (
  */
 export const aggregate_referrers = (
 	raw_referrers: {
-		referrer: string
-		views: number
-		visitors: number
+		referrer: string;
+		views: number;
+		visitors: number;
 	}[],
 ): { referrer: string; views: number; visitors: number }[] => {
 	const grouped = new Map<
 		string,
 		{ views: number; visitors: number }
-	>()
+	>();
 
 	for (const row of raw_referrers) {
-		const normalised = normalise_referrer(row.referrer)
-		if (!normalised) continue // Skip internal/null
+		const normalised = normalise_referrer(row.referrer);
+		if (!normalised) continue; // Skip internal/null
 
-		const existing = grouped.get(normalised)
+		const existing = grouped.get(normalised);
 		if (existing) {
-			existing.views += row.views
-			existing.visitors += row.visitors
+			existing.views += row.views;
+			existing.visitors += row.visitors;
 		} else {
 			grouped.set(normalised, {
 				views: row.views,
 				visitors: row.visitors,
-			})
+			});
 		}
 	}
 
@@ -151,5 +151,5 @@ export const aggregate_referrers = (
 			views: stats.views,
 			visitors: stats.visitors,
 		}))
-		.sort((a, b) => b.visitors - a.visitors)
-}
+		.sort((a, b) => b.visitors - a.visitors);
+};

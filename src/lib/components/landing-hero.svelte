@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { track_click } from '$lib/analytics/track-click.remote'
-	import LiveVisitors from './live-visitors.svelte'
+	import { track_click } from '$lib/analytics/track-click.remote';
+	import LiveVisitors from './live-visitors.svelte';
 
-	let is_hovering = $state(false)
+	let is_hovering = $state(false);
 	let base_cloudinary_url =
-		'https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1691271318/scottspence.com/site-assets/'
-	let ScottFace = `${base_cloudinary_url}scott-mug-face-no-bg.png`
-	let ScottMugFace = `${base_cloudinary_url}scott-mug-face.png`
+		'https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1691271318/scottspence.com/site-assets/';
+	let ScottFace = `${base_cloudinary_url}scott-mug-face-no-bg.png`;
+	let ScottMugFace = `${base_cloudinary_url}scott-mug-face.png`;
 </script>
 
 <div class="relative mb-4 lg:-mx-40 lg:px-8 xl:-mx-64 2xl:-mx-60">
@@ -25,7 +25,7 @@
 				<h1 class="text-6xl font-black text-balance">
 					<span class="block">Scott Spence</span>
 					<span
-						class="from-primary to-secondary block bg-linear-to-b bg-clip-text text-transparent"
+						class="block bg-linear-to-b from-primary to-secondary bg-clip-text text-transparent"
 					>
 						Hello World!
 					</span>
@@ -58,7 +58,7 @@
 					href="/contact"
 					onclick={() =>
 						track_click({ event_name: 'contact button click' })}
-					class="btn btn-primary btn-md rounded-box text-primary-content! lg:btn-lg hover:text-primary-content mb-5 w-full shadow-xl"
+					class="btn mb-5 w-full rounded-box text-primary-content! shadow-xl btn-md btn-primary hover:text-primary-content lg:btn-lg"
 				>
 					Get in Touch
 				</a>

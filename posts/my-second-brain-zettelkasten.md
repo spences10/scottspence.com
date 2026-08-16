@@ -164,13 +164,13 @@ I'm super excited following the progress of this!
 [cheat sheets]: https://cheatsheets.xyz
 [zettelkasten]: https://zettelkasten.de/
 [to a gist]:
-  https://gist.github.com/spences10/5c492e197e95158809a83650ff97fc3a
+	https://gist.github.com/spences10/5c492e197e95158809a83650ff97fc3a
 [the start of 2017]:
-  https://gist.github.com/spences10/5c492e197e95158809a83650ff97fc3a/revisions?page=2#diff-0517f094a4805e87e00d10b2891d99e4
+	https://gist.github.com/spences10/5c492e197e95158809a83650ff97fc3a/revisions?page=2#diff-0517f094a4805e87e00d10b2891d99e4
 [how to screen snip]: https://cheatsheets.xyz/mac/#screen-snip
 [kill a process]: https://cheatsheets.xyz/bash/#kill-process-on-port
 [one repository]: https://github.com/spences10/cheat-sheets
 [foam is a vs code extension]: https://github.com/foambubble/foam
 [things may be a little rough]:
-  https://foambubble.github.io/foam/#getting-started
+	https://foambubble.github.io/foam/#getting-started
 [super welcoming discord]: https://discord.gg/rtdZKgj

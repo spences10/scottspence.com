@@ -246,9 +246,9 @@ export const get_post_analytics = query(async (pathname: string) => {
 			'SELECT year, views, uniques FROM analytics_yearly WHERE path = ? ORDER BY year DESC',
 			[pathname],
 		),
-	])
-	return { daily, monthly, yearly }
-})
+	]);
+	return { daily, monthly, yearly };
+});
 ```
 
 ---

@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
+	import { onMount } from 'svelte';
 
 	interface Props {
-		diagram: string
+		diagram: string;
 	}
 
-	let { diagram }: Props = $props()
+	let { diagram }: Props = $props();
 
-	let container = $state<HTMLDivElement | null>(null)
-	let rendered = $state(false)
-	let error = $state<string | null>(null)
+	let container = $state<HTMLDivElement | null>(null);
+	let rendered = $state(false);
+	let error = $state<string | null>(null);
 
 	// Night Owl theme colours from prism.css
 	const night_owl_theme = {
@@ -47,37 +47,37 @@
 			fontFamily:
 				"'Victor Mono', Consolas, Monaco, 'Andale Mono', monospace",
 		},
-	}
+	};
 
 	onMount(async () => {
 		try {
-			const mermaid = (await import('mermaid')).default
+			const mermaid = (await import('mermaid')).default;
 
 			mermaid.initialize({
 				startOnLoad: false,
 				securityLevel: 'loose',
 				...night_owl_theme,
-			})
+			});
 
-			const source = diagram.trim()
+			const source = diagram.trim();
 			if (source && container) {
 				const { svg } = await mermaid.render(
 					`mermaid-${crypto.randomUUID()}`,
 					source,
-				)
-				container.innerHTML = svg
-				rendered = true
+				);
+				container.innerHTML = svg;
+				rendered = true;
 			}
 		} catch (e) {
 			error =
-				e instanceof Error ? e.message : 'Failed to render diagram'
-			rendered = true
+				e instanceof Error ? e.message : 'Failed to render diagram';
+			rendered = true;
 		}
-	})
+	});
 </script>
 
 {#if error}
-	<div class="bg-error/20 text-error my-4 rounded p-4">
+	<div class="my-4 rounded bg-error/20 p-4 text-error">
 		<p class="font-bold">Mermaid error:</p>
 		<pre class="text-sm">{error}</pre>
 	</div>
@@ -90,7 +90,7 @@
 
 	{#if !rendered}
 		<div class="my-4 flex justify-center">
-			<span class="loading loading-spinner loading-md"></span>
+			<span class="loading loading-md loading-spinner"></span>
 		</div>
 	{/if}
 {/if}

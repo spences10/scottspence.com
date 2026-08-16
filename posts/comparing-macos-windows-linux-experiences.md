@@ -217,4 +217,4 @@ check out the tags for them:
 <!-- Links -->
 
 [built my own machine]:
-  https://www.scottspence.com/posts/first-time-pc-build
+	https://www.scottspence.com/posts/first-time-pc-build

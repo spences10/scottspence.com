@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { pricing_state } from '$lib/state/pricing-client.svelte'
+	import { pricing_state } from '$lib/state/pricing-client.svelte';
 </script>
 
 <fieldset>
@@ -10,7 +10,7 @@
 	<select
 		id="selected_currency"
 		bind:value={pricing_state.selected_currency}
-		class="select select-sm rounded-box w-full text-sm"
+		class="select w-full rounded-box text-sm select-sm"
 	>
 		<option class="text-base-content" value="GBP">GBP</option>
 		{#each Object.keys(pricing_state.data.exchange_rates || {}) as currency}

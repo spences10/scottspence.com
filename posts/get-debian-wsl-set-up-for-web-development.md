@@ -57,6 +57,6 @@ against this! 😊
 <!-- Links -->
 
 [windows store]:
-  https://www.microsoft.com/store/productId/9MSVKQC78PK6
+	https://www.microsoft.com/store/productId/9MSVKQC78PK6
 [`build-essential`]: https://packages.debian.org/sid/build-essential
 [my zsh setup]: https://scottspence.com/posts/my-zsh-config

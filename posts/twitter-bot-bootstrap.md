@@ -377,9 +377,9 @@ Other posts detailing useful Twitter bots.
 [accidental haiku]: https://twitter.com/accidental575
 [@spences10]: https://twitter.com/spences10
 [#100daysofcode]:
-  https://www.freecodecamp.org/news/start-2017-with-the-100daysofcode-improved-and-updated-18ce604b237b/
+	https://www.freecodecamp.org/news/start-2017-with-the-100daysofcode-improved-and-updated-18ce604b237b/
 [starting #100daysofcode]:
-  https://twitter.com/hashtag/100DaysOfCode?src=hash
+	https://twitter.com/hashtag/100DaysOfCode?src=hash
 [botwiki.org]: https://botwiki.org/bot-ethics
 [@amanhimself]: https://twitter.com/amanhimself
 [https://apps.twitter.com/app/new]: https://apps.twitter.com/app/new
@@ -387,47 +387,47 @@ Other posts detailing useful Twitter bots.
 [cloud9]: https://c9.io/
 [heroku account]: https://signup.heroku.com
 [create-a-simple-twitter-bot-with-node-js]:
-  https://hackernoon.com/create-a-simple-twitter-bot-with-node-js-5b14eb006c08#.flysreo60
+	https://hackernoon.com/create-a-simple-twitter-bot-with-node-js-5b14eb006c08#.flysreo60
 [how-to-make-a-twitter-bot-with-nodejs]:
-  https://chatbotslife.com/how-to-make-a-twitter-bot-with-nodejs-d5cb04fdbf97#.h5ah8dq5n
+	https://chatbotslife.com/how-to-make-a-twitter-bot-with-nodejs-d5cb04fdbf97#.h5ah8dq5n
 [twitter-mctwitbot]:
-  https://medium.com/@spences10/twitter-mctwitbot-4d15cd005dc0#.dp9q5f427
+	https://medium.com/@spences10/twitter-mctwitbot-4d15cd005dc0#.dp9q5f427
 [awesome-twitter-bots]:
-  https://github.com/amandeepmittal/awesome-twitter-bots
+	https://github.com/amandeepmittal/awesome-twitter-bots
 [www.brit.co/twitter-bots-to-follow]:
-  https://www.brit.co/twitter-bots-to-follow/
+	https://www.brit.co/twitter-bots-to-follow/
 [www.hongkiat.com/using-twitter-bots]:
-  https://www.hongkiat.com/blog/using-twitter-bots/
+	https://www.hongkiat.com/blog/using-twitter-bots/
 
 <!-- Images -->
 
 [rust bird]:
-  https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/rust-bird.jpg
+	https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/rust-bird.jpg
 [100 days of code tweet]:
-  https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/100daysofcodetweet.png
+	https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/100daysofcodetweet.png
 [twitter application setup]:
-  https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/twitter-application-setup.png
+	https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/twitter-application-setup.png
 [cloud 9 node env]:
-  https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/c9-node-env.png
+	https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/c9-node-env.png
 [project structure]:
-  https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/project-structure.png
+	https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/project-structure.png
 [c9 strings config]:
-  https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/c9-strings-config.png
+	https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/c9-strings-config.png
 [c9 strings config1]:
-  https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/c9-strings-config1.png
+	https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/c9-strings-config1.png
 [bot output]:
-  https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/bot-output.png
+	https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/bot-output.png
 [twitter account]:
-  https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/twitter-account.png
+	https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/twitter-account.png
 [heroku create new app]:
-  https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/heroku-create-new-app.png
+	https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/heroku-create-new-app.png
 [heroku deploy]:
-  https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/heroku-deploy.png
+	https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/heroku-deploy.png
 [heroku app name]:
-  https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/heroku-app-name.png
+	https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/heroku-app-name.png
 [heroku build]:
-  https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/heroku-build.png
+	https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/heroku-build.png
 [heroku connect github]:
-  https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/heroku-connect-github.png
+	https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/heroku-connect-github.png
 [heroku crash]:
-  https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/heroku-crash.png
+	https://now-images-wine.now.sh/2017/twitter-bot-bootstrap/heroku-crash.png

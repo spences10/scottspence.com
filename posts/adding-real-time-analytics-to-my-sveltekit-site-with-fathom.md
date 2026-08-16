@@ -142,14 +142,14 @@ In the `+server.ts` file I'll create a `GET` request handler to call
 the Fathom API.
 
 ```ts
-import { json } from '@sveltejs/kit'
-import type { RequestHandler } from './$types'
+import { json } from '@sveltejs/kit';
+import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async () => {
 	return json({
 		visitors: 0,
-	})
-}
+	});
+};
 ```
 
 This is the basic outline of the `GET` request and I'm using the
@@ -188,34 +188,34 @@ I'll wrap the fetch request with the `Authorization` header in a try
 catch block and return the data from the API as JSON.
 
 ```ts
-import { FATHOM_API_KEY } from '$env/static/private'
-import { PUBLIC_FATHOM_ID } from '$env/static/public'
-import { json } from '@sveltejs/kit'
-import type { RequestHandler } from './$types'
+import { FATHOM_API_KEY } from '$env/static/private';
+import { PUBLIC_FATHOM_ID } from '$env/static/public';
+import { json } from '@sveltejs/kit';
+import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async () => {
 	try {
-		const headers_auth = new Headers()
-		headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
+		const headers_auth = new Headers();
+		headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`);
 		const res = await fetch(
 			`https://api.usefathom.com/v1/current_visitors?site_id=${PUBLIC_FATHOM_ID}&detailed=true`,
 			{
 				headers: headers_auth,
 			},
-		)
+		);
 
-		let data = await res.json()
+		let data = await res.json();
 
 		return json({
 			visitors: data,
-		})
+		});
 	} catch (error) {
 		return json({
 			error: `Error: ${error}`,
 			status: 500,
-		})
+		});
 	}
-}
+};
 ```
 
 Sweet! Now I can see the current visitors to the site. To test it
@@ -261,19 +261,19 @@ call the `current-visitors.json` API endpoint and return the
 `visitors`.
 
 ```ts
-import type { LayoutServerLoad } from './$types'
+import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ fetch }) => {
 	const fetch_visitors = async () => {
-		const res = await fetch(`../current-visitors.json`)
-		const { visitors } = await res.json()
-		return visitors
-	}
+		const res = await fetch(`../current-visitors.json`);
+		const { visitors } = await res.json();
+		return visitors;
+	};
 
 	return {
 		visitors: fetch_visitors(),
-	}
-}
+	};
+};
 ```
 
 The data returned from the `+layout.server.ts`, `load` function is
@@ -282,9 +282,9 @@ then available to child `+layout.svelte` components.
 In the `+layout.svelte` file I can accept the `visitors` data:
 
 ```ts
-import type { PageData } from './$types'
+import type { PageData } from './$types';
 
-export let data: PageData
+export let data: PageData;
 ```
 
 Then pass that to the `nav` component.
@@ -302,27 +302,27 @@ on them to check out how the files look.
 
 ```svelte
 <script lang="ts">
-	import { browser } from '$app/environment'
-	import { page } from '$app/stores'
+	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
 	import {
 		PUBLIC_FATHOM_ID,
 		PUBLIC_FATHOM_URL,
-	} from '$env/static/public'
-	import Nav from '$lib/components/nav.svelte'
-	import * as Fathom from 'fathom-client'
-	import { onMount } from 'svelte'
-	import '../app.css'
-	import type { PageData } from './$types'
+	} from '$env/static/public';
+	import Nav from '$lib/components/nav.svelte';
+	import * as Fathom from 'fathom-client';
+	import { onMount } from 'svelte';
+	import '../app.css';
+	import type { PageData } from './$types';
 
-	export let data: PageData
+	export let data: PageData;
 
 	onMount(async () => {
 		Fathom.load(PUBLIC_FATHOM_ID, {
 			url: PUBLIC_FATHOM_URL,
-		})
-	})
+		});
+	});
 
-	$: $page.url.pathname, browser && Fathom.trackPageview()
+	$: ($page.url.pathname, browser && Fathom.trackPageview());
 </script>
 
 <Nav visitors={data?.visitors.total} />
@@ -336,7 +336,7 @@ on them to check out how the files look.
 Add a visitors prop to the nav component:
 
 ```ts
-export let visitors: number
+export let visitors: number;
 ```
 
 Which I can use in the navbar end:
@@ -357,7 +357,7 @@ This is what the navbar looks like now:
 
 ```svelte
 <script lang="ts">
-	import { trackGoal } from 'fathom-client'
+	import { trackGoal } from 'fathom-client';
 
 	let links = [
 		{
@@ -376,9 +376,9 @@ This is what the navbar looks like now:
 			href: '/blog',
 			text: 'Blog',
 		},
-	]
+	];
 
-	export let visitors: number
+	export let visitors: number;
 </script>
 
 <div class="navbar bg-neutral text-neutral-content mb-10 shadow-lg">
@@ -501,34 +501,34 @@ I'll fold that into the `+server.ts` file now adding in the `entity`,
 the `PUBLIC_FATHOM_ID` to identify the site:
 
 ```ts
-import { FATHOM_API_KEY } from '$env/static/private'
-import { PUBLIC_FATHOM_ID } from '$env/static/public'
-import { json } from '@sveltejs/kit'
-import type { RequestHandler } from './$types'
+import { FATHOM_API_KEY } from '$env/static/private';
+import { PUBLIC_FATHOM_ID } from '$env/static/public';
+import { json } from '@sveltejs/kit';
+import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async () => {
 	try {
-		const headers_auth = new Headers()
-		headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
+		const headers_auth = new Headers();
+		headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`);
 		const res = await fetch(
 			`https://api.usefathom.com/v1/aggregations?entity=pageview&entity_id=${PUBLIC_FATHOM_ID}&aggregates=pageviews`,
 			{
 				headers: headers_auth,
 			},
-		)
+		);
 
-		let data = await res.json()
+		let data = await res.json();
 
 		return json({
 			analytics: data,
-		})
+		});
 	} catch (error) {
 		return json({
 			error: `Error: ${error}`,
 			status: 500,
-		})
+		});
 	}
-}
+};
 ```
 
 That gives me a response of:
@@ -544,34 +544,34 @@ the start of the year to the end of the year and have the grouping as
 `year`:
 
 ```ts
-import { FATHOM_API_KEY } from '$env/static/private'
-import { PUBLIC_FATHOM_ID } from '$env/static/public'
-import { json } from '@sveltejs/kit'
-import type { RequestHandler } from './$types'
+import { FATHOM_API_KEY } from '$env/static/private';
+import { PUBLIC_FATHOM_ID } from '$env/static/public';
+import { json } from '@sveltejs/kit';
+import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async () => {
 	try {
-		const headers_auth = new Headers()
-		headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
+		const headers_auth = new Headers();
+		headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`);
 		const res = await fetch(
 			`https://api.usefathom.com/v1/aggregations?entity=pageview&entity_id=${PUBLIC_FATHOM_ID}&aggregates=pageviews&date_from=2023-01-01T00:00:00.000Z&date_to=2023-12-31T23:59:59.999Z&date_grouping=year`,
 			{
 				headers: headers_auth,
 			},
-		)
+		);
 
-		let data = await res.json()
+		let data = await res.json();
 
 		return json({
 			analytics: data,
-		})
+		});
 	} catch (error) {
 		return json({
 			error: `Error: ${error}`,
 			status: 500,
-		})
+		});
 	}
-}
+};
 ```
 
 Refreshing the endpoint on the dev server gives me:
@@ -626,9 +626,9 @@ export const object_to_query_params = (
 ) => {
 	const params = Object.entries(obj).map(
 		([key, value]) => `${key}=${value}`,
-	)
-	return '?' + params.join('&')
-}
+	);
+	return '?' + params.join('&');
+};
 ```
 
 Let's do a quick example of how that would work then. So, let's take
@@ -643,7 +643,7 @@ const default_params = {
 	date_from: '2021-01-01T00:00:00.000Z',
 	date_to: '2023-12-31T23:59:59.999Z',
 	date_grouping: 'year',
-}
+};
 ```
 
 Passing that into the `object_to_query_params` function will return:
@@ -688,7 +688,7 @@ const default_params = {
 	date_from: '2021-01-01T00:00:00.000Z',
 	date_to: '2023-12-31T23:59:59.999Z',
 	date_grouping: 'year',
-}
+};
 ```
 
 Now I refresh the dev server and see what I get from the API now:
@@ -733,19 +733,19 @@ property to get the `date_from` and `date_to` parameters:
 
 ```ts
 export const GET: RequestHandler = async ({ url }) => {
-	const date_from = url.searchParams.get('date_from') ?? null
-	const date_to = url.searchParams.get('date_to') ?? null
+	const date_from = url.searchParams.get('date_from') ?? null;
+	const date_to = url.searchParams.get('date_to') ?? null;
 
 	const default_params = {
 		entity: 'pageview',
 		entity_id: PUBLIC_FATHOM_ID,
 		aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
 		date_grouping: 'year',
-	}
+	};
 
 	try {
-		const headers_auth = new Headers()
-		headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
+		const headers_auth = new Headers();
+		headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`);
 		const res = await fetch(
 			`https://api.usefathom.com/v1/aggregations${object_to_query_params(
 				default_params,
@@ -753,20 +753,20 @@ export const GET: RequestHandler = async ({ url }) => {
 			{
 				headers: headers_auth,
 			},
-		)
+		);
 
-		let data = await res.json()
+		let data = await res.json();
 
 		return json({
 			analytics: data,
-		})
+		});
 	} catch (error) {
 		return json({
 			error: `Error: ${error}`,
 			status: 500,
-		})
+		});
 	}
-}
+};
 ```
 
 There's an issue now with this approach as I have to add in some URL
@@ -799,14 +799,14 @@ const date_params = {
 	...(date_from && { date_from }),
 	...(date_to && { date_to }),
 	...(date_grouping && { date_grouping }),
-}
+};
 ```
 
 Then I can smoosh both the `default_params` and `date_params` together
 with the ES6 spread syntax.
 
 ```ts
-const params = { ...default_params, ...date_params }
+const params = { ...default_params, ...date_params };
 ```
 
 Then pass the `params` into the `object_to_query_params` function.
@@ -836,34 +836,34 @@ Here's what the full `+server.ts` file for `/analytics.json` looks
 like now:
 
 ```ts
-import { FATHOM_API_KEY } from '$env/static/private'
-import { PUBLIC_FATHOM_ID } from '$env/static/public'
-import { object_to_query_params } from '$lib/utils'
-import { json } from '@sveltejs/kit'
-import type { RequestHandler } from './$types'
+import { FATHOM_API_KEY } from '$env/static/private';
+import { PUBLIC_FATHOM_ID } from '$env/static/public';
+import { object_to_query_params } from '$lib/utils';
+import { json } from '@sveltejs/kit';
+import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async ({ url }) => {
-	const date_from = url.searchParams.get('date_from') ?? null
-	const date_to = url.searchParams.get('date_to') ?? null
-	const date_grouping = url.searchParams.get('date_grouping') ?? null
+	const date_from = url.searchParams.get('date_from') ?? null;
+	const date_to = url.searchParams.get('date_to') ?? null;
+	const date_grouping = url.searchParams.get('date_grouping') ?? null;
 
 	const date_params = {
 		...(date_from && { date_from }),
 		...(date_to && { date_to }),
 		...(date_grouping && { date_grouping }),
-	}
+	};
 
 	const default_params = {
 		entity: 'pageview',
 		entity_id: PUBLIC_FATHOM_ID,
 		aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
-	}
+	};
 
-	const params = { ...default_params, ...date_params }
+	const params = { ...default_params, ...date_params };
 
 	try {
-		const headers_auth = new Headers()
-		headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
+		const headers_auth = new Headers();
+		headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`);
 		const res = await fetch(
 			`https://api.usefathom.com/v1/aggregations${object_to_query_params(
 				params,
@@ -871,20 +871,20 @@ export const GET: RequestHandler = async ({ url }) => {
 			{
 				headers: headers_auth,
 			},
-		)
+		);
 
-		let data = await res.json()
+		let data = await res.json();
 
 		return json({
 			analytics: data,
-		})
+		});
 	} catch (error) {
 		return json({
 			error: `Error: ${error}`,
 			status: 500,
-		})
+		});
 	}
-}
+};
 ```
 
 Ok, now in the next section I'll add in page paths so that I can get
@@ -914,7 +914,7 @@ const default_params = {
 	aggregates: 'visits,uniques,pageviews,avg_duration,bounce_rate',
 	field_grouping: 'pathname',
 	filters: `[{"property": "pathname","operator": "is","value": "${pathname}"}]`,
-}
+};
 ```
 
 I'll need to pass in the `pathname` as a parameter to the endpoint, so
@@ -922,7 +922,7 @@ in the `GET` function I'll add in a variable to get the `pathname`
 from the URL:
 
 ```ts
-const pathname = url.searchParams.get('pathname') ?? '/'
+const pathname = url.searchParams.get('pathname') ?? '/';
 ```
 
 Aight! Sweet! I'm now set up to pass parameters to the endpoint.
@@ -963,7 +963,7 @@ import {
 	endOfMonth,
 	startOfYear,
 	endOfYear,
-} from 'date-fns'
+} from 'date-fns';
 ```
 
 Then I'll create the `page_analytics` function, this will need to take
@@ -982,27 +982,27 @@ export const page_analytics = async (
 		(
 			input: URL | RequestInfo,
 			init?: RequestInit | undefined,
-		): Promise<Response>
+		): Promise<Response>;
 		(
 			input: URL | RequestInfo,
 			init?: RequestInit | undefined,
-		): Promise<Response>
-		(arg0: string): any
+		): Promise<Response>;
+		(arg0: string): any;
 	},
-) => {}
+) => {};
 ```
 
 The add in the date variables:
 
 ```ts
-const day_start = startOfDay(new Date()).toISOString()
-const day_end = endOfDay(new Date()).toISOString()
+const day_start = startOfDay(new Date()).toISOString();
+const day_end = endOfDay(new Date()).toISOString();
 
-const month_start = startOfMonth(new Date()).toISOString()
-const month_end = endOfMonth(new Date()).toISOString()
+const month_start = startOfMonth(new Date()).toISOString();
+const month_end = endOfMonth(new Date()).toISOString();
 
-const year_start = startOfYear(new Date()).toISOString()
-const year_end = endOfYear(new Date()).toISOString()
+const year_start = startOfYear(new Date()).toISOString();
+const year_end = endOfYear(new Date()).toISOString();
 ```
 
 Then create a functions to `fetch_daily_visits`,
@@ -1013,14 +1013,14 @@ for `fetch_daily_visits` and return `daily_visits`.
 const fetch_daily_visits = async () => {
 	const res = await fetch(
 		`${base_path}&date_from=${day_start}&date_to=${day_end}`,
-	)
-	const { analytics } = await res.json()
-	return analytics
-}
+	);
+	const { analytics } = await res.json();
+	return analytics;
+};
 
 return {
 	daily_visits: fetch_daily_visits(),
-}
+};
 ```
 
 Here's what the full `page_analytics` function looks like:
@@ -1034,54 +1034,54 @@ export const page_analytics = async (
 		(
 			input: URL | RequestInfo,
 			init?: RequestInit | undefined,
-		): Promise<Response>
+		): Promise<Response>;
 		(
 			input: URL | RequestInfo,
 			init?: RequestInit | undefined,
-		): Promise<Response>
-		(arg0: string): any
+		): Promise<Response>;
+		(arg0: string): any;
 	},
 ) => {
-	const day_start = startOfDay(new Date()).toISOString()
-	const day_end = endOfDay(new Date()).toISOString()
+	const day_start = startOfDay(new Date()).toISOString();
+	const day_end = endOfDay(new Date()).toISOString();
 
-	const month_start = startOfMonth(new Date()).toISOString()
-	const month_end = endOfMonth(new Date()).toISOString()
+	const month_start = startOfMonth(new Date()).toISOString();
+	const month_end = endOfMonth(new Date()).toISOString();
 
-	const year_start = startOfYear(new Date()).toISOString()
-	const year_end = endOfYear(new Date()).toISOString()
+	const year_start = startOfYear(new Date()).toISOString();
+	const year_end = endOfYear(new Date()).toISOString();
 
 	// get daily visits
 	const fetch_daily_visits = async () => {
 		const res = await fetch(
 			`${base_path}&date_from=${day_start}&date_to=${day_end}`,
-		)
-		const { analytics } = await res.json()
-		return analytics
-	}
+		);
+		const { analytics } = await res.json();
+		return analytics;
+	};
 	// get monthly visits
 	const fetch_monthly_visits = async () => {
 		const res = await fetch(
 			`${base_path}&date_from=${month_start}&date_to=${month_end}&date_grouping=month`,
-		)
-		const { analytics } = await res.json()
-		return analytics
-	}
+		);
+		const { analytics } = await res.json();
+		return analytics;
+	};
 	// get yearly visits
 	const fetch_yearly_visits = async () => {
 		const res = await fetch(
 			`${base_path}&date_from=${year_start}&date_to=${year_end}&date_grouping=year`,
-		)
-		const { analytics } = await res.json()
-		return analytics
-	}
+		);
+		const { analytics } = await res.json();
+		return analytics;
+	};
 
 	return {
 		daily_visits: fetch_daily_visits(),
 		monthly_visits: fetch_monthly_visits(),
 		yearly_visits: fetch_yearly_visits(),
-	}
-}
+	};
+};
 ```
 
 </Details>
@@ -1098,21 +1098,21 @@ touch src/routes/about/+page.server.ts
 Then add in a `load` function and call the `page_analytics` function:
 
 ```ts
-import { page_analytics } from '$lib/utils'
-import type { PageServerLoad } from './$types'
+import { page_analytics } from '$lib/utils';
+import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ fetch }) => {
-	const base_path = `analytics.json?pathname=/about`
+	const base_path = `analytics.json?pathname=/about`;
 
 	let { daily_visits, monthly_visits, yearly_visits } =
-		await page_analytics(base_path, fetch)
+		await page_analytics(base_path, fetch);
 
 	return {
 		daily_visits,
 		monthly_visits,
 		yearly_visits,
-	}
-}
+	};
+};
 ```
 
 Now to test this out I'll add the `daily_visits` to the about page,
@@ -1121,9 +1121,9 @@ dumping it out into a `<pre>` tag:
 
 ```svelte
 <script lang="ts">
-	import type { PageData } from './$types'
+	import type { PageData } from './$types';
 
-	export let data: PageData
+	export let data: PageData;
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -1214,11 +1214,11 @@ Then in the component I'll need to accept the analytics data as
 ```svelte
 <script lang="ts">
 	export let page_analytics: {
-		date: string
-		visits: number
-		uniques: number
-		pageviews: number
-	}
+		date: string;
+		visits: number;
+		uniques: number;
+		pageviews: number;
+	};
 </script>
 
 <div
@@ -1252,10 +1252,10 @@ for each of the stats:
 
 ```svelte
 <script lang="ts">
-	import { AnalyticsCard } from '$lib/components'
-	import type { PageData } from './$types'
+	import { AnalyticsCard } from '$lib/components';
+	import type { PageData } from './$types';
 
-	export let data: PageData
+	export let data: PageData;
 </script>
 
 <svelte:head>

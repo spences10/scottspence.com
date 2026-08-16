@@ -84,5 +84,5 @@ makes it a lot more visual.
 [greenkeeper.io]: https://greenkeeper.io
 [images.weserv.nl]: https://images.weserv.nl/docs/quick-reference.html
 [with no downtime]:
-  https://vercel.com/guides/zero-downtime-domain-migration
+	https://vercel.com/guides/zero-downtime-domain-migration
 [dns integration]: https://vercel.com/integrations/dns

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { pricing_state } from '$lib/state/pricing-client.svelte'
-	import Select from './select.svelte'
-	import { locale_string } from './utils'
+	import { pricing_state } from '$lib/state/pricing-client.svelte';
+	import Select from './select.svelte';
+	import { locale_string } from './utils';
 
 	const WORKSHOP_DURATION: Record<string, number> = {
 		'90 minutes': 1.2,
@@ -9,38 +9,38 @@
 		'Full day': 3.5,
 		'Two days': 6.5,
 		'Three days': 9,
-	}
+	};
 
-	let attendees = $state(5)
-	let workshop_duration = $state('90 minutes')
+	let attendees = $state(5);
+	let workshop_duration = $state('90 minutes');
 
 	let workshop_cost = $derived.by(() => {
-		const base = pricing_state.day_rate
-		const discount_factor = 1 - Math.log(attendees) / 20
+		const base = pricing_state.day_rate;
+		const discount_factor = 1 - Math.log(attendees) / 20;
 		return (
 			base *
 			discount_factor *
 			attendees *
 			WORKSHOP_DURATION[workshop_duration]
-		)
-	})
+		);
+	});
 
 	let total_display = $derived(
 		workshop_cost * pricing_state.currency_rate,
-	)
-	let per_attendee_display = $derived(total_display / attendees)
+	);
+	let per_attendee_display = $derived(total_display / attendees);
 
 	const on_attendees_input = (e: Event) => {
 		attendees = Math.max(
 			(e.target as HTMLInputElement).valueAsNumber,
 			5,
-		)
-	}
+		);
+	};
 </script>
 
 <div class="card bg-base-100 shadow-xl">
 	<div class="card-body">
-		<h2 class="card-title text-primary mb-4">Workshop Calculator</h2>
+		<h2 class="mb-4 card-title text-primary">Workshop Calculator</h2>
 
 		<div class="grid gap-6">
 			<fieldset class="grid gap-4">
@@ -68,10 +68,10 @@
 							min="1"
 							max="20"
 							bind:value={attendees}
-							class="range range-primary flex-1"
+							class="range flex-1 range-primary"
 							oninput={on_attendees_input}
 						/>
-						<span class="badge badge-primary badge-lg">
+						<span class="badge badge-lg badge-primary">
 							{attendees}
 						</span>
 					</div>
@@ -80,11 +80,11 @@
 
 			<div
 				aria-label="Workshop Statistics"
-				class="stats stats-vertical border-base-300 bg-base-100 md:stats-horizontal w-full border shadow"
+				class="stats w-full stats-vertical border border-base-300 bg-base-100 shadow md:stats-horizontal"
 			>
 				<div class="stat">
 					<div class="stat-title font-medium">Attendees</div>
-					<div class="stat-value text-primary flex items-center">
+					<div class="stat-value flex items-center text-primary">
 						{attendees}
 					</div>
 					<div class="stat-desc">Number of participants</div>
@@ -92,7 +92,7 @@
 
 				<div class="stat">
 					<div class="stat-title font-medium">Price Per Attendee</div>
-					<div class="stat-value text-secondary flex items-center">
+					<div class="stat-value flex items-center text-secondary">
 						{locale_string(per_attendee_display)}
 						<span class="ml-2 text-xl">
 							{pricing_state.selected_currency}
@@ -103,7 +103,7 @@
 
 				<div class="stat">
 					<div class="stat-title font-medium">Workshop Cost</div>
-					<div class="stat-value text-accent flex items-center">
+					<div class="stat-value flex items-center text-accent">
 						{locale_string(total_display)}
 						<span class="ml-2 text-xl">
 							{pricing_state.selected_currency}

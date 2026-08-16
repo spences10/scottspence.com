@@ -1,39 +1,39 @@
 <script lang="ts">
-	import { goto } from '$app/navigation'
-	import { get_post_tags } from '$lib/data/post-tags.remote'
-	import { get_posts } from '$lib/data/posts.remote'
-	import { Document, News, Tag } from '$lib/icons'
-	import { NAV_LINKS, SITE_LINKS } from '$lib/info'
-	import { command_palette_state } from '$lib/state/command-palette.svelte'
+	import { goto } from '$app/navigation';
+	import { get_post_tags } from '$lib/data/post-tags.remote';
+	import { get_posts } from '$lib/data/posts.remote';
+	import { Document, News, Tag } from '$lib/icons';
+	import { NAV_LINKS, SITE_LINKS } from '$lib/info';
+	import { command_palette_state } from '$lib/state/command-palette.svelte';
 
-	let posts = $state<Post[]>([])
-	let tags = $state<string[]>([])
-	let loaded = $state(false)
-	let loading = $state(false)
-	let selected_index = $state(0)
+	let posts = $state<Post[]>([]);
+	let tags = $state<string[]>([]);
+	let loaded = $state(false);
+	let loading = $state(false);
+	let selected_index = $state(0);
 
 	// Lazy load data when palette opens
 	$effect(() => {
 		if (command_palette_state.is_open && !loaded && !loading) {
-			loading = true
+			loading = true;
 			Promise.all([get_posts(), get_post_tags()])
 				.then(([fetched_posts, { tags: fetched_tags }]) => {
-					posts = fetched_posts
-					tags = fetched_tags
-					loaded = true
+					posts = fetched_posts;
+					tags = fetched_tags;
+					loaded = true;
 				})
 				.finally(() => {
-					loading = false
-				})
+					loading = false;
+				});
 		}
-	})
+	});
 
 	type SearchItem = {
-		type: 'post' | 'tag' | 'page'
-		title: string
-		href: string
-		preview?: string
-	}
+		type: 'post' | 'tag' | 'page';
+		title: string;
+		href: string;
+		preview?: string;
+	};
 
 	const all_pages: SearchItem[] = [
 		...NAV_LINKS.map((l) => ({
@@ -46,7 +46,7 @@
 			title: l.title,
 			href: `/${l.slug}`,
 		})),
-	]
+	];
 
 	let all_items = $derived<SearchItem[]>([
 		...posts
@@ -63,101 +63,101 @@
 			href: `/tags/${t}`,
 		})),
 		...all_pages,
-	])
+	]);
 
 	let filtered_items = $derived.by(() => {
-		const q = command_palette_state.query.toLowerCase().trim()
+		const q = command_palette_state.query.toLowerCase().trim();
 		if (!q) {
 			// Show recent if available, otherwise show sample of each type
 			if (command_palette_state.recent.length > 0) {
 				return command_palette_state.recent
 					.map((href) => all_items.find((i) => i.href === href))
-					.filter((i): i is SearchItem => i !== undefined)
+					.filter((i): i is SearchItem => i !== undefined);
 			}
-			return []
+			return [];
 		}
 		return all_items.filter(
 			(item) =>
 				item.title.toLowerCase().includes(q) ||
 				item.preview?.toLowerCase().includes(q),
-		)
-	})
+		);
+	});
 
 	// Group items by type
 	let grouped_items = $derived.by(() => {
 		const posts_group = filtered_items.filter(
 			(i) => i.type === 'post',
-		)
-		const tags_group = filtered_items.filter((i) => i.type === 'tag')
+		);
+		const tags_group = filtered_items.filter((i) => i.type === 'tag');
 		const pages_group = filtered_items.filter(
 			(i) => i.type === 'page',
-		)
+		);
 		return {
 			posts: posts_group,
 			tags: tags_group,
 			pages: pages_group,
-		}
-	})
+		};
+	});
 
 	// Flat list for keyboard navigation
 	let flat_items = $derived([
 		...grouped_items.posts,
 		...grouped_items.tags,
 		...grouped_items.pages,
-	])
+	]);
 
 	// Reset selection when query changes
 	$effect(() => {
 		// Track query explicitly - reset index on change
-		const _query = command_palette_state.query
-		selected_index = 0
-	})
+		const _query = command_palette_state.query;
+		selected_index = 0;
+	});
 
 	const scroll_selected_into_view = () => {
 		const selected_el = command_palette_state.dialog?.querySelector(
 			`[data-index="${selected_index}"]`,
-		)
-		selected_el?.scrollIntoView({ block: 'nearest' })
-	}
+		);
+		selected_el?.scrollIntoView({ block: 'nearest' });
+	};
 
 	const handle_keydown = (event: KeyboardEvent) => {
 		if (event.key === 'ArrowDown') {
-			event.preventDefault()
+			event.preventDefault();
 			selected_index = Math.min(
 				selected_index + 1,
 				flat_items.length - 1,
-			)
-			scroll_selected_into_view()
+			);
+			scroll_selected_into_view();
 		} else if (event.key === 'ArrowUp') {
-			event.preventDefault()
-			selected_index = Math.max(selected_index - 1, 0)
-			scroll_selected_into_view()
+			event.preventDefault();
+			selected_index = Math.max(selected_index - 1, 0);
+			scroll_selected_into_view();
 		} else if (event.key === 'Enter' && flat_items[selected_index]) {
-			event.preventDefault()
-			navigate_to(flat_items[selected_index])
+			event.preventDefault();
+			navigate_to(flat_items[selected_index]);
 		}
-	}
+	};
 
 	const navigate_to = (item: SearchItem) => {
-		command_palette_state.add_recent(item.href)
-		command_palette_state.close()
-		goto(item.href)
-	}
+		command_palette_state.add_recent(item.href);
+		command_palette_state.close();
+		goto(item.href);
+	};
 
 	const handle_close = () => {
-		command_palette_state.close()
-	}
+		command_palette_state.close();
+	};
 
 	const get_flat_index = (
 		type: 'post' | 'tag' | 'page',
 		index: number,
 	) => {
-		if (type === 'post') return index
-		if (type === 'tag') return grouped_items.posts.length + index
+		if (type === 'post') return index;
+		if (type === 'tag') return grouped_items.posts.length + index;
 		return (
 			grouped_items.posts.length + grouped_items.tags.length + index
-		)
-	}
+		);
+	};
 </script>
 
 <dialog
@@ -167,9 +167,9 @@
 	aria-label="Search"
 >
 	<article
-		class="modal-box rounded-box flex h-auto max-h-[75dvh] w-full max-w-xl flex-col p-0 sm:max-h-[80vh] lg:max-w-3xl"
+		class="modal-box flex h-auto max-h-[75dvh] w-full max-w-xl flex-col rounded-box p-0 sm:max-h-[80vh] lg:max-w-3xl"
 	>
-		<search class="border-base-300 border-b p-4">
+		<search class="border-b border-base-300 p-4">
 			<label for="command-palette-search" class="sr-only">
 				Search posts, tags, and pages
 			</label>
@@ -180,7 +180,7 @@
 				onkeydown={handle_keydown}
 				type="search"
 				placeholder="Search posts, tags, pages..."
-				class="input input-ghost w-full text-lg focus:outline-none"
+				class="input w-full input-ghost text-lg focus:outline-none"
 			/>
 		</search>
 
@@ -190,7 +190,7 @@
 		>
 			{#if command_palette_state.query.trim() === '' && command_palette_state.recent.length > 0}
 				<div
-					class="text-base-content/50 px-3 py-2 text-xs font-semibold uppercase"
+					class="px-3 py-2 text-xs font-semibold text-base-content/50 uppercase"
 				>
 					Recent
 				</div>
@@ -202,7 +202,7 @@
 							data-index={index}
 						>
 							<button
-								class="hover:bg-base-200 flex w-full items-center gap-3 rounded-lg p-3 text-left transition-colors {index ===
+								class="flex w-full items-center gap-3 rounded-lg p-3 text-left transition-colors hover:bg-base-200 {index ===
 								selected_index
 									? 'bg-base-200'
 									: ''}"
@@ -239,7 +239,7 @@
 			{:else if command_palette_state.query.trim() !== ''}
 				{#if grouped_items.posts.length > 0}
 					<div
-						class="text-base-content/50 px-3 py-2 text-xs font-semibold uppercase"
+						class="px-3 py-2 text-xs font-semibold text-base-content/50 uppercase"
 					>
 						Posts
 					</div>
@@ -252,7 +252,7 @@
 								data-index={flat_index}
 							>
 								<button
-									class="hover:bg-base-200 flex w-full items-center gap-3 rounded-lg p-3 text-left transition-colors {flat_index ===
+									class="flex w-full items-center gap-3 rounded-lg p-3 text-left transition-colors hover:bg-base-200 {flat_index ===
 									selected_index
 										? 'bg-base-200'
 										: ''}"
@@ -278,7 +278,7 @@
 
 				{#if grouped_items.tags.length > 0}
 					<div
-						class="text-base-content/50 mt-2 px-3 py-2 text-xs font-semibold uppercase"
+						class="mt-2 px-3 py-2 text-xs font-semibold text-base-content/50 uppercase"
 					>
 						Tags
 					</div>
@@ -291,7 +291,7 @@
 								data-index={flat_index}
 							>
 								<button
-									class="hover:bg-base-200 flex w-full items-center gap-3 rounded-lg p-3 text-left transition-colors {flat_index ===
+									class="flex w-full items-center gap-3 rounded-lg p-3 text-left transition-colors hover:bg-base-200 {flat_index ===
 									selected_index
 										? 'bg-base-200'
 										: ''}"
@@ -315,7 +315,7 @@
 
 				{#if grouped_items.pages.length > 0}
 					<div
-						class="text-base-content/50 mt-2 px-3 py-2 text-xs font-semibold uppercase"
+						class="mt-2 px-3 py-2 text-xs font-semibold text-base-content/50 uppercase"
 					>
 						Pages
 					</div>
@@ -328,7 +328,7 @@
 								data-index={flat_index}
 							>
 								<button
-									class="hover:bg-base-200 flex w-full items-center gap-3 rounded-lg p-3 text-left transition-colors {flat_index ===
+									class="flex w-full items-center gap-3 rounded-lg p-3 text-left transition-colors hover:bg-base-200 {flat_index ===
 									selected_index
 										? 'bg-base-200'
 										: ''}"
@@ -351,26 +351,26 @@
 				{/if}
 
 				{#if flat_items.length === 0}
-					<div class="text-base-content/50 p-4 text-center">
+					<div class="p-4 text-center text-base-content/50">
 						No results found
 					</div>
 				{/if}
 			{:else if loading}
 				<div
-					class="text-base-content/50 flex items-center justify-center gap-2 p-4"
+					class="flex items-center justify-center gap-2 p-4 text-base-content/50"
 				>
-					<span class="loading loading-spinner loading-sm"></span>
+					<span class="loading loading-sm loading-spinner"></span>
 					Loading...
 				</div>
 			{:else}
-				<div class="text-base-content/50 p-4 text-center">
+				<div class="p-4 text-center text-base-content/50">
 					Start typing to search...
 				</div>
 			{/if}
 		</nav>
 
 		<footer
-			class="border-base-300 text-base-content/50 flex gap-4 border-t p-3 text-xs"
+			class="flex gap-4 border-t border-base-300 p-3 text-xs text-base-content/50"
 		>
 			<span><kbd class="kbd kbd-xs">↑↓</kbd> navigate</span>
 			<span><kbd class="kbd kbd-xs">↵</kbd> select</span>

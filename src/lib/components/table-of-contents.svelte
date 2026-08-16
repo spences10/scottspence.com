@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { fade } from 'svelte/transition'
+	import { fade } from 'svelte/transition';
 
 	interface Props {
-		headings?: { label: string; href: string }[]
+		headings?: { label: string; href: string }[];
 	}
 
-	let { headings = [] }: Props = $props()
+	let { headings = [] }: Props = $props();
 </script>
 
 {#if headings.length}
 	<aside
 		transition:fade|global
-		class="table-of-contents rounded-box bg-base-100 z-10 hidden w-64 shadow-lg lg:block"
+		class="table-of-contents z-10 hidden w-64 rounded-box bg-base-100 shadow-lg lg:block"
 	>
 		<div class="">
 			<h3
@@ -24,7 +24,7 @@
 				{#each headings as heading (heading.href)}
 					<li class="mr-4 mb-2">
 						<a
-							class="hover:text-primary transition"
+							class="transition hover:text-primary"
 							href={heading.href}
 						>
 							{heading.label}

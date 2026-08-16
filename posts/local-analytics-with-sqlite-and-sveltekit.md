@@ -32,10 +32,10 @@ const insert_event = db.prepare(`
   INSERT INTO analytics_events (
     visitor_hash, pathname, created_at
   ) VALUES (?, ?, ?)
-`)
+`);
 
 // In hooks.server.ts
-insert_event.run(visitor_hash, pathname, Date.now())
+insert_event.run(visitor_hash, pathname, Date.now());
 ```
 
 Looks fine. Write Ahead Log (WAL) mode enabled, works great in dev.
@@ -82,7 +82,7 @@ lock. Requests queued up waiting for locks.
 I tried a few things:
 
 ```typescript
-db.pragma('busy_timeout = 5000')
+db.pragma('busy_timeout = 5000');
 ```
 
 ```bash
@@ -108,29 +108,29 @@ one.
 Queue events in memory, flush every 5 seconds:
 
 ```typescript
-const event_queue: AnalyticsEvent[] = []
+const event_queue: AnalyticsEvent[] = [];
 
 export function queue_event(event: AnalyticsEvent) {
-	event_queue.push(event)
+	event_queue.push(event);
 }
 
 setInterval(() => {
-	if (event_queue.length === 0) return
+	if (event_queue.length === 0) return;
 
-	const events = event_queue.splice(0)
+	const events = event_queue.splice(0);
 	const insert = db.prepare(`
     INSERT INTO analytics_events (visitor_hash, pathname, created_at)
     VALUES (?, ?, ?)
-  `)
+  `);
 
 	const insert_many = db.transaction((events) => {
 		for (const e of events) {
-			insert.run(e.visitor_hash, e.pathname, e.created_at)
+			insert.run(e.visitor_hash, e.pathname, e.created_at);
 		}
-	})
+	});
 
-	insert_many(events)
-}, 5000)
+	insert_many(events);
+}, 5000);
 ```
 
 Simple INSERTs inside a transaction. One fsync instead of hundreds.
@@ -145,23 +145,23 @@ to an in-memory Map with 15-second TTL:
 const active_sessions = new Map<
 	string,
 	{ path: string; timestamp: number }
->()
+>();
 
 export function heartbeat(session_id: string, path: string) {
-	active_sessions.set(session_id, { path, timestamp: Date.now() })
+	active_sessions.set(session_id, { path, timestamp: Date.now() });
 }
 
 export function get_live_count(): number {
-	const now = Date.now()
-	const ttl = 15000
+	const now = Date.now();
+	const ttl = 15000;
 
 	for (const [id, session] of active_sessions) {
 		if (now - session.timestamp > ttl) {
-			active_sessions.delete(id)
+			active_sessions.delete(id);
 		}
 	}
 
-	return active_sessions.size
+	return active_sessions.size;
 }
 ```
 

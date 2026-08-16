@@ -125,16 +125,16 @@ Paste this in - the shebang on the first line is important:
 
 ```ts
 #!/usr/bin/env node
-import { McpServer } from 'tmcp'
-import { ValibotJsonSchemaAdapter } from '@tmcp/adapter-valibot'
-import { StdioTransport } from '@tmcp/transport-stdio'
-import * as v from 'valibot'
+import { McpServer } from 'tmcp';
+import { ValibotJsonSchemaAdapter } from '@tmcp/adapter-valibot';
+import { StdioTransport } from '@tmcp/transport-stdio';
+import * as v from 'valibot';
 
-const adapter = new ValibotJsonSchemaAdapter()
+const adapter = new ValibotJsonSchemaAdapter();
 const server = new McpServer(
 	{ name: 'mcp-text-stats', version: '0.0.1' },
 	{ adapter, capabilities: { tools: { listChanged: true } } },
-)
+);
 
 server.tool(
 	{
@@ -149,26 +149,26 @@ server.tool(
 		}),
 	},
 	async ({ text }) => {
-		const words = text.trim().split(/\s+/).length
-		const characters = text.length
-		const sentences = text.split(/[.!?]+/).filter(Boolean).length
-		const reading_time_mins = Math.ceil(words / 200)
+		const words = text.trim().split(/\s+/).length;
+		const characters = text.length;
+		const sentences = text.split(/[.!?]+/).filter(Boolean).length;
+		const reading_time_mins = Math.ceil(words / 200);
 
 		const result = [
 			`Words: ${words}`,
 			`Characters: ${characters}`,
 			`Sentences: ${sentences}`,
 			`Reading time: ~${reading_time_mins} min`,
-		].join('\n')
+		].join('\n');
 
 		return {
 			content: [{ type: 'text', text: result }],
-		}
+		};
 	},
-)
+);
 
-const transport = new StdioTransport(server)
-transport.listen()
+const transport = new StdioTransport(server);
+transport.listen();
 ```
 
 **Step 5: Build it**

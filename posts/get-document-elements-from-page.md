@@ -27,14 +27,14 @@ The data was in a massive table with each `td` having a `data-label`
 
 ```html
 <td class="email" data-label="Email">
-  <span>
-    <a
-      class="data-table__cell-link"
-      href="/app/lists/654321/members/987654321"
-    >
-      someemail@hotmail.com
-    </a>
-  </span>
+	<span>
+		<a
+			class="data-table__cell-link"
+			href="/app/lists/654321/members/987654321"
+		>
+			someemail@hotmail.com
+		</a>
+	</span>
 </td>
 ```
 
@@ -44,7 +44,7 @@ So, I just need to get the `data-label` where it's
 In the browser console I can do this:
 
 ```js
-let dataLabels = document.querySelectorAll("[data-label='Email']")
+let dataLabels = document.querySelectorAll("[data-label='Email']");
 ```
 
 That will give me a node list of all the `td` elements with the
@@ -53,9 +53,9 @@ an array and then use a `.forEach` to loop over it, logging out the
 element text (`el.innerText`).
 
 ```js
-Array.prototype.forEach.call(dataLabels, el => {
-  console.log(el.innerText)
-})
+Array.prototype.forEach.call(dataLabels, (el) => {
+	console.log(el.innerText);
+});
 ```
 
 Then it was a case of copypasta to where I needed it.
@@ -73,14 +73,14 @@ Each post is wrapped in an `article` element, so I just needed to get
 a list of all the `article` elements on the page.
 
 ```js
-let articles = document.querySelectorAll('article')
+let articles = document.querySelectorAll('article');
 ```
 
 Then once I got the list, all I needed to do was get the length of the
 resulting `NodeList`:
 
 ```js
-articles.length
+articles.length;
 // 146
 ```
 
@@ -97,14 +97,14 @@ it includes `h2` in an if statement and then lg out the contents of
 the element id and the text.
 
 ```js
-let ids = document.querySelectorAll('[id]')
+let ids = document.querySelectorAll('[id]');
 
-Array.prototype.forEach.call(ids, el => {
-  if (el.localName.includes(`h2`)) {
-    console.log(`#${el.id}`)
-    console.log(el.innerText)
-  }
-})
+Array.prototype.forEach.call(ids, (el) => {
+	if (el.localName.includes(`h2`)) {
+		console.log(`#${el.id}`);
+		console.log(el.innerText);
+	}
+});
 ```
 
 That's it, if you found it useful consider sharing it for others to
@@ -115,4 +115,4 @@ Thanks.
 <!-- Links -->
 
 [lighthouse metrics]:
-  https://lighthouse-metrics.com/lighthouse/checks/4fad27cb-2c64-456c-bacf-73dee564c945
+	https://lighthouse-metrics.com/lighthouse/checks/4fad27cb-2c64-456c-bacf-73dee564c945

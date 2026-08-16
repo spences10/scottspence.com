@@ -104,9 +104,9 @@ run!
 <!-- Links -->
 
 [one of my github projects]:
-  https://github.com/spences10/svead/pull/105
+	https://github.com/spences10/svead/pull/105
 [commit history for adding `.env` the variables]:
-  https://github.com/spences10/svead/pull/125
+	https://github.com/spences10/svead/pull/125
 [fathom analytics]: https://usefathom.com
 [referral link]: https://usefathom.com/ref/HG492L
 [liran tal]: https://twitter.com/liran_tal
@@ -114,10 +114,10 @@ run!
 <!-- Images -->
 
 [github-settings-tab]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1670763989/scottspence.com/github-settings-tab.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1670763989/scottspence.com/github-settings-tab.png
 [github-security-actions]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1670763989/scottspence.com/github-security-actions.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1670763989/scottspence.com/github-security-actions.png
 [github-new-repository-secret]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1670763989/scottspence.com/github-new-repository-secret.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1670763989/scottspence.com/github-new-repository-secret.png
 [github-actions-secrets-new-secret]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1670763989/scottspence.com/github-actions-secrets-new-secret.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1670763989/scottspence.com/github-actions-secrets-new-secret.png

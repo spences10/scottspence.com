@@ -1,9 +1,9 @@
 <script lang="ts">
 	interface Props {
-		value?: number
-		max?: number
-		width?: any
-		label?: any
+		value?: number;
+		max?: number;
+		width?: any;
+		label?: any;
 	}
 
 	let {
@@ -11,8 +11,8 @@
 		max = 100,
 		width = `w-full`,
 		label = ``,
-	}: Props = $props()
-	let progress = $derived(((value / max) * 100).toFixed())
+	}: Props = $props();
+	let progress = $derived(((value / max) * 100).toFixed());
 </script>
 
 <section class={`not-prose ${width} ${label ? `` : `-mt-4`}`}>
@@ -23,7 +23,7 @@
 	{/if}
 	<progress
 		id="progress"
-		class="progress progress-primary w-full"
+		class="progress w-full progress-primary"
 		{value}
 		{max}
 	></progress>

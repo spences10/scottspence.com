@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { scale_and_fade, viewport } from '$lib/utils'
+	import { scale_and_fade, viewport } from '$lib/utils';
 
-	let { height = '100px', width = '160px' } = $props()
+	let { height = '100px', width = '160px' } = $props();
 
 	let ButtButt =
-		'https://res.cloudinary.com/defkmsrpw/image/upload/v1691271319/scottspence.com/site-assets/butt.png'
+		'https://res.cloudinary.com/defkmsrpw/image/upload/v1691271319/scottspence.com/site-assets/butt.png';
 	const puns: string[] = [
 		`Ok, well, now that's behind you maybe you'd like to share this?`,
 		`Is that two cheeky for you?!`,
@@ -19,32 +19,32 @@
 		`Hope this isn't crack-ing you up?`,
 		`Ok time to get stuck into the backend again instead of wasting my time writing bottom-drawer jokes.`,
 		`I'm a little Behind on my jokes butt a well-Rounded Butt pun always beats a Crappy one.`,
-	]
+	];
 
-	const puns_copy = puns.slice()
+	const puns_copy = puns.slice();
 
-	let pun = $state<string | null>(null)
+	let pun = $state<string | null>(null);
 
 	const random_pun = (): string => {
 		if (puns_copy.length === 0) {
-			puns_copy.push(pun as string)
-			pun = null
+			puns_copy.push(pun as string);
+			pun = null;
 		}
-		const index = Math.floor(Math.random() * puns_copy.length)
-		const new_pun = puns_copy[index]
-		puns_copy.splice(index, 1)
+		const index = Math.floor(Math.random() * puns_copy.length);
+		const new_pun = puns_copy[index];
+		puns_copy.splice(index, 1);
 		if (pun) {
-			puns_copy.push(pun)
+			puns_copy.push(pun);
 		}
-		pun = new_pun
-		return new_pun
-	}
+		pun = new_pun;
+		return new_pun;
+	};
 
 	$effect.root(() => {
-		pun = random_pun()
-	})
+		pun = random_pun();
+	});
 
-	let intersecting = $state(false)
+	let intersecting = $state(false);
 </script>
 
 <div
@@ -73,7 +73,7 @@
 		{/if}
 		<p class="mb-6">Bummer!</p>
 		<p class="mb-6">{pun}</p>
-		<button class="btn btn-xs rounded-box" onclick={random_pun}>
+		<button class="btn rounded-box btn-xs" onclick={random_pun}>
 			pun me up
 		</button>
 	</aside>

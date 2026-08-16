@@ -93,37 +93,37 @@ Let's create the `Context` and the `Consumer` in this component.
 `src/layouts/components/BlogThemeContext.js`
 
 ```js
-import React from 'react'
+import React from 'react';
 // Context is made up of two things
 // Provider - Single as close to top level as possible
 // Consumer - Multiple have multiple consumers
-export const BlogThemeContext = React.createContext()
+export const BlogThemeContext = React.createContext();
 
 export class BlogThemeProvider extends React.Component {
-  state = {
-    item1: 1,
-    item2: 2,
-  }
+	state = {
+		item1: 1,
+		item2: 2,
+	};
 
-  // add function here
-  functionHere = () => {
-    this.setState({
-      item1: 2,
-      item2: 3,
-    })
-  }
-  render() {
-    return (
-      <BlogThemeContext.Provider
-        value={{
-          ...this.state,
-          functionHere: this.functionHere,
-        }}
-      >
-        {this.props.children}
-      </BlogThemeContext.Provider>
-    )
-  }
+	// add function here
+	functionHere = () => {
+		this.setState({
+			item1: 2,
+			item2: 3,
+		});
+	};
+	render() {
+		return (
+			<BlogThemeContext.Provider
+				value={{
+					...this.state,
+					functionHere: this.functionHere,
+				}}
+			>
+				{this.props.children}
+			</BlogThemeContext.Provider>
+		);
+	}
 }
 ```
 
@@ -144,15 +144,15 @@ component here.
 
 ```js
 const TemplateWrapper = ({ children }) => (
-  <ThemeProvider theme={theme}>
-    <PageContainer>
-      <Helmet title={nameContent} meta={siteMeta} />
-      <Header />
-      <Main>{children()}</Main>
-      <Footer />
-    </PageContainer>
-  </ThemeProvider>
-)
+	<ThemeProvider theme={theme}>
+		<PageContainer>
+			<Helmet title={nameContent} meta={siteMeta} />
+			<Header />
+			<Main>{children()}</Main>
+			<Footer />
+		</PageContainer>
+	</ThemeProvider>
+);
 ```
 
 Now we already have the styled-components `ThemeProvider` which
@@ -162,45 +162,45 @@ context provider. So let's import the existing theme from the
 state of the `BlogThemeProvider`:
 
 ```js
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { theme } from '../../theme/globalStyle'
+import { theme } from '../../theme/globalStyle';
 
 // Context is made up of two things
 // Provider - Single as close to top level as possible
 // Consumer - Multiple have multiple consumers
-export const BlogThemeContext = React.createContext()
+export const BlogThemeContext = React.createContext();
 
 export class BlogThemeProvider extends React.Component {
-  state = {
-    theme,
-  }
+	state = {
+		theme,
+	};
 
-  // add function here
-  functionHere = () => {
-    this.setState({
-      item1: 2,
-      item2: 3,
-    })
-  }
-  render() {
-    return (
-      <BlogThemeContext.Provider
-        value={{
-          ...this.state,
-          functionHere: this.functionHere,
-        }}
-      >
-        {this.props.children}
-      </BlogThemeContext.Provider>
-    )
-  }
+	// add function here
+	functionHere = () => {
+		this.setState({
+			item1: 2,
+			item2: 3,
+		});
+	};
+	render() {
+		return (
+			<BlogThemeContext.Provider
+				value={{
+					...this.state,
+					functionHere: this.functionHere,
+				}}
+			>
+				{this.props.children}
+			</BlogThemeContext.Provider>
+		);
+	}
 }
 
 BlogThemeProvider.propTypes = {
-  children: PropTypes.any,
-}
+	children: PropTypes.any,
+};
 ```
 
 While we're here let's also add the function to handle the theme
@@ -208,40 +208,40 @@ changing by replacing the dummy `functionHere` function in the snippet
 and also bring in the themes we want to switch between.
 
 ```js
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { theme1, theme2 } from '../../theme/globalStyle'
+import { theme1, theme2 } from '../../theme/globalStyle';
 
-export const BlogThemeContext = React.createContext()
+export const BlogThemeContext = React.createContext();
 
 export class BlogThemeProvider extends React.Component {
-  state = {
-    theme,
-  }
+	state = {
+		theme,
+	};
 
-  handleThemeChange = e => {
-    let theme = e.target.value
-    theme === 'theme1' ? (theme = theme1) : (theme = theme2)
-    this.setState({ theme })
-  }
-  render() {
-    return (
-      <BlogThemeContext.Provider
-        value={{
-          ...this.state,
-          handleThemeChange: this.handleThemeChange,
-        }}
-      >
-        {this.props.children}
-      </BlogThemeContext.Provider>
-    )
-  }
+	handleThemeChange = (e) => {
+		let theme = e.target.value;
+		theme === 'theme1' ? (theme = theme1) : (theme = theme2);
+		this.setState({ theme });
+	};
+	render() {
+		return (
+			<BlogThemeContext.Provider
+				value={{
+					...this.state,
+					handleThemeChange: this.handleThemeChange,
+				}}
+			>
+				{this.props.children}
+			</BlogThemeContext.Provider>
+		);
+	}
 }
 
 BlogThemeProvider.propTypes = {
-  children: PropTypes.any,
-}
+	children: PropTypes.any,
+};
 ```
 
 ## Use the `Context.Consumer`
@@ -257,7 +257,7 @@ being returned like you would with a normal React component like this:
 
 ```js
 <Wrapper>
-  <Child />
+	<Child />
 </Wrapper>
 ```
 
@@ -280,21 +280,21 @@ the import from `globalStyle`.
 
 ```js
 const TemplateWrapper = ({ children }) => (
-  <BlogThemeProvider>
-    <BlogThemeContext.Consumer>
-      {({ theme }) => (
-        <ThemeProvider theme={theme}>
-          <PageContainer>
-            <Helmet title={nameContent} meta={siteMeta} />
-            <Header />
-            <Main>{children()}</Main>
-            <Footer />
-          </PageContainer>
-        </ThemeProvider>
-      )}
-    </BlogThemeContext.Consumer>
-  </BlogThemeProvider>
-)
+	<BlogThemeProvider>
+		<BlogThemeContext.Consumer>
+			{({ theme }) => (
+				<ThemeProvider theme={theme}>
+					<PageContainer>
+						<Helmet title={nameContent} meta={siteMeta} />
+						<Header />
+						<Main>{children()}</Main>
+						<Footer />
+					</PageContainer>
+				</ThemeProvider>
+			)}
+		</BlogThemeContext.Consumer>
+	</BlogThemeProvider>
+);
 ```
 
 There's also a template `src/template/blog-posts.js` which Gatsby uses
@@ -349,11 +349,11 @@ a Context consumer to access the method:
 
 ```js
 <BlogThemeContext.Consumer>
-  {({ handleThemeChange }) => (
-    <ThemeSelectWrapper>
-      <ThemeSelect handleThemeChange={handleThemeChange} />
-    </ThemeSelectWrapper>
-  )}
+	{({ handleThemeChange }) => (
+		<ThemeSelectWrapper>
+			<ThemeSelect handleThemeChange={handleThemeChange} />
+		</ThemeSelectWrapper>
+	)}
 </BlogThemeContext.Consumer>
 ```
 
@@ -375,9 +375,9 @@ returns a random HERO pattern:
 
 ```js
 export const randoHero = () => {
-  const keys = Object.keys(HERO)
-  return HERO[keys[(keys.length * Math.random()) << 0]]
-}
+	const keys = Object.keys(HERO);
+	return HERO[keys[(keys.length * Math.random()) << 0]];
+};
 ```
 
 This function sets the background on the `body` each reload with a
@@ -459,22 +459,22 @@ If you have any feedback [please get in touch].
 
 [react context api]: https://reactjs.org/docs/context.html
 [made a snippet]:
-  https://github.com/spences10/settings/blob/35ba1ca3e9871c3ea6344ca2274ebbd327a18bed/globalVs.code-snippets#L74-L112
+	https://github.com/spences10/settings/blob/35ba1ca3e9871c3ea6344ca2274ebbd327a18bed/globalVs.code-snippets#L74-L112
 [how to use it]: https://www.youtube.com/watch?v=yzQ_XulhQFw
 [@leighchalliday]: https://twitter.com/leighchalliday
 [styled-components 💅 getting started]:
-  https://scottspence.com/posts/styled-components
+	https://scottspence.com/posts/styled-components
 [personal site]: https://scottspence.me
 [here]: https://scottspence.com
 [vs code snippet]:
-  https://github.com/spences10/settings/blob/71dc76fb8e11c176f4517431be57c021fb72411a/globalVs.code-snippets#L74-L111
+	https://github.com/spences10/settings/blob/71dc76fb8e11c176f4517431be57c021fb72411a/globalVs.code-snippets#L74-L111
 [please get in touch]: /contact
 [here's the source]:
-  https://github.com/spences10/scottspence.me/blob/master/src/components/ThemeSelect.js
+	https://github.com/spences10/scottspence.me/blob/master/src/components/ThemeSelect.js
 [steve schoger]: https://twitter.com/steveschoger
 [hero patterns]: https://www.heropatterns.com/
 
 <!-- Images -->
 
 [theme switching]:
-  https://thepracticaldev.s3.amazonaws.com/i/r1b8qgu6lm5xjjondse7.gif
+	https://thepracticaldev.s3.amazonaws.com/i/r1b8qgu6lm5xjjondse7.gif

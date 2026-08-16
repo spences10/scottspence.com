@@ -1,18 +1,18 @@
-import { sqlite_client } from '$lib/sqlite/client'
+import { sqlite_client } from '$lib/sqlite/client';
 import type {
 	GitHubActivity,
 	GitHubCommit,
 	GitHubIssue,
 	GitHubPullRequest,
 	GitHubRelease,
-} from './github-fetcher'
+} from './github-fetcher';
 
 /**
  * Insert GitHub commits into database
  * Uses INSERT OR REPLACE to handle duplicates (UNIQUE constraint on sha)
  */
 export function insert_commits(commits: GitHubCommit[]): number {
-	if (commits.length === 0) return 0
+	if (commits.length === 0) return 0;
 
 	const queries = commits.map((commit) => ({
 		sql: `
@@ -28,11 +28,11 @@ export function insert_commits(commits: GitHubCommit[]): number {
 			commit.url,
 			commit.is_private ? 1 : 0,
 		],
-	}))
+	}));
 
-	sqlite_client.batch(queries)
-	console.log(`Inserted ${commits.length} commits`)
-	return commits.length
+	sqlite_client.batch(queries);
+	console.log(`Inserted ${commits.length} commits`);
+	return commits.length;
 }
 
 /**
@@ -42,7 +42,7 @@ export function insert_commits(commits: GitHubCommit[]): number {
 export function insert_pull_requests(
 	pull_requests: GitHubPullRequest[],
 ): number {
-	if (pull_requests.length === 0) return 0
+	if (pull_requests.length === 0) return 0;
 
 	const queries = pull_requests.map((pr) => ({
 		sql: `
@@ -60,11 +60,11 @@ export function insert_pull_requests(
 			pr.url,
 			pr.is_private ? 1 : 0,
 		],
-	}))
+	}));
 
-	sqlite_client.batch(queries)
-	console.log(`Inserted ${pull_requests.length} pull requests`)
-	return pull_requests.length
+	sqlite_client.batch(queries);
+	console.log(`Inserted ${pull_requests.length} pull requests`);
+	return pull_requests.length;
 }
 
 /**
@@ -72,7 +72,7 @@ export function insert_pull_requests(
  * Uses INSERT OR REPLACE to handle duplicates (UNIQUE constraint on repo+number)
  */
 export function insert_issues(issues: GitHubIssue[]): number {
-	if (issues.length === 0) return 0
+	if (issues.length === 0) return 0;
 
 	const queries = issues.map((issue) => ({
 		sql: `
@@ -90,11 +90,11 @@ export function insert_issues(issues: GitHubIssue[]): number {
 			issue.url,
 			issue.is_private ? 1 : 0,
 		],
-	}))
+	}));
 
-	sqlite_client.batch(queries)
-	console.log(`Inserted ${issues.length} issues`)
-	return issues.length
+	sqlite_client.batch(queries);
+	console.log(`Inserted ${issues.length} issues`);
+	return issues.length;
 }
 
 /**
@@ -102,7 +102,7 @@ export function insert_issues(issues: GitHubIssue[]): number {
  * Uses INSERT OR REPLACE to handle duplicates (UNIQUE constraint on repo+tag_name)
  */
 export function insert_releases(releases: GitHubRelease[]): number {
-	if (releases.length === 0) return 0
+	if (releases.length === 0) return 0;
 
 	const queries = releases.map((release) => ({
 		sql: `
@@ -118,11 +118,11 @@ export function insert_releases(releases: GitHubRelease[]): number {
 			release.url,
 			release.is_private ? 1 : 0,
 		],
-	}))
+	}));
 
-	sqlite_client.batch(queries)
-	console.log(`Inserted ${releases.length} releases`)
-	return releases.length
+	sqlite_client.batch(queries);
+	console.log(`Inserted ${releases.length} releases`);
+	return releases.length;
 }
 
 /**
@@ -130,20 +130,20 @@ export function insert_releases(releases: GitHubRelease[]): number {
  * Convenience function that inserts commits, PRs, issues, and releases
  */
 export function insert_github_activity(activity: GitHubActivity): {
-	commits: number
-	pull_requests: number
-	issues: number
-	releases: number
+	commits: number;
+	pull_requests: number;
+	issues: number;
+	releases: number;
 } {
-	console.log('Inserting GitHub activity into database...')
+	console.log('Inserting GitHub activity into database...');
 
 	const results = {
 		commits: insert_commits(activity.commits),
 		pull_requests: insert_pull_requests(activity.pull_requests),
 		issues: insert_issues(activity.issues),
 		releases: insert_releases(activity.releases),
-	}
+	};
 
-	console.log('GitHub activity insertion complete:', results)
-	return results
+	console.log('GitHub activity insertion complete:', results);
+	return results;
 }

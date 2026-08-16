@@ -1,4 +1,4 @@
-import { defineConfig } from '@playwright/test'
+import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
 	timeout: 5000,
@@ -15,4 +15,4 @@ export default defineConfig({
 			use: { browserName: 'chromium' },
 		},
 	],
-})
+});

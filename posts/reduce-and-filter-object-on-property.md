@@ -23,30 +23,30 @@ Here's a small example of what the object looked like:
 
 ```json
 [
-  {
-    "productId": "1",
-    "slug": "laptop",
-    "productName": "Laptop",
-    "variant": "16gb"
-  },
-  {
-    "productId": "1",
-    "slug": "laptop",
-    "productName": "Laptop",
-    "variant": "32gb"
-  },
-  {
-    "productId": "2",
-    "slug": "tablet",
-    "productName": "Tablet",
-    "variant": "32gb"
-  },
-  {
-    "productId": "2",
-    "slug": "tablet",
-    "productName": "Tablet",
-    "variant": "128gb"
-  }
+	{
+		"productId": "1",
+		"slug": "laptop",
+		"productName": "Laptop",
+		"variant": "16gb"
+	},
+	{
+		"productId": "1",
+		"slug": "laptop",
+		"productName": "Laptop",
+		"variant": "32gb"
+	},
+	{
+		"productId": "2",
+		"slug": "tablet",
+		"productName": "Tablet",
+		"variant": "32gb"
+	},
+	{
+		"productId": "2",
+		"slug": "tablet",
+		"productName": "Tablet",
+		"variant": "128gb"
+	}
 ]
 ```
 
@@ -88,8 +88,8 @@ returned, in this case it's an array `[]`.
 
 ```js
 items.reduce((acc, item) => {
-  return acc
-}, [])
+	return acc;
+}, []);
 ```
 
 Great I get an empty array back. So now I need to start adding items
@@ -103,12 +103,12 @@ Then I'll add the matching `item` for the `productId` to the `acc`.
 
 ```js
 items.reduce((acc, item) => {
-  if (!acc[item.productId]) {
-    acc[item] = item
-  }
-  acc[item.productId] = item
-  return acc
-}, [])
+	if (!acc[item.productId]) {
+		acc[item] = item;
+	}
+	acc[item.productId] = item;
+	return acc;
+}, []);
 ```
 
 There's an empty slot in the `acc` for the `productId` so I'll add a
@@ -119,14 +119,14 @@ Here's the finished code:
 
 ```js
 const products = items
-  .reduce((acc, item) => {
-    if (!acc[item.productId]) {
-      acc[item] = item
-    }
-    acc[item.productId] = item
-    return acc
-  }, [])
-  .filter(item => item !== null)
+	.reduce((acc, item) => {
+		if (!acc[item.productId]) {
+			acc[item] = item;
+		}
+		acc[item.productId] = item;
+		return acc;
+	}, [])
+	.filter((item) => item !== null);
 ```
 
 ## Leigh's approach
@@ -146,12 +146,12 @@ the product ids... so if I just want the deduped values, I could use
 
 ```js
 const dedupedObject = items.reduce((acc, item) => {
-  if (!acc[item.productId]) {
-    acc[item.productId] = item
-  }
-  return acc
-}, {})
-const dedupedArray = Object.values(dedupedObject)
+	if (!acc[item.productId]) {
+		acc[item.productId] = item;
+	}
+	return acc;
+}, {});
+const dedupedArray = Object.values(dedupedObject);
 ```
 
 I could even go a step further and just remove the if statement, since
@@ -159,10 +159,10 @@ it would just override the previous product with the same product id:
 
 ```js
 const dedupedObject = items.reduce((acc, item) => {
-  acc[item.productId] = item
-  return acc
-}, {})
-const dedupedArray = Object.values(dedupedObject)
+	acc[item.productId] = item;
+	return acc;
+}, {});
+const dedupedArray = Object.values(dedupedObject);
 ```
 
 A lot more simpler than my solution! Thanks Leigh!

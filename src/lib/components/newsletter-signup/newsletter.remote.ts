@@ -1,13 +1,13 @@
-import { command, getRequestEvent } from '$app/server'
+import { command, getRequestEvent } from '$app/server';
 import {
 	RESEND_API_KEY,
 	RESEND_AUDIENCE_ID,
 	RESEND_FROM_EMAIL,
 	TURNSTILE_SECRET_KEY,
-} from '$env/static/private'
-import { encrypt } from '$lib/crypto'
-import { ratelimit } from '$lib/redis'
-import * as v from 'valibot'
+} from '$env/static/private';
+import { encrypt } from '$lib/crypto';
+import { ratelimit } from '$lib/redis';
+import * as v from 'valibot';
 
 const newsletter_schema = v.object({
 	email: v.pipe(
@@ -16,7 +16,7 @@ const newsletter_schema = v.object({
 		v.email('Invalid email format'),
 	),
 	turnstile_token: v.string(),
-})
+});
 
 async function verify_turnstile(
 	token: string,
@@ -35,36 +35,36 @@ async function verify_turnstile(
 				remoteip: ip,
 			}),
 		},
-	)
+	);
 
-	const data = await response.json()
-	return data.success === true
+	const data = await response.json();
+	return data.success === true;
 }
 
 export const subscribe_to_newsletter = command(
 	newsletter_schema,
 	async (data) => {
-		const { request } = getRequestEvent()
+		const { request } = getRequestEvent();
 		const ip =
 			request.headers.get('x-forwarded-for')?.split(',')[0] ||
 			request.headers.get('x-real-ip') ||
-			'unknown'
+			'unknown';
 
 		// Verify Turnstile token
-		const is_valid = await verify_turnstile(data.turnstile_token, ip)
+		const is_valid = await verify_turnstile(data.turnstile_token, ip);
 		if (!is_valid) {
-			throw new Error('Failed to verify captcha. Please try again.')
+			throw new Error('Failed to verify captcha. Please try again.');
 		}
 
 		// Check rate limit
-		const rate_limit_attempt = await ratelimit.limit(ip)
+		const rate_limit_attempt = await ratelimit.limit(ip);
 		if (!rate_limit_attempt.success) {
 			const time_remaining = Math.floor(
 				(rate_limit_attempt.reset - new Date().getTime()) / 1000,
-			)
+			);
 			throw new Error(
 				`Rate limit exceeded. Try again in ${time_remaining} seconds`,
-			)
+			);
 		}
 
 		try {
@@ -82,30 +82,32 @@ export const subscribe_to_newsletter = command(
 						unsubscribed: true,
 					}),
 				},
-			)
+			);
 
 			if (!add_contact_response.ok) {
-				const error_data = await add_contact_response.json()
+				const error_data = await add_contact_response.json();
 
 				// Check for duplicate email error
 				if (
 					add_contact_response.status === 422 &&
 					error_data.message?.includes('already exists')
 				) {
-					throw new Error('Email already subscribed')
+					throw new Error('Email already subscribed');
 				}
 
-				throw new Error(error_data.message || 'Failed to add contact')
+				throw new Error(
+					error_data.message || 'Failed to add contact',
+				);
 			}
 
 			// Generate encrypted token with email and timestamp
-			const token_data = `${data.email}:${Date.now()}`
-			const token = encrypt(token_data)
+			const token_data = `${data.email}:${Date.now()}`;
+			const token = encrypt(token_data);
 
 			// Create confirmation link
-			const { url } = getRequestEvent()
-			const base_url = `${url.protocol}//${url.host}`
-			const confirmation_link = `${base_url}/newsletter/verify?token=${encodeURIComponent(token)}`
+			const { url } = getRequestEvent();
+			const base_url = `${url.protocol}//${url.host}`;
+			const confirmation_link = `${base_url}/newsletter/verify?token=${encodeURIComponent(token)}`;
 
 			// Send confirmation email
 			const email_response = await fetch(
@@ -129,33 +131,33 @@ export const subscribe_to_newsletter = command(
 						`,
 					}),
 				},
-			)
+			);
 
 			if (!email_response.ok) {
-				const error_data = await email_response.json()
+				const error_data = await email_response.json();
 				throw new Error(
 					error_data.message || 'Failed to send confirmation email',
-				)
+				);
 			}
 
 			console.log(
 				`Newsletter confirmation email sent to ${data.email} (IP: ${ip})`,
-			)
+			);
 
 			return {
 				success: true,
 				message:
 					'Please check your email to confirm your subscription',
-			}
+			};
 		} catch (error: unknown) {
 			const error_message =
-				error instanceof Error ? error.message : 'Unknown error'
+				error instanceof Error ? error.message : 'Unknown error';
 			console.error(
 				`Error in newsletter subscription: ${error_message}`,
-			)
+			);
 
 			// Re-throw the error so it's properly handled by the remote function
-			throw new Error(error_message)
+			throw new Error(error_message);
 		}
 	},
-)
+);

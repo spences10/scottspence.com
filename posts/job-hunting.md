@@ -164,15 +164,15 @@ Medium:
 [ats']: https://lmgtfy.com/?q=what+is+an+ats
 [freecodecamp]: https://www.freecodecamp.com
 ["recruitment industry will die in 2018."]:
-  https://www.linkedin.com/pulse/recruitment-industry-die-2018-oleg-vishnepolsky
-["if a recruiter sh\*ts in the woods and nobody is around to hear it?"]:
-  https://www.linkedin.com/pulse/recruiter-shts-woods-nobody-around-hear-tim-chattaway
+	https://www.linkedin.com/pulse/recruitment-industry-die-2018-oleg-vishnepolsky
+["if a recruiter sh*ts in the woods and nobody is around to hear it?"]:
+	https://www.linkedin.com/pulse/recruiter-shts-woods-nobody-around-hear-tim-chattaway
 [lessons from my post-bootcamp job search in london]:
-  https://medium.freecodecamp.com/lessons-from-my-post-bootcamp-job-search-in-london-cb37ea12ec2f#.ckpg5lkpa
+	https://medium.freecodecamp.com/lessons-from-my-post-bootcamp-job-search-in-london-cb37ea12ec2f#.ckpg5lkpa
 
 <!-- Images -->
 
 [stress-office]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930931/scottspence.com/stress-office-76b7f4c70276388a047bbf68a48a19a5.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930931/scottspence.com/stress-office-76b7f4c70276388a047bbf68a48a19a5.jpg
 [shady-recruiter-middle-man]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930935/scottspence.com/shady-recruiter-middle-man-39c169147b3806bbb9898f3b553bf0a6.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930935/scottspence.com/shady-recruiter-middle-man-39c169147b3806bbb9898f3b553bf0a6.jpg

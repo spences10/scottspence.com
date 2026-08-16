@@ -704,43 +704,43 @@ try.
 <!-- Links -->
 
 [windows subsystem linux setup]:
-  https://scottspence.com/posts/wsl-bootstrap/
+	https://scottspence.com/posts/wsl-bootstrap/
 [windows web-dev bootstrap]:
-  https://scottspence.com/posts/wsl-bootstrap-2019
+	https://scottspence.com/posts/wsl-bootstrap-2019
 [this comment on a wsl issue]:
-  https://github.com/microsoft/WSL/issues/5078#issuecomment-613384302
+	https://github.com/microsoft/WSL/issues/5078#issuecomment-613384302
 [symbolic links]: https://en.wikipedia.org/wiki/Symbolic_link
 [a linux distro from the ms store]: https://aka.ms/wslstore
 [another several distros]: https://aka.ms/wslstore
 [pengwin]: https://www.whitewaterfoundry.com/
 [wsl2, zsh, and docker. linux through windows.]:
-  https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker
+	https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker
 [authenticating with github via ssh]:
-  https://cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh
+	https://cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh
 [cygwin]: https://cygwin.com/packages/summary/bash.html
 [chocolatey]: chocolatey.org/
 [guide]: #prerequisites
 [windows terminal documentation]:
-  https://github.com/microsoft/terminal/blob/master/doc/user-docs/UsingJsonSettings.md
+	https://github.com/microsoft/terminal/blob/master/doc/user-docs/UsingJsonSettings.md
 [windows terminal themes]: https://atomcorp.github.io/themes/
 [guide on how to use themes]:
-  https://github.com/atomcorp/themes#how-to-use-the-themes
+	https://github.com/atomcorp/themes#how-to-use-the-themes
 [wsl git workaround]: https://github.com/Microsoft/vscode/issues/9502
 [this line]:
-  https://github.com/yarnpkg/yarn/issues/5353#issuecomment-593307861
+	https://github.com/yarnpkg/yarn/issues/5353#issuecomment-593307861
 [windows wsl install]:
-  https://docs.microsoft.com/en-us/windows/wsl/install-win10
+	https://docs.microsoft.com/en-us/windows/wsl/install-win10
 [some additional features]: https://aka.ms/wsl2kernel
 [great explanation from brian turek]:
-  https://www.turek.dev/post/fix-wsl-file-permissions/
+	https://www.turek.dev/post/fix-wsl-file-permissions/
 [configure per distro launch settings with `wsl.conf`]:
-  https://docs.microsoft.com/en-us/windows/wsl/wsl-config#configure-per-distro-launch-settings-with-wslconf
+	https://docs.microsoft.com/en-us/windows/wsl/wsl-config#configure-per-distro-launch-settings-with-wslconf
 [ridicurious]:
-  https://ridicurious.com/2019/07/25/setup-wsl-launch-configuration-wsl-conf/
+	https://ridicurious.com/2019/07/25/setup-wsl-launch-configuration-wsl-conf/
 [chocolatey]: https://chocolatey.org/
 [get started]: https://chocolatey.org/install
 [had to install git on windows]:
-  https://scottspence.com/posts/wsl-bootstrap-2019/#install-windows-git
+	https://scottspence.com/posts/wsl-bootstrap-2019/#install-windows-git
 [using node version manager]: https://github.com/nvm-sh/nvm
 [n]: https://www.npmjs.com/package/n#installation
 [fnm]: https://github.com/Schniz/fnm#using-a-script
@@ -753,19 +753,19 @@ try.
 [cheat sheets]: https://cheatsheets.xyz/fish/#list-out-added-aliases
 [earlier]: #enable-file-permissions-for-symlinks
 [dotfiles repo]:
-  https://github.com/spences10/dotfiles/blob/master/Windows/.gitconfig
+	https://github.com/spences10/dotfiles/blob/master/Windows/.gitconfig
 [cheat sheets again]:
-  https://cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh
+	https://cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh
 [brittney]: https://twitter.com/brittneypostma
 [party corgi discord]: https://discord.gg/MzC3kr
 [wslgit]: https://github.com/andy-5/wslgit
 [set up your development environment on windows 10]:
-  https://docs.microsoft.com/en-us/windows/dev-environment/overview
+	https://docs.microsoft.com/en-us/windows/dev-environment/overview
 [developing on windows with wsl2 (subsystem for linux), vs code, docker, and the terminal]:
-  https://www.youtube.com/watch?v=A0eqZujVfYU&feature=emb_title
+	https://www.youtube.com/watch?v=A0eqZujVfYU&feature=emb_title
 [remote wsl]:
-  https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl
+	https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl
 [windows 10 home]:
-  https://docs.microsoft.com/en-us/windows/wsl/wsl2-faq#does-wsl-2-use-hyper-v-will-it-be-available-on-windows-10-home
+	https://docs.microsoft.com/en-us/windows/wsl/wsl2-faq#does-wsl-2-use-hyper-v-will-it-be-available-on-windows-10-home
 [switching to manjaro from ubuntu]:
-  https://scottspence.com/posts/switching-to-manjaro-from-ubuntu/#yarn
+	https://scottspence.com/posts/switching-to-manjaro-from-ubuntu/#yarn

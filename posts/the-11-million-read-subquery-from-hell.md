@@ -60,17 +60,17 @@ Here's what I changed in `src/routes/api/ingest/embeddings.ts`:
 const current_post_result = await client.execute({
 	sql: 'SELECT embedding FROM post_embeddings WHERE post_id = ?',
 	args: [post_id],
-})
+});
 
 const current_embedding = new Float32Array(
 	current_post_result.rows[0].embedding,
-)
+);
 
 // Get all other posts
 const all_posts_result = await client.execute({
 	sql: 'SELECT post_id, embedding FROM post_embeddings WHERE post_id != ?',
 	args: [post_id],
-})
+});
 
 // Calculate similarities in JavaScript
 const similarities = all_posts_result.rows.map((row) => ({
@@ -79,7 +79,7 @@ const similarities = all_posts_result.rows.map((row) => ({
 		current_embedding,
 		new Float32Array(row.embedding),
 	),
-}))
+}));
 ```
 
 **After (the "optimized" version):**
@@ -166,9 +166,9 @@ subquery, just do two separate queries:
 const target_post_result = await client.execute({
 	sql: 'SELECT embedding FROM post_embeddings WHERE post_id = ?',
 	args: [post_id],
-})
+});
 
-const target_embedding = target_post_result.rows[0].embedding
+const target_embedding = target_post_result.rows[0].embedding;
 
 // Second: compare all other posts to that embedding
 const result = await client.execute({
@@ -179,7 +179,7 @@ const result = await client.execute({
   ORDER BY distance ASC 
   LIMIT ?`,
 	args: [target_embedding, post_id, limit],
-})
+});
 ```
 
 **Impact:**
@@ -305,11 +305,11 @@ Quick fix in the hooks file:
 const is_health_check =
 	user_agent.includes('curl') ||
 	user_agent.includes('wget') ||
-	client_ip === '127.0.0.1'
+	client_ip === '127.0.0.1';
 
 // Skip health checks entirely - return minimal response
 if (is_health_check && pathname === '/') {
-	return new Response('OK', { status: 200 })
+	return new Response('OK', { status: 200 });
 }
 ```
 

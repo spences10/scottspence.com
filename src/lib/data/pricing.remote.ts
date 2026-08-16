@@ -1,24 +1,24 @@
-import { query } from '$app/server'
-import { EXCHANGE_RATE_API_KEY } from '$env/static/private'
-import { sqlite_client } from '$lib/sqlite/client'
-import { differenceInHours, parseISO } from 'date-fns'
+import { query } from '$app/server';
+import { EXCHANGE_RATE_API_KEY } from '$env/static/private';
+import { sqlite_client } from '$lib/sqlite/client';
+import { differenceInHours, parseISO } from 'date-fns';
 
 type ExchangeRates = {
-	GBP: number
-	USD: number
-	CAD: number
-}
+	GBP: number;
+	USD: number;
+	CAD: number;
+};
 
 type PricingNumbers = {
-	annual_rate_eur: number
-	chosen_holidays: number
-	public_holidays: number
-	working_days_in_year: number
-}
+	annual_rate_eur: number;
+	chosen_holidays: number;
+	public_holidays: number;
+	working_days_in_year: number;
+};
 
 interface PricingData {
-	exchangeRates: ExchangeRates
-	pricingNumbers: PricingNumbers
+	exchangeRates: ExchangeRates;
+	pricingNumbers: PricingNumbers;
 }
 
 export const get_pricing_data = query(
@@ -27,14 +27,14 @@ export const get_pricing_data = query(
 			const [exchangeRates, pricingNumbers] = await Promise.all([
 				fetch_exchange_rates(),
 				fetch_pricing_numbers(),
-			])
+			]);
 
 			return {
 				exchangeRates,
 				pricingNumbers,
-			}
+			};
 		} catch (error) {
-			console.warn('Database unavailable for pricing data:', error)
+			console.warn('Database unavailable for pricing data:', error);
 			return {
 				exchangeRates: { GBP: 0.86, USD: 1.09, CAD: 1.47 },
 				pricingNumbers: {
@@ -43,22 +43,22 @@ export const get_pricing_data = query(
 					public_holidays: 8,
 					working_days_in_year: 252,
 				},
-			}
+			};
 		}
 	},
-)
+);
 
 async function fetch_exchange_rates(): Promise<ExchangeRates> {
-	let fetch_new_rates = false
+	let fetch_new_rates = false;
 
 	// Check if the rates in the database are outdated
 	try {
 		const last_update_result = await sqlite_client.execute(
 			'SELECT MAX(last_updated) as last_update FROM exchange_rates;',
-		)
+		);
 		const last_updated = last_update_result.rows[0] as unknown as {
-			last_update: string
-		}
+			last_update: string;
+		};
 
 		if (
 			last_updated &&
@@ -67,23 +67,23 @@ async function fetch_exchange_rates(): Promise<ExchangeRates> {
 				parseISO(last_updated.last_update),
 			) > 1
 		) {
-			fetch_new_rates = true
+			fetch_new_rates = true;
 		}
 	} catch (error) {
 		console.warn(
 			'Database unavailable for checking rates update time:',
 			error,
-		)
-		return { GBP: 0.86, USD: 1.09, CAD: 1.47 }
+		);
+		return { GBP: 0.86, USD: 1.09, CAD: 1.47 };
 	}
 
 	// Fetch new rates if necessary and update the database
 	if (fetch_new_rates) {
 		const response = await fetch(
 			`https://api.freecurrencyapi.com/v1/latest?apikey=${EXCHANGE_RATE_API_KEY}&currencies=GBP%2CUSD%2CCAD&base_currency=EUR`,
-		)
+		);
 		const fetched_rates = (await response.json())
-			.data as ExchangeRates
+			.data as ExchangeRates;
 
 		for (const [currency, rate] of Object.entries(fetched_rates)) {
 			try {
@@ -91,12 +91,12 @@ async function fetch_exchange_rates(): Promise<ExchangeRates> {
 					sql: `INSERT INTO exchange_rates (currency_code, rate) VALUES (?, ?)
 						ON CONFLICT (currency_code) DO UPDATE SET rate = ?, last_updated = CURRENT_TIMESTAMP;`,
 					args: [currency, rate, rate],
-				})
+				});
 			} catch (error) {
 				console.error(
 					`Error updating exchange rate for ${currency}:`,
 					error,
-				)
+				);
 			}
 		}
 	}
@@ -105,16 +105,16 @@ async function fetch_exchange_rates(): Promise<ExchangeRates> {
 	try {
 		const result = await sqlite_client.execute(
 			'SELECT currency_code, rate FROM exchange_rates;',
-		)
-		const rates: ExchangeRates = { GBP: 0, USD: 0, CAD: 0 }
+		);
+		const rates: ExchangeRates = { GBP: 0, USD: 0, CAD: 0 };
 		result.rows.forEach((row) => {
-			const code = row.currency_code as keyof ExchangeRates
-			rates[code] = Number(row.rate)
-		})
-		return rates
+			const code = row.currency_code as keyof ExchangeRates;
+			rates[code] = Number(row.rate);
+		});
+		return rates;
 	} catch (error) {
-		console.warn('Database unavailable for exchange rates:', error)
-		return { GBP: 0.86, USD: 1.09, CAD: 1.47 } // Fallback rates
+		console.warn('Database unavailable for exchange rates:', error);
+		return { GBP: 0.86, USD: 1.09, CAD: 1.47 }; // Fallback rates
 	}
 }
 
@@ -122,7 +122,7 @@ async function fetch_pricing_numbers(): Promise<PricingNumbers> {
 	try {
 		const pricing_numbers = await sqlite_client.execute(
 			'SELECT * FROM pricing_numbers ORDER BY last_updated DESC LIMIT 1;',
-		)
+		);
 
 		if (pricing_numbers.rows.length === 0) {
 			return {
@@ -130,26 +130,26 @@ async function fetch_pricing_numbers(): Promise<PricingNumbers> {
 				chosen_holidays: 30,
 				public_holidays: 8,
 				working_days_in_year: 252,
-			}
+			};
 		}
 
-		const row = pricing_numbers.rows[0]
+		const row = pricing_numbers.rows[0];
 		return {
 			annual_rate_eur: Number(row.annual_rate_eur),
 			chosen_holidays: Number(row.chosen_holidays),
 			public_holidays: Number(row.public_holidays),
 			working_days_in_year: Number(row.working_days_in_year),
-		}
+		};
 	} catch (error) {
-		console.warn('Database unavailable for pricing numbers:', error)
+		console.warn('Database unavailable for pricing numbers:', error);
 		return {
 			annual_rate_eur: 155000,
 			chosen_holidays: 30,
 			public_holidays: 8,
 			working_days_in_year: 252,
-		}
+		};
 	}
 }
 
 // Export types
-export type { ExchangeRates, PricingData, PricingNumbers }
+export type { ExchangeRates, PricingData, PricingNumbers };

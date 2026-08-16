@@ -1,20 +1,20 @@
-import { error } from '@sveltejs/kit'
-import type { PageLoad } from './$types'
+import { error } from '@sveltejs/kit';
+import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ params }) => {
-	const { slug } = params
+	const { slug } = params;
 
 	try {
 		const newsletter = await import(
 			`../../../../newsletter/${slug}.md`
-		)
+		);
 		return {
 			Content: newsletter.default,
 			meta: { ...newsletter.metadata, slug },
-		}
-	} catch (err) {
+		};
+	} catch {
 		error(404, {
 			message: 'Newsletter not found',
-		})
+		});
 	}
-}
+};

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { ContactForm } from '$lib/components'
-	import { name, website } from '$lib/info'
-	import { create_seo_config } from '$lib/seo'
-	import { og_image_url } from '$lib/utils'
-	import { Head } from 'svead'
+	import { ContactForm } from '$lib/components';
+	import { name, website } from '$lib/info';
+	import { create_seo_config } from '$lib/seo';
+	import { og_image_url } from '$lib/utils';
+	import { Head } from 'svead';
 
 	const seo_config = create_seo_config({
 		title: `Contact - ${name}`,
@@ -15,7 +15,7 @@
 		),
 		url: `${website}/contact`,
 		slug: 'contact',
-	})
+	});
 </script>
 
 <Head {seo_config} />

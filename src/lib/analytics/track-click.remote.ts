@@ -1,7 +1,7 @@
-import { command, getRequestEvent } from '$app/server'
-import * as v from 'valibot'
-import { queue_click_event } from './queue'
-import { get_client_ip, get_visitor_hash } from './utils'
+import { command, getRequestEvent } from '$app/server';
+import * as v from 'valibot';
+import { queue_click_event } from './queue';
+import { get_client_ip, get_visitor_hash } from './utils';
 
 /**
  * Track a click event - replaces Fathom.trackEvent()
@@ -13,10 +13,10 @@ export const track_click = command(
 		context: v.optional(v.record(v.string(), v.unknown())),
 	}),
 	({ event_name, context }) => {
-		const event = getRequestEvent()
-		const request = event.request
-		const ip = get_client_ip(request)
-		const user_agent = request.headers.get('user-agent')
+		const event = getRequestEvent();
+		const request = event.request;
+		const ip = get_client_ip(request);
+		const user_agent = request.headers.get('user-agent');
 
 		queue_click_event({
 			event_name,
@@ -24,6 +24,6 @@ export const track_click = command(
 			visitor_hash: get_visitor_hash(ip, user_agent),
 			path: event.url.pathname,
 			created_at: Date.now(),
-		})
+		});
 	},
-)
+);

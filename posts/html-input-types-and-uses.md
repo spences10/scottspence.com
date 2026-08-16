@@ -22,9 +22,9 @@ If even one person finds this useful, I'll consider it a win.
 
 ```html
 <input
-  type="text"
-  name="username"
-  placeholder="Enter your username"
+	type="text"
+	name="username"
+	placeholder="Enter your username"
 />
 ```
 
@@ -44,9 +44,9 @@ If even one person finds this useful, I'll consider it a win.
 
 ```html
 <input
-  type="password"
-  name="password"
-  placeholder="Enter your password"
+	type="password"
+	name="password"
+	placeholder="Enter your password"
 />
 ```
 
@@ -147,9 +147,9 @@ If even one person finds this useful, I'll consider it a win.
 
 ```html
 <input
-  type="button"
-  value="Click me"
-  onclick="{() => alert('Hello!')}"
+	type="button"
+	value="Click me"
+	onclick="{() => alert('Hello!')}"
 />
 ```
 
@@ -274,10 +274,10 @@ If even one person finds this useful, I'll consider it a win.
 
 ```html
 <input
-  type="month"
-  name="select-month"
-  placeholder="YYYY-MM"
-  pattern="\d{4}-\d{2}"
+	type="month"
+	name="select-month"
+	placeholder="YYYY-MM"
+	pattern="\d{4}-\d{2}"
 />
 ```
 
@@ -351,9 +351,9 @@ If even one person finds this useful, I'll consider it a win.
 
 ```html
 <input
-  type="tel"
-  name="phone"
-  placeholder="Enter your phone number"
+	type="tel"
+	name="phone"
+	placeholder="Enter your phone number"
 />
 ```
 
@@ -389,9 +389,9 @@ If even one person finds this useful, I'll consider it a win.
 
 ```html
 <input
-  type="url"
-  name="website"
-  placeholder="Enter your website URL"
+	type="url"
+	name="website"
+	placeholder="Enter your website URL"
 />
 ```
 

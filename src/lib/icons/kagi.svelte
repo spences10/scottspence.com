@@ -1,9 +1,9 @@
 <script lang="ts">
 	interface Props {
-		height?: string
-		width?: string
-		class_props?: string
-		aria_label?: string
+		height?: string;
+		width?: string;
+		class_props?: string;
+		aria_label?: string;
 	}
 
 	let {
@@ -11,12 +11,12 @@
 		width = '20px',
 		class_props = '',
 		aria_label,
-	}: Props = $props()
+	}: Props = $props();
 </script>
 
 <svg
 	xmlns="http://www.w3.org/2000/svg"
-	class="text-accent-content hover:text-accent block transition {class_props}"
+	class="block text-accent-content transition hover:text-accent {class_props}"
 	{width}
 	{height}
 	viewBox="0 0 512 512"

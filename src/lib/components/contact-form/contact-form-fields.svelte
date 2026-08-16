@@ -1,31 +1,31 @@
 <script lang="ts">
-	import { PUBLIC_TURNSTILE_SITE_KEY } from '$env/static/public'
-	import type { ActionResult } from '@sveltejs/kit'
-	import { Turnstile } from 'svelte-turnstile'
-	import { submit_contact } from '../../../routes/contact/contact.remote'
+	import { PUBLIC_TURNSTILE_SITE_KEY } from '$env/static/public';
+	import type { ActionResult } from '@sveltejs/kit';
+	import { Turnstile } from 'svelte-turnstile';
+	import { submit_contact } from '../../../routes/contact/contact.remote';
 
 	interface Props {
-		handle_result: Function
+		handle_result: Function;
 	}
 
-	let { handle_result }: Props = $props()
+	let { handle_result }: Props = $props();
 
-	let is_submitting = $state(false)
-	let error_message = $state<string | null>(null)
-	let turnstile_token = $state<string>('')
+	let is_submitting = $state(false);
+	let error_message = $state<string | null>(null);
+	let turnstile_token = $state<string>('');
 
 	async function handle_submit(e: SubmitEvent) {
-		e.preventDefault()
-		is_submitting = true
-		error_message = null
+		e.preventDefault();
+		is_submitting = true;
+		error_message = null;
 
 		try {
 			if (!turnstile_token) {
-				error_message = 'Please complete the verification'
-				return
+				error_message = 'Please complete the verification';
+				return;
 			}
 
-			const form_data = new FormData(e.target as HTMLFormElement)
+			const form_data = new FormData(e.target as HTMLFormElement);
 			const data = {
 				name: form_data.get('name') as string,
 				email: form_data.get('email') as string,
@@ -33,37 +33,37 @@
 				message: form_data.get('message') as string,
 				subject: form_data.get('subject') as string,
 				turnstile_token,
-			}
+			};
 
-			console.log('Submitting contact form with data:', data)
-			await submit_contact(data)
-			console.log('Remote function succeeded')
+			console.log('Submitting contact form with data:', data);
+			await submit_contact(data);
+			console.log('Remote function succeeded');
 
 			const result: ActionResult = {
 				type: 'success',
 				status: 200,
 				data: { message: 'Email sent successfully' },
-			}
-			handle_result(result)
-			;(e.target as HTMLFormElement).reset()
+			};
+			handle_result(result);
+			(e.target as HTMLFormElement).reset();
 		} catch (error: unknown) {
 			const error_msg =
-				error instanceof Error ? error.message : 'An error occurred'
-			error_message = error_msg
+				error instanceof Error ? error.message : 'An error occurred';
+			error_message = error_msg;
 			const result: ActionResult = {
 				type: 'failure',
 				status: 400,
 				data: { error: error_msg },
-			}
-			handle_result(result)
+			};
+			handle_result(result);
 		} finally {
-			is_submitting = false
+			is_submitting = false;
 		}
 	}
 </script>
 
 <div
-	class="not-prose bg-primary rounded-box my-5 items-center justify-center p-10 shadow-lg"
+	class="not-prose my-5 items-center justify-center rounded-box bg-primary p-10 shadow-lg"
 >
 	<form
 		onsubmit={handle_submit}
@@ -71,10 +71,10 @@
 	>
 		<fieldset class="w-full">
 			<label
-				class="label-text text-primary-content text-sm"
+				class="label-text text-sm text-primary-content"
 				for="name">Name</label
 			>
-			<div class="validator validator-required">
+			<div class="validator-required validator">
 				<input
 					type="text"
 					id="name"
@@ -82,16 +82,16 @@
 					aria-label="name"
 					placeholder="Name"
 					required
-					class="input input-bordered focus:input-secondary w-full text-lg"
+					class="input-bordered input w-full text-lg focus:input-secondary"
 				/>
 			</div>
 		</fieldset>
 		<fieldset class="w-full">
 			<label
-				class="label-text text-primary-content text-sm"
+				class="label-text text-sm text-primary-content"
 				for="email">Email</label
 			>
-			<div class="validator validator-email validator-required">
+			<div class="validator-email validator-required validator">
 				<input
 					type="email"
 					id="email"
@@ -99,7 +99,7 @@
 					aria-label="email"
 					placeholder="Email"
 					required
-					class="input input-bordered focus:input-secondary w-full text-lg"
+					class="input-bordered input w-full text-lg focus:input-secondary"
 				/>
 			</div>
 		</fieldset>
@@ -107,16 +107,16 @@
 		<input type="text" name="subject" id="subject" class="hidden" />
 		<fieldset class="w-full">
 			<label
-				class="label-text text-primary-content text-sm"
+				class="label-text text-sm text-primary-content"
 				for="reason">Reason</label
 			>
-			<div class="validator validator-required">
+			<div class="validator-required validator">
 				<select
 					id="reason"
 					name="reason"
 					aria-label="reason"
 					required
-					class="select select-bordered focus:select-secondary w-full text-lg"
+					class="select-bordered select w-full text-lg focus:select-secondary"
 				>
 					<option disabled selected value="">Contact reason</option>
 					<option value="hi">Say hi!</option>
@@ -127,17 +127,17 @@
 		</fieldset>
 		<fieldset class="w-full">
 			<label
-				class="label-text text-primary-content text-sm"
+				class="label-text text-sm text-primary-content"
 				for="message">Message</label
 			>
-			<div class="validator validator-required">
+			<div class="validator-required validator">
 				<textarea
 					id="message"
 					name="message"
 					aria-label="message"
 					placeholder="Hey! I'd love to talk about..."
 					required
-					class="textarea textarea-bordered focus:textarea-secondary mb-6 w-full text-lg"
+					class="textarea-bordered textarea mb-6 w-full text-lg focus:textarea-secondary"
 				></textarea>
 			</div>
 		</fieldset>
@@ -147,7 +147,7 @@
 				theme="auto"
 				siteKey={PUBLIC_TURNSTILE_SITE_KEY}
 				on:turnstile-callback={(e) => {
-					turnstile_token = e.detail.token
+					turnstile_token = e.detail.token;
 				}}
 			/>
 		</div>
@@ -160,7 +160,7 @@
 			<button
 				type="submit"
 				disabled={is_submitting || !turnstile_token}
-				class="btn btn-secondary w-full max-w-lg p-6"
+				class="btn w-full max-w-lg p-6 btn-secondary"
 			>
 				{#if is_submitting}
 					<span class="loading loading-spinner"></span>

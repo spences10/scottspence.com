@@ -70,5 +70,6 @@ available.
 
 [toast sites]: https://scottspence.com/posts/notes-on-toast/#resources
 [vlad]: https://www.youtube.com/watch?v=YkxoGRpHcVQ
-[supported platforms]: https://direnv.net/docs/installation.html#from-system-packages
+[supported platforms]:
+	https://direnv.net/docs/installation.html#from-system-packages
 [hook from the documentation]: https://direnv.net/docs/hook.html

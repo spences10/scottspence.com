@@ -26,14 +26,16 @@ here's the light side:
 
 ```css
 body[data-theme='light'] {
-  --colour-background: #f7fafc;
-  --colour-on-background: #1a202c;
-  --box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px
-      rgba(0, 0, 0, 0.05);
-  --box-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px
-      10px -5px rgba(0, 0, 0, 0.04);
-  --title-gradient: linear-gradient(#9966cc, #663399);
-  --qrt-turn-gradient: linear-gradient(0.25turn, #9966cc, #663399);
+	--colour-background: #f7fafc;
+	--colour-on-background: #1a202c;
+	--box-shadow-lg:
+		0 10px 15px -3px rgba(0, 0, 0, 0.1),
+		0 4px 6px -2px rgba(0, 0, 0, 0.05);
+	--box-shadow-xl:
+		0 20px 25px -5px rgba(0, 0, 0, 0.1),
+		0 10px 10px -5px rgba(0, 0, 0, 0.04);
+	--title-gradient: linear-gradient(#9966cc, #663399);
+	--qrt-turn-gradient: linear-gradient(0.25turn, #9966cc, #663399);
 }
 ```
 
@@ -51,7 +53,7 @@ export const GlobalStyle = createGlobalStyle`
     --colour-on-background: ${({ theme }) => theme.colours.grey[900]};
   }
   ...
-`
+`;
 ```
 
 I was using the CSS gradient like this, thinking that :
@@ -92,14 +94,14 @@ adding the fallback in the wrong place.
 
 ```css
 background: linear-gradient(
-  var(
-    --title-gradient-from,
-    $ {({theme}) => theme.colours.primary[200]}
-  ),
-  var(
-    --title-gradient-to,
-    $ {({theme}) => theme.colours.primary[500]}
-  )
+	var(
+		--title-gradient-from,
+		$ {({theme}) => theme.colours.primary[200]}
+	),
+	var(
+		--title-gradient-to,
+		$ {({theme}) => theme.colours.primary[500]}
+	)
 );
 -webkit-background-clip: text;
 background-clip: text;
@@ -114,4 +116,4 @@ they're going to have the light theme flash first.
 
 [in the past]: https://scottspence.com/posts/react-context-api/
 [this article]:
-  https://medium.com/fbdevclagos/how-to-leverage-styled-components-and-css-variables-to-build-truly-reusable-components-in-react-4bbf50467666
+	https://medium.com/fbdevclagos/how-to-leverage-styled-components-and-css-variables-to-build-truly-reusable-components-in-react-4bbf50467666

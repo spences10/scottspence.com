@@ -216,21 +216,21 @@ snappy and FAST!
 
 [my shiny new rig]: https://scottspence.com/posts/first-time-pc-build/
 [manjaro forum]:
-  https://forum.manjaro.org/t/bluetooth-is-not-working-with-headphones/116661/4
+	https://forum.manjaro.org/t/bluetooth-is-not-working-with-headphones/116661/4
 [yarn repo]: https://github.com/yarnpkg/yarn/issues/5824
 [what prompted me to check bash]:
-  https://github.com/yarnpkg/yarn/issues/4702#issuecomment-343970090
+	https://github.com/yarnpkg/yarn/issues/4702#issuecomment-343970090
 [hot corner setting]: https://askubuntu.com/a/1019918/142801
 [emoji support]:
-  https://forum.manjaro.org/t/solved-emoji-support-problem/86783
+	https://forum.manjaro.org/t/solved-emoji-support-problem/86783
 [again from the manjaro forum]:
-  https://forum.manjaro.org/t/help-me-install-virtualbox/103458/4
+	https://forum.manjaro.org/t/help-me-install-virtualbox/103458/4
 
 <!-- Images -->
 
 [emoji support before]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/emoji-support-before-fb1277dfef2dd2715391a9f42ac41d33.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/emoji-support-before-fb1277dfef2dd2715391a9f42ac41d33.png
 [emoji support after]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/emoji-support-after-aa2d85234ffe7f945397acf5920003cb.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/emoji-support-after-aa2d85234ffe7f945397acf5920003cb.png
 [activity view]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858544/scottspence.com/activity-view-c64b5569a8cfbd4c280c13540bbefbac.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858544/scottspence.com/activity-view-c64b5569a8cfbd4c280c13540bbefbac.png

@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { page } from '$app/state'
-	import { track_click } from '$lib/analytics/track-click.remote'
-	import { get_popular_posts } from '$lib/data/popular-posts.remote'
-	import { Eye } from '$lib/icons'
-	import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info'
-	import { number_crunch } from '$lib/utils'
-	import LiveVisitors from './live-visitors.svelte'
+	import { page } from '$app/state';
+	import { track_click } from '$lib/analytics/track-click.remote';
+	import { get_popular_posts } from '$lib/data/popular-posts.remote';
+	import { Eye } from '$lib/icons';
+	import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info';
+	import { number_crunch } from '$lib/utils';
+	import LiveVisitors from './live-visitors.svelte';
 
-	const popular_posts_query = get_popular_posts()
+	const popular_posts_query = get_popular_posts();
 </script>
 
 <footer
-	class="footer sm:footer-horizontal bg-primary text-primary-content p-10"
+	class="footer bg-primary p-10 text-primary-content sm:footer-horizontal"
 >
 	<nav>
 		<h6 class="footer-title">Popular Posts</h6>
@@ -21,13 +21,13 @@
 				<p>
 					<a
 						data-sveltekit-reload
-						class="link link-hover text-primary-content"
+						class="link text-primary-content link-hover"
 						href={page.url.origin + post.pathname}
 					>
 						{post.title}
 					</a>
 					<span
-						class="tooltip tooltip-secondary text-primary-content relative cursor-pointer font-bold"
+						class="tooltip relative cursor-pointer font-bold tooltip-secondary text-primary-content"
 						data-tip={`
                     Visits: ${number_crunch(post.visits)},
                     Pageviews: ${number_crunch(post.pageviews)}
@@ -49,7 +49,7 @@
 			<a
 				href={`/${link.slug}`}
 				onclick={() => track_click({ event_name: link.slug })}
-				class="link link-hover text-primary-content"
+				class="link text-primary-content link-hover"
 			>
 				{link.title}
 			</a>
@@ -60,7 +60,7 @@
 		<h6 class="footer-title">Socials</h6>
 		{#each SOCIAL_LINKS as social}
 			<a
-				class="link link-hover text-primary-content"
+				class="link text-primary-content link-hover"
 				href={social.link}
 				target="_blank"
 				rel="noopener noreferrer"
@@ -70,8 +70,8 @@
 		{/each}
 	</nav>
 </footer>
-<div class="divider divider-secondary bg-primary m-0"></div>
-<div class="bg-primary text-primary-content p-4">
+<div class="divider m-0 divider-secondary bg-primary"></div>
+<div class="bg-primary p-4 text-primary-content">
 	<p class="text-center">
 		Copyright &copy; 2017 - {`${new Date().getFullYear()}`} - All rights
 		reserved

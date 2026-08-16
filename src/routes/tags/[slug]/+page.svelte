@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { create_seo_config } from '$lib/seo'
-	import { Head } from 'svead'
+	import { create_seo_config } from '$lib/seo';
+	import { Head } from 'svead';
 
 	interface Props {
-		data: any
+		data: any;
 	}
 
-	let { data }: Props = $props()
+	let { data }: Props = $props();
 
-	const posts_by_tag = $derived(data.posts_by_tag)
-	const tag_slug = $derived(data.slug)
-	const tag = $derived(tag_slug ?? '')
+	const posts_by_tag = $derived(data.posts_by_tag);
+	const tag_slug = $derived(data.slug);
+	const tag = $derived(tag_slug ?? '');
 
 	const seo_config = $derived(
 		create_seo_config({
@@ -18,7 +18,7 @@
 			description: `A collection of posts related to the tag "${tag}"`,
 			slug: `tags/${tag_slug}`,
 		}),
-	)
+	);
 </script>
 
 <Head {seo_config} />
@@ -29,7 +29,7 @@
 	{#each posts_by_tag[tag] || [] as { title, slug: post_slug }}
 		<li class="my-4 text-xl">
 			<a
-				class="link hover:text-primary mr-6 transition"
+				class="mr-6 link transition hover:text-primary"
 				href={`/posts/${post_slug}`}
 			>
 				{title}

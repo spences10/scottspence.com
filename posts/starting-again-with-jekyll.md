@@ -143,10 +143,10 @@ flow around the image, the CSS is this:
 /* see image in content preview */
 /* only adjust width OR height so aspect ration is maintained */
 .floated {
-  float: right;
-  display: block;
-  width: 33vw;
-  max-width: 250px;
+	float: right;
+	display: block;
+	width: 33vw;
+	max-width: 250px;
 }
 ```
 
@@ -162,10 +162,10 @@ for now I have what I need.
 <!-- Images -->
 
 [jekyll logo]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930929/scottspence.com/jekyll-logo-9a6784d0e7ab903d7aa9970e804ccaa3.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930929/scottspence.com/jekyll-logo-9a6784d0e7ab903d7aa9970e804ccaa3.png
 [bas-project-layout]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/base-jekyll-project-f23bbe735fd8a42717474db5013e7542.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/base-jekyll-project-f23bbe735fd8a42717474db5013e7542.png
 [base-jekyll-site]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930928/scottspence.com/base-jekyll-site-bec10c4a17adb57f6381b8bc833f463f.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930928/scottspence.com/base-jekyll-site-bec10c4a17adb57f6381b8bc833f463f.png
 [dem-commits]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930931/scottspence.com/dem-commits-8e23cb21d43675e06988080fad218959.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930931/scottspence.com/dem-commits-8e23cb21d43675e06988080fad218959.png

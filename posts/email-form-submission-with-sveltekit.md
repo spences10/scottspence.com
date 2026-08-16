@@ -137,10 +137,10 @@ Then it's a case of swapping out the first line here `adapter-static`
 with `adapter-vercel`:
 
 ```js
-import adapter from '@sveltejs/adapter-vercel'
-import { mdsvex } from 'mdsvex'
-import preprocess from 'svelte-preprocess'
-import mdsvexConfig from './mdsvex.config.js'
+import adapter from '@sveltejs/adapter-vercel';
+import { mdsvex } from 'mdsvex';
+import preprocess from 'svelte-preprocess';
+import mdsvexConfig from './mdsvex.config.js';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -160,9 +160,9 @@ const config = {
 		target: '#svelte',
 		adapter: adapter(),
 	},
-}
+};
 
-export default config
+export default config;
 ```
 
 The rest of the config here isn't really pertinent, what matters is
@@ -235,7 +235,7 @@ working.
 
 ```js
 export async function post() {
-	const REVUE_API_KEY = process.env['REVUE_API_KEY']
+	const REVUE_API_KEY = process.env['REVUE_API_KEY'];
 	try {
 		const res = await fetch(
 			'https://www.getrevue.co/api/v2/subscribers',
@@ -252,14 +252,14 @@ export async function post() {
 					double_opt_in: false,
 				}),
 			},
-		)
+		);
 		if (res.ok) {
 			return {
 				status: 200,
 				body: JSON.stringify({
 					message: 'email sent!',
 				}),
-			}
+			};
 		}
 		if (res.status !== 200) {
 			return {
@@ -267,7 +267,7 @@ export async function post() {
 				body: JSON.stringify({
 					message: 'bad request',
 				}),
-			}
+			};
 		}
 	} catch (error) {
 		return {
@@ -275,7 +275,7 @@ export async function post() {
 			body: JSON.stringify({
 				message: 'something went wrong with the email submit!',
 			}),
-		}
+		};
 	}
 }
 ```
@@ -303,7 +303,7 @@ body: JSON.stringify({
 	first_name: '',
 	last_name: '',
 	double_opt_in: false,
-})
+});
 ```
 
 I'll be changing that once I've validated the submit is working. I
@@ -329,29 +329,29 @@ Then add the following script to the component:
 
 ```svelte
 <script>
-	let email = ''
-	let showMessage = false
-	let responseMessage = ''
+	let email = '';
+	let showMessage = false;
+	let responseMessage = '';
 
 	async function submitForm() {
 		const submit = await fetch('/email-submit.json', {
 			method: 'POST',
 			body: JSON.stringify({ email }),
-		})
-		const data = await submit.json()
+		});
+		const data = await submit.json();
 
 		if (data.message === 'bad request') {
-			showMessage = true
-			responseMessage = `That looks like a bad request`
+			showMessage = true;
+			responseMessage = `That looks like a bad request`;
 		}
 		if (data.message === 'email sent!') {
-			showMessage = true
-			responseMessage = `Sweet! You're signed up!`
+			showMessage = true;
+			responseMessage = `Sweet! You're signed up!`;
 		}
 		if (
 			data.message === 'something went wrong with the email submit!'
 		) {
-			showMessage = false
+			showMessage = false;
 			// deal with failed response from server
 		}
 	}
@@ -412,29 +412,29 @@ Full code from the component here if you need it.
 
 ```svelte
 <script>
-	let email = ''
-	let showMessage = false
-	let responseMessage = ''
+	let email = '';
+	let showMessage = false;
+	let responseMessage = '';
 
 	async function submitForm() {
 		const submit = await fetch('/email-submit.json', {
 			method: 'POST',
 			body: JSON.stringify({ email }),
-		})
-		const data = await submit.json()
+		});
+		const data = await submit.json();
 
 		if (data.message === 'bad request') {
-			showMessage = true
-			responseMessage = `That looks like a bad request`
+			showMessage = true;
+			responseMessage = `That looks like a bad request`;
 		}
 		if (data.message === 'email sent!') {
-			showMessage = true
-			responseMessage = `Sweet! You're signed up!`
+			showMessage = true;
+			responseMessage = `Sweet! You're signed up!`;
 		}
 		if (
 			data.message === 'something went wrong with the email submit!'
 		) {
-			showMessage = false
+			showMessage = false;
 			// deal with failed response from server
 		}
 	}

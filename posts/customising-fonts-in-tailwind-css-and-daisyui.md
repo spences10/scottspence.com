@@ -110,7 +110,7 @@ const config = {
 	},
 
 	plugins: [typography, daisyui],
-}
+};
 ```
 
 In the example above I'm using the Tailwind default (named) names for
@@ -128,9 +128,9 @@ spreading the `sans` and `mono` font families into the
 `theme.extend.fontFamily` object for each font family.
 
 ```js
-const daisyui = require('daisyui')
-const typography = require('@tailwindcss/typography')
-const tailwind_theme = require('tailwindcss/defaultTheme')
+const daisyui = require('daisyui');
+const typography = require('@tailwindcss/typography');
+const tailwind_theme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config}*/
 const config = {
@@ -149,9 +149,9 @@ const config = {
 	},
 
 	plugins: [typography, daisyui],
-}
+};
 
-module.exports = config
+module.exports = config;
 ```
 
 So, now if I add some container classes to the
@@ -160,7 +160,7 @@ as well:
 
 ```svelte
 <script>
-	import '../app.postcss'
+	import '../app.postcss';
 </script>
 
 <main class="prose prose-xl container mx-auto max-w-3xl px-4">
@@ -209,9 +209,9 @@ To use all the daisyUI themes I'll need to configure them in the
 `tailwind.config.cjs` file.
 
 ```js
-const daisyui = require('daisyui')
-const typography = require('@tailwindcss/typography')
-const tailwind_theme = require('tailwindcss/defaultTheme')
+const daisyui = require('daisyui');
+const typography = require('@tailwindcss/typography');
+const tailwind_theme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config}*/
 const config = {
@@ -234,9 +234,9 @@ const config = {
 	},
 
 	plugins: [typography, daisyui],
-}
+};
 
-module.exports = config
+module.exports = config;
 ```
 
 The `daisyui.themes=true` config means that I'm using all 29 daisyUI
@@ -335,7 +335,7 @@ export const themes = [
 	'valentine',
 	'winter',
 	'wireframe',
-]
+];
 ```
 
 </Details>
@@ -347,30 +347,30 @@ In `src/lib/theme-select.svelte` I'll copy the code from the
 
 ```svelte
 <script lang="ts">
-	import { onMount } from 'svelte'
-	import { themes } from './themes'
+	import { onMount } from 'svelte';
+	import { themes } from './themes';
 
-	let current_theme = ''
+	let current_theme = '';
 
 	onMount(() => {
 		if (typeof window !== 'undefined') {
-			const theme = window.localStorage.getItem('theme')
+			const theme = window.localStorage.getItem('theme');
 			if (theme && themes.includes(theme)) {
-				document.documentElement.setAttribute('data-theme', theme)
-				current_theme = theme
+				document.documentElement.setAttribute('data-theme', theme);
+				current_theme = theme;
 			}
 		}
-	})
+	});
 
 	function set_theme(event: Event) {
-		const select = event.target as HTMLSelectElement
-		const theme = select.value
+		const select = event.target as HTMLSelectElement;
+		const theme = select.value;
 		if (themes.includes(theme)) {
-			const one_year = 60 * 60 * 24 * 365
-			window.localStorage.setItem('theme', theme)
-			document.cookie = `theme=${theme}; max-age=${one_year}; path=/; SameSite=Lax`
-			document.documentElement.setAttribute('data-theme', theme)
-			current_theme = theme
+			const one_year = 60 * 60 * 24 * 365;
+			window.localStorage.setItem('theme', theme);
+			document.cookie = `theme=${theme}; max-age=${one_year}; path=/; SameSite=Lax`;
+			document.documentElement.setAttribute('data-theme', theme);
+			current_theme = theme;
 		}
 	}
 </script>
@@ -399,21 +399,21 @@ Then add in the code for the `src/hooks.server.ts` file.
 <Details button_text="hooks.server.ts" styles="lowercase">
 
 ```ts
-import { themes } from '$lib/themes'
+import { themes } from '$lib/themes';
 
 export const handle = async ({ event, resolve }) => {
-	const theme = event.cookies.get('theme')
+	const theme = event.cookies.get('theme');
 
 	if (!theme || !themes.includes(theme)) {
-		return await resolve(event)
+		return await resolve(event);
 	}
 
 	return await resolve(event, {
 		transformPageChunk: ({ html }) => {
-			return html.replace('data-theme=""', `data-theme="${theme}"`)
+			return html.replace('data-theme=""', `data-theme="${theme}"`);
 		},
-	})
-}
+	});
+};
 ```
 
 </Details>
@@ -424,8 +424,8 @@ in the project (which is none but a good practice).
 
 ```svelte
 <script>
-	import ThemeSelect from '$lib/theme-select.svelte'
-	import '../app.postcss'
+	import ThemeSelect from '$lib/theme-select.svelte';
+	import '../app.postcss';
 </script>
 
 <ThemeSelect />
@@ -468,9 +468,9 @@ I can override this in the `tailwind.config.js` file by amending the
 `cyberpunk` font to use `Comic Sans MS`.
 
 ```js
-const daisyui = require('daisyui')
-const typography = require('@tailwindcss/typography')
-const tailwind_theme = require('tailwindcss/defaultTheme')
+const daisyui = require('daisyui');
+const typography = require('@tailwindcss/typography');
+const tailwind_theme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config}*/
 const config = {
@@ -502,9 +502,9 @@ const config = {
 	},
 
 	plugins: [typography, daisyui],
-}
+};
 
-module.exports = config
+module.exports = config;
 ```
 
 I found a GitHub discussion answered by [Pouya] (daisyUI creator) that
@@ -554,7 +554,7 @@ function create_theme(theme_name, font_family) {
 			],
 			...(font_family ? { fontFamily: font_family } : {}),
 		},
-	}
+	};
 }
 ```
 
@@ -568,7 +568,7 @@ const daisyui_themes = [
 	create_theme('aqua'),
 	create_theme('autumn'),
 	// rest of the themes
-]
+];
 ```
 
 See the full array here:
@@ -606,7 +606,7 @@ const daisyui_themes = [
 	create_theme('valentine'),
 	create_theme('winter'),
 	create_theme('wireframe'),
-]
+];
 ```
 
 </Details>
@@ -624,9 +624,9 @@ Here's the full `tailwind.config.js` file:
 <Details button_text="tailwind.config.js" styles="lowercase">
 
 ```js
-const daisyui = require('daisyui')
-const typography = require('@tailwindcss/typography')
-const tailwind_theme = require('tailwindcss/defaultTheme')
+const daisyui = require('daisyui');
+const typography = require('@tailwindcss/typography');
+const tailwind_theme = require('tailwindcss/defaultTheme');
 
 function create_theme(theme_name, font_family) {
 	return {
@@ -636,7 +636,7 @@ function create_theme(theme_name, font_family) {
 			],
 			...(font_family ? { fontFamily: font_family } : {}),
 		},
-	}
+	};
 }
 
 const daisyui_themes = [
@@ -669,7 +669,7 @@ const daisyui_themes = [
 	create_theme('valentine'),
 	create_theme('winter'),
 	create_theme('wireframe'),
-]
+];
 
 /** @type {import('tailwindcss').Config}*/
 const config = {
@@ -692,9 +692,9 @@ const config = {
 	},
 
 	plugins: [typography, daisyui],
-}
+};
 
-module.exports = config
+module.exports = config;
 ```
 
 </Details>

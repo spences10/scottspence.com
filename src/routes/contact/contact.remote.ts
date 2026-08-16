@@ -1,12 +1,12 @@
-import { command, getRequestEvent } from '$app/server'
+import { command, getRequestEvent } from '$app/server';
 import {
 	EMAIL_APP_TO_ADDRESS,
 	RESEND_API_KEY,
 	RESEND_FROM_EMAIL,
 	TURNSTILE_SECRET_KEY,
-} from '$env/static/private'
-import { ratelimit } from '$lib/redis'
-import * as v from 'valibot'
+} from '$env/static/private';
+import { ratelimit } from '$lib/redis';
+import * as v from 'valibot';
 
 const contact_schema = v.object({
 	name: v.pipe(
@@ -34,7 +34,7 @@ const contact_schema = v.object({
 	),
 	subject: v.optional(v.string()),
 	turnstile_token: v.string(),
-})
+});
 
 async function verify_turnstile(
 	token: string,
@@ -53,10 +53,10 @@ async function verify_turnstile(
 				remoteip: ip,
 			}),
 		},
-	)
+	);
 
-	const data = await response.json()
-	return data.success === true
+	const data = await response.json();
+	return data.success === true;
 }
 
 async function send_email(
@@ -66,7 +66,7 @@ async function send_email(
 	message: string,
 	recipient: string,
 ): Promise<string> {
-	console.log('[send_email] Sending email to:', recipient)
+	console.log('[send_email] Sending email to:', recipient);
 	const response = await fetch('https://api.resend.com/emails', {
 		method: 'POST',
 		headers: {
@@ -85,18 +85,18 @@ async function send_email(
         <p>${message.replace(/\n/g, '<br>')}</p>
       `,
 		}),
-	})
+	});
 
-	console.log('[send_email] Response status:', response.status)
+	console.log('[send_email] Response status:', response.status);
 	if (!response.ok) {
-		const error_data = await response.json()
-		console.error('[send_email] Error response:', error_data)
-		throw new Error(error_data.message || 'Failed to send email')
+		const error_data = await response.json();
+		console.error('[send_email] Error response:', error_data);
+		throw new Error(error_data.message || 'Failed to send email');
 	}
 
-	const data = await response.json()
-	console.log('[send_email] Email sent successfully, ID:', data.id)
-	return data.id
+	const data = await response.json();
+	console.log('[send_email] Email sent successfully, ID:', data.id);
+	return data.id;
 }
 
 export const submit_contact = command(
@@ -105,42 +105,42 @@ export const submit_contact = command(
 		console.log(
 			'[submit_contact] Form submission received with data:',
 			data,
-		)
-		const { request } = getRequestEvent()
+		);
+		const { request } = getRequestEvent();
 		const ip =
 			request.headers.get('x-forwarded-for')?.split(',')[0] ||
 			request.headers.get('x-real-ip') ||
-			'unknown'
-		console.log('[submit_contact] Client IP:', ip)
+			'unknown';
+		console.log('[submit_contact] Client IP:', ip);
 
 		// Verify Turnstile token
-		const is_valid = await verify_turnstile(data.turnstile_token, ip)
+		const is_valid = await verify_turnstile(data.turnstile_token, ip);
 		if (!is_valid) {
-			throw new Error('Failed to verify captcha. Please try again.')
+			throw new Error('Failed to verify captcha. Please try again.');
 		}
 
 		// Check rate limit
-		const rate_limit_attempt = await ratelimit.limit(ip)
+		const rate_limit_attempt = await ratelimit.limit(ip);
 		console.log(
 			'[submit_contact] Rate limit check:',
 			rate_limit_attempt.success,
-		)
+		);
 		if (!rate_limit_attempt.success) {
 			const time_remaining = Math.floor(
 				(rate_limit_attempt.reset - new Date().getTime()) / 1000,
-			)
+			);
 			throw new Error(
 				`Rate limit exceeded. Try again in ${time_remaining} seconds`,
-			)
+			);
 		}
 
 		// Honeypot check
 		if (data.subject) {
-			console.log(`Potential spam detected from IP: ${ip}`)
+			console.log(`Potential spam detected from IP: ${ip}`);
 			return {
 				success: true,
 				message: 'Email sent successfully',
-			}
+			};
 		}
 
 		try {
@@ -150,22 +150,24 @@ export const submit_contact = command(
 				data.reason,
 				data.message,
 				EMAIL_APP_TO_ADDRESS,
-			)
+			);
 
 			console.log(
 				`Email sent successfully from ${data.email} (IP: ${ip})`,
-			)
+			);
 
 			return {
 				success: true,
 				message: 'Email sent successfully',
 				messageId: message_id,
-			}
+			};
 		} catch (error: unknown) {
 			console.error(
 				`Error in contact form submission: ${error instanceof Error ? error.message : 'Unknown error'}`,
-			)
-			throw new Error('Failed to send email. Please try again later.')
+			);
+			throw new Error(
+				'Failed to send email. Please try again later.',
+			);
 		}
 	},
-)
+);

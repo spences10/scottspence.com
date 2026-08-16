@@ -2,6 +2,10 @@
 	"editor.defaultFormatter": "oxc.oxc-vscode",
 	"editor.formatOnSave": true,
 	"oxc.fmt.configPath": "./vite.config.ts",
+	"[markdown]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode",
+		"editor.formatOnSave": true
+	},
 	"files.associations": {
 		"*.css": "tailwindcss"
 	}

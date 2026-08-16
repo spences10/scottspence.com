@@ -133,9 +133,9 @@ pick up the phone than READ the information provided.
 
 [json resume schema]: https://jsonresume.org/schema/
 [bot]:
-  https://dev.to/whokilledkevin/how-i-created-a-bot-that-talked-to-recruiters-for-me-54n5
+	https://dev.to/whokilledkevin/how-i-created-a-bot-that-talked-to-recruiters-for-me-54n5
 [poll]:
-  https://dev.to/whokilledkevin/8-things-i-hate-in-recruitment-letters-8ke
+	https://dev.to/whokilledkevin/8-things-i-hate-in-recruitment-letters-8ke
 [dry]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
 [my portfolio]: https://scottspence.com
 [personal portfolio]: https://scottspence.com/#portfolio
@@ -149,4 +149,4 @@ pick up the phone than READ the information provided.
 <!-- Images -->
 
 [jobsite-cv]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/jobsite-cv-11a27b76e59cb7c0015d28592c76c4c8.jpg
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/jobsite-cv-11a27b76e59cb7c0015d28592c76c4c8.jpg

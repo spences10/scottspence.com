@@ -1,61 +1,61 @@
 <script lang="ts">
-	import { resolve } from '$app/paths'
-	import { submit_reaction } from '$lib/data/reactions.remote'
-	import { reactions } from '$lib/reactions-config'
-	import NumberFlip from './reactions-number-flip.svelte'
+	import { resolve } from '$app/paths';
+	import { submit_reaction } from '$lib/data/reactions.remote';
+	import { reactions } from '$lib/reactions-config';
+	import NumberFlip from './reactions-number-flip.svelte';
 
 	interface Props {
-		path?: string | null
-		data?: ReactionsData | null
+		path?: string | null;
+		data?: ReactionsData | null;
 	}
 
-	let { path = '/', data = null }: Props = $props()
+	let { path = '/', data = null }: Props = $props();
 
 	// svelte-ignore state_referenced_locally
-	let counts = $state({ ...data?.count })
-	let submitting = $state(false)
-	let rate_limited = $state(false)
-	let error_message = $state('')
+	let counts = $state({ ...data?.count });
+	let submitting = $state(false);
+	let rate_limited = $state(false);
+	let error_message = $state('');
 
 	async function handle_submit(event: SubmitEvent) {
-		event.preventDefault()
+		event.preventDefault();
 
-		const submitter = event.submitter
+		const submitter = event.submitter;
 		if (!(submitter instanceof HTMLButtonElement) || submitting)
-			return
+			return;
 
-		const reaction = submitter.value
-		const previous_count = counts[reaction] ?? 0
+		const reaction = submitter.value;
+		const previous_count = counts[reaction] ?? 0;
 
-		counts[reaction] = previous_count + 1
-		submitting = true
-		error_message = ''
+		counts[reaction] = previous_count + 1;
+		submitting = true;
+		error_message = '';
 
 		try {
 			const result = await submit_reaction({
 				reaction,
 				path: path ?? '/',
-			})
+			});
 
 			if (result.success && result.count !== undefined) {
-				counts[reaction] = result.count
-				return
+				counts[reaction] = result.count;
+				return;
 			}
 
-			counts[reaction] = previous_count
-			error_message = result.error ?? 'Could not save your reaction'
+			counts[reaction] = previous_count;
+			error_message = result.error ?? 'Could not save your reaction';
 
 			if (result.status === 429 && result.time_remaining) {
-				rate_limited = true
+				rate_limited = true;
 				setTimeout(() => {
-					rate_limited = false
-				}, result.time_remaining * 1000)
+					rate_limited = false;
+				}, result.time_remaining * 1000);
 			}
 		} catch {
-			counts[reaction] = previous_count
-			error_message = 'Could not save your reaction'
+			counts[reaction] = previous_count;
+			error_message = 'Could not save your reaction';
 		} finally {
-			submitting = false
+			submitting = false;
 		}
 	}
 </script>

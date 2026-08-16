@@ -1,4 +1,4 @@
-import type { RequestEvent } from '@sveltejs/kit'
+import type { RequestEvent } from '@sveltejs/kit';
 import {
 	afterEach,
 	beforeEach,
@@ -6,15 +6,15 @@ import {
 	expect,
 	test,
 	vi,
-} from 'vitest'
-import { load } from './+page.server'
+} from 'vitest';
+import { load } from './+page.server';
 
 // Mock the sqlite client
 vi.mock('$lib/sqlite/client', () => ({
 	sqlite_client: {
 		execute: vi.fn(),
 	},
-}))
+}));
 
 // Mock server cache
 vi.mock('$lib/cache/server-cache', () => ({
@@ -22,35 +22,35 @@ vi.mock('$lib/cache/server-cache', () => ({
 	CACHE_DURATIONS: { site_stats: 30000 },
 	get_from_cache: vi.fn(),
 	set_cache: vi.fn(),
-}))
+}));
 
 describe('Stats Page Server Logic', () => {
 	beforeEach(() => {
-		vi.clearAllMocks()
+		vi.clearAllMocks();
 		// Mock current year as 2025 for consistent testing
-		vi.useFakeTimers()
-		vi.setSystemTime(new Date('2025-01-15'))
-	})
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date('2025-01-15'));
+	});
 
 	afterEach(() => {
-		vi.useRealTimers()
-	})
+		vi.useRealTimers();
+	});
 
-	const mockRequestEvent = {
+	const _mock_request_event = {
 		url: new URL('http://localhost:5173/stats'),
 		params: {},
 		route: { id: '/stats' },
-	} as RequestEvent
+	} as RequestEvent;
 
 	describe('Historical Data Filtering', () => {
 		test('should exclude current year (2025) from yearly stats', async () => {
 			const { get_from_cache } =
-				await import('$lib/cache/server-cache')
-			const { sqlite_client } = await import('$lib/sqlite/client')
-			;(get_from_cache as any).mockReturnValue(null) // No cache
+				await import('$lib/cache/server-cache');
+			const { sqlite_client } = await import('$lib/sqlite/client');
+			(get_from_cache as any).mockReturnValue(null); // No cache
 
 			// Mock database response with current year data
-			;(sqlite_client.execute as any).mockResolvedValueOnce({
+			(sqlite_client.execute as any).mockResolvedValueOnce({
 				rows: [
 					{
 						slug: 'test-post',
@@ -99,28 +99,28 @@ describe('Stats Page Server Logic', () => {
 						}),
 					},
 				],
-			})
+			});
 
-			const result = await load()
+			const result = await load();
 
-			expect(result.site_stats).toHaveLength(2) // Only 2 posts should have data
+			expect(result.site_stats).toHaveLength(2); // Only 2 posts should have data
 
 			// Check that yearly stats are properly loaded
 			const testPost = result.site_stats.find(
 				(p) => p.title === 'Test Post',
-			)
-			expect(testPost?.yearly_stats).toHaveLength(1)
-			expect(testPost?.yearly_stats[0].year).toBe('2024')
-			expect(testPost?.yearly_stats[0].views).toBe(100)
-			expect(testPost?.yearly_stats[0].unique_visitors).toBe(50)
-		})
+			);
+			expect(testPost?.yearly_stats).toHaveLength(1);
+			expect(testPost?.yearly_stats[0].year).toBe('2024');
+			expect(testPost?.yearly_stats[0].views).toBe(100);
+			expect(testPost?.yearly_stats[0].unique_visitors).toBe(50);
+		});
 
 		test('should exclude current year (2025) from monthly stats', async () => {
 			const { get_from_cache } =
-				await import('$lib/cache/server-cache')
-			const { sqlite_client } = await import('$lib/sqlite/client')
-			;(get_from_cache as any).mockReturnValue(null) // No cache
-			;(sqlite_client.execute as any).mockResolvedValueOnce({
+				await import('$lib/cache/server-cache');
+			const { sqlite_client } = await import('$lib/sqlite/client');
+			(get_from_cache as any).mockReturnValue(null); // No cache
+			(sqlite_client.execute as any).mockResolvedValueOnce({
 				rows: [
 					{
 						slug: 'test-post',
@@ -146,31 +146,31 @@ describe('Stats Page Server Logic', () => {
 						}),
 					},
 				],
-			})
+			});
 
-			const result = await load()
+			const result = await load();
 
 			const testPost = result.site_stats.find(
 				(p) => p.title === 'Test Post',
-			)
-			expect(testPost?.monthly_stats).toHaveLength(2)
+			);
+			expect(testPost?.monthly_stats).toHaveLength(2);
 
 			// Check that monthly stats are properly loaded
-			const monthlyStats = testPost?.monthly_stats || []
-			expect(monthlyStats[0].year_month).toBe('2024-12')
-			expect(monthlyStats[0].views).toBe(100)
-			expect(monthlyStats[0].unique_visitors).toBe(50)
-			expect(monthlyStats[1].year_month).toBe('2024-11')
-			expect(monthlyStats[1].views).toBe(150)
-			expect(monthlyStats[1].unique_visitors).toBe(60)
-		})
+			const monthlyStats = testPost?.monthly_stats || [];
+			expect(monthlyStats[0].year_month).toBe('2024-12');
+			expect(monthlyStats[0].views).toBe(100);
+			expect(monthlyStats[0].unique_visitors).toBe(50);
+			expect(monthlyStats[1].year_month).toBe('2024-11');
+			expect(monthlyStats[1].views).toBe(150);
+			expect(monthlyStats[1].unique_visitors).toBe(60);
+		});
 
 		test('should calculate correct all-time stats excluding current year', async () => {
 			const { get_from_cache } =
-				await import('$lib/cache/server-cache')
-			const { sqlite_client } = await import('$lib/sqlite/client')
-			;(get_from_cache as any).mockReturnValue(null) // No cache
-			;(sqlite_client.execute as any).mockResolvedValueOnce({
+				await import('$lib/cache/server-cache');
+			const { sqlite_client } = await import('$lib/sqlite/client');
+			(get_from_cache as any).mockReturnValue(null); // No cache
+			(sqlite_client.execute as any).mockResolvedValueOnce({
 				rows: [
 					{
 						slug: 'test-post',
@@ -207,59 +207,59 @@ describe('Stats Page Server Logic', () => {
 						}),
 					},
 				],
-			})
+			});
 
-			const result = await load()
+			const result = await load();
 
 			const testPost = result.site_stats.find(
 				(p) => p.title === 'Test Post',
-			)
+			);
 
 			// All-time stats should only include historical data (2024 + 2023)
-			expect(testPost?.all_time_stats.views).toBe(250) // 100 + 150, not including 200 from 2025
-			expect(testPost?.all_time_stats.unique_visitors).toBe(110) // 50 + 60, not including 75 from 2025
-		})
-	})
+			expect(testPost?.all_time_stats.views).toBe(250); // 100 + 150, not including 200 from 2025
+			expect(testPost?.all_time_stats.unique_visitors).toBe(110); // 50 + 60, not including 75 from 2025
+		});
+	});
 
 	describe('Error Handling', () => {
 		test('should handle database connection errors gracefully', async () => {
 			const { get_from_cache } =
-				await import('$lib/cache/server-cache')
-			const { sqlite_client } = await import('$lib/sqlite/client')
-			;(get_from_cache as any).mockReturnValue(null) // No cache
-			;(sqlite_client.execute as any).mockRejectedValueOnce(
+				await import('$lib/cache/server-cache');
+			const { sqlite_client } = await import('$lib/sqlite/client');
+			(get_from_cache as any).mockReturnValue(null); // No cache
+			(sqlite_client.execute as any).mockRejectedValueOnce(
 				new Error('Database connection failed'),
-			)
+			);
 
-			const result = await load()
+			const result = await load();
 
-			expect(result.error).toBe('Error fetching site stats data')
-			expect(result.site_stats).toEqual([])
-		})
+			expect(result.error).toBe('Error fetching site stats data');
+			expect(result.site_stats).toEqual([]);
+		});
 
 		test('should handle empty database results', async () => {
 			const { get_from_cache } =
-				await import('$lib/cache/server-cache')
-			const { sqlite_client } = await import('$lib/sqlite/client')
-			;(get_from_cache as any).mockReturnValue(null) // No cache
-			;(sqlite_client.execute as any).mockResolvedValueOnce({
+				await import('$lib/cache/server-cache');
+			const { sqlite_client } = await import('$lib/sqlite/client');
+			(get_from_cache as any).mockReturnValue(null); // No cache
+			(sqlite_client.execute as any).mockResolvedValueOnce({
 				rows: [],
-			})
+			});
 
-			const result = await load()
+			const result = await load();
 
-			expect(result.site_stats).toEqual([])
-			expect(result.error).toBeUndefined()
-		})
-	})
+			expect(result.site_stats).toEqual([]);
+			expect(result.error).toBeUndefined();
+		});
+	});
 
 	describe('Data Aggregation', () => {
 		test('should correctly aggregate stats for posts with multiple years', async () => {
 			const { get_from_cache } =
-				await import('$lib/cache/server-cache')
-			const { sqlite_client } = await import('$lib/sqlite/client')
-			;(get_from_cache as any).mockReturnValue(null) // No cache
-			;(sqlite_client.execute as any).mockResolvedValueOnce({
+				await import('$lib/cache/server-cache');
+			const { sqlite_client } = await import('$lib/sqlite/client');
+			(get_from_cache as any).mockReturnValue(null); // No cache
+			(sqlite_client.execute as any).mockResolvedValueOnce({
 				rows: [
 					{
 						slug: 'popular-post',
@@ -307,17 +307,17 @@ describe('Stats Page Server Logic', () => {
 						}),
 					},
 				],
-			})
+			});
 
-			const result = await load()
+			const result = await load();
 
 			const popularPost = result.site_stats.find(
 				(p) => p.title === 'Popular Post',
-			)
+			);
 
-			expect(popularPost?.yearly_stats).toHaveLength(3)
-			expect(popularPost?.all_time_stats.views).toBe(1000) // 500 + 300 + 200
-			expect(popularPost?.all_time_stats.unique_visitors).toBe(450) // 200 + 150 + 100
-		})
-	})
-})
+			expect(popularPost?.yearly_stats).toHaveLength(3);
+			expect(popularPost?.all_time_stats.views).toBe(1000); // 500 + 300 + 200
+			expect(popularPost?.all_time_stats.unique_visitors).toBe(450); // 200 + 150 + 100
+		});
+	});
+});

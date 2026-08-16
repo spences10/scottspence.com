@@ -38,29 +38,29 @@ server level, before they even reach the routing system. Here's what
 the new implementation looks like:
 
 ```ts
-import { redirect } from '@sveltejs/kit'
+import { redirect } from '@sveltejs/kit';
 
 export const handle = async ({ event, resolve }) => {
-  const pathname = event.url.pathname
+	const pathname = event.url.pathname;
 
-  // Handle old URL structure redirect
-  const oldUrlMatch = pathname.match(
-    /^\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)/,
-  )
-  if (oldUrlMatch) {
-    const [, , , , slug] = oldUrlMatch
-    throw redirect(301, `/posts/${slug}`)
-  }
+	// Handle old URL structure redirect
+	const oldUrlMatch = pathname.match(
+		/^\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)/,
+	);
+	if (oldUrlMatch) {
+		const [, , , , slug] = oldUrlMatch;
+		throw redirect(301, `/posts/${slug}`);
+	}
 
-  // Handle trailing slash
-  if (pathname !== '/' && pathname.endsWith('/')) {
-    throw redirect(301, pathname.slice(0, -1))
-  }
+	// Handle trailing slash
+	if (pathname !== '/' && pathname.endsWith('/')) {
+		throw redirect(301, pathname.slice(0, -1));
+	}
 
-  // ... other handling logic ...
+	// ... other handling logic ...
 
-  return await resolve(event)
-}
+	return await resolve(event);
+};
 ```
 
 This new approach offers several advantages:

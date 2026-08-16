@@ -162,14 +162,14 @@ const params = {
 	website: `scottspence.com`,
 	title: `Serverless OG Image Example Card`,
 	image: `https://scottspence.me/favicon.png`,
-}
+};
 
 const objectToQueryParams = (obj) => {
 	const params = Object.entries(obj).map(
 		([key, value]) => `${key}=${value}`,
-	)
-	return '?' + params.join('&')
-}
+	);
+	return '?' + params.join('&');
+};
 
 const Image = () => {
 	return (
@@ -180,10 +180,10 @@ const Image = () => {
 				params,
 			)}`}
 		/>
-	)
-}
+	);
+};
 
-render(Image)
+render(Image);
 ```
 
 Pretty neat, right? So how to get that into a project. In the case of
@@ -202,7 +202,7 @@ const ogImageUrl = buildURL('https://image-og.now.sh/og.jpg', {
 	website: 'scottspence.com',
 	title: title.length > 55 ? `${title.substring(0, 55)}...` : title,
 	image: 'https://scottspence.me/favicon.png',
-})
+});
 ```
 
 This is what `buildURL` looks like:
@@ -211,10 +211,10 @@ This is what `buildURL` looks like:
 const buildURL = (url, obj) => {
 	const query = Object.entries(obj)
 		.map((pair) => pair.map(encodeURIComponent).join('='))
-		.join('&')
+		.join('&');
 
-	return `${url}?${query}`
-}
+	return `${url}?${query}`;
+};
 ```
 
 The resulting URL from `ogImageUrl` is used in React Helmet with the

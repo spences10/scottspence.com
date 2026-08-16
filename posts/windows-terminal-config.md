@@ -253,11 +253,11 @@ Debian shell I can have the `colorScheme` set to Campbell PowerShell:
 
 ```json {6}
 {
-  "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
-  "hidden": false,
-  "name": "Debian",
-  "source": "Windows.Terminal.WSL",
-  "colorScheme": "Campbell PowerShell"
+	"guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
+	"hidden": false,
+	"name": "Debian",
+	"source": "Windows.Terminal.WSL",
+	"colorScheme": "Campbell PowerShell"
 }
 ```
 
@@ -270,13 +270,13 @@ well if I want:
 
 ```json {6-7}
 {
-  "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
-  "hidden": false,
-  "name": "Debian",
-  "source": "Windows.Terminal.WSL",
-  "fontSize": 8,
-  "fontFace": "Comic Sans MS",
-  "colorScheme": "Campbell PowerShell"
+	"guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
+	"hidden": false,
+	"name": "Debian",
+	"source": "Windows.Terminal.WSL",
+	"fontSize": 8,
+	"fontFace": "Comic Sans MS",
+	"colorScheme": "Campbell PowerShell"
 }
 ```
 
@@ -442,47 +442,47 @@ Command Line Blog].
 <!-- Links -->
 
 [windows terminal preview]:
-  https://www.microsoft.com/en-gb/p/windows-terminal-preview/9n8g5rfz9xk3?rtc=1&activetab=pivot:overviewtab
+	https://www.microsoft.com/en-gb/p/windows-terminal-preview/9n8g5rfz9xk3?rtc=1&activetab=pivot:overviewtab
 [windows command line blog]:
-  https://devblogs.microsoft.com/commandline/?WT.mc_id=windows-c9-niner
+	https://devblogs.microsoft.com/commandline/?WT.mc_id=windows-c9-niner
 [profile settings]:
-  https://docs.microsoft.com/en-us/windows/terminal/customize-settings/profile-settings
+	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/profile-settings
 [color schemes]:
-  https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes
+	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes
 [custom schemes]:
-  https://docs.microsoft.com/en-us/windows/terminal/custom-terminal-gallery/custom-schemes
+	https://docs.microsoft.com/en-us/windows/terminal/custom-terminal-gallery/custom-schemes
 [windows terminal review and customization tricks]:
-  https://www.youtube.com/watch?v=7bqoXHiXTHA
+	https://www.youtube.com/watch?v=7bqoXHiXTHA
 [windows terminal: the secret to command line happiness!]:
-  https://www.youtube.com/watch?v=2dsnwlnNBzs
+	https://www.youtube.com/watch?v=2dsnwlnNBzs
 [windows terminals]: https://github.com/rjcarneiro/windows-terminals
 [customize the windows terminal with wsl2, cascadia code, powerline, nerd fonts, oh my posh and more!]:
-  https://www.youtube.com/watch?v=oHhiMf_6exY&t=225s
+	https://www.youtube.com/watch?v=oHhiMf_6exY&t=225s
 [windows terminal themes]: https://windowsterminalthemes.dev/
 [windows terminal themes github `themes.json` file]:
-  https://github.com/atomcorp/themes/blob/master/themes.json
+	https://github.com/atomcorp/themes/blob/master/themes.json
 [campbell]:
-  https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#campbell
+	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#campbell
 [campbell powershell]:
-  https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#campbell-powershell
+	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#campbell-powershell
 [vintage]:
-  https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#vintage
+	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#vintage
 [one half dark]:
-  https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#one-half-dark
+	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#one-half-dark
 [one half light]:
-  https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#one-half-light
+	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#one-half-light
 [tango dark]:
-  https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#tango-dark
+	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#tango-dark
 [tango light]:
-  https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#tango-light
+	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#tango-light
 [create your own theme]:
-  https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#creating-your-own-color-scheme
+	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#creating-your-own-color-scheme
 
 <!-- Images -->
 
 [default windows terminal appearance]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/default-windows-terminal-388c6cbaeab229756619d246cd1146d6.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/default-windows-terminal-388c6cbaeab229756619d246cd1146d6.png
 [intellisense options]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/intellisense-options-97c4b0402609f01069d9b439767e682e.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/intellisense-options-97c4b0402609f01069d9b439767e682e.png
 [shell dropdown in windows terminal]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/shell-dropdown-in-windows-terminal-9f552c4510800ab3e2f06a71092f7f51.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/shell-dropdown-in-windows-terminal-9f552c4510800ab3e2f06a71092f7f51.png

@@ -1,5 +1,5 @@
 // Server-side persistent cache using Map()
-const cache = new Map<string, { data: any; timestamp: number }>()
+const cache = new Map<string, { data: any; timestamp: number }>();
 
 // Global bypass flags - set to false to enable database reads per feature
 export const BYPASS_DB_READS = {
@@ -13,7 +13,7 @@ export const BYPASS_DB_READS = {
 	pricing: false,
 	post_analytics: false,
 	post_tags: false,
-} as const
+} as const;
 
 // Cache duration constants (in milliseconds)
 export const CACHE_DURATIONS = {
@@ -36,28 +36,28 @@ export const CACHE_DURATIONS = {
 	post_tags: 24 * 60 * 60 * 1000, // 24 hours
 	period_stats: 30 * 1000, // 30 seconds - prevents hammering on stats page
 	blocked_domains: 5 * 60 * 1000, // 5 minutes - blocklist refresh interval
-} as const
+} as const;
 
 export function get_from_cache<T>(
 	key: string,
 	max_age: number,
 ): T | null {
-	const cached = cache.get(key)
+	const cached = cache.get(key);
 	if (cached && Date.now() - cached.timestamp < max_age) {
-		return cached.data as T
+		return cached.data as T;
 	}
-	return null
+	return null;
 }
 
 export function set_cache<T>(key: string, data: T): void {
-	cache.set(key, { data, timestamp: Date.now() })
+	cache.set(key, { data, timestamp: Date.now() });
 }
 
 export function clear_cache(key?: string): void {
 	if (key) {
-		cache.delete(key)
+		cache.delete(key);
 	} else {
-		cache.clear()
+		cache.clear();
 	}
 }
 
@@ -65,5 +65,5 @@ export function get_cache_stats() {
 	return {
 		size: cache.size,
 		keys: Array.from(cache.keys()),
-	}
+	};
 }

@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte'
-	import { slide } from 'svelte/transition'
+	import type { Snippet } from 'svelte';
+	import { slide } from 'svelte/transition';
 	interface Props {
-		button_text?: string
-		is_open?: boolean
-		styles?: string
-		children?: Snippet
+		button_text?: string;
+		is_open?: boolean;
+		styles?: string;
+		children?: Snippet;
 	}
 
 	let {
@@ -13,7 +13,7 @@
 		is_open = $bindable(false),
 		styles = '',
 		children,
-	}: Props = $props()
+	}: Props = $props();
 </script>
 
 <div>

@@ -1,7 +1,7 @@
 ---
 date: 2026-07-25
-title: "How I work with LLMs"
-tags: ["ai", "llms", "pi", "my-pi", "developer-experience"]
+title: 'How I work with LLMs'
+tags: ['ai', 'llms', 'pi', 'my-pi', 'developer-experience']
 published: true
 ---
 
@@ -233,7 +233,8 @@ I tend to use them for three things:
 
 My session history is full of examples:
 
-> Are you patching and fixing symptoms here, rather than the cause? Yes/no answer only.
+> Are you patching and fixing symptoms here, rather than the cause?
+> Yes/no answer only.
 
 > In fifteen words or less, explain the issue.
 

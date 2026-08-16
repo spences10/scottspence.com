@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte'
+	import type { Snippet } from 'svelte';
 
 	let { reply = false, children } = $props<{
-		reply: boolean
-		children: Snippet
-	}>()
+		reply: boolean;
+		children: Snippet;
+	}>();
 </script>
 
 <div>

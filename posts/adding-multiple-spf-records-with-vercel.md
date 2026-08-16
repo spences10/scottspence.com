@@ -60,9 +60,9 @@ on my domain].
 
 [stackoverflow]: https://stackoverflow.com/a/51001395
 [email security standards]:
-  https://www.gov.uk/government/publications/email-security-standards/sender-policy-framework-spf
+	https://www.gov.uk/government/publications/email-security-standards/sender-policy-framework-spf
 [adding dkim records to vercel]:
-  https://scottspence.com/posts/adding-dkim-records-to-vercel
+	https://scottspence.com/posts/adding-dkim-records-to-vercel
 [can i have multiple spf records on my domain]:
-  https://dmarcly.com/blog/can-i-have-multiple-spf-records-on-my-domain
+	https://dmarcly.com/blog/can-i-have-multiple-spf-records-on-my-domain
 [spf record checker]: https://dmarcly.com/tools/spf-record-checker

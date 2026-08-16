@@ -28,7 +28,7 @@ SvelteKit uses [Vite] and it has a specific way to reference [Env
 Variables and Modes], you reference a `.env` variable with:
 
 ```js
-import.meta.env.VITE_NAME_OF_VARIABLE
+import.meta.env.VITE_NAME_OF_VARIABLE;
 ```
 
 The `VITE_*` prefix means in SvelteKit it makes that variable
@@ -59,7 +59,7 @@ SUPER_SECRET_SECRET=shhhhhh
 Then I've created a `secret.js` file to access my secret:
 
 ```js
-export const API_URL = process.env['SUPER_SECRET_SECRET']
+export const API_URL = process.env['SUPER_SECRET_SECRET'];
 ```
 
 Then I've added `env-cmd` to my `dev` script in my `package.json` so
@@ -82,17 +82,17 @@ in their example it's a `svelte.config.js` change:
 
 ```js
 const config = {
-  kit: {
-    // ...
-    vite: {
-      define: {
-        'process.env': process.env,
-      },
-    },
-  },
-}
+	kit: {
+		// ...
+		vite: {
+			define: {
+				'process.env': process.env,
+			},
+		},
+	},
+};
 
-export default config
+export default config;
 ```
 
 Check out the post linked earlier for more info!
@@ -107,10 +107,10 @@ this!
 
 [vite]: https://vitejs.dev/
 [env variables and modes]:
-  https://vitejs.dev/guide/env-and-mode.html#env-variables
+	https://vitejs.dev/guide/env-and-mode.html#env-variables
 [env-cmd]: https://www.npmjs.com/package/env-cmd
 [dotenv]: https://www.npmjs.com/package/dotenv
 [blog by hideckies]:
-  https://blog.hdks.org/Environment-Variables-in-SvelteKit-and-Vercel/
+	https://blog.hdks.org/Environment-Variables-in-SvelteKit-and-Vercel/
 [sveltekit environment variables with the sveltekit $env module]:
-  https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module
+	https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module

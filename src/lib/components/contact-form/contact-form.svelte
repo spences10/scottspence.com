@@ -1,28 +1,28 @@
 <script lang="ts">
-	import { scale_and_fade } from '$lib/utils'
-	import type { ActionResult } from '@sveltejs/kit'
-	import ContactFormFailure from './contact-form-failure.svelte'
-	import ContactFormFields from './contact-form-fields.svelte'
-	import ContactFormSuccess from './contact-form-success.svelte'
-	import { button_disabled } from './index'
+	import { scale_and_fade } from '$lib/utils';
+	import type { ActionResult } from '@sveltejs/kit';
+	import ContactFormFailure from './contact-form-failure.svelte';
+	import ContactFormFields from './contact-form-fields.svelte';
+	import ContactFormSuccess from './contact-form-success.svelte';
+	import { button_disabled } from './index';
 
-	let success = $state(false)
-	let action_result: ActionResult | undefined = $state()
-	let message_type: 'error' | 'success' = 'error'
+	let success = $state(false);
+	let action_result: ActionResult | undefined = $state();
+	let message_type: 'error' | 'success' = 'error';
 
 	const handle_result = (result: ActionResult) => {
-		action_result = result
-		$button_disabled = true
+		action_result = result;
+		$button_disabled = true;
 		if (result.type === 'success') {
-			success = true
+			success = true;
 		} else if (result.type === 'failure') {
-			$button_disabled = true
-			message_type = 'error'
+			$button_disabled = true;
+			message_type = 'error';
 			setTimeout(() => {
-				$button_disabled = false
-			}, result?.data?.time_remaining * 1000)
+				$button_disabled = false;
+			}, result?.data?.time_remaining * 1000);
 		}
-	}
+	};
 </script>
 
 {#if success}

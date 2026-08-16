@@ -212,7 +212,7 @@ const variantClasses = {
 		'bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800',
 	secondary:
 		'bg-brand-100 text-brand-900 hover:bg-brand-200 active:bg-brand-300',
-}
+};
 ```
 
 This is **utility-first design** - composing styles from atomic
@@ -285,7 +285,7 @@ defines classes in TypeScript:
 const variantClasses = {
 	primary: 'bg-brand-600 text-white hover:bg-brand-700',
 	secondary: 'bg-brand-100 text-brand-900 hover:bg-brand-200',
-}
+};
 ```
 
 Tailwind treats all files as plain text (no code parsing), so the

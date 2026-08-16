@@ -119,10 +119,10 @@ A `+page.svelte` file can have a sibling `+page.js` file that runs a
 ```js
 /** @type {import('./$types').PageLoad} */
 export const load = async () => {
-  return {
-    greeting: 'Hello world!',
-  }
-}
+	return {
+		greeting: 'Hello world!',
+	};
+};
 ```
 
 The return of the value (`greeting`) form the `load` function is
@@ -131,8 +131,8 @@ props are received into components with `export let`.
 
 ```svelte
 <script>
-  /** @type {import('./$types').PageData} */
-  export let data
+	/** @type {import('./$types').PageData} */
+	export let data;
 </script>
 
 <p>{data.greeting}</p>
@@ -154,12 +154,12 @@ is available to the `load` function.
 ```js
 /** @type {import('./$types').PageLoad} */
 export const load = async ({ fetch }) => {
-  const res = await fetch('https://api.coinlore.com/api/tickers/')
-  const { data } = await res.json()
-  return {
-    currencies: data,
-  }
-}
+	const res = await fetch('https://api.coinlore.com/api/tickers/');
+	const { data } = await res.json();
+	return {
+		currencies: data,
+	};
+};
 ```
 
 I'm labelling the return value as `currencies` this is then shown in
@@ -167,8 +167,8 @@ the data being passed to `+page.svelte`.
 
 ```svelte
 <script>
-  /** @type {import('./$types').PageData} */
-  export let data
+	/** @type {import('./$types').PageData} */
+	export let data;
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -180,20 +180,20 @@ Resulting data being displayed on the page is something like this:
 
 ```json
 {
-  "currencies": [
-    {
-      "id": "90",
-      "symbol": "BTC",
-      "name": "Bitcoin",
-      "nameid": "bitcoin"
-    },
-    {
-      "id": "80",
-      "symbol": "ETH",
-      "name": "Ethereum",
-      "nameid": "ethereum"
-    }
-  ]
+	"currencies": [
+		{
+			"id": "90",
+			"symbol": "BTC",
+			"name": "Bitcoin",
+			"nameid": "bitcoin"
+		},
+		{
+			"id": "80",
+			"symbol": "ETH",
+			"name": "Ethereum",
+			"nameid": "ethereum"
+		}
+	]
 }
 ```
 
@@ -260,24 +260,24 @@ In here I can make a call to an API and pass in a secret key that I
 have defined in a `.env` file.
 
 ```js
-import { SECRET_TOKEN } from '$env/static/private'
+import { SECRET_TOKEN } from '$env/static/private';
 
 /** @type {import('./$types').PageServerLoad} */
 export const load = async ({ fetch }) => {
-  // this is only logged out on the server
-  console.log('=====================')
-  console.log(SECRET_TOKEN)
-  console.log('=====================')
-  const fetchCoins = async () => {
-    const res = await fetch('https://api.coinlore.com/api/tickers/')
-    const { data } = await res.json()
-    return data
-  }
+	// this is only logged out on the server
+	console.log('=====================');
+	console.log(SECRET_TOKEN);
+	console.log('=====================');
+	const fetchCoins = async () => {
+		const res = await fetch('https://api.coinlore.com/api/tickers/');
+		const { data } = await res.json();
+		return data;
+	};
 
-  return {
-    currencies: fetchCoins(),
-  }
-}
+	return {
+		currencies: fetchCoins(),
+	};
+};
 ```
 
 The CoinLore API doesn't require a key so I'm just using a dummy token
@@ -306,7 +306,7 @@ That's it for this post, I hope you found it useful.
 [fetch]: https://kit.svelte.dev/docs/web-standards#fetch-apis
 [standard web apis]: https://kit.svelte.dev/docs/web-standards
 [fetch data from two or more endpoints in sveltekit]:
-  https://scottspence.com/posts/fetch-data-from-two-or-more-endpoints-in-svelte
+	https://scottspence.com/posts/fetch-data-from-two-or-more-endpoints-in-svelte
 [rick and morty graphql api]: https://rickandmortyapi.com/graphql/
 [sveltekit environment variables with the sveltekit $env module]:
-  https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module
+	https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module

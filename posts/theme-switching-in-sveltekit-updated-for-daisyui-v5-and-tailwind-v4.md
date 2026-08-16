@@ -150,21 +150,21 @@ theme for me if there's a cookie for it by writing the HTML for the
 `data-theme` attribute!
 
 ```ts
-import { themes } from '$lib/themes'
+import { themes } from '$lib/themes';
 
 export const handle = async ({ event, resolve }) => {
-	const theme = event.cookies.get('theme')
+	const theme = event.cookies.get('theme');
 
 	if (!theme || !themes.includes(theme)) {
-		return await resolve(event)
+		return await resolve(event);
 	}
 
 	return await resolve(event, {
 		transformPageChunk: ({ html }) => {
-			return html.replace('data-theme=""', `data-theme="${theme}"`)
+			return html.replace('data-theme=""', `data-theme="${theme}"`);
 		},
-	})
-}
+	});
+};
 ```
 
 But, right now, there's no cookies! HOW DO I SET THE COOKIE??!!!1
@@ -189,29 +189,29 @@ Then add in this:
 
 ```svelte
 <script lang="ts">
-	import { themes } from './themes'
+	import { themes } from './themes';
 
-	let current_theme = $state('')
+	let current_theme = $state('');
 
 	$effect(() => {
 		if (typeof window !== 'undefined') {
-			const theme = window.localStorage.getItem('theme')
+			const theme = window.localStorage.getItem('theme');
 			if (theme && themes.includes(theme)) {
-				document.documentElement.setAttribute('data-theme', theme)
-				current_theme = theme
+				document.documentElement.setAttribute('data-theme', theme);
+				current_theme = theme;
 			}
 		}
-	})
+	});
 
 	function set_theme(event: Event) {
-		const select = event.target as HTMLSelectElement
-		const theme = select.value
+		const select = event.target as HTMLSelectElement;
+		const theme = select.value;
 		if (themes.includes(theme)) {
-			const one_year = 60 * 60 * 24 * 365
-			window.localStorage.setItem('theme', theme)
-			document.cookie = `theme=${theme}; max-age=${one_year}; path=/; SameSite=Lax`
-			document.documentElement.setAttribute('data-theme', theme)
-			current_theme = theme
+			const one_year = 60 * 60 * 24 * 365;
+			window.localStorage.setItem('theme', theme);
+			document.cookie = `theme=${theme}; max-age=${one_year}; path=/; SameSite=Lax`;
+			document.documentElement.setAttribute('data-theme', theme);
+			current_theme = theme;
 		}
 	}
 </script>
@@ -284,7 +284,7 @@ export const themes = [
 	'valentine',
 	'winter',
 	'wireframe',
-]
+];
 ```
 
 Now I can add the theme select (in this case) to the

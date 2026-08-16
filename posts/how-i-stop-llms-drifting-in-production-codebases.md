@@ -200,7 +200,7 @@ if (tool_name === 'write' || tool_name === 'edit') {
 			block: true,
 			reason:
 				'Rewrite without $effect. Use derived state or an event handler.',
-		}
+		};
 	}
 }
 ```
@@ -248,14 +248,14 @@ list:
 ```ts
 const no_invalidate_all = create_rule((context) => ({
 	Identifier(node) {
-		if (node.name !== 'invalidateAll') return
+		if (node.name !== 'invalidateAll') return;
 		context.report({
 			node,
 			message:
 				'Do not use invalidateAll; invalidate a targeted dependency/query instead.',
-		})
+		});
 	},
-}))
+}));
 ```
 
 The `$effect` rule can be more nuanced at the lint layer than the tool
@@ -265,23 +265,23 @@ effect through if there is a real explanation next to it:
 ```ts
 const require_effect_explanation = create_rule((context) => ({
 	CallExpression(node) {
-		const callee = node['callee']
-		if (!is_identifier(callee) || callee.name !== '$effect') return
+		const callee = node['callee'];
+		if (!is_identifier(callee) || callee.name !== '$effect') return;
 
-		const comment_text = previous_comment_text(context, node)
+		const comment_text = previous_comment_text(context, node);
 		const has_explanation =
 			/(\$effect|effect|allowed|browser|dom|sync|subscription|timer|analytics)/i.test(
 				comment_text,
-			) && comment_text.trim().length >= 24
+			) && comment_text.trim().length >= 24;
 
-		if (has_explanation) return
+		if (has_explanation) return;
 		context.report({
 			node: callee,
 			message:
 				'$effect requires a nearby comment explaining the allowed browser-side side effect. Prefer $derived/event handlers otherwise.',
-		})
+		});
 	},
-}))
+}));
 ```
 
 `previous_comment_text` is just `sourceCode.getCommentsBefore(node)`
@@ -295,9 +295,9 @@ So this passes:
 ```ts
 // Allowed effect: sync a browser-only subscription after mount.
 $effect(() => {
-	const unsubscribe = client.subscribe(handle_update)
-	return unsubscribe
-})
+	const unsubscribe = client.subscribe(handle_update);
+	return unsubscribe;
+});
 ```
 
 And `// effect` does not.
@@ -354,7 +354,7 @@ export function check_import_boundary(
 			file,
 			specifier,
 			'web routes must not import database access directly; call a server service or command',
-		)
+		);
 	}
 
 	if (
@@ -366,7 +366,7 @@ export function check_import_boundary(
 			file,
 			specifier,
 			'services are read/model assembly modules and must not import commands',
-		)
+		);
 	}
 
 	if (/^@acme\/[^/]+\/src\//.test(specifier)) {
@@ -375,7 +375,7 @@ export function check_import_boundary(
 			file,
 			specifier,
 			'use the package public entrypoint instead of a deep @acme import',
-		)
+		);
 	}
 }
 ```
@@ -386,13 +386,13 @@ Workspace-to-workspace rules need one extra step, resolving the
 relative specifier before comparing:
 
 ```ts
-if (!specifier.startsWith('.')) return
+if (!specifier.startsWith('.')) return;
 const target = new URL(
 	specifier,
 	`file://${process.cwd()}/${file}`,
 ).pathname
 	.slice(process.cwd().length + 1)
-	.replace(/\/[^/]*$/, '')
+	.replace(/\/[^/]*$/, '');
 
 if (
 	workspace_of(file)?.startsWith('packages/') &&
@@ -403,7 +403,7 @@ if (
 		file,
 		specifier,
 		'packages must not import from apps',
-	)
+	);
 }
 ```
 
@@ -474,16 +474,16 @@ const demo_data_patterns: Array<[RegExp, string]> = [
 		/i\.pravatar\.cc|example\.com/i,
 		'placeholder external identity/source',
 	],
-]
+];
 
 export function check_route_demo_data(
 	context: BoundaryContext,
 	file: string,
 	source: string,
 ) {
-	if (!is_web_route(file)) return
-	if (file.endsWith('.test.ts')) return
-	if (source.includes('@allow-demo-data')) return
+	if (!is_web_route(file)) return;
+	if (file.endsWith('.test.ts')) return;
+	if (source.includes('@allow-demo-data')) return;
 
 	for (const [pattern, message] of demo_data_patterns) {
 		if (pattern.test(source)) {
@@ -492,7 +492,7 @@ export function check_route_demo_data(
 				file,
 				pattern.toString(),
 				`${message}; move business/demo data to seeds/config tables and read it through services, or add @allow-demo-data with a production replacement note`,
-			)
+			);
 		}
 	}
 }
@@ -532,7 +532,7 @@ few, then only advise when more than one is out of range:
 
 ```ts
 const { lines, functions, state_declarations, forms, buttons } =
-	svelte_complexity_metrics(context, source, source_file)
+	svelte_complexity_metrics(context, source, source_file);
 
 const concerns = [
 	lines > 250,
@@ -540,14 +540,14 @@ const concerns = [
 	state_declarations > 6,
 	forms > 2,
 	buttons > 5,
-].filter(Boolean).length
+].filter(Boolean).length;
 
 if (concerns >= 2) {
 	advise(
 		context,
 		file,
 		`route component complexity (${lines} lines, ${functions} functions, ${state_declarations} $state calls, ${forms} forms, ${buttons} buttons); consider extracting actions/state/sections per docs/specs/sveltekit-entrypoint-rules.md`,
-	)
+	);
 }
 ```
 

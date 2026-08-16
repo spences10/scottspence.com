@@ -1,33 +1,33 @@
 <script lang="ts">
-	import { get_live_state } from '$lib/analytics/live-analytics.svelte'
+	import { get_live_state } from '$lib/analytics/live-analytics.svelte';
 
 	interface Props {
-		mode?: 'site' | 'page'
+		mode?: 'site' | 'page';
 	}
 
-	let { mode = 'site' }: Props = $props()
+	let { mode = 'site' }: Props = $props();
 
-	const state = get_live_state()
+	const state = get_live_state();
 
 	const count = $derived(
 		mode === 'site' ? state.unique_visitors : state.path_viewers,
-	)
+	);
 	const text = $derived(
 		mode === 'site'
 			? `live ${count === 1 ? 'visitor' : 'visitors'}`
 			: `${count === 1 ? 'person' : 'people'} viewing now`,
-	)
+	);
 </script>
 
 {#if count > 0}
 	<div class="flex items-center gap-2">
 		<div class="inline-grid *:[grid-area:1/1]">
 			<div
-				class="status status-primary animate-ping [animation-duration:2s]"
+				class="status animate-ping status-primary [animation-duration:2s]"
 			></div>
 			<div class="status status-primary"></div>
 		</div>
-		<a href="/stats" class="link link-primary text-sm tracking-wide">
+		<a href="/stats" class="link text-sm tracking-wide link-primary">
 			{#if mode === 'site'}
 				There's currently
 				<span class="font-bold tabular-nums">{count}</span>

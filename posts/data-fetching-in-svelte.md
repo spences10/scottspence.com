@@ -32,7 +32,7 @@ will toggle between idle/ pending/ error/ success state (funnily
 enough a state machine under the hood).
 
 ```js
-const fetch = fetch_store(url)
+const fetch = fetch_store(url);
 // $fetch.data has the data
 ```
 
@@ -97,6 +97,6 @@ like this:
 
 ```svelte
 <Form action="/orders" method="post" let:loading>
-  <button disabled={loading}>Submit</button>
+	<button disabled={loading}>Submit</button>
 </Form>
 ```

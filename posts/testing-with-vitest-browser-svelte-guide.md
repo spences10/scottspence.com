@@ -150,9 +150,9 @@ template comes with testing-library configuration, but I'm switching
 to browser testing, so I'll wipe it clean and start fresh:
 
 ```ts
-import tailwindcss from '@tailwindcss/vite'
-import { sveltekit } from '@sveltejs/kit/vite'
-import { defineConfig } from 'vite'
+import tailwindcss from '@tailwindcss/vite';
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
 	plugins: [tailwindcss(), sveltekit()],
@@ -210,7 +210,7 @@ export default defineConfig({
 			},
 		],
 	},
-})
+});
 ```
 
 Now I need to set up the proper test scripts in `package.json`. I'll
@@ -267,19 +267,19 @@ So, swap out testing library with Vitest browser now in the
 `src/routes/page.svelte.test.ts` file:
 
 ```ts
-import { page } from '@vitest/browser/context'
-import { describe, expect, it } from 'vitest'
-import { render } from 'vitest-browser-svelte'
-import Page from './+page.svelte'
+import { page } from '@vitest/browser/context';
+import { describe, expect, it } from 'vitest';
+import { render } from 'vitest-browser-svelte';
+import Page from './+page.svelte';
 
 describe('/+page.svelte', () => {
 	it('should render h1', async () => {
-		render(Page)
+		render(Page);
 
-		const heading = page.getByRole('heading', { level: 1 })
-		await expect.element(heading).toBeInTheDocument()
-	})
-})
+		const heading = page.getByRole('heading', { level: 1 });
+		await expect.element(heading).toBeInTheDocument();
+	});
+});
 ```
 
 Now `pnpm run test:unit` passes!! Success!
@@ -292,14 +292,14 @@ Aight! So, let's go through some of the examples in
 ```svelte
 <script lang="ts">
 	interface Props {
-		variant?: 'primary' | 'secondary' | 'outline' | 'ghost'
-		size?: 'sm' | 'md' | 'lg'
-		disabled?: boolean
-		loading?: boolean
-		onclick?: () => void
-		type?: 'button' | 'submit' | 'reset'
-		class_names?: string
-		children?: any
+		variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+		size?: 'sm' | 'md' | 'lg';
+		disabled?: boolean;
+		loading?: boolean;
+		onclick?: () => void;
+		type?: 'button' | 'submit' | 'reset';
+		class_names?: string;
+		children?: any;
 	}
 
 	let {
@@ -311,20 +311,20 @@ Aight! So, let's go through some of the examples in
 		type = 'button',
 		class_names = '',
 		children,
-	}: Props = $props()
+	}: Props = $props();
 
-	const base_classes = 'btn transition-all duration-200'
+	const base_classes = 'btn transition-all duration-200';
 	const variant_classes = {
 		primary: 'btn-primary hover:scale-105',
 		secondary: 'btn-secondary hover:scale-105',
 		outline: 'btn-outline hover:scale-105',
 		ghost: 'btn-ghost hover:scale-105',
-	}
+	};
 	const size_classes = {
 		sm: 'btn-sm',
 		md: '',
 		lg: 'btn-lg',
-	}
+	};
 </script>
 
 <button
@@ -361,7 +361,7 @@ touch src/lib/components/index.ts
 And the export from `src/lib/components/index.ts`:
 
 ```ts
-export { default as Button } from './button.svelte'
+export { default as Button } from './button.svelte';
 ```
 
 Now, let's get into testing this! This is where the Client-Server
@@ -395,71 +395,71 @@ touch src/lib/components/button.svelte.test.ts
 Then:
 
 ```ts
-import { page } from '@vitest/browser/context'
-import { createRawSnippet } from 'svelte'
-import { describe, expect, it } from 'vitest'
-import { render } from 'vitest-browser-svelte'
-import Button from './button.svelte'
+import { page } from '@vitest/browser/context';
+import { createRawSnippet } from 'svelte';
+import { describe, expect, it } from 'vitest';
+import { render } from 'vitest-browser-svelte';
+import Button from './button.svelte';
 
 describe('Button Component', () => {
 	it('renders with default props', async () => {
 		const children = createRawSnippet(() => ({
 			render: () => '<span>Click me</span>',
 			setup: () => {},
-		}))
+		}));
 
 		render(Button, {
 			children,
-		})
+		});
 
-		const button = page.getByRole('button')
-		await expect.element(button).toBeInTheDocument()
-		await expect.element(button).toHaveTextContent('Click me')
-		await expect.element(button).toHaveClass('btn-primary')
-	})
+		const button = page.getByRole('button');
+		await expect.element(button).toBeInTheDocument();
+		await expect.element(button).toHaveTextContent('Click me');
+		await expect.element(button).toHaveClass('btn-primary');
+	});
 
 	it.skip('applies different variants', () => {
 		// Pattern: Test component props that change CSS classes
 		// render(Button, { variant: 'secondary' })
 		// await expect.element(button).toHaveClass('btn-secondary')
-	})
+	});
 
 	it.skip('shows loading state', () => {
 		// Pattern: Test conditional rendering based on props
 		// render(Button, { loading: true })
 		// await expect.element(button).toHaveTextContent('Loading...')
-	})
+	});
 
 	it('handles click events', async () => {
-		let clicked = false
+		let clicked = false;
 		const handle_click = () => {
-			clicked = true
-		}
+			clicked = true;
+		};
 
 		const children = createRawSnippet(() => ({
 			render: () => '<span>Click me</span>',
 			setup: () => {},
-		}))
+		}));
 
 		render(Button, {
 			onclick: handle_click,
 			children,
-		})
+		});
 
-		const button = page.getByRole('button')
-		await button.click()
+		const button = page.getByRole('button');
+		await button.click();
 
 		// Testing the state change - this is where real browser testing shines!
-		expect(clicked).toBe(true)
-	})
+		expect(clicked).toBe(true);
+	});
 
 	it.skip('is disabled when disabled prop is true', () => {
 		// Pattern: Test accessibility attributes
 		// render(Button, { disabled: true })
 		// await expect.element(button).toBeDisabled()
 		// await expect.element(button).toHaveAttribute('aria-disabled', 'true')
-	})
-})
+	});
+});
 ```
 
 Running `pnpm run test:client` and these tests pass! Real browser
@@ -512,14 +512,14 @@ This is the big one! I cannot stress this enough - **always use
 
 ```ts
 // ❌ DON'T do this - no auto-retry, will randomly fail
-const { container } = render(MyComponent)
-const button = container.querySelector('[data-testid="submit"]')
-await button.click() // This will bite you!
+const { container } = render(MyComponent);
+const button = container.querySelector('[data-testid="submit"]');
+await button.click(); // This will bite you!
 
 // ✅ DO this - auto-retry built in, much more reliable
-render(MyComponent)
-const button = page.getByTestId('submit')
-await button.click() // Rock solid!
+render(MyComponent);
+const button = page.getByTestId('submit');
+await button.click(); // Rock solid!
 ```
 
 Locators have automatic retry logic built in, which means they'll wait
@@ -534,16 +534,16 @@ accessibility and reliability:
 
 ```ts
 // 1. Semantic roles (best for accessibility)
-page.getByRole('button', { name: 'Submit' })
+page.getByRole('button', { name: 'Submit' });
 
 // 2. Labels (great for form fields)
-page.getByLabel('Email address')
+page.getByLabel('Email address');
 
 // 3. Text content (good for unique text)
-page.getByText('Welcome back')
+page.getByText('Welcome back');
 
 // 4. Test IDs (last resort, but reliable)
-page.getByTestId('submit-button')
+page.getByTestId('submit-button');
 ```
 
 ## Handle multiple elements properly
@@ -553,12 +553,12 @@ you'll get a "strict mode violation" error. Here's the fix:
 
 ```ts
 // ❌ FAILS: "strict mode violation" when multiple links exist
-page.getByRole('link', { name: 'Home' })
+page.getByRole('link', { name: 'Home' });
 
 // ✅ CORRECT: Be specific about which one you want
-page.getByRole('link', { name: 'Home' }).first()
-page.getByRole('link', { name: 'Home' }).nth(1) // second one
-page.getByRole('link', { name: 'Home' }).last()
+page.getByRole('link', { name: 'Home' }).first();
+page.getByRole('link', { name: 'Home' }).nth(1); // second one
+page.getByRole('link', { name: 'Home' }).last();
 ```
 
 ## Never click form submit buttons
@@ -568,14 +568,14 @@ form submit buttons directly:
 
 ```ts
 // ❌ DON'T - causes test hangs
-const submitButton = page.getByRole('button', { type: 'submit' })
-await submitButton.click() // Test hangs here!
+const submitButton = page.getByRole('button', { type: 'submit' });
+await submitButton.click(); // Test hangs here!
 
 // ✅ DO - test the form state instead
 render(ContactForm, {
 	form: { errors: { email: 'Required' } },
-})
-await expect.element(page.getByText('Required')).toBeInTheDocument()
+});
+await expect.element(page.getByText('Required')).toBeInTheDocument();
 ```
 
 ## Use `untrack()` for derived values
@@ -585,10 +585,10 @@ When testing Svelte 5 `$derived` values, always wrap them in
 
 ```ts
 // ❌ This might not work reliably
-expect(counter_state.doubled).toBe(6)
+expect(counter_state.doubled).toBe(6);
 
 // ✅ Always use untrack for derived values
-expect(untrack(() => counter_state.doubled)).toBe(6)
+expect(untrack(() => counter_state.doubled)).toBe(6);
 ```
 
 ## Don't test implementation details
@@ -597,14 +597,14 @@ Focus on user behavior, not internal implementation:
 
 ```ts
 // ❌ Testing implementation details (SVG paths, CSS classes)
-expect(body).toContain('M9 12l2 2 4-4m6 2a9')
-expect(button).toHaveClass('bg-blue-500 hover:bg-blue-600')
+expect(body).toContain('M9 12l2 2 4-4m6 2a9');
+expect(button).toHaveClass('bg-blue-500 hover:bg-blue-600');
 
 // ✅ Test user-facing behavior
 await expect
 	.element(page.getByRole('img', { name: /success/i }))
-	.toBeInTheDocument()
-await expect.element(page.getByRole('button')).toBeEnabled()
+	.toBeInTheDocument();
+await expect.element(page.getByRole('button')).toBeEnabled();
 ```
 
 ## SvelteKit mocking - keep it simple
@@ -619,12 +619,12 @@ vi.mock('$app/state', () => ({
 		data: { user: { name: 'Test User' } },
 		url: new URL('http://localhost'),
 	},
-}))
+}));
 
 // ❌ Causes SSR issues
 vi.mock('$app/stores', async (importOriginal) => {
-	return { ...(await importOriginal()) } // Don't do this!
-})
+	return { ...(await importOriginal()) }; // Don't do this!
+});
 ```
 
 ## Ignore SSR module warnings in browser tests
@@ -666,30 +666,30 @@ mkdir -p src/lib/stores
 ```ts
 // src/lib/stores/counter.svelte.ts
 class CounterStore {
-	count = $state(0)
-	multiplier = $state(2)
+	count = $state(0);
+	multiplier = $state(2);
 
-	doubled = $derived(this.count * this.multiplier)
-	is_even = $derived(this.count % 2 === 0)
+	doubled = $derived(this.count * this.multiplier);
+	is_even = $derived(this.count % 2 === 0);
 
 	increment() {
-		this.count++
+		this.count++;
 	}
 
 	decrement() {
-		this.count--
+		this.count--;
 	}
 
 	reset() {
-		this.count = 0
+		this.count = 0;
 	}
 
 	setMultiplier(value: number) {
-		this.multiplier = value
+		this.multiplier = value;
 	}
 }
 
-export const counter_state = new CounterStore()
+export const counter_state = new CounterStore();
 ```
 
 This gives me a proper universal state store with reactive values,
@@ -699,7 +699,7 @@ this store:
 ```svelte
 <!-- src/lib/components/counter.svelte -->
 <script lang="ts">
-	import { counter_state } from '$lib/stores/counter.svelte.js'
+	import { counter_state } from '$lib/stores/counter.svelte.js';
 </script>
 
 <div class="card bg-base-100 w-96 shadow-xl">
@@ -849,8 +849,8 @@ Don't forget to add the Counter component to the exports in
 `src/lib/components/index.ts`:
 
 ```ts
-export { default as Button } from './button.svelte'
-export { default as Counter } from './counter.svelte'
+export { default as Button } from './button.svelte';
+export { default as Counter } from './counter.svelte';
 ```
 
 ## What makes this testing approach powerful
@@ -909,11 +909,11 @@ mkdir -p src/lib/components/seo
 <!-- src/lib/components/seo/meta-tags.svelte -->
 <script lang="ts">
 	interface Props {
-		title: string
-		description: string
-		url?: string
-		image?: string
-		type?: 'website' | 'article'
+		title: string;
+		description: string;
+		url?: string;
+		image?: string;
+		type?: 'website' | 'article';
 	}
 
 	let {
@@ -922,7 +922,7 @@ mkdir -p src/lib/components/seo
 		url = 'https://example.com',
 		image = '/default-og.png',
 		type = 'website',
-	}: Props = $props()
+	}: Props = $props();
 </script>
 
 <svelte:head>
@@ -949,21 +949,21 @@ And a blog post component that uses our universal state:
 ```svelte
 <!-- src/lib/components/blog-post.svelte -->
 <script lang="ts">
-	import { counter_state } from '$lib/stores/counter.svelte.js'
-	import MetaTags from './seo/meta-tags.svelte'
+	import { counter_state } from '$lib/stores/counter.svelte.js';
+	import MetaTags from './seo/meta-tags.svelte';
 
 	interface Props {
-		title: string
-		content: string
-		author: string
-		publishedAt: string
-		slug: string
+		title: string;
+		content: string;
+		author: string;
+		publishedAt: string;
+		slug: string;
 	}
 
-	let { title, content, author, publishedAt, slug }: Props = $props()
+	let { title, content, author, publishedAt, slug }: Props = $props();
 
-	const url = `https://example.com/posts/${slug}`
-	const reading_time = Math.ceil(content.split(' ').length / 200)
+	const url = `https://example.com/posts/${slug}`;
+	const reading_time = Math.ceil(content.split(' ').length / 200);
 </script>
 
 <MetaTags
@@ -1010,9 +1010,9 @@ Now let's test the SSR rendering! I'll create
 `src/lib/components/seo/meta-tags.ssr.test.ts`:
 
 ```ts
-import { render } from 'svelte/server'
-import { describe, expect, it } from 'vitest'
-import MetaTags from './meta-tags.svelte'
+import { render } from 'svelte/server';
+import { describe, expect, it } from 'vitest';
+import MetaTags from './meta-tags.svelte';
 
 describe('MetaTags SSR', () => {
 	it('renders basic meta tags', () => {
@@ -1021,59 +1021,59 @@ describe('MetaTags SSR', () => {
 				title: 'Test Blog Post',
 				description: 'This is a test description for SEO purposes.',
 			},
-		})
+		});
 
 		// Check that essential meta tags are rendered
-		expect(head).toContain('<title>Test Blog Post</title>')
+		expect(head).toContain('<title>Test Blog Post</title>');
 		expect(head).toContain(
 			'<meta name="description" content="This is a test description for SEO purposes.">',
-		)
+		);
 
 		// Check Open Graph tags
 		expect(head).toContain(
 			'<meta property="og:title" content="Test Blog Post">',
-		)
+		);
 		expect(head).toContain(
 			'<meta property="og:description" content="This is a test description for SEO purposes.">',
-		)
+		);
 		expect(head).toContain(
 			'<meta property="og:type" content="website">',
-		)
+		);
 
 		// Check Twitter tags
 		expect(head).toContain(
 			'<meta name="twitter:card" content="summary_large_image">',
-		)
+		);
 		expect(head).toContain(
 			'<meta name="twitter:title" content="Test Blog Post">',
-		)
-	})
+		);
+	});
 
 	it.skip('renders with custom URL and image', () => {
 		// Pattern: Same as basic render test but with different props
 		// Tests prop customization and default value overrides
-	})
+	});
 
 	it.skip('uses default values when not provided', () => {
 		// Pattern: Test component default prop values
 		// Render with minimal props, verify defaults are applied
-	})
-})
+	});
+});
 ```
 
 And let's test the blog post component with SSR -
 `src/lib/components/blog-post.ssr.test.ts`:
 
 ```ts
-import { render } from 'svelte/server'
-import { describe, expect, it, beforeEach } from 'vitest'
-import { counter_state } from '$lib/stores/counter.svelte.js'
-import BlogPost from './blog-post.svelte'
+import { render } from 'svelte/server';
+import { describe, expect, it, beforeEach } from 'vitest';
+import { counter_state } from '$lib/stores/counter.svelte.js';
+import BlogPost from './blog-post.svelte';
 
 describe('BlogPost SSR', () => {
 	beforeEach(() => {
-		counter_state.reset()
-	})
+		counter_state.reset();
+	});
 
 	it('renders blog post structure', () => {
 		const { body } = render(BlogPost, {
@@ -1084,47 +1084,47 @@ describe('BlogPost SSR', () => {
 				publishedAt: '2025-06-18',
 				slug: 'my-test-post',
 			},
-		})
+		});
 
 		// Check main content
 		expect(body).toContain(
 			'<h1 class="text-4xl font-bold mb-4">My Test Post</h1>',
-		)
-		expect(body).toContain('<span>By Scott Spence</span>')
+		);
+		expect(body).toContain('<span>By Scott Spence</span>');
 		expect(body).toContain(
 			'<p>This is the content of my blog post.</p>',
-		)
-	})
+		);
+	});
 
 	it.skip('calculates reading time correctly', () => {
 		// Pattern: Test computed/derived values in SSR
 		// Create content with known word count, verify reading time calculation
-	})
+	});
 
 	it.skip('formats date correctly', () => {
 		// Pattern: Test date formatting in SSR context
 		// Provide date string, verify formatted output in rendered HTML
-	})
+	});
 
 	it.skip('includes counter state from universal store', () => {
 		// Pattern: Test universal state works in SSR
 		// Render component, verify store state appears in server-rendered HTML
-	})
+	});
 
 	it.skip('renders meta tags in head', () => {
 		// Pattern: Test child component integration in SSR
 		// Verify that nested MetaTags component renders in head section
-	})
-})
+	});
+});
 ```
 
 Don't forget to add the exports to your components index:
 
 ```ts
-export { default as Button } from './button.svelte'
-export { default as Counter } from './counter.svelte'
-export { default as BlogPost } from './blog-post.svelte'
-export { default as MetaTags } from './seo/meta-tags.svelte'
+export { default as Button } from './button.svelte';
+export { default as Counter } from './counter.svelte';
+export { default as BlogPost } from './blog-post.svelte';
+export { default as MetaTags } from './seo/meta-tags.svelte';
 ```
 
 ## When to write SSR tests
@@ -1217,50 +1217,50 @@ Then create `src/lib/server/form-utils.ts`:
 
 ```ts
 export interface FormData {
-	name: string
-	email: string
-	message: string
+	name: string;
+	email: string;
+	message: string;
 }
 
 export function validate_form_data(data: FormData): {
-	valid: boolean
-	errors: string[]
+	valid: boolean;
+	errors: string[];
 } {
-	const errors: string[] = []
+	const errors: string[] = [];
 
 	if (!data.name || data.name.trim().length < 2) {
-		errors.push('Name must be at least 2 characters')
+		errors.push('Name must be at least 2 characters');
 	}
 
 	if (!data.email || !is_valid_email(data.email)) {
-		errors.push('Valid email is required')
+		errors.push('Valid email is required');
 	}
 
 	if (!data.message || data.message.trim().length < 10) {
-		errors.push('Message must be at least 10 characters')
+		errors.push('Message must be at least 10 characters');
 	}
 
 	return {
 		valid: errors.length === 0,
 		errors,
-	}
+	};
 }
 
 function is_valid_email(email: string): boolean {
-	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-	return emailRegex.test(email)
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	return emailRegex.test(email);
 }
 
 export function sanitize_input(input: string): string {
-	return input.trim().replace(/[<>]/g, '')
+	return input.trim().replace(/[<>]/g, '');
 }
 ```
 
 And the test for it, `src/lib/server/form-utils.test.ts`:
 
 ```ts
-import { describe, expect, it } from 'vitest'
-import { sanitize_input, validate_form_data } from './form-utils'
+import { describe, expect, it } from 'vitest';
+import { sanitize_input, validate_form_data } from './form-utils';
 
 describe('Form Utilities', () => {
 	describe('validate_form_data', () => {
@@ -1269,37 +1269,37 @@ describe('Form Utilities', () => {
 				name: 'John Doe',
 				email: 'john@example.com',
 				message: 'This is a valid message with enough characters',
-			}
+			};
 
-			const result = validate_form_data(valid_data)
-			expect(result.valid).toBe(true)
-			expect(result.errors).toHaveLength(0)
-		})
+			const result = validate_form_data(valid_data);
+			expect(result.valid).toBe(true);
+			expect(result.errors).toHaveLength(0);
+		});
 
 		it.skip('catches validation errors', () => {
 			// Pattern: Test validation logic with invalid data
 			// Pass invalid form data, verify errors are returned
-		})
+		});
 
 		it.skip('handles empty data', () => {
 			// Pattern: Test edge case with empty/missing data
 			// Pass empty form data, verify appropriate errors
-		})
-	})
+		});
+	});
 
 	describe('sanitize_input', () => {
 		it('removes dangerous characters', () => {
-			const input = '<script>alert("xss")</script>Normal text'
-			const sanitized = sanitize_input(input)
-			expect(sanitized).toBe('scriptalert("xss")/scriptNormal text')
-		})
+			const input = '<script>alert("xss")</script>Normal text';
+			const sanitized = sanitize_input(input);
+			expect(sanitized).toBe('scriptalert("xss")/scriptNormal text');
+		});
 
 		it.skip('trims whitespace', () => {
 			// Pattern: Test string processing utility
 			// Pass string with whitespace, verify trimmed result
-		})
-	})
-})
+		});
+	});
+});
 ```
 
 These run with `pnpm run test:server` - pure Node.js testing for
@@ -1318,11 +1318,11 @@ Then create `src/routes/contact/+page.svelte`:
 
 ```svelte
 <script lang="ts">
-	import { Button } from '$lib/components'
-	import { enhance } from '$app/forms'
+	import { Button } from '$lib/components';
+	import { enhance } from '$app/forms';
 
-	let { form } = $props()
-	let loading = $state(false)
+	let { form } = $props();
+	let loading = $state(false);
 </script>
 
 <div class="mx-auto max-w-2xl p-6">
@@ -1347,11 +1347,11 @@ Then create `src/routes/contact/+page.svelte`:
 	<form
 		method="POST"
 		use:enhance={() => {
-			loading = true
+			loading = true;
 			return async ({ update }) => {
-				loading = false
-				await update()
-			}
+				loading = false;
+				await update();
+			};
 		}}
 		class="space-y-4"
 	>
@@ -1393,8 +1393,7 @@ Then create `src/routes/contact/+page.svelte`:
 				required
 				rows="4"
 				class="textarea textarea-bordered w-full"
-				value={form?.data?.message ?? ''}
-			></textarea>
+				value={form?.data?.message ?? ''}></textarea>
 		</div>
 
 		<Button type="submit" {loading} class_names="w-full">
@@ -1409,37 +1408,37 @@ Then create `src/routes/contact/+page.svelte`:
 And the form action in `src/routes/contact/+page.server.ts`:
 
 ```ts
-import { validate_form_data } from '$lib/server/form-utils'
-import { fail } from '@sveltejs/kit'
-import type { Actions } from './$types'
+import { validate_form_data } from '$lib/server/form-utils';
+import { fail } from '@sveltejs/kit';
+import type { Actions } from './$types';
 
 export const actions: Actions = {
 	default: async ({ request }) => {
-		const data = await request.formData()
+		const data = await request.formData();
 
 		const form_data = {
 			name: data.get('name') as string,
 			email: data.get('email') as string,
 			message: data.get('message') as string,
-		}
+		};
 
-		const validation = validate_form_data(form_data)
+		const validation = validate_form_data(form_data);
 
 		if (!validation.valid) {
 			return fail(400, {
 				errors: validation.errors,
 				data: form_data,
-			})
+			});
 		}
 
 		// Here you'd normally send the email or save to database
-		console.log('Form submitted:', form_data)
+		console.log('Form submitted:', form_data);
 
 		return {
 			success: true,
-		}
+		};
 	},
-}
+};
 ```
 
 ## Testing the contact form
@@ -1448,53 +1447,53 @@ Now for the fun part! Testing the whole form interaction. I'll create
 `src/routes/contact/+page.svelte.test.ts`:
 
 ```ts
-import { page } from '@vitest/browser/context'
-import { describe, expect, it } from 'vitest'
-import { render } from 'vitest-browser-svelte'
-import ContactPage from './+page.svelte'
+import { page } from '@vitest/browser/context';
+import { describe, expect, it } from 'vitest';
+import { render } from 'vitest-browser-svelte';
+import ContactPage from './+page.svelte';
 
 describe('Contact Page', () => {
 	it('renders the contact form', async () => {
 		render(ContactPage, {
 			form: null,
-		})
+		});
 
 		await expect
 			.element(page.getByRole('heading', { level: 1 }))
-			.toHaveTextContent('Contact Me')
+			.toHaveTextContent('Contact Me');
 
 		await expect
 			.element(page.getByLabelText('Name'))
-			.toBeInTheDocument()
+			.toBeInTheDocument();
 		await expect
 			.element(page.getByLabelText('Email'))
-			.toBeInTheDocument()
+			.toBeInTheDocument();
 		await expect
 			.element(page.getByLabelText('Message'))
-			.toBeInTheDocument()
+			.toBeInTheDocument();
 		await expect
 			.element(page.getByRole('button', { name: 'Send Message' }))
-			.toBeInTheDocument()
-	})
+			.toBeInTheDocument();
+	});
 
 	it.skip('shows success message when form is successful', () => {
 		// Pattern: Test conditional rendering based on form state
 		// render(ContactPage, { form: { success: true } })
 		// await expect.element(page.getByText('Thanks for your message!')).toBeInTheDocument()
-	})
+	});
 
 	it.skip('shows validation errors', () => {
 		// Pattern: Test error display from form validation
 		// render(ContactPage, { form: { errors: [...] } })
 		// await expect.element(page.getByText('Name must be at least 2 characters')).toBeInTheDocument()
-	})
+	});
 
 	it.skip('preserves form data on validation errors', () => {
 		// Pattern: Test form data persistence after validation failure
 		// render(ContactPage, { form: { errors: [...], data: {...} } })
 		// await expect.element(page.getByDisplayValue('John')).toBeInTheDocument()
-	})
-})
+	});
+});
 ```
 
 ## E2E testing with Playwright
@@ -1503,39 +1502,39 @@ Finally, let's add some E2E tests to make sure everything works
 together. Here's `tests/contact.spec.ts`:
 
 ```ts
-import { expect, test } from '@playwright/test'
+import { expect, test } from '@playwright/test';
 
 test.describe('Contact Form E2E', () => {
 	test('successfully submits contact form', async ({ page }) => {
-		await page.goto('/contact')
+		await page.goto('/contact');
 
 		// Fill out the form
-		await page.fill('[name="name"]', 'John Doe')
-		await page.fill('[name="email"]', 'john@example.com')
+		await page.fill('[name="name"]', 'John Doe');
+		await page.fill('[name="email"]', 'john@example.com');
 		await page.fill(
 			'[name="message"]',
 			'This is a test message with enough characters to pass validation',
-		)
+		);
 
 		// Submit the form
-		await page.click('button[type="submit"]')
+		await page.click('button[type="submit"]');
 
 		// Check for success message
 		await expect(
 			page.getByText('Thanks for your message!'),
-		).toBeVisible()
-	})
+		).toBeVisible();
+	});
 
 	test.skip('shows validation errors for invalid data', () => {
 		// Pattern: E2E form validation testing
 		// Fill form with invalid data, submit, verify error messages appear
-	})
+	});
 
 	test.skip('shows loading state during form submission', () => {
 		// Pattern: E2E loading state testing
 		// Fill form, click submit, immediately check for loading indicator
-	})
-})
+	});
+});
 ```
 
 ## Running all the tests
@@ -1762,19 +1761,19 @@ runes through component props instead of external universal state:
 ```typescript
 // Component that accepts initial state as props
 test('counter with internal runes', async () => {
-	render(Counter, { initial_count: 5 })
+	render(Counter, { initial_count: 5 });
 
-	const count_display = page.getByTestId('count')
-	await expect.element(count_display).toHaveTextContent('5')
+	const count_display = page.getByTestId('count');
+	await expect.element(count_display).toHaveTextContent('5');
 
 	const increment_button = page.getByRole('button', {
 		name: 'Increment',
-	})
-	await increment_button.click()
+	});
+	await increment_button.click();
 
 	// No flushSync needed - component-internal reactivity works automatically
-	await expect.element(count_display).toHaveTextContent('6')
-})
+	await expect.element(count_display).toHaveTextContent('6');
+});
 ```
 
 This pattern avoids the external state complexity while still testing

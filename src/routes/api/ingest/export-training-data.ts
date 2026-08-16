@@ -1,9 +1,9 @@
-import { writeFile } from 'node:fs/promises'
-import { join } from 'node:path'
+import { writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
 
 // Extend the Post type for our needs
 interface TrainingPost extends Post {
-	content: string
+	content: string;
 }
 
 export const export_training_data = async () => {
@@ -14,16 +14,16 @@ export const export_training_data = async () => {
 				query: '?raw',
 				import: 'default',
 			},
-		)
+		);
 
 		const processPosts = async (): Promise<TrainingPost[]> => {
 			const processedPosts = await Promise.all(
 				Object.keys(files).map(async (path) => {
 					try {
-						const content = await files[path]()
-						const parts = content.split('---')
-						const frontmatter = parts[1]
-						const markdown = parts.slice(2).join('---')
+						const content = await files[path]();
+						const parts = content.split('---');
+						const frontmatter = parts[1];
+						const markdown = parts.slice(2).join('---');
 
 						// Type the frontmatter parsing
 						const frontmatterEntries = frontmatter
@@ -32,33 +32,33 @@ export const export_training_data = async () => {
 							.map((line: string) => {
 								// Handle empty values (like is_private with no value)
 								if (!line.includes(':')) {
-									return [line.trim(), true]
+									return [line.trim(), true];
 								}
 
-								const [key, ...values] = line.split(':')
+								const [key, ...values] = line.split(':');
 								let value: string | string[] | boolean = values
 									.join(':')
-									.trim()
+									.trim();
 
 								// Parse specific types
 								if (value.startsWith('[') && value.endsWith(']')) {
 									try {
-										value = JSON.parse(value.replace(/'/g, '"')) // Array
+										value = JSON.parse(value.replace(/'/g, '"')); // Array
 									} catch {
-										value = [] // Default to empty array if parsing fails
+										value = []; // Default to empty array if parsing fails
 									}
 								} else if (value === 'true') {
-									value = true
+									value = true;
 								} else if (value === 'false' || value === '') {
-									value = false
+									value = false;
 								}
 
-								return [key.trim(), value]
-							})
+								return [key.trim(), value];
+							});
 
 						const metadata = Object.fromEntries(
 							frontmatterEntries,
-						) as unknown as Post
+						) as unknown as Post;
 
 						// Add required fields if they don't exist
 						const post: TrainingPost = {
@@ -80,38 +80,38 @@ export const export_training_data = async () => {
 							path: metadata.path || path,
 							date: metadata.date || new Date().toISOString(),
 							title: metadata.title || '',
-						}
+						};
 
 						console.log('Processing:', path, {
 							title: post.title,
 							is_private: post.is_private,
 							tags: post.tags,
-						})
+						});
 
-						return post
+						return post;
 					} catch (error) {
-						console.error('Error processing file:', path, error)
-						return null
+						console.error('Error processing file:', path, error);
+						return null;
 					}
 				}),
-			)
+			);
 
 			return processedPosts.filter(
 				(post): post is TrainingPost => post !== null,
-			)
-		}
+			);
+		};
 
-		const validPosts = await processPosts()
-		console.log('Valid posts:', validPosts.length)
+		const validPosts = await processPosts();
+		console.log('Valid posts:', validPosts.length);
 
 		const publicPosts = validPosts
 			.filter((post) => !post.is_private)
 			.sort(
 				(a, b) =>
 					new Date(b.date).getTime() - new Date(a.date).getTime(),
-			)
+			);
 
-		console.log('Public posts:', publicPosts.length)
+		console.log('Public posts:', publicPosts.length);
 
 		const trainingData = publicPosts.map((post) => ({
 			messages: [
@@ -128,18 +128,18 @@ export const export_training_data = async () => {
 					content: post.content,
 				},
 			],
-		}))
+		}));
 
-		const filename = 'training-data.jsonl'
-		const outputPath = join(process.cwd(), filename)
+		const filename = 'training-data.jsonl';
+		const outputPath = join(process.cwd(), filename);
 		const jsonlContent = trainingData
 			.map((item) => JSON.stringify(item))
-			.join('\n')
+			.join('\n');
 
-		await writeFile(outputPath, jsonlContent, 'utf-8')
+		await writeFile(outputPath, jsonlContent, 'utf-8');
 
 		const sizeInMb =
-			Buffer.byteLength(jsonlContent, 'utf-8') / (1024 * 1024)
+			Buffer.byteLength(jsonlContent, 'utf-8') / (1024 * 1024);
 
 		return {
 			message: 'Training data exported successfully',
@@ -151,11 +151,11 @@ export const export_training_data = async () => {
 				valid_posts: validPosts.length,
 				public_posts: publicPosts.length,
 			},
-		}
+		};
 	} catch (error) {
-		console.error('Error exporting training data:', error)
+		console.error('Error exporting training data:', error);
 		throw new Error(
 			`Failed to export training data: ${error instanceof Error ? error.message : 'Unknown error'}`,
-		)
+		);
 	}
-}
+};

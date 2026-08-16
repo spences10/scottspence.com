@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { name, website } from '$lib/info'
-	import { create_seo_config } from '$lib/seo'
-	import { og_image_url } from '$lib/utils'
-	import { Head } from 'svead'
+	import { name, website } from '$lib/info';
+	import { create_seo_config } from '$lib/seo';
+	import { og_image_url } from '$lib/utils';
+	import { Head } from 'svead';
 
 	interface Props {
-		data: any
+		data: any;
 	}
 
-	let { data }: Props = $props()
-	let Copy = $derived(data.Copy)
+	let { data }: Props = $props();
+	let Copy = $derived(data.Copy);
 
 	const seo_config = create_seo_config({
 		title: `Cookie Policy - ${name}`,
@@ -21,7 +21,7 @@
 		),
 		url: `${website}/cookie-policy`,
 		slug: 'cookie-policy',
-	})
+	});
 </script>
 
 <Head {seo_config} />

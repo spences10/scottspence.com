@@ -123,9 +123,9 @@ Replace the `dangerouslySetInnerHTML` prop with a normal `<p>` tag:
 
 ```jsx
 <p
-  dangerouslySetInnerHTML={{
-    __html: node.frontmatter.description || node.excerpt,
-  }}
+	dangerouslySetInnerHTML={{
+		__html: node.frontmatter.description || node.excerpt,
+	}}
 />
 ```
 
@@ -188,13 +188,13 @@ We're going to use this component in a `.mdx` document, first the
 component:
 
 ```js
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Butt = styled.button`
-  background-color: red;
-  height: 40px;
-  width: 80px;
-`
+	background-color: red;
+	height: 40px;
+	width: 80px;
+`;
 ```
 
 Spicy, right! 🌶
@@ -227,7 +227,7 @@ title: My First MDX Post!
 date: '2019-04-07T23:46:37.121Z'
 ---
 
-import { Butt } from '../../../src/components/button'
+import { Butt } from '../../../src/components/button';
 
 # make a site they said, it'll be fun they said
 
@@ -268,15 +268,15 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 <!-- Links -->
 
 [mdx egghead.io course]:
-  https://egghead.io/playlists/building-websites-with-mdx-and-gatsby-161e9529
+	https://egghead.io/playlists/building-websites-with-mdx-and-gatsby-161e9529
 [twitter]: https://twitter.com/spences10
 [ask me anything]: https://github.com/spences10/ama
 [example code]:
-  https://codesandbox.io/s/gatsby-starter-blog-mdx-part-two-8iut4
+	https://codesandbox.io/s/gatsby-starter-blog-mdx-part-two-8iut4
 [gatsby starter blog]: https://github.com/gatsbyjs/gatsby-starter-blog
 [codesandbox import wizard]: https://codesandbox.io/s/github
 [codesandbox docs for importing projects]:
-  https://codesandbox.io/docs/importing
+	https://codesandbox.io/docs/importing
 [chris biscardi]: https://twitter.com/chrisbiscardi
 [here]:
-  https://scottspence.com/posts/convert-gatsby-default-blog-to-mdx
+	https://scottspence.com/posts/convert-gatsby-default-blog-to-mdx

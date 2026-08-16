@@ -1,22 +1,22 @@
 <script lang="ts">
-	import { number_crunch } from '$lib/utils'
-	import { format, startOfMonth, startOfYear } from 'date-fns'
+	import { number_crunch } from '$lib/utils';
+	import { format, startOfMonth, startOfYear } from 'date-fns';
 
-	type Nullable<T> = T | null | undefined
+	type Nullable<T> = T | null | undefined;
 	interface Props {
-		daily_visits: Nullable<AnalyticsData>
-		monthly_visits: Nullable<AnalyticsData>
-		yearly_visits: Nullable<AnalyticsData>
+		daily_visits: Nullable<AnalyticsData>;
+		monthly_visits: Nullable<AnalyticsData>;
+		yearly_visits: Nullable<AnalyticsData>;
 	}
 
 	const { daily_visits, monthly_visits, yearly_visits }: Props =
-		$props()
+		$props();
 
 	const time_periods: {
 		[key: string]: {
-			label: string
-			range?: string
-		}
+			label: string;
+			range?: string;
+		};
 	} = {
 		day: {
 			label: 'Today',
@@ -36,24 +36,24 @@
 				'MMM d, yyyy',
 			)} - ${format(new Date(), 'MMM d, yyyy')}`,
 		},
-	}
+	};
 
 	const generate_stats = (
 		time_period: string,
 		stats_data: AnalyticsData | AnalyticsData[] | null | undefined,
 	) => {
-		let data
+		let data;
 		if (Array.isArray(stats_data)) {
-			if (stats_data.length === 0) return null
-			data = stats_data[0]
+			if (stats_data.length === 0) return null;
+			data = stats_data[0];
 		} else {
-			data = stats_data
+			data = stats_data;
 		}
 
-		if (!data) return null
-		const time_period_config = time_periods[time_period]
-		const time_period_label = time_period_config.label
-		const time_period_range = time_period_config.range || ''
+		if (!data) return null;
+		const time_period_config = time_periods[time_period];
+		const time_period_label = time_period_config.label;
+		const time_period_range = time_period_config.range || '';
 		return {
 			views: {
 				label: `Views ${time_period_label}`,
@@ -70,14 +70,16 @@
 				value: number_crunch(data.visits) ?? '0',
 				range: time_period_range,
 			},
-		}
-	}
+		};
+	};
 
-	const daily_stats = $derived(generate_stats('day', daily_visits))
+	const daily_stats = $derived(generate_stats('day', daily_visits));
 	const monthly_stats = $derived(
 		generate_stats('month', monthly_visits),
-	)
-	const yearly_stats = $derived(generate_stats('year', yearly_visits))
+	);
+	const yearly_stats = $derived(
+		generate_stats('year', yearly_visits),
+	);
 
 	const stats_array = $derived([
 		{ title: 'Daily analytics for this post', stats: daily_stats },
@@ -86,18 +88,18 @@
 			stats: monthly_stats,
 		},
 		{ title: 'Yearly analytics for this post', stats: yearly_stats },
-	])
+	]);
 
 	interface StatValue {
-		label: string
-		value: string
-		range: string
+		label: string;
+		value: string;
+		range: string;
 	}
 
 	interface Stats {
-		views: StatValue
-		visitors: StatValue
-		entries: StatValue
+		views: StatValue;
+		visitors: StatValue;
+		entries: StatValue;
 	}
 
 	const has_data = (stats: Stats | null): boolean => {
@@ -105,8 +107,8 @@
 			? stats.views.value !== '0' ||
 					stats.visitors.value !== '0' ||
 					stats.entries.value !== '0'
-			: false
-	}
+			: false;
+	};
 </script>
 
 {#if !daily_visits && !monthly_visits && !yearly_visits}
@@ -127,7 +129,7 @@
 						<h3 class="text-balance">{title}</h3>
 					</header>
 					<section
-						class="stats stats-vertical border-secondary md:stats-horizontal mb-8 w-full border shadow-lg"
+						class="stats mb-8 w-full stats-vertical border border-secondary shadow-lg md:stats-horizontal"
 					>
 						{#if stats}
 							{#each Object.entries(stats) as [key, { label, value, range }]}

@@ -91,15 +91,15 @@ So this is the component:
 
 ```svelte
 <script>
-	import { slide } from 'svelte/transition'
-	export let buttonText = ''
-	export let open = false
+	import { slide } from 'svelte/transition';
+	export let buttonText = '';
+	export let open = false;
 </script>
 
 <section class="border">
 	<button
 		on:click={() => {
-			open = !open
+			open = !open;
 		}}
 	>
 		<div class="flex items-center text-left">
@@ -186,19 +186,19 @@ the action is the element that has the `use:` added to it.
 
 ```svelte
 <script>
-	export let buttonText = ''
-	export let open = false
+	export let buttonText = '';
+	export let open = false;
 
 	// custom slide animation
 	const slide = (node, open) => {
-		console.log('node', node)
-		console.log('open', open)
-	}
+		console.log('node', node);
+		console.log('open', open);
+	};
 </script>
 
 <button
 	on:click={() => {
-		open = !open
+		open = !open;
 	}}
 >
 	<div>
@@ -215,14 +215,14 @@ So from here I can set some initial defaults for the node.
 
 ```svelte
 <script>
-	export let buttonText = ''
-	export let open = false
+	export let buttonText = '';
+	export let open = false;
 
 	// custom slide animation
 	const slide = (node, open) => {
-		node.style.height = open ? `auto` : '0px'
-		node.style.overflow = 'hidden'
-	}
+		node.style.height = open ? `auto` : '0px';
+		node.style.overflow = 'hidden';
+	};
 </script>
 ```
 
@@ -233,16 +233,16 @@ I can use the `update` method to respond to the button being pressed.
 
 ```js
 const slide = (node, open) => {
-	let initialHeight = node.offsetHeight
-	node.style.height = open ? `auto` : '0px'
-	node.style.overflow = 'hidden'
+	let initialHeight = node.offsetHeight;
+	node.style.height = open ? `auto` : '0px';
+	node.style.overflow = 'hidden';
 
 	return {
 		update: (open) => {
-			node.style.height = open ? `auto` : '0px'
+			node.style.height = open ? `auto` : '0px';
 		},
-	}
-}
+	};
+};
 ```
 
 So that's cool! Looking at the component now I'm basically back to
@@ -318,9 +318,9 @@ animation is paused.
 ```js
 animation.onfinish = () => {
 	if (animation.currentTime === 0) {
-		animation.pause()
+		animation.pause();
 	}
-}
+};
 ```
 
 I could go a step further here and destructure the `currentTime`
@@ -330,10 +330,10 @@ to reverse before it's paused!
 ```js
 animation.onfinish = ({ currentTime }) => {
 	if (currentTime === 0) {
-		animation.reverse()
-		animation.pause()
+		animation.reverse();
+		animation.pause();
 	}
-}
+};
 ```
 
 Then rather than checking if the `open` variable is `true` or `false`
@@ -343,23 +343,23 @@ playing or not and either reverse it or play it.
 ```js
 return {
 	update: () => {
-		animation.currentTime ? animation.reverse() : animation.play()
+		animation.currentTime ? animation.reverse() : animation.play();
 	},
-}
+};
 ```
 
 So, with that all being said, here's the full component:
 
 ```svelte
 <script>
-	export let buttonText = ''
-	export let open = false
+	export let buttonText = '';
+	export let open = false;
 
 	// custom slide animation
 	const slide = (node, open) => {
-		let initialHeight = node.offsetHeight
-		node.style.height = open ? `auto` : '0px'
-		node.style.overflow = 'hidden'
+		let initialHeight = node.offsetHeight;
+		node.style.height = open ? `auto` : '0px';
+		node.style.overflow = 'hidden';
 		let animation = node.animate(
 			[{ height: '0px' }, { height: `${initialHeight}px` }],
 			{
@@ -368,26 +368,28 @@ So, with that all being said, here's the full component:
 				fill: 'both',
 				direction: open ? 'reverse' : 'normal',
 			},
-		)
-		animation.pause()
+		);
+		animation.pause();
 		animation.onfinish = ({ currentTime }) => {
 			if (currentTime === 0) {
-				animation.reverse()
-				animation.pause()
+				animation.reverse();
+				animation.pause();
 			}
-		}
+		};
 		return {
 			update: () => {
-				animation.currentTime ? animation.reverse() : animation.play()
+				animation.currentTime
+					? animation.reverse()
+					: animation.play();
 			},
-		}
-	}
+		};
+	};
 </script>
 
 <section>
 	<button
 		on:click={() => {
-			open = !open
+			open = !open;
 		}}
 	>
 		<div>
@@ -430,11 +432,11 @@ So, in the `animation.onfinish` event add in my custom event.
 ```js
 animation.onfinish = ({ currentTime }) => {
 	if (currentTime === 0) {
-		animation.reverse()
-		animation.pause()
+		animation.reverse();
+		animation.pause();
 	}
-	node.dispatchEvent(new CustomEvent('animationEnd'))
-}
+	node.dispatchEvent(new CustomEvent('animationEnd'));
+};
 ```
 
 Then on the element that has the `use:` action on it I can listen for
@@ -474,7 +476,7 @@ done via props.
 		tabindex="0"
 		id="accordion__title_2"
 		on:click={() => {
-			open = !open
+			open = !open;
 		}}
 	>
 		<p>{buttonText}</p>
@@ -514,31 +516,31 @@ export const clickOutside = (node: any) => {
 			!node.contains(event.target) &&
 			!event.defaultPrevented
 		) {
-			node.dispatchEvent(new CustomEvent('click_outside', node))
+			node.dispatchEvent(new CustomEvent('click_outside', node));
 		}
-	}
+	};
 
-	document.addEventListener('click', handleClick, true)
+	document.addEventListener('click', handleClick, true);
 
 	return {
 		destroy() {
-			document.removeEventListener('click', handleClick, true)
+			document.removeEventListener('click', handleClick, true);
 		},
-	}
-}
+	};
+};
 ```
 
 Then it's implemented like this:
 
 ```svelte
 <script lang="ts">
-	import { clickOutside } from '$lib/utils'
-	import { cartOpen } from '$stores/cart'
-	import { fly } from 'svelte/transition'
+	import { clickOutside } from '$lib/utils';
+	import { cartOpen } from '$stores/cart';
+	import { fly } from 'svelte/transition';
 
 	const handleClickOutside = () => {
-		$cartOpen = !$cartOpen
-	}
+		$cartOpen = !$cartOpen;
+	};
 </script>
 
 {#if $cartOpen}
@@ -551,7 +553,7 @@ Then it's implemented like this:
 		<div>
 			<button
 				on:click={() => {
-					$cartOpen = !$cartOpen
+					$cartOpen = !$cartOpen;
 				}}
 			>
 				&#10799;
@@ -567,9 +569,9 @@ It uses a simple store to keep track of the cart open state:
 <!-- cSpell:ignore writable -->
 
 ```ts
-import { writable } from 'svelte/store'
+import { writable } from 'svelte/store';
 
-export const cartOpen = writable(false)
+export const cartOpen = writable(false);
 ```
 
 If you want to see the code you can check out the [SvelteKit Vendure
@@ -586,16 +588,16 @@ how you can use the Svelte `use:` action to manipulate the DOM.
 
 ```svelte
 <script>
-	let children = ''
+	let children = '';
 
 	const sarky = (node) => {
-		children = node.childNodes[0].nodeValue
+		children = node.childNodes[0].nodeValue;
 
 		node.childNodes[0].nodeValue = children
 			.split('')
 			.map((char, i) => char[`to${i % 2 ? 'Upper' : 'Lower'}Case`]())
-			.join('')
-	}
+			.join('');
+	};
 </script>
 
 <span class="font-semibold" use:sarky>

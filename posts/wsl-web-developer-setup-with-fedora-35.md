@@ -289,11 +289,11 @@ this:
 
 ```json
 {
-  "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-  "hidden": false,
-  "name": "Fedora-35",
-  "source": "Windows.Terminal.WSL",
-  "startingDirectory": "//wsl$/Fedora-35/home/scott/repos"
+	"guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+	"hidden": false,
+	"name": "Fedora-35",
+	"source": "Windows.Terminal.WSL",
+	"startingDirectory": "//wsl$/Fedora-35/home/scott/repos"
 }
 ```
 
@@ -395,19 +395,19 @@ with the use of the [Remote WSL] extension.
 <!-- Links -->
 
 [at the start of the year]:
-  https://scottspence.com/posts/fedora-bootstrap-from-scratch
+	https://scottspence.com/posts/fedora-bootstrap-from-scratch
 [windows subsystem for linux on windows 11]:
-  https://scottspence.com/posts/wsl-on-windows-11
+	https://scottspence.com/posts/wsl-on-windows-11
 [`fedora-35.20211125-x86_64.tar.xz`]:
-  https://github.com/fedora-cloud/docker-brew-fedora/tree/35/x86_64
+	https://github.com/fedora-cloud/docker-brew-fedora/tree/35/x86_64
 [copr]: https://github.com/wslutilities/wslu
 [`wslu`]: https://github.com/wslutilities/wslu
 [zsh-syntax-highlighting]:
-  https://github.com/zsh-users/zsh-syntax-highlighting
+	https://github.com/zsh-users/zsh-syntax-highlighting
 [zsh-autosuggestions]:
-  https://github.com/zsh-users/zsh-autosuggestions
+	https://github.com/zsh-users/zsh-autosuggestions
 [spaceship zsh]: https://github.com/denysdovhan/spaceship-prompt
 [miguel alex cantu]:
-  http://blog.miguelalexcantu.com/2020/12/fixing-upower-warning-wslzshspaceship.html
+	http://blog.miguelalexcantu.com/2020/12/fixing-upower-warning-wslzshspaceship.html
 [remote wsl]:
-  https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl
+	https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl

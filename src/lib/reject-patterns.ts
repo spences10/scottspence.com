@@ -22,7 +22,7 @@ export const rejected_extensions = [
 	'.log',
 	'.env',
 	'.ini',
-]
+];
 
 export const rejected_paths = [
 	'/wp-',
@@ -38,4 +38,4 @@ export const rejected_paths = [
 	'/setup',
 	'/install',
 	'/config',
-]
+];

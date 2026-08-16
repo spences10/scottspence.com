@@ -1,18 +1,18 @@
 <script lang="ts">
-	import { get_live_stats_breakdown } from '$lib/analytics/live-analytics.remote'
-	import { number_crunch } from '$lib/utils'
-	import { onMount } from 'svelte'
-	import StatRow from './stat-row.svelte'
-	import { country_flag, format_path } from './stats.svelte'
+	import { get_live_stats_breakdown } from '$lib/analytics/live-analytics.remote';
+	import { number_crunch } from '$lib/utils';
+	import { onMount } from 'svelte';
+	import StatRow from './stat-row.svelte';
+	import { country_flag, format_path } from './stats.svelte';
 
-	const live_stats_query = get_live_stats_breakdown()
+	const live_stats_query = get_live_stats_breakdown();
 
 	onMount(() => {
 		const interval = setInterval(() => {
-			get_live_stats_breakdown().refresh().catch(console.error)
-		}, 10000)
-		return () => clearInterval(interval)
-	})
+			get_live_stats_breakdown().refresh().catch(console.error);
+		}, 10000);
+		return () => clearInterval(interval);
+	});
 </script>
 
 <!-- Live Stats Section -->
@@ -20,12 +20,12 @@
 
 {#await live_stats_query}
 	<div class="flex items-center justify-center py-12">
-		<div class="loading loading-spinner loading-lg"></div>
+		<div class="loading loading-lg loading-spinner"></div>
 	</div>
 {:then live_stats}
 	<!-- Stats cards row -->
 	<div
-		class="stats stats-vertical border-secondary md:stats-horizontal mb-8 w-full border shadow-lg"
+		class="stats mb-8 w-full stats-vertical border border-secondary shadow-lg md:stats-horizontal"
 	>
 		<div class="stat">
 			<div class="stat-title">Active Now</div>
@@ -60,7 +60,7 @@
 	<!-- Main grid: Countries + Active Pages -->
 	<div class="mb-8 grid gap-6 lg:grid-cols-2">
 		<!-- Countries -->
-		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+		<div class="card min-w-0 overflow-hidden bg-base-200 shadow-lg">
 			<div class="card-body min-w-0">
 				<h2 class="card-title text-lg">Visitors by Country</h2>
 				{#if live_stats.countries.length > 0}
@@ -73,7 +73,7 @@
 								class="relative flex items-center justify-between gap-2 py-1.5"
 							>
 								<div
-									class="bg-primary/20 absolute inset-y-0 left-0 rounded"
+									class="absolute inset-y-0 left-0 rounded bg-primary/20"
 									style="width: {(c.visitors / max_visitors) * 100}%"
 								></div>
 								<span
@@ -82,20 +82,20 @@
 									<span>{country_flag(c.country)}</span>
 									<span class="uppercase">{c.country}</span>
 								</span>
-								<span class="badge badge-ghost relative tabular-nums">
+								<span class="relative badge badge-ghost tabular-nums">
 									{number_crunch(c.visitors)}
 								</span>
 							</li>
 						{/each}
 					</ul>
 				{:else}
-					<p class="text-base-content/50 text-sm">No data yet</p>
+					<p class="text-sm text-base-content/50">No data yet</p>
 				{/if}
 			</div>
 		</div>
 
 		<!-- Active Pages -->
-		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+		<div class="card min-w-0 overflow-hidden bg-base-200 shadow-lg">
 			<div class="card-body min-w-0">
 				<h2 class="card-title text-lg">Top Pages</h2>
 				{#if live_stats.top_paths.length > 0}
@@ -115,13 +115,13 @@
 						{/each}
 					</ul>
 				{:else}
-					<p class="text-base-content/50 text-sm">No activity</p>
+					<p class="text-sm text-base-content/50">No activity</p>
 				{/if}
 			</div>
 		</div>
 	</div>
 
-	<p class="text-base-content/50 mb-8 text-center text-xs">
+	<p class="mb-8 text-center text-xs text-base-content/50">
 		Live data refreshes every 10 seconds
 	</p>
 {/await}

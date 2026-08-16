@@ -1,22 +1,22 @@
 <script lang="ts">
-	import { WarningTriangle } from '$lib/icons'
-	import { compareDesc, differenceInYears } from 'date-fns'
-	import DateDistance from './date-distance.svelte'
+	import { WarningTriangle } from '$lib/icons';
+	import { compareDesc, differenceInYears } from 'date-fns';
+	import DateDistance from './date-distance.svelte';
 
 	interface Props {
-		date?: any
-		updated?: any
+		date?: any;
+		updated?: any;
 	}
 
-	let { date = new Date(), updated = new Date() }: Props = $props()
+	let { date = new Date(), updated = new Date() }: Props = $props();
 
 	let has_been_updated = $derived(
 		compareDesc(new Date(updated), new Date(date)),
-	)
+	);
 </script>
 
 {#if has_been_updated}
-	<div class="alert alert-warning my-8 shadow-lg">
+	<div class="my-8 alert alert-warning shadow-lg">
 		<div class="flex items-center">
 			<span class="mr-5">
 				<WarningTriangle />
@@ -36,7 +36,7 @@
 		</div>
 	</div>
 {:else}
-	<div class="alert alert-warning my-8 shadow-lg">
+	<div class="my-8 alert alert-warning shadow-lg">
 		<div class="flex items-center">
 			<span class="mr-5">
 				<WarningTriangle />

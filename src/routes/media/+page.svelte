@@ -1,23 +1,23 @@
 <script lang="ts">
-	import { DateUpdated, Small } from '$lib/components'
-	import { name, website } from '$lib/info'
-	import { create_seo_config } from '$lib/seo'
-	import { og_image_url } from '$lib/utils'
-	import { Head } from 'svead'
-	import Images from './images.svelte'
+	import { DateUpdated, Small } from '$lib/components';
+	import { name, website } from '$lib/info';
+	import { create_seo_config } from '$lib/seo';
+	import { og_image_url } from '$lib/utils';
+	import { Head } from 'svead';
+	import Images from './images.svelte';
 
 	interface Props {
-		data: any
+		data: any;
 	}
 
-	let { data }: Props = $props()
-	let CorporateCopy = $derived(data.CorporateCopy)
-	let FunCopy = $derived(data.FunCopy)
+	let { data }: Props = $props();
+	let CorporateCopy = $derived(data.CorporateCopy);
+	let FunCopy = $derived(data.FunCopy);
 
-	let show_fun_copy = $state(true)
+	let show_fun_copy = $state(true);
 	const toggle_copy = () => {
-		show_fun_copy = !show_fun_copy
-	}
+		show_fun_copy = !show_fun_copy;
+	};
 
 	const seo_config = create_seo_config({
 		title: `Media - ${name}`,
@@ -29,7 +29,7 @@
 		),
 		url: `${website}/media`,
 		slug: 'media',
-	})
+	});
 </script>
 
 <Head {seo_config} />

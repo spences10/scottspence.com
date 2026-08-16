@@ -1,45 +1,45 @@
-import { query } from '$app/server'
+import { query } from '$app/server';
 import {
 	BYPASS_DB_READS,
 	CACHE_DURATIONS,
 	get_from_cache,
 	set_cache,
-} from '$lib/cache/server-cache'
-import { sqlite_client } from '$lib/sqlite/client'
+} from '$lib/cache/server-cache';
+import { sqlite_client } from '$lib/sqlite/client';
 
 // Base stat type used across different time periods
 interface SiteStat {
-	views: number
-	unique_visitors: number
+	views: number;
+	unique_visitors: number;
 }
 
 // Monthly statistics
 interface MonthlyStat extends SiteStat {
-	year_month: string // Format: YYYY-MM
+	year_month: string; // Format: YYYY-MM
 }
 
 // Yearly statistics
 interface YearlyStat extends SiteStat {
-	year: string // Format: YYYY
+	year: string; // Format: YYYY
 }
 
 // Combined site statistics for a page/post
 interface SiteStats {
-	slug: string
-	title: string
-	monthly_stats: MonthlyStat[]
-	yearly_stats: YearlyStat[]
-	all_time_stats: SiteStat
+	slug: string;
+	title: string;
+	monthly_stats: MonthlyStat[];
+	yearly_stats: YearlyStat[];
+	all_time_stats: SiteStat;
 }
 
 interface SiteStatsData {
-	site_stats: SiteStats[]
-	current_month: string
-	current_year: string
-	error?: string
+	site_stats: SiteStats[];
+	current_month: string;
+	current_year: string;
+	error?: string;
 }
 
-const CACHE_KEY = 'site_stats'
+const CACHE_KEY = 'site_stats';
 
 export const get_site_stats = query(
 	async (): Promise<SiteStatsData> => {
@@ -48,16 +48,16 @@ export const get_site_stats = query(
 				site_stats: [],
 				current_month: new Date().toISOString().slice(0, 7),
 				current_year: new Date().getFullYear().toString(),
-			}
+			};
 		}
 
 		// Check server cache first
 		const cached = get_from_cache<SiteStatsData>(
 			CACHE_KEY,
 			CACHE_DURATIONS.site_stats,
-		)
+		);
 		if (cached) {
-			return cached
+			return cached;
 		}
 
 		try {
@@ -108,14 +108,14 @@ export const get_site_stats = query(
 				LIMIT 500;
 			`,
 				args: [],
-			})
+			});
 
 			if (!result.rows || result.rows.length === 0) {
 				return {
 					site_stats: [],
 					current_month: new Date().toISOString().slice(0, 7),
 					current_year: new Date().getFullYear().toString(),
-				}
+				};
 			}
 
 			const site_stats: SiteStats[] = result.rows
@@ -127,34 +127,34 @@ export const get_site_stats = query(
 							monthly_stats: JSON.parse(String(row.monthly_stats)),
 							yearly_stats: JSON.parse(String(row.yearly_stats)),
 							all_time_stats: JSON.parse(String(row.all_time_stats)),
-						}
+						};
 					} catch (error) {
-						console.error('Error parsing row:', error)
-						return null
+						console.error('Error parsing row:', error);
+						return null;
 					}
 				})
-				.filter((item): item is SiteStats => item !== null)
+				.filter((item): item is SiteStats => item !== null);
 
 			const data = {
 				site_stats,
 				current_month: new Date().toISOString().slice(0, 7),
 				current_year: new Date().getFullYear().toString(),
-			}
+			};
 
 			// Cache the result
-			set_cache(CACHE_KEY, data)
-			return data
+			set_cache(CACHE_KEY, data);
+			return data;
 		} catch (error) {
-			console.warn('Database unavailable for site stats:', error)
+			console.warn('Database unavailable for site stats:', error);
 			return {
 				site_stats: [],
 				error: 'Error fetching site stats data',
 				current_month: new Date().toISOString().slice(0, 7),
 				current_year: new Date().getFullYear().toString(),
-			}
+			};
 		}
 	},
-)
+);
 
 // Export types for use in components
 export type {
@@ -163,4 +163,4 @@ export type {
 	SiteStats,
 	SiteStatsData,
 	YearlyStat,
-}
+};

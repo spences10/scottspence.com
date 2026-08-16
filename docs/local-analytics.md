@@ -92,7 +92,7 @@ WAL file grew to 444MB under load. Fix: add checkpoint on startup:
 
 ```ts
 // In hooks.server.ts initialization
-sqlite_client.exec('PRAGMA wal_checkpoint(TRUNCATE);')
+sqlite_client.exec('PRAGMA wal_checkpoint(TRUNCATE);');
 ```
 
 ### UPSERT was redundant
@@ -121,7 +121,7 @@ Simple INSERT + COUNT(DISTINCT) at read time achieves same result.
    for (const reaction of reactions) {
    	await db.execute(
    		'SELECT count FROM reactions WHERE post_url = ? AND reaction_type = ?',
-   	)
+   	);
    }
    ```
 
@@ -140,16 +140,16 @@ Simple INSERT + COUNT(DISTINCT) at read time achieves same result.
    seconds:
 
    ```ts
-   const queue: PageView[] = []
+   const queue: PageView[] = [];
 
    setInterval(() => {
    	if (queue.length) {
    		db.exec(
    			`INSERT INTO analytics_events VALUES ${formatBatch(queue)}`,
-   		)
-   		queue.length = 0
+   		);
+   		queue.length = 0;
    	}
-   }, 5000)
+   }, 5000);
    ```
 
 2. **Single query for reactions**:
@@ -345,16 +345,16 @@ Add to `hooks.server.ts` for debugging:
 
 ```ts
 const time_request: Handle = async ({ event, resolve }) => {
-	const start = performance.now()
-	const response = await resolve(event)
-	const duration = performance.now() - start
+	const start = performance.now();
+	const response = await resolve(event);
+	const duration = performance.now() - start;
 	if (duration > 500) {
 		console.log(
 			`[slow] ${event.url.pathname} ${duration.toFixed(0)}ms`,
-		)
+		);
 	}
-	return response
-}
+	return response;
+};
 ```
 
 ## Bun consideration
@@ -449,13 +449,13 @@ ensures all numbers are consistent (same source, same moment in time).
 
 ```ts
 type ActiveSession = {
-	visitor_hash: string
-	path: string
-	last_seen: number
-	country?: string // from cf-ipcountry header
-	browser?: string // from UA parsing
-	device_type?: string // from UA parsing
-}
+	visitor_hash: string;
+	path: string;
+	last_seen: number;
+	country?: string; // from cf-ipcountry header
+	browser?: string; // from UA parsing
+	device_type?: string; // from UA parsing
+};
 ```
 
 **Benefits:**
@@ -499,52 +499,52 @@ Refactor to Svelte 5 `$effect` pattern with proper cleanup:
 
 ```ts
 // In-flight guard prevents pile-up
-let heartbeat_in_flight = false
+let heartbeat_in_flight = false;
 
 export const create_heartbeat_effect = () => {
-	if (!browser) return () => {}
+	if (!browser) return () => {};
 
-	const session_id = get_session_id()
-	let interval: ReturnType<typeof setInterval> | null = null
-	let is_visible = !document.hidden
+	const session_id = get_session_id();
+	let interval: ReturnType<typeof setInterval> | null = null;
+	let is_visible = !document.hidden;
 
 	const do_heartbeat = async () => {
 		// Skip if request already in flight or tab hidden
-		if (heartbeat_in_flight || !is_visible) return
+		if (heartbeat_in_flight || !is_visible) return;
 
-		heartbeat_in_flight = true
+		heartbeat_in_flight = true;
 		try {
-			const result = await send_heartbeat({ session_id, path })
+			const result = await send_heartbeat({ session_id, path });
 			// update state...
 		} finally {
-			heartbeat_in_flight = false
+			heartbeat_in_flight = false;
 		}
-	}
+	};
 
 	const on_visibility_change = () => {
-		is_visible = !document.hidden
+		is_visible = !document.hidden;
 		if (is_visible && !interval) {
-			do_heartbeat()
-			interval = setInterval(do_heartbeat, 5000)
+			do_heartbeat();
+			interval = setInterval(do_heartbeat, 5000);
 		} else if (!is_visible && interval) {
-			clearInterval(interval)
-			interval = null
+			clearInterval(interval);
+			interval = null;
 		}
-	}
+	};
 
 	// Start
-	interval = setInterval(do_heartbeat, 5000)
-	document.addEventListener('visibilitychange', on_visibility_change)
+	interval = setInterval(do_heartbeat, 5000);
+	document.addEventListener('visibilitychange', on_visibility_change);
 
 	// Cleanup for $effect
 	return () => {
-		if (interval) clearInterval(interval)
+		if (interval) clearInterval(interval);
 		document.removeEventListener(
 			'visibilitychange',
 			on_visibility_change,
-		)
-	}
-}
+		);
+	};
+};
 ```
 
 **Usage in +layout.svelte:**
@@ -576,6 +576,6 @@ $effect(() => {
   remote functions
 - Remote functions are RPC-style, don't expose signal parameter
 - SvelteKit issue #14146: abort signals don't propagate to server
-- Sources:
-  [svelte $effect docs](https://svelte.dev/docs/svelte/$effect),
+- Sources: [svelte
+  $effect docs](https://svelte.dev/docs/svelte/$effect),
   [getAbortSignal](https://svelte.dev/docs/svelte/svelte)

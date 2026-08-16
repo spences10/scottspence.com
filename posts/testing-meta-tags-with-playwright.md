@@ -38,9 +38,9 @@ simple test:
 
 ```ts
 test('index page has h1', async ({ page }) => {
-  await page.goto('/')
-  expect(await page.textContent('h1')).toBe('Welcome to Svead')
-})
+	await page.goto('/');
+	expect(await page.textContent('h1')).toBe('Welcome to Svead');
+});
 ```
 
 I'll keep that in the file.
@@ -53,23 +53,23 @@ there may be some gaps in my own component.
 
 ```ts
 test('head has canonical', async ({ page }) => {
-  await page.goto('/')
-  const metaDescription = page.locator('link[rel="canonical"]')
-  await expect(metaDescription).toHaveAttribute('href', pageURL)
-})
+	await page.goto('/');
+	const metaDescription = page.locator('link[rel="canonical"]');
+	await expect(metaDescription).toHaveAttribute('href', pageURL);
+});
 ```
 
 Then for the `description` tag:
 
 ```ts
 test('head has description', async ({ page }) => {
-  await page.goto('/')
-  const metaDescription = page.locator('meta[name="description"]')
-  await expect(metaDescription).toHaveAttribute(
-    'content',
-    'Svead, a component that allows you to set head meta information.'
-  )
-})
+	await page.goto('/');
+	const metaDescription = page.locator('meta[name="description"]');
+	await expect(metaDescription).toHaveAttribute(
+		'content',
+		'Svead, a component that allows you to set head meta information.',
+	);
+});
 ```
 
 That's the basics covered for testing, I used the [Playwright VS Code
@@ -116,9 +116,9 @@ repo.
 [head component]: https://github.com/spences10/svead
 [astro seo]: https://github.com/jonasmerlin/astro-seo/
 [playwright vs code extension]:
-  https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright
+	https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright
 [tests]: https://github.com/spences10/svead/blob/main/tests/test.ts
 [jonas schumacher]: https://github.com/jonasmerlin
 [svead github]: https://github.com/spences10/svead
 [`.github/workflows` folder]:
-  https://github.com/spences10/svead/blob/main/.github/workflows/e2e-ci.yml
+	https://github.com/spences10/svead/blob/main/.github/workflows/e2e-ci.yml

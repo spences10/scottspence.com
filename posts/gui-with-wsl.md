@@ -412,37 +412,37 @@ Boom! GUI running in WSL!!
 [x410]: https://www.microsoft.com/en-gb/p/x410/9nlp712zmn9q
 [pengwin]: https://www.microsoft.com/en-gb/p/pengwin/9nv1gv1pxz6p
 [the readies]:
-  https://dictionary.cambridge.org/dictionary/english/readies
+	https://dictionary.cambridge.org/dictionary/english/readies
 [linux on windows wsl2 zsh docker]:
-  https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker
+	https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker
 [setting up zsh]:
-  https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker#zsh
+	https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker#zsh
 [using graphical user interfaces like cypress' in wsl2]:
-  https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress
+	https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress
 [nicky meuleman]: https://twitter.com/NMeuleman
 [debian]: https://www.microsoft.com/en-gb/p/debian/9msvkqc78pk6
 [notes on zsh and oh my zsh]:
-  https://scottspence.com/posts/zsh-and-oh-my-zsh/
+	https://scottspence.com/posts/zsh-and-oh-my-zsh/
 [gui]: https://en.wikipedia.org/wiki/Graphical_user_interface
 [microsoft's playwright]: https://github.com/microsoft/playwright
 [qa wolf]: https://github.com/qawolf/qawolf
 [cypress]: https://www.cypress.io/
 [x-server]: https://en.wikipedia.org/wiki/X_server
 [adding linux gui app support to wsl]:
-  https://devblogs.microsoft.com/commandline/the-windows-subsystem-for-linux-build-2020-summary/#wsl-gui
+	https://devblogs.microsoft.com/commandline/the-windows-subsystem-for-linux-build-2020-summary/#wsl-gui
 [windows insiders]: https://insider.windows.com/en-gb/for-developers
 [vcxsrv]:
-  https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#vcxsrv
+	https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#vcxsrv
 [wsl bootstrap 2020]:
-  https://scottspence.com/posts/wsl-bootstrap-2020/
+	https://scottspence.com/posts/wsl-bootstrap-2020/
 [stack overflow answer]: https://stackoverflow.com/a/60016407/1138354
 [`explorer.exe`]:
-  https://devblogs.microsoft.com/commandline/whats-new-for-wsl-in-windows-10-version-1903/#accessing-linux-files-from-windows
+	https://devblogs.microsoft.com/commandline/whats-new-for-wsl-in-windows-10-version-1903/#accessing-linux-files-from-windows
 [explains brilliantly]:
-  https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#the-display-variable
+	https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#the-display-variable
 [d-bus]: https://en.wikipedia.org/wiki/D-Bus
 [`build-essential`]:
-  https://packages.ubuntu.com/xenial/build-essential
+	https://packages.ubuntu.com/xenial/build-essential
 [yarn install docs]:
-  https://classic.yarnpkg.com/en/docs/install/#debian-stable
+	https://classic.yarnpkg.com/en/docs/install/#debian-stable
 [playwright]: https://github.com/microsoft/playwright

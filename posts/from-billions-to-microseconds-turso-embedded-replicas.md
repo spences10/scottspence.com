@@ -63,14 +63,14 @@ just had to update my Turso client:
 ```typescript
 const LOCAL_DB_PATH = dev
 	? './local-dev-replica.db'
-	: '/app/data/turso-replica.db'
+	: '/app/data/turso-replica.db';
 
 const client = createClient({
 	url: `file:${LOCAL_DB_PATH}`, // Local replica file
 	syncUrl: remote_url, // Remote Turso database
 	authToken: auth_token,
 	syncInterval: dev ? 60 : 300, // Sync every 5 minutes in prod
-})
+});
 ```
 
 **Development**: Local replica syncs every minute for faster feedback
@@ -173,7 +173,7 @@ export const BYPASS_DB_READS = {
 	analytics: false, // Enable - local reads are fast
 	reactions: false, // Enable - local reads are fast
 	// ...
-}
+};
 ```
 
 The bypass flags are now more about feature toggles than performance

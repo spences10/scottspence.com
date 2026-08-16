@@ -19,7 +19,7 @@ Vite exposes all variables contained in the `.env` file prefixed with
 with Vite you _could_ expose it using:
 
 ```js
-import.meta.env.VITE_NAME_OF_VARIABLE
+import.meta.env.VITE_NAME_OF_VARIABLE;
 ```
 
 This isn't great if you have a secret key that you don't want exposed
@@ -56,7 +56,7 @@ Example, using a public variable in a `.svelte` file:
 
 ```svelte
 <script>
-  import { env } from '$env/static/public'
+	import { env } from '$env/static/public';
 </script>
 
 {env.PUBLIC_VARIABLE}
@@ -65,16 +65,16 @@ Example, using a public variable in a `.svelte` file:
 In a `.js` file (endpoint):
 
 ```js
-import { env as private_env } from '$env/static/private'
-import { env as public_env } from '$env/static/public'
+import { env as private_env } from '$env/static/private';
+import { env as public_env } from '$env/static/public';
 
 export const GET = async () => {
-  console.log('=====================')
-  console.log(private_env.SECRET_VARIABLE)
-  console.log(public_env.PUBLIC_VARIABLE)
-  console.log('=====================')
-  return {}
-}
+	console.log('=====================');
+	console.log(private_env.SECRET_VARIABLE);
+	console.log(public_env.PUBLIC_VARIABLE);
+	console.log('=====================');
+	return {};
+};
 ```
 
 There's an example repository over on GitHub that you can take a look
@@ -91,6 +91,6 @@ Check out the documentation for each implementation:
 
 [`env-cmd`]: https://www.npmjs.com/package/env-cmd
 [sveltekit .env secrets]:
-  https://scottspence.com/posts/sveltekit-env-secrets
+	https://scottspence.com/posts/sveltekit-env-secrets
 [geoff rich]: https://twitter.com/geoffrich_
 [pr here]: https://github.com/spences10/scottspence.com/pull/323/files

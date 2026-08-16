@@ -1,5 +1,5 @@
 interface Config {
-	[key: string]: string
+	[key: string]: string;
 }
 
 export const get_padding = (aspectRatio: string | number) => {
@@ -9,7 +9,7 @@ export const get_padding = (aspectRatio: string | number) => {
 		'4:3': `padding-top: 75%;`,
 		'3:2': `padding-top: 66.66%;`,
 		'8.5': `padding-top: 62.5%;`,
-	}
+	};
 
-	return config[String(aspectRatio)]
-}
+	return config[String(aspectRatio)];
+};

@@ -2,25 +2,25 @@
 	import {
 		get_chart_data,
 		type ChartData,
-	} from '$lib/analytics/chart-data.remote'
+	} from '$lib/analytics/chart-data.remote';
 	import {
 		sort_engagement_stats,
 		type EngagementSortMode,
-	} from '$lib/analytics/engagement-stats.helpers'
+	} from '$lib/analytics/engagement-stats.helpers';
 	import {
 		get_engagement_stats,
 		type EngagementStats,
-	} from '$lib/analytics/engagement-stats.remote'
+	} from '$lib/analytics/engagement-stats.remote';
 	import {
 		get_period_stats,
 		type FilterMode,
 		type PeriodStats,
 		type StatsPeriod,
-	} from '$lib/analytics/period-stats.remote'
-	import { InformationCircle } from '$lib/icons'
-	import { number_crunch } from '$lib/utils'
-	import { scaleTime } from 'd3-scale'
-	import { curveMonotoneX } from 'd3-shape'
+	} from '$lib/analytics/period-stats.remote';
+	import { InformationCircle } from '$lib/icons';
+	import { number_crunch } from '$lib/utils';
+	import { scaleTime } from 'd3-scale';
+	import { curveMonotoneX } from 'd3-shape';
 	import {
 		Area,
 		Axis,
@@ -29,23 +29,23 @@
 		LinearGradient,
 		Svg,
 		Tooltip,
-	} from 'layerchart'
-	import StatRowMulti from './stat-row-multi.svelte'
+	} from 'layerchart';
+	import StatRowMulti from './stat-row-multi.svelte';
 	import {
 		country_flag,
 		device_icon,
 		format_path,
 		parse_referrer,
 		period_labels,
-	} from './stats.svelte'
+	} from './stats.svelte';
 
-	let period_stats = $state<PeriodStats | null>(null)
-	let chart_data = $state<ChartData | null>(null)
-	let engagement_stats = $state<EngagementStats | null>(null)
-	let period_loading = $state(false)
-	let selected_stats_period = $state<StatsPeriod>('today')
-	let selected_filter_mode = $state<FilterMode>('humans')
-	let engagement_sort_mode = $state<EngagementSortMode>('clicks')
+	let period_stats = $state<PeriodStats | null>(null);
+	let chart_data = $state<ChartData | null>(null);
+	let engagement_stats = $state<EngagementStats | null>(null);
+	let period_loading = $state(false);
+	let selected_stats_period = $state<StatsPeriod>('today');
+	let selected_filter_mode = $state<FilterMode>('humans');
+	let engagement_sort_mode = $state<EngagementSortMode>('clicks');
 
 	// Sort engagement stats based on selected mode
 	const sorted_engagement_pages = $derived(
@@ -55,46 +55,46 @@
 					engagement_sort_mode,
 				)
 			: [],
-	)
+	);
 
 	const fetch_period_data = async (
 		period: StatsPeriod,
 		filter_mode: FilterMode,
 	) => {
-		period_loading = true
+		period_loading = true;
 		try {
 			const [stats, chart, engagement] = await Promise.all([
 				get_period_stats({ period, filter_mode }),
 				get_chart_data({ period, filter_mode }),
 				get_engagement_stats({ period }),
-			])
-			period_stats = stats
-			chart_data = chart
-			engagement_stats = engagement
+			]);
+			period_stats = stats;
+			chart_data = chart;
+			engagement_stats = engagement;
 		} catch (e) {
-			console.error('[stats] Failed to fetch period data:', e)
+			console.error('[stats] Failed to fetch period data:', e);
 		} finally {
-			period_loading = false
+			period_loading = false;
 		}
-	}
+	};
 
 	// Reactive: fetch when period or filter mode changes
 	$effect(() => {
-		fetch_period_data(selected_stats_period, selected_filter_mode)
-	})
+		fetch_period_data(selected_stats_period, selected_filter_mode);
+	});
 
 	// Convert chart data timestamps to Date objects for scaleTime
 	let chart_data_parsed = $derived.by(() => {
-		if (!chart_data) return []
+		if (!chart_data) return [];
 		return chart_data.data_points.map((point) => ({
 			...point,
 			date: new Date(point.timestamp),
-		}))
-	})
+		}));
+	});
 
 	// Flatten chart data for multi-series (views + visitors)
 	let chart_data_multi = $derived.by(() => {
-		if (!chart_data_parsed.length) return []
+		if (!chart_data_parsed.length) return [];
 		return chart_data_parsed.flatMap((point) => [
 			{
 				date: point.date,
@@ -108,12 +108,12 @@
 				series: 'views',
 				timestamp: point.timestamp,
 			},
-		])
-	})
+		]);
+	});
 
 	// Group by series for rendering
 	let chart_series_data = $derived.by(() => {
-		if (!chart_data_parsed.length) return { visitors: [], views: [] }
+		if (!chart_data_parsed.length) return { visitors: [], views: [] };
 		return {
 			visitors: chart_data_parsed.map((p) => ({
 				date: p.date,
@@ -125,8 +125,8 @@
 				value: p.views,
 				timestamp: p.timestamp,
 			})),
-		}
-	})
+		};
+	});
 </script>
 
 <!-- Page header -->
@@ -135,7 +135,7 @@
 </div>
 
 <!-- Filter info alert -->
-<div class="alert mb-6">
+<div class="mb-6 alert">
 	<InformationCircle />
 	<div class="text-sm">
 		<p>
@@ -194,12 +194,12 @@
 
 {#if period_loading}
 	<div class="flex items-center justify-center py-8">
-		<div class="loading loading-spinner loading-md"></div>
+		<div class="loading loading-md loading-spinner"></div>
 	</div>
 {:else if period_stats}
 	<!-- Period summary cards -->
 	<div
-		class="stats stats-vertical border-secondary md:stats-horizontal mb-4 w-full border shadow-lg"
+		class="stats mb-4 w-full stats-vertical border border-secondary shadow-lg md:stats-horizontal"
 	>
 		<div class="stat">
 			<div class="stat-title">
@@ -251,16 +251,16 @@
 			...chart_data_parsed.map((d) => Math.max(d.views, d.visitors)),
 		)}
 		{#key chart_data_parsed.length}
-			<div class="card bg-base-200 mb-4 shadow-lg">
+			<div class="card mb-4 bg-base-200 shadow-lg">
 				<div class="card-body p-4">
 					<div class="mb-2 flex gap-4 text-sm">
 						<span class="flex items-center gap-1">
-							<span class="bg-secondary inline-block h-2 w-4 rounded"
+							<span class="inline-block h-2 w-4 rounded bg-secondary"
 							></span>
 							Visitors
 						</span>
 						<span class="flex items-center gap-1">
-							<span class="bg-primary inline-block h-2 w-4 rounded"
+							<span class="inline-block h-2 w-4 rounded bg-primary"
 							></span>
 							Views
 						</span>
@@ -352,17 +352,17 @@
 									data,
 								}: {
 									data: {
-										timestamp: string
-										value: number
-										series: string
-									}
+										timestamp: string;
+										value: number;
+										series: string;
+									};
 								})}
 									{@const point = chart_data_parsed.find(
 										(p) => p.timestamp === data.timestamp,
 									)}
 									<Tooltip.Header>
 										<span
-											class="text-base-content/70 text-xs font-medium"
+											class="text-xs font-medium text-base-content/70"
 										>
 											{#if point}
 												{#if selected_stats_period === 'today' || selected_stats_period === 'yesterday'}
@@ -414,8 +414,8 @@
 
 	<!-- Bot stats summary (shown when viewing humans) -->
 	{#if selected_filter_mode === 'humans' && period_stats.bot_views > 0}
-		<div class="bg-base-200 mb-8 rounded-lg p-3 text-sm">
-			<span class="text-warning font-semibold"
+		<div class="mb-8 rounded-lg bg-base-200 p-3 text-sm">
+			<span class="font-semibold text-warning"
 				>Bot traffic filtered:</span
 			>
 			{number_crunch(period_stats.bot_views)} views from {number_crunch(
@@ -436,7 +436,7 @@
 
 	<!-- Top Pages (full width) -->
 	<div class="mb-8">
-		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+		<div class="card min-w-0 overflow-hidden bg-base-200 shadow-lg">
 			<div class="card-body min-w-0">
 				<div class="flex items-center justify-between">
 					<h2 class="card-title text-lg">Top Pages</h2>
@@ -463,7 +463,7 @@
 						{/each}
 					</ul>
 				{:else}
-					<p class="text-base-content/50 text-sm">No data</p>
+					<p class="text-sm text-base-content/50">No data</p>
 				{/if}
 			</div>
 		</div>
@@ -478,7 +478,7 @@
 			...sorted_engagement_pages.map((p) => p.engagement_rate),
 		)}
 		<div class="mb-8">
-			<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+			<div class="card min-w-0 overflow-hidden bg-base-200 shadow-lg">
 				<div class="card-body min-w-0">
 					<div
 						class="flex flex-wrap items-center justify-between gap-2"
@@ -518,27 +518,27 @@
 									: page.engagement_rate / max_rate}
 							<li class="relative flex items-center gap-2 py-1.5">
 								<div
-									class="bg-accent/20 absolute inset-y-0 left-0 rounded"
+									class="absolute inset-y-0 left-0 rounded bg-accent/20"
 									style="width: {bar_value * 100}%"
 								></div>
 								<a
 									href={page.path}
-									class="link-hover relative min-w-0 flex-1 truncate text-sm"
+									class="relative min-w-0 flex-1 truncate text-sm link-hover"
 								>
 									{format_path(page.path)}
 								</a>
 								<span
-									class="badge badge-ghost badge-sm relative w-14 justify-end tabular-nums"
+									class="relative badge w-14 justify-end badge-ghost badge-sm tabular-nums"
 								>
 									{number_crunch(page.clicks)}
 								</span>
 								<span
-									class="badge badge-outline badge-sm relative w-14 justify-end tabular-nums"
+									class="relative badge w-14 justify-end badge-outline badge-sm tabular-nums"
 								>
 									{number_crunch(page.human_views)}
 								</span>
 								<span
-									class="badge badge-accent badge-sm relative w-14 justify-end tabular-nums"
+									class="relative badge w-14 justify-end badge-sm tabular-nums badge-accent"
 								>
 									{page.engagement_rate >= 10
 										? `${Math.round(page.engagement_rate)}%`
@@ -547,7 +547,7 @@
 							</li>
 						{/each}
 					</ul>
-					<p class="text-base-content/50 mt-2 text-xs">
+					<p class="mt-2 text-xs text-base-content/50">
 						Overall: {engagement_stats.total_clicks} clicks / {number_crunch(
 							engagement_stats.total_human_views,
 						)} views = {engagement_stats.overall_engagement_rate.toFixed(
@@ -562,7 +562,7 @@
 	<!-- Referrers + Countries -->
 	<div class="mb-8 grid gap-6 lg:grid-cols-2">
 		<!-- Referrers -->
-		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+		<div class="card min-w-0 overflow-hidden bg-base-200 shadow-lg">
 			<div class="card-body min-w-0">
 				<div class="flex items-center justify-between">
 					<h2 class="card-title text-lg">Referrers</h2>
@@ -586,13 +586,13 @@
 						{/each}
 					</ul>
 				{:else}
-					<p class="text-base-content/50 text-sm">No referrer data</p>
+					<p class="text-sm text-base-content/50">No referrer data</p>
 				{/if}
 			</div>
 		</div>
 
 		<!-- Countries -->
-		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+		<div class="card min-w-0 overflow-hidden bg-base-200 shadow-lg">
 			<div class="card-body min-w-0">
 				<div class="flex items-center justify-between">
 					<h2 class="card-title text-lg">Top Countries</h2>
@@ -609,7 +609,7 @@
 						{#each period_stats.countries.slice(0, 15) as c}
 							<li class="relative flex items-center gap-2 py-1.5">
 								<div
-									class="bg-primary/20 absolute inset-y-0 left-0 rounded"
+									class="absolute inset-y-0 left-0 rounded bg-primary/20"
 									style="width: {(c.visitors / max_visitors) * 100}%"
 								></div>
 								<span
@@ -619,12 +619,12 @@
 									<span class="truncate uppercase">{c.country}</span>
 								</span>
 								<span
-									class="badge badge-ghost badge-sm relative w-14 justify-end tabular-nums"
+									class="relative badge w-14 justify-end badge-ghost badge-sm tabular-nums"
 								>
 									{number_crunch(c.visitors)}
 								</span>
 								<span
-									class="badge badge-outline badge-sm relative w-14 justify-end tabular-nums"
+									class="relative badge w-14 justify-end badge-outline badge-sm tabular-nums"
 								>
 									{number_crunch(c.views)}
 								</span>
@@ -632,7 +632,7 @@
 						{/each}
 					</ul>
 				{:else}
-					<p class="text-base-content/50 text-sm">No data</p>
+					<p class="text-sm text-base-content/50">No data</p>
 				{/if}
 			</div>
 		</div>
@@ -640,7 +640,7 @@
 
 	<!-- Browsers + Devices -->
 	<div class="mb-8 grid gap-6 md:grid-cols-2">
-		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+		<div class="card min-w-0 overflow-hidden bg-base-200 shadow-lg">
 			<div class="card-body min-w-0 py-4">
 				<div class="flex items-center justify-between">
 					<h2 class="card-title text-base">Browsers</h2>
@@ -664,12 +664,12 @@
 						{/each}
 					</ul>
 				{:else}
-					<p class="text-base-content/50 text-sm">No data</p>
+					<p class="text-sm text-base-content/50">No data</p>
 				{/if}
 			</div>
 		</div>
 
-		<div class="card bg-base-200 min-w-0 overflow-hidden shadow-lg">
+		<div class="card min-w-0 overflow-hidden bg-base-200 shadow-lg">
 			<div class="card-body min-w-0 py-4">
 				<div class="flex items-center justify-between">
 					<h2 class="card-title text-base">Devices</h2>
@@ -686,7 +686,7 @@
 						{#each period_stats.devices as d}
 							<li class="relative flex items-center gap-2 py-1.5">
 								<div
-									class="bg-primary/20 absolute inset-y-0 left-0 rounded"
+									class="absolute inset-y-0 left-0 rounded bg-primary/20"
 									style="width: {(d.visitors / max_visitors) * 100}%"
 								></div>
 								<span class="relative flex flex-1 items-center gap-1">
@@ -694,12 +694,12 @@
 									<span class="capitalize">{d.device_type}</span>
 								</span>
 								<span
-									class="badge badge-ghost badge-sm relative w-14 justify-end tabular-nums"
+									class="relative badge w-14 justify-end badge-ghost badge-sm tabular-nums"
 								>
 									{number_crunch(d.visitors)}
 								</span>
 								<span
-									class="badge badge-outline badge-sm relative w-14 justify-end tabular-nums"
+									class="relative badge w-14 justify-end badge-outline badge-sm tabular-nums"
 								>
 									{number_crunch(d.views)}
 								</span>
@@ -707,7 +707,7 @@
 						{/each}
 					</ul>
 				{:else}
-					<p class="text-base-content/50 text-sm">No data</p>
+					<p class="text-sm text-base-content/50">No data</p>
 				{/if}
 			</div>
 		</div>

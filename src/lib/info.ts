@@ -1,12 +1,12 @@
-export const name = `Scott Spence`
+export const name = `Scott Spence`;
 
-export const website = `https://scottspence.com`
+export const website = `https://scottspence.com`;
 
-export const description = `My own little space on the internet, where I write about what I've learned as a web developer mainly Svelte and SvelteKit.`
+export const description = `My own little space on the internet, where I write about what I've learned as a web developer mainly Svelte and SvelteKit.`;
 
-export const payment_pointer = '$ilp.uphold.com/bzPBWkMBzLmN'
+export const payment_pointer = '$ilp.uphold.com/bzPBWkMBzLmN';
 
-export const language = 'en-GB'
+export const language = 'en-GB';
 
 export const SOCIAL_LINKS = [
 	{
@@ -29,7 +29,7 @@ export const SOCIAL_LINKS = [
 		title: `Twitch`,
 		link: `https://ss10.dev/twitch`,
 	},
-]
+];
 
 export const NAV_LINKS = [
 	{
@@ -48,7 +48,7 @@ export const NAV_LINKS = [
 		title: `FAQ`,
 		slug: `faq`,
 	},
-]
+];
 
 export const SITE_LINKS = [
 	{
@@ -99,7 +99,7 @@ export const SITE_LINKS = [
 		title: `SEO Outreach`,
 		slug: `seo-outreach`,
 	},
-]
+];
 
 export const PEOPLE = [
 	{
@@ -382,4 +382,4 @@ export const PEOPLE = [
 		link: `https://bsky.app/profile/patak.dev`,
 		met: true,
 	},
-]
+];

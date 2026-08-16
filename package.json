@@ -1,17 +1,12 @@
 {
 	"name": "scottspence.com",
+	"version": "0.0.1",
 	"private": true,
-	"packageManager": "pnpm@11.21.0",
-	"engines": {
-		"node": ">=24.15.0",
-		"pnpm": ">=11.0.0"
-	},
 	"author": {
 		"name": "Scott Spence",
 		"email": "yo@scottspence.dev",
 		"url": "https://scottspence.com"
 	},
-	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
 		"start": "node ./build/index.js",
@@ -32,6 +27,12 @@
 		"test:ci": "vitest run",
 		"cspell": "cspell '**/*.md' --config cspell.json --wordsOnly",
 		"coverage": "vitest run --coverage"
+	},
+	"dependencies": {
+		"@octokit/rest": "^22.0.1",
+		"@types/d3-shape": "^3.1.8",
+		"d3-shape": "^3.2.0",
+		"sqlite-vec": "0.1.9"
 	},
 	"devDependencies": {
 		"@fontsource-variable/manrope": "^5.2.8",
@@ -79,10 +80,9 @@
 		"vitest": "4.1.10",
 		"vitest-browser-svelte": "^2.1.1"
 	},
-	"dependencies": {
-		"@octokit/rest": "^22.0.1",
-		"@types/d3-shape": "^3.1.8",
-		"d3-shape": "^3.2.0",
-		"sqlite-vec": "0.1.9"
-	}
+	"engines": {
+		"node": ">=24.15.0",
+		"pnpm": ">=11.0.0"
+	},
+	"packageManager": "pnpm@11.21.0"
 }

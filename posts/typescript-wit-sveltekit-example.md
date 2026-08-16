@@ -120,13 +120,13 @@ I'll add the following to the `all-posts.graphql` file:
 
 ```graphql
 query AllPosts {
-  posts {
-    title
-    slug
-    date
-    excerpt
-    tags
-  }
+	posts {
+		title
+		slug
+		date
+		excerpt
+		tags
+	}
 }
 ```
 
@@ -174,49 +174,49 @@ it's right at the bottom of the file. If we take a look at that here:
 
 ```ts
 export const AllPostsDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'AllPosts' },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'posts' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'title' },
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'slug' },
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'date' },
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'excerpt' },
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'tags' },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<AllPostsQuery, AllPostsQueryVariables>
+	kind: 'Document',
+	definitions: [
+		{
+			kind: 'OperationDefinition',
+			operation: 'query',
+			name: { kind: 'Name', value: 'AllPosts' },
+			selectionSet: {
+				kind: 'SelectionSet',
+				selections: [
+					{
+						kind: 'Field',
+						name: { kind: 'Name', value: 'posts' },
+						selectionSet: {
+							kind: 'SelectionSet',
+							selections: [
+								{
+									kind: 'Field',
+									name: { kind: 'Name', value: 'title' },
+								},
+								{
+									kind: 'Field',
+									name: { kind: 'Name', value: 'slug' },
+								},
+								{
+									kind: 'Field',
+									name: { kind: 'Name', value: 'date' },
+								},
+								{
+									kind: 'Field',
+									name: { kind: 'Name', value: 'excerpt' },
+								},
+								{
+									kind: 'Field',
+									name: { kind: 'Name', value: 'tags' },
+								},
+							],
+						},
+					},
+				],
+			},
+		},
+	],
+} as unknown as DocumentNode<AllPostsQuery, AllPostsQueryVariables>;
 ```
 
 And contrast the `selectionSet` in the `AllPostsDocument` export to
@@ -224,13 +224,13 @@ the `query` in the `all-posts.graphql` file:
 
 ```graphql
 query AllPosts {
-  posts {
-    title
-    slug
-    date
-    excerpt
-    tags
-  }
+	posts {
+		title
+		slug
+		date
+		excerpt
+		tags
+	}
 }
 ```
 
@@ -248,9 +248,9 @@ can use the `AllPostsDocument` for the query rather than writing out
 the query in backticks. Something like this:
 
 ```ts
-const client = new GraphQLClient(import.meta.env.VITE_GRAPHQL_API)
+const client = new GraphQLClient(import.meta.env.VITE_GRAPHQL_API);
 
-const { posts } = await client.request(AllPostsDocument)
+const { posts } = await client.request(AllPostsDocument);
 ```
 
 The `graphql-request` can now take the generics for the `DocumentNode`
@@ -258,12 +258,12 @@ The `graphql-request` can now take the generics for the `DocumentNode`
 a `Post[]` array to the destructured property from it like this:
 
 ```ts
-const client = new GraphQLClient(import.meta.env.VITE_GRAPHQL_API)
+const client = new GraphQLClient(import.meta.env.VITE_GRAPHQL_API);
 
 const { posts } = (await client.request<
-  AllPostsQuery,
-  AllPostsQueryVariables
->(AllPostsDocument)) as { posts: Post[] }
+	AllPostsQuery,
+	AllPostsQueryVariables
+>(AllPostsDocument)) as { posts: Post[] };
 ```
 
 Pretty neat, now I can return the props from the
@@ -272,7 +272,7 @@ it:
 
 ```svelte
 <script lang="ts">
-  export let posts: Post[]
+	export let posts: Post[];
 </script>
 ```
 
@@ -281,28 +281,30 @@ the imported types from the `types.ts` file:
 
 ```svelte
 <script context="module" lang="ts">
-  import { GraphQLClient } from 'graphql-request'
-  import {
-    AllPostsDocument,
-    type AllPostsQuery,
-    type AllPostsQueryVariables,
-    type Post,
-  } from '../lib/graphql/types'
+	import { GraphQLClient } from 'graphql-request';
+	import {
+		AllPostsDocument,
+		type AllPostsQuery,
+		type AllPostsQueryVariables,
+		type Post,
+	} from '../lib/graphql/types';
 
-  export const load = async () => {
-    const client = new GraphQLClient(import.meta.env.VITE_GRAPHQL_API)
+	export const load = async () => {
+		const client = new GraphQLClient(
+			import.meta.env.VITE_GRAPHQL_API,
+		);
 
-    const { posts } = (await client.request<
-      AllPostsQuery,
-      AllPostsQueryVariables
-    >(AllPostsDocument)) as { posts: Post[] }
+		const { posts } = (await client.request<
+			AllPostsQuery,
+			AllPostsQueryVariables
+		>(AllPostsDocument)) as { posts: Post[] };
 
-    return { props: { posts } }
-  }
+		return { props: { posts } };
+	};
 </script>
 
 <script lang="ts">
-  export let posts: Post[]
+	export let posts: Post[];
 </script>
 
 <pre>{JSON.stringify(posts, null, 2)}</pre>
@@ -330,6 +332,6 @@ information.
 <!-- Links -->
 
 [with this link]:
-  https://app.graphcms.com/clone/e80893d4401a4e3685eed0e5ea4484ef?name=New%20Blog%20Template
+	https://app.graphcms.com/clone/e80893d4401a4e3685eed0e5ea4484ef?name=New%20Blog%20Template
 [getting started with kitql and graphcms]:
-  https://scottspence.com/posts/getting-started-with-kitql-and-graphcms
+	https://scottspence.com/posts/getting-started-with-kitql-and-graphcms

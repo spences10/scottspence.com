@@ -1,11 +1,11 @@
-import adapter from '@sveltejs/adapter-node'
-import { sveltekit } from '@sveltejs/kit/vite'
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
-import tailwindcss from '@tailwindcss/vite'
-import { playwright } from '@vitest/browser-playwright'
-import { mdsvex } from 'mdsvex'
-import { defineConfig } from 'vitest/config'
-import mdsvexConfig from './mdsvex.config.js'
+import adapter from '@sveltejs/adapter-node';
+import { sveltekit } from '@sveltejs/kit/vite';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import tailwindcss from '@tailwindcss/vite';
+import { playwright } from '@vitest/browser-playwright';
+import { mdsvex } from 'mdsvex';
+import { defineConfig } from 'vitest/config';
+import mdsvexConfig from './mdsvex.config.js';
 
 const config = defineConfig({
 	plugins: [
@@ -78,7 +78,7 @@ const config = defineConfig({
 			},
 		],
 	},
-})
+});
 
 export default {
 	...config,
@@ -104,4 +104,4 @@ export default {
 			stylesheet: './src/app.css',
 		},
 	},
-}
+};

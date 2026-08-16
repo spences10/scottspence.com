@@ -127,57 +127,57 @@ This is taken straight from Victor's post, I've added the `theme`
 config from this post to the `tailwind.config.js` file.
 
 ```js
-const daisyui = require('daisyui')
+const daisyui = require('daisyui');
 
 const config = {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
+	content: ['./src/**/*.{html,js,svelte,ts}'],
 
-  theme: {
-    extend: {
-      animation: {
-        'gradient-x': 'gradient-x 5s ease infinite',
-        'gradient-y': 'gradient-y 5s ease infinite',
-        'gradient-xy': 'gradient-xy 5s ease infinite',
-      },
-      keyframes: {
-        'gradient-y': {
-          '0%, 100%': {
-            'background-size': '400% 400%',
-            'background-position': 'center top',
-          },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'center center',
-          },
-        },
-        'gradient-x': {
-          '0%, 100%': {
-            'background-size': '200% 200%',
-            'background-position': 'left center',
-          },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center',
-          },
-        },
-        'gradient-xy': {
-          '0%, 100%': {
-            'background-size': '400% 400%',
-            'background-position': 'left center',
-          },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center',
-          },
-        },
-      },
-    },
-  },
+	theme: {
+		extend: {
+			animation: {
+				'gradient-x': 'gradient-x 5s ease infinite',
+				'gradient-y': 'gradient-y 5s ease infinite',
+				'gradient-xy': 'gradient-xy 5s ease infinite',
+			},
+			keyframes: {
+				'gradient-y': {
+					'0%, 100%': {
+						'background-size': '400% 400%',
+						'background-position': 'center top',
+					},
+					'50%': {
+						'background-size': '200% 200%',
+						'background-position': 'center center',
+					},
+				},
+				'gradient-x': {
+					'0%, 100%': {
+						'background-size': '200% 200%',
+						'background-position': 'left center',
+					},
+					'50%': {
+						'background-size': '200% 200%',
+						'background-position': 'right center',
+					},
+				},
+				'gradient-xy': {
+					'0%, 100%': {
+						'background-size': '400% 400%',
+						'background-position': 'left center',
+					},
+					'50%': {
+						'background-size': '200% 200%',
+						'background-position': 'right center',
+					},
+				},
+			},
+		},
+	},
 
-  plugins: [daisyui],
-}
+	plugins: [daisyui],
+};
 
-module.exports = config
+module.exports = config;
 ```
 
 This means that I can now use any of the `gradient-x`,`gradient-y` or
@@ -204,19 +204,19 @@ theme.
 
 ```svelte
 <h1
-  class="bg-clip-text text-transparent bg-gradient-to-tr from-primary to-secondary via-accent animate-gradient-xy"
+	class="bg-clip-text text-transparent bg-gradient-to-tr from-primary to-secondary via-accent animate-gradient-xy"
 >
-  Tailwind Gradient Text
+	Tailwind Gradient Text
 </h1>
 <p
-  class="bg-clip-text text-transparent bg-gradient-to-br from-primary to-secondary via-accent animate-gradient-y"
+	class="bg-clip-text text-transparent bg-gradient-to-br from-primary to-secondary via-accent animate-gradient-y"
 >
-  This animation is on the vertical axis
+	This animation is on the vertical axis
 </p>
 <p
-  class="bg-clip-text text-transparent bg-gradient-to-tl from-primary to-secondary via-accent animate-gradient-x"
+	class="bg-clip-text text-transparent bg-gradient-to-tl from-primary to-secondary via-accent animate-gradient-x"
 >
-  This animation is on the horizontal axis
+	This animation is on the horizontal axis
 </p>
 ```
 
@@ -225,21 +225,21 @@ styles.
 
 ```svelte
 <div class="flex flex-col items-center justify-center h-screen">
-  <h1
-    class="bg-clip-text text-transparent bg-gradient-to-tr from-primary to-secondary via-accent animate-gradient-xy font-extrabold text-6xl md:text-9xl py-8"
-  >
-    Tailwind Gradient Text
-  </h1>
-  <p
-    class="bg-clip-text text-transparent bg-gradient-to-br from-primary to-secondary via-accent animate-gradient-y font-extrabold text-3xl md:text-6xl py-8"
-  >
-    This animation is on the vertical axis
-  </p>
-  <p
-    class="bg-clip-text text-transparent bg-gradient-to-tl from-primary to-secondary via-accent animate-gradient-x font-extrabold text-3xl md:text-6xl py-8"
-  >
-    This animation is on the horizontal axis
-  </p>
+	<h1
+		class="bg-clip-text text-transparent bg-gradient-to-tr from-primary to-secondary via-accent animate-gradient-xy font-extrabold text-6xl md:text-9xl py-8"
+	>
+		Tailwind Gradient Text
+	</h1>
+	<p
+		class="bg-clip-text text-transparent bg-gradient-to-br from-primary to-secondary via-accent animate-gradient-y font-extrabold text-3xl md:text-6xl py-8"
+	>
+		This animation is on the vertical axis
+	</p>
+	<p
+		class="bg-clip-text text-transparent bg-gradient-to-tl from-primary to-secondary via-accent animate-gradient-x font-extrabold text-3xl md:text-6xl py-8"
+	>
+		This animation is on the horizontal axis
+	</p>
 </div>
 ```
 
@@ -256,11 +256,11 @@ please consider sharing it on the socials! 😊
 <!-- Links -->
 
 [victor yoalli]:
-  https://victoryoalli.me/how-to-create-an-animated-gradient-using-tailwin-css
+	https://victoryoalli.me/how-to-create-an-animated-gradient-using-tailwin-css
 [`svelte-add`]: https://github.com/svelte-add/svelte-adders
 [github]: https://github.com/spences10/gradient-animation-example
 
 <!-- Images -->
 
 [sveltekit-skeleton-project-with-svelte-add-tailwind-changes]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1673023278/scottspence.com/sveltekit-skeleton-project-with-svelte-add-tailwind-changes.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1673023278/scottspence.com/sveltekit-skeleton-project-with-svelte-add-tailwind-changes.png

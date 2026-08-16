@@ -77,13 +77,13 @@ to them:
 
 ```jsx
 <Helmet>
-  <meta property="og:locale" content={locale} />
-  <meta property="og:url" content={url} />
-  <meta property="og:type" content={type} />
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={desc} />
-  <meta property="og:image" content={image} />
-  <meta property="og:image:alt" content={desc} />
+	<meta property="og:locale" content={locale} />
+	<meta property="og:url" content={url} />
+	<meta property="og:type" content={type} />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={desc} />
+	<meta property="og:image" content={image} />
+	<meta property="og:image:alt" content={desc} />
 </Helmet>
 ```
 
@@ -93,12 +93,12 @@ Twitter has it's tags too:
 
 ```jsx
 <Helmet>
-  {username && <meta name="twitter:creator" content={username} />}
-  <meta name="twitter:card" content={type} />
-  <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content={desc} />
-  <meta name="twitter:image" content={image} />
-  <meta name="twitter:image:alt" content={desc} />
+	{username && <meta name="twitter:creator" content={username} />}
+	<meta name="twitter:card" content={type} />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={desc} />
+	<meta name="twitter:image" content={image} />
+	<meta name="twitter:image:alt" content={desc} />
 </Helmet>
 ```
 
@@ -111,39 +111,39 @@ LekoArts did a great job of putting all this together:
 
 ```jsx
 <>
-  <Helmet title={seo.title} titleTemplate={`%s | ${titleTemplate}`}>
-    <html lang={siteLanguage ? siteLanguage : 'en'} />
-    <link rel="canonical" href={pathname} />
-    <meta name="description" content={seo.description} />
+	<Helmet title={seo.title} titleTemplate={`%s | ${titleTemplate}`}>
+		<html lang={siteLanguage ? siteLanguage : 'en'} />
+		<link rel="canonical" href={pathname} />
+		<meta name="description" content={seo.description} />
 
-    {!article && (
-      <script type="application/ld+json">
-        {JSON.stringify(schemaOrgWebPage)}
-      </script>
-    )}
-    {article && (
-      <script type="application/ld+json">
-        {JSON.stringify(schemaArticle)}
-      </script>
-    )}
-    <script type="application/ld+json">
-      {JSON.stringify(breadcrumb)}
-    </script>
-  </Helmet>
-  <Facebook
-    desc={seo.description}
-    image={image}
-    title={seo.title}
-    type={article ? 'article' : 'website'}
-    url={pathname}
-    locale={siteLocale ? siteLocale : 'en_gb'}
-  />
-  <Twitter
-    title={seo.title}
-    image={image}
-    desc={seo.description}
-    username={twitterUsername}
-  />
+		{!article && (
+			<script type="application/ld+json">
+				{JSON.stringify(schemaOrgWebPage)}
+			</script>
+		)}
+		{article && (
+			<script type="application/ld+json">
+				{JSON.stringify(schemaArticle)}
+			</script>
+		)}
+		<script type="application/ld+json">
+			{JSON.stringify(breadcrumb)}
+		</script>
+	</Helmet>
+	<Facebook
+		desc={seo.description}
+		image={image}
+		title={seo.title}
+		type={article ? 'article' : 'website'}
+		url={pathname}
+		locale={siteLocale ? siteLocale : 'en_gb'}
+	/>
+	<Twitter
+		title={seo.title}
+		image={image}
+		desc={seo.description}
+		username={twitterUsername}
+	/>
 </>
 ```
 
@@ -186,27 +186,27 @@ it by me.
 <!-- Links -->
 
 [react seo component]:
-  https://www.npmjs.com/package/react-seo-component
+	https://www.npmjs.com/package/react-seo-component
 [build a coding blog from scratch with gatsby and mdx]:
-  https://scottspence.com/posts/build-an-mdx-blog
+	https://scottspence.com/posts/build-an-mdx-blog
 [github pr on seo]: https://github.com/gatsbyjs/gatsby/pull/10780
 [issue]: https://github.com/gatsbyjs/gatsby/issues/14125
 [great notes from andrew welch]:
-  https://github.com/gatsbyjs/gatsby/pull/10780#issuecomment-451048608
+	https://github.com/gatsbyjs/gatsby/pull/10780#issuecomment-451048608
 [lekoarts]: https://github.com/LekoArts
 [jason lengstorf]: https://twitter.com/jlengstorf
 [marisa's site]:
-  https://github.com/marisamorby/marisamorby.com/blob/master/packages/gatsby-theme-blog-sanity/src/components/seo.js
+	https://github.com/marisamorby/marisamorby.com/blob/master/packages/gatsby-theme-blog-sanity/src/components/seo.js
 [well documented]: https://www.gatsbyjs.com/docs/add-seo-component/
 [open graph protocol]: https://ogp.me/
 [structured data]:
-  https://developers.google.com/search/docs/guides/intro-structured-data
+	https://developers.google.com/search/docs/guides/intro-structured-data
 [used rollup]:
-  https://github.com/spences10/react-seo-component/blob/32acf12d53/rollup.config.js
+	https://github.com/spences10/react-seo-component/blob/32acf12d53/rollup.config.js
 [typescript package development]: https://github.com/jaredpalmer/tsdx
 [open graph images with gatsby and now]:
-  https://scottspence.com/posts/serverless-og-images/
+	https://scottspence.com/posts/serverless-og-images/
 [this post]:
-  https://medium.com/recraftrelic/building-a-react-component-as-a-npm-module-18308d4ccde9
+	https://medium.com/recraftrelic/building-a-react-component-as-a-npm-module-18308d4ccde9
 [example code]:
-  https://github.com/recraftrelic/dummy-react-npm-module/blob/master/package.json
+	https://github.com/recraftrelic/dummy-react-npm-module/blob/master/package.json

@@ -148,15 +148,15 @@ I'll go through each file and my understanding of what it does.
 // Hover to view descriptions of existing attributes.
 // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Extension",
-      "type": "extensionHost",
-      "request": "launch",
-      "args": ["--extensionDevelopmentPath=${workspaceFolder}"]
-    }
-  ]
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Extension",
+			"type": "extensionHost",
+			"request": "launch",
+			"args": ["--extensionDevelopmentPath=${workspaceFolder}"]
+		}
+	]
 }
 ```
 
@@ -173,38 +173,38 @@ in the `patterns` section that are specific to a `robots.txt` file.
 
 ```json
 {
-  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "name": "robots.txt",
-  "patterns": [
-    {
-      "include": "#keywords"
-    },
-    {
-      "include": "#strings"
-    }
-  ],
-  "repository": {
-    "keywords": {
-      "patterns": [
-        {
-          "name": "keyword.control.robots-txt",
-          "match": "\\b(if|while|for|return)\\b"
-        }
-      ]
-    },
-    "strings": {
-      "name": "string.quoted.double.robots-txt",
-      "begin": "\"",
-      "end": "\"",
-      "patterns": [
-        {
-          "name": "constant.character.escape.robots-txt",
-          "match": "\\\\."
-        }
-      ]
-    }
-  },
-  "scopeName": ""
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "robots.txt",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.robots-txt",
+					"match": "\\b(if|while|for|return)\\b"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.robots-txt",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.robots-txt",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": ""
 }
 ```
 
@@ -212,28 +212,28 @@ This got switched out with this:
 
 ```json
 {
-  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "name": "robots.txt",
-  "fileTypes": ["txt"],
-  "firstLineMatch": "^User-agent:",
-  "patterns": [
-    {
-      "match": "^(User-agent|Disallow|Allow|Sitemap|Host):(\\s*)(.*)",
-      "captures": {
-        "1": {
-          "name": "keyword.control.robots-txt"
-        },
-        "3": {
-          "name": "string.unquoted.robots-txt"
-        }
-      }
-    },
-    {
-      "match": "#.*",
-      "name": "comment.line.number-sign.robots-txt"
-    }
-  ],
-  "scopeName": "source.robots-txt"
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "robots.txt",
+	"fileTypes": ["txt"],
+	"firstLineMatch": "^User-agent:",
+	"patterns": [
+		{
+			"match": "^(User-agent|Disallow|Allow|Sitemap|Host):(\\s*)(.*)",
+			"captures": {
+				"1": {
+					"name": "keyword.control.robots-txt"
+				},
+				"3": {
+					"name": "string.unquoted.robots-txt"
+				}
+			}
+		},
+		{
+			"match": "#.*",
+			"name": "comment.line.number-sign.robots-txt"
+		}
+	],
+	"scopeName": "source.robots-txt"
 }
 ```
 
@@ -258,34 +258,34 @@ This is the configuration for the language, as there's not much to the
 
 ```json
 {
-  "comments": {
-    // symbol used for single line comment. Remove this entry if your language does not support line comments
-    "lineComment": "//",
-    // symbols used for start and end a block comment. Remove this entry if your language does not support block comments
-    "blockComment": ["/*", "*/"]
-  },
-  // symbols used as brackets
-  "brackets": [
-    ["{", "}"],
-    ["[", "]"],
-    ["(", ")"]
-  ],
-  // symbols that are auto closed when typing
-  "autoClosingPairs": [
-    ["{", "}"],
-    ["[", "]"],
-    ["(", ")"],
-    ["\"", "\""],
-    ["'", "'"]
-  ],
-  // symbols that can be used to surround a selection
-  "surroundingPairs": [
-    ["{", "}"],
-    ["[", "]"],
-    ["(", ")"],
-    ["\"", "\""],
-    ["'", "'"]
-  ]
+	"comments": {
+		// symbol used for single line comment. Remove this entry if your language does not support line comments
+		"lineComment": "//",
+		// symbols used for start and end a block comment. Remove this entry if your language does not support block comments
+		"blockComment": ["/*", "*/"]
+	},
+	// symbols used as brackets
+	"brackets": [
+		["{", "}"],
+		["[", "]"],
+		["(", ")"]
+	],
+	// symbols that are auto closed when typing
+	"autoClosingPairs": [
+		["{", "}"],
+		["[", "]"],
+		["(", ")"],
+		["\"", "\""],
+		["'", "'"]
+	],
+	// symbols that can be used to surround a selection
+	"surroundingPairs": [
+		["{", "}"],
+		["[", "]"],
+		["(", ")"],
+		["\"", "\""],
+		["'", "'"]
+	]
 }
 ```
 
@@ -293,22 +293,22 @@ Here's what I replaced it with:
 
 ```json
 {
-  "comments": {
-    "lineComment": "#"
-  },
-  "brackets": [],
-  "autoClosingPairs": [],
-  "surroundingPairs": [],
-  "folding": {
-    "markers": {
-      "start": "^User-agent:",
-      "end": "^\\s*$"
-    }
-  },
-  "indentationRules": {
-    "increaseIndentPattern": "^User-agent:",
-    "decreaseIndentPattern": "^\\s*$"
-  }
+	"comments": {
+		"lineComment": "#"
+	},
+	"brackets": [],
+	"autoClosingPairs": [],
+	"surroundingPairs": [],
+	"folding": {
+		"markers": {
+			"start": "^User-agent:",
+			"end": "^\\s*$"
+		}
+	},
+	"indentationRules": {
+		"increaseIndentPattern": "^User-agent:",
+		"decreaseIndentPattern": "^\\s*$"
+	}
 }
 ```
 
@@ -412,10 +412,10 @@ too! 💫
 <!-- Links -->
 
 [and pointed here]:
-  https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json
+	https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json
 [publisher profile]:
-  https://marketplace.visualstudio.com/publishers/spences10
+	https://marketplace.visualstudio.com/publishers/spences10
 [Visual Studio Code Extension Manager]:
-  https://github.com/microsoft/vscode-vsce
+	https://github.com/microsoft/vscode-vsce
 [the notes on working with extensions]:
-  https://code.visualstudio.com/api/working-with-extensions/publishing-extension#get-a-personal-access-token
+	https://code.visualstudio.com/api/working-with-extensions/publishing-extension#get-a-personal-access-token

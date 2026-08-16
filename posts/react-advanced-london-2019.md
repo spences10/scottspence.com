@@ -123,11 +123,11 @@ First, the POJO! (Plain Old JavaScript Object):
 
 ```js
 const element = {
-  type: 'h1',
-  props: {
-    children: 'Hello world',
-  },
-}
+	type: 'h1',
+	props: {
+		children: 'Hello world',
+	},
+};
 ```
 
 Then went on to define what a fiber was, which is an extension on the
@@ -135,18 +135,18 @@ POJO:
 
 ```js
 const element = {
-  type: 'h1',
-  props: {
-    children: 'Hello world',
-  },
-  dom: domNode,
-  parent: parentFiber,
-  child: childFiber,
-  sibling: null,
-  alternate: currentFiber,
-  effectTag: PLACEMENT,
-  hooks: [],
-}
+	type: 'h1',
+	props: {
+		children: 'Hello world',
+	},
+	dom: domNode,
+	parent: parentFiber,
+	child: childFiber,
+	sibling: null,
+	alternate: currentFiber,
+	effectTag: PLACEMENT,
+	hooks: [],
+};
 ```
 
 I'll be honest, the speed at which Sean went, although very concise
@@ -314,29 +314,29 @@ Sid then went on to talks about how awesome styled-components was and
 some nice touches for that:
 
 ```js
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const FormLabel = styled.label(
-  props => `
+	(props) => `
   color: ${props.theme.colors.text.subtle}
   font-size: ${props.theme.fontSizes[2]}
-`
-)
+`,
+);
 ```
 
 Looks pretty verbose so you could use `@styled-system/css` to reduce
 that:
 
 ```js
-import styled from 'styled-components'
-import css from '@styled-system/css'
+import styled from 'styled-components';
+import css from '@styled-system/css';
 
 const FormLabel = styled.label(
-  css({
-    color: 'text.subtle',
-    fontSize: 2,
-  })
-)
+	css({
+		color: 'text.subtle',
+		fontSize: 2,
+	}),
+);
 ```
 
 Pretty neat stuff!
@@ -370,12 +370,12 @@ https://twitter.com/search?q=spences10%20reactadvanced&f=live
 [react hooks from scratch]: https://www.swyx.io/speaking/react-hooks/
 [react movable]: https://github.com/tajo/react-movable
 [here]:
-  https://www.youtube.com/playlist?list=PLNBNS7NRGKMH7yfpYQD4TrFV25SMOCIPM
+	https://www.youtube.com/playlist?list=PLNBNS7NRGKMH7yfpYQD4TrFV25SMOCIPM
 [hashtag]: https://twitter.com/hashtag/ReactAdvanced
 [my coverage]:
-  https://twitter.com/search?q=reactadvanced%20spences10&f=live
+	https://twitter.com/search?q=reactadvanced%20spences10&f=live
 
 <!-- Images -->
 
 [anything acronym]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/anything-a5977c43c2e8140e1898ffb67e75234f.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/anything-a5977c43c2e8140e1898ffb67e75234f.png

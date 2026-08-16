@@ -10,17 +10,17 @@ Learnings from building features in this codebase.
 
 ```svelte
 <script>
-	import { get_data } from './data.remote'
+	import { get_data } from './data.remote';
 
 	// BAD: Creates new promise every reactive update
-	let result = $derived.by(async () => await get_data())
+	let result = $derived.by(async () => await get_data());
 
 	$effect(() => {
 		const interval = setInterval(() => {
 			// This triggers $derived.by to re-run
-		}, 30_000)
-		return () => clearInterval(interval)
-	})
+		}, 30_000);
+		return () => clearInterval(interval);
+	});
 </script>
 
 <!-- BAD: Shows pending state on EVERY update -->
@@ -35,15 +35,15 @@ Learnings from building features in this codebase.
 
 ```svelte
 <script>
-	import { get_data } from './data.remote'
+	import { get_data } from './data.remote';
 
 	// GOOD: Query is cached, same reference
-	const data = get_data()
+	const data = get_data();
 
 	$effect(() => {
-		const interval = setInterval(() => data.refresh(), 30_000)
-		return () => clearInterval(interval)
-	})
+		const interval = setInterval(() => data.refresh(), 30_000);
+		return () => clearInterval(interval);
+	});
 </script>
 
 <!-- GOOD: pending only shows on first load -->

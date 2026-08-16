@@ -167,8 +167,8 @@ default port (5173) otherwise.
 In the `vite.config.js` file I'll add the following:
 
 ```js
-import { sveltekit } from '@sveltejs/kit/vite'
-import basicSsl from '@vitejs/plugin-basic-ssl'
+import { sveltekit } from '@sveltejs/kit/vite';
+import basicSsl from '@vitejs/plugin-basic-ssl';
 
 /** @type {import('vite').UserConfig} */
 const config = {
@@ -177,9 +177,9 @@ const config = {
 		port: 3000,
 		https: true,
 	},
-}
+};
 
-export default config
+export default config;
 ```
 
 I can start the dev server now (`pnpm run dev`) and the terminal
@@ -271,7 +271,7 @@ As I'll want to be committing this to source control I don't really
 want to add my access tokens. I can use the Vite way which is to add:
 
 ```js
-import.meta.env.VITE_VARIABLE_NAME
+import.meta.env.VITE_VARIABLE_NAME;
 ```
 
 To the Svelte file and add the tokens to a `.env` file to access them,
@@ -366,13 +366,13 @@ the components needed for use in the `storyblokInit` function from the
 
 ```svelte
 <script context="module">
-	import Feature from '$lib/components/feature.svelte'
-	import Grid from '$lib/components/grid.svelte'
-	import Page from '$lib/components/page.svelte'
-	import Teaser from '$lib/components/teaser.svelte'
-	import { STORYBLOK_ACCESS_TOKEN } from '$lib/env-vars'
-	import { apiPlugin, storyblokInit } from '@storyblok/svelte'
-	import '../app.css'
+	import Feature from '$lib/components/feature.svelte';
+	import Grid from '$lib/components/grid.svelte';
+	import Page from '$lib/components/page.svelte';
+	import Teaser from '$lib/components/teaser.svelte';
+	import { STORYBLOK_ACCESS_TOKEN } from '$lib/env-vars';
+	import { apiPlugin, storyblokInit } from '@storyblok/svelte';
+	import '../app.css';
 
 	storyblokInit({
 		accessToken: STORYBLOK_ACCESS_TOKEN,
@@ -383,7 +383,7 @@ the components needed for use in the `storyblokInit` function from the
 			page: Page,
 			teaser: Teaser,
 		},
-	})
+	});
 </script>
 
 <main class="prose prose-xl">
@@ -413,9 +413,9 @@ the `StoryData` type.
 	import {
 		StoryblokComponent,
 		storyblokEditable,
-	} from '@storyblok/svelte'
+	} from '@storyblok/svelte';
 
-	export let blok: any
+	export let blok: any;
 </script>
 
 <div use:storyblokEditable={blok} class="px-6">
@@ -433,9 +433,9 @@ except I'm checking for a columns property and looping over that.
 	import {
 		StoryblokComponent,
 		storyblokEditable,
-	} from '@storyblok/svelte'
+	} from '@storyblok/svelte';
 
-	export let blok: any
+	export let blok: any;
 </script>
 
 <div use:storyblokEditable={blok} class="mb-6 flex py-8">
@@ -464,7 +464,7 @@ columns: [
 		component: 'feature',
 		_editable: '<!--#storyblok#{"name": "feature"} -->',
 	},
-]
+];
 ```
 
 Then the data being passed to the feature component looks like this:
@@ -487,9 +487,9 @@ component passing in the `blok` prop and render out a div with the
 
 ```svelte
 <script lang="ts">
-	import { storyblokEditable } from '@storyblok/svelte'
+	import { storyblokEditable } from '@storyblok/svelte';
 
-	export let blok: any
+	export let blok: any;
 </script>
 
 <div use:storyblokEditable={blok} class="py-2">
@@ -503,9 +503,9 @@ wrap the `blok.name` in a `h1` tag.
 
 ```svelte
 <script lang="ts">
-	import { storyblokEditable } from '@storyblok/svelte'
+	import { storyblokEditable } from '@storyblok/svelte';
 
-	export let blok: any
+	export let blok: any;
 </script>
 
 <div use:storyblokEditable={blok}>
@@ -534,34 +534,34 @@ from the context module.
 
 ```svelte
 <script context="module">
-	import { STORYBLOK_STAGE } from '$lib/env-vars'
-	import { useStoryblokApi } from '@storyblok/svelte'
+	import { STORYBLOK_STAGE } from '$lib/env-vars';
+	import { useStoryblokApi } from '@storyblok/svelte';
 
 	export const load = async () => {
-		const storyblokApi = useStoryblokApi()
+		const storyblokApi = useStoryblokApi();
 		const {
 			data: { story },
 		} = await storyblokApi.get('cdn/stories/home', {
 			version: STORYBLOK_STAGE,
-		})
+		});
 		return {
 			props: { story },
-		}
-	}
+		};
+	};
 </script>
 
 <script lang="ts">
 	import {
 		StoryblokComponent,
 		useStoryblokBridge,
-	} from '@storyblok/svelte'
-	import { onMount } from 'svelte'
+	} from '@storyblok/svelte';
+	import { onMount } from 'svelte';
 
-	export let story: any
+	export let story: any;
 
 	onMount(() => {
-		useStoryblokBridge(story.id, (newStory) => (story = newStory))
-	})
+		useStoryblokBridge(story.id, (newStory) => (story = newStory));
+	});
 </script>
 
 <div>
@@ -622,9 +622,9 @@ the `feature.svelte` file to include the `blok.body` content.
 
 ```svelte
 <script lang="ts">
-	import { storyblokEditable } from '@storyblok/svelte'
+	import { storyblokEditable } from '@storyblok/svelte';
 
-	export let blok: any
+	export let blok: any;
 </script>
 
 <div use:storyblokEditable={blok} class="py-2">

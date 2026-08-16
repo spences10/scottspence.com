@@ -70,13 +70,13 @@ to do the data loading in one file.
 
 ```svelte
 <script context="module">
-  export async function load({ page }) {
-    const { slug } = page.params
-    return {
-      status: 301,
-      redirect: `/posts/${slug}`,
-    }
-  }
+	export async function load({ page }) {
+		const { slug } = page.params;
+		return {
+			status: 301,
+			redirect: `/posts/${slug}`,
+		};
+	}
 </script>
 ```
 
@@ -87,12 +87,12 @@ So, the solution was to have the load function in a `+page.js` take in
 the `params` and then redirect to the new URL.
 
 ```js
-import { redirect } from '@sveltejs/kit'
+import { redirect } from '@sveltejs/kit';
 
 export const load = async ({ params }) => {
-  const { slug } = params
-  throw redirect(301, `/posts/${slug}`)
-}
+	const { slug } = params;
+	throw redirect(301, `/posts/${slug}`);
+};
 ```
 
 The filing structure needed to take in the year, month, day and the
@@ -182,13 +182,13 @@ The folder structure is still the same, but, instead of having a
 redirect.
 
 ```js
-import { redirect } from '@sveltejs/kit'
+import { redirect } from '@sveltejs/kit';
 
 /** @type {import('./$types').RequestHandler} */
 export const GET = async ({ params }) => {
-  const { slug } = params
-  throw redirect(301, `/posts/${slug}`)
-}
+	const { slug } = params;
+	throw redirect(301, `/posts/${slug}`);
+};
 ```
 
 ## Conclusion
@@ -204,4 +204,4 @@ that I've done it.
 
 [rodney]: https://twitter.com/askRodney
 [real time analytics]:
-  https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom
+	https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom

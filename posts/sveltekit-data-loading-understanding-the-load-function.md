@@ -97,7 +97,7 @@ In the following example, the `name` prop is declared and set to
 
 ```svelte
 <script lang="ts">
-	export let name = 'World'
+	export let name = 'World';
 </script>
 
 <p>Hello, {name}!</p>
@@ -108,7 +108,7 @@ In the parent, be that a Svelte component or a SvelteKit
 
 ```svelte
 <script lang="ts">
-	import Greeting from './Greeting.svelte'
+	import Greeting from './Greeting.svelte';
 </script>
 
 <Greeting name="Svelte" />
@@ -195,8 +195,8 @@ a title property in the `src/routes/about/+page.ts` file:
 export const load = () => {
 	return {
 		title: 'This data is from the load function',
-	}
-}
+	};
+};
 ```
 
 In SvelteKit, the `+page.svelte` file is a Svelte component, so it can
@@ -211,7 +211,7 @@ data:
 
 ```svelte
 <script lang="ts">
-	export let data
+	export let data;
 </script>
 
 <h1>This is the about page</h1>
@@ -223,7 +223,7 @@ Then I can use the data in the page and access the `title` property:
 
 ```svelte
 <script lang="ts">
-	export let data
+	export let data;
 </script>
 
 <h1>This is the about page</h1>
@@ -274,10 +274,10 @@ SvelteKit `fetch` and create a response variable to store the data.
 export const load = async ({ fetch }) => {
 	const response = await fetch(
 		'https://api.coinlore.com/api/tickers/',
-	)
-	const currencies = await response.json()
-	return currencies
-}
+	);
+	const currencies = await response.json();
+	return currencies;
+};
 ```
 
 This example doesn't have any error handling, I'll add in some simple
@@ -288,17 +288,17 @@ export const load = async ({ fetch }) => {
 	try {
 		const response = await fetch(
 			'https://api.coinlore.com/api/tickers/',
-		)
+		);
 		if (!response.ok) {
-			throw new Error(`HTTP error: ${response.status}`)
+			throw new Error(`HTTP error: ${response.status}`);
 		}
-		const currencies = await response.json()
-		return { currencies }
+		const currencies = await response.json();
+		return { currencies };
 	} catch (error) {
-		console.error(error)
-		return { error: 'Unable to fetch currencies' }
+		console.error(error);
+		return { error: 'Unable to fetch currencies' };
 	}
-}
+};
 ```
 
 The return value of the `load` function is the data that will be
@@ -310,7 +310,7 @@ the data:
 
 ```svelte
 <script lang="ts">
-	export let data
+	export let data;
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -339,7 +339,7 @@ iterate over the data and render it on the page with a Svelte each.
 
 ```svelte
 <script lang="ts">
-	export let data
+	export let data;
 </script>
 
 <h1>Top 100 Cryptocurrencies</h1>
@@ -371,7 +371,7 @@ export const load = async ({ fetch }) => {
         image
       }
     }
-  }`
+  }`;
 
 	try {
 		const response = await fetch(
@@ -383,19 +383,19 @@ export const load = async ({ fetch }) => {
 				},
 				body: JSON.stringify({ query }),
 			},
-		)
+		);
 
 		if (!response.ok) {
-			throw new Error(`HTTP error: ${response.status}`)
+			throw new Error(`HTTP error: ${response.status}`);
 		}
 
-		const { data } = await response.json()
-		return { characters: data.characters.results }
+		const { data } = await response.json();
+		return { characters: data.characters.results };
 	} catch (error) {
-		console.error(error)
-		return { error: 'Unable to fetch characters' }
+		console.error(error);
+		return { error: 'Unable to fetch characters' };
 	}
-}
+};
 ```
 
 Notice that I'm returning `characters` from the
@@ -418,7 +418,7 @@ export const load = async ({ fetch }) => {
         image
       }
     }
-  }`
+  }`;
 
 	try {
 		const response = await fetch(
@@ -430,30 +430,30 @@ export const load = async ({ fetch }) => {
 				},
 				body: JSON.stringify({ query }),
 			},
-		)
+		);
 
 		if (!response.ok) {
-			throw new Error(`HTTP error: ${response.status}`)
+			throw new Error(`HTTP error: ${response.status}`);
 		}
 
-		const { data } = await response.json()
+		const { data } = await response.json();
 
 		const fetchCoins = async () => {
 			const response = await fetch(
 				'https://api.coinlore.com/api/tickers/',
-			)
-			const { data } = await response.json()
-			return data
-		}
+			);
+			const { data } = await response.json();
+			return data;
+		};
 
-		const currencies = await fetchCoins()
+		const currencies = await fetchCoins();
 
-		return { characters: data.characters.results, currencies }
+		return { characters: data.characters.results, currencies };
 	} catch (error) {
-		console.error(error)
-		return { error: 'Unable to fetch data' }
+		console.error(error);
+		return { error: 'Unable to fetch data' };
 	}
-}
+};
 ```
 
 There's one issue with this approach, this is causing a waterfall
@@ -479,7 +479,7 @@ export const load = async ({ fetch }) => {
         image
       }
     }
-  }`
+  }`;
 
 	try {
 		const fetchCharacters = async () => {
@@ -492,37 +492,37 @@ export const load = async ({ fetch }) => {
 					},
 					body: JSON.stringify({ query }),
 				},
-			)
+			);
 
 			if (!res.ok) {
-				throw new Error(`HTTP error: ${res.status}`)
+				throw new Error(`HTTP error: ${res.status}`);
 			}
 
-			const { data } = await res.json()
-			return data.characters.results
-		}
+			const { data } = await res.json();
+			return data.characters.results;
+		};
 
 		const fetchCoins = async () => {
 			const response = await fetch(
 				'https://api.coinlore.com/api/tickers/',
-			)
+			);
 
 			if (!response.ok) {
-				throw new Error(`HTTP error: ${response.status}`)
+				throw new Error(`HTTP error: ${response.status}`);
 			}
-			const { data } = await response.json()
-			return data
-		}
+			const { data } = await response.json();
+			return data;
+		};
 
 		return {
 			characters: fetchCharacters(),
 			currencies: fetchCoins(),
-		}
+		};
 	} catch (error) {
-		console.error(error)
-		return { error: 'Unable to fetch data' }
+		console.error(error);
+		return { error: 'Unable to fetch data' };
 	}
-}
+};
 ```
 
 Alternatively I can use a `Promise.all` to resolve both promises:
@@ -537,7 +537,7 @@ export const load = async ({ fetch }) => {
         image
       }
     }
-  }`
+  }`;
 
 	try {
 		const [charactersResponse, currenciesResponse] =
@@ -550,28 +550,28 @@ export const load = async ({ fetch }) => {
 					body: JSON.stringify({ query }),
 				}),
 				fetch('https://api.coinlore.com/api/tickers/'),
-			])
+			]);
 
 		if (!charactersResponse.ok) {
-			throw new Error(`HTTP error: ${charactersResponse.status}`)
+			throw new Error(`HTTP error: ${charactersResponse.status}`);
 		}
 
 		if (!currenciesResponse.ok) {
-			throw new Error(`HTTP error: ${currenciesResponse.status}`)
+			throw new Error(`HTTP error: ${currenciesResponse.status}`);
 		}
 
-		const charactersData = await charactersResponse.json()
-		const currenciesData = await currenciesResponse.json()
+		const charactersData = await charactersResponse.json();
+		const currenciesData = await currenciesResponse.json();
 
-		const characters = charactersData.data.characters.results
-		const currencies = currenciesData.data
+		const characters = charactersData.data.characters.results;
+		const currencies = currenciesData.data;
 
-		return { characters, currencies }
+		return { characters, currencies };
 	} catch (error) {
-		console.error(error)
-		return { error: 'Unable to fetch data' }
+		console.error(error);
+		return { error: 'Unable to fetch data' };
 	}
-}
+};
 ```
 
 Now if I take a look at the network tab in the browser, I can see that
@@ -624,22 +624,22 @@ then fetch the data from the Coinlore API.
 I'll add the same code to the `+page.server.ts` file:
 
 ```ts
-import { SECRET_TOKEN } from '$env/static/private'
+import { SECRET_TOKEN } from '$env/static/private';
 
 export const load = async () => {
-	console.log('=====================')
-	console.log(SECRET_TOKEN)
-	console.log('=====================')
+	console.log('=====================');
+	console.log(SECRET_TOKEN);
+	console.log('=====================');
 	const fetchCoins = async () => {
-		const req = await fetch('https://api.coinlore.com/api/tickers/')
-		const { data } = await req.json()
-		return data
-	}
+		const req = await fetch('https://api.coinlore.com/api/tickers/');
+		const { data } = await req.json();
+		return data;
+	};
 
 	return {
 		currenciesServer: fetchCoins(),
-	}
-}
+	};
+};
 ```
 
 If I try to run this code in the `+page.ts` file I'll get an error
@@ -652,15 +652,15 @@ and re-label the return value to `currenciesClient`:
 ```ts
 export const load = async () => {
 	const fetchCoins = async () => {
-		const req = await fetch('https://api.coinlore.com/api/tickers/')
-		const { data } = await req.json()
-		return data
-	}
+		const req = await fetch('https://api.coinlore.com/api/tickers/');
+		const { data } = await req.json();
+		return data;
+	};
 
 	return {
 		currenciesClient: fetchCoins(),
-	}
-}
+	};
+};
 ```
 
 Now, running the dev server I can see that the secret token is logged
@@ -677,7 +677,7 @@ being passed to the page from the `load` function:
 
 ```svelte
 <script lang="ts">
-	export let data
+	export let data;
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -701,16 +701,16 @@ and merge it with the `+page.ts` `data`:
 ```ts
 export const load = async ({ data }) => {
 	const fetchCoins = async () => {
-		const req = await fetch('https://api.coinlore.com/api/tickers/')
-		const { data } = await req.json()
-		return data
-	}
+		const req = await fetch('https://api.coinlore.com/api/tickers/');
+		const { data } = await req.json();
+		return data;
+	};
 
 	return {
 		...data,
 		currenciesClient: fetchCoins(),
-	}
-}
+	};
+};
 ```
 
 Going to the browser now to check the JSON output I can see that I
@@ -734,15 +734,15 @@ I'll delete the `+page.server.ts` file and rename the return from the
 ```ts
 export const load = async () => {
 	const fetchCoins = async () => {
-		const req = await fetch('https://api.coinlore.com/api/tickers/')
-		const { data } = await req.json()
-		return data
-	}
+		const req = await fetch('https://api.coinlore.com/api/tickers/');
+		const { data } = await req.json();
+		return data;
+	};
 
 	return {
 		currencies: fetchCoins(),
-	}
-}
+	};
+};
 ```
 
 Now, I have the following files in the `src/routes` directory:
@@ -780,17 +780,17 @@ export const load = async ({ fetch }) => {
       `,
 			}),
 		},
-	)
+	);
 	const {
 		data: {
 			characters: { results },
 		},
-	} = await reqCharacters.json()
+	} = await reqCharacters.json();
 
 	return {
 		characters: results,
-	}
-}
+	};
+};
 ```
 
 Data from layouts in SvelteKit is available to all child
@@ -801,7 +801,7 @@ out the `data` prop:
 
 ```svelte
 <script lang="ts">
-	export let data
+	export let data;
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -824,7 +824,7 @@ to dump out the `data` prop the same way I did for the index page:
 
 ```svelte
 <script lang="ts">
-	export let data
+	export let data;
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>

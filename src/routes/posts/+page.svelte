@@ -1,20 +1,20 @@
 <script lang="ts">
-	import { PostCard } from '$lib/components'
-	import { description, name, website } from '$lib/info'
-	import { create_seo_config } from '$lib/seo'
-	import { command_palette_state } from '$lib/state/command-palette.svelte'
-	import { og_image_url } from '$lib/utils'
-	import { Head } from 'svead'
-	import type { PageData } from './$types'
+	import { PostCard } from '$lib/components';
+	import { description, name, website } from '$lib/info';
+	import { create_seo_config } from '$lib/seo';
+	import { command_palette_state } from '$lib/state/command-palette.svelte';
+	import { og_image_url } from '$lib/utils';
+	import { Head } from 'svead';
+	import type { PageData } from './$types';
 
-	const { data } = $props<{ data: PageData }>()
-	const posts = $derived(data.posts)
+	const { data } = $props<{ data: PageData }>();
+	const posts = $derived(data.posts);
 
 	let public_posts = $derived(
 		posts.filter(
 			(post: { is_private: boolean }) => post && !post.is_private,
 		),
-	)
+	);
 
 	const seo_config = create_seo_config({
 		title: `Welcome! - ${name}`,
@@ -26,7 +26,7 @@
 		),
 		url: `${website}/posts`,
 		slug: 'posts',
-	})
+	});
 </script>
 
 <Head {seo_config} />
@@ -40,7 +40,7 @@
 	<input
 		data-testid="search"
 		id="search"
-		class="input input-bordered input-primary input-lg w-full cursor-pointer"
+		class="input-bordered input w-full cursor-pointer input-lg input-primary"
 		type="text"
 		placeholder="Search... (Ctrl+K)"
 		readonly

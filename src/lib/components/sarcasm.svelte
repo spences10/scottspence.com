@@ -1,18 +1,18 @@
 <script lang="ts">
 	interface Props {
-		sarky?: string
+		sarky?: string;
 	}
 
-	let { sarky = '' }: Props = $props()
+	let { sarky = '' }: Props = $props();
 
-	let transformedText = $state('')
+	let transformedText = $state('');
 
 	$effect.pre(() => {
 		transformedText = sarky
 			.split('')
 			.map((char, i) => char[`to${i % 2 ? 'Upper' : 'Lower'}Case`]())
-			.join('')
-	})
+			.join('');
+	});
 </script>
 
 <span class="font-semibold">

@@ -9,7 +9,7 @@ export const scale_and_fade = (
 			return `
           opacity: ${t};
           transform: scale(${t});
-        `
+        `;
 		},
-	}
-}
+	};
+};

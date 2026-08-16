@@ -316,14 +316,14 @@ instead:
 
 ```typescript
 // Bad: Multiple tools
-tavily_search()
-brave_search()
-kagi_search()
+tavily_search();
+brave_search();
+kagi_search();
 
 // Good: One tool with parameters
-web_search({ provider: 'tavily' })
-web_search({ provider: 'brave' })
-web_search({ provider: 'kagi' })
+web_search({ provider: 'tavily' });
+web_search({ provider: 'brave' });
+web_search({ provider: 'kagi' });
 ```
 
 **2. Trim your descriptions**
@@ -332,20 +332,20 @@ One concise sentence beats a paragraph:
 
 ```typescript
 // Bad
-'This comprehensive tool searches across multiple web...'
+'This comprehensive tool searches across multiple web...';
 
 // Good
-'Search using provider X. Best for Y.'
+'Search using provider X. Best for Y.';
 ```
 
 **3. Simplify parameter descriptions**
 
 ```typescript
 // Bad
-'The maximum number of search results to return from the API call'
+'The maximum number of search results to return from the API call';
 
 // Good
-'Result limit'
+'Result limit';
 ```
 
 **4. Use standard parameter names**

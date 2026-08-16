@@ -144,33 +144,33 @@ Here's an example of what that could look like:
 
 ```jsx {6,19}
 /** @jsx jsx */
-import * as components from '@mdxp/components'
-import Deck, { Zoom } from '@mdxp/core'
-import ReactDOM from 'react-dom'
-import { jsx } from 'theme-ui'
-import deckComponents from './deck-components'
-import MDXPresentation from './presentation.mdx'
-import theme from './theme/theme'
+import * as components from '@mdxp/components';
+import Deck, { Zoom } from '@mdxp/core';
+import ReactDOM from 'react-dom';
+import { jsx } from 'theme-ui';
+import deckComponents from './deck-components';
+import MDXPresentation from './presentation.mdx';
+import theme from './theme/theme';
 
 const Index = () => {
-  return (
-    <Zoom
-      maxWidth={1000}
-      width={1000}
-      aspectRatio={16 / 9}
-      sx={{ maxWidth: '100vw', maxHeight: '100vh' }}
-    >
-      <Deck
-        components={{ ...components, ...deckComponents }}
-        theme={theme}
-      >
-        <MDXPresentation />
-      </Deck>
-    </Zoom>
-  )
-}
+	return (
+		<Zoom
+			maxWidth={1000}
+			width={1000}
+			aspectRatio={16 / 9}
+			sx={{ maxWidth: '100vw', maxHeight: '100vh' }}
+		>
+			<Deck
+				components={{ ...components, ...deckComponents }}
+				theme={theme}
+			>
+				<MDXPresentation />
+			</Deck>
+		</Zoom>
+	);
+};
 
-ReactDOM.render(<Index />, document.getElementById('root'))
+ReactDOM.render(<Index />, document.getElementById('root'));
 ```
 
 The `deckComponents` are what I provide, if I wanted to only use the
@@ -182,15 +182,15 @@ want to use in the presentation, here I'm bringing in a custom
 presentation:
 
 ```jsx {1,5}
-import CodeHighlight from './components/code'
-import { Tweet, CodePen, YouTube } from 'mdx-embed'
+import CodeHighlight from './components/code';
+import { Tweet, CodePen, YouTube } from 'mdx-embed';
 
 export default {
-  CodeHighlight,
-  Tweet,
-  CodePen,
-  YouTube,
-}
+	CodeHighlight,
+	Tweet,
+	CodePen,
+	YouTube,
+};
 ```
 
 The `CodeHighlight` component can then be used in the slides, just
@@ -228,11 +228,11 @@ all the available components and concepts.
 [presentations]: https://sld.codes/presentations
 [mdx embed]: https://www.mdx-embed.com/
 [tuesday]:
-  https://www.linkedin.com/events/mmttechmeetup-gatsbyjs-feb20216762857247988031488/
+	https://www.linkedin.com/events/mmttechmeetup-gatsbyjs-feb20216762857247988031488/
 [mmt tech meetup]:
-  https://www.linkedin.com/events/mmttechmeetup-gatsbyjs-feb20216762857247988031488/
+	https://www.linkedin.com/events/mmttechmeetup-gatsbyjs-feb20216762857247988031488/
 [sara vieira's slides]: https://vue-apollo-magic.now.sh/#0
 [called mdx deck]: https://github.com/SaraVieira/vue-graphql-love
 [example mdxp slides]:
-  https://0phoff.github.io/MDXP/examples/demo/#/normal/1/1
+	https://0phoff.github.io/MDXP/examples/demo/#/normal/1/1
 [documentation]: https://0phoff.github.io/MDXP/

@@ -1,26 +1,26 @@
 <script lang="ts">
-	import { pricing_state } from '$lib/state/pricing-client.svelte'
-	import { number_crunch } from '$lib/utils'
-	import CurrencySelect from './currency-select.svelte'
-	import { locale_string } from './utils'
+	import { pricing_state } from '$lib/state/pricing-client.svelte';
+	import { number_crunch } from '$lib/utils';
+	import CurrencySelect from './currency-select.svelte';
+	import { locale_string } from './utils';
 
 	let day_rate_display = $derived(
 		pricing_state.day_rate * pricing_state.currency_rate,
-	)
+	);
 	let weekly_display = $derived(
 		pricing_state.weekly_rate * pricing_state.currency_rate,
-	)
+	);
 	let monthly_display = $derived(
 		pricing_state.monthly_rate * pricing_state.currency_rate,
-	)
+	);
 	let annual_display = $derived(
 		pricing_state.annual_rate * pricing_state.currency_rate,
-	)
+	);
 </script>
 
 <div class="card bg-base-100 shadow-xl">
 	<div class="card-body">
-		<h2 class="card-title text-primary mb-4">Rate Calculator</h2>
+		<h2 class="mb-4 card-title text-primary">Rate Calculator</h2>
 
 		<div class="grid gap-6">
 			<fieldset class="grid gap-4">
@@ -57,7 +57,7 @@
 								Inside
 							</span>
 						</div>
-						<p class="text-base-content/60 mt-1 text-xs">
+						<p class="mt-1 text-xs text-base-content/60">
 							{#if pricing_state.ir35_inside}
 								Inside IR35: {pricing_state.data.pricing_config
 									.ir35_uplift_pct}% uplift applied to cover
@@ -84,9 +84,9 @@
 							max={40}
 							step={1}
 							bind:value={pricing_state.pto_days}
-							class="range range-primary flex-1"
+							class="range flex-1 range-primary"
 						/>
-						<span class="badge badge-primary badge-lg">
+						<span class="badge badge-lg badge-primary">
 							{pricing_state.pto_days}
 						</span>
 					</div>
@@ -94,11 +94,11 @@
 			</fieldset>
 
 			<div
-				class="stats stats-vertical border-base-300 bg-base-100 md:stats-horizontal w-full border shadow"
+				class="stats w-full stats-vertical border border-base-300 bg-base-100 shadow md:stats-horizontal"
 			>
 				<article class="stat">
 					<div class="stat-title font-medium">Day Rate</div>
-					<div class="stat-value text-primary flex items-center">
+					<div class="stat-value flex items-center text-primary">
 						{locale_string(day_rate_display)}
 						<span class="ml-2 text-xl">
 							{pricing_state.selected_currency}
@@ -181,13 +181,13 @@
 
 			{#if pricing_state.is_gbp}
 				<div
-					class="stats stats-vertical border-base-300 bg-base-100 md:stats-horizontal w-full border shadow"
+					class="stats w-full stats-vertical border border-base-300 bg-base-100 shadow md:stats-horizontal"
 				>
 					<article class="stat">
 						<div class="stat-title font-medium">
 							Contractor Take-home
 						</div>
-						<div class="stat-value text-primary flex items-center">
+						<div class="stat-value flex items-center text-primary">
 							{number_crunch(pricing_state.contractor_take_home)}
 							<span class="ml-2 text-xl">GBP</span>
 						</div>
@@ -200,7 +200,7 @@
 						<div class="stat-title font-medium">
 							Equivalent Salary
 						</div>
-						<div class="stat-value text-secondary flex items-center">
+						<div class="stat-value flex items-center text-secondary">
 							{number_crunch(pricing_state.salary_equivalent)}
 							<span class="ml-2 text-xl">GBP</span>
 						</div>

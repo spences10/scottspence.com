@@ -149,13 +149,13 @@ Then I can initialise the client in the layout file using the URQL
 
 ```svelte
 <script>
-	import { createClient, setContextClient } from '@urql/svelte'
+	import { createClient, setContextClient } from '@urql/svelte';
 
 	const client = createClient({
 		url: `https://rickandmortyapi.com/graphql`,
-	})
+	});
 
-	setContextClient(client)
+	setContextClient(client);
 </script>
 
 <main>
@@ -191,7 +191,7 @@ in a pre tag for now to validate it's working:
 
 ```svelte
 <script>
-	import { getContextClient, gql, queryStore } from '@urql/svelte'
+	import { getContextClient, gql, queryStore } from '@urql/svelte';
 
 	const charactersQueryStore = queryStore({
 		client: getContextClient(),
@@ -206,7 +206,7 @@ in a pre tag for now to validate it's working:
 				}
 			}
 		`,
-	})
+	});
 </script>
 
 <pre>{JSON.stringify($charactersQueryStore, null, 2)}</pre>
@@ -223,7 +223,7 @@ render them.
 
 ```svelte
 <script>
-	import { getContextClient, gql, queryStore } from '@urql/svelte'
+	import { getContextClient, gql, queryStore } from '@urql/svelte';
 
 	const charactersQueryStore = queryStore({
 		client: getContextClient(),
@@ -238,7 +238,7 @@ render them.
 				}
 			}
 		`,
-	})
+	});
 </script>
 
 <h1>The World of Rick and Morty</h1>
@@ -295,7 +295,7 @@ Here's what the page looks like now:
 
 ```svelte
 <script>
-	import { getContextClient, gql, queryStore } from '@urql/svelte'
+	import { getContextClient, gql, queryStore } from '@urql/svelte';
 
 	const charactersQueryStore = queryStore({
 		client: getContextClient(),
@@ -310,7 +310,7 @@ Here's what the page looks like now:
 				}
 			}
 		`,
-	})
+	});
 </script>
 
 <h1>The World of Rick and Morty</h1>
@@ -374,11 +374,11 @@ that the `id` is there:
 /** @type {import('@sveltejs/kit').Load} */
 
 export const load = async ({ params }) => {
-	console.log('=====================')
-	console.log(params)
-	console.log('=====================')
-	return {}
-}
+	console.log('=====================');
+	console.log(params);
+	console.log('=====================');
+	return {};
+};
 ```
 
 With this I can destructure out the id from the `params` object and
@@ -388,9 +388,9 @@ return that for the `+page.svelte` file to use:
 /** @type {import('@sveltejs/kit').Load} */
 
 export const load = async ({ params }) => {
-	const { id } = params
-	return { id }
-}
+	const { id } = params;
+	return { id };
+};
 ```
 
 In the `+page.svelte` file I can now use the `id` to pass to the
@@ -398,10 +398,10 @@ In the `+page.svelte` file I can now use the `id` to pass to the
 
 ```svelte
 <script>
-	export let data
-	let { id } = data
+	export let data;
+	let { id } = data;
 
-	import { getContextClient, gql, queryStore } from '@urql/svelte'
+	import { getContextClient, gql, queryStore } from '@urql/svelte';
 	const characterQueryStore = queryStore({
 		client: getContextClient(),
 		variables: { id },
@@ -422,7 +422,7 @@ In the `+page.svelte` file I can now use the `id` to pass to the
 				}
 			}
 		`,
-	})
+	});
 </script>
 
 <pre>{JSON.stringify($characterQueryStore, null, 2)}</pre>

@@ -1,18 +1,18 @@
 <script lang="ts">
-	import { ErrorCircle, SuccessCircle } from '$lib/icons'
-	import type { Newsletter } from '$lib/newsletters'
-	import { format } from 'date-fns'
-	import type { PageData } from './$types'
+	import { ErrorCircle, SuccessCircle } from '$lib/icons';
+	import type { Newsletter } from '$lib/newsletters';
+	import { format } from 'date-fns';
+	import type { PageData } from './$types';
 
 	interface Props {
-		data: PageData
+		data: PageData;
 	}
 
-	let { data }: Props = $props()
+	let { data }: Props = $props();
 
 	const published_newsletters = $derived(
 		data.newsletters?.filter((n: Newsletter) => n.published) || [],
-	)
+	);
 </script>
 
 <svelte:head>
@@ -21,12 +21,12 @@
 
 <!-- Success/Error Alert Banner -->
 {#if data.status === 'success'}
-	<div class="alert alert-success mb-8" role="alert">
+	<div class="mb-8 alert alert-success" role="alert">
 		<SuccessCircle />
 		<span>{data.message}</span>
 	</div>
 {:else}
-	<div class="alert alert-error mb-8" role="alert">
+	<div class="mb-8 alert alert-error" role="alert">
 		<ErrorCircle />
 		<span>{data.message}</span>
 	</div>
@@ -39,14 +39,14 @@
 		<div class="space-y-6">
 			{#each published_newsletters as newsletter (newsletter.slug)}
 				<article
-					class="card border-primary bg-base-100 hover:bg-base-200 border p-6 transition"
+					class="card border border-primary bg-base-100 p-6 transition hover:bg-base-200"
 				>
 					<a href={`/newsletter/${newsletter.slug}`}>
 						<h3 class="mb-2 text-2xl font-bold">
 							{newsletter.title}
 						</h3>
 						<time
-							class="text-base-content/70 text-sm"
+							class="text-sm text-base-content/70"
 							datetime={new Date(newsletter.date).toISOString()}
 						>
 							{format(new Date(newsletter.date), 'MMMM d, yyyy')}

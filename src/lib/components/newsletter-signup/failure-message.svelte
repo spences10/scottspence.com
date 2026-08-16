@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { scale_and_fade } from '$lib/utils'
+	import { scale_and_fade } from '$lib/utils';
 
 	interface Props {
-		message_type?: 'error' | 'email_already_exists'
+		message_type?: 'error' | 'email_already_exists';
 	}
 
-	let { message_type = 'error' }: Props = $props()
+	let { message_type = 'error' }: Props = $props();
 
 	const message_data = {
 		error: [`Oops! Something went wrong.`, `Please try again later.`],
@@ -14,9 +14,9 @@
 			`Thanks for showing interest in my content though!`,
 			`If you haven't signed up already <a class="link" href="mailto:derpemailsignup@scottspence.com">reach out</a> and let me know. 🙏`,
 		],
-	}
+	};
 
-	let response_message = $derived(message_data[message_type])
+	let response_message = $derived(message_data[message_type]);
 </script>
 
 <div
@@ -28,7 +28,7 @@
 	>
 		<div class="text-primary-content lg:w-0 lg:flex-1">
 			<h3
-				class="text-primary-content text-4xl font-extrabold tracking-tight"
+				class="text-4xl font-extrabold tracking-tight text-primary-content"
 			>
 				{response_message[0]}
 			</h3>

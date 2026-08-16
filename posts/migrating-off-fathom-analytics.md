@@ -41,16 +41,16 @@ components:
 
 ```typescript
 // Old approach - Fathom
-import * as Fathom from 'fathom-client'
-Fathom.trackEvent('newsletter signup click')
+import * as Fathom from 'fathom-client';
+Fathom.trackEvent('newsletter signup click');
 ```
 
 Created a new `click_events` table and a remote function:
 
 ```typescript
 // New approach - local
-import { track_click } from '$lib/analytics/track-click.remote'
-track_click({ event_name: 'newsletter signup click' })
+import { track_click } from '$lib/analytics/track-click.remote';
+track_click({ event_name: 'newsletter signup click' });
 ```
 
 The clicks go into the same batched queue as pageviews - one DB write
@@ -79,11 +79,11 @@ export const get_popular_today = () => {
       LIMIT 20
     `,
 				[today_start],
-			)
+			);
 		},
 		15 * 60 * 1000,
-	) // 15 min cache
-}
+	); // 15 min cache
+};
 ```
 
 One DB hit per 15 minutes, rest served from cache. No cron job, no
@@ -216,9 +216,9 @@ export const get_post_analytics = query(async (pathname: string) => {
        WHERE path = ? ORDER BY year DESC`,
 			[pathname],
 		),
-	])
-	return { daily, monthly, yearly }
-})
+	]);
+	return { daily, monthly, yearly };
+});
 ```
 
 Three parallel queries, all hitting indexed rollup tables. Fast.

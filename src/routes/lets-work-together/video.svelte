@@ -1,50 +1,52 @@
 <script lang="ts">
-	import { pricing_state } from '$lib/state/pricing-client.svelte'
-	import Select from './select.svelte'
-	import { locale_string } from './utils'
+	import { pricing_state } from '$lib/state/pricing-client.svelte';
+	import Select from './select.svelte';
+	import { locale_string } from './utils';
 
 	const VIDEO_DURATION = {
 		Short: { description: '5-10 min', multiplier: 1.5 },
 		Medium: { description: '10-20 min', multiplier: 2.5 },
 		Long: { description: '20-30 min', multiplier: 3.6 },
 		'Extra Long': { description: '>30 min', multiplier: 4.8 },
-	}
+	};
 
 	const VIDEO_CUSTOMISATION = {
 		None: 0,
 		Minor: 0.3,
 		Moderate: 0.5,
 		Major: 1.1,
-	}
+	};
 
-	let selected_video_duration = $state(Object.keys(VIDEO_DURATION)[0])
+	let selected_video_duration = $state(
+		Object.keys(VIDEO_DURATION)[0],
+	);
 	let selected_customisation = $state(
 		Object.keys(VIDEO_CUSTOMISATION)[0],
-	)
+	);
 
 	let duration_config = $derived(
 		VIDEO_DURATION[
 			selected_video_duration as keyof typeof VIDEO_DURATION
 		],
-	)
+	);
 
 	let customisation_pct = $derived(
 		VIDEO_CUSTOMISATION[
 			selected_customisation as keyof typeof VIDEO_CUSTOMISATION
 		],
-	)
+	);
 
 	let total_cost = $derived(
 		pricing_state.day_rate *
 			duration_config.multiplier *
 			(1 + customisation_pct) *
 			pricing_state.currency_rate,
-	)
+	);
 </script>
 
 <div class="card bg-base-100 shadow-xl">
 	<div class="card-body">
-		<h2 class="card-title text-primary mb-4">
+		<h2 class="mb-4 card-title text-primary">
 			Video Production Calculator
 		</h2>
 
@@ -72,11 +74,11 @@
 			</fieldset>
 
 			<div
-				class="stats stats-vertical border-base-300 bg-base-100 md:stats-horizontal w-full border shadow"
+				class="stats w-full stats-vertical border border-base-300 bg-base-100 shadow md:stats-horizontal"
 			>
 				<div class="stat">
 					<div class="stat-title font-medium">Length</div>
-					<div class="stat-value text-primary flex items-center">
+					<div class="stat-value flex items-center text-primary">
 						{duration_config.description}
 					</div>
 					<div class="stat-desc">Video duration</div>
@@ -84,7 +86,7 @@
 
 				<div class="stat">
 					<div class="stat-title font-medium">Customisation</div>
-					<div class="stat-value text-secondary flex items-center">
+					<div class="stat-value flex items-center text-secondary">
 						{selected_customisation}
 					</div>
 					<div class="stat-desc">
@@ -102,7 +104,7 @@
 
 				<div class="stat">
 					<div class="stat-title font-medium">Total</div>
-					<div class="stat-value text-accent flex items-center">
+					<div class="stat-value flex items-center text-accent">
 						{locale_string(total_cost)}
 						<span class="ml-2 text-xl">
 							{pricing_state.selected_currency}

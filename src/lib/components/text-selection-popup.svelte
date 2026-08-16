@@ -1,35 +1,35 @@
 <script lang="ts">
-	import Bluesky from '$lib/icons/bluesky.svelte'
-	import Kagi from '$lib/icons/kagi.svelte'
-	import Perplexity from '$lib/icons/perplexity.svelte'
+	import Bluesky from '$lib/icons/bluesky.svelte';
+	import Kagi from '$lib/icons/kagi.svelte';
+	import Perplexity from '$lib/icons/perplexity.svelte';
 
 	interface Props {
-		selected_text: string
-		post_title: string
-		post_url: string
-		x: number
-		y: number
-		visible: boolean
+		selected_text: string;
+		post_title: string;
+		post_url: string;
+		x: number;
+		y: number;
+		visible: boolean;
 	}
 
 	interface ButtonConfig {
-		label: string
-		component: any
+		label: string;
+		component: any;
 		href: (
 			text: string,
 			post_title: string,
 			post_url: string,
-		) => string
-		aria_label: (text: string) => string
-		variant: string
+		) => string;
+		aria_label: (text: string) => string;
+		variant: string;
 	}
 
 	let { selected_text, post_title, post_url, x, y, visible }: Props =
-		$props()
+		$props();
 
 	let bluesky_text = $derived(
 		`"${selected_text}"\n\nFrom: ${post_title}\n${post_url}\nvia @scottspence.dev`,
-	)
+	);
 
 	let button_configs: ButtonConfig[] = [
 		{
@@ -56,7 +56,7 @@
 			aria_label: (text) => 'Search selected text on Kagi',
 			variant: 'btn-accent',
 		},
-	]
+	];
 </script>
 
 {#if visible && selected_text.trim()}
@@ -65,7 +65,7 @@
 		style="left: {x}px; top: {y}px; transform: translateX(-50%);"
 	>
 		<div
-			class="bg-base-300 border-base-300 rounded-box border p-2 shadow-lg"
+			class="rounded-box border border-base-300 bg-base-300 p-2 shadow-lg"
 		>
 			<div class="flex gap-2">
 				{#each button_configs as config}

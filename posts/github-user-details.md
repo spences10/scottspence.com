@@ -78,27 +78,27 @@ The GitHub GraphQL API query looks like this:
 
 ```graphql
 query GITHUB_USER_DATA_QUERY($username: String!) {
-  user(login: $username) {
-    repositories(
-      last: 100
-      isFork: false
-      orderBy: { field: UPDATED_AT, direction: ASC }
-      privacy: PUBLIC
-    ) {
-      nodes {
-        name
-        description
-        url
-        updatedAt
-        languages(first: 5) {
-          nodes {
-            color
-            name
-          }
-        }
-      }
-    }
-  }
+	user(login: $username) {
+		repositories(
+			last: 100
+			isFork: false
+			orderBy: { field: UPDATED_AT, direction: ASC }
+			privacy: PUBLIC
+		) {
+			nodes {
+				name
+				description
+				url
+				updatedAt
+				languages(first: 5) {
+					nodes {
+						color
+						name
+					}
+				}
+			}
+		}
+	}
 }
 ```
 
@@ -109,28 +109,28 @@ Here's what the response from the GraphQL query looks like:
 
 ```json
 {
-  "data": {
-    "user": {
-      "repositories": {
-        "nodes": [
-          {
-            "name": "scottspence.com",
-            "description": "My Letter Beautiful Mysterious Notebook.",
-            "url": "https://github.com/spences10/scottspence.com",
-            "updatedAt": "2021-01-18T17:35:19Z",
-            "languages": {
-              "nodes": [
-                {
-                  "color": "#f1e05a",
-                  "name": "JavaScript"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  }
+	"data": {
+		"user": {
+			"repositories": {
+				"nodes": [
+					{
+						"name": "scottspence.com",
+						"description": "My Letter Beautiful Mysterious Notebook.",
+						"url": "https://github.com/spences10/scottspence.com",
+						"updatedAt": "2021-01-18T17:35:19Z",
+						"languages": {
+							"nodes": [
+								{
+									"color": "#f1e05a",
+									"name": "JavaScript"
+								}
+							]
+						}
+					}
+				]
+			}
+		}
+	}
 }
 ```
 
@@ -164,33 +164,33 @@ the data it's expecting:
 
 ```html
 <script type="text/javascript">
-  google.charts.load('current', { packages: ['corechart'] })
-  google.charts.setOnLoadCallback(drawChart)
-  function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Languages', 'Languages Count'],
-      ['JavaScript', 37],
-      ['TypeScript', 13],
-      ['CSS', 12],
-      ['HTML', 7],
-    ])
+	google.charts.load('current', { packages: ['corechart'] });
+	google.charts.setOnLoadCallback(drawChart);
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+			['Languages', 'Languages Count'],
+			['JavaScript', 37],
+			['TypeScript', 13],
+			['CSS', 12],
+			['HTML', 7],
+		]);
 
-    var options = {
-      // title: 'My Languages Split',
-      colors: ['#f1e05a', '#2b7489', '#563d7c', '#e34c26'],
-      chartArea: {
-        left: 0,
-        top: 30,
-        width: '100%',
-        height: '90%',
-      },
-    }
+		var options = {
+			// title: 'My Languages Split',
+			colors: ['#f1e05a', '#2b7489', '#563d7c', '#e34c26'],
+			chartArea: {
+				left: 0,
+				top: 30,
+				width: '100%',
+				height: '90%',
+			},
+		};
 
-    var chart = new google.visualization.PieChart(
-      document.getElementById('doughnut')
-    )
-    chart.draw(data, options)
-  }
+		var chart = new google.visualization.PieChart(
+			document.getElementById('doughnut'),
+		);
+		chart.draw(data, options);
+	}
 </script>
 ```
 
@@ -224,19 +224,19 @@ You can check out the latency by changing my username in the live code
 example here:
 
 ```js react-live
-const user = `spences10`
+const user = `spences10`;
 
 const Image = () => {
-  return (
-    <img
-      alt="GitHub user language split"
-      style={{ width: '100%', height: '315px' }}
-      src={`https://ghui.vercel.app/pie.png?username=${user}`}
-    />
-  )
-}
+	return (
+		<img
+			alt="GitHub user language split"
+			style={{ width: '100%', height: '315px' }}
+			src={`https://ghui.vercel.app/pie.png?username=${user}`}
+		/>
+	);
+};
 
-render(Image)
+render(Image);
 ```
 
 ## Big boi function
@@ -309,37 +309,37 @@ be the same amount of latency.
 
 [paul scanlon]: https://twitter.com/PaulieScanlon
 [serverless open graph image]:
-  https://scottspence.com/posts/serverless-og-images/
+	https://scottspence.com/posts/serverless-og-images/
 [leigh halliday]: https://www.youtube.com/user/leighhalliday
 [map, reduce, filter, and pie charts]:
-  https://www.youtube.com/watch?v=28StAxSjyIU
+	https://www.youtube.com/watch?v=28StAxSjyIU
 [how to use graphql with react]:
-  https://www.youtube.com/watch?v=AUiUZ29pae4
+	https://www.youtube.com/watch?v=AUiUZ29pae4
 [serverless og image - part 1 - deploying our first serverless function]:
-  https://www.youtube.com/watch?v=Al3tCJKOydY
+	https://www.youtube.com/watch?v=Al3tCJKOydY
 [serverless og image - part 2 - parsing request]:
-  https://www.youtube.com/watch?v=ANedwsfXpO0
+	https://www.youtube.com/watch?v=ANedwsfXpO0
 [serverless og image - part 3 - temporary file]:
-  https://www.youtube.com/watch?v=KlLgjuUQoJs
+	https://www.youtube.com/watch?v=KlLgjuUQoJs
 [serverless og image - part 4 - taking screenshot]:
-  https://www.youtube.com/watch?v=ZjGCiBpDZ7g
+	https://www.youtube.com/watch?v=ZjGCiBpDZ7g
 [my affiliate link]:
-  https://courses.leighhalliday.com/next-level-next-js?coupon=SCOTT
+	https://courses.leighhalliday.com/next-level-next-js?coupon=SCOTT
 [graphql query in axios]:
-  https://scottspence.com/posts/get-graphql-data-with-axios/
+	https://scottspence.com/posts/get-graphql-data-with-axios/
 [data transform]:
-  https://github.com/spences10/github-user-information/blob/main/src/data-transform.ts
+	https://github.com/spences10/github-user-information/blob/main/src/data-transform.ts
 [interactive example]: #interactive-example
 [live server]:
-  https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
+	https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
 [google chart library]:
-  https://developers.google.com/chart/interactive/docs/gallery
+	https://developers.google.com/chart/interactive/docs/gallery
 [contrast-color-generator]:
-  https://www.npmjs.com/package/contrast-color-generator
+	https://www.npmjs.com/package/contrast-color-generator
 [great write up]:
-  https://paulie.dev/posts/2021/01/gatsby-netliyf-github-rest/
+	https://paulie.dev/posts/2021/01/gatsby-netliyf-github-rest/
 
 <!-- Images -->
 
 [github contributions pie chart]:
-  https://ghui.vercel.app/pie.png?username=spences10
+	https://ghui.vercel.app/pie.png?username=spences10

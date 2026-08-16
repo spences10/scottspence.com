@@ -1,5 +1,5 @@
 <script lang="ts">
-	let thisYear = new Date().getFullYear()
+	let thisYear = new Date().getFullYear();
 </script>
 
 <div

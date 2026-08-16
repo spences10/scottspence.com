@@ -1,4 +1,4 @@
-import { sqlite_client } from '$lib/sqlite/client'
+import { sqlite_client } from '$lib/sqlite/client';
 import type {
 	DateRange,
 	GitHubActivity,
@@ -6,16 +6,16 @@ import type {
 	GitHubIssue,
 	GitHubPullRequest,
 	GitHubRelease,
-} from './github-fetcher'
+} from './github-fetcher';
 
 /**
  * Get default date range (last month)
  */
 function get_default_date_range(): DateRange {
-	const to = new Date()
-	const from = new Date()
-	from.setMonth(from.getMonth() - 1)
-	return { from, to }
+	const to = new Date();
+	const from = new Date();
+	from.setMonth(from.getMonth() - 1);
+	return { from, to };
 }
 
 /**
@@ -33,7 +33,7 @@ function fetch_commits_from_db(
 			ORDER BY date DESC
 		`,
 		args: [from_iso, to_iso],
-	})
+	});
 
 	return result.rows.map((row) => ({
 		sha: row.sha as string,
@@ -42,7 +42,7 @@ function fetch_commits_from_db(
 		date: row.date as string,
 		url: row.url as string,
 		is_private: Boolean(row.is_private),
-	}))
+	}));
 }
 
 /**
@@ -60,7 +60,7 @@ function fetch_pull_requests_from_db(
 			ORDER BY created_at DESC
 		`,
 		args: [from_iso, to_iso],
-	})
+	});
 
 	return result.rows.map((row) => ({
 		repo: row.repo as string,
@@ -71,7 +71,7 @@ function fetch_pull_requests_from_db(
 		merged_at: (row.merged_at as string | null) || null,
 		url: row.url as string,
 		is_private: Boolean(row.is_private),
-	}))
+	}));
 }
 
 /**
@@ -89,7 +89,7 @@ function fetch_issues_from_db(
 			ORDER BY created_at DESC
 		`,
 		args: [from_iso, to_iso],
-	})
+	});
 
 	return result.rows.map((row) => ({
 		repo: row.repo as string,
@@ -100,7 +100,7 @@ function fetch_issues_from_db(
 		closed_at: (row.closed_at as string | null) || null,
 		url: row.url as string,
 		is_private: Boolean(row.is_private),
-	}))
+	}));
 }
 
 /**
@@ -118,7 +118,7 @@ function fetch_releases_from_db(
 			ORDER BY published_at DESC
 		`,
 		args: [from_iso, to_iso],
-	})
+	});
 
 	return result.rows.map((row) => ({
 		repo: row.repo as string,
@@ -127,7 +127,7 @@ function fetch_releases_from_db(
 		published_at: row.published_at as string,
 		url: row.url as string,
 		is_private: Boolean(row.is_private),
-	}))
+	}));
 }
 
 /**
@@ -138,22 +138,22 @@ function fetch_releases_from_db(
 export async function fetch_github_activity_from_db(
 	date_range?: DateRange,
 ): Promise<GitHubActivity> {
-	const range = date_range || get_default_date_range()
-	const from_iso = range.from.toISOString()
-	const to_iso = range.to.toISOString()
+	const range = date_range || get_default_date_range();
+	const from_iso = range.from.toISOString();
+	const to_iso = range.to.toISOString();
 
 	console.log(
 		`Fetching GitHub activity from database: ${from_iso} to ${to_iso}`,
-	)
+	);
 
-	const commits = fetch_commits_from_db(from_iso, to_iso)
-	const pull_requests = fetch_pull_requests_from_db(from_iso, to_iso)
-	const issues = fetch_issues_from_db(from_iso, to_iso)
-	const releases = fetch_releases_from_db(from_iso, to_iso)
+	const commits = fetch_commits_from_db(from_iso, to_iso);
+	const pull_requests = fetch_pull_requests_from_db(from_iso, to_iso);
+	const issues = fetch_issues_from_db(from_iso, to_iso);
+	const releases = fetch_releases_from_db(from_iso, to_iso);
 
 	console.log(
 		`Found: ${commits.length} commits, ${pull_requests.length} PRs, ${issues.length} issues, ${releases.length} releases`,
-	)
+	);
 
 	return {
 		commits,
@@ -164,5 +164,5 @@ export async function fetch_github_activity_from_db(
 			from: from_iso,
 			to: to_iso,
 		},
-	}
+	};
 }

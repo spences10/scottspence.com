@@ -177,13 +177,13 @@ Done!
 [documentation]: https://usefathom.com/support/custom-domains
 [godaddy]: https://ca.godaddy.com/help/add-a-cname-record-19236
 [cloudflare]:
-  https://support.cloudflare.com/hc/en-us/articles/360020615111-Configuring-a-CNAME-setup
+	https://support.cloudflare.com/hc/en-us/articles/360020615111-Configuring-a-CNAME-setup
 [hover]:
-  https://help.hover.com/hc/en-us/articles/217282457-Managing-DNS-records-#h_5eab4aa7-b044-4cc6-a3c0-5869f583edc8
+	https://help.hover.com/hc/en-us/articles/217282457-Managing-DNS-records-#h_5eab4aa7-b044-4cc6-a3c0-5869f583edc8
 [namecheap]:
-  https://www.namecheap.com/support/knowledgebase/article.aspx/9646/2237/how-to-create-a-cname-record-for-your-domain
+	https://www.namecheap.com/support/knowledgebase/article.aspx/9646/2237/how-to-create-a-cname-record-for-your-domain
 [this gist]:
-  https://gist.github.com/jaydenseric/f4147d7d9788d1f46b30e4ac7b57e6b2
+	https://gist.github.com/jaydenseric/f4147d7d9788d1f46b30e4ac7b57e6b2
 [dns editor for vercel domains]: https://vercel.com/integrations/dns
 [to your gatsby site]: https://usefathom.com/integrations/gatsbyjs
 [`default-html.js` file]: https://www.gatsbyjs.com/docs/custom-html/
@@ -191,8 +191,8 @@ Done!
 <!-- Images -->
 
 [create new dns record netlify]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/create-new-dns-record-netlify-388b4824b94966a449b57c7fd59f5fa8.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/create-new-dns-record-netlify-388b4824b94966a449b57c7fd59f5fa8.png
 [pick custom domain in site settings]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/pick-custom-domain-in-site-settings-3af1a934a7a66f45d754f3cfa36bb80e.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/pick-custom-domain-in-site-settings-3af1a934a7a66f45d754f3cfa36bb80e.png
 [fathom dns record for a site]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/fathom-dns-record-for-site-918a662955a145472c8b3a65061649e2.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/fathom-dns-record-for-site-918a662955a145472c8b3a65061649e2.png

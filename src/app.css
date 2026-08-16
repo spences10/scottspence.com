@@ -47,7 +47,7 @@
 	}
 
 	.all-prose {
-		@apply prose prose-lg lg:prose-xl prose-headings:scroll-mt-16 prose-a:text-primary prose-a:transition prose-a:hover:text-accent max-w-none;
+		@apply prose prose-lg max-w-none lg:prose-xl prose-headings:scroll-mt-16 prose-a:text-primary prose-a:transition prose-a:hover:text-accent;
 
 		/* remove derp backticks from prose */
 		:where(code):not(:where([class~='not-prose'] *, pre *)) {

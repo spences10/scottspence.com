@@ -75,11 +75,11 @@ redirected to the `destination`.
 
 ```ts
 export const get = async () => {
-  return {
-    headers: { Location: '/' },
-    status: 301,
-  }
-}
+	return {
+		headers: { Location: '/' },
+		status: 301,
+	};
+};
 ```
 
 This will accept anything after root path (`/`) and redirect it at the
@@ -109,19 +109,19 @@ want, I'll add some example one here.
 
 ```ts
 export const urls = [
-  {
-    source: '/me',
-    destination: 'https://scottspence.com',
-  },
-  {
-    source: '/twitter',
-    destination: 'https://twitter.com/spences10',
-  },
-  {
-    source: '/git',
-    destination: 'https://github.com/spences10',
-  },
-]
+	{
+		source: '/me',
+		destination: 'https://scottspence.com',
+	},
+	{
+		source: '/twitter',
+		destination: 'https://twitter.com/spences10',
+	},
+	{
+		source: '/git',
+		destination: 'https://github.com/spences10',
+	},
+];
 ```
 
 ## Redirect to the destination URL
@@ -137,13 +137,13 @@ Let's take a quick look at what we get in the `context` (or `ctx`)
 object.
 
 ```ts
-export const get = async ctx => {
-  console.log(ctx)
-  return {
-    headers: { Location: '/' },
-    status: 301,
-  }
-}
+export const get = async (ctx) => {
+	console.log(ctx);
+	return {
+		headers: { Location: '/' },
+		status: 301,
+	};
+};
 ```
 
 So now if I navigate to `localhost:3000/something` I'll see the
@@ -228,14 +228,14 @@ the `url` object out of the context object and import the `urls-list`
 file.
 
 ```ts
-import { urls } from '$lib/urls-list'
+import { urls } from '$lib/urls-list';
 
 export const get = async ({ url }) => {
-  return {
-    headers: { Location: '/' },
-    status: 301,
-  }
-}
+	return {
+		headers: { Location: '/' },
+		status: 301,
+	};
+};
 ```
 
 Then I can get a redirect out of the `urls` array. I'll declare this
@@ -247,18 +247,18 @@ I'm going to want to filter for anything that matches the
 out the results:
 
 ```ts
-import { urls } from '$lib/urls-list'
+import { urls } from '$lib/urls-list';
 
 export const get = async ({ url }) => {
-  const [redirect] = urls.filter(item => {
-    console.log(item)
-  })
+	const [redirect] = urls.filter((item) => {
+		console.log(item);
+	});
 
-  return {
-    headers: { Location: '/' },
-    status: 301,
-  }
-}
+	return {
+		headers: { Location: '/' },
+		status: 301,
+	};
+};
 ```
 
 Now if I navigate to `localhost:3000/something` I'll see the following
@@ -278,23 +278,25 @@ So, with the `item` I'm using in the filter I can compare against the
 from the `urls` array.
 
 ```ts
-import { urls } from '$lib/urls-list'
+import { urls } from '$lib/urls-list';
 
 export const get = async ({ url }) => {
-  const [redirect] = urls.filter(item => item.source === url.pathname)
+	const [redirect] = urls.filter(
+		(item) => item.source === url.pathname,
+	);
 
-  if (redirect) {
-    return {
-      headers: { Location: redirect.destination },
-      status: 301,
-    }
-  } else if (!redirect && url.pathname.length > 1) {
-    return {
-      headers: { Location: '/' },
-      status: 301,
-    }
-  } else return {}
-}
+	if (redirect) {
+		return {
+			headers: { Location: redirect.destination },
+			status: 301,
+		};
+	} else if (!redirect && url.pathname.length > 1) {
+		return {
+			headers: { Location: '/' },
+			status: 301,
+		};
+	} else return {};
+};
 ```
 
 I can use an `if` to check for a valid match. If there's a valid match
@@ -335,6 +337,6 @@ endpoints. I was using `redirect` instead of setting the headers.
 <!-- Links -->
 
 [redirections in http]:
-  https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections#permanent_redirections
+	https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections#permanent_redirections
 [dana woodman on dev.to]:
-  https://dev.to/danawoodman/how-to-redirect-in-sveltekit-endpoints-1im3
+	https://dev.to/danawoodman/how-to-redirect-in-sveltekit-endpoints-1im3

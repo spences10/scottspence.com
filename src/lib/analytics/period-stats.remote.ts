@@ -1,28 +1,28 @@
-import { query } from '$app/server'
+import { query } from '$app/server';
 import {
 	CACHE_DURATIONS,
 	get_from_cache,
 	set_cache,
-} from '$lib/cache/server-cache'
-import { sqlite_client } from '$lib/sqlite/client'
-import * as v from 'valibot'
-import { get_blocked_domains_array } from './blocked-domains'
-import { BOT_THRESHOLDS } from './bot-thresholds'
+} from '$lib/cache/server-cache';
+import { sqlite_client } from '$lib/sqlite/client';
+import * as v from 'valibot';
+import { get_blocked_domains_array } from './blocked-domains';
+import { BOT_THRESHOLDS } from './bot-thresholds';
 import {
 	format_period_stats,
 	get_period_boundaries,
 	type FilterMode,
 	type PeriodStats,
 	type StatsPeriod,
-} from './period-stats.helpers'
-import { aggregate_referrers } from './referrer-normalisation'
+} from './period-stats.helpers';
+import { aggregate_referrers } from './referrer-normalisation';
 
 // Re-export types for consumers
 export type {
 	FilterMode,
 	PeriodStats,
 	StatsPeriod,
-} from './period-stats.helpers'
+} from './period-stats.helpers';
 
 /**
  * Get visitor hashes that exceed behaviour thresholds for a period
@@ -40,7 +40,7 @@ const get_behaviour_bot_hashes = (
 			GROUP BY visitor_hash, path
 			HAVING COUNT(*) > ?`,
 		args: [start, end, BOT_THRESHOLDS.MAX_HITS_PER_PATH_PER_DAY],
-	})
+	});
 
 	// Get visitors exceeding total threshold
 	const total_result = sqlite_client.execute({
@@ -50,18 +50,18 @@ const get_behaviour_bot_hashes = (
 			GROUP BY visitor_hash
 			HAVING COUNT(*) > ?`,
 		args: [start, end, BOT_THRESHOLDS.MAX_HITS_TOTAL_PER_DAY],
-	})
+	});
 
 	// Combine both sets
-	const hashes = new Set<string>()
+	const hashes = new Set<string>();
 	per_path_result.rows.forEach((r) =>
 		hashes.add(r.visitor_hash as string),
-	)
+	);
 	total_result.rows.forEach((r) =>
 		hashes.add(r.visitor_hash as string),
-	)
-	return hashes
-}
+	);
+	return hashes;
+};
 
 /**
  * Get analytics stats for a specific time period
@@ -87,51 +87,51 @@ export const get_period_stats = query(
 		),
 	}),
 	({ period, filter_mode }): PeriodStats => {
-		const mode = filter_mode as FilterMode
+		const mode = filter_mode as FilterMode;
 
 		// Check cache first - key includes period + filter mode
-		const cache_key = `period_stats_${period}_${mode}`
+		const cache_key = `period_stats_${period}_${mode}`;
 		const cached = get_from_cache<PeriodStats>(
 			cache_key,
 			CACHE_DURATIONS.period_stats,
-		)
+		);
 		if (cached) {
-			return cached
+			return cached;
 		}
 
 		const { start, end } = get_period_boundaries(
 			period as StatsPeriod,
-		)
+		);
 
 		// Get behaviour bot hashes for this period
-		const behaviour_bots = get_behaviour_bot_hashes(start, end)
-		const bot_hashes = [...behaviour_bots]
+		const behaviour_bots = get_behaviour_bot_hashes(start, end);
+		const bot_hashes = [...behaviour_bots];
 
 		// Build WHERE clause based on filter mode
-		let bot_condition: string
-		let bot_args: (string | number)[] = []
+		let bot_condition: string;
+		let bot_args: (string | number)[] = [];
 
 		if (mode === 'humans') {
 			// Exclude flagged bots AND behaviour bots
 			if (bot_hashes.length > 0) {
-				const placeholders = bot_hashes.map(() => '?').join(',')
-				bot_condition = `AND is_bot = 0 AND visitor_hash NOT IN (${placeholders})`
-				bot_args = bot_hashes
+				const placeholders = bot_hashes.map(() => '?').join(',');
+				bot_condition = `AND is_bot = 0 AND visitor_hash NOT IN (${placeholders})`;
+				bot_args = bot_hashes;
 			} else {
-				bot_condition = 'AND is_bot = 0'
+				bot_condition = 'AND is_bot = 0';
 			}
 		} else if (mode === 'bots') {
 			// Include only bots (flagged OR behaviour)
 			if (bot_hashes.length > 0) {
-				const placeholders = bot_hashes.map(() => '?').join(',')
-				bot_condition = `AND (is_bot = 1 OR visitor_hash IN (${placeholders}))`
-				bot_args = bot_hashes
+				const placeholders = bot_hashes.map(() => '?').join(',');
+				bot_condition = `AND (is_bot = 1 OR visitor_hash IN (${placeholders}))`;
+				bot_args = bot_hashes;
 			} else {
-				bot_condition = 'AND is_bot = 1'
+				bot_condition = 'AND is_bot = 1';
 			}
 		} else {
 			// All - no filtering
-			bot_condition = ''
+			bot_condition = '';
 		}
 
 		// For longer periods, use rollup tables + today's raw events
@@ -141,51 +141,53 @@ export const get_period_stats = query(
 			(period === 'week' ||
 				period === 'month' ||
 				period === 'year') &&
-			(mode === 'humans' || mode === 'all')
+			(mode === 'humans' || mode === 'all');
 
-		const today_date = new Date().toISOString().split('T')[0]
+		const today_date = new Date().toISOString().split('T')[0];
 		const today_utc_start = new Date(
 			today_date + 'T00:00:00Z',
-		).getTime()
+		).getTime();
 
 		// Total views and unique visitors
-		let totals: { views: number; unique_visitors: number }
+		let totals: { views: number; unique_visitors: number };
 
 		if (use_rollup) {
-			let rollup_views = 0
-			let rollup_uv = 0
+			let rollup_views = 0;
+			let rollup_uv = 0;
 
 			if (period === 'year') {
-				const start_month = new Date(start).toISOString().slice(0, 7)
+				const start_month = new Date(start).toISOString().slice(0, 7);
 				const result = sqlite_client.execute({
 					sql: `SELECT COALESCE(SUM(views), 0) as views,
 						COALESCE(SUM(unique_visitors), 0) as unique_visitors
 					FROM analytics_monthly WHERE year_month >= ?`,
 					args: [start_month],
-				})
-				rollup_views = (result.rows[0]?.views as number) ?? 0
-				rollup_uv = (result.rows[0]?.unique_visitors as number) ?? 0
+				});
+				rollup_views = (result.rows[0]?.views as number) ?? 0;
+				rollup_uv = (result.rows[0]?.unique_visitors as number) ?? 0;
 			} else {
-				const start_date = new Date(start).toISOString().split('T')[0]
+				const start_date = new Date(start)
+					.toISOString()
+					.split('T')[0];
 				const result = sqlite_client.execute({
 					sql: `SELECT COALESCE(SUM(views), 0) as views,
 						COALESCE(SUM(unique_visitors), 0) as unique_visitors
 					FROM analytics_daily WHERE date >= ? AND date < ?`,
 					args: [start_date, today_date],
-				})
-				rollup_views = (result.rows[0]?.views as number) ?? 0
-				rollup_uv = (result.rows[0]?.unique_visitors as number) ?? 0
+				});
+				rollup_views = (result.rows[0]?.views as number) ?? 0;
+				rollup_uv = (result.rows[0]?.unique_visitors as number) ?? 0;
 			}
 
 			// Add today's raw events (filter bots unless 'all' mode)
-			const today_bot_filter = mode === 'all' ? '' : 'AND is_bot = 0'
+			const today_bot_filter = mode === 'all' ? '' : 'AND is_bot = 0';
 			const today_result = sqlite_client.execute({
 				sql: `SELECT COUNT(*) as views,
 					COUNT(DISTINCT visitor_hash) as unique_visitors
 				FROM analytics_events
 				WHERE created_at >= ? AND created_at < ? ${today_bot_filter}`,
 				args: [today_utc_start, end],
-			})
+			});
 
 			totals = {
 				views:
@@ -194,7 +196,7 @@ export const get_period_stats = query(
 				unique_visitors:
 					rollup_uv +
 					((today_result.rows[0]?.unique_visitors as number) ?? 0),
-			}
+			};
 		} else {
 			const totals_result = sqlite_client.execute({
 				sql: `SELECT
@@ -203,18 +205,18 @@ export const get_period_stats = query(
 				FROM analytics_events
 				WHERE created_at >= ? AND created_at < ? ${bot_condition}`,
 				args: [start, end, ...bot_args],
-			})
+			});
 			totals = {
 				views: (totals_result.rows[0]?.views as number) ?? 0,
 				unique_visitors:
 					(totals_result.rows[0]?.unique_visitors as number) ?? 0,
-			}
+			};
 		}
 
 		// Bot totals (always calculate for display)
-		let bot_totals = { views: 0, visitors: 0 }
+		let bot_totals = { views: 0, visitors: 0 };
 		if (bot_hashes.length > 0) {
-			const placeholders = bot_hashes.map(() => '?').join(',')
+			const placeholders = bot_hashes.map(() => '?').join(',');
 			const bot_result = sqlite_client.execute({
 				sql: `SELECT
 					COUNT(*) as views,
@@ -223,11 +225,11 @@ export const get_period_stats = query(
 				WHERE created_at >= ? AND created_at < ?
 				AND (is_bot = 1 OR visitor_hash IN (${placeholders}))`,
 				args: [start, end, ...bot_hashes],
-			})
+			});
 			bot_totals = {
 				views: (bot_result.rows[0]?.views as number) ?? 0,
 				visitors: (bot_result.rows[0]?.visitors as number) ?? 0,
-			}
+			};
 		} else {
 			// Just flagged bots
 			const bot_result = sqlite_client.execute({
@@ -237,27 +239,31 @@ export const get_period_stats = query(
 				FROM analytics_events
 				WHERE created_at >= ? AND created_at < ? AND is_bot = 1`,
 				args: [start, end],
-			})
+			});
 			bot_totals = {
 				views: (bot_result.rows[0]?.views as number) ?? 0,
 				visitors: (bot_result.rows[0]?.visitors as number) ?? 0,
-			}
+			};
 		}
 
 		// For 'all' mode with rollups, the rollup data is humans-only
 		// so add bot totals on top to get the true combined number
 		if (use_rollup && mode === 'all') {
-			totals.views += bot_totals.views
-			totals.unique_visitors += bot_totals.visitors
+			totals.views += bot_totals.views;
+			totals.unique_visitors += bot_totals.visitors;
 		}
 
 		// Top pages
-		let top_pages: { path: string; views: number; visitors: number }[]
+		let top_pages: {
+			path: string;
+			views: number;
+			visitors: number;
+		}[];
 
 		if (use_rollup) {
-			let rollup_pages_result
+			let rollup_pages_result;
 			if (period === 'year') {
-				const start_month = new Date(start).toISOString().slice(0, 7)
+				const start_month = new Date(start).toISOString().slice(0, 7);
 				rollup_pages_result = sqlite_client.execute({
 					sql: `SELECT pathname as path,
 						SUM(views) as views,
@@ -265,9 +271,11 @@ export const get_period_stats = query(
 					FROM analytics_monthly WHERE year_month >= ?
 					GROUP BY pathname`,
 					args: [start_month],
-				})
+				});
 			} else {
-				const start_date = new Date(start).toISOString().split('T')[0]
+				const start_date = new Date(start)
+					.toISOString()
+					.split('T')[0];
 				rollup_pages_result = sqlite_client.execute({
 					sql: `SELECT pathname as path,
 						SUM(views) as views,
@@ -275,11 +283,11 @@ export const get_period_stats = query(
 					FROM analytics_daily WHERE date >= ? AND date < ?
 					GROUP BY pathname`,
 					args: [start_date, today_date],
-				})
+				});
 			}
 
 			// Today's raw events (filter bots unless 'all' mode)
-			const today_bot_filter = mode === 'all' ? '' : 'AND is_bot = 0'
+			const today_bot_filter = mode === 'all' ? '' : 'AND is_bot = 0';
 			const today_pages_result = sqlite_client.execute({
 				sql: `SELECT path,
 					COUNT(*) as views,
@@ -288,34 +296,34 @@ export const get_period_stats = query(
 				WHERE created_at >= ? AND created_at < ? ${today_bot_filter}
 				GROUP BY path`,
 				args: [today_utc_start, end],
-			})
+			});
 
 			// Merge rollup + today
 			const pages_map = new Map<
 				string,
 				{ views: number; visitors: number }
-			>()
+			>();
 			for (const row of rollup_pages_result.rows) {
 				pages_map.set(row.path as string, {
 					views: row.views as number,
 					visitors: row.visitors as number,
-				})
+				});
 			}
 			for (const row of today_pages_result.rows) {
-				const existing = pages_map.get(row.path as string)
+				const existing = pages_map.get(row.path as string);
 				if (existing) {
-					existing.views += row.views as number
-					existing.visitors += row.visitors as number
+					existing.views += row.views as number;
+					existing.visitors += row.visitors as number;
 				} else {
 					pages_map.set(row.path as string, {
 						views: row.views as number,
 						visitors: row.visitors as number,
-					})
+					});
 				}
 			}
 			top_pages = [...pages_map.entries()]
 				.map(([path, stats]) => ({ path, ...stats }))
-				.sort((a, b) => b.visitors - a.visitors)
+				.sort((a, b) => b.visitors - a.visitors);
 		} else {
 			const pages_result = sqlite_client.execute({
 				sql: `SELECT
@@ -327,12 +335,12 @@ export const get_period_stats = query(
 				GROUP BY path
 				ORDER BY visitors DESC`,
 				args: [start, end, ...bot_args],
-			})
+			});
 			top_pages = pages_result.rows as {
-				path: string
-				views: number
-				visitors: number
-			}[]
+				path: string;
+				views: number;
+				visitors: number;
+			}[];
 		}
 
 		// Countries
@@ -349,12 +357,12 @@ export const get_period_stats = query(
 			GROUP BY country
 			ORDER BY visitors DESC`,
 			args: [start, end, ...bot_args],
-		})
+		});
 		const countries = countries_result.rows as {
-			country: string
-			views: number
-			visitors: number
-		}[]
+			country: string;
+			views: number;
+			visitors: number;
+		}[];
 
 		// Browsers
 		const browsers_result = sqlite_client.execute({
@@ -370,12 +378,12 @@ export const get_period_stats = query(
 			ORDER BY visitors DESC
 			LIMIT 5`,
 			args: [start, end, ...bot_args],
-		})
+		});
 		const browsers = browsers_result.rows as {
-			browser: string
-			views: number
-			visitors: number
-		}[]
+			browser: string;
+			views: number;
+			visitors: number;
+		}[];
 
 		// Devices
 		const devices_result = sqlite_client.execute({
@@ -390,12 +398,12 @@ export const get_period_stats = query(
 			GROUP BY device_type
 			ORDER BY visitors DESC`,
 			args: [start, end, ...bot_args],
-		})
+		});
 		const devices = devices_result.rows as {
-			device_type: string
-			views: number
-			visitors: number
-		}[]
+			device_type: string;
+			views: number;
+			visitors: number;
+		}[];
 
 		// Direct traffic (null/empty referrer)
 		const direct_result = sqlite_client.execute({
@@ -407,20 +415,20 @@ export const get_period_stats = query(
 				${bot_condition}
 				AND (referrer IS NULL OR referrer = '')`,
 			args: [start, end, ...bot_args],
-		})
+		});
 		const direct_stats = {
 			referrer: 'Direct',
 			views: (direct_result.rows[0]?.views as number) ?? 0,
 			visitors: (direct_result.rows[0]?.visitors as number) ?? 0,
-		}
+		};
 
 		// Referrers - fetch raw, then normalise/aggregate in JS
 		// Fetch more than we need since grouping will consolidate
-		const blocked_domains = get_blocked_domains_array()
+		const blocked_domains = get_blocked_domains_array();
 		const blocked_placeholders = blocked_domains
 			.map(() => `AND referrer NOT LIKE ?`)
-			.join(' ')
-		const blocked_args = blocked_domains.map((d) => `%${d}%`)
+			.join(' ');
+		const blocked_args = blocked_domains.map((d) => `%${d}%`);
 		const referrers_result = sqlite_client.execute({
 			sql: `SELECT
 				referrer,
@@ -436,19 +444,19 @@ export const get_period_stats = query(
 			ORDER BY visitors DESC
 			LIMIT 100`,
 			args: [start, end, ...bot_args, ...blocked_args],
-		})
+		});
 		const raw_referrers = referrers_result.rows as {
-			referrer: string
-			views: number
-			visitors: number
-		}[]
+			referrer: string;
+			views: number;
+			visitors: number;
+		}[];
 		// Normalise and aggregate (groups Google variants, filters internal)
-		const aggregated = aggregate_referrers(raw_referrers)
+		const aggregated = aggregate_referrers(raw_referrers);
 		// Combine with Direct and take top 10
 		const all_referrers = [direct_stats, ...aggregated]
 			.sort((a, b) => b.visitors - a.visitors)
-			.slice(0, 10)
-		const referrers = all_referrers
+			.slice(0, 10);
+		const referrers = all_referrers;
 
 		const result = format_period_stats(
 			period as StatsPeriod,
@@ -460,10 +468,10 @@ export const get_period_stats = query(
 			browsers,
 			devices,
 			referrers,
-		)
+		);
 
 		// Cache the result
-		set_cache(cache_key, result)
-		return result
+		set_cache(cache_key, result);
+		return result;
 	},
-)
+);

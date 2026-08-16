@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { track_click } from '$lib/analytics/track-click.remote'
+	import { track_click } from '$lib/analytics/track-click.remote';
 
 	interface RelatedPost {
-		slug: string
-		title: string
+		slug: string;
+		title: string;
 	}
 
 	interface Props {
-		related_posts: RelatedPost[]
+		related_posts: RelatedPost[];
 	}
 
-	let { related_posts }: Props = $props()
+	let { related_posts }: Props = $props();
 </script>
 
 {#if related_posts.length}
@@ -31,7 +31,7 @@
 					class="h-full"
 				>
 					<aside
-						class="card rounded-box border-secondary hover:text-accent h-full border p-5 font-bold shadow-lg transition"
+						class="card h-full rounded-box border border-secondary p-5 font-bold shadow-lg transition hover:text-accent"
 					>
 						<h3 class="mb-5 line-clamp-3 text-2xl text-balance">
 							{post.title}

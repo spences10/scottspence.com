@@ -1,7 +1,7 @@
 import {
 	RESEND_API_KEY,
 	RESEND_FROM_EMAIL,
-} from '$env/static/private'
+} from '$env/static/private';
 
 /**
  * Send newsletter reminder email
@@ -9,13 +9,13 @@ import {
  */
 export const send_newsletter_reminder = async () => {
 	try {
-		const now = new Date()
+		const now = new Date();
 		const month = now.toLocaleDateString('en-GB', {
 			month: 'long',
 			year: 'numeric',
-		})
+		});
 
-		console.log(`Sending newsletter reminder for ${month}...`)
+		console.log(`Sending newsletter reminder for ${month}...`);
 
 		const email_response = await fetch(
 			'https://api.resend.com/emails',
@@ -60,26 +60,28 @@ export const send_newsletter_reminder = async () => {
 					`,
 				}),
 			},
-		)
+		);
 
 		if (!email_response.ok) {
-			const error_data = await email_response.json()
+			const error_data = await email_response.json();
 			throw new Error(
 				error_data.message || 'Failed to send reminder email',
-			)
+			);
 		}
 
-		const result = await email_response.json()
+		const result = await email_response.json();
 
-		console.log(`Newsletter reminder sent successfully: ${result.id}`)
+		console.log(
+			`Newsletter reminder sent successfully: ${result.id}`,
+		);
 
 		return {
 			success: true,
 			message: `Newsletter reminder sent for ${month}`,
 			email_id: result.id,
-		}
+		};
 	} catch (error) {
-		console.error('Error sending newsletter reminder:', error)
-		throw error
+		console.error('Error sending newsletter reminder:', error);
+		throw error;
 	}
-}
+};

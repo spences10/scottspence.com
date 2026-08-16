@@ -161,9 +161,9 @@ any changes to GraphQL files and then run the `gen`, `package.json`
 script.
 
 ```js
-import watchAndRun from '@kitql/vite-plugin-watch-and-run'
-import adapter from '@sveltejs/adapter-auto'
-import preprocess from 'svelte-preprocess'
+import watchAndRun from '@kitql/vite-plugin-watch-and-run';
+import adapter from '@sveltejs/adapter-auto';
+import preprocess from 'svelte-preprocess';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -184,9 +184,9 @@ const config = {
 			],
 		},
 	},
-}
+};
 
-export default config
+export default config;
 ```
 
 Now that `pnpm run gen` is added to `vite-plugin-watch-and-run` and
@@ -298,9 +298,9 @@ const config = {
 	},
 
 	plugins: [require('@tailwindcss/typography'), require('daisyui')],
-}
+};
 
-module.exports = config
+module.exports = config;
 ```
 
 ## Create KitQL client
@@ -316,15 +316,15 @@ Then I'll add the following configuration to the `kitQLClient.ts`
 file:
 
 ```ts
-import { KitQLClient } from '@kitql/client'
-const GRAPHQL_ENDPOINT = import.meta.env.VITE_GRAPHQL_API
+import { KitQLClient } from '@kitql/client';
+const GRAPHQL_ENDPOINT = import.meta.env.VITE_GRAPHQL_API;
 
 export const kitQLClient = new KitQLClient({
 	url: GRAPHQL_ENDPOINT as string,
 	credentials: 'omit',
 	headersContentType: 'application/json',
 	logType: ['client', 'server', 'operationAndvariables'],
-})
+});
 ```
 
 ## Use queried data from `graphqlStores`
@@ -346,12 +346,12 @@ Svelte store for use in the page.
 
 ```svelte
 <script lang="ts" context="module">
-	import { KQL_AllPosts } from '$lib/graphql/_kitql/graphqlStores'
+	import { KQL_AllPosts } from '$lib/graphql/_kitql/graphqlStores';
 
 	export const load = async ({ fetch }) => {
-		await KQL_AllPosts.queryLoad({ fetch })
-		return {}
-	}
+		await KQL_AllPosts.queryLoad({ fetch });
+		return {};
+	};
 </script>
 ```
 
@@ -360,7 +360,7 @@ with the `$` ) to the `KQL_AllPosts` store to get the data.
 
 ```svelte
 <script lang="ts">
-	let posts = $KQL_AllPosts.data?.posts
+	let posts = $KQL_AllPosts.data?.posts;
 </script>
 ```
 
@@ -401,16 +401,16 @@ This is with Tailwind and daisyUI classes.
 
 ```svelte
 <script lang="ts" context="module">
-	import { KQL_AllPosts } from '$lib/graphql/_kitql/graphqlStores'
+	import { KQL_AllPosts } from '$lib/graphql/_kitql/graphqlStores';
 
 	export const load = async ({ fetch }) => {
-		await KQL_AllPosts.queryLoad({ fetch })
-		return {}
-	}
+		await KQL_AllPosts.queryLoad({ fetch });
+		return {};
+	};
 </script>
 
 <script lang="ts">
-	let posts = $KQL_AllPosts.data?.posts
+	let posts = $KQL_AllPosts.data?.posts;
 </script>
 
 <svelte:head>
@@ -533,14 +533,14 @@ go straight in here and destructure the `params` object (which has the
 
 ```svelte
 <script lang="ts" context="module">
-	import { KQL_GetPost } from '$lib/graphql/_kitql/graphqlStores'
+	import { KQL_GetPost } from '$lib/graphql/_kitql/graphqlStores';
 
 	export const load = async ({ params, fetch }) => {
-		const { slug } = params
+		const { slug } = params;
 		if (slug)
-			await KQL_GetPost.queryLoad({ fetch, variables: { slug } })
-		return {}
-	}
+			await KQL_GetPost.queryLoad({ fetch, variables: { slug } });
+		return {};
+	};
 </script>
 ```
 
@@ -556,7 +556,7 @@ to use in the page.
 
 ```svelte
 <script lang="ts">
-	let post = $KQL_GetPost.data?.post
+	let post = $KQL_GetPost.data?.post;
 	const {
 		title,
 		date,
@@ -564,7 +564,7 @@ to use in the page.
 		author: { name, authorTitle, picture },
 		content: { html },
 		coverImage,
-	} = post
+	} = post;
 </script>
 ```
 
@@ -692,12 +692,12 @@ in the index page I'll import the component:
 
 ```svelte
 <script lang="ts" context="module">
-	import { KQL_AllPosts } from '$lib/graphql/_kitql/graphqlStores'
-	import { KitQLInfo } from '@kitql/all-in'
+	import { KQL_AllPosts } from '$lib/graphql/_kitql/graphqlStores';
+	import { KitQLInfo } from '@kitql/all-in';
 	export const load = async ({ fetch }) => {
-		await KQL_AllPosts.queryLoad({ fetch })
-		return {}
-	}
+		await KQL_AllPosts.queryLoad({ fetch });
+		return {};
+	};
 </script>
 ```
 
@@ -916,24 +916,24 @@ result of that query:
 
 ```svelte
 <script lang="ts" context="module">
-	import Footer from '$lib/components/footer.svelte'
-	import Navbar from '$lib/components/navbar.svelte'
-	import { KQL_AllPages } from '$lib/graphql/_kitql/graphqlStores'
-	import { onMount } from 'svelte'
-	import { themeChange } from 'theme-change'
-	import '../app.css'
+	import Footer from '$lib/components/footer.svelte';
+	import Navbar from '$lib/components/navbar.svelte';
+	import { KQL_AllPages } from '$lib/graphql/_kitql/graphqlStores';
+	import { onMount } from 'svelte';
+	import { themeChange } from 'theme-change';
+	import '../app.css';
 
 	export const load = async ({ fetch }) => {
-		await KQL_AllPages.query({ fetch })
-		return {}
-	}
+		await KQL_AllPages.query({ fetch });
+		return {};
+	};
 </script>
 
 <script>
-	let pages = $KQL_AllPages.data?.pages
+	let pages = $KQL_AllPages.data?.pages;
 	onMount(() => {
-		themeChange(false)
-	})
+		themeChange(false);
+	});
 </script>
 
 <Navbar {pages} />
@@ -957,9 +957,9 @@ for anything being passed into the component.
 
 ```svelte
 <script>
-	import ThemeSelect from './theme-select.svelte'
+	import ThemeSelect from './theme-select.svelte';
 
-	export let pages
+	export let pages;
 </script>
 
 <div class="navbar bg-neutral text-neutral-content mb-10 shadow-lg">
@@ -998,16 +998,16 @@ Lastly I'll add in the `src/routes/[slug].svelte` file markup!
 
 ```svelte
 <script lang="ts" context="module">
-	import { KQL_GetPage } from '$lib/graphql/_kitql/graphqlStores'
+	import { KQL_GetPage } from '$lib/graphql/_kitql/graphqlStores';
 	export const load = async ({ params, fetch }) => {
-		const { slug } = params
-		await KQL_GetPage.queryLoad({ fetch, variables: { slug } })
-		return {}
-	}
+		const { slug } = params;
+		await KQL_GetPage.queryLoad({ fetch, variables: { slug } });
+		return {};
+	};
 </script>
 
 <script lang="ts">
-	let page = $KQL_GetPage.data?.page
+	let page = $KQL_GetPage.data?.page;
 </script>
 
 <svelte:head>

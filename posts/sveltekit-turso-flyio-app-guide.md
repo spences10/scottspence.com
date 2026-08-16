@@ -193,46 +193,46 @@ In the `src/lib/server/client.ts` file I created, I'll export a client
 function, essentially I could do this:
 
 ```ts
-import { env } from '$env/dynamic/private'
-import { createClient, type Client } from '@libsql/client'
+import { env } from '$env/dynamic/private';
+import { createClient, type Client } from '@libsql/client';
 
-const { TURSO_DB_URL, TURSO_DB_AUTH_TOKEN } = env
+const { TURSO_DB_URL, TURSO_DB_AUTH_TOKEN } = env;
 
 export const turso_client = (): Client => {
-  return createClient({
-    url: TURSO_DB_URL as string,
-    authToken: TURSO_DB_AUTH_TOKEN as string,
-  })
-}
+	return createClient({
+		url: TURSO_DB_URL as string,
+		authToken: TURSO_DB_AUTH_TOKEN as string,
+	});
+};
 ```
 
 But, what I should do is the responsible thing and add in some error
 handling in there:
 
 ```ts
-import { env } from '$env/dynamic/private'
-import { createClient, type Client } from '@libsql/client'
+import { env } from '$env/dynamic/private';
+import { createClient, type Client } from '@libsql/client';
 
-const { TURSO_DB_URL, TURSO_DB_AUTH_TOKEN } = env
+const { TURSO_DB_URL, TURSO_DB_AUTH_TOKEN } = env;
 
 export const turso_client = (): Client => {
-  const url = TURSO_DB_URL?.trim()
-  if (url === undefined) {
-    throw new Error('TURSO_DB_URL is not defined')
-  }
+	const url = TURSO_DB_URL?.trim();
+	if (url === undefined) {
+		throw new Error('TURSO_DB_URL is not defined');
+	}
 
-  const auth_token = TURSO_DB_AUTH_TOKEN?.trim()
-  if (auth_token === undefined) {
-    if (!url.includes('file:')) {
-      throw new Error('TURSO_DB_AUTH_TOKEN is not defined')
-    }
-  }
+	const auth_token = TURSO_DB_AUTH_TOKEN?.trim();
+	if (auth_token === undefined) {
+		if (!url.includes('file:')) {
+			throw new Error('TURSO_DB_AUTH_TOKEN is not defined');
+		}
+	}
 
-  return createClient({
-    url: TURSO_DB_URL as string,
-    authToken: TURSO_DB_AUTH_TOKEN as string,
-  })
-}
+	return createClient({
+		url: TURSO_DB_URL as string,
+		authToken: TURSO_DB_AUTH_TOKEN as string,
+	});
+};
 ```
 
 Ok, now, I'll export this function from the `src/lib/server/index.ts`
@@ -240,8 +240,8 @@ file, I'll also export the queries from here too, more on them in the
 next section!
 
 ```ts
-export * from './client'
-export * from './queries'
+export * from './client';
+export * from './queries';
 ```
 
 Sweet! Now I can use the client to query some data! Now to get the
@@ -306,13 +306,13 @@ In the `src/lib/server/queries.ts` file I'll import the Turso client
 and `.execute` that query.
 
 ```ts
-import { turso_client } from '.'
+import { turso_client } from '.';
 
-const client = turso_client()
+const client = turso_client();
 
 export const get_initial_tracks = async (limit = 50) => {
-  const tracks = await client.execute({
-    sql: `SELECT t.TrackId AS TrackId,
+	const tracks = await client.execute({
+		sql: `SELECT t.TrackId AS TrackId,
             t.Name AS Name,
             a.AlbumId AS AlbumId,
             a.Title AS Title,
@@ -325,11 +325,11 @@ export const get_initial_tracks = async (limit = 50) => {
           JOIN artists at ON a.ArtistId = at.ArtistId
           JOIN genres g ON t.GenreId = g.GenreId
           LIMIT ?;`,
-    args: [limit],
-  })
+		args: [limit],
+	});
 
-  return tracks.rows
-}
+	return tracks.rows;
+};
 ```
 
 Essentially the SQL is in backticks and given to the client as the SQL
@@ -450,15 +450,15 @@ Then add in a `load` function to get the initial tracks and return
 them for use on the index page.
 
 ```ts
-import { get_initial_tracks } from '$lib/server'
+import { get_initial_tracks } from '$lib/server';
 
 export const load = async () => {
-  const tracks = await get_initial_tracks()
+	const tracks = await get_initial_tracks();
 
-  return {
-    tracks,
-  }
-}
+	return {
+		tracks,
+	};
+};
 ```
 
 In the `src/routes/+page.svelte` file I can then get the props from
@@ -470,15 +470,15 @@ use my trusty debug tool, the
 
 ```svelte
 <script lang="ts">
-  let { data } = $props()
+	let { data } = $props();
 </script>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
 
 <h1>Welcome to SvelteKit</h1>
 <p>
-  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
-  documentation
+	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
+	documentation
 </p>
 ```
 
@@ -553,40 +553,40 @@ handy styling utils from daisyUI:
 
 ```svelte
 <script lang="ts">
-  let { data } = $props()
+	let { data } = $props();
 </script>
 
 <svelte:head>
-  <title>Music Search - Chinook SvelteKit</title>
+	<title>Music Search - Chinook SvelteKit</title>
 </svelte:head>
 
 <p class="mb-2 text-xl font-light">
-  This is the initial 50 tracks from the Chinook database
+	This is the initial 50 tracks from the Chinook database
 </p>
 
 <div class="overflow-x-auto">
-  <table
-    class="table table-pin-rows table-pin-cols table-xs md:table-lg"
-  >
-    <thead>
-      <tr class="text-xl">
-        <th>Track</th>
-        <th>Artist</th>
-        <th>Album</th>
-        <th>Genre</th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each data.tracks as track (track.TrackId)}
-        <tr class:hover={'bg-base-200'}>
-          <td>{track.Name}</td>
-          <td>{track.ArtistName}</td>
-          <td>{track.Title}</td>
-          <td>{track.Genre}</td>
-        </tr>
-      {/each}
-    </tbody>
-  </table>
+	<table
+		class="table table-pin-rows table-pin-cols table-xs md:table-lg"
+	>
+		<thead>
+			<tr class="text-xl">
+				<th>Track</th>
+				<th>Artist</th>
+				<th>Album</th>
+				<th>Genre</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each data.tracks as track (track.TrackId)}
+				<tr class:hover={'bg-base-200'}>
+					<td>{track.Name}</td>
+					<td>{track.ArtistName}</td>
+					<td>{track.Title}</td>
+					<td>{track.Genre}</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
 </div>
 ```
 
@@ -600,7 +600,7 @@ the `+layout.svelte` file for the `props` rune, so, from this:
 
 ```svelte
 <script>
-  import '../app.pcss'
+	import '../app.pcss';
 </script>
 
 <slot />
@@ -610,19 +610,19 @@ To this:
 
 ```svelte
 <script lang="ts">
-  let { children } = $props()
-  import '../app.pcss'
+	let { children } = $props();
+	import '../app.pcss';
 </script>
 
 <main class="container mx-auto max-w-6xl flex-grow px-4">
-  <h1 class="mb-2 mt-4 text-5xl font-bold text-primary">
-    <a href="/">Chinook SQLite database</a>
-  </h1>
-  <ul class="mb-10 flex space-x-4 text-xl font-bold">
-    <li><a href="/genre" class="link link-primary">Genres</a></li>
-    <li><a href="/" class="link link-primary">Home</a></li>
-  </ul>
-  {@render children()}
+	<h1 class="mb-2 mt-4 text-5xl font-bold text-primary">
+		<a href="/">Chinook SQLite database</a>
+	</h1>
+	<ul class="mb-10 flex space-x-4 text-xl font-bold">
+		<li><a href="/genre" class="link link-primary">Genres</a></li>
+		<li><a href="/" class="link link-primary">Home</a></li>
+	</ul>
+	{@render children()}
 </main>
 ```
 
@@ -656,15 +656,15 @@ now with some regex to escape any double quotes in the search term:
 
 ```ts
 export const search_tracks = async (search_term: string) => {
-  const escaped_search_term = `"${String(search_term).replace(/"/g, '""')}"*`
+	const escaped_search_term = `"${String(search_term).replace(/"/g, '""')}"*`;
 
-  const tracks = await client.execute({
-    sql: `SELECT * FROM tracks_fts WHERE tracks_fts MATCH ?;`,
-    args: [escaped_search_term],
-  })
+	const tracks = await client.execute({
+		sql: `SELECT * FROM tracks_fts WHERE tracks_fts MATCH ?;`,
+		args: [escaped_search_term],
+	});
 
-  return tracks.rows
-}
+	return tracks.rows;
+};
 ```
 
 So, now notice that the `get_initial_tracks` and the `search_tracks`
@@ -686,23 +686,23 @@ touch src/routes/api/search/+server.ts
 Then bang out a get to run the `search_tracks` query:
 
 ```ts
-import { get_initial_tracks, search_tracks } from '$lib/server'
-import type { Row } from '@libsql/client'
-import { json } from '@sveltejs/kit'
+import { get_initial_tracks, search_tracks } from '$lib/server';
+import type { Row } from '@libsql/client';
+import { json } from '@sveltejs/kit';
 
 export const GET = async ({ url }) => {
-  const search_term = url.searchParams.get('search_term')?.toString()
+	const search_term = url.searchParams.get('search_term')?.toString();
 
-  let tracks: Row[] = []
+	let tracks: Row[] = [];
 
-  if (!search_term) {
-    tracks = await get_initial_tracks()
-  } else {
-    tracks = (await search_tracks(search_term)) ?? []
-  }
+	if (!search_term) {
+		tracks = await get_initial_tracks();
+	} else {
+		tracks = (await search_tracks(search_term)) ?? [];
+	}
 
-  return json(tracks)
-}
+	return json(tracks);
+};
 ```
 
 Now I'm going to need to call this from the index page via a client
@@ -713,8 +713,8 @@ So, I'll add the `data.tracks` that comes in from the `load` function
 as props then add that to state along with the `search_term`:
 
 ```ts
-let tracks = $state(data.tracks)
-let search_term = $state('')
+let tracks = $state(data.tracks);
+let search_term = $state('');
 ```
 
 Then to fetch the data from the server I'll add in a function to do
@@ -722,10 +722,10 @@ that:
 
 ```ts
 const fetch_tracks = async () => {
-  const res = await fetch(`/api/search?search_term=${search_term}`)
-  const data = await res.json()
-  tracks = data
-}
+	const res = await fetch(`/api/search?search_term=${search_term}`);
+	const data = await res.json();
+	tracks = data;
+};
 ```
 
 Because I've added the tracks to state I'll also need to swap out the
@@ -748,22 +748,22 @@ I'll need to add a `timer` variable to state as well, so I'll update
 my state to accommodate that as well:
 
 ```ts
-let tracks = $state(data.tracks)
-let search_term = $state('')
-let timer: string | number | NodeJS.Timeout | undefined = $state(300)
+let tracks = $state(data.tracks);
+let search_term = $state('');
+let timer: string | number | NodeJS.Timeout | undefined = $state(300);
 ```
 
 Then I'll add in the debounce function:
 
 ```ts
 const handle_search = (e: Event) => {
-  clearTimeout(timer)
-  timer = setTimeout(() => {
-    const target = e.target as HTMLInputElement
-    search_term = target.value
-    fetch_tracks()
-  }, 300)
-}
+	clearTimeout(timer);
+	timer = setTimeout(() => {
+		const target = e.target as HTMLInputElement;
+		search_term = target.value;
+		fetch_tracks();
+	}, 300);
+};
 ```
 
 Ok, last up for the script stuff I'll want to add something in to
@@ -771,12 +771,12 @@ handle the input from the input box (which doesn't exist yet! 😅):
 
 ```ts
 const handle_input = (e: Event) => {
-  const target = e.target as HTMLInputElement
-  if (target.value === '') {
-    search_term = ''
-    tracks = data.tracks
-  }
-}
+	const target = e.target as HTMLInputElement;
+	if (target.value === '') {
+		search_term = '';
+		tracks = data.tracks;
+	}
+};
 ```
 
 Now for the markup, for the value of the input I'll not bind that to
@@ -786,12 +786,12 @@ first, so I'll add in the `on:input` to update the state and
 
 ```svelte
 <input
-  type="search"
-  placeholder="Search tracks, titles, albums, artists, genres..."
-  class="input input-bordered input-primary mb-10 w-full"
-  value={search_term}
-  on:keyup={handle_search}
-  on:input={handle_input}
+	type="search"
+	placeholder="Search tracks, titles, albums, artists, genres..."
+	class="input input-bordered input-primary mb-10 w-full"
+	value={search_term}
+	on:keyup={handle_search}
+	on:input={handle_input}
 />
 ```
 
@@ -801,77 +801,77 @@ Here's the full file:
 
 ```svelte
 <script lang="ts">
-  let { data } = $props()
+	let { data } = $props();
 
-  let tracks = $state(data.tracks)
-  let search_term = $state('')
-  let timer: string | number | NodeJS.Timeout | undefined =
-    $state(300)
+	let tracks = $state(data.tracks);
+	let search_term = $state('');
+	let timer: string | number | NodeJS.Timeout | undefined =
+		$state(300);
 
-  const fetch_tracks = async () => {
-    const res = await fetch(`/api/search?search_term=${search_term}`)
-    const data = await res.json()
-    tracks = data
-  }
+	const fetch_tracks = async () => {
+		const res = await fetch(`/api/search?search_term=${search_term}`);
+		const data = await res.json();
+		tracks = data;
+	};
 
-  const handle_search = (e: Event) => {
-    clearTimeout(timer)
-    timer = setTimeout(() => {
-      const target = e.target as HTMLInputElement
-      search_term = target.value
-      fetch_tracks()
-    }, 300)
-  }
+	const handle_search = (e: Event) => {
+		clearTimeout(timer);
+		timer = setTimeout(() => {
+			const target = e.target as HTMLInputElement;
+			search_term = target.value;
+			fetch_tracks();
+		}, 300);
+	};
 
-  const handle_input = (e: Event) => {
-    const target = e.target as HTMLInputElement
-    if (target.value === '') {
-      search_term = ''
-      tracks = data.tracks
-    }
-  }
+	const handle_input = (e: Event) => {
+		const target = e.target as HTMLInputElement;
+		if (target.value === '') {
+			search_term = '';
+			tracks = data.tracks;
+		}
+	};
 </script>
 
 <svelte:head>
-  <title>Music Search - Chinook SvelteKit</title>
+	<title>Music Search - Chinook SvelteKit</title>
 </svelte:head>
 
 <input
-  type="search"
-  placeholder="Search tracks, titles, albums, artists, genres..."
-  class="input input-bordered input-primary mb-10 w-full"
-  value={search_term}
-  on:keyup={handle_search}
-  on:input={handle_input}
+	type="search"
+	placeholder="Search tracks, titles, albums, artists, genres..."
+	class="input input-bordered input-primary mb-10 w-full"
+	value={search_term}
+	on:keyup={handle_search}
+	on:input={handle_input}
 />
 
 <p class="mb-2 text-xl font-light">
-  This is the initial 50 tracks from the Chinook database
+	This is the initial 50 tracks from the Chinook database
 </p>
 
 <div class="overflow-x-auto">
-  <table
-    class="table table-pin-rows table-pin-cols table-xs md:table-lg"
-  >
-    <thead>
-      <tr class="text-xl">
-        <th>Track</th>
-        <th>Artist</th>
-        <th>Album</th>
-        <th>Genre</th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each data.tracks as track (track.TrackId)}
-        <tr class:hover={'bg-base-200'}>
-          <td>{track.Name}</td>
-          <td>{track.ArtistName}</td>
-          <td>{track.Title}</td>
-          <td>{track.Genre}</td>
-        </tr>
-      {/each}
-    </tbody>
-  </table>
+	<table
+		class="table table-pin-rows table-pin-cols table-xs md:table-lg"
+	>
+		<thead>
+			<tr class="text-xl">
+				<th>Track</th>
+				<th>Artist</th>
+				<th>Album</th>
+				<th>Genre</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each data.tracks as track (track.TrackId)}
+				<tr class:hover={'bg-base-200'}>
+					<td>{track.Name}</td>
+					<td>{track.ArtistName}</td>
+					<td>{track.Title}</td>
+					<td>{track.Genre}</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
 </div>
 ```
 
@@ -912,28 +912,28 @@ one:
 
 ```svelte
 {#each tracks as track (track.TrackId)}
-  <tr class:hover={'bg-base-200'}>
-    <td>
-      <a href={`/track/${track.TrackId}`} class="link link-primary">
-        {track.Name}
-      </a>
-    </td>
-    <td>
-      <a href={`/artist/${track.ArtistId}`} class="link link-primary">
-        {track.ArtistName}
-      </a>
-    </td>
-    <td>
-      <a href={`/album/${track.AlbumId}`} class="link link-primary">
-        {track.Title}
-      </a>
-    </td>
-    <td>
-      <a href={`/genre/${track.GenreId}`} class="link link-primary">
-        {track.Genre}
-      </a>
-    </td>
-  </tr>
+	<tr class:hover={'bg-base-200'}>
+		<td>
+			<a href={`/track/${track.TrackId}`} class="link link-primary">
+				{track.Name}
+			</a>
+		</td>
+		<td>
+			<a href={`/artist/${track.ArtistId}`} class="link link-primary">
+				{track.ArtistName}
+			</a>
+		</td>
+		<td>
+			<a href={`/album/${track.AlbumId}`} class="link link-primary">
+				{track.Title}
+			</a>
+		</td>
+		<td>
+			<a href={`/genre/${track.GenreId}`} class="link link-primary">
+				{track.Genre}
+			</a>
+		</td>
+	</tr>
 {/each}
 ```
 
@@ -947,8 +947,8 @@ the milliseconds field to express the time in minutes and seconds:
 
 ```ts
 export const get_album_by_id = async (album_id: number) => {
-  const album = await client.execute({
-    sql: `SELECT 
+	const album = await client.execute({
+		sql: `SELECT 
             a.Title AS AlbumTitle, 
             t.TrackId, 
             t.Name AS TrackName, 
@@ -962,15 +962,15 @@ export const get_album_by_id = async (album_id: number) => {
             artists at ON a.ArtistId = at.ArtistId
           WHERE 
             a.AlbumId = ?;`,
-    args: [album_id],
-  })
+		args: [album_id],
+	});
 
-  return {
-    artist: album.rows[0].ArtistName,
-    album: album.rows[0].AlbumTitle,
-    tracks: album.rows,
-  }
-}
+	return {
+		artist: album.rows[0].ArtistName,
+		album: album.rows[0].AlbumTitle,
+		tracks: album.rows,
+	};
+};
 ```
 
 I'm also going to return the artist name and album title as well as
@@ -978,19 +978,19 @@ the tracks for the album, so in the
 `src/routes/album/[album_id]/+page.server.ts` file:
 
 ```ts
-import { get_album_by_id } from '$lib/server/queries'
+import { get_album_by_id } from '$lib/server/queries';
 
 export const load = async ({ params }) => {
-  const album_id = parseInt(params.album_id)
+	const album_id = parseInt(params.album_id);
 
-  const { artist, album, tracks } = await get_album_by_id(album_id)
+	const { artist, album, tracks } = await get_album_by_id(album_id);
 
-  return {
-    artist,
-    album,
-    tracks,
-  }
-}
+	return {
+		artist,
+		album,
+		tracks,
+	};
+};
 ```
 
 Then for the `src/routes/album/[album_id]/+page.svelte` file I'll add
@@ -1000,48 +1000,48 @@ details:
 
 ```svelte
 <script lang="ts">
-  let { data } = $props()
+	let { data } = $props();
 
-  const { artist, album, tracks } = data
+	const { artist, album, tracks } = data;
 </script>
 
 <svelte:head>
-  <title>{album} - Chinook SvelteKit</title>
+	<title>{album} - Chinook SvelteKit</title>
 </svelte:head>
 
 <h1 class="mb-5 text-4xl font-bold text-primary">{album}</h1>
 <p class="mb-10 text-3xl font-bold tracking-widest text-secondary">
-  By {artist}
+	By {artist}
 </p>
 
 <div class="overflow-x-auto">
-  <table
-    class="table table-pin-rows table-pin-cols table-xs md:table-lg"
-  >
-    <thead>
-      <tr class="text-xl">
-        <th>#</th>
-        <th>Track</th>
-        <th>Duration</th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each tracks as track, i}
-        <tr class:hover={'bg-base-200'}>
-          <td>{i + 1}</td>
-          <td>
-            <a
-              href={`/track/${track.TrackId}`}
-              class="link link-primary"
-            >
-              {track.TrackName}
-            </a>
-          </td>
-          <td>{track.Duration}</td>
-        </tr>
-      {/each}
-    </tbody>
-  </table>
+	<table
+		class="table table-pin-rows table-pin-cols table-xs md:table-lg"
+	>
+		<thead>
+			<tr class="text-xl">
+				<th>#</th>
+				<th>Track</th>
+				<th>Duration</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each tracks as track, i}
+				<tr class:hover={'bg-base-200'}>
+					<td>{i + 1}</td>
+					<td>
+						<a
+							href={`/track/${track.TrackId}`}
+							class="link link-primary"
+						>
+							{track.TrackName}
+						</a>
+					</td>
+					<td>{track.Duration}</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
 </div>
 ```
 
@@ -1055,8 +1055,8 @@ the album:
 
 ```ts
 export const get_albums_by_artist_id = async (artist_id: number) => {
-  const albums = await client.execute({
-    sql: `SELECT 
+	const albums = await client.execute({
+		sql: `SELECT 
             a.AlbumId, 
             a.Title AS AlbumTitle, 
             at.Name AS ArtistName,
@@ -1067,32 +1067,32 @@ export const get_albums_by_artist_id = async (artist_id: number) => {
             artists at ON a.ArtistId = at.ArtistId
           WHERE 
             a.ArtistId = ?;`,
-    args: [artist_id],
-  })
+		args: [artist_id],
+	});
 
-  return {
-    artist: albums.rows[0].ArtistName,
-    albums: albums.rows,
-  }
-}
+	return {
+		artist: albums.rows[0].ArtistName,
+		albums: albums.rows,
+	};
+};
 ```
 
 Same pattern for the `src/routes/artist/[artist_id]/+page.server.ts`
 file, call the query and return the data:
 
 ```ts
-import { get_albums_by_artist_id } from '$lib/server/queries'
+import { get_albums_by_artist_id } from '$lib/server/queries';
 
 export const load = async ({ params }) => {
-  const artist_id = parseInt(params.artist_id)
+	const artist_id = parseInt(params.artist_id);
 
-  const { artist, albums } = await get_albums_by_artist_id(artist_id)
+	const { artist, albums } = await get_albums_by_artist_id(artist_id);
 
-  return {
-    artist,
-    albums,
-  }
-}
+	return {
+		artist,
+		albums,
+	};
+};
 ```
 
 Then for the `src/routes/artist/[artist_id]/+page.svelte` file I'll
@@ -1100,46 +1100,46 @@ add in the props and render out the data:
 
 ```svelte
 <script lang="ts">
-  let { data } = $props()
+	let { data } = $props();
 
-  const { artist, albums } = data
+	const { artist, albums } = data;
 </script>
 
 <svelte:head>
-  <title>{artist} - Chinook SvelteKit</title>
+	<title>{artist} - Chinook SvelteKit</title>
 </svelte:head>
 
 <h1 class="mb-5 text-4xl font-bold text-primary">{artist}</h1>
 <p class="mb-10 text-3xl font-bold tracking-widest text-secondary">
-  Albums
+	Albums
 </p>
 
 <div class="overflow-x-auto">
-  <table
-    class="table table-pin-rows table-pin-cols table-xs md:table-lg"
-  >
-    <thead>
-      <tr class="text-xl">
-        <th>Title</th>
-        <th>Tracks</th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each albums as album}
-        <tr class:hover={'bg-base-200'}>
-          <td>
-            <a
-              href={`/album/${album.AlbumId}`}
-              class="link link-primary"
-            >
-              {album.AlbumTitle}
-            </a>
-          </td>
-          <td>{album.TrackCount}</td>
-        </tr>
-      {/each}
-    </tbody>
-  </table>
+	<table
+		class="table table-pin-rows table-pin-cols table-xs md:table-lg"
+	>
+		<thead>
+			<tr class="text-xl">
+				<th>Title</th>
+				<th>Tracks</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each albums as album}
+				<tr class:hover={'bg-base-200'}>
+					<td>
+						<a
+							href={`/album/${album.AlbumId}`}
+							class="link link-primary"
+						>
+							{album.AlbumTitle}
+						</a>
+					</td>
+					<td>{album.TrackCount}</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
 </div>
 ```
 
@@ -1151,8 +1151,8 @@ another query to get the albums by passing in the genre ID:
 
 ```ts
 export const get_albums_by_genre = async (genre_id: number) => {
-  const albums = await client.execute({
-    sql: `SELECT 
+	const albums = await client.execute({
+		sql: `SELECT 
             a.AlbumId, 
             a.Title AS AlbumTitle, 
             g.GenreId,
@@ -1171,32 +1171,32 @@ export const get_albums_by_genre = async (genre_id: number) => {
             g.GenreId = ?
           GROUP BY 
             a.AlbumId, a.Title, g.GenreId, g.Name, at.ArtistId, at.Name;`,
-    args: [genre_id],
-  })
+		args: [genre_id],
+	});
 
-  return {
-    genre: albums.rows[0].GenreName,
-    albums: albums.rows,
-  }
-}
+	return {
+		genre: albums.rows[0].GenreName,
+		albums: albums.rows,
+	};
+};
 ```
 
 In the `src/routes/genre/[genre_id]/+page.server.ts` file, call the
 query and return the data:
 
 ```ts
-import { get_albums_by_genre } from '$lib/server/queries.js'
+import { get_albums_by_genre } from '$lib/server/queries.js';
 
 export const load = async ({ params }) => {
-  const genre_id = parseInt(params.genre_id)
+	const genre_id = parseInt(params.genre_id);
 
-  const { albums, genre } = await get_albums_by_genre(genre_id)
+	const { albums, genre } = await get_albums_by_genre(genre_id);
 
-  return {
-    albums,
-    genre,
-  }
-}
+	return {
+		albums,
+		genre,
+	};
+};
 ```
 
 Then the markup for the `src/routes/genre/[genre_id]/+page.svelte`
@@ -1204,54 +1204,54 @@ file to render out the data:
 
 ```svelte
 <script lang="ts">
-  let { data } = $props()
+	let { data } = $props();
 
-  const { albums, genre } = data
+	const { albums, genre } = data;
 </script>
 
 <svelte:head>
-  <title>{genre} - Chinook SvelteKit</title>
+	<title>{genre} - Chinook SvelteKit</title>
 </svelte:head>
 
 <h1 class="mb-5 text-4xl font-bold text-primary">
-  <a href="/genre">
-    {genre}
-  </a>
+	<a href="/genre">
+		{genre}
+	</a>
 </h1>
 
 <div class="overflow-x-auto">
-  <table
-    class="table table-pin-rows table-pin-cols table-xs md:table-lg"
-  >
-    <thead>
-      <tr class="text-xl">
-        <th>Album</th>
-        <th>Artist</th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each albums as album}
-        <tr class:hover={'bg-base-200'}>
-          <td>
-            <a
-              href={`/album/${album.AlbumId}`}
-              class="link link-primary"
-            >
-              {album.AlbumTitle}
-            </a>
-          </td>
-          <td>
-            <a
-              href={`/artist/${album.ArtistId}`}
-              class="link link-primary"
-            >
-              {album.ArtistName}
-            </a>
-          </td>
-        </tr>
-      {/each}
-    </tbody>
-  </table>
+	<table
+		class="table table-pin-rows table-pin-cols table-xs md:table-lg"
+	>
+		<thead>
+			<tr class="text-xl">
+				<th>Album</th>
+				<th>Artist</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each albums as album}
+				<tr class:hover={'bg-base-200'}>
+					<td>
+						<a
+							href={`/album/${album.AlbumId}`}
+							class="link link-primary"
+						>
+							{album.AlbumTitle}
+						</a>
+					</td>
+					<td>
+						<a
+							href={`/artist/${album.ArtistId}`}
+							class="link link-primary"
+						>
+							{album.ArtistName}
+						</a>
+					</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
 </div>
 ```
 
@@ -1264,14 +1264,14 @@ with no arguments passed to it:
 
 ```ts
 export const get_genres = async () => {
-  const genres = await client.execute(
-    `SELECT GenreId, Name AS GenreName FROM genres ORDER BY Name;`,
-  )
+	const genres = await client.execute(
+		`SELECT GenreId, Name AS GenreName FROM genres ORDER BY Name;`,
+	);
 
-  return {
-    genres: genres.rows,
-  }
-}
+	return {
+		genres: genres.rows,
+	};
+};
 ```
 
 Then another server side route in the
@@ -1279,15 +1279,15 @@ Then another server side route in the
 data:
 
 ```ts
-import { get_genres } from '$lib/server/queries.js'
+import { get_genres } from '$lib/server/queries.js';
 
 export const load = async () => {
-  const { genres } = await get_genres()
+	const { genres } = await get_genres();
 
-  return {
-    genres,
-  }
-}
+	return {
+		genres,
+	};
+};
 ```
 
 Then the markup for the `src/routes/genre/+page.svelte` file to render
@@ -1295,23 +1295,23 @@ out the data:
 
 ```svelte
 <script lang="ts">
-  let { data } = $props()
+	let { data } = $props();
 
-  const { genres } = data
+	const { genres } = data;
 </script>
 
 <svelte:head>
-  <title>Genres - Chinook SvelteKit</title>
+	<title>Genres - Chinook SvelteKit</title>
 </svelte:head>
 
 <ul class="list-disc pl-10 text-xl">
-  {#each genres as { GenreName, GenreId }}
-    <li>
-      <a href={`/genre/${GenreId}`} class="link link-primary">
-        {GenreName}
-      </a>
-    </li>
-  {/each}
+	{#each genres as { GenreName, GenreId }}
+		<li>
+			<a href={`/genre/${GenreId}`} class="link link-primary">
+				{GenreName}
+			</a>
+		</li>
+	{/each}
 </ul>
 ```
 
@@ -1323,8 +1323,8 @@ file a query to get the track by ID:
 
 ```ts
 export const get_track_by_track_id = async (track_id: number) => {
-  const track = await client.execute({
-    sql: `SELECT 
+	const track = await client.execute({
+		sql: `SELECT 
             t.TrackId, 
             t.Name AS TrackName, 
             a.AlbumId,
@@ -1348,15 +1348,15 @@ export const get_track_by_track_id = async (track_id: number) => {
             media_types mt ON t.MediaTypeId = mt.MediaTypeId
           WHERE 
             t.TrackId = ?;`,
-    args: [track_id],
-  })
+		args: [track_id],
+	});
 
-  return {
-    artist: track.rows[0].ArtistName,
-    track: track.rows,
-    track_name: track.rows[0].TrackName,
-  }
-}
+	return {
+		artist: track.rows[0].ArtistName,
+		track: track.rows,
+		track_name: track.rows[0].TrackName,
+	};
+};
 ```
 
 Then the server side route in the
@@ -1364,20 +1364,20 @@ Then the server side route in the
 and return the data:
 
 ```ts
-import { get_track_by_track_id } from '$lib/server/queries.js'
+import { get_track_by_track_id } from '$lib/server/queries.js';
 
 export const load = async ({ params }) => {
-  const track_id = parseInt(params.track_id)
+	const track_id = parseInt(params.track_id);
 
-  const { artist, track, track_name } =
-    await get_track_by_track_id(track_id)
+	const { artist, track, track_name } =
+		await get_track_by_track_id(track_id);
 
-  return {
-    track_name,
-    artist,
-    track,
-  }
-}
+	return {
+		track_name,
+		artist,
+		track,
+	};
+};
 ```
 
 Then the markup for the `src/routes/track/[track_id]/+page.svelte`
@@ -1385,28 +1385,28 @@ file to render out the data:
 
 ```svelte
 <script lang="ts">
-  let { data } = $props()
+	let { data } = $props();
 
-  const { artist, track, track_name } = data
+	const { artist, track, track_name } = data;
 </script>
 
 <h1 class="mb-5 text-4xl font-bold text-primary">{track_name}</h1>
 <p class="mb-10 text-3xl font-bold tracking-widest text-secondary">
-  <a href={`/artist/${track[0].ArtistId}`}>
-    {artist}
-  </a>
+	<a href={`/artist/${track[0].ArtistId}`}>
+		{artist}
+	</a>
 </p>
 
 <svelte:head>
-  <title>{track_name} - Chinook SvelteKit</title>
+	<title>{track_name} - Chinook SvelteKit</title>
 </svelte:head>
 
 <div class="text-xl">
-  <p><strong>Album Title:</strong> {track[0].AlbumTitle}</p>
-  <p><strong>Genre Name:</strong> {track[0].GenreName}</p>
-  <p><strong>Duration:</strong> {track[0].Duration}</p>
-  <p><strong>Media Type:</strong> {track[0].MediaType}</p>
-  <p><strong>Price:</strong> {track[0].Price}</p>
+	<p><strong>Album Title:</strong> {track[0].AlbumTitle}</p>
+	<p><strong>Genre Name:</strong> {track[0].GenreName}</p>
+	<p><strong>Duration:</strong> {track[0].Duration}</p>
+	<p><strong>Media Type:</strong> {track[0].MediaType}</p>
+	<p><strong>Price:</strong> {track[0].Price}</p>
 </div>
 ```
 

@@ -117,29 +117,29 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [ask me anything]: https://github.com/spences10/ama
 [dev.to]: https://dev.to
 [earlier posts from me]:
-  https://scottspence.com/posts/wsl-bootstrap-2019/#update-upgrade-and-autoremove
+	https://scottspence.com/posts/wsl-bootstrap-2019/#update-upgrade-and-autoremove
 [david's post]:
-  https://dev.to/david_j_eddy/how-to-upgrade-wsl-ubuntu-18-04-to-18-10-203
+	https://dev.to/david_j_eddy/how-to-upgrade-wsl-ubuntu-18-04-to-18-10-203
 [stack overflow]:
-  https://askubuntu.com/questions/1119301/your-system-is-unable-to-reach-the-snap-store
+	https://askubuntu.com/questions/1119301/your-system-is-unable-to-reach-the-snap-store
 [codesandbox.io]: https://codesandbox.io
 [render props]: https://reactjs.org/docs/render-props.html
 [using the react context api]:
-  https://scottspence.com/posts/react-context-api
+	https://scottspence.com/posts/react-context-api
 [example code]: https://codesandbox.io/s/1vnvko0zqj
 [even]: https://youtu.be/8ruJBKFrRCk?t=93
 [gatsby documentation]:
-  https://www.gatsbyjs.com/docs/use-static-query/
+	https://www.gatsbyjs.com/docs/use-static-query/
 
 <!-- Images -->
 
 [no lts upgrade]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/noLtsUpgrade-7d50b4fcaaff9385631fc85d31cd2418.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/noLtsUpgrade-7d50b4fcaaff9385631fc85d31cd2418.png
 [default release ugrader]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/defaultRelaeaseUpgrader-0920e538b6e247b6658b4ae737dd6113.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/defaultRelaeaseUpgrader-0920e538b6e247b6658b4ae737dd6113.png
 [normal release ugrader]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/normalRelaeaseUpgrader-f459e42150a391a68786a8b0a9562a03.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/normalRelaeaseUpgrader-f459e42150a391a68786a8b0a9562a03.png
 [update complete]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/updateComlpete-659d8b8617efe423b8fb2548500b9806.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/updateComlpete-659d8b8617efe423b8fb2548500b9806.png
 [error installing ubuntu]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/derp-install-1beb072890d40cbdb693721fb1b7d414.gif
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/derp-install-1beb072890d40cbdb693721fb1b7d414.gif

@@ -31,4 +31,4 @@ export const themes = [
 	'valentine',
 	'winter',
 	'wireframe',
-]
+];

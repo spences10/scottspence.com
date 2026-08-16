@@ -1,11 +1,14 @@
 // @ts-nocheck
-import { defineMDSveXConfig as defineConfig } from 'mdsvex'
-import path from 'node:path'
-import autolinkHeadings from 'rehype-autolink-headings'
-import rehypeExternalLinks from 'rehype-external-links'
-import slugPlugin from 'rehype-slug'
-import preview, { htmlFormatter, textFormatter } from 'remark-preview'
-import { visit } from 'unist-util-visit'
+import { defineMDSveXConfig as defineConfig } from 'mdsvex';
+import path from 'node:path';
+import autolinkHeadings from 'rehype-autolink-headings';
+import rehypeExternalLinks from 'rehype-external-links';
+import slugPlugin from 'rehype-slug';
+import preview, {
+	htmlFormatter,
+	textFormatter,
+} from 'remark-preview';
+import { visit } from 'unist-util-visit';
 
 const config = defineConfig({
 	extensions: ['.svelte.md', '.md', '.svx'],
@@ -43,25 +46,25 @@ const config = defineConfig({
 			{ target: '_blank', rel: 'noopener noreferrer' },
 		],
 	],
-})
+});
 
-export default config
+export default config;
 
 /**
  * Add slug to metadata and convert `date` timezone to UTC
  */
 function posts() {
 	return (_, file) => {
-		const parsed = path.parse(file.filename)
+		const parsed = path.parse(file.filename);
 		const slug =
 			parsed.name === 'index'
 				? path.parse(file.filename).dir.split('/').pop()
-				: parsed.name
+				: parsed.name;
 
 		// Calculate reading time
-		const content = file.contents.toString()
-		const words = content.split(/\s+/).length
-		const reading_time_minutes = Math.ceil(words / 230) // 230 words per minute
+		const content = file.contents.toString();
+		const words = content.split(/\s+/).length;
+		const reading_time_minutes = Math.ceil(words / 230); // 230 words per minute
 
 		file.data.fm = {
 			...file.data.fm,
@@ -72,19 +75,19 @@ function posts() {
 				time: reading_time_minutes * 60 * 1000, // milliseconds
 				words: words,
 			},
-		}
-	}
+		};
+	};
 }
 
 /**
  * Adds support to video files in markdown image links
  */
 function videos() {
-	const extensions = ['mp4', 'webm']
+	const extensions = ['mp4', 'webm'];
 	return function transformer(tree) {
 		visit(tree, 'image', (node) => {
 			if (extensions.some((ext) => node.url.endsWith(ext))) {
-				node.type = 'html'
+				node.type = 'html';
 				node.value = `
             <video 
               src="${node.url}"
@@ -94,8 +97,8 @@ function videos() {
               loop
               title="${node.alt}"
             />
-          `
+          `;
 			}
-		})
-	}
+		});
+	};
 }

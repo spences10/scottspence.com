@@ -137,25 +137,25 @@ I'm doing now. I really feel like I'm only just getting started!!
 <!-- Links -->
 
 [create a sveltekit example project]:
-  https://github.com/GraphCMS/graphcms-examples/tree/master/with-sveltekit
+	https://github.com/GraphCMS/graphcms-examples/tree/master/with-sveltekit
 [sveltekit starter blog with graphcms]:
-  https://graphcms.com/blog/sveltekit-starter-blog-with-graphcms
+	https://graphcms.com/blog/sveltekit-starter-blog-with-graphcms
 [graphcms examples]: https://github.com/GraphCMS/graphcms-examples/
 [codingcat.dev podcast]:
-  https://codingcat.dev/podcast/1-31-delivering-digital-content-with-graphcms
+	https://codingcat.dev/podcast/1-31-delivering-digital-content-with-graphcms
 [data binding in svelte]:
-  https://graphcms.com/blog/data-binding-in-svelte
+	https://graphcms.com/blog/data-binding-in-svelte
 [jamstack linktree clone]:
-  https://scottspence.com/posts/once-click-links-page
+	https://scottspence.com/posts/once-click-links-page
 [examples video series]:
-  https://graphcms.com/blog/graphcms-examples-series
+	https://graphcms.com/blog/graphcms-examples-series
 [building a personal timeline with graphcms and sveltekit]:
-  https://graphcms.com/blog/build-a-personal-timeline-with-graphcms-and-sveltekit
+	https://graphcms.com/blog/build-a-personal-timeline-with-graphcms-and-sveltekit
 [jamstack explorers mission]:
-  https://explorers.netlify.com/learn/building-with-sveltekit-and-graphcms
+	https://explorers.netlify.com/learn/building-with-sveltekit-and-graphcms
 [announced by netlify]:
-  https://twitter.com/Netlify/status/1439974131290755078
+	https://twitter.com/Netlify/status/1439974131290755078
 [with a blog post]:
-  https://graphcms.com/blog/build-with-sveltekit-and-graphcms
+	https://graphcms.com/blog/build-with-sveltekit-and-graphcms
 [jamie barton]: https://twitter.com/notrab
 [pranshu khanna]: https://twitter.com/inmypranshoes

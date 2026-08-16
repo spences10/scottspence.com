@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { viewport } from '$lib/utils'
+	import { viewport } from '$lib/utils';
 
 	interface Props {
-		height?: number
-		width?: number
-		children?: import('svelte').Snippet
+		height?: number;
+		width?: number;
+		children?: import('svelte').Snippet;
 	}
 
-	let { height = 100, width = 100, children }: Props = $props()
+	let { height = 100, width = 100, children }: Props = $props();
 
-	let intersecting: boolean = $state(false)
+	let intersecting: boolean = $state(false);
 </script>
 
 <div

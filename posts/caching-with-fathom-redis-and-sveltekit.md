@@ -113,27 +113,27 @@ the current visitors data. This is how it looked:
 ```ts
 export const GET: RequestHandler = async () => {
 	try {
-		const headers_auth = new Headers()
-		headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`)
+		const headers_auth = new Headers();
+		headers_auth.append(`Authorization`, `Bearer ${FATHOM_API_KEY}`);
 		const res = await fetch(
 			`https://api.usefathom.com/v1/current_visitors?site_id=${PUBLIC_FATHOM_ID}&detailed=true`,
 			{
 				headers: headers_auth,
 			},
-		)
+		);
 
-		let data = await res.json()
+		let data = await res.json();
 
 		return json({
 			visitors: data,
-		})
+		});
 	} catch (error) {
 		return json({
 			error: `Error: ${error}`,
 			status: 500,
-		})
+		});
 	}
-}
+};
 ```
 
 To start caching the `visitors` data I'll need to add a Redis client
@@ -156,21 +156,21 @@ I'll create a new file in the `src/lib` folder called `redis.ts` and
 add the following code:
 
 ```ts
-import { REDIS_CONNECTION, VISITORS_KEY } from '$env/static/private'
-import Redis from 'ioredis'
+import { REDIS_CONNECTION, VISITORS_KEY } from '$env/static/private';
+import Redis from 'ioredis';
 
 export function get_current_visitors(): string {
-	return `visitors:${VISITORS_KEY}`
+	return `visitors:${VISITORS_KEY}`;
 }
 
 // I'll be needing this later
 export function get_page_analytics(slug: string): string {
-	return `slug:${slug}`
+	return `slug:${slug}`;
 }
 
 export default REDIS_CONNECTION
 	? new Redis(REDIS_CONNECTION)
-	: new Redis()
+	: new Redis();
 ```
 
 I'm defining a couple of functions to help access the data from the
@@ -198,67 +198,67 @@ with `get_visitors_from_api`, cache the response (in Redis) then
 return the data.
 
 ```ts
-import { FATHOM_API_KEY, VISITORS_KEY } from '$env/static/private'
-import { PUBLIC_FATHOM_ID } from '$env/static/public'
-import redis, { get_current_visitors } from '$lib/redis'
-import { json } from '@sveltejs/kit'
-import type { RequestHandler } from './$types'
+import { FATHOM_API_KEY, VISITORS_KEY } from '$env/static/private';
+import { PUBLIC_FATHOM_ID } from '$env/static/public';
+import redis, { get_current_visitors } from '$lib/redis';
+import { json } from '@sveltejs/kit';
+import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async () => {
-	const cached_visitors = await get_visitors_from_cache()
+	const cached_visitors = await get_visitors_from_cache();
 	if (cached_visitors) {
-		return json({ visitors: cached_visitors })
+		return json({ visitors: cached_visitors });
 	}
 
-	const visitors = await get_visitors_from_api()
-	return json({ visitors })
-}
+	const visitors = await get_visitors_from_api();
+	return json({ visitors });
+};
 
 const get_visitors_from_api = async () => {
 	try {
-		const headers_auth = new Headers()
-		headers_auth.append('Authorization', `Bearer ${FATHOM_API_KEY}`)
+		const headers_auth = new Headers();
+		headers_auth.append('Authorization', `Bearer ${FATHOM_API_KEY}`);
 		const res = await fetch(
 			`https://api.usefathom.com/v1/current_visitors?site_id=${PUBLIC_FATHOM_ID}&detailed=true`,
 			{
 				headers: headers_auth,
 			},
-		)
+		);
 
 		if (res.ok) {
-			const data = await res.json()
-			await cache_fathom_response(VISITORS_KEY, { visitors: data })
-			return data
+			const data = await res.json();
+			await cache_fathom_response(VISITORS_KEY, { visitors: data });
+			return data;
 		}
 	} catch (error) {
-		console.error(`Error fetching visitors from API: ${error}`)
+		console.error(`Error fetching visitors from API: ${error}`);
 	}
-	return null
-}
+	return null;
+};
 
 const get_visitors_from_cache = async () => {
 	try {
-		const cached = await redis.get(get_current_visitors())
+		const cached = await redis.get(get_current_visitors());
 		if (cached) {
-			return JSON.parse(cached)
+			return JSON.parse(cached);
 		}
 	} catch (e) {
-		console.error(`Error fetching visitors from cache: ${e}`)
+		console.error(`Error fetching visitors from cache: ${e}`);
 	}
-	return null
-}
+	return null;
+};
 
 const cache_fathom_response = async (
 	id: string = VISITORS_KEY,
 	visitors: any,
 ) => {
 	try {
-		const cache = { visitors }
-		await redis.set(id, JSON.stringify(cache), 'EX', 15 * 60)
+		const cache = { visitors };
+		await redis.set(id, JSON.stringify(cache), 'EX', 15 * 60);
 	} catch (e) {
-		console.error(`Error caching Fathom response: ${e}`)
+		console.error(`Error caching Fathom response: ${e}`);
 	}
-}
+};
 ```
 
 I'll summarise what the functions are doing:
@@ -285,16 +285,16 @@ import {
 	startOfDay,
 	startOfMonth,
 	startOfYear,
-} from 'date-fns'
+} from 'date-fns';
 
 export const object_to_query_params = (
 	obj: { [s: string]: unknown } | ArrayLike<unknown>,
 ) => {
 	const params = Object.entries(obj).map(
 		([key, value]) => `${key}=${value}`,
-	)
-	return `?${params.join('&')}`
-}
+	);
+	return `?${params.join('&')}`;
+};
 
 export const page_analytics = async (
 	base_path: string,
@@ -302,54 +302,54 @@ export const page_analytics = async (
 		(
 			input: URL | RequestInfo,
 			init?: RequestInit | undefined,
-		): Promise<Response>
+		): Promise<Response>;
 		(
 			input: URL | RequestInfo,
 			init?: RequestInit | undefined,
-		): Promise<Response>
-		(arg0: string): any
+		): Promise<Response>;
+		(arg0: string): any;
 	},
 ) => {
-	const day_start = startOfDay(new Date()).toISOString()
-	const day_end = endOfDay(new Date()).toISOString()
+	const day_start = startOfDay(new Date()).toISOString();
+	const day_end = endOfDay(new Date()).toISOString();
 
-	const month_start = startOfMonth(new Date()).toISOString()
-	const month_end = endOfMonth(new Date()).toISOString()
+	const month_start = startOfMonth(new Date()).toISOString();
+	const month_end = endOfMonth(new Date()).toISOString();
 
-	const year_start = startOfYear(new Date()).toISOString()
-	const year_end = endOfYear(new Date()).toISOString()
+	const year_start = startOfYear(new Date()).toISOString();
+	const year_end = endOfYear(new Date()).toISOString();
 
 	// get daily visits
 	const fetch_daily_visits = async () => {
 		const res = await fetch(
 			`${base_path}&date_from=${day_start}&date_to=${day_end}`,
-		)
-		const { analytics } = await res.json()
-		return analytics
-	}
+		);
+		const { analytics } = await res.json();
+		return analytics;
+	};
 	// get monthly visits
 	const fetch_monthly_visits = async () => {
 		const res = await fetch(
 			`${base_path}&date_from=${month_start}&date_to=${month_end}&date_grouping=month`,
-		)
-		const { analytics } = await res.json()
-		return analytics
-	}
+		);
+		const { analytics } = await res.json();
+		return analytics;
+	};
 	// get yearly visits
 	const fetch_yearly_visits = async () => {
 		const res = await fetch(
 			`${base_path}&date_from=${year_start}&date_to=${year_end}&date_grouping=year`,
-		)
-		const { analytics } = await res.json()
-		return analytics
-	}
+		);
+		const { analytics } = await res.json();
+		return analytics;
+	};
 
 	return {
 		daily_visits: fetch_daily_visits(),
 		monthly_visits: fetch_monthly_visits(),
 		yearly_visits: fetch_yearly_visits(),
-	}
-}
+	};
+};
 ```
 
 </Details>
@@ -370,15 +370,15 @@ Get analytics from cache:
 ```ts
 const get_analytics_from_cache = async (cache_key: string) => {
 	try {
-		const cached = await redis.get(cache_key)
+		const cached = await redis.get(cache_key);
 		if (cached) {
-			return JSON.parse(cached)
+			return JSON.parse(cached);
 		}
 	} catch (e) {
-		console.error(`Error fetching analytics from cache: ${e}`)
+		console.error(`Error fetching analytics from cache: ${e}`);
 	}
-	return null
-}
+	return null;
+};
 ```
 
 Cache analytics response:
@@ -394,11 +394,11 @@ const cache_analytics_response = async (
 			JSON.stringify(analytics_data),
 			'EX',
 			15 * 60,
-		)
+		);
 	} catch (e) {
-		console.error(`Error caching analytics response: ${e}`)
+		console.error(`Error caching analytics response: ${e}`);
 	}
-}
+};
 ```
 
 Check out the whole file here:
@@ -406,7 +406,7 @@ Check out the whole file here:
 <Details button_text="index.ts" styles="lowercase">
 
 ```ts
-import redis, { get_page_analytics } from '$lib/redis'
+import redis, { get_page_analytics } from '$lib/redis';
 import {
 	endOfDay,
 	endOfMonth,
@@ -414,16 +414,16 @@ import {
 	startOfDay,
 	startOfMonth,
 	startOfYear,
-} from 'date-fns'
+} from 'date-fns';
 
 export const object_to_query_params = (
 	obj: { [s: string]: unknown } | ArrayLike<unknown>,
 ) => {
 	const params = Object.entries(obj)
 		.filter(([, value]) => value !== undefined)
-		.map(([key, value]) => `${key}=${value}`)
-	return `?${params.join('&')}`
-}
+		.map(([key, value]) => `${key}=${value}`);
+	return `?${params.join('&')}`;
+};
 
 export const page_analytics = async (
 	base_path: string,
@@ -431,22 +431,22 @@ export const page_analytics = async (
 		(
 			input: URL | RequestInfo,
 			init?: RequestInit | undefined,
-		): Promise<Response>
+		): Promise<Response>;
 		(
 			input: URL | RequestInfo,
 			init?: RequestInit | undefined,
-		): Promise<Response>
-		(arg0: string): any
+		): Promise<Response>;
+		(arg0: string): any;
 	},
 ) => {
-	const day_start = startOfDay(new Date()).toISOString()
-	const day_end = endOfDay(new Date()).toISOString()
+	const day_start = startOfDay(new Date()).toISOString();
+	const day_end = endOfDay(new Date()).toISOString();
 
-	const month_start = startOfMonth(new Date()).toISOString()
-	const month_end = endOfMonth(new Date()).toISOString()
+	const month_start = startOfMonth(new Date()).toISOString();
+	const month_end = endOfMonth(new Date()).toISOString();
 
-	const year_start = startOfYear(new Date()).toISOString()
-	const year_end = endOfYear(new Date()).toISOString()
+	const year_start = startOfYear(new Date()).toISOString();
+	const year_end = endOfYear(new Date()).toISOString();
 
 	const fetch_visits = async (
 		from: string,
@@ -455,45 +455,45 @@ export const page_analytics = async (
 	) => {
 		const slug = `${base_path}&date_from=${from}&date_to=${to}${
 			grouping ? `&date_grouping=${grouping}` : ''
-		}`
-		const cache_key = get_page_analytics(slug)
+		}`;
+		const cache_key = get_page_analytics(slug);
 
-		const cached = await get_analytics_from_cache(cache_key)
+		const cached = await get_analytics_from_cache(cache_key);
 		if (cached) {
-			return cached
+			return cached;
 		}
 
-		const res = await fetch(slug)
-		const { analytics } = await res.json()
-		await cache_analytics_response(cache_key, analytics)
-		return analytics
-	}
+		const res = await fetch(slug);
+		const { analytics } = await res.json();
+		await cache_analytics_response(cache_key, analytics);
+		return analytics;
+	};
 
 	const [daily_visits, monthly_visits, yearly_visits] =
 		await Promise.all([
 			fetch_visits(day_start, day_end),
 			fetch_visits(month_start, month_end, 'month'),
 			fetch_visits(year_start, year_end, 'year'),
-		])
+		]);
 
 	return {
 		daily_visits,
 		monthly_visits,
 		yearly_visits,
-	}
-}
+	};
+};
 
 const get_analytics_from_cache = async (cache_key: string) => {
 	try {
-		const cached = await redis.get(cache_key)
+		const cached = await redis.get(cache_key);
 		if (cached) {
-			return JSON.parse(cached)
+			return JSON.parse(cached);
 		}
 	} catch (e) {
-		console.error(`Error fetching analytics from cache: ${e}`)
+		console.error(`Error fetching analytics from cache: ${e}`);
 	}
-	return null
-}
+	return null;
+};
 
 const cache_analytics_response = async (
 	cache_key: string,
@@ -505,11 +505,11 @@ const cache_analytics_response = async (
 			JSON.stringify(analytics_data),
 			'EX',
 			15 * 60,
-		)
+		);
 	} catch (e) {
-		console.error(`Error caching analytics response: ${e}`)
+		console.error(`Error caching analytics response: ${e}`);
 	}
-}
+};
 ```
 
 </Details>

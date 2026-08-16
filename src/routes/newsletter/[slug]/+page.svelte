@@ -1,25 +1,25 @@
 <script lang="ts">
-	import { website } from '$lib/info'
-	import { create_seo_config } from '$lib/seo'
-	import { format } from 'date-fns'
-	import { Head } from 'svead'
+	import { website } from '$lib/info';
+	import { create_seo_config } from '$lib/seo';
+	import { format } from 'date-fns';
+	import { Head } from 'svead';
 
-	let { data } = $props()
+	let { data } = $props();
 
-	let Content = $derived(data.Content)
-	let meta = $derived(data.meta)
-	const title = $derived(meta.title)
-	const date = $derived(meta.date)
-	const slug = $derived(meta.slug)
+	let Content = $derived(data.Content);
+	let meta = $derived(data.meta);
+	const title = $derived(meta.title);
+	const date = $derived(meta.date);
+	const slug = $derived(meta.slug);
 
-	const url = $derived(`${website}/newsletter/${slug}`)
+	const url = $derived(`${website}/newsletter/${slug}`);
 	const seo_config = $derived(
 		create_seo_config({
 			title,
 			description: `Newsletter: ${title}`,
 			slug: `newsletter/${slug}`,
 		}),
-	)
+	);
 </script>
 
 <Head {seo_config} />

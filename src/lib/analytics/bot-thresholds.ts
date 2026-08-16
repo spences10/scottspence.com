@@ -31,6 +31,6 @@ export const BOT_THRESHOLDS = {
 
 	/** Aggregate UA detection - direct-only scrapers */
 	MIN_VISITORS_FOR_DIRECT_ONLY: 15,
-} as const
+} as const;
 
-export type BotThresholds = typeof BOT_THRESHOLDS
+export type BotThresholds = typeof BOT_THRESHOLDS;

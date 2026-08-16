@@ -208,22 +208,22 @@ In the `+layout.svelte` file I'll add this:
 
 ```svelte
 <script lang="ts">
-	import { browser } from '$app/environment'
-	import { page } from '$app/stores'
+	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
 	import {
 		PUBLIC_FATHOM_ID,
 		PUBLIC_FATHOM_URL,
-	} from '$env/static/public'
-	import * as Fathom from 'fathom-client'
-	import { onMount } from 'svelte'
+	} from '$env/static/public';
+	import * as Fathom from 'fathom-client';
+	import { onMount } from 'svelte';
 
 	onMount(async () => {
 		Fathom.load(PUBLIC_FATHOM_ID, {
 			url: PUBLIC_FATHOM_URL,
-		})
-	})
+		});
+	});
 
-	$: $page.url.pathname, browser && Fathom.trackPageview()
+	$: ($page.url.pathname, browser && Fathom.trackPageview());
 </script>
 
 <ul>
@@ -267,8 +267,8 @@ this:
 onMount(async () => {
 	Fathom.load(PUBLIC_FATHOM_ID, {
 		url: PUBLIC_FATHOM_URL,
-	})
-})
+	});
+});
 ```
 
 Ok, with that explanation out of the way time to see if the client is
@@ -322,7 +322,7 @@ this button in the `src/routes/+page.svelte` file for now.
 
 ```svelte
 <script lang="ts">
-	import { trackGoal } from 'fathom-client'
+	import { trackGoal } from 'fathom-client';
 </script>
 
 <h1>Welcome to SvelteKit</h1>
@@ -364,22 +364,22 @@ home page link.
 
 ```svelte
 <script lang="ts">
-	import { browser } from '$app/environment'
-	import { page } from '$app/stores'
+	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
 	import {
 		PUBLIC_FATHOM_ID,
 		PUBLIC_FATHOM_URL,
-	} from '$env/static/public'
-	import * as Fathom from 'fathom-client'
-	import { onMount } from 'svelte'
+	} from '$env/static/public';
+	import * as Fathom from 'fathom-client';
+	import { onMount } from 'svelte';
 
 	onMount(async () => {
 		Fathom.load(PUBLIC_FATHOM_ID, {
 			url: PUBLIC_FATHOM_URL,
-		})
-	})
+		});
+	});
 
-	$: $page.url.pathname, browser && Fathom.trackPageview()
+	$: ($page.url.pathname, browser && Fathom.trackPageview());
 </script>
 
 <ul>

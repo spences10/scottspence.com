@@ -1,12 +1,12 @@
-import { describe, expect, it, vi } from 'vitest'
-import { render } from 'vitest-browser-svelte'
-import { page } from 'vitest/browser'
-import PostPage from './+page.svelte'
+import { describe, expect, it, vi } from 'vitest';
+import { render } from 'vitest-browser-svelte';
+import { page } from 'vitest/browser';
+import PostPage from './+page.svelte';
 
 // Mock remote functions - track_click needs SvelteKit request context
 vi.mock('$lib/analytics/track-click.remote', () => ({
 	track_click: vi.fn(),
-}))
+}));
 
 // Mock remote functions - these require SvelteKit request context in production
 vi.mock('$lib/data/subscribers.remote', () => ({
@@ -15,7 +15,7 @@ vi.mock('$lib/data/subscribers.remote', () => ({
 			newsletter_subscriber_count: 105,
 		}),
 	),
-}))
+}));
 
 vi.mock(
 	'$lib/components/newsletter-signup/newsletter.remote',
@@ -27,7 +27,7 @@ vi.mock(
 			}),
 		),
 	}),
-)
+);
 
 vi.mock('$lib/data/popular-posts.remote', () => ({
 	get_popular_posts: vi.fn(() =>
@@ -37,7 +37,7 @@ vi.mock('$lib/data/popular-posts.remote', () => ({
 			popular_posts_yearly: [],
 		}),
 	),
-}))
+}));
 
 describe('PostPage Component', () => {
 	const defaultProps = {
@@ -75,45 +75,45 @@ describe('PostPage Component', () => {
 				popular_posts_yearly: [],
 			},
 		},
-	}
+	};
 
 	describe('Initial Rendering', () => {
 		it('should render essential content without errors', async () => {
 			// Smoke test - real browser rendering
-			expect(() => render(PostPage, defaultProps)).not.toThrow()
-		})
+			expect(() => render(PostPage, defaultProps)).not.toThrow();
+		});
 
 		it('should render post title and metadata', async () => {
-			render(PostPage, defaultProps)
+			render(PostPage, defaultProps);
 
 			// Test essential content is visible
 			await expect
 				.element(page.getByRole('heading', { level: 1 }))
-				.toBeInTheDocument()
+				.toBeInTheDocument();
 			await expect
 				.element(page.getByText('Test Blog Post'))
-				.toBeInTheDocument()
+				.toBeInTheDocument();
 			await expect
 				.element(page.getByText('5 min read'))
-				.toBeInTheDocument()
-		})
+				.toBeInTheDocument();
+		});
 
 		it('should render tags as clickable links', async () => {
-			render(PostPage, defaultProps)
+			render(PostPage, defaultProps);
 
 			// Test tags are rendered as links with correct hrefs
-			const jsLink = page.getByRole('link', { name: /javascript/ })
-			const testingLink = page.getByRole('link', { name: /testing/ })
+			const jsLink = page.getByRole('link', { name: /javascript/ });
+			const testingLink = page.getByRole('link', { name: /testing/ });
 
-			await expect.element(jsLink).toBeInTheDocument()
-			await expect.element(testingLink).toBeInTheDocument()
+			await expect.element(jsLink).toBeInTheDocument();
+			await expect.element(testingLink).toBeInTheDocument();
 			await expect
 				.element(jsLink)
-				.toHaveAttribute('href', '/tags/javascript')
+				.toHaveAttribute('href', '/tags/javascript');
 			await expect
 				.element(testingLink)
-				.toHaveAttribute('href', '/tags/testing')
-		})
+				.toHaveAttribute('href', '/tags/testing');
+		});
 
 		it('should show "new" badge for recent posts', async () => {
 			const recentProps = {
@@ -125,17 +125,17 @@ describe('PostPage Component', () => {
 						date: new Date().toISOString(), // Today's date
 					},
 				},
-			}
+			};
 
-			render(PostPage, recentProps)
+			render(PostPage, recentProps);
 
 			// Use CSS selector to target the specific badge, not just any "new" text in "newsletter"
 			const new_badge = document.querySelector(
 				'.badge-secondary',
-			) as HTMLElement
-			expect(new_badge).toBeTruthy()
-			expect(new_badge.textContent?.trim()).toBe('new')
-		})
+			) as HTMLElement;
+			expect(new_badge).toBeTruthy();
+			expect(new_badge.textContent?.trim()).toBe('new');
+		});
 
 		it('should not show "new" badge for old posts', async () => {
 			const oldProps = {
@@ -147,14 +147,14 @@ describe('PostPage Component', () => {
 						date: '2020-01-01', // Old date
 					},
 				},
-			}
+			};
 
-			render(PostPage, oldProps)
+			render(PostPage, oldProps);
 
 			// Use CSS selector to verify badge doesn't exist for old posts
-			const new_badge = document.querySelector('.badge-secondary')
-			expect(new_badge).toBeNull()
-		})
+			const new_badge = document.querySelector('.badge-secondary');
+			expect(new_badge).toBeNull();
+		});
 
 		it('should render private banner when is_private is true', async () => {
 			const privateProps = {
@@ -166,20 +166,20 @@ describe('PostPage Component', () => {
 						is_private: true,
 					},
 				},
-			}
+			};
 
-			render(PostPage, privateProps)
+			render(PostPage, privateProps);
 
 			// Look for private banner content
 			await expect
 				.element(page.getByText(/private/i))
-				.toBeInTheDocument()
-		})
+				.toBeInTheDocument();
+		});
 
 		it.skip('should render updated banner for old or updated posts', async () => {
 			// TODO: Test updated banner logic
-		})
-	})
+		});
+	});
 
 	describe('Text Selection Handler', () => {
 		it.skip('should show popup when text is selected in content area', async () => {
@@ -189,67 +189,67 @@ describe('PostPage Component', () => {
 			// const contentArea = page.getByTestId('content-area')
 			// // Create real selection using browser Selection API
 			// // Test that TextSelectionPopup appears
-		})
+		});
 
 		it.skip('should hide popup when clicking outside content area with no selection', async () => {
 			// TODO: Integration test for the edge case we fixed
 			// This is the critical test that would catch the original bug
 			// Test real user interaction: select text → click outside → popup disappears
-		})
+		});
 
 		it.skip('should maintain popup when clicking outside but selection still exists', async () => {
 			// TODO: Test popup persistence with active selection
-		})
+		});
 
 		it.skip('should update popup position when selection changes', async () => {
 			// TODO: Test popup repositioning with real selection changes
-		})
-	})
+		});
+	});
 
 	describe('Table of Contents', () => {
 		it.skip('should show table of contents when headings exist', async () => {
 			// TODO: Test TOC rendering with real headings
-		})
+		});
 
 		it.skip('should hide table of contents when scrolled past content', async () => {
 			// TODO: Test scroll behavior with real scroll events
-		})
-	})
+		});
+	});
 
 	describe('Modal Interactions', () => {
 		it.skip('should open stats modal when clicking stats button', async () => {
 			// TODO: Test modal opening with real click events
-		})
+		});
 
 		it.skip('should handle modal navigation correctly', async () => {
 			// TODO: Test pushState and modal interaction with real navigation
-		})
-	})
+		});
+	});
 
 	describe('Component Integration', () => {
 		it.skip('should render all child components without errors', async () => {
 			// TODO: Test that all imported components render
 			// Use real components, not mocks
-		})
+		});
 
 		it.skip('should pass correct props to TextSelectionPopup', async () => {
 			// TODO: Test prop passing with real component interaction
-		})
+		});
 
 		it.skip('should pass correct data to Reactions component', async () => {
 			// TODO: Test reactions data passing with real data
-		})
-	})
+		});
+	});
 
 	describe('Date and Time Handling', () => {
 		it('should format dates correctly', async () => {
-			render(PostPage, defaultProps)
+			render(PostPage, defaultProps);
 
 			// Test date formatting with real Date objects
 			await expect
 				.element(page.getByText('January 1, 2024'))
-				.toBeInTheDocument()
-		})
+				.toBeInTheDocument();
+		});
 
 		it('should handle updated dates properly', async () => {
 			const updatedProps = {
@@ -261,27 +261,27 @@ describe('PostPage Component', () => {
 						updated: '2024-06-01',
 					},
 				},
-			}
+			};
 
-			render(PostPage, updatedProps)
+			render(PostPage, updatedProps);
 
 			// Should show updated banner for posts with updated date
 			// This tests real date comparison logic
 			await expect
 				.element(page.getByText(/updated/i))
-				.toBeInTheDocument()
-		})
-	})
+				.toBeInTheDocument();
+		});
+	});
 
 	describe('Schema and SEO', () => {
 		it.skip('should generate correct schema.org markup', async () => {
 			// TODO: Test schema generation in real DOM
-		})
+		});
 
 		it.skip('should create proper breadcrumb structure', async () => {
 			// TODO: Test breadcrumb generation in real DOM
-		})
-	})
+		});
+	});
 
 	describe('Edge Cases', () => {
 		it('should handle empty tags array', async () => {
@@ -294,18 +294,18 @@ describe('PostPage Component', () => {
 						tags: [], // Empty tags array
 					},
 				},
-			}
+			};
 
-			render(PostPage, noTagsProps)
+			render(PostPage, noTagsProps);
 
 			// Should render without errors and not show any tag links
 			await expect
 				.element(page.getByRole('heading', { level: 1 }))
-				.toBeInTheDocument()
+				.toBeInTheDocument();
 			await expect
 				.element(page.getByRole('link', { name: /javascript/ }))
-				.not.toBeInTheDocument()
-		})
+				.not.toBeInTheDocument();
+		});
 
 		it('should handle posts without related posts', async () => {
 			const noRelatedProps = {
@@ -314,57 +314,57 @@ describe('PostPage Component', () => {
 					...defaultProps.data,
 					related_posts: [], // Empty related posts
 				},
-			}
+			};
 
-			render(PostPage, noRelatedProps)
+			render(PostPage, noRelatedProps);
 
 			// Should render without errors
 			await expect
 				.element(page.getByRole('heading', { level: 1 }))
-				.toBeInTheDocument()
-		})
-	})
+				.toBeInTheDocument();
+		});
+	});
 
 	describe('Accessibility', () => {
 		it('should have proper heading hierarchy', async () => {
-			render(PostPage, defaultProps)
+			render(PostPage, defaultProps);
 
 			// Test h1 exists and is properly structured
-			const mainHeading = page.getByRole('heading', { level: 1 })
-			await expect.element(mainHeading).toBeInTheDocument()
+			const mainHeading = page.getByRole('heading', { level: 1 });
+			await expect.element(mainHeading).toBeInTheDocument();
 			await expect
 				.element(mainHeading)
-				.toHaveTextContent('Test Blog Post')
-		})
+				.toHaveTextContent('Test Blog Post');
+		});
 
 		it('should have accessible time elements', async () => {
-			render(PostPage, defaultProps)
+			render(PostPage, defaultProps);
 
 			// Test datetime attributes are present
-			const timeElement = page.getByRole('time')
-			await expect.element(timeElement).toBeInTheDocument()
-			await expect.element(timeElement).toHaveAttribute('datetime')
-		})
+			const timeElement = page.getByRole('time');
+			await expect.element(timeElement).toBeInTheDocument();
+			await expect.element(timeElement).toHaveAttribute('datetime');
+		});
 
 		it('should have proper link accessibility', async () => {
-			render(PostPage, defaultProps)
+			render(PostPage, defaultProps);
 
 			// Test tag links have proper href attributes
-			const tagLinks = page.getByRole('link')
-			const firstTagLink = tagLinks.first()
+			const tagLinks = page.getByRole('link');
+			const firstTagLink = tagLinks.first();
 
-			await expect.element(firstTagLink).toBeInTheDocument()
-			await expect.element(firstTagLink).toHaveAttribute('href')
-		})
-	})
+			await expect.element(firstTagLink).toBeInTheDocument();
+			await expect.element(firstTagLink).toHaveAttribute('href');
+		});
+	});
 
 	describe('Performance', () => {
 		it.skip('should handle large content efficiently', async () => {
 			// TODO: Test with real large content in browser
-		})
+		});
 
 		it.skip('should debounce scroll events properly', async () => {
 			// TODO: Test scroll performance with real scroll events
-		})
-	})
-})
+		});
+	});
+});

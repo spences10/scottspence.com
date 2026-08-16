@@ -101,4 +101,4 @@ when update time comes there's a lot of 'busy work' involved.
 
 [jamie barton]: https://twitter.com/notrab
 [navigation bar with graphcms]:
-  https://github.com/spences10/gatsby-using-graphcms
+	https://github.com/spences10/gatsby-using-graphcms

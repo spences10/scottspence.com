@@ -3,8 +3,8 @@
 	https://codesandbox.io/s/svelte-kit-demo-typescript-slxxe
 -->
 <script lang="ts">
-	import { number_crunch } from '$lib/utils'
-	import { Spring } from 'svelte/motion'
+	import { number_crunch } from '$lib/utils';
+	import { Spring } from 'svelte/motion';
 
 	let {
 		count,
@@ -14,29 +14,29 @@
 		disabled,
 		aria_label,
 	}: {
-		count: number
-		font_size?: string
-		emoji: string
-		value: string
-		disabled: boolean
-		aria_label: string
-	} = $props()
+		count: number;
+		font_size?: string;
+		emoji: string;
+		value: string;
+		disabled: boolean;
+		aria_label: string;
+	} = $props();
 
-	const base_width = 2
-	const padding = 3
-	const character_width = 1
-	const displayed_count = Spring.of(() => count)
-	let offset = $derived(modulo(displayed_count.current, 1))
-	let crunched_number = $derived(number_crunch(count))
+	const base_width = 2;
+	const padding = 3;
+	const character_width = 1;
+	const displayed_count = Spring.of(() => count);
+	let offset = $derived(modulo(displayed_count.current, 1));
+	let crunched_number = $derived(number_crunch(count));
 	let button_width = $derived(
 		base_width +
 			padding +
 			character_width * crunched_number.length +
 			'rem',
-	)
+	);
 
 	function modulo(n: number, m: number) {
-		return ((n % m) + m) % m
+		return ((n % m) + m) % m;
 	}
 </script>
 

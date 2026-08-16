@@ -99,6 +99,6 @@ I literally had to send myself the emails I wanted to keep.
 <!--  Links -->
 
 [setting up fastmail with vercel]:
-  https://scottspence.com/posts/setting-up-fastmail-with-vercel
+	https://scottspence.com/posts/setting-up-fastmail-with-vercel
 [setting up protonmail with vercel]:
-  https://scottspence.com/posts/setting-up-proton-mail-with-vercel
+	https://scottspence.com/posts/setting-up-proton-mail-with-vercel

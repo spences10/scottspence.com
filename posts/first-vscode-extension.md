@@ -98,23 +98,23 @@ hope it comes in handy for you one day!
 <!-- Links -->
 
 [vbscript]:
-  https://marketplace.visualstudio.com/items?itemName=luggage66.VBScript
+	https://marketplace.visualstudio.com/items?itemName=luggage66.VBScript
 [vscode]: https://code.visualstudio.com/
 [snippets]:
-  https://code.visualstudio.com/Docs/customization/userdefinedsnippets
+	https://code.visualstudio.com/Docs/customization/userdefinedsnippets
 [guide1]: https://code.visualstudio.com/docs/extensions/overview
 [guide2]:
-  https://code.visualstudio.com/docs/extensions/example-hello-world
+	https://code.visualstudio.com/docs/extensions/example-hello-world
 [guide3]:
-  https://code.visualstudio.com/docs/extensions/testing-extensions
+	https://code.visualstudio.com/docs/extensions/testing-extensions
 
 <!-- Images -->
 
 [vscode vba market-place]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/visual-studio-marketplace-50f58b39bdbe05c6e32a31e989f12802.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/visual-studio-marketplace-50f58b39bdbe05c6e32a31e989f12802.png
 [yeomanerr]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/yeoman-err-0d720ffedb48cce898538fc5510ccb14.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/yeoman-err-0d720ffedb48cce898538fc5510ccb14.png
 [vscepublish]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/vsce-publish-4e408c5714752608e16b26532fdddb43.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/vsce-publish-4e408c5714752608e16b26532fdddb43.png
 [extension on market place]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/marketplace-extensions-management-ed95fb9a535f6a2cfc14a3745830a20a.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/marketplace-extensions-management-ed95fb9a535f6a2cfc14a3745830a20a.png

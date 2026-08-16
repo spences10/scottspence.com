@@ -26,51 +26,51 @@ values for the sake of brevity. Here's the form in SvelteKit:
 
 ```svelte
 <script lang="ts">
-  let name = 'Scott'
-  let selected_country = 'gb'
-  let selected_technologies: never[] = []
-  let countries = [
-    { value: 'gb', name: 'United Kingdom' },
-    { value: 'us', name: 'United States' },
-    { value: 'ca', name: 'Canada' },
-    { value: 'fr', name: 'France' },
-  ]
-  let technologies = [
-    { value: 'html', name: 'HTML' },
-    { value: 'css', name: 'CSS' },
-    { value: 'js', name: 'JavaScript' },
-    { value: 'svelte', name: 'Svelte' },
-    { value: 'react', name: 'React' },
-    { value: 'vue', name: 'Vue' },
-    { value: 'angular', name: 'Angular' },
-  ]
+	let name = 'Scott';
+	let selected_country = 'gb';
+	let selected_technologies: never[] = [];
+	let countries = [
+		{ value: 'gb', name: 'United Kingdom' },
+		{ value: 'us', name: 'United States' },
+		{ value: 'ca', name: 'Canada' },
+		{ value: 'fr', name: 'France' },
+	];
+	let technologies = [
+		{ value: 'html', name: 'HTML' },
+		{ value: 'css', name: 'CSS' },
+		{ value: 'js', name: 'JavaScript' },
+		{ value: 'svelte', name: 'Svelte' },
+		{ value: 'react', name: 'React' },
+		{ value: 'vue', name: 'Vue' },
+		{ value: 'angular', name: 'Angular' },
+	];
 </script>
 
 <form method="POST" action="?/using_object_from_entries">
-  <label for="name">Name:</label>
-  <input type="text" name="name" bind:value={name} required />
+	<label for="name">Name:</label>
+	<input type="text" name="name" bind:value={name} required />
 
-  <label for="country">Country:</label>
-  <select name="country" bind:value={selected_country} required>
-    <option disabled value="">Select a country</option>
-    {#each countries as country}
-      <option value={country.value}>{country.name}</option>
-    {/each}
-  </select>
+	<label for="country">Country:</label>
+	<select name="country" bind:value={selected_country} required>
+		<option disabled value="">Select a country</option>
+		{#each countries as country}
+			<option value={country.value}>{country.name}</option>
+		{/each}
+	</select>
 
-  <label for="technologies">Technologies:</label>
-  <select
-    name="technologies"
-    bind:value={selected_technologies}
-    multiple
-    required
-  >
-    {#each technologies as technology}
-      <option value={technology.value}>{technology.name}</option>
-    {/each}
-  </select>
+	<label for="technologies">Technologies:</label>
+	<select
+		name="technologies"
+		bind:value={selected_technologies}
+		multiple
+		required
+	>
+		{#each technologies as technology}
+			<option value={technology.value}>{technology.name}</option>
+		{/each}
+	</select>
 
-  <button type="submit">Submit</button>
+	<button type="submit">Submit</button>
 </form>
 ```
 
@@ -91,17 +91,17 @@ handles the form submission in a `+page.server.ts` file. Basic outline
 is something like this:
 
 ```typescript
-import type { Action, Actions } from './$types'
+import type { Action, Actions } from './$types';
 
 const using_object_from_entries: Action = async ({ request }) => {
-  const form_data = Object.fromEntries(await request.formData())
+	const form_data = Object.fromEntries(await request.formData());
 
-  console.log('=====================')
-  console.log(form_data)
-  console.log('=====================')
-}
+	console.log('=====================');
+	console.log(form_data);
+	console.log('=====================');
+};
 
-export const actions: Actions = { using_object_from_entries }
+export const actions: Actions = { using_object_from_entries };
 ```
 
 I'm using a named action here as I want to add in the correct way to
@@ -125,32 +125,32 @@ technologies, not just the last selected one.
 Ok, now to expand on the actions in the `+page.server.ts` file.
 
 ```typescript
-import type { Action, Actions } from './$types'
+import type { Action, Actions } from './$types';
 
-const using_get_all: Action = async event => {
-  const form_data = await event.request.formData()
+const using_get_all: Action = async (event) => {
+	const form_data = await event.request.formData();
 
-  const name = form_data.get('name') as string
-  const country = form_data.get('country') as string
-  const technologies = form_data.getAll('technologies') as string[]
+	const name = form_data.get('name') as string;
+	const country = form_data.get('country') as string;
+	const technologies = form_data.getAll('technologies') as string[];
 
-  console.log('=====================')
-  console.log(name, country, technologies)
-  console.log('=====================')
-}
+	console.log('=====================');
+	console.log(name, country, technologies);
+	console.log('=====================');
+};
 
 const using_object_from_entries: Action = async ({ request }) => {
-  const form_data = Object.fromEntries(await request.formData())
+	const form_data = Object.fromEntries(await request.formData());
 
-  console.log('=====================')
-  console.log(form_data)
-  console.log('=====================')
-}
+	console.log('=====================');
+	console.log(form_data);
+	console.log('=====================');
+};
 
 export const actions: Actions = {
-  using_get_all,
-  using_object_from_entries,
-}
+	using_get_all,
+	using_object_from_entries,
+};
 ```
 
 Then over in the form, I'll change the form action to
@@ -169,17 +169,17 @@ Scott gb [ 'html', 'css', 'js' ]
 If I dig into the code for the `using_get_all` action, here:
 
 ```typescript
-const using_get_all: Action = async event => {
-  const form_data = await event.request.formData()
+const using_get_all: Action = async (event) => {
+	const form_data = await event.request.formData();
 
-  const name = form_data.get('name') as string
-  const country = form_data.get('country') as string
-  const technologies = form_data.getAll('technologies') as string[]
+	const name = form_data.get('name') as string;
+	const country = form_data.get('country') as string;
+	const technologies = form_data.getAll('technologies') as string[];
 
-  console.log('=====================')
-  console.log(name, country, technologies)
-  console.log('=====================')
-}
+	console.log('=====================');
+	console.log(name, country, technologies);
+	console.log('=====================');
+};
 ```
 
 I'm now creating a variable for each form field and using the `get`

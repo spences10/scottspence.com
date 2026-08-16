@@ -135,17 +135,17 @@ In the root wrapper file I'll add the Chakra provider and the `Layout`
 component.
 
 ```tsx
-import { ChakraProvider } from '@chakra-ui/react'
-import React from 'react'
-import Layout from './components/layout'
+import { ChakraProvider } from '@chakra-ui/react';
+import React from 'react';
+import Layout from './components/layout';
 
 export const wrapPageElement = ({ element }) => {
-  return (
-    <ChakraProvider resetCSS>
-      <Layout>{element}</Layout>
-    </ChakraProvider>
-  )
-}
+	return (
+		<ChakraProvider resetCSS>
+			<Layout>{element}</Layout>
+		</ChakraProvider>
+	);
+};
 ```
 
 So now there's no need to import the layout component into each page
@@ -157,9 +157,9 @@ Finally I'll need to import the root wrapper into both the
 `gatsby-ssr.js` and the `gatsby-browser.js` files.
 
 ```js
-import { wrapPageElement as wrap } from './src/woot-wrapper'
+import { wrapPageElement as wrap } from './src/woot-wrapper';
 
-export const wrapPageElement = wrap
+export const wrapPageElement = wrap;
 ```
 
 ## Theme Toggle
@@ -176,26 +176,26 @@ touch src/components/toggle-theme.tsx
 And add in some code to toggle the theme:
 
 ```tsx
-import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import {
-  IconButton,
-  useColorMode,
-  useColorModeValue,
-} from '@chakra-ui/react'
-import React from 'react'
+	IconButton,
+	useColorMode,
+	useColorModeValue,
+} from '@chakra-ui/react';
+import React from 'react';
 
 export default function ThemeToggle() {
-  const { toggleColorMode: toggleMode } = useColorMode()
-  const ToggleIcon = useColorModeValue(SunIcon, MoonIcon)
+	const { toggleColorMode: toggleMode } = useColorMode();
+	const ToggleIcon = useColorModeValue(SunIcon, MoonIcon);
 
-  return (
-    <IconButton
-      icon={<ToggleIcon />}
-      variant="ghost"
-      aria-label="Toggle Theme"
-      onClick={toggleMode}
-    />
-  )
+	return (
+		<IconButton
+			icon={<ToggleIcon />}
+			variant="ghost"
+			aria-label="Toggle Theme"
+			onClick={toggleMode}
+		/>
+	);
 }
 ```
 
@@ -217,30 +217,30 @@ styles.
 I've left out the default export and prop types for brevity.
 
 ```js
-import { Box, Heading, Link } from '@chakra-ui/react'
-import { Link as GatsbyLink } from 'gatsby'
-import React from 'react'
-import ThemeToggle from './theme-toggle'
+import { Box, Heading, Link } from '@chakra-ui/react';
+import { Link as GatsbyLink } from 'gatsby';
+import React from 'react';
+import ThemeToggle from './theme-toggle';
 
 const Header = ({ siteTitle }) => (
-  <Box as="header" background="rebeccapurple" marginBottom="1.45rem">
-    <Box as="div" m="0 auto" maxW="960px" p="1.45rem 1.0875rem">
-      <Heading margin="0">
-        <Link
-          as={GatsbyLink}
-          to="/"
-          color="white"
-          _hover={{ textDecor: 'none' }}
-        >
-          {siteTitle}
-        </Link>
-      </Heading>
-    </Box>
-    <Box as="div" position="fixed" right="20px" top="20px">
-      <ThemeToggle />
-    </Box>
-  </Box>
-)
+	<Box as="header" background="rebeccapurple" marginBottom="1.45rem">
+		<Box as="div" m="0 auto" maxW="960px" p="1.45rem 1.0875rem">
+			<Heading margin="0">
+				<Link
+					as={GatsbyLink}
+					to="/"
+					color="white"
+					_hover={{ textDecor: 'none' }}
+				>
+					{siteTitle}
+				</Link>
+			</Heading>
+		</Box>
+		<Box as="div" position="fixed" right="20px" top="20px">
+			<ThemeToggle />
+		</Box>
+	</Box>
+);
 ```
 
 Notice that the `<header>` tag and the `<div>` tags are now both
@@ -272,25 +272,25 @@ again and I'll add in what's changes in the render of the component.
 
 ```jsx
 return (
-  <>
-    <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-    <Box as="div" m="0 auto" maxWidth="960px" p="0 1.0875rem 1.45rem">
-      <Box as="main">{children}</Box>
-      <Box as="footer" marginTop="2rem" fontSize="xl">
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <Link
-          isExternal
-          textDecor="underline"
-          color="purple.500"
-          href="https://www.gatsbyjs.com"
-        >
-          Gatsby
-        </Link>
-      </Box>
-    </Box>
-  </>
-)
+	<>
+		<Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+		<Box as="div" m="0 auto" maxWidth="960px" p="0 1.0875rem 1.45rem">
+			<Box as="main">{children}</Box>
+			<Box as="footer" marginTop="2rem" fontSize="xl">
+				© {new Date().getFullYear()}, Built with
+				{` `}
+				<Link
+					isExternal
+					textDecor="underline"
+					color="purple.500"
+					href="https://www.gatsbyjs.com"
+				>
+					Gatsby
+				</Link>
+			</Box>
+		</Box>
+	</>
+);
 ```
 
 You may notice the addition of the [`fontSize`] prop added to the
@@ -309,21 +309,21 @@ components and added the `fontSize` prop along with with some margin
 top and bottom on the text component with the `my` prop.
 
 ```jsx
-import { Heading, Text } from '@chakra-ui/react'
-import React from 'react'
-import SEO from '../components/seo'
+import { Heading, Text } from '@chakra-ui/react';
+import React from 'react';
+import SEO from '../components/seo';
 
 const NotFoundPage = () => (
-  <>
-    <SEO title="404: Not found" />
-    <Heading>404: Not Found</Heading>
-    <Text fontSize="xl" my={5}>
-      You just hit a route that doesn&#39;t exist... the sadness.
-    </Text>
-  </>
-)
+	<>
+		<SEO title="404: Not found" />
+		<Heading>404: Not Found</Heading>
+		<Text fontSize="xl" my={5}>
+			You just hit a route that doesn&#39;t exist... the sadness.
+		</Text>
+	</>
+);
 
-export default NotFoundPage
+export default NotFoundPage;
 ```
 
 <!-- cSpell:ignore doesn -->
@@ -335,39 +335,39 @@ props needed for the link components.
 
 ```jsx
 const IndexPage = () => (
-  <>
-    <SEO title="Home" />
-    <Heading>Hi people</Heading>
-    <Text fontSize="xl" my={5}>
-      Welcome to your new Gatsby site.
-    </Text>
-    <Text fontSize="xl" my={5}>
-      Now go build something great.
-    </Text>
-    <Box as="div" maxWidth="300px" marginBottom="1.45rem">
-      <Image />
-    </Box>
-    <Link
-      as={GatsbyLink}
-      textDecor="underline"
-      color="purple.500"
-      fontSize="xl"
-      to="/page-2/"
-    >
-      Go to page 2
-    </Link>
-    <br />
-    <Link
-      as={GatsbyLink}
-      textDecor="underline"
-      color="purple.500"
-      fontSize="xl"
-      to="/using-typescript/"
-    >
-      Go to "Using TypeScript"
-    </Link>
-  </>
-)
+	<>
+		<SEO title="Home" />
+		<Heading>Hi people</Heading>
+		<Text fontSize="xl" my={5}>
+			Welcome to your new Gatsby site.
+		</Text>
+		<Text fontSize="xl" my={5}>
+			Now go build something great.
+		</Text>
+		<Box as="div" maxWidth="300px" marginBottom="1.45rem">
+			<Image />
+		</Box>
+		<Link
+			as={GatsbyLink}
+			textDecor="underline"
+			color="purple.500"
+			fontSize="xl"
+			to="/page-2/"
+		>
+			Go to page 2
+		</Link>
+		<br />
+		<Link
+			as={GatsbyLink}
+			textDecor="underline"
+			color="purple.500"
+			fontSize="xl"
+			to="/using-typescript/"
+		>
+			Go to "Using TypeScript"
+		</Link>
+	</>
+);
 ```
 
 Additional props for the link components includes the text, underline
@@ -380,23 +380,23 @@ UI here.
 
 ```jsx
 const SecondPage = () => (
-  <>
-    <SEO title="Page two" />
-    <Heading>Hi from the second page</Heading>
-    <Text fontSize="xl" my={5}>
-      Welcome to page 2
-    </Text>
-    <Link
-      as={GatsbyLink}
-      to="/"
-      color="purple.500"
-      fontSize="xl"
-      textDecor="underline"
-    >
-      Go back to the homepage
-    </Link>
-  </>
-)
+	<>
+		<SEO title="Page two" />
+		<Heading>Hi from the second page</Heading>
+		<Text fontSize="xl" my={5}>
+			Welcome to page 2
+		</Text>
+		<Link
+			as={GatsbyLink}
+			to="/"
+			color="purple.500"
+			fontSize="xl"
+			textDecor="underline"
+		>
+			Go back to the homepage
+		</Link>
+	</>
+);
 ```
 
 ## Style the Using TypeScript page
@@ -410,35 +410,35 @@ the code block.
 
 ```tsx
 const UsingTypescript: React.FC<PageProps<DataProps>> = ({
-  data,
-  path,
+	data,
+	path,
 }) => (
-  <>
-    <SEO title="Using TypeScript" />
-    <Heading>Gatsby supports TypeScript by default!</Heading>
-    <Text fontSize="xl" my={6}>
-      This means that you can create and write <em>.ts/.tsx</em> files
-      ...
-    </Text>
-    <Link
-      isExternal
-      textDecor="underline"
-      color="purple.500"
-      href="https://www.gatsbyjs.com/docs/typescript/"
-    >
-      documentation about TypeScript
-    </Link>
-    <Link
-      as={GatsbyLink}
-      textDecor="underline"
-      color="purple.500"
-      fontSize="xl"
-      to="/"
-    >
-      Go back to the homepage
-    </Link>
-  </>
-)
+	<>
+		<SEO title="Using TypeScript" />
+		<Heading>Gatsby supports TypeScript by default!</Heading>
+		<Text fontSize="xl" my={6}>
+			This means that you can create and write <em>.ts/.tsx</em> files
+			...
+		</Text>
+		<Link
+			isExternal
+			textDecor="underline"
+			color="purple.500"
+			href="https://www.gatsbyjs.com/docs/typescript/"
+		>
+			documentation about TypeScript
+		</Link>
+		<Link
+			as={GatsbyLink}
+			textDecor="underline"
+			color="purple.500"
+			fontSize="xl"
+			to="/"
+		>
+			Go back to the homepage
+		</Link>
+	</>
+);
 ```
 
 ## Here's a video detailing the process
@@ -483,37 +483,37 @@ These are literally all linking to the Chakra UI documentation:
 <!-- Links -->
 
 [gatsby starter default]:
-  https://github.com/gatsbyjs/gatsby-starter-default
+	https://github.com/gatsbyjs/gatsby-starter-default
 [gatsby documentation]:
-  https://www.gatsbyjs.com/plugins/gatsby-plugin-chakra-ui/
+	https://www.gatsbyjs.com/plugins/gatsby-plugin-chakra-ui/
 [chakra ui getting started]:
-  https://chakra-ui.com/docs/getting-started
+	https://chakra-ui.com/docs/getting-started
 [codesandbox.io]: https://codesandbox.io/
 [high up in the react component tree]:
-  https://scottspence.com/posts/globally-style-gatsby-styled-components/#place-globalstyle-at-the-top-of-the-react-tree-
+	https://scottspence.com/posts/globally-style-gatsby-styled-components/#place-globalstyle-at-the-top-of-the-react-tree-
 [chakra ui documentation]:
-  https://chakra-ui.com/docs/getting-started#gatsby
+	https://chakra-ui.com/docs/getting-started#gatsby
 [`wrappageelement`]:
-  https://www.gatsbyjs.com/docs/browser-apis/#wrapPageElement
+	https://www.gatsbyjs.com/docs/browser-apis/#wrapPageElement
 [out of the box]: https://www.gatsbyjs.com/docs/typescript/
 [`as`]: https://chakra-ui.com/docs/features/style-props#the-as-prop
 [`fontsize`]:
-  https://chakra-ui.com/docs/typography/text#changing-the-font-size
+	https://chakra-ui.com/docs/typography/text#changing-the-font-size
 [twitter]: https://twitter.com/spences10
 [ask me anything]: https://github.com/spences10/ama
 [chakra ui typography heading]:
-  https://chakra-ui.com/docs/typography/heading
+	https://chakra-ui.com/docs/typography/heading
 [chakra ui components/link]:
-  https://chakra-ui.com/docs/navigation/link
+	https://chakra-ui.com/docs/navigation/link
 [chakra ui typography/text]:
-  https://chakra-ui.com/docs/typography/text
+	https://chakra-ui.com/docs/typography/text
 [chakra ui the `as` prop]:
-  https://chakra-ui.com/docs/features/style-props#the-as-prop
+	https://chakra-ui.com/docs/features/style-props#the-as-prop
 [chakra ui style-props]:
-  https://chakra-ui.com/docs/features/style-props
+	https://chakra-ui.com/docs/features/style-props
 [chakra ui theming theme]: https://chakra-ui.com/docs/theming/theme
 [chakra ui theming colors]:
-  https://chakra-ui.com/docs/theming/theme#colors
+	https://chakra-ui.com/docs/theming/theme#colors
 [tl;dr]: #heres-a-video-detailing-the-process
 [i made a starter]:
-  https://github.com/spences10/gatsby-starter-chakra-ui
+	https://github.com/spences10/gatsby-starter-chakra-ui

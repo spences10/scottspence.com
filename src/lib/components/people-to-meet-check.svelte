@@ -1,19 +1,19 @@
 <script lang="ts">
 	interface Props {
-		met?: boolean
+		met?: boolean;
 	}
 
-	let { met = false }: Props = $props()
+	let { met = false }: Props = $props();
 
-	let noBorder = `rounded-box flex border-1 h-5 mr-2 w-5 block relative items-center justify-start overflow-hidden`
-	let border = `border border-primary ${noBorder}`
+	let noBorder = `rounded-box flex border-1 h-5 mr-2 w-5 block relative items-center justify-start overflow-hidden`;
+	let border = `border border-primary ${noBorder}`;
 </script>
 
 <span class={met ? noBorder : border}>
 	{#if met}
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			class="bg-primary text-primary-content block h-5 w-5 fill-current"
+			class="block h-5 w-5 bg-primary fill-current text-primary-content"
 			viewBox="0 0 20 20"
 			fill="currentColor"
 		>

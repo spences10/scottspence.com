@@ -1,10 +1,10 @@
 <script lang="ts">
 	interface Props {
-		height?: string
-		width?: string
+		height?: string;
+		width?: string;
 	}
 
-	let { height = '20px', width = '20px' }: Props = $props()
+	let { height = '20px', width = '20px' }: Props = $props();
 </script>
 
 <svg
@@ -12,7 +12,7 @@
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	aria-hidden="true"
 	role="img"
-	class="text-primary-content inline-block fill-current"
+	class="inline-block fill-current text-primary-content"
 	{height}
 	{width}
 	preserveAspectRatio="xMidYMid meet"

@@ -167,4 +167,4 @@ fly deploy --build-arg TURSO_DB_URL=$TURSO_DB_URL --build-arg TURSO_DB_AUTH_TOKE
 <!-- Links -->
 
 [Building Session Analytics with SvelteKit and Turso DB]:
-  https://scottspence.com/posts/building-session-analytics-sveltekit-turso-db
+	https://scottspence.com/posts/building-session-analytics-sveltekit-turso-db

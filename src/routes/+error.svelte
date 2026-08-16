@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { page } from '$app/stores'
-	import { PopularPosts } from '$lib/components'
+	import { page } from '$app/stores';
+	import { PopularPosts } from '$lib/components';
 </script>
 
 <svelte:head>

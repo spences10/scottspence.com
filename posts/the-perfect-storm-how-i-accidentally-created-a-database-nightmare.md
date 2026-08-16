@@ -45,14 +45,14 @@ red flag! 😂
 
 ```typescript
 // BEFORE (the "slow" JavaScript version)
-const current_embedding = await get_post_embedding(post_id)
-const all_posts = await get_all_other_embeddings(post_id)
+const current_embedding = await get_post_embedding(post_id);
+const all_posts = await get_all_other_embeddings(post_id);
 
 // Calculate similarities in JavaScript
 const similarities = all_posts.map((row) => ({
 	post_id: row.post_id,
 	similarity: cosine_similarity(current_embedding, row.embedding),
-}))
+}));
 ```
 
 **AFTER (the "optimized" SQL version):**
@@ -112,9 +112,9 @@ removed the persistent caching without realizing it.
 ```typescript
 // API endpoint with proper persistent caching
 export const load = async ({ fetch }) => {
-	const res = await fetch(`../api/fetch-popular-posts`)
+	const res = await fetch(`../api/fetch-popular-posts`);
 	// Returns cached data, only hits DB when cache expires
-}
+};
 ```
 
 **After (broken):**
@@ -122,9 +122,9 @@ export const load = async ({ fetch }) => {
 ```typescript
 // Direct state management without persistent cache
 export const load = async () => {
-	const popular_posts = await get_popular_posts()
+	const popular_posts = await get_popular_posts();
 	// Hits database on every page load if cache is empty
-}
+};
 ```
 
 The server-side cache I added was just an in-memory `Map()` that gets
@@ -215,11 +215,11 @@ straightforward:
 
 ```typescript
 // Two separate queries instead of correlated subquery
-const target_embedding = await get_post_embedding(post_id) // 1 read
+const target_embedding = await get_post_embedding(post_id); // 1 read
 const similarities = await calculate_similarities(
 	target_embedding,
 	post_id,
-) // 1 read
+); // 1 read
 // Total: 2 reads instead of 51,076 reads per post
 ```
 

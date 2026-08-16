@@ -1,18 +1,18 @@
 <script lang="ts">
-	import ReactionsLeaderboard from '$lib/components/reactions-leaderboard.svelte'
-	import { name, website } from '$lib/info.js'
-	import { create_seo_config } from '$lib/seo'
-	import { og_image_url } from '$lib/utils/og-image-url-build.js'
-	import { Head } from 'svead'
+	import ReactionsLeaderboard from '$lib/components/reactions-leaderboard.svelte';
+	import { name, website } from '$lib/info.js';
+	import { create_seo_config } from '$lib/seo';
+	import { og_image_url } from '$lib/utils/og-image-url-build.js';
+	import { Head } from 'svead';
 
 	interface Props {
-		data: { leaderboard: ReactionEntry[] }
+		data: { leaderboard: ReactionEntry[] };
 	}
 
-	let { data }: Props = $props()
-	let leaderboard = $derived(data.leaderboard ?? [])
+	let { data }: Props = $props();
+	let leaderboard = $derived(data.leaderboard ?? []);
 
-	const url = `${website}/reactions-leaderboard`
+	const url = `${website}/reactions-leaderboard`;
 
 	const seo_config = create_seo_config({
 		title: `Reactions leaderboard - ${name}`,
@@ -24,7 +24,7 @@
 		),
 		url: url,
 		slug: 'reactions-leaderboard',
-	})
+	});
 </script>
 
 <Head {seo_config} />

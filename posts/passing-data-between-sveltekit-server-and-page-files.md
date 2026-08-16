@@ -46,11 +46,11 @@ header component, for the user information:
 // src/routes/some/route/+page.server.ts
 // ❌ BAD: Exposing sensitive information
 export const load = async () => {
-	const user = await get_user(user_id)
+	const user = await get_user(user_id);
 	return {
 		user, // Could contain sensitive stuff like password hash, API keys, etc.
-	}
-}
+	};
+};
 ```
 
 Oops! This is going to send EVERYTHING in the `user` object to the
@@ -64,7 +64,7 @@ Instead, do this:
 // src/routes/some/route/+page.server.ts
 // ✅ GOOD: Sanitizing data before returning
 export const load = async ({ locals }) => {
-	const user = await get_user(locals.user?.id)
+	const user = await get_user(locals.user?.id);
 	return {
 		user: {
 			id: user.id,
@@ -72,8 +72,8 @@ export const load = async ({ locals }) => {
 			email: user.email,
 			// Only the stuff you need on the client!
 		},
-	}
-}
+	};
+};
 ```
 
 ## So, `locals.user` approach?
@@ -87,25 +87,25 @@ security practices built in:
 
 ```javascript
 // lib/server/lucia.js
-import { lucia } from 'lucia'
-import { sveltekit } from 'lucia/middleware'
+import { lucia } from 'lucia';
+import { sveltekit } from 'lucia/middleware';
 
 export const auth = lucia({
 	adapter: YOUR_ADAPTER,
 	env: 'DEV',
 	middleware: sveltekit(),
 	// ...
-})
+});
 
 // hooks.server.js
-import { auth } from '$lib/server/lucia'
+import { auth } from '$lib/server/lucia';
 
 export const handle = async ({ event, resolve }) => {
-	const authRequest = auth.handleRequest(event)
-	event.locals.auth = authRequest
+	const authRequest = auth.handleRequest(event);
+	event.locals.auth = authRequest;
 	// ...
-	return resolve(event)
-}
+	return resolve(event);
+};
 ```
 
 If you're still using the `locals.user` approach, it's fine, just make
@@ -128,13 +128,13 @@ export const actions = {
 	update_profile: async ({ request, locals }) => {
 		// validate auth
 		if (!locals.user) {
-			return { success: false, message: 'Not authenticated' }
+			return { success: false, message: 'Not authenticated' };
 		}
 
 		// get form data
-		const data = await request.formData()
-		const name = data.get('name')
-		const bio = data.get('bio')
+		const data = await request.formData();
+		const name = data.get('name');
+		const bio = data.get('bio');
 
 		// do some validation
 		if (!name) {
@@ -142,22 +142,22 @@ export const actions = {
 				success: false,
 				field: 'name',
 				message: 'Name is required',
-			}
+			};
 		}
 
 		// update in database
 		await db.user.update({
 			where: { id: locals.user.id },
 			data: { name, bio },
-		})
+		});
 
 		// return success - only this data gets sent to client
 		return {
 			success: true,
 			user: { name, bio }, // sanitized - no sensitive data!
-		}
+		};
 	},
-}
+};
 ```
 
 And it's super easy to use in your `+page.svelte` barely an
@@ -165,8 +165,8 @@ inconvenience:
 
 ```svelte
 <script>
-	import { enhance } from '$app/forms'
-	let form = $page
+	import { enhance } from '$app/forms';
+	let form = $page;
 </script>
 
 <form method="POST" action="?/update_profile" use:enhance>
@@ -213,14 +213,14 @@ watch out for this:
 // +page.ts
 export const load = async ({ parent, data }) => {
 	// ⚠️ This creates a loading waterfall
-	await parent()
+	await parent();
 
 	// Client-side stuff...
 	return {
 		...data,
 		clientStuff: doSomethingOnClient(data),
-	}
-}
+	};
+};
 ```
 
 That `await parent()` can create a loading waterfall. Only use it when

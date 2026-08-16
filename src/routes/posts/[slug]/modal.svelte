@@ -1,49 +1,49 @@
 <script lang="ts">
-	import { StatsCard } from '$lib/components'
-	import { get_post_analytics } from '$lib/data/post-analytics.remote'
+	import { StatsCard } from '$lib/components';
+	import { get_post_analytics } from '$lib/data/post-analytics.remote';
 
 	let {
 		slug,
 		title,
 		onclose,
 	}: {
-		slug: string
-		title: string
-		onclose: () => void
-	} = $props()
+		slug: string;
+		title: string;
+		onclose: () => void;
+	} = $props();
 
-	let modal_element = $state<HTMLDialogElement>()
-	let analytics_data = $state<PostAnalytics | null>(null)
-	let is_loading = $state(false)
-	let error = $state<string | null>(null)
+	let modal_element = $state<HTMLDialogElement>();
+	let analytics_data = $state<PostAnalytics | null>(null);
+	let is_loading = $state(false);
+	let error = $state<string | null>(null);
 
 	export const show_modal = async () => {
-		modal_element?.showModal()
-		await fetch_analytics()
-	}
+		modal_element?.showModal();
+		await fetch_analytics();
+	};
 
 	export const close_modal = () => {
-		modal_element?.close()
-	}
+		modal_element?.close();
+	};
 
 	const fetch_analytics = async () => {
-		is_loading = true
-		error = null
+		is_loading = true;
+		error = null;
 		try {
-			analytics_data = await get_post_analytics(slug)
+			analytics_data = await get_post_analytics(slug);
 		} catch (err) {
-			error = 'Failed to load analytics data'
-			console.error('Error fetching analytics:', err)
+			error = 'Failed to load analytics data';
+			console.error('Error fetching analytics:', err);
 		} finally {
-			is_loading = false
+			is_loading = false;
 		}
-	}
+	};
 
 	const handle_keydown = (event: KeyboardEvent) => {
 		if (event.key === 'Enter' || event.key === 'Space') {
-			onclose()
+			onclose();
 		}
-	}
+	};
 </script>
 
 <dialog
@@ -55,7 +55,7 @@
 		<div class="modal-content">
 			{#if is_loading}
 				<div class="flex justify-center p-8">
-					<span class="loading loading-spinner loading-lg"></span>
+					<span class="loading loading-lg loading-spinner"></span>
 				</div>
 			{:else if error}
 				<div class="alert alert-error">

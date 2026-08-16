@@ -208,16 +208,16 @@ pretty swish!
 [spaceship zsh]: https://github.com/denysdovhan/spaceship-prompt
 [zsh wiki themes]: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 [external themes for zsh]:
-  https://github.com/ohmyzsh/ohmyzsh/wiki/External-themes
+	https://github.com/ohmyzsh/ohmyzsh/wiki/External-themes
 [powerlevel10k]: https://github.com/romkatv/powerlevel10k
 [oh my zsh]: https://github.com/ohmyzsh/ohmyzsh
 [linux on windows wsl2 zsh docker]:
-  https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker#zsh
+	https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker#zsh
 [zsh-syntax-highlighting]:
-  https://github.com/zsh-users/zsh-syntax-highlighting
+	https://github.com/zsh-users/zsh-syntax-highlighting
 [zsh-autosuggestions]:
-  https://github.com/zsh-users/zsh-autosuggestions
+	https://github.com/zsh-users/zsh-autosuggestions
 [video from gotbletu]: https://www.youtube.com/watch?v=WTTIGjZAMGg
 [github repo]:
-  https://github.com/gotbletu/shownotes/blob/master/zsh_global_alias_expansion.md
+	https://github.com/gotbletu/shownotes/blob/master/zsh_global_alias_expansion.md
 [`dotfiles`]: https://github.com/spences10/dotfiles

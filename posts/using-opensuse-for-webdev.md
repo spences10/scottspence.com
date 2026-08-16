@@ -142,6 +142,6 @@ Thanks for reading 🙌
 
 [install yarn]: https://www.osradar.com/install-yarn-opensuse-15-1/
 [on the windows store]:
-  https://www.microsoft.com/en-us/p/opensuse-leap-152/9mzd0n9z4m4h?activetab=pivot:overviewtabb
+	https://www.microsoft.com/en-us/p/opensuse-leap-152/9mzd0n9z4m4h?activetab=pivot:overviewtabb
 [notes on it]: https://scottspence.com/posts/zsh-and-oh-my-zsh/
 [full customisation]: https://www.youtube.com/watch?v=4cp-GcZxB-g

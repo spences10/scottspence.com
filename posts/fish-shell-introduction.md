@@ -220,11 +220,11 @@ Thanks 👍
 <!-- Links -->
 
 [omf themes markdown doc]:
-  https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md
+	https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md
 [extensive list]:
-  https://github.com/oh-my-fish/packages-main/tree/master/packages
+	https://github.com/oh-my-fish/packages-main/tree/master/packages
 [oh my fish]: https://github.com/oh-my-fish/oh-my-fish
 [the v3 package]:
-  https://github.com/fish-shell/fish-shell#packages-for-linux
+	https://github.com/fish-shell/fish-shell#packages-for-linux
 [yarn site]:
-  https://classic.yarnpkg.com/en/docs/install/#debian-stable
+	https://classic.yarnpkg.com/en/docs/install/#debian-stable

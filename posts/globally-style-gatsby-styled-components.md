@@ -66,12 +66,12 @@ To start with I'll create the `GlobalStyle` object and add in the the
 reset.
 
 ```jsx
-import { createGlobalStyle } from 'styled-components'
-import reset from 'styled-reset'
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 export const GlobalStyle = createGlobalStyle`
   ${reset}
-`
+`;
 ```
 
 ## Remove current styling
@@ -81,11 +81,11 @@ it's the `import './layout.css'` line, I'll also delete the
 `layout.css` file as I'm going to be adding in my styles.
 
 ```jsx {5}
-import { graphql, useStaticQuery } from 'gatsby'
-import PropTypes from 'prop-types'
-import React from 'react'
-import Header from './header'
-import './layout.css'
+import { graphql, useStaticQuery } from 'gatsby';
+import PropTypes from 'prop-types';
+import React from 'react';
+import Header from './header';
+import './layout.css';
 ```
 
 Now the site has the base browser default styles, time to add in my
@@ -136,8 +136,8 @@ Time to add in some more styles to the global style. First, the
 for a great explanation of why we do this.
 
 ```jsx {7-12}
-import { createGlobalStyle } from 'styled-components'
-import reset from 'styled-reset'
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 export const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -148,7 +148,7 @@ export const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
   }
-`
+`;
 ```
 
 Then I'm adding in the smooth scroll html property and some additional
@@ -158,8 +158,8 @@ letter spacing and background colour.
 <!-- cSpell:ignore behavior,Segoe,Tahoma,Verdana -->
 
 ```jsx {12-15,17-21}
-import { createGlobalStyle } from 'styled-components'
-import reset from 'styled-reset'
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 export const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -179,7 +179,7 @@ export const GlobalStyle = createGlobalStyle`
     letter-spacing: 0;
     background-color: '#f7fafc';
   }
-`
+`;
 ```
 
 ## Place `GlobalStyle` at the top of the React tree 🌳
@@ -199,16 +199,16 @@ If I add in the following code to `gatsby-browser.js` the styles are
 applied.
 
 ```js
-import React from 'react'
-import Layout from './src/components/layout'
-import { GlobalStyle } from './src/theme/global-style'
+import React from 'react';
+import Layout from './src/components/layout';
+import { GlobalStyle } from './src/theme/global-style';
 
 export const wrapRootElement = ({ element }) => (
-  <>
-    <GlobalStyle />
-    <Layout>{element}</Layout>
-  </>
-)
+	<>
+		<GlobalStyle />
+		<Layout>{element}</Layout>
+	</>
+);
 ```
 
 I also have a double header, that's because the layout component is
@@ -227,9 +227,9 @@ to the root of the project. I'll import that into both the
 `gatsby-browser.js` and `gatsby-ssr.js` files:
 
 ```js
-import { wrapRootElement as wrap } from './root-wrapper'
+import { wrapRootElement as wrap } from './root-wrapper';
 
-export const wrapRootElement = wrap
+export const wrapRootElement = wrap;
 ```
 
 ## Global fonts with `gatsby-plugin-google-fonts`
@@ -295,16 +295,16 @@ For the font I'll add in the types I defined in the Gatsby config, for
 serif, sans serif and monospace.
 
 ```jsx {4-10}
-import { createGlobalStyle } from 'styled-components'
-import reset from 'styled-reset'
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 export const theme = {
-  font: {
-    sans: 'Cambay, sans-serif',
-    serif: 'Arvo, sans',
-    monospace: '"Ubuntu Mono", monospace',
-  },
-}
+	font: {
+		sans: 'Cambay, sans-serif',
+		serif: 'Arvo, sans',
+		monospace: '"Ubuntu Mono", monospace',
+	},
+};
 
 export const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -324,7 +324,7 @@ export const GlobalStyle = createGlobalStyle`
     letter-spacing: 0;
     background-color: '#f7fafc';
   }
-`
+`;
 ```
 
 Now I'll need to add the `<ThemeProvider>` high up in the React render
@@ -332,17 +332,17 @@ tree, same as with the global style, I'll add it to the
 `root-wrapper.js` file.
 
 ```jsx {2,4,7,10}
-import React from 'react'
-import { ThemeProvider } from 'styled-components'
-import Layout from './src/components/layout'
-import { GlobalStyle, theme } from './src/theme/global-style'
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
+import Layout from './src/components/layout';
+import { GlobalStyle, theme } from './src/theme/global-style';
 
 export const wrapRootElement = ({ element }) => (
-  <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <Layout>{element}</Layout>
-  </ThemeProvider>
-)
+	<ThemeProvider theme={theme}>
+		<GlobalStyle />
+		<Layout>{element}</Layout>
+	</ThemeProvider>
+);
 ```
 
 When I want to pick a font type to use in the project I can use the
@@ -369,7 +369,7 @@ export const GlobalStyle = createGlobalStyle`
     letter-spacing: 0;
     background-color: '#f7fafc';
   }
-`
+`;
 ```
 
 The base font is now set to Cambay, why stop there though, I'll bring
@@ -377,39 +377,39 @@ in some fonts sizes and font weights from the [Tailwind full config]
 and add them to the `theme` object.
 
 ```jsx {10-32,45}
-import { createGlobalStyle } from 'styled-components'
-import reset from 'styled-reset'
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 export const theme = {
-  font: {
-    sans: 'Cambay, sans-serif',
-    serif: 'Arvo, sans',
-    monospace: '"Ubuntu Mono", monospace',
-  },
-  fontSize: {
-    xs: '0.75rem',
-    sm: '0.875rem',
-    base: '1rem',
-    lg: '1.125rem',
-    xl: '1.25rem',
-    '2xl': '1.5rem',
-    '3xl': '1.875rem',
-    '4xl': '2.25rem',
-    '5xl': '3rem',
-    '6xl': '4rem',
-  },
-  fontWeight: {
-    hairline: '100',
-    thin: '200',
-    light: '300',
-    normal: '400',
-    medium: '500',
-    semibold: '600',
-    bold: '700',
-    extrabold: '800',
-    black: '900',
-  },
-}
+	font: {
+		sans: 'Cambay, sans-serif',
+		serif: 'Arvo, sans',
+		monospace: '"Ubuntu Mono", monospace',
+	},
+	fontSize: {
+		xs: '0.75rem',
+		sm: '0.875rem',
+		base: '1rem',
+		lg: '1.125rem',
+		xl: '1.25rem',
+		'2xl': '1.5rem',
+		'3xl': '1.875rem',
+		'4xl': '2.25rem',
+		'5xl': '3rem',
+		'6xl': '4rem',
+	},
+	fontWeight: {
+		hairline: '100',
+		thin: '200',
+		light: '300',
+		normal: '400',
+		medium: '500',
+		semibold: '600',
+		bold: '700',
+		extrabold: '800',
+		black: '900',
+	},
+};
 
 export const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -429,7 +429,7 @@ export const GlobalStyle = createGlobalStyle`
     letter-spacing: 0;
     background-color: '#f7fafc';
   }
-`
+`;
 ```
 
 I'll add the base font at `.lg` (`1.125rem`), I'll also add in line
@@ -457,7 +457,7 @@ export const GlobalStyle = createGlobalStyle`
     letter-spacing: ${({ theme }) => theme.letterSpacing.wide};
     background-color: ${({ theme }) => theme.colours.white};
   }
-`
+`;
 ```
 
 ## Shared Page Elements
@@ -475,31 +475,31 @@ touch src/components/page-elements/p.js
 And add some base styles to those for `h1`:
 
 ```jsx
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const H1 = styled.h1`
-  font-size: ${({ theme }) => theme.fontSize['4xl']};
-  font-family: ${({ theme }) => theme.font.serif};
-  margin-top: ${({ theme }) => theme.spacing[8]};
-  line-height: ${({ theme }) => theme.lineHeight.none};
-`
+	font-size: ${({ theme }) => theme.fontSize['4xl']};
+	font-family: ${({ theme }) => theme.font.serif};
+	margin-top: ${({ theme }) => theme.spacing[8]};
+	line-height: ${({ theme }) => theme.lineHeight.none};
+`;
 ```
 
 And the same sort of thing for the `p`:
 
 ```jsx
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const P = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.base};
-  margin-top: ${({ theme }) => theme.spacing[3]};
-  strong {
-    font-weight: bold;
-  }
-  em {
-    font-style: italic;
-  }
-`
+	font-size: ${({ theme }) => theme.fontSize.base};
+	margin-top: ${({ theme }) => theme.spacing[3]};
+	strong {
+		font-weight: bold;
+	}
+	em {
+		font-style: italic;
+	}
+`;
 ```
 
 Then it's a case of replacing the `h1`'s and `p`'s in the project to
@@ -508,27 +508,27 @@ use the styled components.
 Here's the `index.js` file as an example:
 
 ```jsx {4-5,11-13}
-import { Link } from 'gatsby'
-import React from 'react'
-import Image from '../components/image'
-import { H1 } from '../components/page-elements/h1'
-import { P } from '../components/page-elements/p'
-import SEO from '../components/seo'
+import { Link } from 'gatsby';
+import React from 'react';
+import Image from '../components/image';
+import { H1 } from '../components/page-elements/h1';
+import { P } from '../components/page-elements/p';
+import SEO from '../components/seo';
 
 const IndexPage = () => (
-  <>
-    <SEO title="Home" />
-    <H1>Hi people</H1>
-    <P>Welcome to your new Gatsby site.</P>
-    <P>Now go build something great.</P>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </>
-)
+	<>
+		<SEO title="Home" />
+		<H1>Hi people</H1>
+		<P>Welcome to your new Gatsby site.</P>
+		<P>Now go build something great.</P>
+		<div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+			<Image />
+		</div>
+		<Link to="/page-2/">Go to page 2</Link>
+	</>
+);
 
-export default IndexPage
+export default IndexPage;
 ```
 
 ## Export all your styled-components from an index file
@@ -541,8 +541,8 @@ Let's take a quick look at that, so let's say I import the `h1` and
 `p` into a file, it'll looks something like this:
 
 ```jsx
-import { H1 } from '../components/page-elements/h1'
-import { P } from '../components/page-elements/p'
+import { H1 } from '../components/page-elements/h1';
+import { P } from '../components/page-elements/p';
 ```
 
 If you have several elements your using in the file the imports could
@@ -552,14 +552,14 @@ I've taken to creating an `index.js` file that will export all the
 components, like this:
 
 ```jsx
-export * from './h1'
-export * from './p'
+export * from './h1';
+export * from './p';
 ```
 
 Then when importing the components it will look like this:
 
 ```jsx
-import { H1, P } from '../components/page-elements'
+import { H1, P } from '../components/page-elements';
 ```
 
 That's it for this one!
@@ -588,33 +588,33 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 <!-- Links -->
 
 [past with styled-components v4]:
-  https://scottspence.com/posts/gatsby-starter-to-styled-components/
+	https://scottspence.com/posts/gatsby-starter-to-styled-components/
 [wraprootelement]:
-  https://www.gatsbyjs.com/docs/browser-apis/#wrapRootElement
+	https://www.gatsbyjs.com/docs/browser-apis/#wrapRootElement
 [v5 release]: https://styled-components.com/releases#v5.0.0
 [detailed here]:
-  https://scottspence.com/posts/gatsby-starter-to-styled-components/#3-global-style
+	https://scottspence.com/posts/gatsby-starter-to-styled-components/#3-global-style
 [box sizing]: https://css-tricks.com/box-sizing/#article-header-id-3
 [styled-components themeprovider]:
-  https://styled-components.com/docs/api#themeprovider
+	https://styled-components.com/docs/api#themeprovider
 [introduction to tailwind and the utility first workflow]:
-  https://egghead.io/playlists/introduction-to-tailwind-and-the-utility-first-workflow-0b697b10
+	https://egghead.io/playlists/introduction-to-tailwind-and-the-utility-first-workflow-0b697b10
 [design and implement common tailwind components]:
-  https://egghead.io/playlists/design-and-implement-common-tailwind-components-8fbb9b19
+	https://egghead.io/playlists/design-and-implement-common-tailwind-components-8fbb9b19
 [build a responsive navbar with tailwind]:
-  https://egghead.io/playlists/build-a-responsive-navbar-with-tailwind-4d328a35
+	https://egghead.io/playlists/build-a-responsive-navbar-with-tailwind-4d328a35
 [build and style a dropdown in tailwind]:
-  https://egghead.io/playlists/build-and-style-a-dropdown-in-tailwind-7f34fead
+	https://egghead.io/playlists/build-and-style-a-dropdown-in-tailwind-7f34fead
 [i wrote about]:
-  https://scottspence.com/posts/react-advanced-london-2019/#siddharth-kshetrapal---design-systems-design-system
+	https://scottspence.com/posts/react-advanced-london-2019/#siddharth-kshetrapal---design-systems-design-system
 [design systems design system - siddharth kshetrapal]:
-  https://www.youtube.com/watch?v=Dd-Y9K7IKmk&feature=emb_title
+	https://www.youtube.com/watch?v=Dd-Y9K7IKmk&feature=emb_title
 [tailwind full config]:
-  https://github.com/tailwindcss/designing-with-tailwindcss/blob/master/01-getting-up-and-running/07-customizing-your-design-system/tailwind-full.config.js
+	https://github.com/tailwindcss/designing-with-tailwindcss/blob/master/01-getting-up-and-running/07-customizing-your-design-system/tailwind-full.config.js
 [twitter]: https://twitter.com/spences10
 [ask me anything]: https://github.com/spences10/ama
 
 <!-- Images -->
 
 [reset page]:
-  https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/reset-page-39c26fbeac89322ffc9491b0efa0ad13.png
+	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/reset-page-39c26fbeac89322ffc9491b0efa0ad13.png

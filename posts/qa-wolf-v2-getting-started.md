@@ -21,25 +21,25 @@ If you want to use the other browsers that are part of QA Wolf you can
 specify them in the `launch` function:
 
 ```js
-const { context } = await launch({ browser: 'firefox' })
+const { context } = await launch({ browser: 'firefox' });
 // launch({browser: 'chromium'})
 // launch({ browser: 'firefox' })
 // launch({ browser: 'webkit' })
-const page = await context.newPage()
+const page = await context.newPage();
 ```
 
 ## CI-CD configuration
 
 ```js
-process.env.URL || 'https://scottspence.com'
+process.env.URL || 'https://scottspence.com';
 ```
 
 ```js
-launch({ browser: 'firefox' })
+launch({ browser: 'firefox' });
 
-launch({ browser: 'webkit' })
+launch({ browser: 'webkit' });
 
-launch({ browser: process.env.BROWSER })
+launch({ browser: process.env.BROWSER });
 ```
 
 https://www.qawolf.com/docs/use-localhost#test-localhost

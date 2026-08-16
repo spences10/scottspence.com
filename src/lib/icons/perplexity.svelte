@@ -1,9 +1,9 @@
 <script lang="ts">
 	interface Props {
-		height?: string
-		width?: string
-		class_props?: string
-		aria_label?: string
+		height?: string;
+		width?: string;
+		class_props?: string;
+		aria_label?: string;
 	}
 
 	let {
@@ -11,12 +11,12 @@
 		width = '20px',
 		class_props = '',
 		aria_label,
-	}: Props = $props()
+	}: Props = $props();
 </script>
 
 <svg
 	xmlns="http://www.w3.org/2000/svg"
-	class="text-secondary-content hover:text-secondary block fill-current transition {class_props}"
+	class="block fill-current text-secondary-content transition hover:text-secondary {class_props}"
 	{width}
 	{height}
 	aria-hidden={aria_label ? undefined : 'true'}

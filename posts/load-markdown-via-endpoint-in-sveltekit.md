@@ -109,31 +109,31 @@ Finally, I'll return the HTML output as a `Response` object, note the
 headers content type as `text/html`.
 
 ```ts
-import { readFile } from 'fs'
-import { marked } from 'marked'
-import type { RequestHandler } from './$types'
+import { readFile } from 'fs';
+import { marked } from 'marked';
+import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async () => {
-  const getMarkdown = () => {
-    return new Promise((resolve, reject) => {
-      readFile(`src/lib/copy/intro.md`, 'utf8', (err, data) => {
-        if (err) {
-          reject(err)
-        }
-        resolve(data)
-      })
-    })
-  }
+	const getMarkdown = () => {
+		return new Promise((resolve, reject) => {
+			readFile(`src/lib/copy/intro.md`, 'utf8', (err, data) => {
+				if (err) {
+					reject(err);
+				}
+				resolve(data);
+			});
+		});
+	};
 
-  let markdown = (await getMarkdown()) as string
-  let html = marked(markdown)
+	let markdown = (await getMarkdown()) as string;
+	let html = marked(markdown);
 
-  return new Response(html, {
-    headers: {
-      'content-type': 'text/html',
-    },
-  })
-}
+	return new Response(html, {
+		headers: {
+			'content-type': 'text/html',
+		},
+	});
+};
 ```
 
 Sweet! So now that I have an endpoint that should return HTML. I can
@@ -161,33 +161,33 @@ content now. I'm passing the file name this time to load the same file
 in the query parameter.
 
 ```ts
-import { readFile } from 'fs'
-import { marked } from 'marked'
-import type { RequestHandler } from './$types'
+import { readFile } from 'fs';
+import { marked } from 'marked';
+import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async ({ url }) => {
-  let file = url.searchParams.get('file')
+	let file = url.searchParams.get('file');
 
-  const getMarkdown = () => {
-    return new Promise((resolve, reject) => {
-      readFile(`src/lib/copy/${file}.md`, 'utf8', (err, data) => {
-        if (err) {
-          reject(err)
-        }
-        resolve(data)
-      })
-    })
-  }
+	const getMarkdown = () => {
+		return new Promise((resolve, reject) => {
+			readFile(`src/lib/copy/${file}.md`, 'utf8', (err, data) => {
+				if (err) {
+					reject(err);
+				}
+				resolve(data);
+			});
+		});
+	};
 
-  let markdown = (await getMarkdown()) as string
-  let html = marked(markdown)
+	let markdown = (await getMarkdown()) as string;
+	let html = marked(markdown);
 
-  return new Response(html, {
-    headers: {
-      'content-type': 'text/html',
-    },
-  })
-}
+	return new Response(html, {
+		headers: {
+			'content-type': 'text/html',
+		},
+	});
+};
 ```
 
 That's the endpoint sorted. Now I can fetch the data from the endpoint
@@ -212,13 +212,13 @@ I'll create a `html` variable and return that as the `data` from the
 `load` function.
 
 ```ts
-import type { PageLoad } from './$types'
+import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ fetch }) => {
-  const res = await fetch(`parse-markdown?file=intro`)
-  const html = await res.text()
-  return { html }
-}
+	const res = await fetch(`parse-markdown?file=intro`);
+	const html = await res.text();
+	return { html };
+};
 ```
 
 The `data` (`data.html` in this case) will now be available to the
@@ -231,13 +231,13 @@ out the HTML using the Svelte `@html` directive.
 
 ```svelte
 <script lang="ts">
-  import type { PageData } from './$types'
+	import type { PageData } from './$types';
 
-  export let data: PageData
+	export let data: PageData;
 </script>
 
 <div class="prose">
-  {@html data.html}
+	{@html data.html}
 </div>
 ```
 

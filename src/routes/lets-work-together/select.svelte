@@ -1,12 +1,17 @@
 <script lang="ts">
 	interface Props {
-		id: string
-		label: string
-		selected: string
-		options: string[]
+		id: string;
+		label: string;
+		selected: string;
+		options: string[];
 	}
 
-	let { id, label, selected = $bindable(), options }: Props = $props()
+	let {
+		id,
+		label,
+		selected = $bindable(),
+		options,
+	}: Props = $props();
 </script>
 
 <fieldset>
@@ -17,7 +22,7 @@
 	<select
 		{id}
 		bind:value={selected}
-		class="select select-sm rounded-box w-full text-sm"
+		class="select w-full rounded-box text-sm select-sm"
 	>
 		{#each options as option}
 			<option value={option}>{option}</option>

@@ -68,12 +68,12 @@ Here's what I was doing in my backup code:
 
 ```typescript
 // ❌ DON'T DO THIS
-import { copyFile } from 'node:fs/promises'
+import { copyFile } from 'node:fs/promises';
 
-const db_path = '/app/data/site-data.db'
-const backup_path = `/app/data/backups/site-data-${date}.db`
+const db_path = '/app/data/site-data.db';
+const backup_path = `/app/data/backups/site-data-${date}.db`;
 
-await copyFile(db_path, backup_path)
+await copyFile(db_path, backup_path);
 ```
 
 Looks innocent enough, right? **Wrong.**
@@ -197,22 +197,22 @@ correctly. Here's what the fixed code looks like:
 
 ```typescript
 // ✅ DO THIS
-import Database from 'better-sqlite3'
+import Database from 'better-sqlite3';
 
-const db_path = '/app/data/site-data.db'
+const db_path = '/app/data/site-data.db';
 const timestamp = new Date()
 	.toISOString()
 	.slice(0, 13)
-	.replace('T', '-')
-const backup_path = `/app/data/backups/site-data-${timestamp}00.db`
+	.replace('T', '-');
+const backup_path = `/app/data/backups/site-data-${timestamp}00.db`;
 
-const source_db = new Database(db_path, { readonly: true })
+const source_db = new Database(db_path, { readonly: true });
 
 try {
-	await source_db.backup(backup_path)
-	console.log(`Backup created: ${backup_path}`)
+	await source_db.backup(backup_path);
+	console.log(`Backup created: ${backup_path}`);
 } finally {
-	source_db.close()
+	source_db.close();
 }
 ```
 
