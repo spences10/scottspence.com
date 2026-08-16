@@ -1,6 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { Envelope, Megaphone, News, Tag } from '$lib/icons';
+	import {
+		Envelope,
+		Megaphone,
+		News,
+		Tag,
+	} from '#lib/icons/index.js';
 
 	const links = [
 		{ href: '/posts', title: 'Posts', icon: News },

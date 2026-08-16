@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { scale_and_fade } from '$lib/utils';
+	import { scale_and_fade } from '#lib/utils/index.js';
 </script>
 
 <div

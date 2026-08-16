@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { scale_and_fade } from '$lib/utils';
-	import type { ActionResult } from '@sveltejs/kit';
+	import type { ActionResult } from '$app/forms';
+	import { scale_and_fade } from '#lib/utils/index.js';
 	import FailureMessage from './failure-message.svelte';
 	import { button_disabled } from './index';
 	import SignupForm from './signup-form.svelte';

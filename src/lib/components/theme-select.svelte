@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { themes } from '$lib/themes';
+	import { themes } from '#lib/themes/index.js';
 	import { onMount } from 'svelte';
 
 	let current_theme = $state('');

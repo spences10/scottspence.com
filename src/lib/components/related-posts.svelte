@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { track_click } from '$lib/analytics/track-click.remote';
+	import { page } from '$app/state';
+	import { track_click } from '#lib/analytics/track-click.remote.js';
 
 	interface RelatedPost {
 		slug: string;
@@ -27,6 +28,7 @@
 					onclick={() =>
 						track_click({
 							event_name: `related post click: ${post.title}`,
+							path: page.url.pathname,
 						})}
 					class="h-full"
 				>

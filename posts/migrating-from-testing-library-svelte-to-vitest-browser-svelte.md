@@ -7,7 +7,7 @@ is_private: false
 ---
 
 <script>
-  import { Details, Banner } from '$lib/components'
+  import { Details, Banner } from '#lib/components/index.js'
 	import { Bluesky } from 'sveltekit-embed'
 
   const options = {

@@ -13,8 +13,6 @@ export const load: PageLoad = async ({ params, data }) => {
 			meta: { ...post.metadata, slug },
 		};
 	} catch {
-		error(404, {
-			message: 'Post not found',
-		});
+		error(404, 'Post not found');
 	}
 };

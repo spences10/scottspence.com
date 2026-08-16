@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { DateDistance as DD } from '$lib/components'
+  import { DateDistance as DD } from '#lib/components/index.js'
 </script>
 
 I was asking ChatGPT to read some posts from my site and summarise

@@ -1,5 +1,5 @@
-import { description, language, name, website } from '$lib/info';
-import { og_image_url } from '$lib/utils';
+import { description, language, name, website } from '#lib/info.js';
+import { og_image_url } from '#lib/utils/index.js';
 
 import type { SeoConfig } from 'svead';
 

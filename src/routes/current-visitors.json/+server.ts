@@ -1,5 +1,4 @@
-import { sqlite_client } from '$lib/sqlite/client';
-import { json } from '@sveltejs/kit';
+import { sqlite_client } from '#lib/sqlite/client.js';
 
 export const GET = async ({
 	getClientAddress,
@@ -10,7 +9,7 @@ export const GET = async ({
 }): Promise<Response> => {
 	const BYPASS_DB_READS = true; // Set to false to enable DB reads
 	if (BYPASS_DB_READS) {
-		return json({ visitor_data: [] });
+		return Response.json({ visitor_data: [] });
 	}
 
 	const client_address = getClientAddress();
@@ -48,9 +47,9 @@ export const GET = async ({
 			'DELETE FROM visitors WHERE last_visit < datetime("now", "-15 minutes");',
 		);
 
-		return json({ visitor_data: visitor_data });
+		return Response.json({ visitor_data: visitor_data });
 	} catch (error) {
 		console.error('Error:', error);
-		return json({ visitor_data: [] });
+		return Response.json({ visitor_data: [] });
 	}
 };

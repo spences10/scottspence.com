@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { DateDistance } from '$lib/components'
+  import { DateDistance } from '#lib/components/index.js'
 </script>
 
 Ok, it's high time I write about the Svelte head component I made back

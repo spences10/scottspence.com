@@ -1,4 +1,4 @@
-import { get_posts } from '$lib/data/posts.remote';
+import { get_posts } from '#lib/data/posts.remote.js';
 import { endOfYear, startOfYear } from 'date-fns';
 
 interface GroupedPosts {

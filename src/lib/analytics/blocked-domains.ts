@@ -1,5 +1,5 @@
-import { CACHE_DURATIONS } from '$lib/cache/server-cache';
-import { sqlite_client } from '$lib/sqlite/client';
+import { CACHE_DURATIONS } from '#lib/cache/server-cache.js';
+import { sqlite_client } from '#lib/sqlite/client.js';
 
 /**
  * Shared blocked referrer domains cache

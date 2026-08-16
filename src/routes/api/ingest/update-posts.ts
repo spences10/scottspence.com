@@ -1,4 +1,4 @@
-import { sqlite_client } from '$lib/sqlite/client';
+import { sqlite_client } from '#lib/sqlite/client.js';
 
 export const update_posts = async () => {
 	const client = sqlite_client;

@@ -1,6 +1,6 @@
 import { query } from '$app/server';
-import { EXCHANGE_RATE_API_KEY } from '$env/static/private';
-import { sqlite_client } from '$lib/sqlite/client';
+import { EXCHANGE_RATE_API_KEY } from '$app/env/private';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import { differenceInHours, parseISO } from 'date-fns';
 
 type ExchangeRates = {

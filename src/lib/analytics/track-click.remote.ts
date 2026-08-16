@@ -10,9 +10,10 @@ import { get_client_ip, get_visitor_hash } from './utils';
 export const track_click = command(
 	v.object({
 		event_name: v.string(),
+		path: v.string(),
 		context: v.optional(v.record(v.string(), v.unknown())),
 	}),
-	({ event_name, context }) => {
+	({ event_name, path, context }) => {
 		const event = getRequestEvent();
 		const request = event.request;
 		const ip = get_client_ip(request);
@@ -22,7 +23,7 @@ export const track_click = command(
 			event_name,
 			event_context: context ? JSON.stringify(context) : null,
 			visitor_hash: get_visitor_hash(ip, user_agent),
-			path: event.url.pathname,
+			path,
 			created_at: Date.now(),
 		});
 	},

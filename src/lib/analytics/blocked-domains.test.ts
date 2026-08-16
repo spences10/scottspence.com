@@ -1,4 +1,4 @@
-import { sqlite_client } from '$lib/sqlite/client';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import {
 	afterEach,
 	beforeEach,
@@ -14,13 +14,13 @@ import {
 	is_blocked_referrer,
 } from './blocked-domains';
 
-vi.mock('$lib/sqlite/client', () => ({
+vi.mock('#lib/sqlite/client.js', () => ({
 	sqlite_client: {
 		execute: vi.fn(),
 	},
 }));
 
-vi.mock('$lib/cache/server-cache', () => ({
+vi.mock('#lib/cache/server-cache.js', () => ({
 	CACHE_DURATIONS: {
 		blocked_domains: 5 * 60 * 1000,
 	},

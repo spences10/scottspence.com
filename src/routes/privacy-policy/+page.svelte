@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { name, website } from '$lib/info';
-	import { create_seo_config } from '$lib/seo';
-	import { og_image_url } from '$lib/utils';
+	import { name, website } from '#lib/info.js';
+	import { create_seo_config } from '#lib/seo/index.js';
+	import { og_image_url } from '#lib/utils/index.js';
 	import { Head } from 'svead';
 
 	interface Props {

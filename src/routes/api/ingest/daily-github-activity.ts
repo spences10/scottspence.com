@@ -1,6 +1,6 @@
-import { NEWSLETTER_GH_ACTIVITY_TOKEN } from '$env/static/private';
-import { insert_github_activity } from '$lib/newsletter/db-writer';
-import { fetch_github_activity } from '$lib/newsletter/github-fetcher';
+import { NEWSLETTER_GH_ACTIVITY_TOKEN } from '$app/env/private';
+import { insert_github_activity } from '#lib/newsletter/db-writer.js';
+import { fetch_github_activity } from '#lib/newsletter/github-fetcher.js';
 
 /**
  * Fetch and store yesterday's GitHub activity

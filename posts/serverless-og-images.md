@@ -7,7 +7,7 @@ is_private: false
 
 <script>
   import { Tweet, YouTube } from 'sveltekit-embed'
-  import { Details } from '$lib/components'
+  import { Details } from '#lib/components/index.js'
 </script>
 
 I recently purged all the cover images from this site to reduce the

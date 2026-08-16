@@ -1,5 +1,5 @@
-import { NEWSLETTER_GH_ACTIVITY_TOKEN } from '$env/static/private';
-import { fetch_github_activity as fetch_activity } from '$lib/newsletter/github-fetcher';
+import { NEWSLETTER_GH_ACTIVITY_TOKEN } from '$app/env/private';
+import { fetch_github_activity as fetch_activity } from '#lib/newsletter/github-fetcher.js';
 
 /**
  * Fetch GitHub activity for the authenticated user

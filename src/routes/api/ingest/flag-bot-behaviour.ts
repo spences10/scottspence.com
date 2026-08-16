@@ -1,5 +1,5 @@
-import { BOT_THRESHOLDS } from '$lib/analytics/bot-thresholds';
-import { sqlite_client } from '$lib/sqlite/client';
+import { BOT_THRESHOLDS } from '#lib/analytics/bot-thresholds.js';
+import { sqlite_client } from '#lib/sqlite/client.js';
 
 /**
  * Flag suspicious visitors as bots based on behaviour patterns

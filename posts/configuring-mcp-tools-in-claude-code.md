@@ -8,7 +8,7 @@ is_private: false
 <!-- cSpell:ignore modelcontextprotocol mcpServers spences10 sequentialthinking omnisearch -->
 
 <script>
-  import { Banner, Details } from '$lib/components'
+  import { Banner, Details } from '#lib/components/index.js'
 
   const options = {
     type: 'info',

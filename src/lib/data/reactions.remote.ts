@@ -5,10 +5,10 @@ import {
 	clear_cache,
 	get_from_cache,
 	set_cache,
-} from '$lib/cache/server-cache';
-import { reactions } from '$lib/reactions-config';
-import { ratelimit } from '$lib/redis';
-import { sqlite_client } from '$lib/sqlite/client';
+} from '#lib/cache/server-cache.js';
+import { reactions } from '#lib/reactions-config.js';
+import { ratelimit } from '#lib/redis/index.js';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import * as v from 'valibot';
 
 const allowed_reactions = reactions.map((r) => r.type);

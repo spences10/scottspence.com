@@ -1,16 +1,19 @@
-import { env } from '$env/dynamic/private';
-import { description, name, website } from '$lib/info';
+import {
+	ATPROTO_APP_PASSWORD,
+	ATPROTO_IDENTIFIER,
+	ATPROTO_SERVICE,
+} from '$app/env/private';
+import { description, name, website } from '#lib/info.js';
 import {
 	standard_site,
 	standard_site_document_rkey,
 	standard_site_publication_uri,
-} from '$lib/standard-site';
+} from '#lib/standard-site.js';
 import * as v from 'valibot';
 
 interface PostModule {
 	metadata: Post & { updated?: string };
 }
-
 interface Session {
 	accessJwt: string;
 	did: string;
@@ -47,7 +50,6 @@ const standard_site_sync_schema = v.object({
 export type StandardSiteSyncData = v.InferOutput<
 	typeof standard_site_sync_schema
 >;
-
 export const validate_standard_site_sync = (
 	data: unknown,
 ): StandardSiteSyncData => v.parse(standard_site_sync_schema, data);
@@ -132,9 +134,7 @@ export const build_standard_site_document = (
 			publishedAt: to_iso_date(metadata.date, slug),
 			...(description_text ? { description: description_text } : {}),
 			...(metadata.updated
-				? {
-						updatedAt: to_iso_date(metadata.updated, slug),
-					}
+				? { updatedAt: to_iso_date(metadata.updated, slug) }
 				: {}),
 			...(Array.isArray(metadata.tags) && metadata.tags.length > 0
 				? { tags: metadata.tags }
@@ -231,13 +231,15 @@ export const get_standard_site_icon = async (
 export const resolve_standard_site_pds = async (
 	fetch: typeof globalThis.fetch,
 ) => {
-	const configured_service = env.ATPROTO_SERVICE?.trim();
+	const configured_service = ATPROTO_SERVICE.trim();
+
 	if (configured_service)
 		return configured_service.replace(/\/$/, '');
 
 	const response = await fetch(
 		`https://plc.directory/${standard_site.did}`,
 	);
+
 	if (!response.ok) {
 		throw new Error(
 			`Unable to resolve AT Protocol identity (${response.status})`,
@@ -334,8 +336,7 @@ export const standard_site_sync = async (
 		);
 	}
 
-	const password = env[['ATPROTO', 'APP', 'PASSWORD'].join('_')];
-	if (!password) {
+	if (!ATPROTO_APP_PASSWORD) {
 		throw new Error('AT Protocol app password is not configured');
 	}
 
@@ -345,8 +346,8 @@ export const standard_site_sync = async (
 		service,
 		'com.atproto.server.createSession',
 		{
-			identifier: env.ATPROTO_IDENTIFIER ?? standard_site.did,
-			password,
+			identifier: ATPROTO_IDENTIFIER || standard_site.did,
+			password: ATPROTO_APP_PASSWORD,
 		},
 	);
 

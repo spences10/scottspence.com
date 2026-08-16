@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { submit_reaction } from '$lib/data/reactions.remote';
-	import { reactions } from '$lib/reactions-config';
+	import { submit_reaction } from '#lib/data/reactions.remote.js';
+	import { reactions } from '#lib/reactions-config.js';
 	import NumberFlip from './reactions-number-flip.svelte';
 
 	interface Props {
@@ -84,9 +84,11 @@
 
 <div class="all-prose">
 	<p>
-		There's a <a href={resolve('/reactions-leaderboard')}>
-			reactions leaderboard
-		</a> you can check out too.
+		There's a
+		<a href={resolve('reactions-leaderboard')}
+			>reactions leaderboard</a
+		>
+		you can check out too.
 	</p>
 </div>
 

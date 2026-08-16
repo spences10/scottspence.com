@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { PUBLIC_TURNSTILE_SITE_KEY } from '$env/static/public';
-	import { track_click } from '$lib/analytics/track-click.remote';
-	import { get_subscriber_count } from '$lib/data/subscribers.remote';
-	import type { ActionResult } from '@sveltejs/kit';
+	import { page } from '$app/state';
+	import type { ActionResult } from '$app/forms';
+	import { PUBLIC_TURNSTILE_SITE_KEY } from '$app/env/public';
+	import { track_click } from '#lib/analytics/track-click.remote.js';
+	import { get_subscriber_count } from '#lib/data/subscribers.remote.js';
 	import { Turnstile } from 'svelte-turnstile';
 	import { button_disabled } from './index';
 	import { subscribe_to_newsletter } from './newsletter.remote';
@@ -30,12 +31,16 @@
 		$button_disabled = true;
 
 		try {
-			track_click({ event_name: 'newsletter signup click' });
+			track_click({
+				event_name: 'newsletter signup click',
+				path: page.url.pathname,
+			});
 			await subscribe_to_newsletter({ email, turnstile_token });
 
 			const result: ActionResult = {
 				type: 'success',
 				status: 200,
+				location: page.url.pathname,
 				data: { message: 'Successfully subscribed to newsletter' },
 			};
 			handle_result(result);
@@ -46,6 +51,7 @@
 			const result: ActionResult = {
 				type: 'failure',
 				status: 400,
+				location: page.url.pathname,
 				data: {
 					error: error_msg,
 					body:

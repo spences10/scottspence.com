@@ -7,7 +7,7 @@ is_private: false
 
 <script>
   import { Tweet } from 'sveltekit-embed'
-  import { DateDistance } from '$lib/components'
+  import { DateDistance } from '#lib/components/index.js'
 </script>
 
 In this post I'll be detailing how I implemented redirects for changed

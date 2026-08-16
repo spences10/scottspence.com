@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { NewsletterSignup } from '$lib/components';
-	import { name, website } from '$lib/info';
-	import type { Newsletter } from '$lib/newsletters';
-	import { create_seo_config } from '$lib/seo';
-	import { og_image_url } from '$lib/utils';
+	import { NewsletterSignup } from '#lib/components/index.js';
+	import { name, website } from '#lib/info.js';
+	import type { Newsletter } from '#lib/newsletters.js';
+	import { create_seo_config } from '#lib/seo/index.js';
+	import { og_image_url } from '#lib/utils/index.js';
 	import { format } from 'date-fns';
 	import { Head } from 'svead';
 

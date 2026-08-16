@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { website } from '$lib/info';
-	import { create_seo_config } from '$lib/seo';
+	import { website } from '#lib/info.js';
+	import { create_seo_config } from '#lib/seo/index.js';
 	import { format } from 'date-fns';
 	import { Head } from 'svead';
 

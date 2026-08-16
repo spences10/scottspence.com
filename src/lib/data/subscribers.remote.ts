@@ -1,9 +1,6 @@
 import { query } from '$app/server';
-import {
-	RESEND_API_KEY,
-	RESEND_AUDIENCE_ID,
-} from '$env/static/private';
-import { sqlite_client } from '$lib/sqlite/client';
+import { RESEND_API_KEY, RESEND_AUDIENCE_ID } from '$app/env/private';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import { differenceInHours, parseISO } from 'date-fns';
 
 async function get_resend_subscriber_count(): Promise<number> {

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { ErrorCircle, SuccessCircle } from '$lib/icons';
-	import type { Newsletter } from '$lib/newsletters';
+	import { ErrorCircle, SuccessCircle } from '#lib/icons/index.js';
+	import type { Newsletter } from '#lib/newsletters.js';
 	import { format } from 'date-fns';
 	import type { PageData } from './$types';
 

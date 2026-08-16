@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { number_crunch } from '$lib/utils';
+	import { number_crunch } from '#lib/utils/index.js';
 	import { format, startOfMonth, startOfYear } from 'date-fns';
 
 	type Nullable<T> = T | null | undefined;

@@ -1,24 +1,25 @@
-import { building } from '$app/environment';
+import { redirect } from '@sveltejs/kit';
+import { building } from '$app/env';
 import {
 	queue_page_view,
 	start_flush_timer,
-} from '$lib/analytics/queue';
+} from '#lib/analytics/queue.js';
+
 import {
 	anonymise_ip,
 	get_client_ip,
 	get_visitor_hash,
 	parse_user_agent,
 	should_skip_path,
-} from '$lib/analytics/utils';
+} from '#lib/analytics/utils.js';
 import {
 	rejected_extensions,
 	rejected_paths,
-} from '$lib/reject-patterns';
-import { sqlite_client } from '$lib/sqlite/client';
-import { run_migrations } from '$lib/sqlite/migrate';
-import { themes } from '$lib/themes';
-import { redirect, type Handle } from '@sveltejs/kit';
-import { sequence } from '@sveltejs/kit/hooks';
+} from '#lib/reject-patterns.js';
+import { sqlite_client } from '#lib/sqlite/client.js';
+import { run_migrations } from '#lib/sqlite/migrate.js';
+import { themes } from '#lib/themes/index.js';
+import { sequence, type Handle } from '@sveltejs/kit/hooks';
 import { readFileSync } from 'node:fs';
 
 // Initialize schema on startup - skip during build

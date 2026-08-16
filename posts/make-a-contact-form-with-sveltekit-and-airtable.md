@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { Banner } from '$lib/components'
+  import { Banner } from '#lib/components/index.js'
 
   let href = `/posts/sveltekit-contact-form-example-with-airtable`
   const options = {

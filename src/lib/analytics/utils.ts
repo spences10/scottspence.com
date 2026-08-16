@@ -1,4 +1,4 @@
-import { ANALYTICS_SALT } from '$env/static/private';
+import { ANALYTICS_SALT } from '$app/env/private';
 import crypto from 'node:crypto';
 
 /**
@@ -207,6 +207,7 @@ export const parse_user_agent = (
 
 	// Browser detection
 	let browser: string | null = null;
+
 	if (/edg/i.test(ua)) browser = 'Edge';
 	else if (/opr|opera/i.test(ua)) browser = 'Opera';
 	else if (/chrome|chromium|crios/i.test(ua)) browser = 'Chrome';
@@ -219,6 +220,7 @@ export const parse_user_agent = (
 
 	// OS detection
 	let os: string | null = null;
+
 	if (/windows/i.test(ua)) os = 'Windows';
 	else if (/macintosh|mac os x/i.test(ua)) os = 'macOS';
 	else if (/android/i.test(ua)) os = 'Android';
@@ -228,6 +230,7 @@ export const parse_user_agent = (
 
 	// Device type detection
 	let device_type: 'desktop' | 'mobile' | 'tablet' | null = null;
+
 	if (/ipad|tablet|playbook|silk/i.test(ua)) device_type = 'tablet';
 	else if (
 		/mobile|iphone|ipod|android.*mobile|windows phone/i.test(ua)

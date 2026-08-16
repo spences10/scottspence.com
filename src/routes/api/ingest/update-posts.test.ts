@@ -1,4 +1,4 @@
-import * as sqlite_module from '$lib/sqlite/client';
+import * as sqlite_module from '#lib/sqlite/client.js';
 import {
 	afterEach,
 	beforeEach,
@@ -10,7 +10,7 @@ import {
 import { update_posts } from './update-posts';
 
 // Mock the sqlite_client
-vi.mock('$lib/sqlite/client', () => ({
+vi.mock('#lib/sqlite/client.js', () => ({
 	sqlite_client: vi.fn(),
 }));
 

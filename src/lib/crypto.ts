@@ -1,4 +1,4 @@
-import { SECRET_PASSPHRASE } from '$env/static/private';
+import { SECRET_PASSPHRASE } from '$app/env/private';
 import crypto from 'node:crypto';
 
 const algorithm = 'aes-256-cbc';

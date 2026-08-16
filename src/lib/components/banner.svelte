@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { track_click } from '$lib/analytics/track-click.remote';
+	import { page } from '$app/state';
+	import { track_click } from '#lib/analytics/track-click.remote.js';
 	import {
 		InformationCircle,
 		LightBulb,
 		Megaphone,
 		WarningTriangle,
-	} from '$lib/icons';
+	} from '#lib/icons/index.js';
 
 	interface Props {
 		options?: BannerOptions;
@@ -31,7 +32,7 @@
 			const event_name = link_text
 				? `${options.track_event}: ${link_text}`
 				: options.track_event;
-			track_click({ event_name });
+			track_click({ event_name, path: page.url.pathname });
 		}
 	}
 

@@ -7,7 +7,7 @@ is_private: false
 
 <script>
   import { CodePen } from 'sveltekit-embed'
-  import { Banner } from '$lib/components'
+  import { Banner } from '#lib/components/index.js'
 
   let href = `/posts/scrollbar-styling-with-tailwind-and-daisyui`
   const options = {

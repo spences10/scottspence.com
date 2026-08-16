@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { Details, Sarcasm } from '$lib/components'
+  import { Details, Sarcasm } from '#lib/components/index.js'
   import DetailsTransition from './details-transition.svelte'
   import DetailsAction from './details-action.svelte'
 </script>

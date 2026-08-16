@@ -3,8 +3,8 @@ import {
 	CACHE_DURATIONS,
 	get_from_cache,
 	set_cache,
-} from '$lib/cache/server-cache';
-import { get_posts } from '$lib/state/posts.svelte';
+} from '#lib/cache/server-cache.js';
+import { get_posts } from '#lib/state/posts.svelte.js';
 
 interface PostsByTag {
 	[tag: string]: Post[];

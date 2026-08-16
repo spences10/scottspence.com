@@ -2,7 +2,7 @@
   import {
     DateUpdated, 
     Small 
-  } from '$lib/components'
+  } from '#lib/components/index.js'
 </script>
 
 # Privacy Policy

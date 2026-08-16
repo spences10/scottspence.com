@@ -1,4 +1,4 @@
-import { DATABASE_PATH } from '$env/static/private';
+import { DATABASE_PATH } from '$app/env/private';
 import { backup, DatabaseSync } from 'node:sqlite';
 import fs from 'node:fs/promises';
 import path from 'node:path';

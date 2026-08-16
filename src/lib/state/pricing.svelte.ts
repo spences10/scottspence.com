@@ -1,15 +1,15 @@
-import { EXCHANGE_RATE_API_KEY } from '$env/static/private';
+import { EXCHANGE_RATE_API_KEY } from '$app/env/private';
 import {
 	BYPASS_DB_READS,
 	CACHE_DURATIONS,
 	get_from_cache,
 	set_cache,
-} from '$lib/cache/server-cache';
-import { sqlite_client } from '$lib/sqlite/client';
+} from '#lib/cache/server-cache.js';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import {
 	DEFAULT_TAX_CONFIG,
 	type UkTaxConfig,
-} from '$lib/uk-tax-calculator';
+} from '#lib/uk-tax-calculator.js';
 import { differenceInHours, parseISO } from 'date-fns';
 
 const CACHE_KEY = 'pricing_v3';

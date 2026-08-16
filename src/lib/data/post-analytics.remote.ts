@@ -1,12 +1,12 @@
 import { query } from '$app/server';
-import { BOT_THRESHOLDS } from '$lib/analytics/bot-thresholds';
+import { BOT_THRESHOLDS } from '#lib/analytics/bot-thresholds.js';
 import {
 	BYPASS_DB_READS,
 	CACHE_DURATIONS,
 	get_from_cache,
 	set_cache,
-} from '$lib/cache/server-cache';
-import { sqlite_client } from '$lib/sqlite/client';
+} from '#lib/cache/server-cache.js';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import * as v from 'valibot';
 
 interface PostAnalyticsRow {

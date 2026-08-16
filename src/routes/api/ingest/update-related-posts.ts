@@ -1,4 +1,4 @@
-import { sqlite_client } from '$lib/sqlite/client';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import { get_related_posts } from './embeddings';
 
 export async function update_related_posts_table() {

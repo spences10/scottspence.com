@@ -1,10 +1,10 @@
 <script lang="ts">
+	import { track_click } from '#lib/analytics/track-click.remote.js';
+	import { get_popular_posts } from '#lib/data/popular-posts.remote.js';
+	import { Eye } from '#lib/icons/index.js';
+	import { name, SITE_LINKS, SOCIAL_LINKS } from '#lib/info.js';
+	import { number_crunch } from '#lib/utils/index.js';
 	import { page } from '$app/state';
-	import { track_click } from '$lib/analytics/track-click.remote';
-	import { get_popular_posts } from '$lib/data/popular-posts.remote';
-	import { Eye } from '$lib/icons';
-	import { name, SITE_LINKS, SOCIAL_LINKS } from '$lib/info';
-	import { number_crunch } from '$lib/utils';
 	import LiveVisitors from './live-visitors.svelte';
 
 	const popular_posts_query = get_popular_posts();
@@ -48,7 +48,11 @@
 		{#each SITE_LINKS as link}
 			<a
 				href={`/${link.slug}`}
-				onclick={() => track_click({ event_name: link.slug })}
+				onclick={() =>
+					track_click({
+						event_name: link.slug,
+						path: page.url.pathname,
+					})}
 				class="link text-primary-content link-hover"
 			>
 				{link.title}

@@ -1,4 +1,4 @@
-import { get_posts } from '$lib/posts';
+import { get_posts } from '#lib/posts.js';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {

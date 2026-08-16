@@ -7,7 +7,7 @@ is_private: false
 
 <script>
   import { Bluesky, YouTube } from 'sveltekit-embed'
-  import { Details } from '$lib/components'
+  import { Details } from '#lib/components/index.js'
 </script>
 
 Aight! It happened again! Mysteriously git just straight up stopped

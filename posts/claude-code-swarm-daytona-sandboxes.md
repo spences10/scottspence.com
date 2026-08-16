@@ -8,7 +8,7 @@ is_private: false
 <!-- cspell:ignore daytonaio -->
 
 <script>
-  import { Mermaid } from '$lib/components'
+  import { Mermaid } from '#lib/components/index.js'
 
   const swarm_diagram = `
 flowchart TD

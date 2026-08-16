@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { track_click } from '$lib/analytics/track-click.remote';
+	import { track_click } from '#lib/analytics/track-click.remote.js';
+	import { page } from '$app/state';
 	import LiveVisitors from './live-visitors.svelte';
 
 	let is_hovering = $state(false);
@@ -57,7 +58,10 @@
 				<a
 					href="/contact"
 					onclick={() =>
-						track_click({ event_name: 'contact button click' })}
+						track_click({
+							event_name: 'contact button click',
+							path: page.url.pathname,
+						})}
 					class="btn mb-5 w-full rounded-box text-primary-content! shadow-xl btn-md btn-primary hover:text-primary-content lg:btn-lg"
 				>
 					Get in Touch

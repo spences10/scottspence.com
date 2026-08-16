@@ -1,8 +1,8 @@
-import { building } from '$app/environment';
+import { building } from '$app/env';
 import {
 	UPSTASH_REDIS_REST_TOKEN,
 	UPSTASH_REDIS_REST_URL,
-} from '$env/static/private';
+} from '$app/env/private';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 

@@ -1,5 +1,5 @@
-import { send_newsletter } from '$lib/newsletter/sender';
-import { sqlite_client } from '$lib/sqlite/client';
+import { send_newsletter } from '#lib/newsletter/sender.js';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 

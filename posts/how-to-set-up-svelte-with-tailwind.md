@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { Banner, DateDistance as DD } from '$lib/components'
+  import { Banner, DateDistance as DD } from '#lib/components/index.js'
 
   let href = `/posts/svelte-cli-add-tailwind`
   const options = {

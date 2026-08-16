@@ -1,9 +1,9 @@
 import { query } from '$app/server';
-import { get_posts } from '$lib/data/posts.remote';
+import { get_posts } from '#lib/data/posts.remote.js';
 import {
 	group_posts_by_tag,
 	type PostTagsResult,
-} from '$lib/utils/group-posts-by-tag';
+} from '#lib/utils/group-posts-by-tag.js';
 
 export type { PostTagsResult };
 

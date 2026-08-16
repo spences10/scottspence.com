@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { Banner, Details } from '$lib/components'
+  import { Banner, Details } from '#lib/components/index.js'
 
   let href = `/posts/the-new-kitql-sveltekit-graphql-client`
   const options = {

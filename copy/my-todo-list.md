@@ -1,5 +1,5 @@
 <script>
-  import { DateUpdated, Small } from '$lib/components'
+  import { DateUpdated, Small } from '#lib/components/index.js'
 </script>
 
 <!-- cSpell:ignore vulf salma darkvisitors markdoc findtechconferences -->

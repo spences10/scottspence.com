@@ -1,5 +1,5 @@
-import { BOT_THRESHOLDS } from '$lib/analytics/bot-thresholds';
-import { sqlite_client } from '$lib/sqlite/client';
+import { BOT_THRESHOLDS } from '#lib/analytics/bot-thresholds.js';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import { flag_bot_behaviour } from './flag-bot-behaviour';
 
 /**

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { PostCard } from '$lib/components';
-	import { description, name, website } from '$lib/info';
-	import { create_seo_config } from '$lib/seo';
-	import { command_palette_state } from '$lib/state/command-palette.svelte';
-	import { og_image_url } from '$lib/utils';
+	import { PostCard } from '#lib/components/index.js';
+	import { description, name, website } from '#lib/info.js';
+	import { create_seo_config } from '#lib/seo/index.js';
+	import { command_palette_state } from '#lib/state/command-palette.svelte.js';
+	import { og_image_url } from '#lib/utils/index.js';
 	import { Head } from 'svead';
 	import type { PageData } from './$types';
 

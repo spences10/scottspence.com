@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { PUBLIC_TURNSTILE_SITE_KEY } from '$env/static/public';
-	import type { ActionResult } from '@sveltejs/kit';
+	import { page } from '$app/state';
+	import type { ActionResult } from '$app/forms';
+	import { PUBLIC_TURNSTILE_SITE_KEY } from '$app/env/public';
 	import { Turnstile } from 'svelte-turnstile';
 	import { submit_contact } from '../../../routes/contact/contact.remote';
 
@@ -42,6 +43,7 @@
 			const result: ActionResult = {
 				type: 'success',
 				status: 200,
+				location: page.url.pathname,
 				data: { message: 'Email sent successfully' },
 			};
 			handle_result(result);
@@ -53,6 +55,7 @@
 			const result: ActionResult = {
 				type: 'failure',
 				status: 400,
+				location: page.url.pathname,
 				data: { error: error_msg },
 			};
 			handle_result(result);
@@ -91,6 +94,7 @@
 				class="label-text text-sm text-primary-content"
 				for="email">Email</label
 			>
+
 			<div class="validator-email validator-required validator">
 				<input
 					type="email"

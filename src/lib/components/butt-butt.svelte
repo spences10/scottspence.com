@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { scale_and_fade, viewport } from '$lib/utils';
+	import { scale_and_fade, viewport } from '#lib/utils/index.js';
 
 	let { height = '100px', width = '160px' } = $props();
 

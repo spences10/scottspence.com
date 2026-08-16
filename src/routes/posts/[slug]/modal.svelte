@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { StatsCard } from '$lib/components';
-	import { get_post_analytics } from '$lib/data/post-analytics.remote';
+	import { StatsCard } from '#lib/components/index.js';
+	import { get_post_analytics } from '#lib/data/post-analytics.remote.js';
 
 	let {
 		slug,

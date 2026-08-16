@@ -13,8 +13,6 @@ export const load: PageLoad = async ({ params }) => {
 			meta: { ...newsletter.metadata, slug },
 		};
 	} catch {
-		error(404, {
-			message: 'Newsletter not found',
-		});
+		error(404, 'Newsletter not found');
 	}
 };

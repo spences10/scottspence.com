@@ -1,4 +1,4 @@
-import { get_subscriber_count } from '$lib/data/subscribers.remote';
+import { get_subscriber_count } from '#lib/data/subscribers.remote.js';
 
 export const load = async () => {
 	const { newsletter_subscriber_count } =

@@ -3,10 +3,10 @@
 		HistoricalStats,
 		LiveDashboard,
 		PeriodStats,
-	} from '$lib/components/stats';
-	import { name, website } from '$lib/info';
-	import { create_seo_config } from '$lib/seo';
-	import { og_image_url } from '$lib/utils';
+	} from '#lib/components/stats/index.js';
+	import { name, website } from '#lib/info.js';
+	import { create_seo_config } from '#lib/seo/index.js';
+	import { og_image_url } from '#lib/utils/index.js';
 	import { Head } from 'svead';
 
 	let { data } = $props();

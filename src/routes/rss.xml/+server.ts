@@ -1,5 +1,5 @@
-import { description, name, website } from '$lib/info';
-import { get_posts } from '$lib/posts';
+import { description, name, website } from '#lib/info.js';
+import { get_posts } from '#lib/posts.js';
 
 interface RSSItem {
 	title: string;

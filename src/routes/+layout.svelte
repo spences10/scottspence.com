@@ -3,17 +3,17 @@
 	import {
 		PUBLIC_FATHOM_ID,
 		PUBLIC_FATHOM_URL,
-	} from '$env/static/public';
-	import { init_live_analytics } from '$lib/analytics/live-analytics.svelte';
+	} from '$app/env/public';
+	import { init_live_analytics } from '#lib/analytics/live-analytics.svelte.js';
 	import {
 		BackToTop,
 		CommandPalette,
 		Footer,
 		Header,
 		Nav,
-	} from '$lib/components';
-	import { command_palette_state } from '$lib/state/command-palette.svelte';
-	import { handle_mouse_move } from '$lib/utils';
+	} from '#lib/components/index.js';
+	import { command_palette_state } from '#lib/state/command-palette.svelte.js';
+	import { handle_mouse_move } from '#lib/utils/index.js';
 	import * as Fathom from 'fathom-client';
 	import { onMount } from 'svelte';
 	import '../app.css';
@@ -36,7 +36,9 @@
 	});
 
 	// Track pageview on route change
-	afterNavigate(() => {
+	afterNavigate(({ shallow }) => {
+		if (shallow) return;
+
 		Fathom.trackPageview();
 	});
 </script>

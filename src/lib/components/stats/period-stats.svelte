@@ -2,23 +2,23 @@
 	import {
 		get_chart_data,
 		type ChartData,
-	} from '$lib/analytics/chart-data.remote';
+	} from '#lib/analytics/chart-data.remote.js';
 	import {
 		sort_engagement_stats,
 		type EngagementSortMode,
-	} from '$lib/analytics/engagement-stats.helpers';
+	} from '#lib/analytics/engagement-stats.helpers.js';
 	import {
 		get_engagement_stats,
 		type EngagementStats,
-	} from '$lib/analytics/engagement-stats.remote';
+	} from '#lib/analytics/engagement-stats.remote.js';
 	import {
 		get_period_stats,
 		type FilterMode,
 		type PeriodStats,
 		type StatsPeriod,
-	} from '$lib/analytics/period-stats.remote';
-	import { InformationCircle } from '$lib/icons';
-	import { number_crunch } from '$lib/utils';
+	} from '#lib/analytics/period-stats.remote.js';
+	import { InformationCircle } from '#lib/icons/index.js';
+	import { number_crunch } from '#lib/utils/index.js';
 	import { scaleTime } from 'd3-scale';
 	import { curveMonotoneX } from 'd3-shape';
 	import {

@@ -1,18 +1,18 @@
-import { sqlite_client } from '$lib/sqlite/client';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
 	sync_blocked_domains,
 	validate_sync_blocked_domains,
 } from './sync-blocked-domains';
 
-vi.mock('$lib/sqlite/client', () => ({
+vi.mock('#lib/sqlite/client.js', () => ({
 	sqlite_client: {
 		execute: vi.fn(),
 		prepare: vi.fn(),
 	},
 }));
 
-vi.mock('$lib/analytics/blocked-domains', () => ({
+vi.mock('#lib/analytics/blocked-domains.js', () => ({
 	invalidate_blocked_domains_cache: vi.fn(),
 }));
 

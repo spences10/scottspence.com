@@ -1,5 +1,5 @@
-import { invalidate_blocked_domains_cache } from '$lib/analytics/blocked-domains';
-import { sqlite_client } from '$lib/sqlite/client';
+import { invalidate_blocked_domains_cache } from '#lib/analytics/blocked-domains.js';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import * as v from 'valibot';
 
 /**

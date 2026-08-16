@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { InformationCircle } from '$lib/icons';
-	import { description, name, website } from '$lib/info';
-	import { create_seo_config } from '$lib/seo';
-	import { number_crunch, og_image_url } from '$lib/utils';
+	import { InformationCircle } from '#lib/icons/index.js';
+	import { description, name, website } from '#lib/info.js';
+	import { create_seo_config } from '#lib/seo/index.js';
+	import { number_crunch, og_image_url } from '#lib/utils/index.js';
 	import { Head } from 'svead';
 	import { quintOut } from 'svelte/easing';
 	import { fade, scale } from 'svelte/transition';

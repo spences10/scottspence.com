@@ -1,6 +1,6 @@
-import { website } from '$lib/info';
-import { get_post_tags } from '$lib/post-tags';
-import { get_posts } from '$lib/posts';
+import { website } from '#lib/info.js';
+import { get_post_tags } from '#lib/post-tags.js';
+import { get_posts } from '#lib/posts.js';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import slugify from 'slugify';

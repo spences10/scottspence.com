@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { DateDistance } from '$lib/components'
+  import { DateDistance } from '#lib/components/index.js'
 </script>
 
 For as long as I have been learning web development (<DateDistance

@@ -6,7 +6,7 @@ is_private: false
 ---
 
 <script>
-  import { DateDistance as DD } from '$lib/components'
+  import { DateDistance as DD } from '#lib/components/index.js'
 </script>
 
 I don't get it. I've used macOS for well over 4 years Windows for the

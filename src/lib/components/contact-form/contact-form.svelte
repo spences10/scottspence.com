@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { scale_and_fade } from '$lib/utils';
-	import type { ActionResult } from '@sveltejs/kit';
+	import type { ActionResult } from '$app/forms';
+	import { scale_and_fade } from '#lib/utils/index.js';
 	import ContactFormFailure from './contact-form-failure.svelte';
 	import ContactFormFields from './contact-form-fields.svelte';
 	import ContactFormSuccess from './contact-form-success.svelte';

@@ -4,12 +4,12 @@ import { page } from 'vitest/browser';
 import PostPage from './+page.svelte';
 
 // Mock remote functions - track_click needs SvelteKit request context
-vi.mock('$lib/analytics/track-click.remote', () => ({
+vi.mock('#lib/analytics/track-click.remote.js', () => ({
 	track_click: vi.fn(),
 }));
 
 // Mock remote functions - these require SvelteKit request context in production
-vi.mock('$lib/data/subscribers.remote', () => ({
+vi.mock('#lib/data/subscribers.remote.js', () => ({
 	get_subscriber_count: vi.fn(() =>
 		Promise.resolve({
 			newsletter_subscriber_count: 105,
@@ -18,7 +18,7 @@ vi.mock('$lib/data/subscribers.remote', () => ({
 }));
 
 vi.mock(
-	'$lib/components/newsletter-signup/newsletter.remote',
+	'#lib/components/newsletter-signup/newsletter.remote.js',
 	() => ({
 		subscribe_to_newsletter: vi.fn(() =>
 			Promise.resolve({
@@ -29,7 +29,7 @@ vi.mock(
 	}),
 );
 
-vi.mock('$lib/data/popular-posts.remote', () => ({
+vi.mock('#lib/data/popular-posts.remote.js', () => ({
 	get_popular_posts: vi.fn(() =>
 		Promise.resolve({
 			popular_posts_daily: [],
