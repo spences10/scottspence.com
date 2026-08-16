@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { PUBLIC_TURNSTILE_SITE_KEY } from '$env/static/public';
-	import { track_click } from '$lib/analytics/track-click.remote';
-	import { get_subscriber_count } from '$lib/data/subscribers.remote';
-	import type { ActionResult } from '@sveltejs/kit';
+	import type { ActionResult } from '$app/forms';
+	import { PUBLIC_TURNSTILE_SITE_KEY } from '$app/env/public';
+	import { track_click } from '#lib/analytics/track-click.remote.js';
+	import { get_subscriber_count } from '#lib/data/subscribers.remote.js';
 	import { Turnstile } from 'svelte-turnstile';
 	import { button_disabled } from './index';
 	import { subscribe_to_newsletter } from './newsletter.remote';

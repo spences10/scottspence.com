@@ -4,9 +4,9 @@ import {
 	CACHE_DURATIONS,
 	get_from_cache,
 	set_cache,
-} from '$lib/cache/server-cache';
-import { normalize_posts } from '$lib/data/post-normalizer';
-import { sqlite_client } from '$lib/sqlite/client';
+} from '#lib/cache/server-cache.js';
+import { normalize_posts } from '#lib/data/post-normalizer.js';
+import { sqlite_client } from '#lib/sqlite/client.js';
 
 const CACHE_KEY = 'posts';
 

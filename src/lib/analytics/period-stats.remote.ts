@@ -3,8 +3,8 @@ import {
 	CACHE_DURATIONS,
 	get_from_cache,
 	set_cache,
-} from '$lib/cache/server-cache';
-import { sqlite_client } from '$lib/sqlite/client';
+} from '#lib/cache/server-cache.js';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import * as v from 'valibot';
 import { get_blocked_domains_array } from './blocked-domains';
 import { BOT_THRESHOLDS } from './bot-thresholds';

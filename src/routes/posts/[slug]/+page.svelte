@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { track_click } from '$lib/analytics/track-click.remote';
+	import { track_click } from '#lib/analytics/track-click.remote.js';
 	import {
 		differenceInDays,
 		differenceInYears,
@@ -20,16 +20,19 @@
 		TableOfContents,
 		TextSelectionPopup,
 		UpdatedBanner,
-	} from '$lib/components';
+	} from '#lib/components/index.js';
 	import {
 		create_schema_org_config,
 		create_seo_config,
-	} from '$lib/seo';
-	import { get_headings, update_toc_visibility } from '$lib/utils';
+	} from '#lib/seo/index.js';
+	import {
+		get_headings,
+		update_toc_visibility,
+	} from '#lib/utils/index.js';
 	import Modal from './modal.svelte';
 
-	import { website } from '$lib/info';
-	import { standard_site_document_uri } from '$lib/standard-site';
+	import { website } from '#lib/info.js';
+	import { standard_site_document_uri } from '#lib/standard-site.js';
 
 	let { data } = $props();
 

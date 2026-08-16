@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { get_post_tags } from '$lib/data/post-tags.remote';
-	import { get_posts } from '$lib/data/posts.remote';
-	import { Document, News, Tag } from '$lib/icons';
-	import { NAV_LINKS, SITE_LINKS } from '$lib/info';
-	import { command_palette_state } from '$lib/state/command-palette.svelte';
+	import { get_post_tags } from '#lib/data/post-tags.remote.js';
+	import { get_posts } from '#lib/data/posts.remote.js';
+	import { Document, News, Tag } from '#lib/icons/index.js';
+	import { NAV_LINKS, SITE_LINKS } from '#lib/info.js';
+	import { command_palette_state } from '#lib/state/command-palette.svelte.js';
 
 	let posts = $state<Post[]>([]);
 	let tags = $state<string[]>([]);

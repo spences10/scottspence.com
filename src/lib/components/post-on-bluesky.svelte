@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Bluesky from '$lib/icons/bluesky.svelte';
+	import Bluesky from '#lib/icons/bluesky.svelte';
 
 	interface Props {
 		button_text?: string;

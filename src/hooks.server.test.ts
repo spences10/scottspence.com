@@ -29,11 +29,11 @@ vi.mock('@sveltejs/kit/hooks', () => ({
 	},
 }));
 
-vi.mock('$lib/themes', () => ({
+vi.mock('#lib/themes/index.js', () => ({
 	themes: ['light', 'dark', 'custom'],
 }));
 
-vi.mock('$lib/reject-patterns', () => ({
+vi.mock('#lib/reject-patterns.js', () => ({
 	rejected_extensions: ['.php', '.asp'],
 	rejected_paths: ['/wp-admin', '/wp-login'],
 }));

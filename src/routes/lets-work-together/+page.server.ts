@@ -1,4 +1,4 @@
-import { get_pricing_data } from '$lib/state/pricing.svelte';
+import { get_pricing_data } from '#lib/state/pricing.svelte.js';
 import type { ServerLoadEvent } from '@sveltejs/kit';
 
 export const load = async ({ locals }: ServerLoadEvent) => {

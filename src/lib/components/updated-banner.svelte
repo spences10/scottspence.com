@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { WarningTriangle } from '$lib/icons';
+	import { WarningTriangle } from '#lib/icons/index.js';
 	import { compareDesc, differenceInYears } from 'date-fns';
 	import DateDistance from './date-distance.svelte';
 

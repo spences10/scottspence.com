@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { DateUpdated, Small } from '$lib/components';
-	import { name, website } from '$lib/info';
-	import { create_seo_config } from '$lib/seo';
-	import { og_image_url } from '$lib/utils';
+	import { DateUpdated, Small } from '#lib/components/index.js';
+	import { name, website } from '#lib/info.js';
+	import { create_seo_config } from '#lib/seo/index.js';
+	import { og_image_url } from '#lib/utils/index.js';
 	import { Head } from 'svead';
 	import Images from './images.svelte';
 

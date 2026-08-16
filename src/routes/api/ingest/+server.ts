@@ -1,4 +1,4 @@
-import { env } from '$env/dynamic/private';
+import { INGEST_TOKEN } from '$app/env/private';
 import { json } from '@sveltejs/kit';
 import * as v from 'valibot';
 import { backfill_github_activity } from './backfill-github-activity';
@@ -257,7 +257,7 @@ export const POST = async ({
 		const auth_header = request.headers.get('Authorization');
 		const token = auth_header?.replace('Bearer ', '');
 
-		if (!token || token !== env.INGEST_TOKEN) {
+		if (!token || token !== INGEST_TOKEN) {
 			return json({ message: 'Unauthorized' }, { status: 401 });
 		}
 

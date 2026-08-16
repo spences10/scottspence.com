@@ -2,7 +2,7 @@ import {
 	calculate_contractor_vs_permanent,
 	DEFAULT_TAX_CONFIG,
 	type UkTaxConfig,
-} from '$lib/uk-tax-calculator';
+} from '#lib/uk-tax-calculator.js';
 import { country_to_currency } from '../../routes/lets-work-together/utils';
 
 type ExchangeRates = {

@@ -4,8 +4,8 @@ import {
 	RESEND_API_KEY,
 	RESEND_FROM_EMAIL,
 	TURNSTILE_SECRET_KEY,
-} from '$env/static/private';
-import { ratelimit } from '$lib/redis';
+} from '$app/env/private';
+import { ratelimit } from '#lib/redis/index.js';
 import * as v from 'valibot';
 
 const contact_schema = v.object({

@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { TableOfContents } from '$lib/components';
-	import { name, website } from '$lib/info';
-	import { create_seo_config } from '$lib/seo';
+	import { TableOfContents } from '#lib/components/index.js';
+	import { name, website } from '#lib/info.js';
+	import { create_seo_config } from '#lib/seo/index.js';
 	import {
 		get_headings,
 		og_image_url,
 		update_toc_visibility,
-	} from '$lib/utils';
+	} from '#lib/utils/index.js';
 	import { Head } from 'svead';
 	import { onMount } from 'svelte';
 

@@ -1,16 +1,15 @@
 import { env } from '$env/dynamic/private';
-import { description, name, website } from '$lib/info';
+import { description, name, website } from '#lib/info.js';
 import {
 	standard_site,
 	standard_site_document_rkey,
 	standard_site_publication_uri,
-} from '$lib/standard-site';
+} from '#lib/standard-site.js';
 import * as v from 'valibot';
 
 interface PostModule {
 	metadata: Post & { updated?: string };
 }
-
 interface Session {
 	accessJwt: string;
 	did: string;
@@ -47,7 +46,6 @@ const standard_site_sync_schema = v.object({
 export type StandardSiteSyncData = v.InferOutput<
 	typeof standard_site_sync_schema
 >;
-
 export const validate_standard_site_sync = (
 	data: unknown,
 ): StandardSiteSyncData => v.parse(standard_site_sync_schema, data);
@@ -132,9 +130,7 @@ export const build_standard_site_document = (
 			publishedAt: to_iso_date(metadata.date, slug),
 			...(description_text ? { description: description_text } : {}),
 			...(metadata.updated
-				? {
-						updatedAt: to_iso_date(metadata.updated, slug),
-					}
+				? { updatedAt: to_iso_date(metadata.updated, slug) }
 				: {}),
 			...(Array.isArray(metadata.tags) && metadata.tags.length > 0
 				? { tags: metadata.tags }
@@ -232,12 +228,14 @@ export const resolve_standard_site_pds = async (
 	fetch: typeof globalThis.fetch,
 ) => {
 	const configured_service = env.ATPROTO_SERVICE?.trim();
+
 	if (configured_service)
 		return configured_service.replace(/\/$/, '');
 
 	const response = await fetch(
 		`https://plc.directory/${standard_site.did}`,
 	);
+
 	if (!response.ok) {
 		throw new Error(
 			`Unable to resolve AT Protocol identity (${response.status})`,
@@ -334,6 +332,7 @@ export const standard_site_sync = async (
 		);
 	}
 
+	// @migration-task Rewrite dynamic env lookup manually.
 	const password = env[['ATPROTO', 'APP', 'PASSWORD'].join('_')];
 	if (!password) {
 		throw new Error('AT Protocol app password is not configured');

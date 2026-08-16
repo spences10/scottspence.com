@@ -1,4 +1,4 @@
-import type { StatsPeriod } from '$lib/analytics/period-stats.remote';
+import type { StatsPeriod } from '#lib/analytics/period-stats.remote.js';
 
 // Live stats types
 export type LiveStats = {

@@ -1,4 +1,4 @@
-import { submit_reaction } from '$lib/state/reactions.svelte';
+import { submit_reaction } from '#lib/state/reactions.svelte.js';
 import { fail } from '@sveltejs/kit';
 
 export const actions = {

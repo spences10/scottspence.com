@@ -1,4 +1,4 @@
-import { DATABASE_PATH } from '$env/static/private';
+import { DATABASE_PATH } from '$app/env/private';
 import { DatabaseSync } from 'node:sqlite';
 import type { SQLInputValue } from 'node:sqlite';
 import fs from 'node:fs';
@@ -133,11 +133,13 @@ export const sqlite_client: SqliteClient = {
 					throw new Error('SQL string is required');
 				}
 				const stmt = db.prepare(query.sql);
+
 				const rows = (
 					query.args
 						? stmt.all(...(query.args as SQLInputValue[]))
 						: stmt.all()
 				) as Record<string, unknown>[];
+
 				return { rows };
 			}
 		} catch (error) {

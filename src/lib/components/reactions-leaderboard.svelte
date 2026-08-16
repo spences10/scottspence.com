@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { reactions } from '$lib/reactions-config';
+	import { reactions } from '#lib/reactions-config.js';
 
 	interface Props {
 		leaderboard: ReactionEntry[];

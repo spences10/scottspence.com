@@ -5,12 +5,12 @@ import { page } from 'vitest/browser';
 import StatsPage from './+page.svelte';
 
 // Mock the icons
-vi.mock('$lib/icons', () => ({
+vi.mock('#lib/icons/index.js', () => ({
 	InformationCircle: () => 'div', // Simple mock component
 }));
 
 // Mock remote functions to prevent hanging network calls
-vi.mock('$lib/analytics/live-analytics.remote', () => ({
+vi.mock('#lib/analytics/live-analytics.remote.js', () => ({
 	get_live_stats_breakdown: vi.fn().mockResolvedValue({
 		active_visitors: 0,
 		recent_visitors: 0,
@@ -24,7 +24,7 @@ vi.mock('$lib/analytics/live-analytics.remote', () => ({
 	}),
 }));
 
-vi.mock('$lib/analytics/period-stats.remote', () => ({
+vi.mock('#lib/analytics/period-stats.remote.js', () => ({
 	get_period_stats: vi.fn().mockResolvedValue(null),
 }));
 

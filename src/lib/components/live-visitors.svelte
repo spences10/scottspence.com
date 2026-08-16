@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { get_live_state } from '$lib/analytics/live-analytics.svelte';
+	import { get_live_state } from '#lib/analytics/live-analytics.svelte.js';
 
 	interface Props {
 		mode?: 'site' | 'page';

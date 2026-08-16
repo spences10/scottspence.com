@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { Head } from 'svead';
 
-	import { LandingHero, PeopleToMeet } from '$lib/components';
-	import { website } from '$lib/info';
-	import { default_seo_config } from '$lib/seo';
+	import {
+		LandingHero,
+		PeopleToMeet,
+	} from '#lib/components/index.js';
+	import { website } from '#lib/info.js';
+	import { default_seo_config } from '#lib/seo/index.js';
 
 	import type { SeoConfig } from 'svead';
 

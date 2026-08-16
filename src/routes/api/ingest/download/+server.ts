@@ -1,4 +1,4 @@
-import { DATABASE_PATH, INGEST_TOKEN } from '$env/static/private';
+import { DATABASE_PATH, INGEST_TOKEN } from '$app/env/private';
 import { error } from '@sveltejs/kit';
 import fs from 'node:fs/promises';
 import path from 'node:path';

@@ -4,8 +4,8 @@ import {
 	CACHE_DURATIONS,
 	get_from_cache,
 	set_cache,
-} from '$lib/cache/server-cache';
-import { sqlite_client } from '$lib/sqlite/client';
+} from '#lib/cache/server-cache.js';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import * as v from 'valibot';
 import {
 	normalize_post_row,

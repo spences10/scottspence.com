@@ -1,4 +1,4 @@
-import { sqlite_client } from '$lib/sqlite/client';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import { json } from '@sveltejs/kit';
 
 export const GET = async ({

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { create_seo_config } from '$lib/seo';
+	import { create_seo_config } from '#lib/seo/index.js';
 	import { Head } from 'svead';
 
 	interface Props {

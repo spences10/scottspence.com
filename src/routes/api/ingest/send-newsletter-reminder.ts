@@ -1,7 +1,4 @@
-import {
-	RESEND_API_KEY,
-	RESEND_FROM_EMAIL,
-} from '$env/static/private';
+import { RESEND_API_KEY, RESEND_FROM_EMAIL } from '$app/env/private';
 
 /**
  * Send newsletter reminder email

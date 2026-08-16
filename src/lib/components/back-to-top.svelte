@@ -22,7 +22,7 @@
 <button
 	type="button"
 	onclick={scroll_to_top}
-	class="back-to-top-button btn fixed right-5 bottom-[-2rem] rounded-box font-normal text-secondary-content normal-case btn-secondary {show_scroll_button
+	class="back-to-top-button btn fixed right-5 -bottom-8 rounded-box font-normal text-secondary-content normal-case btn-secondary {show_scroll_button
 		? 'show-button'
 		: 'hide-button'}"
 	aria-label="Back to top"

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { number_crunch } from '$lib/utils';
+	import { number_crunch } from '#lib/utils/index.js';
 
 	interface Props {
 		label: string;

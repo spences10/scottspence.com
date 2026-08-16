@@ -1,4 +1,4 @@
-import { get_newsletters } from '$lib/newsletters';
+import { get_newsletters } from '#lib/newsletters.js';
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 

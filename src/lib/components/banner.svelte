@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { track_click } from '$lib/analytics/track-click.remote';
+	import { track_click } from '#lib/analytics/track-click.remote.js';
 	import {
 		InformationCircle,
 		LightBulb,
 		Megaphone,
 		WarningTriangle,
-	} from '$lib/icons';
+	} from '#lib/icons/index.js';
 
 	interface Props {
 		options?: BannerOptions;

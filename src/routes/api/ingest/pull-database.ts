@@ -2,7 +2,7 @@ import {
 	DATABASE_PATH,
 	INGEST_TOKEN,
 	PRODUCTION_URL,
-} from '$env/static/private';
+} from '$app/env/private';
 import { backup, DatabaseSync } from 'node:sqlite';
 import fs from 'node:fs/promises';
 import path from 'node:path';

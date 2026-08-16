@@ -1,5 +1,5 @@
-import { BOT_THRESHOLDS } from '$lib/analytics/bot-thresholds';
-import type { SqliteClient } from '$lib/sqlite/client';
+import { BOT_THRESHOLDS } from '#lib/analytics/bot-thresholds.js';
+import type { SqliteClient } from '#lib/sqlite/client.js';
 
 interface PopularPostRow {
 	pathname: string;

@@ -1,4 +1,4 @@
-import { sqlite_client } from '$lib/sqlite/client';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import * as v from 'valibot';
 
 const run_query_schema = v.object({

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Bluesky from '$lib/icons/bluesky.svelte';
-	import Kagi from '$lib/icons/kagi.svelte';
-	import Perplexity from '$lib/icons/perplexity.svelte';
+	import Bluesky from '#lib/icons/bluesky.svelte';
+	import Kagi from '#lib/icons/kagi.svelte';
+	import Perplexity from '#lib/icons/perplexity.svelte';
 
 	interface Props {
 		selected_text: string;

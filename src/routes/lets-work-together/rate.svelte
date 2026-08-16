@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { pricing_state } from '$lib/state/pricing-client.svelte';
-	import { number_crunch } from '$lib/utils';
+	import { pricing_state } from '#lib/state/pricing-client.svelte.js';
+	import { number_crunch } from '#lib/utils/index.js';
 	import CurrencySelect from './currency-select.svelte';
 	import { locale_string } from './utils';
 

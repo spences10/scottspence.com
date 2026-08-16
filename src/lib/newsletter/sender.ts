@@ -2,8 +2,8 @@ import {
 	RESEND_API_KEY,
 	RESEND_AUDIENCE_ID,
 	RESEND_FROM_EMAIL,
-} from '$env/static/private';
-import { sqlite_client } from '$lib/sqlite/client';
+} from '$app/env/private';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { convert_newsletter_to_html } from './html-converter';
@@ -13,7 +13,6 @@ interface SendResult {
 	message: string;
 	broadcast_id?: string;
 }
-
 interface NewsletterFile {
 	filename: string;
 	content: string;

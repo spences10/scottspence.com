@@ -1,4 +1,4 @@
-import { get_post_tags } from '$lib/data/post-tags.remote';
+import { get_post_tags } from '#lib/data/post-tags.remote.js';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {

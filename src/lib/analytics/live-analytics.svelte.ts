@@ -1,4 +1,4 @@
-import { browser } from '$app/environment';
+import { browser } from '$app/env';
 import { beforeNavigate } from '$app/navigation';
 import { page } from '$app/state';
 import { end_session, send_heartbeat } from './live-analytics.remote';
@@ -59,7 +59,8 @@ export const init_live_analytics = () => {
 	heartbeat_interval = setInterval(do_heartbeat, 5000);
 
 	// Cleanup on navigation (SPA)
-	beforeNavigate(() => {
+	beforeNavigate(({ shallow }) => {
+		if (shallow) return;
 		// Send updated heartbeat with new path on next tick
 		// The navigation will update page.url.pathname
 	});

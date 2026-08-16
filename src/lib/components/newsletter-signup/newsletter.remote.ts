@@ -4,9 +4,9 @@ import {
 	RESEND_AUDIENCE_ID,
 	RESEND_FROM_EMAIL,
 	TURNSTILE_SECRET_KEY,
-} from '$env/static/private';
-import { encrypt } from '$lib/crypto';
-import { ratelimit } from '$lib/redis';
+} from '$app/env/private';
+import { encrypt } from '#lib/crypto.js';
+import { ratelimit } from '#lib/redis/index.js';
 import * as v from 'valibot';
 
 const newsletter_schema = v.object({
@@ -152,6 +152,7 @@ export const subscribe_to_newsletter = command(
 		} catch (error: unknown) {
 			const error_message =
 				error instanceof Error ? error.message : 'Unknown error';
+
 			console.error(
 				`Error in newsletter subscription: ${error_message}`,
 			);

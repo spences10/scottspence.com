@@ -1,7 +1,7 @@
-import { env } from '$env/dynamic/private';
-import { website } from '$lib/info';
-import { get_post_tags } from '$lib/post-tags';
-import { get_posts } from '$lib/posts';
+import { INDEXNOW_API_KEY } from '$app/env/private';
+import { website } from '#lib/info.js';
+import { get_post_tags } from '#lib/post-tags.js';
+import { get_posts } from '#lib/posts.js';
 import { error } from '@sveltejs/kit';
 import slugify from 'slugify';
 
@@ -37,7 +37,7 @@ async function generate_url_list() {
 }
 
 export const index_now = async (fetch: Function) => {
-	const api_key = env.INDEXNOW_API_KEY;
+	const api_key = INDEXNOW_API_KEY;
 	const host = new URL(website).hostname;
 
 	if (!api_key) {
@@ -55,7 +55,7 @@ export const index_now = async (fetch: Function) => {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			host: host,
+			host,
 			key: api_key,
 			keyLocation: `https://${host}/${api_key}.txt`,
 			urlList: urls,

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { PUBLIC_TURNSTILE_SITE_KEY } from '$env/static/public';
-	import type { ActionResult } from '@sveltejs/kit';
+	import type { ActionResult } from '$app/forms';
+	import { PUBLIC_TURNSTILE_SITE_KEY } from '$app/env/public';
 	import { Turnstile } from 'svelte-turnstile';
 	import { submit_contact } from '../../../routes/contact/contact.remote';
 
@@ -91,6 +91,7 @@
 				class="label-text text-sm text-primary-content"
 				for="email">Email</label
 			>
+
 			<div class="validator-email validator-required validator">
 				<input
 					type="email"

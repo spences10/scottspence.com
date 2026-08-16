@@ -1,4 +1,4 @@
-import { get_posts } from '$lib/data/posts.remote';
+import { get_posts } from '#lib/data/posts.remote.js';
 
 export const load = async () => {
 	// Call remote function from load to ensure proper SSR context

@@ -3,9 +3,9 @@ import {
 	RESEND_API_KEY,
 	RESEND_AUDIENCE_ID,
 	RESEND_FROM_EMAIL,
-} from '$env/static/private';
-import { decrypt } from '$lib/crypto';
-import { get_newsletters } from '$lib/newsletters';
+} from '$app/env/private';
+import { decrypt } from '#lib/crypto.js';
+import { get_newsletters } from '#lib/newsletters.js';
 import type { PageServerLoad } from './$types';
 
 async function send_confirmation_notification(

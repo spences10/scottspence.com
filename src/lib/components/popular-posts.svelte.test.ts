@@ -5,7 +5,7 @@ import { page } from 'vitest/browser';
 import PopularPosts from './popular-posts.svelte';
 
 // Mock the remote functions
-vi.mock('$lib/data/popular-posts.remote', () => ({
+vi.mock('#lib/data/popular-posts.remote.js', () => ({
 	get_popular_posts: vi.fn(() =>
 		Promise.resolve({
 			popular_posts_daily: [
@@ -44,7 +44,7 @@ vi.mock('$lib/data/popular-posts.remote', () => ({
 
 // Mock track_click
 const mock_track_click = vi.fn();
-vi.mock('$lib/analytics/track-click.remote', () => ({
+vi.mock('#lib/analytics/track-click.remote.js', () => ({
 	track_click: (args: { event_name: string }) =>
 		mock_track_click(args),
 }));
@@ -318,7 +318,7 @@ describe('PopularPosts Component', () => {
 		it('should not render when no posts available', async () => {
 			// Override mock for this test
 			const { get_popular_posts } =
-				await import('$lib/data/popular-posts.remote');
+				await import('#lib/data/popular-posts.remote.js');
 			vi.mocked(get_popular_posts).mockResolvedValueOnce({
 				popular_posts_daily: [],
 				popular_posts_monthly: [],

@@ -1,4 +1,4 @@
-import { sqlite_client } from '$lib/sqlite/client';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import { get_posts } from './posts';
 
@@ -58,14 +58,14 @@ const mockPosts = [
 ];
 
 // Mock the sqlite_client
-vi.mock('$lib/sqlite/client', () => ({
+vi.mock('#lib/sqlite/client.js', () => ({
 	sqlite_client: {
 		execute: vi.fn(),
 	},
 }));
 
 // Mock server cache
-vi.mock('$lib/cache/server-cache', () => ({
+vi.mock('#lib/cache/server-cache.js', () => ({
 	BYPASS_DB_READS: { posts: false },
 	CACHE_DURATIONS: { posts: 30000 },
 	get_from_cache: vi.fn(),
@@ -84,7 +84,7 @@ afterEach(() => {
 
 test('get_posts fetches posts from database when cache is empty', async () => {
 	const { get_from_cache, set_cache } =
-		await import('$lib/cache/server-cache');
+		await import('#lib/cache/server-cache.js');
 
 	(sqlite_client.execute as any).mockResolvedValue({
 		rows: mockDbPosts,
@@ -103,7 +103,8 @@ test('get_posts fetches posts from database when cache is empty', async () => {
 });
 
 test('get_posts returns cached posts when cache is valid', async () => {
-	const { get_from_cache } = await import('$lib/cache/server-cache');
+	const { get_from_cache } =
+		await import('#lib/cache/server-cache.js');
 
 	const cachedPosts = [
 		{ id: 1, title: 'Post 1', date: '2023-06-14' },
@@ -122,7 +123,7 @@ test('get_posts returns cached posts when cache is valid', async () => {
 
 test('get_posts fetches new posts when cache is expired', async () => {
 	const { get_from_cache, set_cache } =
-		await import('$lib/cache/server-cache');
+		await import('#lib/cache/server-cache.js');
 
 	(sqlite_client.execute as any).mockResolvedValue({
 		rows: mockDbPosts,
@@ -141,7 +142,8 @@ test('get_posts fetches new posts when cache is expired', async () => {
 });
 
 test('get_posts handles database error', async () => {
-	const { get_from_cache } = await import('$lib/cache/server-cache');
+	const { get_from_cache } =
+		await import('#lib/cache/server-cache.js');
 
 	(sqlite_client.execute as any).mockRejectedValue(
 		new Error('Database error'),

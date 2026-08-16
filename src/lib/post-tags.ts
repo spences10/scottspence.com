@@ -1,4 +1,4 @@
-import { get_posts } from '$lib/posts';
+import { get_posts } from '#lib/posts.js';
 
 interface PostsByTag {
 	[tag: string]: Post[];

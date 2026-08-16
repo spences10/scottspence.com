@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PEOPLE } from '$lib/info';
+	import { PEOPLE } from '#lib/info.js';
 	import PeopleToMeetCheck from './people-to-meet-check.svelte';
 	import PostOnBlueSky from './post-on-bluesky.svelte';
 

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { get_live_stats_breakdown } from '$lib/analytics/live-analytics.remote';
-	import { number_crunch } from '$lib/utils';
+	import { get_live_stats_breakdown } from '#lib/analytics/live-analytics.remote.js';
+	import { number_crunch } from '#lib/utils/index.js';
 	import { onMount } from 'svelte';
 	import StatRow from './stat-row.svelte';
 	import { country_flag, format_path } from './stats.svelte';

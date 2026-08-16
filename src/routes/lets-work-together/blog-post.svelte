@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { pricing_state } from '$lib/state/pricing-client.svelte';
+	import { pricing_state } from '#lib/state/pricing-client.svelte.js';
 	import Select from './select.svelte';
 	import { locale_string } from './utils';
 

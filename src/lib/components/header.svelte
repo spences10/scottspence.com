@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { name } from '$lib/info';
+	import { name } from '#lib/info.js';
 	import ThemeSelect from './theme-select.svelte';
 
 	let is_meowed = $state(false);

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { InformationCircle } from '$lib/icons';
-	import { number_crunch } from '$lib/utils';
+	import { InformationCircle } from '#lib/icons/index.js';
+	import { number_crunch } from '#lib/utils/index.js';
 	import { scaleBand } from 'd3-scale';
 	import { Axis, Bars, Chart, Svg, Tooltip } from 'layerchart';
 	import type { SiteStat, Stats } from './stats.svelte';

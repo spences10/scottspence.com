@@ -1,5 +1,5 @@
-import { get_reaction_counts } from '$lib/data/reactions.remote';
-import { get_related_posts } from '$lib/data/related-posts.remote';
+import { get_reaction_counts } from '#lib/data/reactions.remote.js';
+import { get_related_posts } from '#lib/data/related-posts.remote.js';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params, url }) => {

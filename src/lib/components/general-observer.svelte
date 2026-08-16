@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { viewport } from '$lib/utils';
+	import { viewport } from '#lib/utils/index.js';
 
 	interface Props {
 		height?: number;

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { track_click } from '$lib/analytics/track-click.remote';
-	import { get_popular_posts } from '$lib/data/popular-posts.remote';
-	import { number_crunch } from '$lib/utils';
+	import { track_click } from '#lib/analytics/track-click.remote.js';
+	import { get_popular_posts } from '#lib/data/popular-posts.remote.js';
+	import { number_crunch } from '#lib/utils/index.js';
 
 	type PopularPostsPeriod = keyof PopularPosts;
 	let selected_period: PopularPostsPeriod = $state(

@@ -1,4 +1,4 @@
-import { sqlite_client } from '$lib/sqlite/client';
+import { sqlite_client } from '#lib/sqlite/client.js';
 import { is_blocked_referrer } from './blocked-domains';
 
 /**

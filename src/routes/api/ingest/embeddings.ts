@@ -1,5 +1,5 @@
-import { VOYAGE_AI_API_KEY } from '$env/static/private';
-import { sqlite_client } from '$lib/sqlite/client';
+import { VOYAGE_AI_API_KEY } from '$app/env/private';
+import { sqlite_client } from '#lib/sqlite/client.js';
 
 const create_embedding = async (text: string): Promise<number[]> => {
 	try {
@@ -164,9 +164,11 @@ export const get_post_embedding = async (
 						SELECT vec_to_json(embedding) as embedding_json
 						FROM post_embeddings WHERE post_id = ?
 					`);
+
 					const json_result = json_stmt.get(post_id) as
 						| { embedding_json: string }
 						| undefined;
+
 					json_client.close();
 
 					if (json_result && json_result.embedding_json) {

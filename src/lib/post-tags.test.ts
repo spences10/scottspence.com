@@ -1,9 +1,9 @@
-import { get_posts } from '$lib/posts';
+import { get_posts } from '#lib/posts.js';
 import { expect, test, vi } from 'vitest';
 import { get_post_tags } from './post-tags';
 
 // Mock the get_posts function
-vi.mock('$lib/posts', () => ({
+vi.mock('#lib/posts.js', () => ({
 	get_posts: vi.fn(),
 }));
 
