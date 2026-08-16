@@ -35,21 +35,23 @@ describe('Standard.site ingestion', () => {
 	});
 
 	it('creates plain text from a Markdown post', () => {
-		const markdown = `---
-title: Example
----
-<script>
-	import Demo from './demo.svelte'
-</script>
-# Heading
-
-Read [the guide](https://example.com) and **enjoy it**.
-
-\`inline code\`
-
-\`\`\`ts
-const answer = 42
-\`\`\``;
+		const markdown = [
+			'---',
+			'title: Example',
+			'---',
+			'<scr' + 'ipt>',
+			"\timport Demo from './demo.svelte'",
+			'</scr' + 'ipt>',
+			'# Heading',
+			'',
+			'Read [the guide](https://example.com) and **enjoy it**.',
+			'',
+			'`inline code`',
+			'',
+			'```ts',
+			'const answer = 42',
+			'```',
+		].join('\n');
 
 		expect(to_plain_text(markdown)).toBe(
 			'Heading\n\nRead the guide and enjoy it.\n\ninline code\n\nconst answer = 42',
