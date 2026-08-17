@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	import { track_click } from '#lib/analytics/track-click.remote.js';
+	import { get_bluesky_replies } from '#lib/data/bluesky-replies.remote.js';
+	import { page } from '$app/state';
 	import {
 		differenceInDays,
 		differenceInYears,
@@ -9,6 +10,7 @@
 	import { Head, SchemaOrg, type SchemaOrgProps } from 'svead';
 
 	import {
+		BlueskyReplies,
 		ButtButt,
 		IsPrivateBanner,
 		LiveVisitors,
@@ -232,7 +234,7 @@
 			<span>{data.meta.reading_time.text}</span>
 		</div>
 		<div>
-			{#each data.meta.tags as tag}
+			{#each data.meta.tags as tag (tag)}
 				<a href={`/tags/${tag}`}>
 					<span
 						class="hover:text-accetn-content mr-2 badge badge-sm text-primary-content shadow-md transition badge-primary hover:bg-accent"
@@ -298,6 +300,14 @@
 				✨ View the stats for this post ✨
 			</a>
 		</div>
+	{/if}
+
+	{#if !data.meta.is_private}
+		{#await get_bluesky_replies( { article_url: url, endpoint_origin: page.url.origin } ) then bluesky_replies}
+			{#if bluesky_replies}
+				<BlueskyReplies {...bluesky_replies} />
+			{/if}
+		{/await}
 	{/if}
 
 	<Modal

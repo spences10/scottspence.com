@@ -1,0 +1,131 @@
+import { query } from '$app/server';
+import * as v from 'valibot';
+
+type SharedPost = {
+	article_url: string;
+	uri: string;
+	url: string;
+	created_at?: string;
+};
+
+type SharedPostsResponse = {
+	posts?: SharedPost[];
+};
+
+export type BlueskyPost = {
+	uri: string;
+	author: {
+		did: string;
+		handle: string;
+		displayName?: string;
+		avatar?: string;
+		labels?: Array<{ val: string }>;
+	};
+	record: { text?: string; createdAt?: string };
+	likeCount?: number;
+	replyCount?: number;
+	repostCount?: number;
+	labels?: Array<{ val: string }>;
+};
+
+export type BlueskyReply = BlueskyPost & {
+	replies: BlueskyReply[];
+};
+
+type ThreadReply = {
+	post?: BlueskyPost;
+	replies?: ThreadReply[];
+};
+
+export type BlueskyRepliesData = {
+	post_url: string;
+	replies: BlueskyReply[];
+};
+
+const article_path = (value: string) =>
+	new URL(value).pathname.replace(/\/$/, '');
+
+const has_spam_label = (post: BlueskyPost) =>
+	[...(post.labels ?? []), ...(post.author.labels ?? [])].some(
+		(label) => label.val === 'spam',
+	);
+
+const build_reply_tree = (replies: ThreadReply[]): BlueskyReply[] =>
+	replies.flatMap((reply) =>
+		reply.post && !has_spam_label(reply.post)
+			? [
+					{
+						...reply.post,
+						replies: build_reply_tree(reply.replies ?? []),
+					},
+				]
+			: [],
+	);
+
+export const get_bluesky_replies = query(
+	v.object({
+		article_url: v.pipe(v.string(), v.url()),
+		endpoint_origin: v.pipe(v.string(), v.url()),
+	}),
+	async ({
+		article_url,
+		endpoint_origin,
+	}): Promise<BlueskyRepliesData | null> => {
+		const endpoint_url = new URL(endpoint_origin);
+		if (
+			endpoint_url.hostname !== 'scottspence.com' &&
+			endpoint_url.hostname !== 'localhost' &&
+			endpoint_url.hostname !== '127.0.0.1'
+		)
+			return null;
+
+		const shared_posts_response = await globalThis.fetch(
+			new URL('/api/bluesky-posts', endpoint_url),
+		);
+		if (!shared_posts_response.ok) return null;
+
+		const shared_posts =
+			(await shared_posts_response.json()) as SharedPostsResponse;
+		const target_path = article_path(article_url);
+		const matches = (shared_posts.posts ?? []).filter(
+			(post) => article_path(post.article_url) === target_path,
+		);
+		if (matches.length === 0) return null;
+
+		const threads = await Promise.all(
+			matches.map(async (post) => {
+				const params = new URLSearchParams({
+					uri: post.uri,
+					depth: '10',
+					parentHeight: '0',
+				});
+				const response = await globalThis.fetch(
+					`https://public.api.bsky.app/xrpc/app.bsky.feed.getPostThread?${params}`,
+				);
+				if (!response.ok) return [];
+
+				const data = (await response.json()) as {
+					thread?: { replies?: ThreadReply[] };
+				};
+				return build_reply_tree(data.thread?.replies ?? []);
+			}),
+		);
+
+		const replies = Array.from(
+			new Map(
+				threads.flat().map((post) => [post.uri, post]),
+			).values(),
+		).sort(
+			(a, b) =>
+				new Date(a.record.createdAt ?? 0).getTime() -
+				new Date(b.record.createdAt ?? 0).getTime(),
+		);
+		const newest_post = matches.toSorted(
+			(a, b) =>
+				new Date(b.created_at ?? 0).getTime() -
+				new Date(a.created_at ?? 0).getTime(),
+		)[0];
+
+		return { post_url: newest_post.url, replies };
+	},
+);
