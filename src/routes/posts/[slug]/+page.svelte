@@ -303,7 +303,7 @@
 	{/if}
 
 	{#if !data.meta.is_private}
-		{#await get_bluesky_replies( { article_url: url, endpoint_origin: page.url.origin } ) then bluesky_replies}
+		{#await get_bluesky_replies(url) then bluesky_replies}
 			{#if bluesky_replies}
 				<BlueskyReplies {...bluesky_replies} />
 			{/if}

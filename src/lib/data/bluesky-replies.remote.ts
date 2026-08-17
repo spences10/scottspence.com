@@ -1,16 +1,6 @@
 import { query } from '$app/server';
+import { get_shared_posts } from '#lib/server/bluesky-posts.js';
 import * as v from 'valibot';
-
-type SharedPost = {
-	article_url: string;
-	uri: string;
-	url: string;
-	created_at?: string;
-};
-
-type SharedPostsResponse = {
-	posts?: SharedPost[];
-};
 
 export type BlueskyPost = {
 	uri: string;
@@ -63,31 +53,11 @@ const build_reply_tree = (replies: ThreadReply[]): BlueskyReply[] =>
 	);
 
 export const get_bluesky_replies = query(
-	v.object({
-		article_url: v.pipe(v.string(), v.url()),
-		endpoint_origin: v.pipe(v.string(), v.url()),
-	}),
-	async ({
-		article_url,
-		endpoint_origin,
-	}): Promise<BlueskyRepliesData | null> => {
-		const endpoint_url = new URL(endpoint_origin);
-		if (
-			endpoint_url.hostname !== 'scottspence.com' &&
-			endpoint_url.hostname !== 'localhost' &&
-			endpoint_url.hostname !== '127.0.0.1'
-		)
-			return null;
-
-		const shared_posts_response = await globalThis.fetch(
-			new URL('/api/bluesky-posts', endpoint_url),
-		);
-		if (!shared_posts_response.ok) return null;
-
-		const shared_posts =
-			(await shared_posts_response.json()) as SharedPostsResponse;
+	v.pipe(v.string(), v.url()),
+	async (article_url): Promise<BlueskyRepliesData | null> => {
+		const shared_posts = await get_shared_posts(globalThis.fetch);
 		const target_path = article_path(article_url);
-		const matches = (shared_posts.posts ?? []).filter(
+		const matches = shared_posts.posts.filter(
 			(post) => article_path(post.article_url) === target_path,
 		);
 		if (matches.length === 0) return null;
