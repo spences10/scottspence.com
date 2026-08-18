@@ -2,6 +2,13 @@ import { query } from '$app/server';
 import { get_shared_posts } from '#lib/server/bluesky-posts.js';
 import * as v from 'valibot';
 
+type BlueskyImage = {
+	thumb: string;
+	fullsize: string;
+	alt?: string;
+	aspectRatio?: { width: number; height: number };
+};
+
 export type BlueskyPost = {
 	uri: string;
 	author: {
@@ -12,6 +19,10 @@ export type BlueskyPost = {
 		labels?: Array<{ val: string }>;
 	};
 	record: { text?: string; createdAt?: string };
+	embed?: {
+		$type?: string;
+		images?: BlueskyImage[];
+	};
 	likeCount?: number;
 	replyCount?: number;
 	repostCount?: number;

@@ -65,6 +65,32 @@
 				<p class="mt-1 mb-0 whitespace-pre-wrap text-base-content/90">
 					{reply.record.text ?? ''}
 				</p>
+				{#if reply.embed?.images?.length}
+					<div
+						class="mt-3 grid max-w-2xl grid-cols-2 gap-1 overflow-hidden rounded-xl"
+					>
+						{#each reply.embed.images as image (image.fullsize)}
+							<a
+								class:col-span-2={reply.embed.images.length === 1}
+								class="block overflow-hidden bg-base-300"
+								href={image.fullsize}
+								target="_blank"
+								rel="noreferrer"
+							>
+								<img
+									class="h-auto max-h-128 w-full object-cover"
+									src={image.thumb}
+									alt={image.alt || 'Image attached to this reply'}
+									width={image.aspectRatio?.width ?? 800}
+									height={image.aspectRatio?.height ?? 450}
+									loading="lazy"
+									decoding="async"
+									fetchpriority="low"
+								/>
+							</a>
+						{/each}
+					</div>
+				{/if}
 				<a
 					class="mt-3 flex w-fit items-center gap-1.5 text-sm text-base-content/60 no-underline hover:text-primary"
 					href={post_link(reply)}
