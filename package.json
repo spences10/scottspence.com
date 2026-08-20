@@ -52,8 +52,8 @@
 		"@types/node": "^26.2.0",
 		"@upstash/ratelimit": "^2.0.8",
 		"@upstash/redis": "^1.38.2",
-		"@vitest/browser": "4.1.10",
-		"@vitest/browser-playwright": "4.1.10",
+		"@vitest/browser": "4.1.11",
+		"@vitest/browser-playwright": "4.1.11",
 		"cspell": "^10.0.1",
 		"d3-scale": "^4.0.2",
 		"daisyui": "5.7.18",
@@ -81,7 +81,7 @@
 		"valibot": "^1.4.2",
 		"vite": "^8.2.1",
 		"vite-plus": "0.2.9",
-		"vitest": "4.1.10",
+		"vitest": "4.1.11",
 		"vitest-browser-svelte": "^3.0.0"
 	},
 	"engines": {
