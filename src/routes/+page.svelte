@@ -1,20 +1,31 @@
 <script lang="ts">
-	import { Head } from 'svead';
+	import { Head, SchemaOrg, type SchemaOrgProps } from 'svead';
 
 	import {
 		LandingHero,
 		PeopleToMeet,
 	} from '#lib/components/index.js';
-	import { website } from '#lib/info.js';
-	import { default_seo_config } from '#lib/seo/index.js';
+	import { description, website } from '#lib/info.js';
+	import {
+		default_seo_config,
+		person_schema,
+		website_schema,
+	} from '#lib/seo/index.js';
 
 	import type { SeoConfig } from 'svead';
 
 	const seo_config: SeoConfig = {
 		...default_seo_config,
-		title: 'Hello World! Welcome to my site! Enjoy!',
-		website: website,
+		title: 'Scott Spence — Product Engineer and Svelte Consultant',
+		description,
+		url: website,
+		website,
 	};
+
+	const schema_org_config = {
+		'@context': 'https://schema.org',
+		'@graph': [website_schema, person_schema],
+	} as unknown as SchemaOrgProps['schema'];
 
 	interface Props {
 		data: any;
@@ -25,6 +36,7 @@
 </script>
 
 <Head {seo_config} />
+<SchemaOrg schema={schema_org_config} />
 
 <LandingHero />
 

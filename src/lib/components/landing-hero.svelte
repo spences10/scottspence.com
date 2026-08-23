@@ -32,9 +32,10 @@
 					</span>
 				</h1>
 				<p class="mb-5 text-pretty">
-					AI engineering leader and fullstack developer. I build
-					AI-powered products with TypeScript, SvelteKit, and the
-					Claude ecosystem. I write about all of it here.
+					I'm a UK-based product engineer and Svelte consultant. I
+					build production AI systems, coding-agent infrastructure,
+					MCP tools, and SvelteKit products. I write about all of it
+					here.
 				</p>
 				<p class="mb-5 text-pretty">
 					Check out that massive picture of my <a

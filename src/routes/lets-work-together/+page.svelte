@@ -44,8 +44,9 @@
 	};
 
 	const seo_config = create_seo_config({
-		title: `Let's work together! - ${name}`,
-		description: `Want to work with me? Here's a breakdown of what I can do for you.`,
+		title: `AI Engineering and Svelte Consulting — ${name}`,
+		description: `Work with ${name} on production AI systems, coding-agent infrastructure, MCP tools, SvelteKit products, workshops, and technical leadership.`,
+		append_site_name: false,
 		open_graph_image: og_image_url(
 			name,
 			`scottspence.com`,

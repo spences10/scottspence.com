@@ -2,7 +2,7 @@ export const name = `Scott Spence`;
 
 export const website = `https://scottspence.com`;
 
-export const description = `My own little space on the internet, where I write about what I've learned as a web developer mainly Svelte and SvelteKit.`;
+export const description = `Scott Spence is a UK-based product engineer building production AI systems, coding-agent infrastructure, MCP tools, and SvelteKit products.`;
 
 export const payment_pointer = '$ilp.uphold.com/bzPBWkMBzLmN';
 

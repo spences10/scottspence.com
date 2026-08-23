@@ -7,9 +7,15 @@ import slugify from 'slugify';
 
 interface PageInfo {
 	path: string;
-	last_mod: string;
 	priority: number;
 }
+
+const excluded_pages = new Set([
+	'heatmap',
+	'newsletter/verify',
+	'reactions-leaderboard',
+	'stats',
+]);
 
 async function discover_pages(
 	root_dir: string = 'src/routes',
@@ -33,22 +39,20 @@ async function discover_pages(
 					await scan_directory(full_path, route_path);
 				}
 			} else if (entry.name === '+page.svelte') {
-				const stats = await fs.stat(full_path);
 				const normalized_path = base_path
 					.replace(/\\/g, '/') // Convert Windows paths
 					.replace(/^\/?/, ''); // Remove leading slash
 
-				// Skip dynamic routes and the root page
 				if (
 					!normalized_path.includes('[') &&
-					normalized_path !== ''
+					!excluded_pages.has(normalized_path)
 				) {
 					pages.push({
 						path: normalized_path,
-						last_mod: stats.mtime.toISOString().split('T')[0],
-						// Assign priority based on path depth
 						priority:
-							0.8 - (normalized_path.split('/').length - 1) * 0.1,
+							normalized_path === ''
+								? 1
+								: 0.8 - (normalized_path.split('/').length - 1) * 0.1,
 					});
 				}
 			}
@@ -123,10 +127,9 @@ export const GET = async () => {
 const render_pages = (pages: PageInfo[]) => {
 	return pages
 		.map(
-			({ path, last_mod, priority }) => `
+			({ path, priority }) => `
         <url>
           <loc>${website}${path ? `/${path}` : ''}</loc>
-          <lastmod>${last_mod}</lastmod>
           <priority>${priority}</priority>
         </url>
       `,
@@ -149,8 +152,17 @@ const render_posts = (posts_metadata: Post[]) => {
 		.join('');
 };
 
-const render_tags = (tags: string[]) => {
+const render_tags = (tags: string[], posts_metadata: Post[]) => {
+	const tag_counts = posts_metadata
+		.filter(({ is_private }) => !is_private)
+		.flatMap(({ tags }) => tags)
+		.reduce((counts, tag) => {
+			counts.set(tag, (counts.get(tag) ?? 0) + 1);
+			return counts;
+		}, new Map<string, number>());
+
 	return tags
+		.filter((tag) => (tag_counts.get(tag) ?? 0) >= 3)
 		.map(
 			(tag: string) => `
         <url>
@@ -178,7 +190,7 @@ const render_sitemap = (
     >
       ${render_pages(pages)}
       ${render_posts(posts_metadata)}
-      ${render_tags(tags)}
+      ${render_tags(tags, posts_metadata)}
     </urlset>`;
 };
 

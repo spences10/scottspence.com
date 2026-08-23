@@ -32,8 +32,9 @@
 	};
 
 	const seo_config = create_seo_config({
-		title: `Speaking - ${name}`,
-		description: `A list of events where ${name} has held a workshop, a talk or spoken publicly.`,
+		title: `${name} — AI and Svelte Talks and Workshops`,
+		description: `Talks, workshops, podcasts, and conference appearances by ${name} about production AI engineering, coding agents, Svelte, and SvelteKit.`,
+		append_site_name: false,
 		open_graph_image: og_image_url(
 			name,
 			`scottspence.com`,

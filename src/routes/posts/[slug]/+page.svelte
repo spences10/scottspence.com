@@ -77,7 +77,7 @@
 			image: seo_config.open_graph_image,
 			mainEntityOfPage: {
 				'@type': 'WebPage',
-				'@id': website,
+				'@id': url,
 			},
 		}),
 	);

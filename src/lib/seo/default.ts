@@ -4,10 +4,13 @@ import { og_image_url } from '#lib/utils/index.js';
 import type { SeoConfig } from 'svead';
 
 export const same_as = [
-	'https://www.twitter.com/spences10',
-	'https://www.github.com/spences10',
+	'https://github.com/spences10',
 	'https://www.linkedin.com/in/spences10',
+	'https://bsky.app/profile/scottspence.dev',
 ];
+
+export const person_id = `${website}/#person`;
+export const website_id = `${website}/#website`;
 
 export const default_seo_config: SeoConfig = {
 	title: 'Default Page Title',
@@ -21,30 +24,37 @@ export const default_seo_config: SeoConfig = {
 	site_name: name,
 };
 
-const person = {
-	'@type': 'Person',
-	name: name,
+export const person_schema = {
+	'@type': 'Person' as const,
+	'@id': person_id,
+	name,
 	url: website,
 	sameAs: same_as,
-} as const;
-
-export const default_schema_org_config = {
-	'@type': 'WebSite' as const,
-	'@id': website,
-	url: website,
-	name: name,
-	description: description,
-	publisher: person,
-	author: person,
 };
 
+export const website_schema = {
+	'@type': 'WebSite' as const,
+	'@id': website_id,
+	url: website,
+	name,
+	description,
+	publisher: { '@id': person_id },
+};
+
+export const default_schema_org_config = website_schema;
+
 export const create_seo_config = (
-	options: Partial<SeoConfig> & { slug?: string },
+	options: Partial<SeoConfig> & {
+		slug?: string;
+		append_site_name?: boolean;
+	},
 ): SeoConfig => ({
 	...default_seo_config,
 	...options,
 	title: options.title
-		? `${options.title} - ${name}`
+		? options.append_site_name === false
+			? options.title
+			: `${options.title} - ${name}`
 		: default_seo_config.title,
 	url: options.slug ? `${website}/${options.slug}` : website,
 	open_graph_image:

@@ -12,8 +12,9 @@
 	let Copy = $derived(data.Copy);
 
 	const seo_config = create_seo_config({
-		title: `Portfolio Page, recent projects, GitHub contributions and more - ${name}`,
-		description: `${name}'s Portfolio Page. Recent projects, GitHub contributions and more`,
+		title: `${name}'s AI Engineering and Svelte Portfolio`,
+		description: `Explore ${name}'s production AI systems, coding-agent infrastructure, MCP tools, SvelteKit products, and open-source developer tooling.`,
+		append_site_name: false,
 		open_graph_image: og_image_url(
 			name,
 			`scottspence.com`,

@@ -17,6 +17,7 @@
 
 <svelte:head>
 	<title>Newsletter Confirmation - Scott Spence</title>
+	<meta name="robots" content="noindex, follow" />
 </svelte:head>
 
 <!-- Success/Error Alert Banner -->
