@@ -1,13 +1,19 @@
 # Newsletter
 
-I write a newsletter where I share what I have been working on and
-learning over the past weeks and share helpful links I have found
-along the way.
+I send an occasional newsletter about what I'm building, what broke,
+and what I learned fixing it.
 
-I do occasional giveaways for existing and new subscribers as well.
+Most editions cover coding agents, MCP tools, SvelteKit, open-source
+developer tooling, and the practical work behind production AI
+systems. I also include new posts and a short list of useful links
+that are worth your time.
 
-I don't keep any of your personally identifiable information. Take a
-look at the [privacy policy] for more info.
+It is for developers and engineering leads who want first-hand notes,
+not a weekly pile of recycled AI news. You can browse the past
+editions below before subscribing.
+
+I do not sell your details or use them for unrelated marketing. See
+the [privacy policy] for how subscriber data is handled.
 
 <!-- Links -->
 

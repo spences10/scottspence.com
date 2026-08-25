@@ -27,8 +27,8 @@
 	};
 
 	const seo_config = create_seo_config({
-		title: `Recruiter FAQs - ${name}`,
-		description: `Frequently Asked Questions for recruiters.`,
+		title: `Work and Recruiter FAQ — ${name}`,
+		description: `Current answers about ${name}'s product engineering and consulting work, availability, experience, location, rates, and interview preferences.`,
 		open_graph_image: og_image_url(name, `scottspence.com`, `FAQs`),
 		url: `${website}/faq`,
 		slug: 'faq',

@@ -24,6 +24,10 @@
 	});
 </script>
 
+<svelte:head>
+	<meta name="robots" content="noindex, follow" />
+</svelte:head>
+
 <Head {seo_config} />
 
 <div class="all-prose">

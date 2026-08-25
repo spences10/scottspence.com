@@ -12,8 +12,10 @@ interface PageInfo {
 
 const excluded_pages = new Set([
 	'heatmap',
+	'my-todo-list',
 	'newsletter/verify',
 	'reactions-leaderboard',
+	'seo-outreach',
 	'stats',
 ]);
 

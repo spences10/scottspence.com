@@ -1,54 +1,52 @@
 <script>
   import {
-    DateDistance as DD, 
     DateUpdated, 
     Small, 
   } from '#lib/components/index.js'
 </script>
 
 <Small>
-  Last updated: <DateUpdated date="2025-04-18" small="true" />
+  Last updated: <DateUpdated date="2026-08-25" small="true" />
 </Small>
 
 ## Short
 
-Scott Spence is an Engineering Team Lead at XtendOps, specializing in
-Svelte and SvelteKit. With <DD date="2018-03-18" /> of commercial web
-development experience, Scott leads teams building scalable AI-driven
-applications. As the founder of OES Technology and an experienced
-Developer Advocate, he brings deep expertise in JavaScript, modern
-frameworks, and technical leadership.
+Scott Spence is a UK-based product engineer and Svelte consultant. He
+builds production AI systems, coding-agent infrastructure, MCP tools,
+SvelteKit products, and open-source developer tooling. He is a Svelte
+Ambassador and co-founder of Svelte Society London.
 
 ## Medium
 
-Scott Spence is a seasoned Engineering Team Lead, currently overseeing
-a sophisticated SvelteKit monorepo powering multiple customer-facing
-AI products at XtendOps. With a career spanning
-
-<DD date="2006-04-01" /> in technology and <DD date="2018-03-18" /> in
-commercial web development, Scott excels in technical leadership,
-architecture, and team mentoring. As the founder of OES Technology and
-a former Developer Advocate, he is passionate about driving
-innovation, maintaining high code quality, and sharing knowledge
-through content and community engagement.
+Scott Spence is a UK-based product engineer, Svelte Ambassador, and
+Svelte consultant. He builds production AI systems, agent-assisted
+engineering workflows, MCP tools, and SvelteKit products. He
+previously led 12 developers across two teams building AI
+customer-service software in a large SvelteKit monorepo. Scott
+co-founded Svelte Society London, speaks at conferences and community
+events, and publishes practical engineering guides at
+[scottspence.com](https://scottspence.com).
 
 ## Long
 
-Scott Spence is an Engineering Team Lead with <DD date="2018-03-18" />
-of commercial web development experience and <DD date="2006-04-01" />
-of experience in the tech industry. At XtendOps, he leads development
-teams in building and maintaining a large-scale SvelteKit monorepo for
-AI-powered platforms, focusing on technical excellence, security, and
-product innovation. Scott is the founder of OES Technology, delivering
-scalable Svelte solutions for businesses, and previously worked as a
-Developer Advocate, creating educational content and building
-developer communities.
+Scott Spence is a UK-based product engineer and Svelte consultant
+focused on production AI systems, coding-agent infrastructure, MCP
+tools, SvelteKit products, and open-source developer tooling. His work
+covers agent execution, evals, observability, developer experience,
+platform controls, and the human review needed to use probabilistic
+systems safely in production.
 
-Earlier in his career, Scott spent over 12 years as a senior-level
-Analyst Developer, specializing in Microsoft Office automation for
-major financial organizations. He is recognized for his strong
-leadership, mentoring, and commitment to best practices. Scott remains
-actively engaged in the tech community, attending industry events,
-contributing to open source, and continuously advancing his skills to
-deliver value and foster growth within his teams and the wider
-community.
+Scott previously led 12 developers across two product teams building
+AI customer-service software in a large SvelteKit monorepo. Earlier in
+his career, he worked in developer relations and spent more than a
+decade as an analyst developer building automation and business
+systems for large organisations.
+
+He is a Svelte Ambassador and co-founder of Svelte Society London.
+Scott speaks at international conferences and community events and
+publishes practical engineering guides at
+[scottspence.com](https://scottspence.com). His public projects
+include [my-pi](https://github.com/spences10/my-pi),
+[mcp-omnisearch](https://github.com/spences10/mcp-omnisearch), and
+other tools for coding agents, search, SQLite, and safer development
+workflows.

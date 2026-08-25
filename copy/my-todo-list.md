@@ -7,11 +7,13 @@
 # My Todo List
 
 <Small>
-  Last updated: <DateUpdated date="2024-11-09" small="true" />
+  Archived: <DateUpdated date="2026-08-25" small="true" />
 </Small>
 
-My inbox is not my todo list! I'm going to keep this page updated with
-what I'm working on and what I'm thinking about.
+This page is no longer maintained. See [what I'm doing now](/now) for
+current work. The list below is kept as an archive.
+
+My inbox is not my todo list!
 
 ## Working on
 

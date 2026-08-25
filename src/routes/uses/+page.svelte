@@ -12,8 +12,8 @@
 	let Copy = $derived(data.Copy);
 
 	const seo_config = create_seo_config({
-		title: `Uses - ${name}`,
-		description: `The equipment I use to do what I do.`,
+		title: `${name}'s Product Engineering and Coding-Agent Setup`,
+		description: `The hardware, Linux setup, terminal tools, editor, and coding-agent infrastructure ${name} uses for product engineering and open-source work.`,
 		open_graph_image: og_image_url(name, `scottspence.com`, `Uses`),
 		url: `${website}/uses`,
 		slug: 'uses',

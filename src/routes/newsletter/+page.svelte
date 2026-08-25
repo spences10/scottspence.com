@@ -21,8 +21,8 @@
 	);
 
 	const seo_config = create_seo_config({
-		title: `Newsletter, get updates on what I'm working on - ${name}`,
-		description: `Keep up to date with what content I'm creating with my newsletter.`,
+		title: `Coding Agents, MCP, and Svelte Newsletter — ${name}`,
+		description: `Occasional first-hand notes from ${name} about coding agents, MCP tools, production AI systems, SvelteKit, and open-source developer tooling.`,
 		open_graph_image: og_image_url(
 			name,
 			`scottspence.com`,

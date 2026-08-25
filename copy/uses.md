@@ -1,3 +1,5 @@
+<!-- cspell:ignore Ghostty nopeek WezTerm -->
+
 <script>
   import {
     DateUpdated, 
@@ -8,102 +10,82 @@
 # Uses
 
 <Small>
-  Last updated: <DateUpdated date="2022-07-24" small="true" />
+  Last updated: <DateUpdated date="2026-08-25" small="true" />
 </Small>
 
-All the equipment and tools I use on a daily basis.
+This is the hardware and software I use for product engineering,
+writing, video, and far too much coding-agent experimentation.
 
-For home, I use Windows 11 Pro Insider Preview exclusively now.
-Windows Subsystem for Linux (WSL) has come a long way with WSL2.
+## Workstation
 
-If you are interested in getting familiar with it check the [tags
-section for WSL].
+My main machine is a Framework Laptop 13 with an AMD Ryzen AI 9 HX
+370, 64 GB of memory, Radeon 890M graphics, and a 1 TB NVMe drive. At
+my desk, I use the laptop screen with two external displays.
 
----
+The current input and audio setup is a Keychron Q3 keyboard, a
+Keychron Q0 number pad, a Logitech mouse, and a Shure MV7 microphone.
+The laptop has Framework's second-generation webcam module.
 
-## Uses at home
+The Framework replaced the small-form-factor desktop from my [first PC
+build] post. I wanted a repairable machine with enough memory for
+several repositories, language servers, local databases, containers,
+and coding-agent sessions at the same time.
 
-### Desk
+## Operating system and terminal
 
-<!-- cSpell:ignore brrrrrrrrrr -->
+My main development system is [EndeavourOS] with KDE Plasma. I moved
+to it after years of using Windows and WSL. I still keep Windows
+available for the software and hardware that need it.
 
-- My computer is a [Ryzen 5 Mini ITX build], my [first time PC
-  building a PC].
-- Desk chair is a [HÅG Capisco Puls]
-- I run two [HP EliteDisplay's E232 58,4 cm (23")] Monitors through a
-  [WAVLINK USB C Laptop Universal Docking Station].
-- Keyboard is a [Keychron Q1].
-- Mouse, Logitech MX Master 3 (wheel goes brrrrrrrrrr)
-- Microphone, a Shure MV7.
-- Webcam, Elgato facecam.
-- Speakers Harman Kardon Computer Speaker System - SOUNDSTICKS3AM-A
+I switched from Ghostty to WezTerm in July 2026. It uses a custom Neon
+Afterglow colour scheme based on my Zed theme, Victor Mono, and the
+same tab shortcuts I had configured in Ghostty. I use Zsh for the
+shell and pnpm for JavaScript and TypeScript projects.
 
-### OS
+My public [dotfiles] and [settings] repositories contain the parts of
+the setup that are useful to share.
 
-I have been through many Linux distributions, currently I'm using a
-Windows Insiders build on the Dev Channel and another partition with
-regular release ring for when things don't quite work on the Dev
-Channel.
+## Editor and coding agents
 
-### Editor + Terminal
+Zed has been my main graphical editor since May 2026. I like the
+speed, project-wide editing, built-in collaboration features, and the
+fact I can keep repository settings next to the code. I still keep VS
+Code available, but Zed is where I do my day-to-day editing now.
 
-- Microsoft [Visual Studio Code] with [Sarah Drasner]'s awesome [Night
-  Owl] 🦉 theme
-- Terminal of choice is [Windows Terminal Preview]. Check out the
-  video on [making a custom config] or [read the post].
-- [Victor Mono] font for both text editor and terminal.
+Most agent-assisted work happens beside it in WezTerm through [my-pi],
+my customised Pi coding-agent environment.
 
-### Desktop Apps
+The setup includes:
 
-- I use OBS ([Open Broadcaster Software]) for recording some coding
-  sessions.
-- Restream for live streams.
-- For light video editing I use [Shotcut] and ReCut, longer videos
-  DaVinci Resolve.
+- MCP tools for search, documentation, SQLite, and workflow
+  automation;
+- LSP diagnostics, definitions, references, and document symbols;
+- local session recall and focused context retrieval;
+- evals, telemetry, scope controls, and deterministic validation;
+- secret-safe command execution with [nopeek];
+- GitHub CLI, browser automation, and human review before changes
+  ship.
 
----
+I use several models and providers. The workflow matters more than
+which model is fashionable that week.
 
-## Uses at work
+## Recording and media
 
-### Desk
+I use OBS for screen recording and live sessions. For editing, I use
+DaVinci Resolve for larger projects and simpler tools when the job
+does not need a full editing suite.
 
-- My work computer is a ASUS ROG Zephyrus G14 (Acronym Edition) with
-  Windows 10.
-- As I'm fully remote I use the same desk set-up as my home desk.
+## Other hardware
 
-### Editor + Terminal
-
-- Microsoft [Visual Studio Code] with [Sarah Drasner]'s awesome [Night
-  Owl] 🦉 theme
-- [Windows Terminal Preview]
-
-### Desktop apps
-
-- For gif capture I'm currently evaluating Snagit.
-- For installing any apps I use [Winget].
+I use a Steam Deck for games. The Keychron Q3 and separate Q0 number
+pad also confirm that I apparently needed another hobby with expensive
+switches.
 
 <!-- Links -->
 
-[hp elitedisplay's e232 58,4 cm (23")]: https://amzn.to/2ZKVMUP
-[håg capisco puls]: https://amzn.to/2ZKWKQa
-[open broadcaster software]: https://obsproject.com/
-[victor mono]: https://rubjo.github.io/victor-mono/
-[sarah drasner]: https://github.com/sdras/
-[night owl]: https://github.com/sdras/night-owl-vscode-theme
-[keychron q1]:
-	https://scottspence.com/posts/keychron-q1-first-impressions
-[visual studio code]: https://code.visualstudio.com/
-[windows terminal preview]:
-	https://www.microsoft.com/en-gb/p/windows-terminal-preview/9n8g5rfz9xk3
-[shotcut]: https://shotcut.org/
-[winget]:
-	https://docs.microsoft.com/en-us/windows/package-manager/winget/
-[ryzen 5 mini itx build]: https://uk.pcpartpicker.com/list/pHkrCL
-[first time pc building a pc]:
-	https://scottspence.com/posts/first-time-pc-build
-[made some notes]: https://scottspence.com/posts/logitech-g915
-[tags section for wsl]: https://scottspence.com/tags/wsl
-[wavlink usb c laptop universal docking station]:
-	https://www.amazon.co.uk/gp/product/B082SR6GMB
-[making a custom config]: https://www.youtube.com/watch?v=iT47xk3F7EA
-[read the post]: https://scottspence.com/posts/windows-terminal-config
+[EndeavourOS]: /posts/switching-to-endeavouros-from-omarchy
+[first PC build]: /posts/first-time-pc-build
+[dotfiles]: https://github.com/spences10/dotfiles
+[settings]: https://github.com/spences10/settings
+[my-pi]: https://github.com/spences10/my-pi
+[nopeek]: https://github.com/spences10/nopeek

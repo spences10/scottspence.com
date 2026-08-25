@@ -6,42 +6,42 @@
 </script>
 
 <Small>
-  Last updated: <DateUpdated date="2025-04-18" small="true" />
+  Last updated: <DateUpdated date="2026-08-25" small="true" />
 </Small>
 
 ## Short
 
-Scott is a straight-talking Svelte ambassador, community builder, and
-tech enthusiast. As an engineering team lead and organizer of Svelte
-Society London, he's passionate about making web tech practical,
-accessible, and fun for everyone. Expect honest insights, a dash of
-humour, and a love for all things SvelteKit.
+Scott Spence is a straight-talking product engineer, Svelte
+consultant, and coding-agent tinkerer. He builds production AI
+systems, MCP tools, SvelteKit products, and open-source developer
+tooling. He also co-organises Svelte Society London.
 
 ## Medium
 
-Meet Scott, a no-nonsense Svelte ambassador, team lead, and the go-to
-for real-world web dev advice. He organizes Svelte Society London,
-blogs what he learns, and creates videos that cut through the hype and
-get straight to what works. Scott's all about community, making
-complex tech simple, and sharing both wins and learning moments. If
-it's SvelteKit, TypeScript, or Tailwind, he's probably using it (and
-telling you why pnpm is the only way!).
+Scott Spence is a UK-based product engineer, Svelte Ambassador, and
+the person behind an unreasonable number of MCP tools. He builds
+production AI systems and the coding-agent infrastructure needed to
+keep them useful, observable, and under control. Scott co-organises
+Svelte Society London and writes practical guides about what worked,
+what failed, and what sent him down another tooling rabbit hole.
 
 ## Long
 
-Scott Spence is your friendly neighbourhood tech leader who believes
-in keeping things real, practical, and a little bit cheeky. As an
-engineering team lead, Svelte Society London co-founder, and Svelte
-ambassador, Scott's mission is to help developers succeed without the
-BS. He's a prolific blogger and content creator, known for making
-tricky topics accessible and relatable (with the occasional meme or
-keyboard reference thrown in).
+Scott Spence is a product engineer and Svelte consultant who likes
+building tools that remove repetitive work without quietly lowering
+the engineering bar. His work covers production AI systems,
+coding-agent guardrails, MCP tools, evals, observability, SvelteKit,
+and open-source developer tooling.
 
-Scott's technical toolkit is all about efficiency: SvelteKit,
-TypeScript, Tailwind, daisyUI, and pnpm (never npm, don't ask). He
-prefers real SQL over ORMs, Markdown for docs, and rapid iteration
-over endless planning. When he's not leading teams or building
-community tools like skykit.blue, you'll find him geeking out over
-mechanical keyboards, drum & bass, or the latest SvelteKit updates.
-Scott stands for authenticity, community, and helping others cut
-through the noise—one honest blog post at a time.
+He previously led 12 developers across two teams building AI
+customer-service software. Before web development, he spent more than
+a decade automating business processes as an analyst developer, so
+turning awkward operational work into software is not a new hobby.
+
+Scott is a Svelte Ambassador and co-founder of Svelte Society London.
+He writes practical engineering guides at
+[scottspence.com](https://scottspence.com), speaks at conferences, and
+shares the useful parts of his experiments in public. When he is not
+building another terminal tool, he is probably listening to drum and
+bass, watching mechanical restoration videos, changing something on
+his keyboard, or insisting that Borderlands 2 is still the best one.

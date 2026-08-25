@@ -12,8 +12,8 @@
 	let Copy = $derived(data.Copy);
 
 	const seo_config = create_seo_config({
-		title: `What I'm doing now - ${name}`,
-		description: `What I'm doing now. Updated irregularly, check last updated date.`,
+		title: `What ${name} Is Working on Now`,
+		description: `Current product engineering, coding-agent infrastructure, open-source work, writing, and community activity from ${name}.`,
 		open_graph_image: og_image_url(
 			name,
 			`scottspence.com`,

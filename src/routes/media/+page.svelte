@@ -20,8 +20,8 @@
 	};
 
 	const seo_config = create_seo_config({
-		title: `Media - ${name}`,
-		description: `Media pack for ${name}`,
+		title: `${name} Media Pack and Speaker Biographies`,
+		description: `Approved short, medium, and long biographies and press images for product engineer, Svelte consultant, and speaker ${name}.`,
 		open_graph_image: og_image_url(
 			name,
 			`scottspence.com`,
@@ -37,7 +37,7 @@
 <div class="all-prose">
 	<h1>Media Pack</h1>
 	<Small>
-		Last updated: <DateUpdated date="2023-03-10" small="true" />
+		Last updated: <DateUpdated date="2026-08-25" small="true" />
 	</Small>
 
 	<div class="items-center sm:flex lg:-mx-40">
@@ -50,7 +50,10 @@
 	</div>
 
 	<p>
-		Bio information. If there's anything else you need let me know.
+		Use the approved short, medium, or long biography below. Choose
+		the tone that fits your event or publication. If you need another
+		format,
+		<a href="/contact">get in touch</a>.
 	</p>
 
 	<div class="mb-10 flex items-center space-x-2">

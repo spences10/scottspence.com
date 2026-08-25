@@ -10,47 +10,48 @@
 ## Hi, I'm Scott
 
 <Small>
-  Last updated: <DateUpdated date="2026-03-03" small="true" />
+  Last updated: <DateUpdated date="2026-08-25" small="true" />
 </Small>
 
-I'm a product engineer, currently operating through
-[OES Technology](https://oestechnology.co.uk) as an AI & Svelte
-consultant. I'm building [Svortie](https://svortie.com), a platform
-for running AI agents with scheduled workflows, MCP servers, and
-sandboxed environments. I also author MCP tools and ship open-source
-developer tooling. Previously I was an engineering team lead at
-XtendOps, leading 12 developers across two product teams building AI
-customer service agents. For specialised Svelte consulting services,
-visit [svelteconsulting.dev](https://svelteconsulting.dev).
+I'm a UK-based product engineer and Svelte consultant. I build
+production AI systems, coding-agent infrastructure, MCP tools,
+SvelteKit products, and open-source developer tooling.
 
-I create content written in the blog here and educational videos
-supporting the written content.
+I work through [OES Technology](https://oestechnology.co.uk), where I
+help teams turn complex operational work into reliable products. That
+can mean building a new workflow, adding agent execution and evals, or
+putting scope, validation, observability, and human review around
+agent-assisted engineering.
 
-I'm a second career dev that re-skilled from a [VBA] analyst developer
-role into web development.
+I'm also building [Svortie](https://svortie.com), a platform for
+running AI agents with scheduled workflows, MCP servers, and sandboxed
+environments. My public tooling includes
+[my-pi](https://github.com/spences10/my-pi) and MCP tools for search,
+SQLite, documentation, recall, and safer development workflows. For
+specialised Svelte consulting, visit
+[svelteconsulting.dev](https://svelteconsulting.dev).
 
-For <DD date="2021-04-06" /> now I have been working in Svelte and
-SvelteKit, holding workshops and organising events with the other
-organisers of the [Svelte Society London] group.
+Previously I led 12 developers across two product teams building AI
+customer-service software in a large SvelteKit monorepo. Before web
+development, I spent more than a decade as a [VBA] analyst developer,
+building automation and business systems for large organisations.
 
-Check out the [speaking] section for more details about those!
+I've worked with Svelte and SvelteKit for <DD date="2021-04-06" />.
+I'm a Svelte Ambassador and co-founder of [Svelte Society London],
+where I help run events and workshops. The [speaking] page has the
+talks, podcasts, workshops, recordings, and slides.
 
-These days I'm deep into AI tooling, building MCP servers, working
-with the Claude API and Agent SDK, and exploring multi-agent
-workflows. My web development background (<DD date="2018-08-02"/> in
-the industry) means I care about performance, accessibility, and
-developer experience in everything I build.
+The bit I care about is making complex systems practical. I write
+about what worked, what failed, and what I would do differently, then
+turn the repeated problems into tools other people can use.
 
-### Sectors I have worked in:
+### Sectors I have worked in
 
-I have over ten years of experience working for large corporate
-organisations in Finance (Risk, Asset Management), Property, Oil & Gas
-and the Lloyd's insurance market.
-
-As a web developer I've worked in government digital transformation,
-creative digital, content management, and business process
-outsourcing. I now focus on AI tooling, agent orchestration, and
-open-source developer AI tooling.
+My earlier career covered finance, risk, asset management, property,
+energy, and the Lloyd's insurance market. As a web developer, I've
+worked in government digital transformation, creative digital, content
+management, business process outsourcing, developer relations, and
+production AI products.
 
 ### My personality
 

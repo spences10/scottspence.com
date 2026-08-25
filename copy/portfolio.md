@@ -13,19 +13,18 @@
 # Portfolio
 
 <Small>
-  Last updated: <DateUpdated date="2026-06-22" small="true" />
+  Last updated: <DateUpdated date="2026-08-25" small="true" />
 </Small>
 
 <!-- prettier-ignore -->
-I'm Scott, a passionate Svelte ambassador and product engineer with <DateDistance date='2018-03-18' /> of commercial experience in
-web development. Currently operating as an AI & Svelte consultant
-through [OES Technology](https://oestechnology.co.uk), building
-[Svortie](https://svortie.com), and shipping open-source developer
-tooling like [my-pi](https://github.com/spences10/my-pi). My work
-spans practical utilities, developer tools, and useless projects I've
-built, just, because!
+I'm Scott, a UK-based product engineer and Svelte consultant with <DateDistance date='2018-03-18' /> of commercial web development experience.
+I build production AI systems, coding-agent infrastructure, MCP tools,
+SvelteKit products, and open-source developer tooling through
+[OES Technology](https://oestechnology.co.uk).
 
-Here's some of my recent work.
+This is selected work rather than every repository I've ever pushed.
+Each project shows the problem, the useful parts, and where you can
+inspect the source or product.
 
 ## my-pi
 
@@ -146,13 +145,13 @@ for developers.
 - Battle-tested patterns from production environments using
   bleeding-edge Svelte 5 and vitest-browser-svelte
 
-**Impact:**
+**Why it exists:**
 
-The project has influenced testing methodologies across the Svelte
-ecosystem, with patterns now being adopted by teams working on
-large-scale production applications. The comprehensive AI assistant
-rules help entire teams adopt consistent testing patterns, whether
-using Cursor, Windsurf, or other AI-powered editors.
+Svelte testing guidance was spread across documentation, examples, and
+rapidly changing package APIs. Sveltest puts working browser-mode
+examples and reusable assistant rules in one public project so teams
+can inspect and adapt the patterns rather than copy an unverified
+snippet.
 
 **Tech Stack:** SvelteKit, TypeScript, Vitest, vitest-browser-svelte,
 Playwright, TailwindCSS, daisyUI
@@ -208,26 +207,33 @@ Anthropic Claude 3, Deepgram, Voyage AI, Turso
 
 ---
 
-## Model Context Protocol (MCP) Tools Suite
+## Model Context Protocol tools
 
-I've created
-[many MCP tools](https://github.com/spences10?tab=repositories&q=mcp-&type=&language=&sort=)
-to enhance AI capabilities and improve developer workflows:
+I've published 20 MCP repositories. Together they had more than 1,300
+GitHub stars on 25 August 2026. The number changes, so the [repository
+list] is the source of truth.
 
-- **mcp-memory-libsql**: A portable database solution using SQLite in
-  libSQL, designed for team collaboration and hosted on Turso
-- **mcp-tavily-search**: Works alongside Brave Search to provide more
-  comprehensive AI search results
-- **mcp-jinaai-reader**: Optimized for extracting LLM-friendly web
-  page data and documentation parsing
-- **mcp-svelte-docs**: Makes Svelte documentation more accessible to
-  AI systems
-- **mcp-perplexity-search**: Enhanced AI search capabilities
-- **mcp-omnisearch**: Essentially all the search providers you could
-  want your LLM to access! Perplexity, Tavily, Kagi, Jina AI and Brave
-  search!
+- **Sequential Thinking Tools** recommends useful tools while an agent
+  works through a problem.
+  [View the repository](https://github.com/spences10/mcp-sequentialthinking-tools).
+- **Omnisearch** provides one interface for web search, AI answers,
+  and content extraction across several providers.
+  [View the repository](https://github.com/spences10/mcp-omnisearch).
+- **SQLite Tools** separates read-only, write, schema, and transaction
+  operations for safer SQLite access.
+  [View the repository](https://github.com/spences10/mcp-sqlite-tools).
+- **Svelte Docs** gives coding agents focused access to current Svelte
+  documentation.
+  [View the repository](https://github.com/spences10/mcp-svelte-docs).
+- **Memory for libSQL** provides persistent knowledge and vector
+  search with SQLite and libSQL.
+  [View the repository](https://github.com/spences10/mcp-memory-libsql).
+- **McPick** manages MCP servers and skills across coding-agent
+  clients. [View the repository](https://github.com/spences10/mcpick).
 
-[Explore MCP Tools](https://github.com/spences10?tab=repositories&q=mcp)
+[Explore all MCP repositories](https://github.com/spences10?tab=repositories&q=mcp)
+
+[repository list]: https://github.com/spences10?tab=repositories&q=mcp
 
 ---
 
@@ -263,31 +269,33 @@ Graph tags, and schema.org data for SvelteKit projects.
 
 ---
 
-## Community Involvement
+## Community involvement
 
-- **Svelte Ambassador**: Officially recognized by the Svelte team
-- **Svelte Society London**: Co-founder and organizer
-- **Content Creator**: Regularly publishing posts [here](/posts) about
-  Svelte, SvelteKit, and web development
-- **Speaker**: Presenting at conferences and meetups about Svelte
+- **Svelte Ambassador**: recognised by the Svelte team;
+- **Svelte Society London**: co-founder and co-organiser;
+- **Technical writing**: more than 240 public engineering articles;
+- **Speaking**: conference talks, workshops, podcasts, and community
+  events about AI engineering, coding agents, Svelte, and SvelteKit.
 
 ---
 
-## Technical Writing
+## Technical writing
 
-I regularly share my knowledge through detailed blog posts here.
-Recent highlights include:
+I publish first-hand engineering guides rather than product summaries.
+Current highlights include:
 
-- [Using MCP Tools with Claude and Cline](https://scottspence.com/posts/using-mcp-tools-with-claude-and-cline)
-- [My Updated ZSH Config 2025](https://scottspence.com/posts/my-updated-zsh-config-2025)
+- [Coding agent harnesses with my-pi](/posts/coding-agent-harnesses-my-pi)
+- [How I stop LLMs drifting in production codebases](/posts/how-i-stop-llms-drifting-in-production-codebases)
+- [Building and testing MCP tools locally](/posts/building-and-testing-mcp-tools-locally)
+- [Hardening redaction in my-pi with evals and telemetry](/posts/hardening-redaction-in-my-pi)
 
 ---
 
 ## Get in Touch
 
-I'm always open to collaboration opportunities, speaking engagements,
-and consulting work, reach out via [contact](/contact) form. Socials
-listed here:
+For product engineering, coding-agent infrastructure, Svelte
+consulting, workshops, or speaking, use the [contact](/contact) form.
+My main public profiles are:
 
 - **GitHub**: [@spences10](https://github.com/spences10)
 - **Bluesky**:

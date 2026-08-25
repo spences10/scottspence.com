@@ -41,6 +41,10 @@
 
 <svelte:window onscroll={handle_scroll} />
 
+<svelte:head>
+	<meta name="robots" content="noindex, follow" />
+</svelte:head>
+
 <Head {seo_config} />
 
 {#if headings_promise}

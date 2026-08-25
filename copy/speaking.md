@@ -15,25 +15,48 @@
 # Speaking
 
 <Small>
-  Last updated: <DateUpdated date="2026-04-18" small="true" />
+  Last updated: <DateUpdated date="2026-08-25" small="true" />
 </Small>
 
-If you want me to talk about using Svelte and SvelteKit or anything
-else [get in touch]. I offer similar workshops for teams through
+I speak about production AI engineering, coding agents, MCP tools,
+Svelte, and SvelteKit. The talks are based on systems I have built,
+failures I have measured, and the controls I use in real codebases.
+
+For conference talks, podcasts, panels, team workshops, or technical
+training, [get in touch]. I also offer Svelte and AI workshops through
 [my consulting services](https://svelteconsulting.dev/services/workshops).
 
-**Recent talks, workshops and appearances**
+## Current talk topics
 
-Here's the list of talks, podcasts and live streams I have done
-recently.
+- Building coding-agent harnesses that enforce scope and validation
+- Preventing coding agents from drifting in production codebases
+- MCP tools, context management, and agent infrastructure
+- Practical AI engineering with evals, observability, and human review
+- Svelte 5 and SvelteKit for production products
+- Moving from analyst automation to product and AI engineering
+
+## Highlighted talks
+
+- **Pigeon-Driven Development**, CityJS London 2026. A practical talk
+  about building safely and reliably with AI tools.
+  [View the slides](https://cityjs-london-2026.ss10.dev/#).
+- **Refactoring 370 Files in 11 Hours (thanks Claude)**, JSMonthly
+  London 2025. A first-hand account of a large assisted refactor and
+  the controls around it.
+- **Staying current with Svelte using AI tools**, Svelte Society
+  London 2025. A practical use of MCP tools to retrieve current
+  framework documentation.
+
+The full archive below includes talks, workshops, podcasts, panels,
+recordings, slides, and live streams.
 
 ## 2026
 
 ### CityJS London - April 2026
 
-Pigeon-Driven Development, a talk on AI in practice, building safely
-and reliably with AI tools, delivered on the Svelte track at CityJS
-London 2026.
+[Pigeon-Driven Development](https://london.cityjsconf.org/speakers), a
+talk on AI in practice and building safely and reliably with AI tools,
+delivered on the Svelte track at CityJS London 2026.
 
 [Slides](https://cityjs-london-2026.ss10.dev/#)
 
