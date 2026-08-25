@@ -1,5 +1,6 @@
 ---
 date: 2026-07-25
+updated: 2026-08-25
 title: 'Coding agent harnesses with my-pi'
 tags:
   ['pi', 'my-pi', 'coding-agents', 'developer-experience', 'evals']
@@ -15,7 +16,10 @@ sixth. If I keep asking for validation evidence before a review,
 eventually that becomes a required output rather than another line in
 a prompt.
 
-That is more or less how `pi-harness` happened.
+That is more or less how `pi-harness` happened. It is one part of the
+wider
+[agentic engineering workflow I use](/posts/agentic-engineering-practical-guide)
+to make coding-agent work reviewable.
 
 Since I added it to `my-pi` on 28 June, agents have created 173
 recorded task harnesses across 104 sessions and 10 real project

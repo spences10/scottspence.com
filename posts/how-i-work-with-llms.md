@@ -1,5 +1,6 @@
 ---
 date: 2026-07-25
+updated: 2026-08-25
 title: 'How I work with LLMs'
 tags: ['ai', 'llms', 'pi', 'my-pi', 'developer-experience']
 published: true
@@ -27,7 +28,10 @@ research, assumption checking, narrow execution and mechanical
 validation. The LLM is useful throughout that process, but it is never
 the source of truth.
 
-That distinction has changed everything.
+That distinction has changed everything. I now think of the whole
+system as
+[agentic engineering in practice](/posts/agentic-engineering-practical-guide),
+not a better prompting technique.
 
 ## I stopped trying to prompt my way out of it
 

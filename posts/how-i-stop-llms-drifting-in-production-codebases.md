@@ -1,6 +1,6 @@
 ---
 date: 2026-06-21
-updated: 2026-07-26
+updated: 2026-08-25
 title: How I Stop LLMs Drifting In Production Codebases
 tags: ['pi', 'my-pi', 'svelte', 'guide', 'notes']
 published: true
@@ -18,7 +18,9 @@ calculations, generated documents, client workflows, and operational
 handoffs, "prompt harder" is not an engineering system. What works for
 me is guardrails in the repo: checks, docs, lint rules, tool-call
 blockers, and handoff validation that stop the model drifting before
-the mistake becomes normal.
+the mistake becomes normal. It is the guardrail layer of the broader
+[agentic engineering workflow](/posts/agentic-engineering-practical-guide)
+I now use.
 
 That starts with establishing good patterns first. LLMs are pattern
 followers before they are engineers. They look for the nearest example

@@ -1,5 +1,6 @@
 ---
 date: 2026-04-26
+updated: 2026-08-25
 title: 'Building my-pi: my own Claude Code alternative with Pi'
 tags: ['pi', 'my-pi', 'claude-code', 'developer-experience']
 published: true
@@ -23,7 +24,9 @@ harness, built on top of
 and has very quickly become "oh, this is just my working environment
 now".
 
-That has been a bit of a surprise.
+That has been a bit of a surprise. I have since written a broader
+[practical guide to agentic engineering](/posts/agentic-engineering-practical-guide)
+that explains how these pieces fit into the full workflow.
 
 ## Claude Code became the default
 
