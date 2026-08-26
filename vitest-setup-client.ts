@@ -4,7 +4,7 @@
 import { vi } from 'vitest';
 
 // Mock environment variables for tests
-vi.mock('$env/static/public', () => ({
+vi.mock('$app/env/public', () => ({
 	PUBLIC_FATHOM_ID: 'test-fathom-id',
 	PUBLIC_FATHOM_URL: 'https://test-fathom.com',
 	PUBLIC_TURNSTILE_SITE_KEY: '1x00000000000000000000AA',
