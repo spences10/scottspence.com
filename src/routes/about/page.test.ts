@@ -11,6 +11,10 @@ vi.mock('@sveltejs/kit', async () => {
 	};
 });
 
+vi.mock('../../../copy/about.md', () => {
+	throw new Error('File not found');
+});
+
 describe('About page load function', () => {
 	beforeEach(() => {
 		vi.resetModules();
@@ -18,8 +22,7 @@ describe('About page load function', () => {
 	});
 
 	it.skip('successfully loads the about page content', async () => {
-		// Mock the successful import of the markdown file
-		vi.mock('../../../copy/about.md', () => ({
+		vi.doMock('../../../copy/about.md', () => ({
 			default: '<h1>About Page</h1>',
 		}));
 
@@ -30,11 +33,6 @@ describe('About page load function', () => {
 	});
 
 	it('returns a 404 error when the markdown file is not found', async () => {
-		// Mock a failed import
-		vi.mock('../../../copy/about.md', () => {
-			throw new Error('File not found');
-		});
-
 		await load();
 		expect(error).toHaveBeenCalledWith(404, 'Uh oh!');
 	});

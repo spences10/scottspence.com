@@ -39,6 +39,10 @@ vi.mock('#lib/data/popular-posts.remote.js', () => ({
 	),
 }));
 
+vi.mock('#lib/data/bluesky-replies.remote.js', () => ({
+	get_bluesky_replies: vi.fn(() => Promise.resolve(null)),
+}));
+
 describe('PostPage Component', () => {
 	const defaultProps = {
 		data: {
