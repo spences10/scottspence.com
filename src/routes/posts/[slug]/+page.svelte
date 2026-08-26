@@ -24,6 +24,7 @@
 		UpdatedBanner,
 	} from '#lib/components/index.js';
 	import {
+		create_meta_description,
 		create_schema_org_config,
 		create_seo_config,
 	} from '#lib/seo/index.js';
@@ -48,7 +49,7 @@
 	const seo_config = $derived(
 		create_seo_config({
 			title: data.meta.title,
-			description: data.meta.preview.slice(0, 140) + '...',
+			description: create_meta_description(data.meta.preview),
 			slug: `posts/${data.meta.slug}`,
 		}),
 	);

@@ -43,6 +43,22 @@ export const website_schema = {
 
 export const default_schema_org_config = website_schema;
 
+export const create_meta_description = (
+	content: string,
+	max_length = 155,
+) => {
+	const text = content.replace(/\s+/g, ' ').trim();
+
+	if (text.length <= max_length) return text;
+
+	const clipped = text.slice(0, max_length);
+	const last_space = clipped.lastIndexOf(' ');
+	const truncated =
+		last_space > 0 ? clipped.slice(0, last_space) : clipped;
+
+	return `${truncated.trimEnd()}...`;
+};
+
 export const create_seo_config = (
 	options: Partial<SeoConfig> & {
 		slug?: string;

@@ -1,11 +1,12 @@
 ---
 date: 2026-08-25
-title: 'Agentic engineering for reliable coding agents'
+title:
+  'Agentic engineering: a practical guide to reliable coding agents'
 tags: ['ai', 'coding-agents', 'my-pi', 'guide']
 published: true
 ---
 
-<!-- cspell:ignore agentic Andrej Karpathy Willison Mainmatter pirecall nopeek worktree worktrees allowlist codebase codebases toolcall toolcalls handoff handoffs -->
+<!-- cspell:ignore agentic Andrej Karpathy Willison pirecall nopeek worktree worktrees allowlist codebase codebases toolcall toolcalls handoff handoffs -->
 
 Agentic engineering is the practice of putting coding agents inside an
 engineering system that makes context, scope, validation, evidence and
@@ -377,5 +378,3 @@ That is the bit I trust.
 - [Anthropic: Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
 - [Anthropic: Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)
 - [Simon Willison: Vibe coding and agentic engineering are getting closer than I'd like](https://simonwillison.net/2026/May/6/vibe-coding-and-agentic-engineering/)
-- [Mainmatter: Agentic engineering with Svelte](https://mainmatter.com/blog/2026/07/28/agentic-engineering-with-svelte/)
-- [Mainmatter: A complete agentic engineering glossary](https://mainmatter.com/blog/2026/08/25/agentic-engineering-glossary/)
