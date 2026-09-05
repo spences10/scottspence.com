@@ -59,10 +59,10 @@ importers:
         version: typescript@7.0.2
       '@upstash/ratelimit':
         specifier: ^2.0.8
-        version: 2.0.8(@upstash/redis@1.38.2)
+        version: 2.0.8(@upstash/redis@1.38.3)
       '@upstash/redis':
         specifier: ^1.38.2
-        version: 1.38.2
+        version: 1.38.3
       '@vitest/browser':
         specifier: 4.1.11
         version: 4.1.11(vite@8.2.2(@types/node@26.4.1)(jiti@2.7.0)(yaml@2.9.0))(vitest@4.1.11)
@@ -1452,8 +1452,8 @@ packages:
     peerDependencies:
       '@upstash/redis': ^1.34.3
 
-  '@upstash/redis@1.38.2':
-    resolution: {integrity: sha512-RZ+JaRCVIS+ZTGnjOnDMr+/0aqDxsBb5rV6aW+Pys4SGELwr5lwE3UbLHRCHqMQ5Ulxj0b/CFBHfbmE175Otog==}
+  '@upstash/redis@1.38.3':
+    resolution: {integrity: sha512-vtS0BonQHU6kDSWvHTISh+LOuLIEk+jeMXebv20CDJ/aHGOG085SGa8OpI+I+Ow8WgPFhqH23XG8kQ2LXXRnag==}
 
   '@vitest/browser-playwright@4.1.11':
     resolution: {integrity: sha512-riLBxPqwnJ0lWs2DN2WeUfYeKLoAjbP2Xx8cLQdSddzMi20sksIa6K2mPz79DyMZKKVKH2ksOC2yJvtNcZg8cg==}
@@ -4147,14 +4147,14 @@ snapshots:
 
   '@upstash/core-analytics@0.0.10':
     dependencies:
-      '@upstash/redis': 1.38.2
+      '@upstash/redis': 1.38.3
 
-  '@upstash/ratelimit@2.0.8(@upstash/redis@1.38.2)':
+  '@upstash/ratelimit@2.0.8(@upstash/redis@1.38.3)':
     dependencies:
       '@upstash/core-analytics': 0.0.10
-      '@upstash/redis': 1.38.2
+      '@upstash/redis': 1.38.3
 
-  '@upstash/redis@1.38.2':
+  '@upstash/redis@1.38.3':
     dependencies:
       uncrypto: 0.1.3
 
