@@ -57,10 +57,10 @@
 		"@vitest/browser-playwright": "4.1.11",
 		"cspell": "^10.1.0",
 		"d3-scale": "^4.0.2",
-		"daisyui": "5.7.22",
+		"daisyui": "5.7.28",
 		"date-fns": "4.4.0",
 		"fathom-client": "3.7.2",
-		"layerchart": "2.3.0",
+		"layerchart": "2.4.0",
 		"marked": "18.0.10",
 		"mdsvex": "^0.12.8",
 		"mermaid": "^11.17.0",
@@ -89,5 +89,5 @@
 		"node": ">=24.15.0",
 		"pnpm": ">=11.0.0"
 	},
-	"packageManager": "pnpm@11.23.0"
+	"packageManager": "pnpm@11.25.0"
 }
