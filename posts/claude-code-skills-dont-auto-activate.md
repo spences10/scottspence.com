@@ -1,5 +1,6 @@
 ---
 date: 2025-11-06
+updated: 2026-09-13
 title: Claude Code Skills Don't Auto-Activate (a workaround)
 tags: ['claude', 'claude-code', 'guide', 'notes']
 is_private: false
@@ -14,6 +15,11 @@ So I got Claude Skills to register with Claude Code (sorted the
 and the skills are now showing up when I ask Claude to list them. Job
 done, right? Nah! Turns out getting skills to _actually activate_
 **reliably** when you need them is another chore in itself.
+
+**Update, 13 September 2026:** This was my first workaround. I later
+[tested hooks for more reliable skill activation](/posts/how-to-make-claude-code-skills-activate-reliably),
+rather than relying on the keyword matching below. Read that follow-up
+before choosing a hook.
 
 I created a `research` skill as I was tired of having to fact check
 Claude's responses. Dead simple - when I say "research this" or "study

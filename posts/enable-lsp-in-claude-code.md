@@ -1,5 +1,6 @@
 ---
 date: 2026-03-03
+updated: 2026-09-13
 title: Enable LSP in Claude Code
 tags: ['claude-code', 'lsp', 'developer-experience', 'guide']
 published: true
@@ -143,6 +144,12 @@ only handles `.ts` and `.js` files. For a SvelteKit project where half
 the code lives in `.svelte` files, that's a big gap. No Svelte LSP
 plugin exists for Claude Code yet.
 
+**Follow-up, 13 September 2026:** That describes my Claude Code setup
+at the time of this post. I later wrote about
+[adding LSP to my-pi](/posts/add-lsp-to-my-pi), including Svelte support.
+That's a different coding agent harness, not a plugin to install in
+Claude Code.
+
 **LSP and Grep aren't replacements — they're complementary.** LSP
 needs a specific file path, line number, and character position to
 work. You need to already know _where_ to look. Grep and Glob are
@@ -182,6 +189,10 @@ The key difference: instead of a generic "prefer LSP", it now
 describes the workflow — Grep/Glob to find, LSP to understand. Whether
 this actually moves the needle remains to be seen. I'll check back in
 a week.
+
+Getting the tool enabled is only part of it. I cover the wider
+[workflow for giving validation back to the agent](/posts/agentic-engineering-practical-guide)
+in my agentic engineering guide.
 
 ## Is it worth it?
 

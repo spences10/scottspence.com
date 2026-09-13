@@ -1,5 +1,6 @@
 ---
 date: 2025-11-16
+updated: 2026-09-13
 title: How to Make Claude Code Skills Activate Reliably
 tags: ['claude', 'claude-code', 'guide', 'notes']
 is_private: false
@@ -129,6 +130,12 @@ I tested four different approaches:
 3. **Forced eval** - Make Claude explicitly evaluate each skill before
    proceeding
 4. **LLM eval** - Use Claude API to pre-evaluate which skills match
+
+**Update, 13 September 2026:** The results below came from synthetic
+API calls. I later ran
+[follow-up tests against the actual Claude Code binary](/posts/measuring-claude-code-skill-activation-with-sandboxed-evals)
+in isolated sandboxes. The setup and results differ, so read those
+before treating these percentages as a prediction for your project.
 
 ## The results
 
@@ -372,6 +379,10 @@ hook.
 For me, I'm using the forced eval hook. The 84% success rate is worth
 the verbosity, and I don't have to worry about API keys or external
 dependencies.
+
+If you'd rather distribute the hooks with your skills than copy files
+between projects, here's how I
+[organise skills and hooks into plugin marketplaces](/posts/organising-claude-code-skills-into-plugin-marketplaces).
 
 <Banner options={toolkit_banner} />
 

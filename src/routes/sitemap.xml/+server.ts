@@ -10,6 +10,12 @@ interface PageInfo {
 	priority: number;
 }
 
+// Update dates live in frontmatter, not in the posts database.
+const post_metadata = import.meta.glob<{ updated?: string | Date }>(
+	'/posts/*.md',
+	{ eager: true, import: 'metadata' },
+);
+
 const excluded_pages = new Set([
 	'heatmap',
 	'my-todo-list',
@@ -142,15 +148,16 @@ const render_pages = (pages: PageInfo[]) => {
 const render_posts = (posts_metadata: Post[]) => {
 	return posts_metadata
 		.filter(({ is_private }) => !is_private)
-		.map(
-			({ slug, date }) => `
+		.map(({ slug, date }) => {
+			const updated = post_metadata[`/posts/${slug}.md`]?.updated;
+			return `
         <url>
           <loc>${website}/posts/${slug}</loc>
-          <lastmod>${new Date(date).toISOString().split('T')[0]}</lastmod>
+          <lastmod>${new Date(updated ?? date).toISOString().split('T')[0]}</lastmod>
           <priority>0.7</priority>
         </url>
-      `,
-		)
+      `;
+		})
 		.join('');
 };
 
@@ -182,7 +189,7 @@ const render_sitemap = (
 	posts_metadata: Post[],
 ) => {
 	return `<?xml version="1.0" encoding="UTF-8" ?>
-    <urlset 
+    <urlset
       xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
       xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
       xmlns:xhtml="https://www.w3.org/1999/xhtml"

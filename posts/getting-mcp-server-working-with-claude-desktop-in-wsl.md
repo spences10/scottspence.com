@@ -1,5 +1,6 @@
 ---
 date: 2024-12-28
+updated: 2026-09-13
 title: Getting MCP Server Working with Claude Desktop in WSL
 tags: ['mcp', 'claude', 'cline', 'wsl', 'guide']
 is_private: false
@@ -215,6 +216,11 @@ Allow for this chat clicked and the tool returned the correct word
 count, confirming that everything was working as expected.
 
 ## Conclusion
+
+Using Claude Code rather than Claude Desktop? I have a separate guide
+to [configuring MCP tools in Claude Code](/posts/configuring-mcp-tools-in-claude-code).
+They use different configuration locations, so don't copy the Desktop
+setup across unchanged.
 
 It's totally possible to use WSL for your MCP tools in Windows with no
 need to install Node in Windows! By using WSL, I was able to set up an

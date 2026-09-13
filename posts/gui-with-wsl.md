@@ -1,5 +1,6 @@
 ---
 date: 2020-12-09
+updated: 2026-09-13
 title: Enable GUIs on Windows Subsystem Linux (WSL)
 tags: ['wsl', 'testing', 'guide']
 is_private: false
@@ -270,6 +271,11 @@ ssh -T git@github.com
 ```
 
 ## GUI things
+
+If you're using Ubuntu rather than the Debian setup in this post, I
+also have separate notes on
+[running Chrome in Ubuntu WSL](/posts/use-chrome-in-ubuntu-wsl).
+Don't assume the distribution-specific install commands are interchangeable.
 
 This is where Nicky's detailed posts come in, the dependencies here
 are what's needed to get the GUI stuff going:

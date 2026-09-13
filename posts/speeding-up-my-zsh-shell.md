@@ -1,5 +1,6 @@
 ---
 date: 2025-02-01
+updated: 2026-09-13
 title: Speeding Up My ZSH Shell ⚡
 tags: ['zsh', 'guide', 'notes']
 is_private: false
@@ -150,6 +151,10 @@ an eye!
    helping
 
 1. Keep what works for you - everyone's setup is different!
+
+For the full setup rather than individual fixes, see
+[my updated Zsh configuration](/posts/my-updated-zsh-config-2025).
+It includes the plugin order and completion settings I ended up using.
 
 ## Before and after
 

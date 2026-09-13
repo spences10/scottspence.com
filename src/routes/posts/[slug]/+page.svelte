@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { track_article_links } from '#lib/analytics/article-link-tracking.js';
 	import { track_click } from '#lib/analytics/track-click.remote.js';
 	import { get_bluesky_replies } from '#lib/data/bluesky-replies.remote.js';
 	import { page } from '$app/state';
@@ -268,7 +269,11 @@
 		/>
 	{/if}
 
-	<div class="all-prose mb-10" {@attach text_selection_handler}>
+	<div
+		class="all-prose mb-10"
+		{@attach text_selection_handler}
+		{@attach track_article_links}
+	>
 		<data.Content />
 	</div>
 

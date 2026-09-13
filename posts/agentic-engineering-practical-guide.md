@@ -1,5 +1,6 @@
 ---
 date: 2026-08-25
+updated: 2026-09-13
 title:
   'Agentic engineering: a practical guide to reliable coding agents'
 tags: ['ai', 'coding-agents', 'my-pi', 'guide']
@@ -234,6 +235,9 @@ secret-reducing command execution. I built
 credential-dependent child process without first printing an entire
 `.env` file into its conversation. It does not make arbitrary child
 output safe, but it removes one common and unnecessary exposure path.
+
+For the commands and their limits, see my
+[guide to keeping secrets out of agent context with nopeek](/posts/nopeek-keep-secrets-out-of-claude-code).
 
 The wider rule is straightforward: give the agent the least access
 needed for the task, and keep destructive or public actions behind a

@@ -1,5 +1,6 @@
 ---
 date: 2026-01-28
+updated: 2026-09-13
 title: Unlock Swarm Mode in Claude Code with claude-sneakpeek
 tags: ['claude', 'claude-code', 'guide']
 is_private: false
@@ -88,6 +89,11 @@ always return true. What that unlocks:
 It's packaged as its own npm install, completely isolated from your
 main Claude Code. Separate config, sessions, MCP servers, credentials.
 This is important to note as you're starting fresh again!
+
+**Update, 13 September 2026:** I moved back to vanilla Claude Code
+once agent teams shipped. The follow-up covers
+[enabling Team Mode without claude-sneakpeek](/posts/enable-team-mode-in-claude-code).
+The install below records the earlier workaround.
 
 ## Install it
 

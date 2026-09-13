@@ -1,5 +1,6 @@
 ---
 date: 2026-04-03
+updated: 2026-09-13
 title: nopeek - Keep Your Secrets Out of Claude Code
 tags: ['claude', 'claude-code', 'security', 'cli', 'guide']
 published: true
@@ -57,12 +58,13 @@ again when you see them scrolling by in Claude's output!
 ## What I built
 
 [nopeek](https://github.com/spences10/nopeek) is a CLI built for
-Claude Code to use. You still need to be deliberate about it, Claude
-doesn't magically know nopeek exists. I ask Claude to run
-`bunx nopeek load .env` and it loads the secrets into the session.
-From that point on Claude can use `$DATABASE_URL` in commands without
-ever seeing the actual connection string. It knows the key _names_,
-never the _values_.
+coding agents to use. You still need to be deliberate about it, Claude
+doesn't magically know nopeek exists. When I first wrote this, I used
+`bunx nopeek load .env` with session injection. I now prefer `run` for
+a single command, especially when each tool call starts a fresh shell.
+The agent can refer to `$DATABASE_URL` without printing the connection
+string first. The child command still receives the value, so its
+output needs care too.
 
 Before nopeek, if I needed Claude to work with a secret I'd have to
 `export SECRET_KEY=...` in the terminal _before_ starting the session.
@@ -78,12 +80,13 @@ But that's still a lot less friction than before.
 
 ## How it works
 
-nopeek has seven commands:
+These are the commands covered here:
 
 | Command  | What it does                                 |
 | -------- | -------------------------------------------- |
 | `init`   | Scans for cloud CLIs, configures secure auth |
-| `load`   | Loads .env secrets into session              |
+| `load`   | Loads .env secrets for a supported session   |
+| `run`    | Runs one child command with selected secrets |
 | `set`    | Stores a secret key in nopeek config         |
 | `list`   | Shows available keys (no values)             |
 | `remove` | Removes a stored key                         |
@@ -92,6 +95,31 @@ nopeek has seven commands:
 
 ## Loading secrets
 
+### One command at a time
+
+**Update, 13 September 2026:** For separate agent tool shells, use
+`run` so loading and execution happen together:
+
+```bash
+pnpx nopeek run .env --only DATABASE_URL -- \
+  sh -c 'psql "$DATABASE_URL" -c "select 1"'
+```
+
+Only `DATABASE_URL` is selected from the file. The single quotes keep
+the outer shell from expanding it before nopeek starts the child
+shell. This example checks the database connection without printing
+the connection string.
+
+`run` does not make the variable available to the next tool call.
+That's the point: the selected secrets go to this child process, not
+a whole sequence of later commands. The child can still print them,
+so avoid environment dumps, shell tracing and verbose authentication
+output. The [threat model](https://github.com/spences10/nopeek#threat-model-and-non-goals)
+sets out what nopeek does and doesn't protect against.
+
+### Persistent session loading
+
+Use `load` when your harness supports persistent env-file injection.
 You can load everything from an `.env` file or pick specific keys:
 
 ```bash
@@ -102,22 +130,19 @@ npx nopeek load .env
 npx nopeek load .env --only DATABASE_URL,API_KEY
 ```
 
-Inside a Claude Code session, nopeek writes to
-[`CLAUDE_ENV_FILE`](https://code.claude.com/docs/en/hooks#filechanged),
-a mechanism Anthropic built specifically for injecting environment
-variables into sessions. The variables are then available to
-subsequent bash commands. Outside Claude Code, it prints eval-able
-export statements you can source.
+When the harness provides persistent env-file injection, nopeek can
+make the variables available to later commands. Check `nopeek status`
+rather than assuming every tool shell supports this.
 
-The output only ever shows key _names_, never values:
+The structured `load` result reports the method used. `env_file`
+means session injection; `source_file` gives a path to source in the
+shell that needs the variables. Receiving that path in one tool call
+does not load anything into an unrelated shell in the next call. If
+there's no persistent injection, use `run` instead.
 
-```text
-source /tmp/nopeek/env-dc062e21.sh
-  Loaded 2 keys from .env:
-    DATABASE_URL
-    API_KEY
-  [done] Run the source command above to load into session.
-```
+Structured output shows key names, not their values. Don't request
+shell assignment output in an agent conversation: that mode is meant
+for a trusted shell and explicitly exposes values.
 
 ## Storing keys permanently
 
@@ -187,6 +212,11 @@ The primary defence is loading secrets via environment variables so
 they never appear in output at all. The redaction layer is the backup
 for when something slips through.
 
+I also wrote up how I
+[test redaction with synthetic secrets](/posts/hardening-redaction-in-my-pi).
+That's about a separate redaction layer in my-pi, not proof that
+nopeek can catch everything a child command prints.
+
 ## The ecosystem
 
 All my time now seems to be writing convenience tools for Claude Code
@@ -235,8 +265,9 @@ claude plugin install nopeek@claude-code-toolkit
 # Scan your cloud CLIs
 npx nopeek init
 
-# Load your .env
-npx nopeek load .env
+# Run a database check with only the key it needs
+npx nopeek run .env --only DATABASE_URL -- \
+  sh -c 'psql "$DATABASE_URL" -c "select 1"'
 
 # Check what's configured
 npx nopeek status

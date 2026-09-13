@@ -1,5 +1,6 @@
 ---
 date: 2025-09-30
+updated: 2026-09-13
 title: Optimising MCP Server Context Usage in Claude Code
 tags: ['mcp', 'claude-code', 'claude', 'tools', 'guide']
 is_private: false
@@ -430,6 +431,10 @@ The workflow is simple:
 
 It's not perfect, but it works. And it's better than manually editing
 `.claude.json` every time you want to toggle servers.
+
+I've since written a fuller guide to
+[McPick profiles and server management](/posts/mcpick-manage-mcp-servers-and-plugins-in-claude-code),
+including saving a setup so you can load it again for the next session.
 
 So, McPick helps with Claude Code but for other tools that use MCP
 servers it makes sense to understand what MCP tool your adding to your

@@ -1,11 +1,12 @@
 ---
 date: 2025-03-30
+updated: 2026-09-13
 title: Configuring MCP Tools in Claude Code - The Better Way
 tags: ['mcp', 'claude', 'tools', 'wsl', 'guide']
 is_private: false
 ---
 
-<!-- cSpell:ignore modelcontextprotocol mcpServers spences10 sequentialthinking omnisearch -->
+<!-- cSpell:ignore modelcontextprotocol mcpServers spences10 sequentialthinking omnisearch nopeek -->
 
 <script>
   import { Banner, Details } from '#lib/components/index.js'
@@ -277,7 +278,16 @@ Editing the config file directly has several advantages:
 5. **Complex configurations** - Support for more advanced setups that
    might be difficult through the CLI
 
+If you'd rather not edit the file each time, I've since written up how
+I [manage MCP servers and plugins with McPick](/posts/mcpick-manage-mcp-servers-and-plugins-in-claude-code),
+including profiles for switching between projects.
+
 ## My Current MCP Tool Setup
+
+If an agent is helping with this setup, don't paste your API keys into
+its conversation. My [nopeek guide](/posts/nopeek-keep-secrets-out-of-claude-code)
+covers running commands with secrets without printing them during
+loading. It doesn't automatically configure your MCP servers for you.
 
 Here's the actual setup I'm currently using with Claude Code (with API
 keys removed, of course):
@@ -304,6 +314,11 @@ keys removed, of course):
 Yes, one MCP tool! This setup gives me a powerful combination of tools
 for searching the web, reading documentation, AI-powered responses,
 and content processing - all through a single MCP server.
+
+Once your servers are connected, the next thing to check is how much
+context they use. I covered what I found and how to
+[reduce MCP context usage](/posts/optimising-mcp-server-context-usage-in-claude-code)
+in a follow-up.
 
 ## Conclusion
 

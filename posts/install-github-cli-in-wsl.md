@@ -1,5 +1,6 @@
 ---
 date: 2026-01-11
+updated: 2026-09-13
 title: GitHub CLI Installation Guide for WSL (Ubuntu)
 tags: ['guide', 'notes']
 is_private: false
@@ -104,6 +105,12 @@ Check if all good by checking the version and the auth status.
 gh --version
 gh auth status
 ```
+
+If you also want SSH authentication for Git and signed commits, I've
+written up my
+[Git SSH and commit signing setup in WSL](/posts/git-ssh-and-commit-signing-setup-in-wsl-ubuntu).
+That's separate from authenticating `gh`, so it's an optional next
+step, not another requirement for this install.
 
 ## Done
 

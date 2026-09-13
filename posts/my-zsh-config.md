@@ -1,6 +1,6 @@
 ---
 date: 2022-04-14
-updated: 2025-02-23
+updated: 2026-09-13
 title: My Zsh Config
 tags: ['zsh', 'guide']
 is_private: false
@@ -286,6 +286,11 @@ I have a list of global aliases I like to use in my [dotfiles on
 github].
 
 ## Wrapping up
+
+If your shell is taking ages to start, I later documented how to
+[profile and speed up Zsh startup](/posts/speeding-up-my-zsh-shell).
+That post breaks down which parts of my config were slow and what I
+changed.
 
 That's it! My very own Zsh configuration! Like I said at the start
 this is mainly for my reference, but, if you have read through it and

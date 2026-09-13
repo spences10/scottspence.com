@@ -1,5 +1,6 @@
 ---
 date: 2025-11-02
+updated: 2026-09-13
 title: Claude Code Skills Not Recognised? Here's the Fix!
 tags: ['claude', 'claude-code', 'tools', 'guide']
 is_private: false
@@ -97,6 +98,11 @@ I've also updated the `claude-skills-cli` to output the correct format
 from the start, so anyone using the tool won't hit this issue. The CLI
 now ensures descriptions stay single line with the `# prettier-ignore`
 comment.
+
+Skills showing up and skills getting used are two different problems.
+If yours are recognised but Claude still ignores them, I tested
+[hooks for more reliable skill activation](/posts/how-to-make-claude-code-skills-activate-reliably)
+in a follow-up.
 
 ## If you're hitting this
 
