@@ -33,6 +33,7 @@ const config = defineConfig({
 		},
 	},
 	test: {
+		globalSetup: './vitest-global-setup.ts',
 		projects: [
 			{
 				// Client-side tests (Svelte components)

@@ -1,4 +1,15 @@
 {
 	"extends": ["config:recommended"],
-	"minimumReleaseAge": "2 days"
+	"minimumReleaseAge": "2 days",
+	"packageRules": [
+		{
+			"matchDepNames": ["@sveltejs/kit", "@sveltejs/adapter-node"],
+			"groupName": "SvelteKit and Node adapter"
+		},
+		{
+			"description": "Keep the JavaScript compiler API on TypeScript 6 until SvelteKit supports TypeScript 7. The native compiler alias is separate.",
+			"matchDepNames": ["typescript"],
+			"allowedVersions": "<7"
+		}
+	]
 }

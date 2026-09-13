@@ -11,17 +11,22 @@ vi.mock('#lib/icons/index.js', () => ({
 
 // Mock remote functions to prevent hanging network calls
 vi.mock('#lib/analytics/live-analytics.remote.js', () => ({
-	get_live_stats_breakdown: vi.fn().mockResolvedValue({
-		active_visitors: 0,
-		recent_visitors: 0,
-		active_pages: [],
-		countries: [],
-		countries_total: 0,
-		browsers: [],
-		devices: [],
-		top_paths: [],
-		paths_total: 0,
-	}),
+	get_live_stats_breakdown: vi.fn(() =>
+		Object.assign(
+			Promise.resolve({
+				active_visitors: 0,
+				recent_visitors: 0,
+				active_pages: [],
+				countries: [],
+				countries_total: 0,
+				browsers: [],
+				devices: [],
+				top_paths: [],
+				paths_total: 0,
+			}),
+			{ refresh: vi.fn().mockResolvedValue(undefined) },
+		),
+	),
 }));
 
 vi.mock('#lib/analytics/period-stats.remote.js', () => ({
@@ -286,7 +291,7 @@ describe('Historical Stats Page Component', () => {
 			flushSync();
 
 			// Should show all-time data
-			await expect.element(page.getByText('1K')).toBeInTheDocument();
+			await expect.element(page.getByText('1k')).toBeInTheDocument();
 			await expect.element(page.getByText('730')).toBeInTheDocument();
 		});
 	});

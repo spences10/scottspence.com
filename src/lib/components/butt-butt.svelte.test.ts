@@ -53,7 +53,9 @@ describe('ButtButt Component', () => {
 
 			// The pun text should be present somewhere in the component
 			// We can't predict which pun will be shown, but there should be text content
-			await expect.element(punContainer).toHaveTextContent(/\w+/);
+			await expect
+				.poll(() => punContainer.element().textContent)
+				.toMatch(/\w+/);
 		});
 
 		it('renders pun generation button', async () => {
@@ -79,7 +81,9 @@ describe('ButtButt Component', () => {
 
 			// Verify that content is still present
 			const container = page.getByRole('complementary');
-			await expect.element(container).toHaveTextContent(/\w+/);
+			await expect
+				.poll(() => container.element().textContent)
+				.toMatch(/\w+/);
 
 			// Verify button is still clickable
 			await expect.element(button).toBeEnabled();
@@ -98,7 +102,9 @@ describe('ButtButt Component', () => {
 
 			// Component should still be functional
 			const container = page.getByRole('complementary');
-			await expect.element(container).toHaveTextContent(/\w+/);
+			await expect
+				.poll(() => container.element().textContent)
+				.toMatch(/\w+/);
 		});
 
 		it('pun text contains expected content patterns', async () => {
@@ -114,8 +120,8 @@ describe('ButtButt Component', () => {
 				// The puns contain words like "butt", "behind", "crack", etc.
 				const container = page.getByRole('complementary');
 				await expect
-					.element(container)
-					.toHaveTextContent(
+					.poll(() => container.element().textContent)
+					.toMatch(
 						/butt|behind|crack|rear|bottom|cheek|ass|half-arsed|smart ass/i,
 					);
 			}
@@ -194,12 +200,16 @@ describe('ButtButt Component', () => {
 
 			// Should contain the main structural text
 			await expect
-				.element(container)
-				.toHaveTextContent(
+				.poll(() => container.element().textContent)
+				.toContain(
 					'Looks like you have reached the bottom of this page!',
 				);
-			await expect.element(container).toHaveTextContent('Bummer!');
-			await expect.element(container).toHaveTextContent('pun me up');
+			await expect
+				.poll(() => container.element().textContent)
+				.toContain('Bummer!');
+			await expect
+				.poll(() => container.element().textContent)
+				.toContain('pun me up');
 		});
 	});
 
@@ -254,19 +264,25 @@ describe('ButtButt Component', () => {
 			const container = page.getByRole('complementary');
 
 			// Initial state should have content
-			await expect.element(container).toHaveTextContent(/\w+/);
+			await expect
+				.poll(() => container.element().textContent)
+				.toMatch(/\w+/);
 
 			// After interaction
 			await button.click();
-			await expect.element(container).toHaveTextContent(/\w+/);
+			await expect
+				.poll(() => container.element().textContent)
+				.toMatch(/\w+/);
 
 			// Should maintain core structure
 			await expect
-				.element(container)
-				.toHaveTextContent(
+				.poll(() => container.element().textContent)
+				.toContain(
 					'Looks like you have reached the bottom of this page!',
 				);
-			await expect.element(container).toHaveTextContent('Bummer!');
+			await expect
+				.poll(() => container.element().textContent)
+				.toContain('Bummer!');
 		});
 
 		it('pun generation is functional', async () => {
@@ -280,7 +296,9 @@ describe('ButtButt Component', () => {
 			const container = page.getByRole('complementary');
 
 			// Should have meaningful content (not empty or just whitespace)
-			await expect.element(container).toHaveTextContent(/\w{3,}/);
+			await expect
+				.poll(() => container.element().textContent)
+				.toMatch(/\w{3,}/);
 		});
 
 		it('component is reusable', async () => {

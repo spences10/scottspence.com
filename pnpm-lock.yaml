@@ -34,7 +34,7 @@ importers:
         specifier: ^1.62.1
         version: 1.62.1
       '@sveltejs/adapter-node':
-        specifier: next
+        specifier: 6.0.0-next.10
         version: 6.0.0-next.10(@sveltejs/kit@3.0.0-next.23(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.56.10)(vite@8.2.2(@types/node@26.4.1)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.56.10)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.1)(jiti@2.7.0)(yaml@2.9.0)))
       '@sveltejs/kit':
         specifier: 3.0.0-next.23
@@ -136,7 +136,7 @@ importers:
         specifier: ^4.3.3
         version: 4.3.3
       typescript:
-        specifier: ^6.0.3
+        specifier: 6.0.3
         version: 6.0.3
       unist-util-visit:
         specifier: 5.1.0

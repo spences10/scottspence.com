@@ -223,8 +223,12 @@ describe('Details Component', () => {
 
 			const content = page.getByTestId('details-content');
 			await expect.element(content).toBeInTheDocument();
-			await expect.element(content).toHaveTextContent('Title');
-			await expect.element(content).toHaveTextContent('Description');
+			await expect
+				.poll(() => content.element().textContent)
+				.toContain('Title');
+			await expect
+				.poll(() => content.element().textContent)
+				.toContain('Description');
 		});
 
 		it('handles empty content gracefully', async () => {
@@ -266,12 +270,18 @@ describe('Details Component', () => {
 
 			const content = page.getByTestId('details-content');
 			await expect.element(content).toBeInTheDocument();
-			await expect.element(content).toHaveTextContent('Main Title');
-			await expect.element(content).toHaveTextContent('Item 1');
-			await expect.element(content).toHaveTextContent('Item 2');
 			await expect
-				.element(content)
-				.toHaveTextContent('Some bold text');
+				.poll(() => content.element().textContent)
+				.toContain('Main Title');
+			await expect
+				.poll(() => content.element().textContent)
+				.toContain('Item 1');
+			await expect
+				.poll(() => content.element().textContent)
+				.toContain('Item 2');
+			await expect
+				.poll(() => content.element().textContent)
+				.toContain('Some bold text');
 		});
 	});
 
