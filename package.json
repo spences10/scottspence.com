@@ -61,7 +61,7 @@
 		"date-fns": "4.4.0",
 		"fathom-client": "3.7.2",
 		"layerchart": "2.5.0",
-		"marked": "18.0.12",
+		"marked": "18.0.13",
 		"mdsvex": "^0.12.8",
 		"mermaid": "^12.0.0",
 		"playwright": "^1.62.1",
