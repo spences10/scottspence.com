@@ -2,9 +2,9 @@ import adapter from '@sveltejs/adapter-node';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import tailwindcss from '@tailwindcss/vite';
-import { playwright } from '@vitest/browser-playwright';
 import { mdsvex } from 'mdsvex';
-import { defineConfig } from 'vitest/config';
+import { defineConfig } from 'vite-plus';
+import { playwright } from 'vite-plus/test/browser-playwright';
 import mdsvexConfig from './mdsvex.config.js';
 
 const config = defineConfig({
@@ -42,10 +42,12 @@ const config = defineConfig({
 					name: 'client',
 					browser: {
 						enabled: true,
+						ui: false,
 						provider: playwright(),
 						instances: [
 							{
 								browser: 'chromium',
+								headless: true,
 							},
 						],
 					},

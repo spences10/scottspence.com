@@ -4,3 +4,12 @@ allowBuilds:
   esbuild: true
 
 minimumReleaseAge: 2880
+
+overrides:
+  vite@*: npm:@voidzero-dev/vite-plus-core@0.3.2
+  vitest@*: 4.1.11
+
+peerDependencyRules:
+  allowedVersions:
+    # Vite+ core exposes Vite 8 APIs under Vite+'s package version.
+    vite: 0.3.2

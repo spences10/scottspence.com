@@ -4,11 +4,11 @@ aptPkgs = ["curl", "wget"]
 
 [phases.install]
 cmds = [
-	"npm install -g pnpm@11.9.0 && $(npm prefix -g)/bin/pnpm install --frozen-lockfile --config.engine-strict=false --config.optional=true",
+	"npm install -g pnpm@12.4.1 && $(npm prefix -g)/bin/pnpm install --frozen-lockfile --config.engine-strict=false --config.optional=true",
 ]
 
 [phases.build]
-cmds = ["$(npm prefix -g)/bin/pnpm exec vite build"]
+cmds = ["$(npm prefix -g)/bin/pnpm exec vp build"]
 
 [start]
 cmd = "node ./build/index.js"
