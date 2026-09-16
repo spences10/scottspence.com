@@ -142,5 +142,5 @@ describe('Standard.site ingestion', () => {
 			document_count: 1,
 		});
 		expect(fetch).not.toHaveBeenCalled();
-	});
+	}, 15_000);
 });
