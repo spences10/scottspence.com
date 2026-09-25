@@ -10,7 +10,7 @@
 ## Hi, I'm Scott
 
 <Small>
-  Last updated: <DateUpdated date="2026-08-25" small="true" />
+  Last updated: <DateUpdated date="2026-09-25" small="true" />
 </Small>
 
 I'm a UK-based product engineer and Svelte consultant. I build
@@ -31,10 +31,15 @@ SQLite, documentation, recall, and safer development workflows. For
 specialised Svelte consulting, visit
 [svelteconsulting.dev](https://svelteconsulting.dev).
 
+Recently I architected a live reinsurance underwriting platform that
+went from first commit to production in about six weeks, and took an
+insurance claims platform from spec to production in about five.
 Previously I led 12 developers across two product teams building AI
-customer-service software in a large SvelteKit monorepo. Before web
-development, I spent more than a decade as a [VBA] analyst developer,
-building automation and business systems for large organisations.
+customer-service software, where the agent runtime I built cut average
+handle time by 40%. The [portfolio section] has more detail. Before
+web development, I spent more than a decade as a [VBA] analyst
+developer, building automation and business systems for large
+organisations.
 
 I've worked with Svelte and SvelteKit for <DD date="2021-04-06" />.
 I'm a Svelte Ambassador and co-founder of [Svelte Society London],

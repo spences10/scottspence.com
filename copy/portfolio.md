@@ -13,7 +13,7 @@
 # Portfolio
 
 <Small>
-  Last updated: <DateUpdated date="2026-08-25" small="true" />
+  Last updated: <DateUpdated date="2026-09-25" small="true" />
 </Small>
 
 <!-- prettier-ignore -->
@@ -25,6 +25,46 @@ SvelteKit products, and open-source developer tooling through
 This is selected work rather than every repository I've ever pushed.
 Each project shows the problem, the useful parts, and where you can
 inspect the source or product.
+
+## Selected outcomes
+
+Client work is private, so these are described without names.
+
+**Reinsurance underwriting platform (2026).** I started from a
+clickable prototype with no backend and built the real platform:
+submission intake, document extraction, rules evaluation, quoting, and
+audit history. I set up the monorepo and wrote the core web app,
+worker, rules, database, and domain packages. For the first two months
+I worked on it alone, writing 520 of the first 523 commits, and in
+that time it went from first commit to production inside the client's
+private Azure network in about six weeks. The team that joined from
+late June built on that foundation. After handover, the team raised
+the underwriting cap from a flat $15m to up to $35m in one week by
+changing rules and configuration, not by rebuilding anything. I also
+cut the heaviest page response from 50MB to 38KB for a submission with
+nearly 14,000 locations.
+
+**Claims platform for deposit-replacement insurance (2026).** I took a
+claims platform from spec to production in about five weeks: filing,
+adjuster review, tenant responses, video evidence, and valuation. The
+client was very positive at the demo and plans to train sales staff to
+sell it. I also maintained the wider live platform, releasing every
+production change since March and catching failures nobody had
+flagged, including stopped off-site backups.
+
+**Mobile sign-up platform for a telecoms reseller (2026).** I turned a
+click-through prototype into a live production app in under two weeks,
+and it has taken real customer orders since July. Along the way the
+test suite went from zero to more than 120 tests, and known dependency
+vulnerabilities went from nine to zero.
+
+**AI customer-service agents (2023–2026).** I led 12 developers across
+two product teams. The agent runtime I built reduced average handle
+time by 40% through skill-based routing across chat, email, and SMS. I
+also led an architecture change that resolved 928 build errors and let
+four applications ship independently.
+
+---
 
 ## my-pi
 
@@ -209,13 +249,11 @@ Anthropic Claude 3, Deepgram, Voyage AI, Turso
 
 ## Model Context Protocol tools
 
-I've published 20 MCP repositories. Together they had more than 1,300
-GitHub stars on 25 August 2026. The number changes, so the [repository
+I've built 21 MCP servers and tools since January 2025. On 25
+September 2026 they had more than 1,400 GitHub stars, 260 forks, and
+11,000 npm downloads a month. The numbers change, so the [repository
 list] is the source of truth.
 
-- **Sequential Thinking Tools** recommends useful tools while an agent
-  works through a problem.
-  [View the repository](https://github.com/spences10/mcp-sequentialthinking-tools).
 - **Omnisearch** provides one interface for web search, AI answers,
   and content extraction across several providers.
   [View the repository](https://github.com/spences10/mcp-omnisearch).
