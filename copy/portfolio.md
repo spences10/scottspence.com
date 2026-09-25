@@ -44,6 +44,30 @@ changing rules and configuration, not by rebuilding anything. I also
 cut the heaviest page response from 50MB to 38KB for a submission with
 nearly 14,000 locations.
 
+**Guardrails that outlast me (2026).** Coding agents write plausible
+code in the wrong place, so on the same platform I made the
+architecture executable. The boundary checker parses the code and
+enforces 36 blocking rules, alongside data-ownership, route-data, and
+lint checks. After handover they still gate the client's production
+deploys, have blocked 8 deploys that broke the rules, and the team has
+extended them instead of switching them off. The $15m to $35m change
+landed entirely inside the rules, database, and domain packages. The
+same checker now runs in the CI of a second product.
+
+**Context on demand for agents (2026).** The project's documentation
+grew to 291 requirements, specs, meeting notes, and client
+communications. I built a docs search CLI on SQLite FTS5 that extracts
+decisions, requirements, and risks, so agents pull the right context
+instead of guessing. Agents called it 1,122 times across 327 sessions,
+a teammate adopted the approach for another project, and it led to my
+open-source tool [wiki0](https://github.com/spences10/wiki0).
+
+**A clean client handover (2026).** The client repository is a
+verified export: they receive exactly the application they bought,
+while the docs corpus, agent skills, and delivery tooling remain
+agency IP. The export fails if internal paths or references leak
+through.
+
 **Claims platform for deposit-replacement insurance (2026).** I took a
 claims platform from spec to production in about five weeks: filing,
 adjuster review, tenant responses, video evidence, and valuation. The
