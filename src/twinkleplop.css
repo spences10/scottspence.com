@@ -1,10 +1,11 @@
-@import "@twinkleplop/theme-night-owl/dark";
+@import '@twinkleplop/theme-night-owl/dark';
 
 .twinkleplop {
 	color: var(--twp-identifier);
 	background: var(--twp-background);
 	font-family:
-		"Victor Mono", Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+		'Victor Mono', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono',
+		monospace;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
