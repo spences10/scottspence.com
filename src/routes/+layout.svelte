@@ -1,9 +1,4 @@
 <script lang="ts">
-	import { afterNavigate } from '$app/navigation';
-	import {
-		PUBLIC_FATHOM_ID,
-		PUBLIC_FATHOM_URL,
-	} from '$app/env/public';
 	import { init_live_analytics } from '#lib/analytics/live-analytics.svelte.js';
 	import {
 		BackToTop,
@@ -14,10 +9,15 @@
 	} from '#lib/components/index.js';
 	import { command_palette_state } from '#lib/state/command-palette.svelte.js';
 	import { handle_mouse_move } from '#lib/utils/index.js';
+	import {
+		PUBLIC_FATHOM_ID,
+		PUBLIC_FATHOM_URL,
+	} from '$app/env/public';
+	import { afterNavigate } from '$app/navigation';
 	import * as Fathom from 'fathom-client';
 	import { onMount } from 'svelte';
 	import '../app.css';
-	import '../prism.css';
+	import '../twinkleplop.css';
 
 	let { children } = $props();
 

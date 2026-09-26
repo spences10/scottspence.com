@@ -1,0 +1,44 @@
+@import "@twinkleplop/theme-night-owl/dark";
+
+.twinkleplop {
+	color: var(--twp-identifier);
+	background: var(--twp-background);
+	font-family:
+		"Victor Mono", Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	tab-size: 2;
+	hyphens: none;
+	overflow: auto;
+}
+
+.twinkleplop code {
+	color: inherit;
+	font: inherit;
+	white-space: inherit;
+}
+
+/* `{1,3-4}` fence meta */
+.twinkleplop .l.highlight {
+	display: inline-block;
+	min-width: 100%;
+	background: rgb(130 170 255 / 12%);
+	box-shadow: inset 3px 0 0 var(--twp-function);
+}
+
+.twinkleplop::selection,
+.twinkleplop ::selection {
+	color: inherit;
+	text-shadow: none;
+	background: rgb(29 59 83 / 99%);
+}
+
+@media print {
+	.twinkleplop,
+	.twinkleplop * {
+		text-shadow: none;
+	}
+}

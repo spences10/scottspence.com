@@ -9,9 +9,13 @@ import preview, {
 	textFormatter,
 } from 'remark-preview';
 import { visit } from 'unist-util-visit';
+import { highlight_code } from './src/lib/markdown/highlighter.ts';
 
 const config = defineConfig({
 	extensions: ['.svelte.md', '.md', '.svx'],
+	highlight: {
+		highlighter: highlight_code,
+	},
 
 	smartypants: {
 		dashes: 'oldschool',
@@ -89,7 +93,7 @@ function videos() {
 			if (extensions.some((ext) => node.url.endsWith(ext))) {
 				node.type = 'html';
 				node.value = `
-            <video 
+            <video
               src="${node.url}"
               autoplay
               muted
