@@ -1,5 +1,5 @@
 ---
-date: 2026-09-27
+date: 2026-09-26
 title:
   omnirecall - Search Your Claude Code, Codex and Pi Sessions in One
   Place
