@@ -1,9 +1,9 @@
-import { redirect } from '@sveltejs/kit';
-import { building } from '$app/env';
 import {
 	queue_page_view,
 	start_flush_timer,
 } from '#lib/analytics/queue.js';
+import { building } from '$app/env';
+import { redirect } from '@sveltejs/kit';
 
 import {
 	anonymise_ip,
@@ -18,6 +18,7 @@ import {
 } from '#lib/reject-patterns.js';
 import { sqlite_client } from '#lib/sqlite/client.js';
 import { run_migrations } from '#lib/sqlite/migrate.js';
+import { LINE_NUMBERS_COOKIE } from '#lib/state/line-numbers.svelte.js';
 import { themes } from '#lib/themes/index.js';
 import { sequence, type Handle } from '@sveltejs/kit/hooks';
 import { readFileSync } from 'node:fs';
@@ -118,6 +119,17 @@ export const theme: Handle = async ({ event, resolve }) => {
 	});
 };
 
+export const line_numbers: Handle = async ({ event, resolve }) => {
+	const visible = event.cookies.get(LINE_NUMBERS_COOKIE) === '1';
+
+	return await resolve(event, {
+		transformPageChunk: ({ html }) =>
+			visible
+				? html.replace('<html ', '<html data-line-numbers ')
+				: html,
+	});
+};
+
 // thanks Khromov https://www.youtube.com/watch?v=O_oXb3JSyrI
 const handle_preload: Handle = async ({ event, resolve }) => {
 	return await resolve(event, {
@@ -197,5 +209,6 @@ export const handle = sequence(
 	track_analytics,
 	handle_redirects,
 	theme,
+	line_numbers,
 	handle_preload,
 );

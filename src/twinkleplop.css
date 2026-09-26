@@ -30,6 +30,20 @@
 	box-shadow: inset 3px 0 0 var(--twp-function);
 }
 
+/* Always in the markup, readers toggle them from CodeBlock */
+.twinkleplop .ln {
+	display: none;
+	min-width: 3ch;
+	margin-right: 2ch;
+	color: rgb(214 222 235 / 60%);
+	text-align: right;
+	user-select: none;
+}
+
+[data-line-numbers] .twinkleplop .ln {
+	display: inline-block;
+}
+
 .twinkleplop::selection,
 .twinkleplop ::selection {
 	color: inherit;

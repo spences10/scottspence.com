@@ -8,7 +8,7 @@ import preview, {
 	htmlFormatter,
 	textFormatter,
 } from 'remark-preview';
-import { visit } from 'unist-util-visit';
+import { EXIT, visit } from 'unist-util-visit';
 import { highlight_code } from './src/lib/markdown/highlighter.ts';
 
 const config = defineConfig({
@@ -36,6 +36,7 @@ const config = defineConfig({
 		),
 		posts,
 		videos,
+		code_block_import,
 	],
 	rehypePlugins: [
 		slugPlugin,
@@ -80,6 +81,46 @@ function posts() {
 				words: words,
 			},
 		};
+	};
+}
+
+/**
+ * The highlighter emits <CodeBlock>, import it into any file with
+ * fenced code, reusing the instance script if the file has one
+ */
+function code_block_import() {
+	const code_block_import =
+		"import CodeBlock from '#lib/components/code-block.svelte';";
+	const instance_script =
+		/^\s*<script(?![^>]*\bcontext=)(?![^>]*\bmodule\b)[^>]*>/;
+
+	return function transformer(tree) {
+		let has_code = false;
+		visit(tree, 'code', () => {
+			has_code = true;
+			return EXIT;
+		});
+		if (!has_code) return;
+
+		let script;
+		visit(tree, 'html', (node) => {
+			if (instance_script.test(node.value)) {
+				script = node;
+				return EXIT;
+			}
+		});
+
+		if (script) {
+			script.value = script.value.replace(
+				instance_script,
+				(tag) => `${tag}\n\t${code_block_import}`,
+			);
+		} else {
+			tree.children.unshift({
+				type: 'html',
+				value: `<script>\n\t${code_block_import}\n</script>`,
+			});
+		}
 	};
 }
 
