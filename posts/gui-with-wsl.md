@@ -274,8 +274,8 @@ ssh -T git@github.com
 
 If you're using Ubuntu rather than the Debian setup in this post, I
 also have separate notes on
-[running Chrome in Ubuntu WSL](/posts/use-chrome-in-ubuntu-wsl).
-Don't assume the distribution-specific install commands are interchangeable.
+[running Chrome in Ubuntu WSL](/posts/use-chrome-in-ubuntu-wsl). Don't
+assume the distribution-specific install commands are interchangeable.
 
 This is where Nicky's detailed posts come in, the dependencies here
 are what's needed to get the GUI stuff going:

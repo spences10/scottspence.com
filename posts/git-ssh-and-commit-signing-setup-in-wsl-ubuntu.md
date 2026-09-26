@@ -266,8 +266,9 @@ Again, this is presuming that you've already got the keys in
 1Password.
 
 If you also want to manage pull requests and issues from the terminal,
-here's how I [install the GitHub CLI in WSL](/posts/install-github-cli-in-wsl).
-Its login flow is separate from the SSH and signing setup here.
+here's how I
+[install the GitHub CLI in WSL](/posts/install-github-cli-in-wsl). Its
+login flow is separate from the SSH and signing setup here.
 
 ## That's it!
 

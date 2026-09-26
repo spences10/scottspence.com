@@ -2,7 +2,7 @@
 date: 2026-05-02
 title: 'Building a SQLite context sidecar for my-pi'
 tags: ['pi', 'my-pi', 'sqlite', 'mcp', 'developer-experience']
-published: true
+is_private: false
 ---
 
 <!-- cspell:ignore pirecall ccrecall BM25 FTS sourceid toolcall toolresult inspectable shite -->

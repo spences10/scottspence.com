@@ -3,7 +3,7 @@ date: 2026-07-25
 updated: 2026-08-25
 title: 'How I work with LLMs'
 tags: ['ai', 'llms', 'pi', 'my-pi', 'developer-experience']
-published: true
+is_private: false
 ---
 
 <!-- cspell:ignore LLMs pirecall ccrecall worktree worktrees allowlist handoff nopeek -->

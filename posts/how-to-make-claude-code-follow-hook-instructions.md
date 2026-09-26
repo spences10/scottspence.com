@@ -2,7 +2,7 @@
 title: 'How to Make Claude Code Follow Hook Instructions'
 tags: ['claude', 'claude-code', 'guide', 'notes']
 date: 2026-03-22
-published: true
+is_private: false
 ---
 
 I've been using the `UserPromptSubmit` forced-eval hook for months

@@ -2,7 +2,7 @@
 date: 2026-04-19
 title: Add telemetry to my-pi
 tags: ['pi', 'telemetry', 'sqlite', 'evals', 'developer-experience']
-published: true
+is_private: false
 ---
 
 <!-- cspell:ignore otel pirecall ccrecall ndjson inspectable correlatable badlogic -->

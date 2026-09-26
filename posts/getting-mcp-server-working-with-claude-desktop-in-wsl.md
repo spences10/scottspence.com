@@ -218,7 +218,8 @@ count, confirming that everything was working as expected.
 ## Conclusion
 
 Using Claude Code rather than Claude Desktop? I have a separate guide
-to [configuring MCP tools in Claude Code](/posts/configuring-mcp-tools-in-claude-code).
+to
+[configuring MCP tools in Claude Code](/posts/configuring-mcp-tools-in-claude-code).
 They use different configuration locations, so don't copy the Desktop
 setup across unchanged.
 

@@ -3,7 +3,7 @@ date: 2026-04-03
 updated: 2026-09-13
 title: nopeek - Keep Your Secrets Out of Claude Code
 tags: ['claude', 'claude-code', 'security', 'cli', 'guide']
-published: true
+is_private: false
 ---
 
 <script>
@@ -111,10 +111,11 @@ shell. This example checks the database connection without printing
 the connection string.
 
 `run` does not make the variable available to the next tool call.
-That's the point: the selected secrets go to this child process, not
-a whole sequence of later commands. The child can still print them,
-so avoid environment dumps, shell tracing and verbose authentication
-output. The [threat model](https://github.com/spences10/nopeek#threat-model-and-non-goals)
+That's the point: the selected secrets go to this child process, not a
+whole sequence of later commands. The child can still print them, so
+avoid environment dumps, shell tracing and verbose authentication
+output. The
+[threat model](https://github.com/spences10/nopeek#threat-model-and-non-goals)
 sets out what nopeek does and doesn't protect against.
 
 ### Persistent session loading
@@ -134,11 +135,11 @@ When the harness provides persistent env-file injection, nopeek can
 make the variables available to later commands. Check `nopeek status`
 rather than assuming every tool shell supports this.
 
-The structured `load` result reports the method used. `env_file`
-means session injection; `source_file` gives a path to source in the
-shell that needs the variables. Receiving that path in one tool call
-does not load anything into an unrelated shell in the next call. If
-there's no persistent injection, use `run` instead.
+The structured `load` result reports the method used. `env_file` means
+session injection; `source_file` gives a path to source in the shell
+that needs the variables. Receiving that path in one tool call does
+not load anything into an unrelated shell in the next call. If there's
+no persistent injection, use `run` instead.
 
 Structured output shows key names, not their values. Don't request
 shell assignment output in an agent conversation: that mode is meant

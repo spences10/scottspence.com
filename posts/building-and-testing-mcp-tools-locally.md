@@ -2,7 +2,7 @@
 date: 2026-02-28
 title: Building and Testing MCP Tools Locally
 tags: ['mcp', 'claude-code', 'tools', 'guide']
-published: true
+is_private: false
 ---
 
 <!-- cSpell:ignore modelcontextprotocol mcpServers spences10 omnisearch sequentialthinking tmcp paoloricciuti mcpick pnpx -->

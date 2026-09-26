@@ -3,7 +3,7 @@ date: 2026-03-03
 updated: 2026-09-13
 title: Enable LSP in Claude Code
 tags: ['claude-code', 'lsp', 'developer-experience', 'guide']
-published: true
+is_private: false
 ---
 
 Right, so, I stumbled across
@@ -146,9 +146,9 @@ plugin exists for Claude Code yet.
 
 **Follow-up, 13 September 2026:** That describes my Claude Code setup
 at the time of this post. I later wrote about
-[adding LSP to my-pi](/posts/add-lsp-to-my-pi), including Svelte support.
-That's a different coding agent harness, not a plugin to install in
-Claude Code.
+[adding LSP to my-pi](/posts/add-lsp-to-my-pi), including Svelte
+support. That's a different coding agent harness, not a plugin to
+install in Claude Code.
 
 **LSP and Grep aren't replacements — they're complementary.** LSP
 needs a specific file path, line number, and character position to

@@ -2,7 +2,7 @@
 date: 2026-03-22
 title: McPick - Manage MCP Servers and Plugins in Claude Code
 tags: ['mcp', 'claude-code', 'tools', 'cli', 'guide']
-published: true
+is_private: false
 ---
 
 <!-- cSpell:ignore mcpick mcpServers pnpx spences10 modelcontextprotocol omnisearch -->

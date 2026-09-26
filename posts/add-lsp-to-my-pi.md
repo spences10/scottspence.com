@@ -2,7 +2,7 @@
 date: 2026-04-18
 title: Add LSP to my-pi
 tags: ['pi', 'lsp', 'developer-experience', 'guide']
-published: true
+is_private: false
 ---
 
 <!-- cspell:ignore agentic spelunking svelteserver spawnable -->
