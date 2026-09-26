@@ -7,7 +7,7 @@ import { defineConfig } from 'vite-plus';
 import { playwright } from 'vite-plus/test/browser-playwright';
 import mdsvexConfig from './mdsvex.config.js';
 
-const config = defineConfig({
+export default defineConfig({
 	plugins: [
 		tailwindcss(),
 		sveltekit({
@@ -81,10 +81,6 @@ const config = defineConfig({
 			},
 		],
 	},
-});
-
-export default {
-	...config,
 	fmt: {
 		useTabs: true,
 		singleQuote: true,
@@ -107,4 +103,4 @@ export default {
 			stylesheet: './src/app.css',
 		},
 	},
-};
+});
