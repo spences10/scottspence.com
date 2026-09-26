@@ -1,388 +1,256 @@
 ---
-date: 2026-08-26
+date: 2026-08-29
+updated: 2026-09-26
 title: 'What my prompts say about how I work with AI'
 tags:
   ['ai', 'llms', 'coding-agents', 'prompting', 'developer-experience']
 published: false
 ---
 
-<!-- cspell:ignore LLMs pirecall ccrecall nopeek codebases my-pi backpressure handoff handoffs overengineered Sol -->
+<!-- cspell:ignore LLMs pirecall ccrecall omnirecall omnisearch my-pi twinkleplop -->
 
-September 2023 is when I started using AI as part of my job. I had
-used it before then, but that was when I became responsible for
-getting real results with it. Features had to work. Bugs had to be
-fixed. Pull requests had to survive review. I was using AI in a large
-private client codebase where a plausible answer was not the same as a
-correct one.
+September 2023 is when I started getting paid to work with AI.
+Features had to work, bugs had to be fixed and pull requests had to
+survive review, in a large private client codebase where a plausible
+answer wasn't the same as a correct one.
 
-I have been honing how I work with it ever since, much like everyone
-else trying to keep up while the tools and models change underneath
-us.
+The way I prompt has changed a lot since then. I went back through my
+session history to find real prompts from then and now, and the change
+is simple to describe. I used to do the research part of every task by
+hand, in the prompt. Now most of it is built into the tools around the
+agent, and the prompt just points at them.
 
-I have not recorded every session since 2023. What I do have is a
-detailed record from recent months, plus the posts, CLIs and projects
-I made as my approach changed. I now have the tools to look back
-across all of it rather than rely on what I remember doing.
+## How I used to prompt
 
-So I asked an agent to find my greatest blind spots when prompting and
-working with LLMs, then report on how my prompting had evolved from
-the start of my recorded history to now.
+In January 2025 I gave a
+[talk about staying current with Svelte using AI tools](/speaking#svelte-society-london---january-2025).
+Models were poor at current Svelte. Svelte 5 had recently changed
+event handlers from `on:click` to `onclick`, and the older syntax
+dominated the training data. Search inside AI products wasn't good
+either.
 
-The first answer gave me a useful three-stage summary:
+So I'd start with the problem, get the model to gather current
+information about it, then decide what to do. Research, plan,
+implement. The research step was how I gave the model a reality to
+work from. Without it I'd watch it fail spectacularly because it
+didn't have the same current context I had.
 
-1. **Reactive supervision:** catch drift, challenge false claims and
-   restart.
-2. **Explicit process control:** research first, use official sources,
-   confirm understanding and validate.
-3. **Workflow engineering:** recall, skills, guardrails, scoped
-   agents, harnesses, evidence and review.
+The catch was that I had to spell out the research every time. This is
+from November 2025, working on SvelteKit auth:
 
-That is the story I recognise. I went from supervising the
-conversation to shaping the environment around it.
+> my plan, first check the auth, is there a user lookup each time? can
+> this be moved to remote functions? (research remote functions) then,
+> each load function doesn't need to do the auth check, right? go
+> research the auth remote functions pattern from official sources and
+> GitHub of SvelteKit maintainers
 
-The most uncomfortable finding was this:
+Where to look, who to trust and what order to do it in, all typed out
+by me.
 
-> You have solved execution reliability better than task-definition
-> reliability.
+Keeping the phases apart was on me too. From January 2026:
 
-I can stop an agent writing a known bad Svelte pattern. I can restrict
-it to five files, require validation and send the result through an
-independent review.
+> we're gathering information to help with the smooth progress in
+> researching this pattern right now, so, we're not going to implement
+> anything until we're happy with the information we have, got it?
 
-None of that proves I asked it to solve the right problem.
+And from February:
 
-## Why I can look back now
+> have a research team go through this issue. no coding, we're
+> planning this out first
 
-The introspective part of this post only became possible recently.
-
-Claude Code stores its sessions as JSONL files. I created
-[`ccrecall`](https://github.com/spences10/ccrecall) in December 2025
-to sync those transcripts into SQLite. The database includes sessions
-from November, giving me searchable prompts, tool calls and model use
-from that point onwards.
-
-When I moved most of my daily work to Pi, I created
-[`pirecall`](https://github.com/spences10/pirecall) in April 2026. It
-does the same job for Pi sessions and can recover the useful context
-around a result without pouring a whole transcript back into the
-model.
-
-For this analysis I used three databases:
-
-- 2,754 Claude Code sessions from 13 November 2025 to 23 February 2026
-- 1,259 sessions in my current Claude Code database from 15 January to
-  18 August 2026
-- 2,165 Pi sessions from 11 April to 26 August 2026
-
-Claude's stored user rows can also include injected tool and skill
-content, which makes its prompt-length statistics approximate. The
-record is evidence for a recent retrospective, not a complete history.
-
-It is still enough to show a clear change.
-
-## November 2025: I was the alignment system
-
-In November I wrote
-[Working with Claude Code: the honest version](/posts/working-with-claude-code-the-honest-version).
-At the time, most of my process involved spotting drift, calling out
-bullshit and checking that Claude understood the task before it
-touched code.
-
-I described myself as a product manager for a stochastic parrot.
-
-The first recorded work already contains the shape of the problem. I
-gave Claude the desired result and my implementation guess together:
-
-> This will probably mean the shared styling config will need to go?
-
-That is normal when you know a codebase well. It also gives an
-agreeable model a solution before it has established the problem.
-
-The corrections arrived quickly:
+When the research didn't happen, I found out after the fact:
 
 > You didn't research though did you? Didn't check official
 > documentation.
 
-> You changed the implementation to fit the test?
+I wrote about this period in
+[working with Claude Code: the honest version](/posts/working-with-claude-code-the-honest-version).
+I was the source of truth, the drift detector and the emergency brake,
+in every session. The model was useful and I was shipping more than I
+could without it. But everything it needed to know had to come through
+me.
 
-> You didn't do a like-for-like replacement.
+## What changed
 
-Important constraints were still in my head. They became visible only
-after Claude violated them.
+Over the last year, the steps I kept typing out turned into tools.
 
-The model was useful. I was shipping more work than I could have
-without it. The cost was that I had to remain inside every interaction
-as the source of truth, drift detector and emergency brake.
+**Web search.** Instead of hoping a model knew the current way to do
+something, I built
+[mcp-omnisearch](https://github.com/spences10/mcp-omnisearch) to
+search across providers and read the actual source. It's one of the
+[two MCP tools I still use](/posts/i-built-21-mcp-tools-and-still-use-2).
 
-The interrupt data supports that memory. In November 2025, 199 of my
-2,549 recorded prompts stopped Claude mid-action. In January it was
-173 interrupts in 1,318 prompts, roughly one in eight.
+**Past sessions.** A lot of context I needed was in earlier
+conversations. [ccrecall](https://github.com/spences10/ccrecall) syncs
+Claude Code sessions to SQLite, pirecall does the same for Pi, and
+[omnirecall](/posts/omnirecall-search-claude-code-codex-and-pi-sessions)
+now puts them all in one searchable archive.
 
-The Pi record has 12 interrupt-shaped rows in 18,731 prompts. The
-tools record interrupts differently, so that is not a clean benchmark.
-The direction still matches the wider history. I spend far less time
-physically hitting the brakes now.
+**Project docs.** On a client project with hundreds of documents, a
+[docs search CLI](/posts/give-coding-agents-your-project-docs-with-node-sqlite-and-fts5)
+meant agents could find the right spec section without me pointing at
+it.
 
-## Late November to March: distrust became a method
+**Rules that used to be reminders.** I used to tell agents over and
+over not to reach for `$effect`. In May I added a guardrail to my-pi
+that blocks the pattern before it's written to a `.svelte` file. Now
+it's a check, not something I have to remember to say. More on that in
+[how I stop LLMs drifting](/posts/how-i-stop-llms-drifting-in-production-codebases).
 
-My response to drift was not to write one perfect mega-prompt. I
-became more deliberate about testing the model's understanding.
+**The harness itself.** Moving most of my work to
+[my-pi](/posts/building-my-pi-claude-code-alternative-with-pi) meant I
+could change the environment when something frustrated me, instead of
+working around it in every prompt.
 
-I required official sources. I asked it to compare contradictory
-claims. I stopped implementation until it could state what it was
-about to do. I wanted evidence rather than a confident summary.
-
-This is where the `fifteen words or less` prompts start appearing. The
-later Pi history alone contains 119 of them. I also use yes-or-no
-questions constantly.
-
-That is deliberate. I got tired of waffle and learnt that the quickest
-way through it was to constrain the output.
-
-A model can hide weak understanding inside a polished five-part plan.
-It can restate all the context, thank me for the clarification and
-still avoid the question. It has much less room to hide when I ask:
-
-> Explain what you were about to do in fifteen words or less.
-
-The frustration in those prompts is also catharsis for me. Calling
-bullshit marks a hard stop. It prevents the conversation smoothing
-over a mistake and pretending everything is still going to plan.
-
-A binary constraint can force certainty when the truthful answer is
-conditional or unknown. The version I use now leaves an escape hatch:
-
-> Answer yes, no or unknown. Add one evidence line.
-
-The same period exposed another boundary:
-
-> Didn't mean for you to set stuff up, was just exploring.
-
-I often want to think conversationally before making changes. Coding
-agents keep trying to turn discussion into implementation, so
-`investigate only`, `no changes` and `implementation guidance only`
-became explicit modes.
-
-Repeated corrections also started becoming reusable procedure. Commit
-instructions became a workflow: inspect the affected apps, run the
-right checks, format, collect coverage, commit locally and do not push
-without permission. Research instructions became skills. Acceptance
-criteria became loops with backpressure commands.
-
-The posts and projects follow the prompts:
-
-- November: I started the Svelte skills repository because I was tired
-  of repeating current Svelte and SvelteKit patterns.
-- December: `ccrecall` made earlier conversations searchable.
-- January: reusable Claude Code skills moved into plugin marketplaces,
-  while I experimented with swarm workflows.
-- February: sandboxed evals measured whether skills actually
-  activated.
-- March: language server and hook instructions started checking code
-  and blocking behaviour mechanically.
-- 3 April: [`nopeek`](https://github.com/spences10/nopeek) moved
-  secret handling out of prompts and into a CLI.
-
-By late March my correction had become a more useful question:
-
-> What grounding in reality does this have?
-
-That asks how the model knows, not only whether its answer sounds
-right. A project instruction file can rot. The repository, runtime
-behaviour, official documentation, production data and earlier
-decisions have to be compared.
-
-The LLM's summary is not the source of truth because it sounds
-confident.
-
-## April onwards: I changed the environment
-
-I started [`my-pi`](https://github.com/spences10/my-pi) on 11
-April 2026.
-
-One of my first questions was:
-
-> So, how do we ground what you do in reality?
-
-The next day I created `pirecall` and connected session history to the
-new workflow. During the following weeks I added language server
-tools, SQLite telemetry, stronger redaction and Team Mode. On 1 May I
-added a SQLite context sidecar so large tool results could remain
-searchable without filling the conversation.
-
-Each feature maps to a repeated problem:
-
-- session history became `ccrecall` and `pirecall`
-- code questions gained language server evidence
-- secret handling became `nopeek` and redaction
-- large tool results became a searchable context sidecar
-- mutation ownership became scoped handoffs and Team Mode
-- validation became telemetry and evidence records
-
-Then there was Svelte.
-
-I kept telling agents not to reach for <code>&dollar;effect</code> as
-the answer to every reactive problem. Putting that preference in
-project instructions did not stop it. On 8 May I added Svelte
-guardrails to my-pi. They inspect writes and block that pattern before
-it lands in a `.svelte` file, then point the model towards derived
-state, event handlers, actions or an explicit lifecycle API instead.
-
-On 23 May I added boundary checks for architectural rules. On 28 June
-I added the harness runtime so risky tasks could carry editable scope,
-forbidden commands, validation and review outside the conversation.
-
-The repeated instructions had become deterministic code.
-
-The platform crossover was abrupt. April had about 187 Claude Code
-sessions and 319 Pi sessions. May had two Claude Code sessions and 631
-Pi sessions.
-
-That was not only a model preference. Claude Code made me fit my
-workflow around the product. Pi let me change the product around my
-workflow.
+I've always tried to ground the model in reality. What changed is
+where that grounding comes from.
 
 ## How I prompt now
 
-My Pi-era monthly median prompt length sits between 63 and 89
-characters. A precise comparison with early Claude prompts is not
-possible because its stored user rows contain injected content. The
-useful finding is not an exact percentage reduction. It is why short
-prompts now work.
+My prompts now tell the agent where the context is, not how to go and
+get it. From May, building with shadcn-svelte:
 
-The context became addressable.
+> did you check the available primitives on
+> https://shadcn-svelte.com/docs/components? mcp-omnisearch for web
+> search if you need it
 
-A new session can point at an earlier session, ask `pirecall` for the
-relevant history, inspect the current code and use the available tools
-to orient itself. I do not need to paste the whole story into every
-opening prompt.
+Also from May:
 
-When a risky task needs a detailed contract, I still write one. Long
-prompts did not disappear. They became task briefs rather than my
-normal side of a conversation.
+> can you websearch for the canonical on this
 
-I am still conversational. `GPT-5.6 Sol` is my main workhorse now and
-Claude is on the bench when I need it. My typos, `ok,` openers,
-questions and short replies do not change with the model. The style is
-mine.
+From August:
 
-The short replies make sense only with their surrounding turns. The Pi
-history contains 275 prompts that are exactly `continue`, 35 that are
-only `sure` and 10 that are only `do that`.
+> there's also all of pirecall to search through, use the pirecall CLI
+> for fuzzy searching and the mcp-sqlite-tools for narrow searches
 
-`Do that` normally approves a recommendation after an investigation.
-`Sure` accepts a specific next step the agent offered. `Continue`
-resumes agreed work after a checkpoint or tool result, or wakes a
-response that stopped or trailed off.
+From September:
 
-They are approval gates inside a task we have already discussed, not
-attempts to define a task from scratch.
+> get all the context you need with pnpx omnirecall and assess the
+> situation, please, report back to me when you have done your
+> analysis
 
-I have never compacted a Pi session. The history contains no exact
-`compact` or `/compact` command from me. My normal pattern is one
-task, then a fresh session for the next one. If it needs earlier
-context, session recall and the available tools help it orient itself
-without carrying the whole conversation forward.
+The pattern is the task, plus a pointer to where the context lives. A
+CLI for past sessions, web search for anything current, and the
+project's own docs. The agent works out the rest.
 
-Where I was, the conversation itself carried the context and I watched
-for drift. Where I am now, the conversation can stay short because the
-environment can recover context, check claims and enforce known rules.
+## The same kind of task, then and now
 
-## Where I still get it wrong
+Here's the November prompt again, next to one from September. Both are
+SvelteKit work that needed research before any code changed.
 
-The current weak point sits before execution.
+November 2025:
 
-A harness can restrict edits to five files. It cannot tell me whether
-those are the right five files. A test can pass against the wrong
-expected behaviour. Two agents can review the same anchored premise
-and agree with each other.
+> my plan, first check the auth, is there a user lookup each time? can
+> this be moved to remote functions? (research remote functions) then,
+> each load function doesn't need to do the auth check, right? go
+> research the auth remote functions pattern from official sources and
+> GitHub of SvelteKit maintainers
 
-Research tools can retrieve excellent sources. They cannot rescue a
-question that asks the wrong thing.
+September 2026:
 
-Some of my opening prompts still leave the outcome implicit:
+> I want to make sure the https://twinkleplop.pngwn.at integration is
+> working as expected, could you research twinkleplop for me,
+> understand the current integration and correct/improve where
+> possible
 
-> Unit tests on the GitHub repo are failing. Can you investigate and
-> fix?
+The second one doesn't say where to look or what order to do things
+in. The agent read the twinkleplop docs and source, compared them with
+what was in the repo, fixed what was wrong and reported back. It
+grounded itself, without me spelling out any of the steps.
 
-> Work out why the Renovate PRs have failing CI.
+That work turned into
+[copy buttons and line numbers for this blog](/posts/copy-buttons-and-line-numbers-in-mdsvex-with-twinkleplop).
 
-These often work because the environment supplies sensible defaults.
-They still do not state which observable result matters, what must
-stay untouched or what evidence is enough.
+## From a line to a loop
 
-I also ask for opposition after stating my preferred answer:
+Research, plan, implement was the first shape my grounding took. It
+was a line I ran once at the start of every task, with me checking the
+output at the end.
 
-> To my mind...
+It isn't a line any more. Loop and graph engineering is the new
+hotness right now, and looking at how I actually work, it's closer to
+a loop.
 
-> Fair presumption?
+### Ground
 
-> Push back if I'm wrong.
+Establish what's real before anything else: the repo, the tests,
+earlier sessions and primary docs. It's not only the first step now.
+Recall, search and docs are there the whole way through, so an agent
+can re-ground mid-task without me.
 
-That is anchored pushback. A better sequence is to ask for an
-independent assessment first, then state my view and compare it with
-the result.
+### Shape
 
-The control system can become the work too. My history contains
-repeated versions of:
+Plan only as much as the task needs. A one-file fix gets one sentence.
+A risky change gets a written contract. Agents making an industry out
+of small tasks is one of my current frustrations, so the plan has to
+match the risk.
 
-> Why have you added all this ceremony?
+### Build narrowly
 
-> The team overengineered it.
+Change what the task needs and nothing else.
 
-A 45-minute governed agent run is not a win when the task was one
-obvious conflict in one file. Small, bounded work needs direct
-execution. Uncertain work needs research and a short contract. Broad
-or risky mutation earns a harness. Genuinely parallel work earns team
-coordination.
+### Verify
 
-The next improvement is not another large prompt template. For a small
-task, one clear outcome sentence can be enough:
+Checks, tests and guardrails, not me reading every line. This is the
+step RPI never had. In RPI, verification was me.
 
-> Fix only the conflict in this file. Preserve all unrelated changes.
-> Show the final diff and run the focused check.
+### Re-ground
 
-For larger work, I want the outcome, verified facts, hypotheses,
-scope, evidence and stopping point separated clearly. The mechanism
-comes after the result I need.
+When a check fails or something feels off, go back to what's real
+instead of pushing on. A failure tells me something the agent didn't
+know.
 
-## The making of this post proved the point
+### Encoding the loop
 
-The sessions used to make this post became the newest evidence in the
-databases while I was writing it.
+I'm refining this in my-pi. `pi-harness` builds a throwaway harness
+for a task: a contract, a task brief, a validation script and a review
+script. `pi-factory`, still experimental and off by default, runs one
+executor against that contract, validates the result, then hands the
+diff to an independent reviewer.
 
-The first analysis found the story. I then remembered another Claude
-database and asked the agent to store the additional data. It produced
-a thorough statistics dashboard and flattened the part I cared about.
+It's not settled. On 7 September I asked a session "at what point does
+a better harness become too much harness?", and a few days later I
+turned it off for a piece of work. The loop is what I'm aiming for.
+How much machinery each task deserves is what I'm still working out.
 
-I corrected it:
+## What I still do myself
 
-> You seem to have gone into stats rather than telling the story.
+The tools gather context. They don't decide whether the work is going
+the right way.
 
-I then asked Claude for an independent version because parts of the
-first draft were inconsistent. It found some excellent new evidence,
-including the interrupt history and the fact that my conversational
-style survives model changes. Its post still did not tell the whole
-story cleanly.
+That part is hard to describe. After seeing enough features built,
+I've got a sense for what the work needs. When a model suddenly takes
+an unexpected course, something feels off, and I stop it and ask why
+it's doing that before I let it carry on. "Vibes" sounds unserious,
+but those vibes come from a lot of bitter experience.
 
-That is not a failure of the exercise. It is the exercise.
+I can't turn that into a guardrail. The guardrails can hold a line
+after I've drawn it. Deciding where the line goes is still my job.
 
-The tools recovered the history. The databases challenged my memory.
-Different models found different patterns. I still had to decide what
-the post was about, reject the bits that did not fit the evidence and
-join the useful parts into one account.
+## Wrapping up
 
-That is where my work with AI has moved. I spend less time supervising
-every sentence and more time defining the outcome, choosing the source
-of truth and deciding how much machinery the task deserves.
+**Before: research, plan, implement.** Here's the problem, go and
+research it from these sources in this order, don't write any code
+until I say so.
 
-A reliable workflow can prove that an agent followed the contract. It
-cannot prove that I gave it the right contract.
+1. **Research:** I typed out where to look and who to trust, every
+   time.
+2. **Plan:** I held the phases apart myself: "no coding, we're
+   planning this out first".
+3. **Implement:** the agent wrote the code, and I checked it by
+   reading it.
 
-## Related reading
+**After: a loop.** Here's the problem, here's where the context is.
 
-- [Working with Claude Code: the honest version](/posts/working-with-claude-code-the-honest-version)
-- [How I work with LLMs](/posts/how-i-work-with-llms)
-- [How I stop LLMs drifting in production codebases](/posts/how-i-stop-llms-drifting-in-production-codebases)
-- [Building my-pi](/posts/building-my-pi-claude-code-alternative-with-pi)
-- [Coding agent harnesses with my-pi](/posts/coding-agent-harnesses-my-pi)
+1. **Ground:** establish what's real from the repo, tests, earlier
+   sessions and primary docs, at any point in the task.
+2. **Shape:** plan only as much as the risk needs.
+3. **Build narrowly:** change what the task needs and nothing else.
+4. **Verify:** checks, tests and guardrails, not me reading every
+   line.
+5. **Re-ground:** when something fails or feels off, go back to what's
+   real instead of pushing on.
+
+The difference isn't better prompting. It's that the research, the
+reminders and the rules I used to type out every time now live in the
+tools.
