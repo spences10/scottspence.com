@@ -2,6 +2,14 @@
 	import { differenceInDays, format } from 'date-fns';
 
 	const { post }: { post: Post } = $props();
+
+	// The card is a link, nested anchors are invalid HTML and break hydration
+	const preview = $derived(
+		(post.preview_html || post.preview).replace(
+			/<\/?a\b[^>]*>/gi,
+			'',
+		),
+	);
 </script>
 
 <div class="relative">
@@ -31,7 +39,7 @@
 					</div>
 				</div>
 				<div class="all-prose">
-					{@html post.preview_html || post.preview}
+					{@html preview}
 				</div>
 			</a>
 		</article>
