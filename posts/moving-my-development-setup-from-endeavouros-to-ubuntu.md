@@ -91,9 +91,10 @@ Font package in my configured Ubuntu repositories.
 
 ## A shell configuration isn't the whole shell
 
-My `.zshrc` expected Oh My Zsh and the Spaceship prompt. The first
-copy had included custom plugins and themes, but left out the Oh My
-Zsh framework and skipped symlinks.
+My `.zshrc` expected Oh My Zsh and the Spaceship prompt, the setup
+from [my updated Zsh config](/posts/my-updated-zsh-config-2025). The
+first copy had included custom plugins and themes, but left out the Oh
+My Zsh framework and skipped symlinks.
 
 I restored the framework from the old installation, along with the
 Spaceship links. That brought back Git integration,

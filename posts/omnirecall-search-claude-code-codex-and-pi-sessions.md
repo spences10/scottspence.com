@@ -140,8 +140,10 @@ Not "I worked on X" but actual outcomes: what shipped, what it fixed
 and when.
 
 I give a session omnirecall for fuzzy searches and
-[mcp-sqlite-tools](https://github.com/spences10/mcp-sqlite-tools) for
-narrow queries against the same database. It pulls out decisions,
+[mcp-sqlite-tools](https://github.com/spences10/mcp-sqlite-tools), one
+of the
+[two MCP tools I still use](/posts/i-built-21-mcp-tools-and-still-use-2),
+for narrow queries against the same database. It pulls out decisions,
 dates and numbers I'd long forgotten, and checks them against git
 history. My memory of what I did in May is not as good as the record
 of it!
