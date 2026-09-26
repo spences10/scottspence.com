@@ -434,7 +434,8 @@ It's not perfect, but it works. And it's better than manually editing
 
 I've since written a fuller guide to
 [McPick profiles and server management](/posts/mcpick-manage-mcp-servers-and-plugins-in-claude-code),
-including saving a setup so you can load it again for the next session.
+including saving a setup so you can load it again for the next
+session.
 
 So, McPick helps with Claude Code but for other tools that use MCP
 servers it makes sense to understand what MCP tool your adding to your

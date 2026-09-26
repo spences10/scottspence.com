@@ -4,7 +4,7 @@ updated: 2026-08-25
 title: 'Coding agent harnesses with my-pi'
 tags:
   ['pi', 'my-pi', 'coding-agents', 'developer-experience', 'evals']
-published: true
+is_private: false
 ---
 
 <!-- cspell:ignore Ornith pirecall worktree worktrees allowlist anti-tampering DeepReinforce handoff -->

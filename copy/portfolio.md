@@ -31,20 +31,19 @@ inspect the source or product.
 Client work is private, so these are described without names.
 
 **Reinsurance underwriting platform (2026).** I started from a
-clickable prototype with no backend and built the real platform, designed
-to support roughly $20m in business:
-submission intake, document extraction, rules evaluation, quoting, and
-audit history. I set up the monorepo and wrote the core web app,
-worker, rules, database, and domain packages. For the first two months
-I worked on it alone, writing 520 of the first 523 commits, and in
-that time it went from first commit to production inside the client's
-private Azure network in about six weeks. The team that joined from
-late June built on that foundation. After handover, the team raised
-the platform's maximum underwriting capacity by more than 130%, an
-eight-figure increase, in one week by changing rules and configuration,
-not by rebuilding anything. I also
-cut the heaviest page response from 50MB to 38KB for a submission with
-nearly 14,000 locations.
+clickable prototype with no backend and built the real platform,
+designed to support roughly $20m in business: submission intake,
+document extraction, rules evaluation, quoting, and audit history. I
+set up the monorepo and wrote the core web app, worker, rules,
+database, and domain packages. For the first two months I worked on it
+alone, writing 520 of the first 523 commits, and in that time it went
+from first commit to production inside the client's private Azure
+network in about six weeks. The team that joined from late June built
+on that foundation. After handover, the team raised the platform's
+maximum underwriting capacity by more than 130%, an eight-figure
+increase, in one week by changing rules and configuration, not by
+rebuilding anything. I also cut the heaviest page response from 50MB
+to 38KB for a submission with nearly 14,000 locations.
 
 **Guardrails that outlast me (2026).** Coding agents write plausible
 code in the wrong place, so on the same platform I made the

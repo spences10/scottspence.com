@@ -153,8 +153,8 @@ an eye!
 1. Keep what works for you - everyone's setup is different!
 
 For the full setup rather than individual fixes, see
-[my updated Zsh configuration](/posts/my-updated-zsh-config-2025).
-It includes the plugin order and completion settings I ended up using.
+[my updated Zsh configuration](/posts/my-updated-zsh-config-2025). It
+includes the plugin order and completion settings I ended up using.
 
 ## Before and after
 

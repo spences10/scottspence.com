@@ -279,15 +279,17 @@ Editing the config file directly has several advantages:
    might be difficult through the CLI
 
 If you'd rather not edit the file each time, I've since written up how
-I [manage MCP servers and plugins with McPick](/posts/mcpick-manage-mcp-servers-and-plugins-in-claude-code),
+I
+[manage MCP servers and plugins with McPick](/posts/mcpick-manage-mcp-servers-and-plugins-in-claude-code),
 including profiles for switching between projects.
 
 ## My Current MCP Tool Setup
 
 If an agent is helping with this setup, don't paste your API keys into
-its conversation. My [nopeek guide](/posts/nopeek-keep-secrets-out-of-claude-code)
-covers running commands with secrets without printing them during
-loading. It doesn't automatically configure your MCP servers for you.
+its conversation. My
+[nopeek guide](/posts/nopeek-keep-secrets-out-of-claude-code) covers
+running commands with secrets without printing them during loading. It
+doesn't automatically configure your MCP servers for you.
 
 Here's the actual setup I'm currently using with Claude Code (with API
 keys removed, of course):

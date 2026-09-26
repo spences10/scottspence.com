@@ -2,7 +2,7 @@
 date: 2026-04-19
 title: Hardening redaction in my-pi with evals and telemetry
 tags: ['pi', 'security', 'redaction', 'evals', 'telemetry']
-published: true
+is_private: false
 ---
 
 <!-- cspell:ignore asia hetzner kagi firecrawl pem pirecall nopeek freeform -->

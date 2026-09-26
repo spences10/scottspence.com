@@ -3,7 +3,7 @@ date: 2026-06-21
 updated: 2026-08-25
 title: How I Stop LLMs Drifting In Production Codebases
 tags: ['pi', 'my-pi', 'svelte', 'guide', 'notes']
-published: true
+is_private: false
 ---
 
 <!-- cSpell:ignore LLMs SvelteKit my-pi oxlint guardrails worktree handoff handoffs allowlist toolcall toolcalls FTS PRs mockup pravatar -->

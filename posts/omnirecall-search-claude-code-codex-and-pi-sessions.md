@@ -7,7 +7,7 @@ tags: ['claude-code', 'pi', 'tools', 'cli']
 is_private: false
 ---
 
-<!-- cSpell:ignore omnirecall ccrecall pirecall ocrecall pnpx spences10 twinkleplop mdsvex -->
+<!-- cSpell:ignore omnirecall ccrecall pirecall ocrecall pnpx spences10 twinkleplop mdsvex migrat endeavouros -->
 
 Claude Code keeps your sessions on disk, for 30 days by default. Each
 one is a JSONL file in `~/.claude/projects`, one folder per project:

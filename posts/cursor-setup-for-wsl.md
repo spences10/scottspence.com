@@ -184,7 +184,8 @@ command with no issues.
 That should be it! 🎉
 
 If you're setting up the rest of your development tools too, here's
-how I [install and authenticate the GitHub CLI in WSL](/posts/install-github-cli-in-wsl).
+how I
+[install and authenticate the GitHub CLI in WSL](/posts/install-github-cli-in-wsl).
 It's not needed for Cursor, but the browser authentication workaround
 saved me some frustration.
 

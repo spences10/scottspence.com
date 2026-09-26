@@ -4,7 +4,7 @@ updated: 2026-09-13
 title:
   'Agentic engineering: a practical guide to reliable coding agents'
 tags: ['ai', 'coding-agents', 'my-pi', 'guide']
-published: true
+is_private: false
 ---
 
 <!-- cspell:ignore agentic Andrej Karpathy Willison pirecall nopeek worktree worktrees allowlist codebase codebases toolcall toolcalls handoff handoffs -->

@@ -3,7 +3,7 @@ date: 2026-04-26
 updated: 2026-08-25
 title: 'Building my-pi: my own Claude Code alternative with Pi'
 tags: ['pi', 'my-pi', 'claude-code', 'developer-experience']
-published: true
+is_private: false
 ---
 
 <!-- cspell:ignore pirecall ccrecall nopeek Codex dogfooding badlogic opencode handoff mariozechner -->

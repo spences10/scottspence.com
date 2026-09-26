@@ -31,7 +31,7 @@ export const get_posts = query(async (): Promise<Post[]> => {
 
 	try {
 		const posts_result = await sqlite_client.execute(
-			'SELECT * FROM posts ORDER BY date DESC;',
+			'SELECT * FROM posts WHERE is_private = 0 ORDER BY date DESC;',
 		);
 
 		const normalized_posts = normalize_posts(posts_result.rows);

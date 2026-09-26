@@ -42,7 +42,9 @@ Build evidence first, choose a high-intent slug/title, draft into
 ## Post shape
 
 Use existing frontmatter: `date`, quoted `title`, `tags`,
-`published: true`.
+`is_private`. Drafts use `is_private: true`; set `is_private: false`
+to publish. Posts never use `published` (that field is for newsletters
+only).
 
 Default structure: hook, context, why it mattered, what changed,
 evidence, trade-offs, practical takeaway, references.

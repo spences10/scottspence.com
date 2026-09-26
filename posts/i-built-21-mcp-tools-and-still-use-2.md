@@ -5,7 +5,7 @@ tags: ['mcp', 'claude-code', 'tools']
 is_private: false
 ---
 
-<!-- cSpell:ignore omnisearch Tavily Kagi Jina Perplexity DuckDuckGo Exa Linkup Firecrawl libsql Turso mcpick pnpx n8n -->
+<!-- cSpell:ignore omnisearch Tavily Kagi Jina Perplexity DuckDuckGo Exa Linkup Firecrawl libsql Turso mcpick pnpx n8n nopeek omnirecall pirecall -->
 
 Since January 2025 I've built 21 MCP servers and tools. Most of them
 were experiments, a way of getting familiar with the technology while
