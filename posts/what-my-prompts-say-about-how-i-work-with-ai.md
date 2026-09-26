@@ -6,7 +6,7 @@ tags: ['claude-code', 'pi', 'notes']
 is_private: false
 ---
 
-<!-- cspell:ignore LLMs pirecall ccrecall omnirecall omnisearch my-pi twinkleplop -->
+<!-- cspell:ignore LLMs pirecall ccrecall omnirecall omnisearch my-pi twinkleplop websearch -->
 
 September 2023 is when I started getting paid to work with AI.
 Features had to work, bugs had to be fixed and pull requests had to

@@ -5,7 +5,7 @@ tags: ['ubuntu', 'linux', 'notes']
 is_private: false
 ---
 
-<!-- cspell:ignore EndeavourOS Ghostty WezTerm Espanso inotify sysctl zeditor Helium Spaceship pnpm keybindings symlinks -->
+<!-- cspell:ignore EndeavourOS Ghostty WezTerm Espanso inotify sysctl zeditor Helium Spaceship pnpm keybindings symlinks dearmor Sourcegraph publickey owlz kglobalshortcutsrc -->
 
 I created a development setup from EndeavourOS to Ubuntu 26.04. It's
 for work: they need 1Password's security check scripts running, and

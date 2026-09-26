@@ -5,7 +5,7 @@ tags: ['sveltekit', 'markdown', 'guide']
 is_private: false
 ---
 
-<!-- cSpell:ignore mdsvex twinkleplop pngwn Prism VitePress Shiki tabindex remark unist hydration -->
+<!-- cSpell:ignore mdsvex twinkleplop pngwn Prism VitePress Shiki tabindex remark unist hydration unshift -->
 
 I've had syntax highlighting on this blog since I moved it over to
 mdsvex back in 2021. What I've never had are the controls: a button to
