@@ -2,7 +2,7 @@
 date: 2026-09-26
 title: Copy Buttons and Line Numbers in mdsvex With twinkleplop
 tags: ['sveltekit', 'markdown', 'guide']
-is_private: true
+is_private: false
 ---
 
 <!-- cSpell:ignore mdsvex twinkleplop pngwn Prism VitePress Shiki tabindex remark unist hydration -->
