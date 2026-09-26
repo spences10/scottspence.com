@@ -9,8 +9,7 @@ is_private: false
 
 On a reinsurance platform I built at an agency this year, the
 documentation got big. Requirements, specs, schema notes, meeting
-notes and client emails. It went from 65 documents in May to 291 by
-September.
+notes and client emails. It went from 65 documents in May to 291.
 
 Coding agents had two ways to deal with that. Read loads of files at
 the start of every session, or guess. Neither is good.
