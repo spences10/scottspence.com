@@ -51,6 +51,16 @@ describe('highlight_code', () => {
 		expect(output).toContain('tabindex=\\"0\\"');
 	});
 
+	it('sizes the line number column to the largest number', () => {
+		expect(highlight_code('a\nb', 'ts')).toContain('digits={1}');
+		expect(
+			highlight_code(Array(12).fill('a').join('\n'), 'ts'),
+		).toContain('digits={2}');
+		expect(
+			highlight_code('a\nb', 'ts', ':line-numbers=99'),
+		).toContain('digits={3}');
+	});
+
 	it('passes a logo path for languages with one', () => {
 		expect(highlight_code('x', 'svelte')).toMatch(
 			/icon=\{"M[^"]+"\}/,

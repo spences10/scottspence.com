@@ -7,13 +7,16 @@
 	import { onMount } from 'svelte';
 
 	// Emitted by the mdsvex highlighter, `html` is twinkleplop output,
-	// `label` the language name (absent for plain text) and `icon` a
-	// language logo path (24x24 viewBox) when there is one
+	// `label` the language name (absent for plain text), `icon` a
+	// language logo path (24x24 viewBox) when there is one and `digits`
+	// the width of the largest line number
 	const {
 		html,
 		label,
 		icon,
-	}: { html: string; label?: string; icon?: string } = $props();
+		digits,
+	}: { html: string; label?: string; icon?: string; digits: number } =
+		$props();
 
 	let block: HTMLDivElement | undefined;
 	let copy_status = $state('');
@@ -44,7 +47,7 @@
 	}
 </script>
 
-<div class="code-block" bind:this={block}>
+<div class="code-block" style:--ln-digits={digits} bind:this={block}>
 	<div class="code-block-header">
 		{#if label}
 			<span
@@ -59,13 +62,13 @@
 						viewBox="0 0 24 24"
 						fill="currentColor"
 						aria-hidden="true"
-						height="14px"
-						width="14px"
+						height="16px"
+						width="16px"
 					>
 						<path d={icon} />
 					</svg>
 				{:else}
-					<CodeXml height="14px" width="14px" />
+					<CodeXml />
 				{/if}
 			</span>
 		{/if}
@@ -101,6 +104,8 @@
 
 <style>
 	.code-block {
+		/* Shared by the header and each code line (twinkleplop.css) */
+		--code-gutter: clamp(1rem, 3vw, 1.5rem);
 		margin-block: 1.75em;
 		border-radius: 0.375rem;
 		background: var(--twp-background);
@@ -110,7 +115,7 @@
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
-		padding: 0.25rem 0.5rem 0.25rem 1rem;
+		padding: 0.25rem var(--code-gutter);
 		border-bottom: 1px solid rgb(214 222 235 / 12%);
 		color: var(--twp-identifier);
 		font-family: var(--font-sans, sans-serif);
@@ -123,10 +128,13 @@
 		gap: 0.375rem;
 	}
 
+	/* Buttons centre a 1rem icon in 1.75rem, pull the group out by the
+	   difference so the icons, not the hit areas, line up with the code */
 	.code-block-actions {
 		display: flex;
 		gap: 0.25rem;
 		margin-left: auto;
+		margin-right: -0.375rem;
 	}
 
 	button {

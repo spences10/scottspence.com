@@ -8,13 +8,13 @@ import { language as javascript } from '@twinkleplop/javascript';
 import { language as json } from '@twinkleplop/json';
 import { language as markdown } from '@twinkleplop/markdown';
 import { create_renderer } from '@twinkleplop/markdown-core';
-import { language_icon, language_label } from './language-icons.js';
 import { language as python } from '@twinkleplop/python';
 import { language as sql } from '@twinkleplop/sql';
 import { language as svelte } from '@twinkleplop/svelte';
 import { language as tsx } from '@twinkleplop/tsx';
 import { language as typescript } from '@twinkleplop/typescript';
 import { language as yaml } from '@twinkleplop/yaml';
+import { language_icon, language_label } from './language-icons.js';
 
 // Fence names without a registered grammar (graphql, powershell,
 // dockerfile, text, etc.) render as escaped plain text in the same
@@ -76,15 +76,22 @@ export function highlight_code(
 	meta?: string | null,
 ) {
 	const normalised = normalise_language(language);
-	const html = renderer.fence(normalised, meta ?? undefined, code);
+	// Only null for a fence with no language, normalise_language rules that out
+	const html =
+		renderer.fence(normalised, meta ?? undefined, code) ?? '';
 	const icon = language_icon(normalised);
 	const label =
 		normalised === 'text' ? '' : language_label(normalised);
+	// Sizes the line number column, reads the rendered numbers so a
+	// `:line-numbers=100` start offset is accounted for
+	const last_line = html.match(/class="ln">(\d+)</g)?.at(-1) ?? '';
+	const digits = Math.max(1, last_line.replace(/\D/g, '').length);
 
 	// Pass as string expressions so Svelte doesn't parse `{` or `<`
 	// in the highlighted source as template syntax
 	const props = [
 		`html={${JSON.stringify(html)}}`,
+		`digits={${digits}}`,
 		label && `label={${JSON.stringify(label)}}`,
 		icon && `icon={${JSON.stringify(icon)}}`,
 	];
