@@ -1,5 +1,5 @@
 ---
-date: 2026-09-26
+date: 2026-09-24
 title:
   omnirecall - Search Your Claude Code, Codex and Pi Sessions in One
   Place
@@ -91,17 +91,17 @@ calls and their output too.
 the one I point agents at. It returns matches with the messages around
 them in a compact shape that doesn't flood the context window.
 
-## An example from this week
+## An example from this month
 
-I switched this blog's syntax highlighting over to
-[twinkleplop](/posts/copy-buttons-and-line-numbers-in-mdsvex-with-twinkleplop).
-I started that work in Pi on the evening of 22 September and finished
-it in Claude Code on the 26th.
+This month I moved my development setup
+[from EndeavourOS to Ubuntu](/posts/moving-my-development-setup-from-endeavouros-to-ubuntu).
+I planned the install with Codex on 8 September, then wrote the post
+about it with Pi on the 16th.
 
 One search finds both:
 
 ```bash
-pnpx omnirecall search "twinkleplop" --json
+pnpx omnirecall search "endeavouros" --json
 ```
 
 Here's the shape of what comes back, trimmed down:
@@ -110,17 +110,17 @@ Here's the shape of what comes back, trimmed down:
 {
 	"results": [
 		{
-			"agent": "pi",
-			"title": "twinkleplop-docs-review",
-			"project": "/home/scott/repos/scottspence.com",
-			"timestamp": "2026-09-22T19:10:30.487Z",
-			"snippet": "I read the full Twinkleplop documentation and checked it against this site…"
+			"agent": "codex",
+			"title": "Explain Ubuntu boot options",
+			"project": "/home/scott/repos/docs",
+			"timestamp": "2026-09-08T14:08:55.515Z",
+			"snippet": "…If you see “EndeavourOS” and an “EndeavourOS fallback” option when you restart…"
 		},
 		{
-			"agent": "claude",
+			"agent": "pi",
 			"project": "/home/scott/repos/scottspence.com",
-			"timestamp": "2026-09-26T07:49:22.442Z",
-			"snippet": "The twinkleplop integration was basically working…"
+			"timestamp": "2026-09-16T17:51:44.919Z",
+			"snippet": "…Untracked: `posts/moving-my-development-setup-from-endeavouros-to-ubuntu.md`…"
 		}
 	]
 }
@@ -130,19 +130,19 @@ Each result also has a `ref`, which goes into `omnirecall read` to
 pull up the conversation around the match.
 
 Without omnirecall I'd have needed to remember the work was split
-across two agents, then search each one separately. Now the Claude
-Code session can see what Pi found four days earlier.
+across two agents, then search each one separately. Now whichever
+agent I'm in can see both.
 
 ## The bigger use
 
-On 25 September I needed evidence for my CV. Not "I worked on X" but
-actual outcomes: what shipped, what it fixed and when. The archive has
-over 2,200 sessions from the last few months across all three agents.
+Where it really pays off is pulling evidence out of months of work.
+Not "I worked on X" but actual outcomes: what shipped, what it fixed
+and when.
 
-I gave a Claude Code session omnirecall for fuzzy searches and
+I give a session omnirecall for fuzzy searches and
 [mcp-sqlite-tools](https://github.com/spences10/mcp-sqlite-tools) for
-narrow queries against the same database. It pulled out decisions,
-dates and numbers I'd long forgotten, and checked them against git
+narrow queries against the same database. It pulls out decisions,
+dates and numbers I'd long forgotten, and checks them against git
 history. My memory of what I did in May is not as good as the record
 of it!
 

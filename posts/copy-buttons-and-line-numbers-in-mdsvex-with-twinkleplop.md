@@ -1,5 +1,5 @@
 ---
-date: 2026-09-26
+date: 2026-09-22
 title: Copy Buttons and Line Numbers in mdsvex With twinkleplop
 tags: ['sveltekit', 'markdown', 'guide']
 is_private: false
@@ -12,7 +12,8 @@ mdsvex back in 2021. What I've never had are the controls: a button to
 copy the code, highlighted lines, or line numbers you can turn on and
 off.
 
-Today I sorted all three. Very good, I'm happy with the result! 😅
+I've finally sorted all three. Very good, I'm happy with the result!
+😅
 
 This post covers how I swapped Prism for
 [twinkleplop](https://twinkleplop.pngwn.at), then built a code block
