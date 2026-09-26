@@ -2,9 +2,8 @@
 date: 2026-08-29
 updated: 2026-09-26
 title: 'What my prompts say about how I work with AI'
-tags:
-  ['ai', 'llms', 'coding-agents', 'prompting', 'developer-experience']
-published: false
+tags: ['claude-code', 'pi', 'notes']
+is_private: false
 ---
 
 <!-- cspell:ignore LLMs pirecall ccrecall omnirecall omnisearch my-pi twinkleplop -->
