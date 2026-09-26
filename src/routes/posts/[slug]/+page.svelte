@@ -204,6 +204,9 @@
 	{#if standard_site_uri}
 		<link rel="site.standard.document" href={standard_site_uri} />
 	{/if}
+	{#if data.meta.is_private}
+		<meta name="robots" content="noindex, follow" />
+	{/if}
 </svelte:head>
 
 <svelte:window onscroll={handle_scroll} />
