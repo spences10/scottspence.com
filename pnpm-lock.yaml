@@ -356,7 +356,7 @@ importers:
         version: 5.1.0
       valibot:
         specifier: ^1.4.2
-        version: 1.4.2(typescript@6.0.3)
+        version: 1.5.0(typescript@6.0.3)
       vite:
         specifier: npm:@voidzero-dev/vite-plus-core@0.3.3
         version: '@voidzero-dev/vite-plus-core@0.3.3(@types/node@26.4.1)(jiti@2.7.0)(typescript@6.0.3)(yaml@2.9.0)'
@@ -3078,8 +3078,8 @@ packages:
     resolution: {integrity: sha512-xZe/16rV4aa+HGSOCiY2YeLT1OybRLrrkL/Rqaq7p7GMVXjFh+6wN4oMYgjFmnSnhY8t6Xpdl2l9qmnHYuMHwQ==}
     hasBin: true
 
-  valibot@1.4.2:
-    resolution: {integrity: sha512-gjdCvJ6d3RyHAneqxMYMW9QMCwYMb3jpOO0IyHZV1bnRHFBHrX3VkIILt5XYR0WhwHiH7Mty8ovuPZ/O3gamrg==}
+  valibot@1.5.0:
+    resolution: {integrity: sha512-nil6AkP2TChWL43Z5uJ6GTxX01CUA+g8LWUM+N/rB9NBbkUMaUsi9PUNzlUPgoKASgmx9f7eGOYpJ04/fSa6FQ==}
     peerDependencies:
       typescript: '>=5'
     peerDependenciesMeta:
@@ -5763,7 +5763,7 @@ snapshots:
 
   uuid@14.0.2: {}
 
-  valibot@1.4.2(typescript@6.0.3):
+  valibot@1.5.0(typescript@6.0.3):
     optionalDependencies:
       typescript: 6.0.3
 
