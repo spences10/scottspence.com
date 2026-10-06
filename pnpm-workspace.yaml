@@ -9,10 +9,10 @@ minimumReleaseAgeExclude:
   - '@twinkleplop/*'
 
 overrides:
-  vite@*: npm:@voidzero-dev/vite-plus-core@0.3.3
-  vitest@*: 4.1.11
+  vite@*: npm:@voidzero-dev/vite-plus-core@1.0.0
+  vitest@*: 5.0.1
 
 peerDependencyRules:
   allowedVersions:
     # Vite+ core exposes Vite 8 APIs under Vite+'s package version.
-    vite: 0.3.2
+    vite: 1.0.0
