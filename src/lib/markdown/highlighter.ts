@@ -1,13 +1,16 @@
 import { language as bash } from '@twinkleplop/bash';
 import { language as css } from '@twinkleplop/css';
 import { language as diff } from '@twinkleplop/diff';
+import { language as dockerfile } from '@twinkleplop/dockerfile';
 import { language as dotenv } from '@twinkleplop/dotenv';
+import { language as graphql } from '@twinkleplop/graphql';
 import { language as html } from '@twinkleplop/html';
 import { language as ini } from '@twinkleplop/ini';
 import { language as javascript } from '@twinkleplop/javascript';
 import { language as json } from '@twinkleplop/json';
 import { language as markdown } from '@twinkleplop/markdown';
 import { create_renderer } from '@twinkleplop/markdown-core';
+import { language as powershell } from '@twinkleplop/powershell';
 import { language as python } from '@twinkleplop/python';
 import { language as sql } from '@twinkleplop/sql';
 import { language as svelte } from '@twinkleplop/svelte';
@@ -16,20 +19,22 @@ import { language as typescript } from '@twinkleplop/typescript';
 import { language as yaml } from '@twinkleplop/yaml';
 import { language_icon, language_label } from './language-icons.js';
 
-// Fence names without a registered grammar (graphql, powershell,
-// dockerfile, text, etc.) render as escaped plain text in the same
-// block markup.
+// Fence names without a registered grammar (text, rust, etc.)
+// render as escaped plain text in the same block markup.
 const renderer = create_renderer({
 	languages: {
 		bash: bash(),
 		css: css(),
 		diff: diff(),
+		dockerfile: dockerfile(),
 		dotenv: dotenv(),
+		graphql: graphql(),
 		html: html(),
 		ini: ini(),
 		javascript: javascript(),
 		json: json(),
 		markdown: markdown(),
+		powershell: powershell(),
 		python: python(),
 		sql: sql(),
 		svelte: svelte(),
@@ -37,6 +42,7 @@ const renderer = create_renderer({
 		typescript: typescript(),
 		yaml: yaml(),
 		conf: 'ini',
+		docker: 'dockerfile',
 		env: 'dotenv',
 		git: 'diff',
 		js: 'javascript',
@@ -44,6 +50,7 @@ const renderer = create_renderer({
 		md: 'markdown',
 		mdx: 'markdown',
 		mjs: 'javascript',
+		ps: 'powershell',
 		py: 'python',
 		sh: 'bash',
 		shell: 'bash',

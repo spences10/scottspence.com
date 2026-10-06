@@ -91,6 +91,7 @@ const labels: Record<string, string> = {
 	mdx: 'MDX',
 	mjs: 'JavaScript',
 	powershell: 'PowerShell',
+	ps: 'PowerShell',
 	py: 'Python',
 	python: 'Python',
 	sh: 'Shell',

@@ -14,13 +14,31 @@ describe('highlight_code', () => {
 		expect(output).toContain('label={"TypeScript"}');
 	});
 
+	it.each([
+		['graphql', 'query GetUser { user { name } }', 'GraphQL'],
+		[
+			'powershell',
+			'if ($true) { Write-Output "hello" }',
+			'PowerShell',
+		],
+		['ps', 'if ($true) { Write-Output "hello" }', 'PowerShell'],
+		['dockerfile', 'FROM node:24\nRUN echo "hello"', 'Dockerfile'],
+		['docker', 'FROM node:24\nRUN echo "hello"', 'Docker'],
+	])('highlights %s fences', (language, code, label) => {
+		const output = highlight_code(code, language);
+
+		expect(output).toContain(`language-${language}`);
+		expect(output).toContain('tok keyword');
+		expect(output).toContain(`label={${JSON.stringify(label)}}`);
+	});
+
 	it('falls back to escaped plain text for unsupported languages', () => {
 		const output = highlight_code(
 			'<script>alert("no")</script>',
-			'powershell',
+			'unknown-language',
 		);
 
-		expect(output).toContain('language-powershell');
+		expect(output).toContain('language-unknown-language');
 		expect(output).toContain('&lt;script&gt;');
 		expect(output).not.toContain('<script>');
 	});
@@ -100,6 +118,34 @@ describe('code block import', () => {
 
 		expect(count_imports(result!.code)).toBe(1);
 		expect(result!.code).toContain('<CodeBlock ');
+	});
+
+	it('compiles new language fences with metadata', async () => {
+		const result = await compile_markdown(
+			[
+				'# New languages',
+				'```graphql title="query.graphql"',
+				'query GetUser { user { name } }',
+				'```',
+				'```powershell',
+				'if ($true) { Write-Output "<hello>" }',
+				'```',
+				'```dockerfile {2}',
+				'FROM node:24',
+				'RUN echo "hello"',
+				'```',
+			].join('\n'),
+			mdsvex_config,
+		);
+
+		expect(count_imports(result!.code)).toBe(1);
+		expect(result!.code.match(/<CodeBlock /g)).toHaveLength(3);
+		expect(result!.code).toContain('query.graphql');
+		expect(result!.code).toContain('l highlight');
+		expect(result!.code).toContain('&lt;hello&gt;');
+		expect(() =>
+			compile(result!.code, { filename: 'new-languages.svelte' }),
+		).not.toThrow();
 	});
 
 	it('reuses an existing instance script', async () => {
