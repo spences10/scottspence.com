@@ -3,22 +3,46 @@
 	import CodeXml from '#lib/icons/code-xml.svelte';
 	import Copy from '#lib/icons/copy.svelte';
 	import ListOrdered from '#lib/icons/list-ordered.svelte';
+	import {
+		language_icon,
+		language_label,
+	} from '#lib/markdown/language-icons.js';
 	import { line_numbers_state } from '#lib/state/line-numbers.svelte.js';
-	import { onMount } from 'svelte';
+	import { onMount, type Snippet } from 'svelte';
 
-	// Emitted by the mdsvex highlighter, `html` is twinkleplop output,
-	// `label` the language name (absent for plain text), `icon` a
-	// language logo path (24x24 viewBox) when there is one and `digits`
-	// the width of the largest line number
+	// mdsvex passes the whole highlighted pre as a snippet. `code` is
+	// the visible text, without line numbers or annotation markers.
 	const {
-		html,
-		label,
-		icon,
-		digits,
-	}: { html: string; label?: string; icon?: string; digits: number } =
-		$props();
+		children,
+		code,
+		lang = '',
+		meta = '',
+		title,
+		caption,
+	}: {
+		children: Snippet;
+		code: string;
+		lang?: string;
+		meta?: string;
+		title?: string;
+		caption?: string;
+	} = $props();
 
-	let block: HTMLDivElement | undefined;
+	const label = $derived(
+		lang && lang !== 'text' ? language_label(lang) : '',
+	);
+	const icon = $derived(language_icon(lang));
+	const start = $derived(
+		Number(
+			meta
+				.match(/:line-numbers=(\d+)|showLineNumbers\{(\d+)\}/)
+				?.slice(1)
+				.find(Boolean) ?? 1,
+		),
+	);
+	const digits = $derived(
+		String(start + code.split('\n').length - 1).length,
+	);
 	let copy_status = $state('');
 	let reset_timer: ReturnType<typeof setTimeout> | undefined;
 
@@ -28,15 +52,8 @@
 	});
 
 	async function copy_code() {
-		const code = block?.querySelector('pre code');
-		if (!code) return;
-
-		// Line numbers are real text in the markup, drop them from the copy
-		const clone = code.cloneNode(true) as HTMLElement;
-		clone.querySelectorAll('.ln').forEach((ln) => ln.remove());
-
 		try {
-			await navigator.clipboard.writeText(clone.textContent ?? '');
+			await navigator.clipboard.writeText(code);
 			copy_status = 'Copied';
 		} catch {
 			copy_status = 'Copy failed';
@@ -47,7 +64,7 @@
 	}
 </script>
 
-<div class="code-block" style:--ln-digits={digits} bind:this={block}>
+<div class="code-block" style:--ln-digits={digits}>
 	<div class="code-block-header">
 		{#if label}
 			<span
@@ -72,6 +89,7 @@
 				{/if}
 			</span>
 		{/if}
+		{#if title}<span class="code-block-title">{title}</span>{/if}
 		<div class="code-block-actions">
 			<button
 				type="button"
@@ -99,7 +117,8 @@
 		</div>
 		<span class="sr-only" role="status">{copy_status}</span>
 	</div>
-	{@html html}
+	{@render children()}
+	{#if caption}<p class="code-block-caption">{caption}</p>{/if}
 </div>
 
 <style>
@@ -120,6 +139,17 @@
 		color: var(--twp-identifier);
 		font-family: var(--font-sans, sans-serif);
 		font-size: 0.75rem;
+	}
+
+	.code-block-title {
+		min-width: 0;
+		overflow-wrap: anywhere;
+	}
+
+	.code-block-caption {
+		margin: 0;
+		padding: 0.5rem var(--code-gutter);
+		font-size: 0.875rem;
 	}
 
 	.code-block-language {

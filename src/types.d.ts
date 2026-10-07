@@ -95,6 +95,20 @@ declare interface RelatedPost {
 	title: string;
 }
 
+// remark-preview does not ship types. These are the formatters we use.
+declare module 'remark-preview' {
+	interface Formatter {
+		parse(tree: unknown, file?: unknown): string;
+		truncate(text: string): string;
+	}
+	interface Options {
+		length?: number;
+		maxBlocks?: number;
+	}
+	export function textFormatter(options?: Options): Formatter;
+	export function htmlFormatter(options?: Options): Formatter;
+}
+
 // https://stackoverflow.com/questions/73025100/svelte-svelte-kit-type-custom-action-event-with-typescript
 // https://github.com/sveltejs/language-tools/blob/master/docs/preprocessors/typescript.md#im-getting-deprecation-warnings-for-sveltejsx--i-want-to-migrate-to-the-new-typings
 declare namespace svelteHTML {

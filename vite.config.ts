@@ -5,11 +5,29 @@ import tailwindcss from '@tailwindcss/vite';
 import { mdsvex } from 'mdsvex';
 import { defineConfig } from 'vite-plus';
 import { playwright } from 'vite-plus/test/browser-playwright';
-import mdsvexConfig from './mdsvex.config.js';
+import mdsvexConfig, { commonmark } from './mdsvex.config.js';
+
+const mdsvex_plugins = mdsvex(mdsvexConfig);
+// next.1 also matches asset queries. Keep raw Markdown for publishing feeds
+// until mdsvex excludes ?raw and ?url itself.
+for (const plugin of mdsvex_plugins) {
+	if (
+		plugin.name === 'mdsvex' &&
+		typeof plugin.transform === 'function'
+	) {
+		const transform = plugin.transform;
+		plugin.transform = function (source, id, options) {
+			if (/[?&](?:raw|url)(?:[=&]|$)/.test(id)) return;
+			return transform.call(this, source, id, options);
+		};
+	}
+}
 
 export default defineConfig({
 	plugins: [
 		tailwindcss(),
+		commonmark,
+		mdsvex_plugins,
 		sveltekit({
 			adapter: adapter(),
 			compilerOptions: {
@@ -21,8 +39,7 @@ export default defineConfig({
 			experimental: {
 				remoteFunctions: true,
 			},
-			extensions: ['.svelte', '.md'],
-			preprocess: [mdsvex(mdsvexConfig), vitePreprocess()],
+			preprocess: [vitePreprocess()],
 		}),
 	],
 	server: {

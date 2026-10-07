@@ -1,149 +1,120 @@
-// @ts-nocheck
-import { defineMDSveXConfig as defineConfig } from 'mdsvex';
-import path from 'node:path';
-import autolinkHeadings from 'rehype-autolink-headings';
-import rehypeExternalLinks from 'rehype-external-links';
-import slugPlugin from 'rehype-slug';
-import preview, {
-	htmlFormatter,
-	textFormatter,
-} from 'remark-preview';
-import { EXIT, visit } from 'unist-util-visit';
-import { highlight_code } from './src/lib/markdown/highlighter.ts';
+import GithubSlugger from 'github-slugger';
+import { highlight_options } from './src/lib/markdown/highlighter.ts';
+import { prepare_markdown } from './src/lib/markdown/prepare-markdown.ts';
 
-const config = defineConfig({
-	extensions: ['.svelte.md', '.md', '.svx'],
-	highlight: {
-		highlighter: highlight_code,
-	},
+const extensions = ['.svelte.md', '.md', '.svx'];
+const slugger = new GithubSlugger();
 
-	smartypants: {
-		dashes: 'oldschool',
-	},
-	remarkPlugins: [
-		// Add a text preview snippet (no formatting) so we can use it in the meta description tag
-		preview(textFormatter({ length: 250, maxBlocks: 2 })),
-
-		// Add an HTML preview snippet (formatted) so we can use it when displaying all posts
-		preview(
-			htmlFormatter({
-				length: 250,
-				maxBlocks: 2,
-			}),
-			{
-				attribute: 'previewHtml',
+/** @type {import('mdsvex').MdsvexOptions} */
+const config = {
+	extensions,
+	components: '#lib/markdown/components.ts',
+	highlight: highlight_options,
+	parse_plugins: [
+		{
+			sequential: true,
+			// Every prepared document starts with frontmatter. The parser
+			// does not dispatch root handlers, so reset heading IDs here.
+			frontmatter: {
+				parse() {
+					slugger.reset();
+				},
 			},
-		),
-		posts,
-		videos,
-		code_block_import,
-	],
-	rehypePlugins: [
-		slugPlugin,
-		[
-			autolinkHeadings,
-			{
-				behavior: 'wrap',
+			heading: {
+				parse(node) {
+					const link = node.wrap_inner('link');
+					return () => {
+						// Keep existing anchors: 0.x slugged inline-code entities.
+						/** @returns {string} */
+						function heading_text(current = link) {
+							if (current.type === 'code_span') {
+								return current.text_content
+									.replaceAll('&', '&amp;')
+									.replaceAll('<', '&lt;')
+									.replaceAll('>', '&gt;')
+									.replaceAll('{', '&#123;')
+									.replaceAll('}', '&#125;');
+							}
+							let child = current.first_child;
+							if (!child) return current.text_content;
+							let text = '';
+							while (child) {
+								text += heading_text(child);
+								child = child.next;
+							}
+							return text;
+						}
+						const id = slugger.slug(heading_text());
+						node.attrs.id = id;
+						link.attrs.href = `#${id}`;
+					};
+				},
 			},
-		],
-		[
-			rehypeExternalLinks,
-			{ target: '_blank', rel: 'noopener noreferrer' },
-		],
+			link: {
+				parse(node) {
+					return () => {
+						if (/^(?:https?:)?\/\//i.test(node.href ?? '')) {
+							node.attrs.target = '_blank';
+							node.attrs.rel = 'noopener noreferrer';
+						}
+					};
+				},
+			},
+			list_item: {
+				parse(node) {
+					return () => {
+						const first = node.first_child;
+						const input =
+							first?.type === 'paragraph' ? first.first_child : first;
+						if (
+							input?.type !== 'html' ||
+							input.attrs.tag !== 'input' ||
+							input.attrs.attributes?.type !== 'checkbox'
+						)
+							return;
+						node.attrs.class = 'task-list-item';
+						if (node.parent?.type === 'list') {
+							node.parent.attrs.class = 'contains-task-list';
+						}
+					};
+				},
+			},
+			image: {
+				parse(node) {
+					return () => {
+						const src = node.attrs.src;
+						if (!/\.(mp4|webm)$/i.test(src ?? '')) return;
+						node.type = 'html';
+						node.attrs.tag = 'video';
+						node.attrs.attributes = {
+							src,
+							controls: true,
+							'aria-label': node.text_content,
+							class: 'w-full h-auto max-w-full',
+							style: 'border-radius: var(--rounded-box, 1rem);',
+						};
+					};
+				},
+			},
+		},
 	],
-});
+};
+
+// Runs before the mdsvex Vite plugin. Source files and feeds stay CommonMark.
+/** @type {import('vite-plus').Plugin} */
+export const commonmark = {
+	name: 'mdsvex-commonmark',
+	enforce: 'pre',
+	transform(source, id) {
+		if (/[?&](?:raw|url)(?:[=&]|$)/.test(id)) return;
+		const filename = id.split('?', 1)[0];
+		if (
+			!extensions.some((extension) => filename.endsWith(extension))
+		) {
+			return;
+		}
+		return { code: prepare_markdown(source, filename), map: null };
+	},
+};
 
 export default config;
-
-/**
- * Add slug to metadata and convert `date` timezone to UTC
- */
-function posts() {
-	return (_, file) => {
-		const parsed = path.parse(file.filename);
-		const slug =
-			parsed.name === 'index'
-				? path.parse(file.filename).dir.split('/').pop()
-				: parsed.name;
-
-		// Calculate reading time
-		const content = file.contents.toString();
-		const words = content.split(/\s+/).length;
-		const reading_time_minutes = Math.ceil(words / 230); // 230 words per minute
-
-		file.data.fm = {
-			...file.data.fm,
-			slug,
-			reading_time: {
-				minutes: reading_time_minutes,
-				text: `${reading_time_minutes} min read`,
-				time: reading_time_minutes * 60 * 1000, // milliseconds
-				words: words,
-			},
-		};
-	};
-}
-
-/**
- * The highlighter emits <CodeBlock>, import it into any file with
- * fenced code, reusing the instance script if the file has one
- */
-function code_block_import() {
-	const code_block_import =
-		"import CodeBlock from '#lib/components/code-block.svelte';";
-	const instance_script =
-		/^\s*<script(?![^>]*\bcontext=)(?![^>]*\bmodule\b)[^>]*>/;
-
-	return function transformer(tree) {
-		let has_code = false;
-		visit(tree, 'code', () => {
-			has_code = true;
-			return EXIT;
-		});
-		if (!has_code) return;
-
-		let script;
-		visit(tree, 'html', (node) => {
-			if (instance_script.test(node.value)) {
-				script = node;
-				return EXIT;
-			}
-		});
-
-		if (script) {
-			script.value = script.value.replace(
-				instance_script,
-				(tag) => `${tag}\n\t${code_block_import}`,
-			);
-		} else {
-			tree.children.unshift({
-				type: 'html',
-				value: `<script>\n\t${code_block_import}\n</script>`,
-			});
-		}
-	};
-}
-
-/**
- * Adds support to video files in markdown image links
- */
-function videos() {
-	const extensions = ['mp4', 'webm'];
-	return function transformer(tree) {
-		visit(tree, 'image', (node) => {
-			if (extensions.some((ext) => node.url.endsWith(ext))) {
-				node.type = 'html';
-				node.value = `
-            <video
-              src="${node.url}"
-              autoplay
-              muted
-              playsinline
-              loop
-              title="${node.alt}"
-            />
-          `;
-			}
-		});
-	};
-}
