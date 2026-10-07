@@ -33,9 +33,9 @@ on the index page of both projects to convert them to use Tailwind.
 Both examples will use the [Svelte Add] utility and I'll go through
 converting each one from the Svelte scoped CSS over to Tailwind.
 
-Did you read the banner? This post is <DD date={date} /> old now, I've
-added some more content on using the new Svelte CLI to add Tailwind.
-👇
+Did you read the banner? This post is <DD date={metadata.date} /> old
+now, I've added some more content on using the new Svelte CLI to add
+Tailwind. 👇
 
 <Banner {options} />
 
