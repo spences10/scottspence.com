@@ -6,6 +6,7 @@ import { mdsvex } from 'mdsvex';
 import { defineConfig } from 'vite-plus';
 import { playwright } from 'vite-plus/test/browser-playwright';
 import mdsvexConfig, { commonmark } from './mdsvex.config.js';
+import { code_block_warning_filter } from './src/lib/markdown/highlighter.ts';
 
 const mdsvex_plugins = mdsvex(mdsvexConfig);
 // next.1 also matches asset queries. Keep raw Markdown for publishing feeds
@@ -23,13 +24,39 @@ for (const plugin of mdsvex_plugins) {
 	}
 }
 
-export default defineConfig({
+let warned_mdsvex_sourcemap = false;
+
+export default defineConfig(({ command }) => ({
+	// Keep warnings and errors, without printing every generated asset.
+	logLevel: command === 'build' ? 'warn' : 'info',
+	build: {
+		rolldownOptions: {
+			checks: { bundlerTimings: false },
+			onLog(level, log, default_handler) {
+				// mdsvex next.1 generates its maps in a later plugin. Report the
+				// missing transform map once, rather than once per document.
+				if (
+					log.code === 'SOURCEMAP_BROKEN' &&
+					log.plugin === 'mdsvex'
+				) {
+					if (warned_mdsvex_sourcemap) return;
+					warned_mdsvex_sourcemap = true;
+				}
+				default_handler(level, log);
+			},
+		},
+	},
 	plugins: [
 		tailwindcss(),
 		commonmark,
 		mdsvex_plugins,
 		sveltekit({
 			adapter: adapter(),
+			dynamicCompileOptions({ filename, code }) {
+				if (/\.(?:md|svx)$/.test(filename)) {
+					return { warningFilter: code_block_warning_filter(code) };
+				}
+			},
 			compilerOptions: {
 				experimental: {
 					async: true,
@@ -120,4 +147,4 @@ export default defineConfig({
 			stylesheet: './src/app.css',
 		},
 	},
-});
+}));

@@ -1,14 +1,17 @@
-import { globSync, readFileSync } from 'node:fs';
-import path from 'node:path';
 import { compile as compile_markdown } from 'mdsvex/compile';
 import {
 	create_highlight,
 	load_default_languages,
 } from 'mdsvex/highlight';
+import { globSync, readFileSync } from 'node:fs';
+import path from 'node:path';
 import { compile } from 'svelte/compiler';
 import { describe, expect, it } from 'vitest';
 import mdsvex_config from '../../../mdsvex.config.js';
-import { highlight_options } from './highlighter.js';
+import {
+	code_block_warning_filter,
+	highlight_options,
+} from './highlighter.js';
 import { prepare_markdown } from './prepare-markdown.js';
 
 const highlight = create_highlight({
@@ -54,6 +57,56 @@ describe('native mdsvex highlighting', () => {
 			expect(output).not.toContain('{@html');
 		},
 	);
+
+	it.each(['text', 'txt', 'plaintext', 'nano', 'url'])(
+		'renders %s fences as plain code without warnings',
+		(language) => {
+			const result = compile_document(
+				`\`\`\`${language}\n<script>{value}</script>\n\`\`\``,
+			);
+			expect(result.warnings).toBeUndefined();
+			expect(result.code).toContain(
+				'&lt;script&gt;&#123;value&#125;',
+			);
+			expect(result.code).toContain('class="ln">1<');
+			expect(result.code).not.toContain('tok keyword');
+		},
+	);
+
+	it('keeps unknown-language warnings visible', () => {
+		const result = compile_document(
+			'```unknown-language\nexample\n```',
+		);
+		expect(result.warnings).toEqual([
+			expect.objectContaining({ code: 'unknown_language' }),
+		]);
+	});
+
+	it('keeps keyboard focus without warnings on generated code regions', () => {
+		const output = fence('const value = 42;', 'ts');
+		const result = compile(output, {
+			filename: 'post.md',
+			warningFilter: code_block_warning_filter(output),
+		});
+		expect(output).toContain(
+			'tabindex="0" role="region" aria-label="Code example"',
+		);
+		expect(result.warnings).toEqual([]);
+	});
+
+	it('keeps accessibility warnings on authored markup beside code', () => {
+		const output = compile_document(
+			'<p tabindex="0">Authored text</p>\n\n```ts\nconst value = 42;\n```\n\n<img src="/example.png">',
+		).code;
+		const result = compile(output, {
+			filename: 'post.md',
+			warningFilter: code_block_warning_filter(output),
+		});
+		expect(result.warnings.map((warning) => warning.code)).toEqual([
+			'a11y_no_noninteractive_tabindex',
+			'a11y_missing_attribute',
+		]);
+	});
 
 	it('escapes unsupported languages and unnamed fences', () => {
 		const output = fence(
@@ -298,12 +351,12 @@ describe('CommonMark compatibility and site features', () => {
 		expect(result.metadata?.slug).toBe(
 			path.basename(filename, '.md'),
 		);
-		expect(() =>
-			compile(result.code, {
-				filename,
-				generate: 'server',
-				experimental: { async: true },
-			}),
-		).not.toThrow();
+		const compiled = compile(result.code, {
+			filename,
+			generate: 'server',
+			experimental: { async: true },
+			warningFilter: code_block_warning_filter(result.code),
+		});
+		expect(compiled.warnings).toEqual([]);
 	});
 });
