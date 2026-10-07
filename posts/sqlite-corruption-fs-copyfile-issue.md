@@ -76,7 +76,7 @@ const backup_path = `/app/data/backups/site-data-${date}.db`;
 await copyFile(db_path, backup_path);
 ```
 
-Looks innocent enough, right? **Wrong.**
+Looks innocent enough, right? *Wrong.*
 
 SQLite in WAL (Write-Ahead Logging) mode uses three files:
 
@@ -120,7 +120,7 @@ backups.
 
 Here's how I got the site back online:
 
-**Step 0: Find the correct container**
+*Step 0: Find the correct container*
 
 First, I needed to identify which Docker container was actually
 running the production site. In Coolify (or any multi-container
@@ -142,7 +142,7 @@ production one was identifiable by its recent start time and the
 commit hash in the image name. Once I had the container name, I could
 proceed.
 
-**Step 1: Verify the damage**
+*Step 1: Verify the damage*
 
 ```bash
 # Enter the production container
@@ -153,7 +153,7 @@ sqlite3 /app/data/site-data.db "PRAGMA integrity_check;"
 # Result: extensive corruption confirmed
 ```
 
-**Step 2: Check all backups**
+*Step 2: Check all backups*
 
 ```bash
 # Test each backup file
@@ -164,7 +164,7 @@ done
 # Result: all corrupted
 ```
 
-**Step 3: Use local database**
+*Step 3: Use local database*
 
 Thankfully I had a healthy local copy. Time to get it to production:
 
@@ -174,7 +174,7 @@ Thankfully I had a healthy local copy. Time to get it to production:
 scp /home/scott/repos/scottspence.com/data/site-data.db coolify:/tmp/db-restore/
 ```
 
-**Step 4: Replace production database**
+*Step 4: Replace production database*
 
 ```bash
 # On production server
@@ -243,21 +243,21 @@ backups per day). Storage is cheap; data loss is expensive.
 
 ## Lessons learned
 
-**Don't use `fs.copyFile()` for SQLite databases in WAL mode.** It's
+*Don't use `fs.copyFile()` for SQLite databases in WAL mode.* It's
 fundamentally broken and will corrupt your data. Always use SQLite's
 native backup API.
 
-**Test backups!** I had backups running for months, but I never
+*Test backups!* I had backups running for months, but I never
 verified they actually worked. Every single one was corrupted, and I
 only found out when I needed them. That's a proper skill issue on my
 part.
 
-**Multiple backups per day.** Daily backups aren't enough. If
+*Multiple backups per day.* Daily backups aren't enough. If
 corruption happens at 08:39 and my only backup is from 00:00, I've
 lost 8+ hours of data. Four backups per day (every 6 hours) gives me
 much better granularity.
 
-**Document the recovery process.** I'm writing this whilst it's fresh
+*Document the recovery process.* I'm writing this whilst it's fresh
 in my mind so future-me (or you) can recover faster next time. The
 panic of production being down isn't the time to figure out
 `docker cp` syntax.

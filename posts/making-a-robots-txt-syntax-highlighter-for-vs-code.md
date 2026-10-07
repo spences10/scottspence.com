@@ -10,9 +10,9 @@ is_private: false
 </script>
 
 I was asking ChatGPT to read some posts from my site and summarise
-them for me, I was a bit surprised when I got the response **"I wasn't
+them for me, I was a bit surprised when I got the response *"I wasn't
 able to directly access the URL you provided due to restrictions on
-the webpage."** from the bot. It was then that I recalled that I'd
+the webpage."* from the bot. It was then that I recalled that I'd
 blocked ChatGPT in the `robots.txt` file on my site. 😅
 
 I've had all sorts of stuff added to that file over the years, and to
@@ -36,7 +36,7 @@ in my editor, and the way I went about it.
 
 ## I have previous!
 
-If you check out my [publisher profile] on the Visual Studio
+If you check out my [publisher profile](https://marketplace.visualstudio.com/publishers/spences10) on the Visual Studio
 Marketplace you'll see that I have done this sort of thing before. Not
 for a while though!
 
@@ -87,30 +87,30 @@ yo code
 Rather than leave the output from the generator in the text output
 I'll add the questions to a list here:
 
-- **? What type of extension do you want to create?**
-  - I picked **New Language Support**
-- **Enter the URL (http, https) or the file path of the tmLanguage
-  grammar or press ENTER to start with a new grammar**.
+- *? What type of extension do you want to create?*
+  - I picked *New Language Support*
+- *Enter the URL (http, https) or the file path of the tmLanguage
+  grammar or press ENTER to start with a new grammar*.
   - I left this empty, but later it was auto generated [and pointed
-    here].
-- **? URL or file to import, or none for new:**
+    here](https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json).
+- *? URL or file to import, or none for new:*
   - Left empty
-- **? What's the name of your extension?**
+- *? What's the name of your extension?*
   - robots.txt syntax highlighting
-- **? What's the identifier of your extension?**
+- *? What's the identifier of your extension?*
   - robots-txt-syntax-highlighting
-- **? What's the description of your extension?**
+- *? What's the description of your extension?*
   - Syntax highlighting for robots.txt files
-- **? Language id:**
+- *? Language id:*
   - robots-txt, this means that that language can be selected in VS
     Code
-- **? Language name:**
+- *? Language name:*
   - robots.txt
-- **? File extensions:**
+- *? File extensions:*
   - .txt
-- **? Scope names:**
+- *? Scope names:*
   - Left empty
-- **? Initialize a git repository?**
+- *? Initialize a git repository?*
   - Yes
 
 Now, that was a lot of scary and confusing questions! 😅 I've created
@@ -140,7 +140,7 @@ The project structure looks like this:
 
 I'll go through each file and my understanding of what it does.
 
-**`.vscode/launch.json`**
+*`.vscode/launch.json`*
 
 ```json
 // A launch configuration that launches the extension inside a new window
@@ -166,7 +166,7 @@ to launch the extension in a new window.
 
 I left it as is.
 
-**`syntaxes/robots-txt.tmLanguage.json`**
+*`syntaxes/robots-txt.tmLanguage.json`*
 
 This is the grammar for the language, I'll be wanting to match things
 in the `patterns` section that are specific to a `robots.txt` file.
@@ -240,8 +240,8 @@ This got switched out with this:
 The `match` pattern is updated to capture three distinct groups:
 
 1. The keyword (`User-agent`, `Disallow`, `Allow`, `Sitemap`, `Host`)
-1. Any whitespace characters (`\\s\*`)
-1. The remainder of the line (`.\*`)
+2. Any whitespace characters (`\\s\*`)
+3. The remainder of the line (`.\*`)
 
 As I don't want to capture the whitespace, I've not assigned it a
 scope. (i.e. that's why it goes from 1 to 3)
@@ -251,7 +251,7 @@ each captured group. Group `1` is assigned the
 `keyword.control.robots-txt` scope, and group `3` is assigned the
 `string.unquoted.robots-txt` scope.
 
-**`language-configuration.json`**
+*`language-configuration.json`*
 
 This is the configuration for the language, as there's not much to the
 `robots.txt` language the majority of this will be stripped out.
@@ -318,7 +318,7 @@ specify the comment character.
 
 ## Install VSCE
 
-I'll need to install the [Visual Studio Code Extension Manager] so I
+I'll need to install the [Visual Studio Code Extension Manager](https://github.com/microsoft/vscode-vsce) so I
 can package and publish the extension.
 
 ```bash
@@ -382,11 +382,11 @@ token now!
 ## Create a personal access token
 
 To get my access token created, I'll go here:
-https://spences10.visualstudio.com/_details/security/tokens
+[https://spences10.visualstudio.com/\_details/security/tokens](https://spences10.visualstudio.com/_details/security/tokens)
 
 > Change your username if your doing this yourself.
 
-I'll navigate through [the notes on working with extensions] on the VS
+I'll navigate through [the notes on working with extensions](https://code.visualstudio.com/api/working-with-extensions/publishing-extension#get-a-personal-access-token) on the VS
 Code documentation to create the token. The steps are:
 
 - Name: whatever (I'll set the token to expire a day later)
@@ -408,14 +408,3 @@ to beautify the `robots.txt` file in my VS Code editor.
 
 This serves as a note to future Scott but, I hope you found it useful
 too! 💫
-
-<!-- Links -->
-
-[and pointed here]:
-	https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json
-[publisher profile]:
-	https://marketplace.visualstudio.com/publishers/spences10
-[Visual Studio Code Extension Manager]:
-	https://github.com/microsoft/vscode-vsce
-[the notes on working with extensions]:
-	https://code.visualstudio.com/api/working-with-extensions/publishing-extension#get-a-personal-access-token

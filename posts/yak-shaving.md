@@ -14,13 +14,13 @@ Don't save the yak! But put in the work so you're not wasting time.
 
 <!-- cSpell:ignore Biletska,godin -->
 
-[Marina Biletska] told me about this expression when we were working
-on our [Chingu collabs] project together.
+[Marina Biletska](https://github.com/mar-bi) told me about this expression when we were working
+on our [Chingu collabs](https://chingu.io/) project together.
 
 This initially came up in an issue I raised on the project we were
-working on together ([grad.then()]) where I was having issues with
-[ESLint line-break style] and Marina left a link to a [Seth Godin
-article].
+working on together ([grad.then()](https://github.com/chingu-voyage6/grad.then/issues/191)) where I was having issues with
+[ESLint line-break style](https://github.com/chingu-voyage6/grad.then/issues/118#issuecomment-353569629) and Marina left a link to a [Seth Godin
+article](https://sethgodin.typepad.com/seths_blog/2005/03/dont_shave_that.html).
 
 ## What's shaving the yak?
 
@@ -28,6 +28,7 @@ This YouTube video of Hal from Malcolm in the Middle beautifully
 illustrates Yak Shaving. 👇
 
 <!-- cSpell:ignore sehc -->
+
 <Details button_text="Expand to watch.">
   <YouTube youTubeId="AbSehcT19u0" />
 </Details>
@@ -45,7 +46,7 @@ draw to fetch a screwdriver to fix the shelf.
 On opening the draw to get the screwdriver he notices that the draw
 rails are squeaking.
 
-Off he goes to the garage to get some [WD-40], the WD-40 can is empty
+Off he goes to the garage to get some [WD-40](https://en.wikipedia.org/wiki/WD-40), the WD-40 can is empty
 so he decides that he now has to go out and get some.
 
 He starts the car and notices there's something wrong with the car
@@ -92,24 +93,6 @@ it.
 
 <!-- cSpell:ignore stimpy -->
 
-- [Seth Godin - Don't Shave That Yak!]
-- [Wiktionary - Ren and Stimpy reference]
-- [Jason Lengstorf - meta-work]
-
-<!-- Links -->
-
-[seth godin article]:
-	https://sethgodin.typepad.com/seths_blog/2005/03/dont_shave_that.html
-[chingu collabs]: https://chingu.io/
-[marina biletska]: https://github.com/mar-bi
-[grad.then()]: https://github.com/chingu-voyage6/grad.then/issues/191
-[eslint line-break style]:
-	https://github.com/chingu-voyage6/grad.then/issues/118#issuecomment-353569629
-[update dependencies]:
-	https://github.com/chingu-voyage6/grad.then/issues/191
-[wd-40]: https://en.wikipedia.org/wiki/WD-40
-[seth godin - don't shave that yak!]:
-	https://seths.blog/2005/03/dont_shave_that/
-[wiktionary - ren and stimpy reference]:
-	https://en.wiktionary.org/wiki/yak_shaving
-[jason lengstorf - meta-work]: https://www.jason.af/yak-shaving
+- [Seth Godin - Don't Shave That Yak!](https://seths.blog/2005/03/dont_shave_that/)
+- [Wiktionary - Ren and Stimpy reference](https://en.wiktionary.org/wiki/yak_shaving)
+- [Jason Lengstorf - meta-work](https://www.jason.af/yak-shaving)

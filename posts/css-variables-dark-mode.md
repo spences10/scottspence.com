@@ -10,7 +10,7 @@ is_private: false
 </script>
 
 I used CSS variables to make a theme switch, light and dark, I've done
-this [in the past] using styled-components but not attempted it via
+this [in the past](https://scottspence.com/posts/react-context-api/) using styled-components but not attempted it via
 the CSS variables route.
 
 With styled-components you defined your colour schemes or themes in a
@@ -89,7 +89,7 @@ I found that if I didn't use the variable then it rendered fine, but I
 needed to use the variable or no theme!
 
 So I was searching for a fallback solution but couldn't find anything
-and it wasn't until I found [this article] that I realised that I was
+and it wasn't until I found [this article](https://medium.com/fbdevclagos/how-to-leverage-styled-components-and-css-variables-to-build-truly-reusable-components-in-react-4bbf50467666) that I realised that I was
 adding the fallback in the wrong place.
 
 ```css
@@ -111,9 +111,3 @@ background-clip: text;
 This drawback here is that I have had to put in the default colour
 scheme fallback, which means if the user has the dark theme set then
 they're going to have the light theme flash first.
-
-<!-- Links -->
-
-[in the past]: https://scottspence.com/posts/react-context-api/
-[this article]:
-	https://medium.com/fbdevclagos/how-to-leverage-styled-components-and-css-variables-to-build-truly-reusable-components-in-react-4bbf50467666

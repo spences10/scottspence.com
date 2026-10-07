@@ -12,7 +12,7 @@ I use this for getting data to work with in data visualisation tools,
 I've done it a couple of times now with my Gatsby site but now I'm
 attempting to do it in a serverless function.
 
-Here's the snippet I'm using from [SO]:
+Here's the snippet I'm using from [SO](https://stackoverflow.com/questions/52816623/graphql-post-request-in-axios):
 
 ```ts
 import axios from 'axios';
@@ -49,7 +49,7 @@ the steps are, from your github profile page:
 # select repo access
 ```
 
-Or use the link here: https://github.com/settings/tokens/new
+Or use the link here: [https://github.com/settings/tokens/new](https://github.com/settings/tokens/new)
 
 The query can be something really simple to begin with to validate
 it's working:
@@ -121,8 +121,3 @@ query BIO_QUERY($username: String!) {
 }
 `;
 ```
-
-<!-- Links -->
-
-[so]:
-	https://stackoverflow.com/questions/52816623/graphql-post-request-in-axios

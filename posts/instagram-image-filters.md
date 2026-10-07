@@ -9,14 +9,14 @@ Real quick! This was a dumb idea I had when I created the repo for
 this in 2018 and never got around to doing anything with until
 yesterday! 😂
 
-**Tl;Dr**: It's a list of CSS filters that you can apply to an image
+*Tl;Dr*: It's a list of CSS filters that you can apply to an image
 to see what effect they have.
 
-I got the idea from [this repo], which in turn got the idea from [Una
-Kravets].
+I got the idea from [this repo](https://github.com/picturepan2/instagram.css), which in turn got the idea from [Una
+Kravets](https://una.im/CSSgram/).
 
-Essentially, it applies the [CSS filter] class to the image using one
-of the filters from the [list], like this:
+Essentially, it applies the [CSS filter](https://developer.mozilla.org/en-US/docs/Web/CSS/filter) class to the image using one
+of the filters from the [list](https://github.com/picturepan2/instagram.css/blob/master/dist/instagram.css), like this:
 
 ```html
 <figure class="filter-1977">
@@ -33,7 +33,7 @@ filter to the image.
 
 ## The process
 
-So to get the filters [list] into the project, I created a new project
+So to get the filters [list](https://github.com/picturepan2/instagram.css/blob/master/dist/instagram.css) into the project, I created a new project
 with `pnpm create svelte` then created a `instagram.css` file in the
 `src` directory and copied the list into it.
 
@@ -102,7 +102,7 @@ By using data binding!
 
 ## Bind the select value to a variable
 
-I did a post about [Data Binding in Svelte] a while back if you want
+I did a post about [Data Binding in Svelte](https://scottspence.com/posts/data-binding-in-svelte) a while back if you want
 to get a full understanding of what's going on here.
 
 What I need to do is create a variable in the `filters.svelte` file to
@@ -208,18 +208,6 @@ needed.
 I've add in some media queries in the `style` tags there to make the
 grid responsive as well.
 
-If you're interested you can check out the code over on [GitHub].
+If you're interested you can check out the code over on [GitHub](https://github.com/spences10/insta-styled/blob/main/src/routes/%2Bpage.svelte).
 
 Thanks for reading!
-
-<!-- Links -->
-
-[this repo]: https://github.com/picturepan2/instagram.css
-[una kravets]: https://una.im/CSSgram/
-[css filter]: https://developer.mozilla.org/en-US/docs/Web/CSS/filter
-[list]:
-	https://github.com/picturepan2/instagram.css/blob/master/dist/instagram.css
-[data binding in svelte]:
-	https://scottspence.com/posts/data-binding-in-svelte
-[github]:
-	https://github.com/spences10/insta-styled/blob/main/src/routes/%2Bpage.svelte

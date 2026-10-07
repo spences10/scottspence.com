@@ -6,7 +6,7 @@ is_private: false
 ---
 
 No doubt you have heard of Git or GitHub for source control, but
-**what is source control?**
+*what is source control?*
 
 > "Revision control (also known as version control, source control or
 > (source) code management (SCM)) is the management of multiple
@@ -25,7 +25,7 @@ Lets look at it this way…
 > situation, except on a software project there is the potential for a
 > lot of changes.
 
-https://twitter.com/lindakatcodes/status/869086021220261888
+[https://twitter.com/lindakatcodes/status/869086021220261888](https://twitter.com/lindakatcodes/status/869086021220261888)
 
 A familiar sentiment for anyone starting out with Git
 
@@ -35,17 +35,17 @@ There are some basic concepts about version control I'll quickly go
 over here, these terms used in many SCM systems some relevant to Git
 and GitHub some to other systems.
 
-**Repository/repo:** The database storing the files.
+*Repository/repo:* The database storing the files.
 
-**Branch:** Create a separate copy of a repo for use on your computer.
+*Branch:* Create a separate copy of a repo for use on your computer.
 
-**Revert/rollback:** Go back to a previously saved version of the
+*Revert/rollback:* Go back to a previously saved version of the
 codebase/repo.
 
-**Push:** Push is an access level on the repo, if you have no push
+*Push:* Push is an access level on the repo, if you have no push
 access you will need to make a pull request.
 
-**Pull:** If you have no Push access you can make a pull request which
+*Pull:* If you have no Push access you can make a pull request which
 will notify the repo owner you want to merge your changes into their
 code.
 
@@ -63,7 +63,7 @@ get my code back up to GitHub.
 
 `video: https://www.youtube.com/watch?v=CDeG4S-mJts`
 
-> **Git and GitHub** Git and GitHub are two separate things, Git is a
+> *Git and GitHub* Git and GitHub are two separate things, Git is a
 > free and open source version control system whilst GitHub uses Git
 > technology to host your repositories on the GitHub.com servers.
 
@@ -73,11 +73,11 @@ Microsoft's Visual SourceSafe and Team Foundation Server where you
 have a nice GUI to guide you through the check-in and check-out
 process, for those the process was:
 
-- **Check-out:** make a copy of the repository you wanted to make
+- *Check-out:* make a copy of the repository you wanted to make
   changes to on your machine, once you have made your change then,
   Check-in your changes.
 
-- **Check-in:** add your changes back to the repository with an
+- *Check-in:* add your changes back to the repository with an
   accompanying message detailing the change you have made.
 
 With Git it's a bit less fancy, all via the command line, but pretty
@@ -96,7 +96,7 @@ It can get a bit overwhelming though, especially if you get out of
 sync, i.e. forget to pull a change made on the remote then try to
 check your changes in before pulling the changes into your local
 version. I'm by no means confident if things go a bit wrong but I have
-developed a "[Commit Often Perfect Later]" approach so if you do break
+developed a "[Commit Often Perfect Later](https://gist.github.com/SethRobertson/1540906/68feeabfe906ec1eb893e4fa45f402795ed6e62c#commit)" approach so if you do break
 something you didn't lose too much of you valuable time trying to work
 out what went wrong where.
 
@@ -104,11 +104,11 @@ If you take a look at a repo you have cloned from GitHub you will see
 there is a file called `.git` this is like a little database of all
 the changes you have made on your machine and it contains all the
 information it needs to connect to GitHub and make the changes it
-needs to make to the master repo [or whatever branch you're pushing
-the changes to].
+needs to make to the master repo \[or whatever branch you're pushing
+the changes to\].
 
-I made a cheat sheet [Gist] which I used every time I went near Git,
-it has now turned into a [repo] of other cheat sheets I still use on a
+I made a cheat sheet [Gist](https://gist.github.com/spences10/5c492e197e95158809a83650ff97fc3a#useful-git-commands) which I used every time I went near Git,
+it has now turned into a [repo](https://github.com/spences10/cheat-sheets) of other cheat sheets I still use on a
 daily basis.
 
 In it I cover these situations:
@@ -150,11 +150,3 @@ If any of this has helped you in any way feel free to like the article
 and share it on social media.
 
 Many thanks.
-
-<!-- LINKS -->
-
-[commit often perfect later]:
-	https://gist.github.com/SethRobertson/1540906/68feeabfe906ec1eb893e4fa45f402795ed6e62c#commit
-[gist]:
-	https://gist.github.com/spences10/5c492e197e95158809a83650ff97fc3a#useful-git-commands
-[repo]: https://github.com/spences10/cheat-sheets

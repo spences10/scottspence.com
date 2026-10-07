@@ -17,7 +17,7 @@
 Hello friend. This page answers the questions I am usually asked about
 contracts, roles, location, availability, and how I work.
 
-If you have a defined project rather than a role, the [work with me]
+If you have a defined project rather than a role, the [work with me](/lets-work-together)
 page is a better place to start.
 
 ---
@@ -64,19 +64,19 @@ process. I am not interested in gambling companies.
 
 Yes. I contract through OES Technology Ltd and can work with UK and
 international clients. For a project, rates, or a workshop, see [work
-with me].
+with me](/lets-work-together).
 
 ## What's your preferred stack?
 
 The stack depends on the problem, but my strongest areas are:
 
-- **Product engineering:** Svelte 5, SvelteKit, TypeScript, HTML, CSS,
+- *Product engineering:* Svelte 5, SvelteKit, TypeScript, HTML, CSS,
   Tailwind CSS, and SQL;
-- **AI systems:** model APIs, agent runtimes, MCP, structured
+- *AI systems:* model APIs, agent runtimes, MCP, structured
   generation, evals, observability, and human review;
-- **Coding-agent tooling:** Pi, Claude Code, LSP, session recall,
+- *Coding-agent tooling:* Pi, Claude Code, LSP, session recall,
   sandboxed execution, skills, and deterministic validation;
-- **Platform work:** AWS, Azure, containers, Postgres, SQLite,
+- *Platform work:* AWS, Azure, containers, Postgres, SQLite,
   Terraform, CI, storage, email, secrets, and DNS.
 
 I'm a recognised Svelte Ambassador and co-founder of Svelte Society
@@ -87,13 +87,13 @@ SvelteKit is where I have the deepest current experience.
 
 Start with:
 
-- my [portfolio] for selected products and open-source tools;
-- my [GitHub profile] for current repositories and releases;
-- my articles on [coding-agent harnesses], [preventing agent drift],
-  and [building MCP tools locally];
-- my [speaking page] for talks, workshops, podcasts, recordings, and
+- my [portfolio](/portfolio) for selected products and open-source tools;
+- my [GitHub profile](https://github.com/spences10) for current repositories and releases;
+- my articles on [coding-agent harnesses](/posts/coding-agent-harnesses-my-pi), [preventing agent drift](/posts/how-i-stop-llms-drifting-in-production-codebases),
+  and [building MCP tools locally](/posts/building-and-testing-mcp-tools-locally);
+- my [speaking page](/speaking) for talks, workshops, podcasts, recordings, and
   slides;
-- my [CV] for the employment timeline.
+- my [CV](https://www.mecv.xyz?goalId=TCRZB23L) for the employment timeline.
 
 Public GitHub counts change often. As of 25 August 2026, my account
 had 20 `mcp-*` repositories with more than 1,300 combined stars. Treat
@@ -117,7 +117,7 @@ other large organisations.
 
 ## What are your rate expectations?
 
-I prefer contract work through OES Technology. The [work with me] page
+I prefer contract work through OES Technology. The [work with me](/lets-work-together) page
 has the current rate calculator, currency options, and UK IR35
 comparison. I do not keep a fixed number here because availability,
 contract length, and terms affect it.
@@ -147,17 +147,17 @@ days in the first message.
 Start with email. Include the company, product, work, contract terms,
 location, budget or rate range, and interview process.
 
-If it looks relevant, book a [15 minute chat]. Please do not call
-without an agreed time. I'm on a [maker's schedule], and unexpected
+If it looks relevant, book a [15 minute chat](https://ss10.dev/15min). Please do not call
+without an agreed time. I'm on a [maker's schedule](https://www.paulgraham.com/makersschedule.html), and unexpected
 calls break up focused work.
 
-Want me to know you read this page? Mention **"Quick Start Guides
-Rock!"** in the email and you will have my attention, gratitude, and a
+Want me to know you read this page? Mention *"Quick Start Guides
+Rock!"* in the email and you will have my attention, gratitude, and a
 guaranteed reply.
 
 ## Can I see your CV?
 
-Yes. My current CV is at [mecv.xyz], with PDF and Word downloads.
+Yes. My current CV is at [mecv.xyz](https://www.mecv.xyz?goalId=TCRZB23L), with PDF and Word downloads.
 
 ## What is your interview availability?
 
@@ -170,21 +170,4 @@ better exchange.
 
 ## Thanks for reading
 
-If the work fits, [get in touch].
-
-<!-- Links -->
-
-[work with me]: /lets-work-together
-[portfolio]: /portfolio
-[GitHub profile]: https://github.com/spences10
-[coding-agent harnesses]: /posts/coding-agent-harnesses-my-pi
-[preventing agent drift]:
-	/posts/how-i-stop-llms-drifting-in-production-codebases
-[building MCP tools locally]:
-	/posts/building-and-testing-mcp-tools-locally
-[speaking page]: /speaking
-[CV]: https://www.mecv.xyz?goalId=TCRZB23L
-[mecv.xyz]: https://www.mecv.xyz?goalId=TCRZB23L
-[15 minute chat]: https://ss10.dev/15min
-[maker's schedule]: https://www.paulgraham.com/makersschedule.html
-[get in touch]: /contact
+If the work fits, [get in touch](/contact).

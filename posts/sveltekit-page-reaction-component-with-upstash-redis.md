@@ -17,7 +17,7 @@ like or you can Tl;Dr and go to the [example](#example).
 
 Upstash make it really straightforward to create a Redis database.
 
-Go to https://console.upstash.com/login and create an account if you
+Go to [https://console.upstash.com/login](https://console.upstash.com/login) and create an account if you
 don't have one already.
 
 In the Redis databases section I'll click on the 'Create Database'
@@ -34,11 +34,11 @@ region I'll go with `us-west-1`.
 I'll leave the rest of the options as the default and click the
 'Create' button.
 
-[![sveltekit-page-reactions-redis-details-dashboard]]
-[sveltekit-page-reactions-redis-details-dashboard]
+\[![sveltekit-page-reactions-redis-details-dashboard](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1688893637/scottspence.com/sveltekit-page-reactions-redis-details-dashboard.png)\]
+[sveltekit-page-reactions-redis-details-dashboard](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1688893637/scottspence.com/sveltekit-page-reactions-redis-details-dashboard.png)
 
 Take note of the 'REST API' section here, I'll need the
-`UPSTASH_REDIS_REST_URL` and the ` UPSTASH_REDIS_REST_TOKEN` to go
+`UPSTASH_REDIS_REST_URL` and the `  UPSTASH_REDIS_REST_TOKEN ` to go
 into the `.env` file in the project.
 
 Which brings me to the next step.
@@ -293,8 +293,8 @@ Then get the REST API keys from my Upstash dashboard, I'll scroll to
 the REST API section, select the `.env` option then use the handy copy
 option and paste them into the `.env` file.
 
-[![sveltekit-page-reactions-redis-dashboard-env-keys]]
-[sveltekit-page-reactions-redis-dashboard-env-keys]
+\[![sveltekit-page-reactions-redis-dashboard-env-keys](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1689607340/scottspence.com/sveltekit-page-reactions-redis-dashboard-env-keys.png)\]
+[sveltekit-page-reactions-redis-dashboard-env-keys](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1689607340/scottspence.com/sveltekit-page-reactions-redis-dashboard-env-keys.png)
 
 Now I can import the keys into the `src/lib/redis.ts` file and create
 the Redis client and initialise Upstash Ratelimit. I'll also add in
@@ -347,7 +347,7 @@ can use the `path` and the `reaction` to create a unique key.
 
 If I use the component on the about page and someone clicks the like
 button the key in the Redis database will be `about:likes`. I'm then
-using the [`incr`] method to increment the value of the key by one.
+using the [`incr`](https://redis.io/commands/incr) method to increment the value of the key by one.
 
 ```ts
 import { redis } from '$lib/redis.js';
@@ -994,36 +994,16 @@ where the real learning happens!
 
 Ok, I've gone through the steps to create this component. If you just
 want to check out the example of the source code you can see the
-[example repo on GitHub] and the [live demo].
+[example repo on GitHub](https://github.com/spences10/sveltekit-reactions) and the [live demo](https://sveltekit-reactions.vercel.app).
 
 ## Thanks
 
 Thanks to Jamie Barton for giving me the idea for this component where
-he does something similar with [Grafbase]. There's also the [Upstash
-claps] repo which is a Next.js example.
+he does something similar with [Grafbase](https://grafbase.com/guides/add-reactions-to-your-sveltekit-pages-with-graphql-and-form-actions). There's also the [Upstash
+claps](https://github.com/upstash/claps) repo which is a Next.js example.
 
-Thanks to [Geoff Rich] for his great posts on rate limiting with Redis
-and SvelteKit on the [Upstash blog].
+Thanks to [Geoff Rich](https://geoffrich.net) for his great posts on rate limiting with Redis
+and SvelteKit on the [Upstash blog](https://upstash.com/blog/sveltekit-rate-limiting).
 
-Also thanks to [Kevin Åberg Kultalahti] for feedback on the structure
+Also thanks to [Kevin Åberg Kultalahti](https://github.com/kevmodrome) for feedback on the structure
 of the project.
-
-<!-- Links -->
-
-[example repo on github]:
-	https://github.com/spences10/sveltekit-reactions
-[live demo]: https://sveltekit-reactions.vercel.app
-[grafbase]:
-	https://grafbase.com/guides/add-reactions-to-your-sveltekit-pages-with-graphql-and-form-actions
-[upstash claps]: https://github.com/upstash/claps
-[Geoff Rich]: https://geoffrich.net
-[Upstash blog]: https://upstash.com/blog/sveltekit-rate-limiting
-[`incr`]: https://redis.io/commands/incr
-[Kevin Åberg Kultalahti]: https://github.com/kevmodrome
-
-<!-- Images -->
-
-[sveltekit-page-reactions-redis-details-dashboard]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1688893637/scottspence.com/sveltekit-page-reactions-redis-details-dashboard.png
-[sveltekit-page-reactions-redis-dashboard-env-keys]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1689607340/scottspence.com/sveltekit-page-reactions-redis-dashboard-env-keys.png

@@ -14,10 +14,10 @@ is_private: false
 Create a simple Node API on Vercel Serverless functions in under 20
 minutes. But first some preamble!
 
-A while back (3 years ago now!) I made a [Positivity API], it was a
+A while back (3 years ago now!) I made a [Positivity API](https://github.com/spences10/positivity-api), it was a
 really simple array of positive quotes that's used in the
-[#100DaysOfCode twitter bot] which is [still in use today]! I
-contributed a lot to that bot [back in the day]!
+[#100DaysOfCode twitter bot](https://twitter.com/_100DaysOfCode) which is [still in use today](https://github.com/freeCodeCamp/100DaysOfCode-twitter-bot/blob/master/package.json#L48)! I
+contributed a lot to that bot [back in the day](https://github.com/freeCodeCamp/100DaysOfCode-twitter-bot/graphs/contributors)!
 
 This time around I've made some random words that are going to be used
 to make blog a name!
@@ -36,11 +36,11 @@ my space where I write stuff for future me. If it helps anyone else
 then that's a win too!
 
 I'm currently in the middle of rebuilding this site and the question
-came up, what do I call it? [A digital garden]? I'm all for this
+came up, what do I call it? [A digital garden](https://scottspence.com/posts/a-digital-garden/)? I'm all for this
 movement but there are also a lot more people that have no idea what
 the term is.
 
-I was discussing it with a couple of friends ([Paul] and [Rich]) and
+I was discussing it with a couple of friends ([Paul](https://twitter.com/PaulieScanlon) and [Rich](https://twitter.com/studio_hungry)) and
 it's _just_ a name, so I came up with the idea of generating some
 random words together to make what to call the blog/site/thought
 pamphlet whatever!
@@ -48,9 +48,9 @@ pamphlet whatever!
 ## In the beginning it was a simple site
 
 First up, this was a collection of words I got from Googling [another
-word for blog], put them all into several arrays of adjectives, verbs
+word for blog](https://www.wordhippo.com/what-is/another-word-for/blog.html), put them all into several arrays of adjectives, verbs
 and nouns then randomly create a phrase from that. Initially this was
-all in a `.js` file on [a simple project] I put together quickly to
+all in a `.js` file on [a simple project](https://github.com/spences10/blog-name-generator/blob/bc39bf3b98/script.js) I put together quickly to
 have a little fun with. It's now going to be a submission for the
 Gatsby silly site challenge.
 
@@ -64,7 +64,7 @@ one! 😂 An endpoint to go get that from rather than moving around the
 script from project to project.
 
 It's the simple script from that project that is now an endpoint on
-Vercel. Hitting the URL https://random-blog-name.vercel.app/api will
+Vercel. Hitting the URL [https://random-blog-name.vercel.app/api](https://random-blog-name.vercel.app/api) will
 give you a response like this:
 
 <!-- cSpell:ignore datebook -->
@@ -93,8 +93,8 @@ you're ready to go!
 ## Create project
 
 I'm going to recreate the random password generator I use in my
-[Characters from Password] project I did a while back, it has the same
-list of adjectives, verbs and nouns I used for the [Random Blog Name]
+[Characters from Password](https://github.com/spences10/characters-from-password) project I did a while back, it has the same
+list of adjectives, verbs and nouns I used for the [Random Blog Name](https://github.com/spences10/random-blog-name)
 project.
 
 ```bash
@@ -232,7 +232,7 @@ want more control over how you publish to vercel check out the CLI
 documentation, it's a really powerful tool.
 
 Ok I now have an endpoint for a random password, going to
-https://random-password-generator-ten.vercel.app/api will give a
+[https://random-password-generator-ten.vercel.app/api](https://random-password-generator-ten.vercel.app/api) will give a
 response like this:
 
 ```json
@@ -244,7 +244,7 @@ Time to use it!
 ## Use it in another project
 
 Time to use it in another project, for brevity I've added this to an
-[example CodeSandbox] it's a example of getting data from an endpoint
+[example CodeSandbox](https://codesandbox.io/s/zealous-lake-ep54i?file=/src/App.js) it's a example of getting data from an endpoint
 and displaying it in a project.
 
 I'm using axios to get the data, and storing the returned result in
@@ -292,12 +292,12 @@ Error: Network Error
 ```
 
 So that's not a terribly helpful error message but I do know that it's
-a [CORS] error, so that needs to be enabled before I go any further!
+a [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) error, so that needs to be enabled before I go any further!
 
 ## Enable CORS
 
 There's a great knowledge base resource on Vercel.com on [how to
-enable CORS]! For my use case I've set the headers:
+enable CORS](https://vercel.com/knowledge/how-to-enable-cors)! For my use case I've set the headers:
 
 ```ts
 res.setHeader('Access-Control-Allow-Credentials', `true`);
@@ -319,30 +319,5 @@ process...
 
 ## Code examples
 
-There's [example code on GitHub] for the serverless function and an
-[example CodeSandbox] with the implementation.
-
-<!-- Links -->
-
-[positivity api]: https://github.com/spences10/positivity-api
-[still in use today]:
-	https://github.com/freeCodeCamp/100DaysOfCode-twitter-bot/blob/master/package.json#L48
-[#100daysofcode twitter bot]: https://twitter.com/_100DaysOfCode
-[back in the day]:
-	https://github.com/freeCodeCamp/100DaysOfCode-twitter-bot/graphs/contributors
-[a digital garden]: https://scottspence.com/posts/a-digital-garden/
-[paul]: https://twitter.com/PaulieScanlon
-[rich]: https://twitter.com/studio_hungry
-[random blog name]: https://github.com/spences10/random-blog-name
-[another word for blog]:
-	https://www.wordhippo.com/what-is/another-word-for/blog.html
-[a simple project]:
-	https://github.com/spences10/blog-name-generator/blob/bc39bf3b98/script.js
-[characters from password]:
-	https://github.com/spences10/characters-from-password
-[example codesandbox]:
-	https://codesandbox.io/s/zealous-lake-ep54i?file=/src/App.js
-[example code on github]:
-	https://github.com/spences10/random-password-generator
-[cors]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-[how to enable cors]: https://vercel.com/knowledge/how-to-enable-cors
+There's [example code on GitHub](https://github.com/spences10/random-password-generator) for the serverless function and an
+[example CodeSandbox](https://codesandbox.io/s/zealous-lake-ep54i?file=/src/App.js) with the implementation.

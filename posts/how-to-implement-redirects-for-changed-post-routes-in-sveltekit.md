@@ -14,7 +14,7 @@ In this post I'll be detailing how I implemented redirects for changed
 post routes in SvelteKit. I initially did this back in the Summer of
 2021 but with the SvelteKit v1 release some things have changed.
 
-For the **Tl;Dr** skip to the [solution](#the-new-solution).
+For the *Tl;Dr* skip to the [solution](#the-new-solution).
 
 This site is <DateDistance date='2021-04-06' /> old now! Before that I
 was using a URL path that directly mapped onto where the posts lived
@@ -41,20 +41,20 @@ to redirect the old URLs to the new ones.
 
 <!-- cSpell:ignore mydomain -->
 
-I asked this question a while back on Twitter, which was **"I want to
-do a load of redirects (~130) using SvelteKit, anyone have any
+I asked this question a while back on Twitter, which was *"I want to
+do a load of redirects (\~130) using SvelteKit, anyone have any
 examples of redirecting from:
 `mydomain.tld/2021/06/23/some-post-title/index.mdx` to:
-`mydomain.tld/some-post-title.svx`"**
+`mydomain.tld/some-post-title.svx`"*
 
 <Tweet tweetLink="spences10/status/1407743903361646596" />
 
-The absolute legend that is [Rodney] suggested that I use a dynamic
+The absolute legend that is [Rodney](https://twitter.com/askRodney) suggested that I use a dynamic
 route for the old URLs and then redirect to the new ones.
 
-The response was: **"The idea is you create a file there and that file
+The response was: *"The idea is you create a file there and that file
 only contains a redirect to `example.com/[slug]`, year, month, day
-parameters are available but you don't have to use them."**
+parameters are available but you don't have to use them."*
 
 <Tweet tweetLink="askRodney/status/1408474251292725248" />
 
@@ -147,7 +147,7 @@ SvelteKit v1 changes.
 
 There didn't need to be anything in the `+page.svelte` file as it was
 just a redirect. This was working a charm, until I implemented [real
-time analytics] to the site.
+time analytics](https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom) to the site.
 
 This is a bit of an aside as to why it wasn't working and a longer
 post so, let's just say that it did inform me that I wasn't handling
@@ -199,9 +199,3 @@ old URLs to the new ones, then this an approach you can take.
 I hope this helps someone else out there who is trying to do the same
 thing. I'm sure there are other ways to do this, but this is the way
 that I've done it.
-
-<!-- Links -->
-
-[rodney]: https://twitter.com/askRodney
-[real time analytics]:
-	https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom

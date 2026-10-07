@@ -43,14 +43,14 @@ enter key!
 I swapped those keys out with the keys on the G815 bingo bango! I now
 have a 'english' keyboard!
 
-![spanish legends]
+![spanish legends](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1615188902/scottspence.com/spanish-legends-2c9ffb19704555e761d1d2d83ffe7a33.jpg)
 
 Word of warning if you are considering getting a G815/G819 the keycaps
 _appear_ to be the same as the keycaps that come with my beloved
-[HAVIT KB395L] and I've had a look around and there doesn't seem to be
+[HAVIT KB395L](https://www.amazon.co.uk/gp/product/B0767YQQTQ) and I've had a look around and there doesn't seem to be
 a great deal of after market options for them.
 
-![keycaps]
+![keycaps](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/keycaps-d4f3e414fa34853047761ab600d9bebf.jpg)
 
 <!-- cSpell:ignore CLACKITY -->
 
@@ -77,7 +77,7 @@ of YouTube internet fame land gushing about how nice it is.
 No chonky boi cable! Look at that thing! It took up two USB ports too,
 one for the keyboard ond another for the lighting. 😬
 
-![g915 against the g815]
+![g915 against the g815](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1615238186/scottspence.com/chonka-cable-af6436ccf3dfc4d4654c0305367b3b67.jpg)
 
 The proprietary Logitech LIGHTSPEED connection is great! It works when
 booting the machine so you can enter the BIOS without having to add a
@@ -114,17 +114,3 @@ pads were essential for number entry.
 
 Now both my hands don't have the usual bumpers of the G keys and the
 num pad.
-
-<!-- Links -->
-
-[logitech g815]: https://scottspence.com/posts/logitech-g815/
-[havit kb395l]: https://www.amazon.co.uk/gp/product/B0767YQQTQ
-
-<!-- Images -->
-
-[spanish legends]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1615188902/scottspence.com/spanish-legends-2c9ffb19704555e761d1d2d83ffe7a33.jpg
-[keycaps]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/keycaps-d4f3e414fa34853047761ab600d9bebf.jpg
-[g915 against the g815]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1615238186/scottspence.com/chonka-cable-af6436ccf3dfc4d4654c0305367b3b67.jpg

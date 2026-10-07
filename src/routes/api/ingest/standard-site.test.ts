@@ -46,9 +46,13 @@ describe('Standard.site ingestion', () => {
 			'<scr' + 'ipt>',
 			"\timport Demo from './demo.svelte'",
 			'</scr' + 'ipt>',
+			'[the docs]: https://example.com/docs',
+			'',
 			'# Heading',
 			'',
-			'Read [the guide](https://example.com) and **enjoy it**.',
+			'Read [the guide](https://example.com) and *enjoy it*.',
+			'',
+			'See [the docs][] too.',
 			'',
 			'`inline code`',
 			'',
@@ -58,7 +62,7 @@ describe('Standard.site ingestion', () => {
 		].join('\n');
 
 		expect(to_plain_text(markdown)).toBe(
-			'Heading\n\nRead the guide and enjoy it.\n\ninline code\n\nconst answer = 42',
+			'Heading\n\nRead the guide and enjoy it.\n\nSee the docs too.\n\ninline code\n\nconst answer = 42',
 		);
 	});
 

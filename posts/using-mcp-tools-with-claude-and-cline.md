@@ -22,7 +22,7 @@ after the launch of Svelte 5.
 
 A lot od the LLM data you find will be centred around Svelte 4. You
 ask your AI assistant about the latest Svelte 5 features, and it's
-like "Sorry, I was trained on data from [insert date here]." or it'll
+like "Sorry, I was trained on data from \[insert date here\]." or it'll
 straight up just lie to you 😅
 
 [Stanislav Khromov](https://github.com/khromov) has done a great video
@@ -408,7 +408,7 @@ Paolo mentioned it on Bluesky:
 />
 
 Then I published it the next day:
-https://github.com/spences10/mcp-svelte-docs
+[https://github.com/spences10/mcp-svelte-docs](https://github.com/spences10/mcp-svelte-docs)
 
 I'm currently incorporating that into my prompts now to see how it
 goes!

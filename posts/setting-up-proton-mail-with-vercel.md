@@ -11,11 +11,11 @@ with ProtonMail and Vercel.
 
 I've decided to give ProtonMail a shot, I have lost faith in Google
 being a force for good and coming round to the notion that [I have
-been their product] for the last 15 years or so. 😬
+been their product](https://quoteinvestigator.com/2017/07/16/product/) for the last 15 years or so. 😬
 
 <!-- cSpell:ignore nomoregoogle -->
 
-ProtonMail is the top rated alternative on [nomoregoogle.com] and with
+ProtonMail is the top rated alternative on [nomoregoogle.com](https://nomoregoogle.com/) and with
 end-to-end encryption and the company based in Switzerland with strict
 Swiss privacy laws I think my mail is in a good place!
 
@@ -66,7 +66,7 @@ add in the default Scott at my domain.
 
 There's also an option to add another address on the plan I'm on. If I
 want to add more domains in the future then ProtonMail has got me with
-the option to add an additional domain for an extra ~£2 a month!
+the option to add an additional domain for an extra \~£2 a month!
 
 ## Add MX Records
 
@@ -111,9 +111,3 @@ Wrap! That's it for this, there's an additional option to add DMARC as
 well but it says if I have set the other two (SPF and DKIM) then this
 should be fine to leave out and can cause issues if done incorrectly,
 so I've left well alone for now!
-
-<!-- Links -->
-
-[nomoregoogle.com]: https://nomoregoogle.com/
-[i have been their product]:
-	https://quoteinvestigator.com/2017/07/16/product/

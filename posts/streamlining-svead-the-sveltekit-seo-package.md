@@ -254,7 +254,7 @@ thought I had to do this blog post because I'm about to start using
 it.
 
 You can check out the project over on GitHub:
-https://github.com/spences10/svead
+[https://github.com/spences10/svead](https://github.com/spences10/svead)
 
 ## Testing and validation
 

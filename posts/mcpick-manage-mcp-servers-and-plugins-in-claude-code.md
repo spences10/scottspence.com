@@ -30,7 +30,7 @@ activated), but McPick's grown into something more since then.
 
 ## What McPick does
 
-McPick is a CLI for managing MCP servers **and** Claude Code
+McPick is a CLI for managing MCP servers *and* Claude Code
 marketplace plugins. Run `npx mcpick` and you get a friendly TUI
 that's way simpler than the built-in Claude Code configuration flow.
 Or have Claude manage it for you. Either way, no manual JSON editing.
@@ -45,22 +45,22 @@ denominator — most people will have it. I personally use `bunx` or
 
 That gives you an interactive menu where you can:
 
-- **Enable/disable MCP servers** — toggle them on and off without
+- *Enable/disable MCP servers* — toggle them on and off without
   touching JSON
-- **Manage plugins** — install, uninstall, enable, disable marketplace
+- *Manage plugins* — install, uninstall, enable, disable marketplace
   plugins
-- **Manage plugin cache** — detect stale plugins, clear caches,
+- *Manage plugin cache* — detect stale plugins, clear caches,
   refresh from git
-- **Backup/restore** — automatic backups before changes, restore when
+- *Backup/restore* — automatic backups before changes, restore when
   things go sideways
-- **Profiles** — save server and plugin sets for different tasks,
+- *Profiles* — save server and plugin sets for different tasks,
   switch between them
 
 ## Let Claude manage your MCP servers
 
 Here's the thing — you don't even need to use the interactive menu.
-Every command works as a CLI subcommand too, which means **Claude can
-use it for you**, Claude loves a CLI. Yes, I now build tools for my
+Every command works as a CLI subcommand too, which means *Claude can
+use it for you*, Claude loves a CLI. Yes, I now build tools for my
 tools to use!
 
 Example! I asked Claude "find the Anthropic frontend design plugin and
@@ -85,9 +85,9 @@ can chain commands together without parsing terminal formatting.
 
 Three scopes for server configuration:
 
-- **Local** — project-specific (`settings.local.json`)
-- **Project** — shared with the team (`.mcp.json`)
-- **User** — global (`~/.claude.json`)
+- *Local* — project-specific (`settings.local.json`)
+- *Project* — shared with the team (`.mcp.json`)
+- *User* — global (`~/.claude.json`)
 
 ```bash
 # List all servers with their status

@@ -9,11 +9,11 @@ is_private: false
   import { Tweet } from 'sveltekit-embed'
 </script>
 
-I am a massive fan of both Vercel's [Now.sh] platform and the
-[Netlify] platform.
+I am a massive fan of both Vercel's [Now.sh](https://now.sh) platform and the
+[Netlify](https://www.netlify.com/) platform.
 
 This post has been in my drafts since the beginning of March 2019. At
-that time it was titled **'Moving from Now to Netlify'** and it was
+that time it was titled *'Moving from Now to Netlify'* and it was
 mostly me being salty about the configuration of the Now service.
 
 At that time I had fallen for Netlify and was swooning over it's super
@@ -27,21 +27,21 @@ Yeah, those people are the _worst_!
 
 Ha! Yes, guilty!
 
-**Anyhoo!** Like the fickle Twitter driven web developer I am,
+*Anyhoo!* Like the fickle Twitter driven web developer I am,
 switching technology every week is expected! 😂
 
-So now I'm back in the [Now.sh] camp. **Why?** I could say it's
+So now I'm back in the [Now.sh](https://now.sh) camp. *Why?* I could say it's
 because I prefer the new name change from ZEIT to Vercel.
 
 It's not, I could say that it's because Vercel has massively upped
 their game in the last two years. They have but it's not that either.
 
-[Netlify] is an awesome platform and I love working with it, I'd
+[Netlify](https://www.netlify.com/) is an awesome platform and I love working with it, I'd
 absolutely recommend it to anyone.
 
 I like to the convenience of being able to switch at between them, so
 if I decide I want to go with x platform I can up and move relatively
-quickly [with no downtime].
+quickly [with no downtime](https://vercel.com/guides/zero-downtime-domain-migration).
 
 ## Vercel's Now.sh platform is also a CDN
 
@@ -49,7 +49,7 @@ quickly [with no downtime].
 
 I'm going through all the assets in posts on here and adding them with
 the Now CLI so I can use a link to them directly, or through a service
-like [Images.weserv.nl] for further optimisations.
+like [Images.weserv.nl](https://images.weserv.nl/docs/quick-reference.html) for further optimisations.
 
 I know that Gatsby will optimise images on the fly for best sizes I'm
 doing this as a learning exercise as much as was to improve
@@ -74,15 +74,5 @@ with the Now CLI.
 Domain management with Vercel Now CLI is something that I have always
 been _ok_ managing. I did find the Netlify console just as
 straightforward to use but if you find the terminal a bit daunting for
-something like this then Vercel now have a [DNS integration] that
+something like this then Vercel now have a [DNS integration](https://vercel.com/integrations/dns) that
 makes it a lot more visual.
-
-<!-- LINKS -->
-
-[now.sh]: https://now.sh
-[netlify]: https://www.netlify.com/
-[greenkeeper.io]: https://greenkeeper.io
-[images.weserv.nl]: https://images.weserv.nl/docs/quick-reference.html
-[with no downtime]:
-	https://vercel.com/guides/zero-downtime-domain-migration
-[dns integration]: https://vercel.com/integrations/dns

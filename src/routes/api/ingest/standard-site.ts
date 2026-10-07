@@ -96,6 +96,9 @@ export const to_plain_text = (markdown: string) =>
 		.replace(/```[^\n]*\n([\s\S]*?)```/g, '$1')
 		.replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1')
 		.replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+		// PFM reference links: definitions come first, uses are [text][].
+		.replace(/^\[[^\]\n]+\]:[^\n]*$/gm, '')
+		.replace(/!?\[([^\]]+)\]\[[^\]]*\]/g, '$1')
 		.replace(/<[^>]+>/g, '')
 		.replace(/^#{1,6}\s+/gm, '')
 		.replace(/^\s{0,3}>\s?/gm, '')

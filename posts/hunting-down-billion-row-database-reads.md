@@ -28,9 +28,9 @@ Unbreakable rules.
 
 So, the top queries on Turso had this at the very top:
 
-- **Total Execution Time**: 1,460,000ms (that's 24+ minutes!)
-- **Total Rows Read**: 1,270,000,000 (yes, billion with a B)
-- **Query Count**: 742,000
+- *Total Execution Time*: 1,460,000ms (that's 24+ minutes!)
+- *Total Rows Read*: 1,270,000,000 (yes, billion with a B)
+- *Query Count*: 742,000
 
 There were others but this one needed attention!
 
@@ -106,25 +106,25 @@ That's roughly 2,100+ row reads per execution.
 
 So, let's think about this now. My site analytics show:
 
-**2023 (when I added the CTE):**
+*2023 (when I added the CTE):*
 
 - 12.4k people, 22.1k views over 30 days
-- ~450 people/day, ~1k views/day
-- With 5-min cache: ~288 potential cache misses/day (12 per hour ×
+- \~450 people/day, \~1k views/day
+- With 5-min cache: \~288 potential cache misses/day (12 per hour ×
   24h)
-- Realistic cache hits: ~200/day (assuming traffic distributed)
-- **Expected annual queries**: ~73k
-- **Expected annual row reads**: ~153 million (73k × 2,100)
+- Realistic cache hits: \~200/day (assuming traffic distributed)
+- *Expected annual queries*: \~73k
+- *Expected annual row reads*: \~153 million (73k × 2,100)
 
-**2025 (current traffic):**
+*2025 (current traffic):*
 
 - 22.9k people, 54.9k views over 30 days
-- ~1k people/day, ~2k views/day
-- With higher traffic: ~400 cache misses/day more likely
-- **Expected annual queries**: ~146k
-- **Expected annual row reads**: ~307 million (146k × 2,100)
+- \~1k people/day, \~2k views/day
+- With higher traffic: \~400 cache misses/day more likely
+- *Expected annual queries*: \~146k
+- *Expected annual row reads*: \~307 million (146k × 2,100)
 
-**But I actually saw**: 742k queries reading 1.27 billion rows!
+*But I actually saw*: 742k queries reading 1.27 billion rows!
 
 That's 5x more queries than traffic would suggest, and those numbers
 don't even account for the improved efficiency that caching should
@@ -154,7 +154,7 @@ Result: Nothing. No wonder SQLite was doing full table scans!
 To really understand what was happening, I dumped a local copy of the
 database and ran EXPLAIN QUERY PLAN. The results were eye-opening:
 
-**Original CTE Query Plan:**
+*Original CTE Query Plan:*
 
 ```
 QUERY PLAN
@@ -182,8 +182,8 @@ The killer here is `USE TEMP B-TREE FOR ORDER BY` happening three
 times - SQLite has to sort the results in memory for each CTE because
 there's no index on `pageviews`.
 
-**Simple date_grouping filter (what you'd get without proper
-indexing):**
+*Simple date\_grouping filter (what you'd get without proper
+indexing):*
 
 ```
 QUERY PLAN
@@ -239,7 +239,7 @@ me the ranking I need to grab the top 20 per period.
 In the JavaScript processing, I just filter for `row.rn <= 20` to get
 the top results for each period.
 
-**Impact**: Should reduce row reads from ~2,100 to ~707 per execution
+*Impact*: Should reduce row reads from \~2,100 to \~707 per execution
 (about 95% reduction on paper).
 
 ## The fix: strategic indexing
@@ -285,8 +285,8 @@ Before deploying these changes to production, I tested them against
 the live database using the Turso MCP. The performance improvement was
 dramatic:
 
-- **Before**: 24+ minutes total execution time for 742K queries
-- **After**: Sub-second response times for the optimized query
+- *Before*: 24+ minutes total execution time for 742K queries
+- *After*: Sub-second response times for the optimized query
 
 The index creation itself was completely safe - it's a read-only
 operation that doesn't affect existing data or queries.
@@ -314,24 +314,24 @@ optimization opportunities that these indexes will also fix.
 
 This whole experience reminded me of a few key principles:
 
-**Always profile your database queries**. I got complacent because the
+*Always profile your database queries*. I got complacent because the
 site felt fast, but the database was screaming behind the scenes.
 
-**CTEs aren't always the answer**. Sometimes a well-crafted window
+*CTEs aren't always the answer*. Sometimes a well-crafted window
 function can do the work of multiple subqueries much more efficiently.
 
-**Index your filter and sort columns**. This seems obvious but it's
+*Index your filter and sort columns*. This seems obvious but it's
 easy to forget, especially when you're focused on getting features
 shipped.
 
-**Window functions are bloody brilliant**.
+*Window functions are bloody brilliant*.
 `ROW_NUMBER() OVER (PARTITION BY ...)` is a game-changer for
 top-N-per-group queries.
 
-**Monitor production database metrics regularly**. Performance issues
+*Monitor production database metrics regularly*. Performance issues
 can compound silently until they become expensive problems.
 
-**Consider bot/scraper protection**. LLM training bots and aggressive
+*Consider bot/scraper protection*. LLM training bots and aggressive
 crawlers can amplify database load unexpectedly.
 
 ## Why now?
@@ -343,20 +343,20 @@ So why am I only seeing this massive spike in database reads now?
 
 A few theories:
 
-**Traffic surge**: Maybe the site's getting more visitors than usual,
+*Traffic surge*: Maybe the site's getting more visitors than usual,
 amplifying the problem. With the query running through the layout on
 cache misses, even a modest traffic increase could trigger it much
 more frequently.
 
-**Bot/scraper activity**: Could be LLM training crawlers or aggressive
+*Bot/scraper activity*: Could be LLM training crawlers or aggressive
 SEO bots hitting the site repeatedly. These don't respect normal
 caching and could easily trigger thousands of expensive queries.
 
-**Cache invalidation issues**: The 5-minute cache might be getting
+*Cache invalidation issues*: The 5-minute cache might be getting
 invalidated more frequently due to server restarts, deployments, or
 memory pressure.
 
-**Turso analytics improvements**: Maybe Turso's monitoring just got
+*Turso analytics improvements*: Maybe Turso's monitoring just got
 better at detecting and reporting these patterns? 🤔
 
 The lesson here is that performance issues can lurk silently for
@@ -369,15 +369,15 @@ I've optimized the worst offender and added strategic indexes, but
 this is far from over. The math still doesn't add up - I'm seeing 5x
 more database queries than traffic would suggest.
 
-**What I've fixed so far:**
+*What I've fixed so far:*
 
 - Optimized the CTE monster query (95% fewer row reads per execution)
 - Added crucial indexes to speed up the remaining queries
 - Identified other optimization opportunities in the analytics
 
-**What's still unclear:**
+*What's still unclear:*
 
-- Why 742k queries instead of the expected ~146k?
+- Why 742k queries instead of the expected \~146k?
 - Is it bot traffic, server restarts, or something else?
 - Are there other expensive queries I haven't spotted yet?
 

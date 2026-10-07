@@ -46,7 +46,7 @@ When I ran the profiler, here's what I found:
 
 So, Oh-My-Zsh was taking up over half the startup time!
 
-## Oh-My-Zsh (55.73% → ~20%)
+## Oh-My-Zsh (55.73% → \~20%)
 
 According to
 [JonLuca's research](https://blog.jonlu.ca/posts/speeding-up-zsh),
@@ -60,7 +60,7 @@ DISABLE_MAGIC_FUNCTIONS="true"
 DISABLE_COMPFIX="true"
 ```
 
-## Fixing the completion system (30.76% → ~10%)
+## Fixing the completion system (30.76% → \~10%)
 
 The completion system (`compinit`) is zsh's built-in command
 completion - it's what shows possible completions when you hit tab.
@@ -81,7 +81,7 @@ This comes from
 [a popular GitHub gist](https://gist.github.com/ctechols/ca1035271ad134841284) -
 cheers for sharing this one!
 
-## Making Spaceship Prompt Faster (22.47% → ~5%)
+## Making Spaceship Prompt Faster (22.47% → \~5%)
 
 I love Spaceship prompt (been using it for years!), but it was being a
 bit of a resource hog. Here's how to speed it up:
@@ -133,12 +133,12 @@ ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 Check this out:
 
-| Component        | Before | After |
-| ---------------- | ------ | ----- |
-| Oh-My-Zsh        | 55.73% | ~20%  |
-| Completions      | 30.76% | ~10%  |
-| Syntax Highlight | 14.63% | ~8%   |
-| Total Time       | ~5s    | ~0.5s |
+| Component | Before | After |
+| --- | --- | --- |
+| Oh-My-Zsh | 55.73% | \~20% |
+| Completions | 30.76% | \~10% |
+| Syntax Highlight | 14.63% | \~8% |
+| Total Time | \~5s | \~0.5s |
 
 That's like a 10x improvement! My terminal now opens in the blink of
 an eye!
@@ -147,10 +147,10 @@ an eye!
 
 1. Add the profiling code (I showed you earlier) to see what's slow
 
-1. Try the fixes one at a time - that way you know what's actually
+2. Try the fixes one at a time - that way you know what's actually
    helping
 
-1. Keep what works for you - everyone's setup is different!
+3. Keep what works for you - everyone's setup is different!
 
 For the full setup rather than individual fixes, see
 [my updated Zsh configuration](/posts/my-updated-zsh-config-2025). It

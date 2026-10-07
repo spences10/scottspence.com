@@ -129,10 +129,6 @@ So I'll add a transition to the class and reset the transform back to
 
 That's it!
 
-You can check out this [Codepen] for and example of this in action.
+You can check out this [Codepen](https://codepen.io/spences10/pen/WNMvXpa) for and example of this in action.
 
 <CodePen codePenId="WNMvXpa" />
-
-<!-- Links -->
-
-[codepen]: https://codepen.io/spences10/pen/WNMvXpa

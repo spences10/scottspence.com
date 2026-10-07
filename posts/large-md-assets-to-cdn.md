@@ -12,8 +12,8 @@ to work out a way to reduce that.
 I'm an Ubuntu user and wanted to see if there was a way I could
 identify the larger files in the project.
 
-I found [this SO question] which details using the `du` command ([Disk
-Usage]) which I used to list out the folder sizes. I put the following
+I found [this SO question](https://serverfault.com/questions/200949/how-can-i-find-the-biggest-directories-in-unix-ubuntu) which details using the `du` command ([Disk
+Usage](https://ss64.com/bash/du.html)) which I used to list out the folder sizes. I put the following
 command into my terminal:
 
 ```bash
@@ -37,7 +37,7 @@ of output, but it helped identify large assets in folders. That
 ## Markdown file structure
 
 I have become quite particular about my Markdown as of late and like
-to [structure things in a certain] way. I started to do this with the
+to [structure things in a certain](https://scottspence.com/posts/add-tracking-links-to-your-markdown/#the-other-problem-for-me-anyway-) way. I started to do this with the
 images and gifs that are in here as well.
 
 So, as an example this:
@@ -96,7 +96,7 @@ images-on-now-sh/
 <!-- cSpell:ignore weserv -->
 
 The whole reason I did this was so that if I wanted to I could run all
-these through a service like [Images.weserv.nl] where I could add the
+these through a service like [Images.weserv.nl](https://images.weserv.nl/docs/#how-it-works) where I could add the
 URL to their service like so:
 
 ```text
@@ -121,14 +121,3 @@ Any time I now have a post with a lot of assets images I'm not going
 to feel that bad about adding them. I have however stopped doing this
 so much and instead try to provide a video detailing something with
 accompanying copy.
-
-<!-- Links -->
-
-[this so question]:
-	https://serverfault.com/questions/200949/how-can-i-find-the-biggest-directories-in-unix-ubuntu
-[structure things in a certain]:
-	https://scottspence.com/posts/add-tracking-links-to-your-markdown/#the-other-problem-for-me-anyway-
-[disk usage]: https://ss64.com/bash/du.html
-[images.weserv.nl]: https://images.weserv.nl/docs/#how-it-works
-
-<!-- Images -->

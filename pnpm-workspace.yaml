@@ -12,6 +12,9 @@ overrides:
   vite@*: npm:@voidzero-dev/vite-plus-core@1.0.0
   vitest@*: 5.0.1
 
+patchedDependencies:
+  '@mdsvex/language-server@0.1.0-next.1': patches/@mdsvex__language-server@0.1.0-next.1.patch
+
 peerDependencyRules:
   allowedVersions:
     # Vite+ core exposes Vite 8 APIs under Vite+'s package version.

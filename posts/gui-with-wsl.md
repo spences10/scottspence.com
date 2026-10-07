@@ -13,8 +13,8 @@ is_private: false
 <!-- cSpell:ignore pengwin -->
 
 So this post started off with me getting GUI apps running on my
-Windows WSL install of [Pengwin], but has now turned into doing it
-without the need to fork over [the readies] for Pengwin as now you can
+Windows WSL install of [Pengwin](https://www.microsoft.com/en-gb/p/pengwin/9nv1gv1pxz6p), but has now turned into doing it
+without the need to fork over [the readies](https://dictionary.cambridge.org/dictionary/english/readies) for Pengwin as now you can
 do it with Ubuntu or Debian (possibly others) which are free to
 download on the Microsoft store.
 
@@ -27,11 +27,11 @@ I say this started off using Pengwin, because I used all the setup
 options to enable GUI usage on there but (like most of my WSL
 instances) I trashed the install and couldn't recreate what I had done
 before. This post stayed shelved since the start of October but now
-I'm picking it up again thanks to [Nicky Meuleman]'s guide on [Using
-Graphical User Interfaces like Cypress' in WSL2] and his other post on
-[Linux on windows WSL2 ZSH Docker] that post also spawned the last
-post I did on my [Notes on Zsh and Oh My Zsh] with the great section
-he did on [setting up Zsh].
+I'm picking it up again thanks to [Nicky Meuleman](https://twitter.com/NMeuleman)'s guide on [Using
+Graphical User Interfaces like Cypress' in WSL2](https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress) and his other post on
+[Linux on windows WSL2 ZSH Docker](https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker) that post also spawned the last
+post I did on my [Notes on Zsh and Oh My Zsh](https://scottspence.com/posts/zsh-and-oh-my-zsh/) with the great section
+he did on [setting up Zsh](https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker#zsh).
 
 So, what am I doing in this post? Ripping off Nicky's content? Pretty
 much!
@@ -41,7 +41,7 @@ on things. I have several bits of content I have to gather up each
 time I want to do this (I've done it several times now) so this will
 be a complete list for my use case.
 
-I'll be doing this with a fresh install of [Debian] from the Windows
+I'll be doing this with a fresh install of [Debian](https://www.microsoft.com/en-gb/p/debian/9msvkqc78pk6) from the Windows
 store, this was me wanting to understand if I could do it using Debian
 as well as with Ubuntu more than anything else.
 
@@ -59,14 +59,14 @@ end for a [video detailing the process](#video-detailing-the-process).
 
 ## Why GUI apps though?
 
-Ok, so first up why do I want to be able to run [GUI]s (Graphical User
+Ok, so first up why do I want to be able to run [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface)s (Graphical User
 Interface) on my Linux instances?
 
-Solely for testing software like [Cypress], [QA Wolf] and browser
-automation tools [Microsoft's Playwright]; these all need to run from
+Solely for testing software like [Cypress](https://www.cypress.io/), [QA Wolf](https://github.com/qawolf/qawolf) and browser
+automation tools [Microsoft's Playwright](https://github.com/microsoft/playwright); these all need to run from
 the WSL instance which isn't set up by default to run GUIs.
 
-There is talk of the WSL team [Adding Linux GUI app support to WSL]
+There is talk of the WSL team [Adding Linux GUI app support to WSL](https://devblogs.microsoft.com/commandline/the-windows-subsystem-for-linux-build-2020-summary/#wsl-gui)
 but this is slated for an update in the holidays (Christmas??).
 
 I'm not going to hold my breath for this to go into the main release
@@ -74,17 +74,17 @@ of Windows 10 I'd hazard a guess that it'll be available Spring/Summer
 release.
 
 If you absolutely must have this functionality yourself then I'd
-suggest giving [Windows insiders] a try. I've been on Windows insiders
+suggest giving [Windows insiders](https://insider.windows.com/en-gb/for-developers) a try. I've been on Windows insiders
 in the past and would prefer to stay on the normal release schedule
 for now.
 
-There's a some things I'll need up front, an [X-server] I already have
-[X410] which I got on offer from the Windows store, it retails around
+There's a some things I'll need up front, an [X-server](https://en.wikipedia.org/wiki/X_server) I already have
+[X410](https://www.microsoft.com/en-gb/p/x410/9nlp712zmn9q) which I got on offer from the Windows store, it retails around
 £8.39.
 
 <!-- cSpell:ignore Xsrv -->
 
-Check out Nicky's blog on getting set up with [VcXsrv] if you're not
+Check out Nicky's blog on getting set up with [VcXsrv](https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#vcxsrv) if you're not
 going to hand over the cash for X410. There's an important note on the
 additional settings needed for that on Nicky's post.
 
@@ -92,8 +92,8 @@ If you don't have WSL set up already then check out Nicky's post on
 it, I've also made a post on when I initially set up my machine to use
 WSL in the summer.
 
-- [Linux on Windows WSL2 Zsh Docker]
-- [WSL Bootstrap 2020]
+- [Linux on Windows WSL2 Zsh Docker](https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker)
+- [WSL Bootstrap 2020](https://scottspence.com/posts/wsl-bootstrap-2020/)
 
 ## Debian install and config
 
@@ -138,9 +138,9 @@ Terminal app and work in there from here on out.
 
 ## Update Debian
 
-Update all the things, **a word of warning** if you're copy pasting
+Update all the things, *a word of warning* if you're copy pasting
 these commands I have the `-y` flag set in these which agrees to
-install without prompting first, **you've been warned** 😛:
+install without prompting first, *you've been warned* 😛:
 
 First update all the things:
 
@@ -149,7 +149,7 @@ sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 ```
 
 Then to add the missing libraries and utilities and packages I'll need
-[`build-essential`], `git` and `curl`:
+[`build-essential`](https://packages.ubuntu.com/xenial/build-essential), `git` and `curl`:
 
 ```bash
 sudo apt install build-essential git curl -y
@@ -162,7 +162,7 @@ the GUI goodness. So I'm going to forgo adding anything fancy to Zsh
 other than Oh My Zsh.
 
 If you're interested in configuring Zsh a bit more then check out the
-[Notes on Zsh and Oh My Zsh] post I made which covers a fair bit of
+[Notes on Zsh and Oh My Zsh](https://scottspence.com/posts/zsh-and-oh-my-zsh/) post I made which covers a fair bit of
 customisation.
 
 ```bash
@@ -212,7 +212,7 @@ versions later and want to default to a different version use
 I'm installing yarn as a preference and also because I know the
 repository I'm going to test with Cypress uses Yarn as well.
 
-These instructions are taken from the [Yarn install docs]:
+These instructions are taken from the [Yarn install docs](https://classic.yarnpkg.com/en/docs/install/#debian-stable):
 
 ```bash
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -242,7 +242,7 @@ cd ~/repos
 
 Because I like to trash my Linux installs on a regular basis I have a
 set of SSH keys I move from install to install. I recently discovered
-the [`explorer.exe`] which allows you to access the Linux files in the
+the [`explorer.exe`](https://devblogs.microsoft.com/commandline/whats-new-for-wsl-in-windows-10-version-1903/#accessing-linux-files-from-windows) which allows you to access the Linux files in the
 Windows file explorer! This is really handy and means I haven't got to
 simlink them any more!! 🚀
 
@@ -294,7 +294,7 @@ sudo apt install \
 
 <!-- cSpell:enable -->
 
-ℹ If you're using [Playwright] there's a few additional dependencies
+ℹ If you're using [Playwright](https://github.com/microsoft/playwright) there's a few additional dependencies
 tha need installing for WebKit, this was from using with Ubuntu.
 
 <!-- cSpell:disable -->
@@ -319,7 +319,7 @@ nano ~/.zshrc
 
 Then add in the variable, when I have attempted this in the past the
 variable was literally `0.0` so this from Nicky is a nice expansion on
-that and he [explains brilliantly] why this needs to be done:
+that and he [explains brilliantly](https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#the-display-variable) why this needs to be done:
 
 <!-- cSpell:ignore resolv -->
 
@@ -343,7 +343,7 @@ echo $DISPLAY
 
 ## `dbus` start and access
 
-[D-Bus] is ued by Linux desktop environments for GUI apps so I'm going
+[D-Bus](https://en.wikipedia.org/wiki/D-Bus) is ued by Linux desktop environments for GUI apps so I'm going
 to need that and the following will automatically start it.
 
 Pop open the `.zshrc` file again:
@@ -411,44 +411,4 @@ Boom! GUI running in WSL!!
 
 <YouTube youTubeId="" />
 
-<!-- Links -->
-
 <!-- cSpell:ignore commandline,vcxsrv -->
-
-[x410]: https://www.microsoft.com/en-gb/p/x410/9nlp712zmn9q
-[pengwin]: https://www.microsoft.com/en-gb/p/pengwin/9nv1gv1pxz6p
-[the readies]:
-	https://dictionary.cambridge.org/dictionary/english/readies
-[linux on windows wsl2 zsh docker]:
-	https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker
-[setting up zsh]:
-	https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker#zsh
-[using graphical user interfaces like cypress' in wsl2]:
-	https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress
-[nicky meuleman]: https://twitter.com/NMeuleman
-[debian]: https://www.microsoft.com/en-gb/p/debian/9msvkqc78pk6
-[notes on zsh and oh my zsh]:
-	https://scottspence.com/posts/zsh-and-oh-my-zsh/
-[gui]: https://en.wikipedia.org/wiki/Graphical_user_interface
-[microsoft's playwright]: https://github.com/microsoft/playwright
-[qa wolf]: https://github.com/qawolf/qawolf
-[cypress]: https://www.cypress.io/
-[x-server]: https://en.wikipedia.org/wiki/X_server
-[adding linux gui app support to wsl]:
-	https://devblogs.microsoft.com/commandline/the-windows-subsystem-for-linux-build-2020-summary/#wsl-gui
-[windows insiders]: https://insider.windows.com/en-gb/for-developers
-[vcxsrv]:
-	https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#vcxsrv
-[wsl bootstrap 2020]:
-	https://scottspence.com/posts/wsl-bootstrap-2020/
-[stack overflow answer]: https://stackoverflow.com/a/60016407/1138354
-[`explorer.exe`]:
-	https://devblogs.microsoft.com/commandline/whats-new-for-wsl-in-windows-10-version-1903/#accessing-linux-files-from-windows
-[explains brilliantly]:
-	https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#the-display-variable
-[d-bus]: https://en.wikipedia.org/wiki/D-Bus
-[`build-essential`]:
-	https://packages.ubuntu.com/xenial/build-essential
-[yarn install docs]:
-	https://classic.yarnpkg.com/en/docs/install/#debian-stable
-[playwright]: https://github.com/microsoft/playwright

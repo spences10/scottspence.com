@@ -31,9 +31,4 @@ All it needed to do was hit and endpoint and redirect to a link.
 That's all folks! If there is anything I have missed, or if there is a
 better way to do something then please let me know.
 
-Follow me on [Twitter] or [Ask Me Anything] on GitHub.
-
-<!-- Links -->
-
-[twitter]: https://twitter.com/spences10
-[ask me anything]: https://github.com/spences10/ama
+Follow me on [Twitter](https://twitter.com/spences10) or [Ask Me Anything](https://github.com/spences10/ama) on GitHub.

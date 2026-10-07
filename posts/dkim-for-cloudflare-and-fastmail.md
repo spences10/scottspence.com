@@ -14,20 +14,13 @@ account with their defaults.
 
 The DKIM records were imported like this:
 
-[![proxied-dkim-records]] [proxied-dkim-records]
+\[![proxied-dkim-records](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1706816043/scottspence.com/proxied-dkim-records.png)\] [proxied-dkim-records](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1706816043/scottspence.com/proxied-dkim-records.png)
 
 I removed the proxy status for each of the DKIM records.
 
-[![proxy-status-dns-only]] [proxy-status-dns-only]
+\[![proxy-status-dns-only](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1706816043/scottspence.com/proxy-status-dns-only.png)\] [proxy-status-dns-only](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1706816043/scottspence.com/proxy-status-dns-only.png)
 
 I removed the proxy status for each of the DKIM records and waited for
 the DNS to propagate.
 
 That's it, now my DKIM is configured correctly.
-
-<!-- Images -->
-
-[proxied-dkim-records]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1706816043/scottspence.com/proxied-dkim-records.png
-[proxy-status-dns-only]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1706816043/scottspence.com/proxy-status-dns-only.png

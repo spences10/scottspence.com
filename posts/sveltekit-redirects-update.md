@@ -16,7 +16,7 @@ redirects. Today, I'm sharing an update on how I've improved this
 implementation to be more robust and hopefully resolve some lingering
 issues with Google Search Console.
 
-For the **Tl;Dr** skip to the
+For the *Tl;Dr* skip to the
 [new implementation](#the-new-implementation).
 
 Check out the original post
@@ -65,15 +65,15 @@ export const handle = async ({ event, resolve }) => {
 
 This new approach offers several advantages:
 
-1. **Earlier Interception**: By handling redirects at the server hooks
+1. *Earlier Interception*: By handling redirects at the server hooks
    level, I catch and redirect requests before they even hit the
    routing logic. This should be more efficient and potentially more
    SEO-friendly.
 
-2. **Consolidated Logic**: All the redirect logic is now in one place,
+2. *Consolidated Logic*: All the redirect logic is now in one place,
    making it easier to maintain and update.
 
-3. **Trailing Slash Handling**: I'm now also handling trailing slashes
+3. *Trailing Slash Handling*: I'm now also handling trailing slashes
    consistently across the site, another headache for SEO.
 
 ## Cleaning up

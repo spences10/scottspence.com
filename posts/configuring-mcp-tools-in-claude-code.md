@@ -8,11 +8,11 @@ is_private: false
 
 <!-- cSpell:ignore modelcontextprotocol mcpServers spences10 sequentialthinking omnisearch nopeek -->
 
-<script>
+<script lang="ts">
   import { Banner, Details } from '#lib/components/index.js'
 
   const options = {
-    type: 'info',
+    type: 'info' as const,
     message: `Managing MCP servers can be tricky! Check out
       <a href="https://github.com/spences10/mcpick" target="_blank" rel="noopener noreferrer">
       McPick</a> - a tool that makes it simpler to manage your MCP
@@ -182,9 +182,9 @@ Here's how to configure it:
 
 With this single configuration, I get access to:
 
-- **Search Tools**: Tavily, Brave, and Kagi search engines
-- **AI Response Tools**: Perplexity AI and Kagi FastGPT
-- **Content Processing Tools**: Jina AI Reader, Kagi Summarizer, and
+- *Search Tools*: Tavily, Brave, and Kagi search engines
+- *AI Response Tools*: Perplexity AI and Kagi FastGPT
+- *Content Processing Tools*: Jina AI Reader, Kagi Summarizer, and
   more
 
 The best part is that I can use whichever tools I have API keys for -
@@ -269,13 +269,13 @@ To check on them use the `/mcp` command inside Claude Code:
 
 Editing the config file directly has several advantages:
 
-1. **Complete visibility** - I can see all my configurations at once
-2. **Easy copying and backup** - Simple to share configurations across
+1. *Complete visibility* - I can see all my configurations at once
+2. *Easy copying and backup* - Simple to share configurations across
    machines
-3. **Version control** - I can track changes to my config over time
-4. **Quick edits** - Make small changes without going through the
+3. *Version control* - I can track changes to my config over time
+4. *Quick edits* - Make small changes without going through the
    entire wizard
-5. **Complex configurations** - Support for more advanced setups that
+5. *Complex configurations* - Support for more advanced setups that
    might be difficult through the CLI
 
 If you'd rather not edit the file each time, I've since written up how

@@ -36,14 +36,14 @@ went from first commit to production in about six weeks, and took an
 insurance claims platform from spec to production in about five.
 Previously I led 12 developers across two product teams building AI
 customer-service software, where the agent runtime I built cut average
-handle time by 40%. The [portfolio section] has more detail. Before
-web development, I spent more than a decade as a [VBA] analyst
+handle time by 40%. The [portfolio section](/portfolio) has more detail. Before
+web development, I spent more than a decade as a [VBA](https://en.wikipedia.org/wiki/Visual_Basic_for_Applications) analyst
 developer, building automation and business systems for large
 organisations.
 
 I've worked with Svelte and SvelteKit for <DD date="2021-04-06" />.
-I'm a Svelte Ambassador and co-founder of [Svelte Society London],
-where I help run events and workshops. The [speaking] page has the
+I'm a Svelte Ambassador and co-founder of [Svelte Society London](https://guild.host/svelte-society-london/events),
+where I help run events and workshops. The [speaking](/speaking) page has the
 talks, podcasts, workshops, recordings, and slides.
 
 The bit I care about is making complex systems practical. I write
@@ -61,7 +61,7 @@ production AI products.
 ### My personality
 
 I find it hard to identify my traits, so instead, I took the
-[16Personalities] test; here are [my results].
+[16Personalities](https://www.16personalities.com/) test; here are [my results](https://www.16personalities.com/profiles/ba01a67248b68).
 
 I like to think of myself as an easy to approach and friendly person.
 
@@ -102,7 +102,7 @@ Other playlists I'd recommend would be the UKF Drum and Bass Top 100:
 I listen to many podcasts, here are some that I get a lot of value
 from that aren't all code related:
 
-**Prof G Markets**
+*Prof G Markets*
 
 Ed Elson breaks down what's moving the capital markets with Scott
 Galloway joining every other episode or so. Great for keeping up with
@@ -113,7 +113,7 @@ what's happening in tech and the markets.
   width="100%"
 />
 
-**Random But Memorable**
+*Random But Memorable*
 
 From the makers of 1Password for security advice and a round-up of the
 latest security news.
@@ -122,7 +122,7 @@ latest security news.
   frameSrc="show/401552"
 />
 
-**The AI Fix**
+*The AI Fix*
 
 Mark Stockley and a guest will always bring some laughs with their
 weekly findings with what's going on with AI.
@@ -131,7 +131,7 @@ weekly findings with what's going on with AI.
   frameSrc="show/1001031882"
 />
 
-**Tech Brew Ride Home**
+*Tech Brew Ride Home*
 
 A daily 15-minute tech news summary. Silicon Valley's water cooler
 podcast, perfect for the walk to the shops.
@@ -139,13 +139,3 @@ podcast, perfect for the walk to the shops.
 <Deezer
   frameSrc="show/1505672"
 />
-
-<!-- Links -->
-
-[vba]: https://en.wikipedia.org/wiki/Visual_Basic_for_Applications
-[16personalities]: https://www.16personalities.com/
-[my results]: https://www.16personalities.com/profiles/ba01a67248b68
-[portfolio section]: /portfolio
-[speaking]: /speaking
-[svelte society london]:
-	https://guild.host/svelte-society-london/events

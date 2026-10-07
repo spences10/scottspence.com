@@ -14,7 +14,7 @@ I switched from Ubuntu to Manjaro Linux, here's how it went.
 So for a while now I've been using Ubuntu, from when my old Asus
 Transformer Pro decided that it didn't like running windows any more.
 
-To [my shiny new rig] where the first thing I installed was Ubuntu,
+To [my shiny new rig](https://scottspence.com/posts/first-time-pc-build/) where the first thing I installed was Ubuntu,
 now I'm not going to pontificate on OSs and which one is the best,
 leave that for Twitter! 😂
 
@@ -100,7 +100,7 @@ Bluetooth wasn't working with my headset, to Google!
 
 <!-- cSpell:ignore pulseaudio -->
 
-I found a post on the [Manjaro forum] which (once I got past the crazy
+I found a post on the [Manjaro forum](https://forum.manjaro.org/t/bluetooth-is-not-working-with-headphones/116661/4) which (once I got past the crazy
 amount of links on there) pointed me to install
 `pulseaudio-bluetooth-a2dp-gdm-fix` searching for "Bluetooth Headset"
 in the add/remove software section will bring it up.
@@ -115,14 +115,14 @@ I did the usual by adding the path to my `.bashrc` file:
 
 This was my first port of call but was still getting issues in Fish,
 wasn't until I checked in Bash that I knew the path was working.
-([What prompted me to check bash])
+([What prompted me to check bash](https://github.com/yarnpkg/yarn/issues/4702#issuecomment-343970090))
 
 - Useful(ish) links from SO and GH:
   - SO:
-    https://stackoverflow.com/questions/40317578/yarn-global-command-not-working
-  - GH: https://github.com/yarnpkg/yarn/issues/5353
+    [https://stackoverflow.com/questions/40317578/yarn-global-command-not-working](https://stackoverflow.com/questions/40317578/yarn-global-command-not-working)
+  - GH: [https://github.com/yarnpkg/yarn/issues/5353](https://github.com/yarnpkg/yarn/issues/5353)
 
-I found an issue on the [Yarn repo] detailing the same issue, set
+I found an issue on the [Yarn repo](https://github.com/yarnpkg/yarn/issues/5824) detailing the same issue, set
 this:
 
 ```bash
@@ -144,16 +144,16 @@ get in macOS with Ctrl+Command+Space so I installed Emote via a Snap!
 snap install emote
 ```
 
-Emote package details here: https://snapcraft.io/install/emote/ubuntu
+Emote package details here: [https://snapcraft.io/install/emote/ubuntu](https://snapcraft.io/install/emote/ubuntu)
 
 There were issues with emoji not showing in some apps, I've come
 across it before but this time there was no support in my VS Code!
 
 Before:
 
-![emoji support before]
+![emoji support before](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/emoji-support-before-fb1277dfef2dd2715391a9f42ac41d33.png)
 
-There was a post on the Manjaro forum for [emoji support] which I
+There was a post on the Manjaro forum for [emoji support](https://forum.manjaro.org/t/solved-emoji-support-problem/86783) which I
 wasn't keen on so I had a play around in a VM and found there was no
 need to add the config.
 
@@ -171,16 +171,16 @@ Tweaks > Fonts > Legacy Window Titles > Noto Sans Regular
 
 After:
 
-![emoji support after]
+![emoji support after](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/emoji-support-after-aa2d85234ffe7f945397acf5920003cb.png)
 
 ## Hot corners
 
 I was somehow turning on the activity view, it looks like this:
 
-![activity view]
+![activity view](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858544/scottspence.com/activity-view-c64b5569a8cfbd4c280c13540bbefbac.png)
 
 I was getting pretty annoying but I found out it was a [hot corner
-setting] which was disabled in the Tweaks dialogue.
+setting](https://askubuntu.com/a/1019918/142801) which was disabled in the Tweaks dialogue.
 
 Tweaks > Top Bar > Activities Overview Hot Corner
 
@@ -203,7 +203,7 @@ So that means I should pick `linux56-virtualbox-host-modules` 😅!
 
 <Tweet tweetLink="spences10/status/1283797903203618816" />
 
-I found this info [again from the Manjaro forum].
+I found this info [again from the Manjaro forum](https://forum.manjaro.org/t/help-me-install-virtualbox/103458/4).
 
 ## Done
 
@@ -211,26 +211,3 @@ So far, that's all the hiccups, so not completely smooth sailing!
 
 But, I still _really_ like the GNOME desktop with Manjaro, super
 snappy and FAST!
-
-<!-- Links -->
-
-[my shiny new rig]: https://scottspence.com/posts/first-time-pc-build/
-[manjaro forum]:
-	https://forum.manjaro.org/t/bluetooth-is-not-working-with-headphones/116661/4
-[yarn repo]: https://github.com/yarnpkg/yarn/issues/5824
-[what prompted me to check bash]:
-	https://github.com/yarnpkg/yarn/issues/4702#issuecomment-343970090
-[hot corner setting]: https://askubuntu.com/a/1019918/142801
-[emoji support]:
-	https://forum.manjaro.org/t/solved-emoji-support-problem/86783
-[again from the manjaro forum]:
-	https://forum.manjaro.org/t/help-me-install-virtualbox/103458/4
-
-<!-- Images -->
-
-[emoji support before]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/emoji-support-before-fb1277dfef2dd2715391a9f42ac41d33.png
-[emoji support after]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/emoji-support-after-aa2d85234ffe7f945397acf5920003cb.png
-[activity view]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858544/scottspence.com/activity-view-c64b5569a8cfbd4c280c13540bbefbac.png

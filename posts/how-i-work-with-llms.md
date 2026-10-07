@@ -331,13 +331,13 @@ The session history says otherwise.
 I queried `~/.claude/ccrecall.db` and `~/.pi/pirecall.db` to compare
 when I was actually using each tool:
 
-| Month        | Claude Code sessions | Pi/my-pi sessions |
-| ------------ | -------------------: | ----------------: |
-| March        |                  455 |                 0 |
-| April        |                  186 |               320 |
-| May          |                    2 |               631 |
-| June         |                    2 |               408 |
-| July to 25th |                    2 |               602 |
+| Month | Claude Code sessions | Pi/my-pi sessions |
+| --- | ---: | ---: |
+| March | 455 | 0 |
+| April | 186 | 320 |
+| May | 2 | 631 |
+| June | 2 | 408 |
+| July to 25th | 2 | 602 |
 
 Pi first appears in my history on 11 April. In the week beginning 13
 April, there were 52 Claude Code sessions and 104 Pi sessions. The

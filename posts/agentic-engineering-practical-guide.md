@@ -328,19 +328,19 @@ discussion and a small prototype can be the correct next step.
 You do not need to build `my-pi` or adopt my exact tools. Start with
 one real failure you keep seeing.
 
-1. **Write the success condition.** Describe the observable result,
+1. *Write the success condition.* Describe the observable result,
    not only the files you expect to change.
-2. **Add the cheapest deterministic check.** Use an existing test,
+2. *Add the cheapest deterministic check.* Use an existing test,
    type-check, lint rule, browser journey or boundary script.
-3. **Expose the check to the agent.** Give it focused feedback while
+3. *Expose the check to the agent.* Give it focused feedback while
    it works and require the full check before completion.
-4. **Keep instructions small.** Put stable project guidance in the
+4. *Keep instructions small.* Put stable project guidance in the
    repository and link to deeper, retrievable documentation.
-5. **Restrict access.** Limit paths, commands, credentials and
+5. *Restrict access.* Limit paths, commands, credentials and
    external side effects to what the task needs.
-6. **Record evidence.** Keep the commands, results, decisions and
+6. *Record evidence.* Keep the commands, results, decisions and
    remaining risks needed for review.
-7. **Review the system after failure.** Ask which capability or
+7. *Review the system after failure.* Ask which capability or
    control was missing instead of only telling the next model to try
    harder.
 

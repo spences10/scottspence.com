@@ -6,9 +6,9 @@ is_private: false
 ---
 
 There were a couple of Tweets I saw in quick succession today along
-the lines of **"Don't create your own blog, write on someone else's
-platform instead"**. Now, as someone that has been blogging since
-April 2010 ([since 2016 here]) I can tell you it is absolutely worth
+the lines of *"Don't create your own blog, write on someone else's
+platform instead"*. Now, as someone that has been blogging since
+April 2010 ([since 2016 here](https://scottspence.com/posts/hello-world)) I can tell you it is absolutely worth
 doing.
 
 So, I class myself as a fullstack developer, all the opinions here
@@ -22,7 +22,7 @@ not supported by any blogging platform and reasoning for me to build
 my own blog.
 
 For an example of what I mean, take a look at the [Writing with
-Markdown] post I did a while back for the interactive elements on
+Markdown](https://scottspence.com/posts/writing-with-markdown#markdown-headings) post I did a while back for the interactive elements on
 there.
 
 ## Let's compare
@@ -30,26 +30,26 @@ there.
 Ok, here's a table comparing the pros and cons of using a blogging
 platform vs owning your own blog. I've tried to be as objective as
 possible here and I've more than likely missed some things. If you can
-see a glaring omission and it's triggering you, [LET ME KNOW]! I'll
+see a glaring omission and it's triggering you, [LET ME KNOW](mailto:yo@scottspence.com)! I'll
 update the table accordingly.
 
 The ✔️ is a yes you get that pro or con, the ❌ is no you don't get
 that pro or con.
 
-| Pros/Cons                      | Blogging Platform | Own Blog |
-| ------------------------------ | ----------------- | -------- |
-| Free Hosting                   | ✔️                | ✔️       |
-| Built-in community features    | ✔️                | ❌       |
-| Often free or low-cost         | ✔️                | ✔️       |
-| Easy to set up and use         | ✔️                | ❌       |
-| Customisation options          | ❌                | ✔️       |
-| Control over monetization      | ✔️                | ✔️       |
-| Ownership of content and data  | ✔️                | ✔️       |
-| Governed by Terms of Service   | ✔️                | ✔️       |
-| More work to build a community | ✔️                | ✔️       |
-| Technical skills to set up     | ❌                | ✔️       |
-| More responsibilities          | ❌                | ✔️       |
-| Save time on maintenance       | ✔️                | ❌       |
+| Pros/Cons | Blogging Platform | Own Blog |
+| --- | --- | --- |
+| Free Hosting | ✔️ | ✔️ |
+| Built-in community features | ✔️ | ❌ |
+| Often free or low-cost | ✔️ | ✔️ |
+| Easy to set up and use | ✔️ | ❌ |
+| Customisation options | ❌ | ✔️ |
+| Control over monetization | ✔️ | ✔️ |
+| Ownership of content and data | ✔️ | ✔️ |
+| Governed by Terms of Service | ✔️ | ✔️ |
+| More work to build a community | ✔️ | ✔️ |
+| Technical skills to set up | ❌ | ✔️ |
+| More responsibilities | ❌ | ✔️ |
+| Save time on maintenance | ✔️ | ❌ |
 
 Pretty cool! Pretty table out of the way, let's get into the details.
 
@@ -72,7 +72,7 @@ These will offer services along the lines of hosting, SSL, CDN, DNS,
 and more platform specific features that was a chore to set up in the
 past.
 
-**Conclusion**, marketing on blogging platforms may say otherwise but,
+*Conclusion*, marketing on blogging platforms may say otherwise but,
 you get free hosting either way.
 
 ## Built-in community features
@@ -101,14 +101,14 @@ of spam.
 
 <!-- cSpell:ignore hashnode -->
 
-[![spam-messages-on-hashnode]] [spam-messages-on-hashnode]
+\[![spam-messages-on-hashnode](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1673703390/scottspence.com/spam-messages-on-hashnode.jpg)\] [spam-messages-on-hashnode](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1673703390/scottspence.com/spam-messages-on-hashnode.jpg)
 
 If you want to have people notified of when you post something new on
 your blog you can use an RSS feed so that people can subscribe to your
 blog and get notified when you post something new in their RSS reader
 of choice.
 
-**Conclusion**, you get these features out of the box on a blogging
+*Conclusion*, you get these features out of the box on a blogging
 platform, yes. But, you can have them on your own blog as well.
 
 ## Often free or low-cost
@@ -161,7 +161,7 @@ don't get with a blogging platform:
 - analytics
   - Again, not a deal breaker, but nice to know if anyone is visiting
     your site! Google Analytics is free, but, Google! I use Fathom
-    Analytics (~£115 annually) one fee, unlimited sites.
+    Analytics (\~£115 annually) one fee, unlimited sites.
 - backup
   - All my content is stored in a git repo, so I can always go back to
     a previous version of my site if I need to.
@@ -177,7 +177,7 @@ Yes, but, you can get all of this for free as well.
 Also, really, you don't need all of this stuff. You can get away with
 a domain with SSL and hosting.
 
-**Conclusion**, there's obviously a time investment in setting up your
+*Conclusion*, there's obviously a time investment in setting up your
 own blog and a there can be _some_ costs involved. If you feel that
 you won't get anything out of setting up your own blog then use a
 blogging platform.
@@ -201,8 +201,8 @@ couple I'd recommend:
 
 <!-- cSpell:ignore Mehdi,Vasigh -->
 
-- [Matt Jennings' SvelteKit Blog Template]
-- [Mehdi Vasigh's SvelteKit MDSveX blog]
+- [Matt Jennings' SvelteKit Blog Template](https://github.com/mattjennings/sveltekit-blog-template)
+- [Mehdi Vasigh's SvelteKit MDSveX blog](https://github.com/mvasigh/sveltekit-mdsvex-blog)
 
 Both of these are specified as templates allowing you to create your
 own repository from them.
@@ -213,7 +213,7 @@ GitHub Codespaces, which is a VS Code instance running in the browser.
 Add your content, push it to GitHub and use one of the continuous
 deployment features of Vercel or Netlify to deploy your site.
 
-**Conclusion**, it's not as easy as using a blogging platform, but,
+*Conclusion*, it's not as easy as using a blogging platform, but,
 it's not _that_ hard either. You can be up and running in a short
 time.
 
@@ -230,7 +230,7 @@ ability to add your own CSS stylesheet. Let's face it though, if
 you've got to the point of having your own domain and customising the
 CSS you're probably better off setting up your own blog.
 
-**Conclusion**, some platforms allow you to customise your blog, to a
+*Conclusion*, some platforms allow you to customise your blog, to a
 certain extent. You have free reign to what you want to add to your
 own blog.
 
@@ -247,7 +247,7 @@ friends and was glossed over by the platform as a testing token.
 Needless to say, you can use your preferred provider on your own blog
 without any third party interference.
 
-**Conclusion**, you have full control over monetisation on your own
+*Conclusion*, you have full control over monetisation on your own
 blog. Blogging platforms can be hit amd miss with this.
 
 ## Ownership of content and data
@@ -259,9 +259,9 @@ discuss ownership of content and data.
 So, when you sign up to these services there'll be a section in the
 terms of service that says something along the lines of:
 
-**"You grant us (blogging platform) a perpetual, worldwide,
+*"You grant us (blogging platform) a perpetual, worldwide,
 royalty-free and non-exclusive license(s) do essentially what we like
-with Your Content."**
+with Your Content."*
 
 Now, terms of service are usually a lot more wordy than that, but,
 that's the gist of it. You're giving them the right to do what they
@@ -279,7 +279,7 @@ over on GitHub 👀. I'm cool with it as I have the SEO juice to back up
 that I am the original author of the content, I'll come onto SEO
 later.
 
-**Conclusion**, you own your content and data on your own blog.
+*Conclusion*, you own your content and data on your own blog.
 Blogging platforms will have terms of service that allow them to do
 what they like with your content.
 
@@ -301,7 +301,7 @@ spam which could infringe on the terms of service of the platform.
 Otherwise you could find yourself in a situation where your account is
 suspended or deleted.
 
-**Conclusion**, you're bound to the terms of service of any platform
+*Conclusion*, you're bound to the terms of service of any platform
 you use. They can decide to change these terms at any time and you, by
 using the platform are implicitly agreeing to these changes.
 
@@ -329,7 +329,7 @@ comfortable with setting up your own blog.
 
 The only thing is the time investment.
 
-**Conclusion**, blogging platforms make it easy to get up and running,
+*Conclusion*, blogging platforms make it easy to get up and running,
 you're restricted to the features they offer however.
 
 ## More responsibilities
@@ -341,7 +341,7 @@ With your own blog you have to take care of deploying new content,
 this can be done with a git push to GitHub, and have a CD service on
 Vercel take care of that part for you.
 
-**Conclusion**, you're responsible for moderating your content, you're
+*Conclusion*, you're responsible for moderating your content, you're
 responsible for building your community on both your own blog and a
 blogging platform. With your own blog you could have issues with
 deploying new content, you're responsible for making sure it's up and
@@ -359,7 +359,7 @@ arise.
 The blogging platform is up and maintained by them, that's their
 problem.
 
-**Conclusion**, blogging platforms win on this side only for the time
+*Conclusion*, blogging platforms win on this side only for the time
 element. Again, for your own blog this can a learning experience which
 will set you up for when this happens in the future.
 
@@ -437,20 +437,4 @@ Backups are important, so, if GitHub and Vercel decide to shut up shop
 tomorrow I can start hosting my blog on a Raspberry pi on my kitchen
 windowsill 😂.
 
-<!-- Links -->
-
-[since 2016 here]: https://scottspence.com/posts/hello-world
-[matt jennings' sveltekit blog template]:
-	https://github.com/mattjennings/sveltekit-blog-template
-[mehdi vasigh's sveltekit mdsvex blog]:
-	https://github.com/mvasigh/sveltekit-mdsvex-blog
-[writing with markdown]:
-	https://scottspence.com/posts/writing-with-markdown#markdown-headings
-[let me know]: mailto:yo@scottspence.com
-
-[]:https://startafuckingblog.com/#posse-every-fucking-thing
-
-<!-- Images -->
-
-[spam-messages-on-hashnode]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1673703390/scottspence.com/spam-messages-on-hashnode.jpg
+\[\]:[https://startafuckingblog.com/#posse-every-fucking-thing](https://startafuckingblog.com/#posse-every-fucking-thing)

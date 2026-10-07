@@ -18,7 +18,7 @@ the development build of Ubuntu 22.04 which is due to be released on
 You can Tl;Dr and watch the
 [video](#heres-a-video-detailing-the-process) if you like.
 
-I have [documented the process] in the past for moving from Ubuntu
+I have [documented the process](https://scottspence.com/posts/update-wsl-ubuntu-from-18.10-to-19.10) in the past for moving from Ubuntu
 version 18.04 to 19.10. You can see my comments as I went through the
 process back then.
 
@@ -87,7 +87,7 @@ sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 ```
 
 So for the development upgrade I'm going to be passing the development
-flag ([`-d`]) to the `do-release-upgrade` command:
+flag ([`-d`](https://ubuntu.com/server/docs/upgrade-introduction)) to the `do-release-upgrade` command:
 
 ```bash
 sudo do-release-upgrade -d
@@ -104,7 +104,6 @@ Calculating the changes
 Calculating the changes
 
 Do you want to start the upgrade?
-
 
 1 installed package is no longer supported by Canonical. You can
 still get support from the community.
@@ -126,18 +125,18 @@ I'll answer `y` to continue.
 The next is a prompt asking me if I want to configure a mail server!
 I'm not using Ubuntu for that so I'll skip that.
 
-[![configure-ubuntu-mail-server-initial]]
-[configure-ubuntu-mail-server-initial]
+\[![configure-ubuntu-mail-server-initial](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643235369/scottspence.com/configure-ubuntu-mail-server-initial.png)\]
+[configure-ubuntu-mail-server-initial](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643235369/scottspence.com/configure-ubuntu-mail-server-initial.png)
 
 I'll use the arrow keys to select `No configuration`.
 
-[![configure-ubuntu-mail-server-no-config]]
-[configure-ubuntu-mail-server-no-config]
+\[![configure-ubuntu-mail-server-no-config](https://res.cloudinary.com/defkmsrpw/image/upload/v1643235370/scottspence.com/configure-ubuntu-mail-server-no-config.png)\]
+[configure-ubuntu-mail-server-no-config](https://res.cloudinary.com/defkmsrpw/image/upload/v1643235370/scottspence.com/configure-ubuntu-mail-server-no-config.png)
 
 Then use the tab key to select `<Ok>` and hit the enter key to
 continue.
 
-[![configure-ubuntu-mail-server-ok]] [configure-ubuntu-mail-server-ok]
+\[![configure-ubuntu-mail-server-ok](https://res.cloudinary.com/defkmsrpw/image/upload/v1643235369/scottspence.com/configure-ubuntu-mail-server-ok.png)\] [configure-ubuntu-mail-server-ok](https://res.cloudinary.com/defkmsrpw/image/upload/v1643235369/scottspence.com/configure-ubuntu-mail-server-ok.png)
 
 Next I'm prompted to confirm the removal of the obsolete packages,
 I'll answer `y` to this and hit enter.
@@ -151,7 +150,6 @@ Searching for obsolete software
 Reading state information... Done
 
 Remove obsolete packages?
-
 
 68 packages are going to be removed.
 
@@ -210,18 +208,3 @@ well!
 That's it! I've upgraded my Ubuntu version from 20.04 to 22.04!
 
 I hope you found useful and I'll see you in the next one!
-
-<!-- Links -->
-
-[documented the process]:
-	https://scottspence.com/posts/update-wsl-ubuntu-from-18.10-to-19.10
-[`-d`]: https://ubuntu.com/server/docs/upgrade-introduction
-
-<!-- Images -->
-
-[configure-ubuntu-mail-server-initial]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643235369/scottspence.com/configure-ubuntu-mail-server-initial.png
-[configure-ubuntu-mail-server-no-config]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/v1643235370/scottspence.com/configure-ubuntu-mail-server-no-config.png
-[configure-ubuntu-mail-server-ok]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/v1643235369/scottspence.com/configure-ubuntu-mail-server-ok.png

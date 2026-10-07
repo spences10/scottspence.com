@@ -46,7 +46,7 @@ feature flag discovered via
 [GitHub issue #15619](https://github.com/anthropics/claude-code/issues/15619)
 \- not in the official docs yet.
 
-**Step 1: Install the language server**
+*Step 1: Install the language server*
 
 I use [Volta](https://volta.sh) for managing global Node packages:
 
@@ -56,7 +56,7 @@ volta install typescript-language-server typescript
 
 If you're not using Volta, `npm i -g` works fine too.
 
-**Step 2: Update your Claude Code settings**
+*Step 2: Update your Claude Code settings*
 
 Add `ENABLE_LSP_TOOL` to your `~/.claude/settings.json` env and enable
 the TypeScript LSP plugin:
@@ -76,7 +76,7 @@ Merge these into your existing settings - don't overwrite what's
 already there. I made that mistake initially, editing the wrong file
 entirely. Classic. 😅
 
-**Step 3: Restart Claude Code**
+*Step 3: Restart Claude Code*
 
 LSP servers initialise at startup. You need a full restart for it to
 pick up the new config.
@@ -99,13 +99,13 @@ answer.
 
 A few things I hit during setup:
 
-- **Plugin installed but disabled** - this is the #1 issue. If
+- *Plugin installed but disabled* - this is the #1 issue. If
   `claude plugin list` shows `Status: disabled`, run
   `claude plugin enable typescript-lsp` and restart
-- **Schema validation warnings** - your IDE might show squiggles on
+- *Schema validation warnings* - your IDE might show squiggles on
   `ENABLE_LSP_TOOL` in settings.json because it's not in the official
   schema yet. Harmless - the setting still works
-- **First LSP call can miss** - in my test, the first attempt tried
+- *First LSP call can miss* - in my test, the first attempt tried
   the wrong symbol name and returned 0 results. It self-corrected on
   the second try. Minor quirk
 
@@ -117,13 +117,13 @@ history database (`ccrecall.db` — shout out to
 easy) and pulled the numbers on how much LSP actually gets used versus
 Grep and Glob over the first four days.
 
-| Day              | LSP    | Grep    | Glob    |
-| ---------------- | ------ | ------- | ------- |
-| Feb 28 (enabled) | 2      | 33      | 51      |
-| Mar 1            | 7      | 173     | 145     |
-| Mar 2            | 0      | 245     | 287     |
-| Mar 3            | 3      | 88      | 48      |
-| **Total**        | **12** | **539** | **531** |
+| Day | LSP | Grep | Glob |
+| --- | --- | --- | --- |
+| Feb 28 (enabled) | 2 | 33 | 51 |
+| Mar 1 | 7 | 173 | 145 |
+| Mar 2 | 0 | 245 | 287 |
+| Mar 3 | 3 | 88 | 48 |
+| *Total* | *12* | *539* | *531* |
 
 Twelve. Twelve LSP calls out of 1,082 total code navigation calls.
 That's 1.1%. 😅
@@ -132,25 +132,25 @@ I was honestly expecting a bigger shift. So I dug into why.
 
 ### Why the low numbers?
 
-**The system prompt wins.** Claude Code's built-in system prompt
+*The system prompt wins.* Claude Code's built-in system prompt
 actively tells the model to use Grep for content search and Glob for
 file search. My `CLAUDE.md` instruction saying "prefer LSP" competes
 with that, and the system prompt is stronger context. The model
 defaults to what it's told to do.
 
-**No `.svelte` file support.** The last LSP call I looked at returned
+*No `.svelte` file support.* The last LSP call I looked at returned
 `"No LSP server available for file type: .svelte"`. The TypeScript LSP
 only handles `.ts` and `.js` files. For a SvelteKit project where half
 the code lives in `.svelte` files, that's a big gap. No Svelte LSP
 plugin exists for Claude Code yet.
 
-**Follow-up, 13 September 2026:** That describes my Claude Code setup
+*Follow-up, 13 September 2026:* That describes my Claude Code setup
 at the time of this post. I later wrote about
 [adding LSP to my-pi](/posts/add-lsp-to-my-pi), including Svelte
 support. That's a different coding agent harness, not a plugin to
 install in Claude Code.
 
-**LSP and Grep aren't replacements — they're complementary.** LSP
+*LSP and Grep aren't replacements — they're complementary.* LSP
 needs a specific file path, line number, and character position to
 work. You need to already know _where_ to look. Grep and Glob are
 discovery tools — they _find_ things. LSP is a precision tool — it

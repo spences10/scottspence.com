@@ -20,10 +20,10 @@ people noticing similar issues.
 Here's a few of the issues I found when trying to understand what was
 going on:
 
-- [Port forwarding repeated failure on WSL 1.1.0]
-- [Some network connections hang (timed out) under WSL]
+- [Port forwarding repeated failure on WSL 1.1.0](https://github.com/microsoft/WSL/issues/9508)
+- [Some network connections hang (timed out) under WSL](https://github.com/microsoft/WSL/issues/7326)
 - [SSH to remote causes disconnect with client_loop: send disconnect:
-  Broken pipe]
+  Broken pipe](https://github.com/microsoft/WSL/issues/7966)
 
 The first issue in the list there is where I found a solution that
 worked for me, so might work for you if you're having the same issue.
@@ -33,11 +33,11 @@ previous version.
 
 <!-- cSpell:ignore rudyzeinoun -->
 
-Thanks to [this comment] from [rudyzeinoun] which details the Windows
+Thanks to [this comment](https://github.com/microsoft/WSL/issues/9508#issuecomment-1396866615) from [rudyzeinoun](https://github.com/rudyzeinoun) which details the Windows
 PowerShell commands to do this.
 
 Before running the commands, you'll need to download the previous
-version of WSL from the [releases page] on GitHub.
+version of WSL from the [releases page](https://github.com/microsoft/WSL/releases) on GitHub.
 
 <!-- cSpell:ignore msixbundle -->
 
@@ -79,16 +79,3 @@ to the Microsoft Store to install the latest version.
 
 Leaving this here in the hope it will help someone else, and also for
 me and the next time I need to do this!!
-
-<!-- Links -->
-
-[releases page]: https://github.com/microsoft/WSL/releases
-[port forwarding repeated failure on wsl 1.1.0]:
-	https://github.com/microsoft/WSL/issues/9508
-[some network connections hang (timed out) under wsl]:
-	https://github.com/microsoft/WSL/issues/7326
-[ssh to remote causes disconnect with client_loop: send disconnect: broken pipe]:
-	https://github.com/microsoft/WSL/issues/7966
-[this comment]:
-	https://github.com/microsoft/WSL/issues/9508#issuecomment-1396866615
-[rudyzeinoun]: https://github.com/rudyzeinoun

@@ -15,18 +15,18 @@ repeatedly without having to provide user name and password details
 then SSH is a good option.
 
 If you are unfamiliar with using SSH to authenticate with git then
-take a look at my cheat sheets repository ([ss10.me/cheat-sheets])
+take a look at my cheat sheets repository ([ss10.me/cheat-sheets](https://github.com/spences10/cheat-sheets))
 there are several sections covering SSH, notably:
 
-- [How to Authenticate with GitHub Using SSH]
-- [Use multiple SSH Keys] (what this post is covering)
-- [Re Use SSH Keys from one Machine to Another]
+- [How to Authenticate with GitHub Using SSH](https://cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh)
+- [Use multiple SSH Keys](https://cheatsheets.xyz/git/#use-multiple-ssh-keys) (what this post is covering)
+- [Re Use SSH Keys from one Machine to Another](https://cheatsheets.xyz/git/#re-use-ssh-keys-from-one-machine-to-another)
 
 I have come across this set-up a few times now and implemented it for
 myself.
 
 You'll need to create a `config` file in the `.ssh` folder in your
-home directory (Windows, Ubuntu or both if you use a [WSL set-up])
+home directory (Windows, Ubuntu or both if you use a [WSL set-up](https://scottspence.com/posts/wsl-bootstrap-2019))
 check with:
 
 ```bash
@@ -36,7 +36,7 @@ ll ~/.ssh/
 This will list out the contents of the folder, if you get
 `No such file or directory` then you don't have SSH configured.
 
-Take a look at the [How to Authenticate with GitHub Using SSH] section
+Take a look at the [How to Authenticate with GitHub Using SSH](https://cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh) section
 on the cheat-sheets repo for details on that.
 
 For this example let's presume that we have already created our SSH
@@ -109,7 +109,7 @@ git config user.email 'your@email.com'
 ```
 
 I have since found an ok solution here:
-https://stackoverflow.com/a/43654115/1138354
+[https://stackoverflow.com/a/43654115/1138354](https://stackoverflow.com/a/43654115/1138354)
 
 Example:
 
@@ -134,14 +134,3 @@ Work specific config `~/work/.gitconfig`
   name = work.user
   email = work.user@megacorp.ltd
 ```
-
-<!-- Links -->
-
-[ss10.me/cheat-sheets]: https://github.com/spences10/cheat-sheets
-[how to authenticate with github using ssh]:
-	https://cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh
-[use multiple ssh keys]:
-	https://cheatsheets.xyz/git/#use-multiple-ssh-keys
-[re use ssh keys from one machine to another]:
-	https://cheatsheets.xyz/git/#re-use-ssh-keys-from-one-machine-to-another
-[wsl set-up]: https://scottspence.com/posts/wsl-bootstrap-2019

@@ -8,14 +8,14 @@ is_private: false
 Fathom Analytics, a great tool to use for your site analytics without
 the compromise of giving your visitors data to Google.
 
-I've written about [How to Track Custom Events with Fathom] in the
-past but since then Fathom have [changed their tracking/embed code],
+I've written about [How to Track Custom Events with Fathom](https://scottspence.com/posts/track-custom-events-with-fathom-analytics) in the
+past but since then Fathom have [changed their tracking/embed code](https://usefathom.com/support/tracking),
 which means the config is slightly different.
 
 ## Install
 
 With the new embed code there's a guide on how to [use the code with
-Gatsby] on Fathom's blog. It involves modifying the Gatsby `html.js`
+Gatsby](https://usefathom.com/integrations/gatsbyjs) on Fathom's blog. It involves modifying the Gatsby `html.js`
 file which I'm not too keen on doing, although it works fine, it's not
 recommended.
 
@@ -30,7 +30,7 @@ in a module that's shared between `gatsby-browser.js` and
 ## There's a Plugin for That
 
 There's also a plugin available, you can configure
-[`gatsby-plugin-fathom`] which will take the same details, a site id
+[`gatsby-plugin-fathom`](https://www.gatsbyjs.com/packages/gatsby-plugin-fathom/) which will take the same details, a site id
 and a custom domain but as far as I can tell it's still using the
 previous version of the embed code.
 
@@ -151,18 +151,5 @@ export const A = (props) => {
 ```
 
 I've written before on how to [Add Analytics Tracking Links to your
-Markdown] this still stands apart from there's no need to include
+Markdown](https://scottspence.com/posts/add-tracking-links-to-your-markdown/) this still stands apart from there's no need to include
 quotes (`""`) around the `goalId`.
-
-<!-- Links -->
-
-[how to track custom events with fathom]:
-	https://scottspence.com/posts/track-custom-events-with-fathom-analytics
-[changed their tracking/embed code]:
-	https://usefathom.com/support/tracking
-[use the code with gatsby]:
-	https://usefathom.com/integrations/gatsbyjs
-[`gatsby-plugin-fathom`]:
-	https://www.gatsbyjs.com/packages/gatsby-plugin-fathom/
-[add analytics tracking links to your markdown]:
-	https://scottspence.com/posts/add-tracking-links-to-your-markdown/

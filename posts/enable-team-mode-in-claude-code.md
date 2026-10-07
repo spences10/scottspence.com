@@ -5,11 +5,11 @@ tags: ['claude', 'claude-code', 'guide', 'orchestration']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Banner } from '#lib/components/index.js'
 
   const options = {
-    type: 'info',
+    type: 'info' as const,
     message: `Team mode coordinates agents in your terminal.
       <a href="https://svortie.com" target="_blank" rel="noopener noreferrer">
       Svortie</a> does it in the cloud. Scheduled workflows, isolated
@@ -68,11 +68,11 @@ Teammate mode              auto
 
 This controls how teammates render in the terminal. Three options:
 
-| Mode         | What it does                                                                   |
-| ------------ | ------------------------------------------------------------------------------ |
-| `auto`       | Split panes in tmux, in-process otherwise                                      |
+| Mode | What it does |
+| --- | --- |
+| `auto` | Split panes in tmux, in-process otherwise |
 | `in-process` | All teammates in the main terminal. `Shift+Up/Down` to select, `Enter` to view |
-| `tmux`       | Each teammate gets its own pane. Requires tmux or iTerm2                       |
+| `tmux` | Each teammate gets its own pane. Requires tmux or iTerm2 |
 
 I use `auto` which defaults to in-process on my setup (Ghostty doesn't
 support tmux pane splitting). Works fine. It can also be set in
@@ -86,7 +86,7 @@ support tmux pane splitting). Works fine. It can also be set in
 
 ## Permission mode
 
-I initially tried the **Delegate Mode** but was getting permission
+I initially tried the *Delegate Mode* but was getting permission
 issues, if you don't live your life in YOLO mode
 (`--dangerously-skip-permissions`) then this will happen.
 
@@ -152,15 +152,15 @@ lead coordinates and synthesises results.
 
 The tools:
 
-| Tool          | Purpose                               |
-| ------------- | ------------------------------------- |
-| `TeamCreate`  | Create a team with shared task list   |
-| `TaskCreate`  | Create tasks with dependencies        |
-| `TaskUpdate`  | Claim, complete, or modify tasks      |
-| `TaskList`    | List available and blocked tasks      |
-| `TaskGet`     | Get full task details                 |
+| Tool | Purpose |
+| --- | --- |
+| `TeamCreate` | Create a team with shared task list |
+| `TaskCreate` | Create tasks with dependencies |
+| `TaskUpdate` | Claim, complete, or modify tasks |
+| `TaskList` | List available and blocked tasks |
+| `TaskGet` | Get full task details |
 | `SendMessage` | DM teammates, broadcast, or shut down |
-| `TeamDelete`  | Clean up team resources when done     |
+| `TeamDelete` | Clean up team resources when done |
 
 ## Quick start
 

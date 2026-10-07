@@ -13,7 +13,7 @@ For as long as I have been learning web development (<DateDistance
 date="2016-06-15" />) I have been taking notes. Partly notes to help
 clarify my understanding of something and partly for future me.
 
-That's why I have my [digital garden], an online collection of my
+That's why I have my [digital garden](https://scottspence.com/garden), an online collection of my
 learning over the years.
 
 What is in my garden is not the full extent of the notes I have taken
@@ -22,11 +22,11 @@ me if I ever come across this one particular thing which took a while
 to fix/resolve in the past.
 
 Stuff like that doesn't really warrant going into a post so I have
-[Cheat Sheets] where that will get added to and grouped with the
+[Cheat Sheets](https://cheatsheets.xyz) where that will get added to and grouped with the
 relevant information.
 
 It's not been until recently that I have come to learn of the
-[Zettelkasten] method, which translates from German to note box.
+[Zettelkasten](https://zettelkasten.de/) method, which translates from German to note box.
 
 With tools like RoamResearch and Notion gaining popularity and me
 using many of them I've decided to make some notes on my opinions of
@@ -42,16 +42,16 @@ I'm in full control of.
 
 GitHub is where it all began for me, with git being a particular
 sticking point with a lot of commands that were all pretty alien at
-the time so I started adding the commands [to a gist] which has a
-history going back to [the start of 2017].
+the time so I started adding the commands [to a gist](https://gist.github.com/spences10/5c492e197e95158809a83650ff97fc3a) which has a
+history going back to [the start of 2017](https://gist.github.com/spences10/5c492e197e95158809a83650ff97fc3a/revisions?page=2#diff-0517f094a4805e87e00d10b2891d99e4).
 
 As this list started to grow I also had other areas that I needed to
 keep these little one-liners to hand, git being the largest but other
-things like [how to screen snip] on macOS and [kill a process] with
+things like [how to screen snip](https://cheatsheets.xyz/mac/#screen-snip) on macOS and [kill a process](https://cheatsheets.xyz/bash/#kill-process-on-port) with
 bash, all started adding up.
 
-I moved them all into [one repository] for ease of access for me.
-These later were added to [Cheat Sheets].xyz
+I moved them all into [one repository](https://github.com/spences10/cheat-sheets) for ease of access for me.
+These later were added to [Cheat Sheets](https://cheatsheets.xyz).xyz
 
 ## Notion
 
@@ -139,14 +139,14 @@ cheated when I couldn't select a tab or move lines around.
 
 ## Foam
 
-So, Foam! [Foam is a VS Code extension] that enables the features of
+So, Foam! [Foam is a VS Code extension](https://github.com/foambubble/foam) that enables the features of
 Obsidian but with the editing power of VS Code, so no brainier, right?
 
-Foam are the first to admit that [things may be a little rough] as
+Foam are the first to admit that [things may be a little rough](https://foambubble.github.io/foam/#getting-started) as
 it's still in preview. But I _really_ like working with my Markdown in
 VS Code so I'm prepared for the teething issues.
 
-There's a [super welcoming Discord] to join and talk to other users
+There's a [super welcoming Discord](https://discord.gg/rtdZKgj) to join and talk to other users
 and the developers.
 
 With my new liberated data from Notion and RoamResearch I'm in the
@@ -157,20 +157,3 @@ The Foam graph view is still a WIP so I'm referring to Obsidian to
 check that out for now.
 
 I'm super excited following the progress of this!
-
-<!-- Links -->
-
-[digital garden]: https://scottspence.com/garden
-[cheat sheets]: https://cheatsheets.xyz
-[zettelkasten]: https://zettelkasten.de/
-[to a gist]:
-	https://gist.github.com/spences10/5c492e197e95158809a83650ff97fc3a
-[the start of 2017]:
-	https://gist.github.com/spences10/5c492e197e95158809a83650ff97fc3a/revisions?page=2#diff-0517f094a4805e87e00d10b2891d99e4
-[how to screen snip]: https://cheatsheets.xyz/mac/#screen-snip
-[kill a process]: https://cheatsheets.xyz/bash/#kill-process-on-port
-[one repository]: https://github.com/spences10/cheat-sheets
-[foam is a vs code extension]: https://github.com/foambubble/foam
-[things may be a little rough]:
-	https://foambubble.github.io/foam/#getting-started
-[super welcoming discord]: https://discord.gg/rtdZKgj

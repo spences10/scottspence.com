@@ -21,7 +21,7 @@ to do.
 ## Download the rootfs
 
 A search for "fedora container base" will point to this URL:
-https://koji.fedoraproject.org/koji/packageinfo?packageID=26387 there
+[https://koji.fedoraproject.org/koji/packageinfo?packageID=26387](https://koji.fedoraproject.org/koji/packageinfo?packageID=26387) there
 was a lot of clicking around but eventually I found something to use.
 If you're following along, what you need to look for is something like
 `Fedora-Container-Base-39-20240311.0`, clicking into that gave me the
@@ -127,10 +127,10 @@ Not essential but I've had this in the last guide and it's changed
 since then so detailing here for prosperity.
 
 You can check out what you get with wslu on the GitHub repo here:
-https://github.com/wslutilities/wslu
+[https://github.com/wslutilities/wslu](https://github.com/wslutilities/wslu)
 
 Also the docs site where I got this info from:
-https://wslutiliti.es/wslu/install.html
+[https://wslutiliti.es/wslu/install.html](https://wslutiliti.es/wslu/install.html)
 
 Install:
 
@@ -154,7 +154,7 @@ So, for me there's several things that I need, Zsh, Oh My Zsh, Node,
 NVM, pnpm.
 
 I've done a whole guide on my preferred Zsh setup here:
-https://www.scottspence.com/posts/my-zsh-config
+[https://www.scottspence.com/posts/my-zsh-config](https://www.scottspence.com/posts/my-zsh-config)
 
 I'm going to detail the process here too.
 
@@ -278,9 +278,9 @@ Setting up git, I used to go through moving SSH files from an existing
 WSL instance over to a new one but it's just as simple to set up
 another SSH key and add it to my GitHub account.
 
-I haven't changed the process for myself in an **age**, maybe it's
+I haven't changed the process for myself in an *age*, maybe it's
 changed, for now I'll keep following this guide I made a couple of
-years ago: https://scottspence.com/posts/set-up-ssh-for-use-with-git
+years ago: [https://scottspence.com/posts/set-up-ssh-for-use-with-git](https://scottspence.com/posts/set-up-ssh-for-use-with-git)
 
 ## Something go wrong? Start over!
 

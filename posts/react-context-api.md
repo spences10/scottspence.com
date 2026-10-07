@@ -18,34 +18,34 @@ Let's use the React Context API to change theme in an app!
 
 This is what it will look like by the end of this post:
 
-![theme switching in react app]
+![theme switching in react app](https://thepracticaldev.s3.amazonaws.com/i/zmp2k4r128poj1gsws61.gif)
 
-## But first, some **context**! 🤣
+## But first, some *context*! 🤣
 
 Ok terrible puns aside let's have a look at what the React Context API
 is for and what it does. There's a great one liner from the [React
-docs]...
+docs](https://reactjs.org/docs/context.html)...
 
 > Context provides a way to pass data through the component tree
 > without having to pass props down manually at every level.
 
 Or in other words, you can use the React Context API to avoid [prop
-drilling] if you need more detail on the concept then please do check
+drilling](https://blog.kentcdodds.com/prop-drilling-bb62e02cb691) if you need more detail on the concept then please do check
 out the links provided.
 
-I've previously gone over implementing the React Context API in [my
-Gatsby blog] which I documented as I did it; you can see [how that
-went here].
+I've previously gone over implementing the React Context API in \[my
+Gatsby blog\] which I documented as I did it; you can see [how that
+went here](https://scottspence.com/posts/react-context-api/).
 
 > ### Explain the Context API to me.
 >
 > A great resource on explaining the API can be found from
-> [@leighchalliday] with a [great use case] on the subject.
+> [@leighchalliday](https://twitter.com/leighchalliday) with a [great use case](https://www.youtube.com/watch?v=yzQ_XulhQFw) on the subject.
 
 ## What we're doing...
 
 For this post we're going to extend the example we created for
-[styled-components getting started] as it has the majority of the code
+[styled-components getting started](https://scottspence.com/posts/styled-components/) as it has the majority of the code
 we'll need to get started with the React Context API.
 
 We're going to extend that example to manage the theme state of the
@@ -62,14 +62,14 @@ So in summary:
 
 All we'll be needing is an internet connection and a modern web
 browser! Because we're going to do all of this online in the awesome
-[CodeSandbox]!
+[CodeSandbox](https://codesandbox.io)!
 
 If you have a GitHub account or not, CodeSandbox will let you get
-started [coding straight away]!
+started [coding straight away](https://codesandbox.io/s/new)!
 
 ### Versions:
 
-**This guide is being used with the following dependency versions.**
+*This guide is being used with the following dependency versions.*
 
 - react: 16.4.2
 - react-dom: 16.4.2
@@ -84,21 +84,21 @@ So let's go over theming the basic create react app again, this time
 instead of adding state into to the component we will use the React
 Context API to manage the state for us. There will be people that will
 argue that this is a bit overkill for a theme switch but it is given
-as an example of [when to use the Context API] in the React
+as an example of [when to use the Context API](https://reactjs.org/docs/context.html#when-to-use-context) in the React
 documentation so I will let you decide on the validity of that point.
 For this example, I hope it will give you a clearer picture of how to
 use the Context API in an application.
 
 ### Dependencies
 
-[Open a React CodeSandbox] and add `styled-components` as a
+[Open a React CodeSandbox](https://codesandbox.io/s/new) and add `styled-components` as a
 dependency:
 
-![codesandbox initial]
+![codesandbox initial](https://thepracticaldev.s3.amazonaws.com/i/d49drafvtvz3ws2br9vs.gif)
 
 ### File structure
 
-Another area for [bikeshedding] is file structure, in this scenario
+Another area for [bikeshedding](https://en.wiktionary.org/wiki/bikeshedding) is file structure, in this scenario
 we're adding folders for `components`, `contexts` and the `theme`
 please feel free to structure your files how you see fit, this is how
 we're going to do it for this example ❤️
@@ -121,20 +121,20 @@ context-demo/
 Ok, so, what we're going to do is add in an `App.js` component to the
 `components` folder then use that in the `src/index.js` file.
 
-The `App.js` component can be a [stateless functional component] as
+The `App.js` component can be a [stateless functional component](https://reactjs.org/docs/state-and-lifecycle.html#the-data-flows-down) as
 for this example as we're going to be handling state with the Context
 API.
 
 Here you can see my sketchy typing as I create the directories and add
 in the `App.js` component.
 
-![codesandbox 1]
+![codesandbox 1](https://thepracticaldev.s3.amazonaws.com/i/oyxpggt00q754iv1azp0.gif)
 
 We can then remove the `style.css` file and reference in
 `src/index.js` as we're going to be styling with styled-components 💅
 and then use our `App.js` component:
 
-![codesandbox 2]
+![codesandbox 2](https://thepracticaldev.s3.amazonaws.com/i/yyne3q36jc0zca2ld89u.gif)
 
 Ok, so the reason why I have abstracted the `App.js` component out of
 the `src/index.js` file is so that when we come to using the Context
@@ -145,7 +145,7 @@ API we can add it to the highest level in our app, which is
 
 So this isn't really the Create React App, as we're using CodeSandbox
 instead, I have gone over the basic styling used in the
-[styled-components getting started] post so it's time to refer to that
+[styled-components getting started](https://scottspence.com/posts/styled-components/) post so it's time to refer to that
 to mimic the styles we need.
 
 That means what we're going to do, rather than go into depth on the
@@ -154,11 +154,11 @@ React App appearance, we're going to re-use components, so there's
 going to be a bit of copy pasting involved now.
 
 The Create React App boilerplate code has one file that we go over
-styling in the [styled-components getting started] post which is the
+styling in the [styled-components getting started](https://scottspence.com/posts/styled-components/) post which is the
 `App.js` file, the others are left or deleted, the basic style of
 `App.js` is:
 
-**`App.css`**
+*`App.css`*
 
 ```css
 .App {
@@ -217,10 +217,10 @@ Button
 could be used for layout with CSS Grid or Flexbox, in our case we're
 going to align the text center.
 
-![codesandbox 3]
+![codesandbox 3](https://thepracticaldev.s3.amazonaws.com/i/uc08zkkf4ay1hq8pkt3w.gif)
 
 Straightforward enough, right? Now the majority of the rest of the
-components will use the styled-components [`ThemeProvider`] which is
+components will use the styled-components [`ThemeProvider`](https://www.styled-components.com/docs/advanced#theming) which is
 what we're going to pass our theme to from the Context API.
 
 ## Add themes to switch between with the React Context API
@@ -289,14 +289,14 @@ injectGlobal`
 `;
 ```
 
-![codesandbox 4]
+![codesandbox 4](https://thepracticaldev.s3.amazonaws.com/i/qnxbteccbaw92jbwsq9c.gif)
 
 Ok, so nothing really happening there apart from setting up the styles
 for use later.
 
 You will notice that `injectGlobal` is being used here, this is where
 we're setting the fonts for use throughout the app, `injectGlobal`
-[should be used once] in an app to set global styles like this.
+[should be used once](https://stackoverflow.com/a/42899789/1138354) in an app to set global styles like this.
 
 Onwards! Let us now focus on getting the basic app styles into the
 `App.js` component. We can now start using the `ThemeProvider` in
@@ -323,7 +323,7 @@ there won't be any change until the `ThemeProvider` is passed the
 `ThemeProvider` component so that any component encapsulated by the
 `ThemeProvider` is able to receive `theme` props.
 
-![codesandbox 5]
+![codesandbox 5](https://thepracticaldev.s3.amazonaws.com/i/nuyaw29uoex6qcluf8va.gif)
 
 `AppTitle` is going to be a h1 so:
 
@@ -334,7 +334,7 @@ const AppTitle = styled.h1`
 ```
 
 For the spinning React logo we can use the asset used previously in
-the [styled-components getting started example]
+the [styled-components getting started example](https://codesandbox.io/s/x26q7l9vyq)
 
 We can add it in with the imports at the top of the `App.js` component
 and add it into the `AppLogo` styled component as an `img` tag:
@@ -366,17 +366,17 @@ const AppLogo = styled.img`
 `;
 ```
 
-![codesandbox 6]
+![codesandbox 6](https://thepracticaldev.s3.amazonaws.com/i/pxe3fb5zqvprvtjthq5b.gif)
 
 ### Shared components
 
 Shared components are covered in the [styled-components getting
-started] guide if you need more information, for this example we're
+started](https://scottspence.com/posts/styled-components/) guide if you need more information, for this example we're
 going to bring in the final couple of components as shared ones for
 the `StyledHyperLink` and `Button` in `src/Shared.js` add the
 following:
 
-**`src/Shared.js`**
+*`src/Shared.js`*
 
 ```js
 import styled, { css } from 'styled-components';
@@ -432,7 +432,7 @@ export const StyledHyperLink = styled.a`
 
 Then import the components like any other:
 
-![codesandbox 7]
+![codesandbox 7](https://thepracticaldev.s3.amazonaws.com/i/ipi1kdmy83ieiw6sppog.gif)
 
 The last three components for now, `AppIntro`, `Underline` and
 `StyledHyperLink`:
@@ -458,11 +458,11 @@ const StyledHyperLink = SHL.extend`
 `;
 ```
 
-![codesandbox 8]
+![codesandbox 8](https://thepracticaldev.s3.amazonaws.com/i/smm6hpg2w71sxm6nf3ln.gif)
 
 Add them in under the `AppLogo` styled component and then we can add
 the rest of the components into the `App` function `return`, so, ready
-for another [copy pasta]? Here:
+for another [copy pasta](https://www.urbandictionary.com/define.php?term=copypasta)? Here:
 
 ```js
 <AppIntro>
@@ -519,7 +519,7 @@ Sorry for the code wall! Right paste that in under the closing
 `</AppHeader>` tag and we should have the base of what we're going to
 theme!
 
-![codesandbox 9]
+![codesandbox 9](https://thepracticaldev.s3.amazonaws.com/i/zfcnihvmyvb9my5dn11x.gif)
 
 Ok? How's it looking?
 
@@ -537,7 +537,7 @@ Now for the main event! Here we're going to cover:
 
 So, passing state needlessly through components is what we can use the
 Context API to avoid. If we take a look at the [styled-components
-getting started example] we can see the state being managed in the
+getting started example](https://codesandbox.io/s/x26q7l9vyq) we can see the state being managed in the
 `App.js` component and the `handleThemeChange` function has to be
 passed to the `ThemeSelect` component much the same way as any props
 would need to be passed down. That is a simplified example but it's
@@ -546,7 +546,7 @@ a menu item there would be several other components that would need to
 have the state passed through them that would not actually need that
 state or props. Make sense?
 
-**example**
+*example*
 
 ```js
 <App>               {/* state begins here */}
@@ -648,11 +648,11 @@ export class SiteThemeProvider extends React.Component {
 
 Ok, it's been a while since I've added a gif, time for another one!
 
-![codesandbox 10]
+![codesandbox 10](https://thepracticaldev.s3.amazonaws.com/i/n2qbxs7cbf7w5opqcri2.gif)
 
 And bring in the `themes` and add state:
 
-![codesandbox 11]
+![codesandbox 11](https://thepracticaldev.s3.amazonaws.com/i/y6n32p1gshah5ex747mu.gif)
 
 Now we can add in a function to the provider to change the theme state
 based on what has been selected via the `handleThemeChange` event
@@ -712,12 +712,12 @@ about to make.
 
 Let's go through adding in the function and adding that to the state:
 
-![codesandbox 12]
+![codesandbox 12](https://thepracticaldev.s3.amazonaws.com/i/3bh3bwi4ekb24uowvm65.gif)
 
 And now we can add the theme provider to `src/index.js` so anything
 lower in the dependency tree can access it via a consumer.
 
-![codesandbox 13]
+![codesandbox 13](https://thepracticaldev.s3.amazonaws.com/i/p8nibx8ecfildi92jscm.gif)
 
 ### Add the theme select
 
@@ -740,7 +740,7 @@ which is a select box, some options and a wrapper.
 
 First we'll do it without the consumer then we'll add it in.
 
-**`ThemeSelect.js`**
+*`ThemeSelect.js`*
 
 ```js
 import React from 'react';
@@ -786,7 +786,7 @@ const ThemeSelect = (props) => {
 export default ThemeSelect;
 ```
 
-![codesandbox 14]
+![codesandbox 14](https://thepracticaldev.s3.amazonaws.com/i/43e15llsi8uhlmi1z1ut.gif)
 
 So from this we can list the this themes available to us in the
 `themes` object. But that's it, the function to handle the theme
@@ -827,7 +827,7 @@ const ThemeSelect = props => {
 export default ThemeSelect
 ```
 
-![codesandbox 15]
+![codesandbox 15](https://thepracticaldev.s3.amazonaws.com/i/1qq4hc2zqa50t0t2vi5v.gif)
 
 Currently this isn't going to change the theme because we have that
 hardcoded into the styled-components `ThemeProvider`, what we want to
@@ -843,103 +843,22 @@ Then in the `App` component we can import our
 `SiteThemeContext` state and pass that to the styled-components
 `ThemeProvider`.
 
-![codesandbox 16]
+![codesandbox 16](https://thepracticaldev.s3.amazonaws.com/i/jn5u8bzuvufpa56c9ta7.gif)
 
 ### Want to know more?
 
 As mentioned at the start of this article a great resource is
-[@leighchalliday] and [his YouTube channel] where you can find his
-[great use case] for the React Context API.
+[@leighchalliday](https://twitter.com/leighchalliday) and [his YouTube channel](https://www.youtube.com/channel/UCWPY8W-FAZ2HdDiJp2RC_sQ) where you can find his
+[great use case](https://www.youtube.com/watch?v=yzQ_XulhQFw) for the React Context API.
 
-There's also the [React community on spectrum] and [styled-components
-on spectrum].
+There's also the [React community on spectrum](https://spectrum.chat/react) and [styled-components
+on spectrum](https://spectrum.chat/styled-components).
 
-[Example code] of the walkthrough is available on [CodeSandbox].
+[Example code](https://codesandbox.io/s/5vl16n5oxp) of the walkthrough is available on [CodeSandbox](https://codesandbox.io).
 
 ### Thanks for reading 🙏
 
 If there is anything I have missed, or if there is a better way to do
 something then please let me know.
 
-Follow me on [Twitter] or [Ask Me Anything] on GitHub.
-
-<!-- Links -->
-
-[how that went here]: https://scottspence.com/posts/react-context-api/
-[styled-components getting started]:
-	https://scottspence.com/posts/styled-components/
-[example]: https://codesandbox.io/s/7wwr706nz0
-[react docs]: https://reactjs.org/docs/context.html
-[prop drilling]:
-	https://blog.kentcdodds.com/prop-drilling-bb62e02cb691
-[@leighchalliday]: https://twitter.com/leighchalliday
-[great use case]: https://www.youtube.com/watch?v=yzQ_XulhQFw
-[codesandbox]: https://codesandbox.io
-[coding straight away]: https://codesandbox.io/s/new
-[open a react codesandbox]: https://codesandbox.io/s/new
-[when to use the context api]:
-	https://reactjs.org/docs/context.html#when-to-use-context
-[bikeshedding]: https://en.wiktionary.org/wiki/bikeshedding
-[styled-components getting started]:
-	https://medium.com/styled-components/styled-components-getting-started-c9818acbcbbd
-[styled-components getting started example]:
-	https://codesandbox.io/s/x26q7l9vyq
-[`themeprovider`]:
-	https://www.styled-components.com/docs/advanced#theming
-[stateless functional component]:
-	https://reactjs.org/docs/state-and-lifecycle.html#the-data-flows-down
-[should be used once]: https://stackoverflow.com/a/42899789/1138354
-[copy pasta]:
-	https://www.urbandictionary.com/define.php?term=copypasta
-[scaffold]:
-	https://github.com/spences10/settings/blob/35ba1ca3e9871c3ea6344ca2274ebbd327a18bed/globalVs.code-snippets#L74-L112
-[version from walkthrough]: https://codesandbox.io/s/lpvr771q59
-[version 2 from walkthrough]: https://codesandbox.io/s/zqw67wpm94#
-[example code]: https://codesandbox.io/s/5vl16n5oxp
-[styled-components on spectrum]:
-	https://spectrum.chat/styled-components
-[react community on spectrum]: https://spectrum.chat/react
-[twitter]: https://twitter.com/spences10
-[ask me anything]: https://github.com/spences10/ama
-[his youtube channel]:
-	https://www.youtube.com/channel/UCWPY8W-FAZ2HdDiJp2RC_sQ
-[example code]: https://codesandbox.io/s/5vl16n5oxp
-
-<!-- Images -->
-
-[theme switching in react app]:
-	https://thepracticaldev.s3.amazonaws.com/i/zmp2k4r128poj1gsws61.gif
-[codesandbox initial]:
-	https://thepracticaldev.s3.amazonaws.com/i/d49drafvtvz3ws2br9vs.gif
-[codesandbox 1]:
-	https://thepracticaldev.s3.amazonaws.com/i/oyxpggt00q754iv1azp0.gif
-[codesandbox 2]:
-	https://thepracticaldev.s3.amazonaws.com/i/yyne3q36jc0zca2ld89u.gif
-[codesandbox 3]:
-	https://thepracticaldev.s3.amazonaws.com/i/uc08zkkf4ay1hq8pkt3w.gif
-[codesandbox 4]:
-	https://thepracticaldev.s3.amazonaws.com/i/qnxbteccbaw92jbwsq9c.gif
-[codesandbox 5]:
-	https://thepracticaldev.s3.amazonaws.com/i/nuyaw29uoex6qcluf8va.gif
-[codesandbox 6]:
-	https://thepracticaldev.s3.amazonaws.com/i/pxe3fb5zqvprvtjthq5b.gif
-[codesandbox 7]:
-	https://thepracticaldev.s3.amazonaws.com/i/ipi1kdmy83ieiw6sppog.gif
-[codesandbox 8]:
-	https://thepracticaldev.s3.amazonaws.com/i/smm6hpg2w71sxm6nf3ln.gif
-[codesandbox 9]:
-	https://thepracticaldev.s3.amazonaws.com/i/zfcnihvmyvb9my5dn11x.gif
-[codesandbox 10]:
-	https://thepracticaldev.s3.amazonaws.com/i/n2qbxs7cbf7w5opqcri2.gif
-[codesandbox 11]:
-	https://thepracticaldev.s3.amazonaws.com/i/y6n32p1gshah5ex747mu.gif
-[codesandbox 12]:
-	https://thepracticaldev.s3.amazonaws.com/i/3bh3bwi4ekb24uowvm65.gif
-[codesandbox 13]:
-	https://thepracticaldev.s3.amazonaws.com/i/p8nibx8ecfildi92jscm.gif
-[codesandbox 14]:
-	https://thepracticaldev.s3.amazonaws.com/i/43e15llsi8uhlmi1z1ut.gif
-[codesandbox 15]:
-	https://thepracticaldev.s3.amazonaws.com/i/1qq4hc2zqa50t0t2vi5v.gif
-[codesandbox 16]:
-	https://thepracticaldev.s3.amazonaws.com/i/jn5u8bzuvufpa56c9ta7.gif
+Follow me on [Twitter](https://twitter.com/spences10) or [Ask Me Anything](https://github.com/spences10/ama) on GitHub.

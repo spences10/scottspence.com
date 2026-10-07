@@ -5,15 +5,15 @@ tags: ['learning', 'gatsby', 'guide', 'mdx', 'markdown']
 is_private: true
 ---
 
-Since publishing my last post on this [Chris Biscardi] has released an
-awesome [MDX egghead.io course] that goes over using MDX in a Gatsby
+Since publishing my last post on this [Chris Biscardi](https://twitter.com/chrisbiscardi) has released an
+awesome [MDX egghead.io course](https://egghead.io/playlists/building-websites-with-mdx-and-gatsby-161e9529) that goes over using MDX in a Gatsby
 application. If you want to see how the pros do it then take a look at
 the play list, it's an egghead community resource so you can watch it
 for free.
 
 ## What's new in this guide
 
-I've already covered the conversion [here] if you want to check that
+I've already covered the conversion [here](https://scottspence.com/posts/convert-gatsby-default-blog-to-mdx) if you want to check that
 out, I'll be going over that again here but also adding:
 
 - Code blocks 🎉
@@ -25,7 +25,7 @@ I've gone and made a video of the conversion as well, here:
 
 ## Versions:
 
-**This guide is being used with the following dependency versions.**
+*This guide is being used with the following dependency versions.*
 
 - @mdx-js/mdx: 1.0.27
 - @mdx-js/react: 1.0.27
@@ -34,20 +34,20 @@ I've gone and made a video of the conversion as well, here:
 - react: 16.9.0
 - react-dom: 16.9.0
 
-You can also check out the [example code].
+You can also check out the [example code](https://codesandbox.io/s/gatsby-starter-blog-mdx-part-two-8iut4).
 
 ---
 
 We're going to need some links, which are:
 
-- [CodeSandbox docs for importing projects]
-- [CodeSandbox import wizard]
-- [Gatsby starter blog]
+- [CodeSandbox docs for importing projects](https://codesandbox.io/docs/importing)
+- [CodeSandbox import wizard](https://codesandbox.io/s/github)
+- [Gatsby starter blog](https://github.com/gatsbyjs/gatsby-starter-blog)
 
 ## Import to CodeSandbox
 
 If you want to follow along then go grab the URL for the [Gatsby
-starter blog] paste it into the [CodeSandbox import wizard] this will
+starter blog](https://github.com/gatsbyjs/gatsby-starter-blog) paste it into the [CodeSandbox import wizard](https://codesandbox.io/s/github) this will
 open the representation of the code on GitHub.
 
 Click on the fork button so we can start making changes.
@@ -257,26 +257,10 @@ Ok, we've gone and converted the Gatsby starter blog from using
 Markdown Remark over to using MDX and added some custom components for
 the page elements
 
-**Thanks for reading** 🙏
+*Thanks for reading* 🙏
 
 I hope you found this guide helpful.
 
 Please take a look at my other content if you enjoyed this.
 
-Follow me on [Twitter] or [Ask Me Anything] on GitHub.
-
-<!-- Links -->
-
-[mdx egghead.io course]:
-	https://egghead.io/playlists/building-websites-with-mdx-and-gatsby-161e9529
-[twitter]: https://twitter.com/spences10
-[ask me anything]: https://github.com/spences10/ama
-[example code]:
-	https://codesandbox.io/s/gatsby-starter-blog-mdx-part-two-8iut4
-[gatsby starter blog]: https://github.com/gatsbyjs/gatsby-starter-blog
-[codesandbox import wizard]: https://codesandbox.io/s/github
-[codesandbox docs for importing projects]:
-	https://codesandbox.io/docs/importing
-[chris biscardi]: https://twitter.com/chrisbiscardi
-[here]:
-	https://scottspence.com/posts/convert-gatsby-default-blog-to-mdx
+Follow me on [Twitter](https://twitter.com/spences10) or [Ask Me Anything](https://github.com/spences10/ama) on GitHub.

@@ -40,7 +40,7 @@ now with Claude 4 there's less reason for me to use MCP tools (I
 essentially used MCP tools to validate the Svelte 5 code being
 written).
 
-**Windsurf got cut off officially:**
+*Windsurf got cut off officially:*
 
 - Anthropic
   [officially cut off Windsurf's direct access to Claude models](https://techcrunch.com/2025/06/03/windsurf-says-anthropic-is-limiting-its-direct-access-to-claude-ai-models/)
@@ -77,7 +77,7 @@ felt the same, then I had a poke around on Reddit and the Cursor
 forums and found that it wasn't just me, Cursor had really gone
 downhill.
 
-**Cursor's Claude 4 degradation is real:**
+*Cursor's Claude 4 degradation is real:*
 
 - Users reporting Claude 4
   ["extremely slow since yesterday" with 0.3 tokens per second](https://forum.cursor.com/t/claude-4-sonnet-thinking-is-extremely-slow-since-yesterday/100131)
@@ -87,7 +87,7 @@ downhill.
 - Multiple reports of
   [Claude 4 working great then suddenly becoming "nearly unusable for productive work"](https://dredyson.com/my-key-insights-on-claude-4-sonnets-extreme-slowdown-in-cursor-ide/)
 
-**System prompt interference is documented:**
+*System prompt interference is documented:*
 
 - Users directly asking Cursor:
   ["Did you guys change the backend system prompt?"](https://forum.cursor.com/t/did-you-guys-change-the-backend-system-prompt/12571)
@@ -105,7 +105,7 @@ randomly wrote tests that didn't even correspond to the file. When I
 corrected the prompt, the response was "yes I should read the file to
 know what I'm testing." Unacceptable!
 
-**The Cursor team's response? Radio silence.** Despite
+*The Cursor team's response? Radio silence.* Despite
 [extensive user documentation](https://forum.cursor.com/t/give-users-rights-to-edit-select-stable-system-prompt/94419)
 of these issues, they avoid addressing the systemic problems. When
 pressed with concrete evidence (users comparing Cursor vs web Claude
@@ -128,10 +128,10 @@ and requires tweaking, you stay engaged longer.
 
 This is why I'm gravitating toward tools that go straight to the API:
 
-- **Claude Code**: Direct Anthropic integration, no wrapper
+- *Claude Code*: Direct Anthropic integration, no wrapper
   interference
-- **Cline**: BYOK approach, your API key, your usage patterns
-- **GitHub Copilot with Claude 4**: Microsoft's wrapper, but they seem
+- *Cline*: BYOK approach, your API key, your usage patterns
+- *GitHub Copilot with Claude 4*: Microsoft's wrapper, but they seem
   to be hands-off with the Claude integration
 
 These tools have no incentive to artificially limit effectiveness
@@ -142,24 +142,24 @@ want to provide the best possible experience.
 
 After evaluating with the CTO, here's what we're actively considering:
 
-**Claude Code - The Team Choice:**
+*Claude Code - The Team Choice:*
 
 - Minimal misunderstanding on tasks
 - Stays focused and doesn't get distracted by config changes (huge
   win!)
-- Pro subscription at ~$20/month makes it cost-predictable for teams
+- Pro subscription at \~$20/month makes it cost-predictable for teams
 - Direct API access means no system prompt interference
 - Claude Code will stay on task _most of the time_ and not wander off
   into config rabbit holes
 
-**GitHub Copilot - The Surprise Contender:**
+*GitHub Copilot - The Surprise Contender:*
 
 - Now has Claude 4 access in VS Code
 - Appears unhindered by Microsoft's system prompt meddling
 - Seems to maintain Claude's original capabilities
 - Good fallback when you run out of Claude Code tokens
 
-**Cline - The token monster:**
+*Cline - The token monster:*
 
 - "Just gets it" like Claude Code
 - BYOK (bring your own key) approach via OpenRouter
@@ -172,7 +172,7 @@ This isn't just personal frustration. When tools don't follow rules
 files, they write shitty tests that cause the CI to fall over. When
 they get distracted by config changes instead of staying on task,
 velocity drops. When they randomly generate code that doesn't match
-the actual file structure, **developers lose trust**.
+the actual file structure, *developers lose trust*.
 
 As a team lead, I need tools that are consistent and reliable. The
 current crop of "AI-enhanced" editors that meddle with system prompts
@@ -187,10 +187,10 @@ are actively hurting productivity.
 
 The tools that work are the ones that:
 
-1. **Go straight to the API** without system prompt interference
-2. **Have access to Claude 4** for modern framework support
-3. **Stay on task** without getting distracted by every config file
-4. **Are cost-predictable** for team deployments
+1. *Go straight to the API* without system prompt interference
+2. *Have access to Claude 4* for modern framework support
+3. *Stay on task* without getting distracted by every config file
+4. *Are cost-predictable* for team deployments
 
 Right now, that's Claude Code for team work, Cline for power users who
 don't mind burning tokens, and surprisingly, GitHub Copilot as a

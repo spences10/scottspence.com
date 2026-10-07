@@ -7,8 +7,8 @@ is_private: false
 
 From scratch to Create React App on Windows
 
-**An opinionated guide on setting up a web development environment on
-Windows 10**
+*An opinionated guide on setting up a web development environment on
+Windows 10*
 
 I have been a professional web developer for 10 months now and used
 both macOS and Windows in that time. My preferred OS to use is
@@ -24,9 +24,9 @@ you, if this is different from what you use, it doesn't make it bad.
 
 Let's see what Ken has to say about it:
 
-https://twitter.com/ken_wheeler/status/1075556283795824640
+[https://twitter.com/ken\_wheeler/status/1075556283795824640](https://twitter.com/ken_wheeler/status/1075556283795824640)
 
-This is the refresh on [my guide from the start of 2018] on setting up
+This is the refresh on [my guide from the start of 2018](https://scottspence.com/posts/wsl-bootstrap/) on setting up
 a web development environment on a Windows machine.
 
 This guide will cover installing Ubuntu but you can use some of the
@@ -38,8 +38,8 @@ setup will be very similar to the Ubuntu one.
 To go from a fresh instance of Windows 10 to something you can develop
 web apps with.
 
-These instructions are for the **Windows 10 Fall Creators Update and
-later.**
+These instructions are for the *Windows 10 Fall Creators Update and
+later.*
 
 What we're going to cover:
 
@@ -66,12 +66,12 @@ What we're going to cover:
 
 ## Install WSL
 
-You can install Ubuntu from [the Microsoft store] which will be the
+You can install Ubuntu from [the Microsoft store](https://www.microsoft.com/en-gb/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab) which will be the
 first half of the install the second will be when you open the app.
 
 ## Enable WSL on your machine
 
-The [official guidance] covers it very well, but I'm going to add in
+The [official guidance](https://docs.microsoft.com/en-us/windows/wsl/install-win10) covers it very well, but I'm going to add in
 the shortcut keys here if you don't want to be clicking around with
 the mouse.
 
@@ -80,7 +80,7 @@ default Command Prompt you can select it from the Taskbar settings
 page located in the Personalisation section in the Settings, I suggest
 doing that now:
 
-![powershell activation]
+![powershell activation](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/powershell.gif)
 
 Whilst we're at it we should also enable hidden folders and add files
 extensions for known file types in Windows File Explorer.
@@ -96,14 +96,14 @@ The reason we're doing this is so that we can see the `.git` folder in
 project structures it's also needed for files like `.env` files which
 are used for environment configuration.
 
-![show file extensions]
+![show file extensions](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/show-extensions.gif)
 
 <!-- cSpell:ignore dmin -->
 
 Use Windows key+x, this is the same as right-clicking the windows icon
 on the desktop, this will open the quick link menu. From here you need
 to select the Windows PowerShell (<u>A</u>dmin) option, you can do
-this by pressing **a** on the keyboard. So Windows key+x then a, will
+this by pressing *a* on the keyboard. So Windows key+x then a, will
 open the user account control (Admin) prompt, presuming you have admin
 rights on your machine you'll need to click yes to continue.
 
@@ -117,7 +117,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 You will be prompted to restart your machine after this, which you
 should do.
 
-> Check the link for a complete list of [windows keyboard shortcuts].
+> Check the link for a complete list of [windows keyboard shortcuts](https://support.microsoft.com/en-gb/help/12445/windows-keyboard-shortcuts).
 
 After restarting you can open the Ubuntu program from the start menu
 and the second install (of WSL on your system) should happen. Wait for
@@ -140,13 +140,13 @@ You can check what version of Ubuntu you have installed with:
 lsb_release -a
 ```
 
-!e]
+!e\]
 
 If you want to use a specific LTS version of Ubuntu you can get them
 from the Windows Store, here:
 
-- [Ubuntu 16.04 LTS]
-- [Ubuntu 18.04 LTS]
+- [Ubuntu 16.04 LTS](https://www.microsoft.com/en-gb/p/ubuntu-1604-lts/9pjn388hp8c9?activetab=pivot:overviewtab)
+- [Ubuntu 18.04 LTS](https://www.microsoft.com/en-gb/p/ubuntu-1804-lts/9n9tngvndl3q?activetab=pivot:overviewtab)
 
 Now we're going to go ahead an update and upgrade all the things, the
 three commands here will update and upgrade all the pre-installed
@@ -169,7 +169,7 @@ sudo apt update && sudo apt -y upgrade && sudo apt autoremove
 > current install of Ubuntu and starting again.
 
 Now that the base has been installed and updated we need to install
-the [build-essential] package in order to compile and build other
+the [build-essential](https://packages.ubuntu.com/bionic/build-essential) package in order to compile and build other
 packages, the following packages we're going to install will all need
 it.
 
@@ -192,15 +192,15 @@ really shouldn't be installing npm packages with sudo permissions.
 
 Let's get our run-time on! If you use Node.js you will eventually have
 situations where you need to be able to switch Node versions, for this
-you may have heard to nvm ([Node Version Manager]) which by the way
+you may have heard to nvm ([Node Version Manager](https://github.com/creationix/nvm)) which by the way
 you can still use in WSL.
 
 The reason for me opting for n over nvm is that in the past I
 experienced slow bash startup times whilst using nvm. Take a look at
-this [WSL GitHub issue detailing it] and the specific comment for the
-[pros of using n].
+this [WSL GitHub issue detailing it](https://github.com/Microsoft/WSL/issues/776) and the specific comment for the
+[pros of using n](https://github.com/Microsoft/WSL/issues/776#issuecomment-266112578).
 
-Ok let's install n, with [n-install], the command doesn't start with
+Ok let's install n, with [n-install](https://github.com/mklement0/n-install), the command doesn't start with
 sudo so use it in the bash window you have with no sudo privileges.🧐
 
 ```bash
@@ -226,21 +226,21 @@ so we're going to need a text editor, and there's nothing out there at
 the moment that comes close to VS Code, if you already have a text
 editor installed then skip to the next part.
 
-Install the Windows version of VS Code from the [Download section]
+Install the Windows version of VS Code from the [Download section](https://code.visualstudio.com/download)
 once installed we can enable WSL in the settings, the quickest way to
 do this is to open the integrated terminal in VS Code with the
 shortcut keys Ctrl+' 👈 that's and apostrophe. You will be prompted to
 select your default terminal, select WSL Bash.
 
-![vscode config]
+![vscode config](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/vscode-wsl-config.gif)
 
 ## Install Windows Git
 
-There's a bit of stumbling block getting [Git support for VS Code],
+There's a bit of stumbling block getting [Git support for VS Code](https://github.com/Microsoft/vscode/issues/9502),
 it's well documented in the various issues mentioned in the linked
 issue.
 
-There are workarounds as well with things like [WSLGit] which has it's
+There are workarounds as well with things like [WSLGit](https://github.com/andy-5/wslgit) which has it's
 own set of issues, this all stems from users (me included) not wanting
 to have to install another binary for Git.
 
@@ -250,15 +250,15 @@ that additional binary, there's an overhead with having to maintain
 and configure SSH keys for both Windows and WSL Git but it's a one
 time setup.
 
-Until the VS Code team incorporate [WSLGit] into VS Code I think this
+Until the VS Code team incorporate [WSLGit](https://github.com/andy-5/wslgit) into VS Code I think this
 is the best option.
 
-Install from [git-scm.com] the link will start downloading the install
+Install from [git-scm.com](https://git-scm.com/download/win) the link will start downloading the install
 binary you can then open it and go through the install, you can keep
 clicking next through the install, I have selected a few options that
 I would like enabled.
 
-![windows git setup]
+![windows git setup](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/install-git.gif)
 
 For now, that is all we need to do, when it comes to authenticating
 with with GitHub using SSH we will use the Git Bash command line to
@@ -269,13 +269,13 @@ configure the Windows side of things.
 Now we have bash on Windows it's time to install a nice Terminal app,
 because, let's face it, the standard one is a bit basic.
 
-Enter [Hyper] an electron based terminal app that is super themeable
+Enter [Hyper](https://hyper.is) an electron based terminal app that is super themeable
 and configurable.
 
 Download and install hyper for Windows, this will be the bare-bones
 version, it'll look something like this:
 
-![basic hyper]
+![basic hyper](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/basic_hyper.png)
 
 You may notice that, this is the Windows Command prompt too, don't
 worry, we're going to configure that right now.
@@ -290,7 +290,7 @@ it) navigate to the file, it'll be in your User folder, right-click
 the file and select Properties, then Change for 'Opens with:' and
 select VS Code from the list.
 
-![default-file-type]
+![default-file-type](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/default-file-type.gif)
 
 Now we can set WSL as the shell path in Hyper, open the `.hyper.js`
 settings file and search (Ctrl+f) for bash, we want to add the path to
@@ -309,7 +309,7 @@ add in the `hyper-adventure-time` theme into the plugins section.
 Open another Hyper tab with Ctrl+Shift+t, this will show the bash
 terminal for WSL now.
 
-![hyper config]
+![hyper config](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/hyper-config.gif)
 
 Quick orientation with the Hyper terminal keyboard shortcuts:
 
@@ -324,7 +324,7 @@ change the theme to something a bit more subtle.
 <!-- cSpell:ignore fira -->
 
 I purchased Dank Mono, if you want a similar font as OSS check out
-[FiraCode].
+[FiraCode](https://github.com/tonsky/FiraCode).
 
 Here's what I changed:
 
@@ -341,7 +341,7 @@ module.exports = {
 };
 ```
 
-![final hyper config]
+![final hyper config](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/hyper-final-config.gif)
 
 ## Install Fish Shell!
 
@@ -354,7 +354,7 @@ get with Oh My Fish
 sudo apt -y install fish
 ```
 
-![install fish]
+![install fish](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/install-fish.gif)
 
 ### Install Oh My Fish
 
@@ -367,7 +367,7 @@ tab first then paste in the following:
 curl -L https://get.oh-my.fish | fish
 ```
 
-![install omf]
+![install omf](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/install-omf.gif)
 
 #### Fish themes with OMF
 
@@ -384,7 +384,7 @@ have already installed by selecting `omf theme` let's change it once
 more to the `one` theme, adjust the size of the window first as things
 are getting a bit cramped.
 
-![omf one]
+![omf one](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/omf-install-one.gif)
 
 Have a play around there's loads there, I prefer the one theme because
 you can see what version of node you're running on, over on the far
@@ -397,7 +397,7 @@ could tab to complete the rest of the command.
 So, now we have a swanky looking new terminal and a bare-bones VS Code
 install it's time to get things moving.
 
-I have a [cheat-sheets] repo detailing a lot of the configuration
+I have a [cheat-sheets](https://github.com/spences10/cheat-sheets) repo detailing a lot of the configuration
 we're about to go through here, if you find something useful along the
 way please drop a PR with the suggestion.
 
@@ -414,7 +414,7 @@ n to install Node `. /home/scott/.bashrc` but your username in place
 of mine 😄, now we can use f instead of fish! Well done you saved
 yourself typing three extra characters!!!.
 
-![alias fish in .bashrc]
+![alias fish in .bashrc](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/alias-fish.gif)
 
 ## Git config
 
@@ -467,7 +467,7 @@ Ok, we shall get create react app going so we can get Git configured
 with GitHub using SSH and start making changes to commit to a GitHub
 repo.
 
-We're going to use [npx] to make a starter React project with Create
+We're going to use [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) to make a starter React project with Create
 React App. If you want to have your projects somewhere else now is the
 time to navigate to that directory.
 
@@ -486,7 +486,7 @@ speed the gif up to 20x faster, it does take a while.🙃
 
 Wheeeeeeeeeeeeeeeeeeeee!
 
-![npx cra]
+![npx cra](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/npx-cra.gif)
 
 So, now that we have spun up a React app to work on we should make a
 change and then add it to GitHub.
@@ -535,7 +535,7 @@ Ctrl+Enter again will commit the changes with a message, you can check
 that there are no changes to commit with `git status` from the
 terminal or visually from the Source Control section in VS Code.
 
-![cra change]
+![cra change](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/cra-change.gif)
 
 Ok, time to add our super sweet code changes to a repository on GitHub
 for the world to see!
@@ -560,7 +560,7 @@ git remote add origin git@github.com:spences10/cra.git
 And to push the changes up to GitHub `git push -u origin master` but
 we're going to get an error, as we haven't set up SSH.
 
-![make repo]
+![make repo](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/make-repo.gif)
 
 ### WSL SSH Config
 
@@ -598,7 +598,7 @@ ssh-add ~/.ssh/id_rsa
 
 Now time to add the public SSH key to GitHub, in WSL were going to
 copy pasta the public SSH key with `cat ~/.ssh/id_rsa.pub` in Hyper
-then we can copy from Hyper to a [new SSH key].
+then we can copy from Hyper to a [new SSH key](https://github.com/settings/ssh/new).
 
 Finally authenticate with GitHub:
 
@@ -606,7 +606,7 @@ Finally authenticate with GitHub:
 ssh -T git@github.com
 ```
 
-![ssh config wsl]
+![ssh config wsl](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/ssh-config-wsl.gif)
 
 ### Windows Git Bash SSH Config
 
@@ -640,12 +640,12 @@ Authenticate:
 ssh -T git@github.com
 ```
 
-![ssh config win]
+![ssh config win](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/ssh-config-win.gif)
 
 Now the additional set up for SSH is done we should be able to go back
 to Hyper and push our change to GitHub.
 
-![final push github]
+![final push github](https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/final-push-github.gif)
 
 Also you may have noticed that the SSH Key 🔑 token went from black to
 green on the settings screen there this indicates that you have
@@ -671,93 +671,12 @@ wslconfig /setdefault Debian
 That's it! We have gone from scratch to a functioning web development
 environment. There are several other personal things I'm now going to
 add to my install now which is aliases for both Git and Fish shell. If
-you are interested in them I have a [cheat-sheet for Fish] with a list
+you are interested in them I have a [cheat-sheet for Fish](https://github.com/spences10/cheat-sheets/blob/master/fish.md) with a list
 of all my aliases I use, the same for my `.gitconfig` you can find
-that in my [dotfiles] repo
+that in my [dotfiles](https://github.com/spences10/dotfiles) repo
 
-**Thanks for reading** 🙏
+*Thanks for reading* 🙏
 
 Please take a look at my other content if you enjoyed this.
 
-Follow me on [Twitter] or [Ask Me Anything] on GitHub.
-
-<!-- LINKS -->
-
-[twitter]: https://twitter.com/spences10
-[ask me anything]: https://github.com/spences10/ama
-[the microsoft store]:
-	https://www.microsoft.com/en-gb/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab
-[ubuntu 16.04 lts]:
-	https://www.microsoft.com/en-gb/p/ubuntu-1604-lts/9pjn388hp8c9?activetab=pivot:overviewtab
-[ubuntu 18.04 lts]:
-	https://www.microsoft.com/en-gb/p/ubuntu-1804-lts/9n9tngvndl3q?activetab=pivot:overviewtab
-[my guide from the start of 2018]:
-	https://scottspence.com/posts/wsl-bootstrap/
-[official guidance]:
-	https://docs.microsoft.com/en-us/windows/wsl/install-win10
-[windows keyboard shortcuts]:
-	https://support.microsoft.com/en-gb/help/12445/windows-keyboard-shortcuts
-[build-essential]: https://packages.ubuntu.com/bionic/build-essential
-[node version manager]: https://github.com/creationix/nvm
-[wsl github issue detailing it]:
-	https://github.com/Microsoft/WSL/issues/776
-[pros of using n]:
-	https://github.com/Microsoft/WSL/issues/776#issuecomment-266112578
-[n-install]: https://github.com/mklement0/n-install
-[hyper]: https://hyper.is
-[firacode]: https://github.com/tonsky/FiraCode
-[git support for vs code]:
-	https://github.com/Microsoft/vscode/issues/9502
-[wslgit]: https://github.com/andy-5/wslgit
-[git-scm.com]: https://git-scm.com/download/win
-[cheat-sheets]: https://github.com/spences10/cheat-sheets
-[npx]:
-	https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b
-[new ssh key]: https://github.com/settings/ssh/new
-[cheat-sheet for fish]:
-	https://github.com/spences10/cheat-sheets/blob/master/fish.md
-[dotfiles]: https://github.com/spences10/dotfiles
-[download section]: https://code.visualstudio.com/download
-
-<!-- Images -->
-
-[powershell activation]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/powershell.gif
-[show file extensions]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/show-extensions.gif
-[lsb_release]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/lsb_release.png
-[vscode config]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/vscode-wsl-config.gif
-[windows git setup]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/install-git.gif
-[basic hyper]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/basic_hyper.png
-[default-file-type]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/default-file-type.gif
-[hyper config]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/hyper-config.gif
-[final hyper config]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/hyper-final-config.gif
-[install fish]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/install-fish.gif
-[install omf]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/install-omf.gif
-[omf one]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/omf-install-one.gif
-[alias fish in .bashrc]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/alias-fish.gif
-[npx cra]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/npx-cra.gif
-[cra change]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/cra-change.gif
-[make repo]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/make-repo.gif
-[ssh config wsl]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/ssh-config-wsl.gif
-[ssh config wsl]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/ssh-config-wsl.gif
-[ssh config win]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/ssh-config-win.gif
-[final push github]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/final-push-github.gif
+Follow me on [Twitter](https://twitter.com/spences10) or [Ask Me Anything](https://github.com/spences10/ama) on GitHub.

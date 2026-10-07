@@ -27,28 +27,28 @@ headless CMS, GraphCMS and then querying that data in Gatsby.
 ## 1. Set up GraphCMS
 
 Set yourself up with a GraphCMS account at
-https://app.graphcms.com/signup and select the developer plan.
+[https://app.graphcms.com/signup](https://app.graphcms.com/signup) and select the developer plan.
 
 ## 2. Define Data
 
 Create a new project and add in some data to query.
 
-Select the **Create new project** option, call it what you like, in
+Select the *Create new project* option, call it what you like, in
 this example it's going to be a list of projects, so I'm calling it
 _Project List_.
 
 In the side bar select the Schema and create a model, in this case
-**Project**. In the project model we're going to have a _Title_ and a
+*Project*. In the project model we're going to have a _Title_ and a
 _Description_.
 
 Select the fields from the tray on the right by clicking the
-**FIELDS** tab and dragging and dropping them into the **Project**
+*FIELDS* tab and dragging and dropping them into the *Project*
 model we created.
 
 ## 3. Configure the GraphCMS public API
 
-In the GraphCMS settings set the **Public API Permissions** to
-**READ** scroll down to **Endpoints** and copy the URL for use in
+In the GraphCMS settings set the *Public API Permissions* to
+*READ* scroll down to *Endpoints* and copy the URL for use in
 configuring Gatsby.
 
 That's it for the CMS configuration, now to pull that data into our
@@ -70,9 +70,9 @@ in `gatsby-config.js` the configuration should looks something like:
 },
 ```
 
-In this example we're using [codesandbox.io] for our text editor and
+In this example we're using [codesandbox.io](https://codesandbox.io/dashboard/recent) for our text editor and
 the Gatsby Default Starter you get when selecting Gatsby from the
-SERVER TEMPLATES available to you in [codesandbox.io]
+SERVER TEMPLATES available to you in [codesandbox.io](https://codesandbox.io/dashboard/recent)
 
 <!-- cSpell:ignore graphi -->
 
@@ -82,7 +82,7 @@ Now that the endpoint is set up we will be able to query the data with
 Gatsby's GraphiQL UI, we can shape the query we want to use to display
 the data here.
 
-In the preview of our app in [codesandbox.io] if you add `___graphql`
+In the preview of our app in [codesandbox.io](https://codesandbox.io/dashboard/recent) if you add `___graphql`
 to the end of the url it will bring up the Gatsby GraphiQL UI, here we
 can shape the data we want to query.
 
@@ -144,7 +144,7 @@ const IndexPage = ({ data }) => (
 
 Now we can access the `data` passed into the component, we just need a
 way to visualise it! Luckily for use there's a handy component from
-Wes Bos that we can use called [Dump], so create a new `dump.js`
+Wes Bos that we can use called [Dump](https://github.com/wesbos/dump), so create a new `dump.js`
 component in `components` then import it into the `index.js` file, and
 add in the component to see what's inside the props:
 
@@ -202,6 +202,3 @@ data 💩{
 ```
 
 <!-- cSpell:enable -->
-
-[codesandbox.io]: https://codesandbox.io/dashboard/recent
-[dump]: https://github.com/wesbos/dump

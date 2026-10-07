@@ -10,7 +10,7 @@ How to build and deploy a multifunctional Twitter bot!
 This is a reference for me and anyone else that's interested in
 Twitter bots in JavaScript.
 
-All of the examples here use the [npm][npm] package [twit][twit].
+All of the examples here use the [npm](https://www.npmjs.com/) package [twit](https://www.npmjs.com/package/twit).
 
 We'll go through setting up a simple bot so each of these examples can
 be run with it.
@@ -19,13 +19,13 @@ I'm going to assume that you have `nodejs` installed along with `npm`
 and that you are comfortable with the terminal.
 
 If you are not familiar node or do not have your environment set up to
-use it take a look at the [README.md][twitter-bot-bootstrap-readme] on
-my [Twitter bot bootstrap][twitter-bot-bootstrap] repo which details
+use it take a look at the [README.md](https://github.com/spences10/twitter-bot-bootstrap#twitter-bot-bootstrap) on
+my [Twitter bot bootstrap](https://github.com/spences10/twitter-bot-bootstrap) repo which details
 getting a Twitter application set up and a development environment
 with c9.
 
-A great resource is [Aman Mittal's][aman-github-profile] [Awesome
-Twitter bots][awesome-twitter-bots] repo which has resources and bot
+A great resource is [Aman Mittal's](https://github.com/amandeepmittal) [Awesome
+Twitter bots](https://github.com/amandeepmittal/awesome-twitter-bots) repo which has resources and bot
 examples.
 
 A lot of this information is already out there I'm hoping this is all
@@ -36,7 +36,7 @@ people will get something out of this as well.
 ## Set up the bot
 
 Before touching the terminal or writing any code we'll need to create
-a [Twitter app][twitter-app] to get our API keys, we'll need them all:
+a [Twitter app](https://apps.twitter.com/app/new) to get our API keys, we'll need them all:
 
 ```bash
 Consumer Key (API Key)
@@ -46,10 +46,10 @@ Access Token Secret
 ```
 
 Keep the keys somewhere safe so you can use them again when you need
-them, we're going to be using them in the [.env][dotenv] file we're
+them, we're going to be using them in the [.env](https://www.npmjs.com/package/dotenv) file we're
 going to create.
 
-We're using [dotenv][dotenv] so that if at some point in the future we
+We're using [dotenv](https://www.npmjs.com/package/dotenv) so that if at some point in the future we
 want to add our bot to GitHub the Twitter API keys are not added to
 GitHub for all to see.
 
@@ -228,7 +228,7 @@ bot.post(
 
 To get a list of followers ids use `.get('followers/ids'...` and
 include the account that you want the followers of, in this example
-we're using [`@DroidScott`][scottbot], you can use any account you
+we're using [`@DroidScott`](https://twitter.com/DroidScott), you can use any account you
 like. We can then log them out to the console in this example.
 
 ```js
@@ -340,7 +340,7 @@ through your followers list and follow back any users that do not have
 the `following` connection.
 
 Let's take a look at the relation between our bot and
-[`@spences10`][scotttwit]
+[`@spences10`](https://twitter.com/spences10)
 
 ```js
 bot.get(
@@ -763,11 +763,11 @@ stream.on('tweet', (t) => {
 
 ## Tweet media files
 
-This [egghead.io][egghead-media-files] video is a great resource for
-this section thanks to [Hannah Davis][hannah-davis] for the awesome
+This [egghead.io](https://egghead.io/lessons/node-js-tweet-media-files-with-twit-js) video is a great resource for
+this section thanks to [Hannah Davis](https://egghead.io/instructors/hannah-davis) for the awesome
 content!
 
-This will be a request to get the [NASA image of the day][nasa-iotd]
+This will be a request to get the [NASA image of the day](https://www.nasa.gov/multimedia/imagegallery/iotd.html)
 and tweet it.
 
 For this we will need references to `request` and `fs` for working
@@ -799,7 +799,7 @@ function getPhoto() {
 ```
 
 The `parameters` specify an `api_key` for this you can [apply for an
-API key][api-apply] or you can use the `DEMO_KEY` this API key can be
+API key](https://api.nasa.gov/index.html#apply-for-an-api-key) or you can use the `DEMO_KEY` this API key can be
 used for initially exploring APIs prior to signing up, but it has much
 lower rate limits, so you're encouraged to signup for your own API
 key.
@@ -1023,12 +1023,12 @@ getPhoto();
 
 ## Make a Markov bot
 
-This is pretty neat, again from the [egghead.io][egghead-markov]
-series it uses [rita][rita-npm] natural language toolkit. It also uses
+This is pretty neat, again from the [egghead.io](https://egghead.io/lessons/node-js-make-a-bot-that-sounds-like-you-with-rita-js?series=create-your-own-twitter-bots)
+series it uses [rita](https://www.npmjs.com/package/rita) natural language toolkit. It also uses
 `csv-parse` as we're going to be reading out our Twitter archive to
 make the bot sound like us tweeting.
 
-First of all, to set up the [Twitter archive][tweet-archive], you'll
+First of all, to set up the [Twitter archive](https://support.twitter.com/articles/20170160), you'll
 need to request your data from the Twitter settings page. You'll be
 emailed a link to download your archive, then when you have downloaded
 the archive extract out the `tweets.csv` file, we'll then put that in
@@ -1214,8 +1214,8 @@ function cleanText(text) {
 ## Retrieve and Tweet data from Google sheets
 
 If you want to tweet a list of links you can use
-[`tabletop`][npm-tabletop] to work though the list, in this example
-again from [egghead.io][egghead-tabletop] we'll go through a list of
+[`tabletop`](https://www.npmjs.com/package/tabletop) to work though the list, in this example
+again from [egghead.io](https://egghead.io/lessons/node-js-retrieve-and-tweet-information-from-google-spreadsheets) we'll go through a list of
 links.
 
 So, set up the bot and require `tabletop`:
@@ -1228,7 +1228,7 @@ const Tabletop = require('tabletop');
 const bot = new Twit(config);
 ```
 
-On your [`Google spreadsheet`] you'll need to have a header defined
+On your [`Google spreadsheet`](https:/sheets.google.com) you'll need to have a header defined
 and then add your links, we'll use the following for an example:
 
 ```
@@ -1426,9 +1426,9 @@ need to pass two options to, the function it's going to call and the
 timeout value.
 
 The picture updates every 24 hours so that will be how many
-milliseconds in 24 hours [8.64e+7] I don't even 🤷‍
+milliseconds in 24 hours \[8.64e+7\] I don't even 🤷‍
 
-I work it out like this, 1000 _ 60 = 1 minute, so 1000 _ 60 _ 60 _ 24
+I work it out like this, 1000 \_ 60 = 1 minute, so 1000 \_ 60 \_ 60 \_ 24
 so for now let's add that directly into the `setInterval` function:
 
 ```js
@@ -1595,13 +1595,13 @@ development environment, so it can't stay there forever, well it could
 but it'd be pretty impractical. Let's put our bot on a server
 somewhere to do it's thing.
 
-To do this we're going to be using [now][now], `now` allows for simple
+To do this we're going to be using [now](https://zeit.co/now), `now` allows for simple
 deployments from the CLI if you're not familiar with now then take a
-quick look at the [documentation][now] in these examples we're going
+quick look at the [documentation](https://zeit.co/now) in these examples we're going
 to be using the `now-cli`.
 
 There's a few things we need to do in order to get our bot ready to go
-on [now][now], let's list them quickly and then go into detail.
+on [now](https://zeit.co/now), let's list them quickly and then go into detail.
 
 - Signup and install now-cli
 - Add now settings + .npmignore file
@@ -1611,9 +1611,9 @@ on [now][now], let's list them quickly and then go into detail.
 
 Ready? Let's do this! 💪
 
-**Signup and install now-cli**
+*Signup and install now-cli*
 
-Fist up let's signup for [zeit][zeit-login] ▲ create an account and
+Fist up let's signup for [zeit](https://zeit.co/login) ▲ create an account and
 authenticate, then we can install the CLI.
 
 Install `now` globally on our machine so you can use it everywhere, to
@@ -1637,11 +1637,11 @@ logged in automatically.
 If you need to switch the account or re-authenticate, run the same
 command again.
 
-You can always check out the [now-cli][now-getting-started-cli]
+You can always check out the [now-cli](https://zeit.co/docs/getting-started/installing-now#cli-with-npm)
 documentation for more information along with the [your first
-deployment][now-first-deploy] guide.
+deployment](https://zeit.co/docs/getting-started/your-first-deployments#deploying-node) guide.
 
-**Add now settings**
+*Add now settings*
 
 Ok, so that's signup and install sorted, we can now configure the bot
 for deploying to `now`. First up let's add the `now` settings to our
@@ -1667,7 +1667,7 @@ you the pain I went through trying to configure this, all the relevant
 documentation is there you just need to put it all together 😎
 
 > If you find anything in here that doesn't make sense or is just
-> outright wrong then please [log an issue][github-issue] or create a
+> outright wrong then please [log an issue](https://github.com/spences10/twitter-bot-playground/issues/new) or create a
 > pull request 👍
 
 The now settings `alias` is to give your deployment a shorthand name
@@ -1691,15 +1691,15 @@ bot, but we previously included it in our `.gitignore` which is what
 So this means that the file isn't going to get loaded unless we add
 the `.npmignore` to not ignore the `tweets.csv` 😅
 
-**Add .env variables as secrets**
+*Add .env variables as secrets*
 
 Ok, our super duper secret Twitter keys will need to be stored as
 `secrets` in `now` this is a pretty neat feature where you can define
 anything as a secret and reference it as an alias with `now`.
 
 Let's start, so the syntax is `now secrets add my-secret "my value"`
-so for our `.env` keys add them all in giving them a descriptive [but
-short!] name.
+so for our `.env` keys add them all in giving them a descriptive \[but
+short!\] name.
 
 > You will not need to wrap your "my value" in quotes but the
 > documentation does say "when in doubt, wrap your value in quotes"
@@ -1723,7 +1723,7 @@ $ now secrets ls
 
 <!-- cSpell:enable -->
 
-**Add npm deploy script**
+*Add npm deploy script*
 
 Now we have our secrets defined we can create a deployment script to
 deploy to `now`, so in our `package.json` let's add an additional
@@ -1754,14 +1754,14 @@ now
 -e NASA_KEY=@nasa-key
 ```
 
-**Re jig picture-bot.js**
+*Re jig picture-bot.js*
 
-Ok, because `now` deployments are [immutable][immutable-deployment] it
+Ok, because `now` deployments are [immutable](https://blog.codeship.com/immutable-deployments/) it
 means that there's no write access to the disk where we want to save
 our NASA photo of the day, so to get around that we need to use the
 `/tmp` file location.
 
-Shout out to [@Tim][tim] from `zeit` for helping me out with this!
+Shout out to [@Tim](https://github.com/timneutkens) from `zeit` for helping me out with this!
 
 In the `picture-bot.js` module add the following two lines to the top
 of the module:
@@ -1783,7 +1783,7 @@ our `saveFile` function we're going to use `tmpDir` to save our file.
 We've taken out the `nasa.jpg` from the `getPhoto` function as we can
 define that information in the `saveFile` function, the NASA potd is
 not just a `'jpeg` some items posted there are videos as well. We we
-can define the type with a [ternary function][ternary] off of the
+can define the type with a [ternary function](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) off of the
 `body` being passed in, this will send a tweet with a link to the
 video:
 
@@ -1974,50 +1974,3 @@ reviewed and discussed.
 MIT License
 
 Copyright (c) 2017, Scott Spence. All rights reserved.
-
-<!--links-->
-
-[license-badge]:
-	https://img.shields.io/github/license/mashape/apistatus.svg
-[license-url]: https://opensource.org/licenses/MIT
-[gitter-url]:
-	https://gitter.im/awesome-twitter-bots/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-[npm]: https://www.npmjs.com/
-[twit]: https://www.npmjs.com/package/twit
-[twitter-bot-bootstrap-readme]:
-	https://github.com/spences10/twitter-bot-bootstrap#twitter-bot-bootstrap
-[twitter-bot-bootstrap]:
-	https://github.com/spences10/twitter-bot-bootstrap
-[aman-github-profile]: https://github.com/amandeepmittal
-[awesome-twitter-bots]:
-	https://github.com/amandeepmittal/awesome-twitter-bots
-[twitter-app]: https://apps.twitter.com/app/new
-[dotenv]: https://www.npmjs.com/package/dotenv
-[scottbot]: https://twitter.com/DroidScott
-[scotttwit]: https://twitter.com/spences10
-[egghead-media-files]:
-	https://egghead.io/lessons/node-js-tweet-media-files-with-twit-js
-[hannah-davis]: https://egghead.io/instructors/hannah-davis
-[nasa-iotd]: https://www.nasa.gov/multimedia/imagegallery/iotd.html
-[api-apply]: https://api.nasa.gov/index.html#apply-for-an-api-key
-[egghead-markov]:
-	https://egghead.io/lessons/node-js-make-a-bot-that-sounds-like-you-with-rita-js?series=create-your-own-twitter-bots
-[rita-npm]: https://www.npmjs.com/package/rita
-[tweet-archive]: https://support.twitter.com/articles/20170160
-[npm-tabletop]: https://www.npmjs.com/package/tabletop
-[egghead-tabletop]:
-	https://egghead.io/lessons/node-js-retrieve-and-tweet-information-from-google-spreadsheets
-[`google spreadsheet`]: https:/sheets.google.com
-[zeit-login]: https://zeit.co/login
-[now]: https://zeit.co/now
-[now-getting-started-cli]:
-	https://zeit.co/docs/getting-started/installing-now#cli-with-npm
-[now-first-deploy]:
-	https://zeit.co/docs/getting-started/your-first-deployments#deploying-node
-[github-issue]:
-	https://github.com/spences10/twitter-bot-playground/issues/new
-[immutable-deployment]:
-	https://blog.codeship.com/immutable-deployments/
-[tim]: https://github.com/timneutkens
-[ternary]:
-	https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator

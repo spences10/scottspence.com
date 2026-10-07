@@ -240,10 +240,10 @@ random target-line range for both variants.
 
 The result across 20 total agent runs:
 
-| Variant            | Runs | Success | Tools used               | Avg duration | Avg input tokens | Avg total tokens | Total run cost |
-| ------------------ | ---: | ------: | ------------------------ | -----------: | ---------------: | ---------------: | -------------: |
-| `my-pi@0.1.24`     |   10 |   10/10 | `bash`                   |        8.56s |           26,412 |           26,961 |         $1.334 |
-| local with sidecar |   10 |   10/10 | `bash`, `context_search` |       10.86s |            5,944 |            7,517 |         $0.316 |
+| Variant | Runs | Success | Tools used | Avg duration | Avg input tokens | Avg total tokens | Total run cost |
+| --- | ---: | ---: | --- | ---: | ---: | ---: | ---: |
+| `my-pi@0.1.24` | 10 | 10/10 | `bash` | 8.56s | 26,412 | 26,961 | $1.334 |
+| local with sidecar | 10 | 10/10 | `bash`, `context_search` | 10.86s | 5,944 | 7,517 | $0.316 |
 
 For this eval shape, the local sidecar build kept success the same and
 cut average input tokens by about 20,468 per run. It also cut measured
@@ -304,9 +304,9 @@ I ran one paired attempt for each case with real agent/model calls and
 telemetry enabled. Small sample, yes. Still better than vibes.
 
 | Variant | Runs | Success | Avg wall time | Avg input tokens | Avg total tokens | Total run cost |
-| ------- | ---: | ------: | ------------: | ---------------: | ---------------: | -------------: |
-| control |    4 |     4/4 |         81.6s |           11,850 |          122,067 |         $0.135 |
-| sidecar |    4 |     4/4 |         34.6s |           12,194 |           48,059 |         $0.082 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| control | 4 | 4/4 | 81.6s | 11,850 | 122,067 | $0.135 |
+| sidecar | 4 | 4/4 | 34.6s | 12,194 | 48,059 | $0.082 |
 
 The headline number looks good, but this is exactly where I do not
 trust headline numbers. The detail is more interesting than the
@@ -315,10 +315,10 @@ average.
 The MCP large JSON case is where the sidecar absolutely earned its
 keep:
 
-| Variant | Wall time | Input tokens | Total tokens |   Cost | Retrieval                   |
-| ------- | --------: | -----------: | -----------: | -----: | --------------------------- |
-| control |    250.1s |       30,400 |      446,464 | $0.107 | MCP plus 20 `bash` calls    |
-| sidecar |     10.0s |        3,141 |        5,987 | $0.005 | MCP plus 1 `context_search` |
+| Variant | Wall time | Input tokens | Total tokens | Cost | Retrieval |
+| --- | ---: | ---: | ---: | ---: | --- |
+| control | 250.1s | 30,400 | 446,464 | $0.107 | MCP plus 20 `bash` calls |
+| sidecar | 10.0s | 3,141 | 5,987 | $0.005 | MCP plus 1 `context_search` |
 
 The sidecar database for that case recorded two stored MCP sources
 because I ran a smoke test while fixing the harness:

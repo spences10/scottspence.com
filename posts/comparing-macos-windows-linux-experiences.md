@@ -50,7 +50,7 @@ experience with macOS has been on par with the other platforms I've
 used. I've had to troubleshoot issues with macOS just as much as I
 have with Windows and Linux.
 
-**Development Environment Setup**
+*Development Environment Setup*
 
 You think that macOS would come installed with git already, it
 doesn't. To get git on a mac you have to install Xcode, which is
@@ -59,14 +59,14 @@ around 11GB massive! just for git!
 There's alternate ways to install git on a mac, but, they're not easy
 to find.
 
-**Display Management**
+*Display Management*
 
 With macOS I have never found a decent way to extend/duplicate
 screens, there's always that annoying orange dot in the top right
 corner and when presenting there's the whole mirroring thing which is
 buried in the settings.
 
-**Window Management**
+*Window Management*
 
 Window management (with the keyboard) on macOS is non-existent and you
 have to rely on third party software.
@@ -75,14 +75,14 @@ I was using Raycast for moving windows with keyboard shortcuts for a
 while and it was really good. There's other tools out there to do the
 same thing.
 
-**Webcam Functionality**
+*Webcam Functionality*
 
 Web cameras with all the MacBooks I have used have rarely worked as
 expected. There were always some visual glitch, image flickering or
 just plain wont work. Usually a hardware issue and more often than not
 there's no macOS version available from the manufacturer
 
-**Content Creation**
+*Content Creation*
 
 Content creation on the mac in my past experience hasn't been the
 best. OBS can be a bit of a challenge to get working as you'd like
@@ -100,7 +100,7 @@ trying to find the fix for that one issue that's really bugging you,
 like no native support for emojis, so you have to install them or find
 an emoji picker you like!
 
-**Development Environment Setup**
+*Development Environment Setup*
 
 Linux, if there's no community support for what you want to do then
 you're out of luck, you have to wait for someone to create it or make
@@ -110,26 +110,26 @@ The platforms I use have always come with git installed as default,
 installing additional tools after that is a `apt get install` or
 terminal command away.
 
-**Display Management**
+*Display Management*
 
 Extend/duplicate screens is configurable in the settings and works
 well with usually only minor adjustments needed. Always simple to find
 with a quick search.
 
-**Window Management**
+*Window Management*
 
 Window management is pretty good with the majority of the platforms I
 used having it as default. With minor adjustments needed in hotkeys
 sections I've usually always been able to get it working as I want.
 
-**Webcam Functionality**
+*Webcam Functionality*
 
 Webcams, I have never had an issue with webcams for recording OBS
 videos or attending virtual meetings, plug and play as expected.
 Driver support is usually limited and you're relying on the community
 to create them.
 
-**Content Creation**
+*Content Creation*
 
 Content creation using OBS, again, there may be missing audio drivers
 for noise suppression. Things like virtual camera backgrounds were not
@@ -142,12 +142,12 @@ corporates. Used absolutely everywhere and the most supported
 platform.
 
 Again, bring your own hardware or buy a pre-built machine! I [built my
-own machine] <DD date="2020-05-30" /> ago and it's still going strong.
+own machine](https://www.scottspence.com/posts/first-time-pc-build) <DD date="2020-05-30" /> ago and it's still going strong.
 
-**Development Environment Setup**
+*Development Environment Setup*
 
-Don't do web development on Windows! 😂 **"But you're a web developer
-what gives?"** I use the Windows Subsystem for Linux (WSL) this means
+Don't do web development on Windows! 😂 *"But you're a web developer
+what gives?"* I use the Windows Subsystem for Linux (WSL) this means
 that I can install either one (or many) of the supported distros
 available from the Microsoft Store or install my preferred distro!
 
@@ -160,25 +160,25 @@ with `wsl --install Ubuntu` this does everything needed to get WSL set
 up on your machine and install Ubuntu. I can even install a desktop
 environment and use it as if it was a native Linux machine. But, no.
 
-**Display Management**
+*Display Management*
 
 Extend/duplicate screens is configurable in the settings and works
 with minor adjustments needed, in my experience it's the most complete
 and easy to use.
 
-**Window Management**
+*Window Management*
 
 Window management as the name implies is the Windows thing! It's
 really intuitive and there's been some really good improvements in
 Windows 11
 
-**Webcam Functionality**
+*Webcam Functionality*
 
 Webcams, the majority I have used in the past have been plug and play
 with no issues, in some cases things get better with drivers from the
 manufacturer and of course Windows is supported.
 
-**Content Creation**
+*Content Creation*
 
 Content creation using OBS again there may be missing audio drivers
 for noise suppression, the built in ones are really good and if you
@@ -213,8 +213,3 @@ check out the tags for them:
 - <a href="/tags/fedora" target="_blank">Fedora</a>
 - <a href="/tags/manjaro" target="_blank">Manjaro</a>
 - <a href="/tags/windows" target="_blank">Windows</a>
-
-<!-- Links -->
-
-[built my own machine]:
-	https://www.scottspence.com/posts/first-time-pc-build

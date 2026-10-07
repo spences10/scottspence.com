@@ -18,11 +18,11 @@ The only real plus for having a cover image was to that I could get
 the sweet preview cards you get when sharing on social platforms like
 Twitter and LinkedIn.
 
-I followed the awesome video content and [blog post] from Leigh
+I followed the awesome video content and [blog post](https://www.leighhalliday.com/serverless-og-image) from Leigh
 Halliday to build my own. I now have a way to generate social sharing
 cards without having to add a cover image to every post I do.
 
-Check out the [interactive example] to have a play with and understand
+Check out the [interactive example](#interactive-example) to have a play with and understand
 how the card in generated.
 
 This isn't going to be a step by step guide on how to do that as Leigh
@@ -46,7 +46,7 @@ integration later on the Vercel dashboard.
 For me, to begin with, I couldn't work out why I kept getting these
 error messages:
 
-![no tsc config error]
+![no tsc config error](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858542/scottspence.com/no-tsc-config-e9f31650c9c030db545f53eee91277a2.png)
 
 The reason? I didn't have a `tscconfig.json` file in the project so
 the Now platform had no idea what to do with the project!
@@ -237,7 +237,7 @@ Well, if I built the site and inspected the source I could pick out
 the image URL from the page HTML, if you take a look you may be able
 to see the issue.
 
-![page source url]
+![page source url](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858542/scottspence.com/page-source-image-url-d3f732295bfea040414f963976b7287f.png)
 
 Here's an example URL of what is being added to the page source:
 
@@ -254,7 +254,7 @@ https://image-og.now.sh/og.jpg
 Getting `&amp;` instead of `&` so if you copy paste this link into a
 browser you get this sort of image:
 
-![undefined og]
+![undefined og](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/undefined-og-image-63cb64d032a31d5ffa730e5e4d5ed10d.jpg)
 
 I still get this now if I go inspect the source of a page on the site
 and opening one of the URLs give the same error.
@@ -263,29 +263,9 @@ But it works if you share the link on Twitter or LinkedIn, so, like I
 said, I'm not entirely sure what is going on there.
 
 Check out the videos from Leigh, the source for his project is
-available [here], and you can see the implementation of his [OG Image
-function] in his site.
+available [here](https://github.com/leighhalliday/og-image), and you can see the implementation of his [OG Image
+function](https://github.com/abnormalstudio/leighhalliday/blob/master/src/templates/article.tsx#L73) in his site.
 
 Mine are pretty much the same, except for different styling on the
-card, here's source for my [Generate OG Image] and also how I'm
-implementing it [into this site].
-
-<!-- Links -->
-
-[blog post]: https://www.leighhalliday.com/serverless-og-image
-[here]: https://github.com/leighhalliday/og-image
-[og image function]:
-	https://github.com/abnormalstudio/leighhalliday/blob/master/src/templates/article.tsx#L73
-[generate og image]: https://github.com/spences10/generate-og-image
-[into this site]:
-	https://github.com/spences10/thelocalhost/blob/master/src/templates/post-template.js#L157
-[interactive example]: #interactive-example
-
-<!-- Images -->
-
-[no tsc config error]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858542/scottspence.com/no-tsc-config-e9f31650c9c030db545f53eee91277a2.png
-[page source url]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858542/scottspence.com/page-source-image-url-d3f732295bfea040414f963976b7287f.png
-[undefined og]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/undefined-og-image-63cb64d032a31d5ffa730e5e4d5ed10d.jpg
+card, here's source for my [Generate OG Image](https://github.com/spences10/generate-og-image) and also how I'm
+implementing it [into this site](https://github.com/spences10/thelocalhost/blob/master/src/templates/post-template.js#L157).

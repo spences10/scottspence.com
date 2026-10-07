@@ -1,4 +1,8 @@
-import { marked } from 'marked';
+import { fromHtml } from 'hast-util-from-html';
+import { defaultSchema, sanitize } from 'hast-util-sanitize';
+import { toHtml } from 'hast-util-to-html';
+import { parse } from 'yaml';
+import { render_pfm } from '../markdown/render.ts';
 
 interface ParsedNewsletter {
 	frontmatter: Record<string, unknown>;
@@ -9,77 +13,35 @@ interface ParsedNewsletter {
  * Parse markdown frontmatter and content
  */
 function parse_markdown(markdown: string): ParsedNewsletter {
-	const lines = markdown.split('\n');
-	const start = lines.findIndex((line) => line === '---');
-	const end = lines.findIndex(
-		(line, i) => i > start && line === '---',
+	const match = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/.exec(
+		markdown,
 	);
-
-	if (start === -1 || end === -1) {
+	if (!match) {
 		throw new Error(
 			'Invalid markdown: missing frontmatter delimiters',
 		);
 	}
-
-	// Parse frontmatter
-	const frontmatter_lines = lines.slice(start + 1, end);
-	const frontmatter: Record<string, unknown> = {};
-
-	let i = 0;
-	while (i < frontmatter_lines.length) {
-		const line = frontmatter_lines[i];
-		const [key, ...value_parts] = line.split(':');
-
-		if (!key || key.trim() === '') {
-			i++;
-			continue;
-		}
-
-		const value = value_parts.join(':').trim();
-
-		// Check if value is on the same line
-		if (value.length > 0) {
-			if (value === 'true') {
-				frontmatter[key.trim()] = true;
-			} else if (value === 'false') {
-				frontmatter[key.trim()] = false;
-			} else {
-				frontmatter[key.trim()] = value.replace(/^["']|["']$/g, '');
-			}
-			i++;
-		} else {
-			// Value is on next line(s) - check if next line is indented
-			if (
-				i + 1 < frontmatter_lines.length &&
-				frontmatter_lines[i + 1].startsWith(' ')
-			) {
-				const next_line = frontmatter_lines[i + 1].trim();
-				frontmatter[key.trim()] = next_line.replace(
-					/^["']|["']$/g,
-					'',
-				);
-				i += 2; // Skip both current and next line
-			} else {
-				// No value found, skip
-				i++;
-			}
-		}
-	}
-
-	// Extract content
-	const content = lines
-		.slice(end + 1)
-		.join('\n')
-		.trim();
-
-	return { frontmatter, content };
+	return {
+		frontmatter: parse(match[1]),
+		content: markdown.slice(match[0].length).trim(),
+	};
 }
 
 /**
  * Convert markdown content to HTML email-safe format
  */
-async function markdown_to_html(markdown: string): Promise<string> {
-	return marked(markdown);
+function markdown_to_html(markdown: string): string {
+	const tree = fromHtml(render_pfm(markdown), { fragment: true });
+	// Keep authored email styles, but never send scripts or event handlers.
+	return toHtml(
+		sanitize(tree, {
+			...defaultSchema,
+			attributes: {
+				...defaultSchema.attributes,
+				'*': [...(defaultSchema.attributes?.['*'] ?? []), 'style'],
+			},
+		}),
+	);
 }
 
 /**
@@ -229,11 +191,17 @@ export async function convert_newsletter_to_html(
 ): Promise<{ html: string; title: string; published: boolean }> {
 	const { frontmatter, content } = parse_markdown(markdown);
 
-	const title = (frontmatter.title as string) || 'Newsletter';
-	const published = (frontmatter.published as boolean) || false;
+	const title =
+		typeof frontmatter.title === 'string'
+			? frontmatter.title
+			: 'Newsletter';
+	const published = frontmatter.published === true;
 
-	const html_content = await markdown_to_html(content);
-	const html = create_email_template(html_content, title);
+	const html_content = markdown_to_html(content);
+	const html = create_email_template(
+		html_content,
+		toHtml({ type: 'text', value: title }),
+	);
 
 	return { html, title, published };
 }

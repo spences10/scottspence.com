@@ -33,7 +33,7 @@ curl -sSfL https://get.tur.so/install.sh | bash
 ```
 
 There's other platforms supported on the docs page:
-https://docs.turso.tech/tutorials/get-started-turso-cli/step-01-installation
+[https://docs.turso.tech/tutorials/get-started-turso-cli/step-01-installation](https://docs.turso.tech/tutorials/get-started-turso-cli/step-01-installation)
 
 Once I'm logged into the CLI `turso auth login` I can create a
 database:
@@ -66,7 +66,7 @@ This isn't going to be a tutorial, more of a high level overview of
 what I did to get things working.
 
 Want to check the source? Here's the repo:
-https://github.com/spences10/sveltekit-and-turso-analytics
+[https://github.com/spences10/sveltekit-and-turso-analytics](https://github.com/spences10/sveltekit-and-turso-analytics)
 
 Feel free to help improve it as well! This was thrown together over
 the weekend and I'm sure there's a lot of room for improvement!
@@ -194,7 +194,7 @@ CREATE TABLE
 ```
 
 The data for this table is from using the IPinfo.io API, you can get a
-free API key with limited requests from https://ipinfo.io/signup
+free API key with limited requests from [https://ipinfo.io/signup](https://ipinfo.io/signup)
 
 ## Session handling
 
@@ -208,7 +208,7 @@ handle user sessions which would:
 - Log page visits.
 - Create a session cookie.
 
-**what's the session cookie for?** Well, this is so I can effectively
+*what's the session cookie for?* Well, this is so I can effectively
 detect when a user session has ended. This means that I can update the
 `session_end` field in the `user_session` table and delete the session
 data sooner than the 24 hour period.
@@ -217,7 +217,7 @@ This is done via a neat little function called `sendBeacon` which
 allows you to send data to a server without waiting for a response.
 
 I picked this up from Paulie's post on Neon and Astro:
-https://neon.tech/blog/roll-your-own-analytics-with-astro-vercel-edge-functions-and-neon
+[https://neon.tech/blog/roll-your-own-analytics-with-astro-vercel-edge-functions-and-neon](https://neon.tech/blog/roll-your-own-analytics-with-astro-vercel-edge-functions-and-neon)
 
 ## Tracking Page Visits
 
@@ -260,18 +260,16 @@ I think with a local it will speed things up considerably, if you
 check out the demo now you'll notice some (like six seconds 😅)
 latency. There's a post from Jamie on the Turso blog detailing this,
 here:
-https://blog.turso.tech/stop-caching-and-use-your-database-to-save-time-and-latency-16aebd3f
+[https://blog.turso.tech/stop-caching-and-use-your-database-to-save-time-and-latency-16aebd3f](https://blog.turso.tech/stop-caching-and-use-your-database-to-save-time-and-latency-16aebd3f)
 
 ## References
 
 - SvelteKit discussion:
-  https://github.com/sveltejs/kit/discussions/3973
+  [https://github.com/sveltejs/kit/discussions/3973](https://github.com/sveltejs/kit/discussions/3973)
 - sveltekit-user-ip-location-example:
-  https://github.com/CAPTAIN320/sveltekit-user-ip-location-example My
-- Tweet: https://twitter.com/spences10/status/1731036535842074808
+  [https://github.com/CAPTAIN320/sveltekit-user-ip-location-example](https://github.com/CAPTAIN320/sveltekit-user-ip-location-example) My
+- Tweet: [https://twitter.com/spences10/status/1731036535842074808](https://twitter.com/spences10/status/1731036535842074808)
 - Paulie:
-  https://neon.tech/blog/roll-your-own-analytics-with-astro-vercel-edge-functions-and-neon
+  [https://neon.tech/blog/roll-your-own-analytics-with-astro-vercel-edge-functions-and-neon](https://neon.tech/blog/roll-your-own-analytics-with-astro-vercel-edge-functions-and-neon)
 - sendBeacon:
-  https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon
-
-<!-- Links -->
+  [https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon)

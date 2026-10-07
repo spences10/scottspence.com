@@ -16,7 +16,7 @@ having an XML Sitemap and having one can improve your SEO.
 
 At the beginning of January I asked a question in the Sanity.io Slack.
 
-![slack message asking about site map]
+![slack message asking about site map](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/slack-message-asking-about-site-map-eb4b170b1db4454e381d622f3374b6cd.png)
 
 <!-- cSpell:ignore knut -->
 
@@ -24,7 +24,7 @@ The Lee Robinson solution didn't work for me so I reached out on the
 Sanity slack channel and Knut being the legend he is offered up how
 they have done it:
 
-![knut slack reply]
+![knut slack reply](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/knut-slack-reply-09be06278ce5133cf55987bd7be2a328.png)
 
 ```js
 const client = require('../../client');
@@ -87,7 +87,7 @@ module.exports = function sitemapXML(req, res, next) {
 I was just about to start getting my head around how that was done
 then James Weis came in with setting the headers to `text/xml`
 
-![james weis reply headers to text/xml]
+![james weis reply headers to text/xml](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/james-weis-reply-headers-to-text-xml-38b5a75fc9ea820d41bc3cf287eae85f.png)
 
 This made a lot more sense to me so I implemented this straight away.
 
@@ -151,15 +151,4 @@ located as `https://myawesomesite.com/sitemap.xml`.
 I asked for permission to document this from James and he was happy
 with being mentioned, thanks James. 🙏
 
-![asking for permission to add this content to my blog]
-
-<!-- Images -->
-
-[slack message asking about site map]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/slack-message-asking-about-site-map-eb4b170b1db4454e381d622f3374b6cd.png
-[knut slack reply]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/knut-slack-reply-09be06278ce5133cf55987bd7be2a328.png
-[james weis reply headers to text/xml]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/james-weis-reply-headers-to-text-xml-38b5a75fc9ea820d41bc3cf287eae85f.png
-[asking for permission to add this content to my blog]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/credit-james-4b96034fad83ad2aab9b4d85238a7260.png
+![asking for permission to add this content to my blog](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/credit-james-4b96034fad83ad2aab9b4d85238a7260.png)

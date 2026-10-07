@@ -25,27 +25,27 @@ site.
 In June I started co-hosting Whiskey Wednesday with Marc Backes and
 met with and spoke to a load of cool people on there.
 
-I documented my [streaming setup] so others could get started
+I documented my [streaming setup](https://scottspence.com/posts/getting-started-with-youtube) so others could get started
 themselves.
 
 I did a load of work with Windows Subsystem for Linux, documented a
 load of stuff relating to that:
 
-- [Windows Terminal Config]
-- [WSL Web Developer Bootstrap with Fedora 33]
-- [Fedora Remix for WSL GUI Apps]
-- [Use Chrome in Ubuntu on Windows Subsystem Linux]
-- [Enable GUIs on Windows Subsystem Linux (WSL)]
+- [Windows Terminal Config](https://scottspence.com/posts/windows-terminal-config)
+- [WSL Web Developer Bootstrap with Fedora 33](https://scottspence.com/posts/fedora-bootstrap-from-scratch)
+- [Fedora Remix for WSL GUI Apps](https://scottspence.com/posts/fedora-remix-for-wsl-gui-apps)
+- [Use Chrome in Ubuntu on Windows Subsystem Linux](https://scottspence.com/posts/use-chrome-in-ubuntu-wsl)
+- [Enable GUIs on Windows Subsystem Linux (WSL)](https://scottspence.com/posts/gui-with-wsl)
 
-I [built my first PC] as well, as my Surface clone couldn't hack it
+I [built my first PC](https://scottspence.com/posts/first-time-pc-build) as well, as my Surface clone couldn't hack it
 any more.
 
 Made posts on ZSH and how I switched from Fish to ZSH which is now my
 default shell, got a retweet from Robby Russel for that!
 
-- [Notes on Zsh and Oh My Zsh]
+- [Notes on Zsh and Oh My Zsh](https://scottspence.com/posts/zsh-and-oh-my-zsh)
 
-I [started a newsletter], which by the way I should have done years
+I [started a newsletter](https://ss10.dev/nl), which by the way I should have done years
 ago! and the Wes Bos React Advanced Courses giveaway really helped
 with that!
 
@@ -57,7 +57,7 @@ I've become a bit obsessive about note taking and made the front page
 of hacker news talking about Foam, I now use Dendron for my note
 taking.
 
-- [My Second Brain - Zettelkasten]
+- [My Second Brain - Zettelkasten](https://scottspence.com/posts/my-second-brain-zettelkasten)
 
 I still have really popular posts from the start of 2020 still making
 numbers as well making a table of contents in Gatsby, getting started
@@ -76,22 +76,3 @@ Oh and starting NatterMob with covid friends too:
 
 You can sign up to the newsletter as well:
 [https://ss10.dev/nl](https://ss10.dev/nl)
-
-[streaming setup]:
-	https://scottspence.com/posts/getting-started-with-youtube
-[windows terminal config]:
-	https://scottspence.com/posts/windows-terminal-config
-[wsl web developer bootstrap with fedora 33]:
-	https://scottspence.com/posts/fedora-bootstrap-from-scratch
-[fedora remix for wsl gui apps]:
-	https://scottspence.com/posts/fedora-remix-for-wsl-gui-apps
-[use chrome in ubuntu on windows subsystem linux]:
-	https://scottspence.com/posts/use-chrome-in-ubuntu-wsl
-[enable guis on windows subsystem linux (wsl)]:
-	https://scottspence.com/posts/gui-with-wsl
-[notes on zsh and oh my zsh]:
-	https://scottspence.com/posts/zsh-and-oh-my-zsh
-[built my first pc]: https://scottspence.com/posts/first-time-pc-build
-[started a newsletter]: https://ss10.dev/nl
-[my second brain - zettelkasten]:
-	https://scottspence.com/posts/my-second-brain-zettelkasten

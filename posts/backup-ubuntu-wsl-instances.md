@@ -7,7 +7,7 @@ is_private: false
 
 I've had to make a copy of my current Ubuntu install for Windows
 Subsystem for Linux (WSL) and although [I have written about this
-before] but this time there were a few gotchas I want to cover here.
+before](https://scottspence.com/posts/backup-wsl-installs) but this time there were a few gotchas I want to cover here.
 
 WSL moves pretty fast so a lot of the documentation you find out there
 may be outdated.
@@ -223,8 +223,3 @@ That's it! I've backed up my current Ubuntu install by saving it to a
 local hard drive directory. Then created a new Ubuntu instance with
 the WSL `--import` command. Finally I can delete the what I created
 with the WSL `--unregister` command.
-
-<!-- Links -->
-
-[i have written about this before]:
-	https://scottspence.com/posts/backup-wsl-installs

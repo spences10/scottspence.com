@@ -5,7 +5,7 @@ tags: ['fedora', 'linux', 'wsl']
 is_private: false
 ---
 
-This is an updated guide on the post I did [at the start of the year]
+This is an updated guide on the post I did [at the start of the year](https://scottspence.com/posts/fedora-bootstrap-from-scratch)
 for setting up a web development environment on Windows with Windows
 Subsystem for Linux (WSL). This guide is intended for use to get set
 up with Fedora 35 on WSL.
@@ -21,7 +21,7 @@ out the sections not needed with recent changes.
 ## Prerequisites
 
 This guide presumes you're using WSL2 on Windows 11, check out my
-short post on setting up [Windows Subsystem for Linux on Windows 11]
+short post on setting up [Windows Subsystem for Linux on Windows 11](https://scottspence.com/posts/wsl-on-windows-11)
 for more info.
 
 ## Download the Fedora 35 `rootfs`
@@ -31,7 +31,7 @@ available from the Dockerhub container image.
 
 From the GitHub page I can click on the image to download it. For me
 at the time of writing that file is
-[`fedora-35.20211125-x86_64.tar.xz`].
+[`fedora-35.20211125-x86_64.tar.xz`](https://github.com/fedora-cloud/docker-brew-fedora/tree/35/x86_64).
 
 The download is a `*.tar.xz` file, I need to extract this so it's a
 `*.tar` file, I'll use 7zip to do that.
@@ -145,8 +145,8 @@ Opening a new Fedora 35 terminal I'm now logged in a `scott`.
 
 <!-- cSpell:ignore copr,wslu -->
 
-One last part here is to add [Copr], this is a collection of utilities
-provided for use in WSL ([`wslu`]).
+One last part here is to add [Copr](https://github.com/wslutilities/wslu), this is a collection of utilities
+provided for use in WSL ([`wslu`](https://github.com/wslutilities/wslu)).
 
 ```bash
 # in the Fedora shell
@@ -211,12 +211,12 @@ dev workflow.
 
 I'm going to be adding the following plugins:
 
-- [zsh-syntax-highlighting]
-- [zsh-autosuggestions]
+- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 
 And my favourite theme:
 
-- [Spaceship ZSH]
+- [Spaceship ZSH](https://github.com/denysdovhan/spaceship-prompt)
 
 I'll install the plugins first:
 
@@ -267,7 +267,7 @@ You might see a warning in a new shell now like this:
 (upower:185): UPower-WARNING **: 18:38:44.618: Cannot connect to upower: Could not connect: No such file or directory
 ```
 
-There's a post on [Miguel Alex Cantu]'s blog about this issue, there's
+There's a post on [Miguel Alex Cantu](http://blog.miguelalexcantu.com/2020/12/fixing-upower-warning-wslzshspaceship.html)'s blog about this issue, there's
 a spaceship config option for it.
 
 You need to add the following to your `~/.zshrc`:
@@ -390,24 +390,4 @@ That's it, I've gone from a Fedora `rootfs` to a web development
 environment.
 
 I can now start working on my GitHub projects with VS Code integration
-with the use of the [Remote WSL] extension.
-
-<!-- Links -->
-
-[at the start of the year]:
-	https://scottspence.com/posts/fedora-bootstrap-from-scratch
-[windows subsystem for linux on windows 11]:
-	https://scottspence.com/posts/wsl-on-windows-11
-[`fedora-35.20211125-x86_64.tar.xz`]:
-	https://github.com/fedora-cloud/docker-brew-fedora/tree/35/x86_64
-[copr]: https://github.com/wslutilities/wslu
-[`wslu`]: https://github.com/wslutilities/wslu
-[zsh-syntax-highlighting]:
-	https://github.com/zsh-users/zsh-syntax-highlighting
-[zsh-autosuggestions]:
-	https://github.com/zsh-users/zsh-autosuggestions
-[spaceship zsh]: https://github.com/denysdovhan/spaceship-prompt
-[miguel alex cantu]:
-	http://blog.miguelalexcantu.com/2020/12/fixing-upower-warning-wslzshspaceship.html
-[remote wsl]:
-	https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl
+with the use of the [Remote WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl) extension.

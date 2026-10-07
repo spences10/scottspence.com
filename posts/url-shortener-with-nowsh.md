@@ -9,7 +9,7 @@ is_private: false
   import { YouTube } from 'sveltekit-embed'
 </script>
 
-Remember services like [Bitly] and [TinyURL]? Yeah, they still exist,
+Remember services like [Bitly](https://bitly.com) and [TinyURL](https://tinyurl.com)? Yeah, they still exist,
 shortening your URLs for you, they've been around for a long time too.
 
 Bitly founded in 2008 and TinyURL founded in 2002 😱
@@ -17,14 +17,14 @@ Bitly founded in 2008 and TinyURL founded in 2002 😱
 In this post I'm detailing how I made my own Bitly with Now.sh.
 
 You can make your own one too as I'm about to detail the process here,
-or you can **[TL;DR]** for the video.
+or you can *[TL;DR](#heres-a-video-detailing-the-process)* for the video.
 
 What you need:
 
 - Node (to run the now CLI)
-- The [now CLI]
-- [Vercel.com account]
-- [GitHub account] (not essential)
+- The [now CLI](https://vercel.com/download)
+- [Vercel.com account](https://vercel.com/signup)
+- [GitHub account](https://github.com/join) (not essential)
 - Yor own domain (not essential)
 
 ## Examples, why would I use a short URL?
@@ -36,11 +36,11 @@ to someone.
 There's a talk I did about Gatsby, titled "Build-time and Client
 Run-time Data Fetching in Gatsby" the URL for it is:
 
-- https://gatsby-build-and-run-time-data-fetching-talk.now.sh
+- [https://gatsby-build-and-run-time-data-fetching-talk.now.sh](https://gatsby-build-and-run-time-data-fetching-talk.now.sh)
 
 With a short URL I can condense it down a bit:
 
-- https://ss10.dev/gatsby-data-fetching
+- [https://ss10.dev/gatsby-data-fetching](https://ss10.dev/gatsby-data-fetching)
 
 Not massively shorter, and granted the original URL has no place being
 that long!
@@ -48,24 +48,24 @@ that long!
 Other examples could be the "Build a coding blog from scratch with
 Gatsby and MDX" guide I did at the end of last year:
 
-- Full URL https://scottspence.com/posts/build-an-mdx-blog
-- Short URL https://ss10.dev/bab-guide
+- Full URL [https://scottspence.com/posts/build-an-mdx-blog](https://scottspence.com/posts/build-an-mdx-blog)
+- Short URL [https://ss10.dev/bab-guide](https://ss10.dev/bab-guide)
 
 Or if you have a crazy URL no one is going to be able to recite from
 memory, like my YouTube channel URL:
 
-- Full URL https://www.youtube.com/channel/UCnngLXpLSFsKkDhFoO9Ct3w
-- Short URL https://ss10.dev/youtube
-- Shorter still https://ss10.dev/yt
+- Full URL [https://www.youtube.com/channel/UCnngLXpLSFsKkDhFoO9Ct3w](https://www.youtube.com/channel/UCnngLXpLSFsKkDhFoO9Ct3w)
+- Short URL [https://ss10.dev/youtube](https://ss10.dev/youtube)
+- Shorter still [https://ss10.dev/yt](https://ss10.dev/yt)
 
 I do have a vanity URL for my YouTube channel which is
-https://www.youtube.com/c/ScottSpencePlease, but it's case sensitive.
+[https://www.youtube.com/c/ScottSpencePlease](https://www.youtube.com/c/ScottSpencePlease), but it's case sensitive.
 🤦‍♂
 
 ## Do I have to use Vercel? 🤔
 
 No, you can use Netlify as well. There's a great [Kent C Dodds example
-with Netlify] that I used before moving to Vercel.
+with Netlify](https://www.youtube.com/watch?v=HL6paXyx6hM) that I used before moving to Vercel.
 
 You don't have to use Netlify either, you do you. 😸
 
@@ -88,7 +88,7 @@ examples earlier, give a path to your URL then use a redirect rule.
 ## Get set up 🛠
 
 If you don't have a machine set up for web development I have written
-about getting set up [for Windows].
+about getting set up [for Windows](https://scottspence.com/posts/wsl-bootstrap-2019).
 
 There's also a video I've made to go from scratch to Create React App
 on Ubuntu 19.04.
@@ -183,12 +183,12 @@ and inspect the project.
 As I set the root of the redirect to go to my portfolio site that's
 what I have in my project overview in Vercel.
 
-![vercel project overview]
+![vercel project overview](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/vercel-project-overview-920be865823e277d7de4076c16bf0cef.png)
 
 <!-- cSpell:ignore fzph -->
 
 I can now take that URL (now-short-urls-fzph462o0.now.sh) add it to a
-browser and it will redirect to https://scottspence.me.
+browser and it will redirect to [https://scottspence.me](https://scottspence.me).
 
 Now when I deploy this with the `--prod` flag in the Vercel CLI it
 will use the project URL (now-short-urls.now.sh).
@@ -206,7 +206,7 @@ So, better get that project on GitHub!
 ## Add the Project to GitHub
 
 Go to GitHub, click on the plus icon next to my profile picture,
-select '[New repository]'.
+select '[New repository](https://github.com/new)'.
 
 Enter the new project name and click the 'Create repository' button.
 
@@ -238,12 +238,12 @@ from a push to your master branch on your project or via a pull
 request.
 
 The Vercel documentation for this is really good so I'm going to link
-that [here].
+that [here](https://vercel.com/docs/v2/git-integrations/vercel-for-github).
 
 The docs will walk you through setting up the GitHub integration with
 your GitHub account and linking a project.
 
-There are also integrations available for [GitLab] and [Bitbucket].
+There are also integrations available for [GitLab](https://vercel.com/docs/v2/git-integrations/vercel-for-gitlab) and [Bitbucket](https://vercel.com/docs/v2/git-integrations/vercel-for-bitbucket).
 
 Now each time I add a short url to my project all I have to do is git
 commit and push to GitHub and the Vercel GitHub integration will take
@@ -258,7 +258,7 @@ My domain isn't supplied by Vercel so I will need to configure the DNS
 settings in my domain provider by adding the custom DNS configuration
 supplied here by Vercel.
 
-![vercel domains settings]
+![vercel domains settings](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/vercel-domains-settings-1a61d18a56f360b8fc4d92ed3767365b.png)
 
 The cool thing with Vercel is that I can have many domains pointing to
 the same project.
@@ -269,38 +269,7 @@ the same project.
 
 ## Resources
 
-- [Kent C Dodds example with Netlify]
-- [Vercel's documentation]
-- [GitHub project]
-- [Use Commons Host]
-
-<!-- Links -->
-
-[bitly]: https://bitly.com
-[tinyurl]: https://tinyurl.com
-[tl;dr]: #heres-a-video-detailing-the-process
-[now cli]: https://vercel.com/download
-[vercel.com account]: https://vercel.com/signup
-[github account]: https://github.com/join
-[for windows]: https://scottspence.com/posts/wsl-bootstrap-2019
-[kent c dodds example with netlify]:
-	https://www.youtube.com/watch?v=HL6paXyx6hM
-[vercel's documentation]:
-	https://vercel.com/docs/configuration#project/redirects
-[github project]: https://github.com/spences10/now-short-urls
-[use commons host]:
-	https://dev.to/commonshost/build-your-own-url-shortener-in-15-minutes-279n
-[vercel for github]: https://vercel.com/github
-[new repository]: https://github.com/new
-[here]: https://vercel.com/docs/v2/git-integrations/vercel-for-github
-[gitlab]:
-	https://vercel.com/docs/v2/git-integrations/vercel-for-gitlab
-[bitbucket]:
-	https://vercel.com/docs/v2/git-integrations/vercel-for-bitbucket
-
-<!-- Images -->
-
-[vercel project overview]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/vercel-project-overview-920be865823e277d7de4076c16bf0cef.png
-[vercel domains settings]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/vercel-domains-settings-1a61d18a56f360b8fc4d92ed3767365b.png
+- [Kent C Dodds example with Netlify](https://www.youtube.com/watch?v=HL6paXyx6hM)
+- [Vercel's documentation](https://vercel.com/docs/configuration#project/redirects)
+- [GitHub project](https://github.com/spences10/now-short-urls)
+- [Use Commons Host](https://dev.to/commonshost/build-your-own-url-shortener-in-15-minutes-279n)

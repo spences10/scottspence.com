@@ -9,7 +9,7 @@ This is a how-to guide for adding a contact form to your SvelteKit
 site using Airtable to store the submissions and notify you when there
 is a new submission.
 
-This is an update to the [previous post] I did on this, the recent
+This is an update to the [previous post](https://scottspence.com/posts/make-a-contact-form-with-sveltekit-and-airtable) I did on this, the recent
 changes to how you create access keys in the Airtable API means that I
 get a chance to revisit this and make it a little more current.
 
@@ -19,7 +19,7 @@ validation on the client only.
 
 After those examples I'll go into setting up a similar example using
 SvelteKit Superforms which has client and server validation with
-[Zod].
+[Zod](https://zod.dev/).
 
 The previous post goes over creating a new SvelteKit project and
 setting up the Airtable base, for the sake of completeness I'll go
@@ -27,12 +27,12 @@ over that again here.
 
 ## How forms are handled in SvelteKit
 
-Because SvelteKit builds on top of the standard [Web APIs] there's not
+Because SvelteKit builds on top of the standard [Web APIs](https://developer.mozilla.org/en-US/docs/Web/API) there's not
 a great deal of difference in how you handle forms in SvelteKit over
 standard HTML form submissions.
 
-Collect data on the client &rArr; submit to the server &rArr; process
-the data &rArr; send a response back to the client.
+Collect data on the client ⇒ submit to the server ⇒ process
+the data ⇒ send a response back to the client.
 
 Each of the examples in this post will be following this approach.
 
@@ -89,7 +89,7 @@ the Airtable base set up.
 
 ## Create an Airtable base
 
-If you're new to Airtable you can [sign up for a free account] and go
+If you're new to Airtable you can [sign up for a free account](https://airtable.com/signup) and go
 through the onboarding process which will ask you some questions to
 get set up with a new base.
 
@@ -109,17 +109,17 @@ match the code examples:
 ## Create Airtable API key
 
 To be able to write data via the Airtable API I'll create a [Personal
-access token] with the following scopes and access to the
+access token](https://airtable.com/create/tokens) with the following scopes and access to the
 `contact-requests` base:
 
-**Scopes**
+*Scopes*
 
 - `data.records:read` See the data in records
 - `data.records:write` Create, edit, and delete records
 - `schema.bases:read` See the structure of a base, like table names or
   field types
 
-**Access**
+*Access*
 
 - `contact-requests`
 
@@ -129,8 +129,8 @@ clipboard.
 For reference, this is what I have for the scopes and access on
 Airtable:
 
-[![airtable-create-personal-access-token]]
-[airtable-create-personal-access-token]
+\[![airtable-create-personal-access-token](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1683010912/airtable-create-personal-access-token.png)\]
+[airtable-create-personal-access-token](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1683010912/airtable-create-personal-access-token.png)
 
 I'll need to save the generated token into a `.env` file. I can create
 a new file for that with the following command:
@@ -155,7 +155,7 @@ This opens up documentation specific to the base I'm working with. The
 ID for the base is detailed in the introduction section of the docs
 with the line:
 
-**The ID of this base is appXXXXXXXXXXXXXX.**
+*The ID of this base is appXXXXXXXXXXXXXX.*
 
 I'll copy the ID value and add it to the `.env` file for the
 `AIRTABLE_BASE_ID`.
@@ -828,7 +828,7 @@ some feedback on what they need to do to get the form to submit.
 
 This is my initial attempt at using Superforms! There's probably
 issues with this example and I'll be taking some more time to fully go
-through the SvelteKit Superforms [docs] so I'm not missing out on any
+through the SvelteKit Superforms [docs](https://superforms.vercel.app) so I'm not missing out on any
 of the features it provides.
 
 ## Airtable automation
@@ -883,23 +883,6 @@ I hope you can take this information and start implementing your own
 contact forms on your projects.
 
 If you're interested, you can check out the example code for this post
-over on GitHub [sveltekit-and-airtable-contact-form-example].
+over on GitHub [sveltekit-and-airtable-contact-form-example](https://github.com/spences10/sveltekit-and-airtable-contact-form-example).
 
 Thanks!
-
-<!-- Links -->
-
-[previous post]:
-	https://scottspence.com/posts/make-a-contact-form-with-sveltekit-and-airtable
-[sign up for a free account]: https://airtable.com/signup
-[personal access token]: https://airtable.com/create/tokens
-[sveltekit-and-airtable-contact-form-example]:
-	https://github.com/spences10/sveltekit-and-airtable-contact-form-example
-[zod]: https://zod.dev/
-[web apis]: https://developer.mozilla.org/en-US/docs/Web/API
-[docs]: https://superforms.vercel.app
-
-<!-- Images -->
-
-[airtable-create-personal-access-token]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1683010912/airtable-create-personal-access-token.png

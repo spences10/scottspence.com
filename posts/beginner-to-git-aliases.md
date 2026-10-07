@@ -18,19 +18,19 @@ requests or pushing your changes if you have the requisite
 permissions.
 
 So still used by me on a daily basis, and everyone else that uses git
-[I presume] is the `git add .` command, then
+\[I presume\] is the `git add .` command, then
 `git commit -m 'my awesome feature'` and `git push` or
 `git push origin <branch>`
 
 In my short time using Git I have always just typed out the full
-commands [usually with [my cheat sheet] close to hand] and thought
+commands \[usually with \[my cheat sheet\] close to hand\] and thought
 nothing more of it, that is how you use the tool, right?
 
 Well that was what I foolishly presumed until I learned about
 dotfiles, I learned about `.` files from listening to the
-[toolsday.io][toolsday] podcast with [Chris][chris] and [Una][una] a
+[toolsday.io](https://www.toolsday.io/) podcast with [Chris](https://twitter.com/chrisdhanaraj) and [Una](https://twitter.com/una) a
 great channel for learning about tooling 👍 the podcast was about [Git
-Tools][git-tools] give it a listen it's a great show.
+Tools](https://www.toolsday.io/episodes/git.html) give it a listen it's a great show.
 
 This was a pretty cool learning experience for me and I now have a
 pretty efficient git workflow 🚀
@@ -54,7 +54,7 @@ it open you'll see your details under the `[user]` flag, here's mine:
 
 I'm not sure what other configuration options you may have in yours so
 we're just going to concentrate on the aliases, aliases can be used so
-that you can shorten the commands [or make them longer if you like]
+that you can shorten the commands \[or make them longer if you like\]
 but I'm all for reducing key strokes, even if it is one or two less.
 
 So let's review the common commands I mentioned at the start:
@@ -130,33 +130,21 @@ the repository. Pretty neat 👍 so that could be aliased into something
 a lot shorter `git cl1d`?
 
 You'll no doubt notice the link I have in there for `o = open` that
-little gem belongs to [Paul Irish][pi] it's an npm package that will
+little gem belongs to [Paul Irish](https://github.com/paulirish) it's an npm package that will
 pop open a browser tab to the current repository you are in, pretty
 neat right?
 
 <!-- cSpell:ignore pidf -->
 
 I'm sure there are many, many more ways to configure Git if you take a
-look at [Paul Irish][pidf]'s dotfiles repo for his `.gitconfig` you'll
+look at [Paul Irish](https://github.com/paulirish/dotfiles/blob/master/.gitconfig)'s dotfiles repo for his `.gitconfig` you'll
 see there is a lot of ways to configure Git, I'm still learning and
 finding new ways to do things.
 
 If there is anything I have missed, or if you have a better way to do
 something then please let me know 👍
 
-Get me on [Twitter][sdt] or [Ask Me Anything][ama] on GitHub
+Get me on [Twitter](https://twitter.com/spences10) or [Ask Me Anything](https://github.com/spences10/ama) on GitHub
 
 If you like this post or if it has helped you in any way then please
 give it a like and don't forget to share it on social media 🙌
-
-<!--Links-->
-
-[git-cheatsheet]: https://cheatsheets.xyz/git/
-[toolsday]: https://www.toolsday.io/
-[chris]: https://twitter.com/chrisdhanaraj
-[una]: https://twitter.com/una
-[git-tools]: https://www.toolsday.io/episodes/git.html
-[pi]: https://github.com/paulirish
-[pidf]: https://github.com/paulirish/dotfiles/blob/master/.gitconfig
-[sdt]: https://twitter.com/spences10
-[ama]: https://github.com/spences10/ama

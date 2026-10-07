@@ -23,21 +23,21 @@ send the email.
 JSON Web Tokens (JWT) are perfect for this use case because:
 
 1. They can be securely signed to prevent tampering
-1. They can include expiration times for added security
+2. They can include expiration times for added security
 
 Let's break down how I'll implement this.
 
 ## The Authentication Flow
 
 1. User enters email on login page
-1. Server generates a JWT containing the user's email and an
+2. Server generates a JWT containing the user's email and an
    expiration time
-1. Server sends an email with a magic link containing this JWT
-1. User clicks the link, which includes the JWT as a query parameter
-1. Server verifies the JWT's signature and expiration
-1. If valid, server sets a secure HTTP-only cookie with a new session
+3. Server sends an email with a magic link containing this JWT
+4. User clicks the link, which includes the JWT as a query parameter
+5. Server verifies the JWT's signature and expiration
+6. If valid, server sets a secure HTTP-only cookie with a new session
    JWT
-1. User is redirected to the protected content
+7. User is redirected to the protected content
 
 Now, I'll implement this step-by-step!
 

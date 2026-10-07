@@ -5,13 +5,58 @@ import tailwindcss from '@tailwindcss/vite';
 import { mdsvex } from 'mdsvex';
 import { defineConfig } from 'vite-plus';
 import { playwright } from 'vite-plus/test/browser-playwright';
-import mdsvexConfig from './mdsvex.config.js';
+import mdsvexConfig, { site_metadata } from './mdsvex.config.ts';
+import { code_block_warning_filter } from './src/lib/markdown/highlighter.ts';
 
-export default defineConfig({
+const mdsvex_plugins = mdsvex(mdsvexConfig);
+// next.1 also matches asset queries. Keep raw Markdown for publishing feeds
+// until mdsvex excludes ?raw and ?url itself.
+for (const plugin of mdsvex_plugins) {
+	if (
+		plugin.name === 'mdsvex' &&
+		typeof plugin.transform === 'function'
+	) {
+		const transform = plugin.transform;
+		plugin.transform = function (source, id, options) {
+			if (/[?&](?:raw|url)(?:[=&]|$)/.test(id)) return;
+			return transform.call(this, source, id, options);
+		};
+	}
+}
+
+let warned_mdsvex_sourcemap = false;
+
+export default defineConfig(({ command }) => ({
+	// Keep warnings and errors, without printing every generated asset.
+	logLevel: command === 'build' ? 'warn' : 'info',
+	build: {
+		rolldownOptions: {
+			checks: { bundlerTimings: false },
+			onLog(level, log, default_handler) {
+				// mdsvex next.1 generates its maps in a later plugin. Report the
+				// missing transform map once, rather than once per document.
+				if (
+					log.code === 'SOURCEMAP_BROKEN' &&
+					log.plugin === 'mdsvex'
+				) {
+					if (warned_mdsvex_sourcemap) return;
+					warned_mdsvex_sourcemap = true;
+				}
+				default_handler(level, log);
+			},
+		},
+	},
 	plugins: [
 		tailwindcss(),
+		site_metadata,
+		mdsvex_plugins,
 		sveltekit({
 			adapter: adapter(),
+			dynamicCompileOptions({ filename, code }) {
+				if (/\.(?:md|svx)$/.test(filename)) {
+					return { warningFilter: code_block_warning_filter(code) };
+				}
+			},
 			compilerOptions: {
 				experimental: {
 					async: true,
@@ -21,8 +66,7 @@ export default defineConfig({
 			experimental: {
 				remoteFunctions: true,
 			},
-			extensions: ['.svelte', '.md'],
-			preprocess: [mdsvex(mdsvexConfig), vitePreprocess()],
+			preprocess: [vitePreprocess()],
 		}),
 	],
 	server: {
@@ -88,6 +132,11 @@ export default defineConfig({
 		trailingComma: 'all',
 		proseWrap: 'always',
 		ignorePatterns: [
+			// These .md files are native PFM. A CommonMark formatter changes
+			// *bold* to _italic_. Their syntax and types use check:posts.
+			'posts/*.md',
+			'copy/*.md',
+			'newsletter/*.md',
 			'.svelte-kit/**',
 			'build/**',
 			'test-results/**',
@@ -103,4 +152,4 @@ export default defineConfig({
 			stylesheet: './src/app.css',
 		},
 	},
-});
+}));

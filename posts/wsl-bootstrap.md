@@ -8,7 +8,7 @@ is_private: false
 <!-- cSpell:ignore beardy, fixanycomputer -->
 
 I'm a Windows user, I have been a Linux user as well but I have found
-that Windows is a bit less [neck beardy][fixanycomputer] for me, both
+that Windows is a bit less [neck beardy](https://theoatmeal.com/blog/fix_computer) for me, both
 have their pros and cons. One of the big cons with Windows for me was
 when I started learning web development.
 
@@ -22,13 +22,13 @@ is really straightforward to set up.
 
 Quick backstory on why I'm posting this: I nuked my laptop the other
 day as I was having issues with bash on Windows. Related partly to
-using [nvm][slowbash] with WSL and generally getting frustrated with
+using [nvm](https://github.com/Microsoft/WSL/issues/776) with WSL and generally getting frustrated with
 how my computer was performing. I realise now I over reacted.
 
 So I have had to set up my development environment again from scratch,
 luckily for me I keep all my settings and config information in a
-GitHub [repo][settingsrepo] in the event of me getting a new computer
-or to recover from a catastrophic event [like a nuked computer].
+GitHub [repo](https://github.com/spences10/settings) in the event of me getting a new computer
+or to recover from a catastrophic event \[like a nuked computer\].
 
 Here's how I set up _my_ Windows Subsystem Linux for my development
 environment.
@@ -37,7 +37,7 @@ This is my opinionated view on my specific setup and usage of WSL and
 this is my step by step guide for the next time I have to spin up a
 development environment from scratch on Windows.
 
-So, after installing [WSL][wslmsstore] from the Microsoft Store and
+So, after installing [WSL](https://www.microsoft.com/store/productId/9NBLGGH4MSV6) from the Microsoft Store and
 adding your default user, fist thing is to update and upgrade all the
 things.
 
@@ -51,7 +51,7 @@ upgrade statement is to default the answer to yes for any prompts that
 are displayed in the terminal. You might not want to do this, as there
 may be some programs you don't want to update but I do.
 
-![upgrade message]
+![upgrade message](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/upgrade-yes-d9fdf06ee6eadf39561e9293149c669e.png)
 
 You wont have these messages 👆
 
@@ -69,12 +69,12 @@ sudo apt install -y build-essential
 
 Installing node via the instructions given on the nodejs.org site
 doesn't give the correct permissions for me, so when trying to
-`npm install` anything I get errors, I found using [using `n`][usen]
+`npm install` anything I get errors, I found using [using `n`](https://github.com/Microsoft/WSL/issues/776#issuecomment-266112578)
 helps:
 
 ### Install node with `n`
 
-As it's a fresh install then we can go ahead and use [n-install] with:
+As it's a fresh install then we can go ahead and use [n-install](https://github.com/mklement0/n-install) with:
 
 ```bash
 curl -L https://git.io/n-install | bash
@@ -100,16 +100,16 @@ Fish is now my go to shell purely for the auto complete/intellisense
 there's also some nice themes you can get for it too.
 
 There's two options here, one is to use the standard package that come
-pre installed with the Ubuntu install or you can use the Fish [PPA]
+pre installed with the Ubuntu install or you can use the Fish [PPA](https://itsfoss.com/ppa-guide/)
 
-**Use the standard package:**
+*Use the standard package:*
 
 ```bash
 sudo apt -y install fish
 sudo apt -y upgrade && sudo apt -y autoremove
 ```
 
-**Use the Fish shell [PPA]:**
+*Use the Fish shell [PPA](https://itsfoss.com/ppa-guide/):*
 
 ```bash
 sudo apt-add-repository ppa:fish-shell/release-2
@@ -142,17 +142,17 @@ set up now, I have been using SSH over HTTPS for a while now on WSL.
 > Code git integration.
 
 To get SSH set up on your machine take a look at this [handy SSH
-setup]. I say SSH instead of HTTPS 1. because I had all sorts of
+setup](https://github.com/spences10/cheat-sheets/blob/master/git.md#how-to-authenticate-with-github-using-ssh). I say SSH instead of HTTPS 1. because I had all sorts of
 issues with the Git credential manager and the keyring manager in the
 end it was actually quicker to create an SSH key and authenticate with
 GitHub - the guide I linked walks you through it.
 
 ### Move your dotfiles
 
-If you have all your [dotfiles] backed up in a GitHub repo then now is
+If you have all your [dotfiles](https://github.com/spences10/dotfiles) backed up in a GitHub repo then now is
 a good time to add them to your WSL folder, the last times I did this
 I manually set the permissions after moving each of the the files but
-have since discovered [`rsync`][rsync] to move all the files.
+have since discovered [`rsync`](https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/) to move all the files.
 
 <!-- cSpell:ignore avzh -->
 
@@ -167,7 +167,7 @@ directory in WSL, you can check them with:
 ls -la ~/
 ```
 
-![bash files wrong permissions]
+![bash files wrong permissions](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/bash-wrong-perms-7499ad1ca9beabe2915014e11a7368d4.png)
 
 I copied across my `.gitconfig`, `.gitignore` and `.npmrc` dotfiles
 pictured here and you can see that the permissions are not consistent
@@ -208,33 +208,8 @@ chmod 644 .gitconfig .gitignore .npmrc
 
 And now my files look like this. 👍
 
-![bash files permissions]
+![bash files permissions](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930929/scottspence.com/bash-dotfiles-dad0b2d87dfb1eba5a9fc5320da452ce.png)
 
 Ok now were up and running with an up to date Ubuntu install, node and
 fish terminal. Of course there's still the case of installing all your
 global npm packages you want for development now.
-
-<!-- links -->
-
-[ppa]: https://itsfoss.com/ppa-guide/
-[fixanycomputer]: https://theoatmeal.com/blog/fix_computer
-[slowbash]: https://github.com/Microsoft/WSL/issues/776
-[wslmsstore]: https://www.microsoft.com/store/productId/9NBLGGH4MSV6
-[usen]:
-	https://github.com/Microsoft/WSL/issues/776#issuecomment-266112578
-[settingsrepo]: https://github.com/spences10/settings
-[dotfiles]: https://github.com/spences10/dotfiles
-[handy ssh setup]:
-	https://github.com/spences10/cheat-sheets/blob/master/git.md#how-to-authenticate-with-github-using-ssh
-[rsync]:
-	https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/
-[n-install]: https://github.com/mklement0/n-install
-
-<!-- Images -->
-
-[upgrade message]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/upgrade-yes-d9fdf06ee6eadf39561e9293149c669e.png
-[bash files wrong permissions]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/bash-wrong-perms-7499ad1ca9beabe2915014e11a7368d4.png
-[bash files permissions]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930929/scottspence.com/bash-dotfiles-dad0b2d87dfb1eba5a9fc5320da452ce.png

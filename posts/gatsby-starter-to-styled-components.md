@@ -15,7 +15,7 @@ default starter.
 <YouTube youTubeId="O5sWySCr668" />
 
 In this example we're going to use the Gatsby default starter you get
-with [CodeSandbox] and add in styled-components, so first up, open a
+with [CodeSandbox](https://codesandbox.io) and add in styled-components, so first up, open a
 new CodeSandbox, go to `https://codesandbox.io/s/github` and select
 Gatsby from the SERVER TEMPLATES.
 
@@ -131,9 +131,10 @@ src/components/layout.js
 src/pages/index.js
 ```
 
-**header.js**
+*header.js*
 
 <!-- prettier-ignore -->
+
 ```js
 import React from 'react'
 import { Link } from 'gatsby'
@@ -171,9 +172,10 @@ const Header = ({ siteTitle }) => (
 export default Header
 ```
 
-**layout.js**
+*layout.js*
 
 <!-- prettier-ignore -->
+
 ```js
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -229,7 +231,7 @@ Layout.propTypes = {
 export default Layout
 ```
 
-**index.js**
+*index.js*
 
 ```js
 import React from 'react';
@@ -261,9 +263,6 @@ export default IndexPage;
 
 ## 5. Done
 
-**Thanks for reading**
+*Thanks for reading*
 
-Here's the [example code] we worked on if you need reference. 👀
-
-[codesandbox]: https://codesandbox.io
-[example code]: https://codesandbox.io/s/yp3z16yw11
+Here's the [example code](https://codesandbox.io/s/yp3z16yw11) we worked on if you need reference. 👀

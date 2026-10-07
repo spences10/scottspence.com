@@ -46,8 +46,8 @@ module.exports = {
 
 Install VS Code extensions:
 
-- [stylelint]
-- [Tailwind CSS IntelliSense]
+- [stylelint](https://stylelint.io/)
+- [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
 
 Add the following to a VS Code settings file:
 
@@ -68,7 +68,7 @@ touch .vscode/settings.json
 
 <!-- cSpell:ignore stylelintrc -->
 
-With styling and using [stylelint] in Toast, rather than use the
+With styling and using [stylelint](https://stylelint.io/) in Toast, rather than use the
 recommended `stylelint.config.js` use `.stylelintrc` and add in the
 configuration as a JSON object or add it directly to the
 `package.json` file.
@@ -103,12 +103,4 @@ configuration as a JSON object or add it directly to the
 
 With the `module.exports` syntax Toast will derp, see the SO question
 for configuration: [How to solve semi-colon expected
-css(css-semicolonexpected)]
-
-[stylelint]: https://stylelint.io/
-[how to solve semi-colon expected css(css-semicolonexpected)]:
-	https://stackoverflow.com/a/63784195/1138354
-[stylelint]:
-	https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint
-[tailwind css intellisense]:
-	https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
+css(css-semicolonexpected)](https://stackoverflow.com/a/63784195/1138354)

@@ -9,9 +9,9 @@ Now that Windows Subsystem Linux has finally arrived I think it's time
 to refresh my notes on it from the last post I did back at the end
 of 2018.
 
-https://docs.microsoft.com/en-gb/windows/wsl/install-win10
+[https://docs.microsoft.com/en-gb/windows/wsl/install-win10](https://docs.microsoft.com/en-gb/windows/wsl/install-win10)
 
-https://docs.microsoft.com/en-gb/windows/wsl/wsl2-kernel
+[https://docs.microsoft.com/en-gb/windows/wsl/wsl2-kernel](https://docs.microsoft.com/en-gb/windows/wsl/wsl2-kernel)
 
 Install terminal
 

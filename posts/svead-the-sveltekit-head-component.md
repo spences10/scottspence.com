@@ -427,6 +427,6 @@ in helping out please get in touch.
 Here's some tools I've used to validate my work as I've been going
 through it.
 
-https://search.google.com/test/rich-results
+[https://search.google.com/test/rich-results](https://search.google.com/test/rich-results)
 
-https://validator.schema.org
+[https://validator.schema.org](https://validator.schema.org)

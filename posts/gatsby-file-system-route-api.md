@@ -5,9 +5,9 @@ tags: ['gatsby', 'mdx', 'learning']
 is_private: false
 ---
 
-The Gatsby File System Route API was [announced recently] and I have
+The Gatsby File System Route API was [announced recently](https://www.gatsbyjs.com/blog/fs-route-api/) and I have
 been having a play around with it. If you're not familiar with it,
-it's something like the [dynamic routing you get with Next.js]. If
+it's something like the [dynamic routing you get with Next.js](https://nextjs.org/blog/next-9#dynamic-route-segments). If
 you're not familiar with that either then it's a way to generate your
 page routes from data.
 
@@ -18,7 +18,7 @@ from data.
 In this walkthrough I'm going to set up the Gatsby File System Route
 API on a project using MDX and Chakra UI.
 
-Why Chakra UI? I made a [Getting Started Chakra UI Gatsby] post
+Why Chakra UI? I made a [Getting Started Chakra UI Gatsby](https://scottspence.com/posts/getting-started-chakra-ui-gatsby/) post
 recently and it's something I want to invest a bit more time into to
 aid me in developing faster.
 
@@ -235,7 +235,7 @@ leaving it in there as I'll be using it in a page query very soon.
 Now that I know that the data for the MDX content I've added is
 available via the Graph<em>i</em>QL explorer I need to create
 
-To use the File System Route API, I'll use some [curly bois] `{}` in
+To use the File System Route API, I'll use some [curly bois](https://twitter.com/spences10/status/1329335632041299971) `{}` in
 my filename to signify dynamic URL parts that relate to a field within
 a node.
 
@@ -505,15 +505,4 @@ Ok, that's it for the file routes! To recap what I did:
 - Used the MDXRenderer to render out the MDX on the page
 
 The source code for this walkthrough can be found on GitHub in the
-Gatsby [File System Route Starter] I made.
-
-<!-- Links -->
-
-[announced recently]: https://www.gatsbyjs.com/blog/fs-route-api/
-[dynamic routing you get with next.js]:
-	https://nextjs.org/blog/next-9#dynamic-route-segments
-[getting started chakra ui gatsby]:
-	https://scottspence.com/posts/getting-started-chakra-ui-gatsby/
-[file system route starter]:
-	https://github.com/spences10/gatsby-starter-file-system-route-api-mdx
-[curly bois]: https://twitter.com/spences10/status/1329335632041299971
+Gatsby [File System Route Starter](https://github.com/spences10/gatsby-starter-file-system-route-api-mdx) I made.

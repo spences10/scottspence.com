@@ -21,7 +21,7 @@ is breaking changes! 😅
 
 There's a few things that have changed! I'm going to go through the
 full setup as if I were starting from scratch. If you want to know how
-to do a migration then **Tl;Dr:** [How'd I do it?](#howd-i-do-it)
+to do a migration then *Tl;Dr:* [How'd I do it?](#howd-i-do-it)
 
 I'll breeze through this, the full details on how I do the theme
 switch is detailed in the
@@ -310,7 +310,7 @@ and the CSS kicks in!
 ## What about the plugin customisation?
 
 There's some good stuff in here on customising the typography plugin:
-https://github.com/tailwindlabs/tailwindcss-typography/issues/372
+[https://github.com/tailwindlabs/tailwindcss-typography/issues/372](https://github.com/tailwindlabs/tailwindcss-typography/issues/372)
 
 I used a lot of the information from that to make my own
 customisations that are detailed in the

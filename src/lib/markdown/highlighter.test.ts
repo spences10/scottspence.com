@@ -1,169 +1,362 @@
-import { compile as compile_markdown } from 'mdsvex';
+import { compile as compile_markdown } from 'mdsvex/compile';
+import {
+	create_highlight,
+	load_default_languages,
+} from 'mdsvex/highlight';
+import { globSync, readFileSync } from 'node:fs';
+import path from 'node:path';
 import { compile } from 'svelte/compiler';
 import { describe, expect, it } from 'vitest';
-import mdsvex_config from '../../../mdsvex.config.js';
-import { highlight_code } from './highlighter.js';
+import mdsvex_config from '../../../mdsvex.config.ts';
+import {
+	code_block_warning_filter,
+	highlight_options,
+} from './highlighter.js';
+import { enrich_metadata } from './metadata.js';
 
-describe('highlight_code', () => {
-	it('highlights supported language aliases', () => {
-		const output = highlight_code('const value = 42;', 'ts');
+const highlight = create_highlight({
+	...highlight_options,
+	languages: {
+		...(await load_default_languages()),
+		...highlight_options.languages,
+	},
+});
 
-		expect(output).toContain('<CodeBlock ');
-		expect(output).toContain('language-ts');
-		expect(output).toContain('tok keyword');
-		expect(output).toContain('label={"TypeScript"}');
-	});
-
-	it.each([
-		['graphql', 'query GetUser { user { name } }', 'GraphQL'],
-		[
-			'powershell',
-			'if ($true) { Write-Output "hello" }',
-			'PowerShell',
+function compile_document(source: string, filename = 'post.md') {
+	return compile_markdown(enrich_metadata(source, filename), {
+		parse_plugins: mdsvex_config.parse_plugins,
+		components: [
+			{ specifier: '#lib/markdown/components.ts', names: ['pre'] },
 		],
-		['ps', 'if ($true) { Write-Output "hello" }', 'PowerShell'],
-		['dockerfile', 'FROM node:24\nRUN echo "hello"', 'Dockerfile'],
-		['docker', 'FROM node:24\nRUN echo "hello"', 'Docker'],
-	])('highlights %s fences', (language, code, label) => {
-		const output = highlight_code(code, language);
+		highlight,
+		filename,
+	});
+}
 
-		expect(output).toContain(`language-${language}`);
-		expect(output).toContain('tok keyword');
-		expect(output).toContain(`label={${JSON.stringify(label)}}`);
+function fence(code: string, language = '', meta = '') {
+	return compile_document(
+		`\`\`\`${language} ${meta}\n${code}\n\`\`\``,
+	).code;
+}
+
+describe('native mdsvex highlighting', () => {
+	it.each([
+		['ts', 'const value = 42;'],
+		['graphql', 'query GetUser { user { name } }'],
+		['powershell', 'if ($true) { Write-Output "hello" }'],
+		['ps', 'if ($true) { Write-Output "hello" }'],
+		['dockerfile', 'FROM node:24\nRUN echo "hello"'],
+		['docker', 'FROM node:24\nRUN echo "hello"'],
+	])(
+		'highlights %s fences in the code-block component',
+		(language, code) => {
+			const output = fence(code, language);
+			expect(output).toContain('<Pre_MDSVEX_G ');
+			expect(output).toContain(`language-${language}`);
+			expect(output).toContain('tok keyword');
+			expect(output).not.toContain('{@html');
+		},
+	);
+
+	it.each(['text', 'txt', 'plaintext', 'nano', 'url'])(
+		'renders %s fences as plain code without warnings',
+		(language) => {
+			const result = compile_document(
+				`\`\`\`${language}\n<script>{value}</script>\n\`\`\``,
+			);
+			expect(result.warnings).toBeUndefined();
+			expect(result.code).toContain(
+				'&lt;script&gt;&#123;value&#125;',
+			);
+			expect(result.code).toContain('class="ln">1<');
+			expect(result.code).not.toContain('tok keyword');
+		},
+	);
+
+	it('keeps unknown-language warnings visible', () => {
+		const result = compile_document(
+			'```unknown-language\nexample\n```',
+		);
+		expect(result.warnings).toEqual([
+			expect.objectContaining({ code: 'unknown_language' }),
+		]);
 	});
 
-	it('falls back to escaped plain text for unsupported languages', () => {
-		const output = highlight_code(
+	it('keeps keyboard focus without warnings on generated code regions', () => {
+		const output = fence('const value = 42;', 'ts');
+		const result = compile(output, {
+			filename: 'post.md',
+			warningFilter: code_block_warning_filter(output),
+		});
+		expect(output).toContain(
+			'tabindex="0" role="region" aria-label="Code example"',
+		);
+		expect(result.warnings).toEqual([]);
+	});
+
+	it('keeps accessibility warnings on authored markup beside code', () => {
+		const output = compile_document(
+			'<p tabindex="0">Authored text</p>\n\n```ts\nconst value = 42;\n```\n\n<img src="/example.png">',
+		).code;
+		const result = compile(output, {
+			filename: 'post.md',
+			warningFilter: code_block_warning_filter(output),
+		});
+		expect(result.warnings.map((warning) => warning.code)).toEqual([
+			'a11y_no_noninteractive_tabindex',
+			'a11y_missing_attribute',
+		]);
+	});
+
+	it('escapes unsupported languages and unnamed fences', () => {
+		const output = fence(
 			'<script>alert("no")</script>',
 			'unknown-language',
 		);
-
-		expect(output).toContain('language-unknown-language');
 		expect(output).toContain('&lt;script&gt;');
-		expect(output).not.toContain('<script>');
-	});
-
-	it('renders fences without a language as plain text', () => {
-		const output = highlight_code('just text', undefined);
-
-		expect(output).toContain('language-text');
-		expect(output).toContain('just text');
-		expect(output).not.toContain('label=');
-	});
-
-	it('highlights lines from fence meta', () => {
-		const output = highlight_code(
-			'const a = 1;\nconst b = 2;',
-			'js',
-			'{2}',
+		expect(output.slice(output.indexOf('<pre class='))).not.toContain(
+			'<script>alert',
 		);
+		expect(() =>
+			compile(output, { filename: 'plain.svelte' }),
+		).not.toThrow();
+		expect(fence('just text')).toContain('just text');
+	});
 
-		expect(output).toContain('has-highlight');
+	it('preserves line highlights, titles and line-number offsets', () => {
+		const output = fence(
+			'const a = 1;\nconst b = 2;',
+			'ts',
+			'{2} :line-numbers=99 title="math.ts" caption="Example"',
+		);
+		expect(output).toContain('l highlight');
+		expect(output).toContain('class="ln">100<');
+		expect(output).toContain('tabindex="0"');
+		expect(output).toContain('title={"math.ts"}');
+		expect(output).toContain('caption={"Example"}');
+	});
+
+	it('passes visible text to the copy button without annotation markers', () => {
+		const output = fence('const value = 42; // [!hl]', 'ts');
+		expect(output).toContain('code={"const value = 42;"}');
 		expect(output).toContain('l highlight');
 	});
 
-	it('renders line numbers and a keyboard scrollable block', () => {
-		const output = highlight_code('a\nb', 'ts');
-
-		expect(output).toContain('class=\\"ln\\">2<');
-		expect(output).toContain('tabindex=\\"0\\"');
-	});
-
-	it('sizes the line number column to the largest number', () => {
-		expect(highlight_code('a\nb', 'ts')).toContain('digits={1}');
-		expect(
-			highlight_code(Array(12).fill('a').join('\n'), 'ts'),
-		).toContain('digits={2}');
-		expect(
-			highlight_code('a\nb', 'ts', ':line-numbers=99'),
-		).toContain('digits={3}');
-	});
-
-	it('passes a logo path for languages with one', () => {
-		expect(highlight_code('x', 'svelte')).toMatch(
-			/icon=\{"M[^"]+"\}/,
-		);
-		expect(highlight_code('x', 'sh')).toMatch(/icon=\{"M[^"]+"\}/);
-	});
-
-	it('omits the logo for languages without one', () => {
-		expect(highlight_code('x', 'powershell')).not.toContain('icon=');
-		expect(highlight_code('x', undefined)).not.toContain('icon=');
-	});
-
-	it('returns markup that Svelte can compile', () => {
-		const output = highlight_code(
-			'<button>{count} `tick`</button>',
-			'svelte',
-		);
-
+	it('keeps Svelte expressions in code as text', () => {
+		const output = fence('<button>{count} `tick`</button>', 'svelte');
+		expect(output).toContain('&#123;');
 		expect(() =>
-			compile(
-				`<script>import CodeBlock from './code-block.svelte';</script>${output}`,
-				{ filename: 'highlight.svelte' },
-			),
+			compile(output, { filename: 'code.svelte' }),
 		).not.toThrow();
+	});
+
+	it('supports live values in code without changing other braces', () => {
+		const output = compile_document(
+			'<script>const command = "pnpm add";</script>\n\n```sh eval\n{command} example\n```',
+		).code;
+		expect(output).toContain('code={`${command} example`}');
+		expect(() =>
+			compile(output, { filename: 'live-code.svelte' }),
+		).not.toThrow();
+	});
+
+	it('reuses an existing instance script', () => {
+		const output = compile_document(
+			'<script lang="ts">\nconst x = 1;\n</script>\n\n```ts\nconst a = 1;\n```',
+		).code;
+		expect(output.match(/<script lang="ts">/g)).toHaveLength(1);
+		expect(output.match(/pre as Pre_MDSVEX_G/g)).toHaveLength(1);
+	});
+
+	it('does not import code-block controls in documents without fences', () => {
+		expect(compile_document('# No code here').code).not.toContain(
+			'Pre_MDSVEX_G',
+		);
 	});
 });
 
-describe('code block import', () => {
-	const count_imports = (code: string) =>
-		code.match(/import CodeBlock from/g)?.length ?? 0;
-
-	it('adds a script with the import when a file has none', async () => {
-		const result = await compile_markdown(
-			'# Post\n\n```js\nconst a = 1;\n```\n',
-			mdsvex_config,
+describe('native PFM and site features', () => {
+	it('renders native emphasis and explicit references without changing punctuation', () => {
+		const result = compile_document(
+			'[ref]: https://example.com\n\n*Strong*, _emphasis_ and [a link][ref].\n\n“Hello” – world…',
 		);
-
-		expect(count_imports(result!.code)).toBe(1);
-		expect(result!.code).toContain('<CodeBlock ');
+		expect(result.code).toContain('<strong>Strong</strong>');
+		expect(result.code).toContain('<em>emphasis</em>');
+		expect(result.code).toContain('href="https://example.com"');
+		expect(result.code).toContain('“Hello” – world…');
 	});
 
-	it('compiles new language fences with metadata', async () => {
-		const result = await compile_markdown(
-			[
-				'# New languages',
-				'```graphql title="query.graphql"',
-				'query GetUser { user { name } }',
-				'```',
-				'```powershell',
-				'if ($true) { Write-Output "<hello>" }',
-				'```',
-				'```dockerfile {2}',
-				'FROM node:24',
-				'RUN echo "hello"',
-				'```',
-			].join('\n'),
-			mdsvex_config,
-		);
+	it.each([
+		['[somelink][ref]', '[ref]: https://example.com', 'somelink'],
+		['[somelink][]', '[somelink]:https://example.com', 'somelink'],
+		[
+			'[Scott’s site][ref]',
+			'[ref]: https://example.com',
+			'Scott’s site',
+		],
+		[
+			'[some *link*][ref]',
+			'[ref]: https://example.com',
+			'some <strong>link</strong>',
+		],
+	])(
+		'resolves native reference links: %s',
+		(reference, definition, label) => {
+			const output = compile_document(
+				`${definition}\n\n${reference}`,
+			).code;
+			expect(output).toContain(
+				`<a href="https://example.com" target="_blank" rel="noopener noreferrer">${label}</a>`,
+			);
+		},
+	);
 
-		expect(count_imports(result!.code)).toBe(1);
-		expect(result!.code.match(/<CodeBlock /g)).toHaveLength(3);
-		expect(result!.code).toContain('query.graphql');
-		expect(result!.code).toContain('l highlight');
-		expect(result!.code).toContain('&lt;hello&gt;');
+	it('resolves explicit image references defined before use', () => {
+		const output = compile_document(
+			'[image]: https://example.com/demo.png\n\n![highlightVLive][image]',
+		).code;
+		expect(output).toContain(
+			'<img src="https://example.com/demo.png" alt="highlightVLive" />',
+		);
+		expect(output).not.toContain('![highlightVLive]');
+	});
+
+	it('renders the reference image in the Testing MDX post', () => {
+		const output = compile_document(
+			readFileSync('posts/testing-mdx.md', 'utf8'),
+		).code;
+		expect(output).toContain(
+			'<img src="https://res.cloudinary.com/defkmsrpw/',
+		);
+		expect(output).toContain('alt="highlightVLive"');
+		expect(output).not.toContain('![highlightVLive]');
+	});
+
+	it('renders native task markup as labelled, disabled checkboxes', () => {
+		const output = compile_document(
+			'- <input type="checkbox" disabled aria-label="Autolink headers" /> Autolink headers\n- <input type="checkbox" disabled checked aria-label="Run npm test" /> Run `npm test`',
+		).code;
+		const body = output.slice(output.lastIndexOf('</script>'));
+		expect(body).toContain('class="contains-task-list"');
+		expect(body.match(/class="task-list-item"/g)).toHaveLength(2);
+		expect(body).toContain(
+			'<input type="checkbox" disabled aria-label="Autolink headers"',
+		);
+		expect(body).toContain(
+			'<input type="checkbox" disabled checked aria-label="Run npm test"',
+		);
+		expect(body).not.toContain('[ ] Autolink headers');
+		expect(body).not.toContain('[x] Run');
 		expect(() =>
-			compile(result!.code, { filename: 'new-languages.svelte' }),
+			compile(output, { filename: 'tasks.svelte' }),
 		).not.toThrow();
 	});
 
-	it('reuses an existing instance script', async () => {
-		const result = await compile_markdown(
-			'<script lang="ts">\n\tconst x = 1;\n</script>\n\n```ts\nconst a = 1;\n```\n',
-			mdsvex_config,
-		);
-
-		expect(count_imports(result!.code)).toBe(1);
-		expect(result!.code.match(/<script lang="ts">/g)).toHaveLength(1);
+	it('keeps formatting and links inside task-list text', () => {
+		const output = compile_document(
+			'- <input type="checkbox" disabled aria-label="Read this guide" /> Read *this* [guide](https://example.com)',
+		).code;
+		expect(output).toContain('aria-label="Read this guide"');
+		expect(output).toContain('<strong>this</strong>');
+		expect(output).toContain('href="https://example.com"');
 	});
 
-	it('leaves files without code alone', async () => {
-		const result = await compile_markdown(
-			'# No code here\n',
-			mdsvex_config,
-		);
+	it('renders the three unchecked tasks in Testing MDX', () => {
+		const output = compile_document(
+			readFileSync('posts/testing-mdx.md', 'utf8'),
+		).code;
+		const body = output.slice(output.lastIndexOf('</script>'));
+		expect(
+			body.match(/<input type="checkbox" disabled/g),
+		).toHaveLength(3);
+		expect(body).not.toContain('disabled checked');
+	});
 
-		expect(count_imports(result!.code)).toBe(0);
+	it('preserves metadata, reading time and sanitised previews', () => {
+		const source =
+			'---\ndate: 2026-10-03\ntitle: Example\ntags: [svelte]\nis_private: false\n---\n\nHello *world* and [read more](https://example.com).';
+		const { metadata } = compile_document(
+			source,
+			'/posts/example.md',
+		);
+		expect(metadata).toMatchObject({
+			date: '2026-10-03T00:00:00.000Z',
+			title: 'Example',
+			slug: 'example',
+			tags: ['svelte'],
+			is_private: false,
+			preview: 'Hello world and read more.',
+			reading_time: { minutes: 1, words: source.split(/\s+/).length },
+		});
+		expect(metadata?.previewHtml).toContain('<strong>world</strong>');
+		expect(metadata?.previewHtml).toContain('rel="nofollow"');
+	});
+
+	it('keeps safe heading links with duplicate IDs', () => {
+		const output = compile_document(
+			'## Hello *world*\n\n## Hello *world*',
+		).code;
+		expect(output).toContain('id="hello-world"');
+		expect(output).toContain('href="#hello-world"');
+		expect(output).toContain('id="hello-world-1"');
+	});
+
+	it('resets heading IDs for each document and preserves old code anchors', () => {
+		const source =
+			'## Add `<channel>` Required Elements\n\n## The `{ h }` is needed';
+		const first = compile_document(source).code;
+		const second = compile_document(source).code;
+		expect(first).toContain('id="add-ltchannelgt-required-elements"');
+		expect(first).toContain('id="the-123-h-125-is-needed"');
+		expect(second).toBe(first);
+	});
+
+	it('sets safe external links without changing local links', () => {
+		const output = compile_document(
+			'[External](https://example.com) and [Local](/posts)',
+		).code;
+		expect(output).toContain(
+			'href="https://example.com" target="_blank" rel="noopener noreferrer"',
+		);
+		expect(output).toContain('<a href="/posts">Local</a>');
+	});
+
+	it('renders video image links as a player', () => {
+		const output = compile_document('![Demo](/demo.mp4)').code;
+		expect(output).toContain('<video src="/demo.mp4" controls');
+		expect(output).toContain('aria-label="Demo"');
+		expect(
+			output.slice(output.lastIndexOf('</script>')),
+		).not.toContain('<img');
+	});
+
+	it('preserves components with Markdown in expression attributes', () => {
+		const source =
+			'<script>import Demo from "./Demo.svelte";</script>\n\n<Demo\ncontent={`**hello**\\n\\`\\`\\`js\\nconst x = 1;\\n\\`\\`\\``}\n/>';
+		const output = compile_document(source).code;
+		expect(output).toContain('content={`**hello**');
+		expect(() =>
+			compile(output, { filename: 'component.svelte' }),
+		).not.toThrow();
+	});
+
+	const files = globSync([
+		'posts/*.md',
+		'copy/*.md',
+		'newsletter/*.md',
+	]).filter((file) => path.basename(file) !== 'README.md');
+	it.each(files)('compiles existing content: %s', (filename) => {
+		const source = readFileSync(filename, 'utf8');
+		const result = compile_document(source, filename);
+		expect(result.metadata?.slug).toBe(
+			path.basename(filename, '.md'),
+		);
+		const compiled = compile(result.code, {
+			filename,
+			generate: 'server',
+			experimental: { async: true },
+			warningFilter: code_block_warning_filter(result.code),
+		});
+		expect(compiled.warnings).toEqual([]);
 	});
 });

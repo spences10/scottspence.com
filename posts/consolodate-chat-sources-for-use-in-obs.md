@@ -12,8 +12,8 @@ Elements. These involve configuring the panel you want in their
 service and copying a URL to use as a browser source in Open
 Broadcaster Software (OBS).
 
-I've just found out about this awesome tool from [Steve Seguin] on
-GitHub called [Social Stream]. It's a browser extension that allows
+I've just found out about this awesome tool from [Steve Seguin](https://github.com/steveseguin) on
+GitHub called [Social Stream](https://github.com/steveseguin/social_stream). It's a browser extension that allows
 you to consolidate chat sources from different platforms like YouTube,
 Twitch, Facebook and the like.
 
@@ -31,7 +31,7 @@ chat panels.
 ## Install the Social Stream extension
 
 The Social Stream extension is available for download from GitHub, you
-can get the latest version from [here]. 👈 Clicking that link will
+can get the latest version from [here](https://github.com/steveseguin/social_stream/archive/refs/heads/main.zip). 👈 Clicking that link will
 download a `.zip` from GitHub.
 
 Because the extension isn't on the Chrome store, you'll need to
@@ -39,18 +39,18 @@ install it manually. The zip file will need to be extracted out into
 it's own folder.
 
 There's a great guide on the GitHub repo explaining [how to do this
-for Chrome].
+for Chrome](https://github.com/steveseguin/social_stream#to-install).
 
-I'm using Edge, so I'll need to go to [`edge://extensions/`] and
+I'm using Edge, so I'll need to go to [`edge://extensions/`](edge://extensions/) and
 toggle the 'Developer mode' option.
 
-[![edge-developer-mode-toggle]] [edge-developer-mode-toggle]
+\[![edge-developer-mode-toggle](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645804438/scottspence.com/edge-developer-mode-toggle.png)\] [edge-developer-mode-toggle](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645804438/scottspence.com/edge-developer-mode-toggle.png)
 
 Then at the top of the page I can select the 'Load unpacked' option.
 This will open a file dialogue where I can select the folder for the
 extracted zip.
 
-[![edge-load-unpacked-extension]] [edge-load-unpacked-extension]
+\[![edge-load-unpacked-extension](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645804996/scottspence.com/edge-load-unpacked-extension.png)\] [edge-load-unpacked-extension](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645804996/scottspence.com/edge-load-unpacked-extension.png)
 
 That's the extension loaded now I can use it.
 
@@ -59,8 +59,8 @@ That's the extension loaded now I can use it.
 Now I've got the extension installed there's a few options you get
 when clicking on it.
 
-[![social-stream-ninja-browser-extension-options]]
-[social-stream-ninja-browser-extension-options]
+\[![social-stream-ninja-browser-extension-options](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645805384/scottspence.com/social-stream-ninja-browser-extension-options.png)\]
+[social-stream-ninja-browser-extension-options](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645805384/scottspence.com/social-stream-ninja-browser-extension-options.png)
 
 First I'll need to '⚡Enable extension' clicking that will change the
 background colour of the extension. Then I'll check a couple of the
@@ -72,8 +72,8 @@ options on there:
 - Auto-reply to "hi" messages
 - Filter out duplicate messages echoes
 
-[![social-stream-ninja-browser-extension-options-selected]]
-[social-stream-ninja-browser-extension-options-selected]
+\[![social-stream-ninja-browser-extension-options-selected](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645806059/scottspence.com/social-stream-ninja-browser-extension-options-selected.png)\]
+[social-stream-ninja-browser-extension-options-selected](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645806059/scottspence.com/social-stream-ninja-browser-extension-options-selected.png)
 
 Notice that the URLs for the 'Dockable streaming chat link' and the
 'Single message overlay link' have changed?
@@ -116,14 +116,14 @@ doing this I'm using other peoples because I'm not streaming myself.
 In OBS I'm going to create a new scene, call it 'social-stream-chat'
 then in the sources I can add a new browser source.
 
-[![obs-add-browser-source]] [obs-add-browser-source]
+\[![obs-add-browser-source](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645809147/scottspence.com/obs-add-browser-source.png)\] [obs-add-browser-source](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645809147/scottspence.com/obs-add-browser-source.png)
 
 I'll create a new source and call it
 'social-stream-single-message-overlay' click ok, then the properties
 dialogue will show.
 
-[![obs-browser-source-properties-dialogue]]
-[obs-browser-source-properties-dialogue]
+\[![obs-browser-source-properties-dialogue](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645809699/scottspence.com/obs-browser-source-properties-dialogue.png)\]
+[obs-browser-source-properties-dialogue](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645809699/scottspence.com/obs-browser-source-properties-dialogue.png)
 
 In here I can add in the URL for the chat source and the URL for the
 'Single message overlay link' from the browser, I'll add the
@@ -177,30 +177,4 @@ That's it! Well that's all I've got to documenting right now, there's
 a lot of other additional stuff you can manage in there yourself!
 
 Steve did I great explainer video on using it as well you can check
-that out over on [YouTube]!
-
-<!-- Links -->
-
-[steve seguin]: https://github.com/steveseguin
-[social stream]: https://github.com/steveseguin/social_stream
-[here]:
-	https://github.com/steveseguin/social_stream/archive/refs/heads/main.zip
-[how to do this for chrome]:
-	https://github.com/steveseguin/social_stream#to-install
-[`edge://extensions/`]: edge://extensions/
-[youtube]: https://www.youtube.com/watch?v=X_11Np2JHNU
-
-<!-- Images -->
-
-[edge-developer-mode-toggle]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645804438/scottspence.com/edge-developer-mode-toggle.png
-[edge-load-unpacked-extension]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645804996/scottspence.com/edge-load-unpacked-extension.png
-[social-stream-ninja-browser-extension-options]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645805384/scottspence.com/social-stream-ninja-browser-extension-options.png
-[social-stream-ninja-browser-extension-options-selected]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645806059/scottspence.com/social-stream-ninja-browser-extension-options-selected.png
-[obs-add-browser-source]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645809147/scottspence.com/obs-add-browser-source.png
-[obs-browser-source-properties-dialogue]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1645809699/scottspence.com/obs-browser-source-properties-dialogue.png
+that out over on [YouTube](https://www.youtube.com/watch?v=X_11Np2JHNU)!

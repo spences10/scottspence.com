@@ -54,4 +54,4 @@ become a web developer.
 > needed to make a something work it was on me and the unconscious
 > biases that I bring.
 >
-> https://twitter.com/rothecoder/status/1386299467935076355
+> [https://twitter.com/rothecoder/status/1386299467935076355](https://twitter.com/rothecoder/status/1386299467935076355)

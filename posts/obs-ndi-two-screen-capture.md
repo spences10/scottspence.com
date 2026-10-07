@@ -21,7 +21,7 @@ the stream on restart.
 
 I know there was an option to use a screen capture card but I needed
 to get the hardware operational (because work) so I asked about on
-[Twitter] and did some searching of my own and came across some
+[Twitter](https://twitter.com/spences10/status/1387412287330430978) and did some searching of my own and came across some
 solutions.
 
 Found this one first:
@@ -29,7 +29,7 @@ Found this one first:
 <YouTube youTubeId="Nc2rPvJFwQ8" />
 
 Which seemed reasonable but I wasn't that keen on installing the whole
-suite from [NDI] so I did a bit more searching.
+suite from [NDI](https://ndi.tv/) so I did a bit more searching.
 
 Then I found this one which doesn't need additional software outside
 of OBS:
@@ -42,7 +42,7 @@ So the idea is to set up OBS on both machines and have one pipe the
 output to the other.
 
 The second option I got working after solving the [OBS Fix Display
-Capture not Working] issue.
+Capture not Working](https://scottspence.com/posts/obs-display-capture-not-working/) issue.
 
 Worked a charm, I could see the new machine on my PC where I was going
 to do the stream from to Twitch.
@@ -56,7 +56,7 @@ sharing the output from the two devices.
 
 ## Another way
 
-It was only after a totally delightful conversation with [Kevin Lewis]
+It was only after a totally delightful conversation with [Kevin Lewis](https://twitter.com/_phzn)
 (hit him up for board game ideas any time) that I discovered I could
 have done this a _lot_ simpler with Streamyard.
 
@@ -75,9 +75,3 @@ preoccupied with trying to work out if I _could_ do it that I didn't
 consider the simpler option.
 
 Lesson learned.
-
-[ndi]: https://ndi.tv/
-[twitter]: https://twitter.com/spences10/status/1387412287330430978
-[obs fix display capture not working]:
-	https://scottspence.com/posts/obs-display-capture-not-working/
-[kevin lewis]: https://twitter.com/_phzn

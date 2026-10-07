@@ -5,12 +5,12 @@ tags: ['sveltekit', 'resource', 'how-to']
 is_private: false
 ---
 
-I came across this issue when adding [real-time analytics to my site],
+I came across this issue when adding [real-time analytics to my site](https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom/),
 essentially what I wanted to do was get some analytics data from a
 server endpoint and pass that to the page.
 
 In SvelteKit you can have different ways to get data onto a page,
-[which I've detailed it in the past], what I didn't cover then was
+[which I've detailed it in the past](https://scottspence.com/posts/data-loading-in-sveltekit#two-or-more-endpoints), what I didn't cover then was
 what do you do when you have both a `+page.server.ts` and a `+page.ts`
 file returning data.
 
@@ -79,10 +79,3 @@ This is the same approach if you're doing this with a
 `+layout.server.ts` and `+layout.ts` files.
 
 Hope this helps anyone who comes across this.
-
-<!-- Links -->
-
-[real-time analytics to my site]:
-	https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom/
-[which i've detailed it in the past]:
-	https://scottspence.com/posts/data-loading-in-sveltekit#two-or-more-endpoints

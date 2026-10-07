@@ -19,14 +19,14 @@ GraphCMS backend to demonstrate how to set up with GraphQL Code
 Generator. I'll be using the GraphCMS Blog Starter template in the
 examples here. You can generate your own from the starter section on
 the `app.graphcms.com` page or clone the project I'm using [with this
-link].
+link](https://app.graphcms.com/clone/e80893d4401a4e3685eed0e5ea4484ef?name=New%20Blog%20Template).
 
 ## Setup SvelteKit project
 
 Usual fare with this, use the CLI to create a new project. So from the
 command line I'll scaffold out a new SvelteKit skeleton project. One
 thing to note is that the `@next` isn't needed any more, this
-**doesn't** mean that SvelteKit is at v1 though like I have said in
+*doesn't* mean that SvelteKit is at v1 though like I have said in
 the past.
 
 ```bash
@@ -326,12 +326,5 @@ project and used the generated types in my code.
 I can now use type safe code in my Svelte project!
 
 If you want to check out how to do this with KitQL then check out my
-guide on [Getting Started with KitQL and GraphCMS] for more
+guide on [Getting Started with KitQL and GraphCMS](https://scottspence.com/posts/getting-started-with-kitql-and-graphcms) for more
 information.
-
-<!-- Links -->
-
-[with this link]:
-	https://app.graphcms.com/clone/e80893d4401a4e3685eed0e5ea4484ef?name=New%20Blog%20Template
-[getting started with kitql and graphcms]:
-	https://scottspence.com/posts/getting-started-with-kitql-and-graphcms

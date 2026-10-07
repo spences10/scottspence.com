@@ -11,14 +11,14 @@ scottspence.com was throwing a verification error. I didn't really
 know what the SPF record was for until this point and I had to
 research why it was failing on Fastmail.
 
-So, I did a post the other week on [Adding DKIM records to Vercel]
+So, I did a post the other week on [Adding DKIM records to Vercel](https://scottspence.com/posts/adding-dkim-records-to-vercel)
 this is what I used to validate my domain for sending the newsletter.
 I just followed the directions and didn't know that adding an
 additional SPF record would invalidate the previous one for Fastmail.
 
 There's a good explanation on the UK Government site for [Email
-Security Standards] with guidance on it. There was also a
-[Stackoverflow] post I found on it!
+Security Standards](https://www.gov.uk/government/publications/email-security-standards/sender-policy-framework-spf) with guidance on it. There was also a
+[Stackoverflow](https://stackoverflow.com/a/51001395) post I found on it!
 
 So, looking at the DNS entries on Vercel (with the Vercel CLI command
 `vc dns scottspence.com`), there's two TXT records:
@@ -42,8 +42,8 @@ vc dns add scottspence.com @ TXT 'v=spf1 include:spf.messagingengine.com include
 
 That's it! I hope this helps someone else out there!
 
-**UPDATE:** I had a spam email spoofing my domain and I had to adjust
-the SPF record again. I found a [SPF record checker] via a linked post
+*UPDATE:* I had a spam email spoofing my domain and I had to adjust
+the SPF record again. I found a [SPF record checker](https://dmarcly.com/tools/spf-record-checker) via a linked post
 on the SO question I mentioned above.
 
 The SPF checker found errors with the modifiers in the record. I had
@@ -54,15 +54,4 @@ I chose the most restrictive qualifier for the "all" mechanism. In my
 case, I used `~all` (soft fail) instead of `?all` (neutral).
 
 You can find the post on DMARCLY for [Can I have multiple SPF records
-on my domain].
-
-<!-- Links -->
-
-[stackoverflow]: https://stackoverflow.com/a/51001395
-[email security standards]:
-	https://www.gov.uk/government/publications/email-security-standards/sender-policy-framework-spf
-[adding dkim records to vercel]:
-	https://scottspence.com/posts/adding-dkim-records-to-vercel
-[can i have multiple spf records on my domain]:
-	https://dmarcly.com/blog/can-i-have-multiple-spf-records-on-my-domain
-[spf record checker]: https://dmarcly.com/tools/spf-record-checker
+on my domain](https://dmarcly.com/blog/can-i-have-multiple-spf-records-on-my-domain).

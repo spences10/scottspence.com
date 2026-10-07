@@ -22,9 +22,9 @@ It was me. All me. 😅
 
 Let me set the scene with the actual numbers from my Turso analytics:
 
-**June 25-30, 2025**: Normal life - 140k to 675k reads per day **July
-1, 2025**: BOOM! - 18 million reads **July 2-12, 2025**: Steady
-nightmare - 110 million reads per day **July 12+ onwards**: Absolute
+*June 25-30, 2025*: Normal life - 140k to 675k reads per day *July
+1, 2025*: BOOM! - 18 million reads *July 2-12, 2025*: Steady
+nightmare - 110 million reads per day *July 12+ onwards*: Absolute
 chaos - 516 million to 1 billion reads per day
 
 I spent weeks chasing CTEs and missing indexes, but the real timeline
@@ -41,7 +41,7 @@ functionality. The commit message?
 Classic mistake - the word "optimize" in a commit message should be a
 red flag! 😂
 
-**What I changed:**
+*What I changed:*
 
 ```typescript
 // BEFORE (the "slow" JavaScript version)
@@ -55,7 +55,7 @@ const similarities = all_posts.map((row) => ({
 }));
 ```
 
-**AFTER (the "optimized" SQL version):**
+*AFTER (the "optimized" SQL version):*
 
 ```sql
 SELECT post_id,
@@ -69,36 +69,36 @@ ORDER BY distance ASC
 LIMIT ?
 ```
 
-See that innocent-looking subquery? That's a **correlated subquery
-from hell**.
+See that innocent-looking subquery? That's a *correlated subquery
+from hell*.
 
 ## The Mathematics of Destruction
 
-Here's what I didn't realize: that subquery executes **once for every
-row** in the main query. With 226 posts in my embeddings table:
+Here's what I didn't realize: that subquery executes *once for every
+row* in the main query. With 226 posts in my embeddings table:
 
 - Main query: 226 rows
 - Subquery executions: 226 (once per row)
-- **Total reads per related post calculation: 226 × 226 = 51,076
-  reads**
+- *Total reads per related post calculation: 226 × 226 = 51,076
+  reads*
 
 But it gets worse. When I run the full related posts update batch:
 
 - 226 posts need their related posts calculated
 - Each post = 51,076 reads
-- **Total per batch: 226 × 51,076 = 11,542,576 reads**
+- *Total per batch: 226 × 51,076 = 11,542,576 reads*
 
-That's right - **11.5 million database reads** for what should be a
-few hundred reads! The "optimization" made things roughly **16,000
-times worse**.
+That's right - *11.5 million database reads* for what should be a
+few hundred reads! The "optimization" made things roughly *16,000
+times worse*.
 
 ## The Timeline Makes Perfect Sense Now
 
-**June 24th**: Deployed the correlated subquery (dormant bomb planted)
-**July 1st**: First major spike (18M reads) - I published a post and
-ran the ingest tasks for the first time with the new query **July
-2-12**: Steady 110M reads - regular site usage amplified by the
-inefficient query lurking in the background **July 12+**: Absolute
+*June 24th*: Deployed the correlated subquery (dormant bomb planted)
+*July 1st*: First major spike (18M reads) - I published a post and
+ran the ingest tasks for the first time with the new query *July
+2-12*: Steady 110M reads - regular site usage amplified by the
+inefficient query lurking in the background *July 12+*: Absolute
 chaos - multiple batch runs of the related posts update
 
 ## The Second Perfect Storm: State Management Without Caching
@@ -107,7 +107,7 @@ But wait, there's more! Around July 12th, I also started refactoring
 from API endpoints to direct state management calls. The problem? I
 removed the persistent caching without realizing it.
 
-**Before (working):**
+*Before (working):*
 
 ```typescript
 // API endpoint with proper persistent caching
@@ -117,7 +117,7 @@ export const load = async ({ fetch }) => {
 };
 ```
 
-**After (broken):**
+*After (broken):*
 
 ```typescript
 // Direct state management without persistent cache
@@ -137,13 +137,13 @@ constantly empty.
 So here's how I accidentally created the perfect database-destroying
 storm:
 
-1. **Correlated subquery (June 24th)**: Made related posts 16,000x
+1. *Correlated subquery (June 24th)*: Made related posts 16,000x
    more expensive
-2. **Publishing workflow**: I'd publish posts, then run ingest tasks
+2. *Publishing workflow*: I'd publish posts, then run ingest tasks
    (triggering the 11.5M read batch)
-3. **State management "optimization"**: Removed persistent caching, so
+3. *State management "optimization"*: Removed persistent caching, so
    every page load = database hit
-4. **Snowball effect**: Traffic + cache misses + expensive queries =
+4. *Snowball effect*: Traffic + cache misses + expensive queries =
    exponential growth
 
 Every time I published a post and ran the ingest tasks, I was
@@ -163,12 +163,12 @@ changes. We found:
 - The state management changes aligned with the sustained high read
   periods
 
-It's a classic performance debugging lesson: **follow the timeline,
-not your assumptions**.
+It's a classic performance debugging lesson: *follow the timeline,
+not your assumptions*.
 
 ## How It All Connected
 
-**The Trigger Pattern:**
+*The Trigger Pattern:*
 
 1. I'd write a blog post
 2. Publish it and run the ingest tasks
@@ -185,24 +185,24 @@ normal publishing workflow.
 
 ## The Real Lessons
 
-**"Optimization" without measurement is just guessing**. I thought
+*"Optimization" without measurement is just guessing*. I thought
 native SQL would be faster than JavaScript, but I never measured the
 actual database impact. The vector distance calculation was faster,
 but the query structure was catastrophically inefficient.
 
-**Correlated subqueries are performance killers**. If your subquery
+*Correlated subqueries are performance killers*. If your subquery
 depends on the outer query's current row, it runs once per row. Always
 check if you can rewrite as separate queries or joins.
 
-**Cache invalidation is one of the two hard problems in computer
-science**. My in-memory cache looked good in testing but failed
+*Cache invalidation is one of the two hard problems in computer
+science*. My in-memory cache looked good in testing but failed
 spectacularly in production with frequent deployments.
 
-**Follow the timeline when debugging performance issues**. The obvious
+*Follow the timeline when debugging performance issues*. The obvious
 recent changes aren't always the culprit. The real problem might have
 been lurking for weeks.
 
-**Your normal workflow can be the trigger**. The publishing and ingest
+*Your normal workflow can be the trigger*. The publishing and ingest
 process I'd been doing for months suddenly became a
 database-destroying weapon when the underlying queries changed.
 
@@ -211,7 +211,7 @@ database-destroying weapon when the underlying queries changed.
 Once we identified the root causes, the fixes were actually
 straightforward:
 
-**Related Posts Fix:**
+*Related Posts Fix:*
 
 ```typescript
 // Two separate queries instead of correlated subquery
@@ -223,10 +223,10 @@ const similarities = await calculate_similarities(
 // Total: 2 reads instead of 51,076 reads per post
 ```
 
-**Caching Fix:** Embedded replicas solve the persistent cache problem
+*Caching Fix:* Embedded replicas solve the persistent cache problem
 by making all reads local anyway.
 
-**Result**: 99.996% reduction in database reads for related posts
+*Result*: 99.996% reduction in database reads for related posts
 operations.
 
 ## The Bigger Picture

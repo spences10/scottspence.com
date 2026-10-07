@@ -34,13 +34,13 @@ document here for future reference.
 
 So, list time, these are all on the SvelteKit GitHub repo:
 
-- I found this issue: https://github.com/sveltejs/kit/issues/6589
+- I found this issue: [https://github.com/sveltejs/kit/issues/6589](https://github.com/sveltejs/kit/issues/6589)
 - specifically this comment:
-  https://github.com/sveltejs/kit/issues/6589#issuecomment-1984314643
+  [https://github.com/sveltejs/kit/issues/6589#issuecomment-1984314643](https://github.com/sveltejs/kit/issues/6589#issuecomment-1984314643)
 - which in turn pointed to this issue:
-  https://github.com/sveltejs/kit/issues/6784
+  [https://github.com/sveltejs/kit/issues/6784](https://github.com/sveltejs/kit/issues/6784)
 - and this comment:
-  https://github.com/sveltejs/kit/issues/6784#issuecomment-1416104897
+  [https://github.com/sveltejs/kit/issues/6784#issuecomment-1416104897](https://github.com/sveltejs/kit/issues/6784#issuecomment-1416104897)
 
 Essentially, disable the CSRF protection in the `svelte.config.js`
 file:

@@ -67,7 +67,7 @@ Image for prosperity 👍
 
 <!-- cSpell:ignore highlightVLive -->
 
-![highlightVLive]
+![highlightVLive](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/highlightVLive-3b1ee37a5c2b58e0079a1c23bea2b7e4.png)
 
 ### Mdx is a bit slow
 
@@ -75,11 +75,6 @@ Image for prosperity 👍
 
 ### Not working yet
 
-- [ ] Autolink headers
-- [ ] Embed tweets
-- [ ] Embed videos
-
-<!-- Images -->
-
-[highlightvlive]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/highlightVLive-3b1ee37a5c2b58e0079a1c23bea2b7e4.png
+- <input type="checkbox" disabled aria-label="Autolink headers" /> Autolink headers
+- <input type="checkbox" disabled aria-label="Embed tweets" /> Embed tweets
+- <input type="checkbox" disabled aria-label="Embed videos" /> Embed videos

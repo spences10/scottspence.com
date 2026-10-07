@@ -13,7 +13,7 @@ here's the sitch! I was starting again with the
 [dopedevs.icu](https://dopedevs.icu) project I started over 4 years
 ago but never finished.
 
-**Tl;Dr:** go to the [Conclusion](#conclusion) for the solution.
+*Tl;Dr:* go to the [Conclusion](#conclusion) for the solution.
 
 I wanted to have a nice way for users to submit a dev and technologies
 via a form. I was using a multi select input to submit data to a form
@@ -189,7 +189,7 @@ of all the selected values.
 
 This post from Dana Woodman was my aha! moment:
 
-https://dev.to/danawoodman/getting-form-body-data-in-your-sveltekit-endpoints-4a85#accessing-form-data
+[https://dev.to/danawoodman/getting-form-body-data-in-your-sveltekit-endpoints-4a85#accessing-form-data](https://dev.to/danawoodman/getting-form-body-data-in-your-sveltekit-endpoints-4a85#accessing-form-data)
 
 Thanks Dana!
 

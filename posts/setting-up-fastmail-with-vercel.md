@@ -9,7 +9,7 @@ I've started using Fastmail, here's how I set it up with Vercel for
 use with my own domains.
 
 If you're interested in giving Fastmail a go then you can use [my
-referral code] for a 10% discount on the first year of Fastmail.
+referral code](https://join.fastmail.com/9283c1fd) for a 10% discount on the first year of Fastmail.
 
 I'm not going to be selling any of the features here so let's get on
 with configuring it for your own domain.
@@ -57,7 +57,3 @@ vc dns add yourdomainname.com @ TXT 'v=spf1 include:spf.messagingengine.com ?all
 
 Use the Check Now button to see if the changes have been applied. This
 can take a few minutes so be patient.
-
-<!-- Links -->
-
-[my referral code]: https://join.fastmail.com/9283c1fd

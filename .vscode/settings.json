@@ -6,7 +6,13 @@
 		"editor.defaultFormatter": "oxc.oxc-vscode",
 		"editor.formatOnSave": true
 	},
+	"[pfm]": {
+		"editor.formatOnSave": false
+	},
 	"files.associations": {
+		"posts/*.md": "pfm",
+		"copy/*.md": "pfm",
+		"newsletter/*.md": "pfm",
 		"*.css": "tailwindcss"
 	}
 }

@@ -27,13 +27,13 @@ Keychron Q0 number pad, a Logitech mouse, and a Shure MV7 microphone.
 The laptop has Framework's second-generation webcam module.
 
 The Framework replaced the small-form-factor desktop from my [first PC
-build] post. I wanted a repairable machine with enough memory for
+build](/posts/first-time-pc-build) post. I wanted a repairable machine with enough memory for
 several repositories, language servers, local databases, containers,
 and coding-agent sessions at the same time.
 
 ## Operating system and terminal
 
-My main development system is [EndeavourOS] with KDE Plasma. I moved
+My main development system is [EndeavourOS](/posts/switching-to-endeavouros-from-omarchy) with KDE Plasma. I moved
 to it after years of using Windows and WSL. I still keep Windows
 available for the software and hardware that need it.
 
@@ -42,7 +42,7 @@ Afterglow colour scheme based on my Zed theme, Victor Mono, and the
 same tab shortcuts I had configured in Ghostty. I use Zsh for the
 shell and pnpm for JavaScript and TypeScript projects.
 
-My public [dotfiles] and [settings] repositories contain the parts of
+My public [dotfiles](https://github.com/spences10/dotfiles) and [settings](https://github.com/spences10/settings) repositories contain the parts of
 the setup that are useful to share.
 
 ## Editor and coding agents
@@ -52,7 +52,7 @@ speed, project-wide editing, built-in collaboration features, and the
 fact I can keep repository settings next to the code. I still keep VS
 Code available, but Zed is where I do my day-to-day editing now.
 
-Most agent-assisted work happens beside it in WezTerm through [my-pi],
+Most agent-assisted work happens beside it in WezTerm through [my-pi](https://github.com/spences10/my-pi),
 my customised Pi coding-agent environment.
 
 The setup includes:
@@ -62,7 +62,7 @@ The setup includes:
 - LSP diagnostics, definitions, references, and document symbols;
 - local session recall and focused context retrieval;
 - evals, telemetry, scope controls, and deterministic validation;
-- secret-safe command execution with [nopeek];
+- secret-safe command execution with [nopeek](https://github.com/spences10/nopeek);
 - GitHub CLI, browser automation, and human review before changes
   ship.
 
@@ -80,12 +80,3 @@ does not need a full editing suite.
 I use a Steam Deck for games. The Keychron Q3 and separate Q0 number
 pad also confirm that I apparently needed another hobby with expensive
 switches.
-
-<!-- Links -->
-
-[EndeavourOS]: /posts/switching-to-endeavouros-from-omarchy
-[first PC build]: /posts/first-time-pc-build
-[dotfiles]: https://github.com/spences10/dotfiles
-[settings]: https://github.com/spences10/settings
-[my-pi]: https://github.com/spences10/my-pi
-[nopeek]: https://github.com/spences10/nopeek

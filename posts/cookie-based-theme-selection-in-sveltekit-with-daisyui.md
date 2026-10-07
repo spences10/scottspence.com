@@ -5,14 +5,14 @@ tags: ['sveltekit', 'daisyui', 'tailwind', 'how-to']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import {
     DateDistance as DD,
     Banner,
   } from '#lib/components/index.js'
 
   const options = {
-    type: 'info',
+    type: 'info' as const,
     message: `If you have more than one handle function then you can use the
       <a target="_blank" rel="noopener noreferrer" href='https://kit.svelte.dev/docs/modules#sveltejs-kit-hooks-sequence'>sequence helper function in SvelteKit</a>.
     `
@@ -47,7 +47,7 @@ users selected theme, giving the FOWT.
 
 ## daisyUI's built-in themes
 
-[daisyUI] recently had a v3 launch where [Pouya] did an awesome job
+[daisyUI](https://daisyui.com/) recently had a v3 launch where [Pouya](https://twitter.com/Saadeghi) did an awesome job
 with making a scrollytelling experience on the site which showcases
 all the themes available.
 
@@ -81,16 +81,16 @@ module.exports = config;
 
 ## Theme change in SvelteKit
 
-I have a [long-standing example project] that uses SvelteKit and
+I have a [long-standing example project](https://github.com/spences10/sveltekit-theme-switch-example) that uses SvelteKit and
 daisyUI for using all the daisyUI themes. If you're interested in how
 this was done before using cookies then check out the files [from this
-commit]. You can see I was using [`theme-change`] (again by [Pouya])
+commit](https://github.com/spences10/sveltekit-theme-switch-example/blob/1f9b4f9b5f5aa0a521f68a21dc0b17e5ec89d625/src/routes/%2Blayout.svelte). You can see I was using [`theme-change`](https://github.com/saadeghi/theme-change) (again by [Pouya](https://twitter.com/Saadeghi))
 for setting the theme by adding a `data-theme` attribute to the `html`
 element.
 
-The example project now uses the approach used by [Script Raccoon]
+The example project now uses the approach used by [Script Raccoon](https://scriptraccoon.dev)
 from their blog post [How to implement a cookie-based dark mode toggle
-in SvelteKit]. I've adapted this approach to use the daisyUI themes.
+in SvelteKit](https://scriptraccoon.dev/blog/darkmode-toggle-sveltekit). I've adapted this approach to use the daisyUI themes.
 
 First up I'm going to need to have a list of all the available themes
 from daisyUI so I can check if the user has selected one of the themes
@@ -110,7 +110,7 @@ export const themes = [
 I'm mentioning this now because I'll need this file in the next
 section.
 
-If you're interested, you can get a [full list of the themes] from the
+If you're interested, you can get a [full list of the themes](https://github.com/spences10/sveltekit-theme-switch-example/blob/5489c1843b42bb8c3162e22760a55b88a3e7c0b0/src/lib/themes/index.ts) from the
 example repo.
 
 ## SvelteKit server hooks
@@ -395,24 +395,7 @@ server hooks and lifecycle functions.
 
 ## Thanks
 
-Once again thanks to [Script Raccoon] for the great article on [How to
-implement a cookie-based dark mode toggle in SvelteKit].
+Once again thanks to [Script Raccoon](https://scriptraccoon.dev) for the great article on [How to
+implement a cookie-based dark mode toggle in SvelteKit](https://scriptraccoon.dev/blog/darkmode-toggle-sveltekit).
 
-Also thanks to [Pouya] for [daisyUI] chef kiss!
-
-<!-- Links -->
-
-[daisyui]: https://daisyui.com/
-[Pouya]: https://twitter.com/Saadeghi
-[long-standing example project]:
-	https://github.com/spences10/sveltekit-theme-switch-example
-[from this commit]:
-	https://github.com/spences10/sveltekit-theme-switch-example/blob/1f9b4f9b5f5aa0a521f68a21dc0b17e5ec89d625/src/routes/%2Blayout.svelte
-[`theme-change`]: https://github.com/saadeghi/theme-change
-[How to implement a cookie-based dark mode toggle in SvelteKit]:
-	https://scriptraccoon.dev/blog/darkmode-toggle-sveltekit
-[Script Raccoon]: https://scriptraccoon.dev
-[`sequence` helper function]:
-	https://kit.svelte.dev/docs/modules#sveltejs-kit-hooks-sequence
-[full list of the themes]:
-	https://github.com/spences10/sveltekit-theme-switch-example/blob/5489c1843b42bb8c3162e22760a55b88a3e7c0b0/src/lib/themes/index.ts
+Also thanks to [Pouya](https://twitter.com/Saadeghi) for [daisyUI](https://daisyui.com/) chef kiss!

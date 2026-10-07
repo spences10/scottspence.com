@@ -67,7 +67,7 @@ landing page!
 ## Add TailwindCSS
 
 There's a really useful GitHub project that adds additional
-functionality to your Svelte projects with [Svelte Add] in this case
+functionality to your Svelte projects with [Svelte Add](https://github.com/svelte-add/svelte-add) in this case
 I'm going to add Tailwind with the Just In Time (JIT) compiler
 enabled:
 
@@ -102,7 +102,7 @@ touch src/routes/__layout.svelte
 
 The layout will be wrapping the project so the one requirement of a
 `__layout.svelte` in SvelteKit is a `<slot/>` see my notes on Svelte
-[slots] for more on that.
+[slots](https://scottspence.com/posts/notes-on-svelte/#slots) for more on that.
 
 In the layout I'll import the global CSS and add in a basic nav for
 now along with the required slot:
@@ -134,7 +134,7 @@ npm i -D graphql-request graphql
 ```
 
 Here's what I want `graphql-request` to do for me, this example is
-taken from the [prisma labs example] documentation with the required
+taken from the [prisma labs example](https://github.com/prisma-labs/graphql-request#authentication-via-http-header) documentation with the required
 query from my project:
 
 ```js {5}
@@ -173,7 +173,7 @@ export async function load() {
 Note line 5 where it's requiring the endpoint, I'll need to create an
 `.env` file for that and define the `VITE_GRAPHCMS_URL` note that the
 `env` variable is prefixed with `VITE_` to expose it to the client,
-you can check out the [SvelteKit faq] for more info:
+you can check out the [SvelteKit faq](https://kit.svelte.dev/faq#env-vars) for more info:
 
 ```bash
 touch .env
@@ -309,7 +309,7 @@ error.
 
 ## Routes for the blog posts
 
-If you are familiar with [NextJS dynamic routes] then this next part
+If you are familiar with [NextJS dynamic routes](https://nextjs.org/docs/routing/dynamic-routes) then this next part
 will be familiar, if not then it's a way to determine the routes (URL
 address) in the project programmatically.
 
@@ -445,7 +445,7 @@ to XSS attacks.
 Now I've covered displaying a list of content and using dynamic routes
 with SvelteKit it's time to make it not look like crap! 😂
 
-I'll be using [Tailblocks] for the styling elements, rather than dump
+I'll be using [Tailblocks](https://tailblocks.cc/) for the styling elements, rather than dump
 out all the HTML here what I have done is made an example repo for
 reference or use as a starter.
 
@@ -454,12 +454,3 @@ reference or use as a starter.
 I'm still early days with Svelte but so far I'm super impressed with
 it. This was an example with GraphCMS for the backend you can use
 Ghost, Sanity or whatever else fits your fancy.
-
-[svelte add]: https://github.com/svelte-add/svelte-add
-[slots]: https://scottspence.com/posts/notes-on-svelte/#slots
-[nextjs dynamic routes]:
-	https://nextjs.org/docs/routing/dynamic-routes
-[prisma labs example]:
-	https://github.com/prisma-labs/graphql-request#authentication-via-http-header
-[sveltekit faq]: https://kit.svelte.dev/faq#env-vars
-[tailblocks]: https://tailblocks.cc/

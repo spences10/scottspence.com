@@ -18,11 +18,11 @@ a Gatsby project using MDX.
 
 In the process I'm also setting up the Gatsby starter with MDX.
 
-**TL;DR, go here:** [Make a TOC component](#make-a-toc-component)
+*TL;DR, go here:* [Make a TOC component](#make-a-toc-component)
 
 I like using styled-components for my styling and would like to use
 them in this example, so I'm going to clone the Gatsby starter I made
-in a [previous post].
+in a [previous post](https://scottspence.com/posts/globally-style-gatsby-styled-components/).
 
 ## Clone the Gatsby Default Starter with styled-components
 
@@ -56,7 +56,7 @@ touch posts/toc-example/index.mdx
 ```
 
 I'll paste in some content, I'll take from the [markdown from this
-post!]
+post!](https://raw.githubusercontent.com/spences10/scottspence.com/authoring/2020/02/13/smooth-scroll-toc-gatsby/index.mdx)
 
 ## Configure the project to use MDX
 
@@ -156,7 +156,7 @@ mkdir src/templates
 touch src/templates/post-template.js
 ```
 
-For now, I'm going to return a `h1` with **Hello template** so I can
+For now, I'm going to return a `h1` with *Hello template* so I can
 validate the page was created by Gatsby node.
 
 ```jsx
@@ -226,13 +226,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 I know there's a lot in there to unpack, so, if you need more detail
 check out the sections in the "[Build a coding blog from scratch with
-Gatsby and MDX]", listed here:
+Gatsby and MDX](https://scottspence.com/posts/build-an-mdx-blog)", listed here:
 
-- [Index page posts query]
-- [Slugs and Paths]
-- [Link Paths]
-- [Adding a Blog Post Template]
-- [Build out Blog Post Template]
+- [Index page posts query](https://scottspence.com/posts/build-an-mdx-blog/#index-page-posts-query)
+- [Slugs and Paths](https://scottspence.com/posts/build-an-mdx-blog/#slugs-and-paths)
+- [Link Paths](https://scottspence.com/posts/build-an-mdx-blog/#link-paths)
+- [Adding a Blog Post Template](https://scottspence.com/posts/build-an-mdx-blog/#adding-a-blog-post-template)
+- [Build out Blog Post Template](https://scottspence.com/posts/build-an-mdx-blog/#build-out-blog-post-template)
 
 ## Confirm the pages were created with Gatsby's built in 404 page
 
@@ -397,7 +397,7 @@ pass them into the `<MDXProvider>` which is used to map to the HTML
 elements created in markdown.
 
 There's a complete listing of all the HTML elements that can be
-customised on the [MDX table of components].
+customised on the [MDX table of components](https://mdxjs.com/getting-started#table-of-components).
 
 In this example I'm mapping the `H1`, `H2` and `P` components to the
 corresponding HTML elements and passing them into the `<MDXProvider>`.
@@ -434,7 +434,7 @@ to navigate to the individual headings, right?
 Well, not quite, although the headers are there, there's no IDs in
 them to scroll to yet.
 
-I can use [gatsby-remark-autolink-headers] to create the heading IDs.
+I can use [gatsby-remark-autolink-headers](https://www.gatsbyjs.com/packages/gatsby-remark-autolink-headers/) to create the heading IDs.
 
 ```bash
 yarn add gatsby-remark-autolink-headers
@@ -522,7 +522,7 @@ For the TOC with smooth scroll you need several things:
 <!-- cSpell:ignore behavior -->
 
 - `scroll-behavior: smooth;` added to your `html`, this is part of the
-  starter I made in a [previous post].
+  starter I made in a [previous post](https://scottspence.com/posts/globally-style-gatsby-styled-components/).
 - IDs in the headings to scroll to, this is done with
   `gatsby-remark-autolink-headers`.
 - A table of contents which is provided by Gatsby MDX with
@@ -662,19 +662,20 @@ TOC.
 ## 📺 Here's a video detailing the process.
 
 <!-- cSpell:ignore Kajhlu -->
+
 <YouTube youTubeId="Kp51KajhluE" />
 
 ## Demo and Source
 
-Source code: https://github.com/spences10/gatsby-smooth-scroll
+Source code: [https://github.com/spences10/gatsby-smooth-scroll](https://github.com/spences10/gatsby-smooth-scroll)
 
-Demo: https://gatsby-smooth-scroll.vercel.app/toc-example/
+Demo: [https://gatsby-smooth-scroll.vercel.app/toc-example/](https://gatsby-smooth-scroll.vercel.app/toc-example/)
 
 ## Not scrolling to ID
 
 There's been a recent issue with `gatsby-react-router-scroll` causing
 inconsistencies with clicking and scrolling to the IDs, this is [being
-addressed by the Gatsby team].
+addressed by the Gatsby team](https://github.com/gatsbyjs/gatsby/issues/25554).
 
 If it's not resolved when you're reading this (dated: 2020-07-08) add
 the following to your `package.json`:
@@ -687,56 +688,18 @@ the following to your `package.json`:
 
 ## Resources that helped me
 
-- [4pine's blog]
-- [Theme UI guide]
-- [Gatsby MDX repo issue 396]
-- [Gatsby MDX repo issue 140]
-- [Gatsby MDX repo issue 204]
-- [MDX JS repo issue 810]
-- [remark-slug repo]
+- [4pine's blog](https://johno.com/mdx-table-of-contents-components-in-gatsby)
+- [Theme UI guide](https://theme-ui.com/mdx/linked-headings)
+- [Gatsby MDX repo issue 396](https://github.com/ChristopherBiscardi/gatsby-mdx/issues/396)
+- [Gatsby MDX repo issue 140](https://github.com/ChristopherBiscardi/gatsby-mdx/issues/140)
+- [Gatsby MDX repo issue 204](https://github.com/ChristopherBiscardi/gatsby-mdx/issues/204)
+- [MDX JS repo issue 810](https://github.com/mdx-js/mdx/issues/810)
+- [remark-slug repo](https://github.com/remarkjs/remark-slug)
 
 ## Thanks for reading 🙏
 
 Please take a look at my other content if you enjoyed this.
 
-Follow me on [Twitter] or [Ask Me Anything] on GitHub.
+Follow me on [Twitter](https://twitter.com/spences10) or [Ask Me Anything](https://github.com/spences10/ama) on GitHub.
 
 ---
-
-<!-- Links -->
-
-[twitter]: https://twitter.com/spences10
-[ask me anything]: https://github.com/spences10/ama
-[4pine's blog]:
-	https://johno.com/mdx-table-of-contents-components-in-gatsby
-[theme ui guide]: https://theme-ui.com/mdx/linked-headings
-[gatsby mdx repo issue 396]:
-	https://github.com/ChristopherBiscardi/gatsby-mdx/issues/396
-[gatsby mdx repo issue 140]:
-	https://github.com/ChristopherBiscardi/gatsby-mdx/issues/140
-[gatsby mdx repo issue 204]:
-	https://github.com/ChristopherBiscardi/gatsby-mdx/issues/204
-[remark-slug repo]: https://github.com/remarkjs/remark-slug
-[mdx js repo issue 810]: https://github.com/mdx-js/mdx/issues/810
-[previous post]:
-	https://scottspence.com/posts/globally-style-gatsby-styled-components/
-[build a coding blog from scratch with gatsby and mdx]:
-	https://scottspence.com/posts/build-an-mdx-blog
-[index page posts query]:
-	https://scottspence.com/posts/build-an-mdx-blog/#index-page-posts-query
-[slugs and paths]:
-	https://scottspence.com/posts/build-an-mdx-blog/#slugs-and-paths
-[link paths]:
-	https://scottspence.com/posts/build-an-mdx-blog/#link-paths
-[adding a blog post template]:
-	https://scottspence.com/posts/build-an-mdx-blog/#adding-a-blog-post-template
-[build out blog post template]:
-	https://scottspence.com/posts/build-an-mdx-blog/#build-out-blog-post-template
-[markdown from this post!]:
-	https://raw.githubusercontent.com/spences10/scottspence.com/authoring/2020/02/13/smooth-scroll-toc-gatsby/index.mdx
-[mdx table of components]:
-	https://mdxjs.com/getting-started#table-of-components
-[gatsby-remark-autolink-headers]:
-	https://www.gatsbyjs.com/packages/gatsby-remark-autolink-headers/
-[being addressed by the gatsby team]:
-	https://github.com/gatsbyjs/gatsby/issues/25554

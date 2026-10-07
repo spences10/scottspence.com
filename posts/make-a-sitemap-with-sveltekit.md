@@ -11,11 +11,11 @@ used by the Googlebot, BingBot, DuckDuckBot and other search engines
 to tell them what pages are available.
 
 This guide will take a lot of the learnings from the post I wrote on
-[Making an RSS Feed for your SvelteKit Project] and expand on it for
+[Making an RSS Feed for your SvelteKit Project](https://scottspence.com/posts/make-an-rss-feed-with-sveltekit) and expand on it for
 use as a sitemap.
 
 So as with the RSS post I'll be using Matt Jennings' awesome
-[SvelteKit blog template] for this example.
+[SvelteKit blog template](https://github.com/mattjennings/sveltekit-blog-template) for this example.
 
 If you haven't seen the last guide that's fine I'll include a lot of
 the steps in here so there's no need to cross reference.
@@ -63,7 +63,7 @@ A sitemap is generally located at the root level of a site, so in the
 case of my site it's `https://scottspence.com/sitemap.xml`.
 
 I'll create the sitemap file as `sitemap.xml.js` in [SvelteKit
-endpoints] you can define the type of data you want to return, in this
+endpoints](https://kit.svelte.dev/docs#routing-endpoints) you can define the type of data you want to return, in this
 case it's XML.
 
 I'll create the sitemap file via the terminal:
@@ -105,15 +105,15 @@ export async function get() {
 Going to `localhost:3000/sitemap.xml` now a get the beginnings of my
 sitemap XML feed.
 
-In the `headers` I'm setting the [expiration] to an hour with
+In the `headers` I'm setting the [expiration](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#expiration) to an hour with
 `s-maxage` and for the `body` adding in the XML heading. You can check
-out the [W3C Feed Validation Service] for more detail on what's needed
+out the [W3C Feed Validation Service](https://validator.w3.org/feed/docs/rss2.html) for more detail on what's needed
 here.
 
 The schemas (`xmlns:news` etc) are used to tell the search engines
 what type of data you're returning. I've used Josh Comeau's sitemap as
 an example here. You can check out Sitemaps XML format over on
-[sitemaps.org] for more information.
+[sitemaps.org](https://www.sitemaps.org/protocol.html) for more information.
 
 Now if I go check `localhost:3000/rss.xml` I get the beginning of my
 RSS feed.
@@ -366,16 +366,3 @@ pages on the project.
 
 I hope this has given you enough information to get started with
 making your own sitemap on your SvelteKit projects.
-
-<!-- Links -->
-
-[making an rss feed for your sveltekit project]:
-	https://scottspence.com/posts/make-an-rss-feed-with-sveltekit
-[sveltekit blog template]:
-	https://github.com/mattjennings/sveltekit-blog-template
-[sveltekit endpoints]: https://kit.svelte.dev/docs#routing-endpoints
-[expiration]:
-	https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#expiration
-[w3c feed validation service]:
-	https://validator.w3.org/feed/docs/rss2.html
-[sitemaps.org]: https://www.sitemaps.org/protocol.html

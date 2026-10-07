@@ -73,30 +73,30 @@ me.
 
 Over the last year, the steps I kept typing out turned into tools.
 
-**Web search.** Instead of hoping a model knew the current way to do
+*Web search.* Instead of hoping a model knew the current way to do
 something, I built
 [mcp-omnisearch](https://github.com/spences10/mcp-omnisearch) to
 search across providers and read the actual source. It's one of the
 [two MCP tools I still use](/posts/i-built-21-mcp-tools-and-still-use-2).
 
-**Past sessions.** A lot of context I needed was in earlier
+*Past sessions.* A lot of context I needed was in earlier
 conversations. [ccrecall](https://github.com/spences10/ccrecall) syncs
 Claude Code sessions to SQLite, pirecall does the same for Pi, and
 [omnirecall](/posts/omnirecall-search-claude-code-codex-and-pi-sessions)
 now puts them all in one searchable archive.
 
-**Project docs.** On a client project with hundreds of documents, a
+*Project docs.* On a client project with hundreds of documents, a
 [docs search CLI](/posts/give-coding-agents-your-project-docs-with-node-sqlite-and-fts5)
 meant agents could find the right spec section without me pointing at
 it.
 
-**Rules that used to be reminders.** I used to tell agents over and
+*Rules that used to be reminders.* I used to tell agents over and
 over not to reach for `$effect`. In May I added a guardrail to my-pi
 that blocks the pattern before it's written to a `.svelte` file. Now
 it's a check, not something I have to remember to say. More on that in
 [how I stop LLMs drifting](/posts/how-i-stop-llms-drifting-in-production-codebases).
 
-**The harness itself.** Moving most of my work to
+*The harness itself.* Moving most of my work to
 [my-pi](/posts/building-my-pi-claude-code-alternative-with-pi) meant I
 could change the environment when something frustrated me, instead of
 working around it in every prompt.
@@ -110,7 +110,7 @@ My prompts now tell the agent where the context is, not how to go and
 get it. From May, building with shadcn-svelte:
 
 > did you check the available primitives on
-> https://shadcn-svelte.com/docs/components? mcp-omnisearch for web
+> [https://shadcn-svelte.com/docs/components](https://shadcn-svelte.com/docs/components)? mcp-omnisearch for web
 > search if you need it
 
 Also from May:
@@ -147,7 +147,7 @@ November 2025:
 
 September 2026:
 
-> I want to make sure the https://twinkleplop.pngwn.at integration is
+> I want to make sure the [https://twinkleplop.pngwn.at](https://twinkleplop.pngwn.at) integration is
 > working as expected, could you research twinkleplop for me,
 > understand the current integration and correct/improve where
 > possible
@@ -228,26 +228,26 @@ after I've drawn it. Deciding where the line goes is still my job.
 
 ## Wrapping up
 
-**Before: research, plan, implement.** Here's the problem, go and
+*Before: research, plan, implement.* Here's the problem, go and
 research it from these sources in this order, don't write any code
 until I say so.
 
-1. **Research:** I typed out where to look and who to trust, every
+1. *Research:* I typed out where to look and who to trust, every
    time.
-2. **Plan:** I held the phases apart myself: "no coding, we're
+2. *Plan:* I held the phases apart myself: "no coding, we're
    planning this out first".
-3. **Implement:** the agent wrote the code, and I checked it by
+3. *Implement:* the agent wrote the code, and I checked it by
    reading it.
 
-**After: a loop.** Here's the problem, here's where the context is.
+*After: a loop.* Here's the problem, here's where the context is.
 
-1. **Ground:** establish what's real from the repo, tests, earlier
+1. *Ground:* establish what's real from the repo, tests, earlier
    sessions and primary docs, at any point in the task.
-2. **Shape:** plan only as much as the risk needs.
-3. **Build narrowly:** change what the task needs and nothing else.
-4. **Verify:** checks, tests and guardrails, not me reading every
+2. *Shape:* plan only as much as the risk needs.
+3. *Build narrowly:* change what the task needs and nothing else.
+4. *Verify:* checks, tests and guardrails, not me reading every
    line.
-5. **Re-ground:** when something fails or feels off, go back to what's
+5. *Re-ground:* when something fails or feels off, go back to what's
    real instead of pushing on.
 
 The difference isn't better prompting. It's that the research, the

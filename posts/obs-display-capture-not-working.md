@@ -26,7 +26,7 @@ Settings > System > Display > Graphics settings > Custom options for apps
 in there is an option to 'Add an app', select 'Desktop app' then
 navigate to OBS mine is located here:
 
-C:\Program Files\obs-studio\bin\64bit\obs64.exe
+C:\\Program Files\\obs-studio\\bin\\64bit\\obs64.exe
 
 OBS is now added to the all apps list, if I click on it I get two
 buttons 'Options' and 'Remove'. Clicking the options I'm asked for

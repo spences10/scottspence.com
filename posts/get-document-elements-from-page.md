@@ -23,7 +23,7 @@ context as I needed to put the data elsewhere. So I thought I'd just
 get the data from the page.
 
 The data was in a massive table with each `td` having a `data-label`
-**Email**, it looked like this:
+*Email*, it looked like this:
 
 ```html
 <td class="email" data-label="Email">
@@ -85,7 +85,7 @@ articles.length;
 ```
 
 If you're interested in the performance of the page, then you can
-check it out over on [Lighthouse Metrics].
+check it out over on [Lighthouse Metrics](https://lighthouse-metrics.com/lighthouse/checks/4fad27cb-2c64-456c-bacf-73dee564c945).
 
 ## Expanding on the above
 
@@ -111,8 +111,3 @@ That's it, if you found it useful consider sharing it for others to
 benefit from too 😊.
 
 Thanks.
-
-<!-- Links -->
-
-[lighthouse metrics]:
-	https://lighthouse-metrics.com/lighthouse/checks/4fad27cb-2c64-456c-bacf-73dee564c945

@@ -20,14 +20,14 @@ The maintainer was super responsive and added the change straight away
 which was cool, that doesn't mean that the changes are going to be
 packaged up and released that quickly.
 
-Looking at the [releases] it could be a while before this gets
+Looking at the [releases](https://github.com/rubjo/victor-mono/releases) it could be a while before this gets
 published to npm so I decided to give patch-package a try.
 
 ## Video on patch-package
 
 <!-- cSpell:ignore awad -->
 
-[Ben Awad] had a great video on how to use it with an example, check
+[Ben Awad](https://www.youtube.com/channel/UC-8QAzbLcRglXeN_MY9blyw) had a great video on how to use it with an example, check
 it out here:
 
 <YouTube youTubeId="2AVs-Yh1bS8" />
@@ -48,7 +48,7 @@ it in the `node_modules`.
 
 Check the `package.json` for the `"main"` file, Victor Mono is quite a
 simple project so there's just the one `dist/index.css` I can take the
-changes made [to the GitHub project] and add them to my version of the
+changes made [to the GitHub project](https://github.com/rubjo/victor-mono/commit/f6a7ed793d37a281674d794b630ce16a1303899e) and add them to my version of the
 package.
 
 ## Patch it
@@ -137,11 +137,3 @@ I can now publish my project with the patches until the Victor Mono
 npm package changes. At that time I will get a prompt to tell me the
 package has changed probably via a failed build, then I can either
 change my patch or remove it completely.
-
-<!-- Links -->
-
-[github issue]: https://github.com/rubjo/victor-mono/issues/77
-[releases]: https://github.com/rubjo/victor-mono/releases
-[ben awad]: https://www.youtube.com/channel/UC-8QAzbLcRglXeN_MY9blyw
-[to the github project]:
-	https://github.com/rubjo/victor-mono/commit/f6a7ed793d37a281674d794b630ce16a1303899e

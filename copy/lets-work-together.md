@@ -49,8 +49,8 @@ validation, LSP tooling, session recall, MCP integration, secret-safe
 execution, evals, telemetry, and human review.
 
 I use these systems in real repositories and publish the evidence,
-including [coding-agent harnesses with my-pi], [preventing agent
-drift], and [building a SQLite context sidecar].
+including [coding-agent harnesses with my-pi](/posts/coding-agent-harnesses-my-pi), [preventing agent
+drift](/posts/how-i-stop-llms-drifting-in-production-codebases), and [building a SQLite context sidecar](/posts/sqlite-context-sidecar-my-pi).
 
 ### Svelte and SvelteKit engineering
 
@@ -94,7 +94,7 @@ currency, and UK IR35 status.
 
 <Rate />
 
-Availability changes, so [get in touch] with the problem, expected
+Availability changes, so [get in touch](/contact) with the problem, expected
 outcome, team, and rough timescale. That is enough for me to tell you
 whether I can help.
 
@@ -134,15 +134,5 @@ than repeating the marketing page.
 
 If you need help with a production AI product, coding-agent
 infrastructure, MCP tooling, or a SvelteKit application, [get in
-touch]. Tell me what is not working, what a useful outcome looks like,
+touch](/contact). Tell me what is not working, what a useful outcome looks like,
 and when you need it.
-
-<!-- Links -->
-
-[get in touch]: /contact
-[coding-agent harnesses with my-pi]:
-	/posts/coding-agent-harnesses-my-pi
-[preventing agent drift]:
-	/posts/how-i-stop-llms-drifting-in-production-codebases
-[building a SQLite context sidecar]:
-	/posts/sqlite-context-sidecar-my-pi

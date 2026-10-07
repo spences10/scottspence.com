@@ -7,8 +7,8 @@ is_private: false
 
 Cliffs/TL;DR
 
-I made a [recruiter FAQ] on my personal site for recruiters and
-created an [online CV].
+I made a [recruiter FAQ](https://scottspence.com/faq) on my personal site for recruiters and
+created an [online CV](https://mecv.xyz/).
 
 ## Preamble
 
@@ -39,15 +39,15 @@ cliché now as well.
 
 Being a developer I began to notice patterns with each call I got, the
 same questions kept getting asked over and over. Also as a developer I
-want to keep things [DRY] to save myself (and the recruiter) a bit of
+want to keep things [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) to save myself (and the recruiter) a bit of
 time.
 
-So to this end I decided to add an [FAQ] section to my personal
+So to this end I decided to add an [FAQ](https://scottspence.com/faq) section to my personal
 portfolio, this was a list of all the questions I had been asked on
 the many calls previously, so, rather than have the recruiter have me
 on the phone for ten minutes just to qualify me for the role they
-could do the _vast_ majority of that with the provided [FAQ], almost
-like a reverse job spec, all they have to do is READ the [FAQ]! Then
+could do the _vast_ majority of that with the provided [FAQ](https://scottspence.com/faq), almost
+like a reverse job spec, all they have to do is READ the [FAQ](https://scottspence.com/faq)! Then
 check off my wants and needs from the list I have already provided.
 
 For some reason though, a lot of recruiters would insist on talking to
@@ -76,28 +76,28 @@ So, let's forget about recruiters for now and concentrate on the one
 main thing you need to get out there if you're looking for a job, your
 CV.
 
-Making a [CV], I went to the effort to make a basic site using my
-favourite tech stack **[teh JAMStack behbeh!]** I used the
-[JSONresume] tool to detail all the roles I had held then used the
+Making a \[CV\], I went to the effort to make a basic site using my
+favourite tech stack *[teh JAMStack behbeh!](https://jamstack.org/)* I used the
+[JSONresume](https://jsonresume.org/) tool to detail all the roles I had held then used the
 JSONresume as a guide for how I should make the individual components
-for the [CV].
+for the \[CV\].
 
 If you want to get started with your own JSON Resume you can run the
 npm command `npx resume-cli init` to kick-start your own.
 
-Feel free to [use my CV] as a template for your own as well, all you
+Feel free to [use my CV](https://github.com/spences10/cv) as a template for your own as well, all you
 need to do is generate your CV and push it to now.sh.
 
 This was my full employment history and quite long and as I was
 looking for a job in a new field the vast majority of it was not
 pertinent to a my job search, this is why I decided rather than blast
-out my [CV] everywhere I'd post out the list of answers to the
+out my \[CV\] everywhere I'd post out the list of answers to the
 questions recruiters always asked me when calling me. So rather than
 have them crawl through my mostly irrelevant job history they could
-get the answers to the questions they wanted answering. The [CV] was
+get the answers to the questions they wanted answering. The \[CV\] was
 there if they wanted more detail on me, all they had to do was READ!
 
-In my mind the [personal portfolio] and the [CV] site were a good
+In my mind the [personal portfolio](https://scottspence.com/#portfolio) and the \[CV\] site were a good
 indication of my current skill level with styling and preferred stack,
 in reality no one cares as long as it looks nice and recruiters even
 less so because it doesn't answer the questions they want to ask.
@@ -106,20 +106,20 @@ less so because it doesn't answer the questions they want to ask.
 
 This wasn't field of dreams though! So, how do I get recruiters to my
 page? Well, rather than have a CV in MS Word format that I would post
-onto every job site I could find, I had, a, link to my [FAQ] on a MS
+onto every job site I could find, I had, a, link to my [FAQ](https://scottspence.com/faq) on a MS
 Word doc! 🙃
 
 On the MS Word doc I would have all the search terms a recruiter would
 search for, JavaScript, React, HTML, CSS and so on at the bottom of
 the document. At the top was a greeting:
 
-![jobsite-cv]
+![jobsite-cv](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/jobsite-cv-11a27b76e59cb7c0015d28592c76c4c8.jpg)
 
 It was a friendly hello and something different to what must be very
 repetitive.
 
-I used Google analytics's, on the [FAQ] and the [CV] to see how much
-traffic they were getting, the [FAQ] a lot more than the [CV], so, I
+I used Google analytics's, on the [FAQ](https://scottspence.com/faq) and the \[CV\] to see how much
+traffic they were getting, the [FAQ](https://scottspence.com/faq) a lot more than the \[CV\], so, I
 could glean from that, that the recruiters were getting the answers to
 their questions without having to pick up the phone. Win Win, right?
 
@@ -127,26 +127,4 @@ The stats weren't great however, with a bounce rate of around 3
 seconds 😲 you could see the vast majority of recruiters would rather
 pick up the phone than READ the information provided.
 
-<!-- Links -->
-
 <!-- cSpell:ignore jobsite,jsonresume -->
-
-[json resume schema]: https://jsonresume.org/schema/
-[bot]:
-	https://dev.to/whokilledkevin/how-i-created-a-bot-that-talked-to-recruiters-for-me-54n5
-[poll]:
-	https://dev.to/whokilledkevin/8-things-i-hate-in-recruitment-letters-8ke
-[dry]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
-[my portfolio]: https://scottspence.com
-[personal portfolio]: https://scottspence.com/#portfolio
-[recruiter faq]: https://scottspence.com/faq
-[online cv]: https://mecv.xyz/
-[faq]: https://scottspence.com/faq
-[teh jamstack behbeh!]: https://jamstack.org/
-[jsonresume]: https://jsonresume.org/
-[use my cv]: https://github.com/spences10/cv
-
-<!-- Images -->
-
-[jobsite-cv]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930930/scottspence.com/jobsite-cv-11a27b76e59cb7c0015d28592c76c4c8.jpg

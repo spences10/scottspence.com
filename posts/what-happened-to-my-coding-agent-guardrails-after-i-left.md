@@ -26,14 +26,14 @@ The team joined from late June.
 
 For a sense of scale:
 
-| Project             | Size     |
-| ------------------- | -------- |
-| Apps                | 5        |
-| Packages            | 14       |
-| Lines of code       | ~180,000 |
-| Test files          | 327      |
-| Test cases          | ~2,900   |
-| Database migrations | 64       |
+| Project | Size |
+| --- | --- |
+| Apps | 5 |
+| Packages | 14 |
+| Lines of code | \~180,000 |
+| Test files | 327 |
+| Test cases | \~2,900 |
+| Database migrations | 64 |
 
 Most of that code was written with coding agents, and I knew it would
 carry on that way once other developers joined. On 9 May I wrote in a
@@ -51,18 +51,18 @@ there for.
 The June post goes through these in detail, so here's the short
 version:
 
-- **A boundary checker** that parses the code rather than searching
+- *A boundary checker* that parses the code rather than searching
   text. It now has 36 blocking rules: import boundaries, no domain
   logic or database calls in route files, the shape of remote-function
   modules, SQL only in the database package, and no hardcoded demo
   data in routes.
-- **A lint plugin** with 4 rules, including one that needs a comment
+- *A lint plugin* with 4 rules, including one that needs a comment
   justifying every `$effect`.
-- **A route data audit** that stops pages loading the same data twice.
-- **An ownership check**: 11 capabilities, 8 tables that only one
+- *A route data audit* that stops pages loading the same data twice.
+- *An ownership check*: 11 capabilities, 8 tables that only one
   module may write to and 9 protected functions. Every exception has
   to cite a GitHub issue.
-- **A deploy gate.** `pnpm check` had to pass before anything reached
+- *A deploy gate.* `pnpm check` had to pass before anything reached
   UAT.
 
 All of it is code with error messages. None of it relies on an agent

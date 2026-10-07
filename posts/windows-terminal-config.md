@@ -33,7 +33,7 @@ When I first opened the app I was greeted with PowerShell as the
 initial tab, there's a dropdown menu to choose from one of PowerShell,
 (default), Command Prompt or Azure Cloud Shell.
 
-![default windows terminal appearance]
+![default windows terminal appearance](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/default-windows-terminal-388c6cbaeab229756619d246cd1146d6.png)
 
 So it looks like the standard Command Prompt (sort of), I went about
 finding if I could change that and was pleasantly surprised.
@@ -47,7 +47,7 @@ More on that in the next section!
 Bar which will activate the dropdown which will show all available
 shells.
 
-![shell dropdown in windows terminal]
+![shell dropdown in windows terminal](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/shell-dropdown-in-windows-terminal-9f552c4510800ab3e2f06a71092f7f51.png)
 
 ## Included Themes
 
@@ -66,13 +66,13 @@ moment, for now I'll say it's split into several sections:
 Anyway back to the theme, important stuff right! So there are seven
 included colour schemes (themes) that come with the Windows Terminal:
 
-- [Campbell]
-- [Campbell PowerShell]
-- [Vintage]
-- [One Half Dark]
-- [One Half Light]
-- [Tango Dark]
-- [Tango Light]
+- [Campbell](https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#campbell)
+- [Campbell PowerShell](https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#campbell-powershell)
+- [Vintage](https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#vintage)
+- [One Half Dark](https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#one-half-dark)
+- [One Half Light](https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#one-half-light)
+- [Tango Dark](https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#tango-dark)
+- [Tango Light](https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#tango-light)
 
 To change to any of those I have to open the `settings.json` with
 Ctrl+, then I'm presented with the big boi config, I want to apply the
@@ -110,7 +110,7 @@ these are the font, font size and the cursor shape and colour:
 ℹ I discovered the additional cursor options by hitting Ctrl+space bar
 to bring up the intellisense options:
 
-![intellisense options]
+![intellisense options](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/intellisense-options-97c4b0402609f01069d9b439767e682e.png)
 
 ## Use your own Theme
 
@@ -118,16 +118,16 @@ You may have noticed in the last image there that the theme isn't one
 of the provided themes.
 
 I wasn't happy with the provided theming options so went to find a
-custom one to use, luckily for me there's [Windows Terminal Themes]
+custom one to use, luckily for me there's [Windows Terminal Themes](https://windowsterminalthemes.dev/)
 which is a a very large selection of pre made themes.
 
 If you're tired of looking through the themes on the website you can
-check out the [Windows Terminal Themes GitHub `themes.json` file]
+check out the [Windows Terminal Themes GitHub `themes.json` file](https://github.com/atomcorp/themes/blob/master/themes.json)
 (it's a chonka!).
 
 <!-- cSpell:ignore chonka,Solarized -->
 
-You can [create your own theme] in the Windows Terminal but I went for
+You can [create your own theme](https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#creating-your-own-color-scheme) in the Windows Terminal but I went for
 one of the ones available on the Windows Terminal Themes site
 `Builtin Solarized Dark`.
 
@@ -353,7 +353,7 @@ all the themes I want to use for all the different profiles I can
 create in the profiles object!🔥
 
 Currently in my `settings.json` this only holds the theme I pulled
-form [Windows Terminal Themes] but I could add all the themes from
+form [Windows Terminal Themes](https://windowsterminalthemes.dev/) but I could add all the themes from
 there here if I wanted, I'm happy with the one theme for now.
 
 ## Keybindings
@@ -418,7 +418,7 @@ process...
 
 ## That is for this one
 
-One thing to watch out for is the [Windows Terminal Preview] which has
+One thing to watch out for is the [Windows Terminal Preview](https://www.microsoft.com/en-gb/p/windows-terminal-preview/9n8g5rfz9xk3?rtc=1&activetab=pivot:overviewtab) which has
 all the latest features available on it which I'm going to switch to
 once I have finished writing this post!
 
@@ -426,63 +426,15 @@ once I have finished writing this post!
 
 Like I mentioned earlier the Microsoft docs are great there's a ton of
 stuff available there I'll also be keeping up to date on the [Windows
-Command Line Blog].
+Command Line Blog](https://devblogs.microsoft.com/commandline/?WT.mc_id=windows-c9-niner).
 
-- [Profile Settings]
-- [Color Schemes]
-- [Custom Schemes]
-- [Windows Terminal Review and Customization Tricks]
-- [Windows Terminal: the secret to command line happiness!]
+- [Profile Settings](https://docs.microsoft.com/en-us/windows/terminal/customize-settings/profile-settings)
+- [Color Schemes](https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes)
+- [Custom Schemes](https://docs.microsoft.com/en-us/windows/terminal/custom-terminal-gallery/custom-schemes)
+- [Windows Terminal Review and Customization Tricks](https://www.youtube.com/watch?v=7bqoXHiXTHA)
+- [Windows Terminal: the secret to command line happiness!](https://www.youtube.com/watch?v=2dsnwlnNBzs)
 - [Customize the Windows Terminal with WSL2, Cascadia Code, Powerline,
-  Nerd Fonts, Oh My Posh and more!]
-- [Windows Terminals]
+  Nerd Fonts, Oh My Posh and more!](https://www.youtube.com/watch?v=oHhiMf_6exY&t=225s)
+- [Windows Terminals](https://github.com/rjcarneiro/windows-terminals)
 
 <!-- cSpell:ignore Cascadia -->
-
-<!-- Links -->
-
-[windows terminal preview]:
-	https://www.microsoft.com/en-gb/p/windows-terminal-preview/9n8g5rfz9xk3?rtc=1&activetab=pivot:overviewtab
-[windows command line blog]:
-	https://devblogs.microsoft.com/commandline/?WT.mc_id=windows-c9-niner
-[profile settings]:
-	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/profile-settings
-[color schemes]:
-	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes
-[custom schemes]:
-	https://docs.microsoft.com/en-us/windows/terminal/custom-terminal-gallery/custom-schemes
-[windows terminal review and customization tricks]:
-	https://www.youtube.com/watch?v=7bqoXHiXTHA
-[windows terminal: the secret to command line happiness!]:
-	https://www.youtube.com/watch?v=2dsnwlnNBzs
-[windows terminals]: https://github.com/rjcarneiro/windows-terminals
-[customize the windows terminal with wsl2, cascadia code, powerline, nerd fonts, oh my posh and more!]:
-	https://www.youtube.com/watch?v=oHhiMf_6exY&t=225s
-[windows terminal themes]: https://windowsterminalthemes.dev/
-[windows terminal themes github `themes.json` file]:
-	https://github.com/atomcorp/themes/blob/master/themes.json
-[campbell]:
-	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#campbell
-[campbell powershell]:
-	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#campbell-powershell
-[vintage]:
-	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#vintage
-[one half dark]:
-	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#one-half-dark
-[one half light]:
-	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#one-half-light
-[tango dark]:
-	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#tango-dark
-[tango light]:
-	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#tango-light
-[create your own theme]:
-	https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes#creating-your-own-color-scheme
-
-<!-- Images -->
-
-[default windows terminal appearance]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/default-windows-terminal-388c6cbaeab229756619d246cd1146d6.png
-[intellisense options]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/intellisense-options-97c4b0402609f01069d9b439767e682e.png
-[shell dropdown in windows terminal]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/shell-dropdown-in-windows-terminal-9f552c4510800ab3e2f06a71092f7f51.png

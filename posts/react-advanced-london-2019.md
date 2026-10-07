@@ -27,12 +27,12 @@ To help with this he prescribed the IMDOPE system!
 
 <!-- cSpell:disable -->
 
-- **I**dentify that a problem exists
-- **M**easure your timings
-- **D**evelop a plan
-- **O**pen dev tools
-- **P**lay around until its better
-- **E**njoy newly performant app
+- *I*dentify that a problem exists
+- *M*easure your timings
+- *D*evelop a plan
+- *O*pen dev tools
+- *P*lay around until its better
+- *E*njoy newly performant app
 
 <!-- cSpell:enable -->
 
@@ -43,7 +43,7 @@ The user Timings API (which I've never heard of) lets you define
 precise performance marking that you can name and display in dev
 tools.
 
-**Example:**
+*Example:*
 
 <!-- cSpell:ignore mainthread -->
 
@@ -73,12 +73,12 @@ the React docs to clarify.
 >
 > -- Ken Wheeler
 
-List should be virtualized, check out Brian Vaughn's [React Window] or
-[React Virtualized] he went on to render lists with 10k plus items in
+List should be virtualized, check out Brian Vaughn's [React Window](https://github.com/bvaughn/react-window) or
+[React Virtualized](https://github.com/bvaughn/react-virtualized) he went on to render lists with 10k plus items in
 there and demoed the shoddy performance on a rendered list then with
 react window.
 
-**Web Workers**
+*Web Workers*
 
 A particularly interesting section for me (because I didn't know it
 was a thing), with web workers you can take expensive tasks off of the
@@ -86,7 +86,7 @@ main thread.
 
 There are some downsides to this relating to serialization though.
 
-**WASM**
+*WASM*
 
 <!-- cSpell:ignore worklet -->
 
@@ -95,14 +95,15 @@ audio worklet to process a stream of audio to do the Daft Punk "one
 more time" vocoder example! Dope!
 
 <!-- cSpell:ignore svxxt -->
+
 <YouTube youTubeId="t8svxxtUTl8" />
 
 ## Sean Wang - React (with hooks) from scratch
 
 Bonkers talk from Sean where he recreated React with Hooks and React
-Concurrency (Fibre) in a [CodeSandbox.io] session.
+Concurrency (Fibre) in a [CodeSandbox.io](https://codesandbox.io) session.
 
-The talk was a sequel to a previous talk on [React hooks from scratch]
+The talk was a sequel to a previous talk on [React hooks from scratch](https://www.swyx.io/speaking/react-hooks/)
 in 29 lines. He started with "we're going to re-create concurrent
 React in 130 lines of code!".
 
@@ -156,7 +157,7 @@ He covered all the main sections along with code examples. TL;DR
 suspense with time slicing is here.
 
 The only dependency used in the code was Babel with this [fetch
-example] where the we're using state and reading from a resource which
+example](https://codesandbox.io/s/reactadvanced-final-uwrx0) where the we're using state and reading from a resource which
 suspends (or caches) as needed.
 
 <YouTube youTubeId="dFO4m7Y-yhs" />
@@ -169,7 +170,7 @@ Vojtech (Uber) goes through the history lesson about drag and drop and
 the complexities that come with it.
 
 He details the options available and why they implemented their own
-[React Movable] Accessible drag and drop project.
+[React Movable](https://github.com/tajo/react-movable) Accessible drag and drop project.
 
 <!-- cSpell:ignore mtsa,RSCONF -->
 
@@ -196,31 +197,31 @@ Six ideas that can help improve your testing.
 | Minimise debugging          |                               |
 | Minimise manual testing     |                               | -->
 
-**Idea 1:**
+*Idea 1:*
 
 Always follow _Arrange Act Assert_, get the variables in place,
 render, expected result.
 
 Keep tests simple
 
-**Idea 2:**
+*Idea 2:*
 
 Test the _lifecycle_ of your components.
 
-**Idea 3:**
+*Idea 3:*
 
 Be aware of tests surface areas, good test pinpoint errors.
 
-**Idea 4:**
+*Idea 4:*
 
 Make a mess, then refactor.
 
-**Idea 5:**
+*Idea 5:*
 
 Get out of React components at every opportunity. Testing simple
 functions, simple, React component, not so simple to test.
 
-**Idea 6:**
+*Idea 6:*
 
 Write your own test library! 😱
 
@@ -229,7 +230,7 @@ learning!!!
 
 Library's lock you into _their_ way of testing things.
 
-**Main takeaway for me from this is:**
+*Main takeaway for me from this is:*
 
 > No tests are better than bad tests!
 
@@ -256,7 +257,7 @@ Ken's IMDOPE system but it was the message was what was important.
 Jamie went on to talk about how the community can benefit from any
 kind of sharing.
 
-![anything acronym]
+![anything acronym](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/anything-a5977c43c2e8140e1898ffb67e75234f.png)
 
 - YouTube video or video series
 
@@ -355,27 +356,8 @@ better navigation, less technical debt.
 
 <YouTube youTubeId="nkJbGgieALI" />
 
-Complete playlist of all the talks on YouTube [here].
+Complete playlist of all the talks on YouTube [here](https://www.youtube.com/playlist?list=PLNBNS7NRGKMH7yfpYQD4TrFV25SMOCIPM).
 
-Check the [hashtag] on Twitter and also [my coverage] on Twitter.
+Check the [hashtag](https://twitter.com/hashtag/ReactAdvanced) on Twitter and also [my coverage](https://twitter.com/search?q=reactadvanced%20spences10&f=live) on Twitter.
 
-https://twitter.com/search?q=spences10%20reactadvanced&f=live
-
-<!-- Links -->
-
-[codesandbox.io]: https://codesandbox.io
-[fetch example]: https://codesandbox.io/s/reactadvanced-final-uwrx0
-[react virtualized]: https://github.com/bvaughn/react-virtualized
-[react window]: https://github.com/bvaughn/react-window
-[react hooks from scratch]: https://www.swyx.io/speaking/react-hooks/
-[react movable]: https://github.com/tajo/react-movable
-[here]:
-	https://www.youtube.com/playlist?list=PLNBNS7NRGKMH7yfpYQD4TrFV25SMOCIPM
-[hashtag]: https://twitter.com/hashtag/ReactAdvanced
-[my coverage]:
-	https://twitter.com/search?q=reactadvanced%20spences10&f=live
-
-<!-- Images -->
-
-[anything acronym]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/anything-a5977c43c2e8140e1898ffb67e75234f.png
+[https://twitter.com/search?q=spences10%20reactadvanced&f=live](https://twitter.com/search?q=spences10%20reactadvanced&f=live)

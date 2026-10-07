@@ -19,23 +19,23 @@ do something I've been meaning to do for a wile now, that's to make a
 serverless function that will return the GitHub stats from my GitHub
 profile.
 
-Me doing this came up in conversation with my friend [Paul Scanlon]
+Me doing this came up in conversation with my friend [Paul Scanlon](https://twitter.com/PaulieScanlon)
 and he decided to do something similar but with the GitHub REST API,
 so we are making notes on how things are going!!
 
 ## What is it you're doing though?
 
-What I'm doing is based off of several [Leigh Halliday] videos on
+What I'm doing is based off of several [Leigh Halliday](https://www.youtube.com/user/leighhalliday) videos on
 using the GitHub GraphQL API and adding that data to a pie chart.
 
 My current site has a similar pie chart in the about section which
 created at build time. This chart is created at request time from the
 client (the browser).
 
-Check out the [Interactive example] for an idea of what's going on.
+Check out the [Interactive example](#interactive-example) for an idea of what's going on.
 
 ℹ Also Leigh has just released Next Level Next.js where you can get
-$10 off with [my affiliate link].
+$10 off with [my affiliate link](https://courses.leighhalliday.com/next-level-next-js?coupon=SCOTT).
 
 ## Approach
 
@@ -69,7 +69,7 @@ https://serverless.vercel.app?username=spences10
 ```
 
 The code on Vercel then parses the request, takes out the `username`
-variable and passes that to a [GraphQL query in Axios] which returns a
+variable and passes that to a [GraphQL query in Axios](https://scottspence.com/posts/get-graphql-data-with-axios/) which returns a
 JSON object. The JSON is then manipulated to use in the pie chart.
 
 ## The query
@@ -139,17 +139,17 @@ Here's what the response from the GraphQL query looks like:
 The JSON data from the GraphQL call is then transformed so it will go
 into the data shape the pie chart is expecting.
 
-Check out the [data transform] module on the repo for more detail and
-also Leigh's video [Map, Reduce, Filter, and Pie Charts] is super
+Check out the [data transform](https://github.com/spences10/github-user-information/blob/main/src/data-transform.ts) module on the repo for more detail and
+also Leigh's video [Map, Reduce, Filter, and Pie Charts](https://www.youtube.com/watch?v=28StAxSjyIU) is super
 helpful.
 
 ## Charts
 
-I went with [Google chart library] first as it had what I needed
+I went with [Google chart library](https://developers.google.com/chart/interactive/docs/gallery) first as it had what I needed
 (Pie/Doughnut and Heatmap) but it's not responsive. This isn't a big
 deal as the chart is being returned as an image.
 
-To work with the chart locally I used the [live server] VS Code
+To work with the chart locally I used the [live server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) VS Code
 extension and a added the chart to an `index.html` file to get an idea
 of how it will look.
 
@@ -202,7 +202,7 @@ headless browser like Chromium.
 
 To do this I used Puppeteer I wanted to use Playwright but that didn't
 work on Vercel so a reverted to Puppeteer like with the [serverless
-open graph image] project I made a while back now.
+open graph image](https://scottspence.com/posts/serverless-og-images/) project I made a while back now.
 
 ## Latency
 
@@ -210,7 +210,7 @@ Loading the image does take a while, I've added this one below the
 fold but because it's not part of Gatsby image there will be layout
 shift unless I add a default height to the `img` tag.
 
-![GitHub contributions pie chart]
+![GitHub contributions pie chart](https://ghui.vercel.app/pie.png?username=spences10)
 
 Because this isn't being done at build time there is a noticeable
 delay in the image being served sometimes.
@@ -255,10 +255,10 @@ next part will be a heat map.
 There was some contrast issues with the text on the pie chart so I had
 to find a way to change the contrast of the text color.
 
-After a bit of searching I found [contrast-color-generator] which
+After a bit of searching I found [contrast-color-generator](https://www.npmjs.com/package/contrast-color-generator) which
 offered up a colour to satisfy the W3C guidelines.
 
-This then had to be added to the [data transform] to change the colour
+This then had to be added to the [data transform](https://github.com/spences10/github-user-information/blob/main/src/data-transform.ts) to change the colour
 of the text.
 
 Here's a small snippet of how the languages are add to an object:
@@ -282,7 +282,7 @@ const languagesArray = Object.entries(langObject).map(
 
 ## Compared to the REST API
 
-Paul has done a [great write up] on the contrast between the two
+Paul has done a [great write up](https://paulie.dev/posts/2021/01/gatsby-netliyf-github-rest/) on the contrast between the two
 approaches.
 
 I have outlined where my approach isn't great with the latency from
@@ -297,49 +297,10 @@ be the same amount of latency.
 
 ## Resources
 
-- [Map, Reduce, Filter, and Pie Charts]
-- [How to use GraphQL with React]
+- [Map, Reduce, Filter, and Pie Charts](https://www.youtube.com/watch?v=28StAxSjyIU)
+- [How to use GraphQL with React](https://www.youtube.com/watch?v=AUiUZ29pae4)
 - [Serverless OG Image - Part 1 - Deploying our first serverless
-  function]
-- [Serverless OG Image - Part 2 - Parsing Request]
-- [Serverless OG Image - Part 3 - Temporary File]
-- [Serverless OG Image - Part 4 - Taking Screenshot]
-
-<!-- Links -->
-
-[paul scanlon]: https://twitter.com/PaulieScanlon
-[serverless open graph image]:
-	https://scottspence.com/posts/serverless-og-images/
-[leigh halliday]: https://www.youtube.com/user/leighhalliday
-[map, reduce, filter, and pie charts]:
-	https://www.youtube.com/watch?v=28StAxSjyIU
-[how to use graphql with react]:
-	https://www.youtube.com/watch?v=AUiUZ29pae4
-[serverless og image - part 1 - deploying our first serverless function]:
-	https://www.youtube.com/watch?v=Al3tCJKOydY
-[serverless og image - part 2 - parsing request]:
-	https://www.youtube.com/watch?v=ANedwsfXpO0
-[serverless og image - part 3 - temporary file]:
-	https://www.youtube.com/watch?v=KlLgjuUQoJs
-[serverless og image - part 4 - taking screenshot]:
-	https://www.youtube.com/watch?v=ZjGCiBpDZ7g
-[my affiliate link]:
-	https://courses.leighhalliday.com/next-level-next-js?coupon=SCOTT
-[graphql query in axios]:
-	https://scottspence.com/posts/get-graphql-data-with-axios/
-[data transform]:
-	https://github.com/spences10/github-user-information/blob/main/src/data-transform.ts
-[interactive example]: #interactive-example
-[live server]:
-	https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
-[google chart library]:
-	https://developers.google.com/chart/interactive/docs/gallery
-[contrast-color-generator]:
-	https://www.npmjs.com/package/contrast-color-generator
-[great write up]:
-	https://paulie.dev/posts/2021/01/gatsby-netliyf-github-rest/
-
-<!-- Images -->
-
-[github contributions pie chart]:
-	https://ghui.vercel.app/pie.png?username=spences10
+  function](https://www.youtube.com/watch?v=Al3tCJKOydY)
+- [Serverless OG Image - Part 2 - Parsing Request](https://www.youtube.com/watch?v=ANedwsfXpO0)
+- [Serverless OG Image - Part 3 - Temporary File](https://www.youtube.com/watch?v=KlLgjuUQoJs)
+- [Serverless OG Image - Part 4 - Taking Screenshot](https://www.youtube.com/watch?v=ZjGCiBpDZ7g)

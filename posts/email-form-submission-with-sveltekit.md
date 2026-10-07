@@ -31,7 +31,7 @@ Depending on what theme you're using this can potentially be
 acceptable, probably not though!
 
 I did get my own custom form working with Substack locally. The
-**Tl;Dr** is I popped open the network tab in the browser and made a
+*Tl;Dr* is I popped open the network tab in the browser and made a
 note of where the submission was going and checked out the payload so
 I could try make a similar submission with Insomnia. This worked
 locally! But on deploying to Vercel the submit wasn't working and I
@@ -49,10 +49,10 @@ account! Joy! Ok onto the how to!
 
 ## Testing the Revue endpoint
 
-Because Revue has an open API that means there's ✨[documentation]✨
+Because Revue has an open API that means there's ✨[documentation](https://www.getrevue.co/api#get-/v2/lists)✨
 
 If you're following along you will need your Revue API key, you can
-find it at the bottom of the [integrations] page.
+find it at the bottom of the [integrations](https://www.getrevue.co/app/integrations) page.
 
 Scroll to the bottom and look for something like this:
 
@@ -61,8 +61,8 @@ Scroll to the bottom and look for something like this:
 
 Your API key is `2f09ecd9-6a64-4d5b-9c77-a5587cedbcf7`.
 
-Usage of the API must follow Revue's [Terms of Service] and [Privacy
-Policy].
+Usage of the API must follow Revue's [Terms of Service](https://www.getrevue.co/terms) and [Privacy
+Policy](https://www.getrevue.co/privacy/platform).
 
 <br />
 </div>
@@ -110,7 +110,7 @@ Revue API!
 ## Setup the project
 
 In this example like the last couple of examples I've done I'll be
-using Matt Jennings' [SvelteKit blog template]; it's what this site is
+using Matt Jennings' [SvelteKit blog template](https://github.com/mattjennings/sveltekit-blog-template); it's what this site is
 based off of.
 
 ℹ️ This is for a SvelteKit project hosted on Vercel, if you're
@@ -184,16 +184,16 @@ like:
 echo .env >> .gitignore
 ```
 
-SvelteKit uses [Vite] and you can prefix you environment variables
+SvelteKit uses [Vite](https://vitejs.dev/) and you can prefix you environment variables
 with `VITE_` so they're available to the client (the browser) this
 also means that they can be seen from the client.
 
 Although the code for an endpoint runs on the server and adding the
 `VITE_` means that you can access the variable in development mode it
-_shouldn't_ be exposed to the client **but** I prefer to use
+_shouldn't_ be exposed to the client *but* I prefer to use
 `process.env` to access the variables.
 
-I've made a short post on how to use [`.env` secrets in SvelteKit] if
+I've made a short post on how to use [`.env` secrets in SvelteKit](https://scottspence.com/posts/sveltekit-env-secrets) if
 you need a bit more detail on that.
 
 I'm going to install `env-cmd` and add that to the dev script, first
@@ -229,7 +229,7 @@ Now for the endpoint `post` function!
 Now I can scaffold ou the function to submit the email to the Revue
 API.
 
-For now, to test it's worked I'll **hardcode** in the email address to
+For now, to test it's worked I'll *hardcode* in the email address to
 the `POST` body, then I'll build on that once I've validated it's
 working.
 
@@ -294,7 +294,7 @@ and that I'm not requiring users to double opt in (i.e. reply to
 another email to say yes sign me up to the list I've just subscribed
 to).
 
-**Note** again, if you didn't catch it earlier, the email address is
+*Note* again, if you didn't catch it earlier, the email address is
 hardcoded in here:
 
 ```js
@@ -307,7 +307,7 @@ body: JSON.stringify({
 ```
 
 I'll be changing that once I've validated the submit is working. I
-cover that in the [Receive email in endpoint] section.
+cover that in the [Receive email in endpoint](#receive-email-in-endpoint) section.
 
 If you want you can do what you like with these options, my aim is to
 remove as much friction as possible.
@@ -509,13 +509,13 @@ Now I can enter an email address and hit submit! It doesn't matter
 what the email is because it's hardcoded into the endpoint at the
 moment!
 
-I'll hit submit and I'll go over to my Revue [subscribers list] and
+I'll hit submit and I'll go over to my Revue [subscribers list](https://www.getrevue.co/app/lists) and
 check to see if the email is there!
 
-![revue-subscribers-list-search]
+![revue-subscribers-list-search](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881311/scottspence.com/revue-subscribers-list-search.png)
 
 Sweet! Now I've validated the submit is working I can delete the
-subscriber from my [subscribers list] and go about having the endpoint
+subscriber from my [subscribers list](https://www.getrevue.co/app/lists) and go about having the endpoint
 receive what is submitted from the component!
 
 ## Receive email in endpoint
@@ -576,11 +576,11 @@ generated and try submit an email I'll get the bad response message!
 From the Vercel project I'll navigate to Settings > Environment
 Variables and add in the `REVUE_API_KEY` name and value. Now I can run
 the Vercel CLI again and test the form again, wait for the submit then
-the Revue [subscribers list] again!
+the Revue [subscribers list](https://www.getrevue.co/app/lists) again!
 
-**Success** 🎉
+*Success* 🎉
 
-![revue-subscribers-list-search]
+![revue-subscribers-list-search](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881311/scottspence.com/revue-subscribers-list-search.png)
 
 ## Wrap up!
 
@@ -588,22 +588,3 @@ That's it, I've gone and added an email submit from to a site that
 uses the Revue API with SvelteKit endpoints!
 
 I can now use this pattern in other projects!
-
-<!-- Links -->
-
-[sveltekit blog template]:
-	https://github.com/mattjennings/sveltekit-blog-template
-[documentation]: https://www.getrevue.co/api#get-/v2/lists
-[integrations]: https://www.getrevue.co/app/integrations
-[terms of service]: https://www.getrevue.co/terms
-[privacy policy]: https://www.getrevue.co/privacy/platform
-[vite]: https://vitejs.dev/
-[`.env` secrets in sveltekit]:
-	https://scottspence.com/posts/sveltekit-env-secrets
-[subscribers list]: https://www.getrevue.co/app/lists
-[receive email in endpoint]: #receive-email-in-endpoint
-
-<!-- Images -->
-
-[revue-subscribers-list-search]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881311/scottspence.com/revue-subscribers-list-search.png

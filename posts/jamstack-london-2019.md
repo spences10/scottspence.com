@@ -54,13 +54,14 @@ date.
 
 After the workshops it was time for the lightening talks.
 
-[@jamiebradley234] did a talk on the booming tech scene in
+[@jamiebradley234](https://twitter.com/jamiebradley234) did a talk on the booming tech scene in
 Middlesbrough.
 
 <!-- cSpell:ignore kmelve -->
+
 <Tweet tweetLink="kmelve/status/1148664935305699328" />
 
-[@danfascia] did a great talk on how healthcare tech is benefiting
+[@danfascia](https://twitter.com/danfascia) did a great talk on how healthcare tech is benefiting
 from JAMstack methodologies.
 
 <YouTube youTubeId="n1ca0cQAr_4" />
@@ -96,7 +97,7 @@ live.
 
 Knut showing off the advantages of using GROQ for querying your data.
 
-Also it's [now open source]
+Also it's [now open source](https://www.sanity.io/blog/we-re-open-sourcing-groq-a-query-language-for-json-documents)
 
 ### Stackbit - Ben Edwards
 
@@ -105,7 +106,7 @@ great all in one tool for making JAMstack sites with CMS integration.
 
 ### Code Sandbox. - Ives van Horne
 
-Ives (Flip) went into how he made [codesandbox.io] whilst being a
+Ives (Flip) went into how he made [codesandbox.io](https://codesandbox.io) whilst being a
 college student.
 
 If you want something build cheaply, ask a student to build it for you
@@ -127,7 +128,7 @@ JAMstack helps me sleep at night!
 Una was super jazzed about Houdini, you could do some pretty neat css
 tricks with it.
 
-[https://extra-css.netlify.com/]
+[https://extra-css.netlify.com/](https://extra-css.netlify.com/)
 
 <!-- cSpell:ignore simona,cotin -->
 
@@ -142,16 +143,16 @@ Simona detailed key use cases for serveless functions.
 Surma and Jake went through how to optimise a modern day minesweeper
 game for mobile.
 
-**"Should I worry about performance?"**
+*"Should I worry about performance?"*
 
-**Answer: YES!**
+*Answer: YES!*
 
 Hosted web fonts slow things down, because the browser has to load
 from multiple servers. Optimize further by only including the
 characters you need. Use css, assets, fonts directly in the HTML to
 eliminate needing additional requests.
 
-Here's the repo: [https://github.com/GoogleChromeLabs/proxx]
+Here's the repo: [https://github.com/GoogleChromeLabs/proxx](https://github.com/GoogleChromeLabs/proxx)
 
 ### Hot!
 
@@ -161,6 +162,7 @@ outside of that was hot and sweaty! I spent the majority of my time
 between talks situated directly in front of the A/C units.
 
 <!-- cSpell:ignore peduarte -->
+
 <Tweet tweetLink="spences10/status/1148927111526268928" />
 <Tweet tweetLink="peduarte/status/1148923305254096896" />
 <Tweet tweetLink="spences10/status/1148914884039577600" />
@@ -169,14 +171,3 @@ between talks situated directly in front of the A/C units.
 
 This was a great event I met a lot of new people and several Twitter
 friends. I can't wait until the next one.
-
-<!-- Links -->
-
-[@danfascia]: https://twitter.com/danfascia
-[@jamiebradley234]: https://twitter.com/jamiebradley234
-[codesandbox.io]: https://codesandbox.io
-[https://github.com/googlechromelabs/proxx]:
-	https://github.com/GoogleChromeLabs/proxx
-[https://extra-css.netlify.com/]: https://extra-css.netlify.com/
-[now open source]:
-	https://www.sanity.io/blog/we-re-open-sourcing-groq-a-query-language-for-json-documents

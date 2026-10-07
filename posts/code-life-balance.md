@@ -23,7 +23,7 @@ quickly.
 
 Like I said with a full time job and a family spare time is precious,
 I have taken to getting up most mornings around an hour earlier than
-usual @~05:30 that gave me around 1.5 hours before having to get ready
+usual @\~05:30 that gave me around 1.5 hours before having to get ready
 for the day taking kids to school and the daily commute. In the
 evenings I usually have from 20:00–22:00 but this is full of
 interruptions so you could probably condense it down to about 1.5
@@ -31,7 +31,7 @@ hours again.
 
 <!-- cSpell:ignore gollum -->
 
-![gollum]
+![gollum](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930928/scottspence.com/gollum-41380a3023ea4dbe9e3e83abd7631843.jpg)
 
 So.
 
@@ -56,9 +56,9 @@ relationships are priority and they can get a bit strained when all
 you're doing is staring at a monitor whenever you get a spare 45
 minutes.
 
-![fcc breakdown]
+![fcc breakdown](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930932/scottspence.com/fccbreakdown-95e36e149f280ce66a0f04667dbbd265.jpg)
 
-[#100DaysOfCode] has been a great tool for me with regard to building
+[#100DaysOfCode](https://medium.freecodecamp.com/start-2017-with-the-100daysofcode-improved-and-updated-18ce604b237b) has been a great tool for me with regard to building
 good habits and something that has both distracted me from purely
 concentrating on my freeCodeCamp and also accelerated my GitHub open
 source interactions. Since starting the challenge I have contributed
@@ -73,18 +73,6 @@ having to think about any coding for a week or so.
 I often think if I am a proper developer and what am I doing all this
 for, then I take this handy little quiz:
 
-https://amiarealdeveloper.com/
+[https://amiarealdeveloper.com/](https://amiarealdeveloper.com/)
 
 We shall see where I am in a years time 👍
-
-<!-- Links -->
-
-[#100daysofcode]:
-	https://medium.freecodecamp.com/start-2017-with-the-100daysofcode-improved-and-updated-18ce604b237b
-
-<!-- Images -->
-
-[gollum]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930928/scottspence.com/gollum-41380a3023ea4dbe9e3e83abd7631843.jpg
-[fcc breakdown]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930932/scottspence.com/fccbreakdown-95e36e149f280ce66a0f04667dbbd265.jpg

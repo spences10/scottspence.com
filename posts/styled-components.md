@@ -14,7 +14,7 @@ to look something like this:
 
 This is what it will look like by the end of this post:
 
-![theme switch with styled-components]
+![theme switch with styled-components](https://thepracticaldev.s3.amazonaws.com/i/5dwv10zpqa13wb4pr47l.gif)
 
 But first, preamble✨: I have always struggled with styling sites, it
 seems to be an aspect of starting web development that is either an
@@ -23,8 +23,8 @@ really like styling anything at all with CSS, it was a chore rather
 than something I enjoyed doing.
 
 This was until I started using styled-components, when I joined a
-build to learn project for a [Chingu] voyage ([`grad.then()`] if
-you're interested) we decided to use a CSS-in-JS package, [Marina] who
+build to learn project for a [Chingu](https://medium.com/chingu) voyage ([`grad.then()`](https://github.com/chingu-voyage3/grad.then/) if
+you're interested) we decided to use a CSS-in-JS package, [Marina](https://twitter.com/mar_biletska) who
 was on my team was such an inspiration for me watching how components
 were styled and really gave me the confidence to start using
 styled-components.
@@ -51,7 +51,7 @@ out there to take care of this for you as well.
 ## Install styled-components
 
 Ok let's bootstrap the basic react application you get when using
-[Create React App] with [`npx`], if you already have Create React App
+[Create React App](https://github.com/facebook/create-react-app#create-react-app-) with [`npx`](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b), if you already have Create React App
 installed globally then you can use the command without `npx`.
 
 ```bash
@@ -60,7 +60,7 @@ cd style-with-styled-components/
 npm i styled-components
 ```
 
-Ok, now we have the basic app we can style, thankfully [Dan] has
+Ok, now we have the basic app we can style, thankfully [Dan](https://github.com/gaearon) has
 kindly provided the starting styles for us so let's begin my using
 them with styled-components.
 
@@ -183,7 +183,7 @@ const AppIntro = styled.p`
 `;
 ```
 
-So first off we've created a variable for the React svg [animation],
+So first off we've created a variable for the React svg [animation](https://www.styled-components.com/docs/basics#animations),
 you'll need to import the `keyframes` helper from styled-components
 like so:
 
@@ -342,7 +342,7 @@ For styling the body of our react app we currently have the
 `index.css` file that is being imported into the mounting point of our
 app in the `index.js` file.
 
-To style the body we can use [`injectGlobal`] from styled-components
+To style the body we can use [`injectGlobal`](https://www.styled-components.com/docs/api#injectglobal) from styled-components
 which adds the styles directly to the stylesheet.
 
 To do this you bring in the `injectGlobal` named export from
@@ -460,7 +460,7 @@ Themes are often used to change the look and feel of a wide range of
 things at once. For example, you may have a night and day mode like in
 Twitter. You can create your own themes in styled-components too.
 
-![light and dark theme]
+![light and dark theme](https://thepracticaldev.s3.amazonaws.com/i/gwn8czgagns1n1545zgn.png)
 
 ## Use the styled-components ThemeProvider
 
@@ -525,7 +525,7 @@ Now we can change our app theme globally
 ## Ok cool, can you change theme?
 
 This is what I was thinking and it turns out you can, there's a great
-[Stack Overflow answer] from [Max] on it.
+[Stack Overflow answer](https://stackoverflow.com/a/42899979/1138354) from [Max](https://twitter.com/mxstbr) on it.
 
 It got me thinking if you can switch between themes rather than define
 them for different sections like in the SO answer.
@@ -726,60 +726,24 @@ I have put all of the examples we have gone over here in a working
 example for you to play around with the theming and styled-components,
 enjoy.
 
-https://codesandbox.io/s/x26q7l9vyq?from-embed
+[https://codesandbox.io/s/x26q7l9vyq?from-embed](https://codesandbox.io/s/x26q7l9vyq?from-embed)
 
 ## Want to know more?
 
 <!-- cSpell:ignore Vrachliotis -->
 
 A great resource for getting started with styled-components which
-really helped me is [Simon Vrachliotis]'s [egghead.io]
-styled-components [playlist] which is a great foundation for starting
+really helped me is [Simon Vrachliotis](https://twitter.com/simonswiss)'s [egghead.io](https://egghead.io/)
+styled-components [playlist](https://egghead.io/playlists/styled-components-4169206d) which is a great foundation for starting
 out with styled-components the first lesson is for pro members but the
 rest are currently available to watch for free.
 
-There's also the [spectrum.chat] community and of course [Stack
-Overflow].
+There's also the [spectrum.chat](https://spectrum.chat/?t=54887141-57a9-4386-807c-ed950c4d5132) community and of course [Stack
+Overflow](https://stackoverflow.com/questions/tagged/styled-components).
 
 ## Thanks for reading 🙏
 
 If there is anything I have missed, or if you have a better way to do
 something then please let me know.
 
-Find me on [Twitter] or [Ask Me Anything] on GitHub.
-
-<!-- Links -->
-
-[chingu]: https://medium.com/chingu
-[`grad.then()`]: https://github.com/chingu-voyage3/grad.then/
-[marina]: https://twitter.com/mar_biletska
-[dan]: https://github.com/gaearon
-[packages out there]: https://github.com/sindresorhus/modern-normalize
-[box-sizing:]: https://paulirish.com/2012/box-sizing-border-box-ftw/
-[create react app]:
-	https://github.com/facebook/create-react-app#create-react-app-
-[`npx`]:
-	https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b
-[animation]: https://www.styled-components.com/docs/basics#animations
-[`injectglobal`]:
-	https://www.styled-components.com/docs/api#injectglobal
-[stack overflow answer]: https://stackoverflow.com/a/42899979/1138354
-[max]: https://twitter.com/mxstbr
-[simon vrachliotis]: https://twitter.com/simonswiss
-[egghead.io]: https://egghead.io/
-[playlist]: https://egghead.io/playlists/styled-components-4169206d
-[spectrum.chat]:
-	https://spectrum.chat/?t=54887141-57a9-4386-807c-ed950c4d5132
-[stack overflow]:
-	https://stackoverflow.com/questions/tagged/styled-components
-[twitter]: https://twitter.com/spences10
-[ask me anything]: https://github.com/spences10/ama
-
-<!-- Images -->
-
-[theme switch with styled-components]:
-	https://thepracticaldev.s3.amazonaws.com/i/5dwv10zpqa13wb4pr47l.gif
-[impossible puzzle]:
-	https://media.giphy.com/media/2rj8VysAig8QE/giphy.gif
-[light and dark theme]:
-	https://thepracticaldev.s3.amazonaws.com/i/gwn8czgagns1n1545zgn.png
+Find me on [Twitter](https://twitter.com/spences10) or [Ask Me Anything](https://github.com/spences10/ama) on GitHub.

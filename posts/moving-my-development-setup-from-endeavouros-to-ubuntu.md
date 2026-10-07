@@ -66,8 +66,8 @@ sudo apt install wezterm
 
 The install instructions are here:
 
-- https://ghostty.org/docs/install/binary
-- https://wezterm.org/install/linux.html#using-the-apt-repo
+- [https://ghostty.org/docs/install/binary](https://ghostty.org/docs/install/binary)
+- [https://wezterm.org/install/linux.html#using-the-apt-repo](https://wezterm.org/install/linux.html#using-the-apt-repo)
 
 Both terminal configurations used `VictorMono Nerd Font Mono`. The
 configuration had migrated; the font hadn't.
@@ -136,7 +136,7 @@ Then I reinstalled the recorded package versions and checked the
 commands from Zsh. That was a better fit here than copying an entire
 old Node installation and hoping its dependencies still worked.
 
-Volta's installer options: https://docs.volta.sh/advanced/installers
+Volta's installer options: [https://docs.volta.sh/advanced/installers](https://docs.volta.sh/advanced/installers)
 
 ## SSH needed its own migration
 
@@ -188,7 +188,7 @@ installer provided `zed`. A `zeditor` symlink kept my existing aliases
 and editor environment variables working.
 
 Zed's extension documentation:
-https://zed.dev/docs/extensions/installing-extensions
+[https://zed.dev/docs/extensions/installing-extensions](https://zed.dev/docs/extensions/installing-extensions)
 
 ## The browser default rabbit hole
 
@@ -225,7 +225,7 @@ have separate records. It was specific to my profiles rather than a
 general fix, so I've not included the commands.
 
 Chromium's storage overview:
-https://chromium.googlesource.com/chromium/src/+/refs/heads/main/components/saved_tab_groups/README.md
+[https://chromium.googlesource.com/chromium/src/+/refs/heads/main/components/saved\_tab\_groups/README.md](https://chromium.googlesource.com/chromium/src/+/refs/heads/main/components/saved_tab_groups/README.md)
 
 ## Plasma shortcuts and screenshots
 
@@ -272,7 +272,7 @@ These are the values from my old setup, and the change took effect
 without rebooting.
 
 The Linux reference:
-https://man7.org/linux/man-pages/man7/inotify.7.html
+[https://man7.org/linux/man-pages/man7/inotify.7.html](https://man7.org/linux/man-pages/man7/inotify.7.html)
 
 ## A few remaining checks
 

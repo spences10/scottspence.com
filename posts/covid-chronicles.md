@@ -36,8 +36,8 @@ it's "safe to return to work".
 
 ## Bought a `.com`
 
-I bit the bullet and bought [scottspence.com], this was partly due to
-me deciding to rebrand my blog to a [digital garden] and wanting to be
+I bit the bullet and bought [scottspence.com](https://scottspence.com), this was partly due to
+me deciding to rebrand my blog to a [digital garden](https://scottspence.com/posts/a-digital-garden) and wanting to be
 a bit more serious about how I market myself.
 
 Also it was another opportunity to start fresh with my content.
@@ -53,10 +53,10 @@ until I shared my experience in Twitter that I was shown the light!
 <Tweet tweetLink="spences10/status/1247862497706758153" />
 
 I bought a hand burr grinder, as per Dave's instruction and bought
-some [Amazon brand Solimo Beans].
+some [Amazon brand Solimo Beans](https://www.amazon.co.uk/Amazon-Brand-Solimo-Coffee-Beans/dp/B07CGXZMT3).
 
 They're pretty nice and I'm sure I have saved myself a _lot_ of money
-which would have otherwise been spent on [COCO DI MAMA] flat whites!
+which would have otherwise been spent on [COCO DI MAMA](https://www.cocodimama.co.uk/coffee) flat whites!
 
 ## Built a PC
 
@@ -67,7 +67,7 @@ extra cash.
 Right at this time was when my trusty ASUS Transformer Pro T304UA
 decided that was the time for the internal fan to start grinding.
 
-It was a [first time PC build] and there is still areas for
+It was a [first time PC build](https://scottspence.com/posts/first-time-pc-build) and there is still areas for
 improvement on it but I am really happy with the outcome.
 
 ## My Wife Became a Hairdresser
@@ -80,11 +80,11 @@ the courage to cut my hair after watching some YouTube videos.
 Think this is with the sides already clipped whist we waited for the
 scissors to be delivered.
 
-![before haircut]
+![before haircut](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/hair-before-1de64d3df31333fcc2f33b47ce6f592d.jpg)
 
 ### After
 
-![after haircut]
+![after haircut](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/hair-after-348b184b399231f119669c6f5aae250d.jpg)
 
 ## Appeared on a Live Stream with James Quick
 
@@ -106,12 +106,13 @@ I made a first time appearance on a Podcast
 
 ## Started Whiskey Wednesday
 
-Whisky Wednesday was started by my friend [Marc Backes] from our
+Whisky Wednesday was started by my friend [Marc Backes](https://marc.dev) from our
 mutual appreciation of Whiskey.
 
 I think this is when we first discovered we both appreciated a tipple!
 
 <!-- cSpell:ignore _marcba -->
+
 <Tweet tweetLink="_marcba/status/1208045761109352448" />
 
 And this is what probably cemented the beginnings of the show.
@@ -135,21 +136,3 @@ lyfe!
 If there are more events I'll add there here, for now that's it!
 
 Stay safe!
-
-<!-- Links -->
-
-[scottspence.com]: https://scottspence.com
-[digital garden]: https://scottspence.com/posts/a-digital-garden
-[amazon brand solimo beans]:
-	https://www.amazon.co.uk/Amazon-Brand-Solimo-Coffee-Beans/dp/B07CGXZMT3
-[coco di mama]: https://www.cocodimama.co.uk/coffee
-[first time pc build]:
-	https://scottspence.com/posts/first-time-pc-build
-[marc backes]: https://marc.dev
-
-<!-- Images  -->
-
-[before haircut]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/hair-before-1de64d3df31333fcc2f33b47ce6f592d.jpg
-[after haircut]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/hair-after-348b184b399231f119669c6f5aae250d.jpg

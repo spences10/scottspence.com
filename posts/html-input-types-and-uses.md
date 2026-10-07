@@ -29,10 +29,10 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input
-  type="text"
-  name="username"
-  placeholder="Enter your username"
-  class="input input-primary border border-primary"
+type="text"
+name="username"
+placeholder="Enter your username"
+class="input input-primary border border-primary"
 />
 
 ## `password`
@@ -51,10 +51,10 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input 
-  type="password"
-  name="password"
-  placeholder="Enter your password"
-  class="input input-primary border border-primary"
+type="password"
+name="password"
+placeholder="Enter your password"
+class="input input-primary border border-primary"
 />
 
 ## `submit`
@@ -96,18 +96,18 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input
-  type="radio"
-  name="gender"
-  value="male"
-  class="radio radio-primary"
+type="radio"
+name="gender"
+value="male"
+class="radio radio-primary"
 /> Male
 
 <input
-  type="radio"
-  name="gender"
-  value="female"
-  class="radio radio-primary"
-  checked
+type="radio"
+name="gender"
+value="female"
+class="radio radio-primary"
+checked
 /> Female
 
 ## `checkbox`
@@ -124,18 +124,18 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input
-  type="checkbox"
-  name="interest"
-  value="books"
-  class="checkbox checkbox-primary"
+type="checkbox"
+name="interest"
+value="books"
+class="checkbox checkbox-primary"
 /> Books
 
 <input
-  type="checkbox"
-  name="interest"
-  value="movies"
-  class="checkbox checkbox-primary"
-  checked
+type="checkbox"
+name="interest"
+value="movies"
+class="checkbox checkbox-primary"
+checked
 /> Movies
 
 ## `button`
@@ -154,10 +154,10 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input
-  type="button"
-  value="Click me"
-  onclick="{() => alert('Hello!')}"
-  class="btn btn-primary"
+type="button"
+value="Click me"
+onclick="{() => alert('Hello!')}"
+class="btn btn-primary"
 />
 
 ## `color`
@@ -183,9 +183,9 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input
-  type="date"
-  name="birth-date"
-  class="input input-primary border border-primary"
+type="date"
+name="birth-date"
+class="input input-primary border border-primary"
 />
 
 ## `datetime-local`
@@ -200,9 +200,9 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input
-  type="datetime-local"
-  name="event-time"
-  class="input input-primary border border-primary"
+type="datetime-local"
+name="event-time"
+class="input input-primary border border-primary"
 />
 
 ## `email`
@@ -216,10 +216,10 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input
-  type="email"
-  name="email"
-  placeholder="Enter your email"
-  class="input input-primary border border-primary"
+type="email"
+name="email"
+placeholder="Enter your email"
+class="input input-primary border border-primary"
 />
 
 ## `file`
@@ -233,9 +233,9 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input
-  type="file"
-  name="my-file"
-  class="file-input file-input-bordered file-input-primary w-full max-w-xs"
+type="file"
+name="my-file"
+class="file-input file-input-bordered file-input-primary w-full max-w-xs"
 />
 
 ## `hidden`
@@ -260,10 +260,10 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input
-  type="image"
-  src="https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto,h_64,w_64/v1691271320/scottspence.com/site-assets/feather.png"
-  alt="Submit Button"
-  class="w-16 h-16 p-2 border border-primary rounded-box"
+type="image"
+src="https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto,h_64,w_64/v1691271320/scottspence.com/site-assets/feather.png"
+alt="Submit Button"
+class="w-16 h-16 p-2 border border-primary rounded-box"
 />
 
 ## `month`
@@ -282,11 +282,11 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input
-  type="month"
-  name="select-month"
-  placeholder="YYYY-MM"
-  pattern="\d{4}-\d{2}"
-  class="input input-primary border border-primary"
+type="month"
+name="select-month"
+placeholder="YYYY-MM"
+pattern="\d{4}-\d{2}"
+class="input input-primary border border-primary"
 />
 
 ## `number`
@@ -300,11 +300,11 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input
-  type="number"
-  name="age"
-  min="0"
-  max="100"
-  class="input input-primary border border-primary"
+type="number"
+name="age"
+min="0"
+max="100"
+class="input input-primary border border-primary"
 />
 
 ## `range`
@@ -319,11 +319,11 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input
-  type="range"
-  name="volume"
-  min="0"
-  max="10"
-  class="range range-primary"
+type="range"
+name="volume"
+min="0"
+max="10"
+class="range range-primary"
 />
 
 ## `search`
@@ -337,10 +337,10 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input
-  type="search"
-  name="query"
-  placeholder="Search..."
-  class="input input-primary border border-primary"
+type="search"
+name="query"
+placeholder="Search..."
+class="input input-primary border border-primary"
 />
 
 ## `tel`
@@ -358,10 +358,10 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input
-  type="tel"
-  name="phone"
-  placeholder="Enter your phone number"
-  class="input input-primary border border-primary"
+type="tel"
+name="phone"
+placeholder="Enter your phone number"
+class="input input-primary border border-primary"
 />
 
 ## `time`
@@ -376,9 +376,9 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input
-  type="time"
-  name="alarm-time"
-  class="input input-primary border border-primary"
+type="time"
+name="alarm-time"
+class="input input-primary border border-primary"
 />
 
 ## `url`
@@ -396,10 +396,10 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input
-  type="url"
-  name="website"
-  placeholder="Enter your website URL"
-  class="input input-primary border border-primary"
+type="url"
+name="website"
+placeholder="Enter your website URL"
+class="input input-primary border border-primary"
 />
 
 ## `week`
@@ -413,7 +413,7 @@ If even one person finds this useful, I'll consider it a win.
 ```
 
 <input
-  type="week"
-  name="selectWeek"
-  class="input input-primary border border-primary"
+type="week"
+name="selectWeek"
+class="input input-primary border border-primary"
 />

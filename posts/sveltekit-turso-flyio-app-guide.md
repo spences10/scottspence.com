@@ -645,7 +645,7 @@ created, so, I'm going to need to first make that query to the
 database form the Turso client.
 
 Essentially that select query I made earlier validating the search on
-the search_track table, I'm going to group all the queries being used
+the search\_track table, I'm going to group all the queries being used
 in the project in the `src/lib/server/queries.ts` file.
 
 This is going to be the same setup, passing the SQL to the client with

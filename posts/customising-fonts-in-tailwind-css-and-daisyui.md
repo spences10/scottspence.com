@@ -15,12 +15,12 @@ use local fonts above the default used in Tailwind CSS. In this post
 I'll go over adding in new fonts for Tailwind and also extending the
 daisyUI themes.
 
-If you not familiar, [daisyUI] is a plugin for Tailwind that adds a
+If you not familiar, [daisyUI](https://daisyui.com/) is a plugin for Tailwind that adds a
 ton of additional utility classes component classes to enable you to
 move fast when building sites.
 
 You can follow along in this post while I piece it all together or you
-can Tl;Dr and see the [final code].
+can Tl;Dr and see the [final code](https://github.com/spences10/sveltekit-local-fonts).
 
 ## Local fonts
 
@@ -29,7 +29,7 @@ In the past I've added the files for the fonts I wanted to use in a
 `static` or `public` folder and then used `@font-face` to load them
 into the global `app.css` file for Tailwind to use.
 
-Then I found out about [Fontsource] (thanks to Matia) which is
+Then I found out about [Fontsource](https://fontsource.org) (thanks to Matia) which is
 basically fonts that you install as dependencies.
 
 ## Extend Tailwind theme
@@ -49,10 +49,10 @@ cd sveltekit-local-fonts
 npx svelte-add@latest tailwindcss --daisyui --typography
 ```
 
-I also did a post a while back on [how to set up Svelte with Tailwind]
+I also did a post a while back on [how to set up Svelte with Tailwind](https://scottspence.com/posts/how-to-set-up-svelte-with-tailwind)
 if you want to have a bit more detail on it.
 
-I'll also want to install the fonts I want to use from [Fontsource] so
+I'll also want to install the fonts I want to use from [Fontsource](https://fontsource.org) so
 I'll install them now too:
 
 ```bash
@@ -281,10 +281,10 @@ So in this example I'm using the `wireframe` theme:
 ## Selecting a daisyUI theme
 
 I recently did a post on [Cookie-Based Theme Selection in SvelteKit
-with daisyUI] and I'll be using that now to cycle through the themes.
+with daisyUI](https://scottspence.com/posts/cookie-based-theme-selection-in-sveltekit-with-daisyui) and I'll be using that now to cycle through the themes.
 If you need more detail on that then check out the post.
 
-I'm going to rip the code from the [`sveltekit-theme-switch-example`]
+I'm going to rip the code from the [`sveltekit-theme-switch-example`](https://github.com/spences10/sveltekit-theme-switch-example)
 repo and add it to the example I'm building out here.
 
 I'll scaffold out the files I need to make the select component and
@@ -299,7 +299,7 @@ touch src/hooks.server.ts
 ```
 
 In the `src/lib/themes/index.ts` file I'll copy the themes already in
-the [example repo] you can expand out the details button for the list
+the [example repo](https://github.com/spences10/sveltekit-theme-switch-example/blob/5489c1843b42bb8c3162e22760a55b88a3e7c0b0/src/lib/themes/index.ts) you can expand out the details button for the list
 if you like.
 
 <Details button_text="themes.ts" styles="lowercase">
@@ -341,7 +341,7 @@ export const themes = [
 </Details>
 
 In `src/lib/theme-select.svelte` I'll copy the code from the
-[`sveltekit-theme-switch-example`] repo.
+[`sveltekit-theme-switch-example`](https://github.com/spences10/sveltekit-theme-switch-example) repo.
 
 <Details button_text="theme-select.svelte" styles="lowercase">
 
@@ -439,7 +439,7 @@ in the project (which is none but a good practice).
 Aight! Cycling though the themes now I can see that my custom font is
 being used in all the themes except `cypherpunk` and `wireframe`.
 
-Why? Well, if I take a look at the [daisyUI themes] config for
+Why? Well, if I take a look at the [daisyUI themes](https://github.com/saadeghi/daisyui/blob/498f6af3a9723b940ed0f119a7b29049ef3c45a9/src/theming/themes.js) config for
 `cyberpunk` I can see that the `fontFamily` is set to a monospace
 font.
 
@@ -507,14 +507,14 @@ const config = {
 module.exports = config;
 ```
 
-I found a GitHub discussion answered by [Pouya] (daisyUI creator) that
-[details how to do this].
+I found a GitHub discussion answered by [Pouya](https://twitter.com/Saadeghi) (daisyUI creator) that
+[details how to do this](https://github.com/saadeghi/daisyui/discussions/653#discussioncomment-2438428).
 
 So changing that config now makes every theme the same as the
 `cyberpunk` theme, because that's all that's configured now. Makes
 sense, right?
 
-**Wait, what?** Yeah! I'll have to add a config for each theme I want
+*Wait, what?* Yeah! I'll have to add a config for each theme I want
 to use. In this example that's all 29 of them! 😱
 
 Let's take a look at that theme config again:
@@ -708,14 +708,14 @@ extending the `create_theme` function.
 
 ## Thanks
 
-Thanks to [Pouya] for creating [daisyUI] I've been using it for a
+Thanks to [Pouya](https://twitter.com/Saadeghi) for creating [daisyUI](https://daisyui.com/) I've been using it for a
 while now and it's great! It's pretty much the default I reach for now
 when starting a new project.
 
-Massive thanks to [Script Raccoon] for helping me understand how to
+Massive thanks to [Script Raccoon](https://scriptraccoon.dev) for helping me understand how to
 use a theme in the cookies! The dark mode toggle example they made,
 you can find that on their blog where they detail [How to implement a
-cookie-based dark mode toggle in SvelteKit] give it a read!
+cookie-based dark mode toggle in SvelteKit](https://scriptraccoon.dev/blog/darkmode-toggle-sveltekit) give it a read!
 
 ## Conclusion
 
@@ -732,35 +732,3 @@ each theme.
 
 I hope you found this useful, if you did, please don't forget to share
 it. 🙌
-
-<!-- Links -->
-
-[daisyUI]: https://daisyui.com/
-[sveltekit-local-fonts]:
-	https://github.com/spences10/sveltekit-local-fonts
-[fontsource]: https://fontsource.org
-[daisyUI themes]:
-	https://github.com/saadeghi/daisyui/blob/498f6af3a9723b940ed0f119a7b29049ef3c45a9/src/theming/themes.js
-[discussion pouya answered]:
-	https://github.com/saadeghi/daisyui/discussions/653#discussioncomment-2438428
-[tailwind play example]:
-	https://play.tailwindcss.com/LzYodJ0VMd?file=config
-[how to set up svelte with tailwind]:
-	https://scottspence.com/posts/how-to-set-up-svelte-with-tailwind
-[How to implement a cookie-based dark mode toggle in SvelteKit]:
-	https://scriptraccoon.dev/blog/darkmode-toggle-sveltekit
-[Script Raccoon]: https://scriptraccoon.dev
-[here]:
-	https://scottspence.com/posts/cookie-based-theme-selection-in-sveltekit-with-daisyui
-[Cookie-Based Theme Selection in SvelteKit with daisyUI]:
-	https://scottspence.com/posts/cookie-based-theme-selection-in-sveltekit-with-daisyui
-[`sveltekit-theme-switch-example`]:
-	https://github.com/spences10/sveltekit-theme-switch-example
-[final code]: https://github.com/spences10/sveltekit-local-fonts
-[example repo]:
-	https://github.com/spences10/sveltekit-theme-switch-example/blob/5489c1843b42bb8c3162e22760a55b88a3e7c0b0/src/lib/themes/index.ts
-[daisyUI `themes`]:
-	https://github.com/saadeghi/daisyui/blob/8eb2574da4285409756f443593d0ca0a4b411c99/src/theming/themes.js#L90
-[pouya]: https://twitter.com/Saadeghi
-[details how to do this]:
-	https://github.com/saadeghi/daisyui/discussions/653#discussioncomment-2438428

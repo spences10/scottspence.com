@@ -79,18 +79,18 @@ That's the post really!
 Mike found the feature flag check in the minified JS and patched it to
 always return true. What that unlocks:
 
-- **Delegation mode** - spawns a team of specialists when you approve
+- *Delegation mode* - spawns a team of specialists when you approve
   a plan
-- **Shared task board** - tasks with dependencies that workers pick up
-- **Parallel teammates** - workers coordinate amongst themselves
-- **Inter-agent messaging** - the `TeammateTool` with `write`,
+- *Shared task board* - tasks with dependencies that workers pick up
+- *Parallel teammates* - workers coordinate amongst themselves
+- *Inter-agent messaging* - the `TeammateTool` with `write`,
   `broadcast`, etc.
 
 It's packaged as its own npm install, completely isolated from your
 main Claude Code. Separate config, sessions, MCP servers, credentials.
 This is important to note as you're starting fresh again!
 
-**Update, 13 September 2026:** I moved back to vanilla Claude Code
+*Update, 13 September 2026:* I moved back to vanilla Claude Code
 once agent teams shipped. The follow-up covers
 [enabling Team Mode without claude-sneakpeek](/posts/enable-team-mode-in-claude-code).
 The install below records the earlier workaround.
@@ -117,12 +117,12 @@ Then run `claudesp` to launch. Or whatever you decided to name it.
 
 The repo patches Claude Code to enable task-based coordination tools:
 
-| Tool         | Purpose                       |
-| ------------ | ----------------------------- |
-| `TaskCreate` | Create tasks for agents       |
+| Tool | Purpose |
+| --- | --- |
+| `TaskCreate` | Create tasks for agents |
 | `TaskUpdate` | Track progress, mark complete |
-| `TaskGet`    | Retrieve task details         |
-| `TaskList`   | List available tasks          |
+| `TaskGet` | Retrieve task details |
+| `TaskList` | List available tasks |
 
 These replace `TodoWrite` in team mode. Tasks are stored in
 `~/.claude-sneakpeek/<variant>/config/tasks/<team_name>/` and isolated
@@ -157,7 +157,7 @@ reference.
 Before even trying sneakpeek, I tested vanilla Claude Code's subagent
 limits, I'd used it in the past ans saw something about a limit to the
 amount of subagents that could be spawned. I tried a simple task, curl
-my website. Claude spun up **50 subagents** to handle it. Granted, it
+my website. Claude spun up *50 subagents* to handle it. Granted, it
 was well-defined work, but the numbers quoted for agent limits seem
 conservative. I don't know what the upper limit is, unknown still.
 
@@ -196,7 +196,7 @@ Agent 3 (sonnet) → Explore the claude-sneakpeek repo
 All three ran in the background, reported back within a minute. The
 synthesis revealed gaps I'd missed:
 
-**TeammateTool is deeper than I described.** The gist documents 13
+*TeammateTool is deeper than I described.* The gist documents 13
 operations, not just "write, broadcast, etc.":
 
 - Team management: `spawnTeam`, `discoverTeams`, `requestJoin`,
@@ -206,14 +206,14 @@ operations, not just "write, broadcast, etc.":
 - Plan approval: `approvePlan`, `rejectPlan`
 - Cleanup: `cleanup`
 
-**Spawn backends exist.** iTerm2 split panes on macOS, tmux windows
+*Spawn backends exist.* iTerm2 split panes on macOS, tmux windows
 cross-platform, or in-process (fastest). I hadn't mentioned this.
 
-**More interaction patterns.** The gist documents Leader, Swarm,
+*More interaction patterns.* The gist documents Leader, Swarm,
 Pipeline, Council, and Watchdog patterns. The repo adds Task Graph,
 Fan-Out, Map-Reduce, Speculative, and Background patterns.
 
-**Infrastructure I glossed over:**
+*Infrastructure I glossed over:*
 
 The coordination layer is file-based. Agents communicate via a mailbox
 at `~/.claude/teams/{team-name}/messages/{session-id}/`. Tasks live in
@@ -232,7 +232,7 @@ Environment variables tell agents who they are:
 - `CLAUDE_CODE_AGENT_TYPE` - role (worker, leader, etc.)
 - `CLAUDE_CODE_PLAN_MODE_REQUIRED` - whether plans need approval
 
-**Provider support.** Not just Claude - sneakpeek supports Z.ai,
+*Provider support.* Not just Claude - sneakpeek supports Z.ai,
 MiniMax, OpenRouter, and local models via the cc-mirror fork.
 
 This is exactly the kind of research task swarm mode excels at -

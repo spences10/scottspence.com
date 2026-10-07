@@ -17,7 +17,7 @@ As with many things in programming, there are several ways to do any
 one thing, in this post I'll go over some of the approaches I have
 used and when to use them.
 
-I've created examples of these in the Svelte [REPL] so you can have a
+I've created examples of these in the Svelte [REPL](https://svelte.dev/repl/) so you can have a
 play around with them to familiarise yourself with them. I'd also
 recommend checking out the Svelte documentation; it's an awesome
 source of information.
@@ -252,7 +252,7 @@ added a `parentValidation` function to be triggered in this example:
 ### Event forwarding / dispatching an action
 
 Last up is the event forwarding in Svelte because Svelte doesn't use a
-virtual DOM like Vue and React component events don't _[bubble]_.
+virtual DOM like Vue and React component events don't _[bubble](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_bubbling_and_capture)_.
 
 In this instance, I'm using the `createEventDispatcher` from Svelte to
 create a `dispatch` function for use in the child component and giving
@@ -307,23 +307,10 @@ bumps you may come across when doing this for yourself.
 
 ## Resources
 
-I've added all the example code here to the [Svelte.dev] [REPL] so you
+I've added all the example code here to the [Svelte.dev](https://svelte.dev/) [REPL](https://svelte.dev/repl/) so you
 can play around with them if you're so inclined:
 
-- [Passing props down to a child]
-- [Using `bind:value`]
-- [Using a callback]
-- [Event forwarding / dispatching an action]
-
-[repl]: https://svelte.dev/repl/
-[svelte.dev]: https://svelte.dev/
-[bubble]:
-	https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_bubbling_and_capture
-[passing props down to a child]:
-	https://svelte.dev/repl/b350218ccfa146fca65e766f05dfd235?version=3.38.2
-[using `bind:value`]:
-	https://svelte.dev/repl/116ab042341d48bda2232eae2b6f41a6?version=3
-[using a callback]:
-	https://svelte.dev/repl/5f4a327999cd49e5a79e91f6fbe994c8?version=3
-[event forwarding / dispatching an action]:
-	https://svelte.dev/repl/47e44c5f8fd648a586333d953260664d?version=3
+- [Passing props down to a child](https://svelte.dev/repl/b350218ccfa146fca65e766f05dfd235?version=3.38.2)
+- [Using `bind:value`](https://svelte.dev/repl/116ab042341d48bda2232eae2b6f41a6?version=3)
+- [Using a callback](https://svelte.dev/repl/5f4a327999cd49e5a79e91f6fbe994c8?version=3)
+- [Event forwarding / dispatching an action](https://svelte.dev/repl/47e44c5f8fd648a586333d953260664d?version=3)

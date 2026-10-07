@@ -12,14 +12,14 @@ is_private: false
 Here's some of the issues I faced when deploying a SvelteKit project
 using Prisma to Vercel.
 
-I was following along with the [awesome guide] put together by
-[Matia], on authentication with SvelteKit using cookies. By far the
+I was following along with the [awesome guide](https://joyofcode.xyz/sveltekit-authentication-using-cookies) put together by
+[Matia](https://twitter.com/joyofcodedev), on authentication with SvelteKit using cookies. By far the
 most comprehensive guide covering it with SvelteKit I have found.
-There's also a [video playlist] covering it as well if you want to
+There's also a [video playlist](https://www.youtube.com/playlist?list=PLA9WiRZ-IS_zKrDzhOhV5RGKKTHNIyTDO) covering it as well if you want to
 check that out.
 
-If you're just here for the **"how'd you get it working on Vercel
-dammit??!1"** then you can skip to the [TL;DR](#scripts). 😊
+If you're just here for the *"how'd you get it working on Vercel
+dammit??!1"* then you can skip to the [TL;DR](#scripts). 😊
 
 This isn't a guide, more of a what I did along the way to getting this
 project deployed to Vercel. I'll try to add as much information that I
@@ -34,10 +34,10 @@ database to connect to.
 <!-- cSpell:ignore Nikolas -->
 
 I did find a guide for [how to set up a free PostgreSQL database on
-Heroku] by Nikolas Burk in the Prisma documentation.
+Heroku](https://dev.to/prisma/how-to-setup-a-free-postgresql-database-on-heroku-1dc1) by Nikolas Burk in the Prisma documentation.
 
-But I heard good things about [PlanetScale] so decided to give that a
-try. I followed along with the [Prisma with PlanetScale quickstart].
+But I heard good things about [PlanetScale](https://planetscale.com) so decided to give that a
+try. I followed along with the [Prisma with PlanetScale quickstart](https://docs.planetscale.com/tutorials/prisma-quickstart).
 
 The first thing I needed was the PlanetScale CLI, I'm a Windows
 Subsystem for Linux (WSL) user so needed to install the Linux version,
@@ -211,7 +211,7 @@ node_modules/@mapbox/node-pre-gyp/lib/util/s3_setup.js:112:23: ERROR: Could not 
 ```
 
 Not much in there to tell you that it's `bcrypt` but I found a
-[StackOverflow question] which mentioned it.
+[StackOverflow question](https://stackoverflow.com/q/70097108/1138354) which mentioned it.
 
 Switching out `bcrypt` with `bcryptjs` solved that part.
 
@@ -241,18 +241,18 @@ serverless function has crashed:
 
 > Vercel is working correctly.
 
-500: INTERNAL_SERVER_ERROR
+500: INTERNAL\_SERVER\_ERROR
 
-Code: FUNCTION_INVOCATION_FAILED
+Code: FUNCTION\_INVOCATION\_FAILED
 
 So, it was at that point I sent the tweet mentioned earlier and I had
-[@josefaidt] come to the rescue with his blog post!
+[@josefaidt](https://twitter.com/josefaidt) come to the rescue with his blog post!
 
 ## Scripts
 
 So this is the secret sauce that got it working! These two scripts
 were what cleared it all up! This is what was in the post [Josef
-shared].
+shared](https://josef.dev/posts/svelte-kit-planetscale-and-prisma-on-vercel).
 
 ```json
 "scripts": {
@@ -266,8 +266,8 @@ using with these two and the project built with no issues! 🥳
 
 <!-- cSpell:ignore mikenikles -->
 
-Massive thanks to [@josefaidt] for bringing this to may attention,
-which he in turn got from [@mikenikles], [sveltekit-prisma] example 🙌
+Massive thanks to [@josefaidt](https://twitter.com/josefaidt) for bringing this to may attention,
+which he in turn got from [@mikenikles](https://twitter.com/mikenikles), [sveltekit-prisma](https://github.com/mikenikles/sveltekit-prisma/blob/main/package.json#L13) example 🙌
 
 Massive thanks to both for this!
 
@@ -276,15 +276,15 @@ Massive thanks to both for this!
 There's been a lot of references mentioned, I've gathered them all up
 here if not mentioned already:
 
-- https://joyofcode.xyz/sveltekit-authentication-using-cookies
-- https://josef.dev/posts/svelte-kit-planetscale-and-prisma-on-vercel
-- https://flaviocopes.com/prisma-fix-initialize-yet-vercel/
-- https://stackoverflow.com/q/70097108/1138354
-- https://vercel.com/support/articles/why-does-my-serverless-function-work-locally-but-not-when-deployed
-- https://www.prisma.io/docs/guides/deployment/deployment-guides/deploying-to-vercel
-- https://dev.to/prisma/how-to-setup-a-free-postgresql-database-on-heroku-1dc1
-- https://docs.planetscale.com/tutorials/prisma-quickstart
-- https://docs.planetscale.com/tutorials/deploy-to-vercel#deploy-to-vercel
+- [https://joyofcode.xyz/sveltekit-authentication-using-cookies](https://joyofcode.xyz/sveltekit-authentication-using-cookies)
+- [https://josef.dev/posts/svelte-kit-planetscale-and-prisma-on-vercel](https://josef.dev/posts/svelte-kit-planetscale-and-prisma-on-vercel)
+- [https://flaviocopes.com/prisma-fix-initialize-yet-vercel/](https://flaviocopes.com/prisma-fix-initialize-yet-vercel/)
+- [https://stackoverflow.com/q/70097108/1138354](https://stackoverflow.com/q/70097108/1138354)
+- [https://vercel.com/support/articles/why-does-my-serverless-function-work-locally-but-not-when-deployed](https://vercel.com/support/articles/why-does-my-serverless-function-work-locally-but-not-when-deployed)
+- [https://www.prisma.io/docs/guides/deployment/deployment-guides/deploying-to-vercel](https://www.prisma.io/docs/guides/deployment/deployment-guides/deploying-to-vercel)
+- [https://dev.to/prisma/how-to-setup-a-free-postgresql-database-on-heroku-1dc1](https://dev.to/prisma/how-to-setup-a-free-postgresql-database-on-heroku-1dc1)
+- [https://docs.planetscale.com/tutorials/prisma-quickstart](https://docs.planetscale.com/tutorials/prisma-quickstart)
+- [https://docs.planetscale.com/tutorials/deploy-to-vercel#deploy-to-vercel](https://docs.planetscale.com/tutorials/deploy-to-vercel#deploy-to-vercel)
 
 ## Conclusion
 
@@ -294,23 +294,3 @@ database up and running super fast!
 With Vercel this is the first time I have had an issue like this, and
 although the first set of error messages weren't indicating that it
 was `bcrypt` I know for the future.
-
-<!-- Links -->
-
-[awesome guide]:
-	https://joyofcode.xyz/sveltekit-authentication-using-cookies
-[matia]: https://twitter.com/joyofcodedev
-[video playlist]:
-	https://www.youtube.com/playlist?list=PLA9WiRZ-IS_zKrDzhOhV5RGKKTHNIyTDO
-[how to set up a free postgresql database on heroku]:
-	https://dev.to/prisma/how-to-setup-a-free-postgresql-database-on-heroku-1dc1
-[planetscale]: https://planetscale.com
-[prisma with planetscale quickstart]:
-	https://docs.planetscale.com/tutorials/prisma-quickstart
-[@josefaidt]: https://twitter.com/josefaidt
-[sveltekit-prisma]:
-	https://github.com/mikenikles/sveltekit-prisma/blob/main/package.json#L13
-[@mikenikles]: https://twitter.com/mikenikles
-[stackoverflow question]: https://stackoverflow.com/q/70097108/1138354
-[josef shared]:
-	https://josef.dev/posts/svelte-kit-planetscale-and-prisma-on-vercel

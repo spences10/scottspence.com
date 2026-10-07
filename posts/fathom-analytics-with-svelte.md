@@ -19,7 +19,7 @@ that wasn't going to sell off the browsing data of my sites visitors
 like Google does.
 
 _If you're not already signed up you can get a $10 credit by signing
-up with my [referral link]. Yes I get a kick back from this, it's an
+up with my [referral link](https://usefathom.com/ref/HG492L). Yes I get a kick back from this, it's an
 awesome product and if you're interested in using it using the link
 would really help me out._
 
@@ -39,7 +39,7 @@ framework like Svelte and are familiar with using the command line
 
 So this means you already have a development environment with Node a
 terminal and a text editor like VS Code installed and ready to go. If
-you don't then there are still services like Gitpod, [StackBlitz] and
+you don't then there are still services like Gitpod, [StackBlitz](https://node.new/sveltekit) and
 GitHub Codespaces you can use from a browser.
 
 StackBlitz is bonkers fast and would be my go-to if I was to use one
@@ -48,9 +48,9 @@ of the mentioned services there!
 ## Create a Fathom site
 
 Before I get into configuring the SvelteKit project I'll need to
-create a new site on Fathom. From my Fathom [settings] screen in the
+create a new site on Fathom. From my Fathom [settings](https://app.usefathom.com/#/settings/sites) screen in the
 sites section I can scroll down to the 'Create New Site' section and
-enter a site name. I'm calling this one [`ideal-memory`].
+enter a site name. I'm calling this one [`ideal-memory`](https://app.usefathom.com/share/nymdtplm/ideal-memory).
 
 That link is a public Fathom dashboard you can go and check out now if
 you like.
@@ -61,13 +61,13 @@ sites.
 
 Here's what the create new site section looks like:
 
-[![fathom-create-new-site-section]] [fathom-create-new-site-section]
+\[![fathom-create-new-site-section](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1642153115/scottspence.com/fathom-create-new-site-section.png)\] [fathom-create-new-site-section](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1642153115/scottspence.com/fathom-create-new-site-section.png)
 
 After clicking the 'Create New Site' button the embed dialogue will
 show with the Site ID, take a note of the site ID or copy the embed
 code:
 
-[![fathom-new-site-configuration]] [fathom-new-site-configuration]
+\[![fathom-new-site-configuration](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1642153887/scottspence.com/fathom-new-site-configuration.png)\] [fathom-new-site-configuration](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1642153887/scottspence.com/fathom-new-site-configuration.png)
 
 That's it for now on the Fathom side of things, I'll leave this
 dialogue open and go back to this once I've set up the project.
@@ -163,7 +163,7 @@ it to their block lists.
 ## Install and config Fathom client
 
 To start tracking page views I'll first need to install
-[`fathom-client`] via `pnpm` as a dev dependency:
+[`fathom-client`](https://github.com/derrickreimer/fathom-client) via `pnpm` as a dev dependency:
 
 ```bash
 pnpm i -D fathom-client
@@ -238,20 +238,20 @@ In the `+layout.svelte` file I'll add this:
 Let's break down what's going on here, importing the `browser`
 indicates if the project is running in the browser or not, this will
 return a Boolean (`true`, `false`) value. You can read more about
-[`$app-environment`] on the SvelteKit documentation.
+[`$app-environment`](https://kit.svelte.dev/docs/modules#$app-environment) on the SvelteKit documentation.
 
 Using `page` for the `$page.url.pathname` this is the route for the
 current page that has been loaded. You can read more about
-[`$app/stores`] on the SvelteKit documentation. The `$` is so that I
+[`$app/stores`](https://kit.svelte.dev/docs/modules#$app-stores) on the SvelteKit documentation. The `$` is so that I
 can subscribe to changes in that (`page`) store.
 
-[`onMount`] is used to run after the `+layout.svelte` page has loaded,
+[`onMount`](https://svelte.dev/docs#onMount) is used to run after the `+layout.svelte` page has loaded,
 that's when I'm running the Fathom client and passing in my Fathom
 site ID.
 
 If you're not familiar with Svelte the the `$:` might look a bit
 funky, you can learn more about it on the [Svelte
-Reactivity/Declarations] tutorial. The `&&` is a short circuit
+Reactivity/Declarations](https://svelte.dev/tutorial/reactive-declarations) tutorial. The `&&` is a short circuit
 evaluation to if there's no `browser` then `Fathom.trackPageview()`
 wont run.
 
@@ -289,11 +289,11 @@ private browser window to validate it's working.
 pnpm run dev
 ```
 
-Going over to my [Fathom dashboard] now I can check out that the
+Going over to my [Fathom dashboard](https://app.usefathom.com/#/) now I can check out that the
 client is working as expected, here I've gone to the `services` page
 and the page view is being tracked.
 
-[![fathom-validate-visitor]] [fathom-validate-visitor]
+\[![fathom-validate-visitor](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643735520/scottspence.com/fathom-validate-visitor.png)\] [fathom-validate-visitor](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643735520/scottspence.com/fathom-validate-visitor.png)
 
 That's it! I've now added Fathom tracking to my project.
 
@@ -304,18 +304,18 @@ Ok, now I want to see when someone has clicked a certain CTA or link.
 If I go to the Fathom dashboard for the site and scroll down to the
 bottom of the page I ca see the events section.
 
-[![fathom-events]] [fathom-events]
+\[![fathom-events](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643737368/scottspence.com/fathom-events.png)\] [fathom-events](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643737368/scottspence.com/fathom-events.png)
 
 If I click on the `Add event` button there I'll get a dialogue to
 create a new event! I already have a few configured, I'll add in one
 for a generic `Button Click`. Then click the 'Create event' button.
 
-[![fathom-create-event]] [fathom-create-event]
+\[![fathom-create-event](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643737369/scottspence.com/fathom-create-event.png)\] [fathom-create-event](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643737369/scottspence.com/fathom-create-event.png)
 
 From here all I'll really need to concern myself with is the 'Event
 code' I'll take a note of that and use it a button on the index page.
 
-[![fathom-event-code]] [fathom-event-code]
+\[![fathom-event-code](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643737369/scottspence.com/fathom-event-code.png)\] [fathom-event-code](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643737369/scottspence.com/fathom-event-code.png)
 
 So the site has no content right now! I know, I'll just go and stick
 this button in the `src/routes/+page.svelte` file for now.
@@ -346,7 +346,7 @@ Now going over to the index page of my SvelteKit project I can see the
 button click it then go back to the Fathom dashboard and see that the
 event has been recorded.
 
-[![fathom-event-confirm]] [fathom-event-confirm]
+\[![fathom-event-confirm](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643738739/scottspence.com/fathom-event-confirm.png)\] [fathom-event-confirm](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643738739/scottspence.com/fathom-event-confirm.png)
 
 If the event has a monetary value you can also pass in the value per
 click.
@@ -400,14 +400,14 @@ So last up I want to use a custom domain for my project!
 Fathom use dynamic CNAME values which means that ad blockers can't
 search for a specific domain to block.
 
-To read more about this you can read the [linked docs] from Fathom on
+To read more about this you can read the [linked docs](https://usefathom.com/docs/script/custom-domains) from Fathom on
 why they do this and a great run-down of how to set up a custom
 domain.
 
 If I go back to the settings for the site (`ideal-memory`) I've been
 configuring on Fathom there's an option to add a domain!
 
-[![fathom-domain-add]] [fathom-domain-add]
+\[![fathom-domain-add](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643745239/scottspence.com/fathom-domain-add.png)\] [fathom-domain-add](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643745239/scottspence.com/fathom-domain-add.png)
 
 Domain providers (much like styling) can be a personal choice, I use
 Namecheap, you can use whichever you please. I've been with Namecheap
@@ -423,7 +423,7 @@ I'll add my domain and click the 'Add domain' button then in the
 dialogue which pops up after that I'll need to take a note of the
 'CNAME' and the value.
 
-[![fathom-domain-cname-dialogue]] [fathom-domain-cname-dialogue]
+\[![fathom-domain-cname-dialogue](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643746516/scottspence.com/fathom-domain-cname-dialogue.png)\] [fathom-domain-cname-dialogue](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643746516/scottspence.com/fathom-domain-cname-dialogue.png)
 
 I'll take a note of the values here for use later.
 
@@ -436,7 +436,7 @@ Value: ecstatic-thirtyone.b-cdn.net
 
 So presuming my site is already deployed to Vercel (which it's not
 right now), I push it to Vercel from the terminal with the [Vercel
-CLI] and a simple command from the root of my project:
+CLI](https://vercel.com/cli) and a simple command from the root of my project:
 
 ```bash
 vc
@@ -467,12 +467,12 @@ the project will be deployed automatically to Vercel on a git push!
 I'll click on the 'Connect Git Repository' button and link it to my
 GitHub project.
 
-[![fathom-vercel-git-connect]] [fathom-vercel-git-connect]
+\[![fathom-vercel-git-connect](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643747388/scottspence.com/fathom-vercel-git-connect.png)\] [fathom-vercel-git-connect](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643747388/scottspence.com/fathom-vercel-git-connect.png)
 
 Now that's connected I can go to the 'Domains' section and add in my
 domain.
 
-[![fathom-vercel-domain-add]] [fathom-vercel-domain-add]
+\[![fathom-vercel-domain-add](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643747585/scottspence.com/fathom-vercel-domain-add.png)\] [fathom-vercel-domain-add](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643747585/scottspence.com/fathom-vercel-domain-add.png)
 
 What I'll need to do now is add the Vercel nameservers to the domain
 on Namecheap!
@@ -480,8 +480,8 @@ on Namecheap!
 I'll get a confirmation on Vercel once the're validated then I can
 access the project on the domain.
 
-[![fathom-vercel-domain-nameservers-added]]
-[fathom-vercel-domain-nameservers-added]
+\[![fathom-vercel-domain-nameservers-added](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643748495/scottspence.com/fathom-vercel-domain-nameservers-added.png)\]
+[fathom-vercel-domain-nameservers-added](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643748495/scottspence.com/fathom-vercel-domain-nameservers-added.png)
 
 I'll need to add the CNAME record to Vercel now, I can do that with
 the CLI.
@@ -497,8 +497,8 @@ always been super fast.
 
 Once it's been validated I'll get my new embed code
 
-[![fathom-vercel-updated-embed-code]]
-[fathom-vercel-updated-embed-code]
+\[![fathom-vercel-updated-embed-code](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643749178/scottspence.com/fathom-vercel-updated-embed-code.png)\]
+[fathom-vercel-updated-embed-code](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643749178/scottspence.com/fathom-vercel-updated-embed-code.png)
 
 With the new domain I can replace the `PUBLIC_FATHOM_URL` in the
 `.env` file:
@@ -527,52 +527,4 @@ changes and events. Set up a custom domain for it and it tracks
 details with an ad blocker enabled!
 
 If you want to check out an example of this setup check out [the
-GitHub repo]!
-
-<!-- Links -->
-
-[referral link]: https://usefathom.com/ref/HG492L
-[settings]: https://app.usefathom.com/#/settings/sites
-[`ideal-memory`]:
-	https://app.usefathom.com/share/nymdtplm/ideal-memory
-[`fathom-client`]: https://github.com/derrickreimer/fathom-client
-[`$app-environment`]:
-	https://kit.svelte.dev/docs/modules#$app-environment
-[`$app/stores`]: https://kit.svelte.dev/docs/modules#$app-stores
-[`onmount`]: https://svelte.dev/docs#onMount
-[svelte reactivity/declarations]:
-	https://svelte.dev/tutorial/reactive-declarations
-[stackblitz]: https://node.new/sveltekit
-[fathom dashboard]: https://app.usefathom.com/#/
-[linked docs]: https://usefathom.com/docs/script/custom-domains
-[vercel cli]: https://vercel.com/cli
-[the github repo]: https://github.com/spences10/sveltekit-and-fathom
-
-<!-- Images -->
-
-[fathom-create-new-site-section]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1642153115/scottspence.com/fathom-create-new-site-section.png
-[fathom-new-site-configuration]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1642153887/scottspence.com/fathom-new-site-configuration.png
-[fathom-validate-visitor]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643735520/scottspence.com/fathom-validate-visitor.png
-[fathom-events]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643737368/scottspence.com/fathom-events.png
-[fathom-create-event]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643737369/scottspence.com/fathom-create-event.png
-[fathom-event-code]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643737369/scottspence.com/fathom-event-code.png
-[fathom-event-confirm]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643738739/scottspence.com/fathom-event-confirm.png
-[fathom-domain-add]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643745239/scottspence.com/fathom-domain-add.png
-[fathom-domain-cname-dialogue]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643746516/scottspence.com/fathom-domain-cname-dialogue.png
-[fathom-vercel-git-connect]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643747388/scottspence.com/fathom-vercel-git-connect.png
-[fathom-vercel-domain-add]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643747585/scottspence.com/fathom-vercel-domain-add.png
-[fathom-vercel-domain-nameservers-added]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643748495/scottspence.com/fathom-vercel-domain-nameservers-added.png
-[fathom-vercel-updated-embed-code]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1643749178/scottspence.com/fathom-vercel-updated-embed-code.png
+GitHub repo](https://github.com/spences10/sveltekit-and-fathom)!

@@ -129,10 +129,10 @@ behaving, sometimes you just need to be a little more... specific. 😅
 ## References
 
 - `scrollbar-width`:
-  https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-width
+  [https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-width](https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-width)
 - `scrollbar-color`:
-  https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color
+  [https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color](https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color)
 - `::-webkit-scrollbar`:
-  https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar
+  [https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar](https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar)
 - General information on CSS Scrollbars:
-  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scrollbars
+  [https://developer.mozilla.org/en-US/docs/Web/CSS/CSS\_Scrollbars](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scrollbars)

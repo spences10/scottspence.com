@@ -105,7 +105,7 @@ sudo apt -y install fish
 ```
 
 Depending on what version of Ubuntu you're on you may need to add [the
-v3 package] which consists of adding a PPA:
+v3 package](https://github.com/fish-shell/fish-shell#packages-for-linux) which consists of adding a PPA:
 
 ```bash
 # check your fish version
@@ -159,11 +159,11 @@ cd ~/repos
 
 ## Oh My Fish (OMF)
 
-[Oh My Fish] is touted as the Fishshell Framework but all I have used
+[Oh My Fish](https://github.com/oh-my-fish/oh-my-fish) is touted as the Fishshell Framework but all I have used
 it for is the extensive themes available, once you have installed OMF
 you can list them out in the terminal with: `omf theme`
 
-There's previews available on the [OMF Themes Markdown doc].
+There's previews available on the [OMF Themes Markdown doc](https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md).
 
 To install OMF:
 
@@ -198,7 +198,7 @@ nvm install 14
 
 Lastly there are projects I work on that use Yarn so I'll need to
 install that too, in this case it's the instructions from the [Yarn
-site].
+site](https://classic.yarnpkg.com/en/docs/install/#debian-stable).
 
 ```bash
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -216,15 +216,3 @@ That's it, I've detailed some of the advantages of using the Fish
 shell and detailed getting set up from a fresh install.
 
 Thanks 👍
-
-<!-- Links -->
-
-[omf themes markdown doc]:
-	https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md
-[extensive list]:
-	https://github.com/oh-my-fish/packages-main/tree/master/packages
-[oh my fish]: https://github.com/oh-my-fish/oh-my-fish
-[the v3 package]:
-	https://github.com/fish-shell/fish-shell#packages-for-linux
-[yarn site]:
-	https://classic.yarnpkg.com/en/docs/install/#debian-stable

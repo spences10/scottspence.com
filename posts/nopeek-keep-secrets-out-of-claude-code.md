@@ -41,10 +41,10 @@ including the output of your `aws sts get-caller-identity` or
 
 The retention depends on your account type:
 
-- **Consumer (Free/Pro/Max) with training opt-in:** 5-year retention
-- **Consumer with training opt-out:** 30-day retention
-- **Commercial (Team/Enterprise/API):** 30-day standard
-- **`/feedback` transcripts:** 5 years regardless
+- *Consumer (Free/Pro/Max) with training opt-in:* 5-year retention
+- *Consumer with training opt-out:* 30-day retention
+- *Commercial (Team/Enterprise/API):* 30-day standard
+- *`/feedback` transcripts:* 5 years regardless
 
 You can opt out of training data at
 [claude.ai/settings](https://claude.ai/settings/data-privacy-controls),
@@ -82,22 +82,22 @@ But that's still a lot less friction than before.
 
 These are the commands covered here:
 
-| Command  | What it does                                 |
-| -------- | -------------------------------------------- |
-| `init`   | Scans for cloud CLIs, configures secure auth |
-| `load`   | Loads .env secrets for a supported session   |
-| `run`    | Runs one child command with selected secrets |
-| `set`    | Stores a secret key in nopeek config         |
-| `list`   | Shows available keys (no values)             |
-| `remove` | Removes a stored key                         |
-| `status` | Shows current configuration state            |
-| `audit`  | Scans for exposed secrets in .env files      |
+| Command | What it does |
+| --- | --- |
+| `init` | Scans for cloud CLIs, configures secure auth |
+| `load` | Loads .env secrets for a supported session |
+| `run` | Runs one child command with selected secrets |
+| `set` | Stores a secret key in nopeek config |
+| `list` | Shows available keys (no values) |
+| `remove` | Removes a stored key |
+| `status` | Shows current configuration state |
+| `audit` | Scans for exposed secrets in .env files |
 
 ## Loading secrets
 
 ### One command at a time
 
-**Update, 13 September 2026:** For separate agent tool shells, use
+*Update, 13 September 2026:* For separate agent tool shells, use
 `run` so loading and execution happen together:
 
 ```bash
@@ -231,20 +231,20 @@ to use! I've been busy!
 nopeek is part of a broader set of tools I've built for working with
 Claude Code:
 
-- [**nopeek**](https://github.com/spences10/nopeek) - the secrets CLI
-- [**claude-code-toolkit**](https://github.com/spences10/claude-code-toolkit) -
+- [*nopeek*](https://github.com/spences10/nopeek) - the secrets CLI
+- [*claude-code-toolkit*](https://github.com/spences10/claude-code-toolkit) -
   plugin marketplace with skills and hooks (nopeek's hooks live here)
-- [**mcpick**](https://github.com/spences10/mcpick) - toggle MCP
+- [*mcpick*](https://github.com/spences10/mcpick) - toggle MCP
   servers and manage plugins
-- [**claude-skills-cli**](https://github.com/spences10/claude-skills-cli) -
+- [*claude-skills-cli*](https://github.com/spences10/claude-skills-cli) -
   create and validate Claude Code skills
-- [**svelte-skills-kit**](https://github.com/spences10/svelte-skills-kit) -
+- [*svelte-skills-kit*](https://github.com/spences10/svelte-skills-kit) -
   Svelte/SvelteKit-specific skills
-- [**mcp-omnisearch**](https://github.com/spences10/mcp-omnisearch) -
+- [*mcp-omnisearch*](https://github.com/spences10/mcp-omnisearch) -
   unified web search across multiple providers
-- [**mcp-sqlite-tools**](https://github.com/spences10/mcp-sqlite-tools) -
+- [*mcp-sqlite-tools*](https://github.com/spences10/mcp-sqlite-tools) -
   safe SQLite operations
-- [**ccrecall**](https://github.com/spences10/ccrecall) - sync Claude
+- [*ccrecall*](https://github.com/spences10/ccrecall) - sync Claude
   Code transcripts to SQLite for analytics
 
 The nopeek CLI handles the scanning, loading, and storing. The nopeek
