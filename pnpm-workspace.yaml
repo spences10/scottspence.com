@@ -7,12 +7,6 @@ minimumReleaseAge: 2880
 
 minimumReleaseAgeExclude:
   - '@twinkleplop/*'
-  # Temporary: these next releases were published on 5 October 2026.
-  # Remove these four exceptions after 7 October 2026, 13:05 UTC (48 hours).
-  - 'mdsvex@1.0.0-next.1'
-  - '@mdsvex/migrate@0.2.0-next.1'
-  - '@mdsvex/parse@1.0.0-next.1'
-  - '@mdsvex/render@1.0.0-next.1'
 
 overrides:
   vite@*: npm:@voidzero-dev/vite-plus-core@1.0.0
