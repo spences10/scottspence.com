@@ -10,12 +10,12 @@ Real quick! I'm going to go through what I did to get a SvelteKit
 project deployed to Fly.io and how to set up environment variables.
 The back story is that I wasn't getting the best response times from
 the project I deployed to Vercel for [Building Session Analytics with
-SvelteKit and Turso DB]. It was an experiment but still, waiting 6
+SvelteKit and Turso DB](https://scottspence.com/posts/building-session-analytics-sveltekit-turso-db). It was an experiment but still, waiting 6
 seconds for a response from the server is not good.
 
 I decide to try out Fly.io and see if I could get better result.
 There's a speed run over on the Fly.io docs that get's you started:
-https://fly.io/docs/js/frameworks/svelte
+[https://fly.io/docs/js/frameworks/svelte](https://fly.io/docs/js/frameworks/svelte)
 
 This doesn't cover what you need to do to get environment variables
 working though.
@@ -163,8 +163,3 @@ fly deploy --build-arg TURSO_DB_URL=$TURSO_DB_URL --build-arg TURSO_DB_AUTH_TOKE
 ```
 
 😅
-
-<!-- Links -->
-
-[Building Session Analytics with SvelteKit and Turso DB]:
-	https://scottspence.com/posts/building-session-analytics-sveltekit-turso-db

@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { mdsvex } from 'mdsvex';
 import { defineConfig } from 'vite-plus';
 import { playwright } from 'vite-plus/test/browser-playwright';
-import mdsvexConfig, { commonmark } from './mdsvex.config.js';
+import mdsvexConfig, { site_metadata } from './mdsvex.config.ts';
 import { code_block_warning_filter } from './src/lib/markdown/highlighter.ts';
 
 const mdsvex_plugins = mdsvex(mdsvexConfig);
@@ -48,7 +48,7 @@ export default defineConfig(({ command }) => ({
 	},
 	plugins: [
 		tailwindcss(),
-		commonmark,
+		site_metadata,
 		mdsvex_plugins,
 		sveltekit({
 			adapter: adapter(),
@@ -132,6 +132,11 @@ export default defineConfig(({ command }) => ({
 		trailingComma: 'all',
 		proseWrap: 'always',
 		ignorePatterns: [
+			// These .md files are native PFM. A CommonMark formatter changes
+			// *bold* to _italic_. Their syntax and types use check:posts.
+			'posts/*.md',
+			'copy/*.md',
+			'newsletter/*.md',
 			'.svelte-kit/**',
 			'build/**',
 			'test-results/**',

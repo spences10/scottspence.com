@@ -5,12 +5,12 @@ tags: ['analytics', 'svelte', 'sveltekit', 'fathom']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Banner, DateDistance as DD, Details } from '#lib/components/index.js'
 
   let href = `/posts/caching-with-fathom-redis-and-sveltekit`
   const options = {
-    type: 'warning',
+    type: 'warning' as const,
     message: `If your site gets a lot of traffic and you are using 
       Fathom with a modest plan then you may also want to look into 
       <a href=${href} target="_blank" rel="noopener noreferrer">
@@ -25,10 +25,10 @@ didn't really get around to using it.
 
 If you're looking to implement Fathom analytics on your site, I
 updated a post <DD date='2023-02-09' /> ago on [Fathom Analytics with
-SvelteKit] which details the process.
+SvelteKit](https://scottspence.com/posts/fathom-analytics-with-svelte) which details the process.
 
 It also incorporates the Fathom API for real time page views. So if
-you're looking to do that, check out that post and [the github repo]!
+you're looking to do that, check out that post and [the github repo](https://github.com/spences10/sveltekit-and-fathom)!
 
 Well, now I have got round to using it! If you're on this site now and
 you're not using something like uBlock Origin, you'll probably see the
@@ -45,7 +45,7 @@ Ok so if you want a privacy focused analytics solution, Fathom, in my
 biased opinion, is the best one out there.
 
 Seriously, if you're looking for a privacy first analytics option
-check it out! Also while you're at it use my [referral code]! It will
+check it out! Also while you're at it use my [referral code](https://usefathom.com/ref/HG492L)! It will
 help me out and you're welcome for putting you onto an awesome
 product!
 
@@ -53,7 +53,7 @@ FYI Fathom Analytics is a paid service, well worth the money in my
 opinion.
 
 If you've not seen any of my previous content check out the
-[analytics] tag on the site here! I've written about them a ton in the
+[analytics](https://scottspence.com/tags/analytics) tag on the site here! I've written about them a ton in the
 past and you can probably tell by now that I really love the product.
 
 Anyways! Preamble over, let's get into how I did it.
@@ -61,12 +61,12 @@ Anyways! Preamble over, let's get into how I did it.
 ## Implementation
 
 I'll be documenting the implementation for the [SvelteKit and fathom
-GitHub project] that is detailed in the [Fathom Analytics with
-SvelteKit] post, the approach is the same for this site.
+GitHub project](https://github.com/spences10/sveltekit-and-fathom) that is detailed in the [Fathom Analytics with
+SvelteKit](https://scottspence.com/posts/fathom-analytics-with-svelte) post, the approach is the same for this site.
 
 If you want to take a look at the code for the project you can check
-out the [before] and [after] branches I've created on the repo, here's
-the [diff] so you can take a look at what's changed.
+out the [before](https://github.com/spences10/sveltekit-and-fathom/tree/ref/pre-real-time-analytics-implementation) and [after](https://github.com/spences10/sveltekit-and-fathom/tree/feat/add-real-time-analytics) branches I've created on the repo, here's
+the [diff](https://github.com/spences10/sveltekit-and-fathom/pull/160/files) so you can take a look at what's changed.
 
 In the following sections I'll be detailing how to get current
 visitors on the site and individual page analytics.
@@ -77,13 +77,13 @@ The Fathom API is still (from what I can tell) early access, so you'll
 need to email them to get access to it. You'll be notified when it's
 ready with instructions on how to get started.
 
-The [Fathom API documentation] in their own words is **absolutely
-gorgeous** and I agree.
+The [Fathom API documentation](https://usefathom.com/api) in their own words is *absolutely
+gorgeous* and I agree.
 
 Once you get API access you wil be able to go to
-[`app.usefathom.com/api`] and generate an API token. There's several
-options, **Admin key**, **All sites read only key** and
-**Site-specific key**. The site specific and read only key option is
+[`app.usefathom.com/api`](https://app.usefathom.com/api) and generate an API token. There's several
+options, *Admin key*, *All sites read only key* and
+*Site-specific key*. The site specific and read only key option is
 to my mind the most sensible option.
 
 With all the options available Fathom have basically opened up the
@@ -93,10 +93,10 @@ dashboard if you want!
 ## Fathom API key
 
 Before I start trying to access the API I'll need to generate an API
-key. To do this, I'll pop on over to [`app.usefathom.com/api`] click
+key. To do this, I'll pop on over to [`app.usefathom.com/api`](https://app.usefathom.com/api) click
 'Create new', name the key `ideal-memory-read-only` for the
 permissions I'll select 'Site specific key' and select the site to
-have the key for, (which is [`ideal-memory.com`]), check the 'Read'
+have the key for, (which is [`ideal-memory.com`](https://ideal-memory.com)), check the 'Read'
 access then click 'Save changes'.
 
 I already have a pre-existing `.env` file so I'll add an entry to it
@@ -163,7 +163,7 @@ If I spin up the dev server and go to `/current-visitors.json` on
 ```
 
 This is eventually going to return the current visitors to the site.
-If we take a look at the [Fathom API documentation] we can see that
+If we take a look at the [Fathom API documentation](https://usefathom.com/api) we can see that
 the `current_visitors` endpoint takes the `site_id` as a query
 parameter, here's the `curl` request to get it from the documentation.
 
@@ -181,7 +181,7 @@ both of which are from the `.env` file. One is private
 `$env` module.
 
 You can read up more about using the `$env` module with the [SvelteKit
-Environment Variables with the SvelteKit $env Module] post I updated a
+Environment Variables with the SvelteKit $env Module](https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module) post I updated a
 while back.
 
 I'll wrap the fetch request with the `Authorization` header in a try
@@ -792,7 +792,7 @@ conditionally add the parameters if they exist I'll also toss in the
 `date_grouping` here.
 
 I found this approach conditionally adding object properties on a
-[Stack Overflow] answer, pretty neat!
+[Stack Overflow](https://stackoverflow.com/a/51200448) answer, pretty neat!
 
 ```ts
 const date_params = {
@@ -1311,7 +1311,7 @@ Disallow: /current-visitors.json
 ```
 
 I made a short post going into more detail for [Robots.txt file for
-SvelteKit projects] there's a couple more things in there you may find
+SvelteKit projects](https://scottspence.com/posts/robots-txt-file-for-sveltekit-projects) there's a couple more things in there you may find
 useful.
 
 ## Conclusion
@@ -1331,27 +1331,3 @@ reporting dashboard.
 
 Finally, to prevent Google from crawling API endpoints, I added in a
 `Disallow` line in a `robots.txt`.
-
-<!-- Links -->
-
-[referral code]: https://usefathom.com/ref/HG492L
-[analytics]: https://scottspence.com/tags/analytics
-[fathom api documentation]: https://usefathom.com/api
-[fathom analytics with sveltekit]:
-	https://scottspence.com/posts/fathom-analytics-with-svelte
-[the github repo]: https://github.com/spences10/sveltekit-and-fathom
-[`app.usefathom.com/api`]: https://app.usefathom.com/api
-[robots.txt file for sveltekit projects]:
-	https://scottspence.com/posts/robots-txt-file-for-sveltekit-projects
-[sveltekit and fathom github project]:
-	https://github.com/spences10/sveltekit-and-fathom
-[before]:
-	https://github.com/spences10/sveltekit-and-fathom/tree/ref/pre-real-time-analytics-implementation
-[after]:
-	https://github.com/spences10/sveltekit-and-fathom/tree/feat/add-real-time-analytics
-[diff]:
-	https://github.com/spences10/sveltekit-and-fathom/pull/160/files
-[`ideal-memory.com`]: https://ideal-memory.com
-[sveltekit environment variables with the sveltekit $env module]:
-	https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module
-[stack overflow]: https://stackoverflow.com/a/51200448

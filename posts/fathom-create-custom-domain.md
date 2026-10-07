@@ -5,13 +5,13 @@ tags: ['analytics', 'learning', 'guide', 'fathom']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Tweet } from 'sveltekit-embed'
   import { Banner } from '#lib/components/index.js'
 
   let href = `https://usefathom.com/docs/script/custom-domains`
   const options = {
-    type: 'warning',
+    type: 'warning' as const,
     message: `Custom domains are no longer offered with Fathom Analytics.
       Check out the <a href=${href} target="_blank" rel="noopener noreferrer">
       post</a> explaining this on the Fathom blog.
@@ -22,11 +22,11 @@ is_private: false
 <Banner {options} />
 
 Fathom Analytics recently added a really neat feature for [custom
-domains] with their service.
+domains](https://usefathom.com/blog/bypass-adblockers) with their service.
 
 What does that mean then? Well it's for bypassing ad-blocking
 extensions, not that Fathom wants to collect all your data, [far from
-it].
+it](https://usefathom.com/blog/bypass-adblockers).
 
 The purpose of this post is to cover setting up my custom domain as I
 have a specific domain provider and I'm using Vercel's now.sh and
@@ -35,21 +35,21 @@ domains to.
 
 <!-- cSpell:ignore godaddy -->
 
-Fathom has provided instructions for [Godaddy], [CloudFlare], [Hover]
-and [NameCheap] however, Like I mentioned, I have a custom DNS with my
+Fathom has provided instructions for [Godaddy](https://ca.godaddy.com/help/add-a-cname-record-19236), [CloudFlare](https://support.cloudflare.com/hc/en-us/articles/360020615111-Configuring-a-CNAME-setup), [Hover](https://help.hover.com/hc/en-us/articles/217282457-Managing-DNS-records-#h_5eab4aa7-b044-4cc6-a3c0-5869f583edc8)
+and [NameCheap](https://www.namecheap.com/support/knowledgebase/article.aspx/9646/2237/how-to-create-a-cname-record-for-your-domain) however, Like I mentioned, I have a custom DNS with my
 domain provider and I'm not be able to add a new CNAME record which is
 what I need to generate my Fathom custom (sub)domain.
 
 ## Create a custom domain
 
-Fathom's [documentation] covers it pretty well, you go into your
+Fathom's [documentation](https://usefathom.com/support/custom-domains) covers it pretty well, you go into your
 settings panel on Fathom and add in the domain of your site which I
 followed, pretty straight forward.
 
 Fathom then give me two values, the first is the sub-domain that I'm
 going to create and the other is the Fathom DNS server.
 
-![fathom dns record for a site]
+![fathom dns record for a site](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/fathom-dns-record-for-site-918a662955a145472c8b3a65061649e2.png)
 
 ## Add the custom domain to my site
 
@@ -58,7 +58,7 @@ find any good examples so I reached out to Fathom with a tweet:
 
 <Tweet tweetLink="spences10/status/1250786419536277505" />
 
-After I sent that I found [this gist] which detailed the command for
+After I sent that I found [this gist](https://gist.github.com/jaydenseric/f4147d7d9788d1f46b30e4ac7b57e6b2) which detailed the command for
 adding the sub-domain which made sense to me.
 
 ## Add DNS record in Vercel's now.sh
@@ -89,7 +89,7 @@ they were created.
 ## DNS Editor for Vercel domains
 
 It was after I worked out how to add the CNAME with the CLI that I
-found the [DNS Editor for Vercel domains] which Jack mentioned in the
+found the [DNS Editor for Vercel domains](https://vercel.com/integrations/dns) which Jack mentioned in the
 reply to my tweet! 🤦‍♂
 
 It's a free integration on the Vercel Marketplace which is super
@@ -107,11 +107,11 @@ I'm going to do the same with Netlify now, it's a bit more pick my
 domain scroll to the bottom of the list and select 'Add new record',
 add the details from the Fathom Domains page.
 
-![create new dns record netlify]
+![create new dns record netlify](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/create-new-dns-record-netlify-388b4824b94966a449b57c7fd59f5fa8.png)
 
 ## Add DNS record in Netlify
 
-![pick custom domain in site settings]
+![pick custom domain in site settings](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/pick-custom-domain-in-site-settings-3af1a934a7a66f45d754f3cfa36bb80e.png)
 
 straightforward with Netlify, I go to my sites page, select Domains,
 It didn't take long to validate the record in the Fathom setting page
@@ -120,9 +120,9 @@ then I picked the custom domain like I did in the previous step.
 ## Configure Gatsby to use the custom domain
 
 Fathom have now added instructions for adding the Fathom tracking
-snippet [to your Gatsby site].
+snippet [to your Gatsby site](https://usefathom.com/integrations/gatsbyjs).
 
-This involves customising the Gatsby [`default-html.js` file] and
+This involves customising the Gatsby [`default-html.js` file](https://www.gatsbyjs.com/docs/custom-html/) and
 adding the snippet before the `<head>` starts.
 
 So for me, following the Fathom instructions, copy the
@@ -169,30 +169,3 @@ there's no need to have the Gatsby plugin for Fathom installed, so
 that's one less plugin to have installed.
 
 Done!
-
-<!-- Links -->
-
-[custom domains]: https://usefathom.com/blog/bypass-adblockers
-[far from it]: https://usefathom.com/blog/bypass-adblockers
-[documentation]: https://usefathom.com/support/custom-domains
-[godaddy]: https://ca.godaddy.com/help/add-a-cname-record-19236
-[cloudflare]:
-	https://support.cloudflare.com/hc/en-us/articles/360020615111-Configuring-a-CNAME-setup
-[hover]:
-	https://help.hover.com/hc/en-us/articles/217282457-Managing-DNS-records-#h_5eab4aa7-b044-4cc6-a3c0-5869f583edc8
-[namecheap]:
-	https://www.namecheap.com/support/knowledgebase/article.aspx/9646/2237/how-to-create-a-cname-record-for-your-domain
-[this gist]:
-	https://gist.github.com/jaydenseric/f4147d7d9788d1f46b30e4ac7b57e6b2
-[dns editor for vercel domains]: https://vercel.com/integrations/dns
-[to your gatsby site]: https://usefathom.com/integrations/gatsbyjs
-[`default-html.js` file]: https://www.gatsbyjs.com/docs/custom-html/
-
-<!-- Images -->
-
-[create new dns record netlify]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/create-new-dns-record-netlify-388b4824b94966a449b57c7fd59f5fa8.png
-[pick custom domain in site settings]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/pick-custom-domain-in-site-settings-3af1a934a7a66f45d754f3cfa36bb80e.png
-[fathom dns record for a site]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/fathom-dns-record-for-site-918a662955a145472c8b3a65061649e2.png

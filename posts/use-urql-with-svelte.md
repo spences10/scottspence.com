@@ -9,15 +9,15 @@ is_private: false
   import { YouTube } from 'sveltekit-embed'
 </script>
 
-**This guide has now been updated, take a look at [Use URQL with
-SvelteKit] for an up to date reference**
+*This guide has now been updated, take a look at [Use URQL with
+SvelteKit](https://scottspence.com/posts/use-urql-with-sveltekit) for an up to date reference*
 
 Use the Universal React Query Library (URQL) in Svelte!
 
 Yeah, React and Svelte! Well, not really! There are [Svelte bindings
-in URQL] now! So I'm going to take a look at configuring it for use in
+in URQL](https://formidable.com/open-source/urql/docs/basics/svelte/) now! So I'm going to take a look at configuring it for use in
 a Svelte project. If you're wondering if URQL is right for your
-project you can check out the [features by comparison].
+project you can check out the [features by comparison](https://formidable.com/open-source/urql/docs/comparison/).
 
 So, standard guide fodder now, spin up a new project and configure the
 thing.
@@ -96,7 +96,7 @@ echo .env >> .gitignore
 
 As it's a publicly accessible endpoint I'm not going to be too
 concerned about exposing it publicly with the `VITE_` variable you can
-read up on hiding [env secrets] with SvelteKit for more information.
+read up on hiding [env secrets](https://scottspence.com/posts/sveltekit-env-secrets) with SvelteKit for more information.
 
 ```svelte
 <!-- src/routes/__layout.svelte -->
@@ -221,7 +221,7 @@ Here's the full `src/routes/index.svelte` file:
 Running the dev server will now give me an unordered list with the
 post title and a link to the `posts` route for that slug! That doesn't
 exist yet, so if you're interested in going through that then I'll add
-more to that in [Building on the example].
+more to that in [Building on the example](#building-on-the-example).
 
 ## Conclusion
 
@@ -351,15 +351,3 @@ Here's the full file:
 
 That's it, the rest of this can be built on for rendering out the post
 markup the same way as in the index file.
-
-<!-- Links -->
-
-[features by comparison]:
-	https://formidable.com/open-source/urql/docs/comparison/
-[repo on github]: https://github.com/spences10/sveltekit-with-urql/
-[svelte bindings in urql]:
-	https://formidable.com/open-source/urql/docs/basics/svelte/
-[env secrets]: https://scottspence.com/posts/sveltekit-env-secrets
-[building on the example]: #building-on-the-example
-[use urql with sveltekit]:
-	https://scottspence.com/posts/use-urql-with-sveltekit

@@ -9,19 +9,19 @@ is_private: false
   import { Tweet, YouTube } from 'sveltekit-embed'
 </script>
 
-I started adding videos to [my YouTube channel] in November 2018, this
+I started adding videos to [my YouTube channel](https://www.youtube.com/channel/UCnngLXpLSFsKkDhFoO9Ct3w) in November 2018, this
 was mainly intended as an accompaniment to the blog post I did to [Get
-your GraphCMS data into Gatsby].
+your GraphCMS data into Gatsby](https://scottspence.com/posts/graphcms-to-gatsby/).
 
 A the time I was using a web cam I'd bought off of Amazon for around
 £17, the quality wasn't great but it helped me get my point across.
 
-I used my [Transformer Pro] with [OBS] then went on and uploaded it to
+I used my [Transformer Pro](https://www.asus.com/uk/2-in-1-PCs/ASUS-Transformer-Pro-T304UA/) with [OBS](https://obsproject.com/) then went on and uploaded it to
 YouTube and embedded the video into the blog post.
 
 This isn't a post on how to grow your audience, I'm still working on
 that myself! Although I will recommend the [Developer's Guide to
-Starting a YouTube Channel] (affiliate link) a great book by James Q
+Starting a YouTube Channel](https://learn.jamesqquick.com/developers-guide-to-starting-a-youtube-channel/7qkrr) (affiliate link) a great book by James Q
 Quick on the subject, which has loads of great actionable content.
 
 ## Why am I writing this?
@@ -56,7 +56,7 @@ or a couple of steps behind me but ultimately for future me.
 
 This is my opinionated guide, the tools and approaches I use may not
 work for you. My primary OS now for making content is Windows
-([powered by WSL]) I used Linux in the past but the experience was a
+([powered by WSL](https://scottspence.com/posts/wsl-bootstrap-2020/)) I used Linux in the past but the experience was a
 bit too rough around the edges to justify using it.
 
 ## How to get started
@@ -80,7 +80,7 @@ In the words of MKBHD
   }} />
 
 What you also need to bear in mind is that MKBHD has also been
-consistently adding videos to YouTube since [2009].
+consistently adding videos to YouTube since [2009](https://www.youtube.com/watch?v=9gk_rl3y_SU).
 
 Here's some sage advice from Twitter motivator Danny Thompson.
 
@@ -108,17 +108,17 @@ going to break the bank but not incredibly cheap either.
 
 <!-- cSpell:ignore Fifine,aukey -->
 
-- [Fifine USB Mic], at £24.99 when I purchased it in 2018, it's now
+- [Fifine USB Mic](https://www.amazon.co.uk/gp/product/B06XQ39XCY), at £24.99 when I purchased it in 2018, it's now
   around £50.
-- [OBS]: Free and open source.
-- [Aukey Webcam], at £45 there are other options of comparable quality
+- [OBS](https://obsproject.com/): Free and open source.
+- [Aukey Webcam](https://www.amazon.co.uk/gp/product/B0721MKXQ2), at £45 there are other options of comparable quality
   I've got a couple sub £20 which were terrible.
-- [XSplit VCam], best bit of software I've paid for recently. I got a
+- [XSplit VCam](https://www.xsplit.com/vcam), best bit of software I've paid for recently. I got a
   licence for a quarter (at £9.95) and will be getting a lifetime
   licence (at £49.99) when it's time to renew.
-- [USB Lighting], this clips to the desk and adds a little additional
+- [USB Lighting](https://www.amazon.co.uk/gp/product/B07P8LCBS6), this clips to the desk and adds a little additional
   lighting, at £9.09 it'll do for now.
-- [Large Microphone Boom Arm], not essential but is can cut vibrations
+- [Large Microphone Boom Arm](https://www.amazon.co.uk/gp/product/B07JN2CJF9), not essential but is can cut vibrations
   from the desk (when typing) if the mic is on the desk.
 
 The sound will be the most important thing when people are watching
@@ -127,7 +127,7 @@ happy with the quality of my Fifine USB mic I got back in 2018.
 
 For screen recording all I have ever used is OBS on Windows, Linux and
 macOS so I'm not able to recommend anything outside of that. Doing the
-standard **"screen recording software"** search brings up loads of
+standard *"screen recording software"* search brings up loads of
 options for free and paid software.
 
 There is also Streamlabs OBS which has a lot of pre-made scenes and
@@ -148,13 +148,13 @@ When you first open OBS after downloading it you're prompted to use
 the Auto-Configuration Wizard which will determine the best settings
 based on your hardware and internet speed.
 
-![obs-auto-configuration-wizard]
+![obs-auto-configuration-wizard](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/obs-auto-configuration-wizard-9f4d97bea64dba475beaea2e3803bd54.png)
 
 There are two options, if you're not interested in streaming on Twitch
 then I'd suggest selecting the second option. The last option is for
 sharing your scenes with other software like Zoom.
 
-[Open Broadcaster Software] (OBS) is a whole post in itself I think!
+[Open Broadcaster Software](https://obsproject.com/) (OBS) is a whole post in itself I think!
 
 For the very basics you're going to need a scene with a display
 capture.
@@ -163,7 +163,7 @@ The bottom left corner will show you the Scenes collection, this is
 where you can create differing appearances of how the screen appears
 when you make a recording.
 
-![empty-starting-scene]
+![empty-starting-scene](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/empty-starting-scene-13cafbf630213ab2bd16ab1b8980975a.png)
 
 You can right click on the Scene name and select Rename from the
 context menu to give it a more meaningful name if you wish.
@@ -173,7 +173,7 @@ record. In the Sources panel (next to Scenes) click the plus button
 and select Display Capture, the next dialogue will prompt you to
 select a screen to display in the scene.
 
-![add-display-capture.png]
+![add-display-capture.png](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/add-display-capture-0aac3d0f1e6f42f31ded0493cbd4c6a3.png)
 
 Check the video here on setting up your first OBS Scene:
 
@@ -201,19 +201,19 @@ If you're streaming and you're not able to stay on the camera, like
 when that delivery you've been waiting on all day decides to turn up
 and knock on your door ten minutes into a stream!
 
-This would be a good candidate for a **Be Right Back** Scene, this
+This would be a good candidate for a *Be Right Back* Scene, this
 (for me) is an image I created in PowerPoint with BRB on there.
 
 #### Countdown Timer
 
 If you're streaming and want to have a countdown timer, there's a
 script you can use in OBS available for download in the [OBS forum
-resources section] which is pretty neat, download that for use later.
+resources section](https://obsproject.com/forum/resources/count-down-adaptive-time.719/) which is pretty neat, download that for use later.
 
 To use it you'll need to add Text (GDI+) to the scene, in the text
 Create/Select Source give the text a name and select ok.
 
-![add-text-to-scene]
+![add-text-to-scene](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/add-text-to-scene-4ff48ee5a07dffb57f0ddb6769deec3a.png)
 
 In the text properties dialogue that pops up add in some placeholder
 text so you're able to identify where on the Scene the text is.
@@ -223,9 +223,9 @@ text the appearance you like.
 
 Next up select Tools > Scripts from the OBS menu. Click on the plus
 button and add the script download from the [OBS forum resources
-section].
+section](https://obsproject.com/forum/resources/count-down-adaptive-time.719/).
 
-![add-script]
+![add-script](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/add-script-ab536cc3ff3fa25f5312dcba22ff2d6b.png)
 
 Here you can add in the duration and the start and stop text. You'll
 also need to add the Text Source as the Text (GDI+) source you added,
@@ -302,7 +302,7 @@ On the odd occasion that I have used video editing it would be to
 remove something mid video on an otherwise useful video.
 
 Video editing software I'd recommend that I have used personally would
-be [OpenShot] and [Shotcut], both open source and cross platform.
+be [OpenShot](https://www.openshot.org/) and [Shotcut](https://shotcut.org/), both open source and cross platform.
 
 <!-- cSpell:ignore uhms -->
 
@@ -328,19 +328,19 @@ If you're looking to start adding videos to YouTube, what do you need
 other than the video?
 
 If you don't have a Google account already set up then you will need
-to [Create a new Google account].
+to [Create a new Google account](https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp).
 
 If you already have a google account but want to create a new YouTube
-channel check out the [YouTube channel switcher] which gives you the
+channel check out the [YouTube channel switcher](https://www.youtube.com/channel_switcher) which gives you the
 option to create a new channel. You will be walked through the process
 of creating a new channel.
 
 Adding a video to YouTube is straightforward enough, from your YouTube
 page there should be a plus icon that looks like a movie camera:
 
-![youtube-add-icon]
+![youtube-add-icon](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/youtube-add-icon-76d47080f1e5e3f0a736929663a9cd86.png)
 
-Click on this to be taken to your [YouTube studio] here is where you
+Click on this to be taken to your [YouTube studio](https://studio.youtube.com/) here is where you
 can add your beautifully crafted video for the world to see.
 
 You'll be prompted to add a title and a description for the thumbnail
@@ -375,47 +375,3 @@ to do the following now:
 - Add a video to YouTube via the YouTube studio.
 
 Thanks again 👍
-
-<!-- Links -->
-
-[my youtube channel]:
-	https://www.youtube.com/channel/UCnngLXpLSFsKkDhFoO9Ct3w
-[get your graphcms data into gatsby]:
-	https://scottspence.com/posts/graphcms-to-gatsby/
-[developer's guide to starting a youtube channel]:
-	https://learn.jamesqquick.com/developers-guide-to-starting-a-youtube-channel/7qkrr
-[transformer pro]:
-	https://www.asus.com/uk/2-in-1-PCs/ASUS-Transformer-Pro-T304UA/
-[obs]: https://obsproject.com/
-[open broadcaster software]: https://obsproject.com/
-[openshot]: https://www.openshot.org/
-[shotcut]: https://shotcut.org/
-[powered by wsl]: https://scottspence.com/posts/wsl-bootstrap-2020/
-[usb lighting]: https://www.amazon.co.uk/gp/product/B07P8LCBS6
-[fifine usb mic]: https://www.amazon.co.uk/gp/product/B06XQ39XCY
-[xsplit vcam]: https://www.xsplit.com/vcam
-[aukey webcam]: https://www.amazon.co.uk/gp/product/B0721MKXQ2
-[2009]: https://www.youtube.com/watch?v=9gk_rl3y_SU
-[obs forum resources section]:
-	https://obsproject.com/forum/resources/count-down-adaptive-time.719/
-[large microphone boom arm]:
-	https://www.amazon.co.uk/gp/product/B07JN2CJF9
-[create a new google account]:
-	https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp
-[youtube channel switcher]: https://www.youtube.com/channel_switcher
-[youtube studio]: https://studio.youtube.com/
-
-<!-- Images -->
-
-[obs-auto-configuration-wizard]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/obs-auto-configuration-wizard-9f4d97bea64dba475beaea2e3803bd54.png
-[empty-starting-scene]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/empty-starting-scene-13cafbf630213ab2bd16ab1b8980975a.png
-[add-display-capture.png]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/add-display-capture-0aac3d0f1e6f42f31ded0493cbd4c6a3.png
-[add-text-to-scene]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/add-text-to-scene-4ff48ee5a07dffb57f0ddb6769deec3a.png
-[add-script]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858539/scottspence.com/add-script-ab536cc3ff3fa25f5312dcba22ff2d6b.png
-[youtube-add-icon]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/youtube-add-icon-76d47080f1e5e3f0a736929663a9cd86.png

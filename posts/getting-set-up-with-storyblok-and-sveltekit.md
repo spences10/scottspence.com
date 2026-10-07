@@ -5,12 +5,12 @@ tags: ['sveltekit', 'storyblok', 'how-to', 'guide']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Details, Banner } from '#lib/components/index.js'
 
   let href = `/posts/sveltekit-environment-variables-with-the-sveltekit-env-module`
   const options = {
-    type: 'warning',
+    type: 'warning' as const,
     message: `SvelteKit now handles env secrets, take a look at <a 
       href=${href} target="_blank" rel="noopener noreferrer">SvelteKit 
       Environment Variables with the SvelteKit $env Module</a> which 
@@ -24,9 +24,9 @@ make some notes on getting set up with it.
 With the moving target that is the public beta of SvelteKit there's a
 few things that have changed recently which I want to document here.
 
-If you've not used [Svelte] or [SvelteKit] before you can check out
-the awesome tutorial for Svelte over on [svelte.dev/tutorial] it's got
-everything you need. There's also [learn.svelte.dev] for SvelteKit
+If you've not used [Svelte](https://svelte.dev) or [SvelteKit](https://kit.svelte.dev) before you can check out
+the awesome tutorial for Svelte over on [svelte.dev/tutorial](https://svelte.dev/tutorial/basics) it's got
+everything you need. There's also [learn.svelte.dev](https://learn.svelte.dev/tutorial/welcome-to-svelte) for SvelteKit
 which is under development at the time of writing.
 
 If you want to follow along, minimum requirements will be a computer
@@ -85,7 +85,7 @@ project.
 
 Just before I go onto the Storyblok configuration, I'll want to get
 some nice default styles into the project with Tailwind CSS. This is a
-one liner setup with the awesome [Svelte Add] project:
+one liner setup with the awesome [Svelte Add](https://github.com/svelte-add/tailwindcss) project:
 
 ```bash
 ## --typography adds the Tailwind typography plugin
@@ -101,7 +101,7 @@ All that's needed to do after that is install the dependencies with
 ## Get Storyblok setup
 
 If you're following along and you've not got a Storyblok account
-already then you'll need to [sign up for one], otherwise sign in.
+already then you'll need to [sign up for one](https://app.storyblok.com/#!/signup), otherwise sign in.
 
 From here, I'm greeted with a welcome screen and a button to 'Create a
 new space'.
@@ -112,7 +112,7 @@ this guide. I'll give it a name (I'm calling mine 'SvelteKit example'
 very imaginative, I know 😊) then I'll click the 'Create space'
 button.
 
-[![storyblok-create-new-space]] [storyblok-create-new-space]
+\[![storyblok-create-new-space](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658756723/scottspence.com/storyblok-create-new-space.png)\] [storyblok-create-new-space](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658756723/scottspence.com/storyblok-create-new-space.png)
 
 I'm then taken to the 'Content' section (in the left hand sidebar),
 from here there's a list of content, as it was a new space (start from
@@ -122,19 +122,19 @@ screen.
 You'll also notice in the sidebar toward the bottom there's a 'Switch
 to V2' button.
 
-[![storyblok-switch-to-v2-sidebar]] [storyblok-switch-to-v2-sidebar]
+\[![storyblok-switch-to-v2-sidebar](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658758071/scottspence.com/storyblok-switch-to-v2-sidebar.png)\] [storyblok-switch-to-v2-sidebar](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658758071/scottspence.com/storyblok-switch-to-v2-sidebar.png)
 
 I'll be using the V2 version so clicking on that will change the
 screen and take me to the 'Dashboard' in the sidebar, I can then
 select 'Content' from the sidebar. On the main page I'll select the
 'Home' page content type.
 
-That takes me to the visual editor displaying **✨ Welcome to the
-Visual Editor ✨** from this welcome section I can copy the 'Access
+That takes me to the visual editor displaying *✨ Welcome to the
+Visual Editor ✨* from this welcome section I can copy the 'Access
 token' needed for accessing the Storyblok API.
 
-[![storyblok-welcome-to-the-visual-editor]]
-[storyblok-welcome-to-the-visual-editor]
+\[![storyblok-welcome-to-the-visual-editor](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658759454/scottspence.com/storyblok-welcome-to-the-visual-editor.png)\]
+[storyblok-welcome-to-the-visual-editor](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658759454/scottspence.com/storyblok-welcome-to-the-visual-editor.png)
 
 There's also a 'Set up preview url' section with an input field for
 the URL of my local dev server.
@@ -145,7 +145,7 @@ I'll add in the suggested URL from the placeholder in the input field:
 https://localhost:3000/
 ```
 
-Yes! That is **`https`**!
+Yes! That is *`https`*!
 
 Before clicking 'Save and show' I'll need to get my SvelteKit project
 set up to enable the visual editor.
@@ -189,20 +189,20 @@ Going to `https://localhost:3000/` on Edge I get a warning.
 
 <!-- cSpell:ignore isnt -->
 
-[![storyblok-your-connection-isnt-private]]
-[storyblok-your-connection-isnt-private]
+\[![storyblok-your-connection-isnt-private](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-your-connection-isnt-private.png)\]
+[storyblok-your-connection-isnt-private](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-your-connection-isnt-private.png)
 
 From here I can click on the 'Advanced' button and select the
 'Continue to localhost (unsafe)' link.
 
-[![storyblok-your-connection-isnt-private-advanced]]
-[storyblok-your-connection-isnt-private-advanced]
+\[![storyblok-your-connection-isnt-private-advanced](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-your-connection-isnt-private-advanced.png)\]
+[storyblok-your-connection-isnt-private-advanced](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-your-connection-isnt-private-advanced.png)
 
 Now I have access to `https://localhost:3000/` with a persistent
 warning from Edge to show that I'm using a connection without a
 certificate (~~`https`~~).
 
-[![storyblok-not-secure]] [storyblok-not-secure]
+\[![storyblok-not-secure](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-not-secure.png)\] [storyblok-not-secure](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-not-secure.png)
 
 Over to the visual editor page on Storyblok I can click on the 'Save
 and show' button now.
@@ -211,13 +211,13 @@ The live preview will update showing a `404` page on here I need to
 click on the sliders for 'Entry configuration' in the header and set
 the 'Real path' as `/`.
 
-[![storyblok-set-visual-editor-real-path]]
-[storyblok-set-visual-editor-real-path]
+\[![storyblok-set-visual-editor-real-path](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658763198/scottspence.com/storyblok-set-visual-editor-real-path.png)\]
+[storyblok-set-visual-editor-real-path](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658763198/scottspence.com/storyblok-set-visual-editor-real-path.png)
 
 Clicking 'Save & Close' will now show the SvelteKit skeleton project!
 
-[![storyblok-connect-to-local-host-success]]
-[storyblok-connect-to-local-host-success]
+\[![storyblok-connect-to-local-host-success](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658763672/scottspence.com/storyblok-connect-to-local-host-success.png)\]
+[storyblok-connect-to-local-host-success](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658763672/scottspence.com/storyblok-connect-to-local-host-success.png)
 
 Now I can configure Storyblok to work with my local dev server and my
 Storyblok project to show the page content type with it's nested types
@@ -230,10 +230,10 @@ The Svelte Storyblok SDK (amongst other things) allows the live
 preview and editing of the components in Storyblok to be reflected on
 the project running on `localhost`.
 
-Install the [`@storyblok/svelte`] package and the Storyblok peer
+Install the [`@storyblok/svelte`](https://github.com/storyblok/storyblok-svelte) package and the Storyblok peer
 dependency for `axios`, at the time of writing this was how I resolved
 this. There's a mention of adding `axios` to `optimiseDeps` in the
-[Add a Headless CMS to Svelte in 5 minutes] guide but adding that to
+[Add a Headless CMS to Svelte in 5 minutes](https://www.storyblok.com/tp/add-a-headless-cms-to-svelte-in-5-minutes#one-last-thing) guide but adding that to
 the `vite.config.js` file caused the same errors.
 
 ```bash
@@ -286,7 +286,7 @@ I'll install the `env-cmd` package for use shortly:
 pnpm i -D env-cmd
 ```
 
-I did a post a while back on [SvelteKit .env secrets] if you want to
+I did a post a while back on [SvelteKit .env secrets](https://scottspence.com/posts/sveltekit-env-secrets) if you want to
 give that a read!
 
 I'll create a `.env` file in the root of the project and a
@@ -313,14 +313,15 @@ STORYBLOK_STAGE=draft
 I can create additional tokens in the 'Settings' > 'Access tokens'
 section on Storyblok.
 
-[![storyblok-settings-access-tokens]]
-[storyblok-settings-access-tokens]
+\[![storyblok-settings-access-tokens](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658779775/scottspence.com/storyblok-settings-access-tokens.png)\]
+[storyblok-settings-access-tokens](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658779775/scottspence.com/storyblok-settings-access-tokens.png)
 
 Within the `env-vars.ts` file I can export the variables needed for
 the access token (`STORYBLOK_ACCESS_TOKEN`) and the stage
 (`STORYBLOK_STAGE`):
 
 <!-- prettier-ignore -->
+
 ```ts
 export const STORYBLOK_ACCESS_TOKEN = process.env['STORYBLOK_ACCESS_TOKEN']
 export const STORYBLOK_STAGE = process.env['STORYBLOK_STAGE']
@@ -352,7 +353,7 @@ If I wanted to create builds locally I'd also need to create a
 
 ## SvelteKit layout file
 
-A [layout file in SvelteKit] is a way to persist elements across route
+A [layout file in SvelteKit](https://kit.svelte.dev/docs/routing#layout-layout-svelte) is a way to persist elements across route
 changes, like a navbar and footer. This is also the place to
 initialise Storyblok for use across the project.
 
@@ -394,11 +395,11 @@ the components needed for use in the `storyblokInit` function from the
 ## Component files
 
 Now I can get to adding code to the component files. Credit to
-Josefine Schaefer and her [example code on GitHub].
+Josefine Schaefer and her [example code on GitHub](https://github.com/josefineschaefer/Storyblok-SvelteKit).
 
 <!-- cSpell:ignore blok -->
 
-The page component (`page.svelte`) is a [root block] content type and
+The page component (`page.svelte`) is a [root block](https://www.storyblok.com/docs/Guides/root-blocks) content type and
 uses a Svelte action in `storyblokEditable` to use the prop being
 passed to it (`export let blok`).
 
@@ -586,29 +587,29 @@ visual editor page and select the 'Block Library' from the sidebar.
 I can hover over the 'feature' block and click the ellipsis (`...`)
 and select 'Edit'.
 
-[![storyblok-edit-block-schema-menu]]
-[storyblok-edit-block-schema-menu]
+\[![storyblok-edit-block-schema-menu](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658865559/scottspence.com/storyblok-edit-block-schema-menu.png)\]
+[storyblok-edit-block-schema-menu](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658865559/scottspence.com/storyblok-edit-block-schema-menu.png)
 
 This brings up a context menu where I can edit the feature block and
 add additional fields to it, I'm going to give the field a name of
 body and click the 'Add' button.
 
-[![storyblok-edit-block-schema-add-field]]
-[storyblok-edit-block-schema-add-field]
+\[![storyblok-edit-block-schema-add-field](https://res.cloudinary.com/defkmsrpw/image/upload/v1658865559/scottspence.com/storyblok-edit-block-schema-add-field.png)\]
+[storyblok-edit-block-schema-add-field](https://res.cloudinary.com/defkmsrpw/image/upload/v1658865559/scottspence.com/storyblok-edit-block-schema-add-field.png)
 
 The newly created field will now show up in the list under the 'name'
 field.
 
-[![storyblok-edit-block-schema-field-added]]
-[storyblok-edit-block-schema-field-added]
+\[![storyblok-edit-block-schema-field-added](https://res.cloudinary.com/defkmsrpw/image/upload/v1658865559/scottspence.com/storyblok-edit-block-schema-field-added.png)\]
+[storyblok-edit-block-schema-field-added](https://res.cloudinary.com/defkmsrpw/image/upload/v1658865559/scottspence.com/storyblok-edit-block-schema-field-added.png)
 
 Clicking on that will take me to the edit field options where I can
 select the field type. I'm going to keep it as a text field, I could
-go into using the [Storyblok `RichTextResolver`] but I think I'll
+go into using the [Storyblok `RichTextResolver`](https://github.com/storyblok/storyblok-js-client) but I think I'll
 leave that for another post.
 
-[![storyblok-edit-block-schema-edit-field]]
-[storyblok-edit-block-schema-edit-field]
+\[![storyblok-edit-block-schema-edit-field](https://res.cloudinary.com/defkmsrpw/image/upload/v1658866411/scottspence.com/storyblok-edit-block-schema-edit-field.png)\]
+[storyblok-edit-block-schema-edit-field](https://res.cloudinary.com/defkmsrpw/image/upload/v1658866411/scottspence.com/storyblok-edit-block-schema-edit-field.png)
 
 Now, if I go back to the 'Content' section in the sidebar and select
 the 'Home' story, I can select the 'Grid' then 'Feature' I can see
@@ -650,61 +651,8 @@ _lot_ in the process documenting this.
 From searching around I found all these resources which helped me
 along the way:
 
-https://www.storyblok.com/tp/add-a-headless-cms-to-svelte-in-5-minutes
-https://github.com/josefineschaefer/Storyblok-SvelteKit
-https://github.com/storyblok/storyblok-svelte
-https://www.storyblok.com/docs/Guides/nestable-blocks
-https://www.storyblok.com/docs/Guides/root-blocks
-
-<!-- Links -->
-
-[svelte]: https://svelte.dev
-[sveltekit]: https://kit.svelte.dev
-[svelte.dev/tutorial]: https://svelte.dev/tutorial/basics
-[learn.svelte.dev]:
-	https://learn.svelte.dev/tutorial/welcome-to-svelte
-[sign up for one]: https://app.storyblok.com/#!/signup
-[`@storyblok/svelte`]: https://github.com/storyblok/storyblok-svelte
-[add a headless cms to svelte in 5 minutes]:
-	https://www.storyblok.com/tp/add-a-headless-cms-to-svelte-in-5-minutes#one-last-thing
-[sveltekit .env secrets]:
-	https://scottspence.com/posts/sveltekit-env-secrets
-[svelte add]: https://github.com/svelte-add/tailwindcss
-[layout file in sveltekit]:
-	https://kit.svelte.dev/docs/routing#layout-layout-svelte
-[example code on github]:
-	https://github.com/josefineschaefer/Storyblok-SvelteKit
-[root block]: https://www.storyblok.com/docs/Guides/root-blocks
-[nestable block]:
-	https://www.storyblok.com/docs/Guides/nestable-blocks
-[storyblok `richtextresolver`]:
-	https://github.com/storyblok/storyblok-js-client
-
-<!-- Images -->
-
-[storyblok-create-new-space]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658756723/scottspence.com/storyblok-create-new-space.png
-[storyblok-switch-to-v2-sidebar]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658758071/scottspence.com/storyblok-switch-to-v2-sidebar.png
-[storyblok-welcome-to-the-visual-editor]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658759454/scottspence.com/storyblok-welcome-to-the-visual-editor.png
-[storyblok-your-connection-isnt-private]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-your-connection-isnt-private.png
-[storyblok-your-connection-isnt-private-advanced]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-your-connection-isnt-private-advanced.png
-[storyblok-not-secure]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658761547/scottspence.com/storyblok-not-secure.png
-[storyblok-set-visual-editor-real-path]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658763198/scottspence.com/storyblok-set-visual-editor-real-path.png
-[storyblok-connect-to-local-host-success]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658763672/scottspence.com/storyblok-connect-to-local-host-success.png
-[storyblok-settings-access-tokens]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658779775/scottspence.com/storyblok-settings-access-tokens.png
-[storyblok-edit-block-schema-menu]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1658865559/scottspence.com/storyblok-edit-block-schema-menu.png
-[storyblok-edit-block-schema-add-field]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/v1658865559/scottspence.com/storyblok-edit-block-schema-add-field.png
-[storyblok-edit-block-schema-field-added]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/v1658865559/scottspence.com/storyblok-edit-block-schema-field-added.png
-[storyblok-edit-block-schema-edit-field]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/v1658866411/scottspence.com/storyblok-edit-block-schema-edit-field.png
+[https://www.storyblok.com/tp/add-a-headless-cms-to-svelte-in-5-minutes](https://www.storyblok.com/tp/add-a-headless-cms-to-svelte-in-5-minutes)
+[https://github.com/josefineschaefer/Storyblok-SvelteKit](https://github.com/josefineschaefer/Storyblok-SvelteKit)
+[https://github.com/storyblok/storyblok-svelte](https://github.com/storyblok/storyblok-svelte)
+[https://www.storyblok.com/docs/Guides/nestable-blocks](https://www.storyblok.com/docs/Guides/nestable-blocks)
+[https://www.storyblok.com/docs/Guides/root-blocks](https://www.storyblok.com/docs/Guides/root-blocks)

@@ -6,17 +6,17 @@ tags: ['claude', 'claude-code', 'guide', 'notes']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Banner, Details } from '#lib/components/index.js'
 
   const toolkit_banner = {
-    type: 'announcement',
+    type: 'announcement' as const,
     message: `The forced-eval hook is now part of <a href="https://github.com/spences10/claude-code-toolkit" target="_blank">claude-code-toolkit</a> - a plugin marketplace with performance optimisations, MCP server guides, and usage analytics. In Claude Code run:<br><code>/plugin marketplace add spences10/claude-code-toolkit</code><br>then<br><code>/plugin install toolkit-skills</code>`,
     track_event: 'skills activation post - toolkit banner',
   }
 
   const svelte_banner = {
-    type: 'info',
+    type: 'info' as const,
     message: `These skills are now available as a plugin: <a href="https://github.com/spences10/svelte-skills-kit" target="_blank">svelte-skills-kit</a>. Pair with <a href="https://github.com/spences10/claude-code-toolkit" target="_blank">claude-code-toolkit</a> for the forced-eval hook! In Claude Code run: <code>/plugin marketplace add spences10/svelte-skills-kit</code> then <code>/plugin install svelte-skills</code>`,
     track_event: 'skills activation post - svelte skills banner',
   }
@@ -35,7 +35,7 @@ building a testing framework and ran 200+ tests across different
 prompt types to figure out what actually makes Claude activate skills
 reliably.
 
-I found two approaches that hit **80-84% success** vs the 50% coin
+I found two approaches that hit *80-84% success* vs the 50% coin
 flip. Not perfect, but way better than nothing! 😅
 
 ## The problem
@@ -71,15 +71,15 @@ repo if you want to poke around.
 I created four Claude Code skills for SvelteKit development, each
 covering a specific domain:
 
-1. **svelte5-runes** - Guidance on Svelte 5's runes system (`$state`,
+1. *svelte5-runes* - Guidance on Svelte 5's runes system (`$state`,
    `$derived`, `$effect`, `$props`, `$bindable`) and migration from
    Svelte 4
-2. **sveltekit-data-flow** - Data loading patterns, form actions,
+2. *sveltekit-data-flow* - Data loading patterns, form actions,
    server vs universal load functions, `fail()`, `redirect()`, and
    serialization rules
-3. **sveltekit-structure** - File-based routing, layouts, error
+3. *sveltekit-structure* - File-based routing, layouts, error
    boundaries, SSR/hydration, and file naming conventions
-4. **sveltekit-remote-functions** - Remote function patterns with
+4. *sveltekit-remote-functions* - Remote function patterns with
    `query()` and `command()` for type-safe server calls
 
 Each skill has a description that Claude _should_ use to autonomously
@@ -98,21 +98,21 @@ matching.
 To measure activation rates, I tested five prompts covering common
 SvelteKit tasks, running each through Haiku 4.5 ten times:
 
-1. **Form/Route Creation** - "Create a new route at /posts/new with a
+1. *Form/Route Creation* - "Create a new route at /posts/new with a
    form to create a blog post. On successful submission, redirect to
    /posts. Show validation errors if title is empty."
    - _Should activate_: `sveltekit-structure`, `sveltekit-data-flow`,
      `svelte5-runes`
-2. **Data Loading** - "Create a /products page that loads product data
+2. *Data Loading* - "Create a /products page that loads product data
    from a database in the load function. Display products in a list."
    - _Should activate_: `sveltekit-data-flow`
-3. **Server Actions** - "Add a +page.server.ts file to handle form
+3. *Server Actions* - "Add a +page.server.ts file to handle form
    submission for a contact form. Validate email and message fields."
    - _Should activate_: `sveltekit-data-flow`, `sveltekit-structure`
-4. **Remote Functions** - "Create a query() remote function to fetch
+4. *Remote Functions* - "Create a query() remote function to fetch
    user profile data and a command() to update preferences."
    - _Should activate_: `sveltekit-remote-functions`
-5. **Svelte 5 Runes** - "Create a counter component using Svelte 5
+5. *Svelte 5 Runes* - "Create a counter component using Svelte 5
    runes with $state for count and $derived for doubled value."
    - _Should activate_: `svelte5-runes`
 
@@ -125,13 +125,13 @@ completely fell apart.
 
 I tested four different approaches:
 
-1. **No hook** - Baseline, no intervention
-2. **Simple instruction** - The original "coin flip" approach
-3. **Forced eval** - Make Claude explicitly evaluate each skill before
+1. *No hook* - Baseline, no intervention
+2. *Simple instruction* - The original "coin flip" approach
+3. *Forced eval* - Make Claude explicitly evaluate each skill before
    proceeding
-4. **LLM eval** - Use Claude API to pre-evaluate which skills match
+4. *LLM eval* - Use Claude API to pre-evaluate which skills match
 
-**Update, 13 September 2026:** The results below came from synthetic
+*Update, 13 September 2026:* The results below came from synthetic
 API calls. I later ran
 [follow-up tests against the actual Claude Code binary](/posts/measuring-claude-code-skill-activation-with-sandboxed-evals)
 in isolated sandboxes. The setup and results differ, so read those
@@ -144,34 +144,34 @@ runs each prompt):
 
 ## Complete results across all hooks
 
-| Prompt Type         | Simple  | LLM-Eval | Forced  | Best       |
-| ------------------- | ------- | -------- | ------- | ---------- |
-| Form/Route Creation | 0%      | 0%       | 80%     | Forced     |
-| Data Loading        | 0%      | 100%     | 100%    | LLM/Forced |
-| Server Actions      | 10%     | 100%     | 40%     | LLM-Eval   |
-| Remote Functions    | 90%     | 100%     | 100%    | LLM/Forced |
-| Svelte 5 Runes      | 100%    | 100%     | 100%    | All tied   |
-| **Overall**         | **20%** | **80%**  | **84%** | **Forced** |
+| Prompt Type | Simple | LLM-Eval | Forced | Best |
+| --- | --- | --- | --- | --- |
+| Form/Route Creation | 0% | 0% | 80% | Forced |
+| Data Loading | 0% | 100% | 100% | LLM/Forced |
+| Server Actions | 10% | 100% | 40% | LLM-Eval |
+| Remote Functions | 90% | 100% | 100% | LLM/Forced |
+| Svelte 5 Runes | 100% | 100% | 100% | All tied |
+| *Overall* | *20%* | *80%* | *84%* | *Forced* |
 
 ## Cost and performance comparison
 
-All tests run with **Claude Haiku 4.5** ($1/MTok input, $5/MTok
+All tests run with *Claude Haiku 4.5* ($1/MTok input, $5/MTok
 output):
 
-| Hook Type | Pass Rate   | Total Cost | Cost/Test | Avg Time | Verdict           |
-| --------- | ----------- | ---------- | --------- | -------- | ----------------- |
-| Forced    | 84% (42/50) | $0.3367    | $0.0067   | 7.2s     | Most consistent   |
-| LLM-Eval  | 80% (40/50) | $0.3030    | $0.0061   | 6.0s     | Best cost/speed   |
-| Simple    | 20% (10/50) | $0.2908    | $0.0058   | 6.7s     | ❌ Too unreliable |
+| Hook Type | Pass Rate | Total Cost | Cost/Test | Avg Time | Verdict |
+| --- | --- | --- | --- | --- | --- |
+| Forced | 84% (42/50) | $0.3367 | $0.0067 | 7.2s | Most consistent |
+| LLM-Eval | 80% (40/50) | $0.3030 | $0.0061 | 6.0s | Best cost/speed |
+| Simple | 20% (10/50) | $0.2908 | $0.0058 | 6.7s | ❌ Too unreliable |
 
-**Key findings**:
+*Key findings*:
 
 - Simple hook completely fails at multi-skill tasks (Form/Route: 0%,
   Data Loading: 0%)
 - Forced hook never completely failed a category (most consistent)
 - LLM eval is cheaper/faster but can completely miss certain prompts
 
-Both forced and LLM eval are **massively better** than the 20% simple
+Both forced and LLM eval are *massively better* than the 20% simple
 hook baseline.
 
 ## The winner (sort of): forced eval hook
@@ -219,9 +219,9 @@ EOF
 ## Why this works
 
 The difference between the simple hook and the forced eval hook is the
-**commitment mechanism**.
+*commitment mechanism*.
 
-**Simple instruction** (20-40% success):
+*Simple instruction* (20-40% success):
 
 ```bash
 echo 'INSTRUCTION: If the prompt matches any available skill keywords,
@@ -232,7 +232,7 @@ This is a passive suggestion. Claude sees it, acknowledges it
 mentally, then completely ignores it and barrels ahead with
 implementation. It's background noise.
 
-**Forced eval** (84% success):
+*Forced eval* (84% success):
 
 ```bash
 Step 1 - EVALUATE: For each skill, state YES/NO with reason
@@ -244,9 +244,9 @@ CRITICAL: The evaluation is WORTHLESS unless you ACTIVATE the skills.
 
 This creates a three-step process where Claude has to:
 
-1. **Show its work** - Explicitly evaluate each skill
-2. **Make a commitment** - State YES/NO for each
-3. **Follow through** - Can't skip to implementation without
+1. *Show its work* - Explicitly evaluate each skill
+2. *Make a commitment* - State YES/NO for each
+3. *Follow through* - Can't skip to implementation without
    activating
 
 The aggressive language helps too. Words like "MANDATORY",
@@ -258,7 +258,7 @@ contract before they can proceed. Once Claude writes "YES - need
 reactive state" in its response, it's committed to activating that
 skill.
 
-**The caveat**: It's not perfect (84%), and it uses more tokens than
+*The caveat*: It's not perfect (84%), and it uses more tokens than
 the simple hook since the prompt is larger. But 84% vs 20%? I'll take
 that trade-off.
 
@@ -304,14 +304,14 @@ RESPONSE=$(curl -s https://api.anthropic.com/v1/messages \
 
 This costs about $0.0004 per prompt (0.04 cents) using Haiku 4.5.
 
-**The good**:
+*The good*:
 
 - 10% cheaper per prompt ($0.0606 vs $0.0673)
 - 17% faster (5.0s vs 5.4s latency)
 - Hit 100% on Server Actions (vs 40% for forced eval)
 - Sometimes adds "smart" related skills the forced hook misses
 
-**The bad**:
+*The bad*:
 
 - Completely failed on Form/Route Creation (0/10) - missed
   svelte5-runes every time
@@ -357,14 +357,14 @@ hook.
 
 ## Which hook should you use?
 
-**Use forced eval if**:
+*Use forced eval if*:
 
 - You want the most consistent activation (84%)
 - You don't mind verbose output (Claude lists all skills before
   working)
 - You want a pure client-side solution (no API calls)
 
-**Use LLM eval if**:
+*Use LLM eval if*:
 
 - You want cheaper/faster responses (10% cost, 17% speed improvement)
 - Your prompts are straightforward (single skill scenarios)
@@ -372,7 +372,7 @@ hook.
   Form/Route)
 - You have an Anthropic API key set up
 
-**Use simple instruction if**:
+*Use simple instruction if*:
 
 - You like disappointment and coin flips 😅
 
@@ -386,7 +386,7 @@ between projects, here's how I
 
 <Banner options={toolkit_banner} />
 
-**If you're using the claude-skills-cli**: Both hooks are available.
+*If you're using the claude-skills-cli*: Both hooks are available.
 Generate them with:
 
 ```bash
@@ -429,12 +429,12 @@ coin flip.
 After testing 200+ prompts across multiple configurations, I found two
 approaches that actually work:
 
-- **Forced eval hook**: 84% success, more consistent, no external
+- *Forced eval hook*: 84% success, more consistent, no external
   dependencies
-- **LLM eval hook**: 80% success, 10% cheaper/faster, but can fail
+- *LLM eval hook*: 80% success, 10% cheaper/faster, but can fail
   spectacularly
 
-Both are **massively better** than the 20% baseline. Neither is
+Both are *massively better* than the 20% baseline. Neither is
 perfect.
 
 The forced eval hook works by creating a commitment mechanism - Claude

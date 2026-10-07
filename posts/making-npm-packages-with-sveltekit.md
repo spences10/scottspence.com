@@ -11,7 +11,7 @@ maintaining them in several places.
 
 Here I'm going to go through the process I followed to develop the
 package locally then publish it to npm. So first I should tell you
-about the project. I recently published [SvelteKit Embed] on npm and
+about the project. I recently published [SvelteKit Embed](https://github.com/spences10/sveltekit-embed) on npm and
 it's a package of components to embed 3rd party media like YouTube
 videos, Tweets and some other embeds into a Svelte project.
 
@@ -96,7 +96,3 @@ git push --tags
 
 I was able to take all the components I used in several projects and
 create an npm package with them for reuse in many projects.
-
-<!-- Links -->
-
-[sveltekit embed]: https://github.com/spences10/sveltekit-embed

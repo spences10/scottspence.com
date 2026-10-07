@@ -25,7 +25,7 @@ writing this:
 Sorry, anyways! Onwards!!
 
 As a developer, a developer of web, and someone that writes a lot in
-my [digital garden] I use Markdown on a daily basis, but what is
+my [digital garden](https://scottspence.com/garden) I use Markdown on a daily basis, but what is
 Markdown?
 
 ## Introduction: What's Markdown then?
@@ -47,9 +47,9 @@ form of Markdown!
 <!-- cSpell:ignore gruber -->
 
 If you're interested you can take a look at the original spec from
-John Gruber posted in [December 2004 on Daring Fireball]
+John Gruber posted in [December 2004 on Daring Fireball](https://daringfireball.net/projects/markdown/)
 
-I'll be focusing on GitHub Flavoured Markdown Specification ([GFM]) in
+I'll be focusing on GitHub Flavoured Markdown Specification ([GFM](https://github.github.com/gfm/)) in
 this guide.
 
 Like I mentioned earlier Markdown is converted into valid HTML and if
@@ -78,7 +78,7 @@ There are many places to use Markdown as I mentioned earlier, for the
 examples here I'll be using the interactive component, if you want to
 follow along I'll be using VS Code and Prettier.
 
-There's also [Markdown Forge] by [Justin Juno] which is a very handy
+There's also [Markdown Forge](https://www.markdownforge.com/about) by [Justin Juno](https://twitter.com/justinjunodev) which is a very handy
 tool for writing Markdown in the browser.
 
 <YouTube youTubeId="vaELw_YJF-M" />
@@ -120,12 +120,12 @@ paragraph you want to add emphasis to.
 <MarkdownParser rows={1} markdownContent={`This is _italic_.`} />
 
 One thing to note in Markdown is that one set of _either_ underscores
-or asterisks will make it _italic_ and two sets of **either**
-underscores or asterisks will make it **bold**, so both `*italic*` and
+or asterisks will make it _italic_ and two sets of *either*
+underscores or asterisks will make it *bold*, so both `*italic*` and
 `_italic_` will do the same thing as will `**bold**` and `__bold__`.
 
 Luckily for me as a Prettier user this that decision taken away from
-me and will format **bold** with asterisks (`**bold**`) and _italic_
+me and will format *bold* with asterisks (`**bold**`) and _italic_
 with underscores (`_italic_`).
 
 ### Strikethrough
@@ -259,6 +259,7 @@ have the ampersand removed and look like this:
 ```
 
 <!-- cSpell:ignore Knctg -->
+
 <YouTube youTubeId="Knctg-2vWRo" />
 
 ## Markdown Images
@@ -311,7 +312,7 @@ using keys and references here:
 
 Markdown lists are the same as with HTML, with unordered and ordered
 lists. Also like with headings, text decorations and bold and italic
-in Markdown there's several ways to make **unordered lists** in
+in Markdown there's several ways to make *unordered lists* in
 Markdown:
 
 ### Unordered list
@@ -471,7 +472,7 @@ that's being used, in this example JS:
 markdownContent={`\`\`\`\js\nconsole.log('hello world!')\n\`\`\`\n`}
 />
 
-GitHub uses [Linguist] to determine the syntax highlighting on issues
+GitHub uses [Linguist](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml) to determine the syntax highlighting on issues
 and READMEs, there's a lot in there!
 
 Code fences don't have to have a language attached to them and a code
@@ -531,8 +532,8 @@ in the table, colon on the left (`| :--- |`), left aligned, colon on
 the right (`| ---: |`), right aligned, colon either side `| :---: |`
 centred, here's an example table:
 
-| col 1       |    col 2    |        col3 |
-| :---------- | :---------: | ----------: |
+| col 1 | col 2 | col3 |
+| :--- | :---: | ---: |
 | col 1 row 1 | col 2 row 1 | col 3 row 1 |
 | col 1 row 2 | col 2 row 2 | col 3 row 2 |
 
@@ -556,24 +557,7 @@ columns aren't formatted to fit it could get a bit tricky to read:
 
 ## Resources
 
-- [The initial Markdown announcement]
-- [Markdown table generator]
-- [Markdown Cheatsheet]
-- [Markdown Forge] by [Justin Juno]
-
-<!-- Links -->
-
-[digital garden]: https://scottspence.com/garden
-[gfm]: https://github.github.com/gfm/
-[markdown table generator]:
-	https://www.tablesgenerator.com/markdown_tables
-[the initial markdown announcement]:
-	https://daringfireball.net/projects/markdown/
-[markdown cheatsheet]:
-	https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
-[markdown forge]: https://www.markdownforge.com/about
-[justin juno]: https://twitter.com/justinjunodev
-[linguist]:
-	https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
-[december 2004 on daring fireball]:
-	https://daringfireball.net/projects/markdown/
+- [The initial Markdown announcement](https://daringfireball.net/projects/markdown/)
+- [Markdown table generator](https://www.tablesgenerator.com/markdown_tables)
+- [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+- [Markdown Forge](https://www.markdownforge.com/about) by [Justin Juno](https://twitter.com/justinjunodev)

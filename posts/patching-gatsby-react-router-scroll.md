@@ -8,19 +8,19 @@ is_private: false
 This is a very specific issue myself and anyone that uses Gatsby and
 React router for navigating between headers in their Gatsby sites.
 
-The issue has been [documented] several times now and the advice I
-have followed is to add a [resolutions to my `package.json` file].
+The issue has been [documented](https://github.com/gatsbyjs/gatsby/issues/25778) several times now and the advice I
+have followed is to add a [resolutions to my `package.json` file](https://scottspence.com/posts/smooth-scroll-toc-gatsby/#not-scrolling-to-id).
 
 <!-- cSpell:ignore lukekarrys -->
 
 I've found using this approach didn't give very consistent results so
-I decided to use patch package again after seeing a [comment] from
-[lukekarrys] on the GitHub asking others to confirm if his approach
+I decided to use patch package again after seeing a [comment](https://github.com/gatsbyjs/gatsby/issues/25778#issuecomment-696950384) from
+[lukekarrys](https://github.com/lukekarrys) on the GitHub asking others to confirm if his approach
 (using patch package) worked.
 
 ## Fix broken node modules, instantly
 
-I've documented this [in the past] and I think this is a great way to
+I've documented this [in the past](https://scottspence.com/posts/patching-packages/) and I think this is a great way to
 fix the issue yourself until the package maintainer gets round to
 fixing it for everyone else.
 
@@ -38,7 +38,7 @@ and `postinstall-postinstall` as development dependencies.
 yarn add -D patch-package postinstall-postinstall
 ```
 
-**FYI:** `postinstall-postinstall` is needed [specifically for yarn].
+*FYI:* `postinstall-postinstall` is needed [specifically for yarn](https://www.npmjs.com/package/patch-package#why-use-postinstall-postinstall-with-yarn).
 
 ## Step 2, remove the resolutions
 
@@ -58,7 +58,7 @@ the latest version of `gatsby-react-router-scroll` ready for patching.
 
 ## Step 3, change the package
 
-Now to change the package in line with Luke's [comment], the file I
+Now to change the package in line with Luke's [comment](https://github.com/gatsbyjs/gatsby/issues/25778#issuecomment-696950384), the file I
 need to change is located my `node_modules` folder here:
 
 ```text
@@ -121,7 +121,7 @@ changes in the `.patch` file will be applied to the
 
 ## Watch me do it on Twitch
 
-Here's a [live stream] of me applying the changes with bonus happy
+Here's a [live stream](https://www.twitch.tv/videos/777497800?t=00h29m52s) of me applying the changes with bonus happy
 dance!
 
 ## Done!
@@ -137,20 +137,5 @@ If someone clones the project then their instance of the
 `gatsby-react-router-scroll` package will be patched with the changes
 I have made.
 
-Please remember to [subscribe] if you haven't done so already so you
-can get updates when I [go live] and release new content.
-
-<!-- Links -->
-
-[documented]: https://github.com/gatsbyjs/gatsby/issues/25778
-[resolutions to my `package.json` file]:
-	https://scottspence.com/posts/smooth-scroll-toc-gatsby/#not-scrolling-to-id
-[comment]:
-	https://github.com/gatsbyjs/gatsby/issues/25778#issuecomment-696950384
-[lukekarrys]: https://github.com/lukekarrys
-[in the past]: https://scottspence.com/posts/patching-packages/
-[specifically for yarn]:
-	https://www.npmjs.com/package/patch-package#why-use-postinstall-postinstall-with-yarn
-[live stream]: https://www.twitch.tv/videos/777497800?t=00h29m52s
-[subscribe]: https://ss10.dev/yt?sub_confirmation=1
-[go live]: https://ss10.dev/twitch
+Please remember to [subscribe](https://ss10.dev/yt?sub_confirmation=1) if you haven't done so already so you
+can get updates when I [go live](https://ss10.dev/twitch) and release new content.

@@ -12,9 +12,9 @@ in previous posts on setting up a project to use Fathom Analytics. If
 you want the implementation details for SvelteKit v1 and Svelte 4,
 check out the posts.
 
-You can see the demo site over at: https://ideal-memory.com
+You can see the demo site over at: [https://ideal-memory.com](https://ideal-memory.com)
 
-The code is here: https://github.com/spences10/sveltekit-and-fathom
+The code is here: [https://github.com/spences10/sveltekit-and-fathom](https://github.com/spences10/sveltekit-and-fathom)
 
 For specifics on using the Fathom API I suggest taking a look a the
 previous posts:

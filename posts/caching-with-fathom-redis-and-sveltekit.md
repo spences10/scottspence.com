@@ -11,8 +11,8 @@ is_private: false
 </script>
 
 I had a bit of a surprise land in my inbox at the start of the month
-from my analytics provider Fathom, the subject line **"You've been
-quite popular"**.
+from my analytics provider Fathom, the subject line *"You've been
+quite popular"*.
 
 Not the good type of surprise though! 😅
 
@@ -23,7 +23,7 @@ This also includes API calls I'd hit over 500,000.
 
 So I go into full panic mode and remove all of the calls to the the
 Fathom API which I documented in the [Adding real-time analytics to my
-SvelteKit site with Fathom] post at the end of Feb.
+SvelteKit site with Fathom](https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom) post at the end of Feb.
 
 I reached out to the Fathom support team and they were awesome and I
 didn't need to move up to the $540 annual plan. I did offer to pay the
@@ -36,21 +36,21 @@ Preamble over, let's get into the caching.
 ## Scene setting
 
 This example is a enhancement to the already existing
-[sveltekit-and-fathom] project over on GitHub you can check out the
+[sveltekit-and-fathom](https://github.com/spences10/sveltekit-and-fathom) project over on GitHub you can check out the
 code over there.
 
 The project gets live visitors and page analytics from the Fathom
 Analytics API, they're in two endpoints on the project
 `/current-visitors.json` and `/analytics.json`.
 
-All the changes for this post are in the [PR] and I'll be going over
+All the changes for this post are in the [PR](https://github.com/spences10/sveltekit-and-fathom/pull/168) and I'll be going over
 the changes in this post.
 
 For more information on the project for using Fathom and SvelteKit
 check out the following:
 
-- [Fathom Analytics with SvelteKit]
-- [Adding real-time analytics to my SvelteKit site with Fathom]
+- [Fathom Analytics with SvelteKit](https://scottspence.com/posts/fathom-analytics-with-svelte)
+- [Adding real-time analytics to my SvelteKit site with Fathom](https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom)
 
 So, this is taking into account the previous posts listed above.
 
@@ -64,9 +64,9 @@ then this will be useful for you as well.
 
 ## Thanks!
 
-First up, before we get into the details I want to thank [Geoff Rich]
+First up, before we get into the details I want to thank [Geoff Rich](https://geoffrich.net)
 for his post on the Upstash blog for [Building SvelteKit Applications
-with Serverless Redis] Geoff is a great blogger who's site a get a lot
+with Serverless Redis](https://upstash.com/blog/svelte-with-serverless-redis) Geoff is a great blogger who's site a get a lot
 of value out from.
 
 If you haven't checked out his site then I highly recommend you do so!
@@ -137,7 +137,7 @@ export const GET: RequestHandler = async () => {
 ```
 
 To start caching the `visitors` data I'll need to add a Redis client
-to the project. I'm using [ioredis] as this is the one used in Geoff's
+to the project. I'm using [ioredis](https://github.com/luin/ioredis) as this is the one used in Geoff's
 guide! 😅
 
 ```bash
@@ -530,19 +530,3 @@ minimizing the impact of API calls in your projects.
 
 I'm hoping this guide will give you an idea on how to implement
 caching in your own SvelteKit projects.
-
-<!-- Links -->
-
-[sveltekit-and-fathom]:
-	https://github.com/spences10/sveltekit-and-fathom
-[adding real-time analytics to my sveltekit site with fathom]:
-	https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom
-[fathom analytics with sveltekit]:
-	https://scottspence.com/posts/fathom-analytics-with-svelte
-[adding real-time analytics to my sveltekit site with fathom]:
-	https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom
-[pr]: https://github.com/spences10/sveltekit-and-fathom/pull/168
-[building sveltekit applications with serverless redis]:
-	https://upstash.com/blog/svelte-with-serverless-redis
-[geoff rich]: https://geoffrich.net
-[ioredis]: https://github.com/luin/ioredis

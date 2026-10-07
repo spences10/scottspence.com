@@ -9,10 +9,10 @@ is_private: false
   import { Tweet } from 'sveltekit-embed'
 </script>
 
-Ever since I first saw [Sara Vieira's slides] form Vue London 2018
+Ever since I first saw [Sara Vieira's slides](https://vue-apollo-magic.now.sh/#0) form Vue London 2018
 I've really liked the idea of writing a presentation in MDX.
 
-Sara used something [called MDX Deck] and it's pretty dope! You write
+Sara used something [called MDX Deck](https://github.com/SaraVieira/vue-graphql-love) and it's pretty dope! You write
 your slides in Markdown and sprinkle in other nice bits around what
 you're saying in the slide, you know like most presentations. I made a
 couple of presentations using MDX Deck.
@@ -39,17 +39,17 @@ listed:
 
 - MDX Deck
 - Gatsby Theme MDX Deck
-- [Next MDX Deck]
-- [Fusuma]
-- [MDXP]
-- Untested by me but I did find [MDX Vue Deck]
+- [Next MDX Deck](https://github.com/whoisryosuke/next-mdx-deck)
+- [Fusuma](https://hiroppy.github.io/fusuma/)
+- [MDXP](https://0phoff.github.io/MDXP)
+- Untested by me but I did find [MDX Vue Deck](https://github.com/godkinmo/mdx-vue-deck)
 
 The first two are the same really with using Gatsby shadowing (theme)
 for MDX Deck in Gatsby Theme MDX Deck.
 
 For a _really_ good example of using MDX Deck as a theme inside of a
-Gatsby project check out [Sam Larsen-Disney]'s site, [sld.codes] and
-the [presentations] pages inside there. Each presentation is it's own
+Gatsby project check out [Sam Larsen-Disney](https://twitter.com/SamLarsenDisney)'s site, [sld.codes](https://sld.codes/) and
+the [presentations](https://sld.codes/presentations) pages inside there. Each presentation is it's own
 MDX Deck slide deck. 🤯
 
 ## The OG!
@@ -61,12 +61,12 @@ which my presentations relied on _a lot_.
 
 I used MDX Deck happily for a couple of presentations but it always
 irked me that certain support was missing causing a lot of people to
-wonder if it was [still supported].
+wonder if it was [still supported](https://github.com/jxnblk/mdx-deck/issues/765).
 
 We get it, Jackson's a busy guy and OSS is, well OSS. So after I was
-lined up to do talk about [Spreading the jamstack] at [Scale By the
-Bay] I opted for something with a touch more features to use, this is
-when I discovered Next MDX Deck when [Monica Powell] did a talk at MDX
+lined up to do talk about [Spreading the jamstack](https://www.youtube.com/watch?v=L7_z8rcbFPg) at [Scale By the
+Bay](https://www.scale.bythebay.io/) I opted for something with a touch more features to use, this is
+when I discovered Next MDX Deck when [Monica Powell](https://github.com/M0nica/migrating-to-mdx) did a talk at MDX
 conf.
 
 ## Next MDX Deck
@@ -75,10 +75,10 @@ Next MDX Deck had the `MDXProvider` exposed which means that I could
 fold in components at a high level rather than have to import them on
 the slide level.
 
-This means that I can use [MDX Embed] and throw in Tweets, CodePens
+This means that I can use [MDX Embed](https://www.mdx-embed.com/) and throw in Tweets, CodePens
 and YouTube videos to my hearts content.
 
-In the process of me doing the slides I need to do for [Tuesday] I
+In the process of me doing the slides I need to do for [Tuesday](https://www.linkedin.com/events/mmttechmeetup-gatsbyjs-feb20216762857247988031488/) I
 found I'm not the only one that procrastinates a touch when it comes
 to making slides for a presentation.
 
@@ -86,7 +86,7 @@ No doubt Sarah's presentation is going to be 🔥
 
 <Tweet tweetLink="sarah_edo/status/1357708732847644678" />
 
-So whilst I was looking at doing my slides for the [MMT Tech Meetup] I
+So whilst I was looking at doing my slides for the [MMT Tech Meetup](https://www.linkedin.com/events/mmttechmeetup-gatsbyjs-feb20216762857247988031488/) I
 decided _not_ to go with Next MDX Deck and went about trying to find
 an alternative. See other solutions mentioned earlier on. 👍
 
@@ -101,13 +101,13 @@ use-cases however:
 
 1. Speaker mode, the ability to present on one screen and have your
    notes on another.
-1. The option to add images in any format, `.SVG`, `.png`, the rest.
-1. Web publishing, people after the presentation can view them
+2. The option to add images in any format, `.SVG`, `.png`, the rest.
+3. Web publishing, people after the presentation can view them
    retrospectively.
-1. Ability to add custom components and images, a nice sprinkling of
+4. Ability to add custom components and images, a nice sprinkling of
    Tweets and embeds are the life blood of what can otherwise be quite
    a dry presentation. 😂
-1. Slide customisation, individual slide colours, effects, etc.
+5. Slide customisation, individual slide colours, effects, etc.
 
 ## FUSUMA
 
@@ -207,32 +207,8 @@ lacking in the alternatives.
 So, for now, I'm all in with MDXP and I'll be looking to use it more
 in the future.
 
-If you're interested then take a look at the [example MDXP slides] for
+If you're interested then take a look at the [example MDXP slides](https://0phoff.github.io/MDXP/examples/demo/#/normal/1/1) for
 an idea of what it's capable of doing.
 
-There's also the [documentation] which does a great job of explaining
+There's also the [documentation](https://0phoff.github.io/MDXP/) which does a great job of explaining
 all the available components and concepts.
-
-<!-- Links -->
-
-[next mdx deck]: https://github.com/whoisryosuke/next-mdx-deck
-[fusuma]: https://hiroppy.github.io/fusuma/
-[mdx vue deck]: https://github.com/godkinmo/mdx-vue-deck
-[mdxp]: https://0phoff.github.io/MDXP
-[still supported]: https://github.com/jxnblk/mdx-deck/issues/765
-[spreading the jamstack]: https://www.youtube.com/watch?v=L7_z8rcbFPg
-[scale by the bay]: https://www.scale.bythebay.io/
-[monica powell]: https://github.com/M0nica/migrating-to-mdx
-[sam larsen-disney]: https://twitter.com/SamLarsenDisney
-[sld.codes]: https://sld.codes/
-[presentations]: https://sld.codes/presentations
-[mdx embed]: https://www.mdx-embed.com/
-[tuesday]:
-	https://www.linkedin.com/events/mmttechmeetup-gatsbyjs-feb20216762857247988031488/
-[mmt tech meetup]:
-	https://www.linkedin.com/events/mmttechmeetup-gatsbyjs-feb20216762857247988031488/
-[sara vieira's slides]: https://vue-apollo-magic.now.sh/#0
-[called mdx deck]: https://github.com/SaraVieira/vue-graphql-love
-[example mdxp slides]:
-	https://0phoff.github.io/MDXP/examples/demo/#/normal/1/1
-[documentation]: https://0phoff.github.io/MDXP/

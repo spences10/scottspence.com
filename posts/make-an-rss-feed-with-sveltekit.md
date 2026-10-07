@@ -11,24 +11,24 @@ consume other content. One way to help consumers of your site know
 that there is new content available is by making your content
 available via an RSS feed.
 
-I made an RSS feed for my [blog] using SvelteKit routes. I did this
+I made an RSS feed for my [blog](https://scottspence.com/posts) using SvelteKit routes. I did this
 much like the [Sitemap Generation for Dynamic Routes In NextJS with
-the Sanity Client] post I did back in February.
+the Sanity Client](https://scottspence.com/posts/dynamic-sitemap-generation-with-nextjs-and-sanity) post I did back in February.
 
 ## RSS on `scottspence.com`
 
 As I mentioned already as my blog is a SvelteKit project I can use the
-SvelteKit [routing endpoints] to define the data type I want returned
+SvelteKit [routing endpoints](https://kit.svelte.dev/docs#routing-endpoints) to define the data type I want returned
 from that endpoint.
 
 RSS feeds are expected in XML format and I want my endpoint to be
-[`https://scottspence.com/rss.xml`] so I've defined a file in my
+[`https://scottspence.com/rss.xml`](https://scottspence.com/rss.xml) so I've defined a file in my
 routes folder called `rss.xml.js` this is located in the routes folder
 of the project, so the full path would be `src/routes/rss.xml.js`.
 
 ## RSS route
 
-For this guide I'll using the great [template from Matt Jennings]
+For this guide I'll using the great [template from Matt Jennings](https://github.com/mattjennings/sveltekit-blog-template)
 (which this blog is based off of) as an example of how to do it.
 
 I'm using the template as it's the most basic example to use and there
@@ -87,7 +87,7 @@ Now if I go to `localhost:3000/rss.xml` I get a 404.
 
 In the `rss.xml.js` file I'll create a `get()` function which will
 need to return the RSS XML and the headers for the endpoint, the XML
-is inside [template literals] so I can add in the dynamic data I want
+is inside [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) so I can add in the dynamic data I want
 to return later in this post:
 
 ```js
@@ -103,9 +103,9 @@ export async function get() {
 }
 ```
 
-In the `headers` I'm setting the [expiration] to an hour with
+In the `headers` I'm setting the [expiration](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#expiration) to an hour with
 `s-maxage` and for the `body` adding in the XML heading. You can check
-out the [W3C Feed Validation Service] for more detail on what's needed
+out the [W3C Feed Validation Service](https://validator.w3.org/feed/docs/rss2.html) for more detail on what's needed
 here.
 
 Now if I go check `localhost:3000/rss.xml` I get the beginning of my
@@ -273,19 +273,3 @@ feed that can be used to syndicate to other sites and RSS readers.
 Although this is a very specific example I hope it's helped you
 understand how you could do something similar with your own SvelteKit
 project.
-
-<!-- Links -->
-
-[blog]: https://scottspence.com/posts
-[sitemap generation for dynamic routes in nextjs with the sanity client]:
-	https://scottspence.com/posts/dynamic-sitemap-generation-with-nextjs-and-sanity
-[routing endpoints]: https://kit.svelte.dev/docs#routing-endpoints
-[`https://scottspence.com/rss.xml`]: https://scottspence.com/rss.xml
-[template from matt jennings]:
-	https://github.com/mattjennings/sveltekit-blog-template
-[expiration]:
-	https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#expiration
-[w3c feed validation service]:
-	https://validator.w3.org/feed/docs/rss2.html
-[template literals]:
-	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals

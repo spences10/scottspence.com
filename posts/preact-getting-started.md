@@ -43,7 +43,7 @@ link `<link rel="stylesheet" href="./assets/fonts/fonts.css" />`
 As I only have the `.ttf` font file that is all that I have imported.
 
 If you're using multiple font files then take a look at the [CSS
-Tricks post] on it.
+Tricks post](https://css-tricks.com/snippets/css/using-font-face/) on it.
 
 ```html
 <!DOCTYPE html>
@@ -91,8 +91,3 @@ This can also do this with Google fonts, something like this:
 	</body>
 </html>
 ```
-
-<!-- Links -->
-
-[css tricks post]:
-	https://css-tricks.com/snippets/css/using-font-face/

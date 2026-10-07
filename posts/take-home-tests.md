@@ -9,9 +9,9 @@ is_private: true
   import { Tweet } from 'sveltekit-embed'
 </script>
 
-I've written about this [in the past] and more recently how I've
+I've written about this [in the past](https://scottspence.com/posts/job-hunting/) and more recently how I've
 turned what can seem like a massive drain on your resources it [into a
-dev project].
+dev project](https://scottspence.com/posts/job-hunt-dev-project/).
 
 These are my opinions but ones that I know are shared by the rest of
 the tech community as a whole.
@@ -68,25 +68,25 @@ Slight exaggeration I'm sure but I see this a lot from employers
 ## Do the groundwork
 
 1. Make a shortlist.
-1. Validate the candidates credentials. They should have a presence on
+2. Validate the candidates credentials. They should have a presence on
    at least one of GitHub, GitLab and Bitbucket.
-1. Do they have a blog or write on any other platform dev.to, Hashnode
+3. Do they have a blog or write on any other platform dev.to, Hashnode
    or Medium.
-1. Reach out to them
+4. Reach out to them
 
 ## Good links from LinkedIn
 
-- https://www.linkedin.com/posts/javascriptjamie_javascript-technicaltests-ugcPost-6689487936972492800-UXx6
-- https://www.linkedin.com/pulse/youre-fired-how-go-recruiting-tech-roles-salim-badakhchani/?trackingId=9HPuf433QMid%2B8v1Et47PA%3D%3D
-- https://news.ncsu.edu/2020/07/tech-job-interviews-anxiety
+- [https://www.linkedin.com/posts/javascriptjamie\_javascript-technicaltests-ugcPost-6689487936972492800-UXx6](https://www.linkedin.com/posts/javascriptjamie_javascript-technicaltests-ugcPost-6689487936972492800-UXx6)
+- [https://www.linkedin.com/pulse/youre-fired-how-go-recruiting-tech-roles-salim-badakhchani/?trackingId=9HPuf433QMid%2B8v1Et47PA%3D%3D](https://www.linkedin.com/pulse/youre-fired-how-go-recruiting-tech-roles-salim-badakhchani/?trackingId=9HPuf433QMid%2B8v1Et47PA%3D%3D)
+- [https://news.ncsu.edu/2020/07/tech-job-interviews-anxiety](https://news.ncsu.edu/2020/07/tech-job-interviews-anxiety)
 
 ## Resources
 
-- https://uxdesign.cc/assessing-your-product-design-skills-e5fa269de050
+- [https://uxdesign.cc/assessing-your-product-design-skills-e5fa269de050](https://uxdesign.cc/assessing-your-product-design-skills-e5fa269de050)
 
 Opinions on take home tests, I have them, so do other people!
 
-Excerpts from Tweets [1], [2]:
+Excerpts from Tweets [1](https://twitter.com/spences10/status/1286744623742955520), [2](https://twitter.com/spences10/status/1286948087408267264):
 
 I know hiring is hard from both sides. If you ask a candidate to do a
 minimum 5-8 hour technical take home assignment then there shouldn't
@@ -121,14 +121,4 @@ spaces before. It's bonkers, instead of looking for reasons not to
 hire, make the right candidate choices FIRST before investing any
 time.
 
-- Other peoples tweets [3], [4]
-
-<!-- Links -->
-
-[in the past]: https://scottspence.com/posts/job-hunting/
-[into a dev project]:
-	https://scottspence.com/posts/job-hunt-dev-project/
-[1]: https://twitter.com/spences10/status/1286744623742955520
-[2]: https://twitter.com/spences10/status/1286948087408267264
-[3]: https://twitter.com/BekahHW/status/1251918165338198018
-[4]: https://twitter.com/_oshell/status/1251953688207294465
+- Other peoples tweets [3](https://twitter.com/BekahHW/status/1251918165338198018), [4](https://twitter.com/_oshell/status/1251953688207294465)

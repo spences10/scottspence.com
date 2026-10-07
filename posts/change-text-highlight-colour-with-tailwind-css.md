@@ -90,7 +90,7 @@ look like by clicking the button.
 </Details>
 
 I'm mentioning this because I was using my own CSS variables for the
-theme change. It wasn't until I messaged the massively helpful [Pouya]
+theme change. It wasn't until I messaged the massively helpful [Pouya](https://twitter.com/Saadeghi)
 (daisyUI creator) on Twitter that I realised that I could use daisyUI
 CSS variables.
 
@@ -141,7 +141,7 @@ file. Thanks! 🙏
 </Chat>
 
 Pouya mentioned that I can get the daisyUI colours from the [colors
-section] of the daisyUI docs.
+section](https://daisyui.com/docs/colors/) of the daisyUI docs.
 
 So with this information I set about making the `::selection` selector
 in my `app.css` file. The CSS looks like this for it now:
@@ -158,7 +158,7 @@ from 178 to 57 lines of code! 😅
 
 You can take a look at the file here (by clicking the button) with
 some additional CSS removed. Or you can check out the file over on
-[GitHub].
+[GitHub](https://github.com/spences10/scottspence.com/blob/edd5b9cf3b8a26893edb36505e2b66dc73e14923/src/app.css).
 
 <Details button_text="Click to expand">
 
@@ -209,21 +209,10 @@ html {
 
 That's it!
 
-If you want to [Change Browser Scrollbar Colour with Tailwind CSS]
+If you want to [Change Browser Scrollbar Colour with Tailwind CSS](https://scottspence.com/posts/change-scrollbar-color-tailwind-css)
 then check out the post where I go into more detail about that.
 
 Also there's a post on [Gradient animations with Tailwind CSS and
-SvelteKit] that you can check out.
+SvelteKit](https://scottspence.com/posts/gradient-animations-in-tailwindcss) that you can check out.
 
 Hope you find it useful, I know I did! 😊
-
-<!-- Links -->
-
-[pouya]: https://twitter.com/Saadeghi
-[colors section]: https://daisyui.com/docs/colors/
-[github]:
-	https://github.com/spences10/scottspence.com/blob/edd5b9cf3b8a26893edb36505e2b66dc73e14923/src/app.css
-[change browser scrollbar colour with tailwind css]:
-	https://scottspence.com/posts/change-scrollbar-color-tailwind-css
-[gradient animations with tailwind css and sveltekit]:
-	https://scottspence.com/posts/gradient-animations-in-tailwindcss

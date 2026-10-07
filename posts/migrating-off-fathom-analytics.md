@@ -19,16 +19,16 @@ I'm no longer needing to call out to the Fathom API, the ✨ View stats
 for this post ✨ button called out to that for on demand analytics, no
 it's a local db call.
 
-From the get go I'll say that ~40% of my traffic is bots, so, if
+From the get go I'll say that \~40% of my traffic is bots, so, if
 you're a human reading this, hi. 👋
 
 ## Where I started
 
 After the rebuild, I had two analytics systems running in parallel:
 
-- **Fathom** - still calling their API for popular posts and per-post
+- *Fathom* - still calling their API for popular posts and per-post
   stats
-- **Local** - tracking pageviews, but not using the data for much yet
+- *Local* - tracking pageviews, but not using the data for much yet
 
 So, stop calling Fathom's API, use local data instead. Keep the Fathom
 JavaScript tracker for pageview tracking (useful for comparing against
@@ -93,7 +93,7 @@ cache.
 ## Then the numbers looked wrong
 
 I checked "Views today" in the popular posts component. One post was
-showing 10,000+ views. Fathom said ~200.
+showing 10,000+ views. Fathom said \~200.
 
 Right, so either Fathom was massively under-counting or I had a bot
 problem. Time to look at the data.
@@ -104,13 +104,13 @@ I asked Claude to analyse the `analytics_events` table. 109k events
 over 2.5 days:
 
 | Hit range | Visitors | Total views | % of traffic |
-| --------- | -------- | ----------- | ------------ |
-| 1 hit     | 6,679    | 6,679       | 14.5%        |
-| 2-5       | 3,005    | 7,780       | 16.9%        |
-| 6-10      | 340      | 2,541       | 5.5%         |
-| 11-50     | 272      | 6,477       | 14.1%        |
-| 51-100    | 44       | 3,105       | 6.8%         |
-| **100+**  | **47**   | **19,410**  | **42.2%**    |
+| --- | --- | --- | --- |
+| 1 hit | 6,679 | 6,679 | 14.5% |
+| 2-5 | 3,005 | 7,780 | 16.9% |
+| 6-10 | 340 | 2,541 | 5.5% |
+| 11-50 | 272 | 6,477 | 14.1% |
+| 51-100 | 44 | 3,105 | 6.8% |
+| *100+* | *47* | *19,410* | *42.2%* |
 
 47 "visitors" generating 42% of all views. Classic scraper behaviour.
 
@@ -128,13 +128,13 @@ scrapers like AI content.
 
 To set proper thresholds, I needed to know what actual humans do:
 
-| Hits/page | Visitors | % of total | What it means         |
-| --------- | -------- | ---------- | --------------------- |
-| 1-2       | 9,721    | 93.6%      | Normal humans         |
-| 3-5       | 407      | 3.9%       | Engaged readers       |
-| 6-10      | 76       | 0.7%       | Bit suspicious        |
-| 11-20     | 53       | 0.5%       | Very suspicious       |
-| **20+**   | **130**  | **1.3%**   | Almost certainly bots |
+| Hits/page | Visitors | % of total | What it means |
+| --- | --- | --- | --- |
+| 1-2 | 9,721 | 93.6% | Normal humans |
+| 3-5 | 407 | 3.9% | Engaged readers |
+| 6-10 | 76 | 0.7% | Bit suspicious |
+| 11-20 | 53 | 0.5% | Very suspicious |
+| *20+* | *130* | *1.3%* | Almost certainly bots |
 
 93.6% of visitors hit a page 1-2 times. Anyone hitting the same page
 20+ times is almost certainly a bot.
@@ -177,11 +177,11 @@ consistent.
 
 With filtering in place, I compared the numbers:
 
-| Source         | Views  | Visitors | Ratio vs Fathom |
-| -------------- | ------ | -------- | --------------- |
-| Fathom         | ~1,400 | 547      | 1x              |
-| Local raw      | 25,758 | 2,105    | **18x views**   |
-| Local filtered | 3,884  | 2,015    | **2.8x views**  |
+| Source | Views | Visitors | Ratio vs Fathom |
+| --- | --- | --- | --- |
+| Fathom | \~1,400 | 547 | 1x |
+| Local raw | 25,758 | 2,105 | *18x views* |
+| Local filtered | 3,884 | 2,015 | *2.8x views* |
 
 Before filtering: 18x more views than Fathom. After filtering: 2.8x.
 
@@ -242,13 +242,13 @@ So, with the migration done, I had a look at what was actually taking
 up space in the database. Turns out I'd been hoarding data from when I
 was using the Fathom API for reporting. 😅
 
-| Table               | Size   | What it was                 |
-| ------------------- | ------ | --------------------------- |
-| fathom_api_calls    | 80 MB  | API debug logs (229k rows!) |
-| analytics_pages     | 34 MB  | Bulk Fathom data export     |
-| analytics_countries | 15 MB  | Bulk Fathom data export     |
-| analytics_referrers | 8 MB   | Bulk Fathom data export     |
-| popular_posts       | 0.1 MB | Old cron job output         |
+| Table | Size | What it was |
+| --- | --- | --- |
+| fathom\_api\_calls | 80 MB | API debug logs (229k rows!) |
+| analytics\_pages | 34 MB | Bulk Fathom data export |
+| analytics\_countries | 15 MB | Bulk Fathom data export |
+| analytics\_referrers | 8 MB | Bulk Fathom data export |
+| popular\_posts | 0.1 MB | Old cron job output |
 
 The `fathom_api_calls` table was logging every single API call I made
 to Fathom - 229,571 of them going back to November 2023. This started
@@ -273,40 +273,40 @@ DROP TABLE IF EXISTS analytics_referrers;
 VACUUM;
 ```
 
-**Result: 208 MB > 67 MB** (68% reduction). The historical data I
+*Result: 208 MB > 67 MB* (68% reduction). The historical data I
 actually care about - yearly stats going back to 2020 - is still there
 in the rollup tables. Just got rid of the unused Fathom imports.
 
 For future reference, here's what stays and what the retention looks
 like:
 
-| Table             | Retention | Growth       |
-| ----------------- | --------- | ------------ |
-| analytics_events  | 2 days    | Pruned daily |
-| analytics_daily   | Permanent | ~8 MB/year   |
-| analytics_monthly | Permanent | ~130 KB/year |
-| analytics_yearly  | Permanent | ~23 KB/year  |
+| Table | Retention | Growth |
+| --- | --- | --- |
+| analytics\_events | 2 days | Pruned daily |
+| analytics\_daily | Permanent | \~8 MB/year |
+| analytics\_monthly | Permanent | \~130 KB/year |
+| analytics\_yearly | Permanent | \~23 KB/year |
 
 At current rates, the permanent rollup tables will hit maybe 100 MB in
 50 years. I think I'm good.
 
 ## What I learned
 
-**Server-side tracking is more accurate than client-side** for actual
+*Server-side tracking is more accurate than client-side* for actual
 visitor counts. Adblockers don't affect it. The trade-off is you have
 to handle a lot filtering yourself.
 
-**Bots target content about AI**. My MCP and Claude Code posts got
+*Bots target content about AI*. My MCP and Claude Code posts got
 hammered by scrapers. They're probably training datasets.
 
-**Threshold tuning needs real data**. The default thresholds (50 hits
+*Threshold tuning needs real data*. The default thresholds (50 hits
 per path, 200 total) were too generous. Real humans rarely exceed 2
 hits per page.
 
-**CTEs are fine**. I'd been burned by them before, but for filtering a
+*CTEs are fine*. I'd been burned by them before, but for filtering a
 small dataset (today's events only), they work well.
 
-**The numbers will never match exactly**. 2.8x more traffic than
+*The numbers will never match exactly*. 2.8x more traffic than
 Fathom reports isn't a bug - it's the adblocker delta plus different
 filtering approaches. Both are "correct" for what they measure.
 

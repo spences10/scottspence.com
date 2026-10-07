@@ -14,17 +14,17 @@ So what is web monetisation? It's an alternative approach to payments
 that doesn't rely on advertising or stealing your data and selling it
 on.
 
-This time around I've re-enlisted the Brave BAT for [scottspence.com]
-but also started using [Coil], Coil was announced on the Dev.to
-community [back in June] as a way of streaming micropayments to the
+This time around I've re-enlisted the Brave BAT for [scottspence.com](https://scottspence.com)
+but also started using [Coil](https://coil.com), Coil was announced on the Dev.to
+community [back in June](https://dev.to/devteam/dev-is-now-web-monetized-21db) as a way of streaming micropayments to the
 creator of the contents you're consuming.
 
-Coil is a paid service (~£4.17 a month) that allows you to access web
+Coil is a paid service (\~£4.17 a month) that allows you to access web
 monetised content. "So you said there was no paywall yo!?" There isn't
 but there can be, this can be for Coil exclusive content and other
-services like accessing the entire [Cinnamon] video library.
+services like accessing the entire [Cinnamon](https://cinnamon.video/) video library.
 
-There's also [imgur Emerald] and a Twitch Coil Twitch Bot that pays
+There's also [imgur Emerald](https://imgur.com/emerald) and a Twitch Coil Twitch Bot that pays
 the content creator as you watch, this is as long as you (the watcher)
 have a Coil membership and the Coil extension installed on your
 browser.
@@ -34,7 +34,7 @@ browser.
 I'll use the american spelling when referring to a location of a
 setting on a site or the actual `monetization` tag name.
 
-All other times I mention it I'll be using the usual UK [spelling] for
+All other times I mention it I'll be using the usual UK [spelling](https://dictionary.cambridge.org/dictionary/english/monetization) for
 it.
 
 ## What you need
@@ -48,8 +48,8 @@ a few things.
 <!-- cSpell:ignore gatehub -->
 
 You'll need a web monetised wallet that supports web monetisation,
-although there are wallets that support the [Interledger Protocol]
-(ILP) it only appears that [Uphold] and [GateHub] support web
+although there are wallets that support the [Interledger Protocol](https://interledger.org/developer-tools/get-started/set-up)
+(ILP) it only appears that [Uphold](https://uphold.com/) and [GateHub](https://gatehub.net/) support web
 monetisation.
 
 I had a Uphold account since I set up the Brave BAT back in 2018 so
@@ -82,19 +82,19 @@ pointer. My example `meta` tag here:
 ## 4. Add the meta tag to your site
 
 Now I can add the meta tag to my site, I use Gatsby and of course
-"[there's a plugin for that]" but I've gone with adding the tag to the
+"[there's a plugin for that](https://github.com/Daudr/gatsby-plugin-web-monetization)" but I've gone with adding the tag to the
 head of my site with React Helmet.
 
-I have [top level module] that wraps my whole site so I'm going to
+I have [top level module](https://github.com/spences10/last.scottspence.com/blob/production/src/root-wrapper.js#L79) that wraps my whole site so I'm going to
 slot my `monetization`, `meta` tag in there.
 
 ## Brave Rewards
 
 Brave rewards I've amassed a total of 0.95 BAT since I implemented the
 BAT on scottspence.me in 2018, I used the same approach to add the BAT
-for [scottspence.com].
+for [scottspence.com](https://scottspence.com).
 
-To create a BAT I logged in to the [Brave Rewards] admin panel, I
+To create a BAT I logged in to the [Brave Rewards](https://publishers.basicattentiontoken.org) admin panel, I
 don't recall the sign-up process but do know there's not a password
 username system but a magic email link sent to you each time you want
 to use it.
@@ -144,49 +144,15 @@ pointer is different:
 ```
 
 To set up your Dev.to posts to be web monetised you can add your
-payment pointer in the [settings] panel under 'Web Monetization'.
+payment pointer in the [settings](https://dev.to/settings/misc) panel under 'Web Monetization'.
 
 ## Resources
 
-- [DEV is now Web Monetized]
-- [webmonetization.org]
-- [Innovating on Web Monetization: Coil and Firefox Reality]
-- [The State of Web Monetization]
-- [Web Monetization like I'm 5]
+- [DEV is now Web Monetized](https://dev.to/devteam/dev-is-now-web-monetized-21db)
+- [webmonetization.org](https://webmonetization.org/)
+- [Innovating on Web Monetization: Coil and Firefox Reality](https://hacks.mozilla.org/2020/03/web-monetization-coil-and-firefox-reality/)
+- [The State of Web Monetization](https://coil.com/p/kenmelendez/The-State-of-Web-Monetization/KTVijO7ah)
+- [Web Monetization like I'm 5](https://dev.to/hacksultan/web-monetization-like-i-m-5-1418)
 - [You can now web-monetize your DEV posts! (But don't get your hopes
-  up too quickly)]
-- [Brave Rewards: Earn more for content you publish to the web]
-
-<!-- Links -->
-
-[coil]: https://coil.com
-[cinnamon]: https://cinnamon.video/
-[imgur emerald]: https://imgur.com/emerald
-[webmonetization.org]: https://webmonetization.org/
-[quick start]: https://webmonetization.org/docs/getting-started
-[back in june]: https://dev.to/devteam/dev-is-now-web-monetized-21db
-[scottspence.com]: https://scottspence.com
-[interledger protocol]:
-	https://interledger.org/developer-tools/get-started/set-up
-[uphold]: https://uphold.com/
-[gatehub]: https://gatehub.net/
-[there's a plugin for that]:
-	https://github.com/Daudr/gatsby-plugin-web-monetization
-[top level module]:
-	https://github.com/spences10/last.scottspence.com/blob/production/src/root-wrapper.js#L79
-[settings]: https://dev.to/settings/misc
-[spelling]:
-	https://dictionary.cambridge.org/dictionary/english/monetization
-[brave rewards]: https://publishers.basicattentiontoken.org
-[web monetization like i'm 5]:
-	https://dev.to/hacksultan/web-monetization-like-i-m-5-1418
-[dev is now web monetized]:
-	https://dev.to/devteam/dev-is-now-web-monetized-21db
-[you can now web-monetize your dev posts! (but don't get your hopes up too quickly)]:
-	https://dev.to/devteam/you-can-now-web-monetize-your-dev-posts-but-don-t-get-your-hopes-up-too-quickly-goc
-[brave rewards: earn more for content you publish to the web]:
-	https://publishers.basicattentiontoken.org/
-[innovating on web monetization: coil and firefox reality]:
-	https://hacks.mozilla.org/2020/03/web-monetization-coil-and-firefox-reality/
-[the state of web monetization]:
-	https://coil.com/p/kenmelendez/The-State-of-Web-Monetization/KTVijO7ah
+  up too quickly)](https://dev.to/devteam/you-can-now-web-monetize-your-dev-posts-but-don-t-get-your-hopes-up-too-quickly-goc)
+- [Brave Rewards: Earn more for content you publish to the web](https://publishers.basicattentiontoken.org/)

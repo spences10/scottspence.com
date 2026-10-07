@@ -5,13 +5,13 @@ tags: ['css', 'tailwind', 'how-to']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { CodePen } from 'sveltekit-embed'
   import { Banner } from '#lib/components/index.js'
 
   let href = `/posts/scrollbar-styling-with-tailwind-and-daisyui`
   const options = {
-    type: 'info',
+    type: 'info' as const,
     message: `I've made an updated post with new information about using 
       <code>!important</code> when styling scrollbars with Tailwind and 
       daisyUI. Check out the new post on 
@@ -21,11 +21,11 @@ is_private: false
 </script>
 
 Styling a scrollbar with Tailwind CSS for Chrome, Edge, Safari and
-Firefox. This is possible with [vendor prefixes] and
-[pseudo-elements].
+Firefox. This is possible with [vendor prefixes](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) and
+[pseudo-elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements).
 
 I touched on the configuration for this in the [Change Text Highlight
-Color with Tailwind CSS] post I did recently.
+Color with Tailwind CSS](https://scottspence.com/posts/change-text-highlight-colour-with-tailwind-css) post I did recently.
 
 So, I'll go over how to do this in Tailwind CSS then I can go over it
 with a vanilla CSS example too.
@@ -48,7 +48,7 @@ in it, it should look something like this:
 This file is where you'd add in any global styles, in this case for
 the scrollbars you'd need to add it between `@tailwind base;` and
 `@tailwind components;` for Firefox add in the CSS for [CSS
-Scrollbars]:
+Scrollbars](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scrollbars):
 
 ```css
 @tailwind base;
@@ -135,21 +135,8 @@ Or you could even use an image!
 
 So there you have it, really simple way to style a scrollbar with CSS!
 
-If you want to [Change Text Highlight Color with Tailwind CSS] you can
+If you want to [Change Text Highlight Color with Tailwind CSS](https://scottspence.com/posts/change-text-highlight-colour-with-tailwind-css) you can
 check out that post too.
 
 There's also a post on [Gradient animations with Tailwind CSS and
-SvelteKit] you might find interesting.
-
-<!-- Links -->
-
-[change text highlight color with tailwind css]:
-	https://scottspence.com/posts/change-text-highlight-colour-with-tailwind-css
-[vendor prefixes]:
-	https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix
-[pseudo-elements]:
-	https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements
-[css scrollbars]:
-	https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scrollbars
-[gradient animations with tailwind css and sveltekit]:
-	https://scottspence.com/posts/gradient-animations-in-tailwindcss
+SvelteKit](https://scottspence.com/posts/gradient-animations-in-tailwindcss) you might find interesting.

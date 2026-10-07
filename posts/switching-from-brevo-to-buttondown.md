@@ -13,7 +13,7 @@ is_private: false
 Ok, so, back at the start of the year, I switched from Revue (remember
 that? 😅) to Brevo (Send In Blue at the time) and made a concerted
 effort to use it as I paid quite a premium for it! There was some fun
-around [setting up DKIM records] for the domain too.
+around [setting up DKIM records](https://scottspence.com/posts/adding-dkim-records-to-vercel) for the domain too.
 
 It soon became a chore to use though, the email interface was clunky
 and everything had to go into a campaign which you had to schedule to
@@ -26,7 +26,7 @@ dreadful.
 
 I'd had a Buttondown account since 2018 but never used it, or
 considered it! It wasn't until I was checking out one of [Geoff
-Rich]'s newsletters that I decided to check it out again.
+Rich](https://geoffrich.net)'s newsletters that I decided to check it out again.
 
 One of the key features for me in an email service is being able to
 have people sign up for the newsletter through my site via API. This
@@ -36,7 +36,7 @@ over three times less than what I paid for Brevo!
 There was a bit of work that went into setting up the API access, I
 already had a server endpoint I was submitting to but I wanted to use
 a form action instead of a fetch request. You can [check out the
-changes over on GitHub] if you're interested.
+changes over on GitHub](https://github.com/spences10/scottspence.com/pull/665/files) if you're interested.
 
 Emails are sent from the `buttondown.email` domain with my Buttondown
 username so, `spences10@buttondown.email`. I'm intentionally not
@@ -67,20 +67,20 @@ the Markdown.
 ## Other services considered
 
 I sent out a tweet asking for recommendations and got a few replies,
-my old GraphCMS colleague [Frederik Eychenié] suggested that [sending
-from your own platform has become nearly impossible] which was an
+my old GraphCMS colleague [Frederik Eychenié](https://twitter.com/feychenie) suggested that [sending
+from your own platform has become nearly impossible](https://cfenollosa.com/blog/after-self-hosting-my-email-for-twenty-three-years-i-have-thrown-in-the-towel-the-oligopoly-has-won.html) which was an
 interesting read.
 
 <Tweet tweetLink="spences10/status/1705661419369185746" />
 
-Several suggestions from Svelte Society community leader [Kev] I'll
+Several suggestions from Svelte Society community leader [Kev](https://twitter.com/kevmodrome) I'll
 list here if you're interested:
 
 - [Keila](https://www.keila.io)
 - [Listmonk](https://listmonk.app)
 - [Dittofeed](https://github.com/dittofeed/dittofeed)
 
-There was also [resend], which I set up and account for and was
+There was also [resend](https://resend.com), which I set up and account for and was
 testing out but I was also a pain to get set up, so canned it after
 reading that post from Frederik.
 
@@ -99,7 +99,7 @@ my site somewhere was a bit of a faff.
 ## Interested in the newsletter?
 
 You can sign up here! One of the reasons I prefer [creating my own
-platform] if for things like this! 😊
+platform](https://scottspence.com/posts/should-i-create-my-own-blog) if for things like this! 😊
 
 I can import the component and use it in this Markdown file. 🔥
 
@@ -111,7 +111,7 @@ Svelte Society London events.
 ## Interested in Buttondown?
 
 If you're interested in Buttondown you can sign up with [my referral
-link], you get $9 off your first month! 🎉
+link](https://buttondown.email/refer/spences10), you get $9 off your first month! 🎉
 
 ## Conclusion
 
@@ -134,19 +134,3 @@ management Buttondown might be the right fit. Plus, with a referral
 discount awaiting, it's worth giving a shot.
 
 Thanks for reading, I hope you found this useful.
-
-<!-- Links -->
-
-[setting up DKIM records]:
-	https://scottspence.com/posts/adding-dkim-records-to-vercel
-[geoff rich]: https://geoffrich.net
-[check out the changes over on GitHub]:
-	https://github.com/spences10/scottspence.com/pull/665/files
-[my referral link]: https://buttondown.email/refer/spences10
-[creating my own platform]:
-	https://scottspence.com/posts/should-i-create-my-own-blog
-[Frederik Eychenié]: https://twitter.com/feychenie
-[sending from your own platform has become nearly impossible]:
-	https://cfenollosa.com/blog/after-self-hosting-my-email-for-twenty-three-years-i-have-thrown-in-the-towel-the-oligopoly-has-won.html
-[resend]: https://resend.com
-[kev]: https://twitter.com/kevmodrome

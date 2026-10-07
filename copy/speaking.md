@@ -23,7 +23,7 @@ Svelte, and SvelteKit. The talks are based on systems I have built,
 failures I have measured, and the controls I use in real codebases.
 
 For conference talks, podcasts, panels, team workshops, or technical
-training, [get in touch]. I also offer Svelte and AI workshops through
+training, [get in touch](/contact). I also offer Svelte and AI workshops through
 [my consulting services](https://svelteconsulting.dev/services/workshops).
 
 ## Current talk topics
@@ -37,13 +37,13 @@ training, [get in touch]. I also offer Svelte and AI workshops through
 
 ## Highlighted talks
 
-- **Pigeon-Driven Development**, CityJS London 2026. A practical talk
+- *Pigeon-Driven Development*, CityJS London 2026. A practical talk
   about building safely and reliably with AI tools.
   [View the slides](https://cityjs-london-2026.ss10.dev/#).
-- **Refactoring 370 Files in 11 Hours (thanks Claude)**, JSMonthly
+- *Refactoring 370 Files in 11 Hours (thanks Claude)*, JSMonthly
   London 2025. A first-hand account of a large assisted refactor and
   the controls around it.
-- **Staying current with Svelte using AI tools**, Svelte Society
+- *Staying current with Svelte using AI tools*, Svelte Society
   London 2025. A practical use of MCP tools to retrieve current
   framework documentation.
 
@@ -199,8 +199,8 @@ recorded! 😂
 
 At least this time there were some pictures!
 
-[![scott-at-modern-frontends-1]] [scott-at-modern-frontends-1]
-[![scott-at-modern-frontends-2]] [scott-at-modern-frontends-2]
+\[![scott-at-modern-frontends-1](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1668962975/scottspence.com/scott-at-modern-frontends-1.jpg)\] [scott-at-modern-frontends-1](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1668962975/scottspence.com/scott-at-modern-frontends-1.jpg)
+\[![scott-at-modern-frontends-2](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1668962976/scottspence.com/scott-at-modern-frontends-2.jpg)\] [scott-at-modern-frontends-2](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1668962976/scottspence.com/scott-at-modern-frontends-2.jpg)
 
 ### Connect.Tech Atlanta
 
@@ -224,11 +224,11 @@ at the Svelte Society London meetup.
 
 ### JSNation Workshop
 
-Three hour workshop for [Building with SvelteKit and GraphQL].
+Three hour workshop for [Building with SvelteKit and GraphQL](https://jsnation.com/remote-js-workshops#building-with-svelte-kit-and-graph-ql-remote).
 
 <!-- cSpell:ignore jsnation -->
 
-[![jsnation workshop 2022]] [jsnation workshop 2022]
+\[![jsnation workshop 2022](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1656077172/scottspence.com/building-with-svelte-and-graphql-jsnation-2022.png)\] [jsnation workshop 2022](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1656077172/scottspence.com/building-with-svelte-and-graphql-jsnation-2022.png)
 
 ### Dev Journey with Tim Bourguignon
 
@@ -251,9 +251,9 @@ members from around the world.
 
 ### GraphQL Galaxy Workshop
 
-[Building with SvelteKit and GraphCMS]
+[Building with SvelteKit and GraphCMS](https://graphqlgalaxy.com/workshops-3h#ckwajl0u87vcm0c56xivankq9)
 
-[![GraphQL Galaxy 2021]] [GraphQL Galaxy 2021]
+\[![GraphQL Galaxy 2021](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1639133326/scottspence.com/building-with-svelte-and-graphql-graphql-galaxy-2021.png)\] [GraphQL Galaxy 2021](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1639133326/scottspence.com/building-with-svelte-and-graphql-graphql-galaxy-2021.png)
 
 ### MMT Tech Meetup
 
@@ -272,9 +272,9 @@ Jamstack Conference workshop Building with Svelte and GraphQL
 ### Jamstack Explorers
 
 [Jamstack explorers mission on building a production ready Svelte
-project with Svelte]
+project with Svelte](https://explorers.netlify.com/learn/building-with-sveltekit-and-graphcms)
 
-[![jamstack explorers]] [jamstack explorers]
+\[![jamstack explorers](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1634933520/scottspence.com/jamstack-explorers-mission.png)\] [jamstack explorers](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1634933520/scottspence.com/jamstack-explorers-mission.png)
 
 ### Eddie Jaoude
 
@@ -287,7 +287,7 @@ Svelte.
 
 Chatting with James Perkins about Dev Rel
 
-https://zencastr.com/z/TARGseQu
+[https://zencastr.com/z/TARGseQu](https://zencastr.com/z/TARGseQu)
 
 ### Purrfect.dev
 
@@ -315,7 +315,7 @@ and Theme UI
 I Have a Hammer, I was invited to talk about MDX at the MMT Gatsby
 meetup.
 
-Slides here: https://i-have-a-hammer.vercel.app/
+Slides here: [https://i-have-a-hammer.vercel.app/](https://i-have-a-hammer.vercel.app/)
 
 <YouTube youTubeId="km2KsVnlM4I"
 skipTo={{ hour: 0, minute: 0, second: 553 }} />
@@ -327,7 +327,7 @@ skipTo={{ hour: 0, minute: 0, second: 553 }} />
 Spreading the Jamstack, I was invited to talk about the jamstack at
 Scale by the Bay.
 
-Slides here: https://ss10.dev/jam-talk
+Slides here: [https://ss10.dev/jam-talk](https://ss10.dev/jam-talk)
 
 <YouTube youTubeId="L7_z8rcbFPg" />
 
@@ -395,7 +395,7 @@ live streams, or books - content creation is BIG, also for developers.
 ### Migrating Gatsby from Markdown to MDX
 
 Brad Garropy (Live Stream), I joined Brad to talk him through setting
-up [MDX Embed] and ironing out some of the issues he was having after
+up [MDX Embed](https://www.mdx-embed.com/) and ironing out some of the issues he was having after
 transitioning his site over to MDX from Markdown Remark.
 
 ### Whiskey Wednesday
@@ -541,7 +541,7 @@ need a college degree to get a job in tech.
 
 ### MMT Tech Meet-up
 
-- [Post from Ilesh]
+- [Post from Ilesh](https://www.ileshmistry.com/mmt-tech-meet-up-january-2020-recap-gatsbyjs-and-houdini-css)
 
 <YouTube youTubeId="A0q3JqSLr_0" />
 
@@ -549,51 +549,16 @@ need a college degree to get a job in tech.
 
 ### API Days London
 
-I was asked by [Jesse Martin] from GraphCMS if I would like to do a
+I was asked by [Jesse Martin](https://twitter.com/motleydev) from GraphCMS if I would like to do a
 talk at API Days London so I jumped at the chance!
 
-- [Gatsby Eats APIs (Slides)]
+- [Gatsby Eats APIs (Slides)](https://github.com/spences10/gatsby-eats-apis)
 
-[![api days london 2019]] [api days london 2019]
+\[![api days london 2019](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1616774309/scottspence.com/api-days-london-2019.jpg)\] [api days london 2019](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1616774309/scottspence.com/api-days-london-2019.jpg)
 
 ### Internal Engineering talk
 
 I was asked to brief the Karmarama and Fjord engineering teams on what
 the Jamstack is and the advantages of using it.
 
-- [Spreading the Jamstack (Slides)]
-
-<!-- Links  -->
-
-[get in touch]: /contact
-[jamstack explorers mission on building a production ready svelte project with svelte]:
-	https://explorers.netlify.com/learn/building-with-sveltekit-and-graphcms
-[post from ilesh]:
-	https://www.ileshmistry.com/mmt-tech-meet-up-january-2020-recap-gatsbyjs-and-houdini-css
-[mdx embed]: https://www.mdx-embed.com/
-[gatsby eats apis (slides)]:
-	https://github.com/spences10/gatsby-eats-apis
-[jesse martin]: https://twitter.com/motleydev
-[spreading the jamstack (slides)]:
-	https://spreading-the-jam-stack.now.sh/#0
-[building with sveltekit and graphcms]:
-	https://graphqlgalaxy.com/workshops-3h#ckwajl0u87vcm0c56xivankq9
-[building with sveltekit and graphql]:
-	https://jsnation.com/remote-js-workshops#building-with-svelte-kit-and-graph-ql-remote
-
-<!-- Images -->
-
-[jsnation workshop 2022]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1656077172/scottspence.com/building-with-svelte-and-graphql-jsnation-2022.png
-[jamstack explorers]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1634933520/scottspence.com/jamstack-explorers-mission.png
-[jamstack conf workshop 2021]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1634933520/scottspence.com/jamstack-conf-workshopp.png
-[graphql galaxy 2021]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1639133326/scottspence.com/building-with-svelte-and-graphql-graphql-galaxy-2021.png
-[api days london 2019]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1616774309/scottspence.com/api-days-london-2019.jpg
-[scott-at-modern-frontends-1]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1668962975/scottspence.com/scott-at-modern-frontends-1.jpg
-[scott-at-modern-frontends-2]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1668962976/scottspence.com/scott-at-modern-frontends-2.jpg
+- [Spreading the Jamstack (Slides)](https://spreading-the-jam-stack.now.sh/#0)

@@ -104,7 +104,7 @@ the skills and hooks already set up. The harness:
 3. Writes the `.claude/settings.json` with the hook wiring
 4. Runs each of the 22 test prompts through `claude -p` with
    `--output-format stream-json`
-5. Parses the JSONL stream for `Skill()` tool_use events
+5. Parses the JSONL stream for `Skill()` tool\_use events
 6. Kills the process after 20 seconds (I only care about whether it
    _activated_ a skill, not the full response)
 
@@ -117,13 +117,13 @@ second window captures that.
 
 Same four hooks from the previous post, plus a new one:
 
-| Config          | How it works                                                                                                  |
-| --------------- | ------------------------------------------------------------------------------------------------------------- |
-| **none**        | No hook. Baseline control.                                                                                    |
-| **simple**      | One-line echo: "If the prompt matches skill keywords, use Skill()"                                            |
-| **forced-eval** | Multi-step bash script that tells Claude to evaluate each skill YES/NO then activate                          |
-| **llm-eval**    | Calls Haiku via the API to pre-classify which skills match, then tells Claude to activate those specific ones |
-| **type-prompt** | Native `type: "prompt"` hook (built into Claude Code's hook system) with similar instructions to forced-eval  |
+| Config | How it works |
+| --- | --- |
+| *none* | No hook. Baseline control. |
+| *simple* | One-line echo: "If the prompt matches skill keywords, use Skill()" |
+| *forced-eval* | Multi-step bash script that tells Claude to evaluate each skill YES/NO then activate |
+| *llm-eval* | Calls Haiku via the API to pre-classify which skills match, then tells Claude to activate those specific ones |
+| *type-prompt* | Native `type: "prompt"` hook (built into Claude Code's hook system) with similar instructions to forced-eval |
 
 The `type-prompt` config is new. Instead of a shell script that echoes
 text, it uses Claude Code's native prompt hook type (apparently). This
@@ -132,13 +132,13 @@ natively.
 
 ## Run 1 results
 
-| Config         | Activation   | Correct      | Avg Latency |
-| -------------- | ------------ | ------------ | ----------- |
-| none (control) | 55% (12/22)  | 55% (12/22)  | 8.7s        |
-| simple         | 59% (13/22)  | 59% (13/22)  | 8.6s        |
-| forced-eval    | 100% (22/22) | 100% (22/22) | 10.7s       |
-| llm-eval       | 100% (22/22) | 100% (22/22) | 6.4s        |
-| type-prompt    | 55% (12/22)  | 55% (12/22)  | 9.6s        |
+| Config | Activation | Correct | Avg Latency |
+| --- | --- | --- | --- |
+| none (control) | 55% (12/22) | 55% (12/22) | 8.7s |
+| simple | 59% (13/22) | 59% (13/22) | 8.6s |
+| forced-eval | 100% (22/22) | 100% (22/22) | 10.7s |
+| llm-eval | 100% (22/22) | 100% (22/22) | 6.4s |
+| type-prompt | 55% (12/22) | 55% (12/22) | 9.6s |
 
 Four things jumped out.
 
@@ -208,13 +208,13 @@ response text before activating, which adds tokens and thinking time.
 One run is an anecdote. Two runs is... slightly more than an anecdote.
 I ran the full harness again to check whether Run 1 was a fluke.
 
-| Config         | Run 1 Correct | Run 2 Correct |
-| -------------- | ------------- | ------------- |
-| none (control) | 55% (12/22)   | 50% (11/22)   |
-| simple         | 59% (13/22)   | 50% (11/22)   |
-| forced-eval    | 100% (22/22)  | 100% (22/22)  |
-| llm-eval       | 100% (22/22)  | 100% (22/22)  |
-| type-prompt    | 55% (12/22)   | 41% (9/22)    |
+| Config | Run 1 Correct | Run 2 Correct |
+| --- | --- | --- |
+| none (control) | 55% (12/22) | 50% (11/22) |
+| simple | 59% (13/22) | 50% (11/22) |
+| forced-eval | 100% (22/22) | 100% (22/22) |
+| llm-eval | 100% (22/22) | 100% (22/22) |
+| type-prompt | 55% (12/22) | 41% (9/22) |
 
 The structured hooks held at 100% across both runs. The unstructured
 configs (none, simple, type-prompt) bounced around in the 41-59%
@@ -243,11 +243,11 @@ activate when they _shouldn't_. Five of the 24 prompts were things
 like general TypeScript questions or React queries where the correct
 answer is "no skill needed."
 
-| Metric                            | forced-eval | llm-eval    |
-| --------------------------------- | ----------- | ----------- |
-| Overall accuracy                  | 75% (18/24) | 67% (16/24) |
-| True negatives (no-skill prompts) | 100% (5/5)  | 20% (1/5)   |
-| False positives                   | 0           | 4           |
+| Metric | forced-eval | llm-eval |
+| --- | --- | --- |
+| Overall accuracy | 75% (18/24) | 67% (16/24) |
+| True negatives (no-skill prompts) | 100% (5/5) | 20% (1/5) |
+| False positives | 0 | 4 |
 
 llm-eval hallucinated on the non-Svelte queries. When asked about
 React hooks or general TypeScript patterns, it would return skill
@@ -277,7 +277,7 @@ The harness runs from a TypeScript orchestrator using the
 4. Upload a monitor script that wraps `claude -p`
 5. For each of the 22 test cases, run the monitor script with the
    query
-6. Parse JSONL stdout for Skill tool_use events
+6. Parse JSONL stdout for Skill tool\_use events
 7. Aggregate results and tear down the sandbox
 
 The monitor script is minimal:
@@ -300,13 +300,13 @@ depending on timing.
 
 ## What it cost
 
-Total spend across all runs: **$5.59**.
+Total spend across all runs: *$5.59*.
 
-| Model             | Cost  | What for                                  |
-| ----------------- | ----- | ----------------------------------------- |
+| Model | Cost | What for |
+| --- | --- | --- |
 | Claude Sonnet 4.5 | $5.20 | Sandbox test runs (the `claude -p` calls) |
-| Claude Haiku 4.5  | $0.34 | Harness orchestration                     |
-| Claude Haiku 3.5  | $0.04 | llm-eval hook pre-classification calls    |
+| Claude Haiku 4.5 | $0.34 | Harness orchestration |
+| Claude Haiku 3.5 | $0.04 | llm-eval hook pre-classification calls |
 
 The bulk of the cost is the test runs themselves. Each `claude -p`
 call burns Sonnet tokens even though I kill it after 20 seconds.
@@ -328,11 +328,11 @@ hook. Ask about `$state` or `command()` or `.remote.ts` and Claude
 activates the right skill basically every time. But rephrase the same
 concept without the keyword and it falls over.
 
-| Prompt style        | Example                                  | Baseline activation |
-| ------------------- | ---------------------------------------- | ------------------- |
-| Has keyword         | "How do I use $state in Svelte 5?"       | ~100%               |
-| Generic phrasing    | "How do form actions work in SvelteKit?" | ~20-40%             |
-| Indirect/conceptual | "My component re-renders too much"       | ~0%                 |
+| Prompt style | Example | Baseline activation |
+| --- | --- | --- |
+| Has keyword | "How do I use $state in Svelte 5?" | \~100% |
+| Generic phrasing | "How do form actions work in SvelteKit?" | \~20-40% |
+| Indirect/conceptual | "My component re-renders too much" | \~0% |
 
 The most unreliable test cases (missed 80%+ without hooks) were things
 like `$derived`, `$effect`, `bindable props`, `load function`,
@@ -358,14 +358,14 @@ If you're on Sonnet 4.5 and your prompts are straightforward,
 honestly? You might not need a hook at all. The baseline is around 50%
 and climbing with each model release.
 
-If you want reliability, **forced-eval is the winner**. It hits 100%
+If you want reliability, *forced-eval is the winner*. It hits 100%
 on standard prompts across both runs, and it's the only hook that
 correctly avoids false positives on non-matching queries. Zero
 hallucinated skill activations. No API key required. The only downside
 is it's slightly slower because Claude has to evaluate each skill in
 its response.
 
-**llm-eval** is faster (6.4s vs 10.7s) and equally perfect on standard
+*llm-eval* is faster (6.4s vs 10.7s) and equally perfect on standard
 prompts, but it hallucinates on edge cases. If a query doesn't match
 any skill, llm-eval will still recommend one 80% of the time. That's
 fine if all your prompts are squarely within your skill domains. If
@@ -385,8 +385,8 @@ The difference shows up on edge cases. forced-eval's commitment
 mechanism (evaluate, commit, activate) gives it perfect precision:
 zero false positives on non-matching queries. llm-eval is faster but
 hallucinates skill recommendations when nothing matches. For that
-reason, **forced-eval is my recommendation**. No API key, no external
+reason, *forced-eval is my recommendation*. No API key, no external
 dependencies, 100% activation, zero false positives.
 
-The whole eval cost $5.59 across ~250 Claude invocations. Not bad for
+The whole eval cost $5.59 across \~250 Claude invocations. Not bad for
 a proper answer to "which hook actually works?"

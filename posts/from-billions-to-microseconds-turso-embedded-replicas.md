@@ -12,13 +12,13 @@ hell eliminated, indexes added - job done, right?
 Wrong. Dead wrong. Again. 😅
 
 Because here's the thing - I'd been treating the symptoms, not the
-disease. Sure, I'd gone from 11.5 million reads per batch down to ~450
+disease. Sure, I'd gone from 11.5 million reads per batch down to \~450
 reads. That's brilliant optimization! But every single one of those
 reads was still going over the network to Turso's edge locations.
 Microseconds add up, and with a read-heavy blog like mine, those
 network round trips were still the bottleneck.
 
-Time for the nuclear option: **Turso embedded replicas**.
+Time for the nuclear option: *Turso embedded replicas*.
 
 ## The Lightbulb Moment
 
@@ -39,17 +39,17 @@ per page. With Turso's edge network, we're talking maybe 50-100ms
 total, but it adds up. And God forbid the cache expires during high
 traffic - then everyone's hitting the database directly.
 
-The solution was staring me in the face: **what if the database was
-local?**
+The solution was staring me in the face: *what if the database was
+local?*
 
 ## Embedded Replicas: The Game Changer
 
 Turso's embedded replicas are bloody brilliant. Here's how they work:
 
-1. **Local SQLite file** on your server with all your data
-2. **Automatic sync** with your remote Turso database
-3. **Reads from local** (microsecond latency)
-4. **Writes to remote** (then sync back locally)
+1. *Local SQLite file* on your server with all your data
+2. *Automatic sync* with your remote Turso database
+3. *Reads from local* (microsecond latency)
+4. *Writes to remote* (then sync back locally)
 
 It's like having a CDN for your database. All the benefits of local
 SQLite performance with the reliability and sync capabilities of
@@ -73,19 +73,19 @@ const client = createClient({
 });
 ```
 
-**Development**: Local replica syncs every minute for faster feedback
-**Production**: Local replica syncs every 5 minutes for efficiency
+*Development*: Local replica syncs every minute for faster feedback
+*Production*: Local replica syncs every 5 minutes for efficiency
 
 ## The Deployment Setup
 
 For production on Coolify, I needed persistent storage for the local
 database file:
 
-**Storage Configuration:**
+*Storage Configuration:*
 
-- **Type**: Volume Mount (Docker managed)
-- **Destination Path**: `/app/data`
-- **File**: `turso-replica.db` gets created automatically
+- *Type*: Volume Mount (Docker managed)
+- *Destination Path*: `/app/data`
+- *File*: `turso-replica.db` gets created automatically
 
 No source path needed - Coolify's Docker volumes handle the
 persistence. The local database survives container restarts and
@@ -101,40 +101,40 @@ The difference is immediately obvious in the logs:
 
 That's it. One sync on startup, then periodic syncs every 5 minutes.
 All my reads are now served from the local SQLite file with
-**microsecond latency** instead of network round trips.
+*microsecond latency* instead of network round trips.
 
-**Before (Network Reads):**
+*Before (Network Reads):*
 
-- Popular posts query: ~50ms network latency
-- Related posts lookup: ~30ms network latency
-- Reaction counts: ~20ms network latency
-- **Total per page**: ~100ms in database time
+- Popular posts query: \~50ms network latency
+- Related posts lookup: \~30ms network latency
+- Reaction counts: \~20ms network latency
+- *Total per page*: \~100ms in database time
 
-**After (Local Reads):**
+*After (Local Reads):*
 
-- Popular posts query: ~0.1ms local read
-- Related posts lookup: ~0.05ms local read
-- Reaction counts: ~0.02ms local read
-- **Total per page**: ~0.2ms in database time
+- Popular posts query: \~0.1ms local read
+- Related posts lookup: \~0.05ms local read
+- Reaction counts: \~0.02ms local read
+- *Total per page*: \~0.2ms in database time
 
-That's a **500x improvement** in database response times!
+That's a *500x improvement* in database response times!
 
 ## The Pricing Sweet Spot
 
 Here's where it gets properly interesting. My Turso pricing changed
 dramatically:
 
-**Old Model (Network Reads):**
+*Old Model (Network Reads):*
 
 - Every page view = 4-6 database reads
 - High traffic = millions of row reads per month
 - Paying for every single query
 
-**New Model (Embedded Replica):**
+*New Model (Embedded Replica):*
 
 - Page views = 0 network reads (served locally)
 - Only sync operations count toward quota
-- **Monthly Syncs**: Way less than previous row reads
+- *Monthly Syncs*: Way less than previous row reads
 
 The math works out brilliantly. Instead of millions of individual row
 reads, I'm now doing periodic bulk syncs. Much more efficient and
@@ -145,17 +145,17 @@ cost-effective.
 The embedded replica approach also solved my local development
 headache. Before, I had two options:
 
-1. **SQLite dump**: Fast but missing libSQL features like
+1. *SQLite dump*: Fast but missing libSQL features like
    `vector_distance_cos`
-2. **Remote database**: Full features but network latency and quota
+2. *Remote database*: Full features but network latency and quota
    usage
 
 Now I get the best of both worlds:
 
-- **Local embedded replica** with full libSQL features
-- **Vector search** works perfectly locally
-- **No network latency** during development
-- **No quota impact** for local dev work
+- *Local embedded replica* with full libSQL features
+- *Vector search* works perfectly locally
+- *No network latency* during development
+- *No quota impact* for local dev work
 
 ## The Cache Strategy Evolution
 
@@ -184,9 +184,9 @@ reads for that feature without touching the code.
 
 The 5-minute sync interval strikes a good balance:
 
-- **Real-time enough** for blog content (comments, reactions)
-- **Efficient enough** to not hammer the network
-- **Fresh enough** for analytics and popular posts
+- *Real-time enough* for blog content (comments, reactions)
+- *Efficient enough* to not hammer the network
+- *Fresh enough* for analytics and popular posts
 
 For writes (reactions, analytics ingestion), they still go directly to
 the remote database then sync back automatically. The "read your own
@@ -198,22 +198,22 @@ before the next sync.
 This whole database optimization saga taught me some fundamental
 truths:
 
-**Optimize the right thing**. I spent weeks optimizing queries when
+*Optimize the right thing*. I spent weeks optimizing queries when
 the real bottleneck was network latency. Sometimes architectural
 changes trump micro-optimizations.
 
-**Local is still king**. No amount of edge computing beats having the
+*Local is still king*. No amount of edge computing beats having the
 data right there on your server. Physics wins every time.
 
-**Embedded replicas are the future** for read-heavy apps. The
+*Embedded replicas are the future* for read-heavy apps. The
 combination of local performance with cloud reliability is
 game-changing.
 
-**Measure end-to-end impact**. Query optimization reduced database
+*Measure end-to-end impact*. Query optimization reduced database
 load by 99%, but embedded replicas reduced end-user latency by 500x.
 Both matter, but user experience wins.
 
-**Simple solutions often work best**. Instead of complex caching
+*Simple solutions often work best*. Instead of complex caching
 strategies and query gymnastics, just put the database where you need
 it.
 
@@ -223,10 +223,10 @@ With embedded replicas running smoothly, I'm finally confident my
 database architecture can handle whatever traffic comes its way. The
 combination of:
 
-- **Optimized queries** (99% fewer row reads)
-- **Strategic indexes** (fast lookups)
-- **Local embedded replica** (microsecond reads)
-- **Smart caching** (reduced CPU load)
+- *Optimized queries* (99% fewer row reads)
+- *Strategic indexes* (fast lookups)
+- *Local embedded replica* (microsecond reads)
+- *Smart caching* (reduced CPU load)
 
 ...should scale way beyond my current needs.
 
@@ -239,9 +239,9 @@ metrics and user experience monitoring.
 The proof will be in the Turso analytics over the next few weeks. I'm
 expecting:
 
-- **Massive drop in "Monthly Rows Read"** (most reads are now local)
-- **New "Monthly Syncs" usage** (but much lower than previous reads)
-- **Improved application response times** across the board
+- *Massive drop in "Monthly Rows Read"* (most reads are now local)
+- *New "Monthly Syncs" usage* (but much lower than previous reads)
+- *Improved application response times* across the board
 
 If you're running a read-heavy SvelteKit app with Turso, definitely
 consider embedded replicas. The setup is dead simple, and the

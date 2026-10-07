@@ -269,11 +269,11 @@ And right now, that's not much!
 
 Ok, so Goose comes with some built-in extensions:
 
-1. **Developer**: Your basic dev tools - this one's on by default
-2. **Computer Controller**: For web scraping and automation stuff
-3. **Memory**: Helps Goose remember your preferences
-4. **JetBrains**: For those IDE fans out there
-5. **Google Drive**: File management with Google Drive
+1. *Developer*: Your basic dev tools - this one's on by default
+2. *Computer Controller*: For web scraping and automation stuff
+3. *Memory*: Helps Goose remember your preferences
+4. *JetBrains*: For those IDE fans out there
+5. *Google Drive*: File management with Google Drive
 
 The Developer extension is enabled by default, I want to enable the
 Computer Controller and Memory now using the `goose configure`

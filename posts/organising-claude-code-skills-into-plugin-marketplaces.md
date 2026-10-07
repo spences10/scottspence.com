@@ -17,7 +17,7 @@ skill I needed etc!
 
 The `svelte-claude-skills` repo I made when trying to work out
 [How to Make Claude Code Skills Activate Reliably](/posts/how-to-make-claude-code-skills-activate-reliably)
-now has ~140 GitHub stars, but, the skills in there I've not touched
+now has \~140 GitHub stars, but, the skills in there I've not touched
 since mid December. 😅
 
 Essentially I needed these skills and 'bits' tracked in git and to be
@@ -37,8 +37,8 @@ available via two marketplaces!
 "Why not just one?" and honestly, I considered it. But as I started
 grouping them a natural split emerged:
 
-**General Claude Code workflow 'stuff'** vs **svelte-specific
-skills**.
+*General Claude Code workflow 'stuff'* vs *svelte-specific
+skills*.
 
 Some tools are useful for me regardless of Svelte, the others were
 around performance optimisations, analytics, the forced-eval hook that
@@ -54,13 +54,13 @@ by runes documentation. Separation of concerns, innit?
 This is the general productivity toolkit when I'm using Claude Code
 for any project.
 
-- **toolkit-skills** - The forced-eval hook (84% skill activation vs
+- *toolkit-skills* - The forced-eval hook (84% skill activation vs
   20% without it), plus skills for ecosystem guidance, research
   patterns, skill creation, session reflection, and plugin development
-- **performance** - SQLite FTS5 indexing that dropped file search from
+- *performance* - SQLite FTS5 indexing that dropped file search from
   28ms to 3ms with BM25 ranking
-- **mcp-essentials** - Setup guide for my recommended MCP servers
-- **analytics** - Query your Claude Code usage from ccrecall's
+- *mcp-essentials* - Setup guide for my recommended MCP servers
+- *analytics* - Query your Claude Code usage from ccrecall's
   database
 
 ```bash
@@ -76,18 +76,18 @@ This is where all my Svelte and SvelteKit knowledge lives. If you're
 building with Svelte 5, this is the stuff I wish I'd had when I
 started.
 
-- **svelte-runes** - `$state`, `$derived`, `$effect`, `$props`,
+- *svelte-runes* - `$state`, `$derived`, `$effect`, `$props`,
   `$bindable` and migration from Svelte 4
-- **sveltekit-data-flow** - Load functions, form actions, `fail()`,
+- *sveltekit-data-flow* - Load functions, form actions, `fail()`,
   `redirect()`, serialisation rules
-- **sveltekit-structure** - Routing, layouts, error boundaries, SSR
-- **sveltekit-remote-functions** - `command()`, `query()`, `form()`
+- *sveltekit-structure* - Routing, layouts, error boundaries, SSR
+- *sveltekit-remote-functions* - `command()`, `query()`, `form()`
   patterns
-- **svelte-template-directives** - `{@attach}`, `{@html}`,
+- *svelte-template-directives* - `{@attach}`, `{@html}`,
   `{@render}`, `{@const}` patterns
-- **svelte-deployment** - Adapters, Vite config, pnpm, PWA setup
-- **layerchart-svelte5** - Chart patterns with Svelte 5 snippets
-- **svelte-components** - Bits UI, Ark UI, Melt UI patterns
+- *svelte-deployment* - Adapters, Vite config, pnpm, PWA setup
+- *layerchart-svelte5* - Chart patterns with Svelte 5 snippets
+- *svelte-components* - Bits UI, Ark UI, Melt UI patterns
 
 These skills get loaded when Claude detects you're working on
 something relevant. Ask about form actions? `sveltekit-data-flow`
@@ -111,11 +111,11 @@ messages, and 19M tokens. 😅
 
 Why SQLite for AI work?
 
-1. **Zero config** - No server, just a file
-2. **Portable** - Copy it anywhere, query it with any tool
-3. **Fast** - FTS5 queries in 3ms, bulk inserts in 96ms for 5k records
-4. **Queryable** - SQL is the universal language for data exploration
-5. **Everywhere** - Python, Node, Bash, even MCP servers can use it
+1. *Zero config* - No server, just a file
+2. *Portable* - Copy it anywhere, query it with any tool
+3. *Fast* - FTS5 queries in 3ms, bulk inserts in 96ms for 5k records
+4. *Queryable* - SQL is the universal language for data exploration
+5. *Everywhere* - Python, Node, Bash, even MCP servers can use it
 
 The pattern I keep seeing: AI tools generate tons of structured data
 (tokens, costs, tool calls, file operations). SQLite makes it a doddle
@@ -125,12 +125,12 @@ to store, query, and analyse.
 
 These marketplaces are part of a broader set of tools I've built:
 
-| Tool             | What it does                           |
-| ---------------- | -------------------------------------- |
-| mcp-omnisearch   | Unified search (Tavily, Kagi, GitHub)  |
-| mcp-sqlite-tools | Safe SQLite operations via MCP         |
-| ccrecall         | Sync Claude Code transcripts to SQLite |
-| mcpick           | Toggle MCP servers on/off dynamically  |
+| Tool | What it does |
+| --- | --- |
+| mcp-omnisearch | Unified search (Tavily, Kagi, GitHub) |
+| mcp-sqlite-tools | Safe SQLite operations via MCP |
+| ccrecall | Sync Claude Code transcripts to SQLite |
+| mcpick | Toggle MCP servers on/off dynamically |
 
 They all work together. Use `ccrecall` to sync your transcripts, query
 them with `mcp-sqlite-tools`, search the web with `mcp-omnisearch`,
@@ -140,21 +140,21 @@ and manage which MCPs are active with `mcpick`.
 
 If you want to try these:
 
-**For general productivity:**
+*For general productivity:*
 
 ```bash
 /plugin marketplace add spences10/claude-code-toolkit
 /plugin install toolkit-skills
 ```
 
-**For Svelte development:**
+*For Svelte development:*
 
 ```bash
 /plugin marketplace add spences10/svelte-skills-kit
 /plugin install svelte-skills
 ```
 
-**Pro tip:** Install `toolkit-skills` alongside `svelte-skills`. The
+*Pro tip:* Install `toolkit-skills` alongside `svelte-skills`. The
 forced-eval hook in toolkit-skills makes the Svelte skills actually
 activate when they should (84% vs 20% without it - I tested this
 extensively, see my

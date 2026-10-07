@@ -5,11 +5,11 @@ tags: ['turso', 'cli', 'sql', 'analytics', 'guide']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Banner } from '#lib/components/index.js'
 
   const options = {
-    type: 'info',
+    type: 'info' as const,
     message: `I discovered the upper bound for importing CSV files 
     into Turso DB is 20,000 rows.
 
@@ -101,7 +101,7 @@ I'll come onto that part later.
 There's a couple of checks that I want to do before I import the data
 into my existing database.
 
-**Null Value Check**: Ensure that none of the columns contain
+*Null Value Check*: Ensure that none of the columns contain
 unexpected null values.
 
 ```sql
@@ -113,7 +113,7 @@ SELECT * FROM csv_table_export
   OR "Uniques" IS NULL;
 ```
 
-**Data Type Validation**: Since all your columns are text, I want to
+*Data Type Validation*: Since all your columns are text, I want to
 ensure that 'Views' and 'Uniques' columns contain only numeric data.
 
 ```sql
@@ -121,7 +121,7 @@ SELECT * FROM csv_table_export
   WHERE typeof("Views") != 'text' OR typeof("Uniques") != 'text';
 ```
 
-**Special Characters in Text Fields**: Check for problematic
+*Special Characters in Text Fields*: Check for problematic
 characters in text fields, such as unescaped single quotes.
 
 ```sql
@@ -296,8 +296,8 @@ often hidden in plain sight, just a question or a quick read away!
 
 ## Resources
 
-- Create database from CSV file: https://docs.turso.tech/cli/db/create
+- Create database from CSV file: [https://docs.turso.tech/cli/db/create](https://docs.turso.tech/cli/db/create)
 - Workaround for importing CSV data into existing database:
-  https://github.com/tursodatabase/turso-cli/issues/712
+  [https://github.com/tursodatabase/turso-cli/issues/712](https://github.com/tursodatabase/turso-cli/issues/712)
 - How to create a dump file:
-  https://github.com/tursodatabase/turso-cli/issues/433
+  [https://github.com/tursodatabase/turso-cli/issues/433](https://github.com/tursodatabase/turso-cli/issues/433)

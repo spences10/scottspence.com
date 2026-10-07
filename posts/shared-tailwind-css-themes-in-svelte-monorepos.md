@@ -178,9 +178,9 @@ But the UI package components break:
 ## Why this happens
 
 The issue isn't with importing CSS - that works fine. The problem is
-**utility class discovery**. Here's what I understand now:
+*utility class discovery*. Here's what I understand now:
 
-**With the `@source` directive:**
+*With the `@source` directive:*
 
 1. Tailwind scans `../../*/src/**/*.{svelte,js,ts}`
 2. Finds my `Button.svelte` with classes like
@@ -188,16 +188,16 @@ The issue isn't with importing CSS - that works fine. The problem is
 3. Generates those utility classes in the final CSS
 4. Button components work ✅
 
-**Without the `@source` directive:**
+*Without the `@source` directive:*
 
 1. Tailwind only processes the current app's templates
-2. **Never scans the UI package's** `Button.svelte`
+2. *Never scans the UI package's* `Button.svelte`
 3. Never generates `bg-brand-600`, `hover:bg-brand-700`, etc.
 4. Button components have no styles ❌
 5. But direct usage like `<div class="bg-brand-500">` still works
    because Tailwind sees it in the current app
 
-The key insight: **Tailwind needs to know which classes to generate**.
+The key insight: *Tailwind needs to know which classes to generate*.
 Without `@source`, it has no idea my UI package components are using
 those brand utility classes.
 
@@ -215,12 +215,12 @@ const variantClasses = {
 };
 ```
 
-This is **utility-first design** - composing styles from atomic
+This is *utility-first design* - composing styles from atomic
 utility classes. It's why I use Tailwind instead of plain CSS! But for
 this to work, Tailwind must:
 
-1. **Know these classes are used** (via `@source` scanning)
-2. **Generate them** in the final CSS bundle
+1. *Know these classes are used* (via `@source` scanning)
+2. *Generate them* in the final CSS bundle
 
 Without `@source`, Tailwind never sees my Button component's template,
 so it never generates the brand utility classes my component depends
@@ -278,7 +278,7 @@ scanning. In a large monorepo, this can make a noticeable difference
 to build times because I'm not scanning hundreds of test files and
 type definitions that will never contain utility classes.
 
-**Why include JS/TS files at all?** Because my component logic often
+*Why include JS/TS files at all?* Because my component logic often
 defines classes in TypeScript:
 
 ```typescript
@@ -299,12 +299,12 @@ hack - it's how I tell Tailwind about cross-package utility usage.
 
 Key takeaways:
 
-- **Import CSS for theme variables** - works great for design tokens
-- **Use @source for utility discovery** - essential for component
+- *Import CSS for theme variables* - works great for design tokens
+- *Use @source for utility discovery* - essential for component
   libraries
-- **Optimize with exclusions** - exclude test/config files for better
+- *Optimize with exclusions* - exclude test/config files for better
   performance
-- **Embrace utility-first** - that's why we're using Tailwind!
+- *Embrace utility-first* - that's why we're using Tailwind!
 
 If you're setting up a monorepo with shared Tailwind v4 themes,
 remember to import the CSS for design tokens, use `@source` for

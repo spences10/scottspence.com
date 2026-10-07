@@ -25,20 +25,20 @@ import.meta.env.VITE_NAME_OF_VARIABLE;
 This isn't great if you have a secret key that you don't want exposed
 on the client though.
 
-The additional config was to use something like [`env-cmd`] to load
+The additional config was to use something like [`env-cmd`](https://www.npmjs.com/package/env-cmd) to load
 your environment variables. I made a post about this in the past in
-[SvelteKit .env secrets] but this isn't necessary now!
+[SvelteKit .env secrets](https://scottspence.com/posts/sveltekit-env-secrets) but this isn't necessary now!
 
 SvelteKit now has a `$env` module that you can use to access public
 and private `.env` file variables.
 
-It was [Geoff Rich] (Svelte maintainer) that brought this to my
+It was [Geoff Rich](https://twitter.com/geoffrich_) (Svelte maintainer) that brought this to my
 attention with a tweet:
 
 <Tweet tweetLink="geoffrich_/status/1553035835351543808" />
 
 I had a play around with getting them set up on this site, you can see
-the Git diff on the [PR here] for more detail or read on.
+the Git diff on the [PR here](https://github.com/spences10/scottspence.com/pull/323/files) for more detail or read on.
 
 There are two parts to the SvelteKit `$env` module for static and
 dynamic variables, this means that the variable is either sent from
@@ -78,19 +78,11 @@ export const GET = async () => {
 ```
 
 There's an example repository over on GitHub that you can take a look
-at here: https://github.com/spences10/sveltekit-env-example
+at here: [https://github.com/spences10/sveltekit-env-example](https://github.com/spences10/sveltekit-env-example)
 
 Check out the documentation for each implementation:
 
-- https://kit.svelte.dev/docs/modules#$env-dynamic-private
-- https://kit.svelte.dev/docs/modules#$env-dynamic-public
-- https://kit.svelte.dev/docs/modules#$env-static-private
-- https://kit.svelte.dev/docs/modules#$env-static-public
-
-<!-- Links -->
-
-[`env-cmd`]: https://www.npmjs.com/package/env-cmd
-[sveltekit .env secrets]:
-	https://scottspence.com/posts/sveltekit-env-secrets
-[geoff rich]: https://twitter.com/geoffrich_
-[pr here]: https://github.com/spences10/scottspence.com/pull/323/files
+- [https://kit.svelte.dev/docs/modules#$env-dynamic-private](https://kit.svelte.dev/docs/modules#$env-dynamic-private)
+- [https://kit.svelte.dev/docs/modules#$env-dynamic-public](https://kit.svelte.dev/docs/modules#$env-dynamic-public)
+- [https://kit.svelte.dev/docs/modules#$env-static-private](https://kit.svelte.dev/docs/modules#$env-static-private)
+- [https://kit.svelte.dev/docs/modules#$env-static-public](https://kit.svelte.dev/docs/modules#$env-static-public)

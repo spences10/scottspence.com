@@ -12,18 +12,18 @@ is_private: false
 I'm talking Fathom Analytics again, this time about tracking link
 clicks in my Markdown.
 
-I have written about how to [track custom events] with Fathom
+I have written about how to [track custom events](https://scottspence.com/posts/track-custom-events-with-fathom-analytics/) with Fathom
 previously and this is really an extension to that post.
 
 If you would like to try Fathom and get a £10 discount on your first
-invoice check [my affiliate link].
+invoice check [my affiliate link](https://usefathom.com/ref/HG492L).
 
 This situation is specific to using MDX and the MDXProvider as it
 gives the ability to override rendering of links.
 
 ## The problem 🤔
 
-I'd like to add a [Fathom goal] to a link in my Markdown, to do this
+I'd like to add a [Fathom goal](https://usefathom.com/support/goals) to a link in my Markdown, to do this
 I'll need to get the goal ID I've created in Fathom to the link so
 that when it's clicked it's logged with Fathom.
 
@@ -165,13 +165,13 @@ export const A = (props) => {
 The only thing with this was that the `goalId` would still be in the
 URL.
 
-![url with goalid showing]
+![url with goalid showing](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/url-with-goalid-showing-a8b55efd542a1abaf4905a646549dea6.png)
 
 I didn't really like the way this looked, especially if someone was
 going to share that link after clicking it.
 
 So reading into the URL API a bit more and reading up on some
-[StackOverflow posts] I found that I could delete the parameter after
+[StackOverflow posts](https://stackoverflow.com/a/12151322/1138354) I found that I could delete the parameter after
 using it.
 
 In the next block of code here, on line 3, I'm checking if the
@@ -234,30 +234,8 @@ In this video detail what I've been writing about.
 
 These resources helped me along the way.
 
-- [MDN URL API]
-- [MDN searchParams Delete]
-- [SO Get Query String Values]
-- [SO Remove Query String Values]
-- [Google URLSearchParams]
-
-<!-- Links -->
-
-[my affiliate link]: https://usefathom.com/ref/HG492L
-[track custom events]:
-	https://scottspence.com/posts/track-custom-events-with-fathom-analytics/
-[fathom goal]: https://usefathom.com/support/goals
-[stackoverflow posts]: https://stackoverflow.com/a/12151322/1138354
-[mdn url api]: https://developer.mozilla.org/en-US/docs/Web/API/URL
-[mdn searchparams delete]:
-	https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/delete
-[so get query string values]:
-	https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-[so remove query string values]:
-	https://stackoverflow.com/questions/22753052/remove-url-parameters-without-refreshing-page
-[google urlsearchparams]:
-	https://developers.google.com/web/updates/2016/01/urlsearchparams
-
-<!-- Images -->
-
-[url with goalid showing]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858537/scottspence.com/url-with-goalid-showing-a8b55efd542a1abaf4905a646549dea6.png
+- [MDN URL API](https://developer.mozilla.org/en-US/docs/Web/API/URL)
+- [MDN searchParams Delete](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/delete)
+- [SO Get Query String Values](https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript)
+- [SO Remove Query String Values](https://stackoverflow.com/questions/22753052/remove-url-parameters-without-refreshing-page)
+- [Google URLSearchParams](https://developers.google.com/web/updates/2016/01/urlsearchparams)

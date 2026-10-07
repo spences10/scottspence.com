@@ -11,16 +11,16 @@ faulty one I was using. This time around it was more of a
 sustainability decision than a replacement.
 
 I'll do a quick run-down of the history of the keyboards I've had that
-got me to this point! I got the [Logitech G815] because I had issues
-with the Ctrl key on the [HAVIT KB395L].
+got me to this point! I got the [Logitech G815](https://scottspence.com/posts/logitech-g815) because I had issues
+with the Ctrl key on the [HAVIT KB395L](https://www.amazon.co.uk/gp/product/B0767YQQTQ).
 
-I got the [Logitech G915] as it seemed like a logical next step from
+I got the [Logitech G915](https://scottspence.com/posts/logitech-g915) as it seemed like a logical next step from
 there for me because I didn't really vibe with the Logitech macro keys
 on the far left of the board.
 
 The G915 was (and still is) a really nice board to type on.
 
-[![keychron-q1-keyboard]] [keychron-q1-keyboard]
+\[![keychron-q1-keyboard](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640686830/scottspence.com/keychron-q1-keyboard.jpg)\] [keychron-q1-keyboard](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640686830/scottspence.com/keychron-q1-keyboard.jpg)
 
 ## Why change from the G915
 
@@ -40,8 +40,8 @@ the entire keyboard.
 When this happened I did a bit of research and found a couple of
 YouTube videos:
 
-- [Logitech G915 Disassembly]
-- [Logitech G815 Disassembly]:
+- [Logitech G915 Disassembly](https://www.youtube.com/watch?v=qLvvMJYUWdE)
+- [Logitech G815 Disassembly](https://www.youtube.com/watch?v=C32VZ6SDTCE):
 
 There's a whole lot of screws that comes out of that board! Also other
 things like a heat gun you'd need (or hair drier) a soldering iron and
@@ -74,8 +74,8 @@ But not a lot to choose from if you want an ISO keyboard!
 I still really like the ISO keyboard layout (large enter key) and
 there's surprisingly few boards out there that I could choose from.
 
-The two candidates I found after searching was the [Keychron Q1] and
-the [GMMK Pro].
+The two candidates I found after searching was the [Keychron Q1](https://www.keychron.com/products/keychron-q1?variant=39406901362777) and
+the [GMMK Pro](https://www.pcgamingrace.com/products/glorious-gmmk-pro-75-barebone-iso-black-slate).
 
 <!-- cSpell:ignore gmmk -->
 
@@ -158,12 +158,12 @@ I did get some masking tape to put on the back of the PCB if I did
 hear a "ping" but I found another mod that suggested adding a tiny
 sliver of tape next to each of the mounting screws, which I did.
 
-[![keychron-q1-backplate-with-tape]] [keychron-q1-backplate-with-tape]
+\[![keychron-q1-backplate-with-tape](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685356/scottspence.com/keychron-q1-backplate-with-tape.jpg)\] [keychron-q1-backplate-with-tape](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685356/scottspence.com/keychron-q1-backplate-with-tape.jpg)
 
 You can see the imprint of the PCB on the foam there, so it's a really
 tight fit with the additional layer of foam in there.
 
-[![keychron-q1-backplate-and-pcb]] [keychron-q1-backplate-and-pcb]
+\[![keychron-q1-backplate-and-pcb](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685405/scottspence.com/keychron-q1-backplate-and-pcb.jpg)\] [keychron-q1-backplate-and-pcb](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685405/scottspence.com/keychron-q1-backplate-and-pcb.jpg)
 
 ## Programmable with Via and QMK
 
@@ -191,7 +191,7 @@ and layers 1 and 3 are for the function (`fn`) keys.
 Here you can see I've added the media controls around the function key
 for one handed use:
 
-[![via-function-layer]] [via-function-layer]
+\[![via-function-layer](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685101/scottspence.com/via-function-layer.png)\] [via-function-layer](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685101/scottspence.com/via-function-layer.png)
 
 ## But what's it like to use?
 
@@ -202,8 +202,8 @@ the Q1 compared to the G915.
 
 <!-- cSpell:ignore ligitech -->
 
-[![elevation-comparison-keychron-q1-ligitech-g915]]
-[elevation-comparison-keychron-q1-ligitech-g915]
+\[![elevation-comparison-keychron-q1-ligitech-g915](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685355/scottspence.com/elevation-comparison-keychron-q1-ligitech-g915.jpg)\]
+[elevation-comparison-keychron-q1-ligitech-g915](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685355/scottspence.com/elevation-comparison-keychron-q1-ligitech-g915.jpg)
 
 The GMMK panda switches are nice to type on the tactile bump is there
 and as someone that listens to music while typing I don't really miss
@@ -212,8 +212,8 @@ the clicking.
 With the smaller size of the board there's some of the cluster of keys
 missing above the arrow keys you can see in the size comparison here:
 
-[![size-comparison-keychron-q1-ligitech-g915]]
-[size-comparison-keychron-q1-ligitech-g915]
+\[![size-comparison-keychron-q1-ligitech-g915](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685392/scottspence.com/size-comparison-keychron-q1-ligitech-g915.jpg)\]
+[size-comparison-keychron-q1-ligitech-g915](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685392/scottspence.com/size-comparison-keychron-q1-ligitech-g915.jpg)
 
 I've not really missed any of them to be honest, the one thing I had
 to map to a function key was the Print key, which I only really use
@@ -235,7 +235,7 @@ For keycaps I purchased the three that were available from Keychron
 that were made for the Q1. If they make any more in the future then
 I'll probably purchase through them.
 
-[![keychron-q1-keycap-sets]] [keychron-q1-keycap-sets]
+\[![keychron-q1-keycap-sets](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685653/scottspence.com/keychron-q1-keycap-sets.jpg)\] [keychron-q1-keycap-sets](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685653/scottspence.com/keychron-q1-keycap-sets.jpg)
 
 One word of warning with Keychron is if you get a keycap set through
 them then check the contents. I had an arrow key missing from one of
@@ -259,34 +259,3 @@ of months now.
 
 If you're in a similar situation then I'd recommend getting a board
 where you an swap out any parts which are causing issues.
-
-<!-- Links -->
-
-[logitech g815]: https://scottspence.com/posts/logitech-g815
-[logitech g915]: https://scottspence.com/posts/logitech-g915
-[havit kb395l]: https://www.amazon.co.uk/gp/product/B0767YQQTQ
-[logitech g915 disassembly]:
-	https://www.youtube.com/watch?v=qLvvMJYUWdE
-[logitech g815 disassembly]:
-	https://www.youtube.com/watch?v=C32VZ6SDTCE
-[keychron q1]:
-	https://www.keychron.com/products/keychron-q1?variant=39406901362777
-[gmmk pro]:
-	https://www.pcgamingrace.com/products/glorious-gmmk-pro-75-barebone-iso-black-slate
-
-<!-- Images -->
-
-[keychron-q1-keycap-sets]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685653/scottspence.com/keychron-q1-keycap-sets.jpg
-[keychron-q1-backplate-and-pcb]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685405/scottspence.com/keychron-q1-backplate-and-pcb.jpg
-[size-comparison-keychron-q1-ligitech-g915]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685392/scottspence.com/size-comparison-keychron-q1-ligitech-g915.jpg
-[keychron-q1-backplate-with-tape]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685356/scottspence.com/keychron-q1-backplate-with-tape.jpg
-[elevation-comparison-keychron-q1-ligitech-g915]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685355/scottspence.com/elevation-comparison-keychron-q1-ligitech-g915.jpg
-[via-function-layer]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640685101/scottspence.com/via-function-layer.png
-[keychron-q1-keyboard]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1640686830/scottspence.com/keychron-q1-keyboard.jpg

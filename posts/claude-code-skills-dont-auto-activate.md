@@ -14,9 +14,9 @@ So I got Claude Skills to register with Claude Code (sorted the
 [YAML formatting issue](/posts/claude-code-skills-not-recognised)),
 and the skills are now showing up when I ask Claude to list them. Job
 done, right? Nah! Turns out getting skills to _actually activate_
-**reliably** when you need them is another chore in itself.
+*reliably* when you need them is another chore in itself.
 
-**Update, 13 September 2026:** This was my first workaround. I later
+*Update, 13 September 2026:* This was my first workaround. I later
 [tested hooks for more reliable skill activation](/posts/how-to-make-claude-code-skills-activate-reliably),
 rather than relying on the keyword matching below. Read that follow-up
 before choosing a hook.
@@ -91,7 +91,7 @@ Claude: "Oh yeah, sorry about that"
 Every. Single. Time.
 
 The skill was there. It showed up when prompted
-"**`list <available_skills>`**". The description had "research" and
+"*`list <available_skills>`*". The description had "research" and
 "study" as trigger words. According to the
 [official docs](https://docs.claude.com/en/docs/claude-code/skills),
 skills are "model-invoked" and "Claude autonomously decides when to
@@ -145,16 +145,16 @@ the infrastructure showcase the author straight up says:
 
 This doesn't live up to the Anthropic marketing hype!
 
-The Claude Code infrastructure showcase solution? **Don't rely on
+The Claude Code infrastructure showcase solution? *Don't rely on
 "autonomous activation" - use hooks to explicitly invoke skills when
-trigger words appear.**
+trigger words appear.*
 
 The Anthropic docs claim skills are autonomous, but in practice, you
 need to force the issue.
 
 Here's what I got to work - call a script via the `UserPromptSubmit`
-hook that detects trigger words and **explicitly tells Claude to use
-the skill**.
+hook that detects trigger words and *explicitly tells Claude to use
+the skill*.
 
 ## The hook script
 
@@ -216,13 +216,13 @@ Update `~/.claude/settings.json` to add the hooks configuration:
 
 ## Key differences from a reminder
 
-**Gentle reminder (doesn't work):**
+*Gentle reminder (doesn't work):*
 
 ```bash
 echo '💡 Check .claude/skills/ for relevant skills'
 ```
 
-**Explicit instruction (actually works):**
+*Explicit instruction (actually works):*
 
 ```bash
 echo "🔍 INSTRUCTION: Use Skill(research) to handle this request"
@@ -291,14 +291,14 @@ if echo "$PROMPT" | grep -qiE '(your|trigger|words)'; then
 fi
 ```
 
-The key (I found) is making it an **INSTRUCTION**, not a suggestion.
+The key (I found) is making it an *INSTRUCTION*, not a suggestion.
 
 ## The scalability problem
 
 Right, let's be honest - this approach is brittle and won't scale well
 beyond one or two skills.
 
-**Keyword collisions are inevitable:**
+*Keyword collisions are inevitable:*
 
 ```bash
 "research the database schema"     # Triggers research skill (wrong)
@@ -310,7 +310,7 @@ The hook just greps for keywords without understanding context. It
 can't tell the difference between "research this documentation" (web
 sources) and "research this codebase" (code analysis).
 
-**For multiple skills, you'd need:**
+*For multiple skills, you'd need:*
 
 1. More sophisticated pattern matching (regex with context)
 2. Priority/disambiguation system
@@ -331,7 +331,7 @@ This is exactly the kind of thing that could be built into a CLI tool
 where you define triggers when creating skills, and the tool generates
 the routing hooks for you.
 
-**For now:** This approach works great for a single, well-defined
+*For now:* This approach works great for a single, well-defined
 skill with unique trigger words. Beyond that, you're better off
 manually invoking skills with explicit commands until better tooling
 exists.
@@ -340,12 +340,12 @@ exists.
 
 After more testing with the
 [claude-skills-cli](https://github.com/spences10/claude-skills-cli),
-I've found a simpler solution that's **less brittle** than
+I've found a simpler solution that's *less brittle* than
 keyword-based scripts but a bit more inconsistent!
 
 The problem with my original approach is the keyword script works, but
-it has a flaw for scaling: **every new skill requires creating a new
-script or updating the script with new keywords**. You end up
+it has a flaw for scaling: *every new skill requires creating a new
+script or updating the script with new keywords*. You end up
 managing:
 
 - Keyword collision avoidance
@@ -354,7 +354,7 @@ managing:
 
 What I found (from my testing) is:
 
-A single, hook with an **explicit instruction** that works for _all_
+A single, hook with an *explicit instruction* that works for _all_
 skills:
 
 ```json
@@ -379,16 +379,16 @@ that tells Claude to:
 
 1. Check available skills
 2. Match keywords in the prompt to skill descriptions
-3. **Activate** matching skills using `Skill()` syntax
+3. *Activate* matching skills using `Skill()` syntax
 
 ## Does this work better?
 
 When I tested with two skills (alpha and beta) using different
 keywords:
 
-- **Simple hook**: Activated correctly based on skill metadata ✅
-- **No script updates needed** when adding new skills ✅
-- **Skills self-describe** through their frontmatter ✅
+- *Simple hook*: Activated correctly based on skill metadata ✅
+- *No script updates needed* when adding new skills ✅
+- *Skills self-describe* through their frontmatter ✅
 
 ## What I actually found from testing
 
@@ -396,7 +396,7 @@ After messing about with both approaches for the "research" skill, I
 ran 20 fresh Claude Code sessions to test the hook reliability - 10
 with the hook at project level, 10 at global level.
 
-Results? **4/10 globally, 5/10 locally.** Basically a coin flip.
+Results? *4/10 globally, 5/10 locally.* Basically a coin flip.
 
 So the simple explicit hook is a "Spin the wheel!" situation and see
 if Claude pays attention. Sometimes it activates skills, sometimes it

@@ -79,7 +79,7 @@ you'll probably think your developing some form of obsessive
 compulsive disorder and you'll be 'that person' when you go out with
 your friends to eat — this is where the consistency comes in.
 
-https://tdeecalculator.net/
+[https://tdeecalculator.net/](https://tdeecalculator.net/)
 
 <!-- cSpell:ignore tdee,tdeecalculator -->
 

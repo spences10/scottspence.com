@@ -16,7 +16,7 @@ as a new branch on the existing project with `git remote add origin`
 then push the changes up to the origin then all is well with the
 world. That was until I tried to compare the branches…
 
-![compare]
+![compare](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/git-compare-5602c54638703c110ed8325946dd4e07.png)
 
 There isn't anything to compare? Bit misleading there as there is but
 the commit histories are different. How do you get around it, well the
@@ -51,11 +51,4 @@ master branch, so it was just a copy pasta into my VS Code then
 recommit the changes files. Phew! I now have a branch I can compare
 with the master that I will one day make a PR for 😅
 
-![git-compare-after]
-
-<!-- Images -->
-
-[compare]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/git-compare-5602c54638703c110ed8325946dd4e07.png
-[git-compare-after]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930928/scottspence.com/git-compare-after-8e5004783656e0f79dadb8b730fc43ae.png
+![git-compare-after](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930928/scottspence.com/git-compare-after-8e5004783656e0f79dadb8b730fc43ae.png)

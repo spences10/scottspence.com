@@ -22,10 +22,10 @@ I use [ccrecall](https://github.com/spences10/ccrecall) to log all my
 Claude Code sessions, so I went back through the history. The timeline
 tells a story:
 
-- **March 17** — "was there a on user submit prompt hook fired?"
-- **March 19** — "there's a plugin standards skill you ignored"
-- **March 20** — "why are you not following the prompt in the hook?"
-- **March 20** (again) — "So, I have to do a forced eval for you to do
+- *March 17* — "was there a on user submit prompt hook fired?"
+- *March 19* — "there's a plugin standards skill you ignored"
+- *March 20* — "why are you not following the prompt in the hook?"
+- *March 20* (again) — "So, I have to do a forced eval for you to do
   the forced eval?"
 
 That last one really sums it up. 😅
@@ -104,7 +104,7 @@ And specifically from mid-March 2026 — right when I started noticing
 it:
 
 - [#35297](https://github.com/anthropics/claude-code/issues/35297) —
-  "Heavily degraded model performance" starting ~March 17
+  "Heavily degraded model performance" starting \~March 17
 - [#35981](https://github.com/anthropics/claude-code/issues/35981) —
   "Opus 4.6 recurring outages, March 17-18"
 
@@ -132,11 +132,11 @@ over the last week.
 
 My setup:
 
-1. **`UserPromptSubmit` hook** — fires every prompt, injects the
+1. *`UserPromptSubmit` hook* — fires every prompt, injects the
    forced-eval instruction
-2. **Global `CLAUDE.md`** (~19 lines) — reinforces that hook output is
+2. *Global `CLAUDE.md`* (\~19 lines) — reinforces that hook output is
    mandatory, plus a few other essentials
-3. **Everything else in skills** — loaded on demand through
+3. *Everything else in skills* — loaded on demand through
    progressive disclosure, not crammed into `CLAUDE.md`
 
 The key insight: if something is truly mandatory, don't rely on one

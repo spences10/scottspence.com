@@ -15,11 +15,11 @@ tags:
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Banner } from '#lib/components/index.js'
 
   const bait_and_switch = {
-    type: 'warning',
+    type: 'warning' as const,
     message: `Windsurf have done the bait and switch here! This was 500 
       credits, now it's 250 credits!`
   }
@@ -35,7 +35,7 @@ not having Node installed natively for MCP tool usage, see my
 [Getting MCP Server Working with Claude Desktop in WSL](https://scottspence.com/posts/getting-mcp-server-working-with-claude-desktop-in-wsl)
 post for more details.
 
-Aight! **Tl;Dr links**:
+Aight! *Tl;Dr links*:
 
 - [if you're here to get Windsurf opening from the terminal](#launch-windsurf-from-the-terminal)
 - [if you're wanting to change the marketplace](#extension-marketplace-difference)
@@ -59,11 +59,11 @@ from my [settings repo](https://github.com/spences10/settings).
 
 Without going into too much detail, the process was, download the
 latest Windsurf, I use winget so `winget install Codeium.Windsurf`
-then open it. I get the expected **"Would you like to import your
-settings and extensions from Cursor or VS Code?"** prompt, from past
+then open it. I get the expected *"Would you like to import your
+settings and extensions from Cursor or VS Code?"* prompt, from past
 experience with Cursor (i.e. just making a general mess) I now opt for
 the start from scratch option. I did check the option to add Windsurf
-to my PATH and allow access to public **AND** private networks.
+to my PATH and allow access to public *AND* private networks.
 
 So at this point, Windsurf is throwing errors saying it can't find git
 installed, go install it, and I'm like "we got git at home!", home
@@ -88,8 +88,8 @@ This was a bit of a clunky experience to open a project in WSL in
 Windsurf,
 [it's detailed on the Windsurf site](https://docs.codeium.com/windsurf/advanced#wsl-beta),
 you have to launch the WSL remote connection by clicking the very
-bottom left button to connect to WSL (or **Remote-WSL: Connect to
-WSL** from the command palette) and then you're picking out the folder
+bottom left button to connect to WSL (or *Remote-WSL: Connect to
+WSL* from the command palette) and then you're picking out the folder
 you want to open in WSL, it opens up again in WSL.
 
 Anyways! Bit of searching around and found
@@ -112,8 +112,8 @@ CURRENT_PATH=$(readlink -f "$1")
 windsurf --folder-uri "vscode-remote://wsl+Ubuntu$CURRENT_PATH"
 ```
 
-ℹ️ **Note:** That `"vscode-remote://wsl+Ubuntu$CURRENT_PATH"` the
-**Ubuntu** part is my default WSL instance! To check what your default
+ℹ️ *Note:* That `"vscode-remote://wsl+Ubuntu$CURRENT_PATH"` the
+*Ubuntu* part is my default WSL instance! To check what your default
 WSL instance is, in Powershell use the `wsl -l` to list your installed
 distros! So, if `Ubuntu-24.04` was my default then the it would be
 `"vscode-remote://wsl+Ubuntu-24.04$CURRENT_PATH"`.

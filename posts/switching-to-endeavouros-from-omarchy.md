@@ -59,7 +59,7 @@ of times now, to the point where I will take out a drive (the Samsung
 From the EndeavourOS installer (ISO boot menu) you get the option to
 select NVIDIA drivers if you've got an NVIDIA GPU. I've got a Gigabyte
 NVIDIA GeForce RTX 3050 EAGLE OC (8GB GDDR6), so at the boot menu I
-selected **EndeavourOS x86_64 UEFI NVIDIA**. This sets up the
+selected *EndeavourOS x86\_64 UEFI NVIDIA*. This sets up the
 proprietary drivers from the get-go.
 
 I also added 32GB of swap (matching my RAM) for hibernate and video
@@ -153,7 +153,7 @@ Something else was going on.
 After a proper deep dive into `journalctl`, and by this I mean
 consulting Claude! I found the culprit: my Gigabyte X570 I AORUS PRO
 WiFi motherboard has a buggy ACPI thermal zone called `PCT0`. On wake,
-it was reporting a "critical" temperature of **21°C** and triggering
+it was reporting a "critical" temperature of *21°C* and triggering
 an emergency shutdown. 😂
 
 The math doesn't add up, right? 21°C is not critical. It's not even
@@ -178,9 +178,9 @@ Then update GRUB:
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-Apparently `thermal.off=1` **only** disables the buggy ACPI thermal
+Apparently `thermal.off=1` *only* disables the buggy ACPI thermal
 zones. The actual temperature monitoring via `sensors` still works
-fine (k10temp, nvme, gigabyte_wmi all still report).
+fine (k10temp, nvme, gigabyte\_wmi all still report).
 
 After this, suspend/wake worked properly. Massive relief!
 
@@ -340,9 +340,9 @@ for now until I have another five hours to kill. 😂
 
 KDE Plasma is nice, but it's got a couple of quirks:
 
-1. **Session restore** - workspace assignments don't always stick
+1. *Session restore* - workspace assignments don't always stick
    after a reboot. So, apps opening on the wrong workspace.
-2. **Monitor brightness** - resets on wake. Sometimes. Will keep an
+2. *Monitor brightness* - resets on wake. Sometimes. Will keep an
    eye on it.
 
 Apart from that I feel right at home! Keyboard shortcuts are more or

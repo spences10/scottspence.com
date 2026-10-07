@@ -7,12 +7,12 @@ import { globSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { compile } from 'svelte/compiler';
 import { describe, expect, it } from 'vitest';
-import mdsvex_config from '../../../mdsvex.config.js';
+import mdsvex_config from '../../../mdsvex.config.ts';
 import {
 	code_block_warning_filter,
 	highlight_options,
 } from './highlighter.js';
-import { prepare_markdown } from './prepare-markdown.js';
+import { enrich_metadata } from './metadata.js';
 
 const highlight = create_highlight({
 	...highlight_options,
@@ -23,7 +23,7 @@ const highlight = create_highlight({
 });
 
 function compile_document(source: string, filename = 'post.md') {
-	return compile_markdown(prepare_markdown(source, filename), {
+	return compile_markdown(enrich_metadata(source, filename), {
 		parse_plugins: mdsvex_config.parse_plugins,
 		components: [
 			{ specifier: '#lib/markdown/components.ts', names: ['pre'] },
@@ -175,10 +175,10 @@ describe('native mdsvex highlighting', () => {
 	});
 });
 
-describe('CommonMark compatibility and site features', () => {
-	it('keeps emphasis, forward references and punctuation', () => {
+describe('native PFM and site features', () => {
+	it('renders native emphasis and explicit references without changing punctuation', () => {
 		const result = compile_document(
-			'**Strong**, *emphasis* and [a link][ref].\n\n"Hello" -- world...\n\n[ref]: https://example.com',
+			'[ref]: https://example.com\n\n*Strong*, _emphasis_ and [a link][ref].\n\n“Hello” – world…',
 		);
 		expect(result.code).toContain('<strong>Strong</strong>');
 		expect(result.code).toContain('<em>emphasis</em>');
@@ -187,23 +187,23 @@ describe('CommonMark compatibility and site features', () => {
 	});
 
 	it.each([
-		['[somelink]', '[somelink]: https://example.com', 'somelink'],
+		['[somelink][ref]', '[ref]: https://example.com', 'somelink'],
 		['[somelink][]', '[somelink]:https://example.com', 'somelink'],
 		[
-			"[Scott's site]",
-			"[Scott's site]: https://example.com",
+			'[Scott’s site][ref]',
+			'[ref]: https://example.com',
 			'Scott’s site',
 		],
 		[
-			'[some **link**]',
-			'[some **link**]: https://example.com',
+			'[some *link*][ref]',
+			'[ref]: https://example.com',
 			'some <strong>link</strong>',
 		],
 	])(
-		'resolves reference links before transforming %s',
+		'resolves native reference links: %s',
 		(reference, definition, label) => {
 			const output = compile_document(
-				`${reference}\n\n${definition}`,
+				`${definition}\n\n${reference}`,
 			).code;
 			expect(output).toContain(
 				`<a href="https://example.com" target="_blank" rel="noopener noreferrer">${label}</a>`,
@@ -211,9 +211,9 @@ describe('CommonMark compatibility and site features', () => {
 		},
 	);
 
-	it('resolves shortcut images with a multiline, case-insensitive definition', () => {
+	it('resolves explicit image references defined before use', () => {
 		const output = compile_document(
-			'![highlightVLive]\n\n[highlightvlive]:\n\thttps://example.com/demo.png',
+			'[image]: https://example.com/demo.png\n\n![highlightVLive][image]',
 		).code;
 		expect(output).toContain(
 			'<img src="https://example.com/demo.png" alt="highlightVLive" />',
@@ -232,9 +232,9 @@ describe('CommonMark compatibility and site features', () => {
 		expect(output).not.toContain('![highlightVLive]');
 	});
 
-	it('renders checked and unchecked GFM tasks as labelled, disabled checkboxes', () => {
+	it('renders native task markup as labelled, disabled checkboxes', () => {
 		const output = compile_document(
-			'- [ ] Autolink headers\n- [x] Run `npm test`',
+			'- <input type="checkbox" disabled aria-label="Autolink headers" /> Autolink headers\n- <input type="checkbox" disabled checked aria-label="Run npm test" /> Run `npm test`',
 		).code;
 		const body = output.slice(output.lastIndexOf('</script>'));
 		expect(body).toContain('class="contains-task-list"');
@@ -254,7 +254,7 @@ describe('CommonMark compatibility and site features', () => {
 
 	it('keeps formatting and links inside task-list text', () => {
 		const output = compile_document(
-			'- [ ] Read **this** [guide](https://example.com)',
+			'- <input type="checkbox" disabled aria-label="Read this guide" /> Read *this* [guide](https://example.com)',
 		).code;
 		expect(output).toContain('aria-label="Read this guide"');
 		expect(output).toContain('<strong>this</strong>');
@@ -274,7 +274,7 @@ describe('CommonMark compatibility and site features', () => {
 
 	it('preserves metadata, reading time and sanitised previews', () => {
 		const source =
-			'---\ndate: 2026-10-03\ntitle: Example\ntags: [svelte]\nis_private: false\n---\n\nHello **world** and [read more](https://example.com).';
+			'---\ndate: 2026-10-03\ntitle: Example\ntags: [svelte]\nis_private: false\n---\n\nHello *world* and [read more](https://example.com).';
 		const { metadata } = compile_document(
 			source,
 			'/posts/example.md',
@@ -294,7 +294,7 @@ describe('CommonMark compatibility and site features', () => {
 
 	it('keeps safe heading links with duplicate IDs', () => {
 		const output = compile_document(
-			'## Hello **world**\n\n## Hello **world**',
+			'## Hello *world*\n\n## Hello *world*',
 		).code;
 		expect(output).toContain('id="hello-world"');
 		expect(output).toContain('href="#hello-world"');

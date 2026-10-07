@@ -10,13 +10,13 @@ is_private: false
   import { Vimeo, YouTube } from 'sveltekit-embed'
 </script>
 
-I have been a Gatsby user since around [v0 May 2017], at that time was
-using a template called [Lumen] and it was just what I needed at the
+I have been a Gatsby user since around [v0 May 2017](https://github.com/spences10/blog.scottspence.me/tree/a470e8563e1a040527cf2094fc1b377550a88c77), at that time was
+using a template called [Lumen](https://github.com/alxshelepenok/gatsby-starter-lumen) and it was just what I needed at the
 time. Since then I have have gone from using a template to creating my
 blog.
 
 Over the years I have made my own [Progressive Disclosure of
-Complexity] with Gatsby to where I am now.
+Complexity](https://lengstorf.com/progressive-disclosure-of-complexity/) with Gatsby to where I am now.
 
 ## What does that mean?
 
@@ -32,7 +32,7 @@ You're going to build a developer blog with MDX support (for some
 React components in Markdown goodness), so you will be able to add
 your own React components into your Markdown posts.
 
-**There'll be:**
+*There'll be:*
 
 - Adding a Layout
 - Basic styling with styled-components
@@ -51,9 +51,9 @@ If you want to have code syntax highlighting.
 
 If you want to use styled-components in an app.
 
-**I really want to avoid this!**
+*I really want to avoid this!*
 
-![draw a horse quincy tweet]
+![draw a horse quincy tweet](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/draw-a-horse-quincy-tweet-c94426ee247944669175d7575b851f60.png)
 
 [draw a horse Quincy tweet](https://twitter.com/ossia/status/588389121053200385)
 
@@ -62,14 +62,14 @@ If you want to use styled-components in an app.
 You're going to need a basic web development setup: node, terminal
 (bash, zsh or fish) and a text editor.
 
-I do like to use [codesandbox.io] for these sort of guides to reduce
+I do like to use [codesandbox.io](https://codesandbox.io) for these sort of guides to reduce
 the barrier to entry but in this case I have found there are some
-limitations with starting out from scratch on [codesandbox.io] which
+limitations with starting out from scratch on [codesandbox.io](https://codesandbox.io) which
 doesn't make this possible.
 
 I have made a guide on getting set up for web development with
-[Windows Web-Dev Bootstrap] and covered the same process in [Ubuntu as
-well].
+[Windows Web-Dev Bootstrap](https://scottspence.com/posts/wsl-bootstrap-2019) and covered the same process in [Ubuntu as
+well](https://www.youtube.com/watch?v=eSAsdQuQ-1o).
 
 Ok? Time to get started!
 
@@ -164,7 +164,7 @@ And with that the "Hello World" incantation is complete 🧙!
 Ok, now you have the base your blog you're going to want to add some
 content, first up we're going to get the convention out of the way.
 For this how-to, the date format will be a logical way, the most
-logical way for a date format is **YYYYMMDD**, fight me!
+logical way for a date format is *YYYYMMDD*, fight me!
 
 So you're going to structure your posts content in years, in each one
 of those you're going to have another folder relating to the post with
@@ -248,12 +248,12 @@ displaying the the files you just created.
 
 ### Gatsby source filesystem
 
-The [gatsby-source-filesystem] collects the files on the local
+The [gatsby-source-filesystem](https://www.gatsbyjs.com/packages/gatsby-source-filesystem/) collects the files on the local
 filesystem for use in Gatsby once configured.
 
 ### Gatsby plugin MDX
 
-The [gatsby-plugin-mdx] is what will be allowing us to write JSX in
+The [gatsby-plugin-mdx](https://www.gatsbyjs.com/packages/gatsby-plugin-mdx/) is what will be allowing us to write JSX in
 our Markdown documents and the heart of how the content is displayed
 in the blog.
 
@@ -296,8 +296,8 @@ module.exports = {
 
 <!-- cSpell:ignore graphi -->
 
-Ok now you can see what the [gatsby-source-filesystem] and
-[gatsby-plugin-mdx] have done for us. You can now go to the Gatsby
+Ok now you can see what the [gatsby-source-filesystem](https://www.gatsbyjs.com/packages/gatsby-source-filesystem/) and
+[gatsby-plugin-mdx](https://www.gatsbyjs.com/packages/gatsby-plugin-mdx/) have done for us. You can now go to the Gatsby
 GraphQL GraphiQL explorer and check out the data:
 
 ```graphql
@@ -500,7 +500,7 @@ you can compose React components for the layout, meaning it's up to
 you how you want to layout what your building with Gatsby. In this
 guide we're going to initially create a basic layout component that
 you'll add to as you go along. For more detail on layout components
-take a look at the Gatsby [layout components] page.
+take a look at the Gatsby [layout components](https://www.gatsbyjs.com/docs/layout-components/) page.
 
 Ok, so now you're going to refactor the home page
 (`src/pages/index.js`) a little and make some components for your blog
@@ -734,8 +734,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 ```
 
 Now to help visualise some of the data being passed into the
-components you're going to use [Dump.js] for debugging the data.
-Thanks to Wes Bos for the super handy [Dump.js] component.
+components you're going to use [Dump.js](https://github.com/wesbos/dump) for debugging the data.
+Thanks to Wes Bos for the super handy [Dump.js](https://github.com/wesbos/dump) component.
 
 To get the component set up, create a `Dump.js` file in your
 `src\components` folder and copypasta the code from the linked GitHub
@@ -1317,7 +1317,7 @@ export const query = graphql`
 
 Now to add some syntax highlighting for adding code blocks to your
 blog pages. To do that you're going to add dependencies for
-[prism-react-renderer] and [react-live] and you'll also create the
+[prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer) and [react-live](https://github.com/FormidableLabs/react-live) and you'll also create the
 files you're going to need to use them:
 
 ```bash
@@ -1342,8 +1342,8 @@ override there and import it into both `gatsby-browser.js` and
 `gatsby-ssr.js` so you're not duplicating code.
 
 Before you go any further I want to add that there is a top quality
-[egghead.io playlist] resource for using MDX with Gatsby by Chris
-[Chris Biscardi] there's a ton of useful information in there on MDX
+[egghead.io playlist](https://egghead.io/lessons/vue-js-introduction-to-mdx?pl=building-websites-with-mdx-and-gatsby-161e9529) resource for using MDX with Gatsby by Chris
+[Chris Biscardi](https://twitter.com/chrisbiscardi) there's a ton of useful information in there on MDX
 in Gatsby.
 
 Ok, first up you're going to import the `root-wrapper.js` file into
@@ -1436,7 +1436,7 @@ export default Dump;
 ```
 ````
 
-Ok, if you go to the [prism-react-renderer] GitHub page and copy the
+Ok, if you go to the [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer) GitHub page and copy the
 example code into `root-wrapper.js` for the `pre` element.
 
 You're going to copy the provided code for highlighting to validate it
@@ -1592,9 +1592,9 @@ export const wrapRootElement = ({ element }) => (
 
 <!-- cSpell:ignore duotoneDark -->
 
-[prism-react-renderer] comes with additional themes over the default
-theme which is [duotoneDark] you're going to use [nightOwl] in this
-example, feel free to take a look at [the other examples] if you like.
+[prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer) comes with additional themes over the default
+theme which is [duotoneDark](https://github.com/FormidableLabs/prism-react-renderer/blob/9c041dfd8580b8b71f55c2a57e61f4c63356d4f4/packages/prism-react-renderer/src/themes/duotoneDark.ts) you're going to use [nightOwl](https://github.com/FormidableLabs/prism-react-renderer/blob/9c041dfd8580b8b71f55c2a57e61f4c63356d4f4/packages/prism-react-renderer/src/themes/nightOwl.ts) in this
+example, feel free to take a look at [the other examples](https://github.com/FormidableLabs/prism-react-renderer/tree/9c041dfd8580b8b71f55c2a57e61f4c63356d4f4/packages/prism-react-renderer/src/themes) if you like.
 
 Import the `theme` then use it in the props of the `Highlight`
 component.
@@ -2372,7 +2372,7 @@ export const query = graphql`
   <YouTube youTubeId="9S5GNtql02w" />
 </Details>
 
-**Additional resources:**
+*Additional resources:*
 
 - this helped me for my own blog:
   [https://juliangaramendy.dev/custom-open-graph-images-in-gatsby-blog/](https://juliangaramendy.dev/custom-open-graph-images-in-gatsby-blog/)
@@ -2388,17 +2388,17 @@ export const query = graphql`
   <YouTube youTubeId="I9qQslUJknw" />
 </Details>
 
-There's a Gatsby [github PR on seo] with some [great notes from Andrew
-Welch] on SEO and a link to a presentation he did back in 2017.
+There's a Gatsby [github PR on seo](https://github.com/gatsbyjs/gatsby/issues/14125) with some [great notes from Andrew
+Welch](https://github.com/gatsbyjs/gatsby/pull/10780#issuecomment-451048608) on SEO and a link to a presentation he did back in 2017.
 
-**Crafting Modern SEO with Andrew Welch:**
+*Crafting Modern SEO with Andrew Welch:*
 
 <Vimeo vimeoId="246846978" />
 
 <!-- cSpell:ignore leko -->
 
-In the following comments of that PR, Gatsby's [LekoArts] details his
-own implementation which I have implemented [as a React component],
+In the following comments of that PR, Gatsby's [LekoArts](https://github.com/LekoArts) details his
+own implementation which I have implemented [as a React component](https://github.com/spences10/react-seo-component),
 you're going to be configuring that now in this how-to.
 
 First up, install and configure, `gatsby-plugin-react-helmet` this is
@@ -2455,7 +2455,7 @@ For `siteUrl` at this stage it doesn't necessarily have to be valid,
 add a dummy url for now and you can change this later.
 
 The `siteLanguage` is your language of choice for the site, take a
-look at [w3 language tags] for more info.
+look at [w3 language tags](https://www.w3.org/International/articles/language-tags/) for more info.
 
 Facebook OpenGraph is the only place the `siteLocale` is used and it
 is different from language tags.
@@ -2491,7 +2491,7 @@ export const useSiteMetadata = () => {
 
 Begin with importing the `Dump` component in `src/pages/index.js` then
 plug in the props as they are detailed in the docs of the
-[`react-seo-component`].
+[`react-seo-component`](https://github.com/spences10/react-seo-component).
 
 ```js
 import Dump from '../components/Dump'
@@ -2814,7 +2814,7 @@ Depending on how you authenticate with GitHub will depend on what the
 command looks like.
 
 Some good resources for authenticating with GitHub via SSH are [Kent
-Dodds Egghead.io video] and also a how-to [on CheatSheets.xyz].
+Dodds Egghead.io video](https://egghead.io/lessons/javascript-how-to-authenticate-with-github-using-ssh) and also a how-to [on CheatSheets.xyz](https://www.cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh).
 
 <Details button_text="Check out the Video">
   <YouTube youTubeId="r2eiJ8E_YT0" />
@@ -2876,73 +2876,20 @@ homepage and a blog page for the correct meta tags with
   <YouTube youTubeId="JH1AVanYhwo" />
 </Details>
 
-**OpenGraph checking tools:**
+*OpenGraph checking tools:*
 
 - [heymeta](https://www.heymeta.com/)
 - [twitter validator](https://cards-dev.twitter.com/validator)
 - [facebook sharing](https://developers.facebook.com/tools/debug/sharing)
 - [linkedin inspector/](https://www.linkedin.com/post-inspector/)
 
-**Additional resources:**
+*Additional resources:*
 
-- [The Essential Meta Tags for Social Media]
+- [The Essential Meta Tags for Social Media](https://css-tricks.com/essential-meta-tags-social-media/)
 
 ## Thanks for reading 🙏
 
 That's all folks! If there is anything I have missed, or if there is a
 better way to do something then please let me know.
 
-Follow me on [Twitter] or [Ask Me Anything] on GitHub.
-
-<!-- Links -->
-
-[windows web-dev bootstrap]:
-	https://scottspence.com/posts/wsl-bootstrap-2019
-[ubuntu as well]: https://www.youtube.com/watch?v=eSAsdQuQ-1o
-[codesandbox.io]: https://codesandbox.io
-[gatsby-source-filesystem]:
-	https://www.gatsbyjs.com/packages/gatsby-source-filesystem/
-[gatsby-plugin-mdx]:
-	https://www.gatsbyjs.com/packages/gatsby-plugin-mdx/
-[v0 may 2017]:
-	https://github.com/spences10/blog.scottspence.me/tree/a470e8563e1a040527cf2094fc1b377550a88c77
-[progressive disclosure of complexity]:
-	https://lengstorf.com/progressive-disclosure-of-complexity/
-[layout components]: https://www.gatsbyjs.com/docs/layout-components/
-[dump.js]: https://github.com/wesbos/dump
-[prism-react-renderer]:
-	https://github.com/FormidableLabs/prism-react-renderer
-[react-live]: https://github.com/FormidableLabs/react-live
-[egghead.io playlist]:
-	https://egghead.io/lessons/vue-js-introduction-to-mdx?pl=building-websites-with-mdx-and-gatsby-161e9529
-[chris biscardi]: https://twitter.com/chrisbiscardi
-[duotonedark]:
-	https://github.com/FormidableLabs/prism-react-renderer/blob/9c041dfd8580b8b71f55c2a57e61f4c63356d4f4/packages/prism-react-renderer/src/themes/duotoneDark.ts
-[nightowl]:
-	https://github.com/FormidableLabs/prism-react-renderer/blob/9c041dfd8580b8b71f55c2a57e61f4c63356d4f4/packages/prism-react-renderer/src/themes/nightOwl.ts
-[the other examples]:
-	https://github.com/FormidableLabs/prism-react-renderer/tree/9c041dfd8580b8b71f55c2a57e61f4c63356d4f4/packages/prism-react-renderer/src/themes
-[github pr on seo]: https://github.com/gatsbyjs/gatsby/issues/14125
-[great notes from andrew welch]:
-	https://github.com/gatsbyjs/gatsby/pull/10780#issuecomment-451048608
-[lekoarts]: https://github.com/LekoArts
-[lumen]: https://github.com/alxshelepenok/gatsby-starter-lumen
-[the essential meta tags for social media]:
-	https://css-tricks.com/essential-meta-tags-social-media/
-[as a react component]:
-	https://github.com/spences10/react-seo-component
-[`react-seo-component`]:
-	https://github.com/spences10/react-seo-component
-[w3 language tags]:
-	https://www.w3.org/International/articles/language-tags/
-[kent dodds egghead.io video]:
-	https://egghead.io/lessons/javascript-how-to-authenticate-with-github-using-ssh
-[on cheatsheets.xyz]:
-	https://www.cheatsheets.xyz/git/#how-to-authenticate-with-github-using-ssh
-[twitter]: https://twitter.com/spences10
-[ask me anything]: https://github.com/spences10/ama
-
-<!-- Images -->
-
-[draw a horse quincy tweet]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/draw-a-horse-quincy-tweet-c94426ee247944669175d7575b851f60.png
+Follow me on [Twitter](https://twitter.com/spences10) or [Ask Me Anything](https://github.com/spences10/ama) on GitHub.

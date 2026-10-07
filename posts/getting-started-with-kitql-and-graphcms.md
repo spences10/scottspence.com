@@ -5,12 +5,12 @@ tags: ['svelte', 'sveltekit', 'graphql', 'graphcms']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Banner, Details } from '#lib/components/index.js'
 
   let href = `/posts/the-new-kitql-sveltekit-graphql-client`
   const options = {
-    type: 'warning',
+    type: 'warning' as const,
     message: `This post uses the legacy configuration for KitQL, 
       there's a more up to date post on getting started with it 
       <a href=${href} target="_blank" rel="noopener noreferrer">
@@ -27,22 +27,22 @@ want to share what I have learned. What better way to do that than the
 SvelteKit.
 
 First up I want to thank the creator of KitQL for his work. Jean-Yves
-Couët (or [JYC]) has done a great job with KitQL and the additional
+Couët (or [JYC](https://twitter.com/jycouet)) has done a great job with KitQL and the additional
 tooling he's created for use in SvelteKit.
 
 He's also done a great introductory video over on YouTube with an
-[explanation video for setting up KitQL]. The API has changed a bit
+[explanation video for setting up KitQL](https://www.youtube.com/watch?v=6pH4fnFN70w). The API has changed a bit
 since the video so I'll go over how to use that here.
 
 ## What's in the box?
 
-KitQL uses the [GraphQL Code Generator] to generate typed queries,
+KitQL uses the [GraphQL Code Generator](https://www.graphql-code-generator.com/) to generate typed queries,
 mutations and subscriptions. This means that you can use the built in
 VS Code intellisense to find fields in queries.
 
 ## Let's get set up!
 
-If you haven't got the [GraphQL VS Code extension] mentioned in JYC's
+If you haven't got the [GraphQL VS Code extension](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql) mentioned in JYC's
 video installed go install that for the ability to run queries in VS
 Code.
 
@@ -107,7 +107,7 @@ Create a `.graphqlrc.yaml` file:
 touch .graphqlrc.yaml
 ```
 
-I've taken the config for the file here from the [KitQL all-in] docs.
+I've taken the config for the file here from the [KitQL all-in](https://github.com/jycouet/kitql/tree/main/packages/all-in) docs.
 To be able to do code gen on this there needs to be a schema for use
 in the `.graphqlrc.yaml` file. The schema can be either a local file
 or a remote URL, I'm pointing this to the public content API of the
@@ -568,7 +568,7 @@ to use in the page.
 </script>
 ```
 
-⚠️ **code wall incoming!** ⚠️
+⚠️ *code wall incoming!* ⚠️
 
 So now I have all I need to render out the post from the `KQL_GetPost`
 store.
@@ -651,7 +651,7 @@ the output I get this:
 KitQL is getting the data Server Side Rendered (SSR). For me before
 the page loads.
 
-Now if hover the mouse over one of the READ &rarr; links I get this:
+Now if hover the mouse over one of the READ → links I get this:
 
 ```text
 [KitQL Client] From: NETWORK, Operation: KQL_GetPost, Variables: {"slug":"technical-seo-with-graphcms"}
@@ -712,15 +712,15 @@ Going over to the index page of the project now I can see the
 
 <!-- cSpell:ignore kitqlinfo -->
 
-[![kitql-kitqlinfo-component-initial]]
-[kitql-kitqlinfo-component-initial]
+\[![kitql-kitqlinfo-component-initial](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1648194979/scottspence.com/kitql-kitqlinfo-component-initial.png)\]
+[kitql-kitqlinfo-component-initial](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1648194979/scottspence.com/kitql-kitqlinfo-component-initial.png)
 
 If I click on the store name in the component it expands out with the
 store data with options to reset the current store and options for
 where to query the data from:
 
-[![kitql-kitqlinfo-component-expanded]]
-[kitql-kitqlinfo-component-expanded]
+\[![kitql-kitqlinfo-component-expanded](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1648194980/scottspence.com/kitql-kitqlinfo-component-expanded.png)\]
+[kitql-kitqlinfo-component-expanded](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1648194980/scottspence.com/kitql-kitqlinfo-component-expanded.png)
 
 Super neat!
 
@@ -1039,31 +1039,11 @@ joy!
 I've already linked the resources but will put them here for ease of
 access:
 
-- Follow [JYC] on Twitter for daily updates on the KitQL project
+- Follow [JYC](https://twitter.com/jycouet) on Twitter for daily updates on the KitQL project
 - [KitQL Docs](https://kitql.vercel.app/docs)
 - [Explainer video by JYC](https://www.youtube.com/watch?v=6pH4fnFN70w)
 - [KitQL All In](https://github.com/jycouet/kitql/tree/main/packages/all-in)
 
-You can check out the [source code on GitHub] for this post.
+You can check out the [source code on GitHub](https://github.com/spences10/kitql-with-sveltekit-and-graphcms) for this post.
 
 Thanks!
-
-<!-- Links -->
-
-[graphql code generator]: https://www.graphql-code-generator.com/
-[graphql vs code extension]:
-	https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql
-[explanation video for setting up kitql]:
-	https://www.youtube.com/watch?v=6pH4fnFN70w
-[jyc]: https://twitter.com/jycouet
-[kitql all-in]:
-	https://github.com/jycouet/kitql/tree/main/packages/all-in
-[source code on github]:
-	https://github.com/spences10/kitql-with-sveltekit-and-graphcms
-
-<!-- Images -->
-
-[kitql-kitqlinfo-component-initial]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1648194979/scottspence.com/kitql-kitqlinfo-component-initial.png
-[kitql-kitqlinfo-component-expanded]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1648194980/scottspence.com/kitql-kitqlinfo-component-expanded.png

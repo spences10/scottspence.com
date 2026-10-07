@@ -9,7 +9,7 @@ is_private: false
 
 Tailwind is cool, right? Really configurable as well, I wanted to add
 some gradient animation to a project of mine. So did a search and
-found this awesome post by [Victor Yoalli] on how to do it! Thanks
+found this awesome post by [Victor Yoalli](https://victoryoalli.me/how-to-create-an-animated-gradient-using-tailwin-css) on how to do it! Thanks
 Victor!
 
 I've basically taken Victor's code and adjusted it for use with daisUI
@@ -17,7 +17,7 @@ to apply to the effect to some text rather than to a div as with
 Victor's example.
 
 I'll put this in an example project on GitHub so if you want to
-**Tl;Dr** and see the source you can [skip to the end](#conclusion).
+*Tl;Dr* and see the source you can [skip to the end](#conclusion).
 
 In this post I'll create an example project using SvelteKit, Tailwind
 CSS and daisyUI.
@@ -84,7 +84,7 @@ need to adjust the commands accordingly.
 
 ## Add Tailwind CSS with daisyUI
 
-The handy thing I'm using from the CLI output is the [`svelte-add`] I
+The handy thing I'm using from the CLI output is the [`svelte-add`](https://github.com/svelte-add/svelte-adders) I
 can use it to add Tailwind CSS and daisyUI to my project. There's
 additional flags for `--typography` and `--forms` too for this example
 I'll just be using daisyUI.
@@ -96,8 +96,8 @@ npx svelte-add@latest tailwindcss --daisyui
 Now, as I committed the changes after the initial project setup I can
 take a look at what's changed after running the `svelte-add` command.
 
-[![sveltekit-skeleton-project-with-svelte-add-tailwind-changes]]
-[sveltekit-skeleton-project-with-svelte-add-tailwind-changes]
+\[![sveltekit-skeleton-project-with-svelte-add-tailwind-changes](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1673023278/scottspence.com/sveltekit-skeleton-project-with-svelte-add-tailwind-changes.png)\]
+[sveltekit-skeleton-project-with-svelte-add-tailwind-changes](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1673023278/scottspence.com/sveltekit-skeleton-project-with-svelte-add-tailwind-changes.png)
 
 `svelte-add` created a `+layout.svelte`, `app.postcss`,
 `postcss.config.cjs` and a `tailwind.config.cjs` file for me, that's
@@ -248,19 +248,7 @@ And that it! A nice little gradient animation on some text.
 ## Conclusion
 
 If you want to check out the code for it I've put the example over on
-[GitHub] if you want to take a look at it.
+[GitHub](https://github.com/spences10/gradient-animation-example) if you want to take a look at it.
 
 I hope you enjoyed this post, and that you found it useful. If you did
 please consider sharing it on the socials! 😊
-
-<!-- Links -->
-
-[victor yoalli]:
-	https://victoryoalli.me/how-to-create-an-animated-gradient-using-tailwin-css
-[`svelte-add`]: https://github.com/svelte-add/svelte-adders
-[github]: https://github.com/spences10/gradient-animation-example
-
-<!-- Images -->
-
-[sveltekit-skeleton-project-with-svelte-add-tailwind-changes]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1673023278/scottspence.com/sveltekit-skeleton-project-with-svelte-add-tailwind-changes.png

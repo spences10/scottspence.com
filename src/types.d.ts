@@ -95,18 +95,13 @@ declare interface RelatedPost {
 	title: string;
 }
 
-// remark-preview does not ship types. These are the formatters we use.
-declare module 'remark-preview' {
-	interface Formatter {
-		parse(tree: unknown, file?: unknown): string;
-		truncate(text: string): string;
-	}
-	interface Options {
-		length?: number;
-		maxBlocks?: number;
-	}
-	export function textFormatter(options?: Options): Formatter;
-	export function htmlFormatter(options?: Options): Formatter;
+// Documents compiled by mdsvex.
+declare module '*.md' {
+	import type { Component } from 'svelte';
+
+	const document: Component;
+	export default document;
+	export const metadata: Record<string, unknown>;
 }
 
 // https://stackoverflow.com/questions/73025100/svelte-svelte-kit-type-custom-action-event-with-typescript

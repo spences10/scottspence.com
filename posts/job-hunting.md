@@ -17,10 +17,10 @@ employed again.
 
 ## No one wants to hire you
 
-![stress-office]
+![stress-office](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930931/scottspence.com/stress-office-76b7f4c70276388a047bbf68a48a19a5.jpg)
 
 For the longest time I thought there was something wrong with my CV so
-I read up on [ATS'] and added what I thought was needed to at least
+I read up on [ATS'](https://lmgtfy.com/?q=what+is+an+ats) and added what I thought was needed to at least
 meet the minimum requirements for passing the ATS if there was one for
 the roles I was applying for.
 
@@ -34,7 +34,7 @@ organisations want now.
 This has basically brought me to the conclusion that I should be
 expanding my skill set, so I have been busy getting the skills I need
 to become a full stack web developer using the awesome free course
-material at [freeCodeCamp] (fCC) I'm still in the very early stages of
+material at [freeCodeCamp](https://www.freecodecamp.com) (fCC) I'm still in the very early stages of
 this and am not about to start looking for full stack web developer
 jobs but it is something that I'm going to commit a lot of my spare
 time to so I can build a portfolio to showcase my skills for
@@ -68,7 +68,7 @@ progressed with my FCC certification.
 
 Things I have learned, most of the time the job doesn't exist (lead
 generation) If it does exist and you match one of the skills on the
-spec you will have every recruiter in the country [and abroad] calling
+spec you will have every recruiter in the country \[and abroad\] calling
 you for the role. Wild salary ranges £40k-£80k that's a pretty big
 range, these ads usually come with every skill imaginable so it's safe
 to say that they don't really know what they want or the role doesn't
@@ -76,7 +76,7 @@ really exist.
 
 ## Recruiters
 
-![shady-recruiter-middle-man]
+![shady-recruiter-middle-man](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930935/scottspence.com/shady-recruiter-middle-man-39c169147b3806bbb9898f3b553bf0a6.jpg)
 
 So this is where we get all warm and fuzzy talking about recruiters
 and what great jobs they do. How they are always busy talking to
@@ -99,7 +99,7 @@ find good candidates.
 
 This was incredibly frustrating experience for me, yes I could have
 done things better and like I said this was basically a rant, this is
-so people can relate, **BUT!**
+so people can relate, *BUT!*
 
 Gone are the days of carefully crafted covering letters and tailoring
 your CV for that specific job, most of the time your CV doesn't even
@@ -126,7 +126,7 @@ This is basically their due diligence, what they should have
 determined by looking at your profile before calling you.
 
 After this it goes one of two ways, the recruiter then being honest
-with you [in some cases] and telling you they actually don't think you
+with you \[in some cases\] and telling you they actually don't think you
 are suitable for the role (which they could have done if they took the
 time to read your profile) let's just bear in mind ten minutes before
 it was,
@@ -151,28 +151,10 @@ this post:
 
 LinkedIn:
 
-- ["Recruitment industry will die in 2018."]
-- ["If a Recruiter Sh\*ts in the woods and nobody is around to hear
-  it?"]
+- ["Recruitment industry will die in 2018."](https://www.linkedin.com/pulse/recruitment-industry-die-2018-oleg-vishnepolsky)
+- \["If a Recruiter Sh\*ts in the woods and nobody is around to hear
+  it?"\]
 
 Medium:
 
-- [Lessons From My Post-bootcamp Job Search in London]
-
-<!-- Links -->
-
-[ats']: https://lmgtfy.com/?q=what+is+an+ats
-[freecodecamp]: https://www.freecodecamp.com
-["recruitment industry will die in 2018."]:
-	https://www.linkedin.com/pulse/recruitment-industry-die-2018-oleg-vishnepolsky
-["if a recruiter sh*ts in the woods and nobody is around to hear it?"]:
-	https://www.linkedin.com/pulse/recruiter-shts-woods-nobody-around-hear-tim-chattaway
-[lessons from my post-bootcamp job search in london]:
-	https://medium.freecodecamp.com/lessons-from-my-post-bootcamp-job-search-in-london-cb37ea12ec2f#.ckpg5lkpa
-
-<!-- Images -->
-
-[stress-office]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930931/scottspence.com/stress-office-76b7f4c70276388a047bbf68a48a19a5.jpg
-[shady-recruiter-middle-man]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930935/scottspence.com/shady-recruiter-middle-man-39c169147b3806bbb9898f3b553bf0a6.jpg
+- [Lessons From My Post-bootcamp Job Search in London](https://medium.freecodecamp.com/lessons-from-my-post-bootcamp-job-search-in-london-cb37ea12ec2f#.ckpg5lkpa)

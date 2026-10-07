@@ -19,9 +19,9 @@ anything there and it looks like it's parked. This made me think
 though, "what about [httpcodes.dev](https://www.httpcodes.dev)?"
 
 So, yeah, I own that domain now and I've just jacked the HTTP response
-status codes from the [MDN Web Docs] and put them into a searchable
-page. **But why?** Look I just wanted to have a list of searchable
-HTTP response codes! 😅 Ok, so what's using the [Svelte use action]
+status codes from the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) and put them into a searchable
+page. *But why?* Look I just wanted to have a list of searchable
+HTTP response codes! 😅 Ok, so what's using the [Svelte use action](https://svelte.dev/docs#template-syntax-element-directives-use-action)
 got to do with this?
 
 First up! Sorry if you're on a slow internet connection! This image is
@@ -80,7 +80,7 @@ searchable by the search engines. The bad thing is that it's not
 animated.
 
 Yes, there are ways to animate the HTML details tag but they all felt
-a bit janky. Check out this [stackoverflow answer] for some examples.
+a bit janky. Check out this [stackoverflow answer](https://stackoverflow.com/a/38215801) for some examples.
 
 ## Svelte transition then! Maybe??
 
@@ -256,7 +256,7 @@ content.
 
 <!-- cSpell:ignore keyframes -->
 
-The [Web Animations API] takes in two parameters, `keyframes` and
+The [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Element/animate) takes in two parameters, `keyframes` and
 `options`. The `keyframes` is an array of objects that define the
 animation. In this case I want to animate the `height` of the node
 from `0px` to the initial height of the node.
@@ -275,7 +275,7 @@ let animation = node.animate(
 
 The `options` is an object that defines the duration and timing of the
 animation. There's more detail on the MDN docs for the
-[`KeyframeEffect()` constructor].
+[`KeyframeEffect()` constructor](https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/KeyframeEffect#parameters).
 
 What I want to add in for the options is the `duration` and the
 `easing` function along with the `fill` property and the `direction`.
@@ -464,7 +464,7 @@ and to the div that wraps the slot.
 
 I've removed the script information and styles for brevity.
 
-I got the pointers on this from the [A11Y Style Guide]. Just bear in
+I got the pointers on this from the [A11Y Style Guide](https://a11y-style-guide.com/style-guide/section-navigation.html). Just bear in
 mind that some of the information given to the component here can be
 done via props.
 
@@ -501,7 +501,7 @@ done via props.
 
 Another good example and use case for using the Svelte `use:` is for a
 click outside action. So this could be for a shopping cart or a
-settings panel. I implemented this on the [Vendure storefront demo] I
+settings panel. I implemented this on the [Vendure storefront demo](https://sveltekit-vendure-commerce.vercel.app/) I
 did a while back now.
 
 Here's the action:
@@ -575,7 +575,7 @@ export const cartOpen = writable(false);
 ```
 
 If you want to see the code you can check out the [SvelteKit Vendure
-commerce] demo over on GitHub.
+commerce](https://github.com/spences10/sveltekit-vendure-commerce) demo over on GitHub.
 
 ## Sarcasm
 
@@ -621,26 +621,3 @@ Result: <Sarcasm sarky="I made a useless project!" />
 
 Several uses for the Svelte `use:` action. I'm sure there are a ton
 more (a'hem) `use:`'s for it as well!
-
-<!-- Links -->
-
-[mdn web docs]:
-	https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
-[svelte use action]:
-	https://svelte.dev/docs#template-syntax-element-directives-use-action
-[vendure storefront demo]:
-	https://sveltekit-vendure-commerce.vercel.app/
-[sveltekit vendure commerce]:
-	https://github.com/spences10/sveltekit-vendure-commerce
-[stackoverflow answer]: https://stackoverflow.com/a/38215801
-[a11y style guide]:
-	https://a11y-style-guide.com/style-guide/section-navigation.html
-[web animations api]:
-	https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
-[`keyframeeffect()` constructor]:
-	https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/KeyframeEffect#parameters
-
-<!-- Images -->
-
-[http-codes-dev-accordion-animation]:
-	https://res.cloudinary.com/defkmsrpw/video/upload/f_webp,fl_animated,fl_awebp/e_loop/v1674149984/scottspence.com/http-codes-dev-accordion-animation.mp4

@@ -26,12 +26,12 @@ It became one of the most used tools on the project.
 The CLI stayed with the agency I built it for, so I can't share its
 code. What it did:
 
-- **`search`** ranked matches across every document.
-- **`context`** returned the matching section plus the sections around
+- *`search`* ranked matches across every document.
+- *`context`* returned the matching section plus the sections around
   it. This was the one agents used most.
-- **`facts`** pulled out decisions, requirements, risks and
+- *`facts`* pulled out decisions, requirements, risks and
   assumptions so they could be queried on their own.
-- **Source priority** ranked specs above schema notes, and those above
+- *Source priority* ranked specs above schema notes, and those above
   meeting notes. Documents marked as superseded dropped down.
 - It read PDF and Word documents as well as Markdown.
 
@@ -171,18 +171,18 @@ from the right post.
 
 ## The bits that matter
 
-**Chunking by heading.** An agent wants the section that answers its
+*Chunking by heading.* An agent wants the section that answers its
 question, not a whole document. Splitting on headings means `search`
 returns something small enough to read, and the heading tells the
 agent what it's looking at.
 
-**Weighted ranking.** `bm25(chunks, 3.0, 2.0, 1.0)` gives the path
+*Weighted ranking.* `bm25(chunks, 3.0, 2.0, 1.0)` gives the path
 three times the weight of the body, and the heading twice. A match in
 a file called `authentication.md` is a much stronger signal than the
 same word in passing somewhere else. You can see it in the output
 above: every result is from the post whose file name matches.
 
-**Context around the match.** `context` returns the matched section
+*Context around the match.* `context` returns the matched section
 with its neighbours. Docs tend to explain something across a couple of
 sections, and this is why it became the most used command on the real
 project.

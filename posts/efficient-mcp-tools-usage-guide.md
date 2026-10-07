@@ -64,14 +64,14 @@ gathering. Here's why:
 
 Instead of browser-based tools, prefer these more efficient options:
 
-1. **Official MCP Fetch Tool**
+1. *Official MCP Fetch Tool*
 
    - Optimized for text-based content
    - Returns LLM-friendly formats (text/markdown/json)
    - Faster response times
    - More reliable results
 
-2. **Search API Providers**
+2. *Search API Providers*
    - No browser overhead
    - Direct access to indexed content
    - Structured response formats
@@ -93,18 +93,18 @@ consolidate them all:
 
 Benefits of this means:
 
-1. **Single Configuration**
+1. *Single Configuration*
 
    - One config file
    - Simpler setup
 
-2. **Flexible API Usage**
+2. *Flexible API Usage*
 
    - Use any provider you have keys for
    - Mix and match capabilities
    - Easy to add new providers via API keys
 
-3. **Resource Efficiency**
+3. *Resource Efficiency*
    - Single process
    - Shared resources
    - Lower memory footprint

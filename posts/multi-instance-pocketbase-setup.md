@@ -97,7 +97,7 @@ unzip pocketbase_0.22.19_linux_arm64.zip
 
 I want to set up two services to run on localhost for the two projects
 and assign a port for each. I'll just go through the process of
-setting up one service, **NOTE** that for the other service I'll need
+setting up one service, *NOTE* that for the other service I'll need
 to change the port number.
 
 Create the service file using nano:
@@ -170,7 +170,7 @@ nano Caddyfile
 ```
 
 In the `Caddyfile` I'm going to add in the two domains I'm proxying
-**NOTE** that I have already added an `A` record for `pb` in my DNS
+*NOTE* that I have already added an `A` record for `pb` in my DNS
 records for the domains that points back to my Hetzner IP address.
 
 ```js

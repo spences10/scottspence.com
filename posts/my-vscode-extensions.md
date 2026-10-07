@@ -31,7 +31,7 @@ Search for `eamodio.gitlens` in the VS Code extensions tab.
 
 ## Prettier
 
-The invisible formatting [deity] that rewards us for not writing
+The invisible formatting [deity](https://en.wikipedia.org/wiki/Deity) that rewards us for not writing
 incorrect code by formatting with ease and grace.
 
 Be sure not to anger Prettier or your code will remain unbearable to
@@ -145,7 +145,3 @@ TypeScript more this would probably be a really useful extension.
 
 Search for `VisualStudioExptTeam.vscodeintellicode` in the VS Code
 extensions tab.
-
-<!-- Links -->
-
-[deity]: https://en.wikipedia.org/wiki/Deity

@@ -10,7 +10,7 @@ is_private: true
 </script>
 
 Now I have a super sweet email pipeline for sending weekly emails
-thanks to [Sam Larsen-Disney] I'm going to document what I've learnt
+thanks to [Sam Larsen-Disney](https://twitter.com/SamLarsenDisney) I'm going to document what I've learnt
 and what Sam taught me. (same thing, I guess) 😊
 
 First up, I'd like to thank Sam for his patience walking me through
@@ -26,13 +26,13 @@ custom domain is a nice touch but as far as I know not essential.
 
 If you want to set up a custom email address to send from, I have done
 this in the past with Zoho and you can check [Setting up a Custom
-Email with Zoho] for details on that and also [Setting up ProtonMail
-with Vercel] they're both for Vercel via the Vercel CLI.
+Email with Zoho](https://scottspence.com/posts/custom-email-domain-with-now/) for details on that and also [Setting up ProtonMail
+with Vercel](https://scottspence.com/posts/setting-up-proton-mail-with-vercel/) they're both for Vercel via the Vercel CLI.
 
 <!-- cSpell:ignore kwes -->
 
 I'll need a from on my site to collect the information with, I use
-[Kwes Forms] which isn't completely redundant a this point as it has
+[Kwes Forms](https://kwes.io/) which isn't completely redundant a this point as it has
 great validation that I can use.
 
 Also it was what I had in place already, if you're interested in Kwes
@@ -43,8 +43,8 @@ Forms take a look at the video here:
 There are also other videos from friends of mine detailing the same
 process:
 
-- [Leigh Halliday]
-- [James Q Quick]
+- [Leigh Halliday](https://www.youtube.com/watch?v=gK7KKswOnOQ)
+- [James Q Quick](https://www.youtube.com/watch?v=7HVM3HPhlTw)
 
 ## Add contacts to SendGrid
 
@@ -80,21 +80,4 @@ export default async function happyForm(email, name, list) {
 
 To do that, if you create a new list in your contacts then
 
-![sendgrid empty contact list]
-
-<!-- Links -->
-
-[setting up a custom email with zoho]:
-	https://scottspence.com/posts/custom-email-domain-with-now/
-[sam larsen-disney]: https://twitter.com/SamLarsenDisney
-[newsletter]: https://scottspence.com/newsletter
-[leigh halliday]: https://www.youtube.com/watch?v=gK7KKswOnOQ
-[james q quick]: https://www.youtube.com/watch?v=7HVM3HPhlTw
-[kwes forms]: https://kwes.io/
-[setting up protonmail with vercel]:
-	https://scottspence.com/posts/setting-up-proton-mail-with-vercel/
-
-<!-- Images -->
-
-[sendgrid empty contact list]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/sendgrid-empty-contact-list-73204f3ecdb25d07f4bedfb3be6b6434.png
+![sendgrid empty contact list](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/sendgrid-empty-contact-list-73204f3ecdb25d07f4bedfb3be6b6434.png)

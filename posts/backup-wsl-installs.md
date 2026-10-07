@@ -16,7 +16,7 @@ pushed my code that is!
 
 I've covered getting set up with a WSL instance that isn't on the
 Microsoft store before with a [WSL Web Developer Bootstrap with Fedora
-33].
+33](https://scottspence.com/posts/fedora-bootstrap-from-scratch/).
 
 That covered importing the distribution from a `rootfs` (root file
 system) image and configuring it from scratch.
@@ -143,6 +143,3 @@ the `--unregister` command:
 ```bash
 wsl --unregister Fedora-test
 ```
-
-[wsl web developer bootstrap with fedora 33]:
-	https://scottspence.com/posts/fedora-bootstrap-from-scratch/

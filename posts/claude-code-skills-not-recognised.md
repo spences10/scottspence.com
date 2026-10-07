@@ -6,11 +6,11 @@ tags: ['claude', 'claude-code', 'tools', 'guide']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Banner } from '#lib/components/index.js'
 
   const options = {
-    type: 'info',
+    type: 'info' as const,
     message: `Got your skills working? Give your agents skills, MCP
       servers, and a schedule.
       <a href="https://svortie.com" target="_blank" rel="noopener noreferrer">
@@ -27,7 +27,7 @@ and built out several skills, for this site and other projects.
 I even built out my own
 [CLI tool](https://github.com/spences10/claude-skills-cli) (Claude
 Code _loves_ a CLI!!) to create Claude Skills, and they, well, just
-didn't show up. I'd ask Claude **"list `<available_skills>`"** and
+didn't show up. I'd ask Claude *"list `<available_skills>`"* and
 Claude would be like 🤷.
 
 ## The problem

@@ -13,8 +13,4 @@ not a weekly pile of recycled AI news. You can browse the past
 editions below before subscribing.
 
 I do not sell your details or use them for unrelated marketing. See
-the [privacy policy] for how subscriber data is handled.
-
-<!-- Links -->
-
-[privacy policy]: /privacy-policy
+the [privacy policy](/privacy-policy) for how subscriber data is handled.

@@ -6,13 +6,13 @@ excerpt: ''
 is_private: false
 ---
 
-I'm a bit late to the party using the new [React Context API], I did
-get to use it the other day at work, I also [made a snippet] to
+I'm a bit late to the party using the new [React Context API](https://reactjs.org/docs/context.html), I did
+get to use it the other day at work, I also [made a snippet](https://github.com/spences10/settings/blob/35ba1ca3e9871c3ea6344ca2274ebbd327a18bed/globalVs.code-snippets#L74-L112) to
 scaffold out a component for it.
 
 I had followed a couple of guides explaining how to use it and neither
-of them as good as this great explanation of [how to use it] from
-[@leighchalliday], thank you Leigh 🙏 It's a great use case which
+of them as good as this great explanation of [how to use it](https://www.youtube.com/watch?v=yzQ_XulhQFw) from
+[@leighchalliday](https://twitter.com/leighchalliday), thank you Leigh 🙏 It's a great use case which
 helped me understand how to use it.
 
 So, after doing this in a CRA project I decided to use it on one of my
@@ -53,14 +53,14 @@ add theming support to a Gatsby site and use the React context API to
 manage the theme.
 
 You can see how theme a React app without the React Context API in my
-[styled-components 💅 getting started] post.
+[styled-components 💅 getting started](https://scottspence.com/posts/styled-components) post.
 
 For illustration I'll go over it here now, you add the `ThemeProvider`
 at the highest level in the application structure so that all
 descendants/children of the app can access it.
 
-I have already done this for my [personal site] and now I'm going to
-do it [here] so let's go through it together.
+I have already done this for my [personal site](https://scottspence.me) and now I'm going to
+do it [here](https://scottspence.com) so let's go through it together.
 
 ## Let's make a component!
 
@@ -78,17 +78,17 @@ There we go 👍
 
 Ok, the 'things' I want to do with the Context API are:
 
-1.  change the styled-components `ThemeProvider`
-2.  rotate the site hero patterns
+1. change the styled-components `ThemeProvider`
+2. rotate the site hero patterns
 
 Now to scaffold out the context component, I have already mentioned
-the [VS Code snippet] for my own personal use which is the basic
+the [VS Code snippet](https://github.com/spences10/settings/blob/71dc76fb8e11c176f4517431be57c021fb72411a/globalVs.code-snippets#L74-L111) for my own personal use which is the basic
 structure for the `Context` which is in two parts, a `Provider` and a
 `Consumer`
 
 Let's create the `Context` and the `Consumer` in this component.
 
-**Using the snippet it should look something like this:**
+*Using the snippet it should look something like this:*
 
 `src/layouts/components/BlogThemeContext.js`
 
@@ -340,7 +340,7 @@ const Template = ({ data, pathContext }) => {
 ## Add a ThemeSelect component
 
 The `ThemeSelect` component is a select component I have used several
-times now, [here's the source] from my personal site, it's what we're
+times now, [here's the source](https://github.com/spences10/scottspence.me/blob/master/src/components/ThemeSelect.js) from my personal site, it's what we're
 going to use to handle the theme change, it will use the
 `handleThemeChange` method in the `BlogThemeContext` so we better use
 a Context consumer to access the method:
@@ -359,9 +359,9 @@ a Context consumer to access the method:
 
 Now if we have a look at the `state` in the React dev tools we can see
 the font changing with the selection of the theme change, much like in
-the [styled-components 💅 getting started] post.
+the [styled-components 💅 getting started](https://scottspence.com/posts/styled-components) post.
 
-![theme switching]
+![theme switching](https://thepracticaldev.s3.amazonaws.com/i/r1b8qgu6lm5xjjondse7.gif)
 
 Ok, success 💯 now onto the background switching/transition thingy.
 
@@ -369,8 +369,8 @@ Ok, success 💯 now onto the background switching/transition thingy.
 
 <!-- cSpell:ignore Schoger,rando -->
 
-So, right now to switch between [Steve Schoger]'s awesome [hero
-patterns] I have a function sitting in the `globalStyle` module which
+So, right now to switch between [Steve Schoger](https://twitter.com/steveschoger)'s awesome [hero
+patterns](https://www.heropatterns.com/) I have a function sitting in the `globalStyle` module which
 returns a random HERO pattern:
 
 ```js
@@ -453,28 +453,4 @@ it at (two) different points in the app.
 
 Thanks you for looking at all the code walls!
 
-If you have any feedback [please get in touch].
-
-<!-- Links -->
-
-[react context api]: https://reactjs.org/docs/context.html
-[made a snippet]:
-	https://github.com/spences10/settings/blob/35ba1ca3e9871c3ea6344ca2274ebbd327a18bed/globalVs.code-snippets#L74-L112
-[how to use it]: https://www.youtube.com/watch?v=yzQ_XulhQFw
-[@leighchalliday]: https://twitter.com/leighchalliday
-[styled-components 💅 getting started]:
-	https://scottspence.com/posts/styled-components
-[personal site]: https://scottspence.me
-[here]: https://scottspence.com
-[vs code snippet]:
-	https://github.com/spences10/settings/blob/71dc76fb8e11c176f4517431be57c021fb72411a/globalVs.code-snippets#L74-L111
-[please get in touch]: /contact
-[here's the source]:
-	https://github.com/spences10/scottspence.me/blob/master/src/components/ThemeSelect.js
-[steve schoger]: https://twitter.com/steveschoger
-[hero patterns]: https://www.heropatterns.com/
-
-<!-- Images -->
-
-[theme switching]:
-	https://thepracticaldev.s3.amazonaws.com/i/r1b8qgu6lm5xjjondse7.gif
+If you have any feedback [please get in touch](/contact).

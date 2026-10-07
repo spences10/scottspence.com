@@ -9,9 +9,9 @@ I had a play around with Svelte the other day and wanted to make a few
 notes and comparisons to React, React being a point of reference for
 me and hopefully others.
 
-I've found a lot of the examples here on [Svelte Mastery]
+I've found a lot of the examples here on [Svelte Mastery](https://www.youtube.com/channel/UCg6SQd5jnWo5Y70rZD9SQFA)
 
-There's also the Svelte docs with [interactive tutorials] which I'm
+There's also the Svelte docs with [interactive tutorials](https://svelte.dev/tutorial/basics) which I'm
 going through.
 
 As Svelte looks really similar to html styling is done pretty much the
@@ -356,7 +356,7 @@ Svelte uses the JavaScript label statement for when you want to change
 a components state when it's created from the state of another
 component.
 
-Here's the example take from the [Svelte.dev tutorial site]:
+Here's the example take from the [Svelte.dev tutorial site](https://svelte.dev/tutorial/reactive-declarations):
 
 ```html
 <script>
@@ -378,7 +378,7 @@ Here's the example take from the [Svelte.dev tutorial site]:
 ## Use state hooks
 
 Take a look at the following example from the React documentation for
-[Introducing Hooks] which is a simple counter component:
+[Introducing Hooks](https://reactjs.org/docs/hooks-intro.html) which is a simple counter component:
 
 ```jsx
 import React, { useState } from 'react';
@@ -412,13 +412,4 @@ a lot simpler to grok.
 
 ## Resources
 
-Check out [Svelte Mastery] for all these examples and more
-
-[interactive tutorials]: https://svelte.dev/tutorial/basics
-[svelte mastery]:
-	https://www.youtube.com/channel/UCg6SQd5jnWo5Y70rZD9SQFA
-[svelte.dev tutorial site]:
-	https://svelte.dev/tutorial/reactive-declarations
-[introducing hooks]: https://reactjs.org/docs/hooks-intro.html
-[svelte mastery]:
-	https://www.youtube.com/channel/UCg6SQd5jnWo5Y70rZD9SQFA
+Check out [Svelte Mastery](https://www.youtube.com/channel/UCg6SQd5jnWo5Y70rZD9SQFA) for all these examples and more

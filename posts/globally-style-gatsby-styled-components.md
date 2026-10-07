@@ -12,7 +12,7 @@ is_private: false
 
 I'm going to go over globally styling the Gatsby Default Starter with
 styled-components v5, I've done this in the [past with
-styled-components v4] but I've changed my approach and want to
+styled-components v4](https://scottspence.com/posts/gatsby-starter-to-styled-components/) but I've changed my approach and want to
 document it.
 
 I'll be swapping out the styles included with a CSS reset and adding
@@ -125,14 +125,14 @@ const Layout = ({ children }) => {
 In the code example here 👆I've I removed the `useStaticQuery` hook
 for readability.
 
-![reset page]
+![reset page](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/reset-page-39c26fbeac89322ffc9491b0efa0ad13.png)
 
 Ok, cool, looks pretty reset to me!
 
 ## Create the new browser base styles
 
 Time to add in some more styles to the global style. First, the
-`box-sizing` reset, take a look at the CSS Tricks post on [Box Sizing]
+`box-sizing` reset, take a look at the CSS Tricks post on [Box Sizing](https://css-tricks.com/box-sizing/#article-header-id-3)
 for a great explanation of why we do this.
 
 ```jsx {7-12}
@@ -193,7 +193,7 @@ In the case of the Gatsby Default Starter you'll notice that the
 sound option.
 
 There is an alternative to adding it to the layout and that is to use
-the Gatsby Browser and Gatsby SSR API [wrapRootElement].
+the Gatsby Browser and Gatsby SSR API [wrapRootElement](https://www.gatsbyjs.com/docs/browser-apis/#wrapRootElement).
 
 If I add in the following code to `gatsby-browser.js` the styles are
 applied.
@@ -234,9 +234,9 @@ export const wrapRootElement = wrap;
 
 ## Global fonts with `gatsby-plugin-google-fonts`
 
-Onto the main reason for this post, with the [v5 release] of
+Onto the main reason for this post, with the [v5 release](https://styled-components.com/releases#v5.0.0) of
 styled-components the use of `@imports` in `createGlobalStyle` isn't
-working, (that approach is [detailed here]) it's recommended that you
+working, (that approach is [detailed here](https://scottspence.com/posts/gatsby-starter-to-styled-components/#3-global-style)) it's recommended that you
 embed these into your HTML index file, etc.
 
 > NOTE: At this time we recommend not using @import inside of
@@ -244,8 +244,8 @@ embed these into your HTML index file, etc.
 > functionality but it just doesn't really work at the moment and it's
 > better if you just embed these imports in your HTML index file, etc.
 
-But! As I'm using Gatsby, of course, _**"There's a Plugin For
-That™️"**_ so I'm going to use `gatsby-plugin-google-fonts` for this,
+But! As I'm using Gatsby, of course, _*"There's a Plugin For
+That™️"*_ so I'm going to use `gatsby-plugin-google-fonts` for this,
 I'm using this in place of `gatsby-plugin-web-font-loader` because it
 uses `display=swap`.
 
@@ -276,13 +276,13 @@ I can now use these fonts throughout my site.
 
 ## styled-components Theme provider
 
-The [styled-components ThemeProvider] is a great solution for managing
+The [styled-components ThemeProvider](https://styled-components.com/docs/api#themeprovider) is a great solution for managing
 your styles throughout a project.
 
 Part of the inspiration for my approach came from Sid's talk at React
-Advanced which [I wrote about] and part from watching the Tailwind CSS
+Advanced which [I wrote about](https://scottspence.com/posts/react-advanced-london-2019/#siddharth-kshetrapal---design-systems-design-system) and part from watching the Tailwind CSS
 courses from Adam Wathan on Egghead.io check out the playlist here:
-[Introduction to Tailwind and the Utility first workflow]
+[Introduction to Tailwind and the Utility first workflow](https://egghead.io/playlists/introduction-to-tailwind-and-the-utility-first-workflow-0b697b10)
 
 With the ThemeProvider I can have things like colours, sizes, font
 weights in one place so that there is a consistent set of presets to
@@ -373,7 +373,7 @@ export const GlobalStyle = createGlobalStyle`
 ```
 
 The base font is now set to Cambay, why stop there though, I'll bring
-in some fonts sizes and font weights from the [Tailwind full config]
+in some fonts sizes and font weights from the [Tailwind full config](https://github.com/tailwindcss/designing-with-tailwindcss/blob/master/01-getting-up-and-running/07-customizing-your-design-system/tailwind-full.config.js)
 and add them to the `theme` object.
 
 ```jsx {10-32,45}
@@ -572,49 +572,15 @@ That's it for this one!
 
 Please take a look at my other content if you enjoyed this.
 
-Follow me on [Twitter] or [Ask Me Anything] on GitHub.
+Follow me on [Twitter](https://twitter.com/spences10) or [Ask Me Anything](https://github.com/spences10/ama) on GitHub.
 
 ## Resources
 
 <!-- cSpell:ignore Siddharth,Kshetrapal -->
 
-- [Design Systems Design System - Siddharth Kshetrapal]
-- [Tailwind full config]
-- [Introduction to Tailwind and the Utility first workflow]
-- [Design and Implement Common Tailwind Components]
-- [Build a Responsive Navbar with Tailwind]
-- [Build and Style a Dropdown in Tailwind]
-
-<!-- Links -->
-
-[past with styled-components v4]:
-	https://scottspence.com/posts/gatsby-starter-to-styled-components/
-[wraprootelement]:
-	https://www.gatsbyjs.com/docs/browser-apis/#wrapRootElement
-[v5 release]: https://styled-components.com/releases#v5.0.0
-[detailed here]:
-	https://scottspence.com/posts/gatsby-starter-to-styled-components/#3-global-style
-[box sizing]: https://css-tricks.com/box-sizing/#article-header-id-3
-[styled-components themeprovider]:
-	https://styled-components.com/docs/api#themeprovider
-[introduction to tailwind and the utility first workflow]:
-	https://egghead.io/playlists/introduction-to-tailwind-and-the-utility-first-workflow-0b697b10
-[design and implement common tailwind components]:
-	https://egghead.io/playlists/design-and-implement-common-tailwind-components-8fbb9b19
-[build a responsive navbar with tailwind]:
-	https://egghead.io/playlists/build-a-responsive-navbar-with-tailwind-4d328a35
-[build and style a dropdown in tailwind]:
-	https://egghead.io/playlists/build-and-style-a-dropdown-in-tailwind-7f34fead
-[i wrote about]:
-	https://scottspence.com/posts/react-advanced-london-2019/#siddharth-kshetrapal---design-systems-design-system
-[design systems design system - siddharth kshetrapal]:
-	https://www.youtube.com/watch?v=Dd-Y9K7IKmk&feature=emb_title
-[tailwind full config]:
-	https://github.com/tailwindcss/designing-with-tailwindcss/blob/master/01-getting-up-and-running/07-customizing-your-design-system/tailwind-full.config.js
-[twitter]: https://twitter.com/spences10
-[ask me anything]: https://github.com/spences10/ama
-
-<!-- Images -->
-
-[reset page]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858538/scottspence.com/reset-page-39c26fbeac89322ffc9491b0efa0ad13.png
+- [Design Systems Design System - Siddharth Kshetrapal](https://www.youtube.com/watch?v=Dd-Y9K7IKmk&feature=emb_title)
+- [Tailwind full config](https://github.com/tailwindcss/designing-with-tailwindcss/blob/master/01-getting-up-and-running/07-customizing-your-design-system/tailwind-full.config.js)
+- [Introduction to Tailwind and the Utility first workflow](https://egghead.io/playlists/introduction-to-tailwind-and-the-utility-first-workflow-0b697b10)
+- [Design and Implement Common Tailwind Components](https://egghead.io/playlists/design-and-implement-common-tailwind-components-8fbb9b19)
+- [Build a Responsive Navbar with Tailwind](https://egghead.io/playlists/build-a-responsive-navbar-with-tailwind-4d328a35)
+- [Build and Style a Dropdown in Tailwind](https://egghead.io/playlists/build-and-style-a-dropdown-in-tailwind-7f34fead)

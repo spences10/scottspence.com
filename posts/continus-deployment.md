@@ -13,9 +13,9 @@ _every_ project I made.
 ## Busy work
 
 Some of my GitHub projects has a ridiculous amount of commits on them.
-I remember pointing [Jamie Barton] to a project I did to make a
-dynamic [navigation bar with GraphCMS] and he commented on the amount
-of commits ~1.5k commits. I'd say about 99% of those were dependency
+I remember pointing [Jamie Barton](https://twitter.com/notrab) to a project I did to make a
+dynamic [navigation bar with GraphCMS](https://github.com/spences10/gatsby-using-graphcms) and he commented on the amount
+of commits \~1.5k commits. I'd say about 99% of those were dependency
 updates from the Renovate bot, it's bonkers!
 
 One of the main reasons for using Renovate was for keeping the project
@@ -96,9 +96,3 @@ and secure and you always have some PRs to review on GitHub.
 But if you have a lot of projects with a dependency that has high
 release rates or that you use in every project (Gatsby, Prettier) then
 when update time comes there's a lot of 'busy work' involved.
-
-<!-- Links -->
-
-[jamie barton]: https://twitter.com/notrab
-[navigation bar with graphcms]:
-	https://github.com/spences10/gatsby-using-graphcms

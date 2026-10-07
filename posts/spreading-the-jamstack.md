@@ -66,13 +66,13 @@ from.
 So you may or may not have heard of some of these stacks being
 mentioned.
 
-**LAMP** stack > Linux, Apache, MySQL, PHP
+*LAMP* stack > Linux, Apache, MySQL, PHP
 
-**MEAN** stack > MongoDB, ExpressJS, AngularJS, NodeJS
+*MEAN* stack > MongoDB, ExpressJS, AngularJS, NodeJS
 
 <!-- cSpell:ignore MERN -->
 
-**MERN** stack > MongoDB, ExpressJS, React, NodeJS
+*MERN* stack > MongoDB, ExpressJS, React, NodeJS
 
 These technologies generate the template for the pages you're going to
 see on the fly on a server somewhere.
@@ -98,17 +98,17 @@ Phil Hawksworth
 Let's take a look at some static site generators and the languages
 they use:
 
-- [Jekyll] > Ruby
-- [Hugo] > Go
-- [11ty] (Eleventy) > JavaScript
-- [Gatsby] > JavaScript
+- [Jekyll](https://jekyllrb.com) > Ruby
+- [Hugo](https://gohugo.io/) > Go
+- [11ty](https://11ty.dev/) (Eleventy) > JavaScript
+- [Gatsby](https://www.gatsbyjs.com/) > JavaScript
 
 Jekyll is the OG of the static site generators and what I used for my
 first blog. But I could only run it on Cloud9 because I couldn't get
 Ruby running on my computer. 😅
 
 Hugo uses Go, <Sarcasm sarky="but where's the JavaScript!!?!1" /> see
-this is where the [name change] comes in where there's no hard fast
+this is where the [name change](https://github.com/jamstack/jamstack.org/issues/279) comes in where there's no hard fast
 rules on the technologies that make up a jamstack site.
 
 ## Jamstack core philosophy
@@ -166,40 +166,19 @@ No > Jamstack
 
 High performing sites retain visitors more than low performing ones.
 
-Here's some information from Google's web.dev blog on [Why does speed
-matter].
+Here's some information from Google's web.dev blog on \[Why does speed
+matter\].
 
 Pinterest reduced perceived wait times by 40% and this increased
 search engine traffic and sign-ups by 15%.
 
 Perceived wait times are achieved by prerendering part of the page.
 
-> Search engine traffic and signups increased by **15%** - Pinterest
+> Search engine traffic and signups increased by *15%* - Pinterest
 
 Studies have also shown the negative impact poor performance can have
 on business goals. For example, the BBC found they lost an additional
 10% of users for every additional second their site took to load.
 
-> BBC found they lost an additional **10%** of users for every
+> BBC found they lost an additional *10%* of users for every
 > additional second their site took to load
-
-<!-- Links -->
-<!-- cSpell:ignore 404pagefound,jfkt,staticgen -->
-
-[smashingmagazine.com]: https://smashingmagazine.com
-[jfkt4.nyc]: https://jfkt4.nyc
-[reactjs.org]: https://reactjs.org
-[store.gatsbyjs.com]: https://store.gatsbyjs.com
-[nozzle.io]: https://nozzle.io
-
-[staticgen.com]: https://www.staticgen.com/) [404pagefound.com]:
-https://www.404pagefound.com/) [jamstack.wtf]: https://jamstack.wtf/)
-[how-mobile-latency-impacts-publisher-revenue]:
-https://www.thinkwithgoogle.com/intl/en-154/insights-inspiration/research-data/need-mobile-speed-how-mobile-latency-impacts-publisher-revenue/
-[mobile-page-speed-new-industry-benchmarks]:
-https://www.thinkwithgoogle.com/marketing-resources/data-measurement/mobile-page-speed-new-industry-benchmarks/
-[cook]: https://www.cookfood.net/ [why does speed matter]:
-https://web.dev/why-speed-matters/ [name change]:
-https://github.com/jamstack/jamstack.org/issues/279 [hugo]:
-https://gohugo.io/ [jekyll]: https://jekyllrb.com [11ty]:
-https://11ty.dev/ [gatsby]: https://www.gatsbyjs.com/

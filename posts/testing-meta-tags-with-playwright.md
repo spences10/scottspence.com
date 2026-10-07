@@ -9,7 +9,7 @@ is_private: false
   import { Tweet } from 'sveltekit-embed'
 </script>
 
-I recently released a [head component] that can be used in Svelte
+I recently released a [head component](https://github.com/spences10/svead) that can be used in Svelte
 projects and I wanted to add tests to it to make sure that it's
 working as expected.
 
@@ -47,7 +47,7 @@ I'll keep that in the file.
 
 Then the first thing I'll want to check after that would be the
 `canonical`. I found how to do this with a combination of the
-Playwright documentation and the Cypress tests on the [Astro SEO]
+Playwright documentation and the Cypress tests on the [Astro SEO](https://github.com/jonasmerlin/astro-seo/)
 component which has been really helpful in helping me identify where
 there may be some gaps in my own component.
 
@@ -73,14 +73,14 @@ test('head has description', async ({ page }) => {
 ```
 
 That's the basics covered for testing, I used the [Playwright VS Code
-extension] for running them locally.
+extension](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright) for running them locally.
 
-If you want to see the full suite of tests then check out the [tests]
+If you want to see the full suite of tests then check out the [tests](https://github.com/spences10/svead/blob/main/tests/test.ts)
 over on the GitHub repo.
 
 This is by no means a complete test suite and I'll be taking more
-pointers from the really well written [Astro SEO] component tests by
-[Jonas Schumacher].
+pointers from the really well written [Astro SEO](https://github.com/jonasmerlin/astro-seo/) component tests by
+[Jonas Schumacher](https://github.com/jonasmerlin).
 
 ## The CI
 
@@ -97,8 +97,8 @@ Liran Tal chimed in a solution which was to create a GitHub workflow.
 It did help! Thanks Liran 🙏
 
 I used that really handy post from Liran to create my own workflow
-which is on the [Svead GitHub] repo in the [`.github/workflows`
-folder].
+which is on the [Svead GitHub](https://github.com/spences10/svead) repo in the [`.github/workflows`
+folder](https://github.com/spences10/svead/blob/main/.github/workflows/e2e-ci.yml).
 
 That's it, now I have a CI workflow that runs the tests on every push.
 
@@ -108,17 +108,5 @@ Like I mentioned this isn't a complete suite of tests but enough to
 give me the confidence it's functioning as it should. I'll be adding
 in more tests to cover the other optional meta tags.
 
-If you want to contribute feel free to open a PR on the [Svead GitHub]
+If you want to contribute feel free to open a PR on the [Svead GitHub](https://github.com/spences10/svead)
 repo.
-
-<!-- Links -->
-
-[head component]: https://github.com/spences10/svead
-[astro seo]: https://github.com/jonasmerlin/astro-seo/
-[playwright vs code extension]:
-	https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright
-[tests]: https://github.com/spences10/svead/blob/main/tests/test.ts
-[jonas schumacher]: https://github.com/jonasmerlin
-[svead github]: https://github.com/spences10/svead
-[`.github/workflows` folder]:
-	https://github.com/spences10/svead/blob/main/.github/workflows/e2e-ci.yml

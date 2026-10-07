@@ -22,23 +22,24 @@ for data that doesn't change a great deal, like your site metadata.
 
 ## tl;dr
 
-Here's me trying to [even] with [codesandbox.io] whilst I convert some
-of the Gatsby default starter that's on [codesandbox.io] to use the
+Here's me trying to [even](https://youtu.be/8ruJBKFrRCk?t=93) with [codesandbox.io](https://codesandbox.io) whilst I convert some
+of the Gatsby default starter that's on [codesandbox.io](https://codesandbox.io) to use the
 `useSiteMetadata` custom hook.
 
-Using [codesandbox.io] we take a look at implementing a custom react
+Using [codesandbox.io](https://codesandbox.io) we take a look at implementing a custom react
 hook for getting site metadata in Gatsby.
 
-**Here's a video:**
+*Here's a video:*
 
 <!-- cSpell:ignore Xwbk -->
+
 <YouTube youTubeId="qWay-LjXwbk" />
 
-The `StaticQuery` component uses the [render props] pattern, which
+The `StaticQuery` component uses the [render props](https://reactjs.org/docs/render-props.html) pattern, which
 means it takes in a function and returns/renders based off of that.
 
 I have detailed this pattern before in a post about [using the react
-context api], it's a component that you pass a function to, to render
+context api](https://scottspence.com/posts/react-context-api), it's a component that you pass a function to, to render
 a component.
 
 Think of it like this:
@@ -65,7 +66,7 @@ like this.
 ```
 
 Here's a cut down version of the `StaticQuery` component being used in
-the Gatsby default starter on [codesandbox.io]
+the Gatsby default starter on [codesandbox.io](https://codesandbox.io)
 
 I've taken out the styling to make it a bit shorter:
 
@@ -134,24 +135,24 @@ export default (props) => (
 I found this more acceptable because you didn't have to have all the
 code bunched into the `StaticQuery` component.
 
-**That all make sense?**
+*That all make sense?*
 
 Good, now forget about all of that! It's time to use the new
 `useStaticQuery` hotness in Gatsby. 💪
 
 ## Versions:
 
-**This guide is being used with the following dependency versions.**
+*This guide is being used with the following dependency versions.*
 
 - gatsby: 2.1.31
 - react: 16.8.4
 - react-dom: 16.8.4
 
-You can also check out the [example code].
+You can also check out the [example code](https://codesandbox.io/s/1vnvko0zqj).
 
 ---
 
-The [Gatsby documentation] covers the use of it and also how to make
+The [Gatsby documentation](https://www.gatsbyjs.com/docs/use-static-query/) covers the use of it and also how to make
 your own custom react hook to use `useStaticQuery`, here's the one I
 use in the video.
 
@@ -229,7 +230,7 @@ Here's the comparison:
 
 <!-- cSpell:ignore compareLayout -->
 
-![compareLayout]
+![compareLayout](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/compareLayout-ea4dd0fb5890ca0f00a8d98e9f57a0df.png)
 
 On now to the `seo` component, same again, remove `StaticQuery` and
 use `useSiteMetadata` in it's place.
@@ -238,10 +239,10 @@ Here's the comparison:
 
 <!-- cSpell:ignore compareSEO -->
 
-![compareSEO]
+![compareSEO](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/compareSEO-0e2968ec8991f7a0c3f41e1b64986288.png)
 
 If you want to check out the code the example is available here:
-[example code]
+[example code](https://codesandbox.io/s/1vnvko0zqj)
 
 ## Wrap up!
 
@@ -249,28 +250,8 @@ That's it! Wh have gone from using the awesome `StaticQuery` render
 props pattern used in Gatsby over to the even more awesome
 `useStaticQuery` React hooks, hook.
 
-**Thanks for reading** 🙏
+*Thanks for reading* 🙏
 
 Please take a look at my other content if you enjoyed this.
 
-Follow me on [Twitter] or [Ask Me Anything] on GitHub.
-
-<!-- Links -->
-
-[twitter]: https://twitter.com/spences10
-[ask me anything]: https://github.com/spences10/ama
-[codesandbox.io]: https://codesandbox.io
-[render props]: https://reactjs.org/docs/render-props.html
-[using the react context api]:
-	https://scottspence.com/posts/react-context-api
-[example code]: https://codesandbox.io/s/1vnvko0zqj
-[even]: https://youtu.be/8ruJBKFrRCk?t=93
-[gatsby documentation]:
-	https://www.gatsbyjs.com/docs/use-static-query/
-
-<!-- Images -->
-
-[comparelayout]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/compareLayout-ea4dd0fb5890ca0f00a8d98e9f57a0df.png
-[compareseo]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/compareSEO-0e2968ec8991f7a0c3f41e1b64986288.png
+Follow me on [Twitter](https://twitter.com/spences10) or [Ask Me Anything](https://github.com/spences10/ama) on GitHub.

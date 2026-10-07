@@ -11,12 +11,12 @@ data in SvelteKit.
 
 First up, if you weren't aware, SvelteKit completely changed how file
 based routing is done. There's a really comprehensive [migration
-guide] from [Rich Harris] and [Simon H] over on GitHub on it.
+guide](https://github.com/sveltejs/kit/discussions/5774) from [Rich Harris](https://github.com/Rich-Harris) and [Simon H](https://github.com/dummdidumm) over on GitHub on it.
 
 ## Page routing
 
 If you don't want the background on the route changes then the
-**TL;DR, is here:** [Get set up](#get-set-up).
+*TL;DR, is here:* [Get set up](#get-set-up).
 
 I'll quickly go over the new routing system, as it's a bit different
 to what it was, what I'll do is detail what the SvelteKit skeleton
@@ -26,7 +26,7 @@ to what it was, what I'll do is detail what the SvelteKit skeleton
 I've removed a some of the other files that come with the skeleton for
 brevity.
 
-**Before**
+*Before*
 
 ```text
 sveltekit-skeleton-example/
@@ -39,7 +39,7 @@ sveltekit-skeleton-example/
 
 And this is how it's now structured.
 
-**After**
+*After*
 
 ```text
 sveltekit-skeleton-example/
@@ -54,7 +54,7 @@ Not a missive change, right? But let's take a look at how routes were
 done vs how they are now. Let's say there was several other routes
 `about`, `blog`, `contact` etc.
 
-**Before**
+*Before*
 
 ```text
 sveltekit-skeleton-example/
@@ -86,7 +86,7 @@ sveltekit-skeleton-example/
 └─ package.json
 ```
 
-**After**
+*After*
 
 ```text
 sveltekit-skeleton-example/
@@ -141,12 +141,12 @@ props are received into components with `export let`.
 Ok, so that data defined locally now I'll take a look at getting some
 external data.
 
-In the following example I'm using the [CoinLore API] to get the top
+In the following example I'm using the [CoinLore API](https://www.coinlore.com/cryptocurrency-data-api) to get the top
 100 cryptocurrencies (which is the default request). It's a fun API to
 play around with but for this example all I really need is some data
 from an external source.
 
-SvelteKit builds on top of the [Standard Web APIs] and makes them
+SvelteKit builds on top of the [Standard Web APIs](https://kit.svelte.dev/docs/web-standards) and makes them
 available in the load function. You can see in the example here I'm
 destructuring out the `fetch` function from the `context` object that
 is available to the `load` function.
@@ -200,7 +200,7 @@ Resulting data being displayed on the page is something like this:
 ## Two or more endpoints?
 
 I detailed this before in a post on how to [Fetch data from two or
-more endpoints in SvelteKit] with `Promise.all`.
+more endpoints in SvelteKit](https://scottspence.com/posts/fetch-data-from-two-or-more-endpoints-in-svelte) with `Promise.all`.
 
 If you don't like the way you have to put the calls into an array then
 adding them to their own variables is also fine.
@@ -248,7 +248,7 @@ export const load = async ({ fetch }) => {
 ```
 
 I've added an additional call to the page load function to get the
-characters from the [Rick and Morty GraphQL API] then calling the
+characters from the [Rick and Morty GraphQL API](https://rickandmortyapi.com/graphql/) then calling the
 function for each of them.
 
 ## Using `+page.server.js|.ts`
@@ -284,7 +284,7 @@ The CoinLore API doesn't require a key so I'm just using a dummy token
 defined in my `.env` file.
 
 You can find out more about that in the [SvelteKit Environment
-Variables with the SvelteKit $env Module] post I did a while back.
+Variables with the SvelteKit $env Module](https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module) post I did a while back.
 
 ## Conclusion
 
@@ -296,17 +296,3 @@ credentials from the client then use `+page.server.js` or
 `+page.server.ts`.
 
 That's it for this post, I hope you found it useful.
-
-<!-- Links -->
-
-[migration guide]: https://github.com/sveltejs/kit/discussions/5774
-[rich harris]: https://github.com/Rich-Harris
-[simon h]: https://github.com/dummdidumm
-[coinlore api]: https://www.coinlore.com/cryptocurrency-data-api
-[fetch]: https://kit.svelte.dev/docs/web-standards#fetch-apis
-[standard web apis]: https://kit.svelte.dev/docs/web-standards
-[fetch data from two or more endpoints in sveltekit]:
-	https://scottspence.com/posts/fetch-data-from-two-or-more-endpoints-in-svelte
-[rick and morty graphql api]: https://rickandmortyapi.com/graphql/
-[sveltekit environment variables with the sveltekit $env module]:
-	https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module

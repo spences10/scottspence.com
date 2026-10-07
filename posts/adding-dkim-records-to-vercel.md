@@ -6,11 +6,11 @@ tags: ['domains', 'guide', 'resource']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Banner } from '#lib/components/index.js'
 
   const options = {
-    type: 'info',
+    type: 'info' as const,
     message: `This is my misunderstanding of how to use the Vercel CLI!
       Me using the <code>@</code> as a name refers to the domain. I've
       added an <a href="#update">update</a> to the end of the post to clarify this.
@@ -22,7 +22,7 @@ So, I've started using Sendinblue for my transactional emails and
 newsletter. There's the usual configuration to do with these services
 to add and configure your domain with them to show it as the sender.
 
-I've documented that process of [Setting up Fastmail with Vercel] in
+I've documented that process of [Setting up Fastmail with Vercel](https://scottspence.com/posts/setting-up-fastmail-with-vercel) in
 the past which I was familiar with.
 
 This time around I had to add DKIM records to my domain to get this
@@ -47,30 +47,30 @@ Sendinblue dashboard to see if they're verified, I get the following:
 
 <!-- cSpell:ignore yourdomain,domainkey -->
 
-| Sendinblue code | We need to verify your domain       |     |
-| --------------- | ----------------------------------- | --- |
-| Type            | TXT                                 |
-| Hostname        | yourdomain.com                      |
-| Value           | sendinblue-code:valueFromSendinblue | ✔️  |
+| Sendinblue code | We need to verify your domain |  |
+| --- | --- | --- |
+| Type | TXT |
+| Hostname | yourdomain.com |
+| Value | sendinblue-code:valueFromSendinblue | ✔️ |
 
-| DKIM record | We need to authenticate your domain |     |
-| ----------- | ----------------------------------- | --- |
-| Type        | TXT                                 |
-| Hostname    | mail.\_domainkey.yourdomain.com     |
-| Value       | k=rsa;p=valueFromSendinblue         | ❌  |
+| DKIM record | We need to authenticate your domain |  |
+| --- | --- | --- |
+| Type | TXT |
+| Hostname | mail.\_domainkey.yourdomain.com |
+| Value | k=rsa;p=valueFromSendinblue | ❌ |
 
-| SPF record | We need to authenticate your domain       |     |
-| ---------- | ----------------------------------------- | --- |
-| Type       | TXT                                       |
-| Hostname   | yourdomain.com                            |
-| Value      | v=spf1 include:spf.sendinblue.com mx ~all | ✔️  |
+| SPF record | We need to authenticate your domain |  |
+| --- | --- | --- |
+| Type | TXT |
+| Hostname | yourdomain.com |
+| Value | v=spf1 include:spf.sendinblue.com mx \~all | ✔️ |
 
 Fine for the hostnames that matched the apex domain (in this example
 that's `yourdomain.com`), but when it came to the
 `mail._domainkey.yourdomain.com` hostname it wasn't verified.
 
 I was able to validate the `TXT` record had been added and propagated
-with [DNSChecker] but it wasn't verified on the Sendinblue dashboard.
+with [DNSChecker](https://dnschecker.org/) but it wasn't verified on the Sendinblue dashboard.
 
 Why?
 
@@ -107,26 +107,26 @@ this time for the `mail._domainkey.yourdomain.com` hostname.
 vc dns add mail._domainkey.yourdomain.com @ TXT 'k=rsa;p=valueFromSendinblue'
 ```
 
-Verify on [DNSChecker] that the `TXT` record has propagated and then
+Verify on [DNSChecker](https://dnschecker.org/) that the `TXT` record has propagated and then
 go back to the Sendinblue dashboard and check to see if it's verified.
 
-| Sendinblue code | We need to verify your domain       |     |
-| --------------- | ----------------------------------- | --- |
-| Type            | TXT                                 |
-| Hostname        | yourdomain.com                      |
-| Value           | sendinblue-code:valueFromSendinblue | ✔️  |
+| Sendinblue code | We need to verify your domain |  |
+| --- | --- | --- |
+| Type | TXT |
+| Hostname | yourdomain.com |
+| Value | sendinblue-code:valueFromSendinblue | ✔️ |
 
-| DKIM record | We need to authenticate your domain |     |
-| ----------- | ----------------------------------- | --- |
-| Type        | TXT                                 |
-| Hostname    | mail.\_domainkey.yourdomain.com     |
-| Value       | k=rsa;p=valueFromSendinblue         | ✔️  |
+| DKIM record | We need to authenticate your domain |  |
+| --- | --- | --- |
+| Type | TXT |
+| Hostname | mail.\_domainkey.yourdomain.com |
+| Value | k=rsa;p=valueFromSendinblue | ✔️ |
 
-| SPF record | We need to authenticate your domain       |     |
-| ---------- | ----------------------------------------- | --- |
-| Type       | TXT                                       |
-| Hostname   | yourdomain.com                            |
-| Value      | v=spf1 include:spf.sendinblue.com mx ~all | ✔️  |
+| SPF record | We need to authenticate your domain |  |
+| --- | --- | --- |
+| Type | TXT |
+| Hostname | yourdomain.com |
+| Value | v=spf1 include:spf.sendinblue.com mx \~all | ✔️ |
 
 So, essentially there should have been some extra steps on the
 Sendinblue dashboard, to add a subdomain.
@@ -159,9 +159,3 @@ vc dns add yourdomain.com mail._domainkey TXT 'k=rsa;p=valueFromSendinblue'
 Thanks.
 
 Done! Done! 😅
-
-<!-- Links -->
-
-[setting up fastmail with vercel]:
-	https://scottspence.com/posts/setting-up-fastmail-with-vercel
-[dnschecker]: https://dnschecker.org/

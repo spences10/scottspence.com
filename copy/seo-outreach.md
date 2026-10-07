@@ -41,11 +41,11 @@ you're essentially asking me to sell that credibility.
 
 Here are my non-negotiable commercial terms for sponsored content:
 
-**Link placement in existing articles:** £30,000 per link per month
+*Link placement in existing articles:* £30,000 per link per month
 
-**Sponsored article creation:** £45,000 per article per month
+*Sponsored article creation:* £45,000 per article per month
 
-**Requirements:**
+*Requirements:*
 
 - Pre-payment via bank transfer only
 - All sponsored links marked clearly as advertising
@@ -53,7 +53,7 @@ Here are my non-negotiable commercial terms for sponsored content:
 - No implied endorsement of products or services
 - Content must be relevant to web development
 
-**Process:**
+*Process:*
 
 - Email me referencing this page
 - Include "I accept these advertising terms" in your email

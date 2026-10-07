@@ -329,14 +329,7 @@ take a look at that.
 Thanks to Rainlife over on the Svelte Discord for suggesting the use
 of `HEAD` (as I'm only interested in the header of the request). Also
 thanks to Jordan (also on the Svelte Discord) for giving me this handy
-MDN link for [Redirections in HTTP].
+MDN link for [Redirections in HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections#permanent_redirections).
 
-Also [Dana Woodman on Dev.to] for using redirects in SvelteKit
+Also [Dana Woodman on Dev.to](https://dev.to/danawoodman/how-to-redirect-in-sveltekit-endpoints-1im3) for using redirects in SvelteKit
 endpoints. I was using `redirect` instead of setting the headers.
-
-<!-- Links -->
-
-[redirections in http]:
-	https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections#permanent_redirections
-[dana woodman on dev.to]:
-	https://dev.to/danawoodman/how-to-redirect-in-sveltekit-endpoints-1im3

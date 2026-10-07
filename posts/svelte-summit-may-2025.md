@@ -37,8 +37,8 @@ As the heading suggests I also want to mention that although there are
 sponsors for Svelte Summit I know that conferences are not cheap to
 make happen! I have also seen discourse around the cost of watching
 the talks, _really_ passive aggressive comments around Svelte being
-OSS so why pay to watch the talks etc. **HAVE YOU SEEN THE PRICE OF A
-VITECONF TICKET?**
+OSS so why pay to watch the talks etc. *HAVE YOU SEEN THE PRICE OF A
+VITECONF TICKET?*
 
 To these people, stop bitching about it! The conf was run at a loss!
 The videos are a way to claw back some of this! If you want to support

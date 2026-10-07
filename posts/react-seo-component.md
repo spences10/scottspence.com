@@ -10,11 +10,11 @@ is_private: false
 </script>
 
 Here's some of the reasoning and detail that went into making the
-[React SEO Component].
+[React SEO Component](https://www.npmjs.com/package/react-seo-component).
 
-There wasn't a **great** deal I knew about Search Engine Optimization
+There wasn't a *great* deal I knew about Search Engine Optimization
 before I set about writing the [Build a coding blog from scratch with
-Gatsby and MDX] guide that I published last year.
+Gatsby and MDX](https://scottspence.com/posts/build-an-mdx-blog) guide that I published last year.
 
 I'd say I know a _bit_ more now but I still feel it's a bit of a black
 art.
@@ -28,8 +28,8 @@ quite involved.
 <!-- cSpell:ignore schau -->
 
 To begin with I started looking around to see if anyone had created an
-SEO component for Gatsby and found a closed [GitHub PR on seo] from
-Dustin Schau with some [great notes from Andrew Welch] on SEO and a
+SEO component for Gatsby and found a closed [GitHub PR on seo](https://github.com/gatsbyjs/gatsby/pull/10780) from
+Dustin Schau with some [great notes from Andrew Welch](https://github.com/gatsbyjs/gatsby/pull/10780#issuecomment-451048608) on SEO and a
 link to a presentation he did back in 2017, great stuff.
 
 <Vimeo vimeoId="246846978" />
@@ -38,18 +38,18 @@ link to a presentation he did back in 2017, great stuff.
 
 <!-- cSpell:ignore leko,prismic -->
 
-Adding an SEO component to a Gatsby site is [well documented] and I,
+Adding an SEO component to a Gatsby site is [well documented](https://www.gatsbyjs.com/docs/add-seo-component/) and I,
 like a lot of other people developing in Gatsby took [Jason
-Lengstorf]'s' lead with the example used on [Marisa's site]. I'd used
+Lengstorf](https://twitter.com/jlengstorf)'s' lead with the example used on [Marisa's site](https://github.com/marisamorby/marisamorby.com/blob/master/packages/gatsby-theme-blog-sanity/src/components/seo.js). I'd used
 this several times already so was familiar with how it worked. The
-example that captured my imagination however was from [LekoArts] in
+example that captured my imagination however was from [LekoArts](https://github.com/LekoArts) in
 his Gatsby Starter Prismic example.
 
 ## Open Graph
 
 We all want to have the cool preview cards you see when someone shares
 a post on Twitter or LinkedIn. This is done with Facebook's [Open
-Graph Protocol] where you add in metadata tags that are picked up by
+Graph Protocol](https://ogp.me/) where you add in metadata tags that are picked up by
 Twitter, LinkedIn, etc. to display the image added in the tags.
 
 I did some work on an internal project where I work which uses this to
@@ -104,7 +104,7 @@ Twitter has it's tags too:
 
 ## SEO has it's things as well
 
-Then there's keeping Google sweet as well with [structured data] this
+Then there's keeping Google sweet as well with [structured data](https://developers.google.com/search/docs/guides/intro-structured-data) this
 is so Google can understand the contents of the page. I took LekoArts'
 lead on this as it was something I wasn't familiar with at all.
 LekoArts did a great job of putting all this together:
@@ -159,20 +159,20 @@ the components from another project each time.
 It was interesting trying to find how to do it, I didn't find a great
 deal of documentation out there.
 
-I found [this post] with some [example code] on GitHub.
+I found [this post](https://medium.com/recraftrelic/building-a-react-component-as-a-npm-module-18308d4ccde9) with some [example code](https://github.com/recraftrelic/dummy-react-npm-module/blob/master/package.json) on GitHub.
 
 <!-- cSpell:ignore tsdx -->
 
-The initial release [used Rollup] with Babel preset for React which
+The initial release [used Rollup](https://github.com/spences10/react-seo-component/blob/32acf12d53/rollup.config.js) with Babel preset for React which
 worked fine. I've since moved it to use TypeScript with the awesome
-TSDX for [TypeScript package development].
+TSDX for [TypeScript package development](https://github.com/jaredpalmer/tsdx).
 
 ## Enjoy
 
 There's still a lot to do with the component, currently I'm
 overwriting some of the tags in this project after writing a
 serverless function to generate [Open Graph Images with Gatsby and
-Now] which uses these tags:
+Now](https://scottspence.com/posts/serverless-og-images/) which uses these tags:
 
 ```jsx
 <meta property="og:image" content={ogImageUrl} />
@@ -182,31 +182,3 @@ Now] which uses these tags:
 The defaults are empty strings or a default `J Doe` so not great but
 there is a lot to go in there and hopefully a lot more to learn from
 it by me.
-
-<!-- Links -->
-
-[react seo component]:
-	https://www.npmjs.com/package/react-seo-component
-[build a coding blog from scratch with gatsby and mdx]:
-	https://scottspence.com/posts/build-an-mdx-blog
-[github pr on seo]: https://github.com/gatsbyjs/gatsby/pull/10780
-[issue]: https://github.com/gatsbyjs/gatsby/issues/14125
-[great notes from andrew welch]:
-	https://github.com/gatsbyjs/gatsby/pull/10780#issuecomment-451048608
-[lekoarts]: https://github.com/LekoArts
-[jason lengstorf]: https://twitter.com/jlengstorf
-[marisa's site]:
-	https://github.com/marisamorby/marisamorby.com/blob/master/packages/gatsby-theme-blog-sanity/src/components/seo.js
-[well documented]: https://www.gatsbyjs.com/docs/add-seo-component/
-[open graph protocol]: https://ogp.me/
-[structured data]:
-	https://developers.google.com/search/docs/guides/intro-structured-data
-[used rollup]:
-	https://github.com/spences10/react-seo-component/blob/32acf12d53/rollup.config.js
-[typescript package development]: https://github.com/jaredpalmer/tsdx
-[open graph images with gatsby and now]:
-	https://scottspence.com/posts/serverless-og-images/
-[this post]:
-	https://medium.com/recraftrelic/building-a-react-component-as-a-npm-module-18308d4ccde9
-[example code]:
-	https://github.com/recraftrelic/dummy-react-npm-module/blob/master/package.json

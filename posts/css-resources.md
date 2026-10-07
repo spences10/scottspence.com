@@ -20,7 +20,7 @@ more hot tips 🔥
 
 ## Debugging
 
-From **Adam Wathan:**
+From *Adam Wathan:*
 
 > Ever run into annoying CSS layout bugs that are hard to
 > troubleshoot? (WHY IS THERE A HORIZONTAL SCROLLBAR WHERE IS THIS
@@ -39,7 +39,7 @@ From **Adam Wathan:**
 
 ## Images
 
-From **Steve Schoger:**
+From *Steve Schoger:*
 
 <!-- cSpell:ignore greyscale,colourising -->
 
@@ -47,12 +47,12 @@ From **Steve Schoger:**
 > them to greyscale or colourising them all with a single colour to
 > make them a little more cohesive.
 
-![desaturating images]
+![desaturating images](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/desaturatingImages-e8f3e086004f22ace2e1f29cf08c706b.jpg)
 
 > Also, containing photos in circles - Great way to make a bad photo
 > look good
 
-![circle images]
+![circle images](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/circleImages-30b19bb25510c6ba66ef181a3023ebac.jpg)
 
 <Tweet tweetLink="steveschoger/status/950764423643320320" />
 
@@ -61,12 +61,12 @@ From **Steve Schoger:**
 There is a lot of content out there for this but I have found some
 quite nice ones.
 
-Gradient maker: [cssgradient.io/gradient-backgrounds]
+Gradient maker: [cssgradient.io/gradient-backgrounds](https://cssgradient.io/gradient-backgrounds/)
 
-Nice Gradient Swatches: [gradientmagic.com]
+Nice Gradient Swatches: [gradientmagic.com](https://www.gradientmagic.com/#)
 
 Animated gradients, via Chris Biscardi, example: [animated gradients
-CodeSandbox]
+CodeSandbox](https://codesandbox.io/s/muddy-sun-gp0el)
 
 <Tweet tweetLink="chrisbiscardi/status/1259606045858467840" />
 
@@ -74,55 +74,55 @@ CodeSandbox]
 
 <!-- cSpell:ignore colorhunt chrisbiscardi -->
 
-Community driven colour pallets: [colorhunt.co]
+Community driven colour pallets: [colorhunt.co](https://colorhunt.co/)
 
-HSLA Colour picker: [A Most Excellent HSL Color Picker]
+HSLA Colour picker: [A Most Excellent HSL Color Picker](https://hslpicker.com/)
 
 <!-- cSpell:ignore tanaguru,leet,bada -->
 
 Colour contrast picker, this will give you a selection of colours with
-a 4.5:1 ratio: [tanaguru contrast finder]
+a 4.5:1 ratio: [tanaguru contrast finder](https://contrast-finder.tanaguru.com/)
 
-Leet speak and colours: [bada55.io]
+Leet speak and colours: [bada55.io](https://bada55.io/)
 
-For getting shades of a colour I lke to use 0to255 : [0to255.com]
+For getting shades of a colour I lke to use 0to255 : [0to255.com](https://www.0to255.com/)
 
 <!-- cSpell:ignore mycolor,palx,jxnblk -->
 
 Colour Space has a nice UI for creating colour pallets:
-[mycolor.space]
+[mycolor.space](https://mycolor.space/?hex=%23663399&sub=1)
 
 Adobe Colour Wheel has good presets for picking colour pallets:
-[color.adobe.com]
+[color.adobe.com](https://color.adobe.com)
 
-Automatic UI Colour Palette Generator: [palx.jxnblk.com]
+Automatic UI Colour Palette Generator: [palx.jxnblk.com](https://palx.jxnblk.com/)
 
-Name a colour from hex: [color-hex.com]
+Name a colour from hex: [color-hex.com](https://www.color-hex.com/)
 
-Hello Colour: [jxnblk.com/hello-color]
+Hello Colour: [jxnblk.com/hello-color](https://jxnblk.github.io/hello-color/?c=795ada)
 
 <!-- cSpell:ignore colorbox,hihayk,brandingcolors -->
 
-Beautiful colour scales Colour Box: [colorbox.io]
+Beautiful colour scales Colour Box: [colorbox.io](https://www.colorbox.io/)
 
-Colours for branding: [brandingcolors.net]
+Colours for branding: [brandingcolors.net](https://brandingcolors.net)
 
-Colour Scale: [hihayk.github.io/scale]
+Colour Scale: [hihayk.github.io/scale](https://hihayk.github.io/scale)
 
-React colour tools: [react-color-tools.surge.sh]
+React colour tools: [react-color-tools.surge.sh](https://react-color-tools.surge.sh/)
 
 ## Internal browser colour names
 
-I've asked this question a couple of times before, **"is there a way
-to list the internal browser colours?"**
+I've asked this question a couple of times before, *"is there a way
+to list the internal browser colours?"*
 
 <Tweet tweetLink="spences10/status/1259077547683459073" />
 
-The last time I asked [Mathias Bynens] answered!
+The last time I asked [Mathias Bynens](https://twitter.com/mathias) answered!
 
 <Tweet tweetLink="mathias/status/1259120846679035904" />
 
-If you want the list go to the [the CSS3 spec] and run this snippet in
+If you want the list go to the [the CSS3 spec](https://drafts.csswg.org/css-color/#named-colors) and run this snippet in
 the dev console:
 
 <!-- cSpell:ignore valdef -->
@@ -138,18 +138,18 @@ the dev console:
 ## Neumorphism
 
 Neumorphism.io is a cool tool for generating your neumorphism boxes:
-[neumorphism.io]
+[neumorphism.io](https://neumorphism.io/#55b9f3)
 
 ## Effects
 
-Glitch Text Effect: [css-tricks.com/glitch-effect-text-images-svg]
+Glitch Text Effect: [css-tricks.com/glitch-effect-text-images-svg](https://css-tricks.com/glitch-effect-text-images-svg/)
 
-Fancy Border Radius: [9elements.github.io/fancy-border-radius]
+Fancy Border Radius: [9elements.github.io/fancy-border-radius](https://9elements.github.io/fancy-border-radius)
 
 ## Numbers in CSS
 
 Width for elements changing when using numbers? Check:
-[`font-variant-numeric`]
+[`font-variant-numeric`](https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric)
 
 I asked and the community of course responded!
 
@@ -164,53 +164,8 @@ I also found the original tweet I saw from Wes Bos back in 2017!
 <!-- cSpell:ignore layoutit -->
 
 CSS Grid has a good UI for building CSS Grid Layouts:
-[layoutit.com/build]
+[layoutit.com/build](https://www.layoutit.com/build)
 
 ## New CSS Logical Properties
 
-New CSS Logical Properties!: [medium post]
-
-<!-- Links -->
-
-[cssgradient.io/gradient-backgrounds]:
-	https://cssgradient.io/gradient-backgrounds/
-[gradientmagic.com]: https://www.gradientmagic.com/#
-[https://cssgradient.io]: https://cssgradient.io/
-[neumorphism.io]: https://neumorphism.io/#55b9f3
-[medium post]:
-	https://medium.com/@elad/new-css-logical-properties-bc6945311ce7
-[css-tricks.com/glitch-effect-text-images-svg]:
-	https://css-tricks.com/glitch-effect-text-images-svg/
-[`font-variant-numeric`]:
-	https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric
-[mycolor.space]: https://mycolor.space/?hex=%23663399&sub=1
-[color.adobe.com]: https://color.adobe.com
-[palx.jxnblk.com]: https://palx.jxnblk.com/
-[bada55.io]: https://bada55.io/
-[0to255.com]: https://www.0to255.com/
-[color-hex.com]: https://www.color-hex.com/
-[jxnblk.com/hello-color]:
-	https://jxnblk.github.io/hello-color/?c=795ada
-[colorbox.io]: https://www.colorbox.io/
-[hihayk.github.io/scale]: https://hihayk.github.io/scale
-[eggradients.com]: https://www.eggradients.com/
-[react-color-tools.surge.sh]: https://react-color-tools.surge.sh/
-[worldvectorlogo.com]: https://worldvectorlogo.com/search/GraphQL
-[layoutit.com/build]: https://www.layoutit.com/build
-[9elements.github.io/fancy-border-radius]:
-	https://9elements.github.io/fancy-border-radius
-[mathias bynens]: https://twitter.com/mathias
-[the css3 spec]: https://drafts.csswg.org/css-color/#named-colors
-[tanaguru contrast finder]: https://contrast-finder.tanaguru.com/
-[animated gradients codesandbox]:
-	https://codesandbox.io/s/muddy-sun-gp0el
-[a most excellent hsl color picker]: https://hslpicker.com/
-[colorhunt.co]: https://colorhunt.co/
-[brandingcolors.net]: https://brandingcolors.net
-
-<!-- Images -->
-
-[desaturating images]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858541/scottspence.com/desaturatingImages-e8f3e086004f22ace2e1f29cf08c706b.jpg
-[circle images]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614858540/scottspence.com/circleImages-30b19bb25510c6ba66ef181a3023ebac.jpg
+New CSS Logical Properties!: [medium post](https://medium.com/@elad/new-css-logical-properties-bc6945311ce7)

@@ -13,14 +13,14 @@ So I got to checking out Barry's blog and his Jekyll Now templates and
 tried to make sense of the two so I could make my own, based off of
 the ideas I got from Barry's blog.
 
-![jekyll logo]
+![jekyll logo](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930929/scottspence.com/jekyll-logo-9a6784d0e7ab903d7aa9970e804ccaa3.png)
 
 ## Development environment, enter Cloud 9
 
 I tried to set up Ruby on my Windows machine and it didn't go well,
 then I tried to set it up on my Raspberry Pi, that didn't go well
 either. Then I recalled that I could have any number of different
-environments with [Cloud9] so I set up a Ruby machine on there and
+environments with [Cloud9](https://c9.io/?redirect=0) so I set up a Ruby machine on there and
 installed Jekyll, no problem
 
 ### Setup
@@ -29,9 +29,9 @@ installed Jekyll, no problem
 
 It wasn't as simple as just going to the local host page as it's a
 cloud based system so after some digging I found this from
-Jean-François L'Heureux [jflheureux] on GitHub.
+Jean-François L'Heureux [jflheureux](https://github.com/jflheureux) on GitHub.
 
-https://www.jflh.ca/2016-01-18-running-jekyll-on-cloud9
+[https://www.jflh.ca/2016-01-18-running-jekyll-on-cloud9](https://www.jflh.ca/2016-01-18-running-jekyll-on-cloud9)
 
 Basically you need to set up a Run Configuration on your c9 box,
 thanks for that Jean-François.
@@ -47,7 +47,7 @@ in the was of bells and whistles.
 
 #### here is the base project
 
-![bas-project-layout]
+![bas-project-layout](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/base-jekyll-project-f23bbe735fd8a42717474db5013e7542.png)
 
 Running the following from the terminal on my Ruby development box
 
@@ -70,7 +70,7 @@ You get this:
 
 #### new blog yay!
 
-![base-jekyll-site]
+![base-jekyll-site](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930928/scottspence.com/base-jekyll-site-bec10c4a17adb57f6381b8bc833f463f.png)
 
 ## Confusing
 
@@ -92,7 +92,7 @@ and Barry's sites I was able to piece together a `default.html`,
 start with CSS on the page,I took the majority of it from Barry's blog
 page with the intention of modifying it to my own liking.
 
-In the end I took quite a bit of CSS, the [Meyer Reset] was something
+In the end I took quite a bit of CSS, the [Meyer Reset](https://meyerweb.com/eric/tools/css/reset/) was something
 I knew nothing of before starting this, now I think it's quite a handy
 thing to have/know.
 
@@ -114,7 +114,7 @@ golden, no worries. Queue a raft of commits with me dicking around
 with various combinations of having corrected `_config.yml` entries it
 got pretty messy.
 
-![dem-commits]
+![dem-commits](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930931/scottspence.com/dem-commits-8e23cb21d43675e06988080fad218959.png)
 
 <!-- cSpell:ignore hilights,sass -->
 
@@ -152,20 +152,3 @@ flow around the image, the CSS is this:
 
 So I have the basics I think, still a fair bit to play around with but
 for now I have what I need.
-
-<!-- Links -->
-
-[cloud9]: https://c9.io/?redirect=0
-[jflheureux]: https://github.com/jflheureux
-[meyer reset]: https://meyerweb.com/eric/tools/css/reset/
-
-<!-- Images -->
-
-[jekyll logo]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930929/scottspence.com/jekyll-logo-9a6784d0e7ab903d7aa9970e804ccaa3.png
-[bas-project-layout]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930927/scottspence.com/base-jekyll-project-f23bbe735fd8a42717474db5013e7542.png
-[base-jekyll-site]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930928/scottspence.com/base-jekyll-site-bec10c4a17adb57f6381b8bc833f463f.png
-[dem-commits]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930931/scottspence.com/dem-commits-8e23cb21d43675e06988080fad218959.png

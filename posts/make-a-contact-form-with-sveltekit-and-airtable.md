@@ -5,12 +5,12 @@ tags: ['sveltekit', 'how-to', 'svelte', 'airtable']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Banner } from '#lib/components/index.js'
 
   let href = `/posts/sveltekit-contact-form-example-with-airtable`
   const options = {
-    type: 'info',
+    type: 'info' as const,
     message: `This post uses the legacy API keys used for Airtable, 
       there's a more up to date post on using personal access tokens
       <a href=${href} target="_blank" rel="noopener noreferrer">
@@ -25,7 +25,7 @@ with no additional dependencies.
 <!-- cSpell:ignore jeda -->
 
 I got the inspiration for doing this when a saw a video on YouTube
-from WebJeda on [SvelteKit Contact Form using Google Forms]. Sharath's
+from WebJeda on [SvelteKit Contact Form using Google Forms](https://www.youtube.com/watch?v=mBXEnakkUIM). Sharath's
 video is great but I'm not a fan of using Google products so thought
 I'd try the same approach with Airtable.
 
@@ -81,21 +81,21 @@ set up with Airtable.
 
 So, Airtable is like a hosted version of MS Excel, simply put, it's a
 database with a nice UI. If you don't have an Airtable account you can
-[sign up] over on the Airtable website.
+[sign up](https://airtable.com/signup) over on the Airtable website.
 
 I'll scroll to the bottom of the page and there's a '+ Add a
 workspace' option. CLick that and select 'Create workspace', I'll be
 prompted to give it a name I'll call it `form-submissions`, then I can
 'Add a base'. Clicking 'Add a base' gives me the following screen:
 
-[![airtable-untitled-base]] [airtable-untitled-base]
+\[![airtable-untitled-base](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646207112/scottspence.com/airtable-untitled-base.png)\] [airtable-untitled-base](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646207112/scottspence.com/airtable-untitled-base.png)
 
 From here I'll rename the 'Untitled Base' to `contact-requests` and
 'Table 1' to `submissions`. I can now go through the fields on there
 and customise each field type by clicking on the small down arrow next
 to the field name.
 
-[![airtable-customise-field]] [airtable-customise-field]
+\[![airtable-customise-field](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646207766/scottspence.com/airtable-customise-field.png)\] [airtable-customise-field](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646207766/scottspence.com/airtable-customise-field.png)
 
 In my example I'll add the following fields by renaming them and
 changing the types with the 'Customize field type' option.
@@ -124,7 +124,7 @@ touch src/lib/contact-form.svelte
 ```
 
 In the contact form component I'll create a simple form first, I'll
-share a **full example later**.
+share a *full example later*.
 
 ```html
 <form>
@@ -272,14 +272,14 @@ I can access it by clicking the 'HELP ?' link in the top right of the
 base page. Clicking it will pop out the help panel and at the very
 bottom of the panel is the '`<> API Documentation`' link.
 
-[![airtable-help-panel]] [airtable-help-panel]
+\[![airtable-help-panel](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646246246/scottspence.com/airtable-help-panel.png)\] [airtable-help-panel](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646246246/scottspence.com/airtable-help-panel.png)
 
 Clicking that will take me to the documentation for that base! What
 I'm interested in here is the 'Create records' section. I'll scroll
 down to that on the page.
 
-[![airtable-api-documentation-create-record]]
-[airtable-api-documentation-create-record]
+\[![airtable-api-documentation-create-record](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646246824/scottspence.com/airtable-api-documentation-create-record.png)\]
+[airtable-api-documentation-create-record](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646246824/scottspence.com/airtable-api-documentation-create-record.png)
 
 <!-- cSpell:ignore appMdmn2bcQAUCeGb,keybJWwl29RhmPEQh -->
 
@@ -296,13 +296,13 @@ What I'm going to do is go back to the table and add some dummy data
 first then go back to the API documentation. I'll hop on over to the
 table and add in some dummy data.
 
-[![airtable-add-dummy-data]] [airtable-add-dummy-data]
+\[![airtable-add-dummy-data](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646247312/scottspence.com/airtable-add-dummy-data.png)\] [airtable-add-dummy-data](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646247312/scottspence.com/airtable-add-dummy-data.png)
 
 No I can go back to the API documentation page and hit refresh and
 I'll see the dummy data in the `"records"` array.
 
-[![airtable-api-documentation-dummy-data]]
-[airtable-api-documentation-dummy-data]
+\[![airtable-api-documentation-dummy-data](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646247538/scottspence.com/airtable-api-documentation-dummy-data.png)\]
+[airtable-api-documentation-dummy-data](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646247538/scottspence.com/airtable-api-documentation-dummy-data.png)
 
 Why am I doing this? This is so I know the shape of the data that the
 API is expecting!
@@ -645,7 +645,7 @@ But wait! There's more!
 So, let's think about this now; I now have another thing I need to
 keep tabs on for message submissions, right?
 
-**WRONG!** Airtable has an awesome integrations feature that you can
+*WRONG!* Airtable has an awesome integrations feature that you can
 do loads of things with.
 
 For this example though all I need really is to be notified when
@@ -659,11 +659,11 @@ link was there's also a link for 'Automations' in the top right.
 Clicking on that will pop out the automations panel, on that I'll
 select the 'Create a custom automation' link.
 
-[![airtable-automations-panel]] [airtable-automations-panel]
+\[![airtable-automations-panel](https://res.cloudinary.com/defkmsrpw/image/upload/v1646254724/scottspence.com/airtable-automations-panel.png)\] [airtable-automations-panel](https://res.cloudinary.com/defkmsrpw/image/upload/v1646254724/scottspence.com/airtable-automations-panel.png)
 
 That opens the automation flow.
 
-[![airtable-automations-flow]] [airtable-automations-flow]
+\[![airtable-automations-flow](https://res.cloudinary.com/defkmsrpw/image/upload/v1646255090/scottspence.com/airtable-automations-flow.png)\] [airtable-automations-flow](https://res.cloudinary.com/defkmsrpw/image/upload/v1646255090/scottspence.com/airtable-automations-flow.png)
 
 In here I can change the automation name by clicking on it to
 something like `submission-email-automation`, note the default state
@@ -673,7 +673,7 @@ From hereI can add a trigger by clicking '+ Add trigger' and selecting
 'When record is created'. The 'Run actions' panel then appears and I
 can select '+ Add action' and select 'Send email'.
 
-[![airtable-automations-run-action]] [airtable-automations-run-action]
+\[![airtable-automations-run-action](https://res.cloudinary.com/defkmsrpw/image/upload/v1646255540/scottspence.com/airtable-automations-run-action.png)\] [airtable-automations-run-action](https://res.cloudinary.com/defkmsrpw/image/upload/v1646255540/scottspence.com/airtable-automations-run-action.png)
 
 I'll select the 'Send email' option.
 
@@ -692,8 +692,8 @@ sent to along with the subject line.
 If I scroll down a little there's an option for the message, by
 clicking the blue `+` button I can add in the message.
 
-[![airtable-automations-configure-email]]
-[airtable-automations-configure-email]
+\[![airtable-automations-configure-email](https://res.cloudinary.com/defkmsrpw/image/upload/v1646256042/scottspence.com/airtable-automations-configure-email.png)\]
+[airtable-automations-configure-email](https://res.cloudinary.com/defkmsrpw/image/upload/v1646256042/scottspence.com/airtable-automations-configure-email.png)
 
 There's one option to 'Record (from Step 1: When a record is created),
 clicking on 'Continue' will bring up the available properties. I'm
@@ -716,38 +716,7 @@ someone submits a message via the form I'll receive an email so I can
 action it without having to keep checking on the Airtable table.
 
 You can check out the demo project and code for this post with some
-minimal styles added over on [GitHub].
+minimal styles added over on [GitHub](https://github.com/spences10/svelte-and-airtable-contact-form-example).
 
 If you found this post useful, consider sharing it on Twitter with the
 button, thanks!
-
-<!-- Links -->
-
-[sveltekit contact form using google forms]:
-	https://www.youtube.com/watch?v=mBXEnakkUIM
-[sign up]: https://airtable.com/signup
-[github]:
-	https://github.com/spences10/svelte-and-airtable-contact-form-example
-
-<!-- Images -->
-
-[airtable-untitled-base]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646207112/scottspence.com/airtable-untitled-base.png
-[airtable-customise-field]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646207766/scottspence.com/airtable-customise-field.png
-[airtable-help-panel]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646246246/scottspence.com/airtable-help-panel.png
-[airtable-api-documentation-create-record]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646246824/scottspence.com/airtable-api-documentation-create-record.png
-[airtable-add-dummy-data]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646247312/scottspence.com/airtable-add-dummy-data.png
-[airtable-api-documentation-dummy-data]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1646247538/scottspence.com/airtable-api-documentation-dummy-data.png
-[airtable-automations-panel]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/v1646254724/scottspence.com/airtable-automations-panel.png
-[airtable-automations-flow]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/v1646255090/scottspence.com/airtable-automations-flow.png
-[airtable-automations-run-action]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/v1646255540/scottspence.com/airtable-automations-run-action.png
-[airtable-automations-configure-email]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/v1646256042/scottspence.com/airtable-automations-configure-email.png

@@ -11,16 +11,16 @@ I was directed to direnv by Chris Biscardi when I was trying to use
 some environment variables in my Toast site.
 
 In the past I have always reached for dotenv so taking a look at other
-[Toast sites] I couldn't find any that used it so I reached out to
+[Toast sites](https://scottspence.com/posts/notes-on-toast/#resources) I couldn't find any that used it so I reached out to
 Chris and he mentioned direnv.
 
-I found a really useful video from [Vlad] detailing the setup which
+I found a really useful video from [Vlad](https://www.youtube.com/watch?v=YkxoGRpHcVQ) detailing the setup which
 I've adopted and started using.
 
 ## Install
 
 Install for me (using Fedora 33) was a package manager install, there
-are many [supported platforms].
+are many [supported platforms](https://direnv.net/docs/installation.html#from-system-packages).
 
 ```bash
 sudo dnf -y install direnv
@@ -29,7 +29,7 @@ sudo dnf -y install direnv
 ## Setup
 
 To hook direnv into my Zsh shell I added the direnv [hook from the
-documentation] and wrapped it in an if as detailed in Vlad's video.
+documentation](https://direnv.net/docs/hook.html) and wrapped it in an if as detailed in Vlad's video.
 
 ```bash
 # .zshrc
@@ -67,9 +67,3 @@ alias -g di='echo dotenv > .envrc && touch .env && direnv allow'```
 Now each time I cd into a directory with a `.env` file where I have
 allowed direnv I'm prompted on what environment variables are
 available.
-
-[toast sites]: https://scottspence.com/posts/notes-on-toast/#resources
-[vlad]: https://www.youtube.com/watch?v=YkxoGRpHcVQ
-[supported platforms]:
-	https://direnv.net/docs/installation.html#from-system-packages
-[hook from the documentation]: https://direnv.net/docs/hook.html

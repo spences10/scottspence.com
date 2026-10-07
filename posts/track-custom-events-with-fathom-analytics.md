@@ -15,7 +15,7 @@ Gatsby site using Fathom analytics.
 ## Preamble
 
 At the end of last month (November 2019) I started using [Fathom
-Analytics] in place of Google Analytics.
+Analytics](https://usefathom.com/) in place of Google Analytics.
 
 I wanted a simpler way to track visitors to my sites and Fathom offers
 that with a great, really intuitive interface and simple design.
@@ -23,9 +23,9 @@ that with a great, really intuitive interface and simple design.
 So far, I love it, and would like to recommend it to others! Fathom
 have an awesome affiliate program where every customer can take part!
 
-For every paying customer I refer with [my unique code], I'll get a
+For every paying customer I refer with [my unique code](https://usefathom.com/ref/HG492L), I'll get a
 25% lifetime commission on that customers payments, and if you use
-that code too [you'll get a $10 discount on your first invoice].
+that code too [you'll get a $10 discount on your first invoice](https://usefathom.com/ref/HG492L).
 
 For now here's some of the Fathom marketing copy.
 
@@ -73,13 +73,13 @@ particular button or link?
 
 If you want to follow along you're going to need a Fathom Analytics
 account, if you haven't already got one then please consider signing
-up with my affiliate link, [my unique code] will get you a `$10`
+up with my affiliate link, [my unique code](https://usefathom.com/ref/HG492L) will get you a `$10`
 discount off of your first invoice! 🤝
 
 ## Add/Config Fathom Gatsby plugin
 
 In this guide I'm going to use a Gatsby starter
-[gatsby-starter-business] which is a nice starter with some of the
+[gatsby-starter-business](https://github.com/v4iv/gatsby-starter-business) which is a nice starter with some of the
 relevant things I'd want to track. Things like the pricing page and
 how many people submit a contact form.
 
@@ -222,31 +222,17 @@ if you're looking to do the same:
 - Consume the analytics provider function to log the event to the
   `fathom` global function.
 
-🥁 Demo site: https://gatsby-starter-business-fathom.netlify.com
+🥁 Demo site: [https://gatsby-starter-business-fathom.netlify.com](https://gatsby-starter-business-fathom.netlify.com)
 
 📈 Demo Fathom Dashboard:
-https://app.usefathom.com/share/nymdtplm/gatsby-starter-business
+[https://app.usefathom.com/share/nymdtplm/gatsby-starter-business](https://app.usefathom.com/share/nymdtplm/gatsby-starter-business)
 
 🤝 Affiliate link for £10 of off your first month of Fathom Analytics:
-https://usefathom.com/ref/HG492L
+[https://usefathom.com/ref/HG492L](https://usefathom.com/ref/HG492L)
 
 ## Thanks for reading 🙏
 
 That's all folks! If there is anything I have missed, or if there is a
 better way to do something then please let me know.
 
-Follow me on [Twitter] or [Ask Me Anything] on GitHub.
-
-<!-- Links -->
-
-[fathom analytics]: https://usefathom.com/
-[you'll get a $10 discount on your first invoice]:
-	https://usefathom.com/ref/HG492L
-[my unique code]: https://usefathom.com/ref/HG492L
-[gatsby plugin for fathom]:
-	https://www.gatsbyjs.com/packages/gatsby-plugin-fathom/
-[fathom dashboard]: https://app.usefathom.com/#/settings/sites
-[gatsby-starter-business]:
-	https://github.com/v4iv/gatsby-starter-business
-[twitter]: https://twitter.com/spences10
-[ask me anything]: https://github.com/spences10/ama
+Follow me on [Twitter](https://twitter.com/spences10) or [Ask Me Anything](https://github.com/spences10/ama) on GitHub.

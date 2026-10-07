@@ -30,7 +30,7 @@ security implications, so here we are.
 ## It work tho? Yeah but...
 
 The basic pattern works, sure, but there's something important you
-need to understand: **anything** returned from `+page.server.ts` gets
+need to understand: *anything* returned from `+page.server.ts` gets
 serialized and embedded in the HTML response.
 
 Here's a neat trick - if you append `/__data.json` to the end of this
@@ -83,7 +83,7 @@ where you manually handle session validation, token management, and
 access control. It works, but there are way better options with proper
 security practices built in:
 
-**Lucia Auth (the one recommended in official SvelteKit docs)**
+*Lucia Auth (the one recommended in official SvelteKit docs)*
 
 ```javascript
 // lib/server/lucia.js
@@ -193,8 +193,8 @@ enabled. It's a win-win!
 
 This is something I wish I'd explained in my original post:
 
-- **Load functions** are for _getting_ data to render your page
-- **Form actions** are for _changing_ data based on user input
+- *Load functions* are for _getting_ data to render your page
+- *Form actions* are for _changing_ data based on user input
 
 Think of it like this:
 
@@ -232,13 +232,13 @@ things down for no reason.
 So there you have it. My apology tour for that old post! Here's what I
 should have said:
 
-1. **Never, ever return sensitive data** from server load functions
-2. **Be explicit** about what you return - pick the fields you need,
+1. *Never, ever return sensitive data* from server load functions
+2. *Be explicit* about what you return - pick the fields you need,
    don't return whole objects
-3. **Use form actions** for data mutations - they're way more secure
-4. **Consider modern auth libraries** like Lucia instead of rolling
+3. *Use form actions* for data mutations - they're way more secure
+4. *Consider modern auth libraries* like Lucia instead of rolling
    your own
-5. **Check your page source** to see what data is actually being
+5. *Check your page source* to see what data is actually being
    exposed
 
 Remember, anything your server sends to the client is essentially

@@ -17,6 +17,7 @@
 </Small>
 
 <!-- prettier-ignore -->
+
 I'm Scott, a UK-based product engineer and Svelte consultant with <DateDistance date='2018-03-18' /> of commercial web development experience.
 I build production AI systems, coding-agent infrastructure, MCP tools,
 SvelteKit products, and open-source developer tooling through
@@ -30,7 +31,7 @@ inspect the source or product.
 
 Client work is private, so these are described without names.
 
-**Reinsurance underwriting platform (2026).** I started from a
+*Reinsurance underwriting platform (2026).* I started from a
 clickable prototype with no backend and built the real platform,
 designed to support roughly $20m in business: submission intake,
 document extraction, rules evaluation, quoting, and audit history. I
@@ -45,7 +46,7 @@ increase, in one week by changing rules and configuration, not by
 rebuilding anything. I also cut the heaviest page response from 50MB
 to 38KB for a submission with nearly 14,000 locations.
 
-**Guardrails that outlast me (2026).** Coding agents write plausible
+*Guardrails that outlast me (2026).* Coding agents write plausible
 code in the wrong place, so on the same platform I made the
 architecture executable. The boundary checker parses the code and
 enforces 36 blocking rules, alongside data-ownership, route-data, and
@@ -55,7 +56,7 @@ extended them instead of switching them off. The capacity change
 landed entirely inside the rules, database, and domain packages. The
 same checker now runs in the CI of a second product.
 
-**Context on demand for agents (2026).** The project's documentation
+*Context on demand for agents (2026).* The project's documentation
 grew to 291 requirements, specs, meeting notes, and client
 communications. I built a docs search CLI on SQLite FTS5 that extracts
 decisions, requirements, and risks, so agents pull the right context
@@ -63,13 +64,13 @@ instead of guessing. Agents called it 1,122 times across 327 sessions,
 a teammate adopted the approach for another project, and it led to my
 open-source tool [wiki0](https://github.com/spences10/wiki0).
 
-**A clean client handover (2026).** The client repository is a
+*A clean client handover (2026).* The client repository is a
 verified export: they receive exactly the application they bought,
 while the docs corpus, agent skills, and delivery tooling remain
 agency IP. The export fails if internal paths or references leak
 through.
 
-**Claims platform for deposit-replacement insurance (2026).** I took a
+*Claims platform for deposit-replacement insurance (2026).* I took a
 claims platform from spec to production in about five weeks: filing,
 adjuster review, tenant responses, video evidence, and valuation. The
 client was very positive at the demo and plans to train sales staff to
@@ -77,13 +78,13 @@ sell it. I also maintained the wider live platform, releasing every
 production change since March and catching failures nobody had
 flagged, including stopped off-site backups.
 
-**Mobile sign-up platform for a telecoms reseller (2026).** I turned a
+*Mobile sign-up platform for a telecoms reseller (2026).* I turned a
 click-through prototype into a live production app in under two weeks,
 and it has taken real customer orders since July. Along the way the
 test suite went from zero to more than 120 tests, and known dependency
 vulnerabilities went from nine to zero.
 
-**AI customer-service agents (2023–2026).** I led 12 developers across
+*AI customer-service agents (2023–2026).* I led 12 developers across
 two product teams. The agent runtime I built reduced average handle
 time by 40% through skill-based routing across chat, email, and SMS. I
 also led an architecture change that resolved 928 build errors and let
@@ -100,7 +101,7 @@ distribution: a ready-to-run coding agent CLI with MCP, LSP, skills,
 recall, redaction, telemetry, team mode, prompt presets, and the bits
 I want wired in when I work in a terminal.
 
-**Key Features:**
+*Key Features:*
 
 - Pi-native CLI with interactive TUI, print mode, JSON mode, RPC mode,
   and a programmable runtime
@@ -114,7 +115,7 @@ I want wired in when I work in a terminal.
 - Team mode for local RPC teammate orchestration with tasks and
   mailboxes
 
-**Tech Stack:** TypeScript, Pi, SQLite, MCP, LSP, pnpm
+*Tech Stack:* TypeScript, Pi, SQLite, MCP, LSP, pnpm
 
 [View Source](https://github.com/spences10/my-pi) |
 [Read the write-up](/posts/building-my-pi-claude-code-alternative-with-pi)
@@ -131,7 +132,7 @@ real-time. Svortie lets you manage the full lifecycle of AI agents
 from configuration through to live log streaming, all from a single
 interface.
 
-**Key Features:**
+*Key Features:*
 
 - "Create with AI": describe what you need in natural language (via
   Deepgram) and Svortie figures out whether to build an agent,
@@ -144,7 +145,7 @@ interface.
 - Usage-based billing with credit packs via Polar
 - Authentication with email/password and GitHub OAuth
 
-**Tech Stack:** SvelteKit, Svelte 5, TypeScript, SQLite, Tailwind CSS,
+*Tech Stack:* SvelteKit, Svelte 5, TypeScript, SQLite, Tailwind CSS,
 shadcn-svelte, Better Auth, Claude Agent SDK, Daytona, Deepgram, Bun
 
 [Visit Svortie](https://svortie.com)
@@ -161,7 +162,7 @@ data entry and generic tools don't fit their unique workflow. Built
 from the ground up for how developers actually manage relationships -
 through GitHub, conferences, and open source communities.
 
-**Key Features:**
+*Key Features:*
 
 - GitHub Quick Connect for seamless contact import from your
   development network
@@ -171,13 +172,13 @@ through GitHub, conferences, and open source communities.
 - Public developer profiles with QR codes for easy networking at
   conferences
 
-**Impact:**
+*Impact:*
 
 Designed specifically for conference networking, open source
 maintainers, developer advocates, and freelancers who need to manage
 developer relationships without the overhead of traditional CRMs.
 
-**Tech Stack:** SvelteKit, Svelte 5, TypeScript, SQLite, sqlite-vec,
+*Tech Stack:* SvelteKit, Svelte 5, TypeScript, SQLite, sqlite-vec,
 Tailwind CSS, daisyUI, Better Auth
 
 [Visit Devhub](https://devhub.party) |
@@ -197,7 +198,7 @@ created as a companion to my blog post about
 Sveltest has become a community-driven resource built by developers,
 for developers.
 
-**Key Features:**
+*Key Features:*
 
 - Comprehensive testing documentation and real-world examples using
   vitest-browser-svelte
@@ -210,7 +211,7 @@ for developers.
 - Battle-tested patterns from production environments using
   bleeding-edge Svelte 5 and vitest-browser-svelte
 
-**Why it exists:**
+*Why it exists:*
 
 Svelte testing guidance was spread across documentation, examples, and
 rapidly changing package APIs. Sveltest puts working browser-mode
@@ -218,7 +219,7 @@ examples and reusable assistant rules in one public project so teams
 can inspect and adapt the patterns rather than copy an unverified
 snippet.
 
-**Tech Stack:** SvelteKit, TypeScript, Vitest, vitest-browser-svelte,
+*Tech Stack:* SvelteKit, TypeScript, Vitest, vitest-browser-svelte,
 Playwright, TailwindCSS, daisyUI
 
 [Visit Sveltest](https://sveltest.dev) |
@@ -235,13 +236,13 @@ free analytics and statistics for Bluesky users. The application
 offers post analytics and an inactive account finder with no
 authentication required, making it super low friction for users.
 
-**Key Features:**
+*Key Features:*
 
 - Post analytics and engagement metrics
 - Following account activity tracking
 - Inactive account detection
 
-**Tech Stack:** SvelteKit, TypeScript, daisyUI
+*Tech Stack:* SvelteKit, TypeScript, daisyUI
 
 [Visit SkyKit](https://skykit.blue) |
 [View Source](https://github.com/spences10/skykit)
@@ -257,7 +258,7 @@ interactive, searchable conversations. This project allows users to
 upload audio files (like podcasts or lectures) and then have natural
 conversations with the AI about the content.
 
-**Key Features:**
+*Key Features:*
 
 - Audio file processing and transcription
 - Vector-based semantic search
@@ -265,7 +266,7 @@ conversations with the AI about the content.
 - Interactive chat interface
 - Real-time progress updates
 
-**Tech Stack:** SvelteKit 2.x with Svelte 5, TailwindCSS, daisyUI,
+*Tech Stack:* SvelteKit 2.x with Svelte 5, TailwindCSS, daisyUI,
 Anthropic Claude 3, Deepgram, Voyage AI, Turso
 
 [View Source](https://github.com/spences10/audiomind)
@@ -277,26 +278,24 @@ Anthropic Claude 3, Deepgram, Voyage AI, Turso
 I've built 21 MCP servers and tools since January 2025. On 25
 September 2026 they had more than 1,400 GitHub stars, 260 forks, and
 11,000 npm downloads a month. The numbers change, so the [repository
-list] is the source of truth.
+list](https://github.com/spences10?tab=repositories&q=mcp) is the source of truth.
 
-- **Omnisearch** provides one interface for web search, AI answers,
+- *Omnisearch* provides one interface for web search, AI answers,
   and content extraction across several providers.
   [View the repository](https://github.com/spences10/mcp-omnisearch).
-- **SQLite Tools** separates read-only, write, schema, and transaction
+- *SQLite Tools* separates read-only, write, schema, and transaction
   operations for safer SQLite access.
   [View the repository](https://github.com/spences10/mcp-sqlite-tools).
-- **Svelte Docs** gives coding agents focused access to current Svelte
+- *Svelte Docs* gives coding agents focused access to current Svelte
   documentation.
   [View the repository](https://github.com/spences10/mcp-svelte-docs).
-- **Memory for libSQL** provides persistent knowledge and vector
+- *Memory for libSQL* provides persistent knowledge and vector
   search with SQLite and libSQL.
   [View the repository](https://github.com/spences10/mcp-memory-libsql).
-- **McPick** manages MCP servers and skills across coding-agent
+- *McPick* manages MCP servers and skills across coding-agent
   clients. [View the repository](https://github.com/spences10/mcpick).
 
 [Explore all MCP repositories](https://github.com/spences10?tab=repositories&q=mcp)
-
-[repository list]: https://github.com/spences10?tab=repositories&q=mcp
 
 ---
 
@@ -308,7 +307,7 @@ A popular package of SvelteKit embed components that makes it easy to
 add third-party embeds like YouTube, Twitter, and more to your
 SvelteKit projects.
 
-**Key Features:**
+*Key Features:*
 
 - Responsive embeds
 - Easy component-based implementation
@@ -334,10 +333,10 @@ Graph tags, and schema.org data for SvelteKit projects.
 
 ## Community involvement
 
-- **Svelte Ambassador**: recognised by the Svelte team;
-- **Svelte Society London**: co-founder and co-organiser;
-- **Technical writing**: more than 240 public engineering articles;
-- **Speaking**: conference talks, workshops, podcasts, and community
+- *Svelte Ambassador*: recognised by the Svelte team;
+- *Svelte Society London*: co-founder and co-organiser;
+- *Technical writing*: more than 240 public engineering articles;
+- *Speaking*: conference talks, workshops, podcasts, and community
   events about AI engineering, coding agents, Svelte, and SvelteKit.
 
 ---
@@ -360,10 +359,10 @@ For product engineering, coding-agent infrastructure, Svelte
 consulting, workshops, or speaking, use the [contact](/contact) form.
 My main public profiles are:
 
-- **GitHub**: [@spences10](https://github.com/spences10)
-- **Bluesky**:
+- *GitHub*: [@spences10](https://github.com/spences10)
+- *Bluesky*:
   [@scottspence.dev](https://bsky.app/profile/scottspence.dev)
-- **YouTube**:
+- *YouTube*:
   [Scott Spence Please](https://youtube.com/scottspenceplease)
 
 ---

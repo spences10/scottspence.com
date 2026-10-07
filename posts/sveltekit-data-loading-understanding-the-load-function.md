@@ -5,17 +5,17 @@ tags: ['sveltekit', 'resource', 'how-to']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Banner, DateDistance as DD, Details } from '#lib/components/index.js'
 
   const skeleton_info = {
-    type: 'info',
+    type: 'info' as const,
     message: `The SvelteKit skeleton project is one of the CLI options 
       when you create a new SvelteKit project with the <code>pnpm create
       svelte</code> command.`,
   }
   const env_info = {
-    type: 'info',
+    type: 'info' as const,
     message: `Variables that begin with <code>PUBLIC_</code> will be
       available via <code>$env/static/public</code>.`,
   }
@@ -116,7 +116,7 @@ In the parent, be that a Svelte component or a SvelteKit
 
 Why `export let` though?
 
-I'll refer to the [MDN reference for `export`] which states:
+I'll refer to the [MDN reference for `export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) which states:
 
 > The export declaration is used to export values from a JavaScript
 > module. Exported values can then be imported into other programs
@@ -129,7 +129,7 @@ In essence this ensures that when a component prop changes it will
 update the value of the prop in the parent component.
 
 This also enables two-way binding, which is a feature of Svelte. More
-on that in the [Data Binding in Svelte] post I did a few years back.
+on that in the [Data Binding in Svelte](https://scottspence.com/posts/data-binding-in-svelte) post I did a few years back.
 
 ## Adding additional routes
 
@@ -240,8 +240,8 @@ Ok, now onto some practical examples of using the `load` function.
 
 So the most common use case for the `load` function is to fetch data
 from an external source, like an API. I'll be using two APIs in the
-following examples, the [Coinlore API] (REST) and the [Rick and Morty
-API] (GraphQL).
+following examples, the [Coinlore API](https://api.coinlore.com/api/tickers) (REST) and the [Rick and Morty
+API](https://rickandmortyapi.com/graphql) (GraphQL).
 
 In the following sections I'll go through various examples of fetching
 data from an API on the server and client.
@@ -249,7 +249,7 @@ data from an API on the server and client.
 ## Fetching page data, client
 
 Ok, I'll start with fetching the top 100 cryptocurrencies from the
-[Coinlore API] on the client.
+[Coinlore API](https://api.coinlore.com/api/tickers) on the client.
 
 I'll use the index route for this, so I'll add in a `+page.ts` file
 for the index route:
@@ -352,7 +352,7 @@ iterate over the data and render it on the page with a Svelte each.
 ```
 
 Now, say I have data from another API I want to fetch on the client.
-I'll use the [Rick and Morty API] in the next example along with the
+I'll use the [Rick and Morty API](https://rickandmortyapi.com/graphql) in the next example along with the
 Coinlore API.
 
 ## Fetching page data from multiple sources
@@ -463,8 +463,8 @@ API request.
 If I check the network tab in the browser I can see the calls are
 being made one after the other:
 
-[![sveltekit-data-loading-understanding-the-load-function-waterfall]]
-[sveltekit-data-loading-understanding-the-load-function-waterfall]
+\[![sveltekit-data-loading-understanding-the-load-function-waterfall](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1681633125/sveltekit-data-loading-understanding-the-load-function-waterfall.png)\]
+[sveltekit-data-loading-understanding-the-load-function-waterfall](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1681633125/sveltekit-data-loading-understanding-the-load-function-waterfall.png)
 
 To avoid that I can wrap both the API calls in their own functions and
 the promise from each will be resolved at the same time:
@@ -577,8 +577,8 @@ export const load = async ({ fetch }) => {
 Now if I take a look at the network tab in the browser, I can see that
 both requests are made in parallel:
 
-[![sveltekit-data-loading-understanding-the-load-function-parallel]]
-[sveltekit-data-loading-understanding-the-load-function-parallel]
+\[![sveltekit-data-loading-understanding-the-load-function-parallel](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1681638359/sveltekit-data-loading-understanding-the-load-function-parallel.png)\]
+[sveltekit-data-loading-understanding-the-load-function-parallel](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1681638359/sveltekit-data-loading-understanding-the-load-function-parallel.png)
 
 Aight, now I'll take a look at how to fetch data on the server.
 
@@ -666,7 +666,7 @@ export const load = async () => {
 Now, running the dev server I can see that the secret token is logged
 to the console in the terminal but not in the browser.
 
-**But wait!** Remember this is a contrived example, but, getting
+*But wait!* Remember this is a contrived example, but, getting
 client side data and server side will be a common task.
 
 I'm now getting the Coinlore data on the browser and the client,
@@ -869,19 +869,3 @@ Need expert guidance on implementing SvelteKit in your projects? Check
 out [svelteconsulting.dev](https://svelteconsulting.dev) for
 professional consulting services and workshops on advanced SvelteKit
 patterns and best practices.
-
-<!-- Links -->
-
-[mdn reference for `export`]:
-	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
-[data binding in svelte]:
-	https://scottspence.com/posts/data-binding-in-svelte
-[coinlore api]: https://api.coinlore.com/api/tickers
-[rick and morty api]: https://rickandmortyapi.com/graphql
-
-<!-- Images -->
-
-[sveltekit-data-loading-understanding-the-load-function-waterfall]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1681633125/sveltekit-data-loading-understanding-the-load-function-waterfall.png
-[sveltekit-data-loading-understanding-the-load-function-parallel]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1681638359/sveltekit-data-loading-understanding-the-load-function-parallel.png

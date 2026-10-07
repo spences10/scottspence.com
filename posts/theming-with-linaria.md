@@ -6,7 +6,7 @@ is_private: false
 ---
 
 This is a follow up on the post I did about [Getting Started with
-Linaria]
+Linaria](https://scottspence.com/posts/linaria-getting-started/)
 
 The starter I worked on last time I made into a template so it can be
 used as the base of this project.
@@ -19,7 +19,7 @@ gatsby new gatsby-linaria-starter-with-theme https://github.com/spences10/gatsby
 
 ## Defaults
 
-In this example I'm using the [defaults from Tailwind CSS] for the
+In this example I'm using the [defaults from Tailwind CSS](https://github.com/tailwindcss/designing-with-tailwindcss/blob/master/01-getting-up-and-running/07-customizing-your-design-system/tailwind-full.config.js) for the
 theme.
 
 With this as a base I can then add my own theme on top of that. An
@@ -81,8 +81,8 @@ export const theme = {
 <!-- cSpell:ignore Callstack -->
 
 If I wanted to I could create my own theme with Linaria [using CSS
-custom properties] (variables) but instead I'm going to be using the
-[Callstack theme provider] which has a hook I can use in `useTheme`.
+custom properties](https://github.com/callstack/linaria/blob/master/docs/THEMING.md#css-custom-properties) (variables) but instead I'm going to be using the
+[Callstack theme provider](https://github.com/callstack/react-theme-provider) which has a hook I can use in `useTheme`.
 
 ```bash
 # install the theme provider
@@ -168,7 +168,7 @@ Taking a look at the defaults there's no option for rebeccapurple (hex
 
 In the `project-theme.js` I'll define a new object for the primary
 colours, tip if you want to get shades of a particular colour take a
-look at [0to255.com].
+look at [0to255.com](https://0to255.com).
 
 With my shades of rebeccapurple I can add that to the `theme` object.
 
@@ -209,15 +209,3 @@ So that's how I add theming with Linaria, there was also the
 `ThemeProvider` and `withTheme` options that could be used from the
 `react-theme-provider` although I did find this way more suited to my
 needs.
-
-<!-- Links -->
-
-[getting started with linaria]:
-	https://scottspence.com/posts/linaria-getting-started/
-[defaults from tailwind css]:
-	https://github.com/tailwindcss/designing-with-tailwindcss/blob/master/01-getting-up-and-running/07-customizing-your-design-system/tailwind-full.config.js
-[callstack theme provider]:
-	https://github.com/callstack/react-theme-provider
-[using css custom properties]:
-	https://github.com/callstack/linaria/blob/master/docs/THEMING.md#css-custom-properties
-[0to255.com]: https://0to255.com

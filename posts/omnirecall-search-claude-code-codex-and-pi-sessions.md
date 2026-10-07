@@ -26,11 +26,11 @@ messages.
 
 Then it turned out the other agents do the same:
 
-| Agent        | Sessions stored in                               | Recall CLI |
-| ------------ | ------------------------------------------------ | ---------- |
-| Claude Code  | `~/.claude/projects/<project>/*.jsonl`           | ccrecall   |
-| Pi           | `~/.pi/agent/sessions/<project>/*.jsonl`         | pirecall   |
-| OpenAI Codex | `~/.codex/sessions/<year>/<month>/<day>/*.jsonl` | ocrecall   |
+| Agent | Sessions stored in | Recall CLI |
+| --- | --- | --- |
+| Claude Code | `~/.claude/projects/<project>/*.jsonl` | ccrecall |
+| Pi | `~/.pi/agent/sessions/<project>/*.jsonl` | pirecall |
+| OpenAI Codex | `~/.codex/sessions/<year>/<month>/<day>/*.jsonl` | ocrecall |
 
 `pirecall` came in April 2026 when I moved most of my work to Pi, and
 `ocrecall` this month. Same idea each time: sync the sessions to

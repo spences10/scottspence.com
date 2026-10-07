@@ -8,12 +8,12 @@ tags: ['testing', 'svelte', 'guide']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Banner } from '#lib/components/index.js'
   import { DateDistance } from '#lib/components/index.js'
 
   const options = {
-    type: 'info',
+    type: 'info' as const,
     message: `The testing library has been updated. If you're not
       seeing this error in your tests, don't worry. Check 
       out the <a href="#update">update</a> at the end of the post 
@@ -172,6 +172,6 @@ That's it, no need to patch the package anymore.
 
 ## References
 
-- https://github.com/testing-library/svelte-testing-library/issues/284
-- https://scottspence.com/posts/patching-packages
-- https://scottspence.com/posts/patching-gatsby-react-router-scroll
+- [https://github.com/testing-library/svelte-testing-library/issues/284](https://github.com/testing-library/svelte-testing-library/issues/284)
+- [https://scottspence.com/posts/patching-packages](https://scottspence.com/posts/patching-packages)
+- [https://scottspence.com/posts/patching-gatsby-react-router-scroll](https://scottspence.com/posts/patching-gatsby-react-router-scroll)

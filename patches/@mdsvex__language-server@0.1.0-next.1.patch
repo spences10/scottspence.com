@@ -1,0 +1,23 @@
+diff --git a/bin/pfm-language-server.js b/bin/pfm-language-server.js
+index 8157b76f68bca70da8437b0cdbecfe6a14d89f76..8f6041207b5094d4e933bd9dae19316bfe58f36e 100755
+--- a/bin/pfm-language-server.js
++++ b/bin/pfm-language-server.js
+@@ -1,3 +1,2 @@
+ #!/usr/bin/env node
+-const { startServer } = require("../dist/server.cjs");
+-startServer();
++import '../dist/server.cjs';
+diff --git a/dist/server.cjs b/dist/server.cjs
+index 514526ebaf0e2a64f5d48734b372f2726f1726be..24a3d917426bfe503498a9246127f922fefc7f6a 100644
+--- a/dist/server.cjs
++++ b/dist/server.cjs
+@@ -119645,7 +119645,8 @@ function au(r3, t2, s2, e2, n2, i2, o2) {
+   ));
+ }
+ function Vs(r3, t2) {
+-  return " " + r3 + "={" + JSON.stringify(t2) + "}";
++  // svelte2tsx scans script/style tags even inside string-valued props.
++  return " " + r3 + "={" + JSON.stringify(t2).replace(/</g, "\\u003c") + "}";
+ }
+ function Ne$5(r3, t2) {
+   let s2 = t2?.info;

@@ -38,11 +38,11 @@ marketing provider 😂
 ## Custom domains
 
 Setting up a custom domain was straightforward enough with Fastmail. I
-did document [Setting up Fastmail with Vercel] if you're interested in
+did document [Setting up Fastmail with Vercel](https://scottspence.com/posts/setting-up-fastmail-with-vercel) if you're interested in
 the process.
 
 With ProtonMail it was pretty much the same process which I documented
-[Setting up ProtonMail with Vercel].
+[Setting up ProtonMail with Vercel](https://scottspence.com/posts/setting-up-proton-mail-with-vercel).
 
 I will come onto why this was a factor in the next section.
 
@@ -95,10 +95,3 @@ When you actually get the data exported, it's in a format that is not
 useable in Fastmail.
 
 I literally had to send myself the emails I wanted to keep.
-
-<!--  Links -->
-
-[setting up fastmail with vercel]:
-	https://scottspence.com/posts/setting-up-fastmail-with-vercel
-[setting up protonmail with vercel]:
-	https://scottspence.com/posts/setting-up-proton-mail-with-vercel

@@ -15,7 +15,7 @@ duplicate properties. I wanted to filter out the duplicates and return
 a new object with only the unique properties.
 
 There's two sections here, the first is how I approached the solution
-then, there's the [much simpler approach] which I have now adopted.
+then, there's the [much simpler approach](#leighs-approach) which I have now adopted.
 
 ## What the data looks like
 
@@ -59,7 +59,7 @@ A lot of the examples you'll see on using reduce will be to count up a
 value, in my case I needed to have only the relevant information to
 add back into an object to build out the page details.
 
-A mentor of mine, [Leigh] Halliday has done some great videos
+A mentor of mine, [Leigh](https://twitter.com/leighchalliday) Halliday has done some great videos
 detailing how to use reduce.
 
 If you want a really good explanation of how to use filter, map and
@@ -131,7 +131,7 @@ const products = items
 
 ## Leigh's approach
 
-After running my approach past [Leigh], he had a much simpler
+After running my approach past [Leigh](https://twitter.com/leighchalliday), he had a much simpler
 solution!
 
 He had a small suggestion on the final code... the initial value
@@ -170,8 +170,3 @@ A lot more simpler than my solution! Thanks Leigh!
 ## Fin!
 
 That's it! Hope you found it useful!
-
-<!-- Links -->
-
-[much simpler approach]: #leighs-approach
-[leigh]: https://twitter.com/leighchalliday

@@ -12,7 +12,7 @@ So the idea was that I only need the markdown rendered so I thought
 why not just load the `.md` file into a Svelte page and render the
 content out with the Svelte `{@html}` directive.
 
-**Tl;Dr**: Code over on [GitHub]
+*Tl;Dr*: Code over on [GitHub](https://github.com/spences10/load-markdown-via-endpoint)
 
 So it's a bit of a roundabout way to do it to be honest! First up,
 Marked and loading Markdown files from the filesystem won't work
@@ -246,7 +246,3 @@ out the HTML using the Svelte `@html` directive.
 Like I said at the start, a real roundabout way to load Markdown into
 a Svelte page. But it works and it's a good way to learn about
 SvelteKit and the way data loading works in SvelteKit.
-
-<!-- Links -->
-
-[github]: https://github.com/spences10/load-markdown-via-endpoint

@@ -17,21 +17,21 @@ Linaria is like styled-components but different as in there's no
 runtime cost and some other gotchas I've found along the way.
 
 What does that mean though? I'm going to take the headings from the
-[Linaria Docs for benefits] and list them here, for more detail on
+[Linaria Docs for benefits](https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md) and list them here, for more detail on
 them I suggest checking the links in the list.
 
 ## Advantages Over other CSS-in-JS solutions
 
-1. [CSS is downloaded and parsed separately from JS]
-1. [No extra parsing needed for CSS]
-1. [No style duplication on SSR]
-1. [Catch errors early due to build-time evaluation]
-1. [Familiar CSS syntax]
-1. [Works without JavaScript]
+1. [CSS is downloaded and parsed separately from JS](https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#1-css-is-downloaded-and-parsed-separately-from-js)
+2. [No extra parsing needed for CSS](https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#2-no-extra-parsing-needed-for-css)
+3. [No style duplication on SSR](https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#3-no-style-duplication-on-ssr)
+4. [Catch errors early due to build-time evaluation](https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#4-catch-errors-early-due-to-build-time-evaluation)
+5. [Familiar CSS syntax](https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#5-familiar-css-syntax)
+6. [Works without JavaScript](https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#6-works-without-javascript)
 
 ## Example Me Up Yo!
 
-[TL;DR to the video] if you like, or read on...
+[TL;DR to the video](#video-detailing-the-process) if you like, or read on...
 
 Getting started with Linaria, I'm using the Gatsby default starter (no
 surprises there I guess 🤣).
@@ -56,7 +56,7 @@ yarn add linaria@next gatsby-plugin-linaria
 
 > Error: Cannot find module 'core-js/...'
 
-I'm using `@next` because there's a [known issue] between Linaria and
+I'm using `@next` because there's a [known issue](https://github.com/silvenon/gatsby-plugin-linaria#error-cannot-find-module-core-jsmodulespolyfill) between Linaria and
 Gatsby's version of core-js.
 
 I'll add the `.linaria-cache` folder to bottom of the `.gitignore`
@@ -80,7 +80,7 @@ plugins: [
 ```
 
 The `...` represents the reset of the items in the array, I've
-shortened it for [brevity].
+shortened it for [brevity](https://dictionary.cambridge.org/dictionary/english/brevity).
 
 I'll delete the `layout.css` file in the components directory and
 remove the `import "./layout.css"` line from the `layout.js`
@@ -97,7 +97,7 @@ on this in a bit.
 Sometimes there's a need to write some global styles, to get rid of
 that margin and to normalise browser inconsistencies.
 
-I'll straight up [jack the example] given in the Linaria docs and add
+I'll straight up [jack the example](https://github.com/callstack/linaria/blob/master/docs/BASICS.md#adding-global-styles) given in the Linaria docs and add
 that to a `theme` folder in the `src` directory. The file structure
 will look like this.
 
@@ -214,7 +214,7 @@ to using the Linaria `styled` tag.
 
 I'll work through the components that have styles in them.
 
-**Header:** I'll import the Linaria `styled` tag and make a
+*Header:* I'll import the Linaria `styled` tag and make a
 `StyledHeader` component:
 
 ```js
@@ -263,7 +263,7 @@ const Header = ({ siteTitle }) => (
 );
 ```
 
-**Layout:** same again, import the Linaria `styled` tag and make a
+*Layout:* same again, import the Linaria `styled` tag and make a
 `StyledLayout` component:
 
 ```js
@@ -324,35 +324,7 @@ Here's a video of me detailing the process.
 Here's some resources on CSS-in-JS performance I found interesting.
 
 - [The unseen performance costs of modern CSS-in-JS libraries in React
-  apps]
-- [CSS-in-JS Performance Cost - Mitigating Strategies]
+  apps](https://calendar.perfplanet.com/2019/the-unseen-performance-costs-of-css-in-js-in-react-apps/)
+- [CSS-in-JS Performance Cost - Mitigating Strategies](https://www.infoq.com/news/2020/01/css-cssinjs-performance-cost/)
 
-<!-- Links -->
 <!-- cSpell:ignore Callstack -->
-
-[the unseen performance costs of modern css-in-js libraries in react apps]:
-	https://calendar.perfplanet.com/2019/the-unseen-performance-costs-of-css-in-js-in-react-apps/
-[css-in-js performance cost - mitigating strategies]:
-	https://www.infoq.com/news/2020/01/css-cssinjs-performance-cost/
-[https://www.freecodecamp.org/news/the-tradeoffs-of-css-in-js-bee5cf926fdb/]:
-	https://www.freecodecamp.org/news/the-tradeoffs-of-css-in-js-bee5cf926fdb/
-[linaria docs for benefits]:
-	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md
-[css is downloaded and parsed separately from js]:
-	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#1-css-is-downloaded-and-parsed-separately-from-js
-[no extra parsing needed for css]:
-	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#2-no-extra-parsing-needed-for-css
-[no style duplication on ssr]:
-	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#3-no-style-duplication-on-ssr
-[catch errors early due to build-time evaluation]:
-	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#4-catch-errors-early-due-to-build-time-evaluation
-[familiar css syntax]:
-	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#5-familiar-css-syntax
-[works without javascript]:
-	https://github.com/callstack/linaria/blob/master/docs/BENEFITS.md#6-works-without-javascript
-[jack the example]:
-	https://github.com/callstack/linaria/blob/master/docs/BASICS.md#adding-global-styles
-[brevity]: https://dictionary.cambridge.org/dictionary/english/brevity
-[known issue]:
-	https://github.com/silvenon/gatsby-plugin-linaria#error-cannot-find-module-core-jsmodulespolyfill
-[tl;dr to the video]: #video-detailing-the-process

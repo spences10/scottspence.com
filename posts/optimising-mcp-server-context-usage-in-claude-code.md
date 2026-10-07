@@ -131,18 +131,18 @@ source URLs..."
 So, I consolidated related tools using parameters instead of separate
 tool definitions. Here's what I did:
 
-**1. Web search consolidation**
+*1. Web search consolidation*
 
 Consolidated four web search tools into one:
 
-**Before:** Four separate tools
+*Before:* Four separate tools
 
 - `tavily_search`
 - `brave_search`
 - `kagi_search`
 - `exa_search`
 
-**After:** One tool with a provider parameter
+*After:* One tool with a provider parameter
 
 ```typescript
 {
@@ -155,17 +155,17 @@ Consolidated four web search tools into one:
 }
 ```
 
-**2. GitHub search consolidation**
+*2. GitHub search consolidation*
 
 Consolidated three GitHub search tools into one:
 
-**Before:** Three separate tools
+*Before:* Three separate tools
 
 - `github_search` (for code)
 - `github_repository_search`
 - `github_user_search`
 
-**After:** One tool with a search_type parameter
+*After:* One tool with a search\_type parameter
 
 ```typescript
 {
@@ -178,17 +178,17 @@ Consolidated three GitHub search tools into one:
 }
 ```
 
-**3. AI search consolidation**
+*3. AI search consolidation*
 
 Consolidated three AI-powered search tools into one:
 
-**Before:** Three separate AI-powered search tools
+*Before:* Three separate AI-powered search tools
 
 - `perplexity_search`
 - `kagi_fastgpt_search`
 - `exa_answer_search`
 
-**After:** One tool with a provider parameter
+*After:* One tool with a provider parameter
 
 ```typescript
 {
@@ -201,11 +201,11 @@ Consolidated three AI-powered search tools into one:
 }
 ```
 
-**4. Firecrawl processing consolidation**
+*4. Firecrawl processing consolidation*
 
 Consolidated five Firecrawl processing modes into one:
 
-**Before:** Five different processing modes
+*Before:* Five different processing modes
 
 - `firecrawl_scrape_process`
 - `firecrawl_crawl_process`
@@ -213,7 +213,7 @@ Consolidated five Firecrawl processing modes into one:
 - `firecrawl_extract_process`
 - `firecrawl_actions_process`
 
-**After:** One tool with a mode parameter
+*After:* One tool with a mode parameter
 
 ```typescript
 {
@@ -226,16 +226,16 @@ Consolidated five Firecrawl processing modes into one:
 }
 ```
 
-**5. Exa processing consolidation**
+*5. Exa processing consolidation*
 
 Consolidated two Exa processing modes into one:
 
-**Before:** Two separate tools
+*Before:* Two separate tools
 
 - `exa_contents_process`
 - `exa_similar_process`
 
-**After:** One tool with a mode parameter
+*After:* One tool with a mode parameter
 
 ```typescript
 {
@@ -253,16 +253,16 @@ Consolidated two Exa processing modes into one:
 Beyond consolidation, I slashed the verbose descriptions. Here's an
 example:
 
-**Before (87 tokens):**
+*Before (87 tokens):*
 
 > "Search the web using Tavily Search API. Best for factual queries
 > requiring reliable sources and citations. Supports domain filtering
-> through API parameters (include_domains/exclude_domains). Provides
+> through API parameters (include\_domains/exclude\_domains). Provides
 > high-quality results for technical, scientific, and academic topics.
 > Use when you need verified information with strong citation
 > support."
 
-**After (12 tokens):**
+*After (12 tokens):*
 
 > "Search using Tavily. Best for factual/academic topics with
 > citations."
@@ -310,7 +310,7 @@ making Claude's decision-making process clearer and more reliable.
 
 If you're building MCP servers, here's what I learned:
 
-**1. Consolidate related tools**
+*1. Consolidate related tools*
 
 Don't create separate tools for similar operations. Use parameters
 instead:
@@ -327,7 +327,7 @@ web_search({ provider: 'brave' });
 web_search({ provider: 'kagi' });
 ```
 
-**2. Trim your descriptions**
+*2. Trim your descriptions*
 
 One concise sentence beats a paragraph:
 
@@ -339,7 +339,7 @@ One concise sentence beats a paragraph:
 'Search using provider X. Best for Y.';
 ```
 
-**3. Simplify parameter descriptions**
+*3. Simplify parameter descriptions*
 
 ```typescript
 // Bad
@@ -349,7 +349,7 @@ One concise sentence beats a paragraph:
 'Result limit';
 ```
 
-**4. Use standard parameter names**
+*4. Use standard parameter names*
 
 Consistent naming across tools helps:
 
@@ -357,7 +357,7 @@ Consistent naming across tools helps:
 - `limit` not `max_results` or `count`
 - `provider` not `engine` or `source`
 
-**5. Don't hide tools - consolidate them**
+*5. Don't hide tools - consolidate them*
 
 Some might think the solution is to hide tools Claude doesn't need.
 But that creates a different problem - how does Claude know what's
@@ -448,7 +448,7 @@ scratch my own itch.
 So, the reveal? Lol! Well, here's where I am now with
 `mcp-omnisearch`! Let me show you the actual difference:
 
-**Before (mcp-omnisearch)**
+*Before (mcp-omnisearch)*
 
 ```json
 {
@@ -468,9 +468,9 @@ So, the reveal? Lol! Well, here's where I am now with
 }
 ```
 
-**Token count: 14,214**
+*Token count: 14,214*
 
-**After (mcp-omnisearch)**
+*After (mcp-omnisearch)*
 
 ```json
 {
@@ -496,7 +496,7 @@ So, the reveal? Lol! Well, here's where I am now with
 }
 ```
 
-**Token count: 5,663**
+*Token count: 5,663*
 
 The functionality is identical, but the context footprint is 60%
 smaller!
@@ -505,13 +505,13 @@ smaller!
 
 Since implementing these optimisations, I've noticed:
 
-1. **Faster initial load** - Claude Code starts conversations quicker
+1. *Faster initial load* - Claude Code starts conversations quicker
    with less upfront context to process
-2. **Better tool selection** - Claude makes fewer mistakes about which
+2. *Better tool selection* - Claude makes fewer mistakes about which
    tool to use
-3. **More context for actual work** - Those 8,551 saved tokens now go
+3. *More context for actual work* - Those 8,551 saved tokens now go
    towards code and conversation
-4. **Easier debugging** - When Claude calls
+4. *Easier debugging* - When Claude calls
    `web_search({ provider: "tavily" })`, it's crystal clear what's
    happening
 
@@ -531,10 +531,10 @@ Optimising MCP server context usage isn't just about saving tokens -
 it's about making Claude Code better for everyone. Smaller context
 footprints mean:
 
-- **Users** get more context for actual work
-- **Claude** makes better decisions with fewer similar tools
-- **MCP authors** create more maintainable, focused servers
-- **The ecosystem** scales better as more tools are added
+- *Users* get more context for actual work
+- *Claude* makes better decisions with fewer similar tools
+- *MCP authors* create more maintainable, focused servers
+- *The ecosystem* scales better as more tools are added
 
 If you're building MCP servers, take the time to optimise them. Your
 users (and Claude) will thank you!

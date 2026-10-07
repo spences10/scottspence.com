@@ -12,7 +12,7 @@ is_private: true
 Okedokey! In this crash course I'll be detailing loads of SvelteKit
 features and how you can use them in a project.
 
-If you prefer to see this in a video you can [Tl;Dr] to the video
+If you prefer to see this in a video you can [Tl;Dr](#complete-video) to the video
 section.
 
 ## What I'm going to Build
@@ -100,7 +100,7 @@ I'be styling this as I go along with Tailwind and DaisyUI, I'll setup
 Tailwind first using Svelte Add to configure Tailwind in the SvelteKit
 project!
 
-https://github.com/svelte-add/svelte-add
+[https://github.com/svelte-add/svelte-add](https://github.com/svelte-add/svelte-add)
 
 ```bash
 npx svelte-add@latest tailwindcss
@@ -109,7 +109,7 @@ npx svelte-add@latest tailwindcss
 Svelte Add for Tailwind has Just In Time mode enables by default, you
 can check out more about that over on the Tailwind website.
 
-https://tailwindcss.com/docs/just-in-time-mode
+[https://tailwindcss.com/docs/just-in-time-mode](https://tailwindcss.com/docs/just-in-time-mode)
 
 ## Tour of the project
 
@@ -121,12 +121,12 @@ reason I switched my own site over to SvelteKit from Gatsby when I saw
 how quickly this updated.
 
 Let's talk about Vite environment variables quickly:
-https://vitejs.dev/config/#envprefix
+[https://vitejs.dev/config/#envprefix](https://vitejs.dev/config/#envprefix)
 
 Because I'll be using environment variables in the endpoints this
 shouldn't be an issue but to avoid any confusion and possible exposure
 of sensitive API keys I think it's best to go with a solution like
-`env-cmd`: https://www.npmjs.com/package/env-cmd
+`env-cmd`: [https://www.npmjs.com/package/env-cmd](https://www.npmjs.com/package/env-cmd)
 
 Add additional packages for use in the endpoints I'll be creating to
 query data from a GraphQL API! Also adding in DaisyUI for rapid
@@ -164,7 +164,3 @@ variables for use in the dev server.
 ## (SSR) Pages for each post
 
 ## Svelte Animations
-
-<!-- Links -->
-
-[tl;dr]: #complete-video

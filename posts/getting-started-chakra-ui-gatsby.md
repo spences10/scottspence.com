@@ -15,23 +15,23 @@ on a Gatsby default starter project" post.
 In this case it's Chakra UI, it's recently gone v1 and I'm keen to use
 it.
 
-What I'm going to be doing is styling the [Gatsby starter default]
+What I'm going to be doing is styling the [Gatsby starter default](https://github.com/gatsbyjs/gatsby-starter-default)
 using Chakra UI and chucking in a theme toggle as well.
 
 This will involve swapping out the styles that come with the [Gatsby
-starter default] with Chakra UI ones.
+starter default](https://github.com/gatsbyjs/gatsby-starter-default) with Chakra UI ones.
 
 The end result I'm aiming for is for it to look the same as before but
 using Chakra UI in place of the styling it comes with.
 
-You can follow along too, or you can **[TL;DR]** for the video.
+You can follow along too, or you can *[TL;DR](#heres-a-video-detailing-the-process)* for the video.
 
 ## Pre requisites
 
 The usual notes on development environment, this comes with the
 presumption you'll already have a development environment set up and
 configured. If you don't have a development environment then you can
-always use [CodeSandbox.io] to get up and running with an environment.
+always use [CodeSandbox.io](https://codesandbox.io/) to get up and running with an environment.
 
 In the examples here I'm using Node version `14.13.0`.
 
@@ -81,14 +81,14 @@ yarn add \
   @chakra-ui/icons
 ```
 
-**NOTE** Don't forget to add the Chakra UI Gatsby plugin to the Gatsby
+*NOTE* Don't forget to add the Chakra UI Gatsby plugin to the Gatsby
 plugin array, I routinely do this! This note is for me just as much as
 you dear reader. 😊
 
 I'll add the plugin to the `gatsby-config.js`, at the time of writing
 this plugin name was what's recommended in the [Chakra UI
-documentation] and shouldn't be confused with the [Gatsby
-documentation].
+documentation](https://chakra-ui.com/docs/getting-started#gatsby) and shouldn't be confused with the [Gatsby
+documentation](https://www.gatsbyjs.com/plugins/gatsby-plugin-chakra-ui/).
 
 ```js
 plugins: [
@@ -107,9 +107,9 @@ can also delete the `layout.css` file as it's not needed.
 
 So that I can access the Chakra UI Theme provider throughout the
 project I'm going to add the `<ChakraProvider>` as [high up in the
-React component tree] as possible.
+React component tree](https://scottspence.com/posts/globally-style-gatsby-styled-components/#place-globalstyle-at-the-top-of-the-react-tree-) as possible.
 
-I can do this by using the Gatsby [`wrapPageElement`] API in both the
+I can do this by using the Gatsby [`wrapPageElement`](https://www.gatsbyjs.com/docs/browser-apis/#wrapPageElement) API in both the
 `gatsby-browser.ja` and the `gatsby-ssr.js` files.
 
 So I'm not to repeating the same code in both of those files I'm going
@@ -129,7 +129,7 @@ touch src/woot-wrapper.tsx
 Yes, I'm using a TypeScript (`.tsx`) file in a predominantly
 JavaScript project, you do you, make it a `.js` file if you like. I'm
 trying to get more used to using TS in my projects and Gatsby gives TS
-support [out of the box] now.
+support [out of the box](https://www.gatsbyjs.com/docs/typescript/) now.
 
 In the root wrapper file I'll add the Chakra provider and the `Layout`
 component.
@@ -246,7 +246,7 @@ const Header = ({ siteTitle }) => (
 Notice that the `<header>` tag and the `<div>` tags are now both
 Chakra UI `<Box>` components?
 
-They're both using the Chakra UI [`as`] prop, this is a feature that
+They're both using the Chakra UI [`as`](https://chakra-ui.com/docs/features/style-props#the-as-prop) prop, this is a feature that
 allows you to pass an HTML tag or component to be rendered. Pretty
 neat right?
 
@@ -293,7 +293,7 @@ return (
 );
 ```
 
-You may notice the addition of the [`fontSize`] prop added to the
+You may notice the addition of the [`fontSize`](https://chakra-ui.com/docs/typography/text#changing-the-font-size) prop added to the
 footer, I'll be using this a bit more when editing the pages.
 
 There's also additional props for the link component, I added the
@@ -454,7 +454,7 @@ That's it for this one! To recap what I did:
 - Created a theme toggle using the Chakra UI `useColorMode` hook
 - Swap out inline styles with Chakra UI components
 
-If you want to use the code here [I made a starter] you can use with
+If you want to use the code here [I made a starter](https://github.com/spences10/gatsby-starter-chakra-ui) you can use with
 the Gatsby CLI or straight up clone and install the dependencies.
 
 Done!
@@ -466,54 +466,16 @@ more about it as I continue to use it.
 
 Please take a look at my other content if you enjoyed this.
 
-Follow me on [Twitter] or [Ask Me Anything] on GitHub.
+Follow me on [Twitter](https://twitter.com/spences10) or [Ask Me Anything](https://github.com/spences10/ama) on GitHub.
 
 ## Resources
 
 These are literally all linking to the Chakra UI documentation:
 
-- [Chakra UI typography heading]
-- [Chakra UI components/link]
-- https://chakra-ui.com/docs/navigation/link
-- [Chakra UI The `as` prop]
-- [Chakra UI style-props]
-- [Chakra UI theming theme]
-- [Chakra UI theming colors]
-
-<!-- Links -->
-
-[gatsby starter default]:
-	https://github.com/gatsbyjs/gatsby-starter-default
-[gatsby documentation]:
-	https://www.gatsbyjs.com/plugins/gatsby-plugin-chakra-ui/
-[chakra ui getting started]:
-	https://chakra-ui.com/docs/getting-started
-[codesandbox.io]: https://codesandbox.io/
-[high up in the react component tree]:
-	https://scottspence.com/posts/globally-style-gatsby-styled-components/#place-globalstyle-at-the-top-of-the-react-tree-
-[chakra ui documentation]:
-	https://chakra-ui.com/docs/getting-started#gatsby
-[`wrappageelement`]:
-	https://www.gatsbyjs.com/docs/browser-apis/#wrapPageElement
-[out of the box]: https://www.gatsbyjs.com/docs/typescript/
-[`as`]: https://chakra-ui.com/docs/features/style-props#the-as-prop
-[`fontsize`]:
-	https://chakra-ui.com/docs/typography/text#changing-the-font-size
-[twitter]: https://twitter.com/spences10
-[ask me anything]: https://github.com/spences10/ama
-[chakra ui typography heading]:
-	https://chakra-ui.com/docs/typography/heading
-[chakra ui components/link]:
-	https://chakra-ui.com/docs/navigation/link
-[chakra ui typography/text]:
-	https://chakra-ui.com/docs/typography/text
-[chakra ui the `as` prop]:
-	https://chakra-ui.com/docs/features/style-props#the-as-prop
-[chakra ui style-props]:
-	https://chakra-ui.com/docs/features/style-props
-[chakra ui theming theme]: https://chakra-ui.com/docs/theming/theme
-[chakra ui theming colors]:
-	https://chakra-ui.com/docs/theming/theme#colors
-[tl;dr]: #heres-a-video-detailing-the-process
-[i made a starter]:
-	https://github.com/spences10/gatsby-starter-chakra-ui
+- [Chakra UI typography heading](https://chakra-ui.com/docs/typography/heading)
+- [Chakra UI components/link](https://chakra-ui.com/docs/navigation/link)
+- [https://chakra-ui.com/docs/navigation/link](https://chakra-ui.com/docs/navigation/link)
+- [Chakra UI The `as` prop](https://chakra-ui.com/docs/features/style-props#the-as-prop)
+- [Chakra UI style-props](https://chakra-ui.com/docs/features/style-props)
+- [Chakra UI theming theme](https://chakra-ui.com/docs/theming/theme)
+- [Chakra UI theming colors](https://chakra-ui.com/docs/theming/theme#colors)

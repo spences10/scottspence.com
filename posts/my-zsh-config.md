@@ -6,11 +6,11 @@ tags: ['zsh', 'guide']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Banner } from '#lib/components/index.js'
 
   const options = {
-    type: 'info',
+    type: 'info' as const,
     message: `If you want to get the latest config on this with my 
       preferred tooling then check out the post I did recently on 
       <a href="https://scottspence.com/posts/my-updated-zsh-config-2025" 
@@ -25,7 +25,7 @@ I've always bundled in my Zsh config with other guides I've done in
 the past and never a stand alone post. So I'm making this now for my
 reference.
 
-I switched to Zsh around two years ago after being a long time [Fish]
+I switched to Zsh around two years ago after being a long time [Fish](https://fishshell.com/)
 shell user. The reason for the switch? I found Zsh to be a bit simpler
 to configure. I'm by no means a power user but I like to have my own
 preferred configuration.
@@ -48,12 +48,12 @@ following:
 brew install zsh
 ```
 
-I've covered [installing Zsh and Oh My Zsh on Fedora] in another guide
+I've covered [installing Zsh and Oh My Zsh on Fedora](https://scottspence.com/posts/wsl-web-developer-setup-with-fedora-35#install-zsh-and-oh-my-zsh) in another guide
 as well.
 
 ## Install Oh My Zsh
 
-Zsh has a framework that you can use with it called [Oh My Zsh] this
+Zsh has a framework that you can use with it called [Oh My Zsh](https://ohmyz.sh/) this
 adds a lot of functionality to the shell, more on this in the guide.
 
 Installing Oh My Zsh is as simple as:
@@ -75,7 +75,7 @@ Another nice one is changing directories, in bash you'd need to
 `cd ..` to go back a directory. In Zsh you can use `..` to go back a
 directory. To go back three directories you can use `...`.
 
-Anyway, the [default `.zshrc` file] is filled with helpful comments to
+Anyway, the [default `.zshrc` file](https://github.com/ohmyzsh/ohmyzsh/blob/master/templates/zshrc.zsh-template) is filled with helpful comments to
 guide you through its usage.
 
 If you `cat` out the contents of the `.zshrc` (with `cat ~/.zshrc`)
@@ -168,15 +168,15 @@ plugins.
 
 ## Adding plugins and themes
 
-I'll cover them now [`zsh-syntax-highlighting`] is syntax highlighting
+I'll cover them now [`zsh-syntax-highlighting`](https://github.com/zsh-users/zsh-syntax-highlighting) is syntax highlighting
 for the shell, so if you type out a command that's not recognised it
 will show the command in red and it will also give syntax highlighting
 to commands entered into the shell.
 
-[`zsh-autosuggestions`] will show previously typed in commands to help
+[`zsh-autosuggestions`](https://github.com/zsh-users/zsh-autosuggestions) will show previously typed in commands to help
 with auto completion.
 
-Finally I'm a massive fan of the [`spaceship`] prompt back from my
+Finally I'm a massive fan of the [`spaceship`](https://github.com/spaceship-prompt/spaceship-prompt) prompt back from my
 Fish shell days!
 
 I've linked the repositories for them which will have install
@@ -208,7 +208,7 @@ background of the suggested command, that need to go into the
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#663399,standout"
 ```
 
-Then install the Zsh theme for [`spaceship`] with:
+Then install the Zsh theme for [`spaceship`](https://github.com/spaceship-prompt/spaceship-prompt) with:
 
 ```bash
 # clone the repo to the Zsh custom theme directory
@@ -235,7 +235,7 @@ The error message looks something like this:
 (upower:185): UPower-WARNING **: 18:38:44.618: Cannot connect to upowerd: Could not connect: No such file or directory
 ```
 
-There's a post on [Miguel Alex Cantu]'s blog about this and there's a
+There's a post on [Miguel Alex Cantu](http://blog.miguelalexcantu.com/2020/12/fixing-upower-warning-wslzshspaceship.html)'s blog about this and there's a
 spaceship config option for it.
 
 ```bash
@@ -276,14 +276,14 @@ export NVM_DIR="$HOME/.nvm"
 
 <!-- cSpell:ignore gotbletu -->
 
-Global aliases I learned from a great [video from gotbletu] on
+Global aliases I learned from a great [video from gotbletu](https://www.youtube.com/watch?v=WTTIGjZAMGg) on
 YouTube!
 
-Check it out! More details on the [Zsh and Oh My Zsh] post I did at
+Check it out! More details on the [Zsh and Oh My Zsh](https://scottspence.com/posts/zsh-and-oh-my-zsh#abbreviations) post I did at
 the end of 2020.
 
 I have a list of global aliases I like to use in my [dotfiles on
-github].
+github](https://github.com/spences10/dotfiles/blob/main/.zsh_aliases).
 
 ## Wrapping up
 
@@ -295,24 +295,3 @@ changed.
 That's it! My very own Zsh configuration! Like I said at the start
 this is mainly for my reference, but, if you have read through it and
 found it useful then that's a massive win for me! Thank you 🙏
-
-<!-- Links -->
-
-[fish]: https://fishshell.com/
-[oh my zsh]: https://ohmyz.sh/
-[installing zsh and oh my zsh on fedora]:
-	https://scottspence.com/posts/wsl-web-developer-setup-with-fedora-35#install-zsh-and-oh-my-zsh
-[default `.zshrc` file]:
-	https://github.com/ohmyzsh/ohmyzsh/blob/master/templates/zshrc.zsh-template
-[`zsh-syntax-highlighting`]:
-	https://github.com/zsh-users/zsh-syntax-highlighting
-[`zsh-autosuggestions`]:
-	https://github.com/zsh-users/zsh-autosuggestions
-[`spaceship`]: https://github.com/spaceship-prompt/spaceship-prompt
-[miguel alex cantu]:
-	http://blog.miguelalexcantu.com/2020/12/fixing-upower-warning-wslzshspaceship.html
-[video from gotbletu]: https://www.youtube.com/watch?v=WTTIGjZAMGg
-[zsh and oh my zsh]:
-	https://scottspence.com/posts/zsh-and-oh-my-zsh#abbreviations
-[dotfiles on github]:
-	https://github.com/spences10/dotfiles/blob/main/.zsh_aliases

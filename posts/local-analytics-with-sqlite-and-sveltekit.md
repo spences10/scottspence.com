@@ -103,7 +103,7 @@ INSERTs is far cheaper than 100 individual writes - each individual
 write needs its own fsync to disk, but a transaction batches them into
 one.
 
-**Batched writes**
+*Batched writes*
 
 Queue events in memory, flush every 5 seconds:
 
@@ -136,7 +136,7 @@ setInterval(() => {
 Simple INSERTs inside a transaction. One fsync instead of hundreds.
 Page requests don't touch the database at all.
 
-**Heartbeat-based live visitors**
+*Heartbeat-based live visitors*
 
 For the "live visitors" count, database queries were too slow. Moved
 to an in-memory Map with 15-second TTL:
@@ -172,7 +172,7 @@ I also fixed the multiple polling issue by using Svelte's shared state
 in a `.svelte.ts` file - all components now share a single data source
 instead of each creating their own remote function instance.
 
-**Read path**
+*Read path*
 
 Stats queries go through rollup tables populated by background jobs,
 with an in-memory cache on top:
@@ -216,28 +216,28 @@ for i in {1..100}; do
 done; wait
 ```
 
-The `/posts` route went from ~7 seconds under load to sub-300ms. The
+The `/posts` route went from \~7 seconds under load to sub-300ms. The
 `/tags` route showed similar improvements. No 503s. That gave me the
 confidence to leave it running in production.
 
 ## What I learned
 
-**SQLite is synchronous**. It blocks the event loop. Under load,
+*SQLite is synchronous*. It blocks the event loop. Under load,
 synchronous database writes queue up and kill your server.
 
-**WAL mode helps reads, writes still serialise**. WAL lets readers
+*WAL mode helps reads, writes still serialise*. WAL lets readers
 access the database during writes. But writes themselves still happen
 one at a time. You can't parallelise your way out of write contention.
 
-**UPSERT is often redundant**. If you're deduplicating at write time,
+*UPSERT is often redundant*. If you're deduplicating at write time,
 ask whether `COUNT(DISTINCT)` at read time would work instead. The
 read-time approach is usually cheaper because reads can be cached.
 
-**Batch your writes**. One transaction with 100 INSERTs is way faster
+*Batch your writes*. One transaction with 100 INSERTs is way faster
 than 100 individual INSERTs. The fsync overhead dominates at low batch
 sizes.
 
-**Test under load before deploying**. I've been doing this for years
+*Test under load before deploying*. I've been doing this for years
 and still deployed without proper load testing.
 
 ## Current status

@@ -6,22 +6,22 @@ is_private: false
 ---
 
 In this guide I'll be going through getting set up with the Universal
-React Query Library (URQL) in SvelteKit. There's [documentation] you
+React Query Library (URQL) in SvelteKit. There's [documentation](https://formidable.com/open-source/urql/docs/basics/svelte/) you
 can check out for URQL itself if you need to go more in depth. This
 will be covering initialising the client and making some simple
 queries with it.
 
-If you weren't aware, I did a [post on this] a while back, (or you may
+If you weren't aware, I did a [post on this](https://scottspence.com/posts/use-urql-with-svelte/) a while back, (or you may
 have been directed here from that post, maybe?) but if you've been
 following SvelteKit for a while now you'll know that [things have
-changed slightly].
+changed slightly](https://github.com/sveltejs/kit/discussions/5774).
 
 So, let's get started!
 
 ## GraphQL endpoint
 
-This time around I'll be using the [Rick and Morty GraphQL API] for
-the data, querying the [GraphQL endpoint] with URQL.
+This time around I'll be using the [Rick and Morty GraphQL API](https://rickandmortyapi.com/documentation/) for
+the data, querying the [GraphQL endpoint](https://rickandmortyapi.com/graphql) with URQL.
 
 If I go to the endpoint (linked in the last paragraph) I can have a
 play around with querying the data in the provided Graph<em>i</em>QL
@@ -50,7 +50,7 @@ play button, this returns a list of all the characters in the API.
 
 <!-- cSpell:ignore rickandmortyapi,graphiql -->
 
-[![rickandmortyapi-graphiql]] [rickandmortyapi-graphiql]
+\[![rickandmortyapi-graphiql](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1664657798/scottspence.com/rickandmortyapi-graphiql.png)\] [rickandmortyapi-graphiql](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1664657798/scottspence.com/rickandmortyapi-graphiql.png)
 
 The other query is for a single character by ID, I can add another
 query to the explorer by clicking the plus button next to where it
@@ -85,8 +85,8 @@ that can be used, in this case it's only the `id` variable that I will
 get an option for. If I select that and add in a value, say `1` and
 then hit the play button I get the following response:
 
-[![rickandmortyapi-graphql-single-character]]
-[rickandmortyapi-graphql-single-character]
+\[![rickandmortyapi-graphql-single-character](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1664658680/scottspence.com/rickandmortyapi-graphql-single-character.png)\]
+[rickandmortyapi-graphql-single-character](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1664658680/scottspence.com/rickandmortyapi-graphql-single-character.png)
 
 Now I have the two queries I need to start working with the data in a
 SvelteKit project.
@@ -133,7 +133,7 @@ Now I can test everything is working by running the project with
 URQL is used on the client (the browser) so the calls to the API can
 be made in Svelte `+page.svelte` and `+layout.svelte` files.
 
-Because the the URQL client uses the [Svelte Context API] to
+Because the the URQL client uses the [Svelte Context API](https://svelte.dev/tutorial/context-api) to
 `setContextClient` and `getContextClient` there's no opinion as far as
 I know where it should go. Typically I'll create a client it in a
 place accessible by other pages so the most logical place (to me) is
@@ -438,7 +438,7 @@ pre tag again to validate the data is being returned.
 ## Conclusion
 
 I've used URQL to create a client that points to the Rick and Morty
-[graphql endpoint]. Created a query to pass to the client to get data
+[graphql endpoint](https://rickandmortyapi.com/graphql). Created a query to pass to the client to get data
 from the API and render a simple list of characters from the API. Then
 added file based routing to display individual character information.
 
@@ -448,25 +448,4 @@ Real basic set up, but enough to get started with using URQL with
 SvelteKit.
 
 If you want to have a look at the example code for this it's over on
-my [GitHub account].
-
-<!-- Links -->
-
-[documentation]:
-	https://formidable.com/open-source/urql/docs/basics/svelte/
-[post on this]: https://scottspence.com/posts/use-urql-with-svelte/
-[things have changed slightly]:
-	https://github.com/sveltejs/kit/discussions/5774
-[rick and morty graphql api]:
-	https://rickandmortyapi.com/documentation/
-[graphql endpoint]: https://rickandmortyapi.com/graphql
-[example code]: https://github.com/spences10/sveltekit-with-urql
-[svelte context api]: https://svelte.dev/tutorial/context-api
-[github account]: https://github.com/spences10/sveltekit-with-urql
-
-<!-- Images -->
-
-[rickandmortyapi-graphiql]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1664657798/scottspence.com/rickandmortyapi-graphiql.png
-[rickandmortyapi-graphql-single-character]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1664658680/scottspence.com/rickandmortyapi-graphql-single-character.png
+my [GitHub account](https://github.com/spences10/sveltekit-with-urql).

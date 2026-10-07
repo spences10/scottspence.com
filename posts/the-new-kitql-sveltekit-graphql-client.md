@@ -7,10 +7,10 @@ is_private: true
 
 The latest version of KitQL dropped yesterday!
 
-I've written about [Getting Started with KitQL and GraphCMS] in the
+I've written about [Getting Started with KitQL and GraphCMS](https://scottspence.com/posts/getting-started-with-kitql-and-graphcms) in the
 past and there's a few things that have changed between the two
 versions. Most notable to those are that KitQL has merged with
-[Houdini]. There's migrations guides for both!
+[Houdini](https://www.houdinigraphql.com/). There's migrations guides for both!
 
 ## Get set up
 
@@ -74,9 +74,3 @@ async function fetchQuery({
 
 export const houdiniClient = new HoudiniClient(fetchQuery);
 ```
-
-<!-- Links -->
-
-[getting started with kitql and graphcms]:
-	https://scottspence.com/posts/getting-started-with-kitql-and-graphcms
-[houdini]: https://www.houdinigraphql.com/

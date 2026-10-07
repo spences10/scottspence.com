@@ -20,7 +20,7 @@ sharing it with you to help if you're having similar issues.
 <!-- cSpell:ignore Dino,Kukic -->
 
 So, I first noticed this when I was working with the absolute SEO
-legend that is [Dino Kukic]! He clued me into finding where your crawl
+legend that is [Dino Kukic](https://twitter.com/DinoKukic)! He clued me into finding where your crawl
 budget is going in the Google Search Console.
 
 To check your Google crawl stats, from the Google search Console on
@@ -60,7 +60,3 @@ like the `analytics.json` and `current-visitors.json` API endpoints.
 If you go to the GitHub for this site and check out the `robots.txt`
 file you'll also see a ton of additional `Disallow` rules that I've
 added in to stop Google from crawling things I don't want it to.
-
-<!-- Links -->
-
-[dino kukic]: https://twitter.com/DinoKukic

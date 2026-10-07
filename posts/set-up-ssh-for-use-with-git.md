@@ -66,8 +66,8 @@ pbcopy < ~/.ssh/id_github.pub # Mac
 <!-- cSpell:ignore pbcopy -->
 
 I'm using Linux so I'll `cat` out the key and copy that then add the
-SSH key to my GitHub profile from the [settings] page by clicking the
-[New SSH key] button and paste in my key. Save it...
+SSH key to my GitHub profile from the [settings](https://github.com/settings/keys) page by clicking the
+[New SSH key](https://github.com/settings/ssh/new) button and paste in my key. Save it...
 
 ## If I already have projects on my machine that use HTTPS for authentication?
 
@@ -76,8 +76,8 @@ SSH in place of HTTPS connections with Git there there's a few things
 I'll need to do to my existing projects that use HTTPS for
 authentication.
 
-On the GitHub repository for the project I'll pick the **Clone with
-SSH** option from the **Clone or download** section on the page.
+On the GitHub repository for the project I'll pick the *Clone with
+SSH* option from the *Clone or download* section on the page.
 
 Once I have taken the link from there I'll need to set the repo remote
 to the SSH URL.
@@ -115,7 +115,7 @@ time I want to push a commit to GitHub!
 ## SSH keys with passwords
 
 If you add a password to your SSH key you will find yourself entering
-the password to authenticate on each [pull, push] operation. This can
+the password to authenticate on each \[pull, push\] operation. This can
 get tedious, especially if you have a long password in your keys.
 
 Add the following line to your `~/.ssh/config/` file:
@@ -164,8 +164,3 @@ sudo chmod 700 .ssh/
 # authenticate with GitHub
 ssh -T git@github.com
 ```
-
-<!-- Links -->
-
-[settings]: https://github.com/settings/keys
-[new ssh key]: https://github.com/settings/ssh/new

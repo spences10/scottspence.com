@@ -84,13 +84,13 @@ Anyway, leaving this here for future reference.
 
 Some useful bits I found:
 
-- Vercel status page: https://www.vercel-status.com/
+- Vercel status page: [https://www.vercel-status.com/](https://www.vercel-status.com/)
 - To change your Vercel function region:
   `https://vercel.com/<vercel_user>/<project_name>/settings/functions`
 - Configuring SvelteKit fo use with Vercel edge functions:
-  https://vercel.com/docs/frameworks/sveltekit#configure-your-sveltekit-deployment
+  [https://vercel.com/docs/frameworks/sveltekit#configure-your-sveltekit-deployment](https://vercel.com/docs/frameworks/sveltekit#configure-your-sveltekit-deployment)
 - How to specify vercel builds location (depreciated):
-  https://github.com/orgs/vercel/discussions/1470
+  [https://github.com/orgs/vercel/discussions/1470](https://github.com/orgs/vercel/discussions/1470)
 
 ## Conclusion
 

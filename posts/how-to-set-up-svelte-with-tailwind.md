@@ -5,12 +5,12 @@ tags: ['tailwind', 'svelte', 'how-to']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Banner, DateDistance as DD } from '#lib/components/index.js'
 
   let href = `/posts/svelte-cli-add-tailwind`
   const options = {
-    type: 'warning',
+    type: 'warning' as const,
     message: `With the new Svelte <code>sv</code> CLI you can now add 
       Tailwind CSS to your project with the CLI, like super simple! 
       Check out the post on <a href=${href} target="_blank" 
@@ -30,7 +30,7 @@ I'll go through the setup on the default project from each of the
 `init` commands with both Vite and Svelte. I'll then reuse the styles
 on the index page of both projects to convert them to use Tailwind.
 
-Both examples will use the [Svelte Add] utility and I'll go through
+Both examples will use the [Svelte Add](https://github.com/svelte-add/svelte-add) utility and I'll go through
 converting each one from the Svelte scoped CSS over to Tailwind.
 
 Did you read the banner? This post is <DD date={metadata.date} /> old
@@ -88,7 +88,7 @@ npm i
 After running the install command my source control side panel in VS
 Code looks like this.
 
-![changes-after-svelte-add-tailwind]
+![changes-after-svelte-add-tailwind](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1641143473/scottspence.com/changes-after-svelte-add-tailwind.png)
 
 That's it! All the configuration needed to use Tailwind in a Svelte
 project! If that's all you needed to know then cool! The rest of this
@@ -366,19 +366,10 @@ Done.
 ## Conclusion
 
 I've created a couple of example projects using the `npm init` command
-for both Vite and Svelte. Added in Tailwind support using [Svelte Add]
+for both Vite and Svelte. Added in Tailwind support using [Svelte Add](https://github.com/svelte-add/svelte-add)
 and replaced the index page styles on each with Tailwind styles.
 
 Need help implementing Svelte and Tailwind in your business projects?
 Visit [OES Technology](https://oestechnology.co.uk) where we provide
 scalable Svelte solutions with modern styling approaches like Tailwind
 CSS.
-
-<!-- Links -->
-
-[svelte add]: https://github.com/svelte-add/svelte-add
-
-<!-- Images -->
-
-[changes-after-svelte-add-tailwind]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1641143473/scottspence.com/changes-after-svelte-add-tailwind.png

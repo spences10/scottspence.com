@@ -131,17 +131,17 @@ autocomplete engine.
 
 So what do I actually do to manage this? Here's what works:
 
-**Verification checkpoints** - Before Claude touches code, I verify it
+*Verification checkpoints* - Before Claude touches code, I verify it
 understands the task (alignment). I ask it to explain back what it's
 about to do. If the explanation is vague or wrong, I stop it there and
 call out it's bullshittery.
 
-**Know when to bail** - Some tasks are just faster to do manually.
+*Know when to bail* - Some tasks are just faster to do manually.
 Renaming a variable across 50 files? I'm using IDE find/replace, not
 waiting for Claude to plod through each file. Simple refactors that
 are three keyboard shortcuts? I'm not explaining that to AI.
 
-**Context limits** - I don't let conversations run too long. After 5-6
+*Context limits* - I don't let conversations run too long. After 5-6
 to and fro exchanges, Claude starts hallucinating previous context. I
 start fresh rather than fighting that drift.
 

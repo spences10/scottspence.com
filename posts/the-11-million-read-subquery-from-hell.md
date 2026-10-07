@@ -25,7 +25,7 @@ optimized - job done, right?
 Wrong. Dead wrong. 😅
 
 Turns out that was just the warm-up act. The REAL villain was hiding
-in plain sight, quietly generating **11.5 MILLION database reads**
+in plain sight, quietly generating *11.5 MILLION database reads*
 every single time it ran. And here's the kicker - I'd actually
 "optimized" it in June, making it exponentially worse in the process.
 
@@ -53,7 +53,7 @@ JavaScript cosine similarity calculations to Turso's native
 
 Here's what I changed in `src/routes/api/ingest/embeddings.ts`:
 
-**Before (the "slow" version):**
+*Before (the "slow" version):*
 
 ```typescript
 // Get current post embedding
@@ -82,7 +82,7 @@ const similarities = all_posts_result.rows.map((row) => ({
 }));
 ```
 
-**After (the "optimized" version):**
+*After (the "optimized" version):*
 
 ```sql
 SELECT post_id,
@@ -103,8 +103,8 @@ Yeah, that's the devil right there.
 
 ## The Mathematics of Horror
 
-Here's what I didn't realize at the time - that subquery runs **once
-for every row** in the main query. It's a correlated subquery, which
+Here's what I didn't realize at the time - that subquery runs *once
+for every row* in the main query. It's a correlated subquery, which
 means SQLite executes it for each of the 226 posts in my embeddings
 table.
 
@@ -112,31 +112,31 @@ So for ONE call to `get_related_posts`:
 
 - Main query scans 226 rows
 - Subquery executes 226 times (once per row)
-- **Total reads: 226 × 226 = 51,076 database reads**
+- *Total reads: 226 × 226 = 51,076 database reads*
 
 But wait, it gets worse. The related posts update process runs for ALL
 posts:
 
 - 226 posts need their related posts calculated
 - Each post triggers 51,076 reads
-- **Total: 226 × 51,076 = 11,542,576 reads per batch**
+- *Total: 226 × 51,076 = 11,542,576 reads per batch*
 
-That's right - **11.5 MILLION database reads** for what should be a
+That's right - *11.5 MILLION database reads* for what should be a
 simple similarity comparison! 🤯
 
 ## The Timeline Makes Perfect Sense Now
 
-- **June 24th**: "Optimized" the related posts query with the
+- *June 24th*: "Optimized" the related posts query with the
   correlated subquery
-- **July 1st**: Massive database reads start appearing (probably first
+- *July 1st*: Massive database reads start appearing (probably first
   time the batch update ran with the new query)
-- **July 17th**: All 226 posts updated (you can see this in the
+- *July 17th*: All 226 posts updated (you can see this in the
   `related_posts.last_updated` timestamps)
 
 The math is brutal but simple:
 
-- **Before the "optimization"**: ~700 reads per batch (reasonable)
-- **After the "optimization"**: 11.5 million reads per batch (insane)
+- *Before the "optimization"*: \~700 reads per batch (reasonable)
+- *After the "optimization"*: 11.5 million reads per batch (insane)
 
 No wonder Turso was getting absolutely hammered!
 
@@ -182,17 +182,17 @@ const result = await client.execute({
 });
 ```
 
-**Impact:**
+*Impact:*
 
-- **Before**: 51,076 reads per call
-- **After**: 2 reads per call (99.996% reduction!)
+- *Before*: 51,076 reads per call
+- *After*: 2 reads per call (99.996% reduction!)
 
 For the full batch update:
 
-- **Before**: 11.5 million reads
-- **After**: ~450 reads
+- *Before*: 11.5 million reads
+- *After*: \~450 reads
 
-That's a **99.996% reduction** in database reads. Bloody brilliant! 🎉
+That's a *99.996% reduction* in database reads. Bloody brilliant! 🎉
 
 ## Testing the Fix
 
@@ -215,41 +215,41 @@ GROUP BY DATE(last_updated)
 ORDER BY date DESC
 ```
 
-**Result**: All 226 posts updated on `2025-07-21` instead of the
+*Result*: All 226 posts updated on `2025-07-21` instead of the
 previous `2025-07-17` - and this time without destroying the database!
 
 ## The Lessons (Again)
 
 This whole saga taught me some painful but valuable lessons:
 
-**Correlated subqueries are performance killers**. What looks like
+*Correlated subqueries are performance killers*. What looks like
 elegant SQL can hide exponential complexity. Always check if your
 subquery depends on the outer query's current row.
 
-**"Optimization" without measurement is just guessing**. I thought
+*"Optimization" without measurement is just guessing*. I thought
 native SQL functions would be faster than JavaScript, but I never
 measured the actual database load.
 
-**Query plans matter more than query elegance**. A simple two-query
+*Query plans matter more than query elegance*. A simple two-query
 approach vastly outperformed the "clever" single query with a
 subquery.
 
-**Git history is your friend for performance debugging**. When weird
+*Git history is your friend for performance debugging*. When weird
 spikes appear, `git log` around that timeframe often reveals the
 smoking gun.
 
-**Trust your instincts about timing**. The July 1st spike happening a
+*Trust your instincts about timing*. The July 1st spike happening a
 week after a June 24th code change? That's not a coincidence.
 
 ## The Complete Picture
 
 So here's what was actually happening to my database:
 
-1. **CTE Monster**: The popular posts query was doing full table scans
+1. *CTE Monster*: The popular posts query was doing full table scans
    every 5 minutes (fixed in previous post)
-2. **Subquery From Hell**: The related posts update was doing 11.5
+2. *Subquery From Hell*: The related posts update was doing 11.5
    million reads whenever it ran (fixed today)
-3. **Missing Indexes**: Basic lookups were unnecessarily slow (also
+3. *Missing Indexes*: Basic lookups were unnecessarily slow (also
    fixed)
 
 The CTE was the constant background noise - annoying but predictable.
@@ -261,11 +261,11 @@ occasionally, absolutely obliterating my read quotas.
 With both these issues fixed, my Turso analytics should look
 completely different:
 
-- **Popular posts queries**: Down from 2,100+ reads per execution to
-  ~60 reads
-- **Related posts updates**: Down from 11.5 million reads to ~450
+- *Popular posts queries*: Down from 2,100+ reads per execution to
+  \~60 reads
+- *Related posts updates*: Down from 11.5 million reads to \~450
   reads
-- **Overall database load**: Expecting 99%+ reduction in total reads
+- *Overall database load*: Expecting 99%+ reduction in total reads
 
 But wait - there's more! 😅
 
@@ -286,14 +286,14 @@ The pattern was dead suspicious - regular as clockwork, every 5-6
 seconds. Classic bot behavior, right? So I added some logging to catch
 the culprits...
 
-Turns out it was **my own bloody health checks**! 🤦‍♂️
+Turns out it was *my own bloody health checks*! 🤦‍♂️
 
 The hosting platform (Coolify) was hitting my homepage with
 `curl/7.81.0` every 5 seconds to make sure the app was alive. Each
 health check would load the layout, which would try to fetch popular
 posts, which would hit the database.
 
-**Self-pwn achievement unlocked!**
+*Self-pwn achievement unlocked!*
 
 I'd been hunting external bots when the calls were coming from inside
 the house. The hosting platform was basically DDoS'ing my own database

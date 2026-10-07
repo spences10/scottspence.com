@@ -25,16 +25,16 @@ That was enough to have me sold on it, there's also abbreviations and
 aliases all super nice to use and that is pretty much the extent of
 the sort of perks I like to have.
 
-Oh! I should mention themes, themes in Fish with [Oh My Fish] were
+Oh! I should mention themes, themes in Fish with [Oh My Fish](https://github.com/oh-my-fish/oh-my-fish) were
 also a great selling point for me!
 
 ## Oh My Zsh
 
-Zsh has [Oh My Zsh] which offers up a similar framework for managing
+Zsh has [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) which offers up a similar framework for managing
 your Zsh configuration.
 
 So the majority of the setup I got for my Zsh shell was from following
-Nicky Meuleman's guide on [Linux on windows WSL2 ZSH Docker].
+Nicky Meuleman's guide on [Linux on windows WSL2 ZSH Docker](https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker#zsh).
 
 Nicky's guide covers getting setup with Zsh and Oh My Fish, but I'll
 condense it into the terminal commands here for continuity:
@@ -82,12 +82,12 @@ out of the box!
 
 ## Themes
 
-One theme I really liked with Fih shell was [Spacefish] and I spent a
+One theme I really liked with Fih shell was [Spacefish](https://github.com/matchai/spacefish) and I spent a
 lot longer than I should have done looking through the [Zsh Wiki
-Themes] before discovering there's also [external themes for Zsh]
-where I found [Spaceship ZSH], which looks identical to Spacefish!
+Themes](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes) before discovering there's also [external themes for Zsh](https://github.com/ohmyzsh/ohmyzsh/wiki/External-themes)
+where I found [Spaceship ZSH](https://github.com/denysdovhan/spaceship-prompt), which looks identical to Spacefish!
 
-I did find [powerlevel10k] which looked really intriguing and I'm
+I did find [powerlevel10k](https://github.com/romkatv/powerlevel10k) which looked really intriguing and I'm
 probably going to try once I have finished writing this!
 
 ## Plugins
@@ -95,8 +95,8 @@ probably going to try once I have finished writing this!
 Ok, in Nicky's guide he details a couple of plugins to use which are
 what has given it the edge or put it on feature parity with Fish.
 
-- [zsh-syntax-highlighting]
-- [zsh-autosuggestions]
+- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 
 Syntax highlighting so you know if you're entering a valid command and
 auto suggestions which will bring up historically entered commands and
@@ -157,7 +157,7 @@ expand that out into the full command and run it.
 <!-- cSpell:ignore gotbletu -->
 
 I was quite keen to find something like that in Zsh and I did in the
-form of a [video from gotbletu] with accompanying [GitHub repo] for
+form of a [video from gotbletu](https://www.youtube.com/watch?v=WTTIGjZAMGg) with accompanying [GitHub repo](https://github.com/gotbletu/shownotes/blob/master/zsh_global_alias_expansion.md) for
 the code example.
 
 I added that to my `.zshrc` file, like so:
@@ -188,7 +188,7 @@ abstracted out the aliases into their own file `.zsh_aliases` this is
 because I have a lot of aliases for things.
 
 If you're interested in checking out my configuration for Zsh you can
-see my [`dotfiles`] on GitHub.
+see my [`dotfiles`](https://github.com/spences10/dotfiles) on GitHub.
 
 ## What's next?
 
@@ -197,27 +197,7 @@ maybe revisit this after using Zsh for a while.
 
 So far, I like it because I have all the toys I like to play with! 😊
 
-I'll be having a look at [powerlevel10k] sometime soon as it looks
+I'll be having a look at [powerlevel10k](https://github.com/romkatv/powerlevel10k) sometime soon as it looks
 pretty swish!
 
-<!-- Links -->
 <!-- cSpell:ignore powerlevel -->
-
-[oh my fish]: https://github.com/oh-my-fish/oh-my-fish
-[spacefish]: https://github.com/matchai/spacefish
-[spaceship zsh]: https://github.com/denysdovhan/spaceship-prompt
-[zsh wiki themes]: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-[external themes for zsh]:
-	https://github.com/ohmyzsh/ohmyzsh/wiki/External-themes
-[powerlevel10k]: https://github.com/romkatv/powerlevel10k
-[oh my zsh]: https://github.com/ohmyzsh/ohmyzsh
-[linux on windows wsl2 zsh docker]:
-	https://nickymeuleman.netlify.app/blog/linux-on-windows-wsl2-zsh-docker#zsh
-[zsh-syntax-highlighting]:
-	https://github.com/zsh-users/zsh-syntax-highlighting
-[zsh-autosuggestions]:
-	https://github.com/zsh-users/zsh-autosuggestions
-[video from gotbletu]: https://www.youtube.com/watch?v=WTTIGjZAMGg
-[github repo]:
-	https://github.com/gotbletu/shownotes/blob/master/zsh_global_alias_expansion.md
-[`dotfiles`]: https://github.com/spences10/dotfiles

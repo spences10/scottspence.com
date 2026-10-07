@@ -46,14 +46,14 @@ archived.
 
 The tools after that were more varied:
 
-| When     | What                                                                                                       |
-| -------- | ---------------------------------------------------------------------------------------------------------- |
-| Feb 2025 | an SSE transport experiment                                                                                |
-| Mar 2025 | embedding search over transcripts, and a Turso database server                                             |
-| Apr 2025 | an n8n workflow builder, and a sequential thinking QA server                                               |
-| Jul 2025 | mcp-sqlite-tools                                                                                           |
+| When | What |
+| --- | --- |
+| Feb 2025 | an SSE transport experiment |
+| Mar 2025 | embedding search over transcripts, and a Turso database server |
+| Apr 2025 | an n8n workflow builder, and a sequential thinking QA server |
+| Jul 2025 | mcp-sqlite-tools |
 | Sep 2025 | design tokens for UI generation, and [McPick](/posts/mcpick-manage-mcp-servers-and-plugins-in-claude-code) |
-| Oct 2025 | memory backed by SQLite                                                                                    |
+| Oct 2025 | memory backed by SQLite |
 
 McPick isn't an MCP server. It's a CLI for managing them, which is why
 I say 21 MCP servers and tools rather than 21 servers.
@@ -89,13 +89,13 @@ could keep in its head.
 
 ## The two I still use
 
-**[mcp-omnisearch](https://github.com/spences10/mcp-omnisearch)**
+*[mcp-omnisearch](https://github.com/spences10/mcp-omnisearch)*
 gives an agent web search, AI answers and page extraction across
 Tavily, Brave, Kagi, Exa, Linkup and Firecrawl, plus GitHub search,
 through one server. When I ask an agent to research something, this is
 what it uses to go and read the actual source rather than guessing.
 
-**[mcp-sqlite-tools](https://github.com/spences10/mcp-sqlite-tools)**
+*[mcp-sqlite-tools](https://github.com/spences10/mcp-sqlite-tools)*
 lets an agent work with local SQLite databases, with read-only queries
 kept separate from anything destructive. I use it to query my recall
 databases of past coding agent sessions, and the analytics database

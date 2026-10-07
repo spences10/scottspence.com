@@ -6,12 +6,12 @@ tags: ['svelte', 'sveltekit', 'testing']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Details, Banner } from '#lib/components/index.js'
 	import { Bluesky } from 'sveltekit-embed'
 
   const options = {
-    type: 'info',
+    type: 'info' as const,
     message: `Update: I've since created a comprehensive companion repository 
       <a href="https://github.com/spences10/sveltest" target="_blank" rel="noopener noreferrer">Sveltest</a> 
       that demonstrates these testing patterns in practice. Check it out for real-world examples!`
@@ -158,7 +158,7 @@ a browser API I hadn't mocked yet, I'd have to go add it to the
 Aight, here's what I did for the migration, essentially uninstall some
 stuff, add some new stuff
 
-**_Step 1: remove old dependencies_**
+*_Step 1: remove old dependencies_*
 
 Take out the old testing dependencies:
 
@@ -175,7 +175,7 @@ pnpm add -D @vitest/browser vitest-browser-svelte playwright
 So, yeah, it's Playwright that is doing the heavy lifting of running
 an actual browser here now!
 
-**_Step 2: configuration_**
+*_Step 2: configuration_*
 
 The old `vite.config.ts` config (OLD! it's like, two weeks old! 😂)
 looked like this:
@@ -262,14 +262,14 @@ test: {
 
 Yeah, it's more lines, but look what we get:
 
-- **Browser tests** for component interactivity (real Chromium!)
-- **SSR tests** for server-side rendering
-- **Node tests** for server utilities
+- *Browser tests* for component interactivity (real Chromium!)
+- *SSR tests* for server-side rendering
+- *Node tests* for server utilities
 
 Each environment is optimized for its specific use case. No more
 trying to make `jsdom` pretend to be a browser.
 
-**_Step 3: the new setup file_**
+*_Step 3: the new setup file_*
 
 Here's the new `vitest-setup-client.ts` setup file:
 
@@ -278,7 +278,7 @@ Here's the new `vitest-setup-client.ts` setup file:
 /// <reference types="@vitest/browser/providers/playwright" />
 ```
 
-That's it. **Two lines.** Both are TypeScript reference directives
+That's it. *Two lines.* Both are TypeScript reference directives
 that tell TypeScript about the available types.
 
 The first reference (`@vitest/browser/matchers`) gives us access to
@@ -289,19 +289,19 @@ definitions for Playwright-specific browser configuration options.
 
 Now, to be fair, the configuration complexity didn't disappear - it
 moved to the `vite.config.ts` where I've defined the browser
-workspace. But here's the key difference: instead of **mocking**
-browser APIs, I'm **configuring** real browser environments. No more
+workspace. But here's the key difference: instead of *mocking*
+browser APIs, I'm *configuring* real browser environments. No more
 fake implementations, just telling Vitest which browsers to use and
 how to organize my tests.
 
-**_Step 4: rewriting the tests_**
+*_Step 4: rewriting the tests_*
 
 Claude 4 to the rescue! Grunt work time, so that means AI! So, I gave
 Claude the context on this project, then I referenced
 [the repo kindly given by Dominik](https://github.com/dominikg/svelte-summit-testing)
 in the prompt and it churned through them like a champ!
 
-**Before:**
+*Before:*
 
 ```typescript
 import { fireEvent, render, screen } from '@testing-library/svelte';
@@ -318,7 +318,7 @@ test('toggles details', async () => {
 });
 ```
 
-**After:**
+*After:*
 
 ```typescript
 import { render } from 'vitest-browser-svelte';
@@ -339,7 +339,7 @@ test('toggles details', async () => {
 });
 ```
 
-The new version uses **locators** instead of manual DOM queries and
+The new version uses *locators* instead of manual DOM queries and
 all `expect.element()` calls must be awaited. Locators are more
 reliable because they:
 
@@ -355,7 +355,7 @@ Thanks to
 [Vladimir on Bluesky](https://bsky.app/profile/erus.dev/post/3lpzm7ynvzs2o)
 for pointing this out!
 
-One important improvement in the new approach is using **locators**
+One important improvement in the new approach is using *locators*
 from the `page` object instead of manual `container.querySelector()`
 calls.
 
@@ -383,7 +383,7 @@ And...
 
 Here's the difference:
 
-**Old approach (container queries):**
+*Old approach (container queries):*
 
 ```typescript
 test('renders button', () => {
@@ -393,7 +393,7 @@ test('renders button', () => {
 });
 ```
 
-**New approach (locators):**
+*New approach (locators):*
 
 ```typescript
 test('renders button', async () => {
@@ -403,20 +403,20 @@ test('renders button', async () => {
 });
 ```
 
-**Key differences:**
+*Key differences:*
 
-1. **Import the page object**:
+1. *Import the page object*:
    `import { page } from '@vitest/browser/context'`
-2. **Use semantic queries**: `page.getByRole()`, `page.getByTestId()`,
+2. *Use semantic queries*: `page.getByRole()`, `page.getByTestId()`,
    `page.getByText()`
-3. **Await all assertions**:
+3. *Await all assertions*:
    `await expect.element(locator).toBeInTheDocument()`
-4. **No container destructuring needed**: Just call
+4. *No container destructuring needed*: Just call
    `render(Component)` directly
-5. **No `flushSync()` or `tick()` needed**: Locators automatically
+5. *No `flushSync()` or `tick()` needed*: Locators automatically
    retry assertions until elements are updated
 
-**Available locator methods:**
+*Available locator methods:*
 
 - `page.getByRole('button')` - Find by ARIA role
 - `page.getByTestId('my-id')` - Find by test ID
@@ -424,7 +424,7 @@ test('renders button', async () => {
 - `page.getByLabel('Email')` - Find by label text
 - `page.getByPlaceholder('Enter email')` - Find by placeholder
 
-**Locator chaining limitations:**
+*Locator chaining limitations:*
 
 Unlike Playwright's native locators, `vitest-browser-svelte` doesn't
 support chaining locators (like
@@ -432,7 +432,7 @@ support chaining locators (like
 more specific selectors or combine multiple approaches when targeting
 nested elements.
 
-**Why locators are better:**
+*Why locators are better:*
 
 Locators automatically retry assertions, which means you don't need
 `flushSync()` and `tick()` anymore! Again thanks to Vladimir for
@@ -450,7 +450,7 @@ in this post. It includes 32 test files with real-world examples of
 client-side, server-side, and SSR testing patterns, plus a detailed
 migration guide for moving from `@testing-library/svelte`.
 
-**Bonus for AI coding assistant users**: The repo also includes
+*Bonus for AI coding assistant users*: The repo also includes
 comprehensive
 [Cursor rules](https://github.com/spences10/sveltest/blob/main/.cursor/rules/testing.mdc)
 and
@@ -464,7 +464,7 @@ solutions - perfect for teams adopting this testing approach!
 While locators eliminate the need for `flushSync()` in most cases,
 there are specific scenarios where you'll need it:
 
-**Testing effects and derived state:**
+*Testing effects and derived state:*
 
 When testing code that uses `$effect` or complex `$derived` state
 outside of component rendering, you may need `flushSync()` to ensure
@@ -489,7 +489,7 @@ test('Effect runs synchronously', () => {
 });
 ```
 
-**Testing immediate state transitions:**
+*Testing immediate state transitions:*
 
 When you need to test the immediate result of state changes before the
 next render cycle:
@@ -506,7 +506,7 @@ test('immediate state evaluation', () => {
 });
 ```
 
-**Key takeaway:** Use `flushSync()` only when your entire test is
+*Key takeaway:* Use `flushSync()` only when your entire test is
 synchronous and you need immediate state evaluation. For component
 testing with locators, it's rarely needed since locators automatically
 wait for DOM updates.
@@ -517,7 +517,7 @@ One of the coolest things about the new setup is how it separates
 concerns. Instead of trying to make one testing environment do
 everything, I have three specialized environments:
 
-**_Browser Environment (`*.svelte.test.ts`)_**
+*_Browser Environment (`*.svelte.test.ts`)_*
 
 This is where the magic happens. Tests run in actual Chromium, so you
 get:
@@ -529,7 +529,7 @@ get:
 Perfect for testing user interactions, component reactivity, and
 anything that needs real browser APIs.
 
-**_SSR Environment (`*.ssr.test.ts`)_**
+*_SSR Environment (`*.ssr.test.ts`)_*
 
 For testing server-side rendering using Svelte's built-in `render`
 function, here's that test I chucked in for reference:
@@ -552,7 +552,7 @@ This is good for testing SEO
 initial page loads, and making sure your components work without
 JavaScript.
 
-**_Node Environment (`*.test.ts`)_**
+*_Node Environment (`*.test.ts`)_*
 
 For testing server-side utilities, API logic, and pure functions. Just
 regular Node.js testing.
@@ -620,13 +620,13 @@ In the browser environment, there's no `global` object - just use
 The improvements aren't just about cleaner code (though that's nice).
 The developer experience is night and day better:
 
-**Faster Feedback Loop**
+*Faster Feedback Loop*
 
 - Tests run in parallel across multiple browser instances
 - No more waiting for jsdom to boot up and pretend to be a browser
 - Real browser debugging tools when tests fail
 
-**Better Error Messages**
+*Better Error Messages*
 
 When a test fails, you get actual browser errors instead of jsdom's
 sometimes cryptic messages. Plus, you can actually open the browser
@@ -712,17 +712,17 @@ describe('Details Component', () => {
 
 This test is:
 
-- **Clear**: You can see exactly what's being tested
-- **Reliable**: Uses real browser APIs, no mocking needed
-- **Fast**: Runs in actual Chromium, not a slow jsdom simulation
-- **Maintainable**: No complex setup or mocking to maintain
+- *Clear*: You can see exactly what's being tested
+- *Reliable*: Uses real browser APIs, no mocking needed
+- *Fast*: Runs in actual Chromium, not a slow jsdom simulation
+- *Maintainable*: No complex setup or mocking to maintain
 
 ## Should you make the switch?
 
 If you're still using `@testing-library/svelte` with jsdom, I'd say
 absolutely yes. Here's why:
 
-**You should migrate if:**
+*You should migrate if:*
 
 - You're using or planning to use Svelte 5
 - You're tired of maintaining complex mocks
@@ -730,7 +730,7 @@ absolutely yes. Here's why:
 - You value good developer experience
 - You test components that use modern browser APIs
 
-**You might want to wait if:**
+*You might want to wait if:*
 
 - You have a massive test suite and limited time
 - Your current setup is working fine and you're not hitting
@@ -746,7 +746,7 @@ with real browser APIs, it's hard to go back.
 Another thing I discovered when doing this migration is that there's a
 Playwright Docker container you can use in your CI!
 
-So, in the case of this site (~150 tests) by using the official
+So, in the case of this site (\~150 tests) by using the official
 Playwright Docker container I managed to save 30 seconds, the
 container still needs to spn up, but I'm not downloading binaries each
 time! My CI run time dropped from 2 minutes to 1 minute 30 seconds,
@@ -774,22 +774,22 @@ jobs:
         run: pnpm run test:ci
 ```
 
-**Why this is faster:**
+*Why this is faster:*
 
-1. **Pre-installed browsers**: The Playwright container comes with
+1. *Pre-installed browsers*: The Playwright container comes with
    Chromium already installed
-2. **Optimized environment**: Container is specifically tuned for
+2. *Optimized environment*: Container is specifically tuned for
    browser testing
-3. **No browser download**: Skips the time-consuming browser
+3. *No browser download*: Skips the time-consuming browser
    installation step
-4. **Better resource allocation**: Container resources are optimized
+4. *Better resource allocation*: Container resources are optimized
    for testing workloads
 
-**For larger projects**, the time savings would be even more
+*For larger projects*, the time savings would be even more
 significant. If you're running hundreds or thousands of browser tests,
 this optimization alone could save substantial CI minutes and costs.
 
-**Important notes:**
+*Important notes:*
 
 - Use `--user 1001` to avoid permission issues
 - Match the Playwright version in your container with your project
@@ -800,32 +800,32 @@ this optimization alone could save substantial CI minutes and costs.
 
 This migration taught me a few things:
 
-**_Sometimes the "simple" solution isn't_**
+*_Sometimes the "simple" solution isn't_*
 
 The old setup looked simple on the surface, but the complexity was
 hidden in that setup file. The new approach is more explicit about
 what it's doing.
 
-**_Real > fake every time_**
+*_Real > fake every time_*
 
 Testing in a real browser beats mocking browser APIs every single
 time. The confidence level in my tests has gone through the roof.
 
-**_Separation of concerns is so nice!_**
+*_Separation of concerns is so nice!_*
 
 Having different test environments for different purposes makes
 everything clearer. Browser tests test browser things, SSR tests test
 SSR things, Node tests test Node things. Run them where you're doing
 them, no need to wait for other tests to run!
 
-**_Modern tools are worth the migration effort_**
+*_Modern tools are worth the migration effort_*
 
 Yes, migrating was work (for Claude 😅). But the productivity gains
 and better developer experience make it totally worth it.
 
 ## Summary of things
 
-**The file naming convention**
+*The file naming convention*
 
 - `*.svelte.test.ts` for browser tests
 - `*.ssr.test.ts` for SSR tests
@@ -833,24 +833,24 @@ and better developer experience make it totally worth it.
 
 This makes it crystal clear what environment each test runs in.
 
-**`flushSync()` and `tick()` - mostly not needed!**
+*`flushSync()` and `tick()` - mostly not needed!*
 
 When using locators, you typically don't need `flushSync()` or
 `tick()` because locators automatically retry assertions until
 elements are updated. However, there are specific scenarios where
 `flushSync()` is still necessary:
 
-**When you still need `flushSync()`:**
+*When you still need `flushSync()`:*
 
-1. **Testing derived state immediately**: When you need to test
+1. *Testing derived state immediately*: When you need to test
    computed values that depend on state changes within the same
    synchronous execution context
-2. **Synchronous assertions**: If you're making synchronous assertions
+2. *Synchronous assertions*: If you're making synchronous assertions
    on DOM state immediately after triggering changes
-3. **Testing side effects**: When testing effects that should run
+3. *Testing side effects*: When testing effects that should run
    synchronously after state changes
 
-**Example where `flushSync()` is needed:**
+*Example where `flushSync()` is needed:*
 
 ```javascript
 import { flushSync } from 'svelte';
@@ -867,7 +867,7 @@ test('derived state updates synchronously', () => {
 });
 ```
 
-**When you don't need `flushSync()`:**
+*When you don't need `flushSync()`:*
 
 Most vitest-browser-svelte tests use async locators and matchers that
 automatically wait for updates, making `flushSync()` unnecessary:
@@ -877,13 +877,13 @@ automatically wait for updates, making `flushSync()` unnecessary:
 await expect(page.getByText('Count: 5')).toBeVisible();
 ```
 
-**Use real browser APIs**
+*Use real browser APIs*
 
 Stop mocking things! If your component uses `IntersectionObserver`,
 test it with the real `IntersectionObserver`. The browser has it, use
 it.
 
-**Debug with Browser Dev Tools**
+*Debug with Browser Dev Tools*
 
 When tests fail, you can actually inspect them in the browser. This is
 a really handy for debugging complex interactions.
@@ -892,37 +892,37 @@ a really handy for debugging complex interactions.
 
 Let me break down the before and after:
 
-| Metric               | Old Approach            | New Approach           | Improvement   |
-| -------------------- | ----------------------- | ---------------------- | ------------- |
-| **Dependencies**     | 4 testing libs          | 3 testing libs         | Simpler       |
-| **Test Reliability** | jsdom limitations       | Real browser           | Much better   |
-| **Svelte 5 Support** | Experimental/patchy     | Full native            | Complete      |
-| **Maintenance**      | High (constant mocking) | Low (just works)       | Way better    |
-| **Debug Experience** | Console logs only       | Real browser dev tools | Night and day |
+| Metric | Old Approach | New Approach | Improvement |
+| --- | --- | --- | --- |
+| *Dependencies* | 4 testing libs | 3 testing libs | Simpler |
+| *Test Reliability* | jsdom limitations | Real browser | Much better |
+| *Svelte 5 Support* | Experimental/patchy | Full native | Complete |
+| *Maintenance* | High (constant mocking) | Low (just works) | Way better |
+| *Debug Experience* | Console logs only | Real browser dev tools | Night and day |
 
 ## What I learned
 
 This migration taught me a few things:
 
-**_Sometimes the "simple" solution isn't_**
+*_Sometimes the "simple" solution isn't_*
 
 The old setup looked simple on the surface, but the complexity was
 hidden in that setup file. The new approach is more explicit about
 what it's doing.
 
-**_Real > fake every time_**
+*_Real > fake every time_*
 
 Testing in a real browser beats mocking browser APIs every single
 time. The confidence level in my tests has gone through the roof.
 
-**_Separation of concerns is so nice!_**
+*_Separation of concerns is so nice!_*
 
 Having different test environments for different purposes makes
 everything clearer. Browser tests test browser things, SSR tests test
 SSR things, Node tests test Node things. Run them where you're doing
 them, no need to wait for other tests to run!
 
-**_Modern tools are worth the migration effort_**
+*_Modern tools are worth the migration effort_*
 
 Yes, migrating was work (for Claude 😅). But the productivity gains
 and better developer experience make it totally worth it.
@@ -932,11 +932,11 @@ and better developer experience make it totally worth it.
 This migration was really interesting to do and has me eyeing up other
 opportunities to use this approach elsewhere! The new setup is:
 
-- **Simpler** to maintain
-- **More reliable** in results
-- **Better** for Svelte 5
-- **Faster** to debug
-- **Future-proof** for new web standards
+- *Simpler* to maintain
+- *More reliable* in results
+- *Better* for Svelte 5
+- *Faster* to debug
+- *Future-proof* for new web standards
 
 Plus, the three-environment approach means I can test the environments
 on an individual basis!
@@ -952,5 +952,5 @@ See the
 if you want to see how the migration went.
 
 I've also been compiling a
-[TESTING_STRATEGY.md](https://github.com/spences10/scottspence.com/blob/52199eceb130deac2022b2bc6fda2e3ee0c79683/TESTING_STRATEGY.md)
+[TESTING\_STRATEGY.md](https://github.com/spences10/scottspence.com/blob/52199eceb130deac2022b2bc6fda2e3ee0c79683/TESTING_STRATEGY.md)
 file as I've been going along as a reference!

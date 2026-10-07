@@ -16,7 +16,7 @@ win!
 
 If you wanted to use Airtable for your URL shortener then you can
 follow the guide I wrote for [SvelteKit Contact Form Example with
-Airtable].
+Airtable](https://scottspence.com/posts/sveltekit-contact-form-example-with-airtable).
 
 Ok, so, I hope the preamble was enough reasoning, but, if not, here's
 a list of reasons why I switched from Airtable to Upstash Redis.
@@ -33,7 +33,7 @@ a list of reasons why I switched from Airtable to Upstash Redis.
 - If that one link gets really popular then I'll get limited on the
   Airtable free tier.
 
-You can take a look at the [PR] to see the changes I made to the
+You can take a look at the [PR](https://github.com/spences10/sveltekit-short-urls/pull/265) to see the changes I made to the
 project.
 
 ## Migrating the data
@@ -162,7 +162,7 @@ Upstash Redis CLI.
 ## What about the conversion?
 
 If you want to check out the details of the conversion from Airtable
-to Redis then [PR] details the changes I made.
+to Redis then [PR](https://github.com/spences10/sveltekit-short-urls/pull/265) details the changes I made.
 
 I could do another post on creating a similar project to this one but
 that would be a third one on the same topic. Mind you I've done
@@ -173,9 +173,3 @@ several on contact forms with Airtable so who knows! 😅
 I'm really happy with the switch to Redis, it's faster and cheaper
 than Airtable. I'm also happy with the way I can manage the data in
 Redis, it's not as nice as Airtable but it's not too bad.
-
-<!-- Links -->
-
-[SvelteKit Contact Form Example with Airtable]:
-	https://scottspence.com/posts/sveltekit-contact-form-example-with-airtable
-[PR]: https://github.com/spences10/sveltekit-short-urls/pull/265

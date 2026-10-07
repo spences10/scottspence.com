@@ -14,17 +14,17 @@ WSL.
 
 On Ubuntu, Snap is the preferred method to install Chromium and
 although snap is on the WSL image you get from the Microsoft store
-it's not functional. There is a [solution untested by me] that may
+it's not functional. There is a [solution untested by me](https://github.com/microsoft/WSL/issues/2374#issuecomment-699110721) that may
 work.
 
 <!-- cSpell:ignore Brisebois -->
 
-There's a nice post from [Greg Brisebois] on getting set up for
+There's a nice post from [Greg Brisebois](https://www.gregbrisebois.com/posts/chromedriver-in-wsl2) on getting set up for
 Selenium in WSL and this is partly pulled from there, if you want to
 use it for Selenium then check out his post.
 
 ℹ Prerequisites for this is that you are already set up to use GUIs on
-WSL, if you've not done that then check out [this post].
+WSL, if you've not done that then check out [this post](https://scottspence.com/posts/gui-with-wsl).
 
 Here's a video detailing the process:
 
@@ -54,15 +54,5 @@ google-chrome --version
 Done! Now it can be used either from the command line `google-chrome`
 and with CLI tools like Cypress, Playwright, Puppeteer etc.
 
-There's also a [really detailed post] on getting Chromium set up on
+There's also a [really detailed post](https://www.addictivetips.com/ubuntu-linux-tips/install-chromium-on-linux) on getting Chromium set up on
 Linux from Addictive Tips.
-
-<!-- Links -->
-
-[this post]: https://scottspence.com/posts/gui-with-wsl
-[solution untested by me]:
-	https://github.com/microsoft/WSL/issues/2374#issuecomment-699110721
-[greg brisebois]:
-	https://www.gregbrisebois.com/posts/chromedriver-in-wsl2
-[really detailed post]:
-	https://www.addictivetips.com/ubuntu-linux-tips/install-chromium-on-linux

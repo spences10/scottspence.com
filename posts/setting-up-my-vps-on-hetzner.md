@@ -17,8 +17,8 @@ own VPS on Hetzner.
 
 [Puru](https://github.com/puruvj) mentions his journey on Twitter:
 
-- here: https://twitter.com/puruvjdev/status/1776612010651787350
-- here: https://twitter.com/puruvjdev/status/1778391569810235817
+- here: [https://twitter.com/puruvjdev/status/1776612010651787350](https://twitter.com/puruvjdev/status/1776612010651787350)
+- here: [https://twitter.com/puruvjdev/status/1778391569810235817](https://twitter.com/puruvjdev/status/1778391569810235817)
 
 I'm going to fill in the gaps.
 
@@ -286,14 +286,14 @@ For me, for now, I'm going to leave it where it is, for now.
 Written content over on the Hetzner community forum:
 
 - Securing the SSH service:
-  https://community.hetzner.com/tutorials/securing-ssh
+  [https://community.hetzner.com/tutorials/securing-ssh](https://community.hetzner.com/tutorials/securing-ssh)
 
 There's very comprehensive guides in video format from the Syntax
 team, I'm going to be checking out the Caddy one next:
 
 - Set up and secure your own server:
-  https://www.youtube.com/watch?v=Q1Y_g0wMwww
+  [https://www.youtube.com/watch?v=Q1Y\_g0wMwww](https://www.youtube.com/watch?v=Q1Y_g0wMwww)
 - Run Multiple Apps with Caddy | DNS, Static Sites, Reverse Proxies
-  and Let's Encrypt: https://www.youtube.com/watch?v=mLznVlBAtcg
+  and Let's Encrypt: [https://www.youtube.com/watch?v=mLznVlBAtcg](https://www.youtube.com/watch?v=mLznVlBAtcg)
 - Set up Coolify | Self Hosted PaaS with Zero Config Deployments:
-  https://www.youtube.com/watch?v=taJlPG82Ucw
+  [https://www.youtube.com/watch?v=taJlPG82Ucw](https://www.youtube.com/watch?v=taJlPG82Ucw)

@@ -14,20 +14,20 @@ with Vercel's Now platform using the Now CLI.
 
 I'll be primarily covering the steps you take after setting up an
 account with an email provider, the email provider I'm using is [Zoho
-Mail] if you don't use either of these services then this guide may
+Mail](https://www.zoho.com/mail/) if you don't use either of these services then this guide may
 not be much use to you.
 
 ## What you'll need
 
 - a super awesome custom domain
-- a [Zoho Mail] account
-- a [Vercel.co] account
-- The [Now CLI] installed
+- a [Zoho Mail](https://www.zoho.com/mail/) account
+- a [Vercel.co](https://vercel.com/signup) account
+- The [Now CLI](https://vercel.com/download) installed
 
 It's implied that you have a machine set up for web development
 already and are familiar with using the terminal.
 
-If you need to get set up for Windows [I have written a guide]
+If you need to get set up for Windows [I have written a guide](https://scottspence.com/posts/wsl-bootstrap-2019)
 previously on that topic.
 
 If you're a Linux user, check out this video on getting set up:
@@ -36,7 +36,7 @@ If you're a Linux user, check out this video on getting set up:
 
 ## Set up an account
 
-Zoho mail offer a 5 GB [forever free plan], so as long as you can
+Zoho mail offer a 5 GB [forever free plan](https://workplace.zoho.eu/orgsignup.do), so as long as you can
 manage your email archiving then you are good to go.
 
 You also get up to five users and a 25mb file attachment limit with
@@ -46,7 +46,7 @@ Pretty good right!
 
 ## Create an admin super user
 
-When you sign up with [Zoho Mail] you will be prompted to create a
+When you sign up with [Zoho Mail](https://www.zoho.com/mail/) you will be prompted to create a
 super admin user for your zoho account and you're given the
 opportunity to set up two factor authentication (2fa).
 
@@ -84,11 +84,11 @@ Now to configure the `MX` records. MX records are essential to receive
 emails in your domain. The MX records for your domain will look
 something like this:
 
-| Host Name | Address     | Priority |
-| --------- | ----------- | -------- |
-| @ / Blank | mx.zoho.eu  | 10       |
-| @ / Blank | mx2.zoho.eu | 20       |
-| @ / Blank | mx3.zoho.eu | 50       |
+| Host Name | Address | Priority |
+| --- | --- | --- |
+| @ / Blank | mx.zoho.eu | 10 |
+| @ / Blank | mx2.zoho.eu | 20 |
+| @ / Blank | mx3.zoho.eu | 50 |
 
 Add them much in the same way as with the verification token with the
 Now CLI this time specifying an `MX` instead of `TXT` and there's a
@@ -113,19 +113,5 @@ This will go into a `TXT` record like with the verification token:
 now dns add yourdomain.com @ TXT 'v=spf1 include:zoho.eu ~all'
 ```
 
-**Note: You may need to wait a while after making these changes before
-the DNS updates can be verified via Zoho.**
-
-<!-- Links -->
-
-[vercel.co]: https://vercel.com/signup
-[zoho mail]: https://www.zoho.com/mail/
-[dns integration]: https://vercel.com/integrations/dns
-[domains]: https://vercel.com/domains
-[now cli]: https://vercel.com/download
-[pricing]: https://www.zoho.com/mail/zohomail-pricing.html
-[control panel settings]:
-	https://mail.zoho.eu/cpanel/index.do#orgsettings/config
-[i have written a guide]:
-	https://scottspence.com/posts/wsl-bootstrap-2019
-[forever free plan]: https://workplace.zoho.eu/orgsignup.do
+*Note: You may need to wait a while after making these changes before
+the DNS updates can be verified via Zoho.*

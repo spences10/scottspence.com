@@ -42,7 +42,7 @@ it some text and it'll tell you the word count, character count,
 sentence count, and reading time. Follow along and you'll have it
 running locally in about five minutes.
 
-**Step 1: Scaffold the project**
+*Step 1: Scaffold the project*
 
 ```bash
 mkdir mcp-text-stats && cd mcp-text-stats
@@ -52,7 +52,7 @@ pnpm install -D typescript @types/node
 mkdir src
 ```
 
-**Step 2: Set up `package.json`**
+*Step 2: Set up `package.json`*
 
 Replace the contents of `package.json` with this - it's got the
 `type`, `main`, `bin`, and `build` script we need, plus the deps from
@@ -87,7 +87,7 @@ step 1:
 The `chmod +x` makes the compiled JavaScript executable so it can run
 as a CLI tool.
 
-**Step 3: Create `tsconfig.json`**
+*Step 3: Create `tsconfig.json`*
 
 ```bash
 touch tsconfig.json
@@ -115,7 +115,7 @@ This is the same config I use across all my MCP tools, paste this in:
 }
 ```
 
-**Step 4: Create `src/index.ts`**
+*Step 4: Create `src/index.ts`*
 
 ```bash
 touch src/index.ts
@@ -171,13 +171,13 @@ const transport = new StdioTransport(server);
 transport.listen();
 ```
 
-**Step 5: Build it**
+*Step 5: Build it*
 
 ```bash
 pnpm build
 ```
 
-**Step 6: Point Claude Code at it**
+*Step 6: Point Claude Code at it*
 
 Add this to your `~/.claude.json` (global) or `.claude/settings.json`
 (project):
@@ -193,7 +193,7 @@ Add this to your `~/.claude.json` (global) or `.claude/settings.json`
 }
 ```
 
-**Important:** swap `/home/you/repos/` with the actual absolute path
+*Important:* swap `/home/you/repos/` with the actual absolute path
 to your project. If you copy-paste the placeholder as-is, Claude Code
 will fail to connect to the server with no useful error - ask me how I
 know. 😅
@@ -223,12 +223,12 @@ off without losing their config. Handy for seeing what you've got
 loaded - granted, Claude Code does a good job of managing memory now
 and loads in MCP tools when needed.
 
-**Step 7: Start a new Claude Code session and test**
+*Step 7: Start a new Claude Code session and test*
 
 Start a fresh Claude Code session so it picks up the new config, then
 ask it to use your tool:
 
-> "Use the text_stats tool to analyse this blog post I'm working on"
+> "Use the text\_stats tool to analyse this blog post I'm working on"
 
 That's it. You've got a working MCP tool being tested locally by the
 LLM. No publishing, no faff. Here's what I got when I asked Claude

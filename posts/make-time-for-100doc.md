@@ -11,9 +11,9 @@ is_private: false
 > while, you could miss it. — Ferris Bueller.
 
 I'm going to go over steps I have taken the help me with learning to
-code ([again])
+code ([again](https://scottspence.com/#hi-im-scott))
 
-But fist, **preamble:**
+But fist, *preamble:*
 
 ### Let's pick up a new skill, get a new job, all in a few months.
 
@@ -32,7 +32,7 @@ to your chosen field then you're onto a winner, as for myself it's
 repetition, repetition, repetition until it becomes habit, there's a
 lot to be said about habits.
 
-Forming habits takes time though, on [20161230] was when I decided to
+Forming habits takes time though, on [20161230](https://github.com/spences10/100-days-of-code/commit/7dbefb608862401d4cb9e6ed11f539b44bedcdae) was when I decided to
 take part in the <span>#100DaysOfCode</span> challenge I couldn't give
 you an idea of how I felt then but reviewing the log entries I seemed
 pretty confused and a little frustrated with it all.
@@ -64,7 +64,7 @@ this for a long time actually) where to be able to 'join up'
 concepts/paradigms I need to see them in action. This is why I will
 always gush about courses by Wes Bos or Kent C. Dodds as they (among
 many others) are great at explaining complex subject simply and
-visually with their awesome [content on egghead.io] and wesbos.com.
+visually with their awesome [content on egghead.io](https://egghead.io/instructors/kentcdodds) and wesbos.com.
 
 <!-- cSpell:ignore ymmv -->
 
@@ -84,7 +84,7 @@ This was such psychological win for me, and gave me the confidence to
 do more.
 
 This has paid dividends as I now have 6+ demos of projects I have made
-on [my portfolio]
+on [my portfolio](https://scottspence.com/#portfolio)
 
 ### Busy work
 
@@ -130,24 +130,24 @@ time for my development.
 
 It's a balance though 😀
 
-![compare]
+![compare](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930929/scottspence.com/weight-gain-349fdf64fd8046a361b7bcf639250909.png)
 
 ### Tools
 
 Some tools I use to help me 'get on' with what I've set out to do, a
-while back I started using **Todoist**, this is great for when you're
+while back I started using *Todoist*, this is great for when you're
 scrolling through your Twitter feed and find a link to a really neat
 looking tutorial or post you want to read but don't want to go down
 the rabbit hole of working out where to document it, I will add it to
 Todoist and come back to it when I get the capacity to work on it.
 
-**WakaTime** is a great tool for quantifying your coding, pretty handy
+*WakaTime* is a great tool for quantifying your coding, pretty handy
 when doing <span>#100DaysOfCode</span>, you get that instant feedback
 on how you're doing for the day.
 
-![wakatime]
+![wakatime](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930932/scottspence.com/wakatime-stats-8581ce35405d8dd3124ca0fdb229c5f0.png)
 
-**RescueTime**, is handy for helping you identify your productivity
+*RescueTime*, is handy for helping you identify your productivity
 black holes and give you a nice breakdown of where your time is spent
 on your computer and mobile.
 
@@ -178,28 +178,11 @@ fully immerse myself in web development.
 
 At the time (which was good timing actually) I started a build to
 learn project with two other remote developers, one in Egypt and one
-in Serbia. We were all participating in the [Chingu] Voyage, this has
+in Serbia. We were all participating in the [Chingu](https://medium.com/chingu) Voyage, this has
 been a real eye opener for me and has given me the confidence to get
-all [my portfolio] projects ready for potential employers to view.
+all [my portfolio](https://scottspence.com/#portfolio) projects ready for potential employers to view.
 
 Whilst taking part in the b2l Chingu project I got to treat this time
 as a full time job which my WakaTime stats will attest. This was one
 of the triggers for me that I should start applying for jobs as a
 junior dev.
-
-<!-- links -->
-
-[again]: https://scottspence.com/#hi-im-scott
-[20161230]:
-	https://github.com/spences10/100-days-of-code/commit/7dbefb608862401d4cb9e6ed11f539b44bedcdae
-[chingu]: https://medium.com/chingu
-[my portfolio]: https://scottspence.com/#portfolio
-[content on egghead.io]: https://egghead.io/instructors/kentcdodds
-[wesbos.com]: https://wesbos.com/courses/
-
-<!-- Images -->
-
-[compare]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930929/scottspence.com/weight-gain-349fdf64fd8046a361b7bcf639250909.png
-[wakatime]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1614930932/scottspence.com/wakatime-stats-8581ce35405d8dd3124ca0fdb229c5f0.png

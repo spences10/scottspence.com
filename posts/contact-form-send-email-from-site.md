@@ -10,22 +10,22 @@ is_private: false
 What a catchy title! So, I thought it'd be a good idea to completely
 move away from using Airtable. I used Airtable for my short URL
 service I created and for various config options for the [Let's Work
-Together] page on my site. I moved them all to Upstash Redis except
+Together](https://scottspence.com/lets-work-together) page on my site. I moved them all to Upstash Redis except
 for the contact form.
 
 I have several posts on setting up a contact form with SvelteKit which
-[I have done in the past]. This time I'll be using `nodemailer` and
+[I have done in the past](https://scottspence.com/posts?search=contact%20form). This time I'll be using `nodemailer` and
 Fastmail. I've been a Fastmail user for a while now and I wanted to
 drop the Airtable automation and use Fastmail to send the email from
 the contact form on my site to me. If you're interested in checking
-out Fastmail you can use my [referral link] to get 10% off your first
+out Fastmail you can use my [referral link](https://join.fastmail.com/9283c1fd) to get 10% off your first
 year.
 
-The inspiration for this comes from a [WebJeda video], Sharath is a
+The inspiration for this comes from a [WebJeda video](https://www.youtube.com/watch?v=qa-Sh0iM-kM), Sharath is a
 great educator for Svelte with a lot of content on his YouTube
 channel.
 
-I absolutely love Fastmail! There's a [tag for it] on it on the site
+I absolutely love Fastmail! There's a [tag for it](https://scottspence.com/tags/fastmail) on it on the site
 if you want to see some more content from me on it!
 
 ## App password is the way
@@ -74,7 +74,7 @@ to the contact form.
 
 ## Using a SvelteKit action
 
-So like I did with [Switching from Brevo to Buttondown] I'm using a
+So like I did with [Switching from Brevo to Buttondown](https://scottspence.com/posts/switching-from-brevo-to-buttondown) I'm using a
 SvelteKit action to send the email. The reasoning is the same as with
 the newsletter sign up form, I want to be able to use the contact form
 in a few places on the site as a component. I already have a
@@ -329,13 +329,13 @@ Here's the file structure I'm going to use.
 │   │   └── +page.svelte
 ```
 
-You can check out the [example repo] for the full code.
+You can check out the [example repo](https://github.com/spences10/sveltekit-contact-form-example) for the full code.
 
 Success and failure components are almost identical, but the failure
 component can have the `error` object passed in to it to give a bit
 more information to the user.
 
-**`contact-form-success.svelte`**
+*`contact-form-success.svelte`*
 
 ```svelte
 <h3>Success!</h3>
@@ -345,7 +345,7 @@ more information to the user.
 <p>On successful submit!</p>
 ```
 
-**`contact-form-failure.svelte`**
+*`contact-form-failure.svelte`*
 
 ```svelte
 <h3>Failure!</h3>
@@ -369,7 +369,7 @@ success or failure components.
 
 I've added in a `spin` transition to the success and failure that was
 taken straight from the [learn.svelte.dev tutorial for custom CSS
-transitions].
+transitions](https://learn.svelte.dev/tutorial/custom-css-transitions).
 
 ```svelte
 <script lang="ts">
@@ -621,14 +621,14 @@ export const config: ServerlessConfig = {
 };
 ```
 
-Otherwise you should be golden, the [example repo] uses
+Otherwise you should be golden, the [example repo](https://github.com/spences10/sveltekit-contact-form-example) uses
 `@sveltejs/adapter-auto` and works fine.
 
 ## Example repo
 
-I've created an [example repo] for this post, you can check out the
-[demo on Vercel], it doesn't submit anywhere. You want to reach out
-then please use the [contact form] here.
+I've created an [example repo](https://github.com/spences10/sveltekit-contact-form-example) for this post, you can check out the
+[demo on Vercel](https://sveltekit-contact-form-example.vercel.app), it doesn't submit anywhere. You want to reach out
+then please use the [contact form](/contact) here.
 
 ## Conclusion
 
@@ -646,20 +646,3 @@ step towards reducing spam.
 This process not only streamlined the contact form setup but also
 created a foundation for further enhancements and integrations on my
 site.
-
-<!-- Links -->
-
-[let's work together]: https://scottspence.com/lets-work-together
-[tag for it]: https://scottspence.com/tags/fastmail
-[referral link]: https://join.fastmail.com/9283c1fd
-[Switching from Brevo to Buttondown]:
-	https://scottspence.com/posts/switching-from-brevo-to-buttondown
-[I have done in the past]:
-	https://scottspence.com/posts?search=contact%20form
-[webjeda video]: https://www.youtube.com/watch?v=qa-Sh0iM-kM
-[example repo]:
-	https://github.com/spences10/sveltekit-contact-form-example
-[demo on Vercel]: https://sveltekit-contact-form-example.vercel.app
-[contact form]: /contact
-[learn.svelte.dev tutorial for custom CSS transitions]:
-	https://learn.svelte.dev/tutorial/custom-css-transitions

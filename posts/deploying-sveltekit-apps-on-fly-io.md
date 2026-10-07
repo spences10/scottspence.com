@@ -203,14 +203,14 @@ I know up until this point I haven't really mentioned the Fly.io
 documentation, this is some of the best documentation out there!
 
 So I follow the documentation here:
-https://fly.io/docs/networking/custom-domain
+[https://fly.io/docs/networking/custom-domain](https://fly.io/docs/networking/custom-domain)
 
 Set up a CNAME and A record in Cloudflare.
 
-| Type  | Name        | Content             | Proxy Status | TTL  |
-| ----- | ----------- | ------------------- | ------------ | ---- |
-| A     | rinku.cloud | 66.241.125.15       | DNS only     | Auto |
-| CNAME | www         | rinku-cloud.fly.dev | DNS only     | Auto |
+| Type | Name | Content | Proxy Status | TTL |
+| --- | --- | --- | --- | --- |
+| A | rinku.cloud | 66.241.125.15 | DNS only | Auto |
+| CNAME | www | rinku-cloud.fly.dev | DNS only | Auto |
 
 I need to generate SSL certs for both of the records via the Fly CLI!
 

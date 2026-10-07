@@ -6,17 +6,17 @@ is_private: false
 ---
 
 Having one place for all your social links is big business! Services
-like [Linktree], [ContactInBio], [LinkBook], etc all offer the same
+like [Linktree](https://linktr.ee/), [ContactInBio](https://contactinbio.com/), [LinkBook](https://linkbook.bio/), etc all offer the same
 sort of service. One location for all your social links.
 
 This is a nice project as a proof of concept to get you set up with
 your own socials links. I've made this in conjunction with [Jamie
-Barton] as a simple one click set up.
+Barton](https://twitter.com/notrab) as a simple one click set up.
 
 <!-- cSpell:ignore Avneesh -->
 
-This was part inspired from a post from [Avneesh Agarwal] and from
-some work Jamie had done a while ago. Avneesh's post on [Hashnode]
+This was part inspired from a post from [Avneesh Agarwal](https://avneesh0612.hashnode.dev/) and from
+some work Jamie had done a while ago. Avneesh's post on [Hashnode](https://avneesh0612.hashnode.dev/stop-using-linktree-build-your-own)
 details making it with the NextJS framework.
 
 This example is a full jamstack lightweight example using
@@ -38,18 +38,18 @@ Click the Deploy to Netlify button to start the process.
 You'll be prompted to connect to GitHub, this will create a public
 repo for you.
 
-![netlify-connect-github]
+![netlify-connect-github](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-connect-github.png)
 
 Then it's a case of adding in your links and usernames for the
 different socials. Make sure to add full URLs i.e.
 `https://www.youtube.com/scottspenceplease` if you don't have one of
 the requested links add in `none` and it won't show up.
 
-![netlify-configure-env-vars]
+![netlify-configure-env-vars](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881281/scottspence.com/netlify-configure-env-vars.png)
 
 I've added in my links and usernames as an example here.
 
-![netlify-configure-env-vars-example]
+![netlify-configure-env-vars-example](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-configure-env-vars-example.png)
 
 Clicking Save & Deploy will take you to the Netlify dashboard for the
 site.
@@ -57,11 +57,11 @@ site.
 Clicking on the production deploy section will take you to the
 published deploy.
 
-![netlify-production-deploy-section]
+![netlify-production-deploy-section](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-production-deploy-section.png)
 
 Here you can click on the preview button to see the site.
 
-![netlify-production-preview-button]
+![netlify-production-preview-button](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-production-preview-button.png)
 
 Done, as an extra step you can configure your own domain.
 
@@ -73,25 +73,25 @@ Click the Deploy button to start the process.
 
 You'll be prompted to connect to GitHub, GitLab, or Bitbucket.
 
-![vercel-pick-git-provider]
+![vercel-pick-git-provider](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-pick-git-provider.png)
 
 You can give the repo a name, Vercel will create this repo for you. In
 my case not to cause any naming issues I'll call this one
 `vercel-shortcuts` then choose to create it as a private repo. Click
 the create button.
 
-![vercel-create-private-repo]
+![vercel-create-private-repo](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-create-private-repo.png)
 
 Skip the 'Create a Team' option!
 
 Then in 'Configure Project' section much like the Netlify section I'll
 add in my links and usernames, here's mine as an example.
 
-![vercel-configure-env-vars-example]
+![vercel-configure-env-vars-example](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-configure-env-vars-example.png)
 
 Click that 'Deploy' button.
 
-![vercel-congratulations]
+![vercel-congratulations](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-congratulations.png)
 
 Now I can click on the 'Go to Dashboard' button and visit the site.
 
@@ -100,38 +100,6 @@ Now I can click on the 'Go to Dashboard' button and visit the site.
 That's it, now you can have your own social links page.
 
 If you want to take it further you can add in your own socials, the
-code is available on Jamie's github [here].
+code is available on Jamie's github [here](https://github.com/notrab/shortcuts/).
 
 Thanks for reading!
-
-<!-- Links -->
-
-[avneesh agarwal]: https://avneesh0612.hashnode.dev/
-[hashnode]:
-	https://avneesh0612.hashnode.dev/stop-using-linktree-build-your-own
-[jamie barton]: https://twitter.com/notrab
-[linktree]: https://linktr.ee/
-[contactinbio]: https://contactinbio.com/
-[linkbook]: https://linkbook.bio/
-[here]: https://github.com/notrab/shortcuts/
-
-<!-- Images -->
-
-[netlify-connect-github]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-connect-github.png
-[netlify-configure-env-vars]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881281/scottspence.com/netlify-configure-env-vars.png
-[netlify-configure-env-vars-example]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-configure-env-vars-example.png
-[netlify-production-deploy-section]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-production-deploy-section.png
-[netlify-production-preview-button]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/netlify-production-preview-button.png
-[vercel-pick-git-provider]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-pick-git-provider.png
-[vercel-create-private-repo]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-create-private-repo.png
-[vercel-configure-env-vars-example]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-configure-env-vars-example.png
-[vercel-congratulations]:
-	https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1633881280/scottspence.com/vercel-congratulations.png

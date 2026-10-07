@@ -7,11 +7,11 @@ is_private: false
 
 Quick guide to getting Debian WSL set up for web development.
 
-You can install Debian from the [Windows Store] and get started
+You can install Debian from the [Windows Store](https://www.microsoft.com/store/productId/9MSVKQC78PK6) and get started
 straight away with using it, but there's a few things missing.
 
 For me one of the first things I like to do is get set up with my
-preferred shell Zsh with Oh My Zsh. I've documented [My Zsh Setup]
+preferred shell Zsh with Oh My Zsh. I've documented [My Zsh Setup](https://scottspence.com/posts/my-zsh-config)
 previously if you're interested in that.
 
 Installing Zsh is a `sudo apt` command:
@@ -37,7 +37,7 @@ So, I can install the `curl` package with `sudo apt install curl` then
 I'd be on my way, but then I get prompted again for more missing
 packages.
 
-There's a collection of packages in [`build-essential`] that will get
+There's a collection of packages in [`build-essential`](https://packages.debian.org/sid/build-essential) that will get
 you set up with the basics for web development.
 
 I'll install that along with `git` and `curl`, the `-y` flag is to
@@ -53,10 +53,3 @@ Now if I run the `curl` command again to install Oh My Zsh, it works!
 
 That's it! Real quick note for myself and the next time I come up
 against this! 😊
-
-<!-- Links -->
-
-[windows store]:
-	https://www.microsoft.com/store/productId/9MSVKQC78PK6
-[`build-essential`]: https://packages.debian.org/sid/build-essential
-[my zsh setup]: https://scottspence.com/posts/my-zsh-config

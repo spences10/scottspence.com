@@ -7,12 +7,12 @@ tags: ['svelte', 'sveltekit', 'testing', 'guide', 'resource']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Banner } from '#lib/components/index.js'
 	import { Bluesky } from 'sveltekit-embed'
 
   const sveltest_repo = {
-    type: 'info',
+    type: 'info' as const,
     message: `This guide is accompanied by the 
       <a href="https://github.com/spences10/sveltest" target="_blank" 
       rel="noopener noreferrer">Sveltest</a> 
@@ -20,7 +20,7 @@ is_private: false
   }
 
   const sveltest_site = {
-    type: 'info',
+    type: 'info' as const,
     message: `Check out the 
       <a href="https://sveltest.dev" target="_blank" rel="noopener noreferrer">
       Sveltest.dev</a> site!!. A lot of nice example documentation!`
@@ -57,9 +57,9 @@ more details
 
 <Banner options={sveltest_repo} />
 
-> **Important**: This guide reflects vitest-browser-svelte v0.1.0
-> limitations. **Universal state runes require `flushSync()` to
-> trigger DOM updates in tests** - the locators alone won't
+> *Important*: This guide reflects vitest-browser-svelte v0.1.0
+> limitations. *Universal state runes require `flushSync()` to
+> trigger DOM updates in tests* - the locators alone won't
 > automatically wait for external state changes. The testing patterns
 > work well, but you might notice minor differences in HTML output
 > format (like self-closing tags or CSS class ordering) between
@@ -137,7 +137,7 @@ pnpm un @testing-library/jest-dom @testing-library/svelte jsdom
 pnpm exec playwright install
 ```
 
-**Important!** The `pnpm exec playwright install` step is crucial -
+*Important!* The `pnpm exec playwright install` step is crucial -
 without it, browser tests will fail with "No browsers found" errors.
 
 Now running `pnpm run test:unit` is going to fail because I've not
@@ -370,14 +370,14 @@ Alignment Strategy comes in! 🚀
 ## The Client-Server Alignment Strategy
 
 Right, this is the approach I'm using at work and what's detailed on
-[sveltest.dev](https://sveltest.dev). The idea is simple: **test where
-you run!**
+[sveltest.dev](https://sveltest.dev). The idea is simple: *test where
+you run!*
 
-- **Client tests** (`.svelte.test.ts`) - Test UI components, user
+- *Client tests* (`.svelte.test.ts`) - Test UI components, user
   interactions, and anything that runs in the browser
-- **Server tests** (`.test.ts`) - Test server utilities, API logic,
+- *Server tests* (`.test.ts`) - Test server utilities, API logic,
   and pure functions that run in Node.js
-- **E2E tests** - Test the whole application flow with Playwright
+- *E2E tests* - Test the whole application flow with Playwright
 
 This alignment means no more trying to mock browser APIs in Node or
 server APIs in the browser. Each environment tests what it's designed
@@ -465,7 +465,7 @@ describe('Button Component', () => {
 Running `pnpm run test:client` and these tests pass! Real browser
 testing in action! 🎉
 
-**Note:** You might see some warnings about `createRawSnippet`
+*Note:* You might see some warnings about `createRawSnippet`
 expecting HTML for a single element - that's why I'm wrapping the text
 in `<span>` tags. This keeps the Svelte 5 snippet system happy!
 
@@ -507,8 +507,8 @@ them!
 
 ## Always use locators, never containers
 
-This is the big one! I cannot stress this enough - **always use
-`page.getBy*()` locators, never use containers**. Here's why:
+This is the big one! I cannot stress this enough - *always use
+`page.getBy*()` locators, never use containers*. Here's why:
 
 ```ts
 // ❌ DON'T do this - no auto-retry, will randomly fail
@@ -651,7 +651,7 @@ runes! One of the coolest features is universal state using
 `*.svelte.ts` files. This is perfect for testing reactive state
 management.
 
-**Important caveat**: Universal state from external `*.svelte.ts`
+*Important caveat*: Universal state from external `*.svelte.ts`
 files requires `flushSync()` to trigger DOM updates in browser tests.
 The automatic retry behavior of locators only works for
 component-internal reactivity.
@@ -750,8 +750,8 @@ this store:
 ```
 
 Now for the testing! This is where it gets really interesting. The key
-insight here is that **Svelte 5 runes only work in browser/component
-environments**, not in plain Node.js.
+insight here is that *Svelte 5 runes only work in browser/component
+environments*, not in plain Node.js.
 
 So I need to test the universal state where the runes actually work -
 in the browser! I'll create
@@ -858,34 +858,34 @@ export { default as Counter } from './counter.svelte';
 This demonstrates the power of the Client-Server Alignment Strategy
 with Svelte 5:
 
-1. **Reactive state tested in browser environment** - Where runes
+1. *Reactive state tested in browser environment* - Where runes
    actually work!
-2. **Component + state integration** tested together - Complete
+2. *Component + state integration* tested together - Complete
    behavior verification
-3. **Universal state** works seamlessly across components (with proper
+3. *Universal state* works seamlessly across components (with proper
    `flushSync()` usage)
-4. **No mocking needed** - The same state instance works everywhere
-5. **Clear patterns** - External state always needs `flushSync()`,
+4. *No mocking needed* - The same state instance works everywhere
+5. *Clear patterns* - External state always needs `flushSync()`,
    internal component state updates automatically
 
-**Key insights for testing Svelte 5 runes:**
+*Key insights for testing Svelte 5 runes:*
 
-1. **External state ALWAYS requires `flushSync()`**: When testing
+1. *External state ALWAYS requires `flushSync()`*: When testing
    universal state from `*.svelte.ts` files, you need `flushSync()` to
    trigger DOM updates after ANY state manipulation - even click
    events!
-2. **Component-internal state works automatically**: Only state that
+2. *Component-internal state works automatically*: Only state that
    lives inside the component itself gets automatic reactivity updates
-3. **Test in browser environment**: Runes require a component context
+3. *Test in browser environment*: Runes require a component context
    and don't work in plain Node.js
 
 The `*.svelte.ts` universal state is particularly brilliant because:
 
-- **Shared reactive state** across your entire app
-- **Type-safe** with full TypeScript support
-- **Testable with real reactivity** in browser tests (with
+- *Shared reactive state* across your entire app
+- *Type-safe* with full TypeScript support
+- *Testable with real reactivity* in browser tests (with
   `flushSync()` for external updates)
-- **Works in SSR and hydration** seamlessly
+- *Works in SSR and hydration* seamlessly
 
 This approach gives you confidence that your reactive state management
 works correctly, just remember the `flushSync()` requirement for
@@ -1132,33 +1132,33 @@ export { default as MetaTags } from './seo/meta-tags.svelte';
 Based on best practices and real-world experience, you should
 prioritize SSR tests for:
 
-**High Priority - Always Test:**
+*High Priority - Always Test:*
 
-1. **SEO-critical components** - Meta tags, titles, Open Graph,
+1. *SEO-critical components* - Meta tags, titles, Open Graph,
    structured data
-2. **Initial page load content** - Hero sections, navigation, critical
+2. *Initial page load content* - Hero sections, navigation, critical
    above-the-fold content
-3. **Universal state initialization** - Ensure stores work server-side
-4. **Dynamic content generation** - Blog posts, product pages with
+3. *Universal state initialization* - Ensure stores work server-side
+4. *Dynamic content generation* - Blog posts, product pages with
    server-generated content
 
-**Medium Priority - Test When Relevant:**
+*Medium Priority - Test When Relevant:*
 
-1. **Content that affects accessibility** - Proper heading hierarchy,
+1. *Content that affects accessibility* - Proper heading hierarchy,
    alt tags
-2. **Conditional rendering** - Different content based on user state
+2. *Conditional rendering* - Different content based on user state
    or data
-3. **Date/time formatting** - Ensure consistent formatting across
+3. *Date/time formatting* - Ensure consistent formatting across
    server/client
-4. **Calculated values** - Reading time, pricing, derived data
+4. *Calculated values* - Reading time, pricing, derived data
 
-**Low Priority - Optional:**
+*Low Priority - Optional:*
 
-1. **Pure UI components** - Buttons, modals that don't affect SEO
-2. **Interactive-only features** - Client-side only functionality
-3. **Development/debug components** - Counter examples, dev tools
+1. *Pure UI components* - Buttons, modals that don't affect SEO
+2. *Interactive-only features* - Client-side only functionality
+3. *Development/debug components* - Counter examples, dev tools
 
-**When NOT to write SSR tests:**
+*When NOT to write SSR tests:*
 
 - Client-side only interactions (hover states, animations)
 - Components that only render after user interaction
@@ -1168,17 +1168,17 @@ prioritize SSR tests for:
 
 SSR tests are crucial because they:
 
-1. **Validate SEO** - Ensure meta tags, titles, and structured data
+1. *Validate SEO* - Ensure meta tags, titles, and structured data
    render correctly for search engines
-2. **Test initial state** - Verify server-rendered HTML matches what
+2. *Test initial state* - Verify server-rendered HTML matches what
    users see on first load
-3. **Check universal state** - Confirm your `*.svelte.ts` stores work
+3. *Check universal state* - Confirm your `*.svelte.ts` stores work
    on the server
-4. **Prevent hydration mismatches** - Catch differences between server
+4. *Prevent hydration mismatches* - Catch differences between server
    and client rendering
-5. **Performance validation** - Ensure server rendering doesn't break
+5. *Performance validation* - Ensure server rendering doesn't break
    with complex state
-6. **Content consistency** - Verify that server-generated content is
+6. *Content consistency* - Verify that server-generated content is
    complete and accurate
 
 ## Running SSR tests
@@ -1194,11 +1194,11 @@ Svelte's server renderer!
 
 ## Key SSR testing patterns
 
-- **Use `render()` from `svelte/server`** - Not the browser version
-- **Test both `head` and `body`** - Many components affect both
-- **Check universal state** - Ensure stores work server-side
-- **Validate calculated values** - Reading time, dates, formatting
-- **Test conditional rendering** - Different states should render
+- *Use `render()` from `svelte/server`* - Not the browser version
+- *Test both `head` and `body`* - Many components affect both
+- *Check universal state* - Ensure stores work server-side
+- *Validate calculated values* - Reading time, dates, formatting
+- *Test conditional rendering* - Different states should render
   different HTML
 
 This completes the Client-Server Alignment Strategy - now you're
@@ -1562,14 +1562,14 @@ pnpm run test
 
 This testing strategy gives me:
 
-1. **Separation of concerns** - Each test runs in its appropriate
+1. *Separation of concerns* - Each test runs in its appropriate
    environment
-2. **Real browser testing** - No more mocking browser APIs for
+2. *Real browser testing* - No more mocking browser APIs for
    component tests
-3. **Fast server tests** - Pure Node.js testing for utilities
-4. **Comprehensive coverage** - E2E tests ensure everything works
+3. *Fast server tests* - Pure Node.js testing for utilities
+4. *Comprehensive coverage* - E2E tests ensure everything works
    together
-5. **Great DX** - Clear error messages and debugging in real browsers
+5. *Great DX* - Clear error messages and debugging in real browsers
 
 The Client-Server Alignment Strategy means I'm testing things where
 they actually run, leading to more reliable tests and fewer surprises
@@ -1577,14 +1577,14 @@ in production!
 
 ## Testing patterns to remember
 
-- **Use locators** instead of manual DOM queries - they're more
+- *Use locators* instead of manual DOM queries - they're more
   reliable and wait automatically
-- **Await all assertions** with `expect.element()` in browser tests
-- **No more `flushSync()` needed** for most cases - locators handle
+- *Await all assertions* with `expect.element()` in browser tests
+- *No more `flushSync()` needed* for most cases - locators handle
   the waiting
-- **Test user interactions** in browser tests, **test logic** in
+- *Test user interactions* in browser tests, *test logic* in
   server tests
-- **Use semantic queries** like `getByRole()` and `getByLabelText()`
+- *Use semantic queries* like `getByRole()` and `getByLabelText()`
   for better accessibility testing
 
 This approach has completely changed how I think about testing in
@@ -1697,13 +1697,13 @@ jobs:
 
 This separation is brilliant for a few reasons:
 
-1. **Independent failures** - E2E tests can be flaky, but that won't
+1. *Independent failures* - E2E tests can be flaky, but that won't
    block your unit tests
-2. **Different requirements** - Unit tests need Playwright containers,
+2. *Different requirements* - Unit tests need Playwright containers,
    E2E tests need full app builds
-3. **Faster feedback** - Unit tests run faster, so you get quicker
+3. *Faster feedback* - Unit tests run faster, so you get quicker
    feedback on basic functionality
-4. **Resource optimization** - You can scale these differently based
+4. *Resource optimization* - You can scale these differently based
    on your needs
 
 ## The Playwright container advantage
@@ -1711,10 +1711,10 @@ This separation is brilliant for a few reasons:
 Using `mcr.microsoft.com/playwright:v1.52.0-noble` for unit tests is a
 game changer! No more waiting for browser downloads:
 
-- **Pre-installed browsers** - Chromium is already there
-- **Optimized environment** - Tuned specifically for browser testing
-- **Consistent versions** - Same browser versions every time
-- **Faster CI runs** - No download time means faster feedback
+- *Pre-installed browsers* - Chromium is already there
+- *Optimized environment* - Tuned specifically for browser testing
+- *Consistent versions* - Same browser versions every time
+- *Faster CI runs* - No download time means faster feedback
 
 ## Environment variables for server tests
 
@@ -1737,14 +1737,14 @@ Playwright container, you're looking at seriously optimized CI times!
 
 ## Troubleshooting CI issues
 
-**Browser tests fail with "No browsers found":** Make sure you're
+*Browser tests fail with "No browsers found":* Make sure you're
 using the Playwright container for unit tests and running
 `playwright install` for E2E tests.
 
-**Permission errors in container:** Always use `--user 1001` in
+*Permission errors in container:* Always use `--user 1001` in
 container options to avoid permission issues.
 
-**Timeout issues:** Browser tests can be slower in CI. Consider
+*Timeout issues:* Browser tests can be slower in CI. Consider
 increasing the `testTimeout` in your Vitest config for CI
 environments.
 

@@ -6,12 +6,12 @@ tags: ['wsl', 'cursor', 'guide']
 is_private: false
 ---
 
-<script>
+<script lang="ts">
   import { Gist } from 'sveltekit-embed'
   import { Banner } from '#lib/components/index.js'
 
   const options = {
-    type: 'info',
+    type: 'info' as const,
     message: `Just a heads up! I've since found Windsurf to be a much
       better alternative to Cursor for use in WSL. Check out my guide
       on <a href="https://scottspence.com/posts/windsurf-setup-for-wsl" 
@@ -76,8 +76,8 @@ winget install Anysphere.Cursor
 ```
 
 Open Cursor from the Windows start menu and it will give you the
-initial setup prompt, ℹ️ **don't click the options that will add
-`PATH` variables for `+code button`, or `+cursor button`.**
+initial setup prompt, ℹ️ *don't click the options that will add
+`PATH` variables for `+code button`, or `+cursor button`.*
 
 Ok, if I chose _not_ to install the settings and extensions from VS
 Code then I'll at least need to install the
@@ -208,7 +208,7 @@ Then there was
 [this guide from KadirBalku](https://github.com/getcursor/cursor/issues/870#issuecomment-2204635232)
 which is very thorough and worked for me.
 
-Using the Windows Run prompt (Win+R) and entering `%userprofile% will
+Using the Windows Run prompt (Win+R) and entering \`%userprofile% will
 take you to the Windows user profile folder.
 
 Delete the following folders:
@@ -233,7 +233,7 @@ Now we're good to go and can follow the
 
 If you already have Cursor in your `PATH` then you can follow the
 steps in the [Fresh install](#fresh-install) section but remember to
-append the `cursor` command to the **end** of your `PATH` variable.
+append the `cursor` command to the *end* of your `PATH` variable.
 
 That's it, I hope this helps someone else out!
 
@@ -245,8 +245,8 @@ then you can create a key binding for it.
 
 If you don't know what that means it's essentially where you can
 create all the keyboard shortcuts you like. Use the command prompt
-(Ctrl+Shift+p) then search for **"Preferences: Open Keyboard Shortcuts
-(JSON)"**
+(Ctrl+Shift+p) then search for *"Preferences: Open Keyboard Shortcuts
+(JSON)"*
 
 Then add in your desired key combination to open the composer I have
 mine bound to Ctrl+Shift+l

@@ -1,11 +1,12 @@
 import GithubSlugger from 'github-slugger';
+import type { MdsvexOptions } from 'mdsvex';
+import type { Plugin } from 'vite-plus';
 import { highlight_options } from './src/lib/markdown/highlighter.ts';
-import { prepare_markdown } from './src/lib/markdown/prepare-markdown.ts';
+import { enrich_metadata } from './src/lib/markdown/metadata.ts';
 
 const extensions = ['.svelte.md', '.md', '.svx'];
 const slugger = new GithubSlugger();
 
-/** @type {import('mdsvex').MdsvexOptions} */
 const config = {
 	extensions,
 	components: '#lib/markdown/components.ts',
@@ -25,8 +26,7 @@ const config = {
 					const link = node.wrap_inner('link');
 					return () => {
 						// Keep existing anchors: 0.x slugged inline-code entities.
-						/** @returns {string} */
-						function heading_text(current = link) {
+						function heading_text(current = link): string {
 							if (current.type === 'code_span') {
 								return current.text_content
 									.replaceAll('&', '&amp;')
@@ -98,12 +98,11 @@ const config = {
 			},
 		},
 	],
-};
+} satisfies MdsvexOptions;
 
-// Runs before the mdsvex Vite plugin. Source files and feeds stay CommonMark.
-/** @type {import('vite-plus').Plugin} */
-export const commonmark = {
-	name: 'mdsvex-commonmark',
+// Add computed site metadata. The native PFM body stays unchanged.
+export const site_metadata: Plugin = {
+	name: 'mdsvex-site-metadata',
 	enforce: 'pre',
 	transform(source, id) {
 		if (/[?&](?:raw|url)(?:[=&]|$)/.test(id)) return;
@@ -113,7 +112,7 @@ export const commonmark = {
 		) {
 			return;
 		}
-		return { code: prepare_markdown(source, filename), map: null };
+		return { code: enrich_metadata(source, filename), map: null };
 	},
 };
 
