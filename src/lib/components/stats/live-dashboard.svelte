@@ -4,6 +4,7 @@
 	import { flip } from 'svelte/animate';
 	import { prefersReducedMotion } from 'svelte/motion';
 	import { slide } from 'svelte/transition';
+	import { get_referrer_icon } from './referrer-icons.js';
 	import StatRow from './stat-row.svelte';
 
 	const live_stats_query = get_live_stats_breakdown();
@@ -85,6 +86,7 @@
 							>
 								<StatRow
 									label={r.referrer}
+									icon={get_referrer_icon(r.referrer)}
 									value={r.visitors}
 									max_value={max_visitors}
 								/>

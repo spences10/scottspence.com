@@ -9,6 +9,7 @@
 		max_value: number;
 		href?: string;
 		prefix?: string;
+		icon?: string;
 		label_class?: string;
 		previous?: PeriodCounts | null;
 		format_delta?: (delta: number) => string;
@@ -21,6 +22,7 @@
 		max_value,
 		href,
 		prefix,
+		icon,
 		label_class = '',
 		previous = null,
 		format_delta = String,
@@ -37,6 +39,15 @@
 		style="width: {bar_width}%"
 	></div>
 	<span class="relative flex min-w-0 flex-1 items-center gap-2">
+		{#if icon}
+			<svg
+				viewBox="0 0 24 24"
+				class="size-4 shrink-0 fill-current opacity-80"
+				aria-hidden="true"
+			>
+				<path d={icon} />
+			</svg>
+		{/if}
 		{#if prefix}
 			<span aria-hidden="true">{prefix}</span>
 		{/if}

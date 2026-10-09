@@ -35,6 +35,7 @@
 		Tooltip,
 	} from 'layerchart';
 	import LiveDashboard from './live-dashboard.svelte';
+	import { get_referrer_icon } from './referrer-icons.js';
 	import StatRowMulti from './stat-row-multi.svelte';
 	import {
 		country_flag,
@@ -511,6 +512,7 @@
 						{#each period_stats.referrers as ref (ref.referrer)}
 							<StatRowMulti
 								label={parse_referrer(ref.referrer)}
+								icon={get_referrer_icon(ref.referrer)}
 								previous={previous_for(
 									previous?.referrers,
 									ref.referrer,

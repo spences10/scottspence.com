@@ -7,6 +7,7 @@
 		max_value: number;
 		href?: string;
 		prefix?: string;
+		icon?: string;
 		label_class?: string;
 	}
 
@@ -16,6 +17,7 @@
 		max_value,
 		href,
 		prefix,
+		icon,
 		label_class = '',
 	}: Props = $props();
 
@@ -30,6 +32,15 @@
 		style="width: {bar_width}%"
 	></div>
 	<span class="relative flex min-w-0 flex-1 items-center gap-2">
+		{#if icon}
+			<svg
+				viewBox="0 0 24 24"
+				class="size-4 shrink-0 fill-current opacity-80"
+				aria-hidden="true"
+			>
+				<path d={icon} />
+			</svg>
+		{/if}
 		{#if prefix}
 			<span aria-hidden="true">{prefix}</span>
 		{/if}
