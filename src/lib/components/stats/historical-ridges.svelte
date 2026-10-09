@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { number_crunch } from '#lib/utils/index.js';
 	import { scaleBand } from 'd3-scale';
-	import { curveMonotoneX } from 'd3-shape';
 	import {
 		Area,
 		Axis,
@@ -15,7 +14,10 @@
 	} from 'layerchart';
 	import { cubicInOut } from 'svelte/easing';
 	import ChartViewControls from './chart-view-controls.svelte';
-	import type { HistoricalMetric } from './stats.svelte';
+	import {
+		smooth_curve,
+		type HistoricalMetric,
+	} from './stats.svelte';
 
 	export interface Ridge {
 		slug: string;
@@ -91,11 +93,21 @@
 			})),
 		),
 	);
-	const points_by_slug = $derived(
+	// What is drawn for each post; the tooltip keeps to the real points
+	const curves_by_slug = $derived(
 		new Map(
 			ridges.map((ridge) => [
 				ridge.slug,
-				points.filter((point) => point.slug === ridge.slug),
+				smooth_curve(
+					ridge.points.map((point) => ({
+						x: point.index,
+						y: point.value,
+					})),
+				).map(({ x, y }) => ({
+					index: x,
+					value: y,
+					slug: ridge.slug,
+				})),
 			]),
 		),
 	);
@@ -176,10 +188,11 @@
 			{@const matrix = context.isometricMatrix}
 			<!-- The ridge under the pointer, else the one picked in the list -->
 			{@const active =
-				(context.tooltip.data as Point | null)?.slug ?? highlighted}
+				(context.tooltip.data as { slug: string } | null)?.slug ??
+				highlighted}
 			<Svg>
 				<Frame
-					class="fill-[var(--color-base-content)]/3 stroke-[var(--color-base-content)]/15"
+					class="fill-(--color-base-content)/3 stroke-(--color-base-content)/15"
 				/>
 				<Grid
 					z
@@ -214,8 +227,7 @@
 				{#each [...ridges].sort( (a, b) => (matrix ? matrix.d * (context.yScale(a.slug) - context.yScale(b.slug)) : 0) ) as ridge (ridge.slug)}
 					{@const faded = active !== null && active !== ridge.slug}
 					<Area
-						data={points_by_slug.get(ridge.slug)}
-						curve={curveMonotoneX}
+						data={curves_by_slug.get(ridge.slug)}
 						fill={hue}
 						fillOpacity={faded ? 0.12 : active ? 0.75 : 0.55}
 						line={{
@@ -235,21 +247,32 @@
 						'bg-base-100 text-base-content rounded-lg border border-base-300 px-3 py-2 text-sm shadow-lg max-w-64',
 				}}
 			>
-				{#snippet children({ data }: { data: Point })}
-					<Tooltip.Header>
-						<span class="text-xs font-medium text-base-content/70">
-							{data.label}
-						</span>
-					</Tooltip.Header>
-					<p class="mb-1 text-sm font-medium text-wrap">
-						{slugs.indexOf(data.slug) + 1}. {data.title}
-					</p>
-					<Tooltip.List>
-						<Tooltip.Item
-							label={metric === 'views' ? 'Views' : 'Visitors'}
-							value={number_crunch(data.value)}
-						/>
-					</Tooltip.List>
+				{#snippet children({
+					data,
+				}: {
+					data: { slug: string; index: number };
+				})}
+					<!-- The pointer may be nearest a point on the smoothed
+					     curve; the tooltip reads the real month beside it -->
+					{@const rank = slugs.indexOf(data.slug)}
+					{@const point =
+						ridges[rank]?.points[Math.round(data.index)]}
+					{#if point}
+						<Tooltip.Header>
+							<span class="text-xs font-medium text-base-content/70">
+								{point.label}
+							</span>
+						</Tooltip.Header>
+						<p class="mb-1 text-sm font-medium text-wrap">
+							{rank + 1}. {ridges[rank].title}
+						</p>
+						<Tooltip.List>
+							<Tooltip.Item
+								label={metric === 'views' ? 'Views' : 'Visitors'}
+								value={number_crunch(point.value)}
+							/>
+						</Tooltip.List>
+					{/if}
 				{/snippet}
 			</Tooltip.Root>
 		{/snippet}

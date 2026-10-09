@@ -40,7 +40,9 @@
 	import BreakdownTowers from './breakdown-towers.svelte';
 	import ChartViewControls from './chart-view-controls.svelte';
 	import LiveDashboard from './live-dashboard.svelte';
-	import PeriodChart3d from './period-chart-3d.svelte';
+	import PeriodChart3d, {
+		type ChartSeries,
+	} from './period-chart-3d.svelte';
 	import { get_referrer_icon } from './referrer-icons.js';
 	import StatRowMulti from './stat-row-multi.svelte';
 	import {
@@ -84,6 +86,53 @@
 	// flat again: swapping the panels back mid-tween stalls the page
 	let show_chart_3d = $state(false);
 	let chart_3d_ref = $state<PeriodChart3d>();
+
+	// In 3D the chart's depth compares humans with bots, whatever the
+	// filter, so one metric is shown at a time
+	let metric_3d = $state<'views' | 'visitors'>('views');
+	// The metric keeps the colour it has in the flat chart. People take
+	// it at full strength and bots a greyed step of it, so the pair
+	// reads as one measure split by audience
+	const metric_hue = $derived(
+		metric_3d === 'views'
+			? 'var(--color-primary)'
+			: 'var(--color-secondary)',
+	);
+	const audiences = $derived([
+		// Bots stand at the back, people in front
+		{
+			key: 'bots' as const,
+			label: 'Bots',
+			colour: `color-mix(in oklab, ${metric_hue} 35%, var(--color-base-content))`,
+		},
+		{ key: 'humans' as const, label: 'Humans', colour: metric_hue },
+	]);
+	// Read through `current` rather than awaited: only wanted in 3D,
+	// and awaiting would hold the whole page back for them
+	const audience_queries = $derived(
+		show_chart_3d
+			? audiences.map((audience) => ({
+					...audience,
+					query: get_chart_data({
+						period: selected_stats_period,
+						filter_mode: audience.key,
+					}),
+				}))
+			: [],
+	);
+	const audience_series = $derived.by((): ChartSeries[] => {
+		const series = audience_queries.map(({ query, ...audience }) => ({
+			...audience,
+			points: (query.current?.data_points ?? []).map((point) => ({
+				date: new Date(point.timestamp),
+				value: point[metric_3d],
+			})),
+		}));
+		// Drawn once both have loaded, so neither stands alone
+		return series.every((item) => item.points.length > 0)
+			? series
+			: [];
+	});
 
 	// The chart only renders in the browser: layerchart draws nothing
 	// on the server and fails to hydrate into the empty container
@@ -402,16 +451,49 @@
 				<div class="rounded-box bg-base-200 p-4 sm:p-6">
 					<div class="mb-2 flex items-center gap-4 text-xs">
 						<span class="opacity-80">UTC</span>
-						<span class="flex items-center gap-1">
-							<span class="inline-block h-2 w-4 rounded bg-secondary"
-							></span>
-							Visitors
-						</span>
-						<span class="flex items-center gap-1">
-							<span class="inline-block h-2 w-4 rounded bg-primary"
-							></span>
-							Views
-						</span>
+						{#if show_chart_3d}
+							{#each [...audiences].reverse() as audience (audience.key)}
+								<span class="flex items-center gap-1">
+									<span
+										class="inline-block h-2 w-4 rounded"
+										style="background: {audience.colour}"
+									></span>
+									{audience.label}
+								</span>
+							{/each}
+							<div
+								class="join"
+								role="group"
+								aria-label="Chart metric"
+							>
+								{#each ['views', 'visitors'] as const as metric (metric)}
+									<button
+										class="btn join-item capitalize btn-xs {metric_3d !==
+										metric
+											? ''
+											: metric === 'views'
+												? 'btn-primary'
+												: 'btn-secondary'}"
+										aria-pressed={metric_3d === metric}
+										onclick={() => (metric_3d = metric)}
+									>
+										{metric}
+									</button>
+								{/each}
+							</div>
+						{:else}
+							<span class="flex items-center gap-1">
+								<span
+									class="inline-block h-2 w-4 rounded bg-secondary"
+								></span>
+								Visitors
+							</span>
+							<span class="flex items-center gap-1">
+								<span class="inline-block h-2 w-4 rounded bg-primary"
+								></span>
+								Views
+							</span>
+						{/if}
 						{#if view_3d}
 							<span class="hidden opacity-70 sm:inline">
 								Drag to turn
@@ -428,7 +510,7 @@
 					{#if show_chart_3d && mounted}
 						<PeriodChart3d
 							bind:this={chart_3d_ref}
-							points={chart_data_parsed}
+							series={audience_series}
 							hourly={selected_stats_period === 'today' ||
 								selected_stats_period === 'yesterday'}
 							raised={view_3d}

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { number_crunch } from '#lib/utils/index.js';
 	import { scaleBand, scaleTime } from 'd3-scale';
-	import { curveMonotoneX } from 'd3-shape';
 	import {
 		Area,
 		Axis,
@@ -14,10 +13,18 @@
 		Tooltip,
 	} from 'layerchart';
 	import { cubicInOut } from 'svelte/easing';
-	import { settled_copy } from './stats.svelte';
+	import { settled_copy, smooth_curve } from './stats.svelte';
+
+	export interface ChartSeries {
+		key: string;
+		label: string;
+		colour: string;
+		points: { date: Date; value: number }[];
+	}
 
 	interface Props {
-		points: { date: Date; views: number; visitors: number }[];
+		// One curtain each, the first standing at the back
+		series: ChartSeries[];
 		// Hourly periods label the time, longer ones the day
 		hourly: boolean;
 		// Lowered to lay the chart flat again before it is swapped out
@@ -25,26 +32,15 @@
 		on_flat: () => void;
 	}
 
-	let { points, hourly, raised, on_flat }: Props = $props();
+	let { series, hourly, raised, on_flat }: Props = $props();
 
-	type Series = 'views' | 'visitors';
-	type Row = { date: Date; series: Series; value: number };
+	type Row = { date: Date; series: string; value: number };
 
 	const tween_ms = 700;
 	// Seen from the front, edge on to the floor, the curtains overlap
 	// as the flat area chart does
 	const flat_view = { rotate: 0, tilt: 90 };
 	const raised_view = { rotate: -20, tilt: 72 };
-
-	// Views are the taller series, so they stand at the back
-	const series: { key: Series; label: string; colour: string }[] = [
-		{ key: 'views', label: 'Views', colour: 'var(--color-primary)' },
-		{
-			key: 'visitors',
-			label: 'Visitors',
-			colour: 'var(--color-secondary)',
-		},
-	];
 
 	let rotate = $state(flat_view.rotate);
 	let tilt = $state(flat_view.tilt);
@@ -64,8 +60,13 @@
 
 	// Mounts flat, then stands up
 	let stood_up = $state(false);
+	// The last series with data stay up while new ones load
+	let loaded: ChartSeries[] = [];
 	const shown = settled_copy(
-		() => points,
+		() => {
+			if (series.length > 0) loaded = series;
+			return loaded;
+		},
 		[],
 		() => requestAnimationFrame(() => (stood_up = true)),
 	);
@@ -88,24 +89,41 @@
 		return () => clearTimeout(timeout);
 	});
 
-	const rows = $derived(
-		series.flatMap(({ key }) =>
-			shown.current.map((point): Row => ({
-				date: point.date,
-				series: key,
-				value: point[key],
-			})),
-		),
-	);
 	const rows_by_series = $derived(
-		series.map((item) => ({
+		shown.current.map((item) => ({
 			...item,
-			rows: rows.filter((row) => row.series === item.key),
+			rows: item.points.map((point): Row => ({
+				...point,
+				series: item.key,
+			})),
+			// What is drawn; the tooltip keeps to the real points
+			curve: smooth_curve(
+				item.points.map((point) => ({
+					x: point.date.getTime(),
+					y: point.value,
+				})),
+			).map(({ x, y }): Row => ({
+				date: new Date(x),
+				series: item.key,
+				value: y,
+			})),
 		})),
 	);
+	const rows = $derived(rows_by_series.flatMap((item) => item.rows));
 	const max_value = $derived(
 		Math.max(1, ...rows.map((row) => row.value)),
 	);
+
+	const nearest_row = (candidates: Row[], date: Date) =>
+		candidates.reduce<Row | null>(
+			(nearest, row) =>
+				!nearest ||
+				Math.abs(row.date.getTime() - date.getTime()) <
+					Math.abs(nearest.date.getTime() - date.getTime())
+					? row
+					: nearest,
+			null,
+		);
 
 	const format_date = (date: Date, long = false) =>
 		hourly
@@ -137,7 +155,7 @@
 			xScale={scaleTime()}
 			y="series"
 			yScale={scaleBand().paddingInner(0.6).paddingOuter(0.3)}
-			yDomain={series.map((item) => item.key)}
+			yDomain={shown.current.map((item) => item.key)}
 			z="value"
 			zDomain={[0, max_value]}
 			zNice
@@ -159,7 +177,7 @@
 			ondragstart={() => (dragging = true)}
 			ondragend={commit_drag}
 			tooltipContext={{ mode: 'quadtree' }}
-			padding={{ top: 12, bottom: 28, left: 40, right: 16 }}
+			padding={{ top: 12, bottom: 28, left: 64, right: 16 }}
 			clip
 		>
 			{#snippet children({ context })}
@@ -181,6 +199,18 @@
 						tickLabelProps={{ viewport: true }}
 						classes={{ tickLabel: tick_label }}
 					/>
+					<!-- Each row is named, so the series are not told apart
+					     by colour alone. Seen from the front they overlap -->
+					{#if raised && stood_up}
+						<Axis
+							placement="left"
+							format={(key: string) =>
+								shown.current.find((item) => item.key === key)
+									?.label ?? ''}
+							tickLabelProps={{ viewport: true }}
+							classes={{ tickLabel: tick_label }}
+						/>
+					{/if}
 					<Axis
 						placement="back"
 						ticks={4}
@@ -190,8 +220,7 @@
 					<!-- Back to front: each curtain stands in its own row -->
 					{#each [...rows_by_series].sort( (a, b) => (matrix ? matrix.d * (context.yScale(a.key) - context.yScale(b.key)) : 0) ) as item (item.key)}
 						<Area
-							data={item.rows}
-							curve={curveMonotoneX}
+							data={item.curve}
 							fill={item.colour}
 							fillOpacity={0.5}
 							line={{ stroke: item.colour, strokeWidth: 2 }}
@@ -207,25 +236,32 @@
 					}}
 				>
 					{#snippet children({ data }: { data: Row })}
-						{@const point = shown.current.find(
-							(item) => item.date.getTime() === data.date.getTime(),
-						)}
+						<!-- The pointer may be nearest a point on the smoothed
+						     curve; the tooltip reads the real one beside it -->
+						{@const date =
+							nearest_row(
+								rows_by_series.find(
+									(item) => item.key === data.series,
+								)?.rows ?? [],
+								data.date,
+							)?.date ?? data.date}
 						<Tooltip.Header>
 							<span class="text-xs font-medium text-base-content/70">
-								{format_date(data.date, true)}
+								{format_date(date, true)}
 							</span>
 						</Tooltip.Header>
 						<Tooltip.List>
-							<Tooltip.Item
-								label="Visitors"
-								value={number_crunch(point?.visitors ?? 0)}
-								classes={{ label: 'text-secondary' }}
-							/>
-							<Tooltip.Item
-								label="Views"
-								value={number_crunch(point?.views ?? 0)}
-								classes={{ label: 'text-primary' }}
-							/>
+							<!-- Front row first, as the legend lists them -->
+							{#each [...rows_by_series].reverse() as item (item.key)}
+								{@const row = item.rows.find(
+									(candidate) =>
+										candidate.date.getTime() === date.getTime(),
+								)}
+								<Tooltip.Item
+									label={item.label}
+									value={number_crunch(row?.value ?? 0)}
+								/>
+							{/each}
 						</Tooltip.List>
 					{/snippet}
 				</Tooltip.Root>
