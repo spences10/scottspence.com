@@ -1,9 +1,18 @@
 <script lang="ts">
-	import { InformationCircle } from '#lib/icons/index.js';
+	import type { PeriodCounts } from '#lib/analytics/period-stats.helpers.js';
 	import { number_crunch } from '#lib/utils/index.js';
-	import { scaleBand } from 'd3-scale';
-	import { Axis, Bars, Chart, Svg, Tooltip } from 'layerchart';
-	import type { SiteStat, Stats } from './stats.svelte';
+	import { onMount, settled } from 'svelte';
+	import HistoricalRidges, {
+		type Ridge,
+	} from './historical-ridges.svelte';
+	import HistoricalSkyline from './historical-skyline.svelte';
+	import StatRowMulti from './stat-row-multi.svelte';
+	import {
+		month_labels,
+		type HistoricalMetric,
+		type MonthCell,
+		type SiteStat,
+	} from './stats.svelte';
 
 	interface Props {
 		site_stats: SiteStat[];
@@ -11,456 +20,509 @@
 		current_year: string;
 	}
 
-	let { site_stats, current_month, current_year }: Props = $props();
+	let { site_stats, current_year }: Props = $props();
 
-	let selected_period = $state('yearly');
-	let selected_year = $state<string>('');
-	let selected_month = $state('');
+	type Selection = { year: string | null; month: number | null };
 
-	// Initialize with derived values after mount
-	$effect(() => {
-		if (!selected_year && current_year) {
-			selected_year = (Number(current_year) - 1).toString();
-		}
-		if (!selected_month && current_month) {
-			selected_month = current_month;
-		}
+	const top_posts_count = 10;
+	const all_posts_count = 50;
+	const ridge_count = 5;
+
+	let metric = $state<HistoricalMetric>('views');
+	// No year is every year; a month only narrows a selected year
+	let selected_year = $state<string | null>(null);
+	let selected_month = $state<number | null>(null);
+	let show_all_posts = $state(false);
+
+	// The charts only render in the browser: layerchart draws nothing
+	// on the server and fails to hydrate into the empty container.
+	// They also wait for the period stats above to settle: mounted
+	// during a pending async batch, the chart's derived state is
+	// recomputed on every read and the depth sort locks the page up
+	let mounted = $state(false);
+	onMount(async () => {
+		await settled();
+		mounted = true;
 	});
 
-	// Auto-update selections when period changes
-	$effect(() => {
-		if (selected_period === 'yearly') {
-			// Set to most recent historical year
-			const available_years = [
-				...new Set(
-					site_stats.flatMap((p) =>
-						p.yearly_stats
-							.filter((y) => Number(y.year) < Number(current_year))
-							.map((y) => y.year),
-					),
-				),
-			]
-				.sort()
-				.reverse();
-			if (available_years.length > 0) {
-				selected_year = available_years[0];
-			}
-		} else if (selected_period === 'monthly') {
-			// Set to most recent historical month
-			const available_months = [
-				...new Set(
-					site_stats.flatMap((p) =>
-						p.monthly_stats
-							.filter((m) => {
-								const [year] = m.year_month.split('-').map(Number);
-								return year < Number(current_year);
-							})
-							.map((m) => m.year_month),
-					),
-				),
-			]
-				.sort()
-				.reverse();
-			if (available_months.length > 0) {
-				selected_month = available_months[0];
-			}
-		}
+	const selection = $derived<Selection>({
+		year: selected_year,
+		month: selected_month,
 	});
 
-	let filtered_stats = $derived.by(() =>
-		site_stats
-			.map((post) => {
-				let stats: Stats;
-				if (selected_period === 'all_time') {
-					stats = post.all_time_stats;
-				} else if (selected_period === 'yearly') {
-					const yearly_stat = post.yearly_stats
-						.filter((y) => Number(y.year) < Number(current_year)) // Exclude current year
-						.find((y) => y.year === selected_year);
-					stats = yearly_stat || { views: 0, unique_visitors: 0 };
-				} else if (selected_period === 'monthly') {
-					const monthly_stat = post.monthly_stats
-						.filter((m) => {
-							const [year] = m.year_month.split('-').map(Number);
-							return year < Number(current_year); // Exclude current year
-						})
-						.find((m) => m.year_month === selected_month);
-					stats = monthly_stat || { views: 0, unique_visitors: 0 };
-				} else {
-					stats = { views: 0, unique_visitors: 0 };
-				}
-				return { ...post, stats };
-			})
-			.filter((post) => post.stats.views > 0)
-			.sort((a, b) => b.stats.views - a.stats.views),
+	const split_month = (year_month: string) => {
+		const [year, month] = year_month.split('-');
+		return { year, month: Number(month) };
+	};
+
+	// The current year is covered by the period stats above
+	const is_historical = (year: string) =>
+		Number(year) < Number(current_year);
+
+	const matches = (
+		{ year, month }: { year: string; month: number },
+		filter: Selection,
+	) =>
+		is_historical(year) &&
+		(!filter.year || year === filter.year) &&
+		(!filter.month || month === filter.month);
+
+	// Every post's months summed into one cell per calendar month
+	const cells = $derived.by(() => {
+		const totals = new Map<string, MonthCell>();
+		for (const post of site_stats) {
+			for (const stat of post.monthly_stats) {
+				const { year, month } = split_month(stat.year_month);
+				if (!is_historical(year)) continue;
+				const cell = totals.get(stat.year_month) ?? {
+					year,
+					month,
+					views: 0,
+					visitors: 0,
+				};
+				cell.views += stat.views;
+				cell.visitors += stat.unique_visitors;
+				totals.set(stat.year_month, cell);
+			}
+		}
+		return [...totals.values()].sort(
+			(a, b) => a.year.localeCompare(b.year) || a.month - b.month,
+		);
+	});
+
+	const years = $derived(
+		[...new Set(cells.map((cell) => cell.year))].sort(),
 	);
 
-	// Calculate summary statistics
-	let summary_stats = $derived.by(() => {
-		const total_views = filtered_stats.reduce(
-			(sum, post) => sum + post.stats.views,
-			0,
-		);
-		const total_visitors = filtered_stats.reduce(
-			(sum, post) => sum + post.stats.unique_visitors,
-			0,
-		);
-		const total_posts = filtered_stats.length;
-		const avg_views =
-			total_posts > 0 ? Math.round(total_views / total_posts) : 0;
-		const avg_visitors =
-			total_posts > 0 ? Math.round(total_visitors / total_posts) : 0;
+	const months_in_year = $derived(
+		cells
+			.filter((cell) => cell.year === selected_year)
+			.map((cell) => cell.month),
+	);
 
+	// The period the deltas compare against: the year or month before
+	const previous_selection = $derived.by((): Selection | null => {
+		if (!selected_year) return null;
+		const before = selected_month
+			? selected_month === 1
+				? { year: `${Number(selected_year) - 1}`, month: 12 }
+				: { year: selected_year, month: selected_month - 1 }
+			: { year: `${Number(selected_year) - 1}`, month: null };
+		return cells.some((cell) => matches(cell, before))
+			? before
+			: null;
+	});
+
+	const totals_for = (filter: Selection) => {
+		const in_period = cells.filter((cell) => matches(cell, filter));
 		return {
-			total_views,
-			total_visitors,
-			total_posts,
-			avg_views,
-			avg_visitors,
+			views: in_period.reduce((sum, cell) => sum + cell.views, 0),
+			visitors: in_period.reduce(
+				(sum, cell) => sum + cell.visitors,
+				0,
+			),
+			best: in_period.reduce<MonthCell | null>(
+				(best, cell) =>
+					!best || cell[metric] > best[metric] ? cell : best,
+				null,
+			),
 		};
-	});
+	};
 
-	// Calculate date range for display
-	let date_range = $derived.by(() => {
-		if (selected_period === 'all_time') {
-			const years = [
-				...new Set(
-					site_stats.flatMap((p) =>
-						p.yearly_stats
-							.filter((y) => Number(y.year) < Number(current_year))
-							.map((y) => y.year),
-					),
-				),
-			].sort();
-			return years.length > 0
-				? `${years[years.length - 1]} - ${years[0]}`
-				: '';
-		} else if (selected_period === 'yearly') {
-			return selected_year;
-		} else if (selected_period === 'monthly') {
-			return selected_month;
-		}
-		return '';
-	});
+	const posts_for = (filter: Selection) =>
+		site_stats
+			.map((post) => {
+				const counts = { views: 0, visitors: 0 };
+				for (const stat of post.monthly_stats) {
+					if (!matches(split_month(stat.year_month), filter))
+						continue;
+					counts.views += stat.views;
+					counts.visitors += stat.unique_visitors;
+				}
+				return { slug: post.slug, title: post.title, ...counts };
+			})
+			.filter((post) => post.views > 0);
 
-	// Generate trend data for top 3 posts
-	let trend_data = $derived.by(() => {
-		if (selected_period === 'all_time') return [];
+	const totals = $derived(totals_for(selection));
+	const previous_totals = $derived(
+		previous_selection ? totals_for(previous_selection) : null,
+	);
 
-		const top_posts = filtered_stats.slice(0, 3);
-		return top_posts.map((post) => {
-			let data_points: { period: string; views: number }[] = [];
+	const ranked_posts = $derived(
+		posts_for(selection).sort((a, b) => b[metric] - a[metric]),
+	);
+	const previous_posts = $derived.by(
+		(): Record<string, PeriodCounts> | null =>
+			previous_selection
+				? Object.fromEntries(
+						posts_for(previous_selection).map((post) => [
+							post.slug,
+							{ views: post.views, visitors: post.visitors },
+						]),
+					)
+				: null,
+	);
+	const listed_posts = $derived(
+		ranked_posts.slice(
+			0,
+			show_all_posts ? all_posts_count : top_posts_count,
+		),
+	);
 
-			if (selected_period === 'yearly') {
-				data_points = post.yearly_stats
-					.filter((y) => Number(y.year) < Number(current_year))
-					.sort((a, b) => a.year.localeCompare(b.year))
-					.map((y) => ({ period: y.year, views: y.views }));
-			} else if (selected_period === 'monthly') {
-				data_points = post.monthly_stats
-					.filter((m) => {
-						const [year] = m.year_month.split('-').map(Number);
-						return year < Number(current_year);
-					})
-					.sort((a, b) => a.year_month.localeCompare(b.year_month))
-					.slice(-12) // Last 12 months
-					.map((m) => ({ period: m.year_month, views: m.views }));
-			}
+	const format_period = ({ year, month }: Selection) =>
+		year
+			? month
+				? `${month_labels[month - 1]} ${year}`
+				: year
+			: `${years[0]}–${years[years.length - 1]}`;
+	const period_label = $derived(format_period(selection));
 
+	const format_delta = (delta: number) =>
+		`${delta > 0 ? '+' : delta < 0 ? '−' : ''}${number_crunch(Math.abs(delta))}`;
+
+	const count_delta = (
+		current: number,
+		before: number | undefined,
+	) =>
+		before === undefined || current === before
+			? null
+			: {
+					text: format_delta(current - before),
+					good: current > before,
+				};
+
+	const views_per_visitor = $derived(
+		totals.visitors > 0
+			? (totals.views / totals.visitors).toFixed(1)
+			: '0',
+	);
+
+	// The top posts month by month: the selected year, or every year
+	const ridges = $derived.by((): Ridge[] => {
+		const timeline = cells.filter(
+			(cell) => !selected_year || cell.year === selected_year,
+		);
+		return ranked_posts.slice(0, ridge_count).map((post) => {
+			const by_month = new Map(
+				site_stats
+					.find((stat) => stat.slug === post.slug)
+					?.monthly_stats.map((stat) => [stat.year_month, stat]),
+			);
 			return {
-				title: post.title,
 				slug: post.slug,
-				data_points,
+				title: post.title,
+				points: timeline.map((cell, index) => {
+					const stat = by_month.get(
+						`${cell.year}-${`${cell.month}`.padStart(2, '0')}`,
+					);
+					return {
+						index,
+						label: selected_year
+							? month_labels[cell.month - 1]
+							: `${month_labels[cell.month - 1]} ${cell.year.slice(2)}`,
+						value:
+							(metric === 'views'
+								? stat?.views
+								: stat?.unique_visitors) ?? 0,
+					};
+				}),
 			};
 		});
 	});
 
-	// Generate all-time yearly visitor data for chart
-	let all_time_yearly_visitors = $derived.by(() => {
-		if (selected_period !== 'all_time') return [];
+	const select_year = (year: string | null) => {
+		selected_year = year;
+		selected_month = null;
+	};
 
-		// Aggregate visitors by year across all posts
-		const yearly_totals = new Map<string, number>();
+	// Selecting the selected tower again steps back out to its year
+	const select_tower = (year: string, month: number) => {
+		const is_selected =
+			selected_year === year && selected_month === month;
+		selected_year = year;
+		selected_month = is_selected ? null : month;
+	};
 
-		site_stats.forEach((post) => {
-			post.yearly_stats
-				.filter((y) => Number(y.year) < Number(current_year))
-				.forEach((yearly_stat) => {
-					const current_total =
-						yearly_totals.get(yearly_stat.year) || 0;
-					yearly_totals.set(
-						yearly_stat.year,
-						current_total + yearly_stat.unique_visitors,
-					);
-				});
-		});
-
-		return Array.from(yearly_totals.entries())
-			.map(([year, visitors]) => ({ year, visitors }))
-			.sort((a, b) => a.year.localeCompare(b.year));
-	});
+	const cell_for = (year: string, month: number) =>
+		cells.find((cell) => cell.year === year && cell.month === month);
 </script>
 
-<!-- Historical section -->
-<div class="divider mb-8">Historical Data</div>
-
-<div class="mb-6 alert alert-info">
-	<InformationCircle />
-	<div class="prose-md prose text-info-content">
-		<p>
-			Historical analytics from previous years. Current year data
-			available per-post.
-		</p>
-	</div>
-</div>
-
-<div class="mb-12 space-y-6 p-4">
-	<div class="flex flex-wrap justify-between gap-4">
-		<select
-			bind:value={selected_period}
-			class="select-bordered select w-full max-w-xs"
-			aria-label="Select time period:"
+{#if cells.length > 0}
+	<section aria-labelledby="historical-heading" class="mb-12">
+		<div
+			class="mb-4 flex flex-wrap items-end justify-between gap-4 border-t border-base-300 pt-8"
 		>
-			<option value="all_time">All Time</option>
-			<option value="yearly">Yearly</option>
-			<option value="monthly">Monthly</option>
-		</select>
-
-		{#if selected_period === 'yearly'}
-			<select
-				bind:value={selected_year}
-				class="select-bordered select w-full max-w-xs"
-				aria-label="Select year:"
-			>
-				{#each [...new Set(site_stats.flatMap((p) => p.yearly_stats
-								.filter((y) => Number(y.year) < Number(current_year))
-								.map((y) => y.year)))]
-					.sort()
-					.reverse() as year}
-					<option value={year}>{year}</option>
-				{/each}
-			</select>
-		{/if}
-
-		{#if selected_period === 'monthly'}
-			<select
-				bind:value={selected_month}
-				class="select-bordered select w-full max-w-xs"
-				aria-label="Select month:"
-			>
-				{#each [...new Set(site_stats.flatMap((p) => p.monthly_stats
-								.filter((m) => {
-									const [year] = m.year_month.split('-').map(Number);
-									return year < Number(current_year);
-								})
-								.map((m) => m.year_month)))]
-					.sort()
-					.reverse() as month}
-					<option value={month}>{month}</option>
-				{/each}
-			</select>
-		{/if}
-	</div>
-
-	<div class="mb-4 flex items-center gap-2">
-		<span class="text-lg font-semibold">Showing data for:</span>
-		<div class="badge font-mono badge-lg badge-primary">
-			{date_range}
-		</div>
-	</div>
-
-	<!-- Summary Statistics Cards -->
-	<div
-		class="stats mb-8 w-full stats-vertical border border-secondary shadow-lg md:stats-horizontal"
-	>
-		<div class="stat">
-			<div class="stat-title">Total Views</div>
-			<div class="stat-value text-primary">
-				{number_crunch(summary_stats.total_views)}
+			<div>
+				<h2 id="historical-heading" class="text-3xl font-bold">
+					Historical
+				</h2>
+				<p class="text-sm opacity-80">
+					Post traffic by month, {years[0]} to {years[
+						years.length - 1
+					]}. This year is in the stats above.
+				</p>
 			</div>
-			<div class="stat-desc">
-				Across {summary_stats.total_posts} posts
-			</div>
-		</div>
 
-		<div class="stat">
-			<div class="stat-title">Total Visitors</div>
-			<div class="stat-value text-secondary">
-				{number_crunch(summary_stats.total_visitors)}
-			</div>
-			<div class="stat-desc">Unique visitors</div>
-		</div>
-
-		<div class="stat">
-			<div class="stat-title">Average Views</div>
-			<div class="stat-value text-accent">
-				{number_crunch(summary_stats.avg_views)}
-			</div>
-			<div class="stat-desc">Per post</div>
-		</div>
-
-		<div class="stat">
-			<div class="stat-title">Average Visitors</div>
-			<div class="stat-value text-info">
-				{number_crunch(summary_stats.avg_visitors)}
-			</div>
-			<div class="stat-desc">Per post</div>
-		</div>
-	</div>
-
-	<!-- All-Time Yearly Visitors Chart -->
-	{#if selected_period === 'all_time' && all_time_yearly_visitors.length > 0}
-		{#key all_time_yearly_visitors.length}
-			<div class="mb-8">
-				<h3 class="mb-4 text-xl font-bold">Total Visitors by Year</h3>
-				<div class="card bg-base-200 shadow-lg">
-					<div class="card-body p-6">
-						<div class="h-64">
-							<Chart
-								data={all_time_yearly_visitors}
-								x="year"
-								xScale={scaleBand().padding(0.2)}
-								y="visitors"
-								yDomain={[0, null]}
-								yNice
-								padding={{ left: 48, bottom: 24 }}
-								tooltipContext={{ mode: 'band' }}
-							>
-								<Svg>
-									<Axis placement="left" grid rule />
-									<Axis placement="bottom" />
-									<Bars radius={4} class="fill-secondary" />
-								</Svg>
-								<Tooltip.Root>
-									{#snippet children({
-										data,
-									}: {
-										data: { year: string; visitors: number };
-									})}
-										<Tooltip.Header>{data.year}</Tooltip.Header>
-										<Tooltip.List>
-											<Tooltip.Item
-												label="Visitors"
-												value={number_crunch(data.visitors)}
-											/>
-										</Tooltip.List>
-									{/snippet}
-								</Tooltip.Root>
-							</Chart>
-						</div>
-					</div>
-				</div>
-			</div>
-		{/key}
-	{/if}
-
-	<!-- Simple Trend Visualization for Top Posts -->
-	{#if trend_data.length > 0 && selected_period !== 'all_time'}
-		{#key trend_data.length}
-			<div class="mb-8">
-				<h3 class="mb-4 text-xl font-bold">
-					Trend Overview - Top 3 Posts
-				</h3>
-				<div class="grid gap-4 md:grid-cols-1 lg:grid-cols-3">
-					{#each trend_data as post_trend (post_trend.slug)}
-						<div class="card h-48 bg-base-200 shadow-lg">
-							<div class="card-body flex h-full flex-col p-4">
-								<h4 class="card-title line-clamp-2 shrink-0 text-sm">
-									{post_trend.title}
-								</h4>
-								<div class="mt-auto mb-2 h-20 grow">
-									<Chart
-										data={post_trend.data_points}
-										x="period"
-										xScale={scaleBand().padding(0.1)}
-										y="views"
-										yDomain={[0, null]}
-										padding={{
-											left: 0,
-											right: 0,
-											top: 4,
-											bottom: 0,
-										}}
-										tooltipContext={{ mode: 'band' }}
-									>
-										<Svg>
-											<Bars radius={2} class="fill-primary" />
-										</Svg>
-										<Tooltip.Root>
-											{#snippet children({
-												data,
-											}: {
-												data: { period: string; views: number };
-											})}
-												<Tooltip.Header>{data.period}</Tooltip.Header>
-												<Tooltip.List>
-													<Tooltip.Item
-														label="Views"
-														value={number_crunch(data.views)}
-													/>
-												</Tooltip.List>
-											{/snippet}
-										</Tooltip.Root>
-									</Chart>
-								</div>
-								<div class="shrink-0 text-xs text-base-content/70">
-									{post_trend.data_points.length} data points
-								</div>
-							</div>
-						</div>
+			<div class="flex flex-wrap items-center gap-2">
+				<!-- Year selector -->
+				<div class="join" role="group" aria-label="Year">
+					<button
+						class="btn join-item btn-sm {selected_year === null
+							? 'btn-primary'
+							: ''}"
+						aria-pressed={selected_year === null}
+						onclick={() => select_year(null)}
+					>
+						All years
+					</button>
+					{#each years as year (year)}
+						<button
+							class="btn join-item btn-sm {selected_year === year
+								? 'btn-primary'
+								: ''}"
+							aria-pressed={selected_year === year}
+							onclick={() => select_year(year)}
+						>
+							{year}
+						</button>
 					{/each}
 				</div>
+
+				<select
+					class="select w-auto select-sm"
+					aria-label="Month"
+					disabled={!selected_year}
+					bind:value={selected_month}
+				>
+					<option value={null}>All months</option>
+					{#each months_in_year as month (month)}
+						<option value={month}>{month_labels[month - 1]}</option>
+					{/each}
+				</select>
+
+				<!-- Metric toggle -->
+				<div class="join" role="group" aria-label="Metric">
+					<button
+						class="btn join-item btn-sm {metric === 'views'
+							? 'btn-primary'
+							: ''}"
+						aria-pressed={metric === 'views'}
+						onclick={() => (metric = 'views')}
+					>
+						Views
+					</button>
+					<button
+						class="btn join-item btn-sm {metric === 'visitors'
+							? 'btn-secondary'
+							: ''}"
+						aria-pressed={metric === 'visitors'}
+						onclick={() => (metric = 'visitors')}
+					>
+						Visitors
+					</button>
+				</div>
 			</div>
-		{/key}
-	{/if}
+		</div>
 
-	<div class="overflow-x-auto">
-		<table class="table table-zebra">
-			<thead>
-				<tr>
-					<th>Title</th>
-					<th class="text-right">Views</th>
-					<th class="text-right">Unique Visitors</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#each filtered_stats as post}
-					{@const ratio =
-						post.stats.unique_visitors > 0
-							? (
-									post.stats.views / post.stats.unique_visitors
-								).toFixed(1)
-							: 'N/A'}
-					<tr class="hover">
-						<td>
-							<a href="/posts/{post.slug}" class="link link-hover">
-								{post.title}
-							</a>
-						</td>
-						<td class="text-right font-mono whitespace-nowrap">
-							<div
-								class="tooltip tooltip-top tooltip-accent"
-								data-tip="Views/Visitors Ratio: {ratio}"
+		<div class="space-y-1.5">
+			<!-- Summary strip -->
+			<div class="rounded-box bg-base-200 p-4 sm:p-6">
+				<dl
+					class="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5"
+				>
+					{#snippet summary_item(
+						label: string,
+						value: string | number,
+						delta: { text: string; good: boolean } | null = null,
+						wide = false,
+					)}
+						<div
+							class="flex flex-col-reverse {wide
+								? 'col-span-2 sm:col-span-1'
+								: ''}"
+						>
+							<dt class="text-sm">
+								<span class="opacity-80">{label}</span>
+								{#if delta}
+									<span
+										class="ml-1 text-xs tabular-nums {delta.good
+											? 'text-success'
+											: 'text-error'}"
+									>
+										{delta.text}
+									</span>
+								{/if}
+							</dt>
+							<dd
+								class="text-5xl font-light tracking-tight whitespace-nowrap"
 							>
-								{number_crunch(post.stats.views)}
-							</div>
-						</td>
-						<td class="text-right font-mono whitespace-nowrap">
-							{number_crunch(post.stats.unique_visitors)}
-						</td>
-					</tr>
-				{/each}
-			</tbody>
-		</table>
-	</div>
-</div>
+								{value}
+							</dd>
+						</div>
+					{/snippet}
+					{@render summary_item(
+						'Pageviews',
+						number_crunch(totals.views),
+						count_delta(totals.views, previous_totals?.views),
+					)}
+					{@render summary_item(
+						'Visitors',
+						number_crunch(totals.visitors),
+						count_delta(totals.visitors, previous_totals?.visitors),
+					)}
+					{@render summary_item(
+						'Views per visitor',
+						views_per_visitor,
+					)}
+					{@render summary_item(
+						'Posts read',
+						number_crunch(ranked_posts.length),
+					)}
+					{#if selected_month === null && totals.best}
+						{@render summary_item(
+							'Best month',
+							format_period(totals.best),
+							null,
+							true,
+						)}
+					{:else if ranked_posts.length > 0}
+						{@render summary_item(
+							'Top post share',
+							`${Math.round((ranked_posts[0][metric] / (totals[metric] || 1)) * 100)}%`,
+						)}
+					{/if}
+				</dl>
+				<p class="mt-4 text-xs opacity-70">
+					Showing {period_label}{#if previous_selection}, compared
+						with {format_period(previous_selection)}{/if}. Visitors
+					are counted per post per month.
+				</p>
+			</div>
 
-<style>
-	.line-clamp-2 {
-		display: -webkit-box;
-		-webkit-line-clamp: 2;
-		line-clamp: 2;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
-</style>
+			<!-- Skyline: every month as a tower -->
+			<div class="rounded-box bg-base-200 p-4 sm:p-6">
+				<h3 class="sr-only">
+					{metric === 'views' ? 'Views' : 'Visitors'} by month and year
+				</h3>
+				{#if mounted}
+					<HistoricalSkyline
+						{cells}
+						{years}
+						{metric}
+						{selected_year}
+						{selected_month}
+						on_select={select_tower}
+					/>
+				{:else}
+					<div class="h-64 sm:h-120"></div>
+				{/if}
+
+				<details class="mt-2 text-sm">
+					<summary class="cursor-pointer text-xs opacity-80">
+						View as table
+					</summary>
+					<div class="mt-2 overflow-x-auto">
+						<table class="table table-xs">
+							<caption class="sr-only">
+								{metric === 'views' ? 'Views' : 'Visitors'} by month and
+								year
+							</caption>
+							<thead>
+								<tr>
+									<th scope="col">Year</th>
+									{#each month_labels as label (label)}
+										<th scope="col" class="text-right">{label}</th>
+									{/each}
+								</tr>
+							</thead>
+							<tbody>
+								{#each years as year (year)}
+									<tr>
+										<th scope="row">{year}</th>
+										{#each month_labels as label, index (label)}
+											{@const cell = cell_for(year, index + 1)}
+											<td class="text-right tabular-nums">
+												{cell ? number_crunch(cell[metric]) : '–'}
+											</td>
+										{/each}
+									</tr>
+								{/each}
+							</tbody>
+						</table>
+					</div>
+				</details>
+			</div>
+
+			<!-- Top posts + how they moved -->
+			<div class="grid gap-1.5 lg:grid-cols-2">
+				<div class="min-w-0 rounded-box bg-base-200 p-4 sm:p-6">
+					<div class="mb-1 flex items-center gap-3 px-2 text-xs">
+						<h3 class="flex-1 font-semibold">
+							Top posts · {period_label}
+						</h3>
+						<span class="w-14 text-right opacity-80 sm:w-20">
+							Visitors
+						</span>
+						<span class="w-14 text-right opacity-80 sm:w-20">
+							Views
+						</span>
+					</div>
+					{#if listed_posts.length > 0}
+						{@const max_value = Math.max(
+							...listed_posts.map((post) => post[metric]),
+						)}
+						<ol>
+							{#each listed_posts as post, index (post.slug)}
+								<StatRowMulti
+									label={post.title}
+									prefix={`${index + 1}`}
+									previous={previous_posts
+										? (previous_posts[post.slug] ?? {
+												views: 0,
+												visitors: 0,
+											})
+										: null}
+									{format_delta}
+									visitors={post.visitors}
+									views={post.views}
+									{max_value}
+									bar={metric}
+									href="/posts/{post.slug}"
+								/>
+							{/each}
+						</ol>
+						{#if ranked_posts.length > top_posts_count}
+							<button
+								class="btn mt-2 btn-ghost btn-xs"
+								aria-expanded={show_all_posts}
+								onclick={() => (show_all_posts = !show_all_posts)}
+							>
+								{show_all_posts
+									? 'Show fewer'
+									: `Show top ${Math.min(all_posts_count, ranked_posts.length)}`}
+							</button>
+						{/if}
+					{:else}
+						<p class="px-2 text-sm opacity-70">No data</p>
+					{/if}
+				</div>
+
+				<div class="min-w-0 rounded-box bg-base-200 p-4 sm:p-6">
+					<div class="mb-1 px-2 text-xs">
+						<h3 class="font-semibold">
+							Top {Math.min(ridge_count, ridges.length)} month by month
+						</h3>
+						<p class="opacity-80">
+							Rows are numbered as in the list, back to front.
+						</p>
+					</div>
+					{#if mounted && ridges.length > 0 && ridges[0].points.length > 1}
+						<HistoricalRidges {ridges} {metric} />
+					{:else}
+						<div class="h-64 sm:h-96"></div>
+					{/if}
+				</div>
+			</div>
+		</div>
+	</section>
+{/if}

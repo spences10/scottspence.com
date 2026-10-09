@@ -12,6 +12,7 @@
 		icon?: string;
 		label_class?: string;
 		previous?: PeriodCounts | null;
+		bar?: 'visitors' | 'views';
 		format_delta?: (delta: number) => string;
 	}
 
@@ -25,11 +26,14 @@
 		icon,
 		label_class = '',
 		previous = null,
+		bar = 'visitors',
 		format_delta = String,
 	}: Props = $props();
 
 	const bar_width = $derived(
-		max_value > 0 ? (visitors / max_value) * 100 : 0,
+		max_value > 0
+			? ((bar === 'views' ? views : visitors) / max_value) * 100
+			: 0,
 	);
 </script>
 
@@ -49,7 +53,7 @@
 			</svg>
 		{/if}
 		{#if prefix}
-			<span aria-hidden="true">{prefix}</span>
+			<span class="shrink-0" aria-hidden="true">{prefix}</span>
 		{/if}
 		{#if href}
 			<a {href} class="truncate link-hover {label_class}">{label}</a>

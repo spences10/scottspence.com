@@ -36,6 +36,31 @@ export interface SiteStat {
 	all_time_stats: Stats;
 }
 
+// One month of traffic summed across every post
+export interface MonthCell {
+	year: string;
+	month: number;
+	views: number;
+	visitors: number;
+}
+
+export type HistoricalMetric = 'views' | 'visitors';
+
+export const month_labels = [
+	'Jan',
+	'Feb',
+	'Mar',
+	'Apr',
+	'May',
+	'Jun',
+	'Jul',
+	'Aug',
+	'Sep',
+	'Oct',
+	'Nov',
+	'Dec',
+];
+
 // Period button labels
 export const period_labels: Record<StatsPeriod, string> = {
 	today: 'Today',

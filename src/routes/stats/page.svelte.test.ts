@@ -1,4 +1,3 @@
-import { flushSync } from 'svelte';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { render } from 'vitest-browser-svelte';
 import { page } from 'vitest/browser';
@@ -91,6 +90,13 @@ describe('Historical Stats Page Component', () => {
 		vi.clearAllMocks();
 	});
 
+	// The section's text as read, with markup whitespace collapsed
+	const historical_text = () =>
+		page
+			.getByRole('region', { name: 'Historical' })
+			.element()
+			.textContent?.replace(/\s+/g, ' ');
+
 	describe('Initial Rendering', () => {
 		test('should render page title', async () => {
 			render(StatsPage, { data: mockData });
@@ -99,201 +105,139 @@ describe('Historical Stats Page Component', () => {
 			await expect.element(title).toHaveTextContent('Site Stats');
 		});
 
-		test('should render historical data section divider', async () => {
+		test('should render the historical section', async () => {
 			render(StatsPage, { data: mockData });
 
-			const divider = page.getByText('Historical Data', {
-				exact: true,
-			});
-			await expect.element(divider).toBeInTheDocument();
+			await expect
+				.element(page.getByRole('heading', { name: 'Historical' }))
+				.toBeInTheDocument();
 		});
 
-		test('should render period selection dropdown', async () => {
+		test('should start on every historical year', async () => {
 			render(StatsPage, { data: mockData });
 
-			const periodSelect = page.getByLabelText('Select time period:');
-			await expect.element(periodSelect).toBeInTheDocument();
-
-			// Check all period options are present
 			await expect
-				.element(page.getByText('All Time'))
-				.toBeInTheDocument();
+				.element(page.getByRole('button', { name: 'All years' }))
+				.toHaveAttribute('aria-pressed', 'true');
 			await expect
-				.element(page.getByText('Yearly'))
-				.toBeInTheDocument();
-			await expect
-				.element(page.getByText('Monthly'))
-				.toBeInTheDocument();
+				.poll(historical_text)
+				.toContain('Showing 2023–2024.');
 		});
 	});
 
-	describe('Date Range Display', () => {
-		test('should show correct date range for all-time period', async () => {
+	describe('Period Selection', () => {
+		test('should exclude the current year from the year buttons', async () => {
 			render(StatsPage, { data: mockData });
 
-			// Select all-time period
-			const periodSelect = page.getByLabelText('Select time period:');
-			await periodSelect.selectOptions('all_time');
-			flushSync();
-
-			// Should show the range from earliest to latest year
-			const dateRange = page.getByText('2024 - 2022');
-			await expect.element(dateRange).toBeInTheDocument();
+			const years = page.getByRole('group', { name: 'Year' });
+			await expect
+				.element(years.getByRole('button', { name: '2024' }))
+				.toBeInTheDocument();
+			await expect
+				.element(years.getByRole('button', { name: '2023' }))
+				.toBeInTheDocument();
+			await expect
+				.element(
+					years.getByRole('button', { name: mockData.current_year }),
+				)
+				.not.toBeInTheDocument();
 		});
 
-		test('should show year for yearly period', async () => {
+		test('should only offer months once a year is selected', async () => {
 			render(StatsPage, { data: mockData });
 
-			// Select yearly period
-			const periodSelect = page.getByLabelText('Select time period:');
-			await periodSelect.selectOptions('yearly');
-			flushSync();
+			const month_select = page.getByLabelText('Month');
+			await expect.element(month_select).toBeDisabled();
 
-			// Should show the selected year - look for the "Showing data for:" text
-			const showingDataText = page.getByText('Showing data for:');
-			await expect.element(showingDataText).toBeInTheDocument();
+			await page.getByRole('button', { name: '2024' }).click();
+
+			await expect.element(month_select).toBeEnabled();
+			await expect
+				.element(page.getByRole('option', { name: 'Nov' }))
+				.toBeInTheDocument();
+			await expect
+				.element(page.getByRole('option', { name: 'Dec' }))
+				.toBeInTheDocument();
+			await expect
+				.element(page.getByRole('option', { name: 'Jan' }))
+				.not.toBeInTheDocument();
 		});
 
-		test('should show month for monthly period', async () => {
+		test('should compare a year with the year before', async () => {
 			render(StatsPage, { data: mockData });
 
-			// Select monthly period
-			const periodSelect = page.getByLabelText('Select time period:');
-			await periodSelect.selectOptions('monthly');
-			flushSync();
+			await page.getByRole('button', { name: '2024' }).click();
 
-			// Should show the selected month - look for the "Showing data for:" text
-			const showingDataText = page.getByText('Showing data for:');
-			await expect.element(showingDataText).toBeInTheDocument();
-		});
-	});
-
-	describe('Auto-Selection Logic', () => {
-		test('should auto-select most recent historical year when switching to yearly', async () => {
-			render(StatsPage, { data: mockData });
-
-			const periodSelect = page.getByLabelText('Select time period:');
-
-			// Switch to yearly
-			await periodSelect.selectOptions('yearly');
-			flushSync();
-
-			// Should auto-select 2024 (most recent historical year)
-			const yearSelect = page.getByLabelText('Select year:');
-			await expect.element(yearSelect).toHaveValue('2024');
+			await expect
+				.poll(historical_text)
+				.toContain('Showing 2024, compared with 2023.');
 		});
 
-		test('should auto-select most recent historical month when switching to monthly', async () => {
+		test('should narrow to a month and reset it on a new year', async () => {
 			render(StatsPage, { data: mockData });
 
-			const periodSelect = page.getByLabelText('Select time period:');
+			await page.getByRole('button', { name: '2024' }).click();
+			await page.getByLabelText('Month').selectOptions('Dec');
 
-			// Switch to monthly
-			await periodSelect.selectOptions('monthly');
-			flushSync();
+			await expect
+				.poll(historical_text)
+				.toContain('Showing Dec 2024, compared with Nov 2024.');
 
-			// Should auto-select 2024-12 (most recent historical month)
-			const monthSelect = page.getByLabelText('Select month:');
-			await expect.element(monthSelect).toHaveValue('2024-12');
+			await page.getByRole('button', { name: '2023' }).click();
+
+			await expect.poll(historical_text).toContain('Showing 2023.');
 		});
 	});
 
 	describe('Data Filtering and Display', () => {
-		test('should exclude current year from year dropdown options', async () => {
+		test('should total every historical month by default', async () => {
 			render(StatsPage, { data: mockData });
 
-			const periodSelect = page.getByLabelText('Select time period:');
-			await periodSelect.selectOptions('yearly');
-			flushSync();
-
-			// Check that current year is not in the year options
-			await expect
-				.element(page.getByText(mockData.current_year))
-				.not.toBeInTheDocument();
-			// Check for historical year options in the dropdown
-			await expect
-				.element(page.getByRole('option', { name: '2024' }))
-				.toBeInTheDocument();
-			await expect
-				.element(page.getByRole('option', { name: '2023' }))
-				.toBeInTheDocument();
-			await expect
-				.element(page.getByRole('option', { name: '2022' }))
-				.toBeInTheDocument();
-		});
-
-		test('should exclude current year from month dropdown options', async () => {
-			render(StatsPage, { data: mockData });
-
-			const periodSelect = page.getByLabelText('Select time period:');
-			await periodSelect.selectOptions('monthly');
-			flushSync();
-
-			// Check that no current year months are in the options
-			await expect
-				.element(page.getByText(`${mockData.current_year}-01`))
-				.not.toBeInTheDocument();
-			await expect
-				.element(page.getByText(`${mockData.current_year}-02`))
-				.not.toBeInTheDocument();
-
-			// Should have historical months in the dropdown
-			await expect
-				.element(page.getByRole('option', { name: '2024-12' }))
-				.toBeInTheDocument();
-			await expect
-				.element(page.getByRole('option', { name: '2024-11' }))
-				.toBeInTheDocument();
-		});
-
-		test('should display stats table with correct data', async () => {
-			render(StatsPage, { data: mockData });
-
-			// Check table headers
-			const titleHeader = page.getByText('Title').first();
-			const viewsHeader = page.getByText('Views').last();
-			const visitorsHeader = page.getByText('Unique Visitors').last();
-
-			await expect.element(titleHeader).toBeInTheDocument();
-			await expect.element(viewsHeader).toBeInTheDocument();
-			await expect.element(visitorsHeader).toBeInTheDocument();
-
-			// Check that posts are displayed (should show 2024 yearly data by default)
-			const post1Link = page.getByRole('link', {
-				name: 'Test Post 1',
+			const summary = page.getByRole('region', {
+				name: 'Historical',
 			});
-			const post2Link = page.getByRole('link', {
-				name: 'Test Post 2',
-			});
-
-			await expect.element(post1Link).toBeInTheDocument();
-			await expect.element(post2Link).toBeInTheDocument();
-
-			// Check that view counts are displayed
-			await expect.element(page.getByText('500')).toBeInTheDocument(); // Test Post 1 views
-			await expect.element(page.getByText('300')).toBeInTheDocument(); // Test Post 2 views
+			// 330 + 260 views, 165 + 105 visitors
+			await expect
+				.element(summary.getByText('590', { exact: true }).first())
+				.toBeInTheDocument();
+			await expect
+				.element(summary.getByText('270', { exact: true }).first())
+				.toBeInTheDocument();
 		});
 
-		test('should update table data when period selection changes', async () => {
+		test('should rank posts with links for the selected period', async () => {
 			render(StatsPage, { data: mockData });
 
-			const periodSelect = page.getByLabelText('Select time period:');
+			await page.getByRole('button', { name: '2024' }).click();
 
-			// Switch to yearly and verify data updates
-			await periodSelect.selectOptions('yearly');
-			flushSync();
+			const posts = page.getByRole('list').last();
+			await expect
+				.element(posts.getByRole('link', { name: 'Test Post 1' }))
+				.toHaveAttribute('href', '/posts/test-post-1');
+			await expect
+				.element(posts.getByRole('link', { name: 'Test Post 2' }))
+				.toHaveAttribute('href', '/posts/test-post-2');
+			// Test Post 1: 250 views in 2024; Test Post 2: 200
+			await expect
+				.poll(historical_text)
+				.toContain('1 Test Post 1 +85 125 +170 250');
+			await expect
+				.poll(historical_text)
+				.toContain('2 Test Post 2 +55 80 +140 200');
+		});
 
-			// Should show yearly data for 2024
-			await expect.element(page.getByText('500')).toBeInTheDocument();
-			await expect.element(page.getByText('300')).toBeInTheDocument();
+		test('should update the totals when the year changes', async () => {
+			render(StatsPage, { data: mockData });
 
-			// Switch to all-time and verify data updates
-			await periodSelect.selectOptions('all_time');
-			flushSync();
+			const summary = page.getByRole('region', {
+				name: 'Historical',
+			});
+			await page.getByRole('button', { name: '2023' }).click();
 
-			// Should show all-time data
-			await expect.element(page.getByText('1k')).toBeInTheDocument();
-			await expect.element(page.getByText('730')).toBeInTheDocument();
+			// 80 + 60 views in 2023
+			await expect
+				.element(summary.getByText('140', { exact: true }).first())
+				.toBeInTheDocument();
 		});
 	});
 
@@ -339,44 +283,36 @@ describe('Historical Stats Page Component', () => {
 	});
 
 	describe('Accessibility', () => {
-		test('should have proper form labels and ARIA attributes', async () => {
+		test('should label the period controls', async () => {
 			render(StatsPage, { data: mockData });
 
-			// Check that selects have proper labels
-			const periodSelect = page.getByLabelText('Select time period:');
-			await expect.element(periodSelect).toBeInTheDocument();
-
-			// When yearly is selected, year select should be labeled
-			await periodSelect.selectOptions('yearly');
-			flushSync();
-
-			const yearSelect = page.getByLabelText('Select year:');
-			await expect.element(yearSelect).toBeInTheDocument();
-
-			// When monthly is selected, month select should be labeled
-			await periodSelect.selectOptions('monthly');
-			flushSync();
-
-			const monthSelect = page.getByLabelText('Select month:');
-			await expect.element(monthSelect).toBeInTheDocument();
+			await expect
+				.element(page.getByRole('group', { name: 'Year' }))
+				.toBeInTheDocument();
+			await expect
+				.element(page.getByRole('group', { name: 'Metric' }))
+				.toBeInTheDocument();
+			await expect
+				.element(page.getByLabelText('Month'))
+				.toBeInTheDocument();
 		});
 
-		test('should have proper table structure for screen readers', async () => {
+		test('should offer the monthly chart as a table', async () => {
 			render(StatsPage, { data: mockData });
 
-			// Check table headers exist - the table headers are already tested in other tests
-			// Just verify the table structure exists
-			const table = page.getByRole('table');
+			await page.getByText('View as table').click();
+
+			const table = page.getByRole('table', {
+				name: 'Views by month and year',
+			});
 			await expect.element(table).toBeInTheDocument();
-
-			// Verify headers are present (already tested in display test)
-			const titleHeader = page.getByText('Title').first();
-			const viewsHeader = page.getByText('Views').last();
-			const visitorsHeader = page.getByText('Unique Visitors').last();
-
-			await expect.element(titleHeader).toBeInTheDocument();
-			await expect.element(viewsHeader).toBeInTheDocument();
-			await expect.element(visitorsHeader).toBeInTheDocument();
+			await expect
+				.element(table.getByRole('rowheader', { name: '2024' }))
+				.toBeInTheDocument();
+			// December 2024: 100 + 80 views
+			await expect
+				.element(table.getByRole('cell', { name: '180' }))
+				.toBeInTheDocument();
 		});
 	});
 });
