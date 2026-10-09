@@ -13,6 +13,7 @@
 		Tooltip,
 	} from 'layerchart';
 	import { cubicInOut } from 'svelte/easing';
+	import ChartViewControls from './chart-view-controls.svelte';
 	import {
 		month_labels,
 		type HistoricalMetric,
@@ -50,6 +51,18 @@
 	let rotate = $state(default_rotate);
 	let tilt = $state(default_tilt);
 	let dragging = false;
+	// Where a drag has turned the view to. Only written back when the
+	// drag ends, so the buttons turn from there: writing it every
+	// frame rebuilds the view under the pointer and the drag stutters
+	let dragged_to: { x: number; y: number } | null = null;
+
+	const commit_drag = () => {
+		dragging = false;
+		if (!dragged_to) return;
+		rotate = dragged_to.x;
+		tilt = dragged_to.y;
+		dragged_to = null;
+	};
 	// A drag that ends over a tower still fires its click
 	let pointer_down = { x: 0, y: 0 };
 
@@ -158,31 +171,14 @@
 	<span class="hidden opacity-70 sm:inline">
 		Drag to turn · select a tower to filter
 	</span>
-	<div class="join ml-auto">
-		<button
-			class="btn join-item btn-xs"
-			aria-label="Turn chart left"
-			onclick={() => turn(-45)}
-		>
-			↺
-		</button>
-		<button
-			class="btn join-item btn-xs"
-			aria-label="Turn chart right"
-			onclick={() => turn(45)}
-		>
-			↻
-		</button>
-		<button
-			class="btn join-item btn-xs {flat ? 'btn-primary' : ''}"
-			aria-pressed={flat}
-			onclick={() => (flat = !flat)}
-		>
-			Flat
-		</button>
-		<button class="btn join-item btn-xs" onclick={reset_view}>
-			Reset
-		</button>
+	<div class="ml-auto">
+		<ChartViewControls
+			label="monthly chart"
+			{flat}
+			on_turn={turn}
+			on_reset={reset_view}
+			on_flat={() => (flat = !flat)}
+		/>
 	</div>
 </div>
 
@@ -220,13 +216,10 @@
 			disablePointer: flat,
 		}}
 		onTransform={({ rotation }) => {
-			// Keep the buttons turning from wherever a drag left the view
-			if (!dragging || !rotation) return;
-			rotate = rotation.x;
-			tilt = rotation.y;
+			if (dragging && rotation) dragged_to = rotation;
 		}}
 		ondragstart={() => (dragging = true)}
-		ondragend={() => (dragging = false)}
+		ondragend={commit_drag}
 		tooltipContext={{ mode: 'manual' }}
 		padding={{ top: 16, bottom: 28, left: 40, right: 16 }}
 		clip

@@ -33,6 +33,17 @@
 	let selected_year = $state<string | null>(null);
 	let selected_month = $state<number | null>(null);
 	let show_all_posts = $state(false);
+	// The post under the pointer or focus in the list, picked out in
+	// the ridges beside it
+	let highlighted_post = $state<string | null>(null);
+
+	const highlight_row = (event: Event) => {
+		const row = (event.target as Element).closest('li');
+		const index = row
+			? [...(row.parentElement?.children ?? [])].indexOf(row)
+			: -1;
+		highlighted_post = listed_posts[index]?.slug ?? null;
+	};
 
 	// The charts only render in the browser: layerchart draws nothing
 	// on the server and fails to hydrate into the empty container.
@@ -454,7 +465,7 @@
 			</div>
 
 			<!-- Top posts + how they moved -->
-			<div class="grid gap-1.5 lg:grid-cols-2">
+			<div class="grid gap-1.5 lg:grid-cols-[2fr_3fr]">
 				<div class="min-w-0 rounded-box bg-base-200 p-4 sm:p-6">
 					<div class="mb-1 flex items-center gap-3 px-2 text-xs">
 						<h3 class="flex-1 font-semibold">
@@ -471,7 +482,12 @@
 						{@const max_value = Math.max(
 							...listed_posts.map((post) => post[metric]),
 						)}
-						<ol>
+						<ol
+							onpointerover={highlight_row}
+							onpointerleave={() => (highlighted_post = null)}
+							onfocusin={highlight_row}
+							onfocusout={() => (highlighted_post = null)}
+						>
 							{#each listed_posts as post, index (post.slug)}
 								<StatRowMulti
 									label={post.title}
@@ -510,14 +526,24 @@
 				<div class="min-w-0 rounded-box bg-base-200 p-4 sm:p-6">
 					<div class="mb-1 px-2 text-xs">
 						<h3 class="font-semibold">
-							Top {Math.min(ridge_count, ridges.length)} month by month
+							Top {Math.min(ridge_count, ridges.length)} posts, month by
+							month
 						</h3>
 						<p class="opacity-80">
-							Rows are numbered as in the list, back to front.
+							One ridge per post from the list, the top post at the
+							back.
 						</p>
 					</div>
 					{#if mounted && ridges.length > 0 && ridges[0].points.length > 1}
-						<HistoricalRidges {ridges} {metric} />
+						<HistoricalRidges
+							{ridges}
+							{metric}
+							highlighted={ridges.some(
+								(ridge) => ridge.slug === highlighted_post,
+							)
+								? highlighted_post
+								: null}
+						/>
 					{:else}
 						<div class="h-64 sm:h-96"></div>
 					{/if}

@@ -8,9 +8,13 @@
 		Chart,
 		Frame,
 		Grid,
+		Highlight,
 		isometric,
 		Svg,
+		Tooltip,
 	} from 'layerchart';
+	import { cubicInOut } from 'svelte/easing';
+	import ChartViewControls from './chart-view-controls.svelte';
 	import type { HistoricalMetric } from './stats.svelte';
 
 	export interface Ridge {
@@ -22,9 +26,54 @@
 	interface Props {
 		ridges: Ridge[];
 		metric: HistoricalMetric;
+		// A post picked out elsewhere, such as a hovered row in the list
+		highlighted?: string | null;
 	}
 
-	let { ridges, metric }: Props = $props();
+	let { ridges, metric, highlighted = null }: Props = $props();
+
+	type Point = Ridge['points'][number] & {
+		slug: string;
+		title: string;
+	};
+
+	const default_view = { rotate: -32, tilt: 66 };
+	// Seen from the front, edge on to the floor, the ridges overlap as
+	// a flat area chart
+	const flat_view = { rotate: 0, tilt: 90 };
+
+	// Narrow charts have no room for the post titles
+	let chart_width = $state(0);
+	const compact = $derived(chart_width > 0 && chart_width < 440);
+	const title_length = 20;
+
+	let flat = $state(false);
+	let rotate = $state(default_view.rotate);
+	let tilt = $state(default_view.tilt);
+	let dragging = false;
+	// Where a drag has turned the view to. Only written back when the
+	// drag ends, so the buttons turn from there: writing it every
+	// frame rebuilds the view under the pointer and the drag stutters
+	let dragged_to: { x: number; y: number } | null = null;
+
+	const commit_drag = () => {
+		dragging = false;
+		if (!dragged_to) return;
+		rotate = dragged_to.x;
+		tilt = dragged_to.y;
+		dragged_to = null;
+	};
+
+	const turn = (degrees: number) => {
+		flat = false;
+		rotate += degrees;
+	};
+
+	const reset_view = () => {
+		flat = false;
+		rotate = default_view.rotate;
+		tilt = default_view.tilt;
+	};
 
 	const hue = $derived(
 		metric === 'views'
@@ -35,7 +84,19 @@
 	const slugs = $derived(ridges.map((ridge) => ridge.slug));
 	const points = $derived(
 		ridges.flatMap((ridge) =>
-			ridge.points.map((point) => ({ ...point, slug: ridge.slug })),
+			ridge.points.map((point): Point => ({
+				...point,
+				slug: ridge.slug,
+				title: ridge.title,
+			})),
+		),
+	);
+	const points_by_slug = $derived(
+		new Map(
+			ridges.map((ridge) => [
+				ridge.slug,
+				points.filter((point) => point.slug === ridge.slug),
+			]),
 		),
 	);
 	const labels = $derived(
@@ -45,11 +106,40 @@
 		Math.max(1, ...points.map((point) => point.value)),
 	);
 
+	const row_label = (slug: string) => {
+		const index = slugs.indexOf(slug);
+		const title = ridges[index]?.title ?? '';
+		if (compact) return `${index + 1}`;
+		return title.length > title_length
+			? `${title.slice(0, title_length - 1).trimEnd()}…`
+			: title;
+	};
+
 	const tick_label =
 		'!stroke-transparent fill-[var(--color-base-content)] opacity-70 text-[11px]';
 </script>
 
-<div class="h-64 sm:h-96">
+<div
+	class="mb-2 flex flex-wrap items-center gap-x-4 gap-y-2 px-2 text-xs"
+>
+	<span class="hidden opacity-70 sm:inline">
+		Drag to turn · hover a ridge or a post in the list
+	</span>
+	<div class="ml-auto">
+		<ChartViewControls
+			label="top posts chart"
+			{flat}
+			on_turn={turn}
+			on_reset={reset_view}
+			on_flat={() => (flat = !flat)}
+		/>
+	</div>
+</div>
+
+<div
+	class="h-64 cursor-grab touch-pan-y select-none active:cursor-grabbing sm:h-96"
+	bind:clientWidth={chart_width}
+>
 	<Chart
 		data={points}
 		x="index"
@@ -61,15 +151,35 @@
 		zDomain={[0, max_value]}
 		zNice
 		zRange={({ width }: { width: number }) => [0, width * 0.28]}
-		view={isometric({ rotate: -32, tilt: 66, aspect: 1.5 })}
-		padding={{ top: 16, bottom: 36, left: 36, right: 16 }}
+		view={isometric({
+			rotate: flat ? flat_view.rotate : rotate,
+			tilt: flat ? flat_view.tilt : tilt,
+			aspect: 1.5,
+			motion: { type: 'tween', duration: 700, easing: cubicInOut },
+		})}
+		transform={{ mode: 'canvas', drag: 'rotate' }}
+		onTransform={({ rotation }) => {
+			if (dragging && rotation) dragged_to = rotation;
+		}}
+		ondragstart={() => (dragging = true)}
+		ondragend={commit_drag}
+		tooltipContext={{ mode: 'quadtree' }}
+		padding={{
+			top: 16,
+			bottom: 36,
+			left: compact || flat ? 36 : 128,
+			right: 32,
+		}}
 		clip
 	>
 		{#snippet children({ context })}
 			{@const matrix = context.isometricMatrix}
+			<!-- The ridge under the pointer, else the one picked in the list -->
+			{@const active =
+				(context.tooltip.data as Point | null)?.slug ?? highlighted}
 			<Svg>
 				<Frame
-					class="fill-(--color-base-content)/3 stroke-(--color-base-content)/15"
+					class="fill-[var(--color-base-content)]/3 stroke-[var(--color-base-content)]/15"
 				/>
 				<Grid
 					z
@@ -84,12 +194,15 @@
 					tickLabelProps={{ viewport: true }}
 					classes={{ tickLabel: tick_label }}
 				/>
-				<Axis
-					placement="left"
-					format={(slug: string) => `${slugs.indexOf(slug) + 1}`}
-					tickLabelProps={{ viewport: true }}
-					classes={{ tickLabel: tick_label }}
-				/>
+				<!-- Seen from the front, the rows line up behind one another -->
+				{#if !flat}
+					<Axis
+						placement="left"
+						format={row_label}
+						tickLabelProps={{ viewport: true }}
+						classes={{ tickLabel: tick_label }}
+					/>
+				{/if}
 				<Axis
 					placement="back"
 					ticks={3}
@@ -99,15 +212,46 @@
 				<!-- Back to front: each curtain stands in its own row, so
 				     the farther rows are drawn first -->
 				{#each [...ridges].sort( (a, b) => (matrix ? matrix.d * (context.yScale(a.slug) - context.yScale(b.slug)) : 0) ) as ridge (ridge.slug)}
+					{@const faded = active !== null && active !== ridge.slug}
 					<Area
-						data={points.filter((point) => point.slug === ridge.slug)}
+						data={points_by_slug.get(ridge.slug)}
 						curve={curveMonotoneX}
 						fill={hue}
-						fillOpacity={0.55}
-						line={{ stroke: hue, strokeWidth: 2 }}
+						fillOpacity={faded ? 0.12 : active ? 0.75 : 0.55}
+						line={{
+							stroke: hue,
+							strokeWidth: 2,
+							opacity: faded ? 0.35 : 1,
+						}}
 					/>
 				{/each}
+				<Highlight points />
 			</Svg>
+
+			<Tooltip.Root
+				variant="none"
+				classes={{
+					container:
+						'bg-base-100 text-base-content rounded-lg border border-base-300 px-3 py-2 text-sm shadow-lg max-w-64',
+				}}
+			>
+				{#snippet children({ data }: { data: Point })}
+					<Tooltip.Header>
+						<span class="text-xs font-medium text-base-content/70">
+							{data.label}
+						</span>
+					</Tooltip.Header>
+					<p class="mb-1 text-sm font-medium text-wrap">
+						{slugs.indexOf(data.slug) + 1}. {data.title}
+					</p>
+					<Tooltip.List>
+						<Tooltip.Item
+							label={metric === 'views' ? 'Views' : 'Visitors'}
+							value={number_crunch(data.value)}
+						/>
+					</Tooltip.List>
+				{/snippet}
+			</Tooltip.Root>
 		{/snippet}
 	</Chart>
 </div>

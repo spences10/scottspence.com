@@ -1,4 +1,5 @@
 import type { StatsPeriod } from '#lib/analytics/period-stats.remote.js';
+import { settled } from 'svelte';
 
 // Live stats types
 export type LiveStats = {
@@ -35,6 +36,43 @@ export interface SiteStat {
 	yearly_stats: YearlyStats[];
 	all_time_stats: Stats;
 }
+
+/**
+ * A copy of a value taken once pending async work has settled
+ * An isometric chart updated during a pending async batch recomputes
+ * its derived state on every read and locks the page up, so the 3D
+ * charts draw from this rather than from the period queries directly
+ */
+export const settled_copy = <T>(
+	get: () => T,
+	initial: T,
+	on_update?: () => void,
+) => {
+	let current = $state.raw(initial);
+
+	$effect(() => {
+		const next = get();
+		let cancelled = false;
+		// Written from a task of its own, clear of the batch that
+		// `settled` resolves in
+		settled().then(() =>
+			setTimeout(() => {
+				if (cancelled) return;
+				current = next;
+				on_update?.();
+			}),
+		);
+		return () => {
+			cancelled = true;
+		};
+	});
+
+	return {
+		get current() {
+			return current;
+		},
+	};
+};
 
 // One month of traffic summed across every post
 export interface MonthCell {
