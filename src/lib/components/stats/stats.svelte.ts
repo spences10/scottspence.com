@@ -144,6 +144,16 @@ export const smooth_curve = (
 	return curve;
 };
 
+/**
+ * Gradient stops for a tower's faces: the colour fading towards the
+ * floor. It fades to a paler tone rather than to nothing, as a box
+ * you can see through shows the towers standing behind it.
+ */
+export const tower_gradient = (colour: string) => [
+	colour,
+	`color-mix(in oklab, ${colour} 50%, var(--color-base-200))`,
+];
+
 // One month of traffic summed across every post
 export interface MonthCell {
 	year: string;

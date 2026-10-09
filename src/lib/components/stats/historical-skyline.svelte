@@ -8,6 +8,7 @@
 		Frame,
 		Grid,
 		isometric,
+		LinearGradient,
 		Svg,
 		Text,
 		Tooltip,
@@ -16,6 +17,7 @@
 	import ChartViewControls from './chart-view-controls.svelte';
 	import {
 		month_labels,
+		tower_gradient,
 		type HistoricalMetric,
 		type MonthCell,
 	} from './stats.svelte';
@@ -86,6 +88,9 @@
 	);
 	const selected_fill = 'var(--color-accent)';
 	const fills = $derived([...ramp, ...muted_ramp, selected_fill]);
+	// Each fill is drawn as a gradient of its own, down every face
+	const uid = $props.id();
+	const gradient_id = (index: number) => `${uid}-fill-${index}`;
 
 	const max_value = $derived(
 		Math.max(1, ...cells.map((cell) => cell[metric])),
@@ -204,7 +209,7 @@
 		c="fill"
 		cScale={scaleOrdinal()}
 		cDomain={fills}
-		cRange={fills}
+		cRange={fills.map((_, index) => `url(#${gradient_id(index)})`)}
 		view={isometric({
 			rotate: flat ? 0 : rotate,
 			tilt: flat ? 0 : tilt,
@@ -225,6 +230,13 @@
 		clip
 	>
 		<Svg>
+			{#each fills as colour, index (index)}
+				<LinearGradient
+					id={gradient_id(index)}
+					stops={tower_gradient(colour)}
+					vertical
+				/>
+			{/each}
 			<Frame
 				class="fill-(--color-base-content)/3 stroke-(--color-base-content)/15"
 			/>

@@ -8,12 +8,13 @@
 		Frame,
 		Grid,
 		isometric,
+		LinearGradient,
 		Svg,
 		Tooltip,
 	} from 'layerchart';
 	import { cubicInOut } from 'svelte/easing';
 	import ChartViewControls from './chart-view-controls.svelte';
-	import { settled_copy } from './stats.svelte';
+	import { settled_copy, tower_gradient } from './stats.svelte';
 
 	export interface BreakdownRow {
 		label: string;
@@ -27,6 +28,10 @@
 	}
 
 	let { title, rows }: Props = $props();
+
+	// Each series is drawn as a gradient of its own, down every face
+	const uid = $props.id();
+	const gradient_id = (key: string) => `${uid}-fill-${key}`;
 
 	type Series = 'views' | 'visitors';
 	type Tower = BreakdownRow & { series: Series; value: number };
@@ -135,7 +140,7 @@
 			c="series"
 			cScale={scaleOrdinal()}
 			cDomain={series.map((item) => item.key)}
-			cRange={series.map((item) => item.colour)}
+			cRange={series.map((item) => `url(#${gradient_id(item.key)})`)}
 			view={isometric({
 				rotate,
 				tilt,
@@ -154,6 +159,13 @@
 			clip
 		>
 			<Svg>
+				{#each series as item (item.key)}
+					<LinearGradient
+						id={gradient_id(item.key)}
+						stops={tower_gradient(item.colour)}
+						vertical
+					/>
+				{/each}
 				<Frame
 					class="fill-(--color-base-content)/3 stroke-(--color-base-content)/15"
 				/>
