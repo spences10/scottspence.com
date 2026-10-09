@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import {
+	format_duration,
 	format_period_stats,
+	get_delta,
 	get_period_boundaries,
 	get_period_label,
-	get_delta,
 	get_previous_window,
+	summarise_visits,
 	to_counts_lookup,
 } from './period-stats.helpers';
 
@@ -238,5 +240,75 @@ describe('get_previous_window', () => {
 		expect(window.from_date).toBe('2026-02-02');
 		expect(window.to_date).toBe('2026-03-05');
 		expect(window.partial_weight).toBe(1);
+	});
+});
+
+describe('summarise_visits', () => {
+	const visit = (
+		visitor_hash: string,
+		pages: number,
+		duration_ms: number,
+		entry_path: string,
+		exit_path = entry_path,
+	) => ({ visitor_hash, pages, duration_ms, entry_path, exit_path });
+
+	it('calculates bounce rate from single-page visits', () => {
+		const result = summarise_visits([
+			visit('a', 1, 0, '/'),
+			visit('b', 1, 0, '/posts/one'),
+			visit('c', 1, 0, '/'),
+			visit('d', 3, 120_000, '/', '/posts/two'),
+		]);
+
+		expect(result.visits).toBe(4);
+		expect(result.bounce_rate).toBe(75);
+	});
+
+	it('averages time on site over multi-page visits only', () => {
+		const result = summarise_visits([
+			visit('a', 1, 0, '/'),
+			visit('b', 2, 60_000, '/'),
+			visit('c', 4, 180_000, '/'),
+		]);
+
+		expect(result.avg_duration_ms).toBe(120_000);
+	});
+
+	it('ranks entry and exit pages by visitors', () => {
+		const result = summarise_visits([
+			visit('a', 2, 1000, '/', '/posts/one'),
+			visit('a', 2, 1000, '/', '/posts/one'),
+			visit('b', 2, 1000, '/posts/one', '/'),
+			visit('c', 2, 1000, '/posts/one', '/posts/one'),
+		]);
+
+		expect(result.entry_pages).toEqual([
+			{ path: '/posts/one', views: 2, visitors: 2 },
+			{ path: '/', views: 2, visitors: 1 },
+		]);
+		expect(result.exit_pages[0]).toEqual({
+			path: '/posts/one',
+			views: 3,
+			visitors: 2,
+		});
+	});
+
+	it('handles no visits', () => {
+		expect(summarise_visits([])).toEqual({
+			visits: 0,
+			bounce_rate: 0,
+			avg_duration_ms: 0,
+			entry_pages: [],
+			exit_pages: [],
+		});
+	});
+});
+
+describe('format_duration', () => {
+	it('formats milliseconds as mm:ss', () => {
+		expect(format_duration(0)).toBe('00:00');
+		expect(format_duration(178_000)).toBe('02:58');
+		expect(format_duration(-39_000)).toBe('00:39');
+		expect(format_duration(3_723_000)).toBe('62:03');
 	});
 });

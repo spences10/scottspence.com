@@ -1,10 +1,10 @@
-import { query } from '$app/server';
 import {
 	CACHE_DURATIONS,
 	get_from_cache,
 	set_cache,
 } from '#lib/cache/server-cache.js';
 import { sqlite_client } from '#lib/sqlite/client.js';
+import { query } from '$app/server';
 import * as v from 'valibot';
 import { get_blocked_domains_array } from './blocked-domains';
 import { BOT_THRESHOLDS } from './bot-thresholds';
@@ -12,16 +12,20 @@ import {
 	format_period_stats,
 	get_period_boundaries,
 	get_previous_window,
+	summarise_visits,
 	to_counts_lookup,
+	VISIT_TIMEOUT_MS,
 	type FilterMode,
 	type PeriodComparison,
 	type PeriodCounts,
 	type PeriodStats,
 	type StatsPeriod,
+	type VisitRow,
+	type VisitStats,
 } from './period-stats.helpers';
+import { aggregate_referrers } from './referrer-normalisation';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
-import { aggregate_referrers } from './referrer-normalisation';
 
 // Re-export types for consumers
 export type {
@@ -190,6 +194,53 @@ const get_raw_counts_by = (
 };
 
 /**
+ * Visits from raw page views: a visitor's views are split into visits
+ * wherever the gap between them exceeds VISIT_TIMEOUT_MS
+ */
+const get_visit_stats = (
+	start: number,
+	end: number,
+	bot_condition: string,
+	bot_args: (string | number)[],
+): VisitStats => {
+	const result = sqlite_client.execute({
+		sql: `WITH page_views AS (
+			SELECT id, visitor_hash, path, created_at,
+				LAG(created_at) OVER (
+					PARTITION BY visitor_hash ORDER BY created_at, id
+				) AS previous_at
+			FROM analytics_events
+			WHERE created_at >= ? AND created_at < ?
+				AND event_type = 'page_view'
+				${bot_condition}
+		),
+		numbered AS (
+			SELECT id, visitor_hash, path, created_at,
+				SUM(previous_at IS NULL OR created_at - previous_at > ?) OVER (
+					PARTITION BY visitor_hash ORDER BY created_at, id
+				) AS visit_number
+			FROM page_views
+		)
+		SELECT DISTINCT
+			visitor_hash,
+			visit_number,
+			COUNT(*) OVER visit AS pages,
+			MAX(created_at) OVER visit - MIN(created_at) OVER visit AS duration_ms,
+			FIRST_VALUE(path) OVER (
+				PARTITION BY visitor_hash, visit_number ORDER BY created_at, id
+			) AS entry_path,
+			FIRST_VALUE(path) OVER (
+				PARTITION BY visitor_hash, visit_number
+				ORDER BY created_at DESC, id DESC
+			) AS exit_path
+		FROM numbered
+		WINDOW visit AS (PARTITION BY visitor_hash, visit_number)`,
+		args: [start, end, ...bot_args, VISIT_TIMEOUT_MS],
+	});
+	return summarise_visits(result.rows as VisitRow[]);
+};
+
+/**
  * Stats for the period before the selected one, used for deltas
  *
  * - today: the same time window yesterday, from raw events (all breakdowns)
@@ -222,8 +273,19 @@ const get_previous_stats = (
 		) =>
 			get_raw_counts_by(column, start, end, bot_condition, bot_args);
 
+		const visits = get_visit_stats(
+			start,
+			end,
+			bot_condition,
+			bot_args,
+		);
+
 		return {
 			label: 'the same time yesterday',
+			visits: {
+				bounce_rate: visits.bounce_rate,
+				avg_duration_ms: visits.avg_duration_ms,
+			},
 			views: (totals?.views as number) ?? 0,
 			unique_visitors: (totals?.unique_visitors as number) ?? 0,
 			pages: by('path'),
@@ -248,6 +310,7 @@ const get_previous_stats = (
 		browsers: null,
 		devices: null,
 		referrers: null,
+		visits: null,
 	};
 
 	if (period === 'yesterday') {
@@ -685,6 +748,13 @@ export const get_period_stats = query(
 			end,
 		});
 
+		// Bounce rate, time on site and entry/exit pages need raw events,
+		// which only cover today and yesterday
+		const visits =
+			period === 'today' || period === 'yesterday'
+				? get_visit_stats(start, end, bot_condition, bot_args)
+				: null;
+
 		const result = format_period_stats(
 			period as StatsPeriod,
 			mode,
@@ -696,6 +766,7 @@ export const get_period_stats = query(
 			devices,
 			referrers,
 			previous,
+			visits,
 		);
 
 		// Cache the result

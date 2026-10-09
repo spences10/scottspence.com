@@ -26,6 +26,96 @@ export type PeriodStats = {
 	devices: { device_type: string; views: number; visitors: number }[];
 	referrers: { referrer: string; views: number; visitors: number }[];
 	previous: PeriodComparison | null;
+	// Only for periods still covered by raw events (today, yesterday)
+	visits: VisitStats | null;
+};
+
+/**
+ * A visit: one visitor's page views with no gap longer than
+ * VISIT_TIMEOUT_MS between them
+ */
+export type VisitRow = {
+	visitor_hash: string;
+	pages: number;
+	duration_ms: number;
+	entry_path: string;
+	exit_path: string;
+};
+
+export type VisitStats = {
+	visits: number;
+	// Share of visits with a single page view, 0-100
+	bounce_rate: number;
+	// Averaged over visits with more than one page view, since a
+	// single page view has no measurable duration
+	avg_duration_ms: number;
+	// `views` here is the number of visits entering/exiting on the page
+	entry_pages: { path: string; views: number; visitors: number }[];
+	exit_pages: { path: string; views: number; visitors: number }[];
+};
+
+export const VISIT_TIMEOUT_MS = 30 * 60 * 1000;
+
+const rank_visit_pages = (
+	rows: VisitRow[],
+	key: 'entry_path' | 'exit_path',
+	limit: number,
+) => {
+	const pages = new Map<
+		string,
+		{ views: number; visitors: Set<string> }
+	>();
+	for (const row of rows) {
+		const page = pages.get(row[key]) ?? {
+			views: 0,
+			visitors: new Set<string>(),
+		};
+		page.views++;
+		page.visitors.add(row.visitor_hash);
+		pages.set(row[key], page);
+	}
+	return [...pages.entries()]
+		.map(([path, page]) => ({
+			path,
+			views: page.views,
+			visitors: page.visitors.size,
+		}))
+		.sort((a, b) => b.visitors - a.visitors || b.views - a.views)
+		.slice(0, limit);
+};
+
+/**
+ * Summarise visits into bounce rate, time on site and entry/exit pages
+ */
+export const summarise_visits = (
+	rows: VisitRow[],
+	limit = 10,
+): VisitStats => {
+	const engaged = rows.filter((row) => row.pages > 1);
+	return {
+		visits: rows.length,
+		bounce_rate:
+			rows.length > 0
+				? ((rows.length - engaged.length) / rows.length) * 100
+				: 0,
+		avg_duration_ms:
+			engaged.length > 0
+				? engaged.reduce((sum, row) => sum + row.duration_ms, 0) /
+					engaged.length
+				: 0,
+		entry_pages: rank_visit_pages(rows, 'entry_path', limit),
+		exit_pages: rank_visit_pages(rows, 'exit_path', limit),
+	};
+};
+
+/**
+ * Format a duration as mm:ss
+ */
+export const format_duration = (ms: number): string => {
+	const total_seconds = Math.round(Math.abs(ms) / 1000);
+	const minutes = Math.floor(total_seconds / 60);
+	const seconds = total_seconds % 60;
+	return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 };
 
 export type PeriodCounts = { views: number; visitors: number };
@@ -43,6 +133,7 @@ export type PeriodComparison = {
 	browsers: Record<string, PeriodCounts> | null;
 	devices: Record<string, PeriodCounts> | null;
 	referrers: Record<string, PeriodCounts> | null;
+	visits: { bounce_rate: number; avg_duration_ms: number } | null;
 };
 
 /**
@@ -179,6 +270,7 @@ export const format_period_stats = (
 	devices: { device_type: string; views: number; visitors: number }[],
 	referrers: { referrer: string; views: number; visitors: number }[],
 	previous: PeriodComparison | null = null,
+	visits: VisitStats | null = null,
 ): PeriodStats => ({
 	period,
 	period_label: get_period_label(period),
@@ -193,4 +285,5 @@ export const format_period_stats = (
 	devices,
 	referrers,
 	previous,
+	visits,
 });

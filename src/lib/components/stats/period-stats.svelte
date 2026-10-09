@@ -3,7 +3,6 @@
 		get_chart_data,
 		type ChartData,
 	} from '#lib/analytics/chart-data.remote.js';
-	import { get_delta } from '#lib/analytics/period-stats.helpers.js';
 	import {
 		sort_engagement_stats,
 		type EngagementSortMode,
@@ -14,6 +13,10 @@
 	} from '#lib/analytics/engagement-stats.remote.js';
 	import { get_live_stats_breakdown } from '#lib/analytics/live-analytics.remote.js';
 	import {
+		format_duration,
+		get_delta,
+	} from '#lib/analytics/period-stats.helpers.js';
+	import {
 		get_period_stats,
 		type FilterMode,
 		type PeriodCounts,
@@ -22,7 +25,6 @@
 	} from '#lib/analytics/period-stats.remote.js';
 	import { InformationCircle } from '#lib/icons/index.js';
 	import { number_crunch } from '#lib/utils/index.js';
-	import { onMount } from 'svelte';
 	import { scaleTime } from 'd3-scale';
 	import { curveMonotoneX } from 'd3-shape';
 	import {
@@ -34,6 +36,7 @@
 		Svg,
 		Tooltip,
 	} from 'layerchart';
+	import { onMount } from 'svelte';
 	import LiveDashboard from './live-dashboard.svelte';
 	import { get_referrer_icon } from './referrer-icons.js';
 	import StatRowMulti from './stat-row-multi.svelte';
@@ -92,6 +95,70 @@
 
 	const format_delta = (delta: number) =>
 		`${delta > 0 ? '+' : delta < 0 ? '−' : ''}${number_crunch(Math.abs(delta))}`;
+
+	type SummaryDelta = { text: string; good: boolean } | null;
+
+	const count_delta = (
+		current: number,
+		before: number | null | undefined,
+	): SummaryDelta => {
+		const delta = get_delta(current, before);
+		return delta
+			? { text: format_delta(delta), good: delta > 0 }
+			: null;
+	};
+
+	// Bounce rate, time on site and entry/exit pages (today and yesterday)
+	const visits = $derived(period_stats?.visits ?? null);
+
+	const duration_delta = $derived.by((): SummaryDelta => {
+		const delta = get_delta(
+			visits?.avg_duration_ms ?? 0,
+			previous?.visits?.avg_duration_ms,
+		);
+		if (!visits || delta === null || Math.abs(delta) < 1000)
+			return null;
+		return {
+			text: `${delta > 0 ? '+' : '−'}${format_duration(delta)}`,
+			good: delta > 0,
+		};
+	});
+
+	// A lower bounce rate is the good direction
+	const bounce_delta = $derived.by((): SummaryDelta => {
+		const delta = get_delta(
+			visits?.bounce_rate ?? 0,
+			previous?.visits?.bounce_rate,
+		);
+		if (!visits || delta === null || Math.round(delta) === 0)
+			return null;
+		return {
+			text: `${delta > 0 ? '+' : '−'}${Math.abs(Math.round(delta))}%`,
+			good: delta < 0,
+		};
+	});
+
+	type PagesTab = 'pages' | 'entry' | 'exit';
+	const pages_tabs: { id: PagesTab; label: string; count: string }[] =
+		[
+			{ id: 'pages', label: 'Pages', count: 'Views' },
+			{ id: 'entry', label: 'Entry pages', count: 'Entries' },
+			{ id: 'exit', label: 'Exit pages', count: 'Exits' },
+		];
+	let selected_pages_tab = $state<PagesTab>('pages');
+	// Entry and exit pages only exist where there is visit data
+	const pages_tab = $derived(
+		pages_tabs.find(
+			(tab) => visits && tab.id === selected_pages_tab,
+		) ?? pages_tabs[0],
+	);
+	const page_rows = $derived(
+		pages_tab.id === 'entry'
+			? (visits?.entry_pages ?? [])
+			: pages_tab.id === 'exit'
+				? (visits?.exit_pages ?? [])
+				: (period_stats?.top_pages.slice(0, 10) ?? []),
+	);
 
 	const views_per_visitor = $derived(
 		period_stats && period_stats.unique_visitors > 0
@@ -203,18 +270,18 @@
 				{#snippet summary_item(
 					label: string,
 					value: string | number,
-					delta: number | null = null,
+					delta: SummaryDelta = null,
 				)}
 					<div class="flex flex-col-reverse">
 						<dt class="text-sm">
 							<span class="opacity-80">{label}</span>
 							{#if delta}
 								<span
-									class="ml-1 text-xs tabular-nums {delta > 0
+									class="ml-1 text-xs tabular-nums {delta.good
 										? 'text-success'
 										: 'text-error'}"
 								>
-									{format_delta(delta)}
+									{delta.text}
 								</span>
 							{/if}
 						</dt>
@@ -247,7 +314,7 @@
 						? 'Bot visitors'
 						: 'Site visitors',
 					number_crunch(period_stats.unique_visitors),
-					get_delta(
+					count_delta(
 						period_stats.unique_visitors,
 						previous?.unique_visitors,
 					),
@@ -257,17 +324,37 @@
 						? 'Bot pageviews'
 						: 'Pageviews',
 					number_crunch(period_stats.views),
-					get_delta(period_stats.views, previous?.views),
+					count_delta(period_stats.views, previous?.views),
 				)}
-				{@render summary_item('Views per visitor', views_per_visitor)}
-				{@render summary_item(
-					'Countries',
-					period_stats.countries.length,
-				)}
-				{@render summary_item(
-					'Pages with traffic',
-					number_crunch(period_stats.top_pages.length),
-				)}
+				{#if visits}
+					{@render summary_item(
+						'Avg time on site',
+						format_duration(visits.avg_duration_ms),
+						duration_delta,
+					)}
+					{@render summary_item(
+						'Bounce rate',
+						`${Math.round(visits.bounce_rate)}%`,
+						bounce_delta,
+					)}
+					{@render summary_item(
+						'Views per visitor',
+						views_per_visitor,
+					)}
+				{:else}
+					{@render summary_item(
+						'Views per visitor',
+						views_per_visitor,
+					)}
+					{@render summary_item(
+						'Countries',
+						period_stats.countries.length,
+					)}
+					{@render summary_item(
+						'Pages with traffic',
+						number_crunch(period_stats.top_pages.length),
+					)}
+				{/if}
 			</dl>
 			{#if previous}
 				<p class="mt-4 text-xs opacity-70">
@@ -478,17 +565,48 @@
 			class:opacity-60={period_loading}
 		>
 			<div class="min-w-0 rounded-box bg-base-200 p-4 sm:p-6">
-				{@render panel_header('Pages')}
-				{#if period_stats.top_pages.length > 0}
-					{@const top_pages = period_stats.top_pages.slice(0, 10)}
+				{#if visits}
+					<div class="mb-1 flex items-center gap-3 px-2 text-xs">
+						<h2 class="sr-only">Pages</h2>
+						<div
+							class="flex flex-1 flex-wrap gap-x-3"
+							role="group"
+							aria-label="Page list"
+						>
+							{#each pages_tabs as tab (tab.id)}
+								<button
+									class="cursor-pointer rounded {pages_tab.id ===
+									tab.id
+										? 'font-semibold underline underline-offset-4'
+										: 'link-hover opacity-80'}"
+									aria-pressed={pages_tab.id === tab.id}
+									onclick={() => (selected_pages_tab = tab.id)}
+								>
+									{tab.label}
+								</button>
+							{/each}
+						</div>
+						<span class="w-14 text-right opacity-80 sm:w-20">
+							Visitors
+						</span>
+						<span class="w-14 text-right opacity-80 sm:w-20">
+							{pages_tab.count}
+						</span>
+					</div>
+				{:else}
+					{@render panel_header('Pages')}
+				{/if}
+				{#if page_rows.length > 0}
 					{@const max_visitors = Math.max(
-						...top_pages.map((p) => p.visitors),
+						...page_rows.map((p) => p.visitors),
 					)}
 					<ul>
-						{#each top_pages as page (page.path)}
+						{#each page_rows as page (page.path)}
 							<StatRowMulti
 								label={page.path}
-								previous={previous_for(previous?.pages, page.path)}
+								previous={pages_tab.id === 'pages'
+									? previous_for(previous?.pages, page.path)
+									: null}
 								{format_delta}
 								visitors={page.visitors}
 								views={page.views}
