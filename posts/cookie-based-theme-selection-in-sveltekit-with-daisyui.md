@@ -198,7 +198,7 @@ in a select element.
 <div class="mb-8">
 	<select
 		data-choose-theme
-		class="select select-bordered select-primary w-full max-w-3xl text-xl capitalize"
+		class="select-bordered select w-full max-w-3xl text-xl capitalize select-primary"
 	>
 		<option disabled selected>Choose a theme</option>
 		{#each themes as theme}
@@ -235,7 +235,7 @@ to the function.
 <div class="mb-8">
 	<select
 		data-choose-theme
-		class="select select-bordered select-primary w-full max-w-3xl text-xl capitalize"
+		class="select-bordered select w-full max-w-3xl text-xl capitalize select-primary"
 		on:change={set_theme}
 	>
 		<option disabled selected> Choose a theme </option>
@@ -303,7 +303,7 @@ current theme variable to the theme from `localStorage`.
 	<select
 		bind:value={current_theme}
 		data-choose-theme
-		class="select select-bordered select-primary w-full max-w-3xl text-xl capitalize"
+		class="select-bordered select w-full max-w-3xl text-xl capitalize select-primary"
 		on:change={set_theme}
 	>
 		<option value="" disabled={current_theme !== ''}>

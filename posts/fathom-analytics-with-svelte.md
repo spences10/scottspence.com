@@ -327,8 +327,8 @@ this button in the `src/routes/+page.svelte` file for now.
 
 <h1>Welcome to SvelteKit</h1>
 <p>
-	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
-	documentation
+	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read
+	the documentation
 </p>
 
 <button on:click={() => trackGoal(`H1CCQXUL`, 100)}>

@@ -93,16 +93,9 @@ and it wasn't until I found [this article] that I realised that I was
 adding the fallback in the wrong place.
 
 ```css
-background: linear-gradient(
-	var(
-		--title-gradient-from,
-		$ {({theme}) => theme.colours.primary[200]}
-	),
-	var(
-		--title-gradient-to,
-		$ {({theme}) => theme.colours.primary[500]}
-	)
-);
+background: linear-gradient(var(--title-gradient-from, $ {({theme}) =>
+	theme.colours.primary[200]}), var(--title-gradient-to, $ {({theme})
+	=> theme.colours.primary[500]}));
 -webkit-background-clip: text;
 background-clip: text;
 -webkit-text-fill-color: transparent;

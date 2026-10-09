@@ -163,7 +163,7 @@ as well:
 	import '../app.postcss';
 </script>
 
-<main class="prose prose-xl container mx-auto max-w-3xl px-4">
+<main class="container mx-auto prose prose-xl max-w-3xl px-4">
 	<slot />
 </main>
 ```
@@ -379,7 +379,7 @@ In `src/lib/theme-select.svelte` I'll copy the code from the
 	<select
 		bind:value={current_theme}
 		data-choose-theme
-		class="select select-bordered select-primary w-full max-w-3xl text-xl capitalize"
+		class="select-bordered select w-full max-w-3xl text-xl capitalize select-primary"
 		on:change={set_theme}
 	>
 		<option value="" disabled={current_theme !== ''}>
@@ -429,7 +429,7 @@ in the project (which is none but a good practice).
 </script>
 
 <ThemeSelect />
-<main class="prose prose-xl container mx-auto max-w-3xl px-4">
+<main class="container mx-auto prose prose-xl max-w-3xl px-4">
 	<slot />
 </main>
 ```

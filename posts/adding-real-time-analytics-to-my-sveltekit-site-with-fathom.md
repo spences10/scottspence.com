@@ -344,7 +344,7 @@ Which I can use in the navbar end:
 ```svelte
 <div class="navbar-end">
 	<p
-		class="bg-secondary text-secondary-content cursor-pointer rounded-xl px-2 text-sm font-semibold tracking-wide"
+		class="cursor-pointer rounded-xl bg-secondary px-2 text-sm font-semibold tracking-wide text-secondary-content"
 	>
 		{visitors} Live Visitors
 	</p>
@@ -381,18 +381,18 @@ This is what the navbar looks like now:
 	export let visitors: number;
 </script>
 
-<div class="navbar bg-neutral text-neutral-content mb-10 shadow-lg">
-	<div class="navbar-start mx-2 px-2">
+<div class="navbar mb-10 bg-neutral text-neutral-content shadow-lg">
+	<div class="mx-2 navbar-start px-2">
 		<!-- cSpell:disable -->
 		<a href="/" on:click={() => trackGoal(`KWOYX0PK`, 0)}>
 			<span class="text-lg font-bold">SvelteKit and Fathom</span>
 		</a>
 		<!-- cSpell:enable -->
 	</div>
-	<div class="navbar-center mx-2 hidden px-2 lg:flex">
+	<div class="mx-2 navbar-center hidden px-2 lg:flex">
 		<div class="flex items-stretch">
 			{#each links as { href, text }}
-				<a {href} class="btn-ghost rounded-btn btn-sm btn">
+				<a {href} class="rounded-btn btn btn-ghost btn-sm">
 					{text}
 				</a>
 			{/each}
@@ -400,7 +400,7 @@ This is what the navbar looks like now:
 	</div>
 	<div class="navbar-end">
 		<p
-			class="bg-secondary text-secondary-content cursor-pointer rounded-xl px-2 text-sm font-semibold tracking-wide"
+			class="cursor-pointer rounded-xl bg-secondary px-2 text-sm font-semibold tracking-wide text-secondary-content"
 		>
 			{visitors} Live Visitors
 		</p>
@@ -1222,7 +1222,7 @@ Then in the component I'll need to accept the analytics data as
 </script>
 
 <div
-	class="stats stats-vertical border-secondary md:stats-horizontal mb-8 w-full border shadow-lg"
+	class="stats mb-8 w-full stats-vertical border border-secondary shadow-lg md:stats-horizontal"
 >
 	<div class="stat">
 		<div class="stat-title">Entries</div>

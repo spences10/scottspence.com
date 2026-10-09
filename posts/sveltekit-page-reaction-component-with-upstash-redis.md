@@ -168,7 +168,7 @@ reactions from the config file and use them in the component.
 				name="reaction"
 				type="submit"
 				value={reaction.type}
-				class="btn btn-primary shadow-xl text-3xl font-bold"
+				class="btn text-3xl font-bold shadow-xl btn-primary"
 			>
 				<span>
 					{reaction.emoji}
@@ -210,8 +210,8 @@ stick the component on the index page.
 
 <h1>Welcome to SvelteKit</h1>
 <p>
-	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
-	documentation
+	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read
+	the documentation
 </p>
 
 <Reactions />
@@ -409,8 +409,8 @@ I'll also add in a `pre` tag to visually see the shape of the data.
 
 <h1>Welcome to SvelteKit</h1>
 <p>
-	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
-	documentation
+	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read
+	the documentation
 </p>
 
 <Reactions {data} />
@@ -440,7 +440,7 @@ of the data.
 				name="reaction"
 				type="submit"
 				value={reaction.type}
-				class="btn btn-primary shadow-xl text-3xl font-bold"
+				class="btn text-3xl font-bold shadow-xl btn-primary"
 			>
 				<span>
 					{reaction.emoji}
@@ -515,7 +515,7 @@ of the `data` prop that's being passed in for each reaction type.
 				name="reaction"
 				type="submit"
 				value={reaction.type}
-				class="btn btn-primary shadow-xl text-3xl font-bold"
+				class="btn text-3xl font-bold shadow-xl btn-primary"
 			>
 				<span>
 					{reaction.emoji}
@@ -626,7 +626,7 @@ and `enhance` added:
 				name="reaction"
 				type="submit"
 				value={reaction.type}
-				class="btn btn-primary shadow-xl text-3xl font-bold"
+				class="btn text-3xl font-bold shadow-xl btn-primary"
 			>
 				<span>
 					{reaction.emoji}
@@ -812,7 +812,7 @@ Here's the full `reactions.svelte` component now:
 				name="reaction"
 				type="submit"
 				value={reaction.type}
-				class="btn btn-primary shadow-xl text-3xl font-bold"
+				class="btn text-3xl font-bold shadow-xl btn-primary"
 				disabled={$button_disabled}
 			>
 				<span>

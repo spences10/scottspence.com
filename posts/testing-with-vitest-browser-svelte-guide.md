@@ -340,7 +340,7 @@ Aight! So, let's go through some of the examples in
 	aria-disabled={disabled || loading}
 >
 	{#if loading}
-		<span class="loading loading-spinner loading-sm"></span>
+		<span class="loading loading-sm loading-spinner"></span>
 		Loading...
 	{:else}
 		{@render children?.()}
@@ -702,7 +702,7 @@ this store:
 	import { counter_state } from '$lib/stores/counter.svelte.js';
 </script>
 
-<div class="card bg-base-100 w-96 shadow-xl">
+<div class="card w-96 bg-base-100 shadow-xl">
 	<div class="card-body">
 		<h2 class="card-title">Counter: {counter_state.count}</h2>
 		<p>Doubled: {counter_state.doubled}</p>
@@ -740,7 +740,7 @@ this store:
 			<input
 				id="multiplier"
 				type="number"
-				class="input input-bordered"
+				class="input-bordered input"
 				bind:value={counter_state.multiplier}
 				data-testid="multiplier-input"
 			/>
@@ -973,7 +973,7 @@ And a blog post component that uses our universal state:
 	type="article"
 />
 
-<article class="prose lg:prose-xl mx-auto">
+<article class="mx-auto prose lg:prose-xl">
 	<header class="mb-8">
 		<h1 class="mb-4 text-4xl font-bold">{title}</h1>
 		<div class="mb-4 text-gray-600">
@@ -991,7 +991,7 @@ And a blog post component that uses our universal state:
 			<p class="text-sm">
 				Page views simulation: {counter_state.count}
 				<button
-					class="btn btn-xs btn-primary ml-2"
+					class="btn ml-2 btn-primary btn-xs"
 					onclick={() => counter_state.increment()}
 				>
 					+1
@@ -1329,13 +1329,13 @@ Then create `src/routes/contact/+page.svelte`:
 	<h1 class="mb-6 text-3xl font-bold">Contact Me</h1>
 
 	{#if form?.success}
-		<div class="alert alert-success mb-6">
+		<div class="mb-6 alert alert-success">
 			Thanks for your message! I'll get back to you soon.
 		</div>
 	{/if}
 
 	{#if form?.errors && form.errors.length > 0}
-		<div class="alert alert-error mb-6">
+		<div class="mb-6 alert alert-error">
 			<ul>
 				{#each form.errors as error}
 					<li>{error}</li>
@@ -1364,7 +1364,7 @@ Then create `src/routes/contact/+page.svelte`:
 				name="name"
 				type="text"
 				required
-				class="input input-bordered w-full"
+				class="input-bordered input w-full"
 				value={form?.data?.name ?? ''}
 			/>
 		</div>
@@ -1378,7 +1378,7 @@ Then create `src/routes/contact/+page.svelte`:
 				name="email"
 				type="email"
 				required
-				class="input input-bordered w-full"
+				class="input-bordered input w-full"
 				value={form?.data?.email ?? ''}
 			/>
 		</div>
@@ -1392,7 +1392,7 @@ Then create `src/routes/contact/+page.svelte`:
 				name="message"
 				required
 				rows="4"
-				class="textarea textarea-bordered w-full"
+				class="textarea-bordered textarea w-full"
 				value={form?.data?.message ?? ''}></textarea>
 		</div>
 

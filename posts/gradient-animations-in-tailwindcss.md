@@ -204,17 +204,17 @@ theme.
 
 ```svelte
 <h1
-	class="bg-clip-text text-transparent bg-gradient-to-tr from-primary to-secondary via-accent animate-gradient-xy"
+	class="animate-gradient-xy bg-gradient-to-tr from-primary via-accent to-secondary bg-clip-text text-transparent"
 >
 	Tailwind Gradient Text
 </h1>
 <p
-	class="bg-clip-text text-transparent bg-gradient-to-br from-primary to-secondary via-accent animate-gradient-y"
+	class="animate-gradient-y bg-gradient-to-br from-primary via-accent to-secondary bg-clip-text text-transparent"
 >
 	This animation is on the vertical axis
 </p>
 <p
-	class="bg-clip-text text-transparent bg-gradient-to-tl from-primary to-secondary via-accent animate-gradient-x"
+	class="animate-gradient-x bg-gradient-to-tl from-primary via-accent to-secondary bg-clip-text text-transparent"
 >
 	This animation is on the horizontal axis
 </p>
@@ -224,19 +224,19 @@ Then finally, I'll can add in a wrapping element and add in some font
 styles.
 
 ```svelte
-<div class="flex flex-col items-center justify-center h-screen">
+<div class="flex h-screen flex-col items-center justify-center">
 	<h1
-		class="bg-clip-text text-transparent bg-gradient-to-tr from-primary to-secondary via-accent animate-gradient-xy font-extrabold text-6xl md:text-9xl py-8"
+		class="animate-gradient-xy bg-gradient-to-tr from-primary via-accent to-secondary bg-clip-text py-8 text-6xl font-extrabold text-transparent md:text-9xl"
 	>
 		Tailwind Gradient Text
 	</h1>
 	<p
-		class="bg-clip-text text-transparent bg-gradient-to-br from-primary to-secondary via-accent animate-gradient-y font-extrabold text-3xl md:text-6xl py-8"
+		class="animate-gradient-y bg-gradient-to-br from-primary via-accent to-secondary bg-clip-text py-8 text-3xl font-extrabold text-transparent md:text-6xl"
 	>
 		This animation is on the vertical axis
 	</p>
 	<p
-		class="bg-clip-text text-transparent bg-gradient-to-tl from-primary to-secondary via-accent animate-gradient-x font-extrabold text-3xl md:text-6xl py-8"
+		class="animate-gradient-x bg-gradient-to-tl from-primary via-accent to-secondary bg-clip-text py-8 text-3xl font-extrabold text-transparent md:text-6xl"
 	>
 		This animation is on the horizontal axis
 	</p>

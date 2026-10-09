@@ -30,14 +30,14 @@ Here's what the skip to content looks like for this site:
 
 ```svelte
 <a
-	class="transition left-0 bg-primary text-primary-content absolute p-3 m-3 -translate-y-16 focus:translate-y-0"
+	class="absolute left-0 m-3 -translate-y-16 bg-primary p-3 text-primary-content transition focus:translate-y-0"
 	href="#main-content">Skip Navigation</a
 >
 <Header />
 <Nav />
 <main
 	id="main-content"
-	class="container max-w-3xl mx-auto px-4 mb-20"
+	class="container mx-auto mb-20 max-w-3xl px-4"
 >
 	<slot />
 </main>

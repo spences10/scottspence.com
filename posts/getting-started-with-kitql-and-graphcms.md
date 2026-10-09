@@ -600,13 +600,13 @@ Here's what the rest of the `posts/[slug].svelte` file looks like:
 	/>
 	<span class="flex flex-grow flex-col pl-4">
 		<span class="title-font font-medium">{name}</span>
-		<span class="text-secondary mt-0.5 text-xs tracking-widest"
+		<span class="mt-0.5 text-xs tracking-widest text-secondary"
 			>{authorTitle}</span
 		>
 	</span>
 </a>
 
-<p class="text-secondary text-xs font-semibold tracking-widest">
+<p class="text-xs font-semibold tracking-widest text-secondary">
 	{new Date(date).toDateString()}
 </p>
 
@@ -801,7 +801,7 @@ list of all the available themes in daisyUI:
 <div>
 	<select
 		data-choose-theme
-		class="select select-bordered select-primary bg-base-100 select-xs text-base-content pr-9"
+		class="select-bordered select bg-base-100 pr-9 text-base-content select-xs select-primary"
 	>
 		<option disabled selected>Theme</option>
 		<option value="acid">Acid</option>
@@ -846,7 +846,7 @@ of note here, aesthetics only:
 
 ```svelte
 <footer
-	class="bg-primary footer text-base-content footer-center p-10"
+	class="footer footer-center bg-primary p-10 text-base-content"
 >
 	<div class="grid grid-flow-col gap-4">
 		<a class="link link-hover" href="/">About us</a>
@@ -962,23 +962,23 @@ for anything being passed into the component.
 	export let pages;
 </script>
 
-<div class="navbar bg-neutral text-neutral-content mb-10 shadow-lg">
-	<div class="navbar-start mx-2 px-2">
+<div class="navbar mb-10 bg-neutral text-neutral-content shadow-lg">
+	<div class="mx-2 navbar-start px-2">
 		<a sveltekit:prefetch href="/">
 			<span class="text-lg font-bold"> KitQL with GraphCMS </span>
 		</a>
 	</div>
-	<div class="navbar-center mx-2 px-2">
+	<div class="mx-2 navbar-center px-2">
 		<div class="flex items-stretch">
 			<a
 				sveltekit:prefetch
-				class="btn btn-ghost btn-sm rounded-btn"
+				class="rounded-btn btn btn-ghost btn-sm"
 				href={`/`}>Home</a
 			>
 			{#each pages as { title, slug }}
 				<a
 					sveltekit:prefetch
-					class="btn btn-ghost btn-sm rounded-btn"
+					class="rounded-btn btn btn-ghost btn-sm"
 					href={`/${slug}`}>{title}</a
 				>
 			{/each}

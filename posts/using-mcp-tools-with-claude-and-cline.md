@@ -266,7 +266,7 @@ prompting in Claude Desktop):
 		<input
 			type="text"
 			placeholder="Add new task..."
-			class="input input-bordered flex-grow"
+			class="input-bordered input flex-grow"
 			bind:value={new_task}
 			onkeydown={(e) => e.key === 'Enter' && add_task()}
 		/>
@@ -346,7 +346,7 @@ prompting in Claude Desktop):
 					</div>
 					<div class="flex items-center gap-2">
 						<select
-							class="select select-bordered select-sm"
+							class="select-bordered select select-sm"
 							value={task.priority}
 							onchange={(e) =>
 								update_priority(
@@ -371,7 +371,7 @@ prompting in Claude Desktop):
 		{/each}
 
 		{#if filtered_tasks.length === 0}
-			<div class="bg-base-200 rounded-lg p-8 text-center">
+			<div class="rounded-lg bg-base-200 p-8 text-center">
 				<p class="text-xl opacity-50">No tasks to show</p>
 			</div>
 		{/if}

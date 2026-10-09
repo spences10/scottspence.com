@@ -477,8 +477,8 @@ use my trusty debug tool, the
 
 <h1>Welcome to SvelteKit</h1>
 <p>
-	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
-	documentation
+	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read
+	the documentation
 </p>
 ```
 
@@ -615,7 +615,7 @@ To this:
 </script>
 
 <main class="container mx-auto max-w-6xl flex-grow px-4">
-	<h1 class="mb-2 mt-4 text-5xl font-bold text-primary">
+	<h1 class="mt-4 mb-2 text-5xl font-bold text-primary">
 		<a href="/">Chinook SQLite database</a>
 	</h1>
 	<ul class="mb-10 flex space-x-4 text-xl font-bold">
@@ -788,7 +788,7 @@ first, so I'll add in the `on:input` to update the state and
 <input
 	type="search"
 	placeholder="Search tracks, titles, albums, artists, genres..."
-	class="input input-bordered input-primary mb-10 w-full"
+	class="input-bordered input mb-10 w-full input-primary"
 	value={search_term}
 	on:keyup={handle_search}
 	on:input={handle_input}
@@ -839,7 +839,7 @@ Here's the full file:
 <input
 	type="search"
 	placeholder="Search tracks, titles, albums, artists, genres..."
-	class="input input-bordered input-primary mb-10 w-full"
+	class="input-bordered input mb-10 w-full input-primary"
 	value={search_term}
 	on:keyup={handle_search}
 	on:input={handle_input}

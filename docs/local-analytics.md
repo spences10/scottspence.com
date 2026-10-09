@@ -576,6 +576,6 @@ $effect(() => {
   remote functions
 - Remote functions are RPC-style, don't expose signal parameter
 - SvelteKit issue #14146: abort signals don't propagate to server
-- Sources: [svelte
-  $effect docs](https://svelte.dev/docs/svelte/$effect),
+- Sources:
+  [svelte $effect docs](https://svelte.dev/docs/svelte/$effect),
   [getAbortSignal](https://svelte.dev/docs/svelte/svelte)

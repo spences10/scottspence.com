@@ -748,7 +748,7 @@ can also be used to validate the form on the client.
 				placeholder="Enter your name"
 				required
 				autocomplete="off"
-				class="input input-bordered w-full {$errors.name
+				class="input-bordered input w-full {$errors.name
 					? 'input-error'
 					: ''}"
 			/>
@@ -773,7 +773,7 @@ can also be used to validate the form on the client.
 				placeholder="bill@hotmail.com"
 				required
 				autocomplete="off"
-				class="input input-bordered w-full {$errors.email
+				class="input-bordered input w-full {$errors.email
 					? 'input-error'
 					: ''}"
 			/>
@@ -798,7 +798,7 @@ can also be used to validate the form on the client.
 				required
 				rows="3"
 				autocomplete="off"
-				class="textarea input-bordered w-full {$errors.message
+				class="input-bordered textarea w-full {$errors.message
 					? 'input-error'
 					: ''}"
 			/>
@@ -815,7 +815,7 @@ can also be used to validate the form on the client.
 			<input
 				type="submit"
 				value="Submit to Airtable"
-				class="btn btn-primary w-full mt-10"
+				class="btn mt-10 w-full btn-primary"
 			/>
 		</form>
 	{/if}
