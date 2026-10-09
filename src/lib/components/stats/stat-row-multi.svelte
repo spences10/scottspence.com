@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { PeriodCounts } from '#lib/analytics/period-stats.helpers.js';
 	import { number_crunch } from '#lib/utils/index.js';
 
 	interface Props {
@@ -9,6 +10,8 @@
 		href?: string;
 		prefix?: string;
 		label_class?: string;
+		previous?: PeriodCounts | null;
+		format_delta?: (delta: number) => string;
 	}
 
 	let {
@@ -19,6 +22,8 @@
 		href,
 		prefix,
 		label_class = '',
+		previous = null,
+		format_delta = String,
 	}: Props = $props();
 
 	const bar_width = $derived(
@@ -41,12 +46,22 @@
 			<span class="truncate {label_class}">{label}</span>
 		{/if}
 	</span>
-	<span class="relative w-14 shrink-0 text-right tabular-nums">
-		{number_crunch(visitors)}
-	</span>
-	<span
-		class="relative w-14 shrink-0 text-right tabular-nums opacity-70"
-	>
-		{number_crunch(views)}
-	</span>
+	{#snippet count(
+		value: number,
+		before: number | undefined,
+		muted = '',
+	)}
+		<span
+			class="relative w-14 shrink-0 text-right tabular-nums sm:w-20 {muted}"
+		>
+			{#if before !== undefined && value !== before}
+				<span class="mr-1 hidden text-xs opacity-70 sm:inline">
+					{format_delta(value - before)}
+				</span>
+			{/if}
+			{number_crunch(value)}
+		</span>
+	{/snippet}
+	{@render count(visitors, previous?.visitors)}
+	{@render count(views, previous?.views, 'opacity-70')}
 </li>

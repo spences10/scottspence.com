@@ -3,6 +3,9 @@ import {
 	format_period_stats,
 	get_period_boundaries,
 	get_period_label,
+	get_delta,
+	get_previous_window,
+	to_counts_lookup,
 } from './period-stats.helpers';
 
 describe('get_period_boundaries', () => {
@@ -189,5 +192,51 @@ describe('format_period_stats', () => {
 		expect(result.browsers).toHaveLength(2);
 		expect(result.devices).toHaveLength(2);
 		expect(result.referrers).toHaveLength(2);
+	});
+});
+
+describe('get_delta', () => {
+	it('returns the change against the previous value', () => {
+		expect(get_delta(12, 7)).toBe(5);
+		expect(get_delta(4, 8)).toBe(-4);
+		expect(get_delta(3, 0)).toBe(3);
+	});
+
+	it('returns null when there is nothing to compare with', () => {
+		expect(get_delta(12, null)).toBeNull();
+		expect(get_delta(12, undefined)).toBeNull();
+	});
+});
+
+describe('to_counts_lookup', () => {
+	it('keys rows for lookups', () => {
+		expect(
+			to_counts_lookup([
+				{ key: '/', views: 10, visitors: 4 },
+				{ key: '/posts', views: 3, visitors: 2 },
+			]),
+		).toEqual({
+			'/': { views: 10, visitors: 4 },
+			'/posts': { views: 3, visitors: 2 },
+		});
+	});
+});
+
+describe('get_previous_window', () => {
+	it('covers the days before the window plus a share of one more', () => {
+		// 7 days starting 2026-10-02, a quarter of the way through today
+		expect(get_previous_window('2026-10-02', 7, 0.25)).toEqual({
+			partial_date: '2026-09-24',
+			partial_weight: 0.25,
+			from_date: '2026-09-24',
+			to_date: '2026-10-02',
+		});
+	});
+
+	it('crosses month boundaries and clamps the weight', () => {
+		const window = get_previous_window('2026-03-05', 30, 1.4);
+		expect(window.from_date).toBe('2026-02-02');
+		expect(window.to_date).toBe('2026-03-05');
+		expect(window.partial_weight).toBe(1);
 	});
 });

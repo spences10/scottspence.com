@@ -11,15 +11,23 @@ import { BOT_THRESHOLDS } from './bot-thresholds';
 import {
 	format_period_stats,
 	get_period_boundaries,
+	get_previous_window,
+	to_counts_lookup,
 	type FilterMode,
+	type PeriodComparison,
+	type PeriodCounts,
 	type PeriodStats,
 	type StatsPeriod,
 } from './period-stats.helpers';
+
+const DAY_MS = 24 * 60 * 60 * 1000;
 import { aggregate_referrers } from './referrer-normalisation';
 
 // Re-export types for consumers
 export type {
 	FilterMode,
+	PeriodComparison,
+	PeriodCounts,
 	PeriodStats,
 	StatsPeriod,
 } from './period-stats.helpers';
@@ -61,6 +69,285 @@ const get_behaviour_bot_hashes = (
 		hashes.add(r.visitor_hash as string),
 	);
 	return hashes;
+};
+
+/**
+ * Build the bot WHERE clause for a filter mode
+ * - humans: excludes flagged bots AND behaviour bots
+ * - bots: only detected bots (flagged + behaviour)
+ * - all: no filtering
+ */
+const build_bot_filter = (
+	mode: FilterMode,
+	bot_hashes: string[],
+): { bot_condition: string; bot_args: (string | number)[] } => {
+	const placeholders = bot_hashes.map(() => '?').join(',');
+	if (mode === 'humans') {
+		return bot_hashes.length > 0
+			? {
+					bot_condition: `AND is_bot = 0 AND visitor_hash NOT IN (${placeholders})`,
+					bot_args: bot_hashes,
+				}
+			: { bot_condition: 'AND is_bot = 0', bot_args: [] };
+	}
+	if (mode === 'bots') {
+		return bot_hashes.length > 0
+			? {
+					bot_condition: `AND (is_bot = 1 OR visitor_hash IN (${placeholders}))`,
+					bot_args: bot_hashes,
+				}
+			: { bot_condition: 'AND is_bot = 1', bot_args: [] };
+	}
+	return { bot_condition: '', bot_args: [] };
+};
+
+/**
+ * Referrers from raw events: Direct plus normalised sources
+ * (groups Google variants, filters internal and blocked domains)
+ */
+const get_raw_referrers = (
+	start: number,
+	end: number,
+	bot_condition: string,
+	bot_args: (string | number)[],
+): { referrer: string; views: number; visitors: number }[] => {
+	// Direct traffic (null/empty referrer)
+	const direct_result = sqlite_client.execute({
+		sql: `SELECT
+			COUNT(*) as views,
+			COUNT(DISTINCT visitor_hash) as visitors
+		FROM analytics_events
+		WHERE created_at >= ? AND created_at < ?
+			${bot_condition}
+			AND (referrer IS NULL OR referrer = '')`,
+		args: [start, end, ...bot_args],
+	});
+	const direct_stats = {
+		referrer: 'Direct',
+		views: (direct_result.rows[0]?.views as number) ?? 0,
+		visitors: (direct_result.rows[0]?.visitors as number) ?? 0,
+	};
+
+	// Fetch more than we need since grouping will consolidate
+	const blocked_domains = get_blocked_domains_array();
+	const blocked_placeholders = blocked_domains
+		.map(() => `AND referrer NOT LIKE ?`)
+		.join(' ');
+	const blocked_args = blocked_domains.map((d) => `%${d}%`);
+	const referrers_result = sqlite_client.execute({
+		sql: `SELECT
+			referrer,
+			COUNT(*) as views,
+			COUNT(DISTINCT visitor_hash) as visitors
+		FROM analytics_events
+		WHERE created_at >= ? AND created_at < ?
+			${bot_condition}
+			AND referrer IS NOT NULL
+			AND referrer != ''
+			${blocked_placeholders}
+		GROUP BY referrer
+		ORDER BY visitors DESC
+		LIMIT 100`,
+		args: [start, end, ...bot_args, ...blocked_args],
+	});
+	const raw_referrers = referrers_result.rows as {
+		referrer: string;
+		views: number;
+		visitors: number;
+	}[];
+
+	return [direct_stats, ...aggregate_referrers(raw_referrers)].sort(
+		(a, b) => b.visitors - a.visitors,
+	);
+};
+
+/**
+ * Group raw events by a column into a lookup of views and visitors
+ */
+const get_raw_counts_by = (
+	column: 'path' | 'country' | 'browser' | 'device_type',
+	start: number,
+	end: number,
+	bot_condition: string,
+	bot_args: (string | number)[],
+): Record<string, PeriodCounts> => {
+	const result = sqlite_client.execute({
+		sql: `SELECT
+			${column} as key,
+			COUNT(*) as views,
+			COUNT(DISTINCT visitor_hash) as visitors
+		FROM analytics_events
+		WHERE created_at >= ? AND created_at < ?
+			${bot_condition}
+			AND ${column} IS NOT NULL
+			AND ${column} != ''
+		GROUP BY ${column}`,
+		args: [start, end, ...bot_args],
+	});
+	return to_counts_lookup(
+		result.rows as { key: string; views: number; visitors: number }[],
+	);
+};
+
+/**
+ * Stats for the period before the selected one, used for deltas
+ *
+ * - today: the same time window yesterday, from raw events (all breakdowns)
+ * - yesterday: the day before, from the daily rollup (humans only)
+ * - week/month/year: the preceding window, from rollups (humans only)
+ *
+ * Returns null where there is nothing comparable to diff against
+ */
+const get_previous_stats = (
+	period: StatsPeriod,
+	mode: FilterMode,
+	current: { start: number; end: number },
+): PeriodComparison | null => {
+	if (period === 'today') {
+		const start = current.start - DAY_MS;
+		const end = current.end - DAY_MS;
+		const { bot_condition, bot_args } = build_bot_filter(mode, [
+			...get_behaviour_bot_hashes(start, end),
+		]);
+		const totals = sqlite_client.execute({
+			sql: `SELECT
+				COUNT(*) as views,
+				COUNT(DISTINCT visitor_hash) as unique_visitors
+			FROM analytics_events
+			WHERE created_at >= ? AND created_at < ? ${bot_condition}`,
+			args: [start, end, ...bot_args],
+		}).rows[0];
+		const by = (
+			column: 'path' | 'country' | 'browser' | 'device_type',
+		) =>
+			get_raw_counts_by(column, start, end, bot_condition, bot_args);
+
+		return {
+			label: 'the same time yesterday',
+			views: (totals?.views as number) ?? 0,
+			unique_visitors: (totals?.unique_visitors as number) ?? 0,
+			pages: by('path'),
+			countries: by('country'),
+			browsers: by('browser'),
+			devices: by('device_type'),
+			referrers: to_counts_lookup(
+				get_raw_referrers(start, end, bot_condition, bot_args).map(
+					({ referrer, ...counts }) => ({ key: referrer, ...counts }),
+				),
+			),
+		};
+	}
+
+	// Rollups only hold human traffic per page
+	if (mode !== 'humans') return null;
+
+	const to_date = (ms: number) =>
+		new Date(ms).toISOString().split('T')[0];
+	const no_breakdowns = {
+		countries: null,
+		browsers: null,
+		devices: null,
+		referrers: null,
+	};
+
+	if (period === 'yesterday') {
+		const result = sqlite_client.execute({
+			sql: `SELECT pathname as key, views, unique_visitors as visitors
+			FROM analytics_daily WHERE date = ?`,
+			args: [to_date(current.start - DAY_MS)],
+		});
+		const rows = result.rows as {
+			key: string;
+			views: number;
+			visitors: number;
+		}[];
+		if (rows.length === 0) return null;
+		return {
+			label: 'the day before',
+			views: rows.reduce((sum, row) => sum + row.views, 0),
+			// The rollup has per-page uniques only, which can't be summed
+			// into the site-wide distinct count yesterday shows
+			unique_visitors: null,
+			pages: to_counts_lookup(rows),
+			...no_breakdowns,
+		};
+	}
+
+	let rows: { key: string; views: number; visitors: number }[];
+	if (period === 'year') {
+		const start_month = new Date(current.start);
+		const previous_month = new Date(start_month);
+		previous_month.setUTCFullYear(
+			previous_month.getUTCFullYear() - 1,
+		);
+		rows = sqlite_client.execute({
+			sql: `SELECT pathname as key,
+				SUM(views) as views,
+				SUM(unique_visitors) as visitors
+			FROM analytics_monthly
+			WHERE year_month >= ? AND year_month < ?
+			GROUP BY pathname`,
+			args: [
+				previous_month.toISOString().slice(0, 7),
+				start_month.toISOString().slice(0, 7),
+			],
+		}).rows as typeof rows;
+	} else {
+		// The selected window is N full days plus today so far, so the
+		// previous one is the N days before it plus the same share of
+		// the day before those
+		const days = period === 'week' ? 7 : 30;
+		const today_start = new Date(
+			to_date(current.end) + 'T00:00:00Z',
+		).getTime();
+		const {
+			partial_date,
+			partial_weight,
+			from_date,
+			to_date: until,
+		} = get_previous_window(
+			to_date(current.start),
+			days,
+			(current.end - today_start) / DAY_MS,
+		);
+		rows = sqlite_client.execute({
+			sql: `SELECT pathname as key,
+				SUM(views * CASE WHEN date = ? THEN ? ELSE 1 END) as views,
+				SUM(unique_visitors * CASE WHEN date = ? THEN ? ELSE 1 END) as visitors
+			FROM analytics_daily
+			WHERE date >= ? AND date < ?
+			GROUP BY pathname`,
+			args: [
+				partial_date,
+				partial_weight,
+				partial_date,
+				partial_weight,
+				from_date,
+				until,
+			],
+		}).rows as typeof rows;
+	}
+
+	if (rows.length === 0) return null;
+	const rounded = rows.map((row) => ({
+		key: row.key,
+		views: Math.round(row.views),
+		visitors: Math.round(row.visitors),
+	}));
+	return {
+		label:
+			period === 'week'
+				? 'the previous 7 days'
+				: period === 'month'
+					? 'the previous 30 days'
+					: 'the previous 12 months',
+		views: Math.round(rows.reduce((sum, row) => sum + row.views, 0)),
+		unique_visitors: Math.round(
+			rows.reduce((sum, row) => sum + row.visitors, 0),
+		),
+		pages: to_counts_lookup(rounded),
+		...no_breakdowns,
+	};
 };
 
 /**
@@ -108,31 +395,10 @@ export const get_period_stats = query(
 		const bot_hashes = [...behaviour_bots];
 
 		// Build WHERE clause based on filter mode
-		let bot_condition: string;
-		let bot_args: (string | number)[] = [];
-
-		if (mode === 'humans') {
-			// Exclude flagged bots AND behaviour bots
-			if (bot_hashes.length > 0) {
-				const placeholders = bot_hashes.map(() => '?').join(',');
-				bot_condition = `AND is_bot = 0 AND visitor_hash NOT IN (${placeholders})`;
-				bot_args = bot_hashes;
-			} else {
-				bot_condition = 'AND is_bot = 0';
-			}
-		} else if (mode === 'bots') {
-			// Include only bots (flagged OR behaviour)
-			if (bot_hashes.length > 0) {
-				const placeholders = bot_hashes.map(() => '?').join(',');
-				bot_condition = `AND (is_bot = 1 OR visitor_hash IN (${placeholders}))`;
-				bot_args = bot_hashes;
-			} else {
-				bot_condition = 'AND is_bot = 1';
-			}
-		} else {
-			// All - no filtering
-			bot_condition = '';
-		}
+		const { bot_condition, bot_args } = build_bot_filter(
+			mode,
+			bot_hashes,
+		);
 
 		// For longer periods, use rollup tables + today's raw events
 		// Rollup data is bot-filtered (is_bot = 0) — for 'all' mode we
@@ -405,58 +671,19 @@ export const get_period_stats = query(
 			visitors: number;
 		}[];
 
-		// Direct traffic (null/empty referrer)
-		const direct_result = sqlite_client.execute({
-			sql: `SELECT
-				COUNT(*) as views,
-				COUNT(DISTINCT visitor_hash) as visitors
-			FROM analytics_events
-			WHERE created_at >= ? AND created_at < ?
-				${bot_condition}
-				AND (referrer IS NULL OR referrer = '')`,
-			args: [start, end, ...bot_args],
-		});
-		const direct_stats = {
-			referrer: 'Direct',
-			views: (direct_result.rows[0]?.views as number) ?? 0,
-			visitors: (direct_result.rows[0]?.visitors as number) ?? 0,
-		};
+		// Referrers (Direct + normalised sources), top 10
+		const referrers = get_raw_referrers(
+			start,
+			end,
+			bot_condition,
+			bot_args,
+		).slice(0, 10);
 
-		// Referrers - fetch raw, then normalise/aggregate in JS
-		// Fetch more than we need since grouping will consolidate
-		const blocked_domains = get_blocked_domains_array();
-		const blocked_placeholders = blocked_domains
-			.map(() => `AND referrer NOT LIKE ?`)
-			.join(' ');
-		const blocked_args = blocked_domains.map((d) => `%${d}%`);
-		const referrers_result = sqlite_client.execute({
-			sql: `SELECT
-				referrer,
-				COUNT(*) as views,
-				COUNT(DISTINCT visitor_hash) as visitors
-			FROM analytics_events
-			WHERE created_at >= ? AND created_at < ?
-				${bot_condition}
-				AND referrer IS NOT NULL
-				AND referrer != ''
-				${blocked_placeholders}
-			GROUP BY referrer
-			ORDER BY visitors DESC
-			LIMIT 100`,
-			args: [start, end, ...bot_args, ...blocked_args],
+		// Previous period, for the deltas shown next to each number
+		const previous = get_previous_stats(period as StatsPeriod, mode, {
+			start,
+			end,
 		});
-		const raw_referrers = referrers_result.rows as {
-			referrer: string;
-			views: number;
-			visitors: number;
-		}[];
-		// Normalise and aggregate (groups Google variants, filters internal)
-		const aggregated = aggregate_referrers(raw_referrers);
-		// Combine with Direct and take top 10
-		const all_referrers = [direct_stats, ...aggregated]
-			.sort((a, b) => b.visitors - a.visitors)
-			.slice(0, 10);
-		const referrers = all_referrers;
 
 		const result = format_period_stats(
 			period as StatsPeriod,
@@ -468,6 +695,7 @@ export const get_period_stats = query(
 			browsers,
 			devices,
 			referrers,
+			previous,
 		);
 
 		// Cache the result

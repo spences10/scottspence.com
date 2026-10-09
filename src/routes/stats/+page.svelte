@@ -75,7 +75,15 @@
 		</div>
 	{/if}
 
-	<PeriodStats />
+	<svelte:boundary>
+		<PeriodStats />
+		{#snippet failed(_error: unknown, reset: () => void)}
+			<div class="mb-4 alert alert-error" role="alert">
+				<span>Could not load the latest stats.</span>
+				<button class="btn btn-sm" onclick={reset}>Try again</button>
+			</div>
+		{/snippet}
+	</svelte:boundary>
 
 	{#if site_stats.length > 0}
 		<HistoricalStats {site_stats} {current_month} {current_year} />

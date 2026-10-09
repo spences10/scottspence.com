@@ -3,6 +3,7 @@
 		get_chart_data,
 		type ChartData,
 	} from '#lib/analytics/chart-data.remote.js';
+	import { get_delta } from '#lib/analytics/period-stats.helpers.js';
 	import {
 		sort_engagement_stats,
 		type EngagementSortMode,
@@ -15,6 +16,7 @@
 	import {
 		get_period_stats,
 		type FilterMode,
+		type PeriodCounts,
 		type PeriodStats,
 		type StatsPeriod,
 	} from '#lib/analytics/period-stats.remote.js';
@@ -40,18 +42,47 @@
 		period_labels,
 	} from './stats.svelte';
 
-	let period_stats = $state<PeriodStats | null>(null);
-	let chart_data = $state<ChartData | null>(null);
-	let engagement_stats = $state<EngagementStats | null>(null);
-	let period_loading = $state(false);
 	let selected_stats_period = $state<StatsPeriod>('today');
 	let selected_filter_mode = $state<FilterMode>('humans');
+
+	// Derived from the selection: the previous data stays on screen
+	// (dimmed) until the queries for a new period or filter resolve
+	const [period_stats, chart_data, engagement_stats]: [
+		PeriodStats | null,
+		ChartData | null,
+		EngagementStats | null,
+	] = $derived(
+		await Promise.all([
+			get_period_stats({
+				period: selected_stats_period,
+				filter_mode: selected_filter_mode,
+			}),
+			get_chart_data({
+				period: selected_stats_period,
+				filter_mode: selected_filter_mode,
+			}),
+			get_engagement_stats({ period: selected_stats_period }),
+		]),
+	);
+	const period_loading = $derived($effect.pending() > 0);
 	let engagement_sort_mode = $state<EngagementSortMode>('clicks');
 
 	let show_live = $state(true);
 
 	// Shared with LiveDashboard, which handles the refresh interval
 	const live_stats_query = get_live_stats_breakdown();
+
+	const previous = $derived(period_stats?.previous ?? null);
+
+	// Counts for the same row last period; a missing row means zero
+	const previous_for = (
+		lookup: Record<string, PeriodCounts> | null | undefined,
+		key: string,
+	): PeriodCounts | null =>
+		lookup ? (lookup[key] ?? { views: 0, visitors: 0 }) : null;
+
+	const format_delta = (delta: number) =>
+		`${delta > 0 ? '+' : delta < 0 ? '−' : ''}${number_crunch(Math.abs(delta))}`;
 
 	const views_per_visitor = $derived(
 		period_stats && period_stats.unique_visitors > 0
@@ -68,32 +99,6 @@
 				)
 			: [],
 	);
-
-	const fetch_period_data = async (
-		period: StatsPeriod,
-		filter_mode: FilterMode,
-	) => {
-		period_loading = true;
-		try {
-			const [stats, chart, engagement] = await Promise.all([
-				get_period_stats({ period, filter_mode }),
-				get_chart_data({ period, filter_mode }),
-				get_engagement_stats({ period }),
-			]);
-			period_stats = stats;
-			chart_data = chart;
-			engagement_stats = engagement;
-		} catch (e) {
-			console.error('[stats] Failed to fetch period data:', e);
-		} finally {
-			period_loading = false;
-		}
-	};
-
-	// Reactive: fetch when period or filter mode changes
-	$effect(() => {
-		fetch_period_data(selected_stats_period, selected_filter_mode);
-	});
 
 	// Convert chart data timestamps to Date objects for scaleTime
 	let chart_data_parsed = $derived.by(() => {
@@ -186,9 +191,24 @@
 			<dl
 				class="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6"
 			>
-				{#snippet summary_item(label: string, value: string | number)}
+				{#snippet summary_item(
+					label: string,
+					value: string | number,
+					delta: number | null = null,
+				)}
 					<div class="flex flex-col-reverse">
-						<dt class="text-sm opacity-80">{label}</dt>
+						<dt class="text-sm">
+							<span class="opacity-80">{label}</span>
+							{#if delta}
+								<span
+									class="ml-1 text-xs tabular-nums {delta > 0
+										? 'text-success'
+										: 'text-error'}"
+								>
+									{format_delta(delta)}
+								</span>
+							{/if}
+						</dt>
 						<dd
 							class="text-5xl font-light tracking-tight tabular-nums"
 						>
@@ -218,12 +238,17 @@
 						? 'Bot visitors'
 						: 'Site visitors',
 					number_crunch(period_stats.unique_visitors),
+					get_delta(
+						period_stats.unique_visitors,
+						previous?.unique_visitors,
+					),
 				)}
 				{@render summary_item(
 					selected_filter_mode === 'bots'
 						? 'Bot pageviews'
 						: 'Pageviews',
 					number_crunch(period_stats.views),
+					get_delta(period_stats.views, previous?.views),
 				)}
 				{@render summary_item('Views per visitor', views_per_visitor)}
 				{@render summary_item(
@@ -235,10 +260,11 @@
 					number_crunch(period_stats.top_pages.length),
 				)}
 			</dl>
-		</div>
-	{:else if period_loading}
-		<div class="flex items-center justify-center py-8">
-			<div class="loading loading-md loading-spinner"></div>
+			{#if previous}
+				<p class="mt-4 text-xs opacity-70">
+					Changes are compared with {previous.label}.
+				</p>
+			{/if}
 		</div>
 	{/if}
 
@@ -429,8 +455,9 @@
 		{#snippet panel_header(title: string, first = 'Visitors')}
 			<div class="mb-1 flex items-center gap-3 px-2 text-xs">
 				<h2 class="flex-1 font-semibold">{title}</h2>
-				<span class="w-14 text-right opacity-80">{first}</span>
-				<span class="w-14 text-right opacity-80">Views</span>
+				<span class="w-14 text-right opacity-80 sm:w-20">{first}</span
+				>
+				<span class="w-14 text-right opacity-80 sm:w-20">Views</span>
 			</div>
 		{/snippet}
 
@@ -450,6 +477,8 @@
 						{#each top_pages as page (page.path)}
 							<StatRowMulti
 								label={page.path}
+								previous={previous_for(previous?.pages, page.path)}
+								{format_delta}
 								visitors={page.visitors}
 								views={page.views}
 								max_value={max_visitors}
@@ -472,6 +501,11 @@
 						{#each period_stats.referrers as ref (ref.referrer)}
 							<StatRowMulti
 								label={parse_referrer(ref.referrer)}
+								previous={previous_for(
+									previous?.referrers,
+									ref.referrer,
+								)}
+								{format_delta}
 								visitors={ref.visitors}
 								views={ref.views}
 								max_value={max_visitors}
@@ -500,6 +534,11 @@
 						{#each countries as c (c.country)}
 							<StatRowMulti
 								label={c.country}
+								previous={previous_for(
+									previous?.countries,
+									c.country,
+								)}
+								{format_delta}
 								prefix={country_flag(c.country)}
 								label_class="uppercase"
 								visitors={c.visitors}
@@ -523,6 +562,8 @@
 						{#each period_stats.browsers as b (b.browser)}
 							<StatRowMulti
 								label={b.browser}
+								previous={previous_for(previous?.browsers, b.browser)}
+								{format_delta}
 								label_class="capitalize"
 								visitors={b.visitors}
 								views={b.views}
@@ -545,6 +586,11 @@
 						{#each period_stats.devices as d (d.device_type)}
 							<StatRowMulti
 								label={d.device_type}
+								previous={previous_for(
+									previous?.devices,
+									d.device_type,
+								)}
+								{format_delta}
 								prefix={device_icon(d.device_type)}
 								label_class="capitalize"
 								visitors={d.visitors}

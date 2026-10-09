@@ -25,6 +25,74 @@ export type PeriodStats = {
 	browsers: { browser: string; views: number; visitors: number }[];
 	devices: { device_type: string; views: number; visitors: number }[];
 	referrers: { referrer: string; views: number; visitors: number }[];
+	previous: PeriodComparison | null;
+};
+
+export type PeriodCounts = { views: number; visitors: number };
+
+/**
+ * Stats for the period before the selected one, keyed for delta lookups
+ * A null total or breakdown means there is nothing comparable to diff
+ */
+export type PeriodComparison = {
+	label: string;
+	views: number | null;
+	unique_visitors: number | null;
+	pages: Record<string, PeriodCounts>;
+	countries: Record<string, PeriodCounts> | null;
+	browsers: Record<string, PeriodCounts> | null;
+	devices: Record<string, PeriodCounts> | null;
+	referrers: Record<string, PeriodCounts> | null;
+};
+
+/**
+ * Turn keyed count rows into a lookup
+ */
+export const to_counts_lookup = (
+	rows: { key: string; views: number; visitors: number }[],
+): Record<string, PeriodCounts> =>
+	Object.fromEntries(
+		rows.map(({ key, views, visitors }) => [
+			key,
+			{ views, visitors },
+		]),
+	);
+
+/**
+ * Change against the previous period, or null when it can't be compared
+ */
+export const get_delta = (
+	current: number,
+	previous: number | null | undefined,
+): number | null => (previous == null ? null : current - previous);
+
+/**
+ * Dates covering the window before one of `days` full days plus today
+ * so far: the `days` dates before `start_date`, plus `day_fraction` of
+ * the date before those. `to_date` is exclusive.
+ */
+export const get_previous_window = (
+	start_date: string,
+	days: number,
+	day_fraction: number,
+): {
+	partial_date: string;
+	partial_weight: number;
+	from_date: string;
+	to_date: string;
+} => {
+	const shift = (offset: number) => {
+		const date = new Date(start_date + 'T00:00:00Z');
+		date.setUTCDate(date.getUTCDate() - offset);
+		return date.toISOString().split('T')[0];
+	};
+	const partial_date = shift(days + 1);
+	return {
+		partial_date,
+		partial_weight: Math.min(Math.max(day_fraction, 0), 1),
+		from_date: partial_date,
+		to_date: start_date,
+	};
 };
 
 /**
@@ -110,6 +178,7 @@ export const format_period_stats = (
 	browsers: { browser: string; views: number; visitors: number }[],
 	devices: { device_type: string; views: number; visitors: number }[],
 	referrers: { referrer: string; views: number; visitors: number }[],
+	previous: PeriodComparison | null = null,
 ): PeriodStats => ({
 	period,
 	period_label: get_period_label(period),
@@ -123,4 +192,5 @@ export const format_period_stats = (
 	browsers,
 	devices,
 	referrers,
+	previous,
 });
