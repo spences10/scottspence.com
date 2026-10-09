@@ -9,6 +9,7 @@
 		Grid,
 		Highlight,
 		isometric,
+		LinearGradient,
 		Svg,
 		Tooltip,
 	} from 'layerchart';
@@ -219,12 +220,23 @@
 					/>
 					<!-- Back to front: each curtain stands in its own row -->
 					{#each [...rows_by_series].sort( (a, b) => (matrix ? matrix.d * (context.yScale(a.key) - context.yScale(b.key)) : 0) ) as item (item.key)}
-						<Area
-							data={item.curve}
-							fill={item.colour}
-							fillOpacity={0.5}
-							line={{ stroke: item.colour, strokeWidth: 2 }}
-						/>
+						<!-- The flat chart's fill: the colour fading out
+						     towards the floor -->
+						<LinearGradient
+							stops={[
+								`color-mix(in oklab, ${item.colour} 70%, transparent)`,
+								`color-mix(in oklab, ${item.colour} 10%, transparent)`,
+							]}
+							vertical
+						>
+							{#snippet children({ gradient })}
+								<Area
+									data={item.curve}
+									fill={gradient}
+									line={{ stroke: item.colour, strokeWidth: 2 }}
+								/>
+							{/snippet}
+						</LinearGradient>
 					{/each}
 					<Highlight points />
 				</Svg>

@@ -9,6 +9,7 @@
 		Grid,
 		Highlight,
 		isometric,
+		LinearGradient,
 		Svg,
 		Tooltip,
 	} from 'layerchart';
@@ -30,9 +31,18 @@
 		metric: HistoricalMetric;
 		// A post picked out elsewhere, such as a hovered row in the list
 		highlighted?: string | null;
+		// Laid out for a full-width card: a longer floor, whole titles
+		wide?: boolean;
+		hint?: string;
 	}
 
-	let { ridges, metric, highlighted = null }: Props = $props();
+	let {
+		ridges,
+		metric,
+		highlighted = null,
+		wide = false,
+		hint = 'Drag to turn · hover a ridge',
+	}: Props = $props();
 
 	type Point = Ridge['points'][number] & {
 		slug: string;
@@ -47,7 +57,9 @@
 	// Narrow charts have no room for the post titles
 	let chart_width = $state(0);
 	const compact = $derived(chart_width > 0 && chart_width < 440);
-	const title_length = 20;
+	// A full-width card has room for most titles whole
+	const roomy = $derived(wide && chart_width >= 880);
+	const title_length = $derived(roomy ? 44 : 20);
 
 	let flat = $state(false);
 	let rotate = $state(default_view.rotate);
@@ -82,6 +94,11 @@
 			? 'var(--color-primary)'
 			: 'var(--color-secondary)',
 	);
+	// The flat charts' fill: the hue fading out towards the floor
+	const fill_stops = $derived([
+		`color-mix(in oklab, ${hue} 75%, transparent)`,
+		`color-mix(in oklab, ${hue} 12%, transparent)`,
+	]);
 
 	const slugs = $derived(ridges.map((ridge) => ridge.slug));
 	const points = $derived(
@@ -135,7 +152,7 @@
 	class="mb-2 flex flex-wrap items-center gap-x-4 gap-y-2 px-2 text-xs"
 >
 	<span class="hidden opacity-70 sm:inline">
-		Drag to turn · hover a ridge or a post in the list
+		{hint}
 	</span>
 	<div class="ml-auto">
 		<ChartViewControls
@@ -149,7 +166,9 @@
 </div>
 
 <div
-	class="h-64 cursor-grab touch-pan-y select-none active:cursor-grabbing sm:h-96"
+	class="h-64 cursor-grab touch-pan-y select-none active:cursor-grabbing {wide
+		? 'sm:h-120'
+		: 'sm:h-96'}"
 	bind:clientWidth={chart_width}
 >
 	<Chart
@@ -162,11 +181,14 @@
 		z="value"
 		zDomain={[0, max_value]}
 		zNice
-		zRange={({ width }: { width: number }) => [0, width * 0.28]}
+		zRange={({ width }: { width: number }) => [
+			0,
+			width * (roomy ? 0.16 : 0.28),
+		]}
 		view={isometric({
 			rotate: flat ? flat_view.rotate : rotate,
 			tilt: flat ? flat_view.tilt : tilt,
-			aspect: 1.5,
+			aspect: roomy ? 2.6 : 1.5,
 			motion: { type: 'tween', duration: 700, easing: cubicInOut },
 		})}
 		transform={{ mode: 'canvas', drag: 'rotate' }}
@@ -179,7 +201,7 @@
 		padding={{
 			top: 16,
 			bottom: 36,
-			left: compact || flat ? 36 : 128,
+			left: compact || flat ? 36 : roomy ? 256 : 128,
 			right: 32,
 		}}
 		clip
@@ -226,16 +248,20 @@
 				     the farther rows are drawn first -->
 				{#each [...ridges].sort( (a, b) => (matrix ? matrix.d * (context.yScale(a.slug) - context.yScale(b.slug)) : 0) ) as ridge (ridge.slug)}
 					{@const faded = active !== null && active !== ridge.slug}
-					<Area
-						data={curves_by_slug.get(ridge.slug)}
-						fill={hue}
-						fillOpacity={faded ? 0.12 : active ? 0.75 : 0.55}
-						line={{
-							stroke: hue,
-							strokeWidth: 2,
-							opacity: faded ? 0.35 : 1,
-						}}
-					/>
+					<LinearGradient stops={fill_stops} vertical>
+						{#snippet children({ gradient })}
+							<Area
+								data={curves_by_slug.get(ridge.slug)}
+								fill={gradient}
+								fillOpacity={faded ? 0.2 : active ? 1 : 0.85}
+								line={{
+									stroke: hue,
+									strokeWidth: 2,
+									opacity: faded ? 0.35 : 1,
+								}}
+							/>
+						{/snippet}
+					</LinearGradient>
 				{/each}
 				<Highlight points />
 			</Svg>

@@ -2,6 +2,7 @@
 	import {
 		HistoricalStats,
 		PeriodStats,
+		YearPosts,
 	} from '#lib/components/stats/index.js';
 	import { name, website } from '#lib/info.js';
 	import { create_seo_config } from '#lib/seo/index.js';
@@ -86,6 +87,7 @@
 	</svelte:boundary>
 
 	{#if site_stats.length > 0}
+		<YearPosts {site_stats} {current_year} />
 		<HistoricalStats {site_stats} {current_month} {current_year} />
 	{/if}
 </div>

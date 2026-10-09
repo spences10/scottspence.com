@@ -2,9 +2,7 @@
 	import type { PeriodCounts } from '#lib/analytics/period-stats.helpers.js';
 	import { number_crunch } from '#lib/utils/index.js';
 	import { onMount, settled } from 'svelte';
-	import HistoricalRidges, {
-		type Ridge,
-	} from './historical-ridges.svelte';
+	import PostRidges, { type Ridge } from './post-ridges.svelte';
 	import HistoricalSkyline from './historical-skyline.svelte';
 	import StatRowMulti from './stat-row-multi.svelte';
 	import {
@@ -535,7 +533,8 @@
 						</p>
 					</div>
 					{#if mounted && ridges.length > 0 && ridges[0].points.length > 1}
-						<HistoricalRidges
+						<PostRidges
+							hint="Drag to turn · hover a ridge or a post in the list"
 							{ridges}
 							{metric}
 							highlighted={ridges.some(

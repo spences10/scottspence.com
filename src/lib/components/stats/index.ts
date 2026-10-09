@@ -4,3 +4,4 @@ export { default as PeriodStats } from './period-stats.svelte';
 export { default as StatRowMulti } from './stat-row-multi.svelte';
 export { default as StatRow } from './stat-row.svelte';
 export * from './stats.svelte';
+export { default as YearPosts } from './year-posts.svelte';
