@@ -14,12 +14,14 @@ type ActiveSession = {
 	country?: string;
 	browser?: string;
 	device_type?: string;
+	referrer?: string;
 };
 
 type SessionMetadata = {
 	country?: string;
 	browser?: string;
 	device_type?: string;
+	referrer?: string;
 };
 
 // In-memory map of active sessions
@@ -48,6 +50,8 @@ export const heartbeat = (
 		country: metadata?.country ?? existing?.country,
 		browser: metadata?.browser ?? existing?.browser,
 		device_type: metadata?.device_type ?? existing?.device_type,
+		// First referrer wins - it's how the visitor arrived
+		referrer: existing?.referrer ?? metadata?.referrer,
 	});
 };
 
@@ -141,6 +145,21 @@ export const get_session_breakdown = () => {
 		.map(([device_type, visitors]) => ({ device_type, visitors }))
 		.sort((a, b) => b.visitors - a.visitors);
 
+	// Referrers
+	const referrer_counts = new Map<string, number>();
+	for (const s of sessions) {
+		if (s.referrer) {
+			referrer_counts.set(
+				s.referrer,
+				(referrer_counts.get(s.referrer) || 0) + 1,
+			);
+		}
+	}
+	const referrers = Array.from(referrer_counts.entries())
+		.map(([referrer, visitors]) => ({ referrer, visitors }))
+		.sort((a, b) => b.visitors - a.visitors)
+		.slice(0, 10);
+
 	// Paths
 	const path_counts = new Map<string, number>();
 	for (const s of sessions) {
@@ -158,6 +177,7 @@ export const get_session_breakdown = () => {
 		countries_total,
 		browsers,
 		devices,
+		referrers,
 		top_paths,
 		paths_total,
 	};

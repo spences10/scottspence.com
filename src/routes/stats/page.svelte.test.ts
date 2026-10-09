@@ -21,6 +21,7 @@ vi.mock('#lib/analytics/live-analytics.remote.js', () => ({
 				countries_total: 0,
 				browsers: [],
 				devices: [],
+				referrers: [],
 				top_paths: [],
 				paths_total: 0,
 			}),

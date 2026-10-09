@@ -8,9 +8,11 @@ import {
 	heartbeat,
 	remove_session,
 } from './active-sessions';
+import { is_blocked_referrer } from './blocked-domains';
 import {
 	extract_metadata_from_event,
 	format_live_stats_breakdown,
+	normalise_live_referrer,
 } from './live-analytics.helpers';
 
 /**
@@ -22,11 +24,18 @@ export const send_heartbeat = command(
 	v.object({
 		session_id: v.string(),
 		path: v.string(),
+		referrer: v.optional(v.pipe(v.string(), v.maxLength(2048))),
 	}),
-	({ session_id, path }) => {
+	({ session_id, path, referrer }) => {
 		const metadata = extract_metadata_from_event(getRequestEvent());
 
-		heartbeat(session_id, path, metadata);
+		heartbeat(session_id, path, {
+			...metadata,
+			// Blocked (spam) referrers are dropped, same as at ingestion
+			referrer: is_blocked_referrer(referrer ?? null)
+				? undefined
+				: normalise_live_referrer(referrer),
+		});
 
 		return {
 			unique_visitors: get_active_visitor_count(),

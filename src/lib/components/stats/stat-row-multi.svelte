@@ -7,30 +7,45 @@
 		views: number;
 		max_value: number;
 		href?: string;
+		prefix?: string;
+		label_class?: string;
 	}
 
-	let { label, visitors, views, max_value, href }: Props = $props();
+	let {
+		label,
+		visitors,
+		views,
+		max_value,
+		href,
+		prefix,
+		label_class = '',
+	}: Props = $props();
+
+	const bar_width = $derived(
+		max_value > 0 ? (visitors / max_value) * 100 : 0,
+	);
 </script>
 
-<li class="relative flex items-center gap-2 py-1.5">
+<li class="relative flex h-9 items-center gap-3 px-2 text-sm">
 	<div
-		class="absolute inset-y-0 left-0 rounded bg-primary/20"
-		style="width: {(visitors / max_value) * 100}%"
+		class="absolute inset-y-0.5 left-0 rounded bg-current opacity-10"
+		style="width: {bar_width}%"
 	></div>
-	<span class="relative min-w-0 flex-1 truncate text-sm">
+	<span class="relative flex min-w-0 flex-1 items-center gap-2">
+		{#if prefix}
+			<span aria-hidden="true">{prefix}</span>
+		{/if}
 		{#if href}
-			<a {href} class="link capitalize link-hover">{label}</a>
+			<a {href} class="truncate link-hover {label_class}">{label}</a>
 		{:else}
-			<span class="capitalize">{label}</span>
+			<span class="truncate {label_class}">{label}</span>
 		{/if}
 	</span>
-	<span
-		class="relative badge w-14 shrink-0 justify-end badge-ghost badge-sm whitespace-nowrap tabular-nums"
-	>
+	<span class="relative w-14 shrink-0 text-right tabular-nums">
 		{number_crunch(visitors)}
 	</span>
 	<span
-		class="relative badge w-14 shrink-0 justify-end badge-outline badge-sm whitespace-nowrap tabular-nums"
+		class="relative w-14 shrink-0 text-right tabular-nums opacity-70"
 	>
 		{number_crunch(views)}
 	</span>

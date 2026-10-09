@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { get_live_stats_breakdown } from '#lib/analytics/live-analytics.remote.js';
-	import { number_crunch } from '#lib/utils/index.js';
 	import { onMount } from 'svelte';
 	import StatRow from './stat-row.svelte';
-	import { country_flag, format_path } from './stats.svelte';
 
 	const live_stats_query = get_live_stats_breakdown();
 
@@ -15,99 +13,34 @@
 	});
 </script>
 
-<!-- Live Stats Section -->
-<div class="divider mb-8">Live Visitors</div>
-
-{#await live_stats_query}
-	<div class="flex items-center justify-center py-12">
-		<div class="loading loading-lg loading-spinner"></div>
-	</div>
-{:then live_stats}
-	<!-- Stats cards row -->
-	<div
-		class="stats mb-8 w-full stats-vertical border border-secondary shadow-lg md:stats-horizontal"
-	>
-		<div class="stat">
-			<div class="stat-title">Active Now</div>
-			<div class="stat-value text-primary">
-				{live_stats.active_visitors}
-			</div>
-			<div class="stat-desc">Current visitors</div>
+<!-- Live visitors band -->
+<section
+	aria-label="Live visitors"
+	class="rounded-box bg-primary p-4 text-primary-content sm:p-6"
+>
+	{#await live_stats_query}
+		<div class="flex items-center justify-center py-4">
+			<div class="loading loading-md loading-spinner"></div>
 		</div>
-		<div class="stat">
-			<div class="stat-title">Last 5 mins</div>
-			<div class="stat-value text-secondary">
-				{live_stats.recent_visitors}
-			</div>
-			<div class="stat-desc">Unique visitors</div>
-		</div>
-		<div class="stat">
-			<div class="stat-title">Countries</div>
-			<div class="stat-value text-accent">
-				{live_stats.countries_total}
-			</div>
-			<div class="stat-desc">Represented</div>
-		</div>
-		<div class="stat">
-			<div class="stat-title">Active Pages</div>
-			<div class="stat-value text-info">
-				{live_stats.paths_total}
-			</div>
-			<div class="stat-desc">Being viewed</div>
-		</div>
-	</div>
-
-	<!-- Main grid: Countries + Active Pages -->
-	<div class="mb-8 grid gap-6 lg:grid-cols-2">
-		<!-- Countries -->
-		<div class="card min-w-0 overflow-hidden bg-base-200 shadow-lg">
-			<div class="card-body min-w-0">
-				<h2 class="card-title text-lg">Visitors by Country</h2>
-				{#if live_stats.countries.length > 0}
-					{@const max_visitors = Math.max(
-						...live_stats.countries.map((c) => c.visitors),
-					)}
-					<ul class="space-y-1">
-						{#each live_stats.countries as c}
-							<li
-								class="relative flex items-center justify-between gap-2 py-1.5"
-							>
-								<div
-									class="absolute inset-y-0 left-0 rounded bg-primary/20"
-									style="width: {(c.visitors / max_visitors) * 100}%"
-								></div>
-								<span
-									class="relative flex items-center gap-2 text-sm"
-								>
-									<span>{country_flag(c.country)}</span>
-									<span class="uppercase">{c.country}</span>
-								</span>
-								<span class="relative badge badge-ghost tabular-nums">
-									{number_crunch(c.visitors)}
-								</span>
-							</li>
-						{/each}
-					</ul>
-				{:else}
-					<p class="text-sm text-base-content/50">No data yet</p>
-				{/if}
-			</div>
-		</div>
-
-		<!-- Active Pages -->
-		<div class="card min-w-0 overflow-hidden bg-base-200 shadow-lg">
-			<div class="card-body min-w-0">
-				<h2 class="card-title text-lg">Top Pages</h2>
+	{:then live_stats}
+		<div class="grid gap-x-2 gap-y-4 md:grid-cols-2">
+			<div class="min-w-0">
+				<div
+					class="mb-1 flex justify-between px-2 text-xs opacity-80"
+				>
+					<span>Pages</span>
+					<span>People</span>
+				</div>
 				{#if live_stats.top_paths.length > 0}
 					{@const max_visitors = Math.max(
 						...live_stats.top_paths
-							.slice(0, 8)
+							.slice(0, 5)
 							.map((p) => p.visitors),
 					)}
-					<ul class="space-y-1">
-						{#each live_stats.top_paths.slice(0, 8) as page}
+					<ul>
+						{#each live_stats.top_paths.slice(0, 5) as page (page.path)}
 							<StatRow
-								label={format_path(page.path)}
+								label={page.path}
 								value={page.visitors}
 								max_value={max_visitors}
 								href={page.path}
@@ -115,13 +48,38 @@
 						{/each}
 					</ul>
 				{:else}
-					<p class="text-sm text-base-content/50">No activity</p>
+					<p class="px-2 py-2 text-sm opacity-80">
+						No one on the site right now
+					</p>
+				{/if}
+			</div>
+
+			<div class="min-w-0">
+				<div
+					class="mb-1 flex justify-between px-2 text-xs opacity-80"
+				>
+					<span>Referrers</span>
+					<span>People</span>
+				</div>
+				{#if live_stats.referrers.length > 0}
+					{@const max_visitors = Math.max(
+						...live_stats.referrers
+							.slice(0, 5)
+							.map((r) => r.visitors),
+					)}
+					<ul>
+						{#each live_stats.referrers.slice(0, 5) as r (r.referrer)}
+							<StatRow
+								label={r.referrer}
+								value={r.visitors}
+								max_value={max_visitors}
+							/>
+						{/each}
+					</ul>
+				{:else}
+					<p class="px-2 py-2 text-sm opacity-80">No data yet</p>
 				{/if}
 			</div>
 		</div>
-	</div>
-
-	<p class="mb-8 text-center text-xs text-base-content/50">
-		Live data refreshes every 10 seconds
-	</p>
-{/await}
+	{/await}
+</section>

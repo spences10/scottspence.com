@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
 	extract_session_metadata,
 	format_live_stats_breakdown,
+	normalise_live_referrer,
 } from './live-analytics.helpers';
 
 describe('extract_session_metadata', () => {
@@ -59,6 +60,7 @@ describe('format_live_stats_breakdown', () => {
 			countries_total: 1,
 			browsers: [{ browser: 'Chrome', visitors: 4 }],
 			devices: [{ device_type: 'desktop', visitors: 5 }],
+			referrers: [{ referrer: 'Google', visitors: 2 }],
 			top_paths: [
 				{ path: '/posts/test', views: 10, visitors: 5 },
 				{ path: '/', views: 3, visitors: 2 },
@@ -84,6 +86,9 @@ describe('format_live_stats_breakdown', () => {
 		expect(result.devices).toEqual([
 			{ device_type: 'desktop', visitors: 5 },
 		]);
+		expect(result.referrers).toEqual([
+			{ referrer: 'Google', visitors: 2 },
+		]);
 		expect(result.top_paths).toEqual(breakdown.top_paths);
 		expect(result.paths_total).toBe(2);
 	});
@@ -95,6 +100,7 @@ describe('format_live_stats_breakdown', () => {
 			countries_total: 0,
 			browsers: [],
 			devices: [],
+			referrers: [],
 			top_paths: [],
 			paths_total: 0,
 		};
@@ -107,5 +113,27 @@ describe('format_live_stats_breakdown', () => {
 		expect(result.countries).toEqual([]);
 		expect(result.countries_total).toBe(0);
 		expect(result.paths_total).toBe(0);
+	});
+});
+
+describe('normalise_live_referrer', () => {
+	it('groups search engines under their canonical name', () => {
+		expect(normalise_live_referrer('https://www.google.com/')).toBe(
+			'Google',
+		);
+	});
+
+	it('returns the hostname for other sources', () => {
+		expect(
+			normalise_live_referrer('https://www.reddit.com/r/sveltejs'),
+		).toBe('reddit.com');
+	});
+
+	it('treats empty and internal referrers as Direct', () => {
+		expect(normalise_live_referrer('')).toBe('Direct');
+		expect(normalise_live_referrer(undefined)).toBe('Direct');
+		expect(
+			normalise_live_referrer('https://scottspence.com/posts'),
+		).toBe('Direct');
 	});
 });

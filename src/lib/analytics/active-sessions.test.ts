@@ -102,6 +102,30 @@ describe('active-sessions', () => {
 			expect(breakdown.countries_total).toBe(2);
 		});
 
+		it('aggregates referrers and keeps the first one per session', () => {
+			active_sessions_module.heartbeat('user-1', '/', {
+				referrer: 'Google',
+			});
+			active_sessions_module.heartbeat('user-2', '/', {
+				referrer: 'Google',
+			});
+			active_sessions_module.heartbeat('user-3', '/', {
+				referrer: 'Direct',
+			});
+			// Later heartbeat must not overwrite how the visitor arrived
+			active_sessions_module.heartbeat('user-1', '/posts/test', {
+				referrer: 'Direct',
+			});
+
+			const breakdown =
+				active_sessions_module.get_session_breakdown();
+
+			expect(breakdown.referrers).toEqual([
+				{ referrer: 'Google', visitors: 2 },
+				{ referrer: 'Direct', visitors: 1 },
+			]);
+		});
+
 		it('aggregates browsers correctly', () => {
 			active_sessions_module.heartbeat('user-1', '/', {
 				browser: 'Chrome',

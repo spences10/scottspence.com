@@ -19,6 +19,13 @@ const get_session_id = (): string => {
 	return id;
 };
 
+// Where the visitor arrived from - same-origin referrers count as direct
+const get_external_referrer = (): string => {
+	const referrer = document.referrer;
+	if (!referrer || referrer.startsWith(location.origin)) return '';
+	return referrer.slice(0, 2048);
+};
+
 // Shared reactive state
 let unique_visitors = $state(0);
 let path_viewers = $state(0);
@@ -44,7 +51,11 @@ export const init_live_analytics = () => {
 		current_path = path;
 
 		try {
-			const result = await send_heartbeat({ session_id, path });
+			const result = await send_heartbeat({
+				session_id,
+				path,
+				referrer: get_external_referrer(),
+			});
 			unique_visitors = result.unique_visitors;
 			path_viewers = result.path_viewers;
 		} catch (e) {

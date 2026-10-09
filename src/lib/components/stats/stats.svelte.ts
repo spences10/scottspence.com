@@ -9,6 +9,7 @@ export type LiveStats = {
 	countries_total: number;
 	browsers: { browser: string; visitors: number }[];
 	devices: { device_type: string; visitors: number }[];
+	referrers: { referrer: string; visitors: number }[];
 	top_paths: { path: string; views: number; visitors: number }[];
 	paths_total: number;
 };

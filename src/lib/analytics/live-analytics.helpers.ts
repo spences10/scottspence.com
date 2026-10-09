@@ -1,11 +1,21 @@
 import type { RequestEvent } from '@sveltejs/kit';
+import { normalise_referrer } from './referrer-normalisation';
 import { parse_user_agent } from './utils';
 
 export type SessionMetadata = {
 	country?: string;
 	browser?: string;
 	device_type?: string;
+	referrer?: string;
 };
+
+/**
+ * Normalise a client-reported referrer into a live stats source
+ * Empty and internal referrers count as Direct
+ */
+export const normalise_live_referrer = (
+	referrer: string | undefined,
+): string => normalise_referrer(referrer ?? null) ?? 'Direct';
 
 /**
  * Extract session metadata from request headers
@@ -49,6 +59,7 @@ export type LiveStatsBreakdown = {
 	countries_total: number;
 	browsers: { browser: string; visitors: number }[];
 	devices: { device_type: string; visitors: number }[];
+	referrers: { referrer: string; visitors: number }[];
 	top_paths: { path: string; views: number; visitors: number }[];
 	paths_total: number;
 };
@@ -63,6 +74,7 @@ export const format_live_stats_breakdown = (breakdown: {
 	countries_total: number;
 	browsers: { browser: string; visitors: number }[];
 	devices: { device_type: string; visitors: number }[];
+	referrers: { referrer: string; visitors: number }[];
 	top_paths: { path: string; views: number; visitors: number }[];
 	paths_total: number;
 }): LiveStatsBreakdown => {
@@ -81,6 +93,7 @@ export const format_live_stats_breakdown = (breakdown: {
 		countries_total: breakdown.countries_total,
 		browsers: breakdown.browsers,
 		devices: breakdown.devices,
+		referrers: breakdown.referrers,
 		top_paths: breakdown.top_paths,
 		paths_total: breakdown.paths_total,
 	};

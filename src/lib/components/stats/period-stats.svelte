@@ -11,6 +11,7 @@
 		get_engagement_stats,
 		type EngagementStats,
 	} from '#lib/analytics/engagement-stats.remote.js';
+	import { get_live_stats_breakdown } from '#lib/analytics/live-analytics.remote.js';
 	import {
 		get_period_stats,
 		type FilterMode,
@@ -30,11 +31,11 @@
 		Svg,
 		Tooltip,
 	} from 'layerchart';
+	import LiveDashboard from './live-dashboard.svelte';
 	import StatRowMulti from './stat-row-multi.svelte';
 	import {
 		country_flag,
 		device_icon,
-		format_path,
 		parse_referrer,
 		period_labels,
 	} from './stats.svelte';
@@ -46,6 +47,17 @@
 	let selected_stats_period = $state<StatsPeriod>('today');
 	let selected_filter_mode = $state<FilterMode>('humans');
 	let engagement_sort_mode = $state<EngagementSortMode>('clicks');
+
+	let show_live = $state(true);
+
+	// Shared with LiveDashboard, which handles the refresh interval
+	const live_stats_query = get_live_stats_breakdown();
+
+	const views_per_visitor = $derived(
+		period_stats && period_stats.unique_visitors > 0
+			? (period_stats.views / period_stats.unique_visitors).toFixed(1)
+			: '0',
+	);
 
 	// Sort engagement stats based on selected mode
 	const sorted_engagement_pages = $derived(
@@ -91,169 +103,161 @@
 			date: new Date(point.timestamp),
 		}));
 	});
-
-	// Flatten chart data for multi-series (views + visitors)
-	let chart_data_multi = $derived.by(() => {
-		if (!chart_data_parsed.length) return [];
-		return chart_data_parsed.flatMap((point) => [
-			{
-				date: point.date,
-				value: point.visitors,
-				series: 'visitors',
-				timestamp: point.timestamp,
-			},
-			{
-				date: point.date,
-				value: point.views,
-				series: 'views',
-				timestamp: point.timestamp,
-			},
-		]);
-	});
-
-	// Group by series for rendering
-	let chart_series_data = $derived.by(() => {
-		if (!chart_data_parsed.length) return { visitors: [], views: [] };
-		return {
-			visitors: chart_data_parsed.map((p) => ({
-				date: p.date,
-				value: p.visitors,
-				timestamp: p.timestamp,
-			})),
-			views: chart_data_parsed.map((p) => ({
-				date: p.date,
-				value: p.views,
-				timestamp: p.timestamp,
-			})),
-		};
-	});
 </script>
 
 <!-- Page header -->
-<div class="mb-8 flex items-center justify-between">
-	<h1 class="text-3xl font-bold">Site Stats</h1>
-</div>
-
-<!-- Filter info alert -->
-<div class="mb-6 alert">
-	<InformationCircle />
-	<div class="text-sm">
-		<p>
-			<strong>Bot filtering:</strong> Detects bots via user-agent patterns
-			(crawlers, scripts) and behaviour analysis (20+ hits/page or 100+
-			total/day). Historical data is filtered overnight; current day filtering
-			is applied in real-time.
-		</p>
-	</div>
-</div>
-
 <div class="mb-4 flex flex-wrap items-center justify-between gap-4">
-	<!-- Period selector -->
-	<div class="flex flex-wrap items-center gap-2">
-		{#each ['today', 'yesterday', 'week', 'month', 'year'] as period (period)}
-			<button
-				class="btn btn-sm {selected_stats_period === period
-					? 'btn-primary'
-					: 'btn-ghost'}"
-				onclick={() =>
-					(selected_stats_period = period as StatsPeriod)}
-			>
-				{period_labels[period as StatsPeriod]}
-			</button>
-		{/each}
-	</div>
+	<h1 class="text-3xl font-bold">Site Stats</h1>
 
-	<!-- Filter mode toggle -->
-	<div class="join">
-		<button
-			class="btn join-item btn-sm {selected_filter_mode === 'humans'
-				? 'btn-success'
-				: 'btn-ghost'}"
-			onclick={() => (selected_filter_mode = 'humans')}
-		>
-			Humans
-		</button>
-		<button
-			class="btn join-item btn-sm {selected_filter_mode === 'bots'
-				? 'btn-warning'
-				: 'btn-ghost'}"
-			onclick={() => (selected_filter_mode = 'bots')}
-		>
-			Bots
-		</button>
-		<button
-			class="btn join-item btn-sm {selected_filter_mode === 'all'
-				? 'btn-info'
-				: 'btn-ghost'}"
-			onclick={() => (selected_filter_mode = 'all')}
-		>
-			All
-		</button>
+	<div class="flex flex-wrap items-center gap-2">
+		<!-- Period selector -->
+		<div class="join">
+			{#each ['today', 'yesterday', 'week', 'month', 'year'] as period (period)}
+				<button
+					class="btn join-item btn-sm {selected_stats_period ===
+					period
+						? 'btn-primary'
+						: ''}"
+					aria-pressed={selected_stats_period === period}
+					onclick={() =>
+						(selected_stats_period = period as StatsPeriod)}
+				>
+					{period_labels[period as StatsPeriod]}
+				</button>
+			{/each}
+		</div>
+
+		<!-- Filter mode toggle -->
+		<div class="join">
+			<button
+				class="btn join-item btn-sm {selected_filter_mode === 'humans'
+					? 'btn-success'
+					: ''}"
+				aria-pressed={selected_filter_mode === 'humans'}
+				onclick={() => (selected_filter_mode = 'humans')}
+			>
+				Humans
+			</button>
+			<button
+				class="btn join-item btn-sm {selected_filter_mode === 'bots'
+					? 'btn-warning'
+					: ''}"
+				aria-pressed={selected_filter_mode === 'bots'}
+				onclick={() => (selected_filter_mode = 'bots')}
+			>
+				Bots
+				{#if period_stats && period_stats.bot_views > 0}
+					<span class="tabular-nums opacity-80">
+						{number_crunch(period_stats.bot_views)}
+					</span>
+				{/if}
+			</button>
+			<button
+				class="btn join-item btn-sm {selected_filter_mode === 'all'
+					? 'btn-info'
+					: ''}"
+				aria-pressed={selected_filter_mode === 'all'}
+				onclick={() => (selected_filter_mode = 'all')}
+			>
+				All
+			</button>
+		</div>
 	</div>
 </div>
 
-{#if period_loading}
-	<div class="flex items-center justify-center py-8">
-		<div class="loading loading-md loading-spinner"></div>
-	</div>
-{:else if period_stats}
-	<!-- Period summary cards -->
-	<div
-		class="stats mb-4 w-full stats-vertical border border-secondary shadow-lg md:stats-horizontal"
-	>
-		<div class="stat">
-			<div class="stat-title">
-				{selected_filter_mode === 'bots' ? 'Bot Views' : 'Views'}
-			</div>
+<div class="mb-12 space-y-1.5">
+	{#if period_stats}
+		<!-- Summary strip -->
+		<div
+			class="relative rounded-box bg-base-200 p-4 transition-opacity sm:p-6"
+			class:opacity-60={period_loading}
+		>
 			<div
-				class="stat-value {selected_filter_mode === 'bots'
-					? 'text-warning'
-					: 'text-primary'}"
+				class="tooltip absolute tooltip-left top-2 right-2"
+				data-tip="Bots are detected via user-agent patterns (crawlers, scripts) and behaviour (20+ hits per page or 100+ total per day). Historical data is filtered overnight; the current day is filtered in real time."
 			>
-				{number_crunch(period_stats.views)}
+				<button
+					class="btn btn-circle btn-ghost btn-xs"
+					aria-label="About bot filtering"
+				>
+					<InformationCircle height="18px" width="18px" />
+				</button>
 			</div>
-			<div class="stat-desc">{period_stats.period_label}</div>
-		</div>
-		<div class="stat">
-			<div class="stat-title">
-				{selected_filter_mode === 'bots'
-					? 'Bot Visitors'
-					: 'Unique Visitors'}
-			</div>
-			<div
-				class="stat-value {selected_filter_mode === 'bots'
-					? 'text-warning'
-					: 'text-secondary'}"
+			<dl
+				class="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6"
 			>
-				{number_crunch(period_stats.unique_visitors)}
-			</div>
-			<div class="stat-desc">{period_stats.period_label}</div>
+				{#snippet summary_item(label: string, value: string | number)}
+					<div class="flex flex-col-reverse">
+						<dt class="text-sm opacity-80">{label}</dt>
+						<dd
+							class="text-5xl font-light tracking-tight tabular-nums"
+						>
+							{value}
+						</dd>
+					</div>
+				{/snippet}
+				<div class="flex flex-col-reverse">
+					<dt class="text-sm opacity-80">Realtime</dt>
+					<dd class="text-5xl font-light tracking-tight tabular-nums">
+						<button
+							class="cursor-pointer rounded link-hover"
+							aria-expanded={show_live}
+							aria-controls="live-visitors"
+							aria-label="Realtime visitors: {live_stats_query.current
+								?.active_visitors ?? 0}. Toggle live pages"
+							onclick={() => (show_live = !show_live)}
+						>
+							{number_crunch(
+								live_stats_query.current?.active_visitors ?? 0,
+							)}
+						</button>
+					</dd>
+				</div>
+				{@render summary_item(
+					selected_filter_mode === 'bots'
+						? 'Bot visitors'
+						: 'Site visitors',
+					number_crunch(period_stats.unique_visitors),
+				)}
+				{@render summary_item(
+					selected_filter_mode === 'bots'
+						? 'Bot pageviews'
+						: 'Pageviews',
+					number_crunch(period_stats.views),
+				)}
+				{@render summary_item('Views per visitor', views_per_visitor)}
+				{@render summary_item(
+					'Countries',
+					period_stats.countries.length,
+				)}
+				{@render summary_item(
+					'Pages with traffic',
+					number_crunch(period_stats.top_pages.length),
+				)}
+			</dl>
 		</div>
-		<div class="stat">
-			<div class="stat-title">Countries</div>
-			<div class="stat-value text-accent">
-				{period_stats.countries.length}
-			</div>
-			<div class="stat-desc">Represented</div>
+	{:else if period_loading}
+		<div class="flex items-center justify-center py-8">
+			<div class="loading loading-md loading-spinner"></div>
 		</div>
-		<div class="stat">
-			<div class="stat-title">Pages</div>
-			<div class="stat-value text-info">
-				{period_stats.top_pages.length}
-			</div>
-			<div class="stat-desc">With traffic</div>
-		</div>
+	{/if}
+
+	<div id="live-visitors" hidden={!show_live}>
+		<LiveDashboard />
 	</div>
 
-	<!-- Period Area Chart -->
-	{#if chart_data_parsed.length > 0}
-		{@const max_value = Math.max(
-			...chart_data_parsed.map((d) => Math.max(d.views, d.visitors)),
-		)}
-		{#key chart_data_parsed.length}
-			<div class="card mb-4 bg-base-200 shadow-lg">
-				<div class="card-body p-4">
-					<div class="mb-2 flex gap-4 text-sm">
+	{#if period_stats}
+		<!-- Period chart -->
+		{#if chart_data_parsed.length > 0}
+			{@const max_value = Math.max(
+				...chart_data_parsed.map((d) =>
+					Math.max(d.views, d.visitors),
+				),
+			)}
+			{#key chart_data_parsed.length}
+				<div class="rounded-box bg-base-200 p-4 sm:p-6">
+					<div class="mb-2 flex items-center gap-4 text-xs">
+						<span class="opacity-80">UTC</span>
 						<span class="flex items-center gap-1">
 							<span class="inline-block h-2 w-4 rounded bg-secondary"
 							></span>
@@ -265,22 +269,35 @@
 							Views
 						</span>
 					</div>
-					<div class="h-48">
+					<div class="h-72">
 						<Chart
-							data={chart_data_multi}
+							data={chart_data_parsed}
 							x="date"
 							xScale={scaleTime()}
-							y="value"
+							y="views"
+							seriesLayout="overlap"
+							series={[
+								{
+									key: 'visitors',
+									color: 'var(--color-secondary)',
+								},
+								{
+									key: 'views',
+									color: 'var(--color-primary)',
+								},
+							]}
 							yDomain={[0, max_value]}
 							yNice
-							padding={{ left: 48, bottom: 24, right: 8, top: 8 }}
+							padding={{ left: 8, bottom: 24, right: 40, top: 8 }}
 							tooltipContext={{ mode: 'bisect-x' }}
 						>
 							<Svg>
 								<Axis
-									placement="left"
-									grid
-									rule
+									placement="right"
+									grid={{
+										class:
+											'stroke-[var(--color-base-content)] opacity-20 [stroke-dasharray:2_4]',
+									}}
 									format={(v: number) => number_crunch(v)}
 									classes={{
 										tickLabel:
@@ -309,12 +326,12 @@
 								/>
 								<!-- Visitors area with gradient -->
 								<LinearGradient
-									class="from-secondary/50 to-secondary/1"
+									class="from-secondary/30 to-secondary/1"
 									vertical
 								>
 									{#snippet children({ gradient })}
 										<Area
-											data={chart_series_data.visitors}
+											seriesKey="visitors"
 											curve={curveMonotoneX}
 											fill={gradient}
 											line={{
@@ -325,12 +342,12 @@
 								</LinearGradient>
 								<!-- Views area with gradient -->
 								<LinearGradient
-									class="from-primary/50 to-primary/1"
+									class="from-primary/30 to-primary/1"
 									vertical
 								>
 									{#snippet children({ gradient })}
 										<Area
-											data={chart_series_data.views}
+											seriesKey="views"
 											curve={curveMonotoneX}
 											fill={gradient}
 											line={{
@@ -353,8 +370,6 @@
 								}: {
 									data: {
 										timestamp: string;
-										value: number;
-										series: string;
 									};
 								})}
 									{@const point = chart_data_parsed.find(
@@ -408,53 +423,33 @@
 						</Chart>
 					</div>
 				</div>
+			{/key}
+		{/if}
+
+		{#snippet panel_header(title: string, first = 'Visitors')}
+			<div class="mb-1 flex items-center gap-3 px-2 text-xs">
+				<h2 class="flex-1 font-semibold">{title}</h2>
+				<span class="w-14 text-right opacity-80">{first}</span>
+				<span class="w-14 text-right opacity-80">Views</span>
 			</div>
-		{/key}
-	{/if}
+		{/snippet}
 
-	<!-- Bot stats summary (shown when viewing humans) -->
-	{#if selected_filter_mode === 'humans' && period_stats.bot_views > 0}
-		<div class="mb-8 rounded-lg bg-base-200 p-3 text-sm">
-			<span class="font-semibold text-warning"
-				>Bot traffic filtered:</span
-			>
-			{number_crunch(period_stats.bot_views)} views from {number_crunch(
-				period_stats.bot_visitors,
-			)}
-			detected bots
-			<span class="text-base-content/60">
-				({Math.round(
-					(period_stats.bot_views /
-						(period_stats.views + period_stats.bot_views)) *
-						100,
-				)}% of total)
-			</span>
-		</div>
-	{:else}
-		<div class="mb-4"></div>
-	{/if}
-
-	<!-- Top Pages (full width) -->
-	<div class="mb-8">
-		<div class="card min-w-0 overflow-hidden bg-base-200 shadow-lg">
-			<div class="card-body min-w-0">
-				<div class="flex items-center justify-between">
-					<h2 class="card-title text-lg">Top Pages</h2>
-					<div class="flex gap-2 text-xs opacity-60">
-						<span class="w-14 text-right">Visitors</span>
-						<span class="w-14 text-right">Views</span>
-					</div>
-				</div>
+		<!-- Pages + Referrers -->
+		<div
+			class="grid gap-1.5 transition-opacity lg:grid-cols-2"
+			class:opacity-60={period_loading}
+		>
+			<div class="min-w-0 rounded-box bg-base-200 p-4 sm:p-6">
+				{@render panel_header('Pages')}
 				{#if period_stats.top_pages.length > 0}
+					{@const top_pages = period_stats.top_pages.slice(0, 10)}
 					{@const max_visitors = Math.max(
-						...period_stats.top_pages
-							.slice(0, 10)
-							.map((p) => p.visitors),
+						...top_pages.map((p) => p.visitors),
 					)}
-					<ul class="space-y-1">
-						{#each period_stats.top_pages.slice(0, 10) as page}
+					<ul>
+						{#each top_pages as page (page.path)}
 							<StatRowMulti
-								label={format_path(page.path)}
+								label={page.path}
 								visitors={page.visitors}
 								views={page.views}
 								max_value={max_visitors}
@@ -463,120 +458,18 @@
 						{/each}
 					</ul>
 				{:else}
-					<p class="text-sm text-base-content/50">No data</p>
+					<p class="px-2 text-sm opacity-70">No data</p>
 				{/if}
 			</div>
-		</div>
-	</div>
 
-	<!-- Engagement Stats -->
-	{#if engagement_stats && sorted_engagement_pages.length > 0}
-		{@const max_clicks = Math.max(
-			...sorted_engagement_pages.map((p) => p.clicks),
-		)}
-		{@const max_rate = Math.max(
-			...sorted_engagement_pages.map((p) => p.engagement_rate),
-		)}
-		<div class="mb-8">
-			<div class="card min-w-0 overflow-hidden bg-base-200 shadow-lg">
-				<div class="card-body min-w-0">
-					<div
-						class="flex flex-wrap items-center justify-between gap-2"
-					>
-						<h2 class="card-title text-lg">Page Engagement</h2>
-						<div class="join">
-							<button
-								class="btn join-item btn-xs {engagement_sort_mode ===
-								'clicks'
-									? 'btn-accent'
-									: 'btn-ghost'}"
-								onclick={() => (engagement_sort_mode = 'clicks')}
-							>
-								Most Clicks
-							</button>
-							<button
-								class="btn join-item btn-xs {engagement_sort_mode ===
-								'rate'
-									? 'btn-accent'
-									: 'btn-ghost'}"
-								onclick={() => (engagement_sort_mode = 'rate')}
-							>
-								Highest Rate
-							</button>
-						</div>
-					</div>
-					<div class="flex justify-end gap-2 text-xs opacity-60">
-						<span class="w-14 text-right">Clicks</span>
-						<span class="w-14 text-right">Views</span>
-						<span class="w-14 text-right">Rate</span>
-					</div>
-					<ul class="space-y-1">
-						{#each sorted_engagement_pages as page}
-							{@const bar_value =
-								engagement_sort_mode === 'clicks'
-									? page.clicks / max_clicks
-									: page.engagement_rate / max_rate}
-							<li class="relative flex items-center gap-2 py-1.5">
-								<div
-									class="absolute inset-y-0 left-0 rounded bg-accent/20"
-									style="width: {bar_value * 100}%"
-								></div>
-								<a
-									href={page.path}
-									class="relative min-w-0 flex-1 truncate text-sm link-hover"
-								>
-									{format_path(page.path)}
-								</a>
-								<span
-									class="relative badge w-14 justify-end badge-ghost badge-sm tabular-nums"
-								>
-									{number_crunch(page.clicks)}
-								</span>
-								<span
-									class="relative badge w-14 justify-end badge-outline badge-sm tabular-nums"
-								>
-									{number_crunch(page.human_views)}
-								</span>
-								<span
-									class="relative badge w-14 justify-end badge-sm tabular-nums badge-accent"
-								>
-									{page.engagement_rate >= 10
-										? `${Math.round(page.engagement_rate)}%`
-										: `${page.engagement_rate.toFixed(1)}%`}
-								</span>
-							</li>
-						{/each}
-					</ul>
-					<p class="mt-2 text-xs text-base-content/50">
-						Overall: {engagement_stats.total_clicks} clicks / {number_crunch(
-							engagement_stats.total_human_views,
-						)} views = {engagement_stats.overall_engagement_rate.toFixed(
-							1,
-						)}% engagement
-					</p>
-				</div>
-			</div>
-		</div>
-	{/if}
-
-	<!-- Referrers + Countries -->
-	<div class="mb-8 grid gap-6 lg:grid-cols-2">
-		<!-- Referrers -->
-		<div class="card min-w-0 overflow-hidden bg-base-200 shadow-lg">
-			<div class="card-body min-w-0">
-				<div class="flex items-center justify-between">
-					<h2 class="card-title text-lg">Referrers</h2>
-					<div class="flex gap-2 text-xs opacity-60">
-						<span class="w-14 text-right">Visitors</span>
-						<span class="w-14 text-right">Views</span>
-					</div>
-				</div>
+			<div class="min-w-0 rounded-box bg-base-200 p-4 sm:p-6">
+				{@render panel_header('Referrers')}
 				{#if period_stats.referrers.length > 0}
 					{@const max_visitors = Math.max(
 						...period_stats.referrers.map((r) => r.visitors),
 					)}
-					<ul class="space-y-1">
-						{#each period_stats.referrers as ref}
+					<ul>
+						{#each period_stats.referrers as ref (ref.referrer)}
 							<StatRowMulti
 								label={parse_referrer(ref.referrer)}
 								visitors={ref.visitors}
@@ -586,77 +479,51 @@
 						{/each}
 					</ul>
 				{:else}
-					<p class="text-sm text-base-content/50">No referrer data</p>
+					<p class="px-2 text-sm opacity-70">No referrer data</p>
 				{/if}
 			</div>
 		</div>
 
-		<!-- Countries -->
-		<div class="card min-w-0 overflow-hidden bg-base-200 shadow-lg">
-			<div class="card-body min-w-0">
-				<div class="flex items-center justify-between">
-					<h2 class="card-title text-lg">Top Countries</h2>
-					<div class="flex gap-2 text-xs opacity-60">
-						<span class="w-14 text-right">Visitors</span>
-						<span class="w-14 text-right">Views</span>
-					</div>
-				</div>
+		<!-- Countries + Browsers + Devices -->
+		<div
+			class="grid gap-1.5 transition-opacity lg:grid-cols-3"
+			class:opacity-60={period_loading}
+		>
+			<div class="min-w-0 rounded-box bg-base-200 p-4 sm:p-6">
+				{@render panel_header('Countries')}
 				{#if period_stats.countries.length > 0}
+					{@const countries = period_stats.countries.slice(0, 10)}
 					{@const max_visitors = Math.max(
-						...period_stats.countries.map((c) => c.visitors),
+						...countries.map((c) => c.visitors),
 					)}
-					<ul class="space-y-1">
-						{#each period_stats.countries.slice(0, 15) as c}
-							<li class="relative flex items-center gap-2 py-1.5">
-								<div
-									class="absolute inset-y-0 left-0 rounded bg-primary/20"
-									style="width: {(c.visitors / max_visitors) * 100}%"
-								></div>
-								<span
-									class="relative flex min-w-0 flex-1 items-center gap-1.5 text-sm"
-								>
-									<span>{country_flag(c.country)}</span>
-									<span class="truncate uppercase">{c.country}</span>
-								</span>
-								<span
-									class="relative badge w-14 justify-end badge-ghost badge-sm tabular-nums"
-								>
-									{number_crunch(c.visitors)}
-								</span>
-								<span
-									class="relative badge w-14 justify-end badge-outline badge-sm tabular-nums"
-								>
-									{number_crunch(c.views)}
-								</span>
-							</li>
+					<ul>
+						{#each countries as c (c.country)}
+							<StatRowMulti
+								label={c.country}
+								prefix={country_flag(c.country)}
+								label_class="uppercase"
+								visitors={c.visitors}
+								views={c.views}
+								max_value={max_visitors}
+							/>
 						{/each}
 					</ul>
 				{:else}
-					<p class="text-sm text-base-content/50">No data</p>
+					<p class="px-2 text-sm opacity-70">No data</p>
 				{/if}
 			</div>
-		</div>
-	</div>
 
-	<!-- Browsers + Devices -->
-	<div class="mb-8 grid gap-6 md:grid-cols-2">
-		<div class="card min-w-0 overflow-hidden bg-base-200 shadow-lg">
-			<div class="card-body min-w-0 py-4">
-				<div class="flex items-center justify-between">
-					<h2 class="card-title text-base">Browsers</h2>
-					<div class="flex gap-2 text-xs opacity-60">
-						<span class="w-14 text-right">Visitors</span>
-						<span class="w-14 text-right">Views</span>
-					</div>
-				</div>
+			<div class="min-w-0 rounded-box bg-base-200 p-4 sm:p-6">
+				{@render panel_header('Browsers')}
 				{#if period_stats.browsers.length > 0}
 					{@const max_visitors = Math.max(
 						...period_stats.browsers.map((b) => b.visitors),
 					)}
-					<ul class="space-y-1">
-						{#each period_stats.browsers as b}
+					<ul>
+						{#each period_stats.browsers as b (b.browser)}
 							<StatRowMulti
 								label={b.browser}
+								label_class="capitalize"
 								visitors={b.visitors}
 								views={b.views}
 								max_value={max_visitors}
@@ -664,52 +531,116 @@
 						{/each}
 					</ul>
 				{:else}
-					<p class="text-sm text-base-content/50">No data</p>
+					<p class="px-2 text-sm opacity-70">No data</p>
 				{/if}
 			</div>
-		</div>
 
-		<div class="card min-w-0 overflow-hidden bg-base-200 shadow-lg">
-			<div class="card-body min-w-0 py-4">
-				<div class="flex items-center justify-between">
-					<h2 class="card-title text-base">Devices</h2>
-					<div class="flex gap-2 text-xs opacity-60">
-						<span class="w-14 text-right">Visitors</span>
-						<span class="w-14 text-right">Views</span>
-					</div>
-				</div>
+			<div class="min-w-0 rounded-box bg-base-200 p-4 sm:p-6">
+				{@render panel_header('Devices')}
 				{#if period_stats.devices.length > 0}
 					{@const max_visitors = Math.max(
 						...period_stats.devices.map((d) => d.visitors),
 					)}
-					<ul class="space-y-1">
-						{#each period_stats.devices as d}
-							<li class="relative flex items-center gap-2 py-1.5">
-								<div
-									class="absolute inset-y-0 left-0 rounded bg-primary/20"
-									style="width: {(d.visitors / max_visitors) * 100}%"
-								></div>
-								<span class="relative flex flex-1 items-center gap-1">
-									<span>{device_icon(d.device_type)}</span>
-									<span class="capitalize">{d.device_type}</span>
-								</span>
-								<span
-									class="relative badge w-14 justify-end badge-ghost badge-sm tabular-nums"
-								>
-									{number_crunch(d.visitors)}
-								</span>
-								<span
-									class="relative badge w-14 justify-end badge-outline badge-sm tabular-nums"
-								>
-									{number_crunch(d.views)}
-								</span>
-							</li>
+					<ul>
+						{#each period_stats.devices as d (d.device_type)}
+							<StatRowMulti
+								label={d.device_type}
+								prefix={device_icon(d.device_type)}
+								label_class="capitalize"
+								visitors={d.visitors}
+								views={d.views}
+								max_value={max_visitors}
+							/>
 						{/each}
 					</ul>
 				{:else}
-					<p class="text-sm text-base-content/50">No data</p>
+					<p class="px-2 text-sm opacity-70">No data</p>
 				{/if}
 			</div>
 		</div>
-	</div>
-{/if}
+
+		<!-- Engagement Stats -->
+		{#if engagement_stats && sorted_engagement_pages.length > 0}
+			{@const max_clicks = Math.max(
+				...sorted_engagement_pages.map((p) => p.clicks),
+			)}
+			{@const max_rate = Math.max(
+				...sorted_engagement_pages.map((p) => p.engagement_rate),
+			)}
+			<div class="min-w-0 rounded-box bg-base-200 p-4 sm:p-6">
+				<div
+					class="mb-1 flex flex-wrap items-center gap-3 px-2 text-xs"
+				>
+					<h2 class="font-semibold">Page engagement</h2>
+					<div class="join flex-1">
+						<button
+							class="btn join-item btn-xs {engagement_sort_mode ===
+							'clicks'
+								? 'btn-accent'
+								: ''}"
+							aria-pressed={engagement_sort_mode === 'clicks'}
+							onclick={() => (engagement_sort_mode = 'clicks')}
+						>
+							Most clicks
+						</button>
+						<button
+							class="btn join-item btn-xs {engagement_sort_mode ===
+							'rate'
+								? 'btn-accent'
+								: ''}"
+							aria-pressed={engagement_sort_mode === 'rate'}
+							onclick={() => (engagement_sort_mode = 'rate')}
+						>
+							Highest rate
+						</button>
+					</div>
+					<span class="w-14 text-right opacity-80">Clicks</span>
+					<span class="w-14 text-right opacity-80">Views</span>
+					<span class="w-14 text-right opacity-80">Rate</span>
+				</div>
+				<ul>
+					{#each sorted_engagement_pages as page (page.path)}
+						{@const bar_value =
+							engagement_sort_mode === 'clicks'
+								? page.clicks / max_clicks
+								: page.engagement_rate / max_rate}
+						<li
+							class="relative flex h-9 items-center gap-3 px-2 text-sm"
+						>
+							<div
+								class="absolute inset-y-0.5 left-0 rounded bg-current opacity-10"
+								style="width: {bar_value * 100}%"
+							></div>
+							<a
+								href={page.path}
+								class="relative min-w-0 flex-1 truncate link-hover"
+							>
+								{page.path}
+							</a>
+							<span class="relative w-14 text-right tabular-nums">
+								{number_crunch(page.clicks)}
+							</span>
+							<span
+								class="relative w-14 text-right tabular-nums opacity-70"
+							>
+								{number_crunch(page.human_views)}
+							</span>
+							<span class="relative w-14 text-right tabular-nums">
+								{page.engagement_rate >= 10
+									? `${Math.round(page.engagement_rate)}%`
+									: `${page.engagement_rate.toFixed(1)}%`}
+							</span>
+						</li>
+					{/each}
+				</ul>
+				<p class="mt-2 px-2 text-xs opacity-70">
+					Overall: {engagement_stats.total_clicks} clicks / {number_crunch(
+						engagement_stats.total_human_views,
+					)} views = {engagement_stats.overall_engagement_rate.toFixed(
+						1,
+					)}% engagement
+				</p>
+			</div>
+		{/if}
+	{/if}
+</div>
