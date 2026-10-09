@@ -24,9 +24,9 @@
 	);
 </script>
 
-<li class="relative flex h-9 items-center gap-3 px-2 text-sm">
+<div class="relative flex h-9 items-center gap-3 px-2 text-sm">
 	<div
-		class="absolute inset-y-0.5 left-0 rounded bg-current opacity-10"
+		class="absolute inset-y-0.5 left-0 rounded bg-current opacity-10 transition-[width] duration-300 motion-reduce:transition-none"
 		style="width: {bar_width}%"
 	></div>
 	<span class="relative flex min-w-0 flex-1 items-center gap-2">
@@ -42,4 +42,4 @@
 	<span class="relative shrink-0 text-right tabular-nums">
 		{number_crunch(value)}
 	</span>
-</li>
+</div>

@@ -1,9 +1,18 @@
 <script lang="ts">
 	import { get_live_stats_breakdown } from '#lib/analytics/live-analytics.remote.js';
 	import { onMount } from 'svelte';
+	import { flip } from 'svelte/animate';
+	import { prefersReducedMotion } from 'svelte/motion';
+	import { slide } from 'svelte/transition';
 	import StatRow from './stat-row.svelte';
 
 	const live_stats_query = get_live_stats_breakdown();
+	// Read `current` rather than awaiting, so the 10s refresh updates
+	// rows in place instead of tearing the band down to a spinner
+	const live_stats = $derived(live_stats_query.current);
+
+	// Rows reorder, arrive and leave with motion unless the visitor opts out
+	const duration = $derived(prefersReducedMotion.current ? 0 : 300);
 
 	onMount(() => {
 		const interval = setInterval(() => {
@@ -18,11 +27,7 @@
 	aria-label="Live visitors"
 	class="rounded-box bg-primary p-4 text-primary-content sm:p-6"
 >
-	{#await live_stats_query}
-		<div class="flex items-center justify-center py-4">
-			<div class="loading loading-md loading-spinner"></div>
-		</div>
-	{:then live_stats}
+	{#if live_stats}
 		<div class="grid gap-x-2 gap-y-4 md:grid-cols-2">
 			<div class="min-w-0">
 				<div
@@ -39,12 +44,17 @@
 					)}
 					<ul>
 						{#each live_stats.top_paths.slice(0, 5) as page (page.path)}
-							<StatRow
-								label={page.path}
-								value={page.visitors}
-								max_value={max_visitors}
-								href={page.path}
-							/>
+							<li
+								animate:flip={{ duration }}
+								transition:slide={{ duration }}
+							>
+								<StatRow
+									label={page.path}
+									value={page.visitors}
+									max_value={max_visitors}
+									href={page.path}
+								/>
+							</li>
 						{/each}
 					</ul>
 				{:else}
@@ -69,11 +79,16 @@
 					)}
 					<ul>
 						{#each live_stats.referrers.slice(0, 5) as r (r.referrer)}
-							<StatRow
-								label={r.referrer}
-								value={r.visitors}
-								max_value={max_visitors}
-							/>
+							<li
+								animate:flip={{ duration }}
+								transition:slide={{ duration }}
+							>
+								<StatRow
+									label={r.referrer}
+									value={r.visitors}
+									max_value={max_visitors}
+								/>
+							</li>
 						{/each}
 					</ul>
 				{:else}
@@ -81,5 +96,9 @@
 				{/if}
 			</div>
 		</div>
-	{/await}
+	{:else}
+		<div class="flex items-center justify-center py-4">
+			<div class="loading loading-md loading-spinner"></div>
+		</div>
+	{/if}
 </section>
