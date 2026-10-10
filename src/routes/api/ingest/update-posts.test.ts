@@ -7,7 +7,7 @@ import {
 	it,
 	vi,
 } from 'vitest';
-import { update_posts } from './update-posts';
+import { prune_posts_statements, update_posts } from './update-posts';
 
 // Mock the sqlite_client
 vi.mock('#lib/sqlite/client.js', () => ({
@@ -51,6 +51,22 @@ vi.mock('../../../../posts/**/*.md', () => ({
 			},
 		}),
 }));
+
+describe('prune_posts_statements', () => {
+	it('should delete rows whose slug has no Markdown file', () => {
+		expect(prune_posts_statements(['post-one', 'post-two'])).toEqual([
+			{
+				sql: 'DELETE FROM posts WHERE slug NOT IN (?, ?)',
+				args: ['post-one', 'post-two'],
+			},
+		]);
+	});
+
+	it('should not delete anything when no posts were read', () => {
+		expect(prune_posts_statements([])).toEqual([]);
+		expect(prune_posts_statements(['', null, undefined])).toEqual([]);
+	});
+});
 
 describe('update_posts function', () => {
 	let mock_batch: ReturnType<typeof vi.fn>;

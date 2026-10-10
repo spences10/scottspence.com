@@ -2,6 +2,8 @@ User-agent: *
 Sitemap: https://scottspence.com/sitemap.xml
 # Allow all the things
 Allow: /
+# Cloudflare email obfuscation links 404 for crawlers
+Disallow: /cdn-cgi/
 
 # Specific disallow rules
 # Disallow: /api/analytics

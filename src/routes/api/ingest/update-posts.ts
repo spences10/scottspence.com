@@ -1,5 +1,24 @@
 import { sqlite_client } from '#lib/sqlite/client.js';
 
+// Renamed or deleted posts keep their old row otherwise, and stay
+// listed in the sitemap, RSS and post lists as dead links.
+export const prune_posts_statements = (
+	slugs: (string | null | undefined)[],
+) => {
+	const current_slugs = slugs.filter(
+		(slug): slug is string => !!slug,
+	);
+	// Never wipe the table if no Markdown files were read
+	if (current_slugs.length === 0) return [];
+
+	return [
+		{
+			sql: `DELETE FROM posts WHERE slug NOT IN (${current_slugs.map(() => '?').join(', ')})`,
+			args: current_slugs,
+		},
+	];
+};
+
 export const update_posts = async () => {
 	const client = sqlite_client;
 
@@ -74,7 +93,10 @@ export const update_posts = async () => {
 
 	// Execute the batch
 	try {
-		client.batch(batch_statements);
+		client.batch([
+			...batch_statements,
+			...prune_posts_statements(posts.map((post) => post.slug)),
+		]);
 		return {
 			message: `Posts updated successfully: ${posts.length} posts processed`,
 		};
