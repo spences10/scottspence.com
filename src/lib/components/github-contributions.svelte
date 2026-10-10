@@ -3,7 +3,7 @@
 </script>
 
 <div
-	class="flex justify-center md:-mx-24 md:h-[260px] lg:-mx-52 xl:-mx-64 2xl:-mx-96"
+	class="flex justify-center md:-mx-24 md:h-65 lg:-mx-52 xl:-mx-64 2xl:-mx-96"
 >
 	<a
 		href={`https://ghui.vercel.app/heat.png?username=spences10&year=${thisYear}&interactive=true`}

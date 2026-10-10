@@ -104,7 +104,7 @@
 		>
 			<ul
 				role="list"
-				class="relative flex [scrollbar-width:none] gap-2 overflow-x-auto px-4 py-2"
+				class="relative flex scrollbar-none gap-2 overflow-x-auto px-4 py-2"
 				{@attach centre_on_resize}
 			>
 				{#each headings as heading (heading.href)}
