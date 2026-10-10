@@ -210,8 +210,6 @@ Loading the image does take a while, I've added this one below the
 fold but because it's not part of Gatsby image there will be layout
 shift unless I add a default height to the `img` tag.
 
-![GitHub contributions pie chart]
-
 Because this isn't being done at build time there is a noticeable
 delay in the image being served sometimes.
 
@@ -340,6 +338,3 @@ be the same amount of latency.
 	https://paulie.dev/posts/2021/01/gatsby-netliyf-github-rest/
 
 <!-- Images -->
-
-[github contributions pie chart]:
-	https://ghui.vercel.app/pie.png?username=spences10
