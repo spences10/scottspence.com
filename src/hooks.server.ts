@@ -86,11 +86,6 @@ const reject_suspicious_requests: Handle = async ({
 	return await resolve(event);
 };
 
-const renamed_posts: Record<string, string> = {
-	'/posts/modernizing-svelte-testing-from-testing-library-to-vitest-browser-svelte':
-		'/posts/migrating-from-testing-library-svelte-to-vitest-browser-svelte',
-};
-
 const handle_redirects: Handle = async ({ event, resolve }) => {
 	const pathname = event.url.pathname;
 
@@ -101,12 +96,6 @@ const handle_redirects: Handle = async ({ event, resolve }) => {
 	if (oldUrlMatch) {
 		const [, , , , slug] = oldUrlMatch;
 		return redirect(301, `/posts/${slug}`);
-	}
-
-	// Handle renamed post slugs
-	const renamed_post = renamed_posts[pathname];
-	if (renamed_post) {
-		return redirect(301, renamed_post);
 	}
 
 	// Handle trailing slash

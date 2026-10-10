@@ -86,23 +86,6 @@ test('handle function redirects old URL structure', async () => {
 	}
 });
 
-test('handle function redirects renamed post slugs', async () => {
-	const mockEvent = createMockEvent(
-		'/posts/modernizing-svelte-testing-from-testing-library-to-vitest-browser-svelte',
-	);
-	const mockResolve = createMockResolve();
-
-	try {
-		await handle({ event: mockEvent, resolve: mockResolve } as any);
-		expect.fail('Expected redirect to be thrown');
-	} catch (error: any) {
-		expect(error.status).toBe(301);
-		expect(error.location).toBe(
-			'/posts/migrating-from-testing-library-svelte-to-vitest-browser-svelte',
-		);
-	}
-});
-
 test('handle function removes trailing slash', async () => {
 	const mockEvent = createMockEvent('/posts/my-blog-post/');
 	const mockResolve = createMockResolve();
