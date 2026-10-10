@@ -162,9 +162,7 @@ Without one, any LSP call on a component comes back with:
 No LSP server available for file type: .svelte
 ```
 
-It turns out a plugin is only a config file. I already had
-`svelteserver` installed (`npm i -g svelte-language-server`), so this
-is the whole thing, saved as `.lsp.json` in an empty folder:
+It turns out a plugin is only a config file. This is the whole thing:
 
 ```json
 {
@@ -178,10 +176,20 @@ is the whole thing, saved as `.lsp.json` in an empty folder:
 }
 ```
 
-Then start Claude Code with that folder as a plugin:
+I've added it to my
+[svelte-skills-kit](https://github.com/spences10/svelte-skills-kit)
+marketplace as `svelte-lsp`. The plugin doesn't include the language
+server, so that goes on first:
 
 ```bash
-claude --plugin-dir ~/path/to/svelte-lsp
+npm i -g svelte-language-server
+```
+
+Then in Claude Code:
+
+```text
+/plugin marketplace add spences10/svelte-skills-kit
+/plugin install svelte-lsp@svelte-skills-kit
 ```
 
 With that loaded, hover, go-to-definition, references and document
