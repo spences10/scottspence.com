@@ -653,14 +653,15 @@ along the way:
 https://www.storyblok.com/tp/add-a-headless-cms-to-svelte-in-5-minutes
 https://github.com/josefineschaefer/Storyblok-SvelteKit
 https://github.com/storyblok/storyblok-svelte
-https://www.storyblok.com/docs/Guides/nestable-blocks
-https://www.storyblok.com/docs/Guides/root-blocks
+https://www.storyblok.com/docs/concepts/blocks
+https://www.storyblok.com/docs/concepts/blocks
 
 <!-- Links -->
 
 [svelte]: https://svelte.dev
 [sveltekit]: https://kit.svelte.dev
-[svelte.dev/tutorial]: https://svelte.dev/tutorial/basics
+[svelte.dev/tutorial]:
+	https://svelte.dev/tutorial/svelte/welcome-to-svelte
 [learn.svelte.dev]:
 	https://learn.svelte.dev/tutorial/welcome-to-svelte
 [sign up for one]: https://app.storyblok.com/#!/signup
@@ -674,9 +675,8 @@ https://www.storyblok.com/docs/Guides/root-blocks
 	https://kit.svelte.dev/docs/routing#layout-layout-svelte
 [example code on github]:
 	https://github.com/josefineschaefer/Storyblok-SvelteKit
-[root block]: https://www.storyblok.com/docs/Guides/root-blocks
-[nestable block]:
-	https://www.storyblok.com/docs/Guides/nestable-blocks
+[root block]: https://www.storyblok.com/docs/concepts/blocks
+[nestable block]: https://www.storyblok.com/docs/concepts/blocks
 [storyblok `richtextresolver`]:
 	https://github.com/storyblok/storyblok-js-client
 

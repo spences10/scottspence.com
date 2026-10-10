@@ -399,7 +399,7 @@ with the use of the [Remote WSL] extension.
 [windows subsystem for linux on windows 11]:
 	https://scottspence.com/posts/wsl-on-windows-11
 [`fedora-35.20211125-x86_64.tar.xz`]:
-	https://github.com/fedora-cloud/docker-brew-fedora/tree/35/x86_64
+	https://github.com/fedora-cloud/docker-brew-fedora
 [copr]: https://github.com/wslutilities/wslu
 [`wslu`]: https://github.com/wslutilities/wslu
 [zsh-syntax-highlighting]:

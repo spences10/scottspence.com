@@ -10,9 +10,9 @@ Svelte. My buddy Jamie Barton has helped me out with getting set up
 with the GraphQL Code Generator so that data is typed in the project.
 
 This is a _just so you know_ kind of guide as there is
-[KitQL](https://kitql.vercel.app/) as an alternative which will
-generate all the types you need for your GraphQL schema for use in
-your SvelteKit projects.
+[KitQL](https://www.kitql.dev/) as an alternative which will generate
+all the types you need for your GraphQL schema for use in your
+SvelteKit projects.
 
 In this guide I'll be setting up a SvelteKit skeleton project with a
 GraphCMS backend to demonstrate how to set up with GraphQL Code

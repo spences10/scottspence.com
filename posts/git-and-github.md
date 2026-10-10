@@ -144,7 +144,7 @@ push/pull without having to authenticate each time.
 	https://github.com/spences10/awesome-twitter-bots
 [@amanhimself]: https://twitter.com/amanhimself
 [twitter bot]: https://scottspence.com/posts/twitter-mctwitbot
-[git-it]: https://jlord.us/git-it/index.html
+[git-it]: https://github.com/jlord/git-it-electron
 [github help]: https://help.github.com/
 [@amandeepmittal]: https://github.com/amandeepmittal
 [/settings/collaboration]:

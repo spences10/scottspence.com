@@ -112,4 +112,4 @@ it.
 	https://seths.blog/2005/03/dont_shave_that/
 [wiktionary - ren and stimpy reference]:
 	https://en.wiktionary.org/wiki/yak_shaving
-[jason lengstorf - meta-work]: https://www.jason.af/yak-shaving
+[jason lengstorf - meta-work]: https://jason.energy/yak-shaving/

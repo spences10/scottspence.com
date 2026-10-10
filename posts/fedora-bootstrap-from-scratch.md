@@ -496,7 +496,7 @@ on my Windows machine and configured it for use in web development.
 [enable guis wsl]:
 	https://scottspence.com/posts/gui-with-wsl#gui-things
 [this one from github]:
-	https://github.com/fedora-cloud/docker-brew-fedora/tree/33/x86_64
+	https://github.com/fedora-cloud/docker-brew-fedora
 [official guidance from microsoft]:
 	https://docs.microsoft.com/en-us/windows/wsl/install-win10
 [nicky muleman's post on it]:

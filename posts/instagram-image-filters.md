@@ -215,7 +215,7 @@ Thanks for reading!
 <!-- Links -->
 
 [this repo]: https://github.com/picturepan2/instagram.css
-[una kravets]: https://una.im/CSSgram/
+[una kravets]: https://una.github.io/CSSgram/
 [css filter]: https://developer.mozilla.org/en-US/docs/Web/CSS/filter
 [list]:
 	https://github.com/picturepan2/instagram.css/blob/master/dist/instagram.css

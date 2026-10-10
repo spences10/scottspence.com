@@ -127,7 +127,7 @@ JAMstack helps me sleep at night!
 Una was super jazzed about Houdini, you could do some pretty neat css
 tricks with it.
 
-[https://extra-css.netlify.com/]
+[https://extra-css.netlify.app/]
 
 <!-- cSpell:ignore simona,cotin -->
 
@@ -177,6 +177,6 @@ friends. I can't wait until the next one.
 [codesandbox.io]: https://codesandbox.io
 [https://github.com/googlechromelabs/proxx]:
 	https://github.com/GoogleChromeLabs/proxx
-[https://extra-css.netlify.com/]: https://extra-css.netlify.com/
+[https://extra-css.netlify.app/]: https://extra-css.netlify.app/
 [now open source]:
 	https://www.sanity.io/blog/we-re-open-sourcing-groq-a-query-language-for-json-documents

@@ -185,7 +185,7 @@ New CSS Logical Properties!: [medium post]
 	https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric
 [mycolor.space]: https://mycolor.space/?hex=%23663399&sub=1
 [color.adobe.com]: https://color.adobe.com
-[palx.jxnblk.com]: https://palx.jxnblk.com/
+[palx.jxnblk.com]: https://github.com/jxnblk/palx
 [bada55.io]: https://bada55.io/
 [0to255.com]: https://www.0to255.com/
 [color-hex.com]: https://www.color-hex.com/

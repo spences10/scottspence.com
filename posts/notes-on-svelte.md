@@ -414,7 +414,8 @@ a lot simpler to grok.
 
 Check out [Svelte Mastery] for all these examples and more
 
-[interactive tutorials]: https://svelte.dev/tutorial/basics
+[interactive tutorials]:
+	https://svelte.dev/tutorial/svelte/welcome-to-svelte
 [svelte mastery]:
 	https://www.youtube.com/channel/UCg6SQd5jnWo5Y70rZD9SQFA
 [svelte.dev tutorial site]:

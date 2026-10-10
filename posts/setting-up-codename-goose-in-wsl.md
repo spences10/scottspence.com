@@ -360,9 +360,8 @@ extensions:
 ```
 
 You can check out the Goose
-[extensions page](https://block.github.io/goose/v1/extensions/) where
-you can see some of the built in extensions and how to install other
-extensions.
+[extensions page](https://goose-docs.ai/extensions/) where you can see
+some of the built in extensions and how to install other extensions.
 
 The thing that got me excited about using Goose was the possibility to
 use your own extensions (MCP tools!) I've made some of my own MCP
@@ -380,7 +379,7 @@ and Cline is JSON but the config for Goose is YAML.
 
 You can add in a MCP tool via the Goose CLI or just add them directly
 to the config file. There's an example of the config on the
-[Goose docs](https://block.github.io/goose/docs/getting-started/using-extensions#config-entry)
+[Goose docs](https://goose-docs.ai/docs/getting-started/using-extensions/#config-entry)
 
 I'll follow that format and add them directly to the config file:
 

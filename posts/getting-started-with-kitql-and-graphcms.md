@@ -1040,7 +1040,7 @@ I've already linked the resources but will put them here for ease of
 access:
 
 - Follow [JYC] on Twitter for daily updates on the KitQL project
-- [KitQL Docs](https://kitql.vercel.app/docs)
+- [KitQL Docs](https://www.kitql.dev/docs)
 - [Explainer video by JYC](https://www.youtube.com/watch?v=6pH4fnFN70w)
 - [KitQL All In](https://github.com/jycouet/kitql/tree/main/packages/all-in)
 

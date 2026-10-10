@@ -461,7 +461,7 @@ my [GitHub account].
 	https://rickandmortyapi.com/documentation/
 [graphql endpoint]: https://rickandmortyapi.com/graphql
 [example code]: https://github.com/spences10/sveltekit-with-urql
-[svelte context api]: https://svelte.dev/tutorial/context-api
+[svelte context api]: https://svelte.dev/tutorial/svelte/context-api
 [github account]: https://github.com/spences10/sveltekit-with-urql
 
 <!-- Images -->

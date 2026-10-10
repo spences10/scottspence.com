@@ -436,7 +436,7 @@ Boom! GUI running in WSL!!
 [x-server]: https://en.wikipedia.org/wiki/X_server
 [adding linux gui app support to wsl]:
 	https://devblogs.microsoft.com/commandline/the-windows-subsystem-for-linux-build-2020-summary/#wsl-gui
-[windows insiders]: https://insider.windows.com/en-gb/for-developers
+[windows insiders]: https://www.microsoft.com/windowsinsider/
 [vcxsrv]:
 	https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#vcxsrv
 [wsl bootstrap 2020]: https://scottspence.com/posts/wsl-bootstrap-2020

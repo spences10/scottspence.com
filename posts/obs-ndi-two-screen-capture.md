@@ -76,7 +76,7 @@ consider the simpler option.
 
 Lesson learned.
 
-[ndi]: https://ndi.tv/
+[ndi]: https://ndi.video/
 [twitter]: https://twitter.com/spences10/status/1387412287330430978
 [obs fix display capture not working]:
 	https://scottspence.com/posts/obs-display-capture-not-working
