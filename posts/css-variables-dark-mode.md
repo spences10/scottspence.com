@@ -107,6 +107,6 @@ they're going to have the light theme flash first.
 
 <!-- Links -->
 
-[in the past]: https://scottspence.com/posts/react-context-api/
+[in the past]: https://scottspence.com/posts/react-context-api
 [this article]:
 	https://medium.com/fbdevclagos/how-to-leverage-styled-components-and-css-variables-to-build-truly-reusable-components-in-react-4bbf50467666

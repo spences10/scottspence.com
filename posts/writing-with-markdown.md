@@ -174,14 +174,14 @@ For a raw link you want displayed you can add it as is, or surround it
 with angle brackets.
 
 <MarkdownParser rows={6}
-markdownContent={`Raw link: https://scottspence.com/garden\n\nWith angle brackets: <https://scottspence.com/garden>`}
+markdownContent={`Raw link: https://scottspence.com/posts\n\nWith angle brackets: <https://scottspence.com/posts>`}
 />
 
 To link text wrap the text you want to link in square brackets with
 parenthesis at the end with the link in there:
 
 <MarkdownParser
-markdownContent={`Check out my [digital garden](https://scottspence.com/garden) for more content.`}
+markdownContent={`Check out my [digital garden](https://scottspence.com/posts) for more content.`}
 />
 
 There is also the option to add a title to the link where hovering the
@@ -189,7 +189,7 @@ link will show the title, do this by adding the title in quotes after
 the hyperlink.
 
 <MarkdownParser
-markdownContent={`Check out my [digital garden](https://scottspence.com/garden 'check it out') for more content.`}
+markdownContent={`Check out my [digital garden](https://scottspence.com/posts 'check it out') for more content.`}
 />
 
 This way of adding links can become a bit disorienting if there are
@@ -206,7 +206,7 @@ The approach I like to take is using keys or references:
 ```markdown
 <!-- This isn't great to read -->
 
-Check out my [digital garden](https://scottspence.com/garden) for more
+Check out my [digital garden](https://scottspence.com/posts) for more
 content.
 ```
 
@@ -217,7 +217,7 @@ Check out my [digital garden][1] for more content.
 
 <!-- Links -->
 
-[1]: https://scottspence.com/garden 'add a title here'
+[1]: https://scottspence.com/posts 'add a title here'
 ```
 
 ```markdown
@@ -227,7 +227,7 @@ Check out my [digital garden] for more content.
 
 <!-- Links -->
 
-[digital garden]: https://scottspence.com/garden 'title here'
+[digital garden]: https://scottspence.com/posts 'title here'
 ```
 
 The several examples there are all valid ways to add links, also
@@ -563,7 +563,7 @@ columns aren't formatted to fit it could get a bit tricky to read:
 
 <!-- Links -->
 
-[digital garden]: https://scottspence.com/garden
+[digital garden]: https://scottspence.com/posts
 [gfm]: https://github.github.com/gfm/
 [markdown table generator]:
 	https://www.tablesgenerator.com/markdown_tables

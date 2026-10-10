@@ -83,6 +83,6 @@ Hope this helps anyone who comes across this.
 <!-- Links -->
 
 [real-time analytics to my site]:
-	https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom/
+	https://scottspence.com/posts/adding-real-time-analytics-to-my-sveltekit-site-with-fathom
 [which i've detailed it in the past]:
 	https://scottspence.com/posts/data-loading-in-sveltekit#two-or-more-endpoints

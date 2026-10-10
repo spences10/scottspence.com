@@ -154,7 +154,7 @@ So, for me there's several things that I need, Zsh, Oh My Zsh, Node,
 NVM, pnpm.
 
 I've done a whole guide on my preferred Zsh setup here:
-https://www.scottspence.com/posts/my-zsh-config
+https://scottspence.com/posts/my-zsh-config
 
 I'm going to detail the process here too.
 

@@ -454,7 +454,7 @@ my [GitHub account].
 
 [documentation]:
 	https://formidable.com/open-source/urql/docs/basics/svelte/
-[post on this]: https://scottspence.com/posts/use-urql-with-svelte/
+[post on this]: https://scottspence.com/posts/use-urql-with-svelte
 [things have changed slightly]:
 	https://github.com/sveltejs/kit/discussions/5774
 [rick and morty graphql api]:

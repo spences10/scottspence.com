@@ -239,10 +239,10 @@ better replies.
 <!-- Images -->
 
 [twitter logo]:
-	https://now-images-wine.now.sh/2017/twitter-mctwitbot/twitter-bird.png
+	https://now-images-wine.vercel.app/2017/twitter-mctwitbot/twitter-bird.png
 [heroku-build]:
-	https://now-images-wine.now.sh/2017/twitter-mctwitbot/heroku-build.png
+	https://now-images-wine.vercel.app/2017/twitter-mctwitbot/heroku-build.png
 [heroku-error-output]:
-	https://now-images-wine.now.sh/2017/twitter-mctwitbot/heroku-error-output.png
+	https://now-images-wine.vercel.app/2017/twitter-mctwitbot/heroku-error-output.png
 [yes-tweet-yourself]:
-	https://now-images-wine.now.sh/2017/twitter-mctwitbot/yes-tweet-yourself.png
+	https://now-images-wine.vercel.app/2017/twitter-mctwitbot/yes-tweet-yourself.png

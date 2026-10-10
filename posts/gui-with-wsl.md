@@ -428,7 +428,7 @@ Boom! GUI running in WSL!!
 [nicky meuleman]: https://twitter.com/NMeuleman
 [debian]: https://www.microsoft.com/en-gb/p/debian/9msvkqc78pk6
 [notes on zsh and oh my zsh]:
-	https://scottspence.com/posts/zsh-and-oh-my-zsh/
+	https://scottspence.com/posts/zsh-and-oh-my-zsh
 [gui]: https://en.wikipedia.org/wiki/Graphical_user_interface
 [microsoft's playwright]: https://github.com/microsoft/playwright
 [qa wolf]: https://github.com/qawolf/qawolf
@@ -439,8 +439,7 @@ Boom! GUI running in WSL!!
 [windows insiders]: https://insider.windows.com/en-gb/for-developers
 [vcxsrv]:
 	https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#vcxsrv
-[wsl bootstrap 2020]:
-	https://scottspence.com/posts/wsl-bootstrap-2020/
+[wsl bootstrap 2020]: https://scottspence.com/posts/wsl-bootstrap-2020
 [stack overflow answer]: https://stackoverflow.com/a/60016407/1138354
 [`explorer.exe`]:
 	https://devblogs.microsoft.com/commandline/whats-new-for-wsl-in-windows-10-version-1903/#accessing-linux-files-from-windows

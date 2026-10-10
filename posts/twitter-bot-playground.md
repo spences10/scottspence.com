@@ -2007,7 +2007,7 @@ Copyright (c) 2017, Scott Spence. All rights reserved.
 [npm-tabletop]: https://www.npmjs.com/package/tabletop
 [egghead-tabletop]:
 	https://egghead.io/lessons/node-js-retrieve-and-tweet-information-from-google-spreadsheets
-[`google spreadsheet`]: https:/sheets.google.com
+[`google spreadsheet`]: https://sheets.google.com
 [zeit-login]: https://zeit.co/login
 [now]: https://zeit.co/now
 [now-getting-started-cli]:

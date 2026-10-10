@@ -456,7 +456,7 @@ it. This was an example with GraphCMS for the backend you can use
 Ghost, Sanity or whatever else fits your fancy.
 
 [svelte add]: https://github.com/svelte-add/svelte-add
-[slots]: https://scottspence.com/posts/notes-on-svelte/#slots
+[slots]: https://scottspence.com/posts/notes-on-svelte#slots
 [nextjs dynamic routes]:
 	https://nextjs.org/docs/routing/dynamic-routes
 [prisma labs example]:

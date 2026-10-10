@@ -85,14 +85,14 @@ To do that, if you create a new list in your contacts then
 <!-- Links -->
 
 [setting up a custom email with zoho]:
-	https://scottspence.com/posts/custom-email-domain-with-now/
+	https://scottspence.com/posts/custom-email-domain-with-now
 [sam larsen-disney]: https://twitter.com/SamLarsenDisney
 [newsletter]: https://scottspence.com/newsletter
 [leigh halliday]: https://www.youtube.com/watch?v=gK7KKswOnOQ
 [james q quick]: https://www.youtube.com/watch?v=7HVM3HPhlTw
 [kwes forms]: https://kwes.io/
 [setting up protonmail with vercel]:
-	https://scottspence.com/posts/setting-up-proton-mail-with-vercel/
+	https://scottspence.com/posts/setting-up-proton-mail-with-vercel
 
 <!-- Images -->
 

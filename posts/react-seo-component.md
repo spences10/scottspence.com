@@ -205,7 +205,7 @@ it by me.
 	https://github.com/spences10/react-seo-component/blob/32acf12d53/rollup.config.js
 [typescript package development]: https://github.com/jaredpalmer/tsdx
 [open graph images with gatsby and now]:
-	https://scottspence.com/posts/serverless-og-images/
+	https://scottspence.com/posts/serverless-og-images
 [this post]:
 	https://medium.com/recraftrelic/building-a-react-component-as-a-npm-module-18308d4ccde9
 [example code]:

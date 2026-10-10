@@ -490,7 +490,7 @@ These are literally all linking to the Chakra UI documentation:
 	https://chakra-ui.com/docs/getting-started
 [codesandbox.io]: https://codesandbox.io/
 [high up in the react component tree]:
-	https://scottspence.com/posts/globally-style-gatsby-styled-components/#place-globalstyle-at-the-top-of-the-react-tree-
+	https://scottspence.com/posts/globally-style-gatsby-styled-components#place-globalstyle-at-the-top-of-the-react-tree-
 [chakra ui documentation]:
 	https://chakra-ui.com/docs/getting-started#gatsby
 [`wrappageelement`]:

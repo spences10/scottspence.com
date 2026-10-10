@@ -68,7 +68,7 @@ Now each time I cd into a directory with a `.env` file where I have
 allowed direnv I'm prompted on what environment variables are
 available.
 
-[toast sites]: https://scottspence.com/posts/notes-on-toast/#resources
+[toast sites]: https://scottspence.com/posts/notes-on-toast#resources
 [vlad]: https://www.youtube.com/watch?v=YkxoGRpHcVQ
 [supported platforms]:
 	https://direnv.net/docs/installation.html#from-system-packages

@@ -381,7 +381,7 @@ Thanks again 👍
 [my youtube channel]:
 	https://www.youtube.com/channel/UCnngLXpLSFsKkDhFoO9Ct3w
 [get your graphcms data into gatsby]:
-	https://scottspence.com/posts/graphcms-to-gatsby/
+	https://scottspence.com/posts/graphcms-to-gatsby
 [developer's guide to starting a youtube channel]:
 	https://learn.jamesqquick.com/developers-guide-to-starting-a-youtube-channel/7qkrr
 [transformer pro]:
@@ -390,7 +390,7 @@ Thanks again 👍
 [open broadcaster software]: https://obsproject.com/
 [openshot]: https://www.openshot.org/
 [shotcut]: https://shotcut.org/
-[powered by wsl]: https://scottspence.com/posts/wsl-bootstrap-2020/
+[powered by wsl]: https://scottspence.com/posts/wsl-bootstrap-2020
 [usb lighting]: https://www.amazon.co.uk/gp/product/B07P8LCBS6
 [fifine usb mic]: https://www.amazon.co.uk/gp/product/B06XQ39XCY
 [xsplit vcam]: https://www.xsplit.com/vcam

@@ -692,7 +692,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [ubuntu 18.04 lts]:
 	https://www.microsoft.com/en-gb/p/ubuntu-1804-lts/9n9tngvndl3q?activetab=pivot:overviewtab
 [my guide from the start of 2018]:
-	https://scottspence.com/posts/wsl-bootstrap/
+	https://scottspence.com/posts/wsl-bootstrap
 [official guidance]:
 	https://docs.microsoft.com/en-us/windows/wsl/install-win10
 [windows keyboard shortcuts]:
@@ -722,42 +722,42 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 <!-- Images -->
 
 [powershell activation]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/powershell.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/powershell.gif
 [show file extensions]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/show-extensions.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/show-extensions.gif
 [lsb_release]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/lsb_release.png
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/lsb_release.png
 [vscode config]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/vscode-wsl-config.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/vscode-wsl-config.gif
 [windows git setup]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/install-git.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/install-git.gif
 [basic hyper]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/basic_hyper.png
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/basic_hyper.png
 [default-file-type]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/default-file-type.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/default-file-type.gif
 [hyper config]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/hyper-config.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/hyper-config.gif
 [final hyper config]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/hyper-final-config.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/hyper-final-config.gif
 [install fish]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/install-fish.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/install-fish.gif
 [install omf]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/install-omf.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/install-omf.gif
 [omf one]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/omf-install-one.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/omf-install-one.gif
 [alias fish in .bashrc]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/alias-fish.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/alias-fish.gif
 [npx cra]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/npx-cra.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/npx-cra.gif
 [cra change]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/cra-change.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/cra-change.gif
 [make repo]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/make-repo.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/make-repo.gif
 [ssh config wsl]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/ssh-config-wsl.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/ssh-config-wsl.gif
 [ssh config wsl]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/ssh-config-wsl.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/ssh-config-wsl.gif
 [ssh config win]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/ssh-config-win.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/ssh-config-win.gif
 [final push github]:
-	https://now-images-wine.now.sh/2018/wsl-bootstrap-2019/final-push-github.gif
+	https://now-images-wine.vercel.app/2018/wsl-bootstrap-2019/final-push-github.gif

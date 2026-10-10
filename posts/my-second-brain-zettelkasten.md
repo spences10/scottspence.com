@@ -160,7 +160,7 @@ I'm super excited following the progress of this!
 
 <!-- Links -->
 
-[digital garden]: https://scottspence.com/garden
+[digital garden]: https://scottspence.com/posts
 [cheat sheets]: https://cheatsheets.xyz
 [zettelkasten]: https://zettelkasten.de/
 [to a gist]:
