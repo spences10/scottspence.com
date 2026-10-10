@@ -1,3 +1,4 @@
+import { clear_cache } from '#lib/cache/server-cache.js';
 import { sqlite_client } from '#lib/sqlite/client.js';
 
 // Renamed or deleted posts keep their old row otherwise, and stay
@@ -97,6 +98,8 @@ export const update_posts = async () => {
 			...batch_statements,
 			...prune_posts_statements(posts.map((post) => post.slug)),
 		]);
+		// Post lists, tags and single posts are cached for 24 hours
+		clear_cache();
 		return {
 			message: `Posts updated successfully: ${posts.length} posts processed`,
 		};
