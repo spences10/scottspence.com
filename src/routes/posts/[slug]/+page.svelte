@@ -179,12 +179,7 @@
 
 	let modal = $state() as typeof Modal.prototype;
 
-	const show_modal = async (
-		e: MouseEvent & { currentTarget: HTMLAnchorElement },
-	) => {
-		if (e.metaKey || e.ctrlKey) return;
-		e.preventDefault();
-
+	const show_modal = async () => {
 		// Track the event
 		track_click({
 			event_name: `analytics click: ${page.url.pathname}`,
@@ -301,13 +296,13 @@
 
 	{#if data.count && data.count.count}
 		<div class="flex justify-center">
-			<a
+			<button
+				type="button"
 				onclick={show_modal}
-				href="/stats/{page.params.slug}"
 				class="btn mb-20 px-10 text-xl shadow-lg btn-lg btn-primary"
 			>
 				✨ View the stats for this post ✨
-			</a>
+			</button>
 		</div>
 	{/if}
 
