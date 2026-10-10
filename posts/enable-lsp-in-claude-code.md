@@ -1,10 +1,24 @@
 ---
 date: 2026-03-03
-updated: 2026-09-13
+updated: 2026-10-10
 title: Enable LSP in Claude Code
 tags: ['claude-code', 'lsp', 'developer-experience', 'guide']
 is_private: false
 ---
+
+<script>
+  import { Banner } from '#lib/components/index.js'
+
+  const options = {
+    type: 'warning',
+    message: `This post is out of date. The <code>ENABLE_LSP_TOOL</code>
+      flag is no longer needed, and I've since tested what Claude Code
+      actually does with a language server. Read the follow-up:
+      <a href="/posts/revisiting-lsp-in-claude-code">
+      Revisiting LSP in Claude Code</a>.`,
+    track_event: 'enable lsp in claude code banner',
+  }
+</script>
 
 Right, so, I stumbled across
 [this post by Karan Bansal](https://karanbansal.in/blog/claude-code-lsp/)
@@ -17,6 +31,8 @@ Searches text patterns across your entire codebase, reads through
 files, and tries to figure out which match is the actual definition.
 It works, but it's fuzzy. You get back multiple matches and Claude has
 to read each file to figure out which one you actually meant.
+
+<Banner {options} />
 
 LSP (Language Server Protocol) gives Claude Code the same semantic
 code intelligence your IDE already has. Go-to-definition, find
