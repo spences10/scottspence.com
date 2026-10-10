@@ -102,7 +102,7 @@ indication of my current skill level with styling and preferred stack,
 in reality no one cares as long as it looks nice and recruiters even
 less so because it doesn't answer the questions they want to ask.
 
-![build-it](https://thepracticaldev.s3.amazonaws.com/i/ptve31bchle6hgg6wuaq.gif)
+<video controls muted loop playsinline preload="none" width="480" height="242" poster="https://res.cloudinary.com/defkmsrpw/video/upload/so_0,q_auto,f_auto/scottspence.com/ptve31bchle6hgg6wuaq.jpg" src="https://res.cloudinary.com/defkmsrpw/video/upload/scottspence.com/ptve31bchle6hgg6wuaq.mp4" aria-label="build-it"></video>
 
 This wasn't field of dreams though! So, how do I get recruiters to my
 page? Well, rather than have a CV in MS Word format that I would post

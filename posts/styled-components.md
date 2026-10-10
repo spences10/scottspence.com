@@ -14,7 +14,7 @@ to look something like this:
 
 This is what it will look like by the end of this post:
 
-![theme switch with styled-components]
+<video controls muted loop playsinline preload="none" width="730" height="672" poster="https://res.cloudinary.com/defkmsrpw/video/upload/so_0,q_auto,f_auto/scottspence.com/5dwv10zpqa13wb4pr47l.jpg" src="https://res.cloudinary.com/defkmsrpw/video/upload/scottspence.com/5dwv10zpqa13wb4pr47l.mp4" aria-label="theme switch with styled-components"></video>
 
 But first, preamble✨: I have always struggled with styling sites, it
 seems to be an aspect of starting web development that is either an
@@ -777,8 +777,6 @@ Find me on [Twitter] or [Ask Me Anything] on GitHub.
 
 <!-- Images -->
 
-[theme switch with styled-components]:
-	https://thepracticaldev.s3.amazonaws.com/i/5dwv10zpqa13wb4pr47l.gif
 [impossible puzzle]:
 	https://media.giphy.com/media/2rj8VysAig8QE/giphy.gif
 [light and dark theme]:
