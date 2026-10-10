@@ -408,6 +408,6 @@ with the use of the [Remote WSL] extension.
 	https://github.com/zsh-users/zsh-autosuggestions
 [spaceship zsh]: https://github.com/denysdovhan/spaceship-prompt
 [miguel alex cantu]:
-	http://blog.miguelalexcantu.com/2020/12/fixing-upower-warning-wslzshspaceship.html
+	https://web.archive.org/web/20220518100235/http://blog.miguelalexcantu.com/2020/12/fixing-upower-warning-wslzshspaceship.html
 [remote wsl]:
 	https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl

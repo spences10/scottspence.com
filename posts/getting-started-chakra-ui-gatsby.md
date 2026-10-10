@@ -490,14 +490,14 @@ These are literally all linking to the Chakra UI documentation:
 [codesandbox.io]: https://codesandbox.io/
 [high up in the react component tree]:
 	https://scottspence.com/posts/globally-style-gatsby-styled-components#place-globalstyle-at-the-top-of-the-react-tree-
-[chakra ui documentation]:
-	https://chakra-ui.com/docs/getting-started#gatsby
+[chakra ui documentation]: https://v2.chakra-ui.com/getting-started
 [`wrappageelement`]:
 	https://www.gatsbyjs.com/docs/browser-apis/#wrapPageElement
 [out of the box]: https://www.gatsbyjs.com/docs/typescript/
-[`as`]: https://chakra-ui.com/docs/features/style-props#the-as-prop
+[`as`]:
+	https://v2.chakra-ui.com/docs/styled-system/style-props#the-as-prop
 [`fontsize`]:
-	https://chakra-ui.com/docs/typography/text#changing-the-font-size
+	https://v2.chakra-ui.com/docs/components/text#changing-the-font-size
 [twitter]: https://twitter.com/spences10
 [ask me anything]: https://github.com/spences10/ama
 [chakra ui typography heading]:
@@ -507,13 +507,13 @@ These are literally all linking to the Chakra UI documentation:
 [chakra ui typography/text]:
 	https://v2.chakra-ui.com/docs/components/text
 [chakra ui the `as` prop]:
-	https://chakra-ui.com/docs/features/style-props#the-as-prop
+	https://v2.chakra-ui.com/docs/styled-system/style-props#the-as-prop
 [chakra ui style-props]:
 	https://v2.chakra-ui.com/docs/styled-system/style-props
 [chakra ui theming theme]:
 	https://v2.chakra-ui.com/docs/styled-system/theme
 [chakra ui theming colors]:
-	https://chakra-ui.com/docs/theming/theme#colors
+	https://v2.chakra-ui.com/docs/styled-system/theme#colors
 [tl;dr]: #heres-a-video-detailing-the-process
 [i made a starter]:
 	https://github.com/spences10/gatsby-starter-chakra-ui

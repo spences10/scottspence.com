@@ -109,10 +109,11 @@ Get it down then get it done!
 
 <!-- Links -->
 
-[post from richard haines]: https://richardhaines.dev/on-my-mind/
+[post from richard haines]:
+	https://web.archive.org/web/20200813202859/https://richardhaines.dev/on-my-mind/
 [joel hooks]: https://joelhooks.com/digital-garden
 [chris biscardi's thoughts]:
-	https://www.christopherbiscardi.com/what-is-a-digital-garden
+	https://web.archive.org/web/20200918162125/https://www.christopherbiscardi.com/what-is-a-digital-garden
 [amy hoy]: https://twitter.com/amyhoy
 [how the blog broke the web]:
 	https://stackingthebricks.com/how-blogs-broke-the-web/

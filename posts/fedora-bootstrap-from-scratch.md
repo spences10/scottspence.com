@@ -506,4 +506,5 @@ on my Windows machine and configured it for use in web development.
 	https://www.microsoft.com/en-gb/p/x410/9nlp712zmn9q?activetab=pivot:overviewtab
 [nicky's post on getting it set up]:
 	https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress#vcxsrv
-[copr]: https://docs.pagure.org/copr.copr/index.html
+[copr]:
+	https://web.archive.org/web/20201109030244/https://docs.pagure.org/copr.copr/index.html

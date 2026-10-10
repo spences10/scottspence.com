@@ -111,6 +111,6 @@ this!
 [env-cmd]: https://www.npmjs.com/package/env-cmd
 [dotenv]: https://www.npmjs.com/package/dotenv
 [blog by hideckies]:
-	https://blog.hdks.org/Environment-Variables-in-SvelteKit-and-Vercel/
+	https://web.archive.org/web/20220704051543/https://blog.hdks.org/Environment-Variables-in-SvelteKit-and-Vercel/
 [sveltekit environment variables with the sveltekit $env module]:
 	https://scottspence.com/posts/sveltekit-environment-variables-with-the-sveltekit-env-module

@@ -42,4 +42,4 @@ launch({ browser: 'webkit' });
 launch({ browser: process.env.BROWSER });
 ```
 
-https://www.qawolf.com/docs/use-localhost#test-localhost
+https://web.archive.org/web/20210416032232/https://www.qawolf.com/docs/use-localhost#test-localhost

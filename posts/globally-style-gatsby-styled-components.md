@@ -598,7 +598,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [styled-components themeprovider]:
 	https://styled-components.com/docs/api#themeprovider
 [introduction to tailwind and the utility first workflow]:
-	https://egghead.io/playlists/introduction-to-tailwind-and-the-utility-first-workflow-0b697b10
+	https://web.archive.org/web/20200810085309/https://egghead.io/playlists/introduction-to-tailwind-and-the-utility-first-workflow-0b697b10
 [design and implement common tailwind components]:
 	https://egghead.io/playlists/design-and-implement-common-tailwind-components-8fbb9b19
 [build a responsive navbar with tailwind]:

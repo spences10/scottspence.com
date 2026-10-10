@@ -593,10 +593,13 @@ I can now use this pattern in other projects!
 
 [sveltekit blog template]:
 	https://github.com/mattjennings/sveltekit-blog-template
-[documentation]: https://www.getrevue.co/api#get-/v2/lists
+[documentation]:
+	https://web.archive.org/web/20210825132501/https://www.getrevue.co/api#get-/v2/lists
 [integrations]: https://www.getrevue.co/app/integrations
-[terms of service]: https://www.getrevue.co/terms
-[privacy policy]: https://www.getrevue.co/privacy/platform
+[terms of service]:
+	https://web.archive.org/web/20210901015443/https://www.getrevue.co/terms
+[privacy policy]:
+	https://web.archive.org/web/20210904181053/https://www.getrevue.co/privacy/platform
 [vite]: https://vitejs.dev/
 [`.env` secrets in sveltekit]:
 	https://scottspence.com/posts/sveltekit-env-secrets

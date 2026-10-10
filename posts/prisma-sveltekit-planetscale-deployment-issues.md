@@ -277,7 +277,7 @@ There's been a lot of references mentioned, I've gathered them all up
 here if not mentioned already:
 
 - https://joyofcode.xyz/sveltekit-authentication-using-cookies
-- https://josef.dev/posts/svelte-kit-planetscale-and-prisma-on-vercel
+- https://web.archive.org/web/20211207112924/https://josef.dev/posts/svelte-kit-planetscale-and-prisma-on-vercel
 - https://flaviocopes.com/prisma-fix-initialize-yet-vercel/
 - https://stackoverflow.com/q/70097108/1138354
 - https://vercel.com/support/articles/why-does-my-serverless-function-work-locally-but-not-when-deployed
@@ -313,4 +313,4 @@ was `bcrypt` I know for the future.
 [@mikenikles]: https://twitter.com/mikenikles
 [stackoverflow question]: https://stackoverflow.com/q/70097108/1138354
 [josef shared]:
-	https://josef.dev/posts/svelte-kit-planetscale-and-prisma-on-vercel
+	https://web.archive.org/web/20211207112924/https://josef.dev/posts/svelte-kit-planetscale-and-prisma-on-vercel

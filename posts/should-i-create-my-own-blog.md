@@ -448,7 +448,7 @@ windowsill 😂.
 	https://scottspence.com/posts/writing-with-markdown#markdown-headings
 [let me know]: mailto:yo@scottspence.com
 
-[]:https://startafuckingblog.com/#posse-every-fucking-thing
+[]:https://web.archive.org/web/20230204083232/https://startafuckingblog.com/#posse-every-fucking-thing
 
 <!-- Images -->
 

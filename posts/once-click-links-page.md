@@ -113,7 +113,8 @@ Thanks for reading!
 [linktree]: https://linktr.ee/
 [contactinbio]: https://contactinbio.com/
 [linkbook]: https://linkbook.bio/
-[here]: https://github.com/notrab/shortcuts/
+[here]:
+	https://web.archive.org/web/20240215064515/https://github.com/notrab/shortcuts/
 
 <!-- Images -->
 

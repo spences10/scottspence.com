@@ -142,7 +142,8 @@ Stay safe!
 [digital garden]: https://scottspence.com/posts/a-digital-garden
 [amazon brand solimo beans]:
 	https://www.amazon.co.uk/Amazon-Brand-Solimo-Coffee-Beans/dp/B07CGXZMT3
-[coco di mama]: https://www.cocodimama.co.uk/coffee
+[coco di mama]:
+	https://web.archive.org/web/20200808224346/https://www.cocodimama.co.uk/coffee/
 [first time pc build]:
 	https://scottspence.com/posts/first-time-pc-build
 [marc backes]: https://marc.dev

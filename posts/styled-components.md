@@ -767,7 +767,8 @@ Find me on [Twitter] or [Ask Me Anything] on GitHub.
 [max]: https://twitter.com/mxstbr
 [simon vrachliotis]: https://twitter.com/simonswiss
 [egghead.io]: https://egghead.io/
-[playlist]: https://egghead.io/playlists/styled-components-4169206d
+[playlist]:
+	https://web.archive.org/web/20181102143113/https://egghead.io/playlists/styled-components-4169206d
 [spectrum.chat]:
 	https://spectrum.chat/?t=54887141-57a9-4386-807c-ed950c4d5132
 [stack overflow]:

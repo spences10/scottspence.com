@@ -897,8 +897,9 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [version 2 from walkthrough]: https://codesandbox.io/s/zqw67wpm94#
 [example code]: https://codesandbox.io/s/5vl16n5oxp
 [styled-components on spectrum]:
-	https://spectrum.chat/styled-components
-[react community on spectrum]: https://spectrum.chat/react
+	https://web.archive.org/web/20180928100722/https://spectrum.chat/styled-components
+[react community on spectrum]:
+	https://web.archive.org/web/20181003010227/https://spectrum.chat/react
 [twitter]: https://twitter.com/spences10
 [ask me anything]: https://github.com/spences10/ama
 [his youtube channel]:

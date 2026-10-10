@@ -199,7 +199,8 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [my comments]: https://dev.to/spences10/comment/9n19
 [do-release-upgrade]:
 	https://help.ubuntu.com/lts/serverguide/installing-upgrading.html
-[nano]: https://help.ubuntu.com/community/Nano
+[nano]:
+	https://web.archive.org/web/20200324015855/https://help.ubuntu.com/community/Nano
 [lxd error]: https://dev.to/spences10/comment/9n3j
 ["your system is unable to reach the snap store"]:
 	https://askubuntu.com/questions/1119301/your-system-is-unable-to-reach-the-snap-store

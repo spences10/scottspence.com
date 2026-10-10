@@ -310,7 +310,7 @@ found it useful then that's a massive win for me! Thank you 🙏
 	https://github.com/zsh-users/zsh-autosuggestions
 [`spaceship`]: https://github.com/spaceship-prompt/spaceship-prompt
 [miguel alex cantu]:
-	http://blog.miguelalexcantu.com/2020/12/fixing-upower-warning-wslzshspaceship.html
+	https://web.archive.org/web/20220518100235/http://blog.miguelalexcantu.com/2020/12/fixing-upower-warning-wslzshspaceship.html
 [video from gotbletu]: https://www.youtube.com/watch?v=WTTIGjZAMGg
 [zsh and oh my zsh]:
 	https://scottspence.com/posts/zsh-and-oh-my-zsh#abbreviations

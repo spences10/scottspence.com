@@ -221,11 +221,13 @@ all the available components and concepts.
 [mdxp]: https://0phoff.github.io/MDXP
 [still supported]: https://github.com/jxnblk/mdx-deck/issues/765
 [spreading the jamstack]: https://www.youtube.com/watch?v=L7_z8rcbFPg
-[scale by the bay]: https://www.scale.bythebay.io/
+[scale by the bay]:
+	https://web.archive.org/web/20210301215626/https://www.scale.bythebay.io/
 [monica powell]: https://github.com/M0nica/migrating-to-mdx
 [sam larsen-disney]: https://twitter.com/SamLarsenDisney
 [sld.codes]: https://sld.codes/
-[presentations]: https://sld.codes/presentations
+[presentations]:
+	https://web.archive.org/web/20210305030849/https://sld.codes/presentations/
 [mdx embed]: https://www.mdx-embed.com/
 [tuesday]:
 	https://www.linkedin.com/events/mmttechmeetup-gatsbyjs-feb20216762857247988031488/

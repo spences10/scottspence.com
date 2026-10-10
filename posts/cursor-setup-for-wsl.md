@@ -137,7 +137,7 @@ that the script is borked.
 
 To the first helpful comment I found was from ddwang, who was able to
 get the script working with the following, you can find that
-[in this comment](https://github.com/getcursor/cursor/issues/807#issuecomment-1728885825)
+[in this comment](https://web.archive.org/web/20250108181813/https://github.com/getcursor/cursor/issues/807#issuecomment-1728885825)
 which points to
 [this Gist](https://gist.github.com/swayducky/8ba8f2db156c7f445d562cdc12c0ddb4).
 
@@ -201,11 +201,11 @@ Then, you'll need to remove all remnants of the old install.
 
 This is where I found issue `870` (still open after a year) from the
 Cursor GitHub issues, which has a load of great resources, firstly was
-[this comment from lesmo](https://github.com/getcursor/cursor/issues/870#issuecomment-1951864065)
+[this comment from lesmo](https://web.archive.org/web/20240815155604/https://github.com/getcursor/cursor/issues/870#issuecomment-1951864065)
 which give some good info but didn't really work for me.
 
 Then there was
-[this guide from KadirBalku](https://github.com/getcursor/cursor/issues/870#issuecomment-2204635232)
+[this guide from KadirBalku](https://web.archive.org/web/20240815155604/https://github.com/getcursor/cursor/issues/870#issuecomment-2204635232)
 which is very thorough and worked for me.
 
 Using the Windows Run prompt (Win+R) and entering `%userprofile% will
