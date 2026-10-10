@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { innerHeight, scrollY } from 'svelte/reactivity/window';
-	import { fade } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
 
 	interface Props {
 		headings?: { label: string; href: string }[];
@@ -39,6 +39,29 @@
 			list.scrollTop += link_rect.bottom - list_rect.bottom;
 		}
 	};
+
+	// centre the active chip in the horizontally scrolling row
+	const keep_chip_in_view = (chip: HTMLElement) => {
+		const row = chip.closest('ul');
+		if (!row) return;
+		row.scrollTo({
+			left:
+				chip.offsetLeft - (row.clientWidth - chip.offsetWidth) / 2,
+			behavior: 'smooth',
+		});
+	};
+
+	// re-centre when the row gains or changes width, e.g. on rotation
+	const centre_on_resize = (row: HTMLElement) => {
+		const observer = new ResizeObserver(() => {
+			const chip = row.querySelector<HTMLElement>(
+				'li:has([aria-current])',
+			);
+			if (chip) keep_chip_in_view(chip);
+		});
+		observer.observe(row);
+		return () => observer.disconnect();
+	};
 </script>
 
 {#if headings.length}
@@ -71,4 +94,40 @@
 			</ul>
 		</div>
 	</aside>
+
+	<!-- Mobile section chips, shown once the first section is reached -->
+	{#if active_href}
+		<nav
+			aria-label="Table of contents"
+			transition:fly|global={{ y: -48, duration: 200 }}
+			class="fixed inset-x-0 top-0 z-10 bg-base-100/90 shadow-lg backdrop-blur-xl lg:hidden print:hidden"
+		>
+			<ul
+				role="list"
+				class="relative flex [scrollbar-width:none] gap-2 overflow-x-auto px-4 py-2"
+				{@attach centre_on_resize}
+			>
+				{#each headings as heading (heading.href)}
+					<li
+						class="shrink-0"
+						{@attach active_href === heading.href &&
+							keep_chip_in_view}
+					>
+						<a
+							class="btn rounded-box font-normal btn-sm {active_href ===
+							heading.href
+								? 'btn-primary'
+								: 'btn-ghost'}"
+							href={heading.href}
+							aria-current={active_href === heading.href
+								? 'location'
+								: undefined}
+						>
+							{heading.label}
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</nav>
+	{/if}
 {/if}
