@@ -47,7 +47,7 @@ irrelevant for this post.
 Check the links for specifics for how I've implemented it for my app
 (Rinku Cloud) and the Lucia docs and example code.
 
-- [Rinku Cloud repo](https://github.com/spences10/rinku-cloud/tree/feat/we-go-again-fly)
+- [Rinku Cloud repo](https://github.com/spences10/rinku-cloud)
 - [Lucia docs guide](https://lucia-auth.com/tutorials/username-and-password/sveltekit)
 - [Lucia GitHub example repo](https://github.com/lucia-auth/examples/tree/main/sveltekit/username-and-password)
 

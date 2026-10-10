@@ -733,7 +733,7 @@ Follow me on [Twitter] or [Ask Me Anything] on GitHub.
 [build out blog post template]:
 	https://scottspence.com/posts/build-an-mdx-blog#build-out-blog-post-template
 [markdown from this post!]:
-	https://raw.githubusercontent.com/spences10/scottspence.com/authoring/2020/02/13/smooth-scroll-toc-gatsby/index.mdx
+	https://github.com/spences10/scottspence.com
 [mdx table of components]:
 	https://mdxjs.com/getting-started#table-of-components
 [gatsby-remark-autolink-headers]:
