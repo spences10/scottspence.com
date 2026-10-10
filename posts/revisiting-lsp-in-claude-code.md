@@ -2,7 +2,7 @@
 date: 2026-10-10
 title: Revisiting LSP in Claude Code
 tags: ['claude-code', 'lsp', 'developer-experience']
-is_private: true
+is_private: false
 ---
 
 <!-- cspell:ignore omnirecall svelteserver -->
@@ -14,9 +14,9 @@ awkward, because a fair chunk of it is now out of date. I told people
 to set an undocumented flag, I framed LSP as go-to-definition, and I
 said I'd check back in a week. I didn't.
 
-So this is the check back, seven months late. I went through my own
-session history, read the current docs, and then ran some tests
-locally to see what Claude Code actually does with a language server.
+So this is the check back, seven months late. I read the current docs,
+went through my own session history, and ran some tests locally to see
+what Claude Code actually does with a language server.
 
 ## What's changed since March
 
@@ -52,72 +52,45 @@ separate things a language server gives Claude Code:
 My March post was entirely about the second one. The first one didn't
 get a mention.
 
-## What my own sessions show
+## Does Claude Code actually use it?
 
 I keep my session history in a local archive with
 [omnirecall](https://github.com/spences10/omnirecall), so I could
-count what Claude Code actually did rather than guess.
+count. Across 125 Claude Code sessions since August there are zero
+`LSP` tool calls, apart from the ones made while writing this post.
+The tool was available in 120 of those sessions and my `CLAUDE.md`
+rule telling it to use LSP was loaded in 110.
 
-Across 125 Claude Code sessions since August:
+So I tested it. Four prompts against this site's repo, three runs
+each, none of them mentioning LSP or grep:
 
-- **Navigation:** zero `LSP` tool calls, apart from the ones made
-  while writing this post. That's with a `CLAUDE.md` rule telling it
-  to use LSP for definitions and references.
-- **Diagnostics:** 19 diagnostics attachments across 9 sessions. These
-  only show up when an edit introduces a new issue, so a low count is
-  expected.
-- **Search:** the dedicated Grep and Glob tools weren't used either.
-  Search happens in Bash now, with `grep` and `rg`.
+1. Where is this imported function actually defined?
+2. List every call site of this function.
+3. What is the fully resolved return type of this function?
+4. Change this function's signature and update every caller.
 
-So the part I wrote about wasn't being used at all, and the part I
-didn't write about was quietly working.
+Then the same again with the LSP rule taken out of my `CLAUDE.md`.
 
-## Testing it locally
+| Test       | Used LSP, with the rule | Used LSP, without the rule |
+| ---------- | ----------------------- | -------------------------- |
+| Definition | 3 of 3                  | 2 of 3                     |
+| Call sites | 3 of 3                  | 1 of 3                     |
+| Type       | 3 of 3                  | 3 of 3                     |
+| Refactor   | 3 of 3                  | 0 of 3                     |
 
-Session counts tell me what happened, not why. To dig into that I ran
-Claude Code headless with `claude -p` against this site's repo, with
-my normal config, edits disabled, and the stream saved so I could
-count the tool calls in each run:
+With the rule, Claude Code reached for LSP every time. Without it,
+half the time, and never for the refactor. I ran the with-the-rule set
+both headless with `claude -p` and in real interactive sessions and
+got twelve out of twelve both ways.
 
-```bash
-claude -p "$prompt" \
-  --output-format stream-json --verbose \
-  --no-session-persistence \
-  --disallowedTools Edit Write NotebookEdit Agent
-```
-
-## Nine navigation questions
-
-Three questions, three runs each. None of the prompts mention LSP or
-grep:
-
-1. "In `src/lib/posts.test.ts`, `get_posts` is imported. Where is that
-   function actually defined?"
-2. "I want to change the signature of `get_from_cache`. List every
-   call site I would need to update."
-3. "What exactly does `get_post_tags` return? Give me the fully
-   resolved return type and where it is defined."
-
-| Question   | Runs | Used LSP | LSP calls per run | Also used grep in Bash |
-| ---------- | ---- | -------- | ----------------- | ---------------------- |
-| Definition | 3    | 3        | 1–2               | 3                      |
-| Call sites | 3    | 3        | 1                 | 3                      |
-| Type       | 3    | 3        | 3–5               | 3                      |
-
-That surprised me. Asked a pure navigation question, Claude Code
-reached for LSP in nine runs out of nine. The tool is deferred, so
-each run had to load it first with a `ToolSearch` call, and it did
-that every time too.
-
-So it isn't that the model won't use LSP. Which makes the zero in my
-real sessions more interesting, because my real prompts are tasks, not
-navigation questions.
+That doesn't square with the zero in my own history, and I don't have
+an explanation for the gap. What I can say is that the rule from the
+March post does work when the prompt is about a symbol.
 
 ## The first answer is wrong
 
-The call sites question is where it got interesting. In all three runs
-Claude Code made one `findReferences` call on `get_from_cache` and got
-this back:
+This is the bit I didn't expect. In the call sites runs Claude Code
+made one `findReferences` call and got this back:
 
 ```text
 Found 1 reference:
@@ -125,74 +98,43 @@ Found 1 reference:
 ```
 
 One reference, which is the definition itself. That function is used
-in 20 files. Each run then built its answer from `git grep` instead,
-and the answers were right, but LSP contributed nothing to them.
+in 20 files. Each run then built its answer from `git grep` instead.
+The answers were right, but LSP contributed nothing to them.
 
-I ran a probe to check: a fresh session making the same
-`findReferences` call six times in a row.
+So I ran a probe: a fresh session making the same `findReferences`
+call over and over.
 
-| Call               | Result                              |
-| ------------------ | ----------------------------------- |
-| 1st                | Found 1 reference                   |
-| 2nd                | Found 51 references across 20 files |
-| 3rd, 4th, 5th, 6th | Found 51 references across 20 files |
+| Call       | Result                              |
+| ---------- | ----------------------------------- |
+| 1st        | Found 1 reference                   |
+| 2nd        | Found 51 references across 20 files |
+| 3rd to 6th | Found 51 references across 20 files |
 
-Same result in both probe sessions. Counting the three call sites
-runs, that's five fresh sessions out of five where the first
-`findReferences` call came back with one reference instead of 51.
+Across everything I ran, the first `findReferences` call of a fresh
+session was wrong in 18 sessions out of 19. Calling again usually
+fixes it, but not always: in five sessions the second answer was
+right, and in two, on a different function, it took a third call.
 
 There's no warning with it. The wrong answer looks exactly like a
-right one. I saw the same thing with `goToDefinition` straight after
-restarting Claude Code: the first call returned the import line I was
-already on, and the identical call a few seconds later returned the
-real definition.
+right one. Updating `typescript-language-server` from 5.3.0 to 6.0.2
+made no difference.
 
 Funnily enough, "first LSP call can miss" was one of the gotchas in my
 March post. I called it a minor quirk. I don't think it's minor: if
 the first answer in every session is wrong and unlabelled, grep is the
 sensible thing to trust.
 
-## A real refactor
+## Diagnostics are the useful half
 
-Navigation questions are a bit of a soft test, so next I gave it a
-task instead. Each run got its own scratch copy of the repo with edits
-allowed:
-
-> Change `get_period_boundaries` in
-> `src/lib/analytics/period-stats.helpers.ts` to take a single options
-> object (`{ period, now }`) instead of positional arguments, and
-> update every caller. Make sure it still type-checks.
-
-That function has eight call sites across four files, plus the
-definition.
-
-| Run | LSP calls | What LSP returned | Bash calls | Edits |
-| --- | --------- | ----------------- | ---------- | ----- |
-| 1   | 1         | Found 1 reference | 10         | 9     |
-| 2   | 1         | Found 1 reference | 8          | 9     |
-| 3   | 1         | Found 1 reference | 9          | 9     |
-
-Same pattern in all three. Load the tool, one `findReferences` call,
-get the wrong first answer, then find the callers with `grep` and make
-the edits. All three runs reported updating all eight callers. None of
-them went back to LSP after that first call.
-
-## Do the diagnostics turn up?
-
-This is the part of LSP I skipped in March, so I tested it directly. I
-had Claude Code append a line with an obvious type error to a
-TypeScript file and report back whatever feedback it was shown:
+This is the part of LSP I skipped in March. I had Claude Code append a
+line with an obvious type error to a TypeScript file and report back
+whatever feedback it was shown:
 
 ```ts
 export const lsp_probe: number = 'text';
 ```
 
-| Session                                       | Diagnostics shown |
-| --------------------------------------------- | ----------------- |
-| Edit, then finish straight away (2 runs)      | None              |
-| Two bad edits with ~30 seconds of other steps | Both errors       |
-
-In the longer session the errors arrived like this, with no tool call
+In a longer session the errors arrived like this, with no tool call
 asking for them:
 
 ```text
@@ -203,55 +145,113 @@ period-stats.helpers.ts:
   ✘ [Line 294:14] Type 'number' is not assignable to type 'string'. [2322] (typescript)</new-diagnostics>
 ```
 
-So diagnostics do work, and they are the useful half. They aren't
-instant though. In the two short sessions the edit was the last thing
-that happened and the type error went unreported. In the longer one
-both errors showed up together after the final step, so I can't say
-exactly how long they took, only that it was somewhere inside 30
-seconds.
-
-That matters for the same reason the first-call problem does. A fresh
+They aren't instant though. In two short sessions where the edit was
+the last thing that happened, the type error went unreported. In the
+longer one both errors showed up about 30 seconds later. A fresh
 session's language server needs time to load the project, and Claude
 Code doesn't wait for it.
 
-## Does the CLAUDE.md rule do anything?
+## Svelte
 
-All of those runs had my global `CLAUDE.md` loaded, and that still has
-the rule from the March post in it:
+The
+[official plugin list](https://code.claude.com/docs/en/plugins/code-intelligence#install-a-code-intelligence-plugin)
+has no Svelte entry, which is the gap I complained about in March.
+Without one, any LSP call on a component comes back with:
 
 ```text
-When tracing where a symbol is defined or finding all references to
-it, use LSP (goToDefinition, findReferences, hover) instead of Grep.
-LSP gives exact results; Grep gives text matches.
+No LSP server available for file type: .svelte
 ```
 
-So I took that section out, ran the same twelve tests again, and put
-it back.
+It turns out a plugin is only a config file. I already had
+`svelteserver` installed (`npm i -g svelte-language-server`), so this
+is the whole thing, saved as `.lsp.json` in an empty folder:
 
-| Test       | Used LSP, with the rule | Used LSP, without the rule |
-| ---------- | ----------------------- | -------------------------- |
-| Definition | 3 of 3                  | 2 of 3                     |
-| Call sites | 3 of 3                  | 1 of 3                     |
-| Type       | 3 of 3                  | 3 of 3                     |
-| Refactor   | 3 of 3                  | 0 of 3                     |
+```json
+{
+	"svelte": {
+		"command": "svelteserver",
+		"args": ["--stdio"],
+		"extensionToLanguage": {
+			".svelte": "svelte"
+		}
+	}
+}
+```
 
-Twelve out of twelve with the rule, six out of twelve without it. The
-rule does something after all, which is not what I expected given my
-own session history.
+Then start Claude Code with that folder as a plugin:
 
-The refactor row is the one I care about, because that's what a normal
-working session looks like. Without the rule, Claude Code never
-touched LSP for it: no `ToolSearch` to load the tool, no LSP calls,
-just `grep` and edits. The only question where it reached for LSP
-every time on its own was the type one, which is the question `grep`
-is worst at.
+```bash
+claude --plugin-dir ~/path/to/svelte-lsp
+```
 
-Three runs per cell is a small sample, so I wouldn't read much into
-two of three against three of three. Zero of three against three of
-three on the refactor is harder to wave away.
+With that loaded, hover, go-to-definition, references and document
+symbols all work on `.svelte` files, and a type error I added inside a
+component's `<script>` block came back as a diagnostic. Without the
+plugin the same edit got no feedback at all.
 
-<!-- TODO: does forcing LSP (hook) change anything, and is it worth it -->
+It also showed up a second problem with the TypeScript server on a
+SvelteKit project. `number_crunch` is a utility on this site that's
+mostly called from components. I asked for its references from both
+sides:
 
-<!-- TODO: Svelte — no server for .svelte files in Claude Code; svelteserver via a local plugin -->
+| Asked from                        | References found                          |
+| --------------------------------- | ----------------------------------------- |
+| The `.ts` file where it's defined | 23 across 3 files, none of them `.svelte` |
+| A `.svelte` file that uses it     | 89 across 18 files, 15 of them `.svelte`  |
+| `grep`                            | 90 lines across 18 files                  |
 
-<!-- TODO: conclusion — is it worth it, what I'd tell March me -->
+The TypeScript server can't see into components, so from a `.ts` file
+it misses every `.svelte` caller, however many times the call is
+repeated. The Svelte server gets the full list, and got it on the
+first call.
+
+## What I've changed
+
+The March rule stays, because it's what gets LSP used at all. I've
+added lines for the problems above:
+
+```markdown
+## Code Navigation
+
+- When tracing where a symbol is defined or finding all references to
+  it, use LSP (goToDefinition, findReferences, hover) instead of Grep.
+  LSP gives exact results; Grep gives text matches.
+- The first LSP calls in a session can be wrong. A findReferences
+  result with only the definition, or a goToDefinition result that is
+  the line you are already on, means the server has not loaded the
+  project yet: call again, and check the count against grep before
+  relying on it.
+- In Svelte projects, findReferences from a .ts file misses usages in
+  .svelte files. Run it from a .svelte file that uses the symbol, or
+  confirm with grep.
+- LSP diagnostics arrive on a later turn after an edit, not
+  immediately. No diagnostics straight after an edit does not mean the
+  edit is clean; run the type check before reporting done.
+- Use Grep/Glob for discovery (finding files, searching patterns,
+  strings, config, Markdown). Use LSP for understanding (definitions,
+  references, type info).
+```
+
+I haven't measured yet whether the new lines change the outcome. The
+first line is the one with numbers behind it.
+
+## Is it worth it?
+
+Yes, but not for the reason I gave in March.
+
+1. **Diagnostics are the reason to install it.** Type errors come back
+   after an edit without anything having to ask for them. That works
+   today with no configuration beyond the plugin.
+2. **Navigation needs the `CLAUDE.md` rule.** With it, Claude Code
+   used LSP in every test. Without it, half of them, and never for a
+   refactor.
+3. **Reference counts need checking against grep.** The first answer
+   in a session is usually wrong, and on a SvelteKit project the
+   TypeScript server never sees the components.
+4. **The flag is gone.** `ENABLE_LSP_TOOL` can come out of
+   `settings.json`.
+5. **Svelte takes one small config file.**
+
+What I still can't explain is my own history: 125 sessions with the
+tool and the rule both there, and not one navigation call. If I work
+that out it'll be another post.
