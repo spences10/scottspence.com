@@ -16,8 +16,6 @@ export const variables = defineEnvVars({
 	PRODUCTION_URL: { static: true },
 	SECRET_PASSPHRASE: { static: true },
 	EXCHANGE_RATE_API_KEY: { static: true },
-	UPSTASH_REDIS_REST_TOKEN: { static: true },
-	UPSTASH_REDIS_REST_URL: { static: true },
 	PUBLIC_TURNSTILE_SITE_KEY: { public: true, static: true },
 	ANALYTICS_SALT: { static: true },
 	ATPROTO_APP_PASSWORD: { schema: (input) => input ?? '' },

@@ -6,7 +6,7 @@ import {
 	TURNSTILE_SECRET_KEY,
 } from '$app/env/private';
 import { encrypt } from '#lib/crypto.js';
-import { ratelimit } from '#lib/redis/index.js';
+import { ratelimit } from '#lib/server/rate-limit.js';
 import * as v from 'valibot';
 
 const newsletter_schema = v.object({
@@ -57,7 +57,7 @@ export const subscribe_to_newsletter = command(
 		}
 
 		// Check rate limit
-		const rate_limit_attempt = await ratelimit.limit(ip);
+		const rate_limit_attempt = ratelimit.limit(ip);
 		if (!rate_limit_attempt.success) {
 			const time_remaining = Math.floor(
 				(rate_limit_attempt.reset - new Date().getTime()) / 1000,

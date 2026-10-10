@@ -4,7 +4,7 @@ import {
 	get_from_cache,
 	set_cache,
 } from '#lib/cache/server-cache.js';
-import { ratelimit } from '#lib/redis/index.js';
+import { ratelimit } from '#lib/server/rate-limit.js';
 import * as v from 'valibot';
 import { search_posts_by_embedding } from '../../routes/api/ingest/embeddings';
 
@@ -28,7 +28,7 @@ export const search_posts = query(
 				request.headers.get('x-forwarded-for')?.split(',')[0] ||
 				request.headers.get('x-real-ip') ||
 				'unknown';
-			const rate_limit_attempt = await ratelimit.limit(
+			const rate_limit_attempt = ratelimit.limit(
 				`search_posts:${ip}`,
 			);
 			if (!rate_limit_attempt.success) {

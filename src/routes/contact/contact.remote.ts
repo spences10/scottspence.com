@@ -5,7 +5,7 @@ import {
 	RESEND_FROM_EMAIL,
 	TURNSTILE_SECRET_KEY,
 } from '$app/env/private';
-import { ratelimit } from '#lib/redis/index.js';
+import { ratelimit } from '#lib/server/rate-limit.js';
 import * as v from 'valibot';
 
 const contact_schema = v.object({
@@ -120,7 +120,7 @@ export const submit_contact = command(
 		}
 
 		// Check rate limit
-		const rate_limit_attempt = await ratelimit.limit(ip);
+		const rate_limit_attempt = ratelimit.limit(ip);
 		console.log(
 			'[submit_contact] Rate limit check:',
 			rate_limit_attempt.success,

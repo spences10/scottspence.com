@@ -28,10 +28,6 @@ jobs:
           PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
           PUBLIC_FATHOM_URL: ${{ secrets.PUBLIC_FATHOM_URL }}
           FATHOM_API_KEY: ${{ secrets.FATHOM_API_KEY }}
-          # prettier-ignore
-          UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
-          # prettier-ignore
-          UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
           EXCHANGE_RATE_API_KEY: ${{ secrets.EXCHANGE_RATE_API_KEY }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID }}
@@ -70,6 +66,4 @@ jobs:
           PRODUCTION_URL: https://example.com
           SECRET_PASSPHRASE: test
           EXCHANGE_RATE_API_KEY: test
-          UPSTASH_REDIS_REST_TOKEN: test
-          UPSTASH_REDIS_REST_URL: https://example.com
           ANALYTICS_SALT: test

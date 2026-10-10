@@ -7,7 +7,7 @@ import {
 	set_cache,
 } from '#lib/cache/server-cache.js';
 import { reactions } from '#lib/reactions-config.js';
-import { ratelimit } from '#lib/redis/index.js';
+import { ratelimit } from '#lib/server/rate-limit.js';
 import { sqlite_client } from '#lib/sqlite/client.js';
 import * as v from 'valibot';
 
@@ -52,7 +52,7 @@ export const submit_reaction = command(
 				'unknown';
 
 			// Rate limiting
-			const rate_limit_attempt = await ratelimit.limit(ip);
+			const rate_limit_attempt = ratelimit.limit(ip);
 
 			if (!rate_limit_attempt.success) {
 				const time_remaining = Math.floor(
