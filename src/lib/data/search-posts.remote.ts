@@ -4,9 +4,12 @@ import {
 	get_from_cache,
 	set_cache,
 } from '#lib/cache/server-cache.js';
-import { ratelimit } from '#lib/server/rate-limit.js';
+import { daily_cap, ratelimit } from '#lib/server/rate-limit.js';
 import * as v from 'valibot';
 import { search_posts_by_embedding } from '../../routes/api/ingest/embeddings';
+
+// Ceiling on paid embedding calls per day, whoever is asking
+const MAX_DAILY_SEARCHES = 5000;
 
 export const search_posts = query(
 	v.pipe(v.string(), v.trim(), v.minLength(3), v.maxLength(100)),
@@ -33,6 +36,19 @@ export const search_posts = query(
 			);
 			if (!rate_limit_attempt.success) {
 				return [];
+			}
+
+			const daily_attempt = daily_cap.take(
+				'search_posts',
+				MAX_DAILY_SEARCHES,
+			);
+			if (!daily_attempt.success) {
+				return [];
+			}
+			if (daily_attempt.remaining === 0) {
+				console.warn(
+					`Semantic post search hit its daily cap of ${MAX_DAILY_SEARCHES}`,
+				);
 			}
 
 			const results = await search_posts_by_embedding(search_text, 5);

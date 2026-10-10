@@ -26,7 +26,10 @@ const mock_voyage_response = (ok = true) =>
 		status: ok ? 200 : 500,
 		text: () => Promise.resolve('voyage is down'),
 		json: () =>
-			Promise.resolve({ data: [{ embedding: mock_embedding }] }),
+			Promise.resolve({
+				data: [{ embedding: mock_embedding }],
+				usage: { total_tokens: 12 },
+			}),
 	});
 
 describe('search_posts_by_embedding', () => {
@@ -38,6 +41,7 @@ describe('search_posts_by_embedding', () => {
 			all: mock_all,
 		} as any);
 		vi.spyOn(console, 'error').mockImplementation(() => {});
+		vi.spyOn(console, 'log').mockImplementation(() => {});
 	});
 
 	afterEach(() => {
@@ -58,6 +62,16 @@ describe('search_posts_by_embedding', () => {
 			input: 'global state in gatsby',
 			input_type: 'query',
 		});
+	});
+
+	it('logs the tokens used without the search text', async () => {
+		vi.stubGlobal('fetch', mock_voyage_response());
+
+		await search_posts_by_embedding('global state in gatsby');
+
+		expect(console.log).toHaveBeenCalledWith(
+			'Voyage embedding (query): 12 tokens',
+		);
 	});
 
 	it('only searches public posts and over-fetches for the filter', async () => {

@@ -6,7 +6,7 @@ import {
 	it,
 	vi,
 } from 'vitest';
-import { ratelimit } from './rate-limit';
+import { daily_cap, ratelimit } from './rate-limit';
 
 const use_up_limit = (key: string) => {
 	for (let i = 0; i < 10; i++) {
@@ -81,5 +81,57 @@ describe('ratelimit', () => {
 		expect(ratelimit.limit('search_posts:1.2.3.4').success).toBe(
 			true,
 		);
+	});
+});
+
+describe('daily_cap', () => {
+	beforeEach(() => {
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date('2026-01-01T12:00:00Z'));
+		daily_cap.clear();
+	});
+
+	afterEach(() => {
+		vi.useRealTimers();
+	});
+
+	it('allows requests up to the cap and reports what is left', () => {
+		expect(daily_cap.take('search', 3)).toEqual({
+			success: true,
+			remaining: 2,
+		});
+		expect(daily_cap.take('search', 3).remaining).toBe(1);
+		expect(daily_cap.take('search', 3).remaining).toBe(0);
+	});
+
+	it('blocks requests once the cap is reached', () => {
+		for (let i = 0; i < 3; i++) {
+			daily_cap.take('search', 3);
+		}
+
+		expect(daily_cap.take('search', 3)).toEqual({
+			success: false,
+			remaining: 0,
+		});
+	});
+
+	it('stays blocked for the rest of the day', () => {
+		daily_cap.take('search', 1);
+		vi.setSystemTime(new Date('2026-01-01T23:59:59Z'));
+
+		expect(daily_cap.take('search', 1).success).toBe(false);
+	});
+
+	it('resets at midnight UTC', () => {
+		daily_cap.take('search', 1);
+		vi.setSystemTime(new Date('2026-01-02T00:00:00Z'));
+
+		expect(daily_cap.take('search', 1).success).toBe(true);
+	});
+
+	it('tracks each key separately', () => {
+		daily_cap.take('search', 1);
+
+		expect(daily_cap.take('other', 1).success).toBe(true);
 	});
 });

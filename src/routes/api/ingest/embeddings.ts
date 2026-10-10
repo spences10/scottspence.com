@@ -31,6 +31,9 @@ const create_embedding = async (
 		if (!data.data || !data.data[0] || !data.data[0].embedding) {
 			throw new Error('Unexpected API response format');
 		}
+		console.log(
+			`Voyage embedding (${input_type}): ${data.usage?.total_tokens ?? 'unknown'} tokens`,
+		);
 		return data.data[0].embedding;
 	} catch (error) {
 		console.error('Error creating embedding:', error);

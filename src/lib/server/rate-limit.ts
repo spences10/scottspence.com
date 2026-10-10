@@ -37,3 +37,28 @@ export const ratelimit = {
 	},
 	clear: () => requests.clear(),
 };
+
+const daily_counts = new Map<
+	string,
+	{ day: string; count: number }
+>();
+
+// Global cap per UTC day, shared by every visitor
+export const daily_cap = {
+	take: (
+		key: string,
+		max: number,
+	): { success: boolean; remaining: number } => {
+		const day = new Date().toISOString().slice(0, 10);
+		const current = daily_counts.get(key);
+		const count = current?.day === day ? current.count : 0;
+
+		if (count >= max) {
+			return { success: false, remaining: 0 };
+		}
+
+		daily_counts.set(key, { day, count: count + 1 });
+		return { success: true, remaining: max - count - 1 };
+	},
+	clear: () => daily_counts.clear(),
+};
