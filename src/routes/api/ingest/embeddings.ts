@@ -1,7 +1,10 @@
 import { VOYAGE_AI_API_KEY } from '$app/env/private';
 import { sqlite_client } from '#lib/sqlite/client.js';
 
-const create_embedding = async (text: string): Promise<number[]> => {
+const create_embedding = async (
+	text: string,
+	input_type: 'document' | 'query' = 'document',
+): Promise<number[]> => {
 	try {
 		const response = await fetch(
 			'https://api.voyageai.com/v1/embeddings',
@@ -14,7 +17,7 @@ const create_embedding = async (text: string): Promise<number[]> => {
 				body: JSON.stringify({
 					model: 'voyage-3',
 					input: text,
-					input_type: 'document',
+					input_type,
 				}),
 			},
 		);
@@ -137,6 +140,35 @@ export const get_related_posts = async (
 			throw error;
 		}
 	}
+};
+
+// L2 distance between normalised voyage-3 vectors, lower is closer.
+// Short queries against whole posts sit in a narrow band: on-topic
+// results land around 1.02-1.18, unrelated queries start at 1.20.
+const MAX_SEARCH_DISTANCE = 1.18;
+
+export const search_posts_by_embedding = async (
+	search_text: string,
+	limit: number = 5,
+): Promise<RelatedPost[]> => {
+	const embedding = await create_embedding(search_text, 'query');
+
+	// Use a higher k value to account for private posts being filtered out
+	const stmt = sqlite_client.prepare(`
+		SELECT pe.post_id AS slug, p.title, distance
+		FROM post_embeddings pe
+		JOIN posts p ON pe.post_id = p.slug
+		WHERE pe.embedding MATCH ?
+		AND k = ?
+		AND p.is_private = 0
+		ORDER BY distance
+	`);
+	const results = stmt.all(JSON.stringify(embedding), limit * 3);
+
+	return results
+		.filter((row: any) => row.distance <= MAX_SEARCH_DISTANCE)
+		.slice(0, limit)
+		.map((row: any) => ({ slug: row.slug, title: row.title }));
 };
 
 export const get_post_embedding = async (

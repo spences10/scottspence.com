@@ -27,6 +27,7 @@ export const CACHE_DURATIONS = {
 	subscribers: 24 * 60 * 60 * 1000, // 24 hours
 	site_stats: 60 * 60 * 1000, // 1 hour
 	related_posts: 60 * 60 * 1000, // 1 hour
+	search_posts: 60 * 60 * 1000, // 1 hour
 	pricing: 24 * 60 * 60 * 1000, // 24 hours
 	post_analytics: {
 		day: 5 * 60 * 1000, // 5 minutes
