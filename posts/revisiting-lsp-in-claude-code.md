@@ -142,11 +142,39 @@ One reference, which is the definition itself. That function is used
 in 20 files. Each run then built its answer from `git grep` instead.
 The answers were right, but LSP contributed nothing to them.
 
-So, I wanted to know how wrong, and for how long. I set up some fresh
-sessions that made the same set of calls one after another, across
-three functions in three different files, and timed each call.
+So, I wanted to know how wrong, and for how long. I got Claude Code to
+run some fresh headless sessions, each one making the same set of
+calls one after another across three functions in three different
+files, and to time each call.
 
-Here's one of them, the time is how long since the session started:
+This is the prompt for one of them:
+
+```markdown
+This is a mechanical probe of the LSP tool. If the LSP tool is not
+loaded, load it first with ToolSearch query `"select:LSP"`. Then do
+these steps in order, ONE tool call per message, never in parallel,
+never repeating a call unless the step says so, and using no other
+tools:
+
+1. Call the LSP tool: `findReferences` on
+   `src/lib/server/bluesky-posts.ts` line 140 character 14. If the
+   result is "Found 1 reference", make the identical call again, up to
+   6 calls in total, stopping as soon as it reports more than 1
+   reference.
+2. Exactly once: `findReferences` on `src/lib/cache/server-cache.ts` line
+   42 character 17.
+3. Exactly once: `findReferences` on `src/lib/utils/group-posts-by-tag.ts`
+   line 14 character 14.
+4. Exactly once: goToDefinition on
+   `src/lib/components/newsletter-signup/newsletter.remote.ts` line 60
+   character 30.
+5. Exactly once: hover on `src/lib/seo/default.ts` line 20 character 20.
+
+When finished reply with the single word DONE.
+```
+
+And this is what came back, the time is how long since the session
+started:
 
 | Time  | Call                              | Result                              |
 | ----- | --------------------------------- | ----------------------------------- |
@@ -162,17 +190,18 @@ Same call three times, wrong, wrong, right. Then everything after that
 was right, different functions, different files, `goToDefinition` and
 `hover` as well.
 
-I ran a load of these. The first call of a fresh session was wrong in
-18 of the first 19 sessions, and in all 13 of the ones I timed after
-that. Every wrong answer came back inside about two seconds of the
-first LSP call in the session.
+I got it to run a load of these, changing the order each time. The
+first call of a fresh session was wrong in 18 of the first 19
+sessions, and in all 13 of the ones I timed after that. Every wrong
+answer came back inside about two seconds of the first LSP call in the
+session.
 
-A few other things I found poking at it:
+A few other things that came out of it:
 
 - It's the session, not the function. One wrong call on one function,
   wait a couple of seconds, and the first call on a completely
   different function in a different file is fine.
-- Waiting before asking doesn't help. I had a session sit there for 30
+- Waiting before asking doesn't help. One session sat there for 30
   seconds before making its first call and it was still wrong. The
   language server doesn't get started until something asks it a
   question.
@@ -220,7 +249,8 @@ rest fills in. Claude Code asks once and takes the answer.
 ## The workaround
 
 `typescript-language-server` has an option to turn the syntax server
-off, it's called `useSyntaxServer`. I found it in a
+off, it's called `useSyntaxServer`. I got Claude Code to go looking
+and it found a
 [discussion](https://github.com/typescript-language-server/typescript-language-server/discussions/1067)
 on the language server repo from April. Someone had this exact problem
 with Claude Code and the maintainer suggested trying it.
@@ -231,33 +261,32 @@ can also pass options to the server when it starts up, that's what
 `initializationOptions` is for.
 
 So here's the config from the official `typescript-lsp` plugin, with
-the option added to it:
+the option added to it on the highlighted lines:
 
-```diff
- {
-   "typescript": {
-     "command": "typescript-language-server",
-     "args": ["--stdio"],
-     "extensionToLanguage": {
-       ".ts": "typescript",
-       ".tsx": "typescriptreact",
-       ".js": "javascript",
-       ".jsx": "javascriptreact",
-       ".mts": "typescript",
-       ".cts": "typescript",
-       ".mjs": "javascript",
-       ".cjs": "javascript"
--    }
-+    },
-+    "initializationOptions": {
-+      "tsserver": { "useSyntaxServer": "never" }
-+    }
-   }
- }
+```json {15-17}
+{
+	"typescript": {
+		"command": "typescript-language-server",
+		"args": ["--stdio"],
+		"extensionToLanguage": {
+			".ts": "typescript",
+			".tsx": "typescriptreact",
+			".js": "javascript",
+			".jsx": "javascriptreact",
+			".mts": "typescript",
+			".cts": "typescript",
+			".mjs": "javascript",
+			".cjs": "javascript"
+		},
+		"initializationOptions": {
+			"tsserver": { "useSyntaxServer": "never" }
+		}
+	}
+}
 ```
 
 With that in place the first call of a session came back right in all
-twelve of the sessions I tried it in.
+twelve of the sessions Claude Code ran with it.
 
 There's two ways I know of to get that config in.
 
@@ -275,7 +304,7 @@ Find `typescript` under `lspServers` in there and add the
 discussion did and it worked for them.
 
 I've not done it this way, because you could change the file, the
-plugin could be updated and probably overwite that file again.
+plugin could be updated and probably overwrite that file again.
 
 ## Option 2, use my plugin
 
@@ -324,21 +353,8 @@ extensions so I only want one of them on:
 /plugin disable typescript-lsp@claude-plugins-official
 ```
 
-This next bit is optional, it's only for Svelte projects. The same
-marketplace has a `svelte-lsp` plugin for `.svelte` files, there's
-more on that in the [Svelte](#svelte) section. It needs the Svelte
-language server installed:
-
-```bash
-pnpm i -g svelte-language-server
-# or npm or whatever your package manager of choice is
-```
-
-Then install the plugin:
-
-```text
-/plugin install svelte-lsp@svelte-skills-kit
-```
+If you're using Svelte there's a plugin for that in the same
+marketplace, see the [Svelte](#svelte) section.
 
 Then reload the plugins:
 
@@ -368,7 +384,8 @@ The first call is slower because it's now waiting for the project to
 load before it answers. This is a small project, on a big one I'd
 expect that wait to be a lot longer than two seconds.
 
-Type errors after an edit still show up with the option on, I checked.
+Type errors after an edit still show up with the option on, I got
+Claude Code to check that as well.
 
 The maintainer did say it "might not solve this issue by itself". For
 this project it did.
@@ -386,9 +403,10 @@ Once that's sorted, switching back to the official plugin is:
 
 ## Changes from the shell get missed
 
-That same issue has a second problem in it, so I tested that as well.
+That same issue has a second problem in it, so I got Claude Code to
+test that as well.
 
-In a session that was already warmed up I changed files three
+In a session that was already warmed up it changed files three
 different ways and asked for the references after each one:
 
 | How the file changed                                 | What `findReferences` did              |
@@ -401,9 +419,9 @@ So edits Claude Code makes with its own tools get to the language
 server. A change made from the shell to a file the server already had
 open didn't.
 
-I only tested appending a line. The issue has the same thing happening
-with `git checkout`, formatters and anything else that gets run
-through Bash.
+It only tested appending a line. The issue has the same thing
+happening with `git checkout`, formatters and anything else that gets
+run through Bash.
 
 The workaround doesn't do anything for this one.
 
@@ -471,7 +489,7 @@ pnpm i -g svelte-language-server
 # or npm or whatever your package manager of choice is
 ```
 
-Then in Claude Code, with the marketplace added as above:
+Then in Claude Code, with the marketplace added:
 
 ```text
 /plugin install svelte-lsp@svelte-skills-kit
