@@ -5,7 +5,7 @@ tags: ['claude-code', 'lsp', 'developer-experience']
 is_private: false
 ---
 
-<!-- cspell:ignore omnirecall svelteserver -->
+<!-- cspell:ignore ccrecall omnirecall svelteserver -->
 
 Back in March I wrote about
 [enabling LSP in Claude Code](/posts/enable-lsp-in-claude-code). It
@@ -18,9 +18,11 @@ So this is the check back, seven months late. I read the current docs,
 went through my own session history, and ran some tests locally to see
 what Claude Code actually does with a language server.
 
-TlDr: the flag is gone, the first answer LSP gives in every session is
-wrong, that's a known bug, and for TypeScript there's a workaround
-that's three lines of config.
+**TlDr**: the flag is gone, the first answer LSP gives in every
+session is wrong, that's a known bug, and for TypeScript there's
+[a workaround](#the-workaround) that's three lines of config. After
+all that, [grep was better](#just-use-grep) for finding where
+something is used.
 
 ## What's changed since March
 
@@ -59,12 +61,20 @@ get a mention.
 
 ## Does Claude Code actually use it?
 
-I keep my session history in a local archive with
-[omnirecall](https://github.com/spences10/omnirecall), so I could
-count. Across 125 Claude Code sessions since August there are zero
-`LSP` tool calls, apart from the ones made while writing this post.
-The tool was available in 120 of those sessions and my `CLAUDE.md`
-rule telling it to use LSP was loaded in 110.
+I keep my session history in local archives, with
+[ccrecall](https://github.com/spences10/ccrecall) and now
+[omnirecall](https://github.com/spences10/omnirecall), so I went back
+through it to see how much Claude Code had actually used LSP.
+
+From when I switched it on at the end of February to April there's
+about 650 sessions, and it made 32 LSP calls in 15 of them. 12 of
+those came back with nothing, mostly
+`No LSP server available for file type: .svelte`, and then it went to
+grep. It never called `findReferences`, not once.
+
+After that I wasn't really using Claude Code until a couple of weeks
+ago. Since then there's 118 sessions, half of them subagents, and no
+LSP calls until I started writing this.
 
 You'll know when it has used LSP because you'll see something like
 this in Claude's output:
@@ -123,9 +133,12 @@ half the time, and never for the refactor. I ran the with-the-rule set
 both headless with `claude -p` and in real interactive sessions and
 got twelve out of twelve both ways.
 
-That doesn't square with the zero in my own history, and I don't have
-an explanation for the gap. What I can say is that the rule from the
-March post does work when the prompt is about a symbol.
+So the rule from the March post does work when the prompt is about a
+symbol. Going by my history, in real sessions it mostly went to grep
+anyway.
+
+Whether it should be using LSP for that is another thing, that's
+further down in [Just use grep?](#just-use-grep)
 
 ## The first answer is wrong
 
@@ -161,14 +174,15 @@ tools:
    result is "Found 1 reference", make the identical call again, up to
    6 calls in total, stopping as soon as it reports more than 1
    reference.
-2. Exactly once: `findReferences` on `src/lib/cache/server-cache.ts` line
-   42 character 17.
-3. Exactly once: `findReferences` on `src/lib/utils/group-posts-by-tag.ts`
-   line 14 character 14.
+2. Exactly once: `findReferences` on `src/lib/cache/server-cache.ts`
+   line 42 character 17.
+3. Exactly once: `findReferences` on
+   `src/lib/utils/group-posts-by-tag.ts` line 14 character 14.
 4. Exactly once: goToDefinition on
    `src/lib/components/newsletter-signup/newsletter.remote.ts` line 60
    character 30.
-5. Exactly once: hover on `src/lib/seo/default.ts` line 20 character 20.
+5. Exactly once: hover on `src/lib/seo/default.ts` line 20
+   character 20.
 
 When finished reply with the single word DONE.
 ```
@@ -425,6 +439,108 @@ run through Bash.
 
 The workaround doesn't do anything for this one.
 
+## Just use grep?
+
+So with the first answer fixed, is LSP actually any better than grep
+for this? When the first answer was wrong Claude Code went to grep
+anyway, and the answers were right.
+
+I got Claude Code to run the same questions three different ways,
+three runs of each, 54 sessions in all:
+
+1. Grep only, with the LSP tool turned off.
+2. LSP and grep, which is my normal setup with the rule in
+   `CLAUDE.md`.
+3. LSP only, with Bash, Grep and Glob turned off.
+
+There's three functions called `get_post_tags` in this project, so I
+used that for most of them, I thought a text search would struggle
+with it. These are the prompts:
+
+```markdown
+<!-- References 1, the only function with that name -->
+
+I want to change the signature of `get_from_cache`. List every call
+site (`file:line`) I would need to update. Do not change anything.
+
+<!-- References 2, one of three functions with the same name -->
+
+I want to change the signature of `get_post_tags` in
+`src/lib/data/post-tags.remote.ts`. List every call site (`file:line`)
+I would need to update. Do not change anything.
+
+<!-- References 3, a function nothing uses -->
+
+Is `get_post_tags` in `src/lib/state/post-tags.svelte.ts` used
+anywhere, or can I delete it? Do not change anything.
+
+<!-- Types 1, all three functions -->
+
+What exactly does `get_post_tags` return? Give me the fully resolved
+return type and where it is defined.
+
+<!-- Types 2, no return type written down -->
+
+What exactly does `get_post_tags` in `src/lib/post-tags.ts` return? It
+has no return type annotation. Give me the fully resolved return type.
+
+<!-- Types 3, a type that comes from SvelteKit -->
+
+What is the exact TypeScript type of `get_post_tags` exported from
+`src/lib/data/post-tags.remote.ts`, and what type do I get when I
+await a call to it?
+```
+
+Here's the three references questions:
+
+|                                         | Grep only      | LSP and grep   | LSP only       |
+| --------------------------------------- | -------------- | -------------- | -------------- |
+| Right call sites                        | 9 of 9         | 9 of 9         | 9 of 9         |
+| Found the test mock that needs updating | 3 of 3         | 3 of 3         | 0 of 3         |
+| Straight answer on "can I delete it"    | 3 of 3         | 3 of 3         | 0 of 3         |
+| Turns per question                      | 2 to 3         | 4 to 6         | 7 to 12        |
+| Seconds per question                    | 9 to 15        | 14 to 19       | 16 to 29       |
+| Cost per question                       | $0.04 to $0.08 | $0.06 to $0.09 | $0.07 to $0.12 |
+
+And the three types questions:
+
+|                      | Grep only      | LSP and grep   | LSP only       |
+| -------------------- | -------------- | -------------- | -------------- |
+| Right answer         | 9 of 9         | 9 of 9         | 9 of 9         |
+| Turns per question   | 3 to 6         | 6 to 15        | 6 to 16        |
+| Seconds per question | 12 to 22       | 11 to 29       | 11 to 29       |
+| Cost per question    | $0.05 to $0.10 | $0.06 to $0.14 | $0.06 to $0.16 |
+
+Grep on its own didn't get a single answer wrong, and for references
+it was the quickest and the cheapest of the three.
+
+Some things that came out of it:
+
+- With both available Claude Code ran grep every time anyway. My rule
+  tells it to check the LSP count against grep, so the LSP call was
+  extra work on top.
+- The three functions with the same name weren't a problem for grep.
+  It searched for the name and the file it's imported from, and split
+  them up correctly every time.
+- `findReferences` gives back a file, a line and a column, not the
+  code. With only LSP to go on Claude Code had to read three to six
+  files to see what each reference was. Grep gives back the line.
+- There's a `vi.mock` for that function in a test that would break if
+  the signature changed. Grep found it, LSP can't, it's not a
+  reference as far as TypeScript is concerned.
+- With only LSP, all three "can I delete it" answers came back with a
+  "but I can't check the `.svelte` files".
+- Types is where LSP did alright. `hover` gives the exact type in one
+  call, and on two of the three questions it was as quick as grep.
+- Grep still got the types right though. For the SvelteKit one it read
+  the type declarations in `node_modules`, and in one run it wrote a
+  script to ask the TypeScript compiler.
+
+⚠ Note: this is a small project with function names that don't clash
+with much, one model (Opus 5.5) and three runs of each. On a big
+codebase with thousands of matches for a name it could be a different
+story. I didn't test a refactor either.
+
 ## Diagnostics
 
 This is the half of LSP I skipped in March, and the one that needs
@@ -518,37 +634,40 @@ first call.
 
 ## What I've changed
 
-The March rule stays, because it's what gets LSP used at all. I've
-added lines for the problems above:
+The rule from the March post told Claude Code to use LSP over grep for
+definitions and references. After the tests above I've turned that
+round. This is what's in my `CLAUDE.md` now:
 
 ```markdown
 ## Code Navigation
 
-- When tracing where a symbol is defined or finding all references to
-  it, use LSP (goToDefinition, findReferences, hover) instead of Grep.
-  LSP gives exact results; Grep gives text matches.
-- The first LSP calls in a session can be wrong. A findReferences
-  result with only the definition, or a goToDefinition result that is
-  the line you are already on, means the server has not loaded the
-  project yet: call again, and check the count against grep before
-  relying on it.
-- In Svelte projects, findReferences from a .ts file misses usages in
-  .svelte files. Run it from a .svelte file that uses the symbol, or
-  confirm with grep.
+- To find where a symbol is defined or used, use grep. When more than
+  one symbol has the same name, search for the name and the module it
+  is imported from, and read the import lines to tell them apart.
+- Use LSP hover when the exact type of a symbol matters, such as an
+  inferred return type or a type that comes from a library.
+- Do not treat an LSP findReferences result as the full list. It
+  misses .svelte callers when run from a .ts file, mocks and other
+  string references, and files changed from the shell. Confirm with
+  grep before deleting or changing a signature.
 - LSP diagnostics arrive on a later turn after an edit, not
   immediately. No diagnostics straight after an edit does not mean the
   edit is clean; run the type check before reporting done.
-- Use Grep/Glob for discovery (finding files, searching patterns,
-  strings, config, Markdown). Use LSP for understanding (definitions,
-  references, type info).
 ```
 
-I haven't measured yet whether the new lines change the outcome. The
-first line is the one with numbers behind it.
+Then I got Claude Code to run the same six questions again with the
+new rule in, three runs of each:
 
-I wrote the second line before I found the workaround. With the syntax
-server off the first call shouldn't be wrong any more, I'm leaving it
-in until the bug is fixed though.
+|                                      | Old rule | New rule |
+| ------------------------------------ | -------- | -------- |
+| Right answers                        | 18 of 18 | 18 of 18 |
+| Used LSP on the references questions | 9 of 9   | 0 of 9   |
+| Used `hover` on the types questions  | 9 of 9   | 9 of 9   |
+| Turns per references question        | 4 to 6   | 2 to 3   |
+| Seconds per references question      | 14 to 19 | 10 to 20 |
+
+So it does what it says. Grep for where something is used, `hover` for
+types, and the references questions take about half the turns.
 
 I've also swapped the official `typescript-lsp` plugin for mine, and
 added `svelte-lsp` alongside it.
@@ -557,22 +676,27 @@ added `svelte-lsp` alongside it.
 
 Yes, but not for the reason I gave in March.
 
-1. **Diagnostics work with no effort.** Type errors come back after an
-   edit without anything having to ask for them, with no configuration
-   beyond the plugin.
-2. **Navigation needs the `CLAUDE.md` rule.** With it, Claude Code
-   used LSP in every test. Without it, half of them, and never for a
-   refactor.
-3. **The first answer of a session is wrong.** It's a known bug with
-   no warning. For TypeScript, turning the syntax server off fixed it
-   in every session I ran.
-4. **It doesn't see everything.** Files changed from the shell can be
+1. **Diagnostics are the reason to have it.** Type errors come back
+   after an edit without anything having to ask for them, and that's
+   the one thing here grep can't do.
+2. **For finding where something is used, grep was better.** It was
+   right every time, quicker and cheaper, and it found things LSP
+   can't see.
+3. **For types it was a draw.** `hover` gives the exact type in one
+   call, grep got to the same answer.
+4. **The first answer of a session is wrong.** It's a known bug. For
+   TypeScript, turning the syntax server off fixed it in every session
+   Claude Code ran.
+5. **It doesn't see everything.** Files changed from the shell can be
    stale, and on a SvelteKit project the TypeScript server never sees
    the components.
-5. **The flag is gone.** `ENABLE_LSP_TOOL` can come out of
+6. **The flag is gone.** `ENABLE_LSP_TOOL` can come out of
    `settings.json`.
-6. **Svelte takes one small config file.**
+7. **Svelte takes one small config file.**
 
-What I still can't explain is my own history: 125 sessions with the
-tool and the rule both there, and not one navigation call. If I work
-that out it'll be another post.
+So the advice in the March post, tell Claude Code to use LSP in place
+of grep, I'd take back. On this project it made things slower without
+making them more right.
+
+Going by my history Claude Code had worked that out before I did, it
+was using grep the whole time.
