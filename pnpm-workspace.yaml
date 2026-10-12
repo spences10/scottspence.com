@@ -16,4 +16,4 @@ overrides:
 peerDependencyRules:
   allowedVersions:
     # Vite+ core exposes Vite 8 APIs under Vite+'s package version.
-    vite: 1.0.0
+    vite: 1.1.0
