@@ -18,11 +18,16 @@ So this is the check back, seven months late. I read the current docs,
 went through my own session history, and ran some tests locally to see
 what Claude Code actually does with a language server.
 
+TlDr: the flag is gone, the first answer LSP gives in every session is
+wrong, that's a known bug, and for TypeScript there's a workaround
+that's three lines of config.
+
 ## What's changed since March
 
-The setup in the old post was a feature flag plus a plugin:
+The setup in the old post was a feature flag plus a plugin in the
+`~/.claude/settings.json` file:
 
-```json
+```json {2-4}
 {
 	"env": {
 		"ENABLE_LSP_TOOL": "1"
@@ -61,13 +66,48 @@ count. Across 125 Claude Code sessions since August there are zero
 The tool was available in 120 of those sessions and my `CLAUDE.md`
 rule telling it to use LSP was loaded in 110.
 
-So I tested it. Four prompts against this site's repo, three runs
-each, none of them mentioning LSP or grep:
+You'll know when it has used LSP because you'll see something like
+this in Claude's output:
 
-1. Where is this imported function actually defined?
-2. List every call site of this function.
-3. What is the fully resolved return type of this function?
-4. Change this function's signature and update every caller.
+```text
+● LSP(operation: "findReferences", symbol: "get_from_cache", in: "src/lib/cache/server-cache.ts")
+	└	Found 51 references across 20 files
+```
+
+So, I got Claude Code to test itself. I asked it to run headless
+sessions against this site's repo with `claude -p` and save the output
+from each one, so the tool calls could be counted:
+
+```bash
+claude -p "$prompt" --output-format stream-json --verbose
+```
+
+These are the four prompts it used, three runs of each. None of them
+mention LSP or grep:
+
+```markdown
+<!-- Prompt 1 -->
+
+In `src/lib/posts.test.ts`, `get_posts` is imported. Where is that
+function actually defined? Give me the file and line.
+
+<!-- Prompt 2 -->
+
+I want to change the signature of `get_from_cache`. List every call
+site (`file:line`) I would need to update. Do not change anything.
+
+<!-- Prompt 3 -->
+
+What exactly does `get_post_tags` return? Give me the fully resolved
+return type and where it is defined.
+
+<!-- Prompt 4 -->
+
+Change get_period_boundaries in
+`src/lib/analytics/period-stats.helpers.ts` to take a single options
+`object ({ period, now })` instead of positional arguments, and update
+every caller. Make sure it still type-checks.
+```
 
 Then the same again with the LSP rule taken out of my `CLAUDE.md`.
 
@@ -89,7 +129,8 @@ March post does work when the prompt is about a symbol.
 
 ## The first answer is wrong
 
-This is the bit I didn't expect. In the call sites runs Claude Code
+This is the bit I didn't expect. The second prompt is the one asking
+for every call site of `get_from_cache`. Each time it ran, Claude Code
 made one `findReferences` call and got this back:
 
 ```text
@@ -101,34 +142,277 @@ One reference, which is the definition itself. That function is used
 in 20 files. Each run then built its answer from `git grep` instead.
 The answers were right, but LSP contributed nothing to them.
 
-So I ran a probe: a fresh session making the same `findReferences`
-call over and over.
+So, I wanted to know how wrong, and for how long. I set up some fresh
+sessions that made the same set of calls one after another, across
+three functions in three different files, and timed each call.
 
-| Call       | Result                              |
-| ---------- | ----------------------------------- |
-| 1st        | Found 1 reference                   |
-| 2nd        | Found 51 references across 20 files |
-| 3rd to 6th | Found 51 references across 20 files |
+Here's one of them, the time is how long since the session started:
 
-Across everything I ran, the first `findReferences` call of a fresh
-session was wrong in 18 sessions out of 19. Calling again usually
-fixes it, but not always: in five sessions the second answer was
-right, and in two, on a different function, it took a third call.
+| Time  | Call                              | Result                              |
+| ----- | --------------------------------- | ----------------------------------- |
+| 4.7s  | `findReferences`, function B      | Found 1 reference                   |
+| 6.6s  | `findReferences`, function B      | Found 1 reference                   |
+| 7.8s  | `findReferences`, function B      | Found 5 references across 3 files   |
+| 9.1s  | `findReferences`, function A      | Found 51 references across 20 files |
+| 10.6s | `findReferences`, function C      | Found 10 references across 3 files  |
+| 11.9s | `goToDefinition`, a fourth symbol | The right file and line             |
+| 13.2s | `hover`, a fifth symbol           | The full signature                  |
 
-There's no warning with it. The wrong answer looks exactly like a
-right one. Updating `typescript-language-server` from 5.3.0 to 6.0.2
-made no difference.
+Same call three times, wrong, wrong, right. Then everything after that
+was right, different functions, different files, `goToDefinition` and
+`hover` as well.
+
+I ran a load of these. The first call of a fresh session was wrong in
+18 of the first 19 sessions, and in all 13 of the ones I timed after
+that. Every wrong answer came back inside about two seconds of the
+first LSP call in the session.
+
+A few other things I found poking at it:
+
+- It's the session, not the function. One wrong call on one function,
+  wait a couple of seconds, and the first call on a completely
+  different function in a different file is fine.
+- Waiting before asking doesn't help. I had a session sit there for 30
+  seconds before making its first call and it was still wrong. The
+  language server doesn't get started until something asks it a
+  question.
+- Asking about something else straight away doesn't help either. In
+  that same session the second call was on a different function, 1.7
+  seconds later, and that was wrong too.
+- `goToDefinition` does it as well. As the first call it sent me to
+  the import line at the top of the file I was already in.
+- One retry isn't always enough. With the retries about 1.3 seconds
+  apart it took a third go in five sessions out of seven.
+
+I updated `typescript-language-server` from 5.3.0 to 6.0.2 to see if
+that helped, it didn't.
 
 Funnily enough, "first LSP call can miss" was one of the gotchas in my
-March post. I called it a minor quirk. I don't think it's minor: if
-the first answer in every session is wrong and unlabelled, grep is the
-sensible thing to trust.
+March post. I called it a minor quirk. I don't think it's minor now,
+Claude Code made one call, got the wrong answer and went to grep.
 
-## Diagnostics are the useful half
+## Why's it doing that?
 
-This is the part of LSP I skipped in March. I had Claude Code append a
-line with an obvious type error to a TypeScript file and report back
-whatever feedback it was shown:
+Turns out it's a known bug, there's an
+[open issue](https://github.com/anthropics/claude-code/issues/76870)
+for it on the Claude Code repo. Other people are getting the same "one
+reference, then all of them" with other language servers, Python ones
+as well, so it's not only TypeScript.
+
+Claude Code asks the language server the question before the server
+has finished loading the project.
+
+With TypeScript there's a bit more to it. `typescript-language-server`
+starts up two `tsserver` processes, the full one and a lightweight one
+it calls the syntax server. The
+[docs](https://github.com/typescript-language-server/typescript-language-server/blob/master/docs/configuration.md)
+say the syntax server is there to "provide IntelliSense while projects
+are loading".
+
+So, while the project is loading, anything asking for references or
+definitions gets its answer from the lightweight one, and that one
+only knows about the file it was asked about. That's why I get one
+reference back, it's the only one in that file.
+
+In VS Code that makes sense, I get something straight away and the
+rest fills in. Claude Code asks once and takes the answer.
+
+## The workaround
+
+`typescript-language-server` has an option to turn the syntax server
+off, it's called `useSyntaxServer`. I found it in a
+[discussion](https://github.com/typescript-language-server/typescript-language-server/discussions/1067)
+on the language server repo from April. Someone had this exact problem
+with Claude Code and the maintainer suggested trying it.
+
+Claude Code starts a language server from a bit of config in a plugin,
+which server to run and which file extensions it's for. That config
+can also pass options to the server when it starts up, that's what
+`initializationOptions` is for.
+
+So here's the config from the official `typescript-lsp` plugin, with
+the option added to it:
+
+```diff
+ {
+   "typescript": {
+     "command": "typescript-language-server",
+     "args": ["--stdio"],
+     "extensionToLanguage": {
+       ".ts": "typescript",
+       ".tsx": "typescriptreact",
+       ".js": "javascript",
+       ".jsx": "javascriptreact",
+       ".mts": "typescript",
+       ".cts": "typescript",
+       ".mjs": "javascript",
+       ".cjs": "javascript"
+-    }
++    },
++    "initializationOptions": {
++      "tsserver": { "useSyntaxServer": "never" }
++    }
+   }
+ }
+```
+
+With that in place the first call of a session came back right in all
+twelve of the sessions I tried it in.
+
+There's two ways I know of to get that config in.
+
+## Option 1, edit the official plugin config
+
+The official plugin doesn't have a config file of its own, the config
+is in the marketplace file, here:
+
+```bash
+~/.claude/plugins/marketplaces/claude-plugins-official/.claude-plugin/marketplace.json
+```
+
+Find `typescript` under `lspServers` in there and add the
+`initializationOptions` block to it. That's what the person in the
+discussion did and it worked for them.
+
+I've not done it this way, because you could change the file, the
+plugin could be updated and probably overwite that file again.
+
+## Option 2, use my plugin
+
+I didn't want to be editing a file that might get overwritten, so I
+made a plugin with the config above in it. It's the official one with
+the option added.
+
+I've added it to my
+[svelte-skills-kit](https://github.com/spences10/svelte-skills-kit)
+marketplace as `typescript-lsp`. It's not Svelte specific, that's just
+where I keep my plugins, it works with any TypeScript or JavaScript
+project.
+
+The plugin is only config, so the language server needs to be
+installed. If the official plugin is already working then it's there
+already, if not:
+
+```bash
+pnpm i -g typescript-language-server typescript
+# or npm or whatever your package manager of choice is
+```
+
+Then in Claude Code, add the marketplace:
+
+```text
+/plugin marketplace add spences10/svelte-skills-kit
+```
+
+I already had it added, so I updated it to get the new plugin showing
+up:
+
+```text
+/plugin marketplace update svelte-skills-kit
+```
+
+Install the plugin:
+
+```text
+/plugin install typescript-lsp@svelte-skills-kit
+```
+
+Disable the official one. Both of them are set up for the same file
+extensions so I only want one of them on:
+
+```text
+/plugin disable typescript-lsp@claude-plugins-official
+```
+
+This next bit is optional, it's only for Svelte projects. The same
+marketplace has a `svelte-lsp` plugin for `.svelte` files, there's
+more on that in the [Svelte](#svelte) section. It needs the Svelte
+language server installed:
+
+```bash
+pnpm i -g svelte-language-server
+# or npm or whatever your package manager of choice is
+```
+
+Then install the plugin:
+
+```text
+/plugin install svelte-lsp@svelte-skills-kit
+```
+
+Then reload the plugins:
+
+```text
+/reload-plugins
+```
+
+I restarted Claude Code after that as well.
+
+To check it's working I start a new session and, as the very first
+thing, ask for the references to something I know is used in a few
+files. If more than one reference comes back it's working.
+
+## Does it work?
+
+Here's the default config against the one with the syntax server
+turned off:
+
+|                                | Default                   | Syntax server off         |
+| ------------------------------ | ------------------------- | ------------------------- |
+| First call of a session        | Wrong, back in 0.5s       | Right, back in about 2s   |
+| Same call three times          | 1, 1, 51 references       | 51, 51, 51 references     |
+| `goToDefinition` as first call | The import line           | The definition            |
+| Memory once loaded             | About 935 MB, 4 processes | About 725 MB, 3 processes |
+
+The first call is slower because it's now waiting for the project to
+load before it answers. This is a small project, on a big one I'd
+expect that wait to be a lot longer than two seconds.
+
+Type errors after an edit still show up with the option on, I checked.
+
+The maintainer did say it "might not solve this issue by itself". For
+this project it did.
+
+⚠ Note: this is a workaround until it's fixed in Claude Code, the
+[issue](https://github.com/anthropics/claude-code/issues/76870) is the
+place to keep an eye on.
+
+Once that's sorted, switching back to the official plugin is:
+
+```text
+/plugin uninstall typescript-lsp@svelte-skills-kit
+/plugin enable typescript-lsp@claude-plugins-official
+```
+
+## Changes from the shell get missed
+
+That same issue has a second problem in it, so I tested that as well.
+
+In a session that was already warmed up I changed files three
+different ways and asked for the references after each one:
+
+| How the file changed                                 | What `findReferences` did              |
+| ---------------------------------------------------- | -------------------------------------- |
+| The Edit tool                                        | Included the new line on the next call |
+| A new file written from the shell                    | Missed it, then found it seconds later |
+| A shell append to a file LSP had already asked about | Never saw it, across three calls       |
+
+So edits Claude Code makes with its own tools get to the language
+server. A change made from the shell to a file the server already had
+open didn't.
+
+I only tested appending a line. The issue has the same thing happening
+with `git checkout`, formatters and anything else that gets run
+through Bash.
+
+The workaround doesn't do anything for this one.
+
+## Diagnostics
+
+This is the half of LSP I skipped in March, and the one that needs
+nothing from me to work. I had Claude Code append a line with an
+obvious type error to a TypeScript file and report back whatever
+feedback it was shown:
 
 ```ts
 export const lsp_probe: number = 'text';
@@ -162,7 +446,8 @@ Without one, any LSP call on a component comes back with:
 No LSP server available for file type: .svelte
 ```
 
-It turns out a plugin is only a config file. This is the whole thing:
+Same deal as the TypeScript plugin, it's only config. This is all of
+it, in a file called `.lsp.json` in the plugin:
 
 ```json
 {
@@ -182,14 +467,15 @@ marketplace as `svelte-lsp`. The plugin doesn't include the language
 server, so that goes on first:
 
 ```bash
-npm i -g svelte-language-server
+pnpm i -g svelte-language-server
+# or npm or whatever your package manager of choice is
 ```
 
-Then in Claude Code:
+Then in Claude Code, with the marketplace added as above:
 
 ```text
-/plugin marketplace add spences10/svelte-skills-kit
 /plugin install svelte-lsp@svelte-skills-kit
+/reload-plugins
 ```
 
 With that loaded, hover, go-to-definition, references and document
@@ -197,10 +483,9 @@ symbols all work on `.svelte` files, and a type error I added inside a
 component's `<script>` block came back as a diagnostic. Without the
 plugin the same edit got no feedback at all.
 
-It also showed up a second problem with the TypeScript server on a
-SvelteKit project. `number_crunch` is a utility on this site that's
-mostly called from components. I asked for its references from both
-sides:
+It also showed up another gap in the TypeScript server on a SvelteKit
+project. `number_crunch` is a utility on this site that's mostly
+called from components. I asked for its references from both sides:
 
 | Asked from                        | References found                          |
 | --------------------------------- | ----------------------------------------- |
@@ -243,22 +528,32 @@ added lines for the problems above:
 I haven't measured yet whether the new lines change the outcome. The
 first line is the one with numbers behind it.
 
+I wrote the second line before I found the workaround. With the syntax
+server off the first call shouldn't be wrong any more, I'm leaving it
+in until the bug is fixed though.
+
+I've also swapped the official `typescript-lsp` plugin for mine, and
+added `svelte-lsp` alongside it.
+
 ## Is it worth it?
 
 Yes, but not for the reason I gave in March.
 
-1. **Diagnostics are the reason to install it.** Type errors come back
-   after an edit without anything having to ask for them. That works
-   today with no configuration beyond the plugin.
+1. **Diagnostics work with no effort.** Type errors come back after an
+   edit without anything having to ask for them, with no configuration
+   beyond the plugin.
 2. **Navigation needs the `CLAUDE.md` rule.** With it, Claude Code
    used LSP in every test. Without it, half of them, and never for a
    refactor.
-3. **Reference counts need checking against grep.** The first answer
-   in a session is usually wrong, and on a SvelteKit project the
-   TypeScript server never sees the components.
-4. **The flag is gone.** `ENABLE_LSP_TOOL` can come out of
+3. **The first answer of a session is wrong.** It's a known bug with
+   no warning. For TypeScript, turning the syntax server off fixed it
+   in every session I ran.
+4. **It doesn't see everything.** Files changed from the shell can be
+   stale, and on a SvelteKit project the TypeScript server never sees
+   the components.
+5. **The flag is gone.** `ENABLE_LSP_TOOL` can come out of
    `settings.json`.
-5. **Svelte takes one small config file.**
+6. **Svelte takes one small config file.**
 
 What I still can't explain is my own history: 125 sessions with the
 tool and the rule both there, and not one navigation call. If I work
