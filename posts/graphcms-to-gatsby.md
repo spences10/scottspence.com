@@ -19,7 +19,7 @@ is_private: false
 
 Let's set up Gatsby to pull data from GraphCMS.
 
-<YouTube youTubeId="S9JeASI5tck" />
+<YouTube youtube_id="S9JeASI5tck" />
 
 This will be a walk-through of setting up some basic data on the
 headless CMS, GraphCMS and then querying that data in Gatsby.

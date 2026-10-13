@@ -144,7 +144,7 @@ which points to
 There were a couple of bits that don't work as expected so I've forked
 it here 👇
 
-<Gist gistUri="spences10/b40b2d9b27f62a930b3e5fcc12b0f782" />
+<Gist gist_uri="spences10/b40b2d9b27f62a930b3e5fcc12b0f782" />
 
 I changed the following...
 

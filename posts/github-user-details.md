@@ -246,7 +246,7 @@ is taken up by Chrome AWS lambda anf d Puppeteer core.
 This didn't really bode well as I'd only finished one part of it, the
 next part will be a heat map.
 
-<Tweet tweetLink="spences10/status/1348182082808328192" />
+<Tweet tweet_link="spences10/status/1348182082808328192" />
 
 ## Colour contrast on the graph
 

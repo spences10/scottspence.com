@@ -29,7 +29,7 @@ I reached out to the Fathom support team and they were awesome and I
 didn't need to move up to the $540 annual plan. I did offer to pay the
 difference but they said that wasn't necessary. Thanks Ash!
 
-<Tweet tweetLink="spences10/status/1632735190266130433" />
+<Tweet tweet_link="spences10/status/1632735190266130433" />
 
 Preamble over, let's get into the caching.
 

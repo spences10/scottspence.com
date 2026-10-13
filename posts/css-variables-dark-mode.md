@@ -70,7 +70,7 @@ abstract away those gradients and box shadows. Then things started to
 get a bit janky on the first render and I couldn't work out what I had
 done wrong.
 
-<Tweet tweetLink="spences10/status/1256270671539253250" />
+<Tweet tweet_link="spences10/status/1256270671539253250" />
 
 I was getting an awful flash of unstyled content, well I say unstyled
 content, it wasn't actually unstyled as the text was transparent which

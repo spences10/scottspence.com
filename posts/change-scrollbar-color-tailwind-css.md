@@ -114,7 +114,7 @@ Ok, so here's a vanilla CSS example in a CodePen you can check out:
 
 <!-- cSpell:ignore GRxjpbQ -->
 
-<CodePen codePenId="GRxjpbQ" />
+<CodePen codepen_id="GRxjpbQ" />
 
 As a bonus you don't have to have the `background-color` as a solid
 colour, you could have a stripey scrollbar:

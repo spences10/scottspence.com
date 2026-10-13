@@ -68,7 +68,7 @@ Refactoring 370 Files in 11 Hours (thanks Claude)
 
 <!-- cSpell:ignore GTjLEvsMvhQ -->
 
-<YouTube youTubeId='GTjLEvsMvhQ' skipTo={{ h: 0, m: 1, s: 10 }} />
+<YouTube youtube_id='GTjLEvsMvhQ' skip_to={{ h: 0, m: 1, s: 10 }} />
 
 ### Svelte Society London - January 2025
 
@@ -76,7 +76,7 @@ Staying current with Svelte using AI tools.
 
 <!-- cSpell:ignore ketkcywX -->
 
-<YouTube youTubeId='ketkcywX-qQ' skipTo={{ h: 0, m: 25, s: 8 }} />
+<YouTube youtube_id='ketkcywX-qQ' skip_to={{ h: 0, m: 25, s: 8 }} />
 
 ## 2024
 
@@ -84,14 +84,14 @@ Staying current with Svelte using AI tools.
 
 Oh no! SEO, how to get your Svelte projects indexed by search engines.
 
-<YouTube youTubeId='mxM208nCvHc' skipTo={{ h: 1, m: 3, s: 26 }} />
+<YouTube youtube_id='mxM208nCvHc' skip_to={{ h: 1, m: 3, s: 26 }} />
 
 ### Svelte Society London - June 2024
 
 Check out my junk! A tour of SvelteKit projects that I've built and
 learned from.
 
-<YouTube youTubeId='J5srLwhlBdw' skipTo={{ h: 0, m: 43, s: 21 }}/>
+<YouTube youtube_id='J5srLwhlBdw' skip_to={{ h: 0, m: 43, s: 21 }}/>
 
 ## 2023
 
@@ -99,13 +99,13 @@ learned from.
 
 Introduction to Svelte and SvelteKit with practical examples.
 
-<YouTube youTubeId='mGb2v89I8dk' />
+<YouTube youtube_id='mGb2v89I8dk' />
 
 ### Major League Hacking
 
 The State of Developer Education with Jon Gottfried
 
-<YouTube youTubeId='kEHr3_SY7GY' />
+<YouTube youtube_id='kEHr3_SY7GY' />
 
 ### Pixel Pioneers
 
@@ -113,7 +113,7 @@ Svelte and SvelteKit primer talk.
 
 <!-- cSpell:ignore _r-VNi-54Gc -->
 
-<YouTube youTubeId='_r-VNi-54Gc' />
+<YouTube youtube_id='_r-VNi-54Gc' />
 
 ### JSMonthly
 
@@ -122,7 +122,7 @@ SvelteKit.
 
 <!-- cSpell:ignore bTNFrqbFdQQ -->
 
-<YouTube youTubeId='bTNFrqbFdQQ' />
+<YouTube youtube_id='bTNFrqbFdQQ' />
 
 ### Panel: Cloudinary Programmable Media Best Practices
 
@@ -142,13 +142,13 @@ future of Svelte.
 
 <!-- cSpell:ignore hXMrdpb6fpw -->
 
-<YouTube youTubeId='hXMrdpb6fpw' />
+<YouTube youtube_id='hXMrdpb6fpw' />
 
 ### Getting started with Svelte and SvelteKit
 
 CityJS, 2hr community workshop on building with Svelte and SvelteKit
 
-<YouTube youTubeId='MWuARN5oUF8' />
+<YouTube youtube_id='MWuARN5oUF8' />
 
 ### Modern Web Podcast
 
@@ -159,7 +159,7 @@ community.
 
 <!-- cSpell:ignore _Y7DDVZotb8 -->
 
-<YouTube youTubeId='_Y7DDVZotb8' />
+<YouTube youtube_id='_Y7DDVZotb8' />
 
 ### PodRocket
 
@@ -169,7 +169,7 @@ speaking with Sean Rayment and talking about SvelteKit.
 <!-- cSpell:ignore izjg -->
 
 <Spotify
-  spotifyLink="episode/3OC43WIzjgWSiq1GFoILhQ"
+  spotify_link="episode/3OC43WIzjgWSiq1GFoILhQ"
   width="100%"
   height="152px"
 />
@@ -181,7 +181,7 @@ speaking with Sean Rayment and talking about SvelteKit.
 A brief overview of a project I have been working on with Vendure
 eCommerce.
 
-<YouTube youTubeId='2ijSarsHfN0' skipTo={{ h: 0, m: 15, s: 36 }} />
+<YouTube youtube_id='2ijSarsHfN0' skip_to={{ h: 0, m: 15, s: 36 }} />
 
 ### WeAreDevelopers
 
@@ -190,7 +190,7 @@ organizing the Svelte London Meetup, my experiences travelling to
 different events, and my views on developer relations and work-life
 balance.
 
-<YouTube youTubeId='p6uWcaZ0_n4' />
+<YouTube youtube_id='p6uWcaZ0_n4' />
 
 ### Modern Frontends Live London
 
@@ -207,7 +207,7 @@ At least this time there were some pictures!
 Building with SvelteKit! This was intended to be a workshop but turned
 into a talk about data loading in SvelteKit.
 
-<YouTube youTubeId='g-Xr6ygI0VE' />
+<YouTube youtube_id='g-Xr6ygI0VE' />
 
 ### NXT Nordics Oslo
 
@@ -220,7 +220,7 @@ at the Svelte Society London meetup.
 
 <!-- cSpell:ignore pulw -->
 
-<YouTube youTubeId='ua6gE2zPulw' skipTo={{ h: 1, m: 16, s: 28 }} />
+<YouTube youtube_id='ua6gE2zPulw' skip_to={{ h: 1, m: 16, s: 28 }} />
 
 ### JSNation Workshop
 
@@ -235,7 +235,7 @@ Three hour workshop for [Building with SvelteKit and GraphQL].
 Talking with Tim Bourguignon about my career switch from VBA analyst
 developer to web developer.
 
-<Buzzsprout buzzsproutId="190346/9866589-185-scott-spence-from-vba-analyst-to-webdev" />
+<Buzzsprout buzzsprout_id="190346/9866589-185-scott-spence-from-vba-analyst-to-webdev" />
 
 ### Developer Perspectives Episode 8 | Ale Thomas and Scott Spence
 
@@ -245,7 +245,7 @@ members from around the world.
 
 <!-- cSpell:ignore kkon -->
 
-<YouTube youTubeId='iZc6kkon3Vk' />
+<YouTube youtube_id='iZc6kkon3Vk' />
 
 ## 2021
 
@@ -261,13 +261,13 @@ SvelteKit and the Content Layer
 
 <!-- cSpell:ignore ziyz -->
 
-<YouTube youTubeId='LNAApZIYZUw' skipTo={{ h: 1, m: 31, s: 50 }} />
+<YouTube youtube_id='LNAApZIYZUw' skip_to={{ h: 1, m: 31, s: 50 }} />
 
 ### Jamstack Conf Workshop
 
 Jamstack Conference workshop Building with Svelte and GraphQL
 
-<YouTube youTubeId='uI8am7HfWC8' />
+<YouTube youtube_id='uI8am7HfWC8' />
 
 ### Jamstack Explorers
 
@@ -281,7 +281,7 @@ project with Svelte]
 Live stream with Eddie Jaoude where we made a full stack CRUD app with
 Svelte.
 
-<YouTube youTubeId='aCP6sEvmYU4'/>
+<YouTube youtube_id='aCP6sEvmYU4'/>
 
 ### Developers Hangout
 
@@ -296,7 +296,7 @@ Delivering Digital Content with GraphCMS
 <!-- cSpell:ignore ycdi -->
 
 <Spotify
-  spotifyLink="episode/404wafUKZho8inHT6iYcdi"
+  spotify_link="episode/404wafUKZho8inHT6iYcdi"
   width="100%"
   height="152px"
 />
@@ -317,8 +317,8 @@ meetup.
 
 Slides here: https://i-have-a-hammer.vercel.app/
 
-<YouTube youTubeId="km2KsVnlM4I"
-skipTo={{ hour: 0, minute: 0, second: 553 }} />
+<YouTube youtube_id="km2KsVnlM4I"
+skip_to={{ h: 0, m: 0, s: 553 }} />
 
 ## 2020
 
@@ -329,7 +329,7 @@ Scale by the Bay.
 
 Slides here: https://ss10.dev/jam-talk
 
-<YouTube youTubeId="L7_z8rcbFPg" />
+<YouTube youtube_id="L7_z8rcbFPg" />
 
 ### Whiskey Wednesday
 
@@ -343,7 +343,7 @@ looking for a mentor, or becoming a mentor.
 <!-- cSpell:ignore uaww -->
 
 <Spotify
-  spotifyLink="episode/5vDA5M3fVGXz5UAWWIoM6T"
+  spotify_link="episode/5vDA5M3fVGXz5UAWWIoM6T"
   width="100%"
   height="152px"
 />
@@ -356,7 +356,7 @@ blog with MDX.
 
 <!-- cSpell:ignore vnvf -->
 
-<YouTube youTubeId="VNVF7ZIUj60" />
+<YouTube youtube_id="VNVF7ZIUj60" />
 
 ### Whiskey Wednesday
 
@@ -372,7 +372,7 @@ important, and how to implement it.
 <!-- cSpell:ignore kepe -->
 
 <Spotify
-  spotifyLink="episode/5ru6HIgUyTCH9hypKepeGJ"
+  spotify_link="episode/5ru6HIgUyTCH9hypKepeGJ"
   width="100%"
   height="152px"
 />
@@ -387,7 +387,7 @@ live streams, or books - content creation is BIG, also for developers.
 <!-- cSpell:ignore jaeu -->
 
 <Spotify
-  spotifyLink="episode/48fjNuaZVB50ygM5R5jaeu"
+  spotify_link="episode/48fjNuaZVB50ygM5R5jaeu"
   width="100%"
   height="152px"
 />
@@ -410,7 +410,7 @@ about common problems among developers.
 <!-- cSpell:ignore 1xdozdWXWINddIIbxqZAzL -->
 
 <Spotify
-  spotifyLink="episode/1xdozdWXWINddIIbxqZAzL"
+  spotify_link="episode/1xdozdWXWINddIIbxqZAzL"
   width="100%"
   height="152px"
 />
@@ -426,7 +426,7 @@ developer.
 📺 [Watch it on YouTube](https://www.youtube.com/watch?v=pBARlvSvACs)
 
 <Spotify
-  spotifyLink="episode/6YpCB55IX3EE6gE7cJ94UJ"
+  spotify_link="episode/6YpCB55IX3EE6gE7cJ94UJ"
   width="100%"
   height="152px"
 />
@@ -442,7 +442,7 @@ single div element (or less). We talk about all of it.
 📺 [Watch it on YouTube](https://www.youtube.com/watch?v=1_q6ESYR3R8)
 
 <Spotify
-  spotifyLink="episode/0jOVCvKNJUx158U587pPUt"
+  spotify_link="episode/0jOVCvKNJUx158U587pPUt"
   width="100%"
   height="152px"
 />
@@ -458,7 +458,7 @@ developer and how to grow your account.
 <!-- cSpell:ignore FKWRRF,ieef -->
 
 <Spotify
-  spotifyLink="episode/12q74FKWRRF7Tsl7ieefXA"
+  spotify_link="episode/12q74FKWRRF7Tsl7ieefXA"
   width="100%"
   height="152px"
 />
@@ -475,7 +475,7 @@ freelance work.
 <!-- cSpell:ignore Ipouy -->
 
 <Spotify
-  spotifyLink="episode/7x4kDYzJnGDbZs9qYIpouy"
+  spotify_link="episode/7x4kDYzJnGDbZs9qYIpouy"
   width="100%"
   height="152px"
 />
@@ -491,7 +491,7 @@ talk with us about how to learn (and unlearn) how to code 💻📚
 <!-- cSpell:ignore AdnmZgwv -->
 
 <Spotify
-  spotifyLink="episode/4QjQa9vO41AdnmZgwvZRpl"
+  spotify_link="episode/4QjQa9vO41AdnmZgwvZRpl"
   width="100%"
   height="152px"
 />
@@ -504,7 +504,7 @@ into development from VBA analyst to web developer. Unsurprisingly I'm
 talking about the Jamstack and Gatsby JS.
 
 <Spotify
-  spotifyLink="episode/5o1QgLLtL19Mr7RfnA7N8y"
+  spotify_link="episode/5o1QgLLtL19Mr7RfnA7N8y"
   width="100%"
   height="152px"
 />
@@ -517,7 +517,7 @@ We also spend a significant amount of time talking about the power of
 using MDX, which allows you to embed React components right inside of
 your Markdown.
 
-<YouTube youTubeId="eLYf3Twl00Q" />
+<YouTube youtube_id="eLYf3Twl00Q" />
 
 ### Whiskey Wednesday
 
@@ -530,20 +530,20 @@ need a college degree to get a job in tech.
 <!-- cSpell:ignore csnp,gudnn -->
 
 <Spotify
-  spotifyLink="episode/0li7Ya8CsnpX0GudnnMuUy"
+  spotify_link="episode/0li7Ya8CsnpX0GudnnMuUy"
   width="100%"
   height="152px"
 />
 
 ### JS Roundabout
 
-<YouTube youTubeId="hZ6tO4N50Sc" />
+<YouTube youtube_id="hZ6tO4N50Sc" />
 
 ### MMT Tech Meet-up
 
 - [Post from Ilesh]
 
-<YouTube youTubeId="A0q3JqSLr_0" />
+<YouTube youtube_id="A0q3JqSLr_0" />
 
 ## 2019
 

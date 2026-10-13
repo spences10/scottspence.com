@@ -32,7 +32,7 @@ hook for getting site metadata in Gatsby.
 **Here's a video:**
 
 <!-- cSpell:ignore Xwbk -->
-<YouTube youTubeId="qWay-LjXwbk" />
+<YouTube youtube_id="qWay-LjXwbk" />
 
 The `StaticQuery` component uses the [render props] pattern, which
 means it takes in a function and returns/renders based off of that.

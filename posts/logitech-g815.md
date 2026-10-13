@@ -30,13 +30,13 @@ get an idea of the sound of the keys.
 
 <!-- cSpell:ignore 9UhLZ9AWHJM,Kailh -->
 
-<YouTube youTubeId="9UhLZ9AWHJM" skipTo={{ h: 0, m: 6, s: 28 }} />
+<YouTube youtube_id="9UhLZ9AWHJM" skip_to={{ h: 0, m: 6, s: 28 }} />
 
 The video goes into depth on the switch used for the keyboard which is
 a low profile Kailh switch, see this section for an explanation of how
 they work compared to normal switches.
 
-<YouTube youTubeId="9UhLZ9AWHJM" skipTo={{ h: 0, m: 3, s: 53 }} />
+<YouTube youtube_id="9UhLZ9AWHJM" skip_to={{ h: 0, m: 3, s: 53 }} />
 
 This switch is what I've been looking for, ever since getting the
 HAVIT KB395L and finding that keyboards with this switch are _very_

@@ -56,7 +56,7 @@ going to create and the other is the Fathom DNS server.
 I set about working out how to add a CNAME to this blog but couldn't
 find any good examples so I reached out to Fathom with a tweet:
 
-<Tweet tweetLink="spences10/status/1250786419536277505" />
+<Tweet tweet_link="spences10/status/1250786419536277505" />
 
 After I sent that I found [this gist] which detailed the command for
 adding the sub-domain which made sense to me.

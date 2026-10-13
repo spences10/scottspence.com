@@ -71,7 +71,7 @@ my old GraphCMS colleague [Frederik Eychenié] suggested that [sending
 from your own platform has become nearly impossible] which was an
 interesting read.
 
-<Tweet tweetLink="spences10/status/1705661419369185746" />
+<Tweet tweet_link="spences10/status/1705661419369185746" />
 
 Several suggestions from Svelte Society community leader [Kev] I'll
 list here if you're interested:

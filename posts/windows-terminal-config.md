@@ -414,7 +414,7 @@ These all go in the `keybindings`/`actions` section of the
 As with most of my posts now I've added a video detailing the
 process...
 
-<YouTube youTubeId="iT47xk3F7EA" />
+<YouTube youtube_id="iT47xk3F7EA" />
 
 ## That is for this one
 

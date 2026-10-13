@@ -32,7 +32,7 @@ SEO component for Gatsby and found a closed [GitHub PR on seo] from
 Dustin Schau with some [great notes from Andrew Welch] on SEO and a
 link to a presentation he did back in 2017, great stuff.
 
-<Vimeo vimeoId="246846978" />
+<Vimeo vimeo_id="246846978" />
 
 ## Gatsby SEO
 

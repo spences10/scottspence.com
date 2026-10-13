@@ -443,7 +443,7 @@ const UsingTypescript: React.FC<PageProps<DataProps>> = ({
 
 ## Here's a video detailing the process
 
-<YouTube youTubeId="hXM9Ju_NIpU" />
+<YouTube youtube_id="hXM9Ju_NIpU" />
 
 ## Recap and wrap up!
 

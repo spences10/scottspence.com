@@ -16,7 +16,7 @@ All the cool kids are using Gatsby and MDX in their blogs these days.
 If you already have a blog that uses Gatsby but want to move onto the
 new hotness then this is the guide for you.
 
-<YouTube youTubeId="gck4RjaX5D4" />
+<YouTube youtube_id="gck4RjaX5D4" />
 
 ## Versions:
 

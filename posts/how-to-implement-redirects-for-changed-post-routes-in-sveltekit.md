@@ -47,7 +47,7 @@ examples of redirecting from:
 `mydomain.tld/2021/06/23/some-post-title/index.mdx` to:
 `mydomain.tld/some-post-title.svx`"**
 
-<Tweet tweetLink="spences10/status/1407743903361646596" />
+<Tweet tweet_link="spences10/status/1407743903361646596" />
 
 The absolute legend that is [Rodney] suggested that I use a dynamic
 route for the old URLs and then redirect to the new ones.
@@ -56,7 +56,7 @@ The response was: **"The idea is you create a file there and that file
 only contains a redirect to `example.com/[slug]`, year, month, day
 parameters are available but you don't have to use them."**
 
-<Tweet tweetLink="askRodney/status/1408474251292725248" />
+<Tweet tweet_link="askRodney/status/1408474251292725248" />
 
 ## The old solution
 

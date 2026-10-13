@@ -315,7 +315,7 @@ Done!!
 As with most of my posts now I've added a video detailing the
 process...
 
-<YouTube youTubeId="xPLrHMGYpq4" />
+<YouTube youtube_id="xPLrHMGYpq4" />
 
 ## Code examples
 

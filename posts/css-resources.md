@@ -35,7 +35,7 @@ From **Adam Wathan:**
 }
 ```
 
-<Tweet tweetLink="adamwathan/status/959078631434731521" />
+<Tweet tweet_link="adamwathan/status/959078631434731521" />
 
 ## Images
 
@@ -54,7 +54,7 @@ From **Steve Schoger:**
 
 ![circle images]
 
-<Tweet tweetLink="steveschoger/status/950764423643320320" />
+<Tweet tweet_link="steveschoger/status/950764423643320320" />
 
 ## Gradients
 
@@ -68,7 +68,7 @@ Nice Gradient Swatches: [gradientmagic.com]
 Animated gradients, via Chris Biscardi, example: [animated gradients
 CodeSandbox]
 
-<Tweet tweetLink="chrisbiscardi/status/1259606045858467840" />
+<Tweet tweet_link="chrisbiscardi/status/1259606045858467840" />
 
 ## Colours
 
@@ -116,11 +116,11 @@ React colour tools: [react-color-tools.surge.sh]
 I've asked this question a couple of times before, **"is there a way
 to list the internal browser colours?"**
 
-<Tweet tweetLink="spences10/status/1259077547683459073" />
+<Tweet tweet_link="spences10/status/1259077547683459073" />
 
 The last time I asked [Mathias Bynens] answered!
 
-<Tweet tweetLink="mathias/status/1259120846679035904" />
+<Tweet tweet_link="mathias/status/1259120846679035904" />
 
 If you want the list go to the [the CSS3 spec] and run this snippet in
 the dev console:
@@ -153,11 +153,11 @@ Width for elements changing when using numbers? Check:
 
 I asked and the community of course responded!
 
-<Tweet tweetLink="spences10/status/1103650317554593793" />
+<Tweet tweet_link="spences10/status/1103650317554593793" />
 
 I also found the original tweet I saw from Wes Bos back in 2017!
 
-<Tweet tweetLink="wesbos/status/932644812582522880" />
+<Tweet tweet_link="wesbos/status/932644812582522880" />
 
 ## CSS Grid
 

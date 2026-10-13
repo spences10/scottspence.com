@@ -14,7 +14,7 @@ immediately sprang to mind.
 
 <!-- cSpell:ignore bubu -->
 
-<Tweet tweetLink={`KiddBubu/status/1187120868259979269`} />
+<Tweet tweet_link={`KiddBubu/status/1187120868259979269`} />
 
 <!-- ![like a psychopath tweet](./like-a-psychopath.png) -->
 

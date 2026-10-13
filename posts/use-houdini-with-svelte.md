@@ -34,7 +34,7 @@ template, check out the video here on how to get started with that!
 
 <!-- cSpell:ignore CUudpo8n2FA -->
 
-<YouTube youTubeId='CUudpo8n2FA'/>
+<YouTube youtube_id='CUudpo8n2FA'/>
 
 I'll be using [pnpm] for my package management, you can do what you
 please with your preferred package manager. (pnpm, npm or yarn)
@@ -82,7 +82,7 @@ check out the video here for how to get that:
 
 <!-- cSpell:ignore ID8bchiyNfw -->
 
-<YouTube youTubeId='ID8bchiyNfw'/>
+<YouTube youtube_id='ID8bchiyNfw'/>
 
 ## Add Houdini to `svelte.config.js`
 

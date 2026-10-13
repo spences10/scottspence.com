@@ -156,7 +156,7 @@ yarn dev
 And with that the "Hello World" incantation is complete 🧙!
 
 <Details button_text="Check out the Video">
-  <YouTube youTubeId="2vP3ZTDbN1g" />
+  <YouTube youtube_id="2vP3ZTDbN1g" />
 </Details>
 
 ## Add content
@@ -314,7 +314,7 @@ GraphQL GraphiQL explorer and check out the data:
 ```
 
 <Details button_text="Check out the Video">
-  <YouTube youTubeId="MPNJu24ad_s" />
+  <YouTube youtube_id="MPNJu24ad_s" />
 </Details>
 
 ## Site Metadata
@@ -403,7 +403,7 @@ export default () => {
 <!-- cSpell:ignore Tfycp -->
 
 <Details button_text="Check out the Video">
-  <YouTube youTubeId="TfycpV4yyqY" />
+  <YouTube youtube_id="TfycpV4yyqY" />
 </Details>
 
 ## Styling
@@ -490,7 +490,7 @@ That is styled-components on a very basic level, basically create the
 styling you want for your page elements you're creating in the JSX.
 
 <Details button_text="Check out the Video">
-  <YouTube youTubeId="41aNkb2tLyg" />
+  <YouTube youtube_id="41aNkb2tLyg" />
 </Details>
 
 ## Layout
@@ -595,7 +595,7 @@ export default () => {
 <!-- cSpell:ignore bjxt -->
 
 <Details button_text="Check out the Video">
-  <YouTube youTubeId="Ase7bjxtQ3w" />
+  <YouTube youtube_id="Ase7bjxtQ3w" />
 </Details>
 
 ## Index page posts query
@@ -696,7 +696,7 @@ runtime and gives us the results as props to your component via the
 `data` prop.
 
 <Details button_text="Check out the Video">
-  <YouTube youTubeId="2GDbxZ0mHbM" />
+  <YouTube youtube_id="2GDbxZ0mHbM" />
 </Details>
 
 ## Slugs and Paths
@@ -821,7 +821,7 @@ export const query = graphql`
 ```
 
 <Details button_text="Check out the Video">
-  <YouTube youTubeId="7eZZk7aJnUU" />
+  <YouTube youtube_id="7eZZk7aJnUU" />
 </Details>
 
 ## Link Paths
@@ -1008,7 +1008,7 @@ posts.forEach((post) => {
 ```
 
 <Details button_text="Check out the Video">
-  <YouTube youTubeId="OyQfIvXr4YA" />
+  <YouTube youtube_id="OyQfIvXr4YA" />
 </Details>
 
 ## Build out Blog Post Template
@@ -1108,7 +1108,7 @@ template in all it's basic glory!
 <!-- cSpell:ignore Cjsc -->
 
 <Details button_text="Check out the Video">
-  <YouTube youTubeId="S7cnkRoCjsc" />
+  <YouTube youtube_id="S7cnkRoCjsc" />
 </Details>
 
 ## Previous and Next
@@ -1310,7 +1310,7 @@ export const query = graphql`
 ```
 
 <Details button_text="Check out the Video">
-  <YouTube youTubeId="AjLimYEwDOk" />
+  <YouTube youtube_id="AjLimYEwDOk" />
 </Details>
 
 ## Code Blocks
@@ -1385,7 +1385,7 @@ You're now overriding any `h2` in your rendered markdown along with
 any `code` blocks (that's words wrapped in `` `backticks` ``).
 
 <Details button_text="Check out the Video">
-  <YouTube youTubeId="kN8ld7iLQso" />
+  <YouTube youtube_id="kN8ld7iLQso" />
 </Details>
 
 Ok, now for the syntax highlighting, create a post with a block of
@@ -1649,7 +1649,7 @@ export const wrapRootElement = ({ element }) => (
 ```
 
 <Details button_text="Check out the Video">
-  <YouTube youTubeId="k6gI3jVxjKg" />
+  <YouTube youtube_id="k6gI3jVxjKg" />
 </Details>
 
 Ok, now time to abstract this out into it's own component so your
@@ -1795,7 +1795,7 @@ pre: ({ children: { props } }) => {
 ```
 
 <Details button_text="Check out the Video">
-  <YouTube youTubeId="m0tWxa9Ip5E" />
+  <YouTube youtube_id="m0tWxa9Ip5E" />
 </Details>
 
 Ok, now you're back to where you were before abstracting out the
@@ -1867,7 +1867,7 @@ export default Code;
 <!-- cSpell:ignore wpqc -->
 
 <Details button_text="Check out the Video">
-  <YouTube youTubeId="PPH153kWpqc" />
+  <YouTube youtube_id="PPH153kWpqc" />
 </Details>
 
 ### Copy code to clipboard
@@ -2027,7 +2027,7 @@ export default Code;
 <!-- cSpell:ignore einx -->
 
 <Details button_text="Check out the Video">
-  <YouTube youTubeId="j-EINXVe2WA" />
+  <YouTube youtube_id="j-EINXVe2WA" />
 </Details>
 
 ## React live

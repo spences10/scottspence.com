@@ -151,7 +151,7 @@ variables for use in the dev server.
 
 ## Complete video
 
-<YouTube youTubeId="zH2qG9YwN3s" />
+<YouTube youtube_id="zH2qG9YwN3s" />
 
 ## Setup GraphQL client
 

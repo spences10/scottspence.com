@@ -84,7 +84,7 @@ listen to for coding with the title for which I stole from Phil
 Hawksworth:
 
 <Spotify
-  spotifyLink="playlist/75OcGUSaOXVnOLsFRA9taT?si=0ef1521713074cf9"
+  spotify_link="playlist/75OcGUSaOXVnOLsFRA9taT?si=0ef1521713074cf9"
   width="100%"
 />
 
@@ -93,7 +93,7 @@ Other playlists I'd recommend would be the UKF Drum and Bass Top 100:
 <!-- cSpell:ignore 0Zarq4BVkFkZOWkmqsfrjA -->
 
 <Spotify
-  spotifyLink="playlist/0Zarq4BVkFkZOWkmqsfrjA?si=00e42e2f62174e17"
+  spotify_link="playlist/0Zarq4BVkFkZOWkmqsfrjA?si=00e42e2f62174e17"
   width="100%"
 />
 
@@ -109,7 +109,7 @@ Galloway joining every other episode or so. Great for keeping up with
 what's happening in tech and the markets.
 
 <Spotify
-  spotifyLink="show/7syF2ry9j6nqYc656WHBA7"
+  spotify_link="show/7syF2ry9j6nqYc656WHBA7"
   width="100%"
 />
 
@@ -119,7 +119,7 @@ From the makers of 1Password for security advice and a round-up of the
 latest security news.
 
 <Deezer
-  frameSrc="show/401552"
+  frame_src="show/401552"
 />
 
 **The AI Fix**
@@ -128,7 +128,7 @@ Mark Stockley and a guest will always bring some laughs with their
 weekly findings with what's going on with AI.
 
 <Deezer
-  frameSrc="show/1001031882"
+  frame_src="show/1001031882"
 />
 
 **Tech Brew Ride Home**
@@ -137,7 +137,7 @@ A daily 15-minute tech news summary. Silicon Valley's water cooler
 podcast, perfect for the walk to the shops.
 
 <Deezer
-  frameSrc="show/1505672"
+  frame_src="show/1505672"
 />
 
 <!-- Links -->

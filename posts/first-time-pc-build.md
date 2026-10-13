@@ -51,7 +51,7 @@ gun, the rest was trying to remove screws and clips with one hand
 whilst holding the screen that is connected main unit with the other
 hand.
 
-<YouTube youTubeId="EIoBRYh0Ukk" />
+<YouTube youtube_id="EIoBRYh0Ukk" />
 
 > I decided that I didn't want to be in this position again.
 
@@ -175,13 +175,13 @@ This guide really helped by pointing out that there was a video card
 assembly, which you attach the video card to before inserting it into
 the case.
 
-<YouTube youTubeId="8YfdDir4Opg" />
+<YouTube youtube_id="8YfdDir4Opg" />
 
 This guide was what made me aware that I may be biting off a bit more
 than I can chew saying it may be a bit of a challenge adding all the
 parts to the case.
 
-<YouTube youTubeId="OoWzSp6SS5c" />
+<YouTube youtube_id="OoWzSp6SS5c" />
 
 ## Get the parts
 

@@ -18,7 +18,7 @@ resolution.
 I went through a lot of post followed loads of instructions with none
 of them working until I watched this video from ArcoLinux.
 
-<YouTube youTubeId="zW03Vs2CVZo" />
+<YouTube youtube_id="zW03Vs2CVZo" />
 
 There's a couple of options I've never had to configure before but
 once I did I got a full screen resolution without having to mess
@@ -49,7 +49,7 @@ with the settings a bit more and I've found that I need only to enable
 On Windows and macOS you may need to enable the options through the
 CLI, instructions on that can be found in this video.
 
-<YouTube youTubeId="JMT2qimIL9Q" />
+<YouTube youtube_id="JMT2qimIL9Q" />
 
 <!-- Links -->
 

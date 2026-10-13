@@ -12,7 +12,7 @@ is_private: false
 Let's go through getting styled-components working with the Gatsby
 default starter.
 
-<YouTube youTubeId="O5sWySCr668" />
+<YouTube youtube_id="O5sWySCr668" />
 
 In this example we're going to use the Gatsby default starter you get
 with [CodeSandbox] and add in styled-components, so first up, open a

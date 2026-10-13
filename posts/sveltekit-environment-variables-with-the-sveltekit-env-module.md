@@ -35,7 +35,7 @@ and private `.env` file variables.
 It was [Geoff Rich] (Svelte maintainer) that brought this to my
 attention with a tweet:
 
-<Tweet tweetLink="geoffrich_/status/1553035835351543808" />
+<Tweet tweet_link="geoffrich_/status/1553035835351543808" />
 
 I had a play around with getting them set up on this site, you can see
 the Git diff on the [PR here] for more detail or read on.

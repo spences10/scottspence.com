@@ -131,7 +131,7 @@ That's it!
 
 You can check out this [Codepen] for and example of this in action.
 
-<CodePen codePenId="WNMvXpa" />
+<CodePen codepen_id="WNMvXpa" />
 
 <!-- Links -->
 

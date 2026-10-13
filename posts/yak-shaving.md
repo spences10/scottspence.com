@@ -29,7 +29,7 @@ illustrates Yak Shaving. 👇
 
 <!-- cSpell:ignore sehc -->
 <Details button_text="Expand to watch.">
-  <YouTube youTubeId="AbSehcT19u0" />
+  <YouTube youtube_id="AbSehcT19u0" />
 </Details>
 
 If you can't watch it from the video here's the description of what

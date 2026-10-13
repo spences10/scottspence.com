@@ -68,7 +68,7 @@ it's not a massive loss.
 What more of an endorsement do you need other than Linus (Sebastian?)
 of YouTube internet fame land gushing about how nice it is.
 
-<YouTube youTubeId="-rBV4I_LWhg" />
+<YouTube youtube_id="-rBV4I_LWhg" />
 
 ## What does it have over the G815
 

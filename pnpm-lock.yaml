@@ -346,8 +346,8 @@ importers:
         specifier: ^0.11.0
         version: 0.11.0(svelte@5.57.2)
       sveltekit-embed:
-        specifier: ^0.0.22
-        version: 0.0.22(svelte@5.57.2)
+        specifier: ^0.1.0
+        version: 0.1.0(svelte@5.57.2)
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
@@ -2988,11 +2988,11 @@ packages:
     resolution: {integrity: sha512-1YiPCAXT0Ct6g1vOMmSLa0Nsc3QRMvtDF32ihgglGVrugIuIK38RyDiFNXVDhtQ81TJjSO57NdMw6DyYLqSGDQ==}
     engines: {node: '>=18'}
 
-  sveltekit-embed@0.0.22:
-    resolution: {integrity: sha512-+zNJF5dMd+Tolnmcc5ZHZIr90v5bj/SLMl2d410WZSuXC5RubWy45U5MtHahBFIXbxtnN/RBdxNj2kKE/jkCug==}
-    engines: {node: '>=18.0.0'}
+  sveltekit-embed@0.1.0:
+    resolution: {integrity: sha512-LDeMG+YwhJ9aES7P5VSxvEreGq0RtAkr9zzPs4eEKaIbR6vj/Tkq/ruMF8Vu3aNJt3lSahjaZN5cFaDtY0OCaw==}
+    engines: {node: '>=24.15.0'}
     peerDependencies:
-      svelte: ^4.0.0 || ^5.0.0
+      svelte: ^5.29.0
 
   tailwind-merge@3.6.0:
     resolution: {integrity: sha512-uxL7qAVQriqRQPAyK3pj66VqskWqoZ37PW94jwOTwNfq/z9oyu1V+eqrZqtR2+fCiXdYOZe/Modt8GtvqNzu+w==}
@@ -5703,7 +5703,7 @@ snapshots:
     transitivePeerDependencies:
       - '@typescript-eslint/types'
 
-  sveltekit-embed@0.0.22(svelte@5.57.2):
+  sveltekit-embed@0.1.0(svelte@5.57.2):
     dependencies:
       svelte: 5.57.2
 

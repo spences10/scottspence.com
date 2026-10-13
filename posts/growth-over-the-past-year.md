@@ -68,11 +68,11 @@ Oh, spoken at a couple of conferences and meetups.
 
 I did a workshop on 2021-03-30 at a conference for Gatsby and MDX.
 
-<YouTube youTubeId="Mg19wDM4wS8" />
+<YouTube youtube_id="Mg19wDM4wS8" />
 
 Oh and starting NatterMob with covid friends too:
 
-<YouTube youTubeId="tJHV96jVlKg" />
+<YouTube youtube_id="tJHV96jVlKg" />
 
 You can sign up to the newsletter as well:
 [https://ss10.dev/nl](https://ss10.dev/nl)

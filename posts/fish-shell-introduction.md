@@ -208,7 +208,7 @@ sudo apt update && sudo apt install yarn -y
 
 ## Video detailing the process
 
-<YouTube youTubeId="IJAEzWG6Uw4" />
+<YouTube youtube_id="IJAEzWG6Uw4" />
 
 ## Wrap and recap!
 

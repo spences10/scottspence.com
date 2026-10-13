@@ -35,7 +35,7 @@ you:
 
 <!-- cSpell:ignore ID8bchiyNfw -->
 
-<YouTube youTubeId='ID8bchiyNfw'/>
+<YouTube youtube_id='ID8bchiyNfw'/>
 
 ## Set up the project
 

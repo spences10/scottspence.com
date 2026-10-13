@@ -84,7 +84,7 @@ to making slides for a presentation.
 
 No doubt Sarah's presentation is going to be 🔥
 
-<Tweet tweetLink="sarah_edo/status/1357708732847644678" />
+<Tweet tweet_link="sarah_edo/status/1357708732847644678" />
 
 So whilst I was looking at doing my slides for the [MMT Tech Meetup] I
 decided _not_ to go with Next MDX Deck and went about trying to find

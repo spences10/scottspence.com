@@ -33,7 +33,7 @@ why you should be using one. The workshop consisted of us defining our
 CMS content model with pen and paper before creating them in the
 GraphCMS UI for use with the Moltin eCommerce API
 
-<Tweet tweetLink="notrab/status/1148587457866358784" />
+<Tweet tweet_link="notrab/status/1148587457866358784" />
 
 ### Technical difficulties
 
@@ -58,12 +58,12 @@ After the workshops it was time for the lightening talks.
 Middlesbrough.
 
 <!-- cSpell:ignore kmelve -->
-<Tweet tweetLink="kmelve/status/1148664935305699328" />
+<Tweet tweet_link="kmelve/status/1148664935305699328" />
 
 [@danfascia] did a great talk on how healthcare tech is benefiting
 from JAMstack methodologies.
 
-<YouTube youTubeId="n1ca0cQAr_4" />
+<YouTube youtube_id="n1ca0cQAr_4" />
 
 ## Wednesday - 2019-07-10
 
@@ -72,7 +72,7 @@ from JAMstack methodologies.
 First up we had some apologies from Phil Hawksworth on behalf of Chris
 Coyer as Chris couldn't make it. We sent him a get well soon message.
 
-<Tweet tweetLink="philhawksworth/status/1148929743342972928" />
+<Tweet tweet_link="philhawksworth/status/1148929743342972928" />
 
 <!-- cSpell:ignore Drasner -->
 
@@ -161,9 +161,9 @@ outside of that was hot and sweaty! I spent the majority of my time
 between talks situated directly in front of the A/C units.
 
 <!-- cSpell:ignore peduarte -->
-<Tweet tweetLink="spences10/status/1148927111526268928" />
-<Tweet tweetLink="peduarte/status/1148923305254096896" />
-<Tweet tweetLink="spences10/status/1148914884039577600" />
+<Tweet tweet_link="spences10/status/1148927111526268928" />
+<Tweet tweet_link="peduarte/status/1148923305254096896" />
+<Tweet tweet_link="spences10/status/1148914884039577600" />
 
 ## That's it folks!
 

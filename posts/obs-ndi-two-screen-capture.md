@@ -26,7 +26,7 @@ solutions.
 
 Found this one first:
 
-<YouTube youTubeId="Nc2rPvJFwQ8" />
+<YouTube youtube_id="Nc2rPvJFwQ8" />
 
 Which seemed reasonable but I wasn't that keen on installing the whole
 suite from [NDI] so I did a bit more searching.
@@ -36,7 +36,7 @@ of OBS:
 
 <!-- cSpell:ignore 4q1rXLcXRLM -->
 
-<YouTube youTubeId="4q1rXLcXRLM" />
+<YouTube youtube_id="4q1rXLcXRLM" />
 
 So the idea is to set up OBS on both machines and have one pipe the
 output to the other.

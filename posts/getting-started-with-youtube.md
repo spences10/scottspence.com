@@ -73,7 +73,7 @@ In the words of MKBHD
 
 <!-- cSpell:ignore 4l8eeqgCJnQ -->
 
-<YouTube youTubeId="4l8eeqgCJnQ" skipTo={{
+<YouTube youtube_id="4l8eeqgCJnQ" skip_to={{
     h: 0,
     m: 6,
     s: 18,
@@ -84,11 +84,11 @@ consistently adding videos to YouTube since [2009].
 
 Here's some sage advice from Twitter motivator Danny Thompson.
 
-<Tweet tweetLink="DThompsonDev/status/1315087467733815297" />
+<Tweet tweet_link="DThompsonDev/status/1315087467733815297" />
 
 Also from Rich himself when feeling particularly insightful.
 
-<Tweet tweetLink="studio_hungry/status/1314940921100865538" />
+<Tweet tweet_link="studio_hungry/status/1314940921100865538" />
 
 They both covey the same message.
 
@@ -177,7 +177,7 @@ select a screen to display in the scene.
 
 Check the video here on setting up your first OBS Scene:
 
-<YouTube youTubeId="hSgI0z9E3tA" />
+<YouTube youtube_id="hSgI0z9E3tA" />
 
 ### Scenes
 
@@ -233,7 +233,7 @@ type the name you gave the text source in here.
 
 See the video here for a walkthrough of setting it up:
 
-<YouTube youTubeId="rUHy_tBzXus" />
+<YouTube youtube_id="rUHy_tBzXus" />
 
 ### Lighting
 
@@ -245,7 +245,7 @@ The images in this tweet were taken early in the morning with no
 available natural light, the little USB light is angled away from my
 face towards the wall behind my monitor.
 
-<Tweet tweetLink="spences10/status/1315169567199694849" />
+<Tweet tweet_link="spences10/status/1315169567199694849" />
 
 This little lamp is enough for me right now as that's all I have room
 for really, your situation may be different.
@@ -279,7 +279,7 @@ setting will probably not match what result you want from your set up.
 
 Check out the short video detailing adding filters to your mic input.
 
-<YouTube youTubeId="FQz4hZmd6Qc" />
+<YouTube youtube_id="FQz4hZmd6Qc" />
 
 ## Editing
 

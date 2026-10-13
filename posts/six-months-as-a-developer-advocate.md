@@ -17,7 +17,7 @@ Six months ago today I started a new job as a developer advocate for
 GraphCMS. This has taken me by surprise as if feels like I've only
 just started still!
 
-<Tweet tweetLink="GraphCMS/status/1387036398314786821" />
+<Tweet tweet_link="GraphCMS/status/1387036398314786821" />
 
 I think now is a good time to reflect on what I have done in this
 time.
@@ -37,13 +37,13 @@ GraphCMS eCommerce example.
 
 My Svelte love story begins!
 
-<Tweet tweetLink="spences10/status/1389682243925327874" />
+<Tweet tweet_link="spences10/status/1389682243925327874" />
 
 Soon after that I was asked to talk with Brittney and Alex about
 GraphCMS on the [CodingCat.dev podcast]. This was released in July
 
 <AnchorFm
-  episodeUrl='purrfect-dev/embed/episodes/1-31---Delivering-Digital-Content-with-GraphCMS-e14g55c/a-a650v9a' 
+  episode_url='purrfect-dev/embed/episodes/1-31---Delivering-Digital-Content-with-GraphCMS-e14g55c/a-a650v9a' 
 />
 
 I was well on my way down the Svelte and SvelteKit rabbit hole by this
@@ -64,7 +64,7 @@ started taking video editing seriously.
 
 <!-- cSpell:ignore PL5SvzogSTpeH1Szqw4tPi9ZfgXDbY8GU -->
 
-<YouTube listId='PL5SvzogSTpeH1Szqw4tPi9ZfgXDbY8GU-'/>
+<YouTube list_id='PL5SvzogSTpeH1Szqw4tPi9ZfgXDbY8GU-'/>
 
 These videos took up a lot of time and effort to make for something so
 short!
@@ -99,12 +99,12 @@ https://zencastr.com/z/TARGseQu
 
 Then I released a SvelteKit crash course video on YouTube.
 
-<YouTube youTubeId='zH2qG9YwN3s'/>
+<YouTube youtube_id='zH2qG9YwN3s'/>
 
 I was asked to do a live stream with Eddie Jaoude where we made a full
 stack CRUD app with Svelte.
 
-<YouTube youTubeId='aCP6sEvmYU4'/>
+<YouTube youtube_id='aCP6sEvmYU4'/>
 
 The [Jamstack explorers mission] was [announced by Netlify] and I
 followed up [with a blog post] on the GraphCMS blog.

@@ -186,7 +186,7 @@ Overall I was super impressed with PlanetScale, I did spend the next
 couple of hours working through various issues with deployment after
 that though. More on that next!
 
-<Tweet tweetLink="spences10/status/1543344326566154242" />
+<Tweet tweet_link="spences10/status/1543344326566154242" />
 
 ## Issues deploying
 

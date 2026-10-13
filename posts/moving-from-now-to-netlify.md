@@ -23,7 +23,7 @@ Twitter.
 
 Yeah, those people are the _worst_!
 
-<Tweet tweetLink="spences10/status/1249078453506396160" />
+<Tweet tweet_link="spences10/status/1249078453506396160" />
 
 Ha! Yes, guilty!
 

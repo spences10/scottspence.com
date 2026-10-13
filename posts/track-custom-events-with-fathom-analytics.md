@@ -67,7 +67,7 @@ particular button or link?
 
 ## Here's a video detailing the process. 📺
 
-<YouTube youTubeId="yeMCma4Ae7Q" />
+<YouTube youtube_id="yeMCma4Ae7Q" />
 
 ## Set-up Fathom account
 

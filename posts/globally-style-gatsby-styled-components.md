@@ -566,7 +566,7 @@ That's it for this one!
 
 ## Here's a video detailing the process 📺
 
-<YouTube youTubeId="8jlh_FyuM8c" />
+<YouTube youtube_id="8jlh_FyuM8c" />
 
 ## Thanks for reading 🙏
 

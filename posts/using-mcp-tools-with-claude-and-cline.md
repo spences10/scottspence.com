@@ -29,7 +29,7 @@ straight up just lie to you 😅
 on this, explaining the gap there is and how biases in the training
 data can lead to incorrect results.
 
-<YouTube youTubeId='tprMklFzy44'/>
+<YouTube youtube_id='tprMklFzy44'/>
 
 The approach is essentially giving all of the Svelte 5 documentation
 to the LLM in a Claude project as the project data.
@@ -59,7 +59,7 @@ having my credits rinsed each time I used Cline in my editor.
 
 Here's a really good video on using MCP tools with Claude:
 
-<YouTube youTubeId='R-5ucM-5P5o'/>
+<YouTube youtube_id='R-5ucM-5P5o'/>
 
 There's a pinned comment detailing custom instructions for using MCP
 with Claude, that instruction set got me thinking reading through it.

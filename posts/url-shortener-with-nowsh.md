@@ -93,7 +93,7 @@ about getting set up [for Windows].
 There's also a video I've made to go from scratch to Create React App
 on Ubuntu 19.04.
 
-<YouTube youTubeId="eSAsdQuQ-1o" />
+<YouTube youtube_id="eSAsdQuQ-1o" />
 
 If you're following along and you haven't done so already, you'll need
 to install the Vercel CLI:
@@ -265,7 +265,7 @@ the same project.
 
 ## Here's a video detailing the process
 
-<YouTube youTubeId="y807T6Q1qqw" />
+<YouTube youtube_id="y807T6Q1qqw" />
 
 ## Resources
 

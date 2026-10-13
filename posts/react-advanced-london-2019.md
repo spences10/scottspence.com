@@ -95,7 +95,7 @@ audio worklet to process a stream of audio to do the Daft Punk "one
 more time" vocoder example! Dope!
 
 <!-- cSpell:ignore svxxt -->
-<YouTube youTubeId="t8svxxtUTl8" />
+<YouTube youtube_id="t8svxxtUTl8" />
 
 ## Sean Wang - React (with hooks) from scratch
 
@@ -159,7 +159,7 @@ The only dependency used in the code was Babel with this [fetch
 example] where the we're using state and reading from a resource which
 suspends (or caches) as needed.
 
-<YouTube youTubeId="dFO4m7Y-yhs" />
+<YouTube youtube_id="dFO4m7Y-yhs" />
 
 <!-- cSpell:ignore Vojtech,Miksu -->
 
@@ -173,11 +173,11 @@ He details the options available and why they implemented their own
 
 <!-- cSpell:ignore mtsa,RSCONF -->
 
-<YouTube youTubeId="y_XkQ2qMTSA" />
+<YouTube youtube_id="y_XkQ2qMTSA" />
 
 Here's the same talk from RSCONF 2019:
 
-<YouTube youTubeId="373pc0AbR9M" />
+<YouTube youtube_id="373pc0AbR9M" />
 
 ## Daniel Irvine - Don't Let Your Unit Tests Slow You Down
 
@@ -235,7 +235,7 @@ Library's lock you into _their_ way of testing things.
 
 <!-- cSpell:ignore DXRDQ -->
 
-<YouTube youTubeId="1vDXRDQ9aJE" />
+<YouTube youtube_id="1vDXRDQ9aJE" />
 
 After this talk I was off to the React Native hall to go see some of
 the lightening talks as I knew one of the speakers.
@@ -341,7 +341,7 @@ const FormLabel = styled.label(
 
 Pretty neat stuff!
 
-<YouTube youTubeId="Dd-Y9K7IKmk" />
+<YouTube youtube_id="Dd-Y9K7IKmk" />
 
 ## Emma Brillhart - A More Readable React Codebase Using TypeScript, GraphQL, and Hooks
 
@@ -353,7 +353,7 @@ better navigation, less technical debt.
 
 <!-- cSpell:ignore Ggie -->
 
-<YouTube youTubeId="nkJbGgieALI" />
+<YouTube youtube_id="nkJbGgieALI" />
 
 Complete playlist of all the talks on YouTube [here].
 

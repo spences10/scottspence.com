@@ -30,7 +30,7 @@ Here's a video detailing the process:
 
 <!-- cSpell:ignore RNesoCuLMO8 -->
 
-<YouTube youTubeId="RNesoCuLMO8" />
+<YouTube youtube_id="RNesoCuLMO8" />
 
 Dependencies, make sure you're up to date first:
 

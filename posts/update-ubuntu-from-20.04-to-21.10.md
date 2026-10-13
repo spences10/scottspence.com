@@ -203,7 +203,7 @@ All done!
 You can check out the upgrade process over on my YouTube channel as
 well!
 
-<YouTube youTubeId='2Mwo4BfJuvA'/>
+<YouTube youtube_id='2Mwo4BfJuvA'/>
 
 ## Wrap up!
 

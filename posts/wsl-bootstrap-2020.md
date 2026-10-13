@@ -61,7 +61,7 @@ ever since seeing the announcement back in May 2019.
 
 <!-- cSpell:ignore windowsdev -->
 
-<Tweet tweetLink="windowsdev/status/1125484494616649728" />
+<Tweet tweet_link="windowsdev/status/1125484494616649728" />
 
 > Dramatically improved file read performance up to a 3x improvement!
 

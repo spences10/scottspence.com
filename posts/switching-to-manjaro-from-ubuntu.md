@@ -42,17 +42,17 @@ continue!!
 June 9th I did an innocent Twitter poll, and got some really good
 suggestions on other Linux distros to try.
 
-<Tweet tweetLink="spences10/status/1270385153232207874" />
+<Tweet tweet_link="spences10/status/1270385153232207874" />
 
 I decided to give all the Manjaro distros a try, I tried Manjaro once
 before and was a bit overwhelmed (because it wasn't Debian) so didn't
 peruse it any farther.
 
-<Tweet tweetLink="spences10/status/1270589501732278272" />
+<Tweet tweet_link="spences10/status/1270589501732278272" />
 
 This time however I was _super_ impressed!
 
-<Tweet tweetLink="spences10/status/1281174782269161474" />
+<Tweet tweet_link="spences10/status/1281174782269161474" />
 
 Ok! Enough of the tweets! Here's how it went...
 
@@ -74,7 +74,7 @@ It was a freakishly quick install, I do have a fast SSD but it was
 something like three minutes to install after clicking 'install' on
 the Manjaro installer interface.
 
-<Tweet tweetLink="spences10/status/1283394445300375553" />
+<Tweet tweet_link="spences10/status/1283394445300375553" />
 
 ## Boot order
 
@@ -88,7 +88,7 @@ message:
 
 Not a good start 😬, it eventually booted which was a relief!
 
-<Tweet tweetLink="spences10/status/1283420540280156162" />
+<Tweet tweet_link="spences10/status/1283420540280156162" />
 
 I found out the following morning that the SSD wasn't first in the
 boot order in the Motherboard BOIS so after putting it first the
@@ -201,7 +201,7 @@ uname -r
 
 So that means I should pick `linux56-virtualbox-host-modules` 😅!
 
-<Tweet tweetLink="spences10/status/1283797903203618816" />
+<Tweet tweet_link="spences10/status/1283797903203618816" />
 
 I found this info [again from the Manjaro forum].
 

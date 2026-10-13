@@ -32,7 +32,7 @@ previously on that topic.
 
 If you're a Linux user, check out this video on getting set up:
 
-<YouTube youTubeId="eSAsdQuQ-1o" />
+<YouTube youtube_id="eSAsdQuQ-1o" />
 
 ## Set up an account
 

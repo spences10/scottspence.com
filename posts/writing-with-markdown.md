@@ -30,7 +30,7 @@ Markdown?
 
 ## Introduction: What's Markdown then?
 
-<YouTube youTubeId="kKAQhz0KxNU" />
+<YouTube youtube_id="kKAQhz0KxNU" />
 
 Essentially Markdown is a way to format your text, like you would in
 Microsoft Word but without using the toolbar to select the format for
@@ -81,7 +81,7 @@ follow along I'll be using VS Code and Prettier.
 There's also [Markdown Forge] by [Justin Juno] which is a very handy
 tool for writing Markdown in the browser.
 
-<YouTube youTubeId="vaELw_YJF-M" />
+<YouTube youtube_id="vaELw_YJF-M" />
 
 ## Paragraphs and Text Decoration
 
@@ -138,7 +138,7 @@ the word/paragraph.
 markdownContent={`This is ~~strikethrough~~.\n\nThis is not ~strikethrough~.`}
 />
 
-<YouTube youTubeId="iTSFkvJqQlw" />
+<YouTube youtube_id="iTSFkvJqQlw" />
 
 ## Markdown Headings
 
@@ -163,7 +163,7 @@ With this way of doing Markdown headings if you put these in a
 This means you can reference the headings in a table of contents when
 there is a particularly large amount of text in the document.
 
-<YouTube youTubeId="Q01cSkVGugI" />
+<YouTube youtube_id="Q01cSkVGugI" />
 
 ## Markdown Links
 
@@ -259,7 +259,7 @@ have the ampersand removed and look like this:
 ```
 
 <!-- cSpell:ignore Knctg -->
-<YouTube youTubeId="Knctg-2vWRo" />
+<YouTube youtube_id="Knctg-2vWRo" />
 
 ## Markdown Images
 
@@ -305,7 +305,7 @@ using keys and references here:
 
 <!-- cSpell:ignore 7GVSEuif8_o -->
 
-<YouTube youTubeId="7GVSEuif8_o" />
+<YouTube youtube_id="7GVSEuif8_o" />
 
 ## Markdown Lists
 
@@ -367,7 +367,7 @@ bullet paragraph and the additional content to go in there:
 
 <!-- cSpell:ignore 3RMGk8Fymv4 -->
 
-<YouTube youTubeId="3RMGk8Fymv4" />
+<YouTube youtube_id="3RMGk8Fymv4" />
 
 ### Check Boxes
 
@@ -386,7 +386,7 @@ brackets indicating if it is checked or not:
 <MarkdownParser
 markdownContent={`- [ ] Check, check one\n- [x] Check two`} />
 
-<YouTube youTubeId="aqKnADsZkz0" />
+<YouTube youtube_id="aqKnADsZkz0" />
 
 ## Line Breaks
 
@@ -406,7 +406,7 @@ Line one<br/> Line two<br/> Line three<br/>
 
 <!-- cSpell:ignore hCln_m1vgww -->
 
-<YouTube youTubeId="hCln_m1vgww" />
+<YouTube youtube_id="hCln_m1vgww" />
 
 ## Horizontal Rules
 
@@ -426,7 +426,7 @@ but I'm detailing the differences here.
 Take note of the clear line between the content and the hyphens, if
 there is no clear break between the two then that will render a h1.
 
-<YouTube youTubeId="kaJG1k1X8SQ" />
+<YouTube youtube_id="kaJG1k1X8SQ" />
 
 ## Block Quotes
 
@@ -442,7 +442,7 @@ may be limitations on with the Markdown parser being used.
 <MarkdownParser
 markdownContent={`> Block Quotes Are Cool!\n>\n> **- Yo!**`} />
 
-<YouTube youTubeId="vN1e_zVbCGE" />
+<YouTube youtube_id="vN1e_zVbCGE" />
 
 ## Code Blocks
 
@@ -482,7 +482,7 @@ world!')\n\`\`\`\n`} />
 
 <!-- cSpell:ignore Hwok0c9V1Fo -->
 
-<YouTube youTubeId="Hwok0c9V1Fo" />
+<YouTube youtube_id="Hwok0c9V1Fo" />
 
 ## Markdown Tables
 
@@ -552,7 +552,7 @@ columns aren't formatted to fit it could get a bit tricky to read:
 
 <!-- cSpell:ignore x6UQpbkrmus -->
 
-<YouTube youTubeId="x6UQpbkrmus" />
+<YouTube youtube_id="x6UQpbkrmus" />
 
 ## Resources
 

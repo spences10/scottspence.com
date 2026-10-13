@@ -54,7 +54,7 @@ the Now platform had no idea what to do with the project!
 Here's Leigh getting set up:
 
 <Details button_text="Expand to watch.">
-  <YouTube youTubeId="Al3tCJKOydY" />
+  <YouTube youtube_id="Al3tCJKOydY" />
 </Details>
 
 Cool, cool, after that video I had a card rendering to HTML after
@@ -73,7 +73,7 @@ restart it continually.
 <!-- cSpell:ignore Nedwsf -->
 
 <Details button_text="Expand to watch.">
-  <YouTube youTubeId="ANedwsfXpO0" />
+  <YouTube youtube_id="ANedwsfXpO0" />
 </Details>
 
 ## Temporary file
@@ -85,7 +85,7 @@ could `cat` the contents however.
 <!-- cSpell:ignore Lgju -->
 
 <Details button_text="Expand to watch.">
-  <YouTube youTubeId="KlLgjuUQoJs" />
+  <YouTube youtube_id="KlLgjuUQoJs" />
 </Details>
 
 ## Taking a screenshot
@@ -110,7 +110,7 @@ by Chromium.
 Sing us a song while we wait for the build to finish Leigh! 😂
 
 <Details button_text="Expand to watch.">
-  <YouTube youTubeId="ZjGCiBpDZ7g" />
+  <YouTube youtube_id="ZjGCiBpDZ7g" />
 </Details>
 
 In my project for this I've kept the HTML version so I can edit the
@@ -141,12 +141,12 @@ Or,
 
 > "Or is it something you `npm` install and use like that?"
 
-<Tweet tweetLink="spences10/status/1255155419107844097" />
+<Tweet tweet_link="spences10/status/1255155419107844097" />
 
 Leigh really had to spell it out for me as I was clearly struggling
 with the concept of how it worked!
 
-<Tweet tweetLink="leighchalliday/status/1255156120219508737" />
+<Tweet tweet_link="leighchalliday/status/1255156120219508737" />
 
 So the function lives off on the Vercel platform and creates an image
 with whatever variables you pass to it.

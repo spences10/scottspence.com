@@ -88,11 +88,11 @@ Now that I have the tests written I want to run them in CI. I was a
 bit confused about how to do this to begin with so I reached out to
 Debbie O'Brien who works on the Playwright developer relations team.
 
-<Tweet tweetLink="spences10/status/1586041756751081472" />
+<Tweet tweet_link="spences10/status/1586041756751081472" />
 
 Liran Tal chimed in a solution which was to create a GitHub workflow.
 
-<Tweet tweetLink="liran_tal/status/1586072458171650048" />
+<Tweet tweet_link="liran_tal/status/1586072458171650048" />
 
 It did help! Thanks Liran 🙏
 

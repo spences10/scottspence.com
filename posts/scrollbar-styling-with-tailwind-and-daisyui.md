@@ -115,7 +115,7 @@ Scrollbar styles for modern browsers
 If you're interested, here's a vanilla CSS example in a CodePen you
 can check out:
 
-<CodePen codePenId="wvVpJjY" />
+<CodePen codepen_id="wvVpJjY" />
 
 ## Wrapping up
 

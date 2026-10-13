@@ -122,7 +122,7 @@ A talk given by Chris Ellis (who I now work with!) coming up to three
 years ago now is still something I reference when speaking with others
 about "selling" Svelte to management/stakeholders/business owners.
 
-<YouTube youTubeId='ua6gE2zPulw' skipTo={{ h: 0, m: 52, s: 13 }} />
+<YouTube youtube_id='ua6gE2zPulw' skip_to={{ h: 0, m: 52, s: 13 }} />
 
 The upshot? Essentially it's "faster outcomes" businesses don't really
 care what stack you use, they care about getting features to market.

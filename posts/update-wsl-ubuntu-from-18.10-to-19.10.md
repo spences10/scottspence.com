@@ -20,7 +20,7 @@ the process back then.
 
 ## 📺 Here's a video detailing the process.
 
-<YouTube youTubeId="IErQ4RnzPOg" />
+<YouTube youtube_id="IErQ4RnzPOg" />
 
 ## Check the current Ubuntu version
 

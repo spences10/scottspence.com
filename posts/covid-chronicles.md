@@ -50,7 +50,7 @@ particular brand of ground coffee I like doesn't do deliveries.
 So I found some brands from Amazon but it was a gamble and it wasn't
 until I shared my experience in Twitter that I was shown the light!
 
-<Tweet tweetLink="spences10/status/1247862497706758153" />
+<Tweet tweet_link="spences10/status/1247862497706758153" />
 
 I bought a hand burr grinder, as per Dave's instruction and bought
 some [Amazon brand Solimo Beans].
@@ -92,14 +92,14 @@ James Quick initially reached out to me to see if we could build an
 NPM business card on stream but later decided we would get familiar
 with Gatsby recipes.
 
-<YouTube youTubeId="eLYf3Twl00Q" />
+<YouTube youtube_id="eLYf3Twl00Q" />
 
 ## Appeared on a Podcast with Rob Kendal
 
 I made a first time appearance on a Podcast
 
 <Spotify
-  spotifyLink="episode/5o1QgLLtL19Mr7RfnA7N8y"
+  spotify_link="episode/5o1QgLLtL19Mr7RfnA7N8y"
   width="100%"
   height="180px"
 />
@@ -112,17 +112,17 @@ mutual appreciation of Whiskey.
 I think this is when we first discovered we both appreciated a tipple!
 
 <!-- cSpell:ignore _marcba -->
-<Tweet tweetLink="_marcba/status/1208045761109352448" />
+<Tweet tweet_link="_marcba/status/1208045761109352448" />
 
 And this is what probably cemented the beginnings of the show.
 
-<Tweet tweetLink="spences10/status/1229309509472071680" />
+<Tweet tweet_link="spences10/status/1229309509472071680" />
 
 We had a couple of open sessions but weren't broadcast, then Marc
 decided to go all in with a live stream, here is the first with a few
 guests.
 
-<YouTube youTubeId="LQwvSAcs-QY" />
+<YouTube youtube_id="LQwvSAcs-QY" />
 
 ## We're not done yet!
 

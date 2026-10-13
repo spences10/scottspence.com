@@ -38,7 +38,7 @@ it again (classic) I could then see the display capture.
 
 Here's a video detailing the process:
 
-<YouTube youTubeId="5_YnG4j03yE" />
+<YouTube youtube_id="5_YnG4j03yE" />
 
 This partly worked but I spent the next four hours trying to work out
 why my Twitch chat and alerts weren't showing I found another solution
@@ -59,13 +59,13 @@ The video also details putting OBS into compatibility mode I tried
 with and without and it made no difference for me so I left it how it
 was.
 
-<YouTube youTubeId="IexPI3oE4p0" />
+<YouTube youtube_id="IexPI3oE4p0" />
 
 Here's a detailed video going over all the points I mentioned and some
 other things you can try if you're having a similar issue:
 
 <!-- cSpell:ignore FrmcLHFCAiM -->
 
-<YouTube youTubeId="FrmcLHFCAiM" />
+<YouTube youtube_id="FrmcLHFCAiM" />
 
 This was a real pain in the butt to work out. Hope it helps you too!

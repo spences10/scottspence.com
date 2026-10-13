@@ -228,7 +228,7 @@ In this video detail what I've been writing about.
 
 <!-- cSpell:ignore Ihbx -->
 
-<YouTube youTubeId="0BVIhZk" />
+<YouTube youtube_id="0BVIhZk" />
 
 ## Resources 📑
 

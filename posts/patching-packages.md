@@ -30,7 +30,7 @@ published to npm so I decided to give patch-package a try.
 [Ben Awad] had a great video on how to use it with an example, check
 it out here:
 
-<YouTube youTubeId="2AVs-Yh1bS8" />
+<YouTube youtube_id="2AVs-Yh1bS8" />
 
 ## Install
 

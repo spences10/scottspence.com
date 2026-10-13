@@ -317,7 +317,7 @@ But I'm not! That's it for this one.
 
 Here's a video of me detailing the process.
 
-<YouTube youTubeId="WUJo8rnMvbI" />
+<YouTube youtube_id="WUJo8rnMvbI" />
 
 ## Resources
 

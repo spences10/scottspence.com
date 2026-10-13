@@ -65,14 +65,14 @@ detailing how to use reduce.
 If you want a really good explanation of how to use filter, map and
 reduce go check out Leigh's videos!
 
-<YouTube youTubeId='28StAxSjyIU'/>
+<YouTube youtube_id='28StAxSjyIU'/>
 
 <!-- cSpell:ignore joost,Schuur -->
 
 This is another good one brought to my attention by
 [Joost Schuur](https://twitter.com/joostschuur) on Twitter.
 
-<YouTube youTubeId='NiLUGy1Mh4U'/>
+<YouTube youtube_id='NiLUGy1Mh4U'/>
 
 ## My approach
 
