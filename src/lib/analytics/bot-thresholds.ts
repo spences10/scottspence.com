@@ -31,6 +31,16 @@ export const BOT_THRESHOLDS = {
 
 	/** Aggregate UA detection - direct-only scrapers */
 	MIN_VISITORS_FOR_DIRECT_ONLY: 15,
+
+	/**
+	 * Stale desktop Chrome - majors behind the day's current version.
+	 * Chrome ships every 4 weeks, so 12 majors is roughly 11 months.
+	 * Oct 2026: visitors on Chrome 124-131 made zero link clicks.
+	 */
+	STALE_CHROME_MAJOR_VERSIONS: 12,
+
+	/** Min referred human visitors on one Chrome major to trust it as current */
+	MIN_VISITORS_FOR_CURRENT_CHROME: 30,
 } as const;
 
 export type BotThresholds = typeof BOT_THRESHOLDS;

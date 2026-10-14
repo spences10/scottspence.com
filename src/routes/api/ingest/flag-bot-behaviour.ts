@@ -1,6 +1,71 @@
 import { BOT_THRESHOLDS } from '#lib/analytics/bot-thresholds.js';
 import { sqlite_client } from '#lib/sqlite/client.js';
 
+export interface UserAgentStats {
+	user_agent: string;
+	/** Distinct non-bot visitors with a referrer */
+	referred_visitors: number;
+}
+
+/**
+ * Chrome major version for desktop UAs (Windows, macOS, Linux)
+ * Mobile and ChromeOS are skipped - old phones get stuck on old Chrome
+ */
+export const parse_desktop_chrome_major = (
+	user_agent: string,
+): number | null => {
+	if (!/Windows NT|Macintosh|X11/.test(user_agent)) return null;
+	if (/Android|Mobile|CrOS/.test(user_agent)) return null;
+	const match = user_agent.match(/Chrome\/(\d+)\./);
+	return match ? Number(match[1]) : null;
+};
+
+/**
+ * The day's current Chrome major: the one most referred human visitors use
+ * Returns null when no major has enough visitors to trust
+ */
+export const find_current_chrome_major = (
+	stats: UserAgentStats[],
+	min_visitors: number,
+): number | null => {
+	const visitors_by_major = new Map<number, number>();
+	for (const { user_agent, referred_visitors } of stats) {
+		const major = parse_desktop_chrome_major(user_agent);
+		if (major === null) continue;
+		visitors_by_major.set(
+			major,
+			(visitors_by_major.get(major) ?? 0) + referred_visitors,
+		);
+	}
+
+	let current: number | null = null;
+	let best = 0;
+	for (const [major, visitors] of visitors_by_major) {
+		const newer_tie =
+			visitors === best && current !== null && major > current;
+		if (visitors > best || newer_tie) {
+			current = major;
+			best = visitors;
+		}
+	}
+	return best >= min_visitors ? current : null;
+};
+
+/**
+ * Desktop Chrome UAs more than `majors_behind` versions behind current
+ */
+export const find_stale_chrome_agents = (
+	stats: UserAgentStats[],
+	current_major: number,
+	majors_behind: number,
+): string[] =>
+	stats
+		.filter(({ user_agent }) => {
+			const major = parse_desktop_chrome_major(user_agent);
+			return major !== null && major < current_major - majors_behind;
+		})
+		.map(({ user_agent }) => user_agent);
+
 /**
  * Flag suspicious visitors as bots based on behaviour patterns
  * Run via cron at 00:10 daily (after events accumulate, before rollup)
@@ -143,6 +208,57 @@ export const flag_bot_behaviour = async () => {
 		`[bot-flag] Flagged ${malformed_result.changes} events (malformed UA)`,
 	);
 
+	// Flag 6: Stale desktop Chrome - far behind the version humans use
+	// Runs last so "current" is measured from traffic not already flagged
+	const ua_stats = client
+		.prepare(
+			`
+		SELECT
+			user_agent,
+			COUNT(DISTINCT CASE WHEN referrer IS NOT NULL AND is_bot = 0 THEN visitor_hash END) AS referred_visitors
+		FROM analytics_events
+		WHERE created_at >= ? AND created_at < ?
+		AND user_agent IS NOT NULL
+		GROUP BY user_agent
+	`,
+		)
+		.all(start_ts, end_ts) as unknown as UserAgentStats[];
+	const current_chrome_major = find_current_chrome_major(
+		ua_stats,
+		BOT_THRESHOLDS.MIN_VISITORS_FOR_CURRENT_CHROME,
+	);
+	let stale_chrome_changes = 0;
+	if (current_chrome_major !== null) {
+		const stale_agents = find_stale_chrome_agents(
+			ua_stats,
+			current_chrome_major,
+			BOT_THRESHOLDS.STALE_CHROME_MAJOR_VERSIONS,
+		);
+		if (stale_agents.length > 0) {
+			const flag_stale_chrome = client.prepare(`
+				UPDATE analytics_events
+				SET is_bot = 1
+				WHERE created_at >= ? AND created_at < ?
+				AND is_bot = 0
+				AND user_agent IN (SELECT value FROM json_each(?))
+			`);
+			stale_chrome_changes = Number(
+				flag_stale_chrome.run(
+					start_ts,
+					end_ts,
+					JSON.stringify(stale_agents),
+				).changes,
+			);
+		}
+		console.log(
+			`[bot-flag] Flagged ${stale_chrome_changes} events (stale Chrome: below ${current_chrome_major - BOT_THRESHOLDS.STALE_CHROME_MAJOR_VERSIONS}, current ${current_chrome_major})`,
+		);
+	} else {
+		console.log(
+			'[bot-flag] Skipped stale Chrome check (not enough referred visitors to set current version)',
+		);
+	}
+
 	// Count how many unique visitors were flagged
 	const flagged_visitors = client
 		.prepare(
@@ -160,13 +276,15 @@ export const flag_bot_behaviour = async () => {
 		total_result.changes +
 		homepage_result.changes +
 		direct_result.changes +
-		malformed_result.changes;
+		malformed_result.changes +
+		stale_chrome_changes;
 
 	return {
 		success: true,
 		message: `Flagged bot behaviour for ${date_str}`,
 		events_flagged: total_flagged,
 		visitors_flagged: flagged_visitors.count,
+		current_chrome_major,
 		thresholds: BOT_THRESHOLDS,
 	};
 };
