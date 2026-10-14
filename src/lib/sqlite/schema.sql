@@ -244,6 +244,34 @@ CREATE TABLE IF NOT EXISTS
     UNIQUE (pathname, date)
   );
 
+-- Daily breakdown rollups (permanent, humans only)
+-- dimension: 'referrer' (normalised source or 'Direct'), 'country',
+-- 'browser' or 'device'
+CREATE TABLE IF NOT EXISTS
+  analytics_daily_breakdown (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date TEXT NOT NULL,
+    dimension TEXT NOT NULL CHECK (
+      dimension IN ('referrer', 'country', 'browser', 'device')
+    ),
+    value TEXT NOT NULL,
+    views INTEGER NOT NULL DEFAULT 0,
+    unique_visitors INTEGER NOT NULL DEFAULT 0,
+    UNIQUE (date, dimension, value)
+  );
+
+-- Referrers per post per day (permanent, humans only)
+CREATE TABLE IF NOT EXISTS
+  analytics_daily_referrers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date TEXT NOT NULL,
+    pathname TEXT NOT NULL,
+    referrer TEXT NOT NULL,
+    views INTEGER NOT NULL DEFAULT 0,
+    unique_visitors INTEGER NOT NULL DEFAULT 0,
+    UNIQUE (date, pathname, referrer)
+  );
+
 -- Click events for tracking user interactions (replaces Fathom.trackEvent)
 CREATE TABLE IF NOT EXISTS
   click_events (
@@ -337,6 +365,8 @@ CREATE INDEX IF NOT EXISTS idx_github_releases_repo ON github_releases (repo);
 CREATE INDEX IF NOT EXISTS idx_events_rollup ON analytics_events (created_at, path, is_bot);
 CREATE INDEX IF NOT EXISTS idx_events_visitor ON analytics_events (created_at, visitor_hash);
 CREATE INDEX IF NOT EXISTS idx_daily_date ON analytics_daily (date);
+CREATE INDEX IF NOT EXISTS idx_breakdown_dimension_date ON analytics_daily_breakdown (dimension, date);
+CREATE INDEX IF NOT EXISTS idx_daily_referrers_path ON analytics_daily_referrers (pathname, date);
 CREATE INDEX IF NOT EXISTS idx_clicks_event ON click_events (event_name, created_at);
 CREATE INDEX IF NOT EXISTS idx_clicks_path ON click_events (path, created_at);
 

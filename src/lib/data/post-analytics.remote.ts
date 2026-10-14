@@ -10,6 +10,7 @@ import { query } from '$app/server';
 import * as v from 'valibot';
 import {
 	fetch_monthly_history,
+	fetch_post_referrers,
 	fetch_reactions_summary,
 	get_launch_cohort,
 	rank_launch,
@@ -57,6 +58,7 @@ export const get_post_analytics = query(
 				sqlite_client,
 				pathname,
 			);
+			const referrers = fetch_post_referrers(sqlite_client, pathname);
 
 			const result: PostAnalytics = {
 				daily,
@@ -65,6 +67,7 @@ export const get_post_analytics = query(
 				history,
 				launch,
 				reactions,
+				referrers,
 			};
 			set_cache(cache_key, result);
 			return result;

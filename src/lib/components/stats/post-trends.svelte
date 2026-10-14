@@ -8,17 +8,21 @@
 		LinearGradient,
 		LineChart,
 	} from 'layerchart';
+	import { get_referrer_icon } from './referrer-icons.js';
+	import StatRow from './stat-row.svelte';
 
 	interface Props {
 		history?: PostMonthlyViews[];
 		launch?: PostLaunch | null;
 		reactions?: PostReactionsSummary | null;
+		referrers?: PostReferrers | null;
 	}
 
 	let {
 		history = [],
 		launch = null,
 		reactions = null,
+		referrers = null,
 	}: Props = $props();
 
 	/** Daily tracking replaced the old monthly aggregates from Jan 2026 */
@@ -109,6 +113,18 @@
 				: '';
 		return `${reactions.per_1k_views.toFixed(1)} reactions per 1,000 views${site}.`;
 	});
+	const referrers_summary = $derived.by(() => {
+		if (!referrers) return '';
+		const since = new Date(
+			`${referrers.since}T00:00:00Z`,
+		).toLocaleDateString('en-GB', {
+			day: 'numeric',
+			month: 'short',
+			year: 'numeric',
+			timeZone: 'UTC',
+		});
+		return `Visitors by source since ${since}.`;
+	});
 	const launch_summary = $derived.by(() => {
 		if (!launch) return '';
 		const days =
@@ -123,7 +139,7 @@
 	});
 </script>
 
-{#if show_monthly || launch || reactions}
+{#if show_monthly || launch || referrers || reactions}
 	<section class="px-6" aria-labelledby="post-trends-heading">
 		<h3 id="post-trends-heading" class="sr-only">Trends</h3>
 
@@ -180,6 +196,31 @@
 					Cumulative views, counted from the first day the post had
 					views.
 				</p>
+			</article>
+		{/if}
+
+		{#if referrers}
+			<article class="mb-8">
+				<header class="mb-2 pl-1">
+					<h4 class="text-lg font-semibold">
+						Where readers came from
+					</h4>
+					<p class="text-sm text-base-content/80">
+						{referrers_summary}
+					</p>
+				</header>
+				<ul>
+					{#each referrers.sources as source (source.referrer)}
+						<li>
+							<StatRow
+								label={source.referrer}
+								value={source.visitors}
+								max_value={referrers.sources[0].visitors}
+								icon={get_referrer_icon(source.referrer)}
+							/>
+						</li>
+					{/each}
+				</ul>
 			</article>
 		{/if}
 

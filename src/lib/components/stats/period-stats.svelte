@@ -432,6 +432,23 @@
 					Changes are compared with {previous.label}.
 				</p>
 			{/if}
+			{#if period_stats.breakdowns_since}
+				<p
+					class="text-xs opacity-70"
+					class:mt-4={!previous}
+					class:mt-1={previous}
+				>
+					Referrers, countries, browsers and devices are counted from
+					{new Date(
+						`${period_stats.breakdowns_since}T00:00:00Z`,
+					).toLocaleDateString('en-GB', {
+						day: 'numeric',
+						month: 'short',
+						year: 'numeric',
+						timeZone: 'UTC',
+					})}.
+				</p>
+			{/if}
 		</div>
 	{/if}
 

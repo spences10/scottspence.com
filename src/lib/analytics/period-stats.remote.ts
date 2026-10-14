@@ -9,6 +9,10 @@ import * as v from 'valibot';
 import { get_blocked_domains_array } from './blocked-domains';
 import { BOT_THRESHOLDS } from './bot-thresholds';
 import {
+	get_breakdowns_since,
+	type BreakdownDimension,
+} from './breakdown-rollup';
+import {
 	format_period_stats,
 	get_period_boundaries,
 	get_previous_window,
@@ -193,6 +197,82 @@ const get_raw_counts_by = (
 	);
 };
 
+type BreakdownColumn = 'country' | 'browser' | 'device_type';
+
+const DIMENSION_FOR: Record<BreakdownColumn, BreakdownDimension> = {
+	country: 'country',
+	browser: 'browser',
+	device_type: 'device',
+};
+
+/**
+ * Breakdown counts from the daily rollup between two dates (end
+ * exclusive). An optional partial day is weighted, as the previous
+ * window comparisons do for pages.
+ */
+const get_rollup_breakdown = (
+	dimension: BreakdownDimension,
+	from_date: string,
+	until_date: string,
+	partial: { date: string; weight: number } | null = null,
+): Record<string, PeriodCounts> => {
+	const blocked =
+		dimension === 'referrer' ? get_blocked_domains_array() : [];
+	const result = sqlite_client.execute({
+		sql: `SELECT value as key,
+			SUM(views * CASE WHEN date = ? THEN ? ELSE 1 END) as views,
+			SUM(unique_visitors * CASE WHEN date = ? THEN ? ELSE 1 END) as visitors
+		FROM analytics_daily_breakdown
+		WHERE dimension = ? AND date >= ? AND date < ?
+			${blocked.map(() => 'AND value NOT LIKE ?').join(' ')}
+		GROUP BY value`,
+		args: [
+			partial?.date ?? '',
+			partial?.weight ?? 1,
+			partial?.date ?? '',
+			partial?.weight ?? 1,
+			dimension,
+			from_date,
+			until_date,
+			...blocked.map((d) => `%${d}%`),
+		],
+	});
+	return to_counts_lookup(
+		(
+			result.rows as {
+				key: string;
+				views: number;
+				visitors: number;
+			}[]
+		).map((row) => ({
+			key: row.key,
+			views: Math.round(row.views),
+			visitors: Math.round(row.visitors),
+		})),
+	);
+};
+
+/**
+ * Add one counts lookup into another, returning rows sorted by visitors
+ */
+const merge_counts = (
+	...lookups: Record<string, PeriodCounts>[]
+): { key: string; views: number; visitors: number }[] => {
+	const merged = new Map<string, PeriodCounts>();
+	for (const lookup of lookups) {
+		for (const [key, counts] of Object.entries(lookup)) {
+			const existing = merged.get(key) ?? { views: 0, visitors: 0 };
+			merged.set(key, {
+				views: existing.views + counts.views,
+				visitors: existing.visitors + counts.visitors,
+			});
+		}
+	}
+	return [...merged]
+		.map(([key, counts]) => ({ key, ...counts }))
+		.sort((a, b) => b.visitors - a.visitors);
+};
+
 /**
  * Visits from raw page views: a visitor's views are split into visits
  * wherever the gap between them exceeds VISIT_TIMEOUT_MS
@@ -253,6 +333,7 @@ const get_previous_stats = (
 	period: StatsPeriod,
 	mode: FilterMode,
 	current: { start: number; end: number },
+	breakdowns_since: string | null,
 ): PeriodComparison | null => {
 	if (period === 'today') {
 		const start = current.start - DAY_MS;
@@ -336,7 +417,48 @@ const get_previous_stats = (
 		};
 	}
 
+	// Breakdowns compare only once the rollup covers the whole previous
+	// window, otherwise every value would show as new
+	const breakdowns_for = (
+		from_date: string,
+		until_date: string,
+		partial: { date: string; weight: number } | null = null,
+	) =>
+		breakdowns_since != null && breakdowns_since <= from_date
+			? {
+					countries: get_rollup_breakdown(
+						'country',
+						from_date,
+						until_date,
+						partial,
+					),
+					browsers: get_rollup_breakdown(
+						'browser',
+						from_date,
+						until_date,
+						partial,
+					),
+					devices: get_rollup_breakdown(
+						'device',
+						from_date,
+						until_date,
+						partial,
+					),
+					referrers: get_rollup_breakdown(
+						'referrer',
+						from_date,
+						until_date,
+						partial,
+					),
+					visits: null,
+				}
+			: no_breakdowns;
+
 	let rows: { key: string; views: number; visitors: number }[];
+	let breakdowns: Pick<
+		PeriodComparison,
+		'countries' | 'browsers' | 'devices' | 'referrers' | 'visits'
+	>;
 	if (period === 'year') {
 		const start_month = new Date(current.start);
 		const previous_month = new Date(start_month);
@@ -355,6 +477,10 @@ const get_previous_stats = (
 				start_month.toISOString().slice(0, 7),
 			],
 		}).rows as typeof rows;
+		breakdowns = breakdowns_for(
+			to_date(previous_month.getTime()),
+			to_date(start_month.getTime()),
+		);
 	} else {
 		// The selected window is N full days plus today so far, so the
 		// previous one is the N days before it plus the same share of
@@ -389,6 +515,10 @@ const get_previous_stats = (
 				until,
 			],
 		}).rows as typeof rows;
+		breakdowns = breakdowns_for(from_date, until, {
+			date: partial_date,
+			weight: partial_weight,
+		});
 	}
 
 	if (rows.length === 0) return null;
@@ -409,7 +539,7 @@ const get_previous_stats = (
 			rows.reduce((sum, row) => sum + row.visitors, 0),
 		),
 		pages: to_counts_lookup(rounded),
-		...no_breakdowns,
+		...breakdowns,
 	};
 };
 
@@ -672,81 +802,120 @@ export const get_period_stats = query(
 			}[];
 		}
 
-		// Countries
-		const countries_result = sqlite_client.execute({
-			sql: `SELECT
-				country,
-				COUNT(*) as views,
-				COUNT(DISTINCT visitor_hash) as visitors
-			FROM analytics_events
-			WHERE created_at >= ? AND created_at < ?
-				${bot_condition}
-				AND country IS NOT NULL
-				AND country != ''
-			GROUP BY country
-			ORDER BY visitors DESC`,
-			args: [start, end, ...bot_args],
-		});
-		const countries = countries_result.rows as {
+		// Countries, browsers, devices and referrers. Longer periods read
+		// the daily breakdown rollup plus today's raw events, as pages
+		// do; raw events alone only reach back two days
+		const since = get_breakdowns_since(sqlite_client);
+		let countries: {
 			country: string;
 			views: number;
 			visitors: number;
 		}[];
-
-		// Browsers
-		const browsers_result = sqlite_client.execute({
-			sql: `SELECT
-				browser,
-				COUNT(*) as views,
-				COUNT(DISTINCT visitor_hash) as visitors
-			FROM analytics_events
-			WHERE created_at >= ? AND created_at < ?
-				${bot_condition}
-				AND browser IS NOT NULL
-			GROUP BY browser
-			ORDER BY visitors DESC
-			LIMIT 5`,
-			args: [start, end, ...bot_args],
-		});
-		const browsers = browsers_result.rows as {
+		let browsers: {
 			browser: string;
 			views: number;
 			visitors: number;
 		}[];
-
-		// Devices
-		const devices_result = sqlite_client.execute({
-			sql: `SELECT
-				device_type,
-				COUNT(*) as views,
-				COUNT(DISTINCT visitor_hash) as visitors
-			FROM analytics_events
-			WHERE created_at >= ? AND created_at < ?
-				${bot_condition}
-				AND device_type IS NOT NULL
-			GROUP BY device_type
-			ORDER BY visitors DESC`,
-			args: [start, end, ...bot_args],
-		});
-		const devices = devices_result.rows as {
+		let devices: {
 			device_type: string;
 			views: number;
 			visitors: number;
 		}[];
+		let referrers: {
+			referrer: string;
+			views: number;
+			visitors: number;
+		}[];
+		let breakdowns_since: string | null = null;
 
-		// Referrers (Direct + normalised sources), top 10
-		const referrers = get_raw_referrers(
-			start,
-			end,
-			bot_condition,
-			bot_args,
-		).slice(0, 10);
+		if (use_rollup) {
+			const start_date = new Date(start).toISOString().split('T')[0];
+			const today_bot_filter = mode === 'all' ? '' : 'AND is_bot = 0';
+			const rows_for = (column: BreakdownColumn) =>
+				merge_counts(
+					get_rollup_breakdown(
+						DIMENSION_FOR[column],
+						start_date,
+						today_date,
+					),
+					get_raw_counts_by(
+						column,
+						today_utc_start,
+						end,
+						today_bot_filter,
+						[],
+					),
+				);
+
+			countries = rows_for('country').map(({ key, ...counts }) => ({
+				country: key,
+				...counts,
+			}));
+			browsers = rows_for('browser')
+				.slice(0, 5)
+				.map(({ key, ...counts }) => ({ browser: key, ...counts }));
+			devices = rows_for('device_type').map(({ key, ...counts }) => ({
+				device_type: key,
+				...counts,
+			}));
+			referrers = merge_counts(
+				get_rollup_breakdown('referrer', start_date, today_date),
+				to_counts_lookup(
+					get_raw_referrers(
+						today_utc_start,
+						end,
+						today_bot_filter,
+						[],
+					).map(({ referrer, ...counts }) => ({
+						key: referrer,
+						...counts,
+					})),
+				),
+			)
+				.slice(0, 10)
+				.map(({ key, ...counts }) => ({ referrer: key, ...counts }));
+
+			// Say so when the rollup starts after the period does
+			if (since == null || since > start_date) {
+				breakdowns_since = since ?? today_date;
+			}
+		} else {
+			const by = (column: BreakdownColumn) =>
+				merge_counts(
+					get_raw_counts_by(
+						column,
+						start,
+						end,
+						bot_condition,
+						bot_args,
+					),
+				);
+			countries = by('country').map(({ key, ...counts }) => ({
+				country: key,
+				...counts,
+			}));
+			browsers = by('browser')
+				.slice(0, 5)
+				.map(({ key, ...counts }) => ({ browser: key, ...counts }));
+			devices = by('device_type').map(({ key, ...counts }) => ({
+				device_type: key,
+				...counts,
+			}));
+			referrers = get_raw_referrers(
+				start,
+				end,
+				bot_condition,
+				bot_args,
+			).slice(0, 10);
+		}
 
 		// Previous period, for the deltas shown next to each number
-		const previous = get_previous_stats(period as StatsPeriod, mode, {
-			start,
-			end,
-		});
+		const previous = get_previous_stats(
+			period as StatsPeriod,
+			mode,
+			{ start, end },
+			since,
+		);
 
 		// Bounce rate, time on site and entry/exit pages need raw events,
 		// which only cover today and yesterday
@@ -767,6 +936,7 @@ export const get_period_stats = query(
 			referrers,
 			previous,
 			visits,
+			breakdowns_since,
 		);
 
 		// Cache the result

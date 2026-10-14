@@ -91,6 +91,13 @@ declare interface PostAnalytics {
 	history?: PostMonthlyViews[];
 	launch?: PostLaunch | null;
 	reactions?: PostReactionsSummary | null;
+	referrers?: PostReferrers | null;
+}
+
+declare interface PostReferrers {
+	/** First day referrers were rolled up for this post */
+	since: string;
+	sources: { referrer: string; views: number; visitors: number }[];
 }
 
 declare interface PostMonthlyViews {

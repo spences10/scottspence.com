@@ -28,6 +28,9 @@ export type PeriodStats = {
 	previous: PeriodComparison | null;
 	// Only for periods still covered by raw events (today, yesterday)
 	visits: VisitStats | null;
+	// First day the referrer, country, browser and device breakdowns
+	// cover, when that's later than the period start
+	breakdowns_since: string | null;
 };
 
 /**
@@ -271,6 +274,7 @@ export const format_period_stats = (
 	referrers: { referrer: string; views: number; visitors: number }[],
 	previous: PeriodComparison | null = null,
 	visits: VisitStats | null = null,
+	breakdowns_since: string | null = null,
 ): PeriodStats => ({
 	period,
 	period_label: get_period_label(period),
@@ -286,4 +290,5 @@ export const format_period_stats = (
 	referrers,
 	previous,
 	visits,
+	breakdowns_since,
 });

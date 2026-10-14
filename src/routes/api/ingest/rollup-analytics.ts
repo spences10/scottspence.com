@@ -1,4 +1,5 @@
 import { BOT_THRESHOLDS } from '#lib/analytics/bot-thresholds.js';
+import { rollup_breakdowns } from '#lib/analytics/breakdown-rollup.js';
 import { sqlite_client } from '#lib/sqlite/client.js';
 import { flag_bot_behaviour } from './flag-bot-behaviour';
 
@@ -9,6 +10,7 @@ import { flag_bot_behaviour } from './flag-bot-behaviour';
  * Flow:
  * 0. Flag behaviour-based bots (scrapers with spoofed UAs)
  * 1. Aggregate yesterday's events → analytics_daily
+ *    1b. → analytics_daily_breakdown and analytics_daily_referrers
  * 2. Reaggregate affected month → analytics_monthly
  * 3. Reaggregate affected year → analytics_yearly
  * 4. Reaggregate all time → analytics_all_time
@@ -57,6 +59,17 @@ export const rollup_analytics = async () => {
 	const daily_result = rollup_daily.run(date_str, start_ts, end_ts);
 	console.log(
 		`[rollup] Daily: ${daily_result.changes} paths updated`,
+	);
+
+	// Step 1b: Referrers, countries, browsers and devices for the same day
+	const breakdown_result = rollup_breakdowns(
+		client,
+		date_str,
+		start_ts,
+		end_ts,
+	);
+	console.log(
+		`[rollup] Breakdowns: ${breakdown_result.breakdowns} values, ${breakdown_result.post_referrers} post referrers`,
 	);
 
 	// Step 2: Reaggregate affected month into analytics_monthly
@@ -128,6 +141,8 @@ export const rollup_analytics = async () => {
 		bots_flagged: bot_result.events_flagged,
 		visitors_flagged: bot_result.visitors_flagged,
 		daily: daily_result.changes,
+		breakdowns: breakdown_result.breakdowns,
+		post_referrers: breakdown_result.post_referrers,
 		monthly: monthly_result.changes,
 		yearly: yearly_result.changes,
 		all_time: all_time_result.changes,

@@ -1,3 +1,4 @@
+import { get_blocked_domains_array } from '#lib/analytics/blocked-domains.js';
 import {
 	CACHE_DURATIONS,
 	get_from_cache,
@@ -359,5 +360,44 @@ export const pick_movers = (rows: PostMoverRow[], count = 8) => {
 			.filter((r) => r.change < 0)
 			.sort((a, b) => a.change - b.change)
 			.slice(0, count),
+	};
+};
+
+/**
+ * Where a post's readers came from, from the daily referrer rollup
+ * Blocked domains are filtered on read, so blocking one later also
+ * hides its history
+ */
+export const fetch_post_referrers = (
+	client: SqliteClient,
+	pathname: string,
+	limit = 8,
+): PostReferrers | null => {
+	const blocked = get_blocked_domains_array();
+	const result = client.execute({
+		sql: `
+			SELECT
+				referrer,
+				SUM(views) AS views,
+				SUM(unique_visitors) AS visitors,
+				MIN(date) AS since
+			FROM analytics_daily_referrers
+			WHERE pathname = ?
+				${blocked.map(() => 'AND referrer NOT LIKE ?').join(' ')}
+			GROUP BY referrer
+			ORDER BY visitors DESC
+		`,
+		args: [pathname, ...blocked.map((d) => `%${d}%`)],
+	});
+	if (result.rows.length === 0) return null;
+
+	const sources = result.rows.map((row) => ({
+		referrer: String(row.referrer),
+		views: Number(row.views) || 0,
+		visitors: Number(row.visitors) || 0,
+	}));
+	return {
+		since: result.rows.map((row) => String(row.since)).sort()[0],
+		sources: sources.slice(0, limit),
 	};
 };

@@ -73,6 +73,7 @@
 					history={analytics_data.history}
 					launch={analytics_data.launch}
 					reactions={analytics_data.reactions}
+					referrers={analytics_data.referrers}
 				/>
 			{:else}
 				<p>No analytics data available for this post.</p>

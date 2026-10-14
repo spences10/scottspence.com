@@ -87,6 +87,38 @@ describe('PostTrends', () => {
 			.toBeInTheDocument();
 	});
 
+	it('lists where readers came from with the start date', async () => {
+		await render(PostTrends, {
+			referrers: {
+				since: '2026-10-14',
+				sources: [
+					{ referrer: 'Google', views: 90, visitors: 80 },
+					{
+						referrer: 'news.ycombinator.com',
+						views: 45,
+						visitors: 40,
+					},
+				],
+			},
+		});
+
+		await expect
+			.element(
+				page.getByRole('heading', {
+					name: 'Where readers came from',
+				}),
+			)
+			.toBeInTheDocument();
+		await expect
+			.element(
+				page.getByText('Visitors by source since 14 Oct 2026.'),
+			)
+			.toBeInTheDocument();
+		await expect
+			.element(page.getByText('news.ycombinator.com'))
+			.toBeInTheDocument();
+	});
+
 	it('renders nothing with under three complete months', async () => {
 		const { container } = await render(PostTrends, {
 			history: [
