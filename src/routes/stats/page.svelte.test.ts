@@ -41,6 +41,11 @@ vi.mock('#lib/analytics/engagement-stats.remote.js', () => ({
 	get_engagement_stats: vi.fn().mockResolvedValue(null),
 }));
 
+vi.mock('#lib/data/post-trends.remote.js', () => ({
+	get_launch_board: vi.fn().mockResolvedValue(null),
+	get_post_movers: vi.fn().mockResolvedValue(null),
+}));
+
 describe('Historical Stats Page Component', () => {
 	const mockSiteStats = [
 		{

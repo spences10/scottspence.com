@@ -1,6 +1,9 @@
 export { default as HistoricalStats } from './historical-stats.svelte';
 export { default as LiveDashboard } from './live-dashboard.svelte';
 export { default as PeriodStats } from './period-stats.svelte';
+export { default as PostLaunches } from './post-launches.svelte';
+export { default as PostMovers } from './post-movers.svelte';
+export { default as PostTrends } from './post-trends.svelte';
 export { default as StatRowMulti } from './stat-row-multi.svelte';
 export { default as StatRow } from './stat-row.svelte';
 export * from './stats.svelte';

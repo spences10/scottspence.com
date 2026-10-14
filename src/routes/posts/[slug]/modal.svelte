@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { StatsCard } from '#lib/components/index.js';
+	import { PostTrends } from '#lib/components/stats/index.js';
 	import { get_post_analytics } from '#lib/data/post-analytics.remote.js';
 
 	let {
@@ -67,6 +68,11 @@
 					daily_visits={analytics_data.daily}
 					monthly_visits={analytics_data.monthly}
 					yearly_visits={analytics_data.yearly}
+				/>
+				<PostTrends
+					history={analytics_data.history}
+					launch={analytics_data.launch}
+					reactions={analytics_data.reactions}
 				/>
 			{:else}
 				<p>No analytics data available for this post.</p>

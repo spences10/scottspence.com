@@ -1,4 +1,3 @@
-import { query } from '$app/server';
 import { BOT_THRESHOLDS } from '#lib/analytics/bot-thresholds.js';
 import {
 	BYPASS_DB_READS,
@@ -7,7 +6,14 @@ import {
 	set_cache,
 } from '#lib/cache/server-cache.js';
 import { sqlite_client } from '#lib/sqlite/client.js';
+import { query } from '$app/server';
 import * as v from 'valibot';
+import {
+	fetch_monthly_history,
+	fetch_reactions_summary,
+	get_launch_cohort,
+	rank_launch,
+} from './post-analytics.helpers';
 
 interface PostAnalyticsRow {
 	pageviews: number;
@@ -27,7 +33,7 @@ const empty_analytics: PostAnalytics = {
  */
 export const get_post_analytics = query(
 	v.string(),
-	async (slug: string): Promise<PostAnalytics> => {
+	(slug: string): PostAnalytics => {
 		if (BYPASS_DB_READS.post_analytics) {
 			return empty_analytics;
 		}
@@ -42,13 +48,24 @@ export const get_post_analytics = query(
 		try {
 			const pathname = `/posts/${slug}`;
 
-			const [daily, monthly, yearly] = await Promise.all([
-				fetch_today_stats(pathname),
-				fetch_month_stats(pathname),
-				fetch_year_stats(pathname),
-			]);
+			const daily = fetch_today_stats(pathname);
+			const monthly = fetch_month_stats(pathname);
+			const yearly = fetch_year_stats(pathname);
+			const history = fetch_monthly_history(sqlite_client, pathname);
+			const launch = fetch_launch(slug);
+			const reactions = fetch_reactions_summary(
+				sqlite_client,
+				pathname,
+			);
 
-			const result: PostAnalytics = { daily, monthly, yearly };
+			const result: PostAnalytics = {
+				daily,
+				monthly,
+				yearly,
+				history,
+				launch,
+				reactions,
+			};
 			set_cache(cache_key, result);
 			return result;
 		} catch (error) {
@@ -58,17 +75,36 @@ export const get_post_analytics = query(
 	},
 );
 
+const fetch_launch = (slug: string): PostLaunch | null => {
+	const cohort = get_launch_cohort(sqlite_client);
+	const curve = cohort?.launches.find((l) => l.slug === slug)?.curve;
+	if (!cohort || !curve) return null;
+
+	const { day, rank, of } = rank_launch(
+		curve,
+		cohort.launches.map((l) => l.curve),
+	);
+	return {
+		cumulative: curve.cumulative,
+		median: cohort.median,
+		days_live: curve.days_live,
+		day,
+		rank,
+		cohort_size: of,
+	};
+};
+
 /**
  * Today's stats from analytics_events with bot filtering CTE
  */
-const fetch_today_stats = async (
+const fetch_today_stats = (
 	pathname: string,
-): Promise<PostAnalyticsRow | null> => {
+): PostAnalyticsRow | null => {
 	const today_start = new Date();
 	today_start.setHours(0, 0, 0, 0);
 	const today_timestamp = today_start.getTime();
 
-	const result = await sqlite_client.execute({
+	const result = sqlite_client.execute({
 		sql: `
 			WITH bad_visitors AS (
 				SELECT DISTINCT visitor_hash
@@ -115,12 +151,12 @@ const fetch_today_stats = async (
 /**
  * This month's stats from analytics_monthly rollup
  */
-const fetch_month_stats = async (
+const fetch_month_stats = (
 	pathname: string,
-): Promise<PostAnalyticsRow | null> => {
+): PostAnalyticsRow | null => {
 	const current_month = new Date().toISOString().slice(0, 7);
 
-	const result = await sqlite_client.execute({
+	const result = sqlite_client.execute({
 		sql: `
 			SELECT
 				SUM(views) as views,
@@ -145,12 +181,12 @@ const fetch_month_stats = async (
 /**
  * This year's stats from analytics_yearly rollup
  */
-const fetch_year_stats = async (
+const fetch_year_stats = (
 	pathname: string,
-): Promise<PostAnalyticsRow | null> => {
+): PostAnalyticsRow | null => {
 	const current_year = new Date().getFullYear().toString();
 
-	const result = await sqlite_client.execute({
+	const result = sqlite_client.execute({
 		sql: `
 			SELECT
 				SUM(views) as views,

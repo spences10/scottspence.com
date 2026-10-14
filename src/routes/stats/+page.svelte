@@ -2,6 +2,8 @@
 	import {
 		HistoricalStats,
 		PeriodStats,
+		PostLaunches,
+		PostMovers,
 		YearPosts,
 	} from '#lib/components/stats/index.js';
 	import { name, website } from '#lib/info.js';
@@ -82,6 +84,24 @@
 			<div class="mb-4 alert alert-error" role="alert">
 				<span>Could not load the latest stats.</span>
 				<button class="btn btn-sm" onclick={reset}>Try again</button>
+			</div>
+		{/snippet}
+	</svelte:boundary>
+
+	<svelte:boundary>
+		<PostLaunches />
+		{#snippet failed()}
+			<div class="mb-4 alert alert-error" role="alert">
+				<span>Could not load new post stats.</span>
+			</div>
+		{/snippet}
+	</svelte:boundary>
+
+	<svelte:boundary>
+		<PostMovers />
+		{#snippet failed()}
+			<div class="mb-4 alert alert-error" role="alert">
+				<span>Could not load risers and fallers.</span>
 			</div>
 		{/snippet}
 	</svelte:boundary>

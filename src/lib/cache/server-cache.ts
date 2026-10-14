@@ -33,6 +33,7 @@ export const CACHE_DURATIONS = {
 		day: 5 * 60 * 1000, // 5 minutes
 		month: 24 * 60 * 60 * 1000, // 24 hours
 		year: 24 * 60 * 60 * 1000, // 24 hours
+		launch_cohort: 60 * 60 * 1000, // 1 hour - daily rollup only changes nightly
 	},
 	post_tags: 24 * 60 * 60 * 1000, // 24 hours
 	period_stats: 30 * 1000, // 30 seconds - prevents hammering on stats page

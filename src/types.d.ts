@@ -88,6 +88,65 @@ declare interface PostAnalytics {
 	daily: any | null;
 	monthly: any | null;
 	yearly: any | null;
+	history?: PostMonthlyViews[];
+	launch?: PostLaunch | null;
+	reactions?: PostReactionsSummary | null;
+}
+
+declare interface PostMonthlyViews {
+	month: string;
+	views: number;
+	visitors: number;
+}
+
+declare interface PostLaunch {
+	/** Cumulative views by day since first view */
+	cumulative: (number | null)[];
+	/** Median cumulative views of recent launches with a full window */
+	median: (number | null)[];
+	days_live: number;
+	/** 0-based day the rank compares at */
+	day: number;
+	rank: number;
+	cohort_size: number;
+}
+
+declare interface LaunchBoard {
+	launches: {
+		slug: string;
+		title: string;
+		pub: string;
+		/** Views in the first `days` days, or so far if younger */
+		views: number;
+		days_live: number;
+	}[];
+	days: number;
+	median: number | null;
+}
+
+declare interface PostMover {
+	slug: string;
+	title: string;
+	pub: string;
+	recent: number;
+	previous: number;
+	change: number;
+}
+
+declare interface PostMovers {
+	risers: PostMover[];
+	fallers: PostMover[];
+	window_days: number;
+	/** First day of the recent window */
+	recent_from: string;
+	last_date: string;
+}
+
+declare interface PostReactionsSummary {
+	total: number;
+	by_type: Record<string, number>;
+	per_1k_views: number | null;
+	site_per_1k_views: number | null;
 }
 
 declare interface RelatedPost {
