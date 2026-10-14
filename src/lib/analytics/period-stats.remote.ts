@@ -672,36 +672,59 @@ export const get_period_stats = query(
 			};
 		}
 
-		// Bot totals (always calculate for display)
-		let bot_totals = { views: 0, visitors: 0 };
-		if (bot_hashes.length > 0) {
+		// Bot totals (always calculate for display). Longer periods read
+		// the daily bot rollup plus today's raw events, since raw events
+		// only reach back two days
+		const long_period =
+			period === 'week' || period === 'month' || period === 'year';
+		const raw_bots = (from: number) => {
 			const placeholders = bot_hashes.map(() => '?').join(',');
-			const bot_result = sqlite_client.execute({
+			const row = sqlite_client.execute({
 				sql: `SELECT
 					COUNT(*) as views,
 					COUNT(DISTINCT visitor_hash) as visitors
 				FROM analytics_events
 				WHERE created_at >= ? AND created_at < ?
-				AND (is_bot = 1 OR visitor_hash IN (${placeholders}))`,
-				args: [start, end, ...bot_hashes],
-			});
+				AND ${
+					bot_hashes.length > 0
+						? `(is_bot = 1 OR visitor_hash IN (${placeholders}))`
+						: 'is_bot = 1'
+				}`,
+				args: [from, end, ...bot_hashes],
+			}).rows[0];
+			return {
+				views: (row?.views as number) ?? 0,
+				visitors: (row?.visitors as number) ?? 0,
+			};
+		};
+
+		let bot_totals: { views: number; visitors: number };
+		if (long_period) {
+			const rolled = sqlite_client.execute({
+				sql: `SELECT COALESCE(SUM(views), 0) as views,
+					COALESCE(SUM(unique_visitors), 0) as visitors
+				FROM analytics_daily_bots WHERE date >= ? AND date < ?`,
+				args: [
+					new Date(start).toISOString().split('T')[0],
+					today_date,
+				],
+			}).rows[0];
+			const today_bots = raw_bots(today_utc_start);
 			bot_totals = {
-				views: (bot_result.rows[0]?.views as number) ?? 0,
-				visitors: (bot_result.rows[0]?.visitors as number) ?? 0,
+				views: ((rolled?.views as number) ?? 0) + today_bots.views,
+				visitors:
+					((rolled?.visitors as number) ?? 0) + today_bots.visitors,
 			};
 		} else {
-			// Just flagged bots
-			const bot_result = sqlite_client.execute({
-				sql: `SELECT
-					COUNT(*) as views,
-					COUNT(DISTINCT visitor_hash) as visitors
-				FROM analytics_events
-				WHERE created_at >= ? AND created_at < ? AND is_bot = 1`,
-				args: [start, end],
-			});
-			bot_totals = {
-				views: (bot_result.rows[0]?.views as number) ?? 0,
-				visitors: (bot_result.rows[0]?.visitors as number) ?? 0,
+			bot_totals = raw_bots(start);
+		}
+
+		// Bots-only totals come from the same count, so the headline
+		// matches the bot figure on the filter
+		if (long_period && mode === 'bots') {
+			totals = {
+				views: bot_totals.views,
+				unique_visitors: bot_totals.visitors,
 			};
 		}
 
@@ -874,11 +897,6 @@ export const get_period_stats = query(
 			)
 				.slice(0, 10)
 				.map(({ key, ...counts }) => ({ referrer: key, ...counts }));
-
-			// Say so when the rollup starts after the period does
-			if (since == null || since > start_date) {
-				breakdowns_since = since ?? today_date;
-			}
 		} else {
 			const by = (column: BreakdownColumn) =>
 				merge_counts(
@@ -907,6 +925,14 @@ export const get_period_stats = query(
 				bot_condition,
 				bot_args,
 			).slice(0, 10);
+		}
+
+		// Say so when the rollups start after a longer period does
+		const period_start_date = new Date(start)
+			.toISOString()
+			.split('T')[0];
+		if (long_period && (since == null || since > period_start_date)) {
+			breakdowns_since = since ?? today_date;
 		}
 
 		// Previous period, for the deltas shown next to each number

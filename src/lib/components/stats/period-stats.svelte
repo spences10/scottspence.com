@@ -438,7 +438,9 @@
 					class:mt-4={!previous}
 					class:mt-1={previous}
 				>
-					Referrers, countries, browsers and devices are counted from
+					{period_stats.filter_mode === 'bots'
+						? 'Bot totals are counted from'
+						: 'Referrers, countries, browsers, devices and bot totals are counted from'}
 					{new Date(
 						`${period_stats.breakdowns_since}T00:00:00Z`,
 					).toLocaleDateString('en-GB', {
@@ -447,6 +449,11 @@
 						year: 'numeric',
 						timeZone: 'UTC',
 					})}.
+				</p>
+			{/if}
+			{#if period_stats.filter_mode === 'bots' && ['week', 'month', 'year'].includes(period_stats.period)}
+				<p class="mt-1 text-xs opacity-70">
+					Pages and breakdowns for bots only cover the last 2 days.
 				</p>
 			{/if}
 		</div>

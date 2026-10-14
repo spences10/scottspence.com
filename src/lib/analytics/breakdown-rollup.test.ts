@@ -7,6 +7,7 @@ import {
 	get_breakdowns_since,
 	group_breakdowns,
 	referrer_source,
+	rollup_bots,
 	rollup_breakdowns,
 	type BreakdownEvent,
 } from './breakdown-rollup';
@@ -172,6 +173,7 @@ describe('rollup_breakdowns', () => {
 		db = new DatabaseSync(':memory:');
 		db.exec(migration('003_add_analytics_events.sql'));
 		db.exec(migration('014_add_analytics_breakdowns.sql'));
+		db.exec(migration('015_add_analytics_daily_bots.sql'));
 		client = client_for(db);
 	});
 
@@ -231,7 +233,6 @@ describe('rollup_breakdowns', () => {
 			},
 		]);
 		expect(result).toEqual({ breakdowns: 5, post_referrers: 2 });
-		expect(get_breakdowns_since(client)).toBe(day);
 	});
 
 	it('replaces the day on a rerun instead of doubling it', () => {
@@ -248,7 +249,32 @@ describe('rollup_breakdowns', () => {
 		expect(views).toBe(1);
 	});
 
-	it('reports no coverage before the first rollup', () => {
+	it('totals flagged bots for the day', () => {
+		insert_event({ visitor_hash: 'bot-a', is_bot: 1 });
+		insert_event({ visitor_hash: 'bot-a', is_bot: 1, path: '/' });
+		insert_event({ visitor_hash: 'bot-b', is_bot: 1 });
+		insert_event({ visitor_hash: 'human' });
+
+		expect(rollup_bots(client, day, start, start + 864e5)).toEqual({
+			views: 3,
+			unique_visitors: 2,
+		});
+		// Reruns replace the day
+		rollup_bots(client, day, start, start + 864e5);
+		expect(
+			db.prepare('SELECT * FROM analytics_daily_bots').all(),
+		).toEqual([{ date: day, views: 3, unique_visitors: 2 }]);
+	});
+
+	it('reports coverage from the later of the two rollups', () => {
 		expect(get_breakdowns_since(client)).toBeNull();
+
+		insert_event({ visitor_hash: 'h1' });
+		rollup_breakdowns(client, '2026-10-12', start, start + 864e5);
+		// Breakdowns alone are not enough: bot totals start later
+		expect(get_breakdowns_since(client)).toBeNull();
+
+		rollup_bots(client, day, start, start + 864e5);
+		expect(get_breakdowns_since(client)).toBe(day);
 	});
 });
