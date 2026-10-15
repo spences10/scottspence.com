@@ -75,7 +75,7 @@
 		"@vitest/browser-playwright": "5.0.3",
 		"cspell": "^10.3.6",
 		"d3-scale": "^4.0.2",
-		"daisyui": "5.7.47",
+		"daisyui": "5.7.50",
 		"date-fns": "4.4.0",
 		"fathom-client": "3.7.2",
 		"layerchart": "2.6.1",
