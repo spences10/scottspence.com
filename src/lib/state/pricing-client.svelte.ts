@@ -93,7 +93,7 @@ class PricingState {
 	get tax_comparison() {
 		return calculate_contractor_vs_permanent(
 			this.data.pricing_config.day_rate_gbp,
-			this.data.pricing_config.working_days_in_year,
+			this.billable_days,
 			this.data.uk_tax_config,
 		);
 	}

@@ -11,7 +11,7 @@
 # Work and recruiter FAQ
 
 <Small>
-  Last updated: <DateUpdated date="2026-08-25" small="true" />
+  Last updated: <DateUpdated date="2026-10-16" small="true" />
 </Small>
 
 Hello friend. This page answers the questions I am usually asked about
@@ -32,9 +32,9 @@ I work as a product engineer and consultant through OES Technology. My
 current focus is production AI systems, complex product workflows,
 coding-agent infrastructure, MCP tools, and SvelteKit applications.
 
-I'm open to the right long-term contract or focused consulting
-engagement. Availability changes, so ask rather than relying on an old
-status page.
+I'm open to full-time roles as well as the right long-term contract or
+focused consulting engagement. Availability changes, so ask rather
+than relying on an old status page.
 
 ## What work are you looking for?
 
@@ -115,12 +115,13 @@ Before that, I worked from 2005 to 2018 as an analyst developer,
 building automation and business systems in financial services and
 other large organisations.
 
-## What are your rate expectations?
+## What are your rate or salary expectations?
 
-I prefer contract work through OES Technology. The [work with me] page
-has the current rate calculator, currency options, and UK IR35
-comparison. I do not keep a fixed number here because availability,
-contract length, and terms affect it.
+For contract work, the [work with me] page has the current rate
+calculator, currency options, and UK IR35 comparison.
+
+For a full-time role, I'm looking for £110,000 to £140,000 base,
+depending on scope, seniority, and office days.
 
 ## What's your availability or notice period?
 
@@ -145,7 +146,7 @@ days in the first message.
 ## Can we have a quick call?
 
 Start with email. Include the company, product, work, contract terms,
-location, budget or rate range, and interview process.
+location, salary or rate range, and interview process.
 
 If it looks relevant, book a [15 minute chat]. Please do not call
 without an agreed time. I'm on a [maker's schedule], and unexpected
