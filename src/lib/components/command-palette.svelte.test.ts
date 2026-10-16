@@ -70,12 +70,93 @@ const open_palette = async () => {
 const option = (name: string) =>
 	page.getByRole('option', { name, exact: true });
 
+// Page options also carry their description in the accessible name
+const page_option = (title: string) =>
+	page.getByRole('option', { name: new RegExp(`^${title}\\b`) });
+
 describe('CommandPalette Component', () => {
 	beforeEach(() => {
 		vi.clearAllMocks();
 		mock_search_posts.mockReturnValue(resolved([]));
 		command_palette_state.close();
 		command_palette_state.recent = [];
+		localStorage.clear();
+	});
+
+	describe('Before typing', () => {
+		it('should suggest the latest posts and pages', async () => {
+			await open_palette();
+
+			await expect
+				.element(page.getByText('Latest posts'))
+				.toBeInTheDocument();
+			await expect
+				.element(option('Use the React Context API with Gatsby'))
+				.toBeInTheDocument();
+			await expect
+				.element(page_option('Contact'))
+				.toBeInTheDocument();
+			await expect.element(page_option('Stats')).toBeInTheDocument();
+			await expect
+				.element(page_option('Privacy Policy'))
+				.not.toBeInTheDocument();
+		});
+
+		it('should open a suggestion with the keyboard', async () => {
+			const input = await open_palette();
+			await expect
+				.element(option('Notes on Svelte'))
+				.toBeInTheDocument();
+
+			const press = (key: string) =>
+				input
+					.element()
+					.dispatchEvent(
+						new KeyboardEvent('keydown', { key, bubbles: true }),
+					);
+			press('ArrowDown');
+			await expect
+				.element(option('Notes on Svelte'))
+				.toHaveAttribute('aria-selected', 'true');
+			// Wait for the dialog's close event so it can't land in the
+			// next test and close that test's palette
+			const closed = new Promise((resolve) =>
+				command_palette_state.dialog?.addEventListener(
+					'close',
+					resolve,
+					{ once: true },
+				),
+			);
+			press('Enter');
+			await closed;
+
+			expect(mock_goto).toHaveBeenCalledWith(
+				'/posts/notes-on-svelte',
+			);
+		});
+
+		it('should list recent items first without repeating them', async () => {
+			command_palette_state.recent = ['/contact'];
+			await open_palette();
+
+			await expect
+				.element(page.getByRole('listbox', { name: 'Recent' }))
+				.toBeInTheDocument();
+			await expect
+				.element(page_option('Contact'))
+				.toBeInTheDocument();
+			expect(page_option('Contact').elements()).toHaveLength(1);
+		});
+
+		it('should remember recent items between visits', () => {
+			command_palette_state.add_recent('/stats');
+
+			expect(
+				JSON.parse(
+					localStorage.getItem('command-palette-recent') ?? '[]',
+				),
+			).toEqual(['/stats']);
+		});
 	});
 
 	describe('Keyword search', () => {

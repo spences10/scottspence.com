@@ -91,9 +91,14 @@
 								/>
 							{/if}
 						</span>
-						<div class="flex-1 overflow-hidden">
-							<div class="truncate font-medium">{item.title}</div>
+						<div class="truncate font-medium">
+							{item.title}
 						</div>
+						{#if item.type === 'page' && item.preview}
+							<div class="min-w-0 truncate text-sm text-accent">
+								{item.preview}
+							</div>
+						{/if}
 					</button>
 				</li>
 			{/each}
@@ -132,13 +137,27 @@
 			class="flex-1 overflow-y-auto p-2 sm:max-h-[60vh]"
 			aria-label="Search results"
 		>
-			{#if command_palette_state.query.trim() === '' && command_palette_state.recent.length > 0}
+			{#if command_palette_state.query.trim() === ''}
+				{@const { recent, posts, pages } =
+					command_palette_state.grouped_items}
+				{@render result_group('Recent', recent, 0)}
+				{@render result_group('Latest posts', posts, recent.length)}
 				{@render result_group(
-					'Recent',
-					command_palette_state.flat_items,
-					0,
+					'Pages',
+					pages,
+					recent.length + posts.length,
 				)}
-			{:else if command_palette_state.query.trim() !== ''}
+
+				{#if command_palette_state.loading}
+					<div
+						class="flex items-center justify-center gap-2 p-4 text-base-content/50"
+						role="status"
+					>
+						<span class="loading loading-sm loading-spinner"></span>
+						Loading...
+					</div>
+				{/if}
+			{:else}
 				{@const { posts, tags, pages, related } =
 					command_palette_state.grouped_items}
 				{@render result_group('Posts', posts, 0)}
@@ -164,17 +183,6 @@
 							No results found
 						</div>
 					{/if}
-				</div>
-			{:else if command_palette_state.loading}
-				<div
-					class="flex items-center justify-center gap-2 p-4 text-base-content/50"
-				>
-					<span class="loading loading-sm loading-spinner"></span>
-					Loading...
-				</div>
-			{:else}
-				<div class="p-4 text-center text-base-content/50">
-					Start typing to search...
 				</div>
 			{/if}
 		</nav>
