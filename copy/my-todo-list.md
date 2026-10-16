@@ -17,8 +17,7 @@ My inbox is not my todo list!
 
 ## Working on
 
-- Building [skykit.blue](https://skykit.blue) 😅 A stats page for
-  Bluesky users.
+- Building [wiki0](https://wiki0.app), docs search for coding agents.
 
 - Continually making sure this site doesn't break on new Svelte 5
   releases.

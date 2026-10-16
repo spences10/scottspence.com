@@ -46,7 +46,7 @@ He is a Svelte Ambassador and co-founder of Svelte Society London.
 Scott speaks at international conferences and community events and
 publishes practical engineering guides at
 [scottspence.com](https://scottspence.com). His public projects
-include [my-pi](https://github.com/spences10/my-pi),
+include [my-pi](https://my-pi.dev),
 [mcp-omnisearch](https://github.com/spences10/mcp-omnisearch), and
 other tools for coding agents, search, SQLite, and safer development
 workflows.

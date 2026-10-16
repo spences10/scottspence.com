@@ -25,10 +25,9 @@ agent-assisted engineering.
 
 I'm also building [Svortie](https://svortie.com), a platform for
 running AI agents with scheduled workflows, MCP servers, and sandboxed
-environments. My public tooling includes
-[my-pi](https://github.com/spences10/my-pi) and MCP tools for search,
-SQLite, documentation, recall, and safer development workflows. For
-specialised Svelte consulting, visit
+environments. My public tooling includes [my-pi](https://my-pi.dev)
+and MCP tools for search, SQLite, documentation, recall, and safer
+development workflows. For specialised Svelte consulting, visit
 [svelteconsulting.dev](https://svelteconsulting.dev).
 
 Recently I architected a live reinsurance underwriting platform that
