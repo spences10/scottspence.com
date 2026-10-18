@@ -14,10 +14,14 @@ export function start_worker() {
 	);
 
 	const scheduler = start_scheduler((name, run_id) =>
-		run_task(name, globalThis.fetch, undefined, {
-			trigger: 'scheduled',
-			run_id,
-		}),
+		run_task(
+			name,
+			globalThis.fetch,
+			name === 'standard_site'
+				? { mode: 'publish', confirm: true }
+				: undefined,
+			{ trigger: 'scheduled', run_id },
+		),
 	);
 	let stopping = false;
 

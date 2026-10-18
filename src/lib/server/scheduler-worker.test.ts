@@ -10,6 +10,7 @@ vi.mock('../../routes/api/ingest/tasks', () => ({
 vi.mock('./scheduler', () => ({ start_scheduler: vi.fn() }));
 vi.mock('./task-logs', () => ({ close_task_logs: vi.fn() }));
 
+import { run_task } from '../../routes/api/ingest/tasks';
 import { start_scheduler } from './scheduler';
 import { start_worker } from './scheduler-worker';
 
@@ -29,5 +30,26 @@ it.each([undefined, 'development'])(
 
 		expect(() => start_worker()).not.toThrow();
 		expect(start_scheduler).toHaveBeenCalledOnce();
+	},
+);
+
+it.each(['standard_site', 'update_posts'] as const)(
+	'runs scheduled %s with the correct publishing settings and run history',
+	async (name) => {
+		vi.spyOn(process, 'once').mockImplementation(() => process);
+		start_worker();
+		const [run_scheduled_task] =
+			vi.mocked(start_scheduler).mock.calls[0];
+
+		await run_scheduled_task(name, 'scheduled-run');
+
+		expect(run_task).toHaveBeenCalledExactlyOnceWith(
+			name,
+			globalThis.fetch,
+			name === 'standard_site'
+				? { mode: 'publish', confirm: true }
+				: undefined,
+			{ trigger: 'scheduled', run_id: 'scheduled-run' },
+		);
 	},
 );

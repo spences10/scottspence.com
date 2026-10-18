@@ -5,10 +5,11 @@ export interface TaskSchedule {
 	cron: string;
 }
 
-// Production schedules from ping-the-thing. All times are UTC.
-// Register post updates before the weekly embedding/related-post jobs.
+// All times are UTC. Register post updates before publishing and
+// the weekly embedding/related-post jobs.
 export const task_schedules: TaskSchedule[] = [
 	{ name: 'update_posts', cron: '0 * * * *' },
+	{ name: 'standard_site', cron: '0 * * * *' },
 	{ name: 'update_embeddings', cron: '0 0 * * 0' },
 	{ name: 'update_related_posts', cron: '0 0 * * 0' },
 	{ name: 'backup_database', cron: '0 */6 * * *' },

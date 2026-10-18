@@ -170,14 +170,34 @@ describe('Scheduled tasks', () => {
 		expect(cron.getTasks().size).toBe(0);
 	});
 
+	it('runs post updates and Standard.site publishing every hour', async () => {
+		vi.setSystemTime(new Date('2026-10-18T00:59:59Z'));
+		const run_task = vi.fn().mockResolvedValue(undefined);
+		scheduler = start_scheduler(run_task);
+
+		expect(run_task).not.toHaveBeenCalled();
+		await vi.advanceTimersByTimeAsync(1_010);
+		expect(run_task.mock.calls.map(([name]) => name)).toEqual([
+			'update_posts',
+			'standard_site',
+		]);
+		await vi.advanceTimersByTimeAsync(3_600_000);
+		expect(
+			run_task.mock.calls.filter(
+				([name]) => name === 'standard_site',
+			),
+		).toHaveLength(2);
+	});
+
 	it('uses the production schedules and daily log purge in UTC', () => {
 		scheduler = start_scheduler(vi.fn());
 		const jobs = [...cron.getTasks().values()];
-		expect(jobs).toHaveLength(10);
+		expect(jobs).toHaveLength(11);
 		expect(
 			task_schedules.map(({ name, cron }) => [name, cron]),
 		).toEqual([
 			['update_posts', '0 * * * *'],
+			['standard_site', '0 * * * *'],
 			['update_embeddings', '0 0 * * 0'],
 			['update_related_posts', '0 0 * * 0'],
 			['backup_database', '0 */6 * * *'],
