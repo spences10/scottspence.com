@@ -25,6 +25,8 @@ Build evidence first, choose a high-intent slug/title, draft into
    comes from session history.
 5. Keep the prose evidence-led, personal, useful, and free of generic
    AI-blog framing.
+6. Run `scott-post-review` on the draft and report its findings. Leave
+   `is_private: true` until Scott has approved the post.
 
 ## Voice rules
 
