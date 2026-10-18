@@ -1,4 +1,5 @@
 import { get_posts } from '#lib/posts.js';
+import { log_task_event } from '#lib/server/task-log-context.js';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {
@@ -10,6 +11,9 @@ export const update_embeddings = async () => {
 	try {
 		const { posts } = await get_posts();
 		const total_posts = posts.length;
+		log_task_event('info', 'Starting embedding updates', {
+			total: total_posts,
+		});
 		console.log(
 			`Starting to build embeddings for ${total_posts} posts`,
 		);
@@ -42,6 +46,12 @@ export const update_embeddings = async () => {
 							await store_post_embedding(post.slug, file_contents);
 							new_embeddings++;
 						} catch (file_error) {
+							log_task_event(
+								'warn',
+								file_error instanceof Error
+									? file_error.message
+									: 'A post embedding could not be updated',
+							);
 							console.warn(
 								`Skipping ${post.slug}: markdown file not found`,
 								file_error,
@@ -52,6 +62,12 @@ export const update_embeddings = async () => {
 						existing_embeddings++;
 					}
 				} catch (error) {
+					log_task_event(
+						'warn',
+						error instanceof Error
+							? error.message
+							: 'A post embedding could not be updated',
+					);
 					console.error(
 						`Error processing embedding for post ${post.slug}:`,
 						error,

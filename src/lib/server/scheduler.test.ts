@@ -7,6 +7,11 @@ import {
 	it,
 	vi,
 } from 'vitest';
+vi.mock('./task-logs', () => ({
+	queue_task_run: vi.fn(),
+	skip_task_run: vi.fn(),
+}));
+
 import { start_scheduler } from './scheduler';
 import { task_schedules } from './task-schedules';
 
@@ -48,7 +53,10 @@ describe('Scheduled tasks', () => {
 
 		expect(run_task).not.toHaveBeenCalled();
 		await vi.advanceTimersByTimeAsync(60_010);
-		expect(run_task).toHaveBeenCalledExactlyOnceWith('update_posts');
+		expect(run_task).toHaveBeenCalledExactlyOnceWith(
+			'update_posts',
+			undefined,
+		);
 		expect(fetch).not.toHaveBeenCalled();
 	});
 
@@ -81,7 +89,7 @@ describe('Scheduled tasks', () => {
 		expect(run_task).toHaveBeenCalledTimes(1);
 		work.finish();
 		await vi.advanceTimersByTimeAsync(1);
-		expect(run_task.mock.calls).toEqual([
+		expect(run_task.mock.calls.map(([name]) => [name])).toEqual([
 			['update_posts'],
 			['backup_database'],
 		]);
@@ -123,6 +131,35 @@ describe('Scheduled tasks', () => {
 		expect(cron.getTasks().size).toBe(0);
 	});
 
+	it('records queued and overlap-skipped runs with their planned times', async () => {
+		const work = deferred();
+		const run_task = vi.fn().mockReturnValue(work.promise);
+		const history = {
+			queued: vi.fn().mockReturnValue('queued-run'),
+			skipped: vi.fn(),
+		};
+		scheduler = start_scheduler(
+			run_task,
+			[{ name: 'update_posts', cron: '* * * * *' }],
+			history,
+		);
+		await vi.advanceTimersByTimeAsync(120_010);
+		expect(history.queued).toHaveBeenCalledExactlyOnceWith(
+			'update_posts',
+			new Date('2026-10-18T00:01:00Z'),
+		);
+		expect(run_task).toHaveBeenCalledExactlyOnceWith(
+			'update_posts',
+			'queued-run',
+		);
+		expect(history.skipped).toHaveBeenCalledExactlyOnceWith(
+			'update_posts',
+			new Date('2026-10-18T00:02:00Z'),
+			'Previous run is queued or running',
+		);
+		work.finish();
+	});
+
 	it('rejects invalid cron expressions before registering any jobs', () => {
 		expect(() =>
 			start_scheduler(vi.fn(), [
@@ -133,10 +170,10 @@ describe('Scheduled tasks', () => {
 		expect(cron.getTasks().size).toBe(0);
 	});
 
-	it('uses the nine production schedules in UTC', () => {
+	it('uses the production schedules and daily log purge in UTC', () => {
 		scheduler = start_scheduler(vi.fn());
 		const jobs = [...cron.getTasks().values()];
-		expect(jobs).toHaveLength(9);
+		expect(jobs).toHaveLength(10);
 		expect(
 			task_schedules.map(({ name, cron }) => [name, cron]),
 		).toEqual([
@@ -149,6 +186,7 @@ describe('Scheduled tasks', () => {
 			['daily_github_activity', '0 2 * * *'],
 			['rollup_analytics', '5 3 * * *'],
 			['cleanup_analytics', '15 3 * * *'],
+			['cleanup_task_logs', '30 3 * * *'],
 		]);
 		expect(
 			jobs

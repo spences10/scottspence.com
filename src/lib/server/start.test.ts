@@ -1,9 +1,16 @@
 import { spawn, type ChildProcess } from 'node:child_process';
 import { once } from 'node:events';
-import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
+import {
+	copyFile,
+	mkdtemp,
+	mkdir,
+	rm,
+	writeFile,
+} from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { DatabaseSync } from 'node:sqlite';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 const start_script = fileURLToPath(
@@ -15,9 +22,21 @@ async function start(
 	scheduler_enabled: boolean,
 	worker_fails = false,
 	node_env = 'production',
+	log_crash = false,
 ) {
 	const directory = await mkdtemp(join(tmpdir(), 'site-start-'));
 	await mkdir(join(directory, 'build'));
+	if (log_crash) {
+		await mkdir(join(directory, 'src/lib/sqlite'), {
+			recursive: true,
+		});
+		await copyFile(
+			fileURLToPath(
+				new URL('../sqlite/task-logs.sql', import.meta.url),
+			),
+			join(directory, 'src/lib/sqlite/task-logs.sql'),
+		);
+	}
 	for (const name of ['index', 'scheduler']) {
 		await writeFile(
 			join(directory, 'build', `${name}.js`),
@@ -27,7 +46,19 @@ async function start(
 				clearInterval(timer);
 			});
 			console.log('${name} ready (' + process.pid + ')');
-			${name === 'scheduler' && worker_fails ? 'process.exit(2);' : ''}`,
+			${
+				name === 'scheduler' && log_crash
+					? `(async () => {
+				const { TaskLogStore } = await import(${JSON.stringify(new URL('../sqlite/task-logs.ts', import.meta.url).href)});
+				const store = new TaskLogStore(${JSON.stringify(join(directory, 'task-logs.db'))}, 'fixture');
+				const id = store.queue('unfinished', 'scheduled');
+				store.start(id);
+				process.send({ type: 'task-logs:ready', filename: store.filename, owner_id: store.owner_id }, () => process.exit(2));
+			})();`
+					: name === 'scheduler' && worker_fails
+						? 'process.exit(2);'
+						: ''
+			}`,
 		);
 	}
 
@@ -47,6 +78,7 @@ async function start(
 	const exited = once(child, 'close');
 	return {
 		child,
+		directory,
 		exited,
 		output: () => output,
 		pids: () =>
@@ -97,6 +129,29 @@ describe('Production service startup', () => {
 		expect(await service.exited).toEqual([0, null]);
 		expect(service.output()).toContain('index stopped');
 		expect(service.output()).toContain('scheduler stopped');
+	});
+
+	it('marks unfinished task history after the owning worker exits', async () => {
+		const service = await start(true, false, 'production', true);
+		expect(await service.exited).toEqual([2, null]);
+		const db = new DatabaseSync(
+			join(service.directory, 'task-logs.db'),
+			{ readOnly: true },
+		);
+		try {
+			expect(
+				db.prepare('SELECT status FROM task_runs').get(),
+			).toEqual({ status: 'interrupted' });
+			expect(
+				db
+					.prepare(
+						"SELECT count(*) AS count FROM task_events WHERE level = 'error'",
+					)
+					.get(),
+			).toEqual({ count: 1 });
+		} finally {
+			db.close();
+		}
 	});
 
 	it('stops the web server and exits with failure if the worker dies', async () => {

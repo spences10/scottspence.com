@@ -4,6 +4,7 @@ import {
 	stop_flush_timer,
 } from '#lib/analytics/queue.js';
 import { set_cache_version_reader } from '#lib/cache/server-cache.js';
+import { close_task_logs } from '#lib/server/task-logs.js';
 import { building } from '$app/env';
 import { redirect } from '@sveltejs/kit';
 
@@ -55,6 +56,7 @@ if (!building) {
 	process.once('sveltekit:shutdown', () => {
 		stop_flush_timer();
 		sqlite_client.close();
+		close_task_logs();
 	});
 }
 

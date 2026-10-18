@@ -1,3 +1,8 @@
+import {
+	get_task_log_store,
+	run_logged_task,
+	type TaskRunOptions,
+} from '#lib/server/task-logs.js';
 import { backfill_github_activity } from './backfill-github-activity';
 import { backup_database } from './backup-database';
 import { cleanup_analytics } from './cleanup-analytics';
@@ -45,6 +50,7 @@ export const tasks = {
 	send_newsletter_reminder: () => send_newsletter_reminder(),
 	rollup_analytics: () => rollup_analytics(),
 	cleanup_analytics: () => cleanup_analytics(),
+	cleanup_task_logs: async () => get_task_log_store().purge(),
 	standard_site: (fetch, data) =>
 		standard_site_sync(fetch, validate_standard_site_sync(data)),
 	sync_blocked_domains: (_fetch, data) =>
@@ -58,7 +64,8 @@ export const run_task = (
 	name: TaskKey,
 	fetch: typeof globalThis.fetch = globalThis.fetch,
 	data?: unknown,
+	options: TaskRunOptions = {},
 ): Promise<unknown> => {
 	const task: TaskFunction = tasks[name];
-	return task(fetch, data);
+	return run_logged_task(name, () => task(fetch, data), options);
 };

@@ -1,4 +1,5 @@
 import { DATABASE_PATH } from '$app/env/private';
+import { log_task_event } from '#lib/server/task-log-context.js';
 import { backup, DatabaseSync } from 'node:sqlite';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -47,6 +48,10 @@ export const backup_database = async () => {
 		}
 
 		const backup_size = await fs.stat(backup_path);
+		log_task_event('info', 'Database backup created', {
+			bytes: backup_size.size,
+			old_backups_deleted: files_to_delete.length,
+		});
 
 		return {
 			message: 'Database exported successfully',

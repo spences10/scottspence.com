@@ -2,6 +2,7 @@ import { set_cache_version_reader } from '#lib/cache/server-cache.js';
 import { sqlite_client } from '#lib/sqlite/client.js';
 import { run_task } from '../../routes/api/ingest/tasks';
 import { start_scheduler } from './scheduler';
+import { close_task_logs } from './task-logs';
 
 export function start_worker() {
 	if (process.env.NODE_ENV !== 'production') {
@@ -16,7 +17,12 @@ export function start_worker() {
 				?.data_version,
 	);
 
-	const scheduler = start_scheduler(run_task);
+	const scheduler = start_scheduler((name, run_id) =>
+		run_task(name, globalThis.fetch, undefined, {
+			trigger: 'scheduled',
+			run_id,
+		}),
+	);
 	let stopping = false;
 
 	const shutdown = async () => {
@@ -30,6 +36,7 @@ export function start_worker() {
 			process.exitCode = 1;
 		} finally {
 			sqlite_client.close();
+			close_task_logs();
 		}
 	};
 

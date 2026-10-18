@@ -3,6 +3,13 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 vi.mock('$app/env/private', () => ({
 	INGEST_TOKEN: 'test-ingest-token',
 }));
+vi.mock('#lib/server/task-logs.js', () => ({
+	run_logged_task: (
+		_name: string,
+		callback: () => Promise<unknown>,
+	) => callback(),
+	get_task_log_store: vi.fn(),
+}));
 vi.mock('./update-posts', () => ({ update_posts: vi.fn() }));
 vi.mock('./index-now', () => ({ index_now: vi.fn() }));
 vi.mock('./restore-database', () => ({ restore_database: vi.fn() }));

@@ -1,4 +1,5 @@
 import { clear_cache } from '#lib/cache/server-cache.js';
+import { log_task_event } from '#lib/server/task-log-context.js';
 import { sqlite_client } from '#lib/sqlite/client.js';
 
 // Renamed or deleted posts keep their old row otherwise, and stay
@@ -100,6 +101,9 @@ export const update_posts = async () => {
 		]);
 		// Post lists, tags and single posts are cached for 24 hours
 		clear_cache();
+		log_task_event('info', 'Post metadata updated', {
+			processed: posts.length,
+		});
 		return {
 			message: `Posts updated successfully: ${posts.length} posts processed`,
 		};

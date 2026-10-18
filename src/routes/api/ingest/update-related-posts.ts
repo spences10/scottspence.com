@@ -1,4 +1,5 @@
 import { sqlite_client } from '#lib/sqlite/client.js';
+import { log_task_event } from '#lib/server/task-log-context.js';
 import { get_related_posts } from './embeddings';
 
 export async function update_related_posts_table() {
@@ -21,6 +22,10 @@ export async function update_related_posts_table() {
 		// Process posts in batches
 		for (let i = 0; i < all_post_ids.length; i += BATCH_SIZE) {
 			const batch = all_post_ids.slice(i, i + BATCH_SIZE);
+			log_task_event('info', 'Processing related-post batch', {
+				batch: Math.floor(i / BATCH_SIZE) + 1,
+				total: all_post_ids.length,
+			});
 			console.log(
 				`Processing batch ${Math.floor(i / BATCH_SIZE) + 1}/${Math.ceil(all_post_ids.length / BATCH_SIZE)} (${batch.length} posts)`,
 			);
@@ -44,6 +49,12 @@ export async function update_related_posts_table() {
 							args: [post_id, related_posts_json],
 						});
 					} catch (error) {
+						log_task_event(
+							'warn',
+							error instanceof Error
+								? error.message
+								: 'Related posts could not be updated',
+						);
 						console.error(`Error processing post ${post_id}:`, error);
 					}
 				}
@@ -57,6 +68,12 @@ export async function update_related_posts_table() {
 					`Completed batch ${Math.floor(i / BATCH_SIZE) + 1}, updated ${batch_updates.length} posts`,
 				);
 			} catch (error) {
+				log_task_event(
+					'warn',
+					error instanceof Error
+						? error.message
+						: 'A related-post batch could not be updated',
+				);
 				console.error(
 					`Error processing batch starting at ${i}:`,
 					error,
