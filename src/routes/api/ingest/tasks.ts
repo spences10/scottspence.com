@@ -3,6 +3,10 @@ import {
 	run_logged_task,
 	type TaskRunOptions,
 } from '#lib/server/task-logs.js';
+import {
+	query_task_logs,
+	validate_query_task_logs,
+} from './query-task-logs';
 import { backfill_github_activity } from './backfill-github-activity';
 import { backup_database } from './backup-database';
 import { cleanup_analytics } from './cleanup-analytics';
@@ -51,6 +55,8 @@ export const tasks = {
 	rollup_analytics: () => rollup_analytics(),
 	cleanup_analytics: () => cleanup_analytics(),
 	cleanup_task_logs: async () => get_task_log_store().purge(),
+	query_task_logs: (_fetch, data) =>
+		query_task_logs(validate_query_task_logs(data)),
 	standard_site: (fetch, data) =>
 		standard_site_sync(fetch, validate_standard_site_sync(data)),
 	sync_blocked_domains: (_fetch, data) =>

@@ -10,6 +10,10 @@ vi.mock('#lib/server/task-logs.js', () => ({
 	) => callback(),
 	get_task_log_store: vi.fn(),
 }));
+vi.mock('./query-task-logs', async (original) => ({
+	...(await original<typeof import('./query-task-logs')>()),
+	query_task_logs: vi.fn(),
+}));
 vi.mock('./update-posts', () => ({ update_posts: vi.fn() }));
 vi.mock('./index-now', () => ({ index_now: vi.fn() }));
 vi.mock('./restore-database', () => ({ restore_database: vi.fn() }));
@@ -28,6 +32,10 @@ import { standard_site_sync } from './standard-site';
 import { update_posts } from './update-posts';
 import { run_task } from './tasks';
 import { restore_database } from './restore-database';
+import {
+	query_task_logs,
+	TaskLogQueryError,
+} from './query-task-logs';
 
 const fetch = vi.fn<typeof globalThis.fetch>();
 const request = (
@@ -162,6 +170,45 @@ describe('Manual ingest endpoint', () => {
 		const response = await request('restore_database');
 		expect(response.status).toBe(200);
 		expect(restore_database).toHaveBeenCalledExactlyOnceWith();
+	});
+
+	it('keeps log queries authenticated and validates their parameters', async () => {
+		const denied = await request(
+			'query_task_logs',
+			{ query: 'SELECT 1' },
+			'wrong',
+		);
+		expect(denied.status).toBe(401);
+		expect(query_task_logs).not.toHaveBeenCalled();
+		const invalid = await request('query_task_logs', { query: '' });
+		expect(invalid.status).toBe(400);
+		vi.mocked(query_task_logs).mockResolvedValue({
+			rows: [{ count: 1 }],
+			count: 1,
+			truncated: false,
+			max_rows: 200,
+		});
+		const response = await request('query_task_logs', {
+			query: 'SELECT count(*) FROM task_runs',
+		});
+		expect(response.status).toBe(200);
+		expect(query_task_logs).toHaveBeenCalledExactlyOnceWith({
+			query: 'SELECT count(*) FROM task_runs',
+			params: [],
+		});
+	});
+
+	it('returns a client error for a rejected log query', async () => {
+		vi.mocked(query_task_logs).mockRejectedValue(
+			new TaskLogQueryError('Read-only queries only'),
+		);
+		const response = await request('query_task_logs', {
+			query: 'DELETE FROM task_runs',
+		});
+		expect(response.status).toBe(400);
+		expect(await response.json()).toEqual({
+			message: 'Read-only queries only',
+		});
 	});
 
 	it('keeps task failures as HTTP 500', async () => {

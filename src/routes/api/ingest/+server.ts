@@ -1,6 +1,7 @@
 import { INGEST_TOKEN } from '$app/env/private';
 import * as v from 'valibot';
 import { run_task, tasks, type TaskKey } from './tasks';
+import { TaskLogQueryError } from './query-task-logs';
 
 /**
  * === GETTING PRODUCTION DATA LOCALLY ===
@@ -135,6 +136,12 @@ export const POST = async ({
 			console.log(`Task ${task_key} completed with result:`, result);
 			return Response.json(result);
 		} catch (task_error) {
+			if (task_error instanceof TaskLogQueryError) {
+				return Response.json(
+					{ message: task_error.message },
+					{ status: task_error.status },
+				);
+			}
 			// Validation errors are client errors (400)
 			if (v.isValiError(task_error)) {
 				return Response.json(
