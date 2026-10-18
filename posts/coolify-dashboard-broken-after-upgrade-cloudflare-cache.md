@@ -19,7 +19,7 @@ After the upgrade finished, the dashboard loaded but nothing worked.
 Clicking around did nothing, and there was a "Cannot connect to
 real-time service" banner at the bottom of the page.
 
-[![coolify dashboard with cannot connect to real-time service error](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/v1792340221/scottspence.com/Screenshot_20261018_171251.png)](https://res.cloudinary.com/defkmsrpw/image/upload/v1792340221/scottspence.com/Screenshot_20261018_171251.png)
+[![coolify dashboard with cannot connect to real-time service error](https://res.cloudinary.com/defkmsrpw/image/upload/q_auto,f_auto/scottspence.com/coolify-cannot-connect-to-real-time-service.png)](https://res.cloudinary.com/defkmsrpw/image/upload/scottspence.com/coolify-cannot-connect-to-real-time-service.png)
 
 The server itself was fine. All the containers were up and healthy, my
 sites were responding, and the browser console showed JavaScript
