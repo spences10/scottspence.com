@@ -13,7 +13,8 @@
 		"#lib/*": "./src/lib/*"
 	},
 	"scripts": {
-		"start": "node ./build/index.js",
+		"start": "node ./src/lib/server/start.ts",
+		"start:scheduler": "node ./build/scheduler.js",
 		"dev": "vp dev",
 		"build": "vp build",
 		"preview": "vp preview",
@@ -36,6 +37,7 @@
 		"@octokit/rest": "^22.0.1",
 		"@types/d3-shape": "^3.2.0",
 		"d3-shape": "^3.2.0",
+		"node-cron": "4.6.0",
 		"sqlite-vec": "0.1.9"
 	},
 	"devDependencies": {

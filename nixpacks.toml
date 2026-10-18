@@ -11,4 +11,4 @@ cmds = [
 cmds = ["$(npm prefix -g)/bin/pnpm exec vp build"]
 
 [start]
-cmd = "node ./build/index.js"
+cmd = "node ./src/lib/server/start.ts"

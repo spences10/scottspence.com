@@ -2,7 +2,7 @@ import { RESEND_API_KEY, RESEND_FROM_EMAIL } from '$app/env/private';
 
 /**
  * Send newsletter reminder email
- * Triggered by cron from ping-the-thing
+ * Triggered by the scheduler worker
  */
 export const send_newsletter_reminder = async () => {
 	try {
@@ -52,7 +52,7 @@ export const send_newsletter_reminder = async () => {
 						</ul>
 
 						<p style="color: #666; font-size: 0.9em; margin-top: 20px;">
-							Automated reminder from ping-the-thing
+							Automated reminder from scottspence.com
 						</p>
 					`,
 				}),

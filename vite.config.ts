@@ -3,15 +3,48 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import tailwindcss from '@tailwindcss/vite';
 import { mdsvex } from 'mdsvex';
+import { writeFileSync } from 'node:fs';
+import { basename } from 'node:path';
 import { defineConfig } from 'vite-plus';
 import { playwright } from 'vite-plus/test/browser-playwright';
 import mdsvexConfig from './mdsvex.config.js';
 
+const node_adapter = adapter();
+
 export default defineConfig({
+	environments: {
+		ssr: {
+			build: {
+				rolldownOptions: {
+					input: {
+						'scheduler-worker': 'src/lib/server/scheduler-worker.ts',
+					},
+				},
+			},
+		},
+	},
 	plugins: [
 		tailwindcss(),
 		sveltekit({
-			adapter: adapter(),
+			adapter: {
+				...node_adapter,
+				async adapt(builder) {
+					await node_adapter.adapt(builder);
+					const initializer =
+						builder.createInstrumentationInitializer({
+							outputDirectory: 'build/server',
+							serverDirectory: 'build/server',
+						});
+					// Initialise dynamic env before importing task modules. Do not
+					// initialise the HTTP server or its analytics timer in the worker.
+					writeFileSync(
+						'build/scheduler.js',
+						`import './server/${basename(initializer)}';\n` +
+							`const { start_worker } = await import('./server/scheduler-worker.js');\n` +
+							`start_worker();\n`,
+					);
+				},
+			},
 			compilerOptions: {
 				experimental: {
 					async: true,
