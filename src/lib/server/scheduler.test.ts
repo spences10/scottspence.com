@@ -192,14 +192,12 @@ describe('Scheduled tasks', () => {
 	it('uses the production schedules and daily log purge in UTC', () => {
 		scheduler = start_scheduler(vi.fn());
 		const jobs = [...cron.getTasks().values()];
-		expect(jobs).toHaveLength(11);
+		expect(jobs).toHaveLength(9);
 		expect(
 			task_schedules.map(({ name, cron }) => [name, cron]),
 		).toEqual([
 			['update_posts', '0 * * * *'],
 			['standard_site', '0 * * * *'],
-			['update_embeddings', '0 0 * * 0'],
-			['update_related_posts', '0 0 * * 0'],
 			['backup_database', '0 */6 * * *'],
 			['index_now', '0 0 * * *'],
 			['send_newsletter_reminder', '0 9 28 * *'],
