@@ -1,29 +1,6 @@
 import { INGEST_TOKEN } from '$app/env/private';
 import * as v from 'valibot';
-import { backfill_github_activity } from './backfill-github-activity';
-import { backup_database } from './backup-database';
-import { cleanup_analytics } from './cleanup-analytics';
-import { daily_github_activity } from './daily-github-activity';
-import { export_training_data } from './export-training-data';
-import { fetch_github_activity } from './fetch-github-activity';
-import { index_now } from './index-now';
-import { newsletter_send } from './newsletter-send';
-import { pull_database } from './pull-database';
-import { restore_database } from './restore-database';
-import { rollup_analytics } from './rollup-analytics';
-import { run_query, validate_run_query } from './run-query';
-import { send_newsletter_reminder } from './send-newsletter-reminder';
-import {
-	standard_site_sync,
-	validate_standard_site_sync,
-} from './standard-site';
-import {
-	sync_blocked_domains,
-	validate_sync_blocked_domains,
-} from './sync-blocked-domains';
-import { update_embeddings } from './update-embeddings';
-import { update_posts } from './update-posts';
-import { update_related_posts_table } from './update-related-posts';
+import { run_task, tasks, type TaskKey } from './tasks';
 
 /**
  * === GETTING PRODUCTION DATA LOCALLY ===
@@ -112,134 +89,10 @@ curl -X POST http://localhost:5173/api/ingest \
   -d '{"task": "standard_site", "data": {"mode": "publish", "confirm": true}}'
  */
 
-// Define generic task function
-type TaskFunction<TArgs = any, TResult = any> = (
-	...args: TArgs[]
-) => Promise<TResult>;
-
-// Define the type for the keys in tasks object
-type TaskKey =
-	| 'update_posts'
-	| 'update_embeddings'
-	| 'update_related_posts'
-	| 'index_now'
-	| 'export_training_data'
-	| 'backup_database'
-	| 'pull_database'
-	| 'restore_database'
-	| 'newsletter_send'
-	| 'fetch_github_activity'
-	| 'backfill_github_activity'
-	| 'daily_github_activity'
-	| 'send_newsletter_reminder'
-	| 'rollup_analytics'
-	| 'cleanup_analytics'
-	| 'standard_site'
-	| 'sync_blocked_domains'
-	| 'run_query';
-
-// Task function type for data-expecting tasks
-type DataTaskFunction = (data: unknown) => Promise<unknown>;
-
-// Define the type for tasks object
-interface TaskConfig {
-	function: TaskFunction | DataTaskFunction;
-	expects_fetch: boolean;
-	expects_data?: boolean;
-	validate_data?: (data: unknown) => unknown;
-}
-
-interface TaskType {
-	[key: string]: TaskConfig;
-}
-
-// Define the type for the expected structure of request body
 interface RequestBody {
 	task: TaskKey;
 	data?: unknown;
 }
-
-// Define a mapping from task names to functions
-const tasks: TaskType = {
-	update_posts: {
-		function: update_posts,
-		expects_fetch: false,
-	},
-	index_now: {
-		function: index_now,
-		expects_fetch: true,
-	},
-	update_embeddings: {
-		function: update_embeddings,
-		expects_fetch: false,
-	},
-	update_related_posts: {
-		function: update_related_posts_table,
-		expects_fetch: false,
-	},
-	export_training_data: {
-		function: export_training_data,
-		expects_fetch: false,
-	},
-	backup_database: {
-		function: backup_database,
-		expects_fetch: false,
-	},
-	pull_database: {
-		function: pull_database,
-		expects_fetch: false,
-	},
-	restore_database: {
-		function: restore_database,
-		expects_fetch: false,
-	},
-	newsletter_send: {
-		function: newsletter_send,
-		expects_fetch: false,
-	},
-	fetch_github_activity: {
-		function: fetch_github_activity,
-		expects_fetch: false,
-	},
-	backfill_github_activity: {
-		function: backfill_github_activity,
-		expects_fetch: false,
-	},
-	daily_github_activity: {
-		function: daily_github_activity,
-		expects_fetch: false,
-	},
-	send_newsletter_reminder: {
-		function: send_newsletter_reminder,
-		expects_fetch: false,
-	},
-	rollup_analytics: {
-		function: rollup_analytics,
-		expects_fetch: false,
-	},
-	cleanup_analytics: {
-		function: cleanup_analytics,
-		expects_fetch: false,
-	},
-	standard_site: {
-		function: standard_site_sync,
-		expects_fetch: true,
-		expects_data: true,
-		validate_data: validate_standard_site_sync,
-	},
-	sync_blocked_domains: {
-		function: sync_blocked_domains,
-		expects_fetch: false,
-		expects_data: true,
-		validate_data: validate_sync_blocked_domains,
-	},
-	run_query: {
-		function: run_query,
-		expects_fetch: false,
-		expects_data: true,
-		validate_data: validate_run_query,
-	},
-};
 
 export const POST = async ({
 	request,
@@ -264,8 +117,7 @@ export const POST = async ({
 		}
 
 		// Get the task config (after auth check)
-		const task = tasks[task_key];
-		if (!task || typeof task.function !== 'function') {
+		if (!Object.hasOwn(tasks, task_key)) {
 			return Response.json(
 				{
 					message:
@@ -278,29 +130,7 @@ export const POST = async ({
 		console.log(`Executing task: ${task_key}`);
 
 		try {
-			let result;
-
-			if (
-				task.expects_fetch &&
-				task.expects_data &&
-				task.validate_data
-			) {
-				const validated_data = task.validate_data(body.data);
-				result = await (task.function as TaskFunction)(
-					fetch,
-					validated_data,
-				);
-			} else if (task.expects_data && task.validate_data) {
-				// Validate and pass data to task
-				const validated_data = task.validate_data(body.data);
-				result = await (task.function as DataTaskFunction)(
-					validated_data,
-				);
-			} else if (task.expects_fetch) {
-				result = await (task.function as TaskFunction)(fetch);
-			} else {
-				result = await (task.function as TaskFunction)();
-			}
+			const result = await run_task(task_key, fetch, body.data);
 
 			console.log(`Task ${task_key} completed with result:`, result);
 			return Response.json(result);
