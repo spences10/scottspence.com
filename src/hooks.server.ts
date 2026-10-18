@@ -1,7 +1,9 @@
 import {
 	queue_page_view,
 	start_flush_timer,
+	stop_flush_timer,
 } from '#lib/analytics/queue.js';
+import { set_cache_version_reader } from '#lib/cache/server-cache.js';
 import { building } from '$app/env';
 import { redirect } from '@sveltejs/kit';
 
@@ -39,8 +41,21 @@ if (!building) {
 		console.warn('[startup] WAL checkpoint failed:', error);
 	}
 
+	// Invalidate process-local caches after scheduled database updates.
+	set_cache_version_reader(
+		() =>
+			sqlite_client.prepare('PRAGMA data_version').get()
+				?.data_version,
+	);
+
 	// Start analytics flush timer (5s interval)
 	start_flush_timer();
+
+	// adapter-node emits this after HTTP requests have drained.
+	process.once('sveltekit:shutdown', () => {
+		stop_flush_timer();
+		sqlite_client.close();
+	});
 }
 
 const sync_on_startup: Handle = async ({ event, resolve }) => {

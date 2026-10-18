@@ -1,5 +1,27 @@
 // Server-side persistent cache using Map()
 const cache = new Map<string, { data: any; timestamp: number }>();
+let read_version: (() => unknown) | undefined;
+let cache_version: unknown;
+let version_checked_at = 0;
+
+// PRAGMA data_version changes when another connection commits, not when
+// this process writes. Check at most once a second, not on every cache hit.
+export function set_cache_version_reader(reader: () => unknown) {
+	read_version = reader;
+	cache_version = reader();
+	version_checked_at = Date.now();
+}
+
+function check_cache_version() {
+	const now = Date.now();
+	if (!read_version || now - version_checked_at < 1000) return;
+	const version = read_version();
+	if (version !== cache_version) {
+		cache.clear();
+		cache_version = version;
+	}
+	version_checked_at = now;
+}
 
 // Global bypass flags - set to false to enable database reads per feature
 export const BYPASS_DB_READS = {
@@ -44,6 +66,7 @@ export function get_from_cache<T>(
 	key: string,
 	max_age: number,
 ): T | null {
+	if (cache.size > 0) check_cache_version();
 	const cached = cache.get(key);
 	if (cached && Date.now() - cached.timestamp < max_age) {
 		return cached.data as T;
