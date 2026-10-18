@@ -3,13 +3,7 @@ import process from 'node:process';
 import { clearTimeout, setTimeout } from 'node:timers';
 import { interrupt_task_log_owner } from '../sqlite/task-logs.ts';
 
-const scheduler_enabled = process.env.SCHEDULER_ENABLED === 'true';
-if (scheduler_enabled && process.env.NODE_ENV !== 'production') {
-	throw new Error('SCHEDULER_ENABLED requires NODE_ENV=production');
-}
-
-const entries = ['./build/index.js'];
-if (scheduler_enabled) entries.push('./build/scheduler.js');
+const entries = ['./build/index.js', './build/scheduler.js'];
 
 const children = new Set<ChildProcess>();
 let stopping = false;

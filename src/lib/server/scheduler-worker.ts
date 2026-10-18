@@ -5,10 +5,6 @@ import { start_scheduler } from './scheduler';
 import { close_task_logs } from './task-logs';
 
 export function start_worker() {
-	if (process.env.NODE_ENV !== 'production') {
-		throw new Error('The scheduler must only run in production');
-	}
-
 	// Each process has its own connection and cache. Notice writes made
 	// by the other process without invalidating on this connection's writes.
 	set_cache_version_reader(

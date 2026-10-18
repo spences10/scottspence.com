@@ -18,12 +18,7 @@ const start_script = fileURLToPath(
 );
 const running: { child: ChildProcess; directory: string }[] = [];
 
-async function start(
-	scheduler_enabled: boolean,
-	worker_fails = false,
-	node_env = 'production',
-	log_crash = false,
-) {
+async function start(worker_fails = false, log_crash = false) {
 	const directory = await mkdtemp(join(tmpdir(), 'site-start-'));
 	await mkdir(join(directory, 'build'));
 	if (log_crash) {
@@ -62,13 +57,12 @@ async function start(
 		);
 	}
 
+	const env = { ...process.env };
+	delete env.NODE_ENV;
+	delete env.SCHEDULER_ENABLED;
 	const child = spawn(process.execPath, [start_script], {
 		cwd: directory,
-		env: {
-			...process.env,
-			NODE_ENV: node_env,
-			SCHEDULER_ENABLED: String(scheduler_enabled),
-		},
+		env,
 		stdio: ['ignore', 'pipe', 'pipe'],
 	});
 	running.push({ child, directory });
@@ -99,28 +93,8 @@ afterEach(async () => {
 });
 
 describe('Production service startup', () => {
-	it('rejects an enabled scheduler outside production', async () => {
-		const service = await start(true, false, 'development');
-		expect(await service.exited).toEqual([1, null]);
-		expect(service.output()).toContain(
-			'SCHEDULER_ENABLED requires NODE_ENV=production',
-		);
-		expect(service.output()).not.toContain('ready');
-	});
-
-	it('starts only the web server until the scheduler is enabled', async () => {
-		const service = await start(false);
-		await vi.waitFor(() =>
-			expect(service.output()).toContain('index ready'),
-		);
-		service.child.kill('SIGTERM');
-		expect(await service.exited).toEqual([0, null]);
-		expect(service.output()).not.toContain('scheduler ready');
-		expect(service.output()).toContain('index stopped');
-	});
-
-	it('starts isolated web and scheduler processes and stops both cleanly', async () => {
-		const service = await start(true);
+	it('starts web and scheduler without environment flags and stops both cleanly', async () => {
+		const service = await start();
 		await vi.waitFor(() => {
 			expect(service.output()).toContain('index ready');
 			expect(service.output()).toContain('scheduler ready');
@@ -132,7 +106,7 @@ describe('Production service startup', () => {
 	});
 
 	it('marks unfinished task history after the owning worker exits', async () => {
-		const service = await start(true, false, 'production', true);
+		const service = await start(false, true);
 		expect(await service.exited).toEqual([2, null]);
 		const db = new DatabaseSync(
 			join(service.directory, 'task-logs.db'),
@@ -155,7 +129,7 @@ describe('Production service startup', () => {
 	});
 
 	it('stops the web server and exits with failure if the worker dies', async () => {
-		const service = await start(true, true);
+		const service = await start(true);
 		expect(await service.exited).toEqual([2, null]);
 		expect(service.output()).toContain('stopping services');
 		expect(service.pids().length).toBeGreaterThan(0);
