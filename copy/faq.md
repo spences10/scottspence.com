@@ -11,7 +11,7 @@
 # Work and recruiter FAQ
 
 <Small>
-  Last updated: <DateUpdated date="2026-10-16" small="true" />
+  Last updated: <DateUpdated date="2026-10-19" small="true" />
 </Small>
 
 Hello friend. This page answers the questions I am usually asked about
@@ -120,8 +120,10 @@ other large organisations.
 For contract work, the [work with me] page has the current rate
 calculator, currency options, and UK IR35 comparison.
 
-For a full-time role, I'm looking for £110,000 to £140,000 base,
-depending on scope, seniority, and office days.
+For a full-time role, I'm looking for £100,000 to £130,000 base for
+fully remote work. Roles with required office days need a higher base
+to cover travel time and costs. The final figure depends on scope,
+seniority, and the total package.
 
 ## What's your availability or notice period?
 
