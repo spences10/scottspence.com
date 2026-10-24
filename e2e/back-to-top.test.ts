@@ -8,6 +8,9 @@ test.describe('BackToTop', () => {
 	test('should scroll to the top when the button is clicked', async ({
 		page,
 	}) => {
+		// Home page load alone takes 2-3s, which crowds the 5s default
+		test.slow();
+
 		// Scroll down to trigger the back-to-top button to appear
 		await page.evaluate(() => {
 			window.scrollTo({ top: 500 });
@@ -22,9 +25,10 @@ test.describe('BackToTop', () => {
 		);
 
 		await page.click('[aria-label="Back to top"]');
-		await page.waitForTimeout(1000);
 
-		const scrollTop = await page.evaluate(() => window.pageYOffset);
-		expect(scrollTop).toBe(0);
+		// Smooth scroll takes a variable time, so poll until it lands
+		await expect
+			.poll(() => page.evaluate(() => window.scrollY))
+			.toBe(0);
 	});
 });
