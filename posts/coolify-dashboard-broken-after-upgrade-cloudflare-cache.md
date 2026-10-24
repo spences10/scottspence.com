@@ -1,5 +1,6 @@
 ---
 date: 2026-10-18
+updated: 2026-10-22
 title:
   'Coolify Dashboard Broken After Upgrade? Purge Two Files in
   Cloudflare'
@@ -85,6 +86,69 @@ If the hashes match, you're good. You can also look at the
 the purge mine showed `HIT` with a `last-modified` from December 2025.
 
 The other option is to wait two hours for the cache to expire.
+
+## Upgrade not happening at all? Check Docker
+
+On a third server the upgrade didn't break the dashboard, it just
+didn't happen. I'd click upgrade, wait, and still be on
+`4.0.0-beta.452`. The nightly auto-update had been failing the same
+way.
+
+The upgrade script writes a log for every attempt in
+`/data/coolify/source/`, so that's the place to look:
+
+```bash
+ls -t /data/coolify/source/upgrade-*.log | head -1 | xargs tail -n 20
+```
+
+Mine stopped at step 2 of 6 with this:
+
+```text
+ERROR: Docker Engine 27.0.3 reports the gateway of the 'coolify'
+network as fd00::1/64, which Coolify cannot read (Docker
+Engine bug, fixed in 28.0.1). Run 'systemctl restart docker' (this
+restarts all containers) or upgrade Docker Engine, then upgrade
+Coolify again.
+```
+
+Docker 27 reports the IPv6 gateway with the `/64` on the end, and the
+upgrade script won't continue. Restarting Docker is the quick fix, but
+upgrading Docker means it won't happen again. Either way every
+container on the server restarts, so your sites go down for a few
+seconds.
+
+The server is Ubuntu 24.04 with Docker from Docker's apt repo, so I
+pinned it to the latest 28.x release:
+
+```bash
+V=5:28.5.2-1~ubuntu.24.04~noble
+apt-get update
+apt-get install --only-upgrade \
+  docker-ce=$V docker-ce-cli=$V docker-ce-rootless-extras=$V
+```
+
+After that, `docker network inspect coolify` showed the gateway as
+`fd00::1` with no `/64`. Then I ran the upgrade again from the server:
+
+```bash
+cd /data/coolify/source
+curl -fsSL https://cdn.coollabs.io/coolify/upgrade.sh -o upgrade.sh
+bash upgrade.sh 4.4.7 latest ghcr.io
+```
+
+It went through this time and Coolify came back on `4.4.7`. And yes,
+the dashboard then needed the same two files purged from Cloudflare.
+
+If you also run `apt upgrade` for security patches, it'll move Docker
+to the next major version (29). If you'd rather stay on 28, hold the
+packages:
+
+```bash
+apt-mark hold docker-ce docker-ce-cli docker-ce-rootless-extras
+```
+
+A hold also blocks Docker security fixes, so `apt-mark unhold` them
+when you're ready to move on.
 
 ## Stopping it happening again
 
