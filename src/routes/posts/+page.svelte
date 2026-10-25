@@ -7,7 +7,7 @@
 	import { Head } from 'svead';
 	import type { PageData } from './$types';
 
-	const { data } = $props<{ data: PageData }>();
+	const { data }: { data: PageData } = $props();
 	const posts = $derived(data.posts);
 
 	let public_posts = $derived(

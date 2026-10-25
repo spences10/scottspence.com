@@ -1,10 +1,13 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	let { reply = false, children } = $props<{
+	let {
+		reply = false,
+		children,
+	}: {
 		reply: boolean;
 		children: Snippet;
-	}>();
+	} = $props();
 </script>
 
 <div>
