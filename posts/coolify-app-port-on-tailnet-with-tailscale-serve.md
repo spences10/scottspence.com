@@ -2,7 +2,7 @@
 date: 2026-10-27
 title: 'Put a Coolify App Port on Your Tailnet with Tailscale Serve'
 tags: ['notes', 'guide', 'coolify', 'tailscale']
-is_private: true
+is_private: false
 ---
 
 This site has an `/api/ingest` endpoint. It's how I run tasks on the
