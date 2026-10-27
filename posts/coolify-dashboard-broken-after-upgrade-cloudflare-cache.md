@@ -4,7 +4,7 @@ updated: 2026-10-22
 title:
   'Coolify Dashboard Broken After Upgrade? Purge Two Files in
   Cloudflare'
-tags: ['notes', 'guide', 'cloudflare']
+tags: ['notes', 'guide', 'cloudflare', 'coolify']
 is_private: false
 ---
 

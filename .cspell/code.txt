@@ -96,6 +96,7 @@ srcset
 stopwords
 synthwave
 tabindex
+tailnet
 testid
 themeprovider
 timezone
