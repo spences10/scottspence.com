@@ -8,7 +8,7 @@ import path from 'node:path';
 //
 // Usage:
 // curl -H "Authorization: Bearer your-secret-token" \
-//      https://yoursite.com/api/ingest/download \
+//      http://coolify:3101/api/ingest/download \
 //      -o latest-backup.db
 //
 // Or use with pull_database task:
@@ -17,6 +17,11 @@ import path from 'node:path';
 //      -d '{"task": "pull_database", "token": "your-secret-token"}'
 
 export const GET = async ({ request }: { request: Request }) => {
+	// Public requests carry x-forwarded-for; tailnet requests don't.
+	if (request.headers.has('x-forwarded-for')) {
+		throw error(404, 'Not found');
+	}
+
 	try {
 		// Check authorization
 		const auth_header = request.headers.get('authorization');

@@ -28,14 +28,14 @@ vi.mock('./standard-site', async (import_original) => ({
 import { sqlite_client } from '#lib/sqlite/client.js';
 import { POST } from './+server';
 import { index_now } from './index-now';
-import { standard_site_sync } from './standard-site';
-import { update_posts } from './update-posts';
-import { run_task } from './tasks';
-import { restore_database } from './restore-database';
 import {
 	query_task_logs,
 	TaskLogQueryError,
 } from './query-task-logs';
+import { restore_database } from './restore-database';
+import { standard_site_sync } from './standard-site';
+import { run_task } from './tasks';
+import { update_posts } from './update-posts';
 
 const fetch = vi.fn<typeof globalThis.fetch>();
 const request = (
@@ -66,6 +66,23 @@ describe('Manual ingest endpoint', () => {
 		expect(response.status).toBe(200);
 		expect(await response.json()).toEqual({ message: 'Updated' });
 		expect(update_posts).toHaveBeenCalledExactlyOnceWith();
+	});
+
+	it('hides the route from requests through the public proxy', async () => {
+		const response = await POST({
+			request: new Request('https://example.com/api/ingest', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer test-ingest-token',
+					'x-forwarded-for': '203.0.113.7',
+				},
+				body: JSON.stringify({ task: 'update_posts' }),
+			}),
+			fetch,
+		});
+		expect(response.status).toBe(404);
+		expect(update_posts).not.toHaveBeenCalled();
 	});
 
 	it('rejects unauthorised calls before task lookup or execution', async () => {

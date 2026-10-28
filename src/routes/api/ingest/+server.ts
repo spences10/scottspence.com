@@ -1,15 +1,17 @@
 import { INGEST_TOKEN } from '$app/env/private';
 import * as v from 'valibot';
-import { run_task, tasks, type TaskKey } from './tasks';
 import { TaskLogQueryError } from './query-task-logs';
+import { run_task, tasks, type TaskKey } from './tasks';
 
 /**
  * === GETTING PRODUCTION DATA LOCALLY ===
  *
+ * Production calls go over the tailnet; the public host returns 404.
+ *
  * Step 1: Update production database with latest posts/stats
  *
 for task in "update_posts" "update_embeddings" "update_related_posts"; do
-	curl -X POST https://scottspence.com/api/ingest \
+	curl -X POST http://coolify:3101/api/ingest \
 		-H "Content-Type: application/json" \
 		-H "Authorization: Bearer $INGEST_TOKEN" \
 		-d "{\"task\": \"$task\"}"
@@ -18,7 +20,7 @@ done
  *
  * Step 2: Create a backup of production database
  *
-curl -X POST https://scottspence.com/api/ingest \
+curl -X POST http://coolify:3101/api/ingest \
 	-H "Content-Type: application/json" \
 	-H "Authorization: Bearer $INGEST_TOKEN" \
 	-d '{"task": "backup_database"}'
@@ -32,7 +34,7 @@ curl -X POST https://scottspence.com/api/ingest \
 [ -f data/site-data.db ] && cp data/site-data.db data/site-data.db.bak
 rm -f data/site-data.db
 curl -H "Authorization: Bearer $INGEST_TOKEN" \
-		https://scottspence.com/api/ingest/download \
+		http://coolify:3101/api/ingest/download \
 		-o data/site-data.db
 # If download fails, restore: cp data/site-data.db.bak data/site-data.db
  *
@@ -54,7 +56,7 @@ done
  *
  * Production:
  *
-curl -X POST https://scottspence.com/api/ingest \
+curl -X POST http://coolify:3101/api/ingest \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $INGEST_TOKEN" \
   -d '{"task": "update_posts"}'
@@ -70,7 +72,7 @@ curl -X POST http://localhost:5173/api/ingest \
  *
  * Sync blocked domains (add/remove):
  *
-curl -X POST https://scottspence.com/api/ingest \
+curl -X POST http://coolify:3101/api/ingest \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $INGEST_TOKEN" \
   -d '{"task": "sync_blocked_domains", "data": {"add": ["spamsite"], "remove": ["falsepositivesite"]}}'
@@ -102,6 +104,12 @@ export const POST = async ({
 	request: Request;
 	fetch: typeof globalThis.fetch;
 }) => {
+	// Cloudflare and Coolify's proxy add this; tailnet requests reach the
+	// port directly. Public callers see no route at all.
+	if (request.headers.has('x-forwarded-for')) {
+		return Response.json({ message: 'Not found' }, { status: 404 });
+	}
+
 	try {
 		const body: RequestBody = await request.json();
 		const task_key = body.task;
