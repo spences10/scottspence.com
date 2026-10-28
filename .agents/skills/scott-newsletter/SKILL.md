@@ -6,7 +6,7 @@ description: "Drafts or improves scottspence.com monthly newsletters in Scott's 
 
 # Scott Newsletter
 
-<!-- cspell:ignore nopeek rollups -->
+<!-- cspell:ignore nopeek rollups omnirecall -->
 
 Use this skill for monthly `scottspence.com` newsletter emails.
 
@@ -31,12 +31,35 @@ Never send the newsletter unless Scott explicitly asks.
 5. Query `data/site-data.db` with `mcp-sqlite-tools` for recent posts,
    GitHub commits/PRs/releases/issues, subscriber counts, and sent
    newsletters.
-6. Use repo history and nearby posts as receipts before making claims.
+6. Use `pnpx omnirecall` to find work across coding agent sessions,
+   alongside repo history and nearby posts. Follow the session
+   evidence workflow below before making claims.
 7. Draft the newsletter with sections for the month’s main story,
    posts, open source, talks/client work when relevant, and a short
    sign-off.
 8. Validate with `pnpm exec prettier --check <file>` and
    `pnpm exec cspell <file> --config cspell.json --wordsOnly`.
+
+## Session evidence
+
+Use `omnirecall` alongside posts and GitHub activity. Sessions can
+explain decisions, trade-offs, and work that has not become a post.
+
+1. Run `pnpx omnirecall sync --json`, then
+   `pnpx omnirecall sources --json`. Check coverage, last sync times,
+   partial status, and issue counts. Retrieval does not sync for you.
+2. Search the newsletter period with
+   `pnpx omnirecall recall "<topic>" --after YYYY-MM-DD --before YYYY-MM-DD --json`.
+   Use the day after the previous issue through the draft date. Search
+   across projects first so work outside this site is not missed.
+3. Read relevant result refs with
+   `pnpx omnirecall read "<ref>" --context 2 --json`. Follow
+   pagination when needed. Keep source refs with research notes.
+4. Verify shipped work against public commits, releases, or posts.
+   Session plans and agent claims are not proof of delivery. Anonymise
+   private work, omit secrets, and ask Scott before including
+   sensitive details. Report missing sources instead of assuming full
+   coverage.
 
 ## Voice rules
 
