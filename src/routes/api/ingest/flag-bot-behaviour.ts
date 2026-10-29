@@ -21,7 +21,9 @@ export const parse_desktop_chrome_major = (
 };
 
 /**
- * The day's current Chrome major: the one most referred human visitors use
+ * The day's current Chrome major: the newest one with enough referred visitors
+ * Newest, not most used - a bot fleet on one old UA can outnumber any
+ * single real major (Oct 2026: Chrome 146 bot beat real Chrome 156)
  * Returns null when no major has enough visitors to trust
  */
 export const find_current_chrome_major = (
@@ -39,16 +41,15 @@ export const find_current_chrome_major = (
 	}
 
 	let current: number | null = null;
-	let best = 0;
 	for (const [major, visitors] of visitors_by_major) {
-		const newer_tie =
-			visitors === best && current !== null && major > current;
-		if (visitors > best || newer_tie) {
+		if (
+			visitors >= min_visitors &&
+			(current === null || major > current)
+		) {
 			current = major;
-			best = visitors;
 		}
 	}
-	return best >= min_visitors ? current : null;
+	return current;
 };
 
 /**

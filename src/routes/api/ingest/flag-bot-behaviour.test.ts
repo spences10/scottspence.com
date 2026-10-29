@@ -47,14 +47,24 @@ describe('parse_desktop_chrome_major', () => {
 });
 
 describe('find_current_chrome_major', () => {
-	it('picks the major with the most referred visitors', () => {
+	it('picks the newest major with enough referred visitors', () => {
 		const stats = [
-			{ user_agent: windows_chrome(155), referred_visitors: 150 },
-			{ user_agent: mac_chrome(155), referred_visitors: 66 },
+			{ user_agent: windows_chrome(156), referred_visitors: 12 },
+			{ user_agent: windows_chrome(155), referred_visitors: 20 },
+			{ user_agent: mac_chrome(155), referred_visitors: 16 },
 			{ user_agent: windows_chrome(154), referred_visitors: 129 },
 			{ user_agent: windows_chrome(131), referred_visitors: 40 },
 		];
 		expect(find_current_chrome_major(stats, 30)).toBe(155);
+	});
+
+	it('is not dragged back by a bot fleet on one old major', () => {
+		const stats = [
+			{ user_agent: windows_chrome(146), referred_visitors: 212 },
+			{ user_agent: windows_chrome(156), referred_visitors: 148 },
+			{ user_agent: windows_chrome(155), referred_visitors: 58 },
+		];
+		expect(find_current_chrome_major(stats, 30)).toBe(156);
 	});
 
 	it('ignores mobile visitors when finding current', () => {
