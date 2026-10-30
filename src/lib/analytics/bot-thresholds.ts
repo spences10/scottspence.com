@@ -34,10 +34,12 @@ export const BOT_THRESHOLDS = {
 
 	/**
 	 * Stale desktop Chrome - majors behind the day's current version.
-	 * Chrome ships every 4 weeks, so 12 majors is roughly 11 months.
-	 * Oct 2026: visitors on Chrome 124-131 made zero link clicks.
+	 * Chrome ships every 4 weeks, so 6 majors is roughly 6 months.
+	 * Oct 2026: visitors on Chrome 124-131 made zero link clicks, and a
+	 * bot fleet on Chrome 146 (10 behind) slipped past a limit of 12.
+	 * 6 keeps real Chrome 150 visitors (6 behind 156) out of the flag.
 	 */
-	STALE_CHROME_MAJOR_VERSIONS: 12,
+	STALE_CHROME_MAJOR_VERSIONS: 6,
 
 	/** Min referred human visitors on one Chrome major to trust it as current */
 	MIN_VISITORS_FOR_CURRENT_CHROME: 30,
