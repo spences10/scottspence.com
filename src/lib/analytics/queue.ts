@@ -38,7 +38,22 @@ export type ClickEvent = {
  */
 const queue: AnalyticsEvent[] = [];
 const click_queue: ClickEvent[] = [];
+const js_ping_queue: JsPing[] = [];
 let flush_timer: ReturnType<typeof setInterval> | null = null;
+
+/**
+ * Heartbeat seen for a visitor on a path - proves JavaScript ran
+ */
+export type JsPing = {
+	visitor_hash: string;
+	path: string;
+	created_at: number;
+};
+
+// Heartbeats arrive every 5s; only the first per visitor and path is
+// written. Visitor hashes rotate daily, so the set is capped, not dated.
+const seen_js_pings = new Set<string>();
+const MAX_SEEN_JS_PINGS = 50_000;
 
 /**
  * Queue a page view event (O(1), non-blocking)
@@ -58,6 +73,24 @@ export const queue_page_view = (event: AnalyticsEvent): void => {
 export const queue_click_event = (event: ClickEvent): void => {
 	click_queue.push(event);
 };
+
+/**
+ * Queue a JavaScript ping (O(1), non-blocking)
+ * Repeat heartbeats for the same visitor and path are dropped
+ */
+export const queue_js_ping = (ping: JsPing): void => {
+	const key = `${ping.visitor_hash}|${ping.path}`;
+	if (seen_js_pings.has(key)) return;
+	if (seen_js_pings.size >= MAX_SEEN_JS_PINGS) seen_js_pings.clear();
+	seen_js_pings.add(key);
+	js_ping_queue.push(ping);
+};
+
+/**
+ * Pending JavaScript pings (for tests and monitoring)
+ */
+export const get_js_ping_queue_length = (): number =>
+	js_ping_queue.length;
 
 /**
  * Get current queue length (for monitoring)
@@ -102,8 +135,9 @@ export const get_path_viewers = (path: string): number => {
 const flush_batch = (): void => {
 	const has_analytics = queue.length > 0;
 	const has_clicks = click_queue.length > 0;
+	const has_js_pings = js_ping_queue.length > 0;
 
-	if (!has_analytics && !has_clicks) return;
+	if (!has_analytics && !has_clicks && !has_js_pings) return;
 
 	const queries: { sql: string; args: unknown[] }[] = [];
 
@@ -150,6 +184,19 @@ const flush_batch = (): void => {
 					event.path,
 					event.created_at,
 				],
+			});
+		}
+	}
+
+	// Drain JavaScript ping queue - duplicates after a restart are ignored
+	if (has_js_pings) {
+		const ping_batch = js_ping_queue.splice(0, js_ping_queue.length);
+		for (const ping of ping_batch) {
+			queries.push({
+				sql: `INSERT OR IGNORE INTO analytics_js_pings
+					(visitor_hash, path, created_at)
+					VALUES (?, ?, ?)`,
+				args: [ping.visitor_hash, ping.path, ping.created_at],
 			});
 		}
 	}

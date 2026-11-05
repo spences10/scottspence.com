@@ -23,6 +23,11 @@ export const cleanup_analytics = async () => {
 
 	console.log(`[cleanup] Deleted ${result.changes} old events`);
 
+	// Pings only matter alongside raw events, so keep the same window
+	client
+		.prepare('DELETE FROM analytics_js_pings WHERE created_at < ?')
+		.run(cutoff_ts);
+
 	// VACUUM if we deleted significant data to reclaim space
 	if (result.changes > 1000) {
 		console.log('[cleanup] Running VACUUM...');

@@ -14,6 +14,8 @@ import {
 	format_live_stats_breakdown,
 	normalise_live_referrer,
 } from './live-analytics.helpers';
+import { queue_js_ping } from './queue';
+import { get_client_ip, get_visitor_hash } from './utils';
 
 /**
  * Send heartbeat - client pings every 5s to say "I'm still here"
@@ -27,7 +29,19 @@ export const send_heartbeat = command(
 		referrer: v.optional(v.pipe(v.string(), v.maxLength(2048))),
 	}),
 	({ session_id, path, referrer }) => {
-		const metadata = extract_metadata_from_event(getRequestEvent());
+		const event = getRequestEvent();
+		const metadata = extract_metadata_from_event(event);
+
+		// Same hash and path as the server-side page view in hooks, so
+		// the two join up: a page view with a ping ran JavaScript
+		queue_js_ping({
+			visitor_hash: get_visitor_hash(
+				get_client_ip(event.request),
+				event.request.headers.get('user-agent'),
+			),
+			path: path.toLowerCase(),
+			created_at: Date.now(),
+		});
 
 		heartbeat(session_id, path, {
 			...metadata,

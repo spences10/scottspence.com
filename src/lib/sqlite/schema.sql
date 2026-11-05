@@ -291,6 +291,15 @@ CREATE TABLE IF NOT EXISTS
     created_at INTEGER NOT NULL
   );
 
+-- Heartbeat seen for a visitor on a path, so JavaScript ran
+CREATE TABLE IF NOT EXISTS
+  analytics_js_pings (
+    visitor_hash TEXT NOT NULL,
+    path TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    PRIMARY KEY (visitor_hash, path)
+  ) WITHOUT ROWID;
+
 -- GitHub Activity tables for newsletter generation
 CREATE TABLE IF NOT EXISTS
   github_commits (
@@ -377,6 +386,7 @@ CREATE INDEX IF NOT EXISTS idx_breakdown_dimension_date ON analytics_daily_break
 CREATE INDEX IF NOT EXISTS idx_daily_referrers_path ON analytics_daily_referrers (pathname, date);
 CREATE INDEX IF NOT EXISTS idx_clicks_event ON click_events (event_name, created_at);
 CREATE INDEX IF NOT EXISTS idx_clicks_path ON click_events (path, created_at);
+CREATE INDEX IF NOT EXISTS idx_js_pings_created ON analytics_js_pings (created_at);
 
 -- Enable WAL mode for better concurrent access
 PRAGMA journal_mode = WAL;
