@@ -57,8 +57,9 @@
 
 	// Derived from the selection: the previous data stays on screen
 	// (dimmed) until the queries for a new period or filter resolve
-	const [period_stats, engagement_stats]: [
+	const [period_stats, chart_data, engagement_stats]: [
 		PeriodStats | null,
+		ChartData | null,
 		EngagementStats | null,
 	] = $derived(
 		await Promise.all([
@@ -66,22 +67,12 @@
 				period: selected_stats_period,
 				filter_mode: selected_filter_mode,
 			}),
+			get_chart_data({
+				period: selected_stats_period,
+				filter_mode: selected_filter_mode,
+			}),
 			get_engagement_stats({ period: selected_stats_period }),
 		]),
-	);
-
-	// The period chart reads through `current` rather than awaiting.
-	// Inside the awaited batch, layerchart's axis could be committed
-	// with the last period's ticks, which crashed Svelte and froze the
-	// page. Outside it, the chart is torn down and rebuilt in one pass.
-	const chart_query = $derived(
-		get_chart_data({
-			period: selected_stats_period,
-			filter_mode: selected_filter_mode,
-		}),
-	);
-	const chart_data: ChartData | null = $derived(
-		chart_query.current ?? null,
 	);
 	const period_loading = $derived($effect.pending() > 0);
 	let engagement_sort_mode = $state<EngagementSortMode>('clicks');
