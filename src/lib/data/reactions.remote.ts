@@ -1,4 +1,5 @@
 import { command, getRequestEvent, query } from '$app/server';
+import { get_client_ip } from '#lib/analytics/utils.js';
 import {
 	BYPASS_DB_READS,
 	CACHE_DURATIONS,
@@ -46,10 +47,7 @@ export const submit_reaction = command(
 		try {
 			// Extract IP server-side to prevent spoofing
 			const { request } = getRequestEvent();
-			const ip =
-				request.headers.get('x-forwarded-for')?.split(',')[0] ||
-				request.headers.get('x-real-ip') ||
-				'unknown';
+			const ip = get_client_ip(request) ?? 'unknown';
 
 			// Rate limiting
 			const rate_limit_attempt = ratelimit.limit(ip);

@@ -33,8 +33,13 @@ export const anonymise_ip = (ip: string | null): string | null => {
 
 /**
  * Extract client IP from request headers
+ * Cloudflare sets cf-connecting-ip to the visitor's IP; the proxy
+ * behind it puts Cloudflare's edge IP in x-forwarded-for.
  */
 export const get_client_ip = (request: Request): string | null => {
+	const cf_ip = request.headers.get('cf-connecting-ip');
+	if (cf_ip) return cf_ip.trim();
+
 	const forwarded = request.headers.get('x-forwarded-for');
 	if (forwarded) {
 		return forwarded.split(',')[0].trim();

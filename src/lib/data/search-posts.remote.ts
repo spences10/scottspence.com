@@ -1,4 +1,5 @@
 import { getRequestEvent, query } from '$app/server';
+import { get_client_ip } from '#lib/analytics/utils.js';
 import {
 	CACHE_DURATIONS,
 	get_from_cache,
@@ -27,10 +28,7 @@ export const search_posts = query(
 		try {
 			// Every uncached search is a paid embedding call, so limit per IP
 			const { request } = getRequestEvent();
-			const ip =
-				request.headers.get('x-forwarded-for')?.split(',')[0] ||
-				request.headers.get('x-real-ip') ||
-				'unknown';
+			const ip = get_client_ip(request) ?? 'unknown';
 			const rate_limit_attempt = ratelimit.limit(
 				`search_posts:${ip}`,
 			);

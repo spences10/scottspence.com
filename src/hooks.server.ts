@@ -78,9 +78,7 @@ const reject_suspicious_requests: Handle = async ({
 
 	// Get the real client IP address from headers
 	const client_ip =
-		event.request.headers.get('x-forwarded-for')?.split(',')[0] ||
-		event.request.headers.get('x-real-ip') ||
-		event.getClientAddress();
+		get_client_ip(event.request) || event.getClientAddress();
 
 	if (rejected_extensions.some((ext) => pathname.endsWith(ext))) {
 		console.log(

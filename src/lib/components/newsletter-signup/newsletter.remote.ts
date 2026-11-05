@@ -1,4 +1,5 @@
 import { command, getRequestEvent } from '$app/server';
+import { get_client_ip } from '#lib/analytics/utils.js';
 import {
 	RESEND_API_KEY,
 	RESEND_AUDIENCE_ID,
@@ -45,10 +46,7 @@ export const subscribe_to_newsletter = command(
 	newsletter_schema,
 	async (data) => {
 		const { request } = getRequestEvent();
-		const ip =
-			request.headers.get('x-forwarded-for')?.split(',')[0] ||
-			request.headers.get('x-real-ip') ||
-			'unknown';
+		const ip = get_client_ip(request) ?? 'unknown';
 
 		// Verify Turnstile token
 		const is_valid = await verify_turnstile(data.turnstile_token, ip);

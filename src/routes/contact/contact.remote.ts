@@ -1,4 +1,5 @@
 import { command, getRequestEvent } from '$app/server';
+import { get_client_ip } from '#lib/analytics/utils.js';
 import {
 	EMAIL_APP_TO_ADDRESS,
 	RESEND_API_KEY,
@@ -107,10 +108,7 @@ export const submit_contact = command(
 			data,
 		);
 		const { request } = getRequestEvent();
-		const ip =
-			request.headers.get('x-forwarded-for')?.split(',')[0] ||
-			request.headers.get('x-real-ip') ||
-			'unknown';
+		const ip = get_client_ip(request) ?? 'unknown';
 		console.log('[submit_contact] Client IP:', ip);
 
 		// Verify Turnstile token
