@@ -760,8 +760,11 @@
 					{@const max_visitors = Math.max(
 						...page_rows.map((p) => p.visitors),
 					)}
+					<!-- These lists are unkeyed on purpose: keyed rows reordered
+					     by a period switch looped forever in Svelte's async
+					     each reconcile and froze the page (Nov 2026) -->
 					<ul>
-						{#each page_rows as page (page.path)}
+						{#each page_rows as page}
 							<StatRowMulti
 								label={page.path}
 								previous={pages_tab.id === 'pages'
@@ -787,7 +790,7 @@
 						...period_stats.referrers.map((r) => r.visitors),
 					)}
 					<ul>
-						{#each period_stats.referrers as ref (ref.referrer)}
+						{#each period_stats.referrers as ref}
 							<StatRowMulti
 								label={parse_referrer(ref.referrer)}
 								icon={get_referrer_icon(ref.referrer)}
@@ -831,7 +834,7 @@
 							...countries.map((c) => c.visitors),
 						)}
 						<ul>
-							{#each countries as c (c.country)}
+							{#each countries as c}
 								<StatRowMulti
 									label={c.country}
 									previous={previous_for(
@@ -870,7 +873,7 @@
 							...period_stats.browsers.map((b) => b.visitors),
 						)}
 						<ul>
-							{#each period_stats.browsers as b (b.browser)}
+							{#each period_stats.browsers as b}
 								<StatRowMulti
 									label={b.browser}
 									previous={previous_for(
@@ -908,7 +911,7 @@
 							...period_stats.devices.map((d) => d.visitors),
 						)}
 						<ul>
-							{#each period_stats.devices as d (d.device_type)}
+							{#each period_stats.devices as d}
 								<StatRowMulti
 									label={d.device_type}
 									previous={previous_for(
@@ -971,7 +974,7 @@
 					<span class="w-14 text-right opacity-80">Rate</span>
 				</div>
 				<ul>
-					{#each sorted_engagement_pages as page (page.path)}
+					{#each sorted_engagement_pages as page}
 						{@const bar_value =
 							engagement_sort_mode === 'clicks'
 								? page.clicks / max_clicks
