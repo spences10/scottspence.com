@@ -12,10 +12,10 @@ is_private: false
 <!-- cspell:ignore Manufact nlvjelw pddq qoglleko mzby mzbztmtenc mzkolnkmyc Sunil callscript codemode -->
 
 I think I first heard about Code Mode from Luigi (Manufact) in passing
-in a conversation around Febraury this year. Then I saw it in use in
+in a conversation around February this year. Then I saw it in use in
 Pi and my-pi by proxy then again on The Next Token podcast (this week)
-about it's 1 year anniversary. I've been sleeping on it since then! I
-started tinkering with it after seeinig it in my-pi, my understanding,
+about its 1 year anniversary. I've been sleeping on it since then! I
+started tinkering with it after seeing it in my-pi, my understanding,
 give the agent the tools it can use and let it write JavaScript that
 calls those tools which returns only what it needs. Context management
 done right.
@@ -66,7 +66,7 @@ Cloudflare post. I'd gone from hearing the name in passing eight
 months ago to seeing my harness using it and messing around with it
 myself to improve other tools for my tools to use in a matter of days.
 
-This make me think about this post a lot now!
+This makes me think about this post a lot now!
 
 <Bluesky
 	post_id="did:plc:nlvjelw3dy3pddq7qoglleko/app.bsky.feed.post/3mho7hi46kc2y"
