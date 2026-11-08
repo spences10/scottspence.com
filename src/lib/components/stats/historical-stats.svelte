@@ -189,10 +189,7 @@
 	const format_delta = (delta: number) =>
 		`${delta > 0 ? '+' : delta < 0 ? '−' : ''}${number_crunch(Math.abs(delta))}`;
 
-	const count_delta = (
-		current: number,
-		before: number | undefined,
-	) =>
+	const count_delta = (current: number, before: number | undefined) =>
 		before === undefined || current === before
 			? null
 			: {

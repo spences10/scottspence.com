@@ -166,7 +166,7 @@ it's compiled.
 Here's what it looks like in the example project:
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="">
 	<head>
 		<meta charset="utf-8" />

@@ -203,35 +203,35 @@ when the page is loaded and the posts can be loaded ahead of the page
 
 ```html
 <script context="module">
-	import { gql, GraphQLClient } from 'graphql-request'
+	import { gql, GraphQLClient } from 'graphql-request';
 
 	export async function load() {
-	  const graphcms = new GraphQLClient(
-	    import.meta.env.VITE_GRAPHCMS_URL,
-	    {
-	      headers: {},
-	    }
-	  )
+		const graphcms = new GraphQLClient(
+			import.meta.env.VITE_GRAPHCMS_URL,
+			{
+				headers: {},
+			},
+		);
 
-	  const query = gql`
-	    query Posts {
-	      posts {
-	        id
-	        title
-	        slug
-	        date
-	        excerpt
-	      }
-	    }
-	  `
+		const query = gql`
+			query Posts {
+				posts {
+					id
+					title
+					slug
+					date
+					excerpt
+				}
+			}
+		`;
 
-	  const { posts } = await graphcms.request(query)
+		const { posts } = await graphcms.request(query);
 
-	  return {
-	    props: {
-	      posts,
-	    },
-	  }
+		return {
+			props: {
+				posts,
+			},
+		};
 	}
 </script>
 
@@ -361,44 +361,44 @@ add to the variables object for the `graphql-request`.
 
 ```html
 <script context="module">
-	import { gql, GraphQLClient } from 'graphql-request'
+	import { gql, GraphQLClient } from 'graphql-request';
 
 	export async function load(context) {
-	  const graphcms = new GraphQLClient(
-	    import.meta.env.VITE_GRAPHCMS_URL,
-	    {
-	      headers: {},
-	    }
-	  )
+		const graphcms = new GraphQLClient(
+			import.meta.env.VITE_GRAPHCMS_URL,
+			{
+				headers: {},
+			},
+		);
 
-	  const query = gql`
-	    query PostPageQuery($slug: String!) {
-	      post(where: { slug: $slug }) {
-	        title
-	        date
-	        content {
-	          html
-	        }
-	        tags
-	        author {
-	          id
-	          name
-	        }
-	      }
-	    }
-	  `
+		const query = gql`
+			query PostPageQuery($slug: String!) {
+				post(where: { slug: $slug }) {
+					title
+					date
+					content {
+						html
+					}
+					tags
+					author {
+						id
+						name
+					}
+				}
+			}
+		`;
 
-	  const variables = {
-	    slug: context.page.params.slug,
-	  }
+		const variables = {
+			slug: context.page.params.slug,
+		};
 
-	  const { post } = await graphcms.request(query, variables)
+		const { post } = await graphcms.request(query, variables);
 
-	  return {
-	    props: {
-	      post,
-	    },
-	  }
+		return {
+			props: {
+				post,
+			},
+		};
 	}
 </script>
 

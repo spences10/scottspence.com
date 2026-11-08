@@ -259,15 +259,15 @@ create a `dispatch` function for use in the child component and giving
 it the label `child-blur` and passing the input `value` back with the
 dispatcher.
 
-```html
+```svelte
 <!-- Child.svelte -->
 <script>
-  import { createEventDispatcher } from 'svelte'
-  const dispatch = createEventDispatcher()
-  export let value = ''
+	import { createEventDispatcher } from 'svelte';
+	const dispatch = createEventDispatcher();
+	export let value = '';
 </script>
 
-<input bind:value on:blur={dispatch("child-blur", value)} />
+<input bind:value on:blur={dispatch('child-blur', value)} />
 ```
 
 In the parent much like with doing it with a callback but now in place

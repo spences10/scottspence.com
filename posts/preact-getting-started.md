@@ -46,7 +46,7 @@ If you're using multiple font files then take a look at the [CSS
 Tricks post] on it.
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -69,7 +69,7 @@ Tricks post] on it.
 This can also do this with Google fonts, something like this:
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
