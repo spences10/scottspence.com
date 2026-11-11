@@ -1,12 +1,27 @@
 ---
 date: 2025-09-30
-updated: 2026-09-13
+updated: 2026-11-11
 title: Optimising MCP Server Context Usage in Claude Code
 tags: ['mcp', 'claude-code', 'claude', 'tools', 'guide']
 is_private: false
 ---
 
 <!-- cspell:ignore fastgpt autocompact -->
+
+<script>
+  import { Banner } from '#lib/components/index.js'
+
+  const options = {
+    type: 'info',
+    message: `Trimming tool definitions is one way to save context.
+      Another is Code Mode, where the agent writes JavaScript that
+      calls the tools and returns only what it needs. I wrote about
+      it in
+      <a href="/posts/understanding-code-mode-by-building-with-it">
+      Understanding Code Mode by building with it</a>.`,
+    track_event: 'optimising mcp server context usage banner',
+  }
+</script>
 
 So there I was, starting a Claude Code session, and I noticed
 something disturbing and completely of my own making: my MCP tools
@@ -15,6 +30,8 @@ conversation. That's a massive chunk of Claude's context window
 just... gone. For reference, Claude Sonnet 4.5 has a 200k token
 window, which means I was burning through a third of it just loading
 tools!
+
+<Banner {options} />
 
 ## The discovery
 
