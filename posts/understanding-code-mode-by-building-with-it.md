@@ -1,5 +1,6 @@
 ---
 date: 2026-11-07
+updated: 2026-11-15
 title: 'Understanding Code Mode by building with it'
 tags: ['pi', 'mcp', 'coding-agents', 'developer-experience']
 is_private: false
@@ -7,9 +8,10 @@ is_private: false
 
 <script>
 	import { Bluesky } from 'sveltekit-embed';
+	import CodeModeBoundaries from './code-mode-boundaries.svelte';
 </script>
 
-<!-- cspell:ignore Manufact nlvjelw pddq qoglleko mzby mzbztmtenc mzkolnkmyc Sunil callscript codemode -->
+<!-- cspell:ignore Manufact nlvjelw pddq qoglleko mzby mzbztmtenc mzkolnkmyc Sunil callscript codemode Drapper uqrryaveb7djvaatfljbdhcb -->
 
 I think I first heard about Code Mode from Luigi (Manufact) in passing
 in a conversation around February this year. Then I saw it in use in
@@ -92,6 +94,35 @@ but I don't have to write every combination of calls myself.
 	post_id="did:plc:nlvjelw3dy3pddq7qoglleko/app.bsky.feed.post/3mzkolnkmyc2z"
 	theme="system"
 />
+
+## Where the script runs
+
+After I posted this, Joel Drapper replied that it had him thinking:
+for a remote MCP server, it'd be much better if the agent could send a
+script to the server and run a bunch of tool calls in one fast,
+all-or-nothing transaction. A few days later he'd built it and written
+it up.
+
+<Bluesky
+	post_id="did:plc:uqrryaveb7djvaatfljbdhcb/app.bsky.feed.post/3n272lftqe226"
+	theme="system"
+/>
+
+It's worth a read. Their MCP server went from about 70 tools to four,
+and the scripts run in a QuickJS sandbox right next to their SQLite
+data. It also helped me separate two things I'd been lumping together.
+Pi's Code Mode runs a script beside the assistant. Omnisearch runs one
+inside the MCP server. Both keep intermediate results out of the
+model's context, but they don't avoid the same calls.
+
+<CodeModeBoundaries />
+
+The bit I care about: one MCP execution isn't one provider request.
+Omnisearch still has to call the search and extraction APIs, and
+unlike Milieu's SQLite, those can't share a transaction. Moving the
+loop into the server stops each call going back through Pi, it doesn't
+remove the work. Writing a whole script is also one model turn, so for
+small jobs it can cost more than it saves.
 
 ## Why I can't leave this alone
 
