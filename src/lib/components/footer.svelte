@@ -74,7 +74,7 @@
 		{/each}
 	</nav>
 </footer>
-<div class="divider m-0 divider-secondary bg-primary"></div>
+<div class="divider m-0 bg-primary divider-secondary"></div>
 <div class="bg-primary p-4 text-primary-content">
 	<p class="text-center">
 		Copyright &copy; 2017 - {`${new Date().getFullYear()}`} - All rights

@@ -377,7 +377,7 @@ This is with Tailwind and daisyUI classes.
 				alt={`Cover image for ${title}`}
 			/>
 		</figure>
-		<div class="card-body prose">
+		<div class="prose card-body">
 			<h2 class="title">{title}</h2>
 			<p>{excerpt}</p>
 			<div class="mb-5 flex justify-center space-x-2">
@@ -434,7 +434,7 @@ This is with Tailwind and daisyUI classes.
 				alt={`Cover image for ${title}`}
 			/>
 		</figure>
-		<div class="card-body prose">
+		<div class="prose card-body">
 			<h2 class="title">{title}</h2>
 			<p>{excerpt}</p>
 			<div class="mb-5 flex justify-center space-x-2">

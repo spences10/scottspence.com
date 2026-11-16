@@ -566,7 +566,7 @@ handy styling utils from daisyUI:
 
 <div class="overflow-x-auto">
 	<table
-		class="table table-pin-rows table-pin-cols table-xs md:table-lg"
+		class="table-pin-rows table-pin-cols table table-xs md:table-lg"
 	>
 		<thead>
 			<tr class="text-xl">
@@ -851,7 +851,7 @@ Here's the full file:
 
 <div class="overflow-x-auto">
 	<table
-		class="table table-pin-rows table-pin-cols table-xs md:table-lg"
+		class="table-pin-rows table-pin-cols table table-xs md:table-lg"
 	>
 		<thead>
 			<tr class="text-xl">
@@ -1016,7 +1016,7 @@ details:
 
 <div class="overflow-x-auto">
 	<table
-		class="table table-pin-rows table-pin-cols table-xs md:table-lg"
+		class="table-pin-rows table-pin-cols table table-xs md:table-lg"
 	>
 		<thead>
 			<tr class="text-xl">
@@ -1116,7 +1116,7 @@ add in the props and render out the data:
 
 <div class="overflow-x-auto">
 	<table
-		class="table table-pin-rows table-pin-cols table-xs md:table-lg"
+		class="table-pin-rows table-pin-cols table table-xs md:table-lg"
 	>
 		<thead>
 			<tr class="text-xl">
@@ -1221,7 +1221,7 @@ file to render out the data:
 
 <div class="overflow-x-auto">
 	<table
-		class="table table-pin-rows table-pin-cols table-xs md:table-lg"
+		class="table-pin-rows table-pin-cols table table-xs md:table-lg"
 	>
 		<thead>
 			<tr class="text-xl">
