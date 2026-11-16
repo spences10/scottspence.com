@@ -11,7 +11,7 @@ is_private: false
 	import CodeModeBoundaries from './code-mode-boundaries.svelte';
 </script>
 
-<!-- cspell:ignore Manufact nlvjelw pddq qoglleko mzby mzbztmtenc mzkolnkmyc Sunil callscript codemode Drapper uqrryaveb7djvaatfljbdhcb -->
+<!-- cspell:ignore Manufact nlvjelw pddq qoglleko mzby mzbztmtenc mzkolnkmyc Sunil callscript codemode Drapper uqrryaveb7djvaatfljbdhcb lftqe -->
 
 I think I first heard about Code Mode from Luigi (Manufact) in passing
 in a conversation around February this year. Then I saw it in use in
