@@ -233,7 +233,7 @@ importers:
         version: 0.1.7
       '@twinkleplop/dockerfile':
         specifier: ^0.2.1
-        version: 0.2.1
+        version: 0.2.2
       '@twinkleplop/dotenv':
         specifier: ^0.1.7
         version: 0.1.7
@@ -1261,14 +1261,17 @@ packages:
   '@twinkleplop/core@0.3.1':
     resolution: {integrity: sha512-fMbce7NcJlVROsyI34tz3DCWkAWRWLRlBNCbgwz36mm6yoEO09eyafi8JRN5HJGQIzMr0qjXQ3t3asc7MFSh8Q==}
 
+  '@twinkleplop/core@0.3.2':
+    resolution: {integrity: sha512-K4sKQFqTSpEjFz4eCmJGQA6ivtZgpBKdZzu3AzKIP5jwstJWHPI5eWtJgfv6vTsxDVHr3WY02gXnwL3+Rzndhg==}
+
   '@twinkleplop/css@0.1.7':
     resolution: {integrity: sha512-eznre7EgC0IBE3/jqAUKXG2S4iWLczOSAxwLnknS+9BQQGuD82u2A2rCok94E+nMpjkeshhbSvnQxDSEo8YpUA==}
 
   '@twinkleplop/diff@0.1.7':
     resolution: {integrity: sha512-ubzYKJwtndkWPyDUSKIm9k5/cv/TEJt8qDe8HJcA/e9S+cxQJqMNWcIQ46hz7ASh+yhV0rAvHjytSROfA+xK+w==}
 
-  '@twinkleplop/dockerfile@0.2.1':
-    resolution: {integrity: sha512-F+boDOGsbKiC4TbGqb8CE3VmvMdpyHgISJinUSPAP/iBPRxutax4fYztmvGSSysf67SQYXdiwarB9HcJVzJ8yA==}
+  '@twinkleplop/dockerfile@0.2.2':
+    resolution: {integrity: sha512-QtuE6WRWjUIRp7MCwDE6XF3Ug1Qcs5jd8p9n4Mn9BJ7PA2FZRHji8fdcs7PauqVHK0POPI5JGYhHJ9ShBKEZvA==}
 
   '@twinkleplop/dotenv@0.1.7':
     resolution: {integrity: sha512-JJTjseZv0kLDakE8t/ZfOEAq9dKzF5dw8JwApjbYVRnYnEjKsYGMfL/GebroILCfSSY89yTg/D4DUo44Unxl8w==}
@@ -3793,6 +3796,8 @@ snapshots:
 
   '@twinkleplop/core@0.3.1': {}
 
+  '@twinkleplop/core@0.3.2': {}
+
   '@twinkleplop/css@0.1.7':
     dependencies:
       '@twinkleplop/core': 0.3.1
@@ -3801,9 +3806,9 @@ snapshots:
     dependencies:
       '@twinkleplop/core': 0.3.1
 
-  '@twinkleplop/dockerfile@0.2.1':
+  '@twinkleplop/dockerfile@0.2.2':
     dependencies:
-      '@twinkleplop/core': 0.3.1
+      '@twinkleplop/core': 0.3.2
 
   '@twinkleplop/dotenv@0.1.7':
     dependencies:
