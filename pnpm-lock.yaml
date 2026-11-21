@@ -239,7 +239,7 @@ importers:
         version: 0.1.8
       '@twinkleplop/graphql':
         specifier: ^0.2.1
-        version: 0.2.1
+        version: 0.2.2
       '@twinkleplop/html':
         specifier: ^0.1.7
         version: 0.1.7
@@ -1279,8 +1279,8 @@ packages:
   '@twinkleplop/dotenv@0.1.8':
     resolution: {integrity: sha512-NYxBNOVGfc3J0D3hifwzAKBLLEgOKXZCT8IJENmrled5qmmBmNAJRgSMdnXNeKjY6fwIMOmylIz5E8U6IIn4zg==}
 
-  '@twinkleplop/graphql@0.2.1':
-    resolution: {integrity: sha512-hZeiawkMElrRICfncl5X4oW6lO+YXgwqIRMwvSHNzH/J7cpi6gHrZnwnDT5Ave4xJDTaPGj+93wB4jzW3OjTGg==}
+  '@twinkleplop/graphql@0.2.2':
+    resolution: {integrity: sha512-R3nTo+voWyMbP12H3WJz31M2pNI1ewtxfRZ9Cu9j23cll7bZNMKGvHacYHVWA/4s3tZ3rmXjTBvOPvJFtw6sWQ==}
 
   '@twinkleplop/html@0.1.7':
     resolution: {integrity: sha512-tpc+I1OXR5UJYkIhna74rxxEBYUJMWTNkjAVH9sA6fKeWq9lmbLRhutb10PHeMuF6BTHuHgD9oyET7yKdZGeQA==}
@@ -3821,9 +3821,9 @@ snapshots:
     dependencies:
       '@twinkleplop/core': 0.3.2
 
-  '@twinkleplop/graphql@0.2.1':
+  '@twinkleplop/graphql@0.2.2':
     dependencies:
-      '@twinkleplop/core': 0.3.1
+      '@twinkleplop/core': 0.3.2
 
   '@twinkleplop/html@0.1.7':
     dependencies:
