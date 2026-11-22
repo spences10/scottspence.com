@@ -278,7 +278,7 @@ importers:
         version: 0.1.7
       '@twinkleplop/typescript':
         specifier: ^0.1.7
-        version: 0.1.7
+        version: 0.1.8
       '@twinkleplop/yaml':
         specifier: ^0.1.7
         version: 0.1.7
@@ -1326,6 +1326,9 @@ packages:
 
   '@twinkleplop/typescript@0.1.7':
     resolution: {integrity: sha512-3lVdFUnOc40QQUJPnmTsiyTf7+RSEoXhDnmMwkUQ5Kzgemkk6eeXQGietPjxro8k+QuTAY/aQuWOtR/nUgfENw==}
+
+  '@twinkleplop/typescript@0.1.8':
+    resolution: {integrity: sha512-5f0xc1HyY4YjwNUgLWX09T8tnKn5QrigLrOw+BLT0nQ+WWkeHeI7Knt8gmOnndba7H1fKLI1+kWOuNuHioX+5A==}
 
   '@twinkleplop/yaml@0.1.7':
     resolution: {integrity: sha512-GzsP3RuMYAnMx82pFUxICplG5s2GXxGst8dyxM7p1ONGp1f6NsFdc7OChtoIcT3PzXWQN/ctPJdv5rpr7tXs3w==}
@@ -3903,6 +3906,11 @@ snapshots:
     dependencies:
       '@twinkleplop/core': 0.3.1
       '@twinkleplop/javascript': 0.1.7
+
+  '@twinkleplop/typescript@0.1.8':
+    dependencies:
+      '@twinkleplop/core': 0.3.2
+      '@twinkleplop/javascript': 0.1.8
 
   '@twinkleplop/yaml@0.1.7':
     dependencies:
