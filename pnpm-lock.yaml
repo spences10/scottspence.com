@@ -248,7 +248,7 @@ importers:
         version: 0.1.8
       '@twinkleplop/javascript':
         specifier: ^0.1.7
-        version: 0.1.7
+        version: 0.1.8
       '@twinkleplop/json':
         specifier: ^0.1.7
         version: 0.1.7
