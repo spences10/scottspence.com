@@ -269,7 +269,7 @@ importers:
         version: 0.1.8
       '@twinkleplop/svelte':
         specifier: ^0.1.7
-        version: 0.1.7
+        version: 0.1.8
       '@twinkleplop/theme-night-owl':
         specifier: ^0.1.4
         version: 0.1.4
@@ -1315,8 +1315,8 @@ packages:
   '@twinkleplop/sql@0.1.8':
     resolution: {integrity: sha512-JJfsnRpz0mFFlfMWJhm45Q3L5A54MXom+nV6pCJ6lR6LpBt0vZrtRSJkVNhMH83pyrwT08iAy2ZGFu7ptPB8RQ==}
 
-  '@twinkleplop/svelte@0.1.7':
-    resolution: {integrity: sha512-8Zz7WYm7ERGNTZeCjiceRWDB+spcrDA9ToUV/AtavMl68ZM28E1AIPOdo2ddKkBDnHim8Vs7tVlFr9T3Mq1NlA==}
+  '@twinkleplop/svelte@0.1.8':
+    resolution: {integrity: sha512-9gJ6QwdcxR8ns2Mg7CRqSHr3eFhUikB2RT9r5moKcx/cZncSOGfyn5erwT80r3SBBb4nzO2qPiaGHhcuAem4Cw==}
 
   '@twinkleplop/theme-night-owl@0.1.4':
     resolution: {integrity: sha512-Eq7Qpr660LEV9b4BAUmfdc56tIWO//S1iytgm63qAVYpMfL8jAJhuCCnCicbG/LkqLe7q9dZfjAsMAZQBrlFtA==}
@@ -3883,11 +3883,11 @@ snapshots:
     dependencies:
       '@twinkleplop/core': 0.3.2
 
-  '@twinkleplop/svelte@0.1.7':
+  '@twinkleplop/svelte@0.1.8':
     dependencies:
-      '@twinkleplop/core': 0.3.1
-      '@twinkleplop/css': 0.1.7
-      '@twinkleplop/javascript': 0.1.7
+      '@twinkleplop/core': 0.3.2
+      '@twinkleplop/css': 0.1.8
+      '@twinkleplop/javascript': 0.1.8
 
   '@twinkleplop/theme-night-owl@0.1.4':
     dependencies:
