@@ -260,7 +260,7 @@ importers:
         version: 0.2.1
       '@twinkleplop/powershell':
         specifier: ^0.2.1
-        version: 0.2.1
+        version: 0.2.2
       '@twinkleplop/python':
         specifier: ^0.1.7
         version: 0.1.7
@@ -1300,8 +1300,8 @@ packages:
   '@twinkleplop/markdown@0.2.1':
     resolution: {integrity: sha512-uff5OXuSnlSWuPCYJWCQ+yMsOAvGCzljP8mIDQ4oj2ezkMAdhwh/McNXZ1odg4xpSp7hlwbu+UHbRl5FvG4kSQ==}
 
-  '@twinkleplop/powershell@0.2.1':
-    resolution: {integrity: sha512-649jGO8cxS8l8g+sYZAJlBVI2HLSt5Aw+5Iy15pOr/OzMts5V5ukIa9WTOGeKC+c2sGaPk/iOh1w7/I8kQNQAg==}
+  '@twinkleplop/powershell@0.2.2':
+    resolution: {integrity: sha512-BdGdoYhfnWEnY0IU1IdmLX8hqJPZl3EiDYcbRo2MCmeRcZolHGAX3FIh1QNqhNKt6n/hHVoyNq9ln4wSoUkl2A==}
 
   '@twinkleplop/python@0.1.7':
     resolution: {integrity: sha512-C3DJhERSppC9qUoux4l+b88Jv0PXEkooSuYcbqTsQ3FKRALu+Ksy2ukqs9ncVkk/gVqgHT21xnR+udMR/3y+1g==}
@@ -3853,9 +3853,9 @@ snapshots:
     dependencies:
       '@twinkleplop/core': 0.3.1
 
-  '@twinkleplop/powershell@0.2.1':
+  '@twinkleplop/powershell@0.2.2':
     dependencies:
-      '@twinkleplop/core': 0.3.1
+      '@twinkleplop/core': 0.3.2
 
   '@twinkleplop/python@0.1.7':
     dependencies:
