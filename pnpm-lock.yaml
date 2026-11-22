@@ -263,7 +263,7 @@ importers:
         version: 0.2.2
       '@twinkleplop/python':
         specifier: ^0.1.7
-        version: 0.1.7
+        version: 0.1.8
       '@twinkleplop/sql':
         specifier: ^0.1.7
         version: 0.1.7
@@ -1309,8 +1309,8 @@ packages:
   '@twinkleplop/powershell@0.2.2':
     resolution: {integrity: sha512-BdGdoYhfnWEnY0IU1IdmLX8hqJPZl3EiDYcbRo2MCmeRcZolHGAX3FIh1QNqhNKt6n/hHVoyNq9ln4wSoUkl2A==}
 
-  '@twinkleplop/python@0.1.7':
-    resolution: {integrity: sha512-C3DJhERSppC9qUoux4l+b88Jv0PXEkooSuYcbqTsQ3FKRALu+Ksy2ukqs9ncVkk/gVqgHT21xnR+udMR/3y+1g==}
+  '@twinkleplop/python@0.1.8':
+    resolution: {integrity: sha512-Du17Wr9xLYZccA9onbFlNjUkqS/WoAhjKGbB4NtwjlvLic1Rqqu7QsQw/VrbX861ryGOHefdNU/ANVqkasFXtg==}
 
   '@twinkleplop/sql@0.1.7':
     resolution: {integrity: sha512-H0KA5WVohc6IwEQce1S0CZQrt0eXnlkuuYlHxFa8GCj/q82mFg3YvtiPASUSmOKERWN52/yzdT6K0opvlVIT/A==}
@@ -3875,9 +3875,9 @@ snapshots:
     dependencies:
       '@twinkleplop/core': 0.3.2
 
-  '@twinkleplop/python@0.1.7':
+  '@twinkleplop/python@0.1.8':
     dependencies:
-      '@twinkleplop/core': 0.3.1
+      '@twinkleplop/core': 0.3.2
 
   '@twinkleplop/sql@0.1.7':
     dependencies:
