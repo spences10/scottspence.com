@@ -346,8 +346,8 @@ importers:
         specifier: 1.6.9
         version: 1.6.9
       svead:
-        specifier: ^0.1.1
-        version: 0.1.1(svelte@5.59.1)(typescript@6.0.3)
+        specifier: ^0.2.0
+        version: 0.2.0(svelte@5.59.1)(typescript@6.0.3)
       svelte:
         specifier: ^5.57.3
         version: 5.59.1
@@ -2804,8 +2804,8 @@ packages:
   stylis@4.4.0:
     resolution: {integrity: sha512-5Z9ZpRzfuH6l/UAvCPAPUo3665Nk2wLaZU3x+TLHKVzIz33+sbJqbtrYoC3KD4/uVOr2Zp+L0LySezP9OHV9yA==}
 
-  svead@0.1.1:
-    resolution: {integrity: sha512-hqC5EcPPh6n/B3nIDsPvsVL9ABtppdhLh/+5mrIKmvuRMTbPnICvkFH7cJ3JYt/cttA9gcCWH4JvZPG3tw6YRA==}
+  svead@0.2.0:
+    resolution: {integrity: sha512-optJ8XN04jDy2p6ZKu6IKZYjP/IqZ3b0dUWDzr4r7fjTv+s/E8wis4KaUeHYB+8cDeSYjPwSFB/+eHfaUlzuOg==}
     engines: {node: '>=24.15.0'}
     peerDependencies:
       svelte: ^5.0.0
@@ -5342,7 +5342,7 @@ snapshots:
 
   stylis@4.4.0: {}
 
-  svead@0.1.1(svelte@5.59.1)(typescript@6.0.3):
+  svead@0.2.0(svelte@5.59.1)(typescript@6.0.3):
     dependencies:
       schema-dts: 2.0.0(typescript@6.0.3)
       svelte: 5.59.1
