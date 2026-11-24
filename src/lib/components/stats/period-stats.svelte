@@ -466,12 +466,12 @@
 	{#if period_stats}
 		<!-- Period chart -->
 		{#if chart_data_parsed.length > 0}
-			{@const max_value = Math.max(
-				...chart_data_parsed.map((d) =>
-					Math.max(d.views, d.visitors),
-				),
-			)}
-			{#key chart_data_parsed.length}
+			<!-- Keep each chart tied to its own points. Updating the old axes
+			     during the period switch can reconcile the wrong date ticks. -->
+			{#each [chart_data_parsed] as points (points)}
+				{@const max_value = Math.max(
+					...points.map((d) => Math.max(d.views, d.visitors)),
+				)}
 				<div class="rounded-box bg-base-200 p-4 sm:p-6">
 					<div class="mb-2 flex items-center gap-4 text-xs">
 						<span class="opacity-80">UTC</span>
@@ -544,7 +544,7 @@
 						<div class="h-72">
 							{#if mounted}
 								<Chart
-									data={chart_data_parsed}
+									data={points}
 									x="date"
 									xScale={scaleTime()}
 									y="views"
@@ -645,7 +645,7 @@
 												timestamp: string;
 											};
 										})}
-											{@const point = chart_data_parsed.find(
+											{@const point = points.find(
 												(p) => p.timestamp === data.timestamp,
 											)}
 											<Tooltip.Header>
@@ -707,7 +707,7 @@
 						</div>
 					{/if}
 				</div>
-			{/key}
+			{/each}
 		{/if}
 
 		{#snippet panel_header(title: string, first = 'Visitors')}
