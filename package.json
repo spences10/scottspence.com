@@ -82,7 +82,7 @@
 		"fathom-client": "3.7.2",
 		"layerchart": "2.11.0",
 		"marked": "18.2.1",
-		"mdsvex": "^0.12.8",
+		"mdsvex": "^1.0.0",
 		"mermaid": "^12.2.0",
 		"playwright": "^1.64.1",
 		"rehype-autolink-headings": "7.1.0",
