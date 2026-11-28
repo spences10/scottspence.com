@@ -227,7 +227,7 @@ importers:
         version: 0.1.8
       '@twinkleplop/css':
         specifier: ^0.1.7
-        version: 0.1.8
+        version: 0.1.10
       '@twinkleplop/diff':
         specifier: ^0.1.7
         version: 0.1.8
@@ -1260,6 +1260,12 @@ packages:
 
   '@twinkleplop/core@0.3.2':
     resolution: {integrity: sha512-K4sKQFqTSpEjFz4eCmJGQA6ivtZgpBKdZzu3AzKIP5jwstJWHPI5eWtJgfv6vTsxDVHr3WY02gXnwL3+Rzndhg==}
+
+  '@twinkleplop/core@0.4.1':
+    resolution: {integrity: sha512-NOErtBHmvj2HHQZut5auMTiPRNQO5/FO6IUtVunoRiaPV6bSmO+DYUPwo2AJck6NnaH9/iteD9uk8Pt1Liso8w==}
+
+  '@twinkleplop/css@0.1.10':
+    resolution: {integrity: sha512-WKJ6jWbjoN6j9+ZMYR1HipkoQdxKf822NBeZIs8FlihN7moAo21oa80hW0MK0RB2/MuBs7AH40eG90BCVo7OzQ==}
 
   '@twinkleplop/css@0.1.8':
     resolution: {integrity: sha512-OwPt+cYSOUP3sVXq7Zt6pWVY4ce87t1EUgyHakhz36TGxYitnIA7DXeFmoyHCnFW8ZjfNjKCa8HAwARLTZstmQ==}
@@ -3792,6 +3798,12 @@ snapshots:
       '@twinkleplop/core': 0.3.2
 
   '@twinkleplop/core@0.3.2': {}
+
+  '@twinkleplop/core@0.4.1': {}
+
+  '@twinkleplop/css@0.1.10':
+    dependencies:
+      '@twinkleplop/core': 0.4.1
 
   '@twinkleplop/css@0.1.8':
     dependencies:
